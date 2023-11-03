@@ -34,7 +34,6 @@ public class ClientIT extends PMClientBase {
 	}
 
 	public JavaArchive createDeployment() throws Exception {
-
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Uni1XMPerson", pkgName + "Uni1XMProject" };
@@ -46,7 +45,6 @@ public class ClientIT extends PMClientBase {
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
-
 			super.setup();
 			createDeployment();
 			removeTestData();

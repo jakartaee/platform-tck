@@ -23,15 +23,16 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.SoftwareProduct;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 
 import jakarta.persistence.Query;
 
-public class Client4IT extends Util {
+public class Client4IT extends UtilProductData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client4IT.class.getName());
 
@@ -55,6 +56,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest7() throws Exception {
 		boolean pass = false;
 		List p;
@@ -94,6 +96,7 @@ public class Client4IT extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest38() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -156,6 +159,7 @@ public class Client4IT extends Util {
 	 * two queries are equivalent regardless of the way the expression is composed.
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest40() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -230,6 +234,7 @@ public class Client4IT extends Util {
 	 * composed.
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest41() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -310,6 +315,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest43() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -348,6 +354,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest44() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -387,6 +394,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest68() throws Exception {
 		boolean pass = false;
 		final Double d1 = 33387.14D;
@@ -425,6 +433,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void queryTest70() throws Exception {
 		boolean pass = false;
 		final Long expectedValue = 3277L;
@@ -462,6 +471,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void test_betweenDates() throws Exception {
 		boolean pass = false;
 		List result;
@@ -509,6 +519,7 @@ public class Client4IT extends Util {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void test_notBetweenDates() throws Exception {
 		boolean pass = false;
 		List result;
@@ -551,6 +562,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void aggregateFunctionsWithNoValuesTest() throws Exception {
 		boolean pass = false;
 		Query q;
@@ -645,6 +657,7 @@ public class Client4IT extends Util {
 	 * @test_Strategy: Select p from Product p where p.whouse = "WH5"
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void primaryKeyJoinColumnTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -682,6 +695,7 @@ public class Client4IT extends Util {
 	 * @test_Strategy: test path.type()
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void typeTest() throws Exception {
 		boolean pass = false;
 		List<Integer> expected = new ArrayList<Integer>();
@@ -724,6 +738,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void entityTypeLiteralTest() throws Exception {
 		boolean pass = false;
 		List p;
@@ -764,6 +779,7 @@ public class Client4IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
+	@Test
 	public void scalarExpressionsTest() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;

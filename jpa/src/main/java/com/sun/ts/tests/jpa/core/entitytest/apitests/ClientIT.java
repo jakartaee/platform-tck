@@ -25,6 +25,8 @@ import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -50,6 +52,7 @@ public class ClientIT extends PMClientBase {
 	/*
 	 * setup() is called before each test
 	 */
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -72,7 +75,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: persist throws an IllegalArgumentException if the argument is
 	 * not an entity
 	 */
-
+	@Test
 	public void entityAPITest1() throws Exception {
 
 		Foo notAnEntity = new Foo();
@@ -110,7 +113,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: find(Class entityClass, Object PK) returns null if the entity
 	 * does not exist.
 	 */
-
+	@Test
 	public void entityAPITest2() throws Exception {
 
 		boolean pass = false;
@@ -148,7 +151,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: find(Class entityClass, Object PK) throws an
 	 * IllegalArgumentException if the first argument does not denote an entity type
 	 */
-
+	@Test
 	public void entityAPITest3() throws Exception {
 		boolean pass = false;
 
@@ -184,7 +187,7 @@ public class ClientIT extends PMClientBase {
 	 * IllegalArgumentException if the second argument is not a valid type for that
 	 * entity's primary key
 	 */
-
+	@Test
 	public void entityAPITest4() throws Exception {
 
 		long longId = 55L;
@@ -226,7 +229,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: getReference(Class entityClass, Object PK) throws an
 	 * IllegalArgumentException if the first argument does not denote an entity type
 	 */
-
+	@Test
 	public void getReferenceExceptionsTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -276,7 +279,7 @@ public class ClientIT extends PMClientBase {
 	 * 
 	 * @test_Strategy: getReference(Class entityClass, Object PK)
 	 */
-
+	@Test
 	public void getReferenceTest() throws Exception {
 
 		boolean pass = false;
@@ -317,7 +320,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: refresh throws an IllegalArgumentException if the argument is
 	 * not an entity
 	 */
-
+	@Test
 	public void entityAPITest8() throws Exception {
 
 		Foo notAnEntity = new Foo();
@@ -357,7 +360,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: contains throws an IllegalArgumentException if the argument
 	 * is not an entity
 	 */
-
+	@Test
 	public void entityAPITest10() throws Exception {
 
 		Foo notAnEntity = new Foo();
@@ -400,7 +403,7 @@ public class ClientIT extends PMClientBase {
 	 * 
 	 * @test_Strategy: createNamedQuery creates an instance of Query in JPQL.
 	 */
-
+	@Test
 	public void entityAPITest12() throws Exception {
 		List<Coffee> result = null;
 		boolean pass = false;
@@ -441,7 +444,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: createNamedQuery creates an instance of Query in SQL. Use the
 	 * resultSetMapping to name the result set
 	 */
-
+	@Test
 	public void entityAPITest13() throws Exception {
 
 		List<Coffee> result = null;
@@ -484,7 +487,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: Execute a named query that uses a Constructor expression to
 	 * return a collection of Java Instances.
 	 */
-
+	@Test
 	public void entityAPITest14() throws Exception {
 		List<Coffee> result = null;
 		boolean pass = false;
@@ -526,7 +529,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: Execute a Java Persistence QL query that uses a Constructor
 	 * expression to return a collection of Java Instances.
 	 */
-
+	@Test
 	public void entityAPITest15() throws Exception {
 
 		List<Coffee> result = null;
@@ -574,7 +577,7 @@ public class ClientIT extends PMClientBase {
 	 * mapped to the database. Invoked a query with a Constructor expression using a
 	 * non-entity class.
 	 */
-
+	@Test
 	public void entityAPITest16() throws Exception {
 
 		List<Bar> result = null;
@@ -625,7 +628,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: remove throws an IllegalArgumentException if the instance is
 	 * not an entity
 	 */
-
+	@Test
 	public void entityAPITest17() throws Exception {
 
 		Foo notAnEntity = new Foo();
@@ -664,7 +667,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: createNamedQuery creates an instance of Query in SQL. using
 	 * resultClass for the resulting instances
 	 */
-
+	@Test
 	public void entityAPITest18() throws Exception {
 
 		List<Coffee> result = null;
@@ -704,7 +707,7 @@ public class ClientIT extends PMClientBase {
 	 * 
 	 * @test_Strategy: xml overrides the specified annotation.
 	 */
-
+	@Test
 	public void xmlOverridesNamedNativeQueryTest() throws Exception {
 
 		List<Coffee> result = null;
@@ -741,7 +744,7 @@ public class ClientIT extends PMClientBase {
 	 * 
 	 * @test_Strategy: call queries defined in xml
 	 */
-
+	@Test
 	public void xmlNamedNativeQueryTest() throws Exception {
 
 		List<Coffee> result = null;
@@ -778,7 +781,7 @@ public class ClientIT extends PMClientBase {
 	 * 
 	 * @test_Strategy: xml overrides the specified annotation.
 	 */
-
+	@Test
 	public void xmlOverridesNamedQueryTest() throws Exception {
 
 		List<Coffee> result = null;
@@ -815,7 +818,7 @@ public class ClientIT extends PMClientBase {
 	 * 
 	 * @test_Strategy: call queries defined in xml
 	 */
-
+	@Test
 	public void xmlNamedQueryTest() throws Exception {
 
 		List<Coffee> result = null;
@@ -852,7 +855,7 @@ public class ClientIT extends PMClientBase {
 	 * 
 	 * @test_Strategy: use NamedQuery and NamedQueries from MappedSuperClass
 	 */
-
+	@Test
 	public void namedNativeQueryInMappedSuperClass() throws Exception {
 		List<Coffee> result = null;
 		boolean pass = false;
@@ -887,7 +890,7 @@ public class ClientIT extends PMClientBase {
 	 * 
 	 * @test_Strategy: use NamedQuery and NamedQueries from MappedSuperClass
 	 */
-
+	@Test
 	public void namedQueryInMappedSuperClass() throws Exception {
 		List<Coffee> result = null;
 		boolean pass = false;

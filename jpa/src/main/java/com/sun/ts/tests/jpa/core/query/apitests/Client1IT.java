@@ -3723,6 +3723,7 @@ public class Client1IT extends PMClientBase {
 	 * @test_Strategy: Update Query
 	 *
 	 */
+	@Test
 	public void queryAPITest22() throws Exception {
 		Query q;
 		int result_size = 0;

@@ -68,11 +68,9 @@ public class ClientIT extends PMClientBase {
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
-
 			super.setup();
 			createDeployment();
 			removeTestData();
-
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);

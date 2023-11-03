@@ -1442,6 +1442,7 @@ public class Client1IT extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
+	@Test
 	public void test_fetchjoin_1xM() throws Exception {
 		List result;
 		boolean pass = false;

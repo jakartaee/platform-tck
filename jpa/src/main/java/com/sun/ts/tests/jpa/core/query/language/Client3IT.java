@@ -21,13 +21,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilAliasData;
 
 import jakarta.persistence.Query;
 
-public class Client3IT extends Util {
+public class Client3IT extends UtilAliasData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client3IT.class.getName());
 
@@ -53,6 +54,7 @@ public class Client3IT extends Util {
 	 */
 
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest3() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -92,6 +94,7 @@ public class Client3IT extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest20() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -136,6 +139,7 @@ public class Client3IT extends Util {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest21() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -178,97 +182,6 @@ public class Client3IT extends Util {
 	}
 
 	/*
-	 * @testName: queryTest22
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:359; PERSISTENCE:SPEC:763
-	 * 
-	 * @test_Strategy: Execute a query using the IS NULL comparison operator in the
-	 * WHERE clause. Verify the results were accurately returned.
-	 */
-	@SetupMethod(name = "setupCustomerData")
-	public void queryTest22() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-		List c;
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find All Customers who have a null work zip code");
-			c = getEntityManager().createQuery("sELEct dIsTiNcT oBjEcT(c) FROM Customer c WHERE c.work.zip IS NULL")
-					.getResultList();
-
-			expectedPKs = new String[1];
-			expectedPKs[0] = "13";
-			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected 1 reference, got: " + c.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
-		}
-
-		if (!pass)
-			throw new Exception("queryTest22 failed");
-	}
-
-	/*
-	 * @testName: queryTest23
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:359
-	 * 
-	 * @test_Strategy: Execute a query using the IS NOT NULL comparison operator
-	 * within the WHERE clause. Verify the results were accurately returned. (This
-	 * query is executed against non-NULL data. For NULL data, see test queryTest47)
-	 */
-	@SetupMethod(name = "setupCustomerData")
-	public void queryTest23() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-		List c;
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all customers who do not have null work zip code entry");
-			c = getEntityManager().createQuery("Select Distinct Object(c) FROM Customer c WHERE c.work.zip IS NOT NULL")
-					.getResultList();
-
-			expectedPKs = new String[17];
-			expectedPKs[0] = "1";
-			expectedPKs[1] = "2";
-			expectedPKs[2] = "3";
-			expectedPKs[3] = "4";
-			expectedPKs[4] = "5";
-			expectedPKs[5] = "6";
-			expectedPKs[6] = "7";
-			expectedPKs[7] = "8";
-			expectedPKs[8] = "9";
-			expectedPKs[9] = "10";
-			expectedPKs[10] = "11";
-			expectedPKs[11] = "12";
-			expectedPKs[12] = "14";
-			expectedPKs[13] = "15";
-			expectedPKs[14] = "16";
-			expectedPKs[15] = "17";
-			expectedPKs[16] = "18";
-
-			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 17 references, got: " + c.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
-		}
-
-		if (!pass)
-			throw new Exception("queryTest23 failed");
-	}
-
-	/*
 	 * @testName: queryTest24
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:369.1
@@ -278,6 +191,7 @@ public class Client3IT extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest24() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -316,6 +230,7 @@ public class Client3IT extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest25() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -355,6 +270,7 @@ public class Client3IT extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest26() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -390,77 +306,6 @@ public class Client3IT extends Util {
 	}
 
 	/*
-	 * @testName: queryTest27
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:369.5; PERSISTENCE:SPEC:368;
-	 * 
-	 * @test_Strategy: Execute a query which includes the arithmetic function ABS in
-	 * a functional expression within the WHERE clause. Verify the results were
-	 * accurately returned.
-	 */
-	@SetupMethod(name = "setupOrderData")
-	public void queryTest27() throws Exception {
-		boolean pass1 = false;
-		boolean pass2 = false;
-		String expectedPKs[];
-		List o;
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Testing ABS with numeric Java object types");
-			logger.log(Logger.Level.TRACE, "find all Orders with a total price greater than 1180");
-			o = getEntityManager().createQuery("Select DISTINCT Object(o) From Order o WHERE :dbl < ABS(o.totalPrice)")
-					.setParameter("dbl", 1180D).getResultList();
-
-			expectedPKs = new String[9];
-			expectedPKs[0] = "1";
-			expectedPKs[1] = "2";
-			expectedPKs[2] = "4";
-			expectedPKs[3] = "5";
-			expectedPKs[4] = "6";
-			expectedPKs[5] = "11";
-			expectedPKs[6] = "16";
-			expectedPKs[7] = "17";
-			expectedPKs[8] = "18";
-			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 9 references, got: " + o.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass1 = true;
-			}
-			logger.log(Logger.Level.INFO, "Testing ABS with primitive numeric type");
-			logger.log(Logger.Level.TRACE, "find all Orders with a total price greater than 1180");
-			o = getEntityManager().createQuery("Select DISTINCT Object(o) From Order o WHERE o.totalPrice > ABS(:dbl)")
-					.setParameter("dbl", 1180.55D).getResultList();
-
-			expectedPKs = new String[9];
-			expectedPKs[0] = "1";
-			expectedPKs[1] = "2";
-			expectedPKs[2] = "4";
-			expectedPKs[3] = "5";
-			expectedPKs[4] = "6";
-			expectedPKs[5] = "11";
-			expectedPKs[6] = "16";
-			expectedPKs[7] = "17";
-			expectedPKs[8] = "18";
-			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 9 references, got: " + o.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass2 = true;
-			}
-
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
-		}
-
-		if (!pass1 || !pass2)
-			throw new Exception("queryTest27 failed");
-	}
-
-	/*
 	 * @testName: queryTest28
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:369.3
@@ -470,6 +315,7 @@ public class Client3IT extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest28() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -509,6 +355,7 @@ public class Client3IT extends Util {
 	 * collection member expression. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest29() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -547,6 +394,7 @@ public class Client3IT extends Util {
 	 * collection member expression. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest30() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -589,6 +437,7 @@ public class Client3IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest31() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -627,6 +476,7 @@ public class Client3IT extends Util {
 	 * returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest49() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -683,6 +533,7 @@ public class Client3IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest50() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -723,6 +574,7 @@ public class Client3IT extends Util {
 	 */
 
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest52() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -761,6 +613,7 @@ public class Client3IT extends Util {
 	 * results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest53() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -814,6 +667,7 @@ public class Client3IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_leftouterjoin_MxM() throws Exception {
 
 		List q;
@@ -877,6 +731,7 @@ public class Client3IT extends Util {
 	 */
 
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_upperStringExpression() throws Exception {
 
 		List result;
@@ -919,6 +774,7 @@ public class Client3IT extends Util {
 	 */
 
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_lowerStringExpression() throws Exception {
 
 		List result;
@@ -959,6 +815,7 @@ public class Client3IT extends Util {
 	 * name=fish.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_innerjoin_MxM() throws Exception {
 		List result;
 		boolean pass = false;
@@ -999,6 +856,7 @@ public class Client3IT extends Util {
 	 * orders that live in NH.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_fetchjoin_MxM() throws Exception {
 		List result;
 		boolean pass = false;
@@ -1043,6 +901,7 @@ public class Client3IT extends Util {
 	 * Select all customers with alias = fish
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_substringHavingClause() throws Exception {
 		boolean pass = false;
 		Query q;

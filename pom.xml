@@ -58,6 +58,7 @@
         <module>jdbc</module>
         <module>jms</module>
         <module>jpa</module>
+        <module>jpa_extras</module>
         <module>jsonb</module>
         <module>jsonp</module>
         <module>jsp</module>

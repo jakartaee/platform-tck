@@ -1053,35 +1053,6 @@ public class Client3IT extends UtilCustomerData {
 	}
 
 	/*
-	 * @testName: pathGetIllegalArgumentException
-	 * 
-	 * @assertion_ids: PERSISTENCE:JAVADOC:1101
-	 * 
-	 * @test_Strategy:
-	 */
-	@Test
-	public void pathGetIllegalArgumentException() throws Exception {
-		boolean pass = false;
-
-		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
-		try {
-			CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
-			Root<Customer> customer = cquery.from(Customer.class);
-			customer.get("doesnotexist");
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
-		} catch (IllegalArgumentException iae) {
-			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
-			pass = true;
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
-		}
-
-		if (!pass) {
-			throw new Exception("pathGetIllegalArgumentException failed");
-		}
-	}
-
-	/*
 	 * @testName: orderReverseTest
 	 * 
 	 * @assertion_ids: PERSISTENCE:JAVADOC:1083; PERSISTENCE:JAVADOC:1084

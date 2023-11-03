@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,6 +26,9 @@ import java.util.Iterator;
 import java.util.Vector;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -60,6 +63,7 @@ public class ClientIT extends PMClientBase {
 
 	}
 
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -93,7 +97,7 @@ public class ClientIT extends PMClientBase {
 	 * PROJECT_PROJID.
 	 * 
 	 */
-
+	@Test
 	public void mappingTest1() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin mappingTest1");
@@ -153,7 +157,7 @@ public class ClientIT extends PMClientBase {
 	 * COMPANY_COMPANYID.
 	 * 
 	 */
-
+	@Test
 	public void mappingTest2() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin mappingTest2");
@@ -287,7 +291,7 @@ public class ClientIT extends PMClientBase {
 	 * COMPANY_COMPANYID.
 	 *
 	 */
-
+	@Test
 	public void mappingTest3() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin mappingTest3");
@@ -381,7 +385,7 @@ public class ClientIT extends PMClientBase {
 	 * ADDRESS_ID.
 	 *
 	 */
-
+	@Test
 	public void mappingTest4() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin mappingTest4");
@@ -451,7 +455,7 @@ public class ClientIT extends PMClientBase {
 	 * TEAM_TEAMID.
 	 *
 	 */
-
+	@Test
 	public void mappingTest5() throws Exception {
 		logger.log(Logger.Level.TRACE, "Begin mappingTest5");
 		boolean pass = false;
@@ -533,7 +537,7 @@ public class ClientIT extends PMClientBase {
 	 * The name of this foreign key is PERSONS_PERSONID.
 	 *
 	 */
-
+	@Test
 	public void mappingTest6() throws Exception {
 		logger.log(Logger.Level.TRACE, "Begin mappingTest6");
 		boolean pass1 = true;
@@ -686,7 +690,7 @@ public class ClientIT extends PMClientBase {
 	 * ANNUALREVIEW table. The name of this foreign key is ANNUALREVIEWS_AID.
 	 *
 	 */
-
+	@Test
 	public void mappingTest7() throws Exception {
 		logger.log(Logger.Level.TRACE, "Begin mappingTest7");
 		boolean pass1 = true;
@@ -893,7 +897,7 @@ public class ClientIT extends PMClientBase {
 	 * table. The name of this foreign key is INSURANCES_INSID.
 	 *
 	 */
-
+	@Test
 	public void mappingTest8() throws Exception {
 		boolean pass1 = true;
 		boolean pass2 = false;
@@ -1172,6 +1176,7 @@ public class ClientIT extends PMClientBase {
 
 	}
 
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

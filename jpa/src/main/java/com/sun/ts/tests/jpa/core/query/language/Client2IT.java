@@ -655,6 +655,7 @@ public class Client2IT extends UtilCustomerData {
 	 * were accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void queryTest54() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -693,6 +694,7 @@ public class Client2IT extends UtilCustomerData {
 	 * returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void queryTest56() throws Exception {
 
 		boolean pass1 = false;
@@ -758,6 +760,7 @@ public class Client2IT extends UtilCustomerData {
 	 * returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void queryTest58() throws Exception {
 		boolean pass = false;
 		Object s;
@@ -793,6 +796,7 @@ public class Client2IT extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void queryTest59() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -832,6 +836,7 @@ public class Client2IT extends UtilCustomerData {
 	 * without addresses. Verify the results are accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void queryTest61() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -877,6 +882,7 @@ public class Client2IT extends UtilCustomerData {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void queryTest64() throws Exception {
 		boolean pass = false;
 		List c;
@@ -941,6 +947,7 @@ public class Client2IT extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void queryTest69() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -994,6 +1001,7 @@ public class Client2IT extends UtilCustomerData {
 	 * Verify the results are accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void queryTest71() throws Exception {
 		boolean pass = false;
 
@@ -1024,6 +1032,7 @@ public class Client2IT extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_leftouterjoin_1xM() throws Exception {
 		List result;
 		boolean pass = false;
@@ -1067,6 +1076,7 @@ public class Client2IT extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_groupBy() throws Exception {
 		boolean pass = false;
 		List result;
@@ -1111,6 +1121,7 @@ public class Client2IT extends UtilCustomerData {
 	 * spouses.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_innerjoin_1x1() throws Exception {
 		List result;
 		boolean pass = false;
@@ -1153,6 +1164,7 @@ public class Client2IT extends UtilCustomerData {
 	 * Customers.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_fetchjoin_1x1() throws Exception {
 		List result;
 		boolean pass = false;
@@ -1196,6 +1208,7 @@ public class Client2IT extends UtilCustomerData {
 	 * count of customers in each country where Country is China, England
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_groupByHaving() throws Exception {
 		boolean pass = false;
 		List result;
@@ -1250,6 +1263,7 @@ public class Client2IT extends UtilCustomerData {
 	 * customer Margaret Mills by firstname-lastname concatenation.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_concatHavingClause() throws Exception {
 		boolean pass = false;
 		Query q;
@@ -1290,6 +1304,7 @@ public class Client2IT extends UtilCustomerData {
 	 * all customers in country with code GBR
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_lowerHavingClause() throws Exception {
 		boolean pass = false;
 		List result;
@@ -1334,6 +1349,7 @@ public class Client2IT extends UtilCustomerData {
 	 */
 
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_upperHavingClause() throws Exception {
 		boolean pass = false;
 		List result;
@@ -1378,6 +1394,7 @@ public class Client2IT extends UtilCustomerData {
 	 * all customer names having the length of the city of the home address = 10
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_lengthHavingClause() throws Exception {
 		boolean pass = false;
 		List result;
@@ -1425,6 +1442,7 @@ public class Client2IT extends UtilCustomerData {
 	 * name.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_locateHavingClause() throws Exception {
 		boolean pass = false;
 		List result;
@@ -1470,6 +1488,7 @@ public class Client2IT extends UtilCustomerData {
 	 * @test_Strategy: Use IN expression in a sub query.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void test_subquery_in() throws Exception {
 		boolean pass = false;
 		List result;
@@ -1519,6 +1538,7 @@ public class Client2IT extends UtilCustomerData {
 	 * Customers.
 	 */
 	@SetupMethod(name = "setupCustomerData")
+	@Test
 	public void fetchStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		List result;

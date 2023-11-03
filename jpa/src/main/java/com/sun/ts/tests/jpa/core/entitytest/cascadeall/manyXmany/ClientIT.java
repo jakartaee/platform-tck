@@ -27,6 +27,7 @@ import java.util.Vector;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -79,6 +80,7 @@ public class ClientIT extends PMClientBase {
 	 * and ensure the persist operation is cascaded.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest1() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin cascadeAllMXMTest1");
@@ -143,6 +145,7 @@ public class ClientIT extends PMClientBase {
 	 * it is managed and is accessible.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest2() throws Exception {
 		logger.log(Logger.Level.TRACE, "Begin cascadeAllMXMTest2");
 		boolean pass = false;
@@ -216,6 +219,7 @@ public class ClientIT extends PMClientBase {
 	 * If X is a managed entity, it is synchronized to the database.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest3() throws Exception {
 		boolean pass = false;
 		A aRef;
@@ -275,6 +279,7 @@ public class ClientIT extends PMClientBase {
 	 * entity has NOT been annotated with REMOVE.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest4() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin cascadeAllMXMTest4");
@@ -342,6 +347,7 @@ public class ClientIT extends PMClientBase {
 	 * retrieved from the database and has not been removed or detached.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest5() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin cascadeAllMXMTest5");
@@ -409,6 +415,7 @@ public class ClientIT extends PMClientBase {
 	 * and the persist method has been called on the entity.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest6() throws Exception {
 		logger.log(Logger.Level.TRACE, "Begin cascadeAllMXMTest6");
 		boolean pass = false;
@@ -460,6 +467,7 @@ public class ClientIT extends PMClientBase {
 	 * and the persist operation has been cascaded to it.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest7() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin cascadeAllMXMTest7");
@@ -513,6 +521,7 @@ public class ClientIT extends PMClientBase {
 	 * new and the persist operation has not been called on it.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest8() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin cascadeAllMXMTest8");
@@ -555,6 +564,7 @@ public class ClientIT extends PMClientBase {
 	 * new and the persist operation has not been cascaded to it.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest9() throws Exception {
 
 		logger.log(Logger.Level.TRACE, "Begin cascadeAllMXMTest9");
@@ -610,6 +620,7 @@ public class ClientIT extends PMClientBase {
 	 * cascade=ALL annotation member value.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest10() throws Exception {
 		boolean pass = false;
 		A a1;
@@ -671,6 +682,7 @@ public class ClientIT extends PMClientBase {
 	 * operation is applied to Y.
 	 *
 	 */
+	@Test
 	public void cascadeAllMXMTest11() throws Exception {
 		boolean pass = false;
 		A a1;

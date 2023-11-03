@@ -43,7 +43,8 @@ public class Client2IT extends Client {
 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] xmlFiles = { "myMappingFile.xml" };
-		String[] classes = { pkgName + "Employee", pkgName + "Employee2", pkgName + "EmployeeMappedSc" };
+		String[] classes = { pkgName + "Employee", pkgName + "Employee2",
+				pkgName + "EmployeeMappedSC" };
 		return createDeploymentJar("jpa_core_types_StoredProcedureQuery2.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}

@@ -20,11 +20,12 @@ import java.lang.System.Logger;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilPhoneData;
 
-public class Client5IT extends Util {
+public class Client5IT extends UtilPhoneData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client5IT.class.getName());
 
@@ -46,6 +47,7 @@ public class Client5IT extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupPhoneData")
+	@Test
 	public void queryTest55() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];

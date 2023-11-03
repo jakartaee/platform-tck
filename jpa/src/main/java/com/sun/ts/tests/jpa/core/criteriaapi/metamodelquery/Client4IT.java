@@ -117,57 +117,6 @@ public class Client4IT extends UtilProductData {
 	}
 
 	/*
-	 * @testName: queryTest8
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:348.4; PERSISTENCE:SPEC:345
-	 * 
-	 * @test_Strategy: Execute a query containing a conditional expression composed
-	 * with logical operator NOT. Verify the results were accurately returned.
-	 *
-	 */
-	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest8() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders where the total price is NOT less than $4500");
-			CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
-			Root<Order> order = cquery.from(Order.class);
-			cquery.where(cbuilder.lt(order.get(Order_.totalPrice), 4500).not());
-			cquery.select(order);
-
-			TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
-			tquery.setMaxResults(orderRef.length);
-			List<Order> olist = tquery.getResultList();
-
-			expectedPKs = new String[3];
-			expectedPKs[0] = "5";
-			expectedPKs[1] = "11";
-			expectedPKs[2] = "16";
-			if (!checkEntityPK(olist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 3 references, got: " + olist.size());
-
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception("queryTest8 failed");
-		}
-	}
-
-	/*
 	 * @testName: queryTest38
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:369.7
@@ -708,67 +657,6 @@ public class Client4IT extends UtilProductData {
 	}
 
 	/*
-	 * @testName: test_notBetweenArithmetic
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:349
-	 * 
-	 * @test_Strategy: Execute a query containing using the operator BETWEEN and NOT
-	 * BETWEEN. Verify the results were accurately returned.
-	 */
-	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_notBetweenArithmetic() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
-			Root<Order> order = cquery.from(Order.class);
-			cquery.where(cbuilder.not(cbuilder.between(order.get(Order_.totalPrice), 1000D, 1200D)));
-			cquery.select(order);
-			TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
-			tquery.setMaxResults(orderRef.length);
-			List<Order> result = tquery.getResultList();
-
-			expectedPKs = new String[15];
-			expectedPKs[0] = "2";
-			expectedPKs[1] = "4";
-			expectedPKs[2] = "5";
-			expectedPKs[3] = "6";
-			expectedPKs[4] = "9";
-			expectedPKs[5] = "10";
-			expectedPKs[6] = "11";
-			expectedPKs[7] = "12";
-			expectedPKs[8] = "13";
-			expectedPKs[9] = "15";
-			expectedPKs[10] = "16";
-			expectedPKs[11] = "17";
-			expectedPKs[12] = "18";
-			expectedPKs[13] = "19";
-			expectedPKs[14] = "20";
-
-			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expectedPKs.length
-						+ " references, got: " + result.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception("test_notBetweenArithmetic failed");
-		}
-	}
-
-	/*
 	 * @testName: test_notBetweenDates
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:349.2; PERSISTENCE:SPEC:600
@@ -820,70 +708,5 @@ public class Client4IT extends UtilProductData {
 			throw new Exception("test_notBetweenDates failed");
 	}
 
-	/*
-	 * @testName: getCorrelatedJoinsTest
-	 * 
-	 * @assertion_ids: PERSISTENCE:JAVADOC:1179;
-	 * 
-	 * @test_Strategy: Test getting correlated joins from subquery.
-	 */
-	@CleanupMethod(name = "cleanupNoData")
-	@Test
-	public void getCorrelatedJoinsTest() throws Exception {
-		boolean pass = false;
-
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-			Root<Customer> customer = cquery.from(Customer.class);
-			cquery.select(customer);
-			Subquery<Order> sq = cquery.subquery(Order.class);
-			Set cJoins = sq.getCorrelatedJoins();
-			if (cJoins != null) {
-				if (cJoins.size() == 0) {
-					logger.log(Logger.Level.TRACE,
-							"Received expected 0 correlated joins from subquery.getCorrelatedJoins() when none exist");
-
-					// correlate subquery
-					Join<Customer, Order> sqo = sq.correlate(customer.join(Customer_.orders));
-					sq.select(sqo);
-					cJoins = sq.getCorrelatedJoins();
-					if (cJoins != null) {
-						if (cJoins.size() == 1) {
-							logger.log(Logger.Level.TRACE,
-									"Received expected 1 correlated join from subquery.getCorrelatedJoins()");
-							pass = true;
-						} else {
-							logger.log(Logger.Level.ERROR, "Received " + cJoins.size()
-									+ " correlated joins from subquery.getCorrelatedJoins() when 1 exist");
-
-						}
-					} else {
-						logger.log(Logger.Level.ERROR,
-								"Received null from subquery.getCorrelatedJoins() when 1 correlated join exists");
-
-					}
-				} else {
-					logger.log(Logger.Level.ERROR, "Received " + cJoins.size()
-							+ " unexpected correlated joins from subquery.getCorrelatedJoins() when non exist");
-
-				}
-			} else {
-				logger.log(Logger.Level.ERROR,
-						"Received null from subquery.getCorrelatedJoins() instead of empty set when non exist");
-
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception(" getCorrelatedJoinsTest failed");
-		}
-	}
 
 }

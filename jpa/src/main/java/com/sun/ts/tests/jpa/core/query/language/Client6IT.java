@@ -21,12 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.tests.jpa.common.schema30.Department;
-import com.sun.ts.tests.jpa.common.schema30.Util;
+import com.sun.ts.tests.jpa.common.schema30.UtilDepartmentEmployeeData;
 
-public class Client6IT extends Util {
+public class Client6IT extends UtilDepartmentEmployeeData {
 
 	private static final Logger logger = (Logger) System.getLogger(Client6IT.class.getName());
 
@@ -47,6 +48,7 @@ public class Client6IT extends Util {
 	 * d.lastNameEmployees WHERE d.id = 1
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
+	@Test
 	public void resultContainsFetchReference() throws Exception {
 		boolean pass = false;
 		List<Department> result;

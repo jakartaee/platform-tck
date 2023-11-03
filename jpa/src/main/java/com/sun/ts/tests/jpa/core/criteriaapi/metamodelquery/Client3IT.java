@@ -144,6 +144,7 @@ public class Client3IT extends UtilAliasData {
 	 * 
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest20() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -197,6 +198,7 @@ public class Client3IT extends UtilAliasData {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest21() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -248,207 +250,6 @@ public class Client3IT extends UtilAliasData {
 	}
 
 	/*
-	 * @testName: queryTest24
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:369.1
-	 * 
-	 * @test_Strategy: Execute a query which includes the string function CONCAT in
-	 * a functional expression within the WHERE clause. Verify the results were
-	 * accurately returned.
-	 */
-	@SetupMethod(name = "setupAliasOnlyData")
-	public void queryTest24() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all aliases who have match: stevie");
-			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
-			Root<Alias> alias = cquery.from(Alias.class);
-			cquery.where(cbuilder.equal(alias.get(Alias_.alias), cbuilder.concat(cbuilder.literal("ste"), "vie")));
-			cquery.select(alias);
-			TypedQuery<Alias> tquery = getEntityManager().createQuery(cquery);
-			tquery.setMaxResults(aliasRef.length);
-			List<Alias> alist = tquery.getResultList();
-
-			expectedPKs = new String[1];
-			expectedPKs[0] = "14";
-			if (!checkEntityPK(alist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 1 reference, got: " + alist.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception("queryTest24 failed");
-		}
-	}
-
-	/*
-	 * @testName: queryTest25
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:369.2
-	 * 
-	 * @test_Strategy: Execute a query which includes the string function SUBSTRING
-	 * in a functional expression within the WHERE clause. Verify the results were
-	 * accurately returned.
-	 */
-	@SetupMethod(name = "setupAliasOnlyData")
-	public void queryTest25() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all aliases containing the substring: iris");
-			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
-			Root<Alias> alias = cquery.from(Alias.class);
-			cquery.where(cbuilder.equal(alias.get(Alias_.alias),
-					cbuilder.substring(cbuilder.parameter(String.class, "string1"),
-							cbuilder.parameter(Integer.class, "int2"), cbuilder.parameter(Integer.class, "int3"))));
-			cquery.select(alias);
-			TypedQuery<Alias> tquery = getEntityManager().createQuery(cquery);
-			tquery.setParameter("string1", "iris");
-			tquery.setParameter("int2", Integer.valueOf(1));
-			tquery.setParameter("int3", Integer.valueOf(4));
-			tquery.setMaxResults(aliasRef.length);
-			List<Alias> alist = tquery.getResultList();
-
-			expectedPKs = new String[1];
-			expectedPKs[0] = "20";
-			if (!checkEntityPK(alist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 1 reference, got: " + alist.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception("queryTest25 failed");
-		}
-	}
-
-	/*
-	 * @testName: queryTest26
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:369.4
-	 * 
-	 * @test_Strategy: Execute a query which includes the string function LENGTH in
-	 * a functional expression within the WHERE clause. Verify the results were
-	 * accurately returned.
-	 */
-	@SetupMethod(name = "setupAliasOnlyData")
-	public void queryTest26() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find aliases whose alias name is greater than 4 characters");
-			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
-			Root<Alias> alias = cquery.from(Alias.class);
-			cquery.where(cbuilder.gt(cbuilder.length(alias.get(Alias_.alias)), 4));
-			cquery.select(alias);
-			TypedQuery<Alias> tquery = getEntityManager().createQuery(cquery);
-			tquery.setMaxResults(aliasRef.length);
-			List<Alias> alist = tquery.getResultList();
-
-			expectedPKs = new String[7];
-			expectedPKs[0] = "8";
-			expectedPKs[1] = "10";
-			expectedPKs[2] = "13";
-			expectedPKs[3] = "14";
-			expectedPKs[4] = "18";
-			expectedPKs[5] = "28";
-			expectedPKs[6] = "29";
-			if (!checkEntityPK(alist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 7 references, got: " + alist.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception("queryTest26 failed");
-		}
-	}
-
-	/*
-	 * @testName: queryTest28
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:369.3
-	 * 
-	 * @test_Strategy: Execute a query which includes the string function LOCATE in
-	 * a functional expression within the WHERE clause. Verify the results were
-	 * accurately returned.
-	 */
-	@SetupMethod(name = "setupAliasOnlyData")
-	public void queryTest28() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all aliases who contain the string: ev in their alias name");
-			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
-			Root<Alias> alias = cquery.from(Alias.class);
-			cquery.where(cbuilder.equal(cbuilder.locate(alias.get(Alias_.alias), "ev"), 3));
-			cquery.select(alias);
-			TypedQuery<Alias> tquery = getEntityManager().createQuery(cquery);
-			tquery.setMaxResults(aliasRef.length);
-			List<Alias> alist = tquery.getResultList();
-
-			expectedPKs = new String[3];
-			expectedPKs[0] = "13";
-			expectedPKs[1] = "14";
-			expectedPKs[2] = "18";
-			if (!checkEntityPK(alist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 3 references, got: " + alist.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception("queryTest28 failed");
-		}
-	}
-
-	/*
 	 * @testName: queryTest31
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:358; PERSISTENCE:JAVADOC:805
@@ -459,6 +260,7 @@ public class Client3IT extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest31() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -508,6 +310,7 @@ public class Client3IT extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void likeExpExpCharTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -557,6 +360,7 @@ public class Client3IT extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void likeExpExpExpTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -606,6 +410,7 @@ public class Client3IT extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void likeExpStringExpTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -653,6 +458,7 @@ public class Client3IT extends UtilAliasData {
 	 * collection_valued_association_field where the field is EMPTY.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest45() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -720,6 +526,7 @@ public class Client3IT extends UtilAliasData {
 	 * returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest49() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -784,6 +591,7 @@ public class Client3IT extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest50() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -834,6 +642,7 @@ public class Client3IT extends UtilAliasData {
 	 * 
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest51() throws Exception {
 		boolean pass = false;
 
@@ -879,6 +688,7 @@ public class Client3IT extends UtilAliasData {
 	 * results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest53() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -943,6 +753,7 @@ public class Client3IT extends UtilAliasData {
 	 * results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void queryTest54() throws Exception {
 		boolean pass = false;
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -989,6 +800,7 @@ public class Client3IT extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_leftouterjoin_MxM() throws Exception {
 
 		boolean pass1 = false;
@@ -1064,6 +876,7 @@ public class Client3IT extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_upperStringExpression() throws Exception {
 
 		boolean pass = false;
@@ -1112,6 +925,7 @@ public class Client3IT extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_lowerStringExpression() throws Exception {
 
 		boolean pass = false;
@@ -1158,6 +972,7 @@ public class Client3IT extends UtilAliasData {
 	 * name=fish.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_innerjoin_MxM() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -1207,6 +1022,7 @@ public class Client3IT extends UtilAliasData {
 	 * orders that live in NH.
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void test_fetchjoin_MxM() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -1257,6 +1073,7 @@ public class Client3IT extends UtilAliasData {
 	 * Select all customers with alias = fish
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void substringHavingExpressionTest() throws Exception {
 		boolean pass = false;
 		Object result;
@@ -1308,6 +1125,7 @@ public class Client3IT extends UtilAliasData {
 	 * Select all customers with alias = fish
 	 */
 	@SetupMethod(name = "setupAliasData")
+	@Test
 	public void substringHavingExpressionPredicateArrayTest() throws Exception {
 		boolean pass = false;
 		Object result;
@@ -1353,68 +1171,4 @@ public class Client3IT extends UtilAliasData {
 		}
 	}
 
-	/*
-	 * @testName: getCorrelatedJoinsTest
-	 * 
-	 * @assertion_ids: PERSISTENCE:JAVADOC:1179;
-	 * 
-	 * @test_Strategy: Test getting correlated joins from subquery.
-	 */
-	@CleanupMethod(name = "cleanupNoData")
-	public void getCorrelatedJoinsTest() throws Exception {
-		boolean pass = false;
-
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-			Root<Customer> customer = cquery.from(Customer.class);
-			cquery.select(customer);
-			Subquery<Order> sq = cquery.subquery(Order.class);
-			Set cJoins = sq.getCorrelatedJoins();
-			if (cJoins != null) {
-				if (cJoins.size() == 0) {
-					logger.log(Logger.Level.TRACE,
-							"Received expected 0 correlated joins from subquery.getCorrelatedJoins() when none exist");
-
-					// correlate subquery
-					Join<Customer, Order> sqo = sq.correlate(customer.join(Customer_.orders));
-					sq.select(sqo);
-					cJoins = sq.getCorrelatedJoins();
-					if (cJoins != null) {
-						if (cJoins.size() == 1) {
-							logger.log(Logger.Level.TRACE,
-									"Received expected 1 correlated join from subquery.getCorrelatedJoins()");
-							pass = true;
-						} else {
-							logger.log(Logger.Level.ERROR, "Received " + cJoins.size()
-									+ " correlated joins from subquery.getCorrelatedJoins() when 1 exist");
-
-						}
-					} else {
-						logger.log(Logger.Level.ERROR,
-								"Received null from subquery.getCorrelatedJoins() when 1 correlated join exists");
-
-					}
-				} else {
-					logger.log(Logger.Level.ERROR, "Received " + cJoins.size()
-							+ " unexpected correlated joins from subquery.getCorrelatedJoins() when non exist");
-
-				}
-			} else {
-				logger.log(Logger.Level.ERROR,
-						"Received null from subquery.getCorrelatedJoins() instead of empty set when non exist");
-
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception(" getCorrelatedJoinsTest failed");
-		}
 	}
-}
