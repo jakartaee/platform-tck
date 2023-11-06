@@ -17,35 +17,13 @@
 package com.sun.ts.tests.jpa.core.criteriaapi.parameter;
 
 import java.lang.System.Logger;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-import jakarta.persistence.Parameter;
-import jakarta.persistence.Query;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.ParameterExpression;
-import jakarta.persistence.criteria.Predicate;
-import jakarta.persistence.criteria.Root;
-
-@TestInstance(Lifecycle.PER_CLASS)
 public abstract class Client extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
@@ -54,7 +32,7 @@ public abstract class Client extends PMClientBase {
 
 	final java.sql.Date d1 = getSQLDate("2000-02-14");
 
-	@BeforeAll
+	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
@@ -71,14 +49,14 @@ public abstract class Client extends PMClientBase {
 
 	abstract public JavaArchive createDeployment() throws Exception;
 
-	@AfterAll
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		removeTestData();
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
-	
+
 	protected void createTestData() {
 
 		try {
@@ -115,7 +93,6 @@ public abstract class Client extends PMClientBase {
 			}
 		}
 	}
-
 
 	protected void removeTestData() {
 		logger.log(Logger.Level.TRACE, "removeTestData");

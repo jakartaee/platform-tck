@@ -270,7 +270,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

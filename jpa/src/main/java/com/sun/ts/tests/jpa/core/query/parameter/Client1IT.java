@@ -698,7 +698,7 @@ public class Client1IT extends PMClientBase {
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 }

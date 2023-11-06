@@ -39,7 +39,7 @@ public class ClientIT extends PMClientBase {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { "orm.xml" };
+		String[] xmlFiles = { ORM_XML };
 		String[] classes = { pkgName + "NameOnlyInAnnotation", pkgName + "NameOnlyInXML", pkgName + "NameOverride",
 				pkgName + "NoEntityAnnotation" };
 		return createDeploymentJar("jpa_core_override_entity.jar", pkgNameWithoutSuffix, classes, xmlFiles);
@@ -217,7 +217,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

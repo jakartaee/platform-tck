@@ -43,7 +43,7 @@ public class ClientIT extends PMClientBase {
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { "orm.xml" };
+		String[] xmlFile = { ORM_XML };
 		String[] classes = { pkgName + "Item", pkgName + "Order1", pkgName + "Order2", pkgName + "PurchaseOrder" };
 		return createDeploymentJar("jpa_core_annotations_nativequery.jar", pkgNameWithoutSuffix, classes, xmlFile);
 	}
@@ -944,7 +944,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

@@ -41,7 +41,7 @@ public class ClientIT extends PMClientBase {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { "orm.xml" };
+		String[] xmlFile = { ORM_XML };
 		String[] classes = { pkgName + "Customer", pkgName + "Department", pkgName + "Order" };
 		return createDeploymentJar("jpa_se_cache_xml_enableselective.jar", pkgNameWithoutSuffix, (String[]) classes,
 				PERSISTENCE_XML, xmlFile);
@@ -160,7 +160,7 @@ public class ClientIT extends PMClientBase {
 			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeDeploymentJar();
+			removeTestJarFromCP();
 		}
 	}
 

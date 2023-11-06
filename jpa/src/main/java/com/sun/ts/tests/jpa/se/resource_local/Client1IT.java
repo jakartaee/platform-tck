@@ -823,7 +823,7 @@ public class Client1IT extends PMClientBase {
 			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeDeploymentJar();
+			removeTestJarFromCP();
 		}
 	}
 

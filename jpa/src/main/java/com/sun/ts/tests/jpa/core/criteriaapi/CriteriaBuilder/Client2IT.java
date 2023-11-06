@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Address;
-import com.sun.ts.tests.jpa.common.schema30.Alias;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Spouse;
 import com.sun.ts.tests.jpa.common.schema30.UtilCustAliasProductData;

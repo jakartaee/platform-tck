@@ -79,7 +79,7 @@ public class Client3IT extends PMClientBase {
 	public void cleanupNoData() throws Exception {
 		logger.log(Logger.Level.TRACE, "in cleanupNoData");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	/*

@@ -111,7 +111,7 @@ public class ClientIT extends PMClientBase {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { "orm.xml" };
+		String[] xmlFile = { ORM_XML };
 		String[] classes = { pkgName + "Consumer", pkgName + "Customers", pkgName + "Department", pkgName + "Employee",
 				pkgName + "EmployeeComparator", pkgName + "RetailOrder", pkgName + "RetailOrderCostComparatorDESC",
 				pkgName + "Store", pkgName + "TheatreCompany", pkgName + "TheatreLocation" };
@@ -423,7 +423,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

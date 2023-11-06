@@ -20,20 +20,16 @@ import java.lang.System.Logger;
 import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Address;
 import com.sun.ts.tests.jpa.common.schema30.Address_;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
-import com.sun.ts.tests.jpa.common.schema30.Order;
-import com.sun.ts.tests.jpa.common.schema30.Order_;
 import com.sun.ts.tests.jpa.common.schema30.Phone;
 import com.sun.ts.tests.jpa.common.schema30.Phone_;
 import com.sun.ts.tests.jpa.common.schema30.Product;
@@ -46,7 +42,6 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.Subquery;
 
 public class Client4IT extends UtilProductData {
 
@@ -707,6 +702,5 @@ public class Client4IT extends UtilProductData {
 		if (!pass)
 			throw new Exception("test_notBetweenDates failed");
 	}
-
 
 }

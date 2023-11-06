@@ -57,7 +57,7 @@ public class ClientIT extends PMClientBase {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { "orm.xml" };
+		String[] xmlFiles = { ORM_XML };
 		String[] classes = { pkgName + "XAddress", pkgName + "XAnnualReview", pkgName + "XCompany",
 				pkgName + "XInsurance", pkgName + "XPerson", pkgName + "XProject", pkgName + "XTeam" };
 		return createDeploymentJar("jpa_core_relationship_descriptors.jar", pkgNameWithoutSuffix, classes, xmlFiles);
@@ -1184,7 +1184,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

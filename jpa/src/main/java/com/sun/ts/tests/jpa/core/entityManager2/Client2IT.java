@@ -89,7 +89,7 @@ public class Client2IT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
 		cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	/*

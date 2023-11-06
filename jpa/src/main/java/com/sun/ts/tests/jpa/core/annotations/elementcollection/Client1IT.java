@@ -37,7 +37,7 @@ public class Client1IT extends PMClientBase {
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { "myMappingFile.xml" };
+		String[] xmlFile = { MAPPING_FILE_XML };
 		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "Customer", pkgName + "CustomerXML" };
 
 		return createDeploymentJar("jpa_core_annotations_elementcollection1.jar", pkgNameWithoutSuffix, classes,
@@ -163,7 +163,7 @@ public class Client1IT extends PMClientBase {
 		removeATestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeATestData() {

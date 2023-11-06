@@ -94,7 +94,7 @@ public class Client3IT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
 		cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {

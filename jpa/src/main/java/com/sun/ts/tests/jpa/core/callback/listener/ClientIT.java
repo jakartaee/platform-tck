@@ -54,7 +54,7 @@ public class ClientIT extends EntityCallbackClientBase {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "LineItem", pkgName + "LineItemSuper", pkgName + "Order", pkgName + "Product" };
-		String[] xmlFiles = { "orm.xml" };
+		String[] xmlFiles = { ORM_XML };
 		return createDeploymentJar("jpa_core_callback_listener.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}
@@ -573,7 +573,7 @@ public class ClientIT extends EntityCallbackClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

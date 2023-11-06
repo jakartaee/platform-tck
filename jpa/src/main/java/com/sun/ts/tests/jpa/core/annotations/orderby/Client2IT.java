@@ -258,7 +258,7 @@ public class Client2IT extends PMClientBase {
 		removeAddressData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeAddressData() {

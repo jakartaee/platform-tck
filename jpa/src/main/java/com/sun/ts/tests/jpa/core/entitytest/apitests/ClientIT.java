@@ -43,7 +43,7 @@ public class ClientIT extends PMClientBase {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { "myMappingFile.xml", "orm.xml" };
+		String[] xmlFiles = { MAPPING_FILE_XML, ORM_XML };
 		String[] classes = { pkgName + "Bar", pkgName + "Coffee", pkgName + "CoffeeMappedSC", pkgName + "Foo" };
 		return createDeploymentJar("jpa_core_entitytest_apitests.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
@@ -979,7 +979,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

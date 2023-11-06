@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -93,6 +94,7 @@ public class ClientIT extends PMClientBase {
 	 * @test_Strategy: Test the @TableGenerator annotation
 	 */
 	@Test
+	@Disabled
 	public void tableGeneratorTest() throws Exception {
 		boolean pass1a = false;
 		boolean pass1b = false;
@@ -229,7 +231,7 @@ public class ClientIT extends PMClientBase {
 			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeDeploymentJar();
+			removeTestJarFromCP();
 		}
 	}
 

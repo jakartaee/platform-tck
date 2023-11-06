@@ -38,7 +38,7 @@ public class ClientIT extends PMClientBase {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "OverridenCallBack" };
-		String[] xmlFiles = { "orm.xml" };
+		String[] xmlFiles = { ORM_XML };
 		return createDeploymentJar("jpa_core_override_callbacklistener.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
 	}
@@ -234,7 +234,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

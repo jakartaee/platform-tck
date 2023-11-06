@@ -209,6 +209,19 @@
                             <target>
                                 <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
                                     <transaction src="${project.build.directory}/../sql/${jdbc.db}/${jdbc.db}.ddl.persistence.sql"/>
+                                </sql>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>initdb-2</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
                                     <transaction src="${project.build.directory}/../sql/${jdbc.db}/${jdbc.db}.ddl.persistence.sprocs.sql"/>
                                 </sql>
                             </target>
@@ -243,8 +256,11 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <include>**/jpa/core/**/*.*</include>
+                                <include>**/*enerator*/**/*.*</include>
                             </includes>
+                            <excludes>
+                                <exclude>**/jpa/ee/**/*.*</exclude>
+                            </excludes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.jpa-api.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar</additionalClasspathElement>

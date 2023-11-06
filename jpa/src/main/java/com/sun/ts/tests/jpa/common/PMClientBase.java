@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringWriter;
 import java.lang.System.Logger;
 import java.lang.reflect.InvocationTargetException;
@@ -28,6 +29,7 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -42,6 +44,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -1087,10 +1090,12 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	public static final String STANDALONE_PERSISTENCE_XML = "com/sun/ts/tests/jpa/common/template/standalone/persistence.xml";
 	public static final String PERSISTENCE_ELEMENT_TAG = "persistence-unit";
 	public static final String CLASS_ELEMENT_TAG = "class";
+	public static final String MAPPING_ELEMENT_TAG = "mapping-file";
 	public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
-
 	public static final String PERSISTENCE_XML = "persistence.xml";
-
+	public static final String ORM_XML = "orm.xml";
+	public static final String MAPPING_FILE_XML = "myMappingFile.xml";
+	
 	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes,
 			String persistenceFile, String[] xmlFiles) throws Exception {
 
@@ -1117,6 +1122,17 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 					presistenceElement.item(i).appendChild(classTag);
 				}
 			}
+
+			for (int j = 0; j < xmlFiles.length; j++) {
+				if (!ORM_XML.equalsIgnoreCase(xmlFiles[j])) {
+					for (int i = 0; i < presistenceElement.getLength(); i++) {
+						Element mappingTag = document.createElement(MAPPING_ELEMENT_TAG);
+						Text mappingNode = document.createTextNode(xmlFiles[j]);
+						mappingTag.appendChild(mappingNode);
+						presistenceElement.item(i).appendChild(mappingTag);
+					}
+				}
+			}
 			StringWriter writer = new StringWriter();
 			transformer.transform(new DOMSource(document), new StreamResult(writer));
 			archive.addAsManifestResource(new StringAsset(writer.getBuffer().toString()), PERSISTENCE_XML);
@@ -1126,9 +1142,13 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), PERSISTENCE_XML);
 		}
 		for (int i = 0; i < xmlFiles.length; i++) {
-			InputStream xmlFileStream = Thread.currentThread().getContextClassLoader()
-					.getResourceAsStream(packageName.replace('.', '/') + "/" + xmlFiles[i]);
-			archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), xmlFiles[i]);
+			if (ORM_XML.equalsIgnoreCase(xmlFiles[i])) {
+				InputStream xmlFileStream = Thread.currentThread().getContextClassLoader()
+						.getResourceAsStream(packageName.replace('.', '/') + "/" + xmlFiles[i]);
+				archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), xmlFiles[i]);
+			} else {
+				archive.addAsResource(packageName.replace('.', '/') + "/" + xmlFiles[i], xmlFiles[i]);
+			}
 		}
 
 		archive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + jarName), true);
@@ -1154,10 +1174,16 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 	}
 
-	public static void removeDeploymentJar() throws Exception {
+	public static void removeTestJarFromCP() throws Exception {
 		URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
 		Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
 		currentThreadClassLoader.close();
+	}
+
+	public static String toString(InputStream inStream) throws IOException {
+		try (BufferedReader bufReader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8))) {
+			return bufReader.lines().collect(Collectors.joining(System.lineSeparator()));
+		}
 	}
 
 }

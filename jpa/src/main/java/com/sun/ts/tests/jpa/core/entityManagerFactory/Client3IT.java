@@ -69,7 +69,7 @@ public class Client3IT extends PMClientBase {
 	@AfterEach
 	public void cleanupNoData() throws Exception {
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	/*

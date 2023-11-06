@@ -16,13 +16,19 @@
 
 package com.sun.ts.tests.jpa.se.pluggability.contracts.resource_local;
 
+import java.io.File;
+import java.io.InputStream;
 import java.lang.System.Logger;
 import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -68,14 +74,35 @@ public class ClientIT extends PMClientBase {
 	}
 
 	public JavaArchive createDeployment() throws Exception {
-
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { "myMappingFile1.xml", "myMappingFile2.xml", "orm.xml" };
+		String[] xmlFile = { "myMappingFile1.xml", "myMappingFile2.xml", ORM_XML };
 		String[] classes = { pkgName + "Order", pkgName + "Order2", pkgName + "Order3", pkgName + "Order4",
-				pkgName + "Order5", LogFileProcessor.class.getCanonicalName(), LogRecordEntry.class.getCanonicalName()  };
+				pkgName + "Order5", LogFileProcessor.class.getCanonicalName(),
+				LogRecordEntry.class.getCanonicalName() };
 		return createDeploymentJar("jpa_se_pluggability_contracts_resource_local.jar", pkgNameWithoutSuffix,
 				(String[]) classes, PERSISTENCE_XML, xmlFile);
+
+	}
+
+	public JavaArchive createPluggabilityJar() throws Exception {
+
+		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "jpa_alternate_provider.jar");
+		archive.addPackages(true, "com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation");
+		InputStream inStream = ClientIT.class.getClassLoader().getResourceAsStream(
+				"com/sun/ts/tests/jpa/common/pluggability/altprovider/METAINF/services/jakarta.persistence.spi.PersistenceProvider");
+		StringAsset containerProvider = new StringAsset(toString(inStream));
+		archive.addAsManifestResource(containerProvider, "services/jakarta.persistence.spi.PersistenceProvider");
+		archive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jpa_alternate_provider.jar"),
+				true);
+
+		ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
+		URLClassLoader urlClassLoader = new URLClassLoader(
+				new URL[] { new File(TEMP_DIR + File.separator + "jpa_alternate_provider.jar").toURL() },
+				currentThreadClassLoader);
+		Thread.currentThread().setContextClassLoader(urlClassLoader);
+
+		return archive;
 
 	}
 
@@ -90,6 +117,7 @@ public class ClientIT extends PMClientBase {
 			super.setup();
 		} finally {
 			createDeployment();
+			createPluggabilityJar();
 			initEntityManager("ALTPROVIDERPU", false);
 		}
 	}
@@ -643,7 +671,8 @@ public class ClientIT extends PMClientBase {
 			logger.log(Logger.Level.TRACE, "calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeDeploymentJar();
+			removeTestJarFromCP();
+			removeTestJarFromCP();
 		}
 	}
 }

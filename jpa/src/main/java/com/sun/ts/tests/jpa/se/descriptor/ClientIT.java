@@ -39,9 +39,8 @@ public class ClientIT extends PMClientBase {
 
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { "myMappingFile.xml" };
+		String[] xmlFile = { MAPPING_FILE_XML };
 		String[] classes = { pkgName + "A", pkgName + "B" };
-
 		return createDeploymentJar("jpa_se_descriptor.jar", pkgNameWithoutSuffix, classes, PERSISTENCE_XML, xmlFile);
 
 	}
@@ -49,13 +48,13 @@ public class ClientIT extends PMClientBase {
 	@BeforeEach
 	public void setup() throws Exception {
 		try {
-
 			super.setup();
 		} catch (Exception e) {
 			throw new Exception("Setup Failed!", e);
 		} finally {
 			createDeployment();
 			removeTestData();
+			createTestData();
 		}
 	}
 
@@ -128,7 +127,7 @@ public class ClientIT extends PMClientBase {
 			removeTestData();
 			super.cleanup();
 		} finally {
-			removeDeploymentJar();
+			removeTestJarFromCP();
 		}
 	}
 

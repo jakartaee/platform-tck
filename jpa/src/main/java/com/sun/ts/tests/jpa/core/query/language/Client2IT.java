@@ -608,6 +608,103 @@ public class Client2IT extends UtilCustomerData {
 	}
 
 	/*
+	 * @testName: queryTest45
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:361
+	 * 
+	 * @test_Strategy: Execute a query using IS NOT EMPTY in a
+	 * collection_valued_association_field where the field is EMPTY.
+	 */
+	@SetupMethod(name = "setupCustomerData")
+	@Test
+	public void queryTest45() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+		List c;
+
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE,
+					"find customers whose id is greater than 1 " + "OR where the relationship is NOT EMPTY");
+			c = getEntityManager()
+					.createQuery("Select Object(c) from Customer c where c.aliasesNoop IS NOT EMPTY or c.id <> '1'")
+					.getResultList();
+
+			expectedPKs = new String[19];
+			expectedPKs[0] = "2";
+			expectedPKs[1] = "3";
+			expectedPKs[2] = "4";
+			expectedPKs[3] = "5";
+			expectedPKs[4] = "6";
+			expectedPKs[5] = "7";
+			expectedPKs[6] = "8";
+			expectedPKs[7] = "9";
+			expectedPKs[8] = "10";
+			expectedPKs[9] = "11";
+			expectedPKs[10] = "12";
+			expectedPKs[11] = "13";
+			expectedPKs[12] = "14";
+			expectedPKs[13] = "15";
+			expectedPKs[14] = "16";
+			expectedPKs[15] = "17";
+			expectedPKs[16] = "18";
+			expectedPKs[17] = "19";
+			expectedPKs[18] = "20";
+			if (!checkEntityPK(c, expectedPKs)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 19 references, got: " + c.size());
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.TRACE, "Caught exception: ", e);
+		}
+
+		if (!pass)
+			throw new Exception("queryTest45 failed");
+	}
+
+	/*
+	 * @testName: queryTest47
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:376; PERSISTENCE:SPEC:401;
+	 * PERSISTENCE:SPEC:399.3; PERSISTENCE:SPEC:422; PERSISTENCE:SPEC:752;
+	 * PERSISTENCE:SPEC:753
+	 * 
+	 * @test_Strategy: The IS NOT NULL construct can be used to eliminate the null
+	 * values from the result set of the query. Verify the results are accurately
+	 * returned.
+	 */
+	@SetupMethod(name = "setupCustomerData")
+	@Test
+	public void queryTest47() throws Exception {
+		boolean pass = false;
+		List c;
+		final String[] expectedZips = new String[] { "00252", "00252", "00252", "00252", "00252", "00252", "00252",
+				"00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "11345" };
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "find work zip codes that are not null");
+			c = getEntityManager()
+					.createQuery(
+							"Select c.work.zip from Customer c where c.work.zip IS NOT NULL ORDER BY c.work.zip ASC")
+					.getResultList();
+
+			String[] result = (String[]) (c.toArray(new String[c.size()]));
+			logger.log(Logger.Level.TRACE, "Compare results of work zip codes");
+			pass = Arrays.equals(expectedZips, result);
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+		}
+
+		if (!pass)
+			throw new Exception("queryTest47 failed");
+	}
+
+	/*
 	 * @testName: queryTest51
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:359

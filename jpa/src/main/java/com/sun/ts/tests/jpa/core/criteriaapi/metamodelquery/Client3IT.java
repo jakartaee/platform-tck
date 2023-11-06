@@ -24,13 +24,11 @@ import java.util.Set;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.tests.jpa.common.schema30.Alias;
 import com.sun.ts.tests.jpa.common.schema30.Alias_;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
-import com.sun.ts.tests.jpa.common.schema30.Order;
 import com.sun.ts.tests.jpa.common.schema30.UtilAliasData;
 
 import jakarta.persistence.Tuple;
@@ -42,7 +40,6 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.Subquery;
 
 public class Client3IT extends UtilAliasData {
 
@@ -1171,4 +1168,4 @@ public class Client3IT extends UtilAliasData {
 		}
 	}
 
-	}
+}

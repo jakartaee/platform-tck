@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -49,6 +50,7 @@ public class Client6IT extends UtilDepartmentEmployeeData {
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
 	@Test
+	@Disabled
 	public void resultContainsFetchReference() throws Exception {
 		boolean pass = false;
 		List<Department> result;

@@ -17,7 +17,6 @@
 package com.sun.ts.tests.jpa.core.criteriaapi.metamodelquery;
 
 import java.lang.System.Logger;
-import java.sql.Date;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -26,46 +25,28 @@ import java.util.Set;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
-import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jpa.common.schema30.Address;
 import com.sun.ts.tests.jpa.common.schema30.Address_;
-import com.sun.ts.tests.jpa.common.schema30.Alias;
-import com.sun.ts.tests.jpa.common.schema30.Alias_;
 import com.sun.ts.tests.jpa.common.schema30.Country_;
 import com.sun.ts.tests.jpa.common.schema30.Customer;
 import com.sun.ts.tests.jpa.common.schema30.Customer_;
-import com.sun.ts.tests.jpa.common.schema30.LineItem;
-import com.sun.ts.tests.jpa.common.schema30.LineItem_;
-import com.sun.ts.tests.jpa.common.schema30.Order;
-import com.sun.ts.tests.jpa.common.schema30.Order_;
-import com.sun.ts.tests.jpa.common.schema30.Product;
-import com.sun.ts.tests.jpa.common.schema30.Product_;
-import com.sun.ts.tests.jpa.common.schema30.ShelfLife_;
 import com.sun.ts.tests.jpa.common.schema30.Spouse;
 import com.sun.ts.tests.jpa.common.schema30.Spouse_;
 import com.sun.ts.tests.jpa.common.schema30.UtilCustomerData;
 
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.AbstractQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Fetch;
 import jakarta.persistence.criteria.FetchParent;
 import jakarta.persistence.criteria.From;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
-import jakarta.persistence.criteria.ListJoin;
-import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
-import jakarta.persistence.criteria.SetJoin;
 import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.Attribute;
-import jakarta.persistence.metamodel.PluralAttribute;
-import jakarta.persistence.metamodel.SetAttribute;
 
 public class Client1IT extends UtilCustomerData {
 

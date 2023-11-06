@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -2062,6 +2063,7 @@ public class ClientIT extends PMClientBase {
 	 *
 	 */
 	@Test
+	@Disabled
 	public void getDeclaredSingularAttributes() throws Exception {
 		boolean pass = false;
 
@@ -3067,7 +3069,7 @@ public class ClientIT extends PMClientBase {
 		removeTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

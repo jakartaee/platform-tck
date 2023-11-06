@@ -67,7 +67,7 @@ public class ClientIT extends PMClientBase {
 		try {
 			super.cleanup();
 		} finally {
-			removeDeploymentJar();
+			removeTestJarFromCP();
 		}
 	}
 

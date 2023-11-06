@@ -115,7 +115,7 @@ public class Client2IT extends PMClientBase {
 			logger.log(Logger.Level.TRACE, "cleanupOnly");
 			super.cleanup();
 		} finally {
-			removeDeploymentJar();
+			removeTestJarFromCP();
 		}
 	}
 

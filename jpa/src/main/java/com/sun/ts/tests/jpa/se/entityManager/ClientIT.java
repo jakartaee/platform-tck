@@ -96,7 +96,7 @@ public class ClientIT extends PMClientBase {
 			removeTestData();
 			cleanup();
 		} finally {
-			removeDeploymentJar();
+			removeTestJarFromCP();
 		}
 	}
 

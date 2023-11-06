@@ -90,7 +90,7 @@ public class ClientIT extends PMClientBase {
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		closeEMAndEMF();
 		super.cleanup();
-		removeDeploymentJar();
+		removeTestJarFromCP();
 	}
 
 	/** Default LocalDate constant. */
