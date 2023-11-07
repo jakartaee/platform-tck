@@ -837,19 +837,17 @@
         </assertion>
 
         <group>
-            <text>If a managed bean has a non-static public field, it must have scope |@Dependent|. If a managed bean with a non-static public field declares
-                any scope other than |@Dependent|, the container automatically detects the problem and treats it as a definition error.
+            <text>If a managed bean has a non-static public field, its scope must be a pseudo-scope.
+                If a managed bean with a non-static public field declares a normal scope, the container automatically detects the problem and treats it as a definition error.
             </text>
             <assertion id="fa">
-                <text>Check a dependent scoped bean with a public field.</text>
+                <text>Check a pseudo-scoped bean with a public field.</text>
             </assertion>
             <assertion id="fb">
-                <text>Check a managed bean with a static public field which declares any scope other than |@Dependent|.</text>
+                <text>Check a managed bean with a static public field which declares a normal scope.</text>
             </assertion>
             <assertion id="fc">
-                <text>If a managed bean with a non-static public field declares any scope other than |@Dependent|, the container automatically detects the
-                    problem and treats it as a definition error.
-                </text>
+                <text>Check a managed bean with a non-static public field which declares a normal scope.</text>
             </assertion>
         </group>
 
