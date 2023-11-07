@@ -21,6 +21,9 @@
 package com.sun.ts.tests.jsp.api.jakarta_el.valexpression;
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.tags.tck.SetTag;
+import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 
 import java.io.IOException;
 
@@ -50,9 +53,9 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_valexpr_web.war");
     archive.addClasses(ValueExpressionTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.common.tags.tck.SetTag.class,
-            com.sun.ts.tests.common.el.api.expression.ExpressionTest.class);
+            JspTestUtil.class,
+            SetTag.class,
+            ExpressionTest.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_valexpr_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/valexpression.tld", "valexpression.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ValueExpressionTest.jsp")), "ValueExpressionTest.jsp");

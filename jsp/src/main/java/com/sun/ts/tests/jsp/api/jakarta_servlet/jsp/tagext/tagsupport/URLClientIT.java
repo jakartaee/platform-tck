@@ -26,6 +26,8 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.util.MethodValidatorBean;
 
 /**
  * Test client for Container interaction with objects implementing Tag..
@@ -63,8 +65,8 @@ public class URLClientIT extends AbstractUrlClient {
     archive.addClasses(ContainerInteractionTag.class,
             FindAncestorTag.class, InitializationTag.class,
             ParentTag.class, SynchronizationTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.common.util.MethodValidatorBean.class);
+            JspTestUtil.class,
+            MethodValidatorBean.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tagsupport_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tagsupport.tld", "tagsupport.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/DoAfterBodyEvalBodyAgainTest.jsp")), "DoAfterBodyEvalBodyAgainTest.jsp");

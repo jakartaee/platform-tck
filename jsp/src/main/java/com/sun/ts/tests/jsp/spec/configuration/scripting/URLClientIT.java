@@ -27,6 +27,7 @@ package com.sun.ts.tests.jsp.spec.configuration.scripting;
 
 import java.io.IOException;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.tags.tck.SimpleTag;
 
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -53,7 +54,7 @@ public class URLClientIT extends AbstractUrlClient {
     
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_config_scr_web.war");
-    archive.addClasses(com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class);
+    archive.addClasses(SimpleTag.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_config_scr_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tag.tld", "tag.tld");    
     

@@ -26,6 +26,7 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagadapter;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 /**
  * Test client for TagAdapter. There isn't much that can be done to really test
@@ -67,7 +68,7 @@ public class URLClientIT extends AbstractUrlClient {
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_tagadapter_web.war");
     archive.addClasses(TagAdapterVerifierTag.class,
             TASimpleTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+            JspTestUtil.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tagadapter_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tagadapter.tld", "tagadapter.tld");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/TagAdapterValidationTest.jsp")), "TagAdapterValidationTest.jsp");

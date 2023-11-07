@@ -26,6 +26,7 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.taglibraryvalidator;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,7 +58,7 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_taglibvalidator_web.war");
     archive.addClasses(APIValidator.class, FailingValidator.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+            JspTestUtil.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_taglibvalidator_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/taglibvalfail.tld", "taglibvalfail.tld");
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/taglibvalidator.tld", "taglibvalidator.tld");

@@ -27,6 +27,7 @@ package com.sun.ts.tests.jsp.spec.core_syntax.actions.body;
 
 import java.io.IOException;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
@@ -54,8 +55,7 @@ public class URLClientIT extends AbstractUrlClient {
     
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_core_act_body_web.war");
-    archive.addClasses(
-      com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.addClasses(JspTestUtil.class);
     archive.addPackages(true, Filters.exclude(URLClientIT.class),
             URLClientIT.class.getPackageName());
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_core_act_body_web.xml"));

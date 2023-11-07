@@ -22,6 +22,8 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jspfactory;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.util.SimpleContext;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,8 +56,8 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_jspfactory_web.war");
     archive.addClasses(
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.common.util.SimpleContext.class);
+            JspTestUtil.class,
+            SimpleContext.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_jspfactory_web.xml"));
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/JspFactoryTest.jsp")), "JspFactoryTest.jsp");
 

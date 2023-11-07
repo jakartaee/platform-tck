@@ -70,9 +70,6 @@ public class URLClientIT extends AbstractUrlClient {
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/checkConfig.jsp")), "checkConfig.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/checkApplication.jsp")), "checkApplication.jsp");
 
-    System.out.println("Alwin package name"+URLClientIT.class.getPackageName());
-    System.out.println("Alwin archive"+archive.getContent().toString());
-
     return archive;
 
   }

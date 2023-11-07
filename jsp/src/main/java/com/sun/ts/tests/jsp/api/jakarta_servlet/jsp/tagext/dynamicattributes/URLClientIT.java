@@ -26,6 +26,7 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.dynamicattributes;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 /**
  * Test client for the DynamicAttributes interface.
@@ -62,7 +63,7 @@ public class URLClientIT extends AbstractUrlClient {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_dynattrib_web.war");
     archive.addClasses(DynamicAttributesTag.class, SimpleExcTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+            JspTestUtil.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_dynattrib_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/dynamicattributes.tld", "dynamicattributes.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SetDynamicAttributesTest.jsp")), "SetDynamicAttributesTest.jsp");

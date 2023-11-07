@@ -26,6 +26,10 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.taginfo;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo;
+import com.sun.ts.tests.jsp.common.tags.tck.SimpleTag;
+import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 
 /**
  * Test client for TagInfo. Implementation note, all tests are performed within
@@ -63,10 +67,10 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_taginfo_web.war");
     archive.addClasses(TagInfoTEI.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo.class,
-            com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class,
-            com.sun.ts.tests.common.el.api.expression.ExpressionTest.class);
+            JspTestUtil.class,
+            BaseTCKExtraInfo.class,
+            SimpleTag.class,
+            ExpressionTest.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_taginfo_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/taginfo.tld", "taginfo.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/GetAttributesTest.jsp")), "GetAttributesTest.jsp");

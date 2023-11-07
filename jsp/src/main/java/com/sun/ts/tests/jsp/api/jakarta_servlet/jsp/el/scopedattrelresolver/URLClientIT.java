@@ -22,6 +22,10 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.el.scopedattrelresolver;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.util.JspResolverTest;
+import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
+import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,10 +58,10 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_scopedattrelresolver_web.war");
     archive.addClasses(ScopedAttrELResolverTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.common.util.JspResolverTest.class,
-            com.sun.ts.tests.common.el.api.resolver.BarELResolver.class,
-            com.sun.ts.tests.common.el.api.resolver.ResolverTest.class);
+            JspTestUtil.class,
+            JspResolverTest.class,
+            BarELResolver.class,
+            ResolverTest.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_scopedattrelresolver_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/scopedattrelresolver.tld", "scopedattrelresolver.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ScopedAttrELResolverTest.jsp")), "ScopedAttrELResolverTest.jsp");

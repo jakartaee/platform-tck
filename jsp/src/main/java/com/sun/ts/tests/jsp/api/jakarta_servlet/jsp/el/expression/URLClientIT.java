@@ -22,6 +22,9 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.el.expression;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.util.TSFunctionMapper;
+import com.sun.ts.tests.jsp.common.util.JspFunctions;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -54,9 +57,9 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_expr_web.war");
     archive.addClasses(
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.common.util.TSFunctionMapper.class,
-            com.sun.ts.tests.jsp.common.util.JspFunctions.class);
+            JspTestUtil.class,
+            TSFunctionMapper.class,
+            JspFunctions.class);
 archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_expr_web.xml"));
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ExpressionTest.jsp")), "ExpressionTest.jsp");
 

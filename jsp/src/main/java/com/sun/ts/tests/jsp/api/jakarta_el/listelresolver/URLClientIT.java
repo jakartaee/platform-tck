@@ -21,6 +21,9 @@
 package com.sun.ts.tests.jsp.api.jakarta_el.listelresolver;
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
 
 import java.io.IOException;
 
@@ -50,9 +53,9 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_listelresolver_web.war");
     archive.addClasses(ListELResolverTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.common.el.api.resolver.ResolverTest.class, 
-            com.sun.ts.tests.common.el.api.resolver.BarELResolver.class);
+            JspTestUtil.class,
+            ResolverTest.class, 
+            BarELResolver.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_listelresolver_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/listelresolver.tld", "listelresolver.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ListELResolverTest.jsp")), "ListELResolverTest.jsp");

@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.jsptagexception;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,8 +54,7 @@ public class URLClientIT extends AbstractUrlClient {
 
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_jsptagexc_web.war");
-    archive.addClasses(
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+    archive.addClasses(JspTestUtil.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_jsptagexc_web.xml"));
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/JspTagExceptionTest.jsp")), "JspTagExceptionTest.jsp");
 

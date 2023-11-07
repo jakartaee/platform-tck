@@ -22,6 +22,8 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.pagedata;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.tags.tck.SimpleTag;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,8 +58,8 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_pagedata_web.war");
     archive.addClasses(PageDataValidator.class, TagFilePageDataValidator.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class);
+            JspTestUtil.class,
+            SimpleTag.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_pagedata_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/pagedata.tld", "pagedata.tld");    
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/pagedatatagfile.tld", "pagedatatagfile.tld");    

@@ -22,6 +22,7 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.jspidconsumer;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,7 +56,7 @@ public class URLClientIT extends AbstractUrlClient {
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_jspidconsumer_web.war");
     archive.addClasses(MultiOneTag.class, MultiTwoTag.class,
             MultiThreeTag.class, SameJspIdTag.class, SetJspIdTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+            JspTestUtil.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_jspidconsumer_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/jspidconsumer.tld", "jspidconsumer.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/SetJspIdTest.jsp")), "SetJspIdTest.jsp");

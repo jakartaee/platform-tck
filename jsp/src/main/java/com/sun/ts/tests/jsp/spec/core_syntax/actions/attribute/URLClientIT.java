@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
-
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
@@ -55,7 +55,7 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_core_act_attribute_web.war");
     archive.addClasses(
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+            JspTestUtil.class);
     archive.addPackages(true, Filters.exclude(URLClientIT.class),
             URLClientIT.class.getPackageName());
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_core_act_attribute_web.xml"));

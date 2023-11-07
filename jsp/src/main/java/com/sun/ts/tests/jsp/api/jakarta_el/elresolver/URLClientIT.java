@@ -21,6 +21,9 @@
 package com.sun.ts.tests.jsp.api.jakarta_el.elresolver;
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
 
 import java.io.IOException;
 
@@ -51,9 +54,9 @@ public class URLClientIT extends AbstractUrlClient {
 
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_elresolver_web.war");
-    archive.addClasses(com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.common.el.api.resolver.ResolverTest.class, 
-            com.sun.ts.tests.common.el.api.resolver.BarELResolver.class);
+    archive.addClasses(JspTestUtil.class,
+            ResolverTest.class, 
+            BarELResolver.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_elresolver_web.xml"));
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ELResolverTest.jsp")), "ELResolverTest.jsp");
 

@@ -26,6 +26,9 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagfileinfo;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo;
+import com.sun.ts.tests.jsp.common.tags.tck.SimpleTag;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -63,9 +66,9 @@ public class URLClientIT extends AbstractUrlClient {
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_tagfileinfo_web.war");
     archive.addClasses(TagFileInfoTEI.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.common.util.BaseTCKExtraInfo.class,
-            com.sun.ts.tests.jsp.common.tags.tck.SimpleTag.class);
+            JspTestUtil.class,
+            BaseTCKExtraInfo.class,
+            SimpleTag.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_tagfileinfo_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tagfileinfo.tld", "tagfileinfo.tld");    
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/tags/tagfileinfo/TagFile1.tag", "tags/tagfileinfo/TagFile1.tag");    

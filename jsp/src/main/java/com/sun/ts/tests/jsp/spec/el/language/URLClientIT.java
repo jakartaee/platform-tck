@@ -23,6 +23,9 @@ package com.sun.ts.tests.jsp.spec.el.language;
 
 import java.io.IOException;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.common.tags.tck.SetTag;
+import com.sun.ts.tests.common.el.spec.Book;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
@@ -49,9 +52,9 @@ public class URLClientIT extends AbstractUrlClient {
     
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_el_language_web.war");
-    archive.addClasses(com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-          com.sun.ts.tests.jsp.common.tags.tck.SetTag.class,
-          com.sun.ts.tests.common.el.spec.Book.class
+    archive.addClasses(JspTestUtil.class,
+          SetTag.class,
+          Book.class
     );
     archive.addPackages(true, Filters.exclude(URLClientIT.class),
             URLClientIT.class.getPackageName());

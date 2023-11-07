@@ -22,6 +22,9 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodytagsupport;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
+import com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport.ContainerInteractionTag;
+import com.sun.ts.tests.jsp.common.util.MethodValidatorBean;
 
 /**
  * Test client for BodyTagSupport.
@@ -59,9 +62,9 @@ public class URLClientIT extends AbstractUrlClient {
     archive.addClasses(BodyContainerInteractionTag.class,
             BodySynchronizationTag.class, GetBodyContentTestTag.class,
             GetPreviousOutTestTag.class, SyncTEI.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class,
-            com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.tagsupport.ContainerInteractionTag.class,
-            com.sun.ts.tests.jsp.common.util.MethodValidatorBean.class);
+            JspTestUtil.class,
+            ContainerInteractionTag.class,
+            MethodValidatorBean.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_bodytagsupp_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/bodytagsupport.tld", "bodytagsupport.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyTagEmptyTagTest.jsp")), "BodyTagEmptyTagTest.jsp");

@@ -23,6 +23,9 @@ package com.sun.ts.tests.jsp.api.jakarta_el.arrayelresolver;
 import java.io.IOException;
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
+import com.sun.ts.tests.jsp.common.util.JspTestUtil; 
+import com.sun.ts.tests.common.el.api.resolver.ResolverTest; 
+import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
@@ -47,9 +50,9 @@ public class URLClientIT extends AbstractUrlClient {
 
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_arrayelresolver_web.war");
-    archive.addClasses(ArrayELResolverTag.class, com.sun.ts.tests.jsp.common.util.JspTestUtil.class, 
-            com.sun.ts.tests.common.el.api.resolver.ResolverTest.class, 
-            com.sun.ts.tests.common.el.api.resolver.BarELResolver.class);
+    archive.addClasses(ArrayELResolverTag.class, JspTestUtil.class, 
+            ResolverTest.class, 
+            BarELResolver.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_arrayelresolver_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/arrayelresolver.tld", "arrayelresolver.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/ArrayELResolverTest.jsp")), "ArrayELResolverTest.jsp");

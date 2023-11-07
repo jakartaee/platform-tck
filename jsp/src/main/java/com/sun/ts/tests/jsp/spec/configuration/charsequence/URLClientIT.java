@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
-
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -54,7 +54,7 @@ public class URLClientIT extends AbstractUrlClient {
     
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_config_charsequence_web.war");
     archive.addClasses(DeferredSyntaxAllowedAsLiteralTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+            JspTestUtil.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_config_charsequence_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/config_charsequence.tld", "config_charsequence.tld");    
     

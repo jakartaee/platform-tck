@@ -26,7 +26,7 @@ package com.sun.ts.tests.jsp.api.jakarta_servlet.jsp.tagext.bodycontent;
 
 
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
-
+import com.sun.ts.tests.jsp.common.util.JspTestUtil;
 
 import java.io.IOException;
 
@@ -60,7 +60,7 @@ public class URLClientIT extends AbstractUrlClient {
     archive.addClasses(BodyContentClearBodyTag.class,
             BodyContentFlushTag.class, BodyContentGetStringTag.class,
             BodyContentReadWriteTag.class, BodyContentWriteOutTag.class,
-            com.sun.ts.tests.jsp.common.util.JspTestUtil.class);
+            JspTestUtil.class);
     archive.setWebXML(URLClientIT.class.getClassLoader().getResource(packagePath+"/jsp_bodycontent_web.xml"));
     archive.addAsWebInfResource(URLClientIT.class.getPackage(), "WEB-INF/bodycontent.tld", "bodycontent.tld");    
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/BodyContentClearBodyTest.jsp")), "BodyContentClearBodyTest.jsp");
