@@ -22,24 +22,37 @@ import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
 import java.net.URL;
 
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.logging.Level;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+import java.lang.System.Logger;
 
 /**
  * Base client for JSP tests.
  */
 public abstract class AbstractUrlClient extends BaseUrlClient {
 
-  private static final Logger logger = Logger.getLogger(AbstractUrlClient.class.getName());
+  private static final Logger logger = System.getLogger(AbstractUrlClient.class.getName());
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
 
   @ArquillianResource
 	@OperateOnDeployment("_DEFAULT_")
@@ -132,7 +145,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
           "[BaseUrlClient] 'webServerPort' was not set");
     }
 
-    logger.log(Level.INFO,"[BaseUrlClient] Test setup OK");
+    logger.log(Logger.Level.INFO, "[BaseUrlClient] Test setup OK");
   }
 
   /**

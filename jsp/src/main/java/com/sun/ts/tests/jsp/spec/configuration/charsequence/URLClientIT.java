@@ -30,29 +30,14 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
-import java.lang.System.Logger;
 
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
 
-  private static final Logger logger = System.getLogger(URLClientIT.class.getName());
-
-  @BeforeEach
-  void logStartTest(TestInfo testInfo) {
-    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
-  }
-
-  @AfterEach
-  void logFinishTest(TestInfo testInfo) {
-    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
-  }
 
   private static final String CONTEXT_ROOT = "/jsp_config_charsequence_web";
 
