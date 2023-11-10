@@ -2213,6 +2213,28 @@
             </assertion>
         </group>
 
+        <group>
+            <text>An alternative may be given a priority for the application by placing the |@Priority| annotation on the producer field, method or resource.
+            </text>
+            <assertion id="ca">
+                <text>Test |@Priority| on a producer method.</text>
+            </assertion>
+            <assertion id="cb">
+                <text>Test |@Priority| on a producer field.</text>
+            </assertion>
+            <assertion id="cc">
+                <text>Test |@Priority| on a resource.</text>
+            </assertion>
+        </group>
+
+        <group>
+            <text>For the purpose of determining the priority of any producer method or field during ambiguity resolution, the priority of the producer method or field is considered first.
+                If the producer method or field does not have a priority, the priority of the managed bean that declares the producer method or field is used.</text>
+            <assertion id="dd">
+                <text>Test |@Priority| declared directly on producer is considered first.</text>
+            </assertion>
+        </group>
+
     </section>
 
     <section id="declaring_selected_alternatives_bean_archive" title="Declaring selected alternatives for a bean archive" level="4">
