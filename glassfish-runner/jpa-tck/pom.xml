@@ -180,6 +180,29 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <executions>
                     <execution>
+                        <id>stop-database</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-database</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <executions>
+                    <execution>
                         <id>start-database</id>
                         <phase>pre-integration-test</phase>
                         <goals>
@@ -255,9 +278,9 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <includes>
-                                <include>**/*enerator*/**/*.*</include>
-                            </includes>
+                            <!--
+                            <test>com.sun.ts.tests.jpa.se.entityManagerFactory.ClientIT#createEntityManagerFactoryNoBeanValidatorTest</test>
+                            -->
                             <excludes>
                                 <exclude>**/jpa/ee/**/*.*</exclude>
                             </excludes>

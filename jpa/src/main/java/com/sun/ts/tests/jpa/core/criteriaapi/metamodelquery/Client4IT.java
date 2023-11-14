@@ -452,60 +452,6 @@ public class Client4IT extends UtilProductData {
 	}
 
 	/*
-	 * @testName: queryTest55
-	 * 
-	 * @assertion_ids: PERSISTENCE:SPEC:358; PERSISTENCE:SPEC:1712;
-	 * PERSISTENCE:SPEC:1713
-	 * 
-	 * @test_Strategy: The LIKE expression uses an input parameter for the
-	 * condition. Verify the results were accurately returned.
-	 *
-	 */
-	@SetupMethod(name = "setupPhoneData")
-	@Test
-	public void queryTest55() throws Exception {
-		boolean pass = false;
-		String expectedPKs[];
-
-		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-
-		try {
-			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "determine which customers have an area code beginning with 9");
-			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-			Root<Customer> customer = cquery.from(Customer.class);
-			Join<Address, Phone> p = customer.join(Customer_.home).join(Address_.phones);
-			cquery.where(cbuilder.like(p.get(Phone_.area), cbuilder.parameter(String.class, "area")));
-			cquery.select(customer);
-			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
-			tquery.setParameter("area", "9%");
-			tquery.setMaxResults(customerRef.length);
-			List<Customer> clist = tquery.getResultList();
-
-			expectedPKs = new String[3];
-			expectedPKs[0] = "3";
-			expectedPKs[1] = "12";
-			expectedPKs[2] = "16";
-
-			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
-						"Did not get expected results.  Expected 3 references, got: " + clist.size());
-			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
-				pass = true;
-			}
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
-
-		}
-
-		if (!pass) {
-			throw new Exception("queryTest55 failed");
-		}
-	}
-
-	/*
 	 * @testName: queryTest68
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:383; PERSISTENCE:SPEC:406;

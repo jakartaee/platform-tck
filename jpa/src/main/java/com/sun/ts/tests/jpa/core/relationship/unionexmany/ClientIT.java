@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Vector;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -134,7 +135,7 @@ public class ClientIT extends PMClientBase {
 		}
 	}
 
-	@BeforeEach
+	@AfterEach
 	public void cleanup() throws Exception {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData();

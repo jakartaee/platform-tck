@@ -59,6 +59,7 @@ public class Client2IT extends Client {
 				supports_sequence = Boolean.parseBoolean(s);
 				logger.log(Logger.Level.INFO, "db.supports.sequence:" + supports_sequence);
 				if (supports_sequence) {
+					createSequenceGenerator();
 					removeTestData();
 					createDataTypes2Data();
 				}
@@ -144,6 +145,8 @@ public class Client2IT extends Client {
 
 	public void createDataTypes2Data() {
 		try {
+			
+
 			getEntityTransaction().begin();
 
 			logger.log(Logger.Level.TRACE, "in createDataTypes2Data");

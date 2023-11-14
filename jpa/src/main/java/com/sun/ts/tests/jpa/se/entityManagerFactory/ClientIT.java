@@ -45,7 +45,7 @@ public class ClientIT extends PMClientBase {
 		String pkgNameWithoutSuffix = ClientIT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Member", pkgName + "Member_", pkgName + "Order", pkgName + "Order_" };
-		return createDeploymentJar("jpa_jpa22_se_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
+		return createDeploymentJar("jpa_se_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
 
 	}
 

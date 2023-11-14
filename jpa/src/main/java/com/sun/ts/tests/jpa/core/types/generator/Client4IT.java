@@ -61,6 +61,7 @@ public class Client4IT extends Client {
 				supports_sequence = Boolean.parseBoolean(s);
 				logger.log(Logger.Level.INFO, "db.supports.sequence:" + supports_sequence);
 				if (supports_sequence) {
+					createSequenceGenerator();
 					removeTestData();
 					createDataTypes4Data();
 				}
