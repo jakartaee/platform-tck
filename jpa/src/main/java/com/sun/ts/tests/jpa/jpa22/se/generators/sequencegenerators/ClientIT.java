@@ -64,10 +64,6 @@ public class ClientIT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		} finally {
 			createDeployment();
 			supportSequence = Boolean.valueOf(System.getProperty("db.supports.sequence"));
 
@@ -87,6 +83,10 @@ public class ClientIT extends PMClientBase {
 				throw new Exception(msg);
 			}
 			removeTestData();
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
 		}
 	}
 

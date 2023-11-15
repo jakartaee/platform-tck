@@ -145,7 +145,6 @@ public class Client2IT extends Client {
 
 	public void createDataTypes2Data() {
 		try {
-			
 
 			getEntityTransaction().begin();
 

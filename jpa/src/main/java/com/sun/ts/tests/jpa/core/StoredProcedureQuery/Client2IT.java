@@ -38,7 +38,7 @@ public class Client2IT extends Client {
 	public Client2IT() {
 	}
 
-	public static JavaArchive createDeployment() throws Exception {
+	public JavaArchive createDeployment() throws Exception {
 
 		String pkgNameWithoutSuffix = Client2IT.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";

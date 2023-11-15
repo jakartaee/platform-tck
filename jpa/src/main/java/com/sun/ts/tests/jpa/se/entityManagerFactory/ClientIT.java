@@ -54,21 +54,17 @@ public class ClientIT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "setupNoData");
 		try {
 			super.setup();
+			createDeployment();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
-		} finally {
-			createDeployment();
 		}
 	}
 
 	@AfterEach
 	public void cleanupNoData() throws Exception {
-		try {
-			super.cleanup();
-		} finally {
-			removeTestJarFromCP();
-		}
+		super.cleanup();
+		removeTestJarFromCP();
 	}
 
 	/*

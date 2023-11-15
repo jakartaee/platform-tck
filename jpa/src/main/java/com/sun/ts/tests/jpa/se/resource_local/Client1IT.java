@@ -61,12 +61,11 @@ public class Client1IT extends PMClientBase {
 		try {
 
 			super.setup();
+			createDeployment();
+			removeTestData();
 
 		} catch (Exception e) {
 			throw new Exception("Setup Failed!", e);
-		} finally {
-			createDeployment();
-			removeTestData();
 		}
 	}
 
@@ -817,14 +816,11 @@ public class Client1IT extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
-		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
-			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
-			super.cleanup();
-		} finally {
-			removeTestJarFromCP();
-		}
+		logger.log(Logger.Level.TRACE, "cleanup");
+		removeTestData();
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

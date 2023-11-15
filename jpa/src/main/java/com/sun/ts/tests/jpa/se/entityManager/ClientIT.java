@@ -75,29 +75,24 @@ public class ClientIT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "setupOrderData");
 		try {
 			super.setup();
-
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		} finally {
 			createDeployment();
 			removeTestData();
 			createOrderData();
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
 			displayMap(map);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
 		}
 	}
 
 	@AfterEach
 	public void cleanupData() throws Exception {
-		try {
-			logger.log(Logger.Level.TRACE, "cleanupData");
-			removeTestData();
-			cleanup();
-		} finally {
-			removeTestJarFromCP();
-		}
+		logger.log(Logger.Level.TRACE, "cleanupData");
+		removeTestData();
+		cleanup();
+		removeTestJarFromCP();
 	}
 
 	/*

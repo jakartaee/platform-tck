@@ -49,12 +49,11 @@ public class ClientIT extends PMClientBase {
 	public void setup() throws Exception {
 		try {
 			super.setup();
-		} catch (Exception e) {
-			throw new Exception("Setup Failed!", e);
-		} finally {
 			createDeployment();
 			removeTestData();
 			createTestData();
+		} catch (Exception e) {
+			throw new Exception("Setup Failed!", e);
 		}
 	}
 
@@ -122,13 +121,10 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
-		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
-			removeTestData();
-			super.cleanup();
-		} finally {
-			removeTestJarFromCP();
-		}
+		logger.log(Logger.Level.TRACE, "cleanup");
+		removeTestData();
+		super.cleanup();
+		removeTestJarFromCP();
 	}
 
 	private void removeTestData() {

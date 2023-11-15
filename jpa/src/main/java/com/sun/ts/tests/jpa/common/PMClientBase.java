@@ -87,6 +87,8 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 
 	transient private boolean inContainer;
 
+	private boolean testArtifactDeployed = false;
+
 	// The following are properties specific to standalone TCK,
 	// not used when running tests in JakartaEE environment
 	transient private EntityManagerFactory emf;
@@ -1095,9 +1097,9 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	public static final String PERSISTENCE_XML = "persistence.xml";
 	public static final String ORM_XML = "orm.xml";
 	public static final String MAPPING_FILE_XML = "myMappingFile.xml";
-	
-	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes,
-			String persistenceFile, String[] xmlFiles) throws Exception {
+
+	public JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes, String persistenceFile,
+			String[] xmlFiles) throws Exception {
 
 		JavaArchive archive = ShrinkWrap.create(JavaArchive.class, jarName);
 
@@ -1157,27 +1159,30 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 		URLClassLoader urlClassLoader = new URLClassLoader(
 				new URL[] { new File(TEMP_DIR + File.separator + jarName).toURL() }, currentThreadClassLoader);
 		Thread.currentThread().setContextClassLoader(urlClassLoader);
+		testArtifactDeployed = true;
 
 		return archive;
 
 	}
 
-	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes,
-			String[] xmlFiles) throws Exception {
+	public JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes, String[] xmlFiles)
+			throws Exception {
 		return createDeploymentJar(jarName, packageName, classes, STANDALONE_PERSISTENCE_XML, xmlFiles);
 	}
 
-	public static JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes)
-			throws Exception {
+	public JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes) throws Exception {
 		String xmlFiles[] = {};
 		return createDeploymentJar(jarName, packageName, classes, STANDALONE_PERSISTENCE_XML, xmlFiles);
 
 	}
 
-	public static void removeTestJarFromCP() throws Exception {
-		URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
-		Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
-		currentThreadClassLoader.close();
+	public void removeTestJarFromCP() throws Exception {
+		if (testArtifactDeployed) {
+			URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
+			Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
+			currentThreadClassLoader.close();
+			testArtifactDeployed = false;
+		}
 	}
 
 	public static String toString(InputStream inStream) throws IOException {

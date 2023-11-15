@@ -70,6 +70,8 @@ public class ClientIT extends PMClientBase {
 
 	private String LOGMESSAGE_PREFIX = "JPA_ALTERNATE_PROVIDER : ";
 
+	private boolean pluggabilityJarDeployed = false;
+
 	public ClientIT() {
 	}
 
@@ -83,6 +85,15 @@ public class ClientIT extends PMClientBase {
 		return createDeploymentJar("jpa_se_pluggability_contracts_resource_local.jar", pkgNameWithoutSuffix,
 				(String[]) classes, PERSISTENCE_XML, xmlFile);
 
+	}
+
+	public void removeTestJarFromCP() throws Exception {
+		if (pluggabilityJarDeployed) {
+			URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
+			Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
+			currentThreadClassLoader.close();
+			pluggabilityJarDeployed = false;
+		}
 	}
 
 	public JavaArchive createPluggabilityJar() throws Exception {
@@ -101,6 +112,8 @@ public class ClientIT extends PMClientBase {
 				new URL[] { new File(TEMP_DIR + File.separator + "jpa_alternate_provider.jar").toURL() },
 				currentThreadClassLoader);
 		Thread.currentThread().setContextClassLoader(urlClassLoader);
+
+		pluggabilityJarDeployed = true;
 
 		return archive;
 
@@ -666,13 +679,11 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
-		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
-			logger.log(Logger.Level.TRACE, "calling super.cleanup");
-			super.cleanup();
-		} finally {
-			removeTestJarFromCP();
-			removeTestJarFromCP();
-		}
+		logger.log(Logger.Level.TRACE, "cleanup");
+		logger.log(Logger.Level.TRACE, "calling super.cleanup");
+		super.cleanup();
+		removeTestJarFromCP();
+		removeTestJarFromCP();
+
 	}
 }

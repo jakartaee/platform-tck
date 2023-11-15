@@ -57,10 +57,6 @@ public class ClientIT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "setup");
 		try {
 			super.setup();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		} finally {
 			createDeployment();
 
 			schemaGenerationDir = System.getProperty("user.dir");
@@ -80,6 +76,9 @@ public class ClientIT extends PMClientBase {
 			}
 			removeTestData();
 
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
 		}
 	}
 
@@ -203,14 +202,12 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
-		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
-			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
-			super.cleanup();
-		} finally {
-			removeTestJarFromCP();
-		}
+		logger.log(Logger.Level.TRACE, "cleanup");
+		removeTestData();
+		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+		super.cleanup();
+		removeTestJarFromCP();
+
 	}
 
 	private void removeTestData() {
