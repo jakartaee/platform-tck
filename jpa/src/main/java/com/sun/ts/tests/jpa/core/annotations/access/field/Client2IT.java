@@ -27,7 +27,6 @@ public class Client2IT extends Client {
 
 			super.setup();
 			createDeployment();
-
 			removeTestData();
 			createTestData2();
 			logger.log(Logger.Level.TRACE, "Done creating test data");

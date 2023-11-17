@@ -87,7 +87,7 @@ public class ClientIT extends PMClientBase {
 
 	}
 
-	public void removeTestJarFromCP() throws Exception {
+	public void removePluggabilityJarFromCP() throws Exception {
 		if (pluggabilityJarDeployed) {
 			URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
 			Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
@@ -126,13 +126,10 @@ public class ClientIT extends PMClientBase {
 	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
-		try {
 			super.setup();
-		} finally {
 			createDeployment();
 			createPluggabilityJar();
 			initEntityManager("ALTPROVIDERPU", false);
-		}
 	}
 
 	public void getLogProcessor() {
@@ -683,7 +680,7 @@ public class ClientIT extends PMClientBase {
 		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		super.cleanup();
 		removeTestJarFromCP();
-		removeTestJarFromCP();
+		removePluggabilityJarFromCP();
 
 	}
 }

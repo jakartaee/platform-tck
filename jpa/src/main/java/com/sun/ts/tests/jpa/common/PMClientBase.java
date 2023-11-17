@@ -1090,6 +1090,8 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	}
 
 	public static final String STANDALONE_PERSISTENCE_XML = "com/sun/ts/tests/jpa/common/template/standalone/persistence.xml";
+	public static final String EE_PERSISTENCE_XML = "com/sun/ts/tests/jpa/common/template/persistence.xml";
+
 	public static final String PERSISTENCE_ELEMENT_TAG = "persistence-unit";
 	public static final String CLASS_ELEMENT_TAG = "class";
 	public static final String MAPPING_ELEMENT_TAG = "mapping-file";
@@ -1107,7 +1109,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			archive.addClass(classes[j]);
 		}
 
-		if (persistenceFile.equals(STANDALONE_PERSISTENCE_XML)) {
+		if (persistenceFile.equals(STANDALONE_PERSISTENCE_XML) || persistenceFile.equals(EE_PERSISTENCE_XML)) {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
 			TransformerFactory tf = TransformerFactory.newInstance();
@@ -1153,13 +1155,14 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			}
 		}
 
-		archive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + jarName), true);
-
-		ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-		URLClassLoader urlClassLoader = new URLClassLoader(
-				new URL[] { new File(TEMP_DIR + File.separator + jarName).toURL() }, currentThreadClassLoader);
-		Thread.currentThread().setContextClassLoader(urlClassLoader);
-		testArtifactDeployed = true;
+		if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
+			archive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + jarName), true);
+			ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
+			URLClassLoader urlClassLoader = new URLClassLoader(
+					new URL[] { new File(TEMP_DIR + File.separator + jarName).toURL() }, currentThreadClassLoader);
+			Thread.currentThread().setContextClassLoader(urlClassLoader);
+			testArtifactDeployed = true;
+		}
 
 		return archive;
 
@@ -1177,7 +1180,7 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 	}
 
 	public void removeTestJarFromCP() throws Exception {
-		if (testArtifactDeployed) {
+		if (testArtifactDeployed && STANDALONE_MODE.equalsIgnoreCase(mode)) {
 			URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
 			Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
 			currentThreadClassLoader.close();

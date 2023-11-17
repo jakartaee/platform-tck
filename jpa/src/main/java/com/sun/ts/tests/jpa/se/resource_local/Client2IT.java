@@ -58,10 +58,9 @@ public class Client2IT extends PMClientBase {
 	public void setupOnly() throws Exception {
 		try {
 			super.setup();
+			createDeployment();
 		} catch (Exception e) {
 			throw new Exception("Setup Failed!", e);
-		} finally {
-			createDeployment();
 		}
 	}
 
@@ -111,12 +110,9 @@ public class Client2IT extends PMClientBase {
 
 	@AfterEach
 	public void cleanupOnly() throws Exception {
-		try {
 			logger.log(Logger.Level.TRACE, "cleanupOnly");
 			super.cleanup();
-		} finally {
 			removeTestJarFromCP();
-		}
 	}
 
 }

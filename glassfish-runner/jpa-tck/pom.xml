@@ -279,8 +279,7 @@
                         </goals>
                         <configuration>
                             <!--
-                            <test>com.sun.ts.tests.jpa.se.entityManagerFactory.ClientIT#createEntityManagerFactoryNoBeanValidatorTest</test>
-                            -->
+                            <test>com.sun.ts.tests.jpa.se.entityManagerFactory.ClientIT#createEntityManagerFactoryNoBeanValidatorTest</test>-->
                             <excludes>
                                 <exclude>**/jpa/ee/**/*.*</exclude>
                             </excludes>
