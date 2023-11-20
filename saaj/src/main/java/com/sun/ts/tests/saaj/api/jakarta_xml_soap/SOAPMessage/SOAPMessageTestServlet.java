@@ -157,7 +157,7 @@ public class SOAPMessageTestServlet extends HttpServlet {
       throws ServletException, IOException {
     TestUtil.logTrace("dispatch");
     Properties p = SOAP_Util.getHarnessProps();
-    String testname = p.getProperty("TESTNAME");
+    String testname = System.getProperty("TESTNAME");
     if (testname.equals("addAttachmentPartTest")) {
       TestUtil.logMsg("Starting addAttachmentPartTest");
       addAttachmentPartTest(req, res);

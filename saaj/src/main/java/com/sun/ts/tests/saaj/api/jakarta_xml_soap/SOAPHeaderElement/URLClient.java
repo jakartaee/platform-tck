@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -109,6 +106,7 @@ public class URLClient extends EETest {
    * header element to true
    *
    */
+  @Test
   public void setMustUnderstandTrueTest() throws Exception {
     boolean pass = true;
     try {
@@ -154,6 +152,7 @@ public class URLClient extends EETest {
    * header element to false
    *
    */
+  @Test
   public void setMustUnderstandFalseTest() throws Exception {
     boolean pass = true;
     try {
@@ -199,6 +198,7 @@ public class URLClient extends EETest {
    * header element when it is true
    *
    */
+  @Test
   public void getMustUnderstandTrueTest() throws Exception {
     boolean pass = true;
     try {
@@ -244,6 +244,7 @@ public class URLClient extends EETest {
    * header element when it is false
    *
    */
+  @Test
   public void getMustUnderstandFalseTest() throws Exception {
     boolean pass = true;
     try {
@@ -289,6 +290,7 @@ public class URLClient extends EETest {
    * SOAP1.1 or SOAP1.2 message this should succeed.
    *
    */
+  @Test
   public void setActorTest() throws Exception {
     boolean pass = true;
     try {
@@ -336,6 +338,7 @@ public class URLClient extends EETest {
    * SOAP1.1 or SOAP1.2 message this should succeed.
    *
    */
+  @Test
   public void getActorTest() throws Exception {
     boolean pass = true;
     try {
@@ -384,6 +387,7 @@ public class URLClient extends EETest {
    * UnsupportedOperation- Exception.
    *
    */
+  @Test
   public void setRoleTest() throws Exception {
     boolean pass = true;
     try {
@@ -432,6 +436,7 @@ public class URLClient extends EETest {
    * UnsupportedOperation- Exception.
    *
    */
+  @Test
   public void getRoleTest() throws Exception {
     boolean pass = true;
     try {
@@ -480,6 +485,7 @@ public class URLClient extends EETest {
    * UnsupportedOperation- Exception.
    *
    */
+  @Test
   public void setRelayTest() throws Exception {
     boolean pass = true;
     try {
@@ -528,6 +534,7 @@ public class URLClient extends EETest {
    * UnsupportedOperation- Exception.
    *
    */
+  @Test
   public void getRelayTest() throws Exception {
     boolean pass = true;
     try {

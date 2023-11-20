@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -102,6 +99,7 @@ public class URLClient extends EETest {
    * Envelope. This is allowed for SOAP1.1 protocol.
    *
    */
+  @Test
   public void encodingStyleAttrSOAP11Test1() throws Exception {
     try {
       boolean pass = true;
@@ -138,6 +136,7 @@ public class URLClient extends EETest {
    * Envelope. This is allowed for SOAP1.1 protocol.
    *
    */
+  @Test
   public void encodingStyleAttrSOAP11Test2() throws Exception {
     try {
       boolean pass = true;
@@ -174,6 +173,7 @@ public class URLClient extends EETest {
    * is allowed for SOAP1.1 protocol.
    *
    */
+  @Test
   public void noTrailingBlockBodySOAP11Test() throws Exception {
     try {
       boolean pass = true;
@@ -210,6 +210,7 @@ public class URLClient extends EETest {
    * BodyElements. This is allowed for SOAP1.1 protocol.
    *
    */
+  @Test
   public void enforcedQNameBodyElemSOAP11Test() throws Exception {
     try {
       boolean pass = true;
@@ -246,6 +247,7 @@ public class URLClient extends EETest {
    * Envelope. This is restricted for SOAP1.2 protocol.
    *
    */
+  @Test
   public void encodingStyleAttrSOAP12Test1() throws Exception {
     try {
       boolean pass = true;
@@ -282,6 +284,7 @@ public class URLClient extends EETest {
    * Envelope. This is restricted for SOAP1.2 protocol.
    *
    */
+  @Test
   public void encodingStyleAttrSOAP12Test2() throws Exception {
     try {
       boolean pass = true;
@@ -318,6 +321,7 @@ public class URLClient extends EETest {
    * is restricted for SOAP1.2 protocol.
    *
    */
+  @Test
   public void noTrailingBlockBodySOAP12Test() throws Exception {
     try {
       boolean pass = true;
@@ -355,6 +359,7 @@ public class URLClient extends EETest {
    * protocol.
    *
    */
+  @Test
   public void enforcedQNameHdrElemTest1() throws Exception {
     try {
       boolean pass = true;
@@ -395,6 +400,7 @@ public class URLClient extends EETest {
    * ChildElements of Headers. This is restricted for both SOAP1.1 and SOAP1.2
    * protocol.
    */
+  @Test
   public void enforcedQNameHdrElemTest2() throws Exception {
     try {
       boolean pass = true;
@@ -436,6 +442,7 @@ public class URLClient extends EETest {
    * BodyElements. This is restricted for SOAP1.2 protocol.
    *
    */
+  @Test
   public void enforcedQNameBodyElemSOAP12Test() throws Exception {
     try {
       boolean pass = true;

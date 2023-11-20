@@ -24,6 +24,8 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.porting.TSURL;
@@ -86,18 +88,18 @@ public class Client extends ServiceEETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -135,6 +137,7 @@ public class Client extends ServiceEETest {
    * version soap test.
    *
    */
+  @Test
   public void SASendVariousMimeAttachmentsSOAP11Test() throws Exception {
     boolean pass = true;
 
@@ -308,6 +311,7 @@ public class Client extends ServiceEETest {
    * version soap test.
    *
    */
+  @Test
   public void SASendVariousMimeAttachmentsSOAP12Test() throws Exception {
     boolean pass = true;
 

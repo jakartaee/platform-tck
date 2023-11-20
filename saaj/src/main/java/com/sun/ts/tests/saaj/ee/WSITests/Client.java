@@ -26,6 +26,8 @@ import java.util.Properties;
 
 import javax.xml.transform.stream.StreamSource;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -58,7 +60,7 @@ public class Client extends ServiceEETest {
    * @class.setup_props:
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     logMsg("setup ok");
   }
 
@@ -73,6 +75,7 @@ public class Client extends ServiceEETest {
    *
    * @test_Strategy: Test character encoding for utf-16 encoding.
    */
+  @Test
   public void TestSetCharEncodingUtf16() throws Exception {
     boolean pass = true;
     try {
@@ -122,6 +125,7 @@ public class Client extends ServiceEETest {
    *
    * @test_Strategy: Test character encoding for utf-8 encoding.
    */
+  @Test
   public void TestSetCharEncodingUtf8() throws Exception {
     boolean pass = true;
     try {
@@ -171,6 +175,7 @@ public class Client extends ServiceEETest {
    *
    * @test_Strategy: Test outputing xml declaration for utf-16 encoding.
    */
+  @Test
   public void TestVerifyXmlDeclarationUtf16() throws Exception {
     boolean pass = true;
     try {
@@ -231,6 +236,7 @@ public class Client extends ServiceEETest {
    *
    * @test_Strategy: Test outputing xml declaration for utf-8 encoding.
    */
+  @Test
   public void TestVerifyXmlDeclarationUtf8() throws Exception {
     boolean pass = true;
     try {
@@ -289,6 +295,7 @@ public class Client extends ServiceEETest {
    *
    * @test_Strategy: Test that no xml declaration is output.
    */
+  @Test
   public void TestVerifyNoXmlDeclarationOutput() throws Exception {
     boolean pass = true;
     try {
@@ -345,6 +352,7 @@ public class Client extends ServiceEETest {
    * @test_Strategy: Test that no xml declaration is output. Default behavior
    * case.
    */
+  @Test
   public void TestVerifyNoXmlDeclarationDefaultCase() throws Exception {
     boolean pass = true;
     try {

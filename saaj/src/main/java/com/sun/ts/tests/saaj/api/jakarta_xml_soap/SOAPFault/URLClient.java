@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -106,6 +103,7 @@ public class URLClient extends EETest {
    * Must succeed.
    *
    */
+  @Test
   public void SetGetFaultString1Test() throws Exception {
     boolean pass = true;
     try {
@@ -145,6 +143,7 @@ public class URLClient extends EETest {
    * Must succeed.
    *
    */
+  @Test
   public void SetGetFaultCode1Test() throws Exception {
     boolean pass = true;
     try {
@@ -184,6 +183,7 @@ public class URLClient extends EETest {
    * succeed.
    *
    */
+  @Test
   public void SetGetFaultActor1Test() throws Exception {
     boolean pass = true;
     try {
@@ -222,6 +222,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call SOAPFault.addDetail/getDetail
    *
    */
+  @Test
   public void AddGetDetail1Test() throws Exception {
     boolean pass = true;
     try {
@@ -262,6 +263,7 @@ public class URLClient extends EETest {
    * must throw UnsupportedOperationException.
    *
    */
+  @Test
   public void addFaultReasonText1Test() throws Exception {
     boolean pass = true;
     try {
@@ -297,6 +299,7 @@ public class URLClient extends EETest {
    * must succeed.
    *
    */
+  @Test
   public void addFaultReasonText2Test() throws Exception {
     boolean pass = true;
     try {
@@ -329,6 +332,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call SOAPFault.addFaultReasonText() using 2 different
    * locales. See that both are returned on a SOAP1.2 message.
    */
+  @Test
   public void addFaultReasonText3Test() throws Exception {
     boolean pass = true;
     try {
@@ -361,6 +365,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call SOAPFault.addFaultReasonText() using the same locale.
    * See that the first is overwritten by the second on a SOAP1.2 message.
    */
+  @Test
   public void addFaultReasonText4Test() throws Exception {
     boolean pass = true;
     try {
@@ -397,6 +402,7 @@ public class URLClient extends EETest {
    * must throw UnsupportedOperationException.
    *
    */
+  @Test
   public void getFaultReasonLocales1Test() throws Exception {
     boolean pass = true;
     try {
@@ -433,6 +439,7 @@ public class URLClient extends EETest {
    * must succeed.
    *
    */
+  @Test
   public void getFaultReasonLocales2Test() throws Exception {
     boolean pass = true;
     try {
@@ -468,6 +475,7 @@ public class URLClient extends EETest {
    * must throw UnsupportedOperationException.
    *
    */
+  @Test
   public void getFaultReasonText1Test() throws Exception {
     boolean pass = true;
     try {
@@ -505,6 +513,7 @@ public class URLClient extends EETest {
    * must succeed.
    *
    */
+  @Test
   public void getFaultReasonText2Test() throws Exception {
     boolean pass = true;
     try {
@@ -539,6 +548,7 @@ public class URLClient extends EETest {
    * and the second to replace the old text with a new text value
    *
    */
+  @Test
   public void getFaultReasonText3Test() throws Exception {
     boolean pass = true;
     try {
@@ -574,6 +584,7 @@ public class URLClient extends EETest {
    * must throw UnsupportedOperationException.
    *
    */
+  @Test
   public void getFaultReasonTexts1Test() throws Exception {
     boolean pass = true;
     try {
@@ -610,6 +621,7 @@ public class URLClient extends EETest {
    * must succeed.
    *
    */
+  @Test
   public void getFaultReasonTexts2Test() throws Exception {
     boolean pass = true;
     try {
@@ -646,6 +658,7 @@ public class URLClient extends EETest {
    * must succeed.
    *
    */
+  @Test
   public void getFaultReasonTexts3Test() throws Exception {
     boolean pass = true;
     try {
@@ -682,6 +695,7 @@ public class URLClient extends EETest {
    * throw UnsupportedOperationException.
    *
    */
+  @Test
   public void setFaultNode1Test() throws Exception {
     boolean pass = true;
     try {
@@ -714,6 +728,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call SOAPFault.setFaultNode() and getFaultNode() on a
    * SOAP1.2 message must succeed.
    */
+  @Test
   public void SetGetFaultNode1Test() throws Exception {
     boolean pass = true;
     try {
@@ -745,6 +760,7 @@ public class URLClient extends EETest {
    *
    * @test_Strategy: Call SOAPFault.setFaultNode() twice on a SOAP1.2 message.
    */
+  @Test
   public void SetGetFaultNode2Test() throws Exception {
     boolean pass = true;
     try {
@@ -781,6 +797,7 @@ public class URLClient extends EETest {
    * throw UnsupportedOperationException.
    *
    */
+  @Test
   public void getFaultNode1Test() throws Exception {
     boolean pass = true;
     try {
@@ -814,6 +831,7 @@ public class URLClient extends EETest {
    * doesn't have a node set.
    *
    */
+  @Test
   public void getFaultNode2Test() throws Exception {
     boolean pass = true;
     try {
@@ -850,6 +868,7 @@ public class URLClient extends EETest {
    * throw UnsupportedOperationException.
    *
    */
+  @Test
   public void setFaultRole1Test() throws Exception {
     boolean pass = true;
     try {
@@ -883,6 +902,7 @@ public class URLClient extends EETest {
    * message must succeed.
    *
    */
+  @Test
   public void SetGetFaultRole1Test() throws Exception {
     boolean pass = true;
     try {
@@ -919,6 +939,7 @@ public class URLClient extends EETest {
    * throw UnsupportedOperationException.
    *
    */
+  @Test
   public void getFaultRole1Test() throws Exception {
     boolean pass = true;
     try {
@@ -952,6 +973,7 @@ public class URLClient extends EETest {
    * does not have a role set.
    *
    */
+  @Test
   public void getFaultRole2Test() throws Exception {
     boolean pass = true;
     try {
@@ -985,6 +1007,7 @@ public class URLClient extends EETest {
    * string and locale
    *
    */
+  @Test
   public void SetGetFaultStringLocale1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1023,6 +1046,7 @@ public class URLClient extends EETest {
    * verify they behave the same
    *
    */
+  @Test
   public void setFaultStringLocale1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1057,6 +1081,7 @@ public class URLClient extends EETest {
    * was set but not the locale
    *
    */
+  @Test
   public void getFaultStringLocale1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1097,6 +1122,7 @@ public class URLClient extends EETest {
    * getFaultCodeAsName() to return Name.
    *
    */
+  @Test
   public void SetGetFaultCodeAsName1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1135,6 +1161,7 @@ public class URLClient extends EETest {
    * getFaultCodeAsQName() to return QName.
    *
    */
+  @Test
   public void SetGetFaultCodeAsQName1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1175,6 +1202,7 @@ public class URLClient extends EETest {
    * must throw UnsupportedOperationException.
    *
    */
+  @Test
   public void appendFaultSubcode1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1208,6 +1236,7 @@ public class URLClient extends EETest {
    * message must succeed.
    *
    */
+  @Test
   public void appendFaultSubcode2Test() throws Exception {
     boolean pass = true;
     try {
@@ -1243,6 +1272,7 @@ public class URLClient extends EETest {
    * throw UnsupportedOperationException.
    *
    */
+  @Test
   public void getFaultSubcodes1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1276,6 +1306,7 @@ public class URLClient extends EETest {
    * contains 2 Subcodes.
    *
    */
+  @Test
   public void getFaultSubcodes2Test() throws Exception {
     boolean pass = true;
     try {
@@ -1310,6 +1341,7 @@ public class URLClient extends EETest {
    * Description: Sets this SOAPFault object
    *
    */
+  @Test
   public void hasDetail1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1349,6 +1381,7 @@ public class URLClient extends EETest {
    * Description: Sets this SOAPFault object
    *
    */
+  @Test
   public void hasDetail2Test() throws Exception {
     boolean pass = true;
     try {
@@ -1390,6 +1423,7 @@ public class URLClient extends EETest {
    * message must throw UnsupportedOperationException.
    *
    */
+  @Test
   public void removeAllFaultSubcodes1Test() throws Exception {
     boolean pass = true;
     try {
@@ -1424,6 +1458,7 @@ public class URLClient extends EETest {
    * empty interator is returned
    *
    */
+  @Test
   public void removeAllFaultSubcodes2Test() throws Exception {
     boolean pass = true;
     try {
@@ -1457,6 +1492,7 @@ public class URLClient extends EETest {
    * object. Must throw SOAPException for SOAP1.2 protocol.
    *
    */
+  @Test
   public void SetFaultCodeNameSOAPExceptionTest() throws Exception {
     boolean pass = true;
     try {
@@ -1496,6 +1532,7 @@ public class URLClient extends EETest {
    * object. Must throw SOAPException for SOAP1.2 protocol.
    *
    */
+  @Test
   public void SetFaultCodeQNameSOAPExceptionTest() throws Exception {
     boolean pass = true;
     try {
@@ -1535,6 +1572,7 @@ public class URLClient extends EETest {
    * object. Must throw SOAPException for SOAP1.2 protocol.
    *
    */
+  @Test
   public void SetFaultCodeStringSOAPExceptionTest() throws Exception {
     boolean pass = true;
     try {
@@ -1574,6 +1612,7 @@ public class URLClient extends EETest {
    * QName object. Must throw SOAPException.
    *
    */
+  @Test
   public void AppendFaultSubcodeSOAPExceptionTest() throws Exception {
     boolean pass = true;
     try {
@@ -1607,6 +1646,7 @@ public class URLClient extends EETest {
    * SOAPException.
    *
    */
+  @Test
   public void AddDetailSOAPExceptionTest() throws Exception {
     boolean pass = true;
     try {

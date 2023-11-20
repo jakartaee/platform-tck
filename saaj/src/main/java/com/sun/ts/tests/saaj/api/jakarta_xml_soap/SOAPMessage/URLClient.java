@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -108,6 +105,7 @@ public class URLClient extends EETest {
    * Description: add an attachment object to the message
    *
    */
+  @Test
   public void addAttachmentPartTest() throws Exception {
     boolean pass = true;
     try {
@@ -151,6 +149,7 @@ public class URLClient extends EETest {
    * Description: count number of attachments in the message
    *
    */
+  @Test
   public void countAttachmentsTest() throws Exception {
     boolean pass = true;
     try {
@@ -194,6 +193,7 @@ public class URLClient extends EETest {
    * Description: get number of attachments in the message
    *
    */
+  @Test
   public void getAttachmentsTest1() throws Exception {
     boolean pass = true;
     try {
@@ -237,6 +237,7 @@ public class URLClient extends EETest {
    * Description: get number of attachments in the message
    *
    */
+  @Test
   public void getAttachmentsTest2() throws Exception {
     boolean pass = true;
     try {
@@ -280,6 +281,7 @@ public class URLClient extends EETest {
    * Description: remove attachments in the message
    *
    */
+  @Test
   public void removeAllAttachmentsTest() throws Exception {
     boolean pass = true;
     try {
@@ -323,6 +325,7 @@ public class URLClient extends EETest {
    * Description: remove attachments in the message
    *
    */
+  @Test
   public void removeAttachmentsTest() throws Exception {
     boolean pass = true;
     try {
@@ -367,6 +370,7 @@ public class URLClient extends EETest {
    * the given description.
    *
    */
+  @Test
   public void setContentDescriptionTest() throws Exception {
     boolean pass = true;
     try {
@@ -410,6 +414,7 @@ public class URLClient extends EETest {
    * Description: Get the description of this SOAPMessage object's content.
    *
    */
+  @Test
   public void getContentDescriptionTest() throws Exception {
     boolean pass = true;
     try {
@@ -453,6 +458,7 @@ public class URLClient extends EETest {
    * Description: Create a new empty AttachmentPart object
    *
    */
+  @Test
   public void createAttachmentPartTest1() throws Exception {
     boolean pass = true;
     try {
@@ -497,6 +503,7 @@ public class URLClient extends EETest {
    * DataHandler object.
    *
    */
+  @Test
   public void createAttachmentPartTest2() throws Exception {
     boolean pass = true;
     try {
@@ -541,6 +548,7 @@ public class URLClient extends EETest {
    * specified data of the specified content-type.
    *
    */
+  @Test
   public void createAttachmentPartTest3() throws Exception {
     boolean pass = true;
     try {
@@ -584,6 +592,7 @@ public class URLClient extends EETest {
    * Description: Write a SOAPMessage without attachments to output stream
    *
    */
+  @Test
   public void writeToTest1() throws Exception {
     boolean pass = true;
     try {
@@ -627,6 +636,7 @@ public class URLClient extends EETest {
    * Description: Write a SOAPMessage with attachments to output stream
    *
    */
+  @Test
   public void writeToTest2() throws Exception {
     boolean pass = true;
     try {
@@ -671,6 +681,7 @@ public class URLClient extends EETest {
    * called on it.
    *
    */
+  @Test
   public void saveRequiredTest1() throws Exception {
     boolean pass = true;
     try {
@@ -715,6 +726,7 @@ public class URLClient extends EETest {
    * called on it.
    *
    */
+  @Test
   public void saveRequiredTest2() throws Exception {
     boolean pass = true;
     try {
@@ -759,6 +771,7 @@ public class URLClient extends EETest {
    * SOAPMessage.
    *
    */
+  @Test
   public void getMimeHeadersTest() throws Exception {
     boolean pass = true;
     try {
@@ -802,6 +815,7 @@ public class URLClient extends EETest {
    * Description: Get the SOAPPart for this soap message.
    *
    */
+  @Test
   public void getSOAPPartTest() throws Exception {
     boolean pass = true;
     try {
@@ -845,6 +859,7 @@ public class URLClient extends EETest {
    * Description: Set a property for this soap message.
    *
    */
+  @Test
   public void setPropertyTest() throws Exception {
     boolean pass = true;
     try {
@@ -887,6 +902,7 @@ public class URLClient extends EETest {
    * Description: Set a property for this soap message.
    *
    */
+  @Test
   public void getPropertyTest() throws Exception {
     boolean pass = true;
     try {
@@ -929,6 +945,7 @@ public class URLClient extends EETest {
    * Description: Get the SOAPBody for this soap message.
    *
    */
+  @Test
   public void getSOAPBodyTest() throws Exception {
     boolean pass = true;
     try {
@@ -972,6 +989,7 @@ public class URLClient extends EETest {
    * Description: Get the SOAPHeader for this soap message.
    *
    */
+  @Test
   public void getSOAPHeaderTest() throws Exception {
     boolean pass = true;
     try {
@@ -1015,6 +1033,7 @@ public class URLClient extends EETest {
    * "cid:uri".
    *
    */
+  @Test
   public void getAttachmentBySwaRefTest1() throws Exception {
     boolean pass = true;
     try {
@@ -1057,6 +1076,7 @@ public class URLClient extends EETest {
    * a text node of SwaRef "cid:uri".
    *
    */
+  @Test
   public void getAttachmentBySwaRefTest2() throws Exception {
     boolean pass = true;
     try {
@@ -1099,6 +1119,7 @@ public class URLClient extends EETest {
    * "uri". This uses URI and Content-Location.
    *
    */
+  @Test
   public void getAttachmentBySwaRefTest3() throws Exception {
     boolean pass = true;
     try {
@@ -1141,6 +1162,7 @@ public class URLClient extends EETest {
    * retrieve the attachment.
    *
    */
+  @Test
   public void getAttachmentByHrefTest1() throws Exception {
     boolean pass = true;
     try {
@@ -1182,6 +1204,7 @@ public class URLClient extends EETest {
    * attribute scheme. This deals with using the Content-Location and URI
    * setting to retrieve the attachment.
    */
+  @Test
   public void getAttachmentByHrefTest2() throws Exception {
     boolean pass = true;
     try {
