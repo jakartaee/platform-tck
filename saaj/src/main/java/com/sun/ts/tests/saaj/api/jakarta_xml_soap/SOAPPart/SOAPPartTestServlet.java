@@ -31,6 +31,11 @@ import java.util.Properties;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPFault.URLClient;
@@ -90,6 +95,17 @@ public class SOAPPartTestServlet extends HttpServlet {
   String soapVersion = null;
 
   private static final String SOAP12 = "soap12";
+  
+  @Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "SOAPElement_web");
+		archive.addPackages(false, Filters.exclude(URLClient.class),
+				"com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPElement");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
+
 
   private void setup() throws Exception {
     TestUtil.logTrace("setup");
