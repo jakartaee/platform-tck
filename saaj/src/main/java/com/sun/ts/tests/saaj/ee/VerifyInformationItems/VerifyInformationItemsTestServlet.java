@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.ee.VerifyInformationItems;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
@@ -51,6 +52,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class VerifyInformationItemsTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(VerifyInformationItemsTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -81,27 +85,27 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the soap part
     // so retrieve the soap part
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
     envelopePrefix = envelope.getElementName().getPrefix();
     envelopeURI = envelope.getElementName().getURI();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
     // Retrieve the soap body from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     body = envelope.getBody();
   }
 
@@ -110,46 +114,46 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("VerifyEncodingStyleAttributeInfoItem")) {
-      TestUtil.logMsg("Starting VerifyEncodingStyleAttributeInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyEncodingStyleAttributeInfoItem");
       VerifyEncodingStyleAttributeInfoItem(req, res);
     } else if (testname.equals("VerifyRoleAttributeInfoItem")) {
-      TestUtil.logMsg("Starting VerifyRoleAttributeInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyRoleAttributeInfoItem");
       VerifyRoleAttributeInfoItem(req, res);
     } else if (testname.equals("VerifyRelayAttributeInfoItem")) {
-      TestUtil.logMsg("Starting VerifyRelayAttributeInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyRelayAttributeInfoItem");
       VerifyRelayAttributeInfoItem(req, res);
     } else if (testname.equals("VerifyMustUnderstandAttributeInfoItem")) {
-      TestUtil.logMsg("Starting VerifyMustUnderstandAttributeInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyMustUnderstandAttributeInfoItem");
       VerifyMustUnderstandAttributeInfoItem(req, res);
     } else if (testname.equals("VerifyEnvelopeElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyEnvelopeElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyEnvelopeElementInfoItem");
       VerifyEnvelopeElementInfoItem(req, res);
     } else if (testname.equals("VerifyHeaderElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyHeaderElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyHeaderElementInfoItem");
       VerifyHeaderElementInfoItem(req, res);
     } else if (testname.equals("VerifyBodyElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyBodyElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyBodyElementInfoItem");
       VerifyBodyElementInfoItem(req, res);
     } else if (testname.equals("VerifyBodyChildElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyBodyChildElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyBodyChildElementInfoItem");
       VerifyBodyChildElementInfoItem(req, res);
     } else if (testname.equals("VerifyFaultElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyFaultElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyFaultElementInfoItem");
       VerifyFaultElementInfoItem(req, res);
     } else if (testname.equals("VerifyDetailElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyDetailElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyDetailElementInfoItem");
       VerifyDetailElementInfoItem(req, res);
     } else if (testname.equals("VerifyCodeElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyCodeElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyCodeElementInfoItem");
       VerifyCodeElementInfoItem(req, res);
     } else if (testname.equals("VerifySubcodeElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifySubcodeElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifySubcodeElementInfoItem");
       VerifySubcodeElementInfoItem(req, res);
     } else if (testname.equals("VerifyUpgradeElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyUpgradeElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyUpgradeElementInfoItem");
       VerifyUpgradeElementInfoItem(req, res);
     } else if (testname.equals("VerifyNotUnderstoodElementInfoItem")) {
-      TestUtil.logMsg("Starting VerifyNotUnderstoodElementInfoItem");
+      logger.log(Logger.Level.INFO,"Starting VerifyNotUnderstoodElementInfoItem");
       VerifyNotUnderstoodElementInfoItem(req, res);
     } else {
       throw new ServletException(
@@ -189,7 +193,7 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Add encodingStyle attribute to SOAP Header element");
+      logger.log(Logger.Level.INFO,"Add encodingStyle attribute to SOAP Header element");
       Name name1 = envelope.createName("foo", "f", "http://foo.org/foo");
       Name name2 = envelope.createName("encodingStyle", envelopePrefix,
           envelopeURI);
@@ -201,36 +205,36 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
       Name name = null;
       Iterator i = she.getAllAttributes();
       if (!i.hasNext()) {
-        TestUtil.logErr("No attributes (unexpected)");
+        logger.log(Logger.Level.ERROR,"No attributes (unexpected)");
         pass = false;
       } else {
         name = (Name) i.next();
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating encodingStyle attribute");
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"Validating encodingStyle attribute");
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be encodingStyle");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be encodingStyle");
         if (!localName.equals("encodingStyle")) {
-          TestUtil.logErr("Got LocalName: " + localName
+          logger.log(Logger.Level.ERROR,"Got LocalName: " + localName
               + ", Expected LocalName: encodingStyle");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -254,7 +258,7 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Add role attribute to SOAP Header element");
+      logger.log(Logger.Level.INFO,"Add role attribute to SOAP Header element");
       Name name1 = envelope.createName("foo", "f", "http://foo.org/foo");
       Name name2 = envelope.createName("role", envelopePrefix, envelopeURI);
       SOAPHeaderElement she = hdr.addHeaderElement(name1);
@@ -265,36 +269,36 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
       Name name = null;
       Iterator i = she.getAllAttributes();
       if (!i.hasNext()) {
-        TestUtil.logErr("No attributes (unexpected)");
+        logger.log(Logger.Level.ERROR,"No attributes (unexpected)");
         pass = false;
       } else {
         name = (Name) i.next();
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating role attribute");
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"Validating role attribute");
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be role");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be role");
         if (!localName.equals("role")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: role");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -318,7 +322,7 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Add relay attribute to SOAP Header element");
+      logger.log(Logger.Level.INFO,"Add relay attribute to SOAP Header element");
       Name name1 = envelope.createName("foo", "f", "http://foo.org/foo");
       Name name2 = envelope.createName("relay", envelopePrefix, envelopeURI);
       SOAPHeaderElement she = hdr.addHeaderElement(name1);
@@ -330,36 +334,36 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
       Name name = null;
       Iterator i = she.getAllAttributes();
       if (!i.hasNext()) {
-        TestUtil.logErr("No attributes (unexpected)");
+        logger.log(Logger.Level.ERROR,"No attributes (unexpected)");
         pass = false;
       } else {
         name = (Name) i.next();
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating relay SOAPElement Name");
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"Validating relay SOAPElement Name");
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be relay");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be relay");
         if (!localName.equals("relay")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: relay");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -383,7 +387,7 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Add mustUnderstand attribute to SOAP Header element");
+      logger.log(Logger.Level.INFO,"Add mustUnderstand attribute to SOAP Header element");
       Name name1 = envelope.createName("foo", "f", "http://foo.org/foo");
       Name name2 = envelope.createName("mustUnderstand", envelopePrefix,
           envelopeURI);
@@ -395,36 +399,36 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
       Name name = null;
       Iterator i = she.getAllAttributes();
       if (!i.hasNext()) {
-        TestUtil.logErr("No attributes (unexpected)");
+        logger.log(Logger.Level.ERROR,"No attributes (unexpected)");
         pass = false;
       } else {
         name = (Name) i.next();
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating mustUnderstand SOAPElement Name");
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"Validating mustUnderstand SOAPElement Name");
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be mustUnderstand");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be mustUnderstand");
         if (!localName.equals("mustUnderstand")) {
-          TestUtil.logErr("Got LocalName: " + localName
+          logger.log(Logger.Level.ERROR,"Got LocalName: " + localName
               + ", Expected LocalName: mustUnderstand");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -448,45 +452,45 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating SOAP Envelope element");
+      logger.log(Logger.Level.INFO,"Creating SOAP Envelope element");
       se = (SOAPElement) sp.getEnvelope();
 
       SOAP_Util.dumpSOAPMessage(msg);
 
-      TestUtil.logMsg("Validating SOAPElement object creation");
+      logger.log(Logger.Level.INFO,"Validating SOAPElement object creation");
       if (se == null) {
-        TestUtil.logErr("SOAPElement is null");
+        logger.log(Logger.Level.ERROR,"SOAPElement is null");
         pass = false;
       } else {
-        TestUtil.logMsg("SOAPElement was created");
+        logger.log(Logger.Level.INFO,"SOAPElement was created");
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating Envelope SOAPElement Name");
-        TestUtil.logMsg("Get the ElementName");
+        logger.log(Logger.Level.INFO,"Validating Envelope SOAPElement Name");
+        logger.log(Logger.Level.INFO,"Get the ElementName");
         Name name = se.getElementName();
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be Envelope");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be Envelope");
         if (!localName.equals("Envelope")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: Envelope");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -510,45 +514,45 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating SOAP Header element");
+      logger.log(Logger.Level.INFO,"Creating SOAP Header element");
       se = (SOAPElement) envelope.getHeader();
 
       SOAP_Util.dumpSOAPMessage(msg);
 
-      TestUtil.logMsg("Validating SOAPElement object creation");
+      logger.log(Logger.Level.INFO,"Validating SOAPElement object creation");
       if (se == null) {
-        TestUtil.logErr("SOAPElement is null");
+        logger.log(Logger.Level.ERROR,"SOAPElement is null");
         pass = false;
       } else {
-        TestUtil.logMsg("SOAPElement was created");
+        logger.log(Logger.Level.INFO,"SOAPElement was created");
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating Header SOAPElement Name");
-        TestUtil.logMsg("Get the ElementName");
+        logger.log(Logger.Level.INFO,"Validating Header SOAPElement Name");
+        logger.log(Logger.Level.INFO,"Get the ElementName");
         Name name = se.getElementName();
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be Header");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be Header");
         if (!localName.equals("Header")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: Header");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -572,45 +576,45 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating SOAP Body element");
+      logger.log(Logger.Level.INFO,"Creating SOAP Body element");
       se = (SOAPElement) envelope.getBody();
 
       SOAP_Util.dumpSOAPMessage(msg);
 
-      TestUtil.logMsg("Validating SOAPElement object creation");
+      logger.log(Logger.Level.INFO,"Validating SOAPElement object creation");
       if (se == null) {
-        TestUtil.logErr("SOAPElement is null");
+        logger.log(Logger.Level.ERROR,"SOAPElement is null");
         pass = false;
       } else {
-        TestUtil.logMsg("SOAPElement was created");
+        logger.log(Logger.Level.INFO,"SOAPElement was created");
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating Body SOAPElement Name");
-        TestUtil.logMsg("Get the ElementName");
+        logger.log(Logger.Level.INFO,"Validating Body SOAPElement Name");
+        logger.log(Logger.Level.INFO,"Get the ElementName");
         Name name = se.getElementName();
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be Body");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be Body");
         if (!localName.equals("Body")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: Body");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -634,44 +638,44 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating SOAP Body Child element");
+      logger.log(Logger.Level.INFO,"Creating SOAP Body Child element");
       se = body
           .addChildElement(envelope.createName("MyName", "MyPrefix", "MyURI"));
 
       SOAP_Util.dumpSOAPMessage(msg);
 
-      TestUtil.logMsg("Validating SOAPElement object creation");
+      logger.log(Logger.Level.INFO,"Validating SOAPElement object creation");
       if (se == null) {
-        TestUtil.logErr("SOAPElement is null");
+        logger.log(Logger.Level.ERROR,"SOAPElement is null");
         pass = false;
       } else {
-        TestUtil.logMsg("SOAPElement was created");
+        logger.log(Logger.Level.INFO,"SOAPElement was created");
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating BodyChild SOAPElement Name");
-        TestUtil.logMsg("Get the ElementName");
+        logger.log(Logger.Level.INFO,"Validating BodyChild SOAPElement Name");
+        logger.log(Logger.Level.INFO,"Get the ElementName");
         Name name = se.getElementName();
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be MyURI");
+        logger.log(Logger.Level.INFO,"Validate the URI which must be MyURI");
         if (!uri.equals("MyURI")) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: " + "MyURI");
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: " + "MyURI");
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be MyName");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be MyName");
         if (!localName.equals("MyName")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: MyName");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -695,45 +699,45 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating SOAP Fault element");
+      logger.log(Logger.Level.INFO,"Creating SOAP Fault element");
       se = (SOAPElement) body.addFault();
 
       SOAP_Util.dumpSOAPMessage(msg);
 
-      TestUtil.logMsg("Validating SOAPElement object creation");
+      logger.log(Logger.Level.INFO,"Validating SOAPElement object creation");
       if (se == null) {
-        TestUtil.logErr("SOAPElement is null");
+        logger.log(Logger.Level.ERROR,"SOAPElement is null");
         pass = false;
       } else {
-        TestUtil.logMsg("SOAPElement was created");
+        logger.log(Logger.Level.INFO,"SOAPElement was created");
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating Fault SOAPElement Name");
-        TestUtil.logMsg("Get the ElementName");
+        logger.log(Logger.Level.INFO,"Validating Fault SOAPElement Name");
+        logger.log(Logger.Level.INFO,"Get the ElementName");
         Name name = se.getElementName();
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be Fault");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be Fault");
         if (!localName.equals("Fault")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: Fault");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -757,30 +761,30 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating SOAP Fault Code element");
+      logger.log(Logger.Level.INFO,"Creating SOAP Fault Code element");
       SOAPFault sf = body.addFault(SOAPConstants.SOAP_VERSIONMISMATCH_FAULT,
           "This is the fault string (boo hoo hoo)");
 
       SOAP_Util.dumpSOAPMessage(msg);
 
       if (pass) {
-        TestUtil.logMsg("Validating Code SOAPElement");
-        TestUtil.logMsg("Get the Code SOAPElement");
+        logger.log(Logger.Level.INFO,"Validating Code SOAPElement");
+        logger.log(Logger.Level.INFO,"Get the Code SOAPElement");
         QName name = sf.getFaultCodeAsQName();
-        TestUtil.logMsg("URI = " + name.getNamespaceURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalPart());
-        TestUtil.logMsg("QualifiedName = " + name.toString());
+        logger.log(Logger.Level.INFO,"URI = " + name.getNamespaceURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalPart());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.toString());
         String uri = name.getNamespaceURI();
         String localName = name.getLocalPart();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be "
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be "
             + SOAPConstants.SOAP_VERSIONMISMATCH_FAULT.getLocalPart());
         if (!localName
             .equals(SOAPConstants.SOAP_VERSIONMISMATCH_FAULT.getLocalPart())) {
@@ -791,7 +795,7 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -815,7 +819,7 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating SOAP Fault Subcode element");
+      logger.log(Logger.Level.INFO,"Creating SOAP Fault Subcode element");
       SOAPFault sf = body.addFault(SOAPConstants.SOAP_VERSIONMISMATCH_FAULT,
           "This is the fault string (boo hoo hoo)");
       QName subcode = new QName("http://www.w3.org/2003/05/soap-rpc",
@@ -825,32 +829,32 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
       SOAP_Util.dumpSOAPMessage(msg);
 
       if (pass) {
-        TestUtil.logMsg("Validating Subcode SOAPElement");
-        TestUtil.logMsg("Get the Subcode SOAPElement");
+        logger.log(Logger.Level.INFO,"Validating Subcode SOAPElement");
+        logger.log(Logger.Level.INFO,"Get the Subcode SOAPElement");
         Iterator i = sf.getFaultSubcodes();
         QName name = (QName) i.next();
-        TestUtil.logMsg("URI = " + name.getNamespaceURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalPart());
-        TestUtil.logMsg("QualifiedName = " + name.toString());
+        logger.log(Logger.Level.INFO,"URI = " + name.getNamespaceURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalPart());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.toString());
         String uri = name.getNamespaceURI();
         String localName = name.getLocalPart();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + "http://www.w3.org/2003/05/soap-rpc");
         if (!uri.equals("http://www.w3.org/2003/05/soap-rpc")) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + "http://www.w3.org/2003/05/soap-rpc");
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be Subcode");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be Subcode");
         if (!localName.equals("BadArguments")) {
-          TestUtil.logErr("Got LocalName: " + localName
+          logger.log(Logger.Level.ERROR,"Got LocalName: " + localName
               + ", Expected LocalName: BadArguments");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -874,45 +878,45 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating a Detail element");
+      logger.log(Logger.Level.INFO,"Creating a Detail element");
       SOAPFault sf = body.addFault();
       Detail d = sf.addDetail();
 
-      TestUtil.logMsg("Validating Detail element creation");
+      logger.log(Logger.Level.INFO,"Validating Detail element creation");
       if (d == null) {
-        TestUtil.logErr("Detail element is null");
+        logger.log(Logger.Level.ERROR,"Detail element is null");
         pass = false;
       } else {
-        TestUtil.logMsg("Detail element was created");
+        logger.log(Logger.Level.INFO,"Detail element was created");
       }
       SOAPElement se = (SOAPElement) d;
 
       if (pass) {
-        TestUtil.logMsg("Validating Detail SOAPElement Name");
-        TestUtil.logMsg("Get the ElementName");
+        logger.log(Logger.Level.INFO,"Validating Detail SOAPElement Name");
+        logger.log(Logger.Level.INFO,"Get the ElementName");
         Name name = se.getElementName();
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be Detail");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be Detail");
         if (!localName.equals("Detail")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: Detail");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -941,43 +945,43 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
       supported.add(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
       supported.add(SOAPConstants.URI_NS_SOAP_ENVELOPE);
 
-      TestUtil.logMsg("Creating Upgrade SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Creating Upgrade SOAPHeaderElement");
       she = hdr.addUpgradeHeaderElement(supported.iterator());
 
-      TestUtil.logMsg("Validating SOAPHeaderElement object creation");
+      logger.log(Logger.Level.INFO,"Validating SOAPHeaderElement object creation");
       if (she == null) {
-        TestUtil.logErr("SOAPHeaderElement is null");
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement is null");
         pass = false;
       } else {
-        TestUtil.logMsg("SOAPHeaderElement was created");
+        logger.log(Logger.Level.INFO,"SOAPHeaderElement was created");
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating Upgrade SOAPHeaderElement Name");
-        TestUtil.logMsg("Get the ElementName");
+        logger.log(Logger.Level.INFO,"Validating Upgrade SOAPHeaderElement Name");
+        logger.log(Logger.Level.INFO,"Get the ElementName");
         Name name = she.getElementName();
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be Upgrade");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be Upgrade");
         if (!localName.equals("Upgrade")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Got LocalName: " + localName + ", Expected LocalName: Upgrade");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1001,44 +1005,44 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating NotUnderstood SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Creating NotUnderstood SOAPHeaderElement");
       she = hdr.addNotUnderstoodHeaderElement(
           new QName("http://foo.org", "foo", "f"));
 
-      TestUtil.logMsg("Validating SOAPHeaderElement object creation");
+      logger.log(Logger.Level.INFO,"Validating SOAPHeaderElement object creation");
       if (she == null) {
-        TestUtil.logErr("SOAPHeaderElement is null");
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement is null");
         pass = false;
       } else {
-        TestUtil.logMsg("SOAPHeaderElement was created");
+        logger.log(Logger.Level.INFO,"SOAPHeaderElement was created");
       }
 
       if (pass) {
-        TestUtil.logMsg("Validating NotUnderstood SOAPHeaderElement Name");
-        TestUtil.logMsg("Get the ElementName");
+        logger.log(Logger.Level.INFO,"Validating NotUnderstood SOAPHeaderElement Name");
+        logger.log(Logger.Level.INFO,"Get the ElementName");
         Name name = she.getElementName();
-        TestUtil.logMsg("URI = " + name.getURI());
-        TestUtil.logMsg("Prefix = " + name.getPrefix());
-        TestUtil.logMsg("LocalName = " + name.getLocalName());
-        TestUtil.logMsg("QualifiedName = " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"URI = " + name.getURI());
+        logger.log(Logger.Level.INFO,"Prefix = " + name.getPrefix());
+        logger.log(Logger.Level.INFO,"LocalName = " + name.getLocalName());
+        logger.log(Logger.Level.INFO,"QualifiedName = " + name.getQualifiedName());
         String uri = name.getURI();
         String localName = name.getLocalName();
-        TestUtil.logMsg("Validate the URI which must be "
+        logger.log(Logger.Level.INFO,"Validate the URI which must be "
             + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         if (!uri.equals(SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE)) {
-          TestUtil.logErr("Got URI: " + uri + "\nExpected URI: "
+          logger.log(Logger.Level.ERROR,"Got URI: " + uri + "\nExpected URI: "
               + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
           pass = false;
         }
-        TestUtil.logMsg("Validate the LocalName which must be NotUnderstood");
+        logger.log(Logger.Level.INFO,"Validate the LocalName which must be NotUnderstood");
         if (!localName.equals("NotUnderstood")) {
-          TestUtil.logErr("Got LocalName: " + localName
+          logger.log(Logger.Level.ERROR,"Got LocalName: " + localName
               + ", Expected LocalName: NotUnderstood");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

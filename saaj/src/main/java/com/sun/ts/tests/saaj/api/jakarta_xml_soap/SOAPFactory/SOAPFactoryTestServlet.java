@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -58,6 +59,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SOAPFactoryTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SOAPFactoryTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -82,25 +86,25 @@ public class SOAPFactoryTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
     // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     body = envelope.getBody();
   }
 
@@ -109,52 +113,52 @@ public class SOAPFactoryTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("newInstanceTest1")) {
-      TestUtil.logMsg("Starting newInstanceTest1");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest1");
       newInstanceTest1(req, res);
     } else if (testname.equals("newInstanceTest2")) {
-      TestUtil.logMsg("Starting newInstanceTest2");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest2");
       newInstanceTest2(req, res);
     } else if (testname.equals("newInstanceTest3")) {
-      TestUtil.logMsg("Starting newInstanceTest3");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest3");
       newInstanceTest3(req, res);
     } else if (testname.equals("newInstanceTest4")) {
-      TestUtil.logMsg("Starting newInstanceTest4");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest4");
       newInstanceTest4(req, res);
     } else if (testname.equals("createElementTest1")) {
-      TestUtil.logMsg("Starting createElementTest1");
+      logger.log(Logger.Level.INFO,"Starting createElementTest1");
       createElementTest1(req, res);
     } else if (testname.equals("createElementTest2")) {
-      TestUtil.logMsg("Starting createElementTest2");
+      logger.log(Logger.Level.INFO,"Starting createElementTest2");
       createElementTest2(req, res);
     } else if (testname.equals("createElementTest3")) {
-      TestUtil.logMsg("Starting createElementTest3");
+      logger.log(Logger.Level.INFO,"Starting createElementTest3");
       createElementTest3(req, res);
     } else if (testname.equals("createElementTest4")) {
-      TestUtil.logMsg("Starting createElementTest4");
+      logger.log(Logger.Level.INFO,"Starting createElementTest4");
       createElementTest4(req, res);
     } else if (testname.equals("createElementTest5")) {
-      TestUtil.logMsg("Starting createElementTest5");
+      logger.log(Logger.Level.INFO,"Starting createElementTest5");
       createElementTest5(req, res);
     } else if (testname.equals("createElementTest6")) {
-      TestUtil.logMsg("Starting createElementTest6");
+      logger.log(Logger.Level.INFO,"Starting createElementTest6");
       createElementTest6(req, res);
     } else if (testname.equals("createDetailTest1")) {
-      TestUtil.logMsg("Starting createDetailTest1");
+      logger.log(Logger.Level.INFO,"Starting createDetailTest1");
       createDetailTest1(req, res);
     } else if (testname.equals("createNameTest1")) {
-      TestUtil.logMsg("Starting createNameTest1");
+      logger.log(Logger.Level.INFO,"Starting createNameTest1");
       createNameTest1(req, res);
     } else if (testname.equals("createNameTest2")) {
-      TestUtil.logMsg("Starting createNameTest2");
+      logger.log(Logger.Level.INFO,"Starting createNameTest2");
       createNameTest2(req, res);
     } else if (testname.equals("createFaultTest1")) {
-      TestUtil.logMsg("Starting createFaultTest1");
+      logger.log(Logger.Level.INFO,"Starting createFaultTest1");
       createFaultTest1(req, res);
     } else if (testname.equals("createFaultTest2")) {
-      TestUtil.logMsg("Starting createFaultTest2");
+      logger.log(Logger.Level.INFO,"Starting createFaultTest2");
       createFaultTest2(req, res);
     } else if (testname.equals("createFaultSOAPExceptionTest1")) {
-      TestUtil.logMsg("Starting createFaultSOAPExceptionTest1");
+      logger.log(Logger.Level.INFO,"Starting createFaultSOAPExceptionTest1");
       createFaultSOAPExceptionTest1(req, res);
     } else {
       throw new ServletException(
@@ -193,14 +197,14 @@ public class SOAPFactoryTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Create SOAPFactory object");
+      logger.log(Logger.Level.INFO,"Create SOAPFactory object");
       SOAPFactory sf = SOAPFactory.newInstance();
       if (sf == null) {
-        TestUtil.logErr("SOAPFactory.newInstance() returned null");
+        logger.log(Logger.Level.ERROR,"SOAPFactory.newInstance() returned null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -223,14 +227,14 @@ public class SOAPFactoryTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Create a SOAP1.1 SOAPFactory object");
+      logger.log(Logger.Level.INFO,"Create a SOAP1.1 SOAPFactory object");
       SOAPFactory sf = SOAPFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
       if (sf == null) {
-        TestUtil.logErr("SOAPFactory.newInstance() returned null");
+        logger.log(Logger.Level.ERROR,"SOAPFactory.newInstance() returned null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -253,14 +257,14 @@ public class SOAPFactoryTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Create a SOAP1.2 SOAPFactory object");
+      logger.log(Logger.Level.INFO,"Create a SOAP1.2 SOAPFactory object");
       SOAPFactory sf = SOAPFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
       if (sf == null) {
-        TestUtil.logErr("SOAPFactory.newInstance() returned null");
+        logger.log(Logger.Level.ERROR,"SOAPFactory.newInstance() returned null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -283,14 +287,14 @@ public class SOAPFactoryTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Try and create a BOGUS SOAPFactory object");
+      logger.log(Logger.Level.INFO,"Try and create a BOGUS SOAPFactory object");
       SOAPFactory sf = SOAPFactory.newInstance("BOGUS");
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Caught expected SOAPException");
+      logger.log(Logger.Level.INFO,"Caught expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -319,13 +323,13 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createElementTest1() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create Name object with localName=MyName1, "
+        logger.log(Logger.Level.INFO,"Create Name object with localName=MyName1, "
             + "prefix=MyPrefix1, uri=MyUri1");
         Name name = envelope.createName("MyName1", "MyPrefix1", "MyUri1");
-        TestUtil.logMsg("Create SOAPElement object with above Name object");
+        logger.log(Logger.Level.INFO,"Create SOAPElement object with above Name object");
         SOAPElement se = sf.createElement(name);
         if (se == null) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "createElementTest1() could not create SOAPElement object");
           pass = false;
         } else {
@@ -333,32 +337,32 @@ public class SOAPFactoryTestServlet extends HttpServlet {
           String localName = name.getLocalName();
           String prefix = name.getPrefix();
           String uri = name.getURI();
-          TestUtil.logMsg("localName=" + localName);
-          TestUtil.logMsg("prefix=" + prefix);
-          TestUtil.logMsg("uri=" + uri);
+          logger.log(Logger.Level.INFO,"localName=" + localName);
+          logger.log(Logger.Level.INFO,"prefix=" + prefix);
+          logger.log(Logger.Level.INFO,"uri=" + uri);
           if (localName == null) {
-            TestUtil.logErr("localName is null (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
             pass = false;
           } else if (!localName.equals("MyName1")) {
-            TestUtil.logErr("localName is wrong (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
             pass = false;
           } else if (prefix == null) {
-            TestUtil.logErr("prefix is null (expected MyPrefix1)");
+            logger.log(Logger.Level.ERROR,"prefix is null (expected MyPrefix1)");
             pass = false;
           } else if (!prefix.equals("MyPrefix1")) {
-            TestUtil.logErr("prefix is wrong (expected MyPrefix1)");
+            logger.log(Logger.Level.ERROR,"prefix is wrong (expected MyPrefix1)");
             pass = false;
           } else if (uri == null) {
-            TestUtil.logErr("uri is null (expected MyUri1)");
+            logger.log(Logger.Level.ERROR,"uri is null (expected MyUri1)");
             pass = false;
           } else if (!uri.equals("MyUri1")) {
-            TestUtil.logErr("uri is wrong (expected MyUri1)");
+            logger.log(Logger.Level.ERROR,"uri is wrong (expected MyUri1)");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -387,10 +391,10 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createElementTest2() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create SOAPElement object with localName=MyName1");
+        logger.log(Logger.Level.INFO,"Create SOAPElement object with localName=MyName1");
         SOAPElement se = sf.createElement("MyName1");
         if (se == null) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "createElementTest2() could not create SOAPElement object");
           pass = false;
         } else {
@@ -398,26 +402,26 @@ public class SOAPFactoryTestServlet extends HttpServlet {
           String localName = name.getLocalName();
           String prefix = name.getPrefix();
           String uri = name.getURI();
-          TestUtil.logMsg("localName=" + localName);
-          TestUtil.logMsg("prefix=" + prefix);
-          TestUtil.logMsg("uri=" + uri);
+          logger.log(Logger.Level.INFO,"localName=" + localName);
+          logger.log(Logger.Level.INFO,"prefix=" + prefix);
+          logger.log(Logger.Level.INFO,"uri=" + uri);
           if (localName == null) {
-            TestUtil.logErr("localName is null (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
             pass = false;
           } else if (!localName.equals("MyName1")) {
-            TestUtil.logErr("localName is wrong (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
             pass = false;
           } else if (prefix != null && !prefix.equals("")) {
-            TestUtil.logErr("prefix is wrong (expected null or null string)");
+            logger.log(Logger.Level.ERROR,"prefix is wrong (expected null or null string)");
             pass = false;
           } else if (uri != null && !uri.equals("")) {
-            TestUtil.logErr("uri is wrong (expected null or null string)");
+            logger.log(Logger.Level.ERROR,"uri is wrong (expected null or null string)");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -446,11 +450,11 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createElementTest3() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create SOAPElement object with localName=MyName1"
+        logger.log(Logger.Level.INFO,"Create SOAPElement object with localName=MyName1"
             + ", prefix=MyPrefix1, uri=MyUri1");
         SOAPElement se = sf.createElement("MyName1", "MyPrefix1", "MyUri1");
         if (se == null) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "createElementTest3() could not create SOAPElement object");
           pass = false;
         } else {
@@ -458,32 +462,32 @@ public class SOAPFactoryTestServlet extends HttpServlet {
           String localName = name.getLocalName();
           String prefix = name.getPrefix();
           String uri = name.getURI();
-          TestUtil.logMsg("localName=" + localName);
-          TestUtil.logMsg("prefix=" + prefix);
-          TestUtil.logMsg("uri=" + uri);
+          logger.log(Logger.Level.INFO,"localName=" + localName);
+          logger.log(Logger.Level.INFO,"prefix=" + prefix);
+          logger.log(Logger.Level.INFO,"uri=" + uri);
           if (localName == null) {
-            TestUtil.logErr("localName is null (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
             pass = false;
           } else if (!localName.equals("MyName1")) {
-            TestUtil.logErr("localName is wrong (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
             pass = false;
           } else if (prefix == null) {
-            TestUtil.logErr("prefix is null (expected MyPrefix1)");
+            logger.log(Logger.Level.ERROR,"prefix is null (expected MyPrefix1)");
             pass = false;
           } else if (!prefix.equals("MyPrefix1")) {
-            TestUtil.logErr("prefix is wrong (expected MyPrefix1)");
+            logger.log(Logger.Level.ERROR,"prefix is wrong (expected MyPrefix1)");
             pass = false;
           } else if (uri == null) {
-            TestUtil.logErr("uri is null (expected MyUri1)");
+            logger.log(Logger.Level.ERROR,"uri is null (expected MyUri1)");
             pass = false;
           } else if (!uri.equals("MyUri1")) {
-            TestUtil.logErr("uri is wrong (expected MyUri1)");
+            logger.log(Logger.Level.ERROR,"uri is wrong (expected MyUri1)");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -512,13 +516,13 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createElementTest4() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create QName object with localName=MyName1, "
+        logger.log(Logger.Level.INFO,"Create QName object with localName=MyName1, "
             + "prefix=MyPrefix1, uri=MyUri1");
         QName name = new QName("MyUri1", "MyName1", "MyPrefix1");
-        TestUtil.logMsg("Create SOAPElement object with above QName object");
+        logger.log(Logger.Level.INFO,"Create SOAPElement object with above QName object");
         SOAPElement se = sf.createElement(name);
         if (se == null) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "createElementTest4() could not create SOAPElement object");
           pass = false;
         } else {
@@ -526,39 +530,39 @@ public class SOAPFactoryTestServlet extends HttpServlet {
           String localName = name.getLocalPart();
           String prefix = name.getPrefix();
           String uri = name.getNamespaceURI();
-          TestUtil.logMsg("localName=" + localName);
-          TestUtil.logMsg("prefix=" + prefix);
-          TestUtil.logMsg("uri=" + uri);
+          logger.log(Logger.Level.INFO,"localName=" + localName);
+          logger.log(Logger.Level.INFO,"prefix=" + prefix);
+          logger.log(Logger.Level.INFO,"uri=" + uri);
           if (localName == null) {
-            TestUtil.logErr("localName is null (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
             pass = false;
           } else if (!localName.equals("MyName1")) {
-            TestUtil.logErr("localName is wrong (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
             pass = false;
           } else if (prefix == null) {
-            TestUtil.logErr("prefix is null (expected MyPrefix1)");
+            logger.log(Logger.Level.ERROR,"prefix is null (expected MyPrefix1)");
             pass = false;
           } else if (!prefix.equals("MyPrefix1")) {
-            TestUtil.logErr("prefix is wrong (expected MyPrefix1)");
+            logger.log(Logger.Level.ERROR,"prefix is wrong (expected MyPrefix1)");
             pass = false;
           } else if (uri == null) {
-            TestUtil.logErr("uri is null (expected MyUri1)");
+            logger.log(Logger.Level.ERROR,"uri is null (expected MyUri1)");
             pass = false;
           } else if (!uri.equals("MyUri1")) {
-            TestUtil.logErr("uri is wrong (expected MyUri1)");
+            logger.log(Logger.Level.ERROR,"uri is wrong (expected MyUri1)");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("createElementTest4() test PASSED");
+      logger.log(Logger.Level.INFO,"createElementTest4() test PASSED");
     else
-      TestUtil.logErr("createElementTest4() test FAILED");
+      logger.log(Logger.Level.ERROR,"createElementTest4() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -584,45 +588,43 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createElementTest5() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create a DOMElement");
+        logger.log(Logger.Level.INFO,"Create a DOMElement");
         DocumentBuilderFactory dbfactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = dbfactory.newDocumentBuilder();
         Document document = builder.newDocument();
         Element de = document.createElementNS("http://MyNamespace.org/",
             "MyTag");
         XMLUtils.XmlDumpDOMNodes(de);
-        TestUtil.logMsg("Create a SOAPElement from a DOMElement");
-        TestUtil
-            .logMsg("Calling SOAPFactory.createElement(org.w3c.dom.Element)");
+        logger.log(Logger.Level.INFO,"Create a SOAPElement from a DOMElement");
+        logger.log(Logger.Level.INFO,"Calling SOAPFactory.createElement(org.w3c.dom.Element)");
         SOAPElement se = sf.createElement(de);
         XMLUtils.XmlDumpDOMNodes(se);
-        TestUtil
-            .logMsg("Check that DOMElement and SOAPElement names are equal");
-        TestUtil.logMsg("DOMElement name=" + de.getNodeName());
-        TestUtil.logMsg("DOMElement prefix=" + de.getPrefix());
-        TestUtil.logMsg("DOMElement uri=" + de.getNamespaceURI());
-        TestUtil.logMsg("SOAPElement name=" + se.getNodeName());
-        TestUtil.logMsg("SOAPElement prefix=" + se.getPrefix());
-        TestUtil.logMsg("SOAPElement uri=" + se.getNamespaceURI());
+        logger.log(Logger.Level.INFO,"Check that DOMElement and SOAPElement names are equal");
+        logger.log(Logger.Level.INFO,"DOMElement name=" + de.getNodeName());
+        logger.log(Logger.Level.INFO,"DOMElement prefix=" + de.getPrefix());
+        logger.log(Logger.Level.INFO,"DOMElement uri=" + de.getNamespaceURI());
+        logger.log(Logger.Level.INFO,"SOAPElement name=" + se.getNodeName());
+        logger.log(Logger.Level.INFO,"SOAPElement prefix=" + se.getPrefix());
+        logger.log(Logger.Level.INFO,"SOAPElement uri=" + se.getNamespaceURI());
         if (!de.getNodeName().equals(se.getNodeName())
             || !de.getNamespaceURI().equals(se.getNamespaceURI())) {
-          TestUtil.logErr("Node names are not equal");
-          TestUtil.logErr("Got: <URI=" + se.getNamespaceURI() + ", PREFIX="
+          logger.log(Logger.Level.ERROR,"Node names are not equal");
+          logger.log(Logger.Level.ERROR,"Got: <URI=" + se.getNamespaceURI() + ", PREFIX="
               + se.getPrefix() + ", NAME=" + se.getNodeName() + ">");
-          TestUtil.logErr("Expected: <URI=" + de.getNamespaceURI() + ", PREFIX="
+          logger.log(Logger.Level.ERROR,"Expected: <URI=" + de.getNamespaceURI() + ", PREFIX="
               + de.getPrefix() + ", NAME=" + de.getNodeName() + ">");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("createElementTest5() test PASSED");
+      logger.log(Logger.Level.INFO,"createElementTest5() test PASSED");
     else
-      TestUtil.logErr("createElementTest5() test FAILED");
+      logger.log(Logger.Level.ERROR,"createElementTest5() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -648,34 +650,32 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createElementTest6() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create first SOAPElement");
+        logger.log(Logger.Level.INFO,"Create first SOAPElement");
         QName qname = new QName("http://MyNamespace.org/", "MyTag");
         SOAPElement se1 = sf.createElement(qname);
         XMLUtils.XmlDumpDOMNodes(se1);
-        TestUtil.logMsg("Create second SOAPElement from first SOAPElement");
-        TestUtil.logMsg("Calling SOAPFactory.createElement(SOAPElement)");
+        logger.log(Logger.Level.INFO,"Create second SOAPElement from first SOAPElement");
+        logger.log(Logger.Level.INFO,"Calling SOAPFactory.createElement(SOAPElement)");
         SOAPElement se2 = sf.createElement(se1);
         XMLUtils.XmlDumpDOMNodes(se2);
-        TestUtil
-            .logMsg("Check the two SOAPElement's for equality and sameness");
+        logger.log(Logger.Level.INFO,"Check the two SOAPElement's for equality and sameness");
         if (!se1.isEqualNode(se2) && !se1.isSameNode(se2)) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "The SOAPElement's are not equal and not the same (unexpected)");
           pass = false;
         } else
-          TestUtil
-              .logMsg("The SOAPElement's are equal and the same (expected)");
-        TestUtil.logMsg("Check that SOAPElement names are equal");
-        TestUtil.logMsg("SOAPElement1 name=" + se1.getNodeName());
-        TestUtil.logMsg("SOAPElement1 prefix=" + se1.getPrefix());
-        TestUtil.logMsg("SOAPElement1 uri=" + se1.getNamespaceURI());
-        TestUtil.logMsg("SOAPElement2 name=" + se2.getNodeName());
-        TestUtil.logMsg("SOAPElement2 prefix=" + se2.getPrefix());
-        TestUtil.logMsg("SOAPElement2 uri=" + se2.getNamespaceURI());
+        logger.log(Logger.Level.INFO,"The SOAPElement's are equal and the same (expected)");
+        logger.log(Logger.Level.INFO,"Check that SOAPElement names are equal");
+        logger.log(Logger.Level.INFO,"SOAPElement1 name=" + se1.getNodeName());
+        logger.log(Logger.Level.INFO,"SOAPElement1 prefix=" + se1.getPrefix());
+        logger.log(Logger.Level.INFO,"SOAPElement1 uri=" + se1.getNamespaceURI());
+        logger.log(Logger.Level.INFO,"SOAPElement2 name=" + se2.getNodeName());
+        logger.log(Logger.Level.INFO,"SOAPElement2 prefix=" + se2.getPrefix());
+        logger.log(Logger.Level.INFO,"SOAPElement2 uri=" + se2.getNamespaceURI());
         if (!se1.getNodeName().equals(se2.getNodeName())
             || !se1.getNamespaceURI().equals(se2.getNamespaceURI())) {
-          TestUtil.logErr("Node names are not equal");
-          TestUtil.logErr("Got: <URI=" + se1.getNamespaceURI() + ", PREFIX="
+          logger.log(Logger.Level.ERROR,"Node names are not equal");
+          logger.log(Logger.Level.ERROR,"Got: <URI=" + se1.getNamespaceURI() + ", PREFIX="
               + se1.getPrefix() + ", NAME=" + se1.getNodeName() + ">");
           TestUtil
               .logErr("Expected: <URI=" + se2.getNamespaceURI() + ", PREFIX="
@@ -684,7 +684,7 @@ public class SOAPFactoryTestServlet extends HttpServlet {
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -713,15 +713,15 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createDetailTest1() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create Detail object");
+        logger.log(Logger.Level.INFO,"Create Detail object");
         Detail d = sf.createDetail();
         if (d == null) {
-          TestUtil.logErr("createDetailTest1() could not create Detail object");
+          logger.log(Logger.Level.ERROR,"createDetailTest1() could not create Detail object");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -750,35 +750,35 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createNameTest1() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create Name object localName=MyName1");
+        logger.log(Logger.Level.INFO,"Create Name object localName=MyName1");
         Name name = sf.createName("MyName1");
         if (name == null) {
-          TestUtil.logErr("createName() returned null");
+          logger.log(Logger.Level.ERROR,"createName() returned null");
           pass = false;
         } else {
           String localName = name.getLocalName();
           String prefix = name.getPrefix();
           String uri = name.getURI();
-          TestUtil.logMsg("localName=" + localName);
-          TestUtil.logMsg("prefix=" + prefix);
-          TestUtil.logMsg("uri=" + uri);
+          logger.log(Logger.Level.INFO,"localName=" + localName);
+          logger.log(Logger.Level.INFO,"prefix=" + prefix);
+          logger.log(Logger.Level.INFO,"uri=" + uri);
           if (localName == null) {
-            TestUtil.logErr("localName is null (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
             pass = false;
           } else if (!localName.equals("MyName1")) {
-            TestUtil.logErr("localName is wrong (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
             pass = false;
           } else if (prefix != null && !prefix.equals("")) {
-            TestUtil.logErr("prefix is wrong (expected null or null string)");
+            logger.log(Logger.Level.ERROR,"prefix is wrong (expected null or null string)");
             pass = false;
           } else if (uri != null && !uri.equals("")) {
-            TestUtil.logErr("uri is wrong (expected null or null string)");
+            logger.log(Logger.Level.ERROR,"uri is wrong (expected null or null string)");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -807,42 +807,42 @@ public class SOAPFactoryTestServlet extends HttpServlet {
             .logErr("createNameTest1() could not create SOAPFactory object");
         pass = false;
       } else {
-        TestUtil.logMsg("Create Name object localName=MyName1, "
+        logger.log(Logger.Level.INFO,"Create Name object localName=MyName1, "
             + "prefix=MyPrefix1, uri=MyUri1");
         Name name = sf.createName("MyName1", "MyPrefix1", "MyUri1");
         if (name == null) {
-          TestUtil.logErr("createName() returned null");
+          logger.log(Logger.Level.ERROR,"createName() returned null");
           pass = false;
         } else {
           String localName = name.getLocalName();
           String prefix = name.getPrefix();
           String uri = name.getURI();
-          TestUtil.logMsg("localName=" + localName);
-          TestUtil.logMsg("prefix=" + prefix);
-          TestUtil.logMsg("uri=" + uri);
+          logger.log(Logger.Level.INFO,"localName=" + localName);
+          logger.log(Logger.Level.INFO,"prefix=" + prefix);
+          logger.log(Logger.Level.INFO,"uri=" + uri);
           if (localName == null) {
-            TestUtil.logErr("localName is null (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
             pass = false;
           } else if (!localName.equals("MyName1")) {
-            TestUtil.logErr("localName is wrong (expected MyName1)");
+            logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
             pass = false;
           } else if (prefix == null) {
-            TestUtil.logErr("prefix is null (expected MyPrefix1)");
+            logger.log(Logger.Level.ERROR,"prefix is null (expected MyPrefix1)");
             pass = false;
           } else if (!prefix.equals("MyPrefix1")) {
-            TestUtil.logErr("prefix is wrong (expected MyPrefix1)");
+            logger.log(Logger.Level.ERROR,"prefix is wrong (expected MyPrefix1)");
             pass = false;
           } else if (uri == null) {
-            TestUtil.logErr("uri is null (expected MyUri1)");
+            logger.log(Logger.Level.ERROR,"uri is null (expected MyUri1)");
             pass = false;
           } else if (!uri.equals("MyUri1")) {
-            TestUtil.logErr("uri is wrong (expected MyUri1)");
+            logger.log(Logger.Level.ERROR,"uri is wrong (expected MyUri1)");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -873,12 +873,12 @@ public class SOAPFactoryTestServlet extends HttpServlet {
       } else {
         SOAPFault sf = factory.createFault();
         if (sf == null) {
-          TestUtil.logErr("createFault() returned null");
+          logger.log(Logger.Level.ERROR,"createFault() returned null");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -914,27 +914,27 @@ public class SOAPFactoryTestServlet extends HttpServlet {
           SOAPFault sf = factory.createFault("This is the fault reason.",
               SOAPConstants.SOAP_RECEIVER_FAULT);
           if (sf == null) {
-            TestUtil.logErr("createFault() returned null");
+            logger.log(Logger.Level.ERROR,"createFault() returned null");
             pass = false;
           } else {
             QName fc = sf.getFaultCodeAsQName();
-            TestUtil.logMsg(
+            logger.log(Logger.Level.INFO,
                 "Expected FaultCode=" + SOAPConstants.SOAP_RECEIVER_FAULT);
-            TestUtil.logMsg("Expected ReasonText=This is the fault reason.");
-            TestUtil.logMsg("Actual FaultCode=" + fc);
+            logger.log(Logger.Level.INFO,"Expected ReasonText=This is the fault reason.");
+            logger.log(Logger.Level.INFO,"Actual FaultCode=" + fc);
             Iterator i = sf.getFaultReasonTexts();
             if (i == null) {
-              TestUtil.logErr(
+              logger.log(Logger.Level.ERROR,
                   "Call to getFaultReasonTexts() returned null iterator");
               pass = false;
             } else {
               String reason = "";
               while (i.hasNext())
                 reason += (String) i.next();
-              TestUtil.logMsg("Actual ReasonText=" + reason);
+              logger.log(Logger.Level.INFO,"Actual ReasonText=" + reason);
               if (reason == null
                   || !reason.contains("This is the fault reason.")) {
-                TestUtil.logErr(
+                logger.log(Logger.Level.ERROR,
                     "Actual ReasonText is not equal expected ReasonText");
                 pass = false;
               }
@@ -949,14 +949,14 @@ public class SOAPFactoryTestServlet extends HttpServlet {
       }
     } catch (SOAPException e) {
       if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
-        TestUtil.logMsg("Caught expected SOAPException");
+        logger.log(Logger.Level.INFO,"Caught expected SOAPException");
       } else {
-        TestUtil.logErr("Caught unexpected SOAPException");
+        logger.log(Logger.Level.ERROR,"Caught unexpected SOAPException");
         TestUtil.printStackTrace(e);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -981,7 +981,7 @@ public class SOAPFactoryTestServlet extends HttpServlet {
       setup();
       SOAPFactory factory = SOAP_Util.getSOAPFactory();
       if (factory == null) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "createFaultSOAPExceptionTest1() could not create SOAPFactory object");
         pass = false;
       } else {
@@ -991,18 +991,18 @@ public class SOAPFactoryTestServlet extends HttpServlet {
         } else {
           SOAPFault sf = factory.createFault("This is the fault reason.",
               new QName("http://MyNamespaceURI.org/", "My Fault Code"));
-          TestUtil.logErr("Did not throw expected SOAPException");
+          logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
           pass = false;
         }
       }
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Caught expected UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Caught expected UnsupportedOperationException");
     } catch (SOAPException e) {
-      TestUtil.logMsg("Caught expected SOAPException");
+      logger.log(Logger.Level.INFO,"Caught expected SOAPException");
     } catch (IllegalArgumentException e) {
-      TestUtil.logMsg("Caught expected IllegalArgumentException");
+      logger.log(Logger.Level.INFO,"Caught expected IllegalArgumentException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

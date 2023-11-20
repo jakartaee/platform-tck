@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPPart;
 
+import java.lang.System.Logger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
@@ -55,6 +54,9 @@ public class URLClient {
   private String hostname = HOSTNAME;
 
   private int portnum = PORTNUM;
+  
+  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
+
 
 
   /* Test setup */
@@ -82,16 +84,16 @@ public class URLClient {
       throw new Exception("setup failed:", e);
     }
     if (!pass) {
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Please specify host & port of web server " + "in config properties: "
               + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
       throw new Exception("setup failed:");
     }
-    logMsg("setup ok");
+    logger.log(Logger.Level.INFO,"setup ok");
   }
 
   public void cleanup() throws Exception {
-    logMsg("cleanup ok");
+    logger.log(Logger.Level.INFO,"cleanup ok");
   }
 
   /*
@@ -109,18 +111,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "addMimeHeader1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -130,7 +132,7 @@ public class URLClient {
         throw new Exception("addMimeHeader1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("addMimeHeader1Test failed", e);
     }
@@ -151,18 +153,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "addMimeHeader2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -172,7 +174,7 @@ public class URLClient {
         throw new Exception("addMimeHeader2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("addMimeHeader2Test failed", e);
     }
@@ -194,18 +196,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "addMimeHeader3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -215,7 +217,7 @@ public class URLClient {
         throw new Exception("addMimeHeader3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("addMimeHeader3Test failed", e);
     }
@@ -237,18 +239,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "addMimeHeader4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -258,7 +260,7 @@ public class URLClient {
         throw new Exception("addMimeHeader4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("addMimeHeader4Test failed", e);
     }
@@ -280,18 +282,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "addMimeHeader5Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -301,7 +303,7 @@ public class URLClient {
         throw new Exception("addMimeHeader5Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("addMimeHeader5Test failed", e);
     }
@@ -323,18 +325,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "addMimeHeader6Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -344,7 +346,7 @@ public class URLClient {
         throw new Exception("addMimeHeader6Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("addMimeHeader6Test failed", e);
     }
@@ -366,18 +368,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "addMimeHeader7Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -387,7 +389,7 @@ public class URLClient {
         throw new Exception("addMimeHeader7Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("addMimeHeader7Test failed", e);
     }
@@ -408,18 +410,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMimeHeader1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -429,7 +431,7 @@ public class URLClient {
         throw new Exception("getMimeHeader1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMimeHeader1Test failed", e);
     }
@@ -450,18 +452,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMimeHeader2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -471,7 +473,7 @@ public class URLClient {
         throw new Exception("getMimeHeader2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMimeHeader2Test failed", e);
     }
@@ -492,18 +494,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMimeHeader3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -513,7 +515,7 @@ public class URLClient {
         throw new Exception("getMimeHeader3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMimeHeader3Test failed", e);
     }
@@ -534,18 +536,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMimeHeader4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -555,7 +557,7 @@ public class URLClient {
         throw new Exception("getMimeHeader4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMimeHeader4Test failed", e);
     }
@@ -576,18 +578,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAllMimeHeaders1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -597,7 +599,7 @@ public class URLClient {
         throw new Exception("getAllMimeHeaders1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAllMimeHeaders1Test failed", e);
     }
@@ -618,18 +620,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAllMimeHeaders2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -639,7 +641,7 @@ public class URLClient {
         throw new Exception("getAllMimeHeaders2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAllMimeHeaders2Test failed", e);
     }
@@ -661,18 +663,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAllMimeHeaders3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -682,7 +684,7 @@ public class URLClient {
         throw new Exception("getAllMimeHeaders3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAllMimeHeaders3Test failed", e);
     }
@@ -703,18 +705,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAllMimeHeaders4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -724,7 +726,7 @@ public class URLClient {
         throw new Exception("getAllMimeHeaders4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAllMimeHeaders4Test failed", e);
     }
@@ -745,18 +747,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeAllMimeHeaders1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -766,7 +768,7 @@ public class URLClient {
         throw new Exception("removeAllMimeHeaders1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeAllMimeHeaders1Test failed", e);
     }
@@ -787,18 +789,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeAllMimeHeaders2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -808,7 +810,7 @@ public class URLClient {
         throw new Exception("removeAllMimeHeaders2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeAllMimeHeaders2Test failed", e);
     }
@@ -830,18 +832,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeAllMimeHeaders3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -851,7 +853,7 @@ public class URLClient {
         throw new Exception("removeAllMimeHeaders3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeAllMimeHeaders3Test failed", e);
     }
@@ -872,18 +874,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeAllMimeHeaders4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -893,7 +895,7 @@ public class URLClient {
         throw new Exception("removeAllMimeHeaders4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeAllMimeHeaders4Test failed", e);
     }
@@ -914,18 +916,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setMimeHeader1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -935,7 +937,7 @@ public class URLClient {
         throw new Exception("setMimeHeader1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setMimeHeader1Test failed", e);
     }
@@ -957,18 +959,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setMimeHeader2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -978,7 +980,7 @@ public class URLClient {
         throw new Exception("setMimeHeader2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setMimeHeader2Test failed", e);
     }
@@ -1000,18 +1002,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setMimeHeader3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1021,7 +1023,7 @@ public class URLClient {
         throw new Exception("setMimeHeader3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setMimeHeader3Test failed", e);
     }
@@ -1042,18 +1044,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setMimeHeader4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1063,7 +1065,7 @@ public class URLClient {
         throw new Exception("setMimeHeader4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setMimeHeader4Test failed", e);
     }
@@ -1084,18 +1086,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setMimeHeader5Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1105,7 +1107,7 @@ public class URLClient {
         throw new Exception("setMimeHeader5Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setMimeHeader5Test failed", e);
     }
@@ -1126,18 +1128,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeMimeHeader1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1147,7 +1149,7 @@ public class URLClient {
         throw new Exception("removeMimeHeader1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeMimeHeader1Test failed", e);
     }
@@ -1168,18 +1170,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeMimeHeader2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1189,7 +1191,7 @@ public class URLClient {
         throw new Exception("removeMimeHeader2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeMimeHeader2Test failed", e);
     }
@@ -1211,18 +1213,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeMimeHeader3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1232,7 +1234,7 @@ public class URLClient {
         throw new Exception("removeMimeHeader3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeMimeHeader3Test failed", e);
     }
@@ -1253,18 +1255,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeMimeHeader4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1274,7 +1276,7 @@ public class URLClient {
         throw new Exception("removeMimeHeader4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeMimeHeader4Test failed", e);
     }
@@ -1295,18 +1297,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMatchingMimeHeaders1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1316,7 +1318,7 @@ public class URLClient {
         throw new Exception("getMatchingMimeHeaders1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMatchingMimeHeaders1Test failed", e);
     }
@@ -1337,18 +1339,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMatchingMimeHeaders2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1358,7 +1360,7 @@ public class URLClient {
         throw new Exception("getMatchingMimeHeaders2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMatchingMimeHeaders2Test failed", e);
     }
@@ -1380,18 +1382,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMatchingMimeHeaders3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1401,7 +1403,7 @@ public class URLClient {
         throw new Exception("getMatchingMimeHeaders3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMatchingMimeHeaders3Test failed", e);
     }
@@ -1423,18 +1425,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMatchingMimeHeaders4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1444,7 +1446,7 @@ public class URLClient {
         throw new Exception("getMatchingMimeHeaders4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMatchingMimeHeaders4Test failed", e);
     }
@@ -1466,18 +1468,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMatchingMimeHeaders5Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1487,7 +1489,7 @@ public class URLClient {
         throw new Exception("getMatchingMimeHeaders5Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMatchingMimeHeaders5Test failed", e);
     }
@@ -1508,18 +1510,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getNonMatchingMimeHeaders1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1529,7 +1531,7 @@ public class URLClient {
         throw new Exception("getNonMatchingMimeHeaders1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getNonMatchingMimeHeaders1Test failed", e);
     }
@@ -1551,18 +1553,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getNonMatchingMimeHeaders2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1572,7 +1574,7 @@ public class URLClient {
         throw new Exception("getNonMatchingMimeHeaders2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getNonMatchingMimeHeaders2Test failed", e);
     }
@@ -1594,18 +1596,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getNonMatchingMimeHeaders3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1615,7 +1617,7 @@ public class URLClient {
         throw new Exception("getNonMatchingMimeHeaders3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getNonMatchingMimeHeaders3Test failed", e);
     }
@@ -1637,18 +1639,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getNonMatchingMimeHeaders4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1658,7 +1660,7 @@ public class URLClient {
         throw new Exception("getNonMatchingMimeHeaders4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getNonMatchingMimeHeaders4Test failed", e);
     }
@@ -1680,18 +1682,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getNonMatchingMimeHeaders5Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1701,7 +1703,7 @@ public class URLClient {
         throw new Exception("getNonMatchingMimeHeaders5Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getNonMatchingMimeHeaders5Test failed", e);
     }
@@ -1722,18 +1724,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentId1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1743,7 +1745,7 @@ public class URLClient {
         throw new Exception("setContentId1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentId1Test failed", e);
     }
@@ -1764,18 +1766,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentId2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1785,7 +1787,7 @@ public class URLClient {
         throw new Exception("setContentId2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentId2Test failed", e);
     }
@@ -1806,18 +1808,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentId3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1827,7 +1829,7 @@ public class URLClient {
         throw new Exception("setContentId3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentId3Test failed", e);
     }
@@ -1848,18 +1850,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentId4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1869,7 +1871,7 @@ public class URLClient {
         throw new Exception("setContentId4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentId4Test failed", e);
     }
@@ -1890,18 +1892,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContentId1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1911,7 +1913,7 @@ public class URLClient {
         throw new Exception("getContentId1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContentId1Test failed", e);
     }
@@ -1932,18 +1934,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContentId2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1953,7 +1955,7 @@ public class URLClient {
         throw new Exception("getContentId2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContentId2Test failed", e);
     }
@@ -1974,18 +1976,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContentId3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -1995,7 +1997,7 @@ public class URLClient {
         throw new Exception("getContentId3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContentId3Test failed", e);
     }
@@ -2016,18 +2018,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentLocation1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2037,7 +2039,7 @@ public class URLClient {
         throw new Exception("setContentLocation1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentLocation1Test failed", e);
     }
@@ -2059,18 +2061,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentLocation2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2080,7 +2082,7 @@ public class URLClient {
         throw new Exception("setContentLocation2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentLocation2Test failed", e);
     }
@@ -2101,18 +2103,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentLocation3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2122,7 +2124,7 @@ public class URLClient {
         throw new Exception("setContentLocation3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentLocation3Test failed", e);
     }
@@ -2143,18 +2145,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentLocation4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2164,7 +2166,7 @@ public class URLClient {
         throw new Exception("setContentLocation4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentLocation4Test failed", e);
     }
@@ -2185,18 +2187,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentLocation5Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2206,7 +2208,7 @@ public class URLClient {
         throw new Exception("setContentLocation5Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentLocation5Test failed", e);
     }
@@ -2227,18 +2229,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContentLocation1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2248,7 +2250,7 @@ public class URLClient {
         throw new Exception("getContentLocation1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContentLocation1Test failed", e);
     }
@@ -2269,18 +2271,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContentLocation2Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2290,7 +2292,7 @@ public class URLClient {
         throw new Exception("getContentLocation2Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContentLocation2Test failed", e);
     }
@@ -2312,18 +2314,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContentLocation3Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2333,7 +2335,7 @@ public class URLClient {
         throw new Exception("getContentLocation3Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContentLocation3Test failed", e);
     }
@@ -2354,18 +2356,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContentLocation4Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2375,7 +2377,7 @@ public class URLClient {
         throw new Exception("getContentLocation4Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContentLocation4Test failed", e);
     }
@@ -2396,18 +2398,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContent1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2417,7 +2419,7 @@ public class URLClient {
         throw new Exception("setContent1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContent1Test failed", e);
     }
@@ -2438,18 +2440,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContent1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2459,7 +2461,7 @@ public class URLClient {
         throw new Exception("getContent1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContent1Test failed", e);
     }
@@ -2480,18 +2482,18 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getEnvelope1Test");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -2501,7 +2503,7 @@ public class URLClient {
         throw new Exception("getEnvelope1Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getEnvelope1Test failed", e);
     }

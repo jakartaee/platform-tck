@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.Node;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -44,6 +45,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class NodeTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(NodeTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -64,35 +68,35 @@ public class NodeTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
     // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
     // Retrieve the soap body from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     bdy = envelope.getBody();
 
-    TestUtil.logMsg("Creating SOAPHeaderElement");
+    logger.log(Logger.Level.INFO,"Creating SOAPHeaderElement");
     she = hdr.addHeaderElement(envelope.createName("foo", "f", "foo-URI"));
 
     if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
-      TestUtil.logMsg("Set the actor associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Set the actor associated with SOAPHeaderElement");
       she.setActor("actor-URI");
     } else {
-      TestUtil.logMsg("Set the role associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Set the role associated with SOAPHeaderElement");
       she.setRole("role-URI");
     }
 
@@ -103,40 +107,40 @@ public class NodeTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("detachNodeTest")) {
-      TestUtil.logMsg("Starting detachNodeTest");
+      logger.log(Logger.Level.INFO,"Starting detachNodeTest");
       detachNodeTest(req, res);
     } else if (testname.equals("getParentElementTest1")) {
-      TestUtil.logMsg("Starting getParentElementTest1");
+      logger.log(Logger.Level.INFO,"Starting getParentElementTest1");
       getParentElementTest1(req, res);
     } else if (testname.equals("getParentElementTest2")) {
-      TestUtil.logMsg("Starting getParentElementTest2");
+      logger.log(Logger.Level.INFO,"Starting getParentElementTest2");
       getParentElementTest2(req, res);
     } else if (testname.equals("setParentElementTest1")) {
-      TestUtil.logMsg("Starting setParentElementTest1");
+      logger.log(Logger.Level.INFO,"Starting setParentElementTest1");
       setParentElementTest1(req, res);
     } else if (testname.equals("setParentElementTest2")) {
-      TestUtil.logMsg("Starting setParentElementTest2");
+      logger.log(Logger.Level.INFO,"Starting setParentElementTest2");
       setParentElementTest2(req, res);
     } else if (testname.equals("setParentElementTest3")) {
-      TestUtil.logMsg("Starting setParentElementTest3");
+      logger.log(Logger.Level.INFO,"Starting setParentElementTest3");
       setParentElementTest3(req, res);
     } else if (testname.equals("recycleNodeTest")) {
-      TestUtil.logMsg("Starting recycleNodeTest");
+      logger.log(Logger.Level.INFO,"Starting recycleNodeTest");
       recycleNodeTest(req, res);
     } else if (testname.equals("getValueTest1")) {
-      TestUtil.logMsg("Starting getValueTest1");
+      logger.log(Logger.Level.INFO,"Starting getValueTest1");
       getValueTest1(req, res);
     } else if (testname.equals("getValueTest2")) {
-      TestUtil.logMsg("Starting getValueTest2");
+      logger.log(Logger.Level.INFO,"Starting getValueTest2");
       getValueTest2(req, res);
     } else if (testname.equals("setValueTest1")) {
-      TestUtil.logMsg("Starting setValueTest1");
+      logger.log(Logger.Level.INFO,"Starting setValueTest1");
       setValueTest1(req, res);
     } else if (testname.equals("setValueTest2")) {
-      TestUtil.logMsg("Starting setValueTest2");
+      logger.log(Logger.Level.INFO,"Starting setValueTest2");
       setValueTest2(req, res);
     } else if (testname.equals("setValueTest3")) {
-      TestUtil.logMsg("Starting setValueTest3");
+      logger.log(Logger.Level.INFO,"Starting setValueTest3");
       setValueTest3(req, res);
     } else {
       throw new ServletException(
@@ -176,28 +180,28 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Detach SOAPHeaderElement Node ...");
+      logger.log(Logger.Level.INFO,"Detach SOAPHeaderElement Node ...");
       she.detachNode();
 
-      TestUtil.logMsg("Validate SOAPHeaderElement Node was detached ...");
+      logger.log(Logger.Level.INFO,"Validate SOAPHeaderElement Node was detached ...");
 
       // Examine the soap header element from the SOAPHeader.
       Iterator iterator = null;
       if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
-        TestUtil.logMsg("Examine SOAPHeaderElements with actor actor-URI");
+        logger.log(Logger.Level.INFO,"Examine SOAPHeaderElements with actor actor-URI");
         iterator = hdr.examineHeaderElements("actor-URI");
       } else {
-        TestUtil.logMsg("Examine SOAPHeaderElements with role role-URI");
+        logger.log(Logger.Level.INFO,"Examine SOAPHeaderElements with role role-URI");
         iterator = hdr.examineHeaderElements("role-URI");
       }
       if (iterator.hasNext()) {
-        TestUtil.logErr("SOAPHeader element is not detached - unexpected");
+        logger.log(Logger.Level.ERROR,"SOAPHeader element is not detached - unexpected");
         pass = false;
       } else {
-        TestUtil.logMsg("SOAPHeader element is detached - expected");
+        logger.log(Logger.Level.INFO,"SOAPHeader element is detached - expected");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -221,15 +225,15 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Detach SOAPHeaderElement Node ...");
+      logger.log(Logger.Level.INFO,"Detach SOAPHeaderElement Node ...");
       she.detachNode();
 
-      TestUtil.logMsg("Recycle Node that was just detached ...");
+      logger.log(Logger.Level.INFO,"Recycle Node that was just detached ...");
       she.recycleNode();
 
-      TestUtil.logMsg("Node has been recycled ...");
+      logger.log(Logger.Level.INFO,"Node has been recycled ...");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -253,23 +257,23 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Get Parent Element of SOAPHeaderElement ...");
+      logger.log(Logger.Level.INFO,"Get Parent Element of SOAPHeaderElement ...");
       SOAPElement se = she.getParentElement();
 
-      TestUtil.logMsg("Validate SOAPElement Node is the SOAPHeader ...");
+      logger.log(Logger.Level.INFO,"Validate SOAPElement Node is the SOAPHeader ...");
       if (!(se instanceof SOAPHeader)) {
-        TestUtil.logErr("SOAPHeader element not returned - unexpected");
+        logger.log(Logger.Level.ERROR,"SOAPHeader element not returned - unexpected");
         pass = false;
       } else {
         SOAPHeader sh = (SOAPHeader) se;
         if (!sh.equals(hdr)) {
-          TestUtil.logErr("SOAPHeader element does not match");
+          logger.log(Logger.Level.ERROR,"SOAPHeader element does not match");
           pass = false;
         } else
-          TestUtil.logMsg("SOAPHeader element does match");
+          logger.log(Logger.Level.INFO,"SOAPHeader element does match");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -293,21 +297,21 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Detach SOAPHeaderElement Node ...");
+      logger.log(Logger.Level.INFO,"Detach SOAPHeaderElement Node ...");
       she.detachNode();
 
-      TestUtil.logMsg("Get Parent Element of SOAPHeaderElement ...");
+      logger.log(Logger.Level.INFO,"Get Parent Element of SOAPHeaderElement ...");
       SOAPElement se = she.getParentElement();
 
-      TestUtil.logMsg("Validate Parent Element is null ...");
+      logger.log(Logger.Level.INFO,"Validate Parent Element is null ...");
       if (se != null) {
-        TestUtil.logErr("Parent Element is not null - unexpected");
+        logger.log(Logger.Level.ERROR,"Parent Element is not null - unexpected");
         pass = false;
       } else {
-        TestUtil.logMsg("Parent Element is null - expected");
+        logger.log(Logger.Level.INFO,"Parent Element is null - expected");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -331,29 +335,29 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Detach SOAPHeaderElement Node ...");
+      logger.log(Logger.Level.INFO,"Detach SOAPHeaderElement Node ...");
       she.detachNode();
 
-      TestUtil.logMsg("Set Parent Element of SOAPHeaderElement ...");
+      logger.log(Logger.Level.INFO,"Set Parent Element of SOAPHeaderElement ...");
       she.setParentElement(hdr);
 
-      TestUtil.logMsg("Get Parent Element of SOAPHeaderElement ...");
+      logger.log(Logger.Level.INFO,"Get Parent Element of SOAPHeaderElement ...");
       SOAPElement se = she.getParentElement();
 
-      TestUtil.logMsg("Validate Parent Element is set ...");
+      logger.log(Logger.Level.INFO,"Validate Parent Element is set ...");
       if (!(se instanceof SOAPHeader)) {
-        TestUtil.logErr("SOAPHeader element not returned - unexpected");
+        logger.log(Logger.Level.ERROR,"SOAPHeader element not returned - unexpected");
         pass = false;
       } else {
         SOAPHeader sh = (SOAPHeader) se;
         if (!sh.equals(hdr)) {
-          TestUtil.logErr("SOAPHeader element does not match");
+          logger.log(Logger.Level.ERROR,"SOAPHeader element does not match");
           pass = false;
         } else
-          TestUtil.logMsg("SOAPHeader element does match");
+          logger.log(Logger.Level.INFO,"SOAPHeader element does match");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -377,25 +381,25 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Attempt to set parent element of SOAPHeaderElement to a body parent ...");
       try {
         she.setParentElement(bdy);
-        TestUtil.logErr("no exception occurred, unexpected ...");
+        logger.log(Logger.Level.ERROR,"no exception occurred, unexpected ...");
         pass = false;
       } catch (IllegalArgumentException e) {
-        TestUtil.logMsg("IllegalArgumentException occurred");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException occurred");
       } catch (SOAPException e) {
-        TestUtil.logMsg("SOAPException occurred");
+        logger.log(Logger.Level.INFO,"SOAPException occurred");
       } catch (Exception e) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "no IllegalArgumentException or SOAPException, received exception "
                 + e);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -419,25 +423,25 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Attempt to set parent element of SOAPHeaderElement to a null parent ...");
       try {
         she.setParentElement(null);
-        TestUtil.logErr("no exception occurred, unexpected ...");
+        logger.log(Logger.Level.ERROR,"no exception occurred, unexpected ...");
         pass = false;
       } catch (IllegalArgumentException e) {
-        TestUtil.logMsg("IllegalArgumentException occurred");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException occurred");
       } catch (SOAPException e) {
-        TestUtil.logMsg("SOAPException occurred");
+        logger.log(Logger.Level.INFO,"SOAPException occurred");
       } catch (Exception e) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "no IllegalArgumentException or SOAPException, received exception "
                 + e);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -461,21 +465,21 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("adding child element to SOAPHeaderElement ...");
+      logger.log(Logger.Level.INFO,"adding child element to SOAPHeaderElement ...");
       she.addChildElement("foo-bar");
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "get value of non-existant child Text Node should return null ...");
       String value = she.getValue();
       if (value != null) {
-        TestUtil.logErr("value is not null - unexpected");
-        TestUtil.logErr("value=" + value);
+        logger.log(Logger.Level.ERROR,"value is not null - unexpected");
+        logger.log(Logger.Level.ERROR,"value=" + value);
         pass = false;
       } else
-        TestUtil.logMsg("value is null - expected");
+        logger.log(Logger.Level.INFO,"value is null - expected");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -499,22 +503,22 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("adding Text Node \"foo-bar\" to SOAPHeaderElement ...");
+      logger.log(Logger.Level.INFO,"adding Text Node \"foo-bar\" to SOAPHeaderElement ...");
       she.addTextNode("foo-bar");
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "get value of existant child Text Node should return the text nodes value (foo-bar) ...");
       String value = she.getValue();
       if (value == null) {
-        TestUtil.logErr("value is null - unexpected");
+        logger.log(Logger.Level.ERROR,"value is null - unexpected");
         pass = false;
       } else if (!value.equals("foo-bar")) {
-        TestUtil.logErr("value incorrect - expected: " + "foo-bar"
+        logger.log(Logger.Level.ERROR,"value incorrect - expected: " + "foo-bar"
             + ", received: " + value);
         pass = false;
       } else
-        TestUtil.logMsg("value returned is correct: " + value);
+        logger.log(Logger.Level.INFO,"value returned is correct: " + value);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -538,37 +542,37 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add a Text Node to SOAPHeaderElement initialized to \"foo-bar\"");
       she.addTextNode("foo-bar");
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Getting value of SOAPHeaderElement should return \"foo-bar\"");
       String value = she.getValue();
       if (value == null) {
-        TestUtil.logErr("value is null - unexpected");
+        logger.log(Logger.Level.ERROR,"value is null - unexpected");
         pass = false;
       } else if (!value.equals("foo-bar")) {
-        TestUtil.logErr("value incorrect - expected: " + "foo-bar"
+        logger.log(Logger.Level.ERROR,"value incorrect - expected: " + "foo-bar"
             + ", received: " + value);
         pass = false;
       } else
-        TestUtil.logMsg("value returned is correct: " + value);
-      TestUtil.logMsg("Resetting value of SOAPHeaderElement to \"foo-bar2\"");
+        logger.log(Logger.Level.INFO,"value returned is correct: " + value);
+      logger.log(Logger.Level.INFO,"Resetting value of SOAPHeaderElement to \"foo-bar2\"");
       she.setValue("foo-bar2");
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Getting value of SOAPHeaderElement should return \"foo-bar2\"");
       value = she.getValue();
       if (value == null) {
-        TestUtil.logErr("value is null - unexpected");
+        logger.log(Logger.Level.ERROR,"value is null - unexpected");
         pass = false;
       } else if (!value.equals("foo-bar2")) {
-        TestUtil.logErr("value incorrect - expected: " + "foo-bar2"
+        logger.log(Logger.Level.ERROR,"value incorrect - expected: " + "foo-bar2"
             + ", received: " + value);
         pass = false;
       } else
-        TestUtil.logMsg("value returned is correct: " + value);
+        logger.log(Logger.Level.INFO,"value returned is correct: " + value);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -592,38 +596,37 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding child element \"child1\" to SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Adding child element \"child1\" to SOAPHeaderElement");
       SOAPElement se = she.addChildElement("child1");
-      TestUtil.logMsg("Add a Text Node to child element \"child1\""
+      logger.log(Logger.Level.INFO,"Add a Text Node to child element \"child1\""
           + " initialized to \"foo-bar\"");
       se.addTextNode("foo-bar");
-      TestUtil.logMsg("Getting value of child element should be \"foo-bar\"");
+      logger.log(Logger.Level.INFO,"Getting value of child element should be \"foo-bar\"");
       String value = se.getValue();
       if (value == null) {
-        TestUtil.logErr("value is null - unexpected");
+        logger.log(Logger.Level.ERROR,"value is null - unexpected");
         pass = false;
       } else if (!value.equals("foo-bar")) {
-        TestUtil.logErr("value incorrect - expected: " + "foo-bar"
+        logger.log(Logger.Level.ERROR,"value incorrect - expected: " + "foo-bar"
             + ", received: " + value);
         pass = false;
       } else
-        TestUtil.logMsg("value returned is correct: " + value);
-      TestUtil.logMsg("Resetting value of child element to \"foo-bar2\"");
+        logger.log(Logger.Level.INFO,"value returned is correct: " + value);
+      logger.log(Logger.Level.INFO,"Resetting value of child element to \"foo-bar2\"");
       se.setValue("foo-bar2");
-      TestUtil
-          .logMsg("Getting value of child element should return \"foo-bar2\"");
+      logger.log(Logger.Level.INFO,"Getting value of child element should return \"foo-bar2\"");
       value = se.getValue();
       if (value == null) {
-        TestUtil.logErr("value is null - unexpected");
+        logger.log(Logger.Level.ERROR,"value is null - unexpected");
         pass = false;
       } else if (!value.equals("foo-bar2")) {
-        TestUtil.logErr("value incorrect - expected: " + "foo-bar2"
+        logger.log(Logger.Level.ERROR,"value incorrect - expected: " + "foo-bar2"
             + ", received: " + value);
         pass = false;
       } else
-        TestUtil.logMsg("value returned is correct: " + value);
+        logger.log(Logger.Level.INFO,"value returned is correct: " + value);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -647,36 +650,36 @@ public class NodeTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Try setting a value on SOAPHeaderElement which is not a Text Node");
-      TestUtil.logMsg("This should throw an IllegalStateException");
+      logger.log(Logger.Level.INFO,"This should throw an IllegalStateException");
       she.setValue("foo-bar");
-      TestUtil.logMsg("Adding a child element \"child1\" to SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Adding a child element \"child1\" to SOAPHeaderElement");
       SOAPElement se = she.addChildElement("child1");
-      TestUtil.logMsg("Try setting a value on a Node that is not a Text Node");
+      logger.log(Logger.Level.INFO,"Try setting a value on a Node that is not a Text Node");
       she.setValue("foo-bar");
-      TestUtil.logErr("Did not throw expected IllegalStateException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected IllegalStateException");
     } catch (IllegalStateException e) {
-      TestUtil.logMsg("Caught expected IllegalStateException");
+      logger.log(Logger.Level.INFO,"Caught expected IllegalStateException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
 
     try {
-      TestUtil.logMsg("Adding a child element \"child1\" to SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Adding a child element \"child1\" to SOAPHeaderElement");
       SOAPElement se = she.addChildElement("child1");
-      TestUtil.logMsg("Try setting a value on a Node that is not a Text Node");
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,"Try setting a value on a Node that is not a Text Node");
+      logger.log(Logger.Level.INFO,
           "Try setting a value on child element which is not a Text Node");
-      TestUtil.logMsg("This should throw an IllegalStateException");
+      logger.log(Logger.Level.INFO,"This should throw an IllegalStateException");
       se.setValue("foo-bar");
-      TestUtil.logErr("Did not throw expected IllegalStateException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected IllegalStateException");
     } catch (IllegalStateException e) {
-      TestUtil.logMsg("Caught expected IllegalStateException");
+      logger.log(Logger.Level.INFO,"Caught expected IllegalStateException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

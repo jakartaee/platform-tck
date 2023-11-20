@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPMessage;
 
+import java.lang.System.Logger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
@@ -55,6 +54,9 @@ public class URLClient {
   private String hostname = HOSTNAME;
 
   private int portnum = PORTNUM;
+  
+  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
+
 
 
   /* Test setup */
@@ -82,16 +84,16 @@ public class URLClient {
       throw new Exception("setup failed:", e);
     }
     if (!pass) {
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Please specify host & port of web server " + "in config properties: "
               + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
       throw new Exception("setup failed:");
     }
-    logMsg("setup ok");
+    logger.log(Logger.Level.INFO,"setup ok");
   }
 
   public void cleanup() throws Exception {
-    logMsg("cleanup ok");
+    logger.log(Logger.Level.INFO,"cleanup ok");
   }
 
   /*
@@ -109,27 +111,27 @@ public class URLClient {
   public void addAttachmentPartTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "addAttachmentPartTest: add an attachmentpart to a SOAPMessage");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "addAttachmentPartTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("addAttachmentPartTest failed", e);
     }
@@ -153,27 +155,27 @@ public class URLClient {
   public void countAttachmentsTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "countAttachmentsTest: count number of attachments in SOAPMessage");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "countAttachmentsTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("countAttachmentsTest failed", e);
     }
@@ -197,27 +199,27 @@ public class URLClient {
   public void getAttachmentsTest1() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "getAttachmentsTest1: get number of attachments in SOAPMessage");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAttachmentsTest1");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAttachmentsTest1 failed", e);
     }
@@ -241,27 +243,27 @@ public class URLClient {
   public void getAttachmentsTest2() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "getAttachmentsTest2: get number of attachments in SOAPMessage");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAttachmentsTest2");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAttachmentsTest2 failed", e);
     }
@@ -285,27 +287,27 @@ public class URLClient {
   public void removeAllAttachmentsTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "removeAllAttachmentsTest: remove attachments in SOAPMessage");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeAllAttachmentsTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeAllAttachmentsTest failed", e);
     }
@@ -329,27 +331,26 @@ public class URLClient {
   public void removeAttachmentsTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil
-          .logMsg("removeAttachmentsTest: remove attachments in SOAPMessage");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"removeAttachmentsTest: remove attachments in SOAPMessage");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "removeAttachmentsTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("removeAttachmentsTest failed", e);
     }
@@ -374,27 +375,27 @@ public class URLClient {
   public void setContentDescriptionTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "setContentDescriptionTest: set content description of SOAPMessage");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setContentDescriptionTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setContentDescriptionTest failed", e);
     }
@@ -418,27 +419,27 @@ public class URLClient {
   public void getContentDescriptionTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "getContentDescriptionTest: get content description of SOAPMessage");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getContentDescriptionTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getContentDescriptionTest failed", e);
     }
@@ -462,27 +463,26 @@ public class URLClient {
   public void createAttachmentPartTest1() throws Exception {
     boolean pass = true;
     try {
-      TestUtil
-          .logMsg("createAttachmentPartTest1: create empty attachment part");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"createAttachmentPartTest1: create empty attachment part");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "createAttachmentPartTest1");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("createAttachmentPartTest1 failed", e);
     }
@@ -507,27 +507,27 @@ public class URLClient {
   public void createAttachmentPartTest2() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "createAttachmentPartTest2: create attachment part and populate with given DataHandler");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "createAttachmentPartTest2");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("createAttachmentPartTest2 failed", e);
     }
@@ -552,27 +552,27 @@ public class URLClient {
   public void createAttachmentPartTest3() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "createAttachmentPartTest3: create attachment part and populate wth given object and content type");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "createAttachmentPartTest3");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("createAttachmentPartTest3 failed", e);
     }
@@ -596,27 +596,27 @@ public class URLClient {
   public void writeToTest1() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "writeToTest1: write a SOAPMessage without attachments to OutputStream");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "writeToTest1");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("writeToTest1 failed", e);
     }
@@ -640,27 +640,27 @@ public class URLClient {
   public void writeToTest2() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "writeToTest2: write SOAPMessage with attachments to OutputStream");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "writeToTest2");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("writeToTest2 failed", e);
     }
@@ -685,27 +685,27 @@ public class URLClient {
   public void saveRequiredTest1() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "saveRequiredTest1: verify SOAPMessage.saveRequired() is false");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "saveRequiredTest1");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("saveRequiredTest1 failed", e);
     }
@@ -730,27 +730,27 @@ public class URLClient {
   public void saveRequiredTest2() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "saveRequiredTest2: verify SOAPMessage.saveRequired() is true");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "saveRequiredTest2");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("saveRequiredTest2 failed", e);
     }
@@ -775,27 +775,27 @@ public class URLClient {
   public void getMimeHeadersTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "getMimeHeadersTest: verify SOAPMessage.saveRequired() is true");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getMimeHeadersTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getMimeHeadersTest failed", e);
     }
@@ -819,27 +819,27 @@ public class URLClient {
   public void getSOAPPartTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getSOAPPartTest");
+      logger.log(Logger.Level.INFO,"getSOAPPartTest");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getSOAPPartTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getSOAPPartTest failed", e);
     }
@@ -863,26 +863,26 @@ public class URLClient {
   public void setPropertyTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("setPropertyTest");
+      logger.log(Logger.Level.INFO,"setPropertyTest");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "setPropertyTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("setPropertyTest failed", e);
     }
@@ -906,26 +906,26 @@ public class URLClient {
   public void getPropertyTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getPropertyTest");
+      logger.log(Logger.Level.INFO,"getPropertyTest");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getPropertyTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getPropertyTest failed", e);
     }
@@ -949,27 +949,27 @@ public class URLClient {
   public void getSOAPBodyTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getSOAPBodyTest");
+      logger.log(Logger.Level.INFO,"getSOAPBodyTest");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getSOAPBodyTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getSOAPBodyTest failed", e);
     }
@@ -993,27 +993,27 @@ public class URLClient {
   public void getSOAPHeaderTest() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getSOAPHeaderTest");
+      logger.log(Logger.Level.INFO,"getSOAPHeaderTest");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getSOAPHeaderTest");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getSOAPHeaderTest failed", e);
     }
@@ -1037,26 +1037,26 @@ public class URLClient {
   public void getAttachmentBySwaRefTest1() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getAttachmentBySwaRefTest1");
+      logger.log(Logger.Level.INFO,"getAttachmentBySwaRefTest1");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAttachmentBySwaRefTest1");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAttachmentBySwaRefTest1 failed", e);
     }
@@ -1080,26 +1080,26 @@ public class URLClient {
   public void getAttachmentBySwaRefTest2() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getAttachmentBySwaRefTest2");
+      logger.log(Logger.Level.INFO,"getAttachmentBySwaRefTest2");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAttachmentBySwaRefTest2");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAttachmentBySwaRefTest2 failed", e);
     }
@@ -1123,26 +1123,26 @@ public class URLClient {
   public void getAttachmentBySwaRefTest3() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getAttachmentBySwaRefTest3");
+      logger.log(Logger.Level.INFO,"getAttachmentBySwaRefTest3");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAttachmentBySwaRefTest3");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAttachmentBySwaRefTest3 failed", e);
     }
@@ -1166,26 +1166,26 @@ public class URLClient {
   public void getAttachmentByHrefTest1() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getAttachmentByHrefTest1");
+      logger.log(Logger.Level.INFO,"getAttachmentByHrefTest1");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAttachmentByHrefTest1");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAttachmentByHrefTest1 failed", e);
     }
@@ -1208,26 +1208,26 @@ public class URLClient {
   public void getAttachmentByHrefTest2() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("getAttachmentByHrefTest2");
+      logger.log(Logger.Level.INFO,"getAttachmentByHrefTest2");
 
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "getAttachmentByHrefTest2");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("getAttachmentByHrefTest2 failed", e);
     }

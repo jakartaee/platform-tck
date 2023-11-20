@@ -24,6 +24,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -41,6 +42,9 @@ import jakarta.xml.soap.SOAPException;
 import jakarta.xml.soap.SOAPMessage;
 
 public class MessageFactoryTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(MessageFactoryTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private MessageFactory mf2 = null;
@@ -51,7 +55,7 @@ public class MessageFactoryTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Get MessageFactory object.
-    TestUtil.logMsg("Get MessageFactory object");
+    logger.log(Logger.Level.INFO,"Get MessageFactory object");
     mf = SOAP_Util.getMessageFactory();
     mf2 = MessageFactory.newInstance();
   }
@@ -61,31 +65,31 @@ public class MessageFactoryTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("createMessageTest1")) {
-      TestUtil.logMsg("Starting createMessageTest1");
+      logger.log(Logger.Level.INFO,"Starting createMessageTest1");
       createMessageTest1(req, res);
     } else if (testname.equals("createMessageTest2")) {
-      TestUtil.logMsg("Starting createMessageTest2");
+      logger.log(Logger.Level.INFO,"Starting createMessageTest2");
       createMessageTest2(req, res);
     } else if (testname.equals("newInstanceTest1")) {
-      TestUtil.logMsg("Starting newInstanceTest1");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest1");
       newInstanceTest1(req, res);
     } else if (testname.equals("newInstanceTest2")) {
-      TestUtil.logMsg("Starting newInstanceTest2");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest2");
       newInstanceTest2(req, res);
     } else if (testname.equals("newInstanceTest3")) {
-      TestUtil.logMsg("Starting newInstanceTest3");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest3");
       newInstanceTest3(req, res);
     } else if (testname.equals("newInstanceTest4")) {
-      TestUtil.logMsg("Starting newInstanceTest4");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest4");
       newInstanceTest4(req, res);
     } else if (testname.equals("newInstanceTest4b")) {
-      TestUtil.logMsg("Starting newInstanceTest4b");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest4b");
       newInstanceTest4b(req, res);
     } else if (testname.equals("newInstanceTest5")) {
-      TestUtil.logMsg("Starting newInstanceTest5");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest5");
       newInstanceTest5(req, res);
     } else if (testname.equals("newInstanceTest6")) {
-      TestUtil.logMsg("Starting newInstanceTest6");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest6");
       newInstanceTest6(req, res);
     } else {
       throw new ServletException(
@@ -126,14 +130,14 @@ public class MessageFactoryTestServlet extends HttpServlet {
       setup();
 
       // Create SOAPMessage from MessageFactory object
-      TestUtil.logMsg("Create SOAPMessage from MessageFactory object");
+      logger.log(Logger.Level.INFO,"Create SOAPMessage from MessageFactory object");
       SOAPMessage msg = mf.createMessage();
       if (msg == null) {
-        TestUtil.logErr("createMessage() returned null");
+        logger.log(Logger.Level.ERROR,"createMessage() returned null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -160,7 +164,7 @@ public class MessageFactoryTestServlet extends HttpServlet {
       ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
       ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
 
-      TestUtil.logMsg("Create SOAPMessage msg1 using createMessage()");
+      logger.log(Logger.Level.INFO,"Create SOAPMessage msg1 using createMessage()");
       SOAPMessage msg1 = mf.createMessage();
       msg1.writeTo(baos1);
 
@@ -171,9 +175,9 @@ public class MessageFactoryTestServlet extends HttpServlet {
         headers.addHeader("Content-Type", "application/soap+xml");
 
       // Create SOAPMessage from MessageFactory object using InputStream
-      TestUtil.logMsg("Create SOAPMessage msg2 using SOAPMessage msg1"
+      logger.log(Logger.Level.INFO,"Create SOAPMessage msg2 using SOAPMessage msg1"
           + " as the InputStream");
-      TestUtil.logMsg("Create SOAPMessage msg2 using createMessage("
+      logger.log(Logger.Level.INFO,"Create SOAPMessage msg2 using createMessage("
           + "MimeHeaders, InputStream)");
       SOAPMessage msg2 = mf.createMessage(headers,
           new ByteArrayInputStream(baos1.toByteArray()));
@@ -184,16 +188,16 @@ public class MessageFactoryTestServlet extends HttpServlet {
         pass = false;
       } else {
         msg2.writeTo(baos2);
-        TestUtil.logMsg("Compare msg1 and msg2 (should be equal)");
+        logger.log(Logger.Level.INFO,"Compare msg1 and msg2 (should be equal)");
         if (!(baos1.toString().equals(baos2.toString()))) {
-          TestUtil.logMsg("msg1 = " + baos1.toString());
-          TestUtil.logMsg("msg2 = " + baos2.toString());
-          TestUtil.logErr("msg1 and msg2 are not equal (they should be)");
+          logger.log(Logger.Level.INFO,"msg1 = " + baos1.toString());
+          logger.log(Logger.Level.INFO,"msg2 = " + baos2.toString());
+          logger.log(Logger.Level.ERROR,"msg1 and msg2 are not equal (they should be)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -217,22 +221,21 @@ public class MessageFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Create a MessageFactory object for default implementation
-      TestUtil
-          .logMsg("Create MessageFactory object for default implementation");
+      logger.log(Logger.Level.INFO,"Create MessageFactory object for default implementation");
       MessageFactory mf = MessageFactory.newInstance();
       if (mf == null) {
-        TestUtil.logErr("MessageFactory.newInstance() returned null");
+        logger.log(Logger.Level.ERROR,"MessageFactory.newInstance() returned null");
         pass = false;
       } else {
-        TestUtil.logMsg("Create SOAPMessage from MessageFactory object");
+        logger.log(Logger.Level.INFO,"Create SOAPMessage from MessageFactory object");
         SOAPMessage msg = mf.createMessage();
         if (msg == null) {
-          TestUtil.logErr("Could not create SOAPMessage (msg = null)");
+          logger.log(Logger.Level.ERROR,"Could not create SOAPMessage (msg = null)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -256,23 +259,23 @@ public class MessageFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Create a SOAP 1.1 MessageFactory object
-      TestUtil.logMsg("Create SOAP1.1 MessageFactory object");
+      logger.log(Logger.Level.INFO,"Create SOAP1.1 MessageFactory object");
       MessageFactory mf = MessageFactory
           .newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
       if (mf == null) {
-        TestUtil.logErr("MessageFactory.newInstance(SOAPConstants."
+        logger.log(Logger.Level.ERROR,"MessageFactory.newInstance(SOAPConstants."
             + "SOAP_1_1_PROTOCOL) returned null");
         pass = false;
       } else {
-        TestUtil.logMsg("Create SOAPMessage from MessageFactory object");
+        logger.log(Logger.Level.INFO,"Create SOAPMessage from MessageFactory object");
         SOAPMessage msg = mf.createMessage();
         if (msg == null) {
-          TestUtil.logErr("Could not create SOAPMessage (msg = null)");
+          logger.log(Logger.Level.ERROR,"Could not create SOAPMessage (msg = null)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -296,23 +299,23 @@ public class MessageFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Create a SOAP 1.2 MessageFactory object
-      TestUtil.logMsg("Create SOAP1.2 MessageFactory object");
+      logger.log(Logger.Level.INFO,"Create SOAP1.2 MessageFactory object");
       MessageFactory mf = MessageFactory
           .newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
       if (mf == null) {
-        TestUtil.logErr("MessageFactory.newInstance(SOAPConstants."
+        logger.log(Logger.Level.ERROR,"MessageFactory.newInstance(SOAPConstants."
             + "SOAP_1_2_PROTOCOL) returned null");
         pass = false;
       } else {
-        TestUtil.logMsg("Create SOAPMessage from MessageFactory object");
+        logger.log(Logger.Level.INFO,"Create SOAPMessage from MessageFactory object");
         SOAPMessage msg = mf.createMessage();
         if (msg == null) {
-          TestUtil.logErr("Could not create SOAPMessage (msg = null)");
+          logger.log(Logger.Level.ERROR,"Could not create SOAPMessage (msg = null)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -336,11 +339,11 @@ public class MessageFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Create a Dynamic MessageFactory object
-      TestUtil.logMsg("Create Dynamic MessageFactory object");
+      logger.log(Logger.Level.INFO,"Create Dynamic MessageFactory object");
       MessageFactory mf = MessageFactory
           .newInstance(SOAPConstants.DYNAMIC_SOAP_PROTOCOL);
       if (mf == null) {
-        TestUtil.logErr("MessageFactory.newInstance("
+        logger.log(Logger.Level.ERROR,"MessageFactory.newInstance("
             + "DYNAMIC_SOAP_PROTOCOL) returned null");
         pass = false;
       } else {
@@ -348,7 +351,7 @@ public class MessageFactoryTestServlet extends HttpServlet {
         ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
         ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
 
-        TestUtil.logMsg("Create SOAPMessage msg1 using createMessage()");
+        logger.log(Logger.Level.INFO,"Create SOAPMessage msg1 using createMessage()");
         SOAPMessage msg1 = mf2.createMessage();
         msg1.writeTo(baos1);
 
@@ -356,28 +359,28 @@ public class MessageFactoryTestServlet extends HttpServlet {
         headers.addHeader("Content-Type", "text/xml");
 
         // Create SOAPMessage from MessageFactory object using InputStream
-        TestUtil.logMsg("Create SOAPMessage msg2 using SOAPMessage msg1"
+        logger.log(Logger.Level.INFO,"Create SOAPMessage msg2 using SOAPMessage msg1"
             + " as the InputStream");
-        TestUtil.logMsg("Create SOAPMessage msg2 using createMessage("
+        logger.log(Logger.Level.INFO,"Create SOAPMessage msg2 using createMessage("
             + "MimeHeaders, InputStream)");
         SOAPMessage msg2 = mf.createMessage(headers,
             new ByteArrayInputStream(baos1.toByteArray()));
         if (msg2 == null) {
-          TestUtil.logErr("Could not create SOAPMessage (msg = null)");
+          logger.log(Logger.Level.ERROR,"Could not create SOAPMessage (msg = null)");
           pass = false;
         } else {
           msg2.writeTo(baos2);
-          TestUtil.logMsg("Compare msg1 and msg2 (should be equal)");
+          logger.log(Logger.Level.INFO,"Compare msg1 and msg2 (should be equal)");
           if (!(baos1.toString().equals(baos2.toString()))) {
-            TestUtil.logMsg("msg1 = " + baos1.toString());
-            TestUtil.logMsg("msg2 = " + baos2.toString());
-            TestUtil.logErr("msg1 and msg2 are not equal (they should be)");
+            logger.log(Logger.Level.INFO,"msg1 = " + baos1.toString());
+            logger.log(Logger.Level.INFO,"msg2 = " + baos2.toString());
+            logger.log(Logger.Level.ERROR,"msg1 and msg2 are not equal (they should be)");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -401,26 +404,25 @@ public class MessageFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Create a Dynamic MessageFactory object
-      TestUtil.logMsg("Create Dynamic MessageFactory object");
+      logger.log(Logger.Level.INFO,"Create Dynamic MessageFactory object");
       MessageFactory mf = MessageFactory
           .newInstance(SOAPConstants.DYNAMIC_SOAP_PROTOCOL);
       if (mf == null) {
-        TestUtil.logErr("MessageFactory.newInstance("
+        logger.log(Logger.Level.ERROR,"MessageFactory.newInstance("
             + "DYNAMIC_SOAP_PROTOCOL) returned null");
         pass = false;
       } else {
-        TestUtil
-            .logMsg("Create SOAPMessage from Dynamic MessageFactory object");
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,"Create SOAPMessage from Dynamic MessageFactory object");
+        logger.log(Logger.Level.INFO,
             "Call MessageFactory.createMessage() and expect UnsupportedOperationException");
         mf.createMessage();
-        TestUtil.logErr("Did not throw expected UnsupportedOperationException");
+        logger.log(Logger.Level.ERROR,"Did not throw expected UnsupportedOperationException");
         pass = false;
       }
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Caught expected UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Caught expected UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -444,14 +446,14 @@ public class MessageFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Create a BOGUS MessageFactory object
-      TestUtil.logMsg("Create BOGUS MessageFactory object");
+      logger.log(Logger.Level.INFO,"Create BOGUS MessageFactory object");
       MessageFactory.newInstance("BOGUS");
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Caught expected SOAPException");
+      logger.log(Logger.Level.INFO,"Caught expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -475,23 +477,23 @@ public class MessageFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Create a Dynamic MessageFactory object
-      TestUtil.logMsg("Create Dynamic MessageFactory object");
+      logger.log(Logger.Level.INFO,"Create Dynamic MessageFactory object");
       MessageFactory mf = MessageFactory
           .newInstance(SOAPConstants.DEFAULT_SOAP_PROTOCOL);
       if (mf == null) {
-        TestUtil.logErr("MessageFactory.newInstance("
+        logger.log(Logger.Level.ERROR,"MessageFactory.newInstance("
             + "DEFAULT_SOAP_PROTOCOL) returned null");
         pass = false;
       } else {
-        TestUtil.logMsg("Create SOAPMessage from MessageFactory object");
+        logger.log(Logger.Level.INFO,"Create SOAPMessage from MessageFactory object");
         SOAPMessage msg = mf.createMessage();
         if (msg == null) {
-          TestUtil.logErr("Could not create SOAPMessage (msg = null)");
+          logger.log(Logger.Level.ERROR,"Could not create SOAPMessage (msg = null)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

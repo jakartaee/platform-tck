@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPElement;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -51,6 +52,9 @@ import jakarta.xml.soap.SOAPPart;
 import jakarta.xml.soap.Text;
 
 public class SOAPElementTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SOAPElementTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -83,27 +87,27 @@ public class SOAPElementTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
     // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
     eprefix = envelope.getElementName().getPrefix();
     euri = envelope.getElementName().getURI();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     body = envelope.getBody();
     bprefix = body.getElementName().getPrefix();
     buri = body.getElementName().getURI();
@@ -114,112 +118,112 @@ public class SOAPElementTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("addAttributeTest1")) {
-      TestUtil.logMsg("Starting addAttributeTest1");
+      logger.log(Logger.Level.INFO,"Starting addAttributeTest1");
       addAttributeTest1(req, res);
     } else if (testname.equals("addAttributeTest2")) {
-      TestUtil.logMsg("Starting addAttributeTest2");
+      logger.log(Logger.Level.INFO,"Starting addAttributeTest2");
       addAttributeTest2(req, res);
     } else if (testname.equals("getAttributeValueTest1")) {
-      TestUtil.logMsg("Starting getAttributeValueTest1");
+      logger.log(Logger.Level.INFO,"Starting getAttributeValueTest1");
       getAttributeValueTest1(req, res);
     } else if (testname.equals("getAttributeValueTest2")) {
-      TestUtil.logMsg("Starting getAttributeValueTest2");
+      logger.log(Logger.Level.INFO,"Starting getAttributeValueTest2");
       getAttributeValueTest2(req, res);
     } else if (testname.equals("getAllAttributesTest")) {
-      TestUtil.logMsg("Starting getAllAttributesTest");
+      logger.log(Logger.Level.INFO,"Starting getAllAttributesTest");
       getAllAttributesTest(req, res);
     } else if (testname.equals("removeAttributeTest1")) {
-      TestUtil.logMsg("Starting removeAttributeTest1");
+      logger.log(Logger.Level.INFO,"Starting removeAttributeTest1");
       removeAttributeTest1(req, res);
     } else if (testname.equals("removeAttributeTest2")) {
-      TestUtil.logMsg("Starting removeAttributeTest2");
+      logger.log(Logger.Level.INFO,"Starting removeAttributeTest2");
       removeAttributeTest2(req, res);
     } else if (testname.equals("getElementNameTest")) {
-      TestUtil.logMsg("Starting getElementNameTest");
+      logger.log(Logger.Level.INFO,"Starting getElementNameTest");
       getElementNameTest(req, res);
     } else if (testname.equals("getElementQNameTest")) {
-      TestUtil.logMsg("Starting getElementQNameTest");
+      logger.log(Logger.Level.INFO,"Starting getElementQNameTest");
       getElementQNameTest(req, res);
     } else if (testname.equals("addNamespaceDeclarationTest")) {
-      TestUtil.logMsg("Starting addNamespaceDeclarationTest");
+      logger.log(Logger.Level.INFO,"Starting addNamespaceDeclarationTest");
       addNamespaceDeclarationTest(req, res);
     } else if (testname.equals("removeNamespaceDeclarationTest")) {
-      TestUtil.logMsg("Starting removeNamespaceDeclarationTest");
+      logger.log(Logger.Level.INFO,"Starting removeNamespaceDeclarationTest");
       removeNamespaceDeclarationTest(req, res);
     } else if (testname.equals("getNamespacePrefixesTest")) {
-      TestUtil.logMsg("Starting getNamespacePrefixesTest");
+      logger.log(Logger.Level.INFO,"Starting getNamespacePrefixesTest");
       getNamespacePrefixesTest(req, res);
     } else if (testname.equals("getNamespaceURITest")) {
-      TestUtil.logMsg("Starting getNamespaceURITest");
+      logger.log(Logger.Level.INFO,"Starting getNamespaceURITest");
       getNamespaceURITest(req, res);
     } else if (testname.equals("addTextNodeTest1")) {
-      TestUtil.logMsg("Starting addTextNodeTest1");
+      logger.log(Logger.Level.INFO,"Starting addTextNodeTest1");
       addTextNodeTest1(req, res);
     } else if (testname.equals("addTextNodeSOAP11Test2")) {
-      TestUtil.logMsg("Starting addTextNodeSOAP11Test2");
+      logger.log(Logger.Level.INFO,"Starting addTextNodeSOAP11Test2");
       addTextNodeSOAP11Test2(req, res);
     } else if (testname.equals("addTextNodeSOAP12Test2")) {
-      TestUtil.logMsg("Starting addTextNodeSOAP12Test2");
+      logger.log(Logger.Level.INFO,"Starting addTextNodeSOAP12Test2");
       addTextNodeSOAP12Test2(req, res);
     } else if (testname.equals("setEncodingStyleSOAP11Test1")) {
-      TestUtil.logMsg("Starting setEncodingStyleSOAP11Test1");
+      logger.log(Logger.Level.INFO,"Starting setEncodingStyleSOAP11Test1");
       setEncodingStyleSOAP11Test1(req, res);
     } else if (testname.equals("setEncodingStyleSOAP12Test1")) {
-      TestUtil.logMsg("Starting setEncodingStyleSOAP12Test1");
+      logger.log(Logger.Level.INFO,"Starting setEncodingStyleSOAP12Test1");
       setEncodingStyleSOAP12Test1(req, res);
     } else if (testname.equals("getEncodingStyleSOAP11Test1")) {
-      TestUtil.logMsg("Starting getEncodingStyleSOAP11Test1");
+      logger.log(Logger.Level.INFO,"Starting getEncodingStyleSOAP11Test1");
       getEncodingStyleSOAP11Test1(req, res);
     } else if (testname.equals("getEncodingStyleSOAP12Test1")) {
-      TestUtil.logMsg("Starting getEncodingStyleSOAP12Test1");
+      logger.log(Logger.Level.INFO,"Starting getEncodingStyleSOAP12Test1");
       getEncodingStyleSOAP12Test1(req, res);
     } else if (testname.equals("addChildElementTest1")) {
-      TestUtil.logMsg("Starting addChildElementTest1");
+      logger.log(Logger.Level.INFO,"Starting addChildElementTest1");
       addChildElementTest1(req, res);
     } else if (testname.equals("addChildElementTest2")) {
-      TestUtil.logMsg("Starting addChildElementTest2");
+      logger.log(Logger.Level.INFO,"Starting addChildElementTest2");
       addChildElementTest2(req, res);
     } else if (testname.equals("addChildElementTest3")) {
-      TestUtil.logMsg("Starting addChildElementTest3");
+      logger.log(Logger.Level.INFO,"Starting addChildElementTest3");
       addChildElementTest3(req, res);
     } else if (testname.equals("addChildElementTest4")) {
-      TestUtil.logMsg("Starting addChildElementTest4");
+      logger.log(Logger.Level.INFO,"Starting addChildElementTest4");
       addChildElementTest4(req, res);
     } else if (testname.equals("addChildElementTest5")) {
-      TestUtil.logMsg("Starting addChildElementTest5");
+      logger.log(Logger.Level.INFO,"Starting addChildElementTest5");
       addChildElementTest5(req, res);
     } else if (testname.equals("addChildElementTest6")) {
-      TestUtil.logMsg("Starting addChildElementTest6");
+      logger.log(Logger.Level.INFO,"Starting addChildElementTest6");
       addChildElementTest6(req, res);
     } else if (testname.equals("getChildElementsTest1")) {
-      TestUtil.logMsg("Starting getChildElementsTest1");
+      logger.log(Logger.Level.INFO,"Starting getChildElementsTest1");
       getChildElementsTest1(req, res);
     } else if (testname.equals("getChildElementsTest2")) {
-      TestUtil.logMsg("Starting getChildElementsTest2");
+      logger.log(Logger.Level.INFO,"Starting getChildElementsTest2");
       getChildElementsTest2(req, res);
     } else if (testname.equals("getChildElementsTest3")) {
-      TestUtil.logMsg("Starting getChildElementsTest3");
+      logger.log(Logger.Level.INFO,"Starting getChildElementsTest3");
       getChildElementsTest3(req, res);
     } else if (testname.equals("getChildElementsTest4")) {
-      TestUtil.logMsg("Starting getChildElementsTest4");
+      logger.log(Logger.Level.INFO,"Starting getChildElementsTest4");
       getChildElementsTest4(req, res);
     } else if (testname.equals("removeContentsTest")) {
-      TestUtil.logMsg("Starting removeContentsTest");
+      logger.log(Logger.Level.INFO,"Starting removeContentsTest");
       removeContentsTest(req, res);
     } else if (testname.equals("getVisibleNamespacePrefixesTest")) {
-      TestUtil.logMsg("Starting getVisibleNamespacePrefixesTest");
+      logger.log(Logger.Level.INFO,"Starting getVisibleNamespacePrefixesTest");
       getVisibleNamespacePrefixesTest(req, res);
     } else if (testname.equals("setElementQNameTest1")) {
-      TestUtil.logMsg("Starting setElementQNameTest1");
+      logger.log(Logger.Level.INFO,"Starting setElementQNameTest1");
       setElementQNameTest1(req, res);
     } else if (testname.equals("setElementQNameTest2")) {
-      TestUtil.logMsg("Starting setElementQNameTest2");
+      logger.log(Logger.Level.INFO,"Starting setElementQNameTest2");
       setElementQNameTest2(req, res);
     } else if (testname.equals("createQNameTest1")) {
-      TestUtil.logMsg("Starting createQNameTest1");
+      logger.log(Logger.Level.INFO,"Starting createQNameTest1");
       createQNameTest1(req, res);
     } else if (testname.equals("createQNameTest2")) {
-      TestUtil.logMsg("Starting createQNameTest2");
+      logger.log(Logger.Level.INFO,"Starting createQNameTest2");
       createQNameTest2(req, res);
     } else {
       throw new ServletException(
@@ -261,19 +265,19 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       Name name = envelope.createName("MyAttr1");
       String value = "MyValue1";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add attribute name = " + name.getLocalName() + ", value = " + value);
       SOAPElement se = body.addAttribute(name, value);
       if (se == null) {
-        TestUtil.logErr("addAttribute() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addAttribute() did not return SOAPElement");
         pass = false;
       } else if (!body.getAttributeValue(name).equals(value)) {
-        TestUtil.logErr("getAttribute() return wrong value, expected " + value
+        logger.log(Logger.Level.ERROR,"getAttribute() return wrong value, expected " + value
             + ", got " + body.getAttributeValue(name));
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -298,20 +302,20 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       QName name = new QName("MyAttr1");
       String value = "MyValue1";
-      TestUtil.logMsg("Add attribute qname = " + name.getLocalPart()
+      logger.log(Logger.Level.INFO,"Add attribute qname = " + name.getLocalPart()
           + ", value = " + value);
       SOAPElement se = body.addAttribute(name, value);
       if (se == null) {
-        TestUtil.logErr("addAttribute() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addAttribute() did not return SOAPElement");
         pass = false;
       } else if (body.getAttributeValue(name).equals(value)) {
-        TestUtil.logMsg("getAttribute() did return expected value");
+        logger.log(Logger.Level.INFO,"getAttribute() did return expected value");
       } else {
-        TestUtil.logErr("getAttribute() did not return expected value");
+        logger.log(Logger.Level.ERROR,"getAttribute() did not return expected value");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -338,23 +342,23 @@ public class SOAPElementTestServlet extends HttpServlet {
       String value1 = "MyValue1";
       Name name2 = envelope.createName("MyAttr2");
       String value2 = "MyValue2";
-      TestUtil.logMsg("Add attribute name = " + name1.getLocalName()
+      logger.log(Logger.Level.INFO,"Add attribute name = " + name1.getLocalName()
           + ", value = " + value1);
       body.addAttribute(name1, value1);
-      TestUtil.logMsg("Add attribute name = " + name2.getLocalName()
+      logger.log(Logger.Level.INFO,"Add attribute name = " + name2.getLocalName()
           + ", value = " + value2);
       body.addAttribute(name2, value2);
       String s1 = body.getAttributeValue(name1);
       String s2 = body.getAttributeValue(name2);
       if (!s1.equals(value1) && !s2.equals(value2)) {
-        TestUtil.logErr("getAttribute() return wrong value, expected " + value1
+        logger.log(Logger.Level.ERROR,"getAttribute() return wrong value, expected " + value1
             + ", got " + s1);
-        TestUtil.logErr("getAttribute() return wrong value, expected " + value2
+        logger.log(Logger.Level.ERROR,"getAttribute() return wrong value, expected " + value2
             + ", got " + s2);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -381,22 +385,22 @@ public class SOAPElementTestServlet extends HttpServlet {
       String value1 = "MyValue1";
       QName name2 = new QName("MyAttr2");
       String value2 = "MyValue2";
-      TestUtil.logMsg("Add attribute qname = " + name1.getLocalPart()
+      logger.log(Logger.Level.INFO,"Add attribute qname = " + name1.getLocalPart()
           + ", value = " + value1);
       body.addAttribute(name1, value1);
-      TestUtil.logMsg("Add attribute qname = " + name2.getLocalPart()
+      logger.log(Logger.Level.INFO,"Add attribute qname = " + name2.getLocalPart()
           + ", value = " + value2);
       body.addAttribute(name2, value2);
       String s1 = body.getAttributeValue(name1);
       String s2 = body.getAttributeValue(name2);
       if (s1.equals(value1) && s2.equals(value2))
-        TestUtil.logMsg("getAttribute() test PASSED");
+        logger.log(Logger.Level.INFO,"getAttribute() test PASSED");
       else {
-        TestUtil.logErr("getAttribute() test FAILED");
+        logger.log(Logger.Level.ERROR,"getAttribute() test FAILED");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -425,20 +429,20 @@ public class SOAPElementTestServlet extends HttpServlet {
       String value2 = "MyValue2";
       Name name3 = envelope.createName("MyAttr3");
       String value3 = "MyValue3";
-      TestUtil.logMsg("Add attribute name1 = " + name1.getLocalName()
+      logger.log(Logger.Level.INFO,"Add attribute name1 = " + name1.getLocalName()
           + ", value1 = " + value1);
       body.addAttribute(name1, value1);
-      TestUtil.logMsg("Add attribute name2 = " + name2.getLocalName()
+      logger.log(Logger.Level.INFO,"Add attribute name2 = " + name2.getLocalName()
           + ", value2 = " + value2);
       body.addAttribute(name2, value2);
-      TestUtil.logMsg("Add attribute name3 = " + name3.getLocalName()
+      logger.log(Logger.Level.INFO,"Add attribute name3 = " + name3.getLocalName()
           + ", value3 = " + value3);
       body.addAttribute(name3, value3);
       Iterator i = body.getAllAttributes();
       int count = SOAP_Util.getIteratorCount(i);
       i = body.getAllAttributes();
       if (count != 3) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Wrong iterator count returned of " + count + ", expected 3");
         pass = false;
       } else {
@@ -447,7 +451,7 @@ public class SOAPElementTestServlet extends HttpServlet {
         boolean foundName3 = false;
         while (i.hasNext()) {
           Name name = (Name) i.next();
-          TestUtil.logMsg("Got Name = " + name.getLocalName());
+          logger.log(Logger.Level.INFO,"Got Name = " + name.getLocalName());
           if (name.equals(name1))
             foundName1 = true;
           else if (name.equals(name2))
@@ -455,18 +459,18 @@ public class SOAPElementTestServlet extends HttpServlet {
           else if (name.equals(name3))
             foundName3 = true;
           else {
-            TestUtil.logErr("Wrong Name returned of " + name);
+            logger.log(Logger.Level.ERROR,"Wrong Name returned of " + name);
             pass = false;
           }
         }
         if (!foundName1 || !foundName2 || !foundName3) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Did not find all names of MyAttr1, " + "MyAttr2, MyAttr3");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -491,33 +495,33 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       Name name = envelope.createName("MyAttr1");
       String value = "MyValue1";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add attribute name = " + name.getLocalName() + ", value = " + value);
       body.addAttribute(name, value);
-      TestUtil.logMsg("Remove attribute name = " + name.getLocalName()
+      logger.log(Logger.Level.INFO,"Remove attribute name = " + name.getLocalName()
           + ", value = " + value);
       boolean b = body.removeAttribute(name);
       if (!b) {
-        TestUtil.logErr("removeAttribute() did not return true");
+        logger.log(Logger.Level.ERROR,"removeAttribute() did not return true");
         pass = false;
       }
       if (pass) {
         b = body.removeAttribute(name);
         if (b) {
-          TestUtil.logErr("removeAttribute() did not return false");
+          logger.log(Logger.Level.ERROR,"removeAttribute() did not return false");
           pass = false;
         }
       }
       if (pass) {
         String s = body.getAttributeValue(name);
         if (s != null) {
-          TestUtil.logErr("getAttributeValue() returned wrong value,"
+          logger.log(Logger.Level.ERROR,"getAttributeValue() returned wrong value,"
               + " expected null, got \"" + s + "\"");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -542,35 +546,35 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       QName name = new QName("MyAttr1");
       String value = "MyValue1";
-      TestUtil.logMsg("Add attribute qname = " + name.getLocalPart()
+      logger.log(Logger.Level.INFO,"Add attribute qname = " + name.getLocalPart()
           + ", value = " + value);
       body.addAttribute(name, value);
-      TestUtil.logMsg("Remove attribute qname = " + name.getLocalPart()
+      logger.log(Logger.Level.INFO,"Remove attribute qname = " + name.getLocalPart()
           + ", value = " + value);
       boolean b = body.removeAttribute(name);
       if (!b) {
-        TestUtil.logErr("removeAttribute() did not return true");
-        TestUtil.logErr("removeAttributeTest() test FAILED");
+        logger.log(Logger.Level.ERROR,"removeAttribute() did not return true");
+        logger.log(Logger.Level.ERROR,"removeAttributeTest() test FAILED");
         pass = false;
       }
       if (pass) {
         b = body.removeAttribute(name);
         if (b) {
-          TestUtil.logErr("removeAttribute() did not return false");
-          TestUtil.logErr("removeAttributeTest() test FAILED");
+          logger.log(Logger.Level.ERROR,"removeAttribute() did not return false");
+          logger.log(Logger.Level.ERROR,"removeAttributeTest() test FAILED");
           pass = false;
         }
       }
       if (pass) {
         if (body.getAttributeValue(name) == null) {
-          TestUtil.logMsg("removeAttributeTest() test PASSED");
+          logger.log(Logger.Level.INFO,"removeAttributeTest() test PASSED");
         } else {
-          TestUtil.logErr("removeAttributeTest() test FAILED");
+          logger.log(Logger.Level.ERROR,"removeAttributeTest() test FAILED");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -593,14 +597,14 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Get element name of SOAPBody = "
+      logger.log(Logger.Level.INFO,"Get element name of SOAPBody = "
           + body.getElementName().getLocalName());
-      TestUtil.logMsg("Get element name of SOAPEnvelope = "
+      logger.log(Logger.Level.INFO,"Get element name of SOAPEnvelope = "
           + envelope.getElementName().getLocalName());
-      TestUtil.logMsg("Get element name of SOAPHeader = "
+      logger.log(Logger.Level.INFO,"Get element name of SOAPHeader = "
           + hdr.getElementName().getLocalName());
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -623,14 +627,14 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Get element qname of SOAPBody = "
+      logger.log(Logger.Level.INFO,"Get element qname of SOAPBody = "
           + body.getElementQName().getLocalPart());
-      TestUtil.logMsg("Get element qname of SOAPEnvelope = "
+      logger.log(Logger.Level.INFO,"Get element qname of SOAPEnvelope = "
           + envelope.getElementQName().getLocalPart());
-      TestUtil.logMsg("Get element qname of SOAPHeader = "
+      logger.log(Logger.Level.INFO,"Get element qname of SOAPHeader = "
           + hdr.getElementQName().getLocalPart());
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -655,17 +659,17 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       String prefix = "myPrefix";
       String uri = "myURI";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add namespace declaration: prefix=" + prefix + ", uri=" + uri);
       SOAPElement se = body.addNamespaceDeclaration(prefix, uri);
       if (se == null) {
-        TestUtil.logErr("addNamespaceDeclaration() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addNamespaceDeclaration() did not return SOAPElement");
         pass = false;
       } else {
-        TestUtil.logMsg("addNamespaceDeclaration() did return SOAPElement");
+        logger.log(Logger.Level.INFO,"addNamespaceDeclaration() did return SOAPElement");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -690,33 +694,33 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       String prefix = "myPrefix";
       String uri = "myURI";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add namespace declaration: prefix=" + prefix + ", uri=" + uri);
       body.addNamespaceDeclaration(prefix, uri);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Remove namespace declaration: prefix=" + prefix + ", uri=" + uri);
       boolean b = body.removeNamespaceDeclaration(prefix);
       if (!b) {
-        TestUtil.logErr("removeNamespaceDeclaration() did not return true");
+        logger.log(Logger.Level.ERROR,"removeNamespaceDeclaration() did not return true");
         pass = false;
       }
       if (pass) {
         b = body.removeNamespaceDeclaration(prefix);
         if (b) {
-          TestUtil.logErr("removeNamespaceDeclaration() did not return false");
+          logger.log(Logger.Level.ERROR,"removeNamespaceDeclaration() did not return false");
           pass = false;
         }
       }
       if (pass) {
-        TestUtil.logMsg("Try and get URI of removed namespace: uri=" + uri);
+        logger.log(Logger.Level.INFO,"Try and get URI of removed namespace: uri=" + uri);
         if (body.getNamespaceURI(prefix) != null) {
-          TestUtil.logErr("getNamespaceURI() returned wrong value, expected"
+          logger.log(Logger.Level.ERROR,"getNamespaceURI() returned wrong value, expected"
               + " null, got " + body.getNamespaceURI(prefix));
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -741,33 +745,33 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       String prefix = "myPrefix";
       String uri = "myURI";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add namespace declaration: prefix=" + prefix + ", uri=" + uri);
       body.addNamespaceDeclaration(prefix, uri);
-      TestUtil.logMsg("Get the namespace prefixes");
+      logger.log(Logger.Level.INFO,"Get the namespace prefixes");
       Iterator i = body.getNamespacePrefixes();
       int count = SOAP_Util.getIteratorCount(i);
       i = body.getNamespacePrefixes();
       if (count != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Wrong iterator count returned of " + count + ", expected 1");
         pass = false;
       } else {
         boolean foundPrefix = false;
         while (i.hasNext()) {
           String s = (String) i.next();
-          TestUtil.logMsg("Got Prefix = " + s);
+          logger.log(Logger.Level.INFO,"Got Prefix = " + s);
           if (s.equals(prefix)) {
             foundPrefix = true;
-            TestUtil.logMsg("Namespace prefix was found");
+            logger.log(Logger.Level.INFO,"Namespace prefix was found");
           } else {
-            TestUtil.logErr("Wrong prefix returned of " + s);
+            logger.log(Logger.Level.ERROR,"Wrong prefix returned of " + s);
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -792,21 +796,21 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       String prefix = "myPrefix";
       String uri = "myURI";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add namespace declaration: prefix=" + prefix + ", uri=" + uri);
       body.addNamespaceDeclaration(prefix, uri);
-      TestUtil.logMsg("Get the namespace URI");
+      logger.log(Logger.Level.INFO,"Get the namespace URI");
       String s = body.getNamespaceURI(prefix);
-      TestUtil.logMsg("The namespace URI = " + s);
+      logger.log(Logger.Level.INFO,"The namespace URI = " + s);
       if (s.equals(uri))
-        TestUtil.logMsg("The namespace URI is correct");
+        logger.log(Logger.Level.INFO,"The namespace URI is correct");
       else {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The namespace URI is wrong, expected " + uri + ", got " + s);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -829,19 +833,19 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add text node to SOAPBody " + "with text <txt>This is text</txt>");
-      TestUtil.logMsg("For SOAP1.1 this must succeed");
+      logger.log(Logger.Level.INFO,"For SOAP1.1 this must succeed");
       Iterator iStart = body.getChildElements();
       int countStart = SOAP_Util.getIteratorCount(iStart);
       SOAPElement se = body.addTextNode("<txt>This is text</txt>");
       if (se == null) {
-        TestUtil.logErr("addTextNode() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addTextNode() did not return SOAPElement");
         pass = false;
       } else if (!body.getValue().equals("<txt>This is text</txt>")) {
         String s = body.getValue();
-        TestUtil.logErr("addTextNode() did not return expected text");
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,"addTextNode() did not return expected text");
+        logger.log(Logger.Level.ERROR,
             "Returned " + s + ", Expected <txt>" + "This is text</txt>");
         pass = false;
       }
@@ -850,7 +854,7 @@ public class SOAPElementTestServlet extends HttpServlet {
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getChildElements();
         if (count != ++countStart) {
-          TestUtil.logErr("Wrong iterator count returned of " + count
+          logger.log(Logger.Level.ERROR,"Wrong iterator count returned of " + count
               + ", expected " + countStart);
           pass = false;
         } else {
@@ -862,16 +866,16 @@ public class SOAPElementTestServlet extends HttpServlet {
           }
           if (obj instanceof Text) {
             Text t = (Text) obj;
-            TestUtil.logMsg("obj is instanceof Text");
-            TestUtil.logMsg("Text isComment() = " + t.isComment());
+            logger.log(Logger.Level.INFO,"obj is instanceof Text");
+            logger.log(Logger.Level.INFO,"Text isComment() = " + t.isComment());
           } else {
-            TestUtil.logErr("obj is not instanceof Text");
+            logger.log(Logger.Level.ERROR,"obj is not instanceof Text");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -894,19 +898,19 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add text node to SOAPHeader " + "with text <txt>This is text</txt>");
-      TestUtil.logMsg("This is legal for a SOAP1.1 message");
+      logger.log(Logger.Level.INFO,"This is legal for a SOAP1.1 message");
       Iterator iStart = hdr.getChildElements();
       int countStart = SOAP_Util.getIteratorCount(iStart);
       SOAPElement se = hdr.addTextNode("<txt>This is text</txt>");
       if (se == null) {
-        TestUtil.logErr("addTextNode() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addTextNode() did not return SOAPElement");
         pass = false;
       } else if (!hdr.getValue().equals("<txt>This is text</txt>")) {
         String s = body.getValue();
-        TestUtil.logErr("addTextNode() did not return expected text");
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,"addTextNode() did not return expected text");
+        logger.log(Logger.Level.ERROR,
             "Returned " + s + ", Expected <txt>" + "This is text</txt>");
         pass = false;
       }
@@ -915,7 +919,7 @@ public class SOAPElementTestServlet extends HttpServlet {
         int count = SOAP_Util.getIteratorCount(i);
         i = hdr.getChildElements();
         if (count != ++countStart) {
-          TestUtil.logErr("Wrong iterator count returned of " + count
+          logger.log(Logger.Level.ERROR,"Wrong iterator count returned of " + count
               + ", expected " + countStart);
           pass = false;
         } else {
@@ -927,16 +931,16 @@ public class SOAPElementTestServlet extends HttpServlet {
           }
           if (obj instanceof Text) {
             Text t = (Text) obj;
-            TestUtil.logMsg("obj is instanceof Text");
-            TestUtil.logMsg("Text isComment() = " + t.isComment());
+            logger.log(Logger.Level.INFO,"obj is instanceof Text");
+            logger.log(Logger.Level.INFO,"Text isComment() = " + t.isComment());
           } else {
-            TestUtil.logErr("obj is not instanceof Text");
+            logger.log(Logger.Level.ERROR,"obj is not instanceof Text");
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -959,19 +963,19 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add text node to SOAPHeader " + "with text <txt>This is text</txt>");
       Iterator iStart = hdr.getChildElements();
       SOAP_Util.getIteratorCount(iStart);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "This is illegal for a SOAP1.2 message (expect SOAPException)");
       hdr.addTextNode("<txt>This is text</txt>");
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -994,11 +998,11 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Set encoding style on body to URI_NS_SOAP_ENCODING");
-      TestUtil.logMsg("For SOAP1.1 this is allowed and should succeed");
+      logger.log(Logger.Level.INFO,"Set encoding style on body to URI_NS_SOAP_ENCODING");
+      logger.log(Logger.Level.INFO,"For SOAP1.1 this is allowed and should succeed");
       body.setEncodingStyle(SOAPConstants.URI_NS_SOAP_ENCODING);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1021,17 +1025,17 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Set encoding style on body to URI_NS_SOAP_1_2_ENCODING");
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,"Set encoding style on body to URI_NS_SOAP_1_2_ENCODING");
+      logger.log(Logger.Level.INFO,
           "For SOAP1.2 this is not allowed and must throw a SOAPException");
       body.setEncodingStyle(SOAPConstants.URI_NS_SOAP_1_2_ENCODING);
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
       pass = true;
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1054,9 +1058,9 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Set encoding style on body to URI_NS_SOAP_ENCODING");
+      logger.log(Logger.Level.INFO,"Set encoding style on body to URI_NS_SOAP_ENCODING");
       body.setEncodingStyle(SOAPConstants.URI_NS_SOAP_ENCODING);
-      TestUtil.logMsg("Get encoding style from body (should return "
+      logger.log(Logger.Level.INFO,"Get encoding style from body (should return "
           + "URI_NS_SOAP_ENCODING) value");
       String s = body.getEncodingStyle();
       if (!s.equals(SOAPConstants.URI_NS_SOAP_ENCODING)) {
@@ -1066,7 +1070,7 @@ public class SOAPElementTestServlet extends HttpServlet {
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1089,16 +1093,15 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil
-          .logMsg("Get encoding style from body (should return null) value");
+      logger.log(Logger.Level.INFO,"Get encoding style from body (should return null) value");
       String s = body.getEncodingStyle();
       if (s != null) {
-        TestUtil.logErr("getEncodingStyle() returned wrong value, "
+        logger.log(Logger.Level.ERROR,"getEncodingStyle() returned wrong value, "
             + "expected: null, got: " + s);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1122,47 +1125,47 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       Name name = envelope.createName("MyChild1");
-      TestUtil.logMsg("Add child element Name object with localName=MyChild1");
-      TestUtil.logMsg("Calling addChildElement(Name)");
+      logger.log(Logger.Level.INFO,"Add child element Name object with localName=MyChild1");
+      logger.log(Logger.Level.INFO,"Calling addChildElement(Name)");
       SOAPElement se = body.addChildElement(name);
       if (se == null) {
-        TestUtil.logErr("addChildElement() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addChildElement() did not return SOAPElement");
         pass = false;
       } else {
-        TestUtil.logMsg("Find the child element just added");
+        logger.log(Logger.Level.INFO,"Find the child element just added");
         Iterator i = body.getChildElements(name);
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getChildElements(name);
         if (count != 1) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Wrong iterator count returned of " + count + ", expected 1");
           pass = false;
         } else {
           SOAPElement se2 = (SOAPElement) i.next();
           if (!se.equals(se2)) {
-            TestUtil.logErr("SOAPElement se != se2 (unexpected)");
+            logger.log(Logger.Level.ERROR,"SOAPElement se != se2 (unexpected)");
             pass = false;
           } else
-            TestUtil.logMsg("SOAPElement se = se2 (expected)");
+            logger.log(Logger.Level.INFO,"SOAPElement se = se2 (expected)");
         }
         if (pass) {
-          TestUtil.logMsg("Retrieve the SOAPElement Name");
+          logger.log(Logger.Level.INFO,"Retrieve the SOAPElement Name");
           Name n = se.getElementName();
-          TestUtil.logMsg("localName=" + n.getLocalName() + " prefix="
+          logger.log(Logger.Level.INFO,"localName=" + n.getLocalName() + " prefix="
               + n.getPrefix() + " URI=" + n.getURI() + " qualifiedName="
               + n.getQualifiedName());
           if (!n.equals(name)) {
-            TestUtil.logMsg("Name objects are not equal (unexpected)");
-            TestUtil.logErr("addChildElement() did not return "
+            logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+            logger.log(Logger.Level.ERROR,"addChildElement() did not return "
                 + "correct Name object expected localName="
                 + name.getLocalName() + ", got localName=" + n.getLocalName());
             pass = false;
           } else
-            TestUtil.logMsg("Name objects are equal (expected)");
+            logger.log(Logger.Level.INFO,"Name objects are equal (expected)");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1186,46 +1189,46 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       String s = "Mychild1";
-      TestUtil.logMsg("Add child element String object with localName=" + s);
-      TestUtil.logMsg("Calling addChildElement(String localName)");
+      logger.log(Logger.Level.INFO,"Add child element String object with localName=" + s);
+      logger.log(Logger.Level.INFO,"Calling addChildElement(String localName)");
       SOAPElement se = body.addChildElement(s);
       if (se == null) {
-        TestUtil.logErr("addChildElement() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addChildElement() did not return SOAPElement");
         pass = false;
       } else {
         Iterator i = body.getChildElements();
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getChildElements();
         if (count != 1) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Wrong iterator count returned of " + count + ", expected 1");
           pass = false;
         } else {
           SOAPElement se2 = (SOAPElement) i.next();
           if (!se.equals(se2)) {
-            TestUtil.logErr("SOAPElement se != se2 (unexpected)");
+            logger.log(Logger.Level.ERROR,"SOAPElement se != se2 (unexpected)");
             pass = false;
           } else
-            TestUtil.logMsg("SOAPElement se = se2 (expected)");
+            logger.log(Logger.Level.INFO,"SOAPElement se = se2 (expected)");
         }
         if (pass) {
-          TestUtil.logMsg("Retrieve the SOAPElement Name");
+          logger.log(Logger.Level.INFO,"Retrieve the SOAPElement Name");
           Name n = se.getElementName();
-          TestUtil.logMsg("localName=" + n.getLocalName() + " prefix="
+          logger.log(Logger.Level.INFO,"localName=" + n.getLocalName() + " prefix="
               + n.getPrefix() + " URI=" + n.getURI() + " qualifiedName="
               + n.getQualifiedName());
           if (!n.getLocalName().equals(s)) {
-            TestUtil.logMsg("Name objects are not equal (unexpected)");
-            TestUtil.logErr("addChildElement() did not return "
+            logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+            logger.log(Logger.Level.ERROR,"addChildElement() did not return "
                 + "correct Name object expected localName=" + s
                 + ", got localName=" + n.getLocalName());
             pass = false;
           } else
-            TestUtil.logMsg("Name objects are equal (expected)");
+            logger.log(Logger.Level.INFO,"Name objects are equal (expected)");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1251,57 +1254,53 @@ public class SOAPElementTestServlet extends HttpServlet {
       String s = "MyName1";
       String p = "MyPrefix1";
       String u = "myURI";
-      TestUtil.logMsg("Add namespace declaration: prefix=" + p + ", uri=" + u);
+      logger.log(Logger.Level.INFO,"Add namespace declaration: prefix=" + p + ", uri=" + u);
       SOAPElement myse = body.addNamespaceDeclaration(p, u);
-      TestUtil
-          .logMsg("SOAPElementName = " + myse.getElementName().getLocalName());
-      TestUtil
-          .logMsg("Add child element with localName=" + s + ", prefix=" + p);
-      TestUtil
-          .logMsg("Calling addChildElement(String localName, String prefix)");
+      logger.log(Logger.Level.INFO,"SOAPElementName = " + myse.getElementName().getLocalName());
+      logger.log(Logger.Level.INFO,"Add child element with localName=" + s + ", prefix=" + p);
+      logger.log(Logger.Level.INFO,"Calling addChildElement(String localName, String prefix)");
       SOAPElement se = body.addChildElement(s, p);
       if (se == null) {
-        TestUtil.logErr("addChildElement() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addChildElement() did not return SOAPElement");
         pass = false;
       } else {
-        TestUtil
-            .logMsg("SOAPElementName = " + se.getElementName().getLocalName());
+        logger.log(Logger.Level.INFO,"SOAPElementName = " + se.getElementName().getLocalName());
         Iterator i = body.getChildElements();
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getChildElements();
         if (count != 1) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Wrong iterator count returned of " + count + ", expected 1");
           pass = false;
         } else {
           SOAPElement se2 = (SOAPElement) i.next();
           if (!se.equals(se2)) {
-            TestUtil.logErr("SOAPElement se != se2 (unexpected)");
+            logger.log(Logger.Level.ERROR,"SOAPElement se != se2 (unexpected)");
             pass = false;
           } else
-            TestUtil.logMsg("SOAPElement se = se2 (expected)");
+            logger.log(Logger.Level.INFO,"SOAPElement se = se2 (expected)");
         }
         if (pass) {
-          TestUtil.logMsg("Retrieve the SOAPElement Name");
+          logger.log(Logger.Level.INFO,"Retrieve the SOAPElement Name");
           String name = se.getElementName().getLocalName();
           Name n = se.getElementName();
-          TestUtil.logMsg("localName=" + n.getLocalName() + " prefix="
+          logger.log(Logger.Level.INFO,"localName=" + n.getLocalName() + " prefix="
               + n.getPrefix() + " URI=" + n.getURI() + " qualifiedName="
               + n.getQualifiedName());
           String prefix = se.getElementName().getPrefix();
           if (!name.equals(s) || !prefix.equals(p)) {
-            TestUtil.logMsg("Name objects are not equal (unexpected)");
-            TestUtil.logErr("addChildElement() did not return"
+            logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+            logger.log(Logger.Level.ERROR,"addChildElement() did not return"
                 + " correct localName and prefix");
-            TestUtil.logErr("Expected localName=" + s + " prefix=" + p
+            logger.log(Logger.Level.ERROR,"Expected localName=" + s + " prefix=" + p
                 + ", got localName=" + name + " prefix=" + prefix);
             pass = false;
           } else
-            TestUtil.logMsg("Name objects are equal (expected)");
+            logger.log(Logger.Level.INFO,"Name objects are equal (expected)");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1327,53 +1326,53 @@ public class SOAPElementTestServlet extends HttpServlet {
       String s = "MyName1";
       String p = "MyPrefix1";
       String u = "MyURI1";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add child element localName=" + s + ", prefix=" + p + ", URI=" + u);
-      TestUtil.logMsg("Calling addChildElement(String localName, "
+      logger.log(Logger.Level.INFO,"Calling addChildElement(String localName, "
           + "String prefix, String URI)");
       SOAPElement se = body.addChildElement(s, p, u);
       if (se == null) {
-        TestUtil.logErr("addChildElement() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addChildElement() did not return SOAPElement");
         pass = false;
       } else {
         Iterator i = body.getChildElements();
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getChildElements();
         if (count != 1) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Wrong iterator count returned of " + count + ", expected 1");
           pass = false;
         } else {
           SOAPElement se2 = (SOAPElement) i.next();
           if (!se.equals(se2)) {
-            TestUtil.logErr("SOAPElement se != se2 (unexpected)");
+            logger.log(Logger.Level.ERROR,"SOAPElement se != se2 (unexpected)");
             pass = false;
           } else
-            TestUtil.logMsg("SOAPElement se = se2 (expected)");
+            logger.log(Logger.Level.INFO,"SOAPElement se = se2 (expected)");
         }
         if (pass) {
           String name = se.getElementName().getLocalName();
           String prefix = se.getElementName().getPrefix();
           String uri = se.getElementName().getURI();
-          TestUtil.logMsg("Retrieve the SOAPElement Name");
+          logger.log(Logger.Level.INFO,"Retrieve the SOAPElement Name");
           Name n = se.getElementName();
-          TestUtil.logMsg("localName=" + n.getLocalName() + " prefix="
+          logger.log(Logger.Level.INFO,"localName=" + n.getLocalName() + " prefix="
               + n.getPrefix() + " URI=" + n.getURI() + " qualifiedName="
               + n.getQualifiedName());
           if (!name.equals(s) || !prefix.equals(p) || !uri.equals(u)) {
-            TestUtil.logMsg("Name objects are not equal (unexpected)");
-            TestUtil.logErr("addChildElement() did not return"
+            logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+            logger.log(Logger.Level.ERROR,"addChildElement() did not return"
                 + " correct localName, prefix, and uri");
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Expected localName=" + s + " prefix=" + p + ", got localName="
                     + name + " prefix=" + prefix + " uri=" + uri);
             pass = false;
           } else
-            TestUtil.logMsg("Name objects are equal (expected)");
+            logger.log(Logger.Level.INFO,"Name objects are equal (expected)");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1400,56 +1399,56 @@ public class SOAPElementTestServlet extends HttpServlet {
       String s = "MyName1";
       String p = "MyPrefix1";
       String u = "MyUri1";
-      TestUtil.logMsg("Create Name object with localName=MyName1, "
+      logger.log(Logger.Level.INFO,"Create Name object with localName=MyName1, "
           + "prefix=MyPrefix1, uri=MyUri1");
       Name name1 = envelope.createName("MyName1", "MyPrefix1", "MyUri1");
-      TestUtil.logMsg("Create SOAPElement object with Name object above");
+      logger.log(Logger.Level.INFO,"Create SOAPElement object with Name object above");
       SOAPElement myse = sf.createElement(name1);
-      TestUtil.logMsg("Add SOAPElement object to SOAPBody");
-      TestUtil.logMsg("Calling addChildElement(SOAPElement)");
+      logger.log(Logger.Level.INFO,"Add SOAPElement object to SOAPBody");
+      logger.log(Logger.Level.INFO,"Calling addChildElement(SOAPElement)");
       SOAPElement se = body.addChildElement(myse);
       if (se == null) {
-        TestUtil.logErr("addChildElement() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addChildElement() did not return SOAPElement");
         pass = false;
       } else {
         Iterator i = body.getChildElements(name1);
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getChildElements(name1);
         if (count != 1) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Wrong iterator count returned of " + count + ", expected 1");
           pass = false;
         } else {
           SOAPElement se2 = (SOAPElement) i.next();
           if (!se.equals(se2)) {
-            TestUtil.logErr("SOAPElement se != se2 (unexpected)");
+            logger.log(Logger.Level.ERROR,"SOAPElement se != se2 (unexpected)");
             pass = false;
           } else
-            TestUtil.logMsg("SOAPElement se = se2 (expected)");
+            logger.log(Logger.Level.INFO,"SOAPElement se = se2 (expected)");
         }
         if (pass) {
           String name = se.getElementName().getLocalName();
           String prefix = se.getElementName().getPrefix();
           String uri = se.getElementName().getURI();
-          TestUtil.logMsg("Retrieve the SOAPElement Name");
+          logger.log(Logger.Level.INFO,"Retrieve the SOAPElement Name");
           Name n = se.getElementName();
-          TestUtil.logMsg("localName=" + n.getLocalName() + " prefix="
+          logger.log(Logger.Level.INFO,"localName=" + n.getLocalName() + " prefix="
               + n.getPrefix() + " URI=" + n.getURI() + " qualifiedName="
               + n.getQualifiedName());
           if (!name.equals(s) || !prefix.equals(p) || !uri.equals(u)) {
-            TestUtil.logMsg("Name objects are not equal (unexpected)");
-            TestUtil.logErr("addChildElement() did not return"
+            logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+            logger.log(Logger.Level.ERROR,"addChildElement() did not return"
                 + " correct localName, prefix, and uri");
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Expected localName=" + s + " prefix=" + p + ", got localName="
                     + name + " prefix=" + prefix + " uri=" + uri);
             pass = false;
           } else
-            TestUtil.logMsg("Name objects are equal (expected)");
+            logger.log(Logger.Level.INFO,"Name objects are equal (expected)");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1473,42 +1472,42 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       QName name = new QName("MyChild1");
-      TestUtil.logMsg("Add child element QName object = " + name.toString());
+      logger.log(Logger.Level.INFO,"Add child element QName object = " + name.toString());
       SOAPElement se = body.addChildElement(name);
       if (se == null) {
-        TestUtil.logErr("addChildElement() did not return SOAPElement");
-        TestUtil.logErr("addChildElementTest6() test FAILED");
+        logger.log(Logger.Level.ERROR,"addChildElement() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"addChildElementTest6() test FAILED");
         pass = false;
       } else {
         Iterator i = body.getChildElements(name);
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getChildElements(name);
         if (count != 1) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Wrong iterator count returned of " + count + ", expected 1");
-          TestUtil.logErr("addChildElementTest6() test FAILED");
+          logger.log(Logger.Level.ERROR,"addChildElementTest6() test FAILED");
           pass = false;
         } else {
           SOAPElement se2 = (SOAPElement) i.next();
           if (!se.equals(se2)) {
-            TestUtil.logErr("addChildElementTest6() test FAILED");
+            logger.log(Logger.Level.ERROR,"addChildElementTest6() test FAILED");
             pass = false;
           }
         }
         if (pass) {
           QName n = se.getElementQName();
           if (!n.equals(name)) {
-            TestUtil.logErr("addChildElement() did not return "
+            logger.log(Logger.Level.ERROR,"addChildElement() did not return "
                 + "correct qname object expected localpart="
                 + name.getLocalPart() + ", got localpart=" + n.getLocalPart());
-            TestUtil.logErr("addChildElementTest6() test FAILED");
+            logger.log(Logger.Level.ERROR,"addChildElementTest6() test FAILED");
             pass = false;
           } else
-            TestUtil.logMsg("addChildElementTest6() test PASSED");
+            logger.log(Logger.Level.INFO,"addChildElementTest6() test PASSED");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1532,37 +1531,37 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       Name name = envelope.createName("MyChild1");
-      TestUtil.logMsg("Add child element name = " + name.getLocalName());
+      logger.log(Logger.Level.INFO,"Add child element name = " + name.getLocalName());
       SOAPElement se = body.addChildElement(name);
       Iterator i = body.getChildElements();
       int count = SOAP_Util.getIteratorCount(i);
       i = body.getChildElements();
       if (count != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Wrong iterator count returned of " + count + ", expected 1");
         pass = false;
       } else {
         SOAPElement se2 = (SOAPElement) i.next();
         if (!se.equals(se2)) {
-          TestUtil.logErr("SOAPElement se != se2 (unexpected)");
+          logger.log(Logger.Level.ERROR,"SOAPElement se != se2 (unexpected)");
           pass = false;
         } else
-          TestUtil.logMsg("SOAPElement se = se2 (expected)");
+          logger.log(Logger.Level.INFO,"SOAPElement se = se2 (expected)");
       }
       if (pass) {
-        TestUtil.logMsg("Retrieve the SOAPElement Name");
+        logger.log(Logger.Level.INFO,"Retrieve the SOAPElement Name");
         Name n = se.getElementName();
         if (!n.equals(name)) {
-          TestUtil.logMsg("Name objects are not equal (unexpected)");
-          TestUtil.logErr("getChildElement() did not return "
+          logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+          logger.log(Logger.Level.ERROR,"getChildElement() did not return "
               + "correct Name object expected localName=" + name.getLocalName()
               + ", got localName=" + n.getLocalName());
           pass = false;
         } else
-          TestUtil.logMsg("Name objects are equal (expected)");
+          logger.log(Logger.Level.INFO,"Name objects are equal (expected)");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1586,38 +1585,38 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       Name name = envelope.createName("MyChild1");
-      TestUtil.logMsg("Add child element name = " + name.getLocalName());
+      logger.log(Logger.Level.INFO,"Add child element name = " + name.getLocalName());
       SOAPElement se = body.addChildElement(name);
       Iterator i = body.getChildElements(name);
       int count = SOAP_Util.getIteratorCount(i);
       i = body.getChildElements(name);
       if (count != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Wrong iterator count returned of " + count + ", expected 1");
         pass = false;
       } else {
         SOAPElement se2 = (SOAPElement) i.next();
         if (!se.equals(se2)) {
-          TestUtil.logErr("SOAPElement se != se2 (unexpected)");
+          logger.log(Logger.Level.ERROR,"SOAPElement se != se2 (unexpected)");
           pass = false;
         } else
-          TestUtil.logMsg("SOAPElement se = se2 (expected)");
+          logger.log(Logger.Level.INFO,"SOAPElement se = se2 (expected)");
       }
       if (pass) {
         Name n = se.getElementName();
-        TestUtil.logMsg("Name expected = " + name.toString());
-        TestUtil.logMsg("Name got = " + n.toString());
+        logger.log(Logger.Level.INFO,"Name expected = " + name.toString());
+        logger.log(Logger.Level.INFO,"Name got = " + n.toString());
         if (!n.equals(name)) {
-          TestUtil.logMsg("Name objects are not equal (unexpected)");
-          TestUtil.logErr("getChildElement() did not return "
+          logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+          logger.log(Logger.Level.ERROR,"getChildElement() did not return "
               + "correct Name object expected localName=" + name.getLocalName()
               + ", got localName=" + n.getLocalName());
           pass = false;
         } else
-          TestUtil.logMsg("Name objects are equal (expected)");
+          logger.log(Logger.Level.INFO,"Name objects are equal (expected)");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1645,17 +1644,17 @@ public class SOAPElementTestServlet extends HttpServlet {
       String u = "MyURI1";
       String p2 = "MyPrefix2";
       String u2 = "MyURI2";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add child element name = " + s + ", prefix = " + p + ", URI = " + u);
       SOAPElement se = body.addChildElement(s, p, u);
-      TestUtil.logMsg("Add child element name = " + s + ", prefix = " + p2
+      logger.log(Logger.Level.INFO,"Add child element name = " + s + ", prefix = " + p2
           + ", URI = " + u2);
       SOAPElement se2 = body.addChildElement(s, p2, u2);
       Iterator i = body.getChildElements();
       int count = SOAP_Util.getIteratorCount(i);
       i = body.getChildElements();
       if (count != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Wrong iterator count returned of " + count + ", expected 2");
         pass = false;
       }
@@ -1663,15 +1662,15 @@ public class SOAPElementTestServlet extends HttpServlet {
         SOAPElement sei = (SOAPElement) i.next();
         SOAPElement sei2 = (SOAPElement) i.next();
         if (!se.equals(sei)) {
-          TestUtil.logErr("SOAPElement se != sei (unexpected)");
+          logger.log(Logger.Level.ERROR,"SOAPElement se != sei (unexpected)");
           pass = false;
         } else
-          TestUtil.logMsg("SOAPElement se = sei (expected)");
+          logger.log(Logger.Level.INFO,"SOAPElement se = sei (expected)");
         if (!se2.equals(sei2)) {
-          TestUtil.logErr("SOAPElement se2 != sei2 (unexpected)");
+          logger.log(Logger.Level.ERROR,"SOAPElement se2 != sei2 (unexpected)");
           pass = false;
         } else {
-          TestUtil.logMsg("SOAPElement se2 = sei2 (expected)");
+          logger.log(Logger.Level.INFO,"SOAPElement se2 = sei2 (expected)");
           if (pass) {
             String name = se.getElementName().getLocalName();
             String prefix = se.getElementName().getPrefix();
@@ -1681,36 +1680,36 @@ public class SOAPElementTestServlet extends HttpServlet {
             String uri2 = se2.getElementName().getURI();
             Name n = se.getElementName();
             Name n2 = se2.getElementName();
-            TestUtil.logMsg("localName=" + n.getLocalName() + " prefix="
+            logger.log(Logger.Level.INFO,"localName=" + n.getLocalName() + " prefix="
                 + n.getPrefix() + " URI=" + n.getURI() + " qualifiedName="
                 + n.getQualifiedName());
-            TestUtil.logMsg("localName=" + n2.getLocalName() + " prefix="
+            logger.log(Logger.Level.INFO,"localName=" + n2.getLocalName() + " prefix="
                 + n2.getPrefix() + " URI=" + n2.getURI() + " qualifiedName="
                 + n2.getQualifiedName());
             if (!name.equals(s) || !prefix.equals(p) || !uri.equals(u)) {
-              TestUtil.logMsg("Name objects are not equal (unexpected)");
-              TestUtil.logErr("getChildElement() did not return"
+              logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+              logger.log(Logger.Level.ERROR,"getChildElement() did not return"
                   + " correct localName, prefix, and uri");
-              TestUtil.logErr("Expected localName=" + s + " prefix=" + p
+              logger.log(Logger.Level.ERROR,"Expected localName=" + s + " prefix=" + p
                   + ", got localName=" + name + " prefix=" + prefix + " uri="
                   + uri);
               pass = false;
             } else if (!name2.equals(s) || !prefix2.equals(p2)
                 || !uri2.equals(u2)) {
-              TestUtil.logMsg("Name objects are not equal (unexpected)");
-              TestUtil.logErr("getChildElement() did not return"
+              logger.log(Logger.Level.INFO,"Name objects are not equal (unexpected)");
+              logger.log(Logger.Level.ERROR,"getChildElement() did not return"
                   + " correct localName2, prefix2, and uri2");
-              TestUtil.logErr("Expected localName2=" + s + " prefix2=" + p2
+              logger.log(Logger.Level.ERROR,"Expected localName2=" + s + " prefix2=" + p2
                   + ", got localName2=" + name2 + " prefix2=" + prefix2
                   + " uri2=" + uri2);
               pass = false;
             } else
-              TestUtil.logMsg("Name objects are equal (expected)");
+              logger.log(Logger.Level.INFO,"Name objects are equal (expected)");
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1734,36 +1733,36 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       QName name = new QName("MyChild1");
-      TestUtil.logMsg("Add child element name = " + name.getLocalPart());
+      logger.log(Logger.Level.INFO,"Add child element name = " + name.getLocalPart());
       SOAPElement se = body.addChildElement(name);
       Iterator i = body.getChildElements();
       int count = SOAP_Util.getIteratorCount(i);
       i = body.getChildElements();
       if (count != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Wrong iterator count returned of " + count + ", expected 1");
-        TestUtil.logErr("getChildElementsTest4() test FAILED");
+        logger.log(Logger.Level.ERROR,"getChildElementsTest4() test FAILED");
         pass = false;
       } else {
         SOAPElement se2 = (SOAPElement) i.next();
         if (!se.equals(se2)) {
-          TestUtil.logErr("getChildElementsTest4() test FAILED");
+          logger.log(Logger.Level.ERROR,"getChildElementsTest4() test FAILED");
           pass = false;
         }
       }
       if (pass) {
         QName n = se.getElementQName();
         if (!n.equals(name)) {
-          TestUtil.logErr("getChildElement() did not return "
+          logger.log(Logger.Level.ERROR,"getChildElement() did not return "
               + "correct qname object expected localpart=" + name.getLocalPart()
               + ", got localpart=" + n.getLocalPart());
-          TestUtil.logErr("getChildElementsTest4() test FAILED");
+          logger.log(Logger.Level.ERROR,"getChildElementsTest4() test FAILED");
           pass = false;
         } else
-          TestUtil.logMsg("getChildElementsTest4() test PASSED");
+          logger.log(Logger.Level.INFO,"getChildElementsTest4() test PASSED");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1787,11 +1786,11 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       Name name = envelope.createName("MyChild");
-      TestUtil.logMsg("Add child element Name object = " + name.toString());
+      logger.log(Logger.Level.INFO,"Add child element Name object = " + name.toString());
       SOAPElement se = body.addChildElement(name);
       if (se == null) {
-        TestUtil.logErr("addChildElement() did not return SOAPElement");
-        TestUtil.logErr("removeContentsTest() test FAILED");
+        logger.log(Logger.Level.ERROR,"addChildElement() did not return SOAPElement");
+        logger.log(Logger.Level.ERROR,"removeContentsTest() test FAILED");
 
         pass = false;
       } else {
@@ -1799,37 +1798,37 @@ public class SOAPElementTestServlet extends HttpServlet {
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getChildElements(name);
         if (count != 1) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Wrong iterator count returned of " + count + ", expected 1");
-          TestUtil.logErr("removeContentsTest() test FAILED");
+          logger.log(Logger.Level.ERROR,"removeContentsTest() test FAILED");
           pass = false;
         }
 
         if (pass) {
           Name n = se.getElementName();
           if (!n.equals(name)) {
-            TestUtil.logErr("removeContentsTest() did not return "
+            logger.log(Logger.Level.ERROR,"removeContentsTest() did not return "
                 + "correct name object expected localname="
                 + name.getLocalName() + ", got localname=" + n.getLocalName());
-            TestUtil.logErr("removeContentsTest() test FAILED");
+            logger.log(Logger.Level.ERROR,"removeContentsTest() test FAILED");
             pass = false;
           }
         }
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "Child addition verified, now call removeContents to delete it");
         se.removeContents();
         i = se.getChildElements();
         count = SOAP_Util.getIteratorCount(i);
         if (count != 0) {
-          TestUtil.logErr("Wrong iterator count returned of " + count
+          logger.log(Logger.Level.ERROR,"Wrong iterator count returned of " + count
               + ", expected 0, after calling removeContents");
-          TestUtil.logErr("removeContentsTest() test FAILED");
+          logger.log(Logger.Level.ERROR,"removeContentsTest() test FAILED");
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1854,25 +1853,25 @@ public class SOAPElementTestServlet extends HttpServlet {
       setup();
       String prefix = "myPrefix";
       String uri = "myURI";
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Add namespace declaration: prefix=" + prefix + ", uri=" + uri);
       body.addNamespaceDeclaration(prefix, uri);
-      TestUtil.logMsg("Get the namespace prefixes");
+      logger.log(Logger.Level.INFO,"Get the namespace prefixes");
       Iterator i = body.getVisibleNamespacePrefixes();
       int count = SOAP_Util.getIteratorCount(i);
       i = body.getVisibleNamespacePrefixes();
-      TestUtil.logMsg("There are " + count + " visible namespace prefixes");
+      logger.log(Logger.Level.INFO,"There are " + count + " visible namespace prefixes");
       boolean foundPrefix = false;
       while (i.hasNext()) {
         String s = (String) i.next();
-        TestUtil.logMsg("Got Prefix = " + s);
+        logger.log(Logger.Level.INFO,"Got Prefix = " + s);
         if (s.equals(prefix))
           foundPrefix = true;
       }
       if (!foundPrefix)
-        TestUtil.logMsg("Did not find prefix " + prefix);
+        logger.log(Logger.Level.INFO,"Did not find prefix " + prefix);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1896,23 +1895,23 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       QName qname1 = new QName("http://fooURI.com", "fooElement", "foo");
-      TestUtil.logMsg("Create QName1 of: " + qname1);
+      logger.log(Logger.Level.INFO,"Create QName1 of: " + qname1);
       QName qname2 = new QName("http://foo2URI.com", "fooElement2", "foo2");
-      TestUtil.logMsg("Create QName2 of: " + qname2);
-      TestUtil.logMsg("Add a child SOAPElement of: " + qname1);
+      logger.log(Logger.Level.INFO,"Create QName2 of: " + qname2);
+      logger.log(Logger.Level.INFO,"Add a child SOAPElement of: " + qname1);
       se = body.addChildElement(qname1);
       QName qname = se.getElementQName();
-      TestUtil.logMsg("Get element qname of child SOAPElement: " + qname);
+      logger.log(Logger.Level.INFO,"Get element qname of child SOAPElement: " + qname);
       SOAP_Util.dumpSOAPMessage(msg);
-      TestUtil.logMsg("Reset element qname of child SOAPElement to: " + qname2);
+      logger.log(Logger.Level.INFO,"Reset element qname of child SOAPElement to: " + qname2);
       se = se.setElementQName(qname2);
       SOAP_Util.dumpSOAPMessage(msg);
       qname = se.getElementQName();
-      TestUtil.logMsg("Get element qname of child SOAPElement again: " + qname);
+      logger.log(Logger.Level.INFO,"Get element qname of child SOAPElement again: " + qname);
       if (!qname.getNamespaceURI().equals(qname2.getNamespaceURI())
           || !qname.getLocalPart().equals(qname2.getLocalPart())
           || !qname.getPrefix().equals(qname2.getPrefix())) {
-        TestUtil.logErr("setElementQName() did not reset "
+        logger.log(Logger.Level.ERROR,"setElementQName() did not reset "
             + "element qname\nexpected: <URI=" + qname2.getNamespaceURI()
             + ", prefix=" + qname2.getPrefix() + ", localpart="
             + qname2.getLocalPart() + ">\ngot:      <URI="
@@ -1921,7 +1920,7 @@ public class SOAPElementTestServlet extends HttpServlet {
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1945,36 +1944,36 @@ public class SOAPElementTestServlet extends HttpServlet {
     try {
       setup();
       QName qname = new QName("qname");
-      TestUtil.logMsg("Create QName of: " + qname);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,"Create QName of: " + qname);
+      logger.log(Logger.Level.INFO,
           "Try and change element name of SOAPEnvelope (expect SOAPException)");
       try {
         envelope.setElementQName(qname);
-        TestUtil.logErr("Did not throw expected SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
         pass = false;
       } catch (SOAPException e) {
-        TestUtil.logMsg("Caught expected SOAPException");
+        logger.log(Logger.Level.INFO,"Caught expected SOAPException");
       }
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Try and change element name of SOAPHeader (expect SOAPException)");
       try {
         hdr.setElementQName(qname);
-        TestUtil.logErr("Did not throw expected SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
         pass = false;
       } catch (SOAPException e) {
-        TestUtil.logMsg("Caught expected SOAPException");
+        logger.log(Logger.Level.INFO,"Caught expected SOAPException");
       }
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Try and change element name of SOAPBody (expect SOAPException)");
       try {
         body.setElementQName(qname);
-        TestUtil.logErr("Did not throw expected SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
         pass = false;
       } catch (SOAPException e) {
-        TestUtil.logMsg("Caught expected SOAPException");
+        logger.log(Logger.Level.INFO,"Caught expected SOAPException");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1997,42 +1996,42 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Create QName from SOAPEnvelope");
+      logger.log(Logger.Level.INFO,"Create QName from SOAPEnvelope");
       QName qname = envelope.createQName("qname", eprefix);
-      TestUtil.logMsg("Create QName of: " + qname);
+      logger.log(Logger.Level.INFO,"Create QName of: " + qname);
       String tprefix = qname.getPrefix();
       String turi = qname.getNamespaceURI();
       String tname = qname.getLocalPart();
-      TestUtil.logMsg("qname prefix=" + tprefix);
-      TestUtil.logMsg("qname uri=" + turi);
-      TestUtil.logMsg("qname localpart=" + tname);
-      TestUtil.logMsg("Verify correct uri and prefix");
+      logger.log(Logger.Level.INFO,"qname prefix=" + tprefix);
+      logger.log(Logger.Level.INFO,"qname uri=" + turi);
+      logger.log(Logger.Level.INFO,"qname localpart=" + tname);
+      logger.log(Logger.Level.INFO,"Verify correct uri and prefix");
       if (!tprefix.equals(eprefix) || !turi.equals(euri)) {
-        TestUtil.logErr("createQName() did not create correct qname\n"
+        logger.log(Logger.Level.ERROR,"createQName() did not create correct qname\n"
             + "expected: <uri=" + euri + ", prefix=" + eprefix
             + ", localpart=qname>\n" + "got:      <uri=" + turi + ", prefix="
             + tprefix + ", localpart=" + tname + ">");
         pass = false;
       }
-      TestUtil.logMsg("Create QName from SOAPBody");
+      logger.log(Logger.Level.INFO,"Create QName from SOAPBody");
       qname = body.createQName("qname", bprefix);
-      TestUtil.logMsg("Create QName of: " + qname);
+      logger.log(Logger.Level.INFO,"Create QName of: " + qname);
       tprefix = qname.getPrefix();
       turi = qname.getNamespaceURI();
       tname = qname.getLocalPart();
-      TestUtil.logMsg("qname prefix=" + tprefix);
-      TestUtil.logMsg("qname uri=" + turi);
-      TestUtil.logMsg("qname localpart=" + tname);
-      TestUtil.logMsg("Verify correct uri and prefix");
+      logger.log(Logger.Level.INFO,"qname prefix=" + tprefix);
+      logger.log(Logger.Level.INFO,"qname uri=" + turi);
+      logger.log(Logger.Level.INFO,"qname localpart=" + tname);
+      logger.log(Logger.Level.INFO,"Verify correct uri and prefix");
       if (!tprefix.equals(bprefix) || !turi.equals(buri)) {
-        TestUtil.logErr("createQName() did not create correct qname\n"
+        logger.log(Logger.Level.ERROR,"createQName() did not create correct qname\n"
             + "expected: <uri=" + buri + ", prefix=" + bprefix
             + ", localpart=qname>\n" + "got:      <uri=" + turi + ", prefix="
             + tprefix + ", localpart=" + tname + ">");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2055,15 +2054,15 @@ public class SOAPElementTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Create QName from SOAPBody with bogus prefix (expect SOAPException)");
       QName qname = body.createQName("qname", "bogus");
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Caught expected SOAPException");
+      logger.log(Logger.Level.INFO,"Caught expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.saaj.ee.RestrictionsAllowables;
 
+import java.lang.System.Logger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
@@ -55,6 +54,9 @@ public class URLClient {
   private String hostname = HOSTNAME;
 
   private int portnum = PORTNUM;
+  
+  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
+
 
 
   /* Test setup */
@@ -82,12 +84,12 @@ public class URLClient {
       throw new Exception("setup failed: ", e);
     }
     if (!pass) {
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Please specify host & port of web server " + "in config properties: "
               + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
       throw new Exception("setup failed");
     }
-    logMsg("setup ok");
+    logger.log(Logger.Level.INFO,"setup ok");
   }
 
   /*
@@ -104,15 +106,15 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("encodingStyleAttrSOAP11Test1");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"encodingStyleAttrSOAP11Test1");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       props.setProperty("TESTNAME", "encodingStyleAttrSOAP11Test1");
       props.setProperty("SOAPVERSION", "soap11");
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
@@ -121,7 +123,7 @@ public class URLClient {
         throw new Exception("encodingStyleAttrSOAP11Test1 failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("encodingStyleAttrSOAP11Test1 failed", e);
     }
@@ -141,15 +143,15 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("encodingStyleAttrSOAP11Test2");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"encodingStyleAttrSOAP11Test2");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       props.setProperty("TESTNAME", "encodingStyleAttrSOAP11Test2");
       props.setProperty("SOAPVERSION", "soap11");
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
@@ -158,7 +160,7 @@ public class URLClient {
         throw new Exception("encodingStyleAttrSOAP11Test2 failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("encodingStyleAttrSOAP11Test2 failed", e);
     }
@@ -178,15 +180,15 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("noTrailingBlockBodySOAP11Test");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"noTrailingBlockBodySOAP11Test");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       props.setProperty("TESTNAME", "noTrailingBlockBodySOAP11Test");
       props.setProperty("SOAPVERSION", "soap11");
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
@@ -195,7 +197,7 @@ public class URLClient {
         throw new Exception("noTrailingBlockBodySOAP11Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("noTrailingBlockBodySOAP11Test failed", e);
     }
@@ -215,15 +217,15 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("enforcedQNameBodyElemSOAP11Test");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"enforcedQNameBodyElemSOAP11Test");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       props.setProperty("TESTNAME", "enforcedQNameBodyElemSOAP11Test");
       props.setProperty("SOAPVERSION", "soap11");
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
@@ -232,7 +234,7 @@ public class URLClient {
         throw new Exception("enforcedQNameBodyElemSOAP11Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("enforcedQNameBodyElemSOAP11Test failed", e);
     }
@@ -252,15 +254,15 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("encodingStyleAttrSOAP12Test1");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"encodingStyleAttrSOAP12Test1");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       props.setProperty("TESTNAME", "encodingStyleAttrSOAP12Test1");
       props.setProperty("SOAPVERSION", "soap12");
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
@@ -269,7 +271,7 @@ public class URLClient {
         throw new Exception("encodingStyleAttrSOAP12Test1 failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("encodingStyleAttrSOAP12Test1 failed", e);
     }
@@ -289,15 +291,15 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("encodingStyleAttrSOAP12Test2");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"encodingStyleAttrSOAP12Test2");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       props.setProperty("TESTNAME", "encodingStyleAttrSOAP12Test2");
       props.setProperty("SOAPVERSION", "soap12");
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
@@ -306,7 +308,7 @@ public class URLClient {
         throw new Exception("encodingStyleAttrSOAP12Test2 failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("encodingStyleAttrSOAP12Test2 failed", e);
     }
@@ -326,15 +328,15 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("noTrailingBlockBodySOAP12Test");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"noTrailingBlockBodySOAP12Test");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       props.setProperty("TESTNAME", "noTrailingBlockBodySOAP12Test");
       props.setProperty("SOAPVERSION", "soap12");
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
@@ -343,7 +345,7 @@ public class URLClient {
         throw new Exception("noTrailingBlockBodySOAP12Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("noTrailingBlockBodySOAP12Test failed", e);
     }
@@ -364,19 +366,19 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("enforcedQNameHdrElemTest1");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"enforcedQNameHdrElemTest1");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "enforcedQNameHdrElemTest1");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -385,7 +387,7 @@ public class URLClient {
         throw new Exception("enforcedQNameHdrElemTest1 failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("enforcedQNameHdrElemTest1 failed", e);
     }
@@ -405,19 +407,19 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("enforcedQNameHdrElemTest2");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"enforcedQNameHdrElemTest2");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
+        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
         props.setProperty("TESTNAME", "enforcedQNameHdrElemTest2");
         if (i == 0)
           props.setProperty("SOAPVERSION", "soap11");
         else
           props.setProperty("SOAPVERSION", "soap12");
         urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
+        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
         Properties resProps = TestUtil.getResponseProperties(urlConn);
         if (!resProps.getProperty("TESTRESULT").equals("pass"))
           pass = false;
@@ -427,7 +429,7 @@ public class URLClient {
         throw new Exception("enforcedQNameHdrElemTest2 failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("enforcedQNameHdrElemTest2 failed", e);
     }
@@ -447,15 +449,15 @@ public class URLClient {
     try {
       boolean pass = true;
 
-      TestUtil.logMsg("enforcedQNameBodyElemSOAP12Test");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"enforcedQNameBodyElemSOAP12Test");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
+      logger.log(Logger.Level.INFO,url.toString());
       props.setProperty("TESTNAME", "enforcedQNameBodyElemSOAP12Test");
       props.setProperty("SOAPVERSION", "soap12");
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
@@ -464,13 +466,13 @@ public class URLClient {
         throw new Exception("enforcedQNameBodyElemSOAP12Test failed");
 
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("enforcedQNameBodyElemSOAP12Test failed", e);
     }
   }
 
   public void cleanup() throws Exception {
-    logMsg("cleanup ok");
+    logger.log(Logger.Level.INFO,"cleanup ok");
   }
 }

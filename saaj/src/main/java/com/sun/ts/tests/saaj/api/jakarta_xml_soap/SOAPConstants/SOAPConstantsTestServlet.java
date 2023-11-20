@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConstants;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import javax.xml.namespace.QName;
@@ -45,6 +46,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SOAPConstantsTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SOAPConstantsTestServlet.class.getName());
+
   private String EXP_DEFAULT_SOAP_PROTOCOL = "SOAP 1.1 Protocol";
 
   private String EXP_SOAP_1_1_Protocol = "SOAP 1.1 Protocol";
@@ -115,25 +119,25 @@ public class SOAPConstantsTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
     // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     body = envelope.getBody();
   }
 
@@ -142,7 +146,7 @@ public class SOAPConstantsTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("SOAPConstantsTest")) {
-      TestUtil.logMsg("Starting SOAPConstantsTest");
+      logger.log(Logger.Level.INFO,"Starting SOAPConstantsTest");
       SOAPConstantsTest(req, res);
     } else {
       throw new ServletException(
@@ -182,164 +186,160 @@ public class SOAPConstantsTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Dumping SOAP constants");
-      TestUtil.logMsg("SOAP_1_1_PROTOCOL=" + SOAPConstants.SOAP_1_1_PROTOCOL);
-      TestUtil.logMsg("SOAP_1_2_PROTOCOL=" + SOAPConstants.SOAP_1_2_PROTOCOL);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,"Dumping SOAP constants");
+      logger.log(Logger.Level.INFO,"SOAP_1_1_PROTOCOL=" + SOAPConstants.SOAP_1_1_PROTOCOL);
+      logger.log(Logger.Level.INFO,"SOAP_1_2_PROTOCOL=" + SOAPConstants.SOAP_1_2_PROTOCOL);
+      logger.log(Logger.Level.INFO,
           "DEFAULT_SOAP_PROTOCOL=" + SOAPConstants.DEFAULT_SOAP_PROTOCOL);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "DYNAMIC_SOAP_PROTOCOL=" + SOAPConstants.DYNAMIC_SOAP_PROTOCOL);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "SOAP_1_1_CONTENT_TYPE=" + SOAPConstants.SOAP_1_1_CONTENT_TYPE);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "SOAP_1_2_CONTENT_TYPE=" + SOAPConstants.SOAP_1_2_CONTENT_TYPE);
-      TestUtil
-          .logMsg("URI_NS_SOAP_ENCODING=" + SOAPConstants.URI_NS_SOAP_ENCODING);
-      TestUtil
-          .logMsg("URI_NS_SOAP_ENVELOPE=" + SOAPConstants.URI_NS_SOAP_ENVELOPE);
-      TestUtil
-          .logMsg("URI_SOAP_ACTOR_NEXT=" + SOAPConstants.URI_SOAP_ACTOR_NEXT);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,"URI_NS_SOAP_ENCODING=" + SOAPConstants.URI_NS_SOAP_ENCODING);
+      logger.log(Logger.Level.INFO,"URI_NS_SOAP_ENVELOPE=" + SOAPConstants.URI_NS_SOAP_ENVELOPE);
+      logger.log(Logger.Level.INFO,"URI_SOAP_ACTOR_NEXT=" + SOAPConstants.URI_SOAP_ACTOR_NEXT);
+      logger.log(Logger.Level.INFO,
           "URI_NS_SOAP_1_1_ENVELOPE=" + SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "URI_NS_SOAP_1_2_ENCODING=" + SOAPConstants.URI_NS_SOAP_1_2_ENCODING);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "URI_NS_SOAP_1_2_ENVELOPE=" + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "URI_SOAP_1_2_ROLE_NEXT=" + SOAPConstants.URI_SOAP_1_2_ROLE_NEXT);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "URI_SOAP_1_2_ROLE_NONE=" + SOAPConstants.URI_SOAP_1_2_ROLE_NONE);
-      TestUtil.logMsg("URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER="
+      logger.log(Logger.Level.INFO,"URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER="
           + SOAPConstants.URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER);
-      TestUtil.logMsg("SOAP_ENV_PREFIX=" + SOAPConstants.SOAP_ENV_PREFIX);
-      TestUtil.logMsg("SOAP_DATAENCODINGUNKNOWN_FAULT="
+      logger.log(Logger.Level.INFO,"SOAP_ENV_PREFIX=" + SOAPConstants.SOAP_ENV_PREFIX);
+      logger.log(Logger.Level.INFO,"SOAP_DATAENCODINGUNKNOWN_FAULT="
           + SOAPConstants.SOAP_DATAENCODINGUNKNOWN_FAULT);
-      TestUtil.logMsg("SOAP_MUSTUNDERSTAND_FAULT="
+      logger.log(Logger.Level.INFO,"SOAP_MUSTUNDERSTAND_FAULT="
           + SOAPConstants.SOAP_MUSTUNDERSTAND_FAULT);
-      TestUtil
-          .logMsg("SOAP_RECEIVER_FAULT=" + SOAPConstants.SOAP_RECEIVER_FAULT);
-      TestUtil.logMsg("SOAP_SENDER_FAULT=" + SOAPConstants.SOAP_SENDER_FAULT);
-      TestUtil.logMsg("SOAP_VERSIONMISMATCH_FAULT="
+      logger.log(Logger.Level.INFO,"SOAP_RECEIVER_FAULT=" + SOAPConstants.SOAP_RECEIVER_FAULT);
+      logger.log(Logger.Level.INFO,"SOAP_SENDER_FAULT=" + SOAPConstants.SOAP_SENDER_FAULT);
+      logger.log(Logger.Level.INFO,"SOAP_VERSIONMISMATCH_FAULT="
           + SOAPConstants.SOAP_VERSIONMISMATCH_FAULT);
-      TestUtil.logMsg("Verifying SOAP constants");
+      logger.log(Logger.Level.INFO,"Verifying SOAP constants");
       if (!SOAPConstants.SOAP_1_1_CONTENT_TYPE
           .equals(EXP_SOAP_1_1_CONTENT_TYPE)) {
-        TestUtil.logErr("SOAP_1_1_CONTENT_TYPE has wrong value");
-        TestUtil.logErr("Expected: " + EXP_SOAP_1_1_CONTENT_TYPE);
-        TestUtil.logErr("Received: " + SOAPConstants.SOAP_1_1_CONTENT_TYPE);
+        logger.log(Logger.Level.ERROR,"SOAP_1_1_CONTENT_TYPE has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_SOAP_1_1_CONTENT_TYPE);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.SOAP_1_1_CONTENT_TYPE);
         pass = false;
       }
       if (!SOAPConstants.URI_NS_SOAP_ENCODING
           .equals(EXP_URI_NS_SOAP_ENCODING)) {
-        TestUtil.logErr("URI_NS_SOAP_ENCODING has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_NS_SOAP_ENCODING);
-        TestUtil.logErr("Received: " + SOAPConstants.URI_NS_SOAP_ENCODING);
+        logger.log(Logger.Level.ERROR,"URI_NS_SOAP_ENCODING has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_NS_SOAP_ENCODING);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.URI_NS_SOAP_ENCODING);
         pass = false;
       }
       if (!SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE
           .equals(EXP_URI_NS_SOAP_1_1_ENVELOPE)) {
-        TestUtil.logErr("URI_NS_SOAP_1_1_ENVELOPE has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_NS_SOAP_1_1_ENVELOPE);
-        TestUtil.logErr("Received: " + SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE);
+        logger.log(Logger.Level.ERROR,"URI_NS_SOAP_1_1_ENVELOPE has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_NS_SOAP_1_1_ENVELOPE);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.URI_NS_SOAP_1_1_ENVELOPE);
         pass = false;
       }
       if (!SOAPConstants.URI_NS_SOAP_ENVELOPE
           .equals(EXP_URI_NS_SOAP_ENVELOPE)) {
-        TestUtil.logErr("URI_NS_SOAP_ENVELOPE has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_NS_SOAP_ENVELOPE);
-        TestUtil.logErr("Received: " + SOAPConstants.URI_NS_SOAP_ENVELOPE);
+        logger.log(Logger.Level.ERROR,"URI_NS_SOAP_ENVELOPE has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_NS_SOAP_ENVELOPE);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.URI_NS_SOAP_ENVELOPE);
         pass = false;
       }
       if (!SOAPConstants.URI_SOAP_ACTOR_NEXT.equals(EXP_URI_SOAP_ACTOR_NEXT)) {
-        TestUtil.logErr("URI_SOAP_ACTOR_NEXT has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_SOAP_ACTOR_NEXT);
-        TestUtil.logErr("Received: " + SOAPConstants.URI_SOAP_ACTOR_NEXT);
+        logger.log(Logger.Level.ERROR,"URI_SOAP_ACTOR_NEXT has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_SOAP_ACTOR_NEXT);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.URI_SOAP_ACTOR_NEXT);
         pass = false;
       }
       if (!SOAPConstants.SOAP_1_2_CONTENT_TYPE
           .equals(EXP_SOAP_1_2_CONTENT_TYPE)) {
-        TestUtil.logErr("SOAP_1_2_CONTENT_TYPE has wrong value");
-        TestUtil.logErr("Expected: " + EXP_SOAP_1_2_CONTENT_TYPE);
-        TestUtil.logErr("Received: " + SOAPConstants.SOAP_1_2_CONTENT_TYPE);
+        logger.log(Logger.Level.ERROR,"SOAP_1_2_CONTENT_TYPE has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_SOAP_1_2_CONTENT_TYPE);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.SOAP_1_2_CONTENT_TYPE);
         pass = false;
       }
       if (!SOAPConstants.URI_NS_SOAP_1_2_ENCODING
           .equals(EXP_URI_NS_SOAP_1_2_ENCODING)) {
-        TestUtil.logErr("URI_NS_SOAP_1_2_ENCODING has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_NS_SOAP_1_2_ENCODING);
-        TestUtil.logErr("Received: " + SOAPConstants.URI_NS_SOAP_1_2_ENCODING);
+        logger.log(Logger.Level.ERROR,"URI_NS_SOAP_1_2_ENCODING has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_NS_SOAP_1_2_ENCODING);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.URI_NS_SOAP_1_2_ENCODING);
         pass = false;
       }
       if (!SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE
           .equals(EXP_URI_NS_SOAP_1_2_ENVELOPE)) {
-        TestUtil.logErr("URI_NS_SOAP_1_2_ENVELOPE has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_NS_SOAP_1_2_ENVELOPE);
-        TestUtil.logErr("Received: " + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
+        logger.log(Logger.Level.ERROR,"URI_NS_SOAP_1_2_ENVELOPE has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_NS_SOAP_1_2_ENVELOPE);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
         pass = false;
       }
       if (!SOAPConstants.URI_SOAP_1_2_ROLE_NEXT
           .equals(EXP_URI_SOAP_1_2_ROLE_NEXT)) {
-        TestUtil.logErr("URI_SOAP_1_2_ROLE_NEXT has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_SOAP_1_2_ROLE_NEXT);
-        TestUtil.logErr("Received: " + SOAPConstants.URI_SOAP_1_2_ROLE_NEXT);
+        logger.log(Logger.Level.ERROR,"URI_SOAP_1_2_ROLE_NEXT has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_SOAP_1_2_ROLE_NEXT);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.URI_SOAP_1_2_ROLE_NEXT);
         pass = false;
       }
       if (!SOAPConstants.URI_SOAP_1_2_ROLE_NONE
           .equals(EXP_URI_SOAP_1_2_ROLE_NONE)) {
-        TestUtil.logErr("URI_SOAP_1_2_ROLE_NONE has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_SOAP_1_2_ROLE_NONE);
-        TestUtil.logErr("Received: " + SOAPConstants.URI_SOAP_1_2_ROLE_NONE);
+        logger.log(Logger.Level.ERROR,"URI_SOAP_1_2_ROLE_NONE has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_SOAP_1_2_ROLE_NONE);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.URI_SOAP_1_2_ROLE_NONE);
         pass = false;
       }
       if (!SOAPConstants.URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER
           .equals(EXP_URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER)) {
-        TestUtil.logErr("URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER has wrong value");
-        TestUtil.logErr("Expected: " + EXP_URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER);
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,"URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER);
+        logger.log(Logger.Level.ERROR,
             "Received: " + SOAPConstants.URI_SOAP_1_2_ROLE_ULTIMATE_RECEIVER);
         pass = false;
       }
       if (!SOAPConstants.SOAP_DATAENCODINGUNKNOWN_FAULT
           .equals(EXP_DATAENCODINGUNKNOWN_FAULT)) {
-        TestUtil.logErr("SOAP_DATAENCODINGUNKNOWN_FAULT has wrong value");
-        TestUtil.logErr("Expected: " + EXP_DATAENCODINGUNKNOWN_FAULT);
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,"SOAP_DATAENCODINGUNKNOWN_FAULT has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_DATAENCODINGUNKNOWN_FAULT);
+        logger.log(Logger.Level.ERROR,
             "Received: " + SOAPConstants.SOAP_DATAENCODINGUNKNOWN_FAULT);
         pass = false;
       }
       if (!SOAPConstants.SOAP_MUSTUNDERSTAND_FAULT
           .equals(EXP_MUSTUNDERSTAND_FAULT)) {
-        TestUtil.logErr("SOAP_MUSTUNDERSTAND_FAULT has wrong value");
-        TestUtil.logErr("Expected: " + EXP_MUSTUNDERSTAND_FAULT);
-        TestUtil.logErr("Received: " + SOAPConstants.SOAP_MUSTUNDERSTAND_FAULT);
+        logger.log(Logger.Level.ERROR,"SOAP_MUSTUNDERSTAND_FAULT has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_MUSTUNDERSTAND_FAULT);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.SOAP_MUSTUNDERSTAND_FAULT);
         pass = false;
       }
       if (!SOAPConstants.SOAP_RECEIVER_FAULT.equals(EXP_RECEIVER_FAULT)) {
-        TestUtil.logErr("SOAP_RECEIVER_FAULT has wrong value");
-        TestUtil.logErr("Expected: " + EXP_RECEIVER_FAULT);
-        TestUtil.logErr("Received: " + SOAPConstants.SOAP_RECEIVER_FAULT);
+        logger.log(Logger.Level.ERROR,"SOAP_RECEIVER_FAULT has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_RECEIVER_FAULT);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.SOAP_RECEIVER_FAULT);
         pass = false;
       }
       if (!SOAPConstants.SOAP_SENDER_FAULT.equals(EXP_SENDER_FAULT)) {
-        TestUtil.logErr("SOAP_SENDER_FAULT has wrong value");
-        TestUtil.logErr("Expected: " + EXP_SENDER_FAULT);
-        TestUtil.logErr("Received: " + SOAPConstants.SOAP_SENDER_FAULT);
+        logger.log(Logger.Level.ERROR,"SOAP_SENDER_FAULT has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_SENDER_FAULT);
+        logger.log(Logger.Level.ERROR,"Received: " + SOAPConstants.SOAP_SENDER_FAULT);
         pass = false;
       }
       if (!SOAPConstants.SOAP_VERSIONMISMATCH_FAULT
           .equals(EXP_VERSIONMISMATCH_FAULT)) {
-        TestUtil.logErr("SOAP_VERSIONMISMATCH_FAULT has wrong value");
-        TestUtil.logErr("Expected: " + EXP_VERSIONMISMATCH_FAULT);
+        logger.log(Logger.Level.ERROR,"SOAP_VERSIONMISMATCH_FAULT has wrong value");
+        logger.log(Logger.Level.ERROR,"Expected: " + EXP_VERSIONMISMATCH_FAULT);
         TestUtil
             .logErr("Received: " + SOAPConstants.SOAP_VERSIONMISMATCH_FAULT);
         pass = false;
       }
       if (pass)
-        TestUtil.logMsg("All SOAP constants are correct");
+        logger.log(Logger.Level.INFO,"All SOAP constants are correct");
       else
-        TestUtil.logErr("Some SOAP constants are incorrect");
+        logger.log(Logger.Level.ERROR,"Some SOAP constants are incorrect");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

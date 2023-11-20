@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.Detail;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -67,6 +68,9 @@ public class DetailTestServlet extends HttpServlet {
   private SOAPBodyElement bodye = null;
 
   private SOAPElement se = null;
+  
+  private static final Logger logger = (Logger) System.getLogger(DetailTestServlet.class.getName());
+
 
   private void setup() throws Exception {
     TestUtil.logTrace("setup");
@@ -74,25 +78,25 @@ public class DetailTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
     // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
     // Retrieve the soap body from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     body = envelope.getBody();
   }
 
@@ -101,13 +105,13 @@ public class DetailTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("addDetailEntryTest1")) {
-      TestUtil.logMsg("Starting addDetailEntryTest1");
+      logger.log(Logger.Level.INFO,"Starting addDetailEntryTest1");
       addDetailEntryTest1(req, res);
     } else if (testname.equals("addDetailEntryTest2")) {
-      TestUtil.logMsg("Starting addDetailEntryTest2");
+      logger.log(Logger.Level.INFO,"Starting addDetailEntryTest2");
       addDetailEntryTest2(req, res);
     } else if (testname.equals("getDetailEntriesTest")) {
-      TestUtil.logMsg("Starting getDetailEntriesTest");
+      logger.log(Logger.Level.INFO,"Starting getDetailEntriesTest");
       getDetailEntriesTest(req, res);
     } else {
       throw new ServletException(
@@ -146,22 +150,22 @@ public class DetailTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Add a SOAPFault object to the SOAPBody");
+      logger.log(Logger.Level.INFO,"Add a SOAPFault object to the SOAPBody");
       SOAPFault sf = body.addFault();
-      TestUtil.logMsg("Add a Detail object to the SOAPFault object");
+      logger.log(Logger.Level.INFO,"Add a Detail object to the SOAPFault object");
       Detail d = sf.addDetail();
       Name name = envelope.createName("GetLastTradePrice", "WOMBAT",
           "http://www.wombat.org/trader");
-      TestUtil.logMsg("Add a DetailEntry object to the Detail object");
+      logger.log(Logger.Level.INFO,"Add a DetailEntry object to the Detail object");
       DetailEntry de = d.addDetailEntry(name);
-      TestUtil.logMsg("Successfully created DetailEntry object");
+      logger.log(Logger.Level.INFO,"Successfully created DetailEntry object");
       if (de == null) {
-        TestUtil.logErr("addDetailEntry() returned null");
+        logger.log(Logger.Level.ERROR,"addDetailEntry() returned null");
         pass = false;
       } else
-        TestUtil.logMsg("Successfully created DetailEntry object");
+        logger.log(Logger.Level.INFO,"Successfully created DetailEntry object");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -184,22 +188,22 @@ public class DetailTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Add a SOAPFault object to the SOAPBody");
+      logger.log(Logger.Level.INFO,"Add a SOAPFault object to the SOAPBody");
       SOAPFault sf = body.addFault();
-      TestUtil.logMsg("Add a Detail object to the SOAPFault object");
+      logger.log(Logger.Level.INFO,"Add a Detail object to the SOAPFault object");
       Detail d = sf.addDetail();
       QName name = new QName("http://www.wombat.org/trader",
           "GetLastTradePrice", "WOMBAT");
-      TestUtil.logMsg("Add a DetailEntry object to the Detail object");
+      logger.log(Logger.Level.INFO,"Add a DetailEntry object to the Detail object");
       DetailEntry de = d.addDetailEntry(name);
-      TestUtil.logMsg("Successfully created DetailEntry object");
+      logger.log(Logger.Level.INFO,"Successfully created DetailEntry object");
       if (de == null) {
-        TestUtil.logErr("addDetailEntry() returned null");
+        logger.log(Logger.Level.ERROR,"addDetailEntry() returned null");
         pass = false;
       } else
-        TestUtil.logMsg("Successfully created DetailEntry object");
+        logger.log(Logger.Level.INFO,"Successfully created DetailEntry object");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -222,51 +226,51 @@ public class DetailTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Add a SOAPFault object to the SOAPBody");
+      logger.log(Logger.Level.INFO,"Add a SOAPFault object to the SOAPBody");
       SOAPFault sf = body.addFault();
-      TestUtil.logMsg("Add a Detail object to the SOAPFault object");
+      logger.log(Logger.Level.INFO,"Add a Detail object to the SOAPFault object");
       Detail d = sf.addDetail();
       Name name1 = envelope.createName("GetLastTradePrice", "WOMBAT",
           "http://www.wombat.org/trader");
       Name name2 = envelope.createName("GetCurrentTradePrice", "WOMBAT",
           "http://www.wombat.org/trader");
-      TestUtil.logMsg("Add DetailEntry object GetLastTradePrice");
+      logger.log(Logger.Level.INFO,"Add DetailEntry object GetLastTradePrice");
       d.addDetailEntry(name1);
-      TestUtil.logMsg("Add DetailEntry object GetCurrentTradePrice");
+      logger.log(Logger.Level.INFO,"Add DetailEntry object GetCurrentTradePrice");
       d.addDetailEntry(name2);
-      TestUtil.logMsg("Get iterator of DetailEntry objects (should get 2)");
+      logger.log(Logger.Level.INFO,"Get iterator of DetailEntry objects (should get 2)");
       Iterator i = d.getDetailEntries();
       int count = SOAP_Util.getIteratorCount(i);
       i = d.getDetailEntries();
       if (count != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Wrong iterator count returned of " + count + ", expected 2");
         pass = false;
       } else {
         boolean foundName1 = false;
         boolean foundName2 = false;
-        TestUtil.logMsg("Verify the DetailEntry objects");
+        logger.log(Logger.Level.INFO,"Verify the DetailEntry objects");
         while (i.hasNext()) {
           DetailEntry de = (DetailEntry) i.next();
-          TestUtil.logMsg("Got DetailEntry = " + de.toString());
+          logger.log(Logger.Level.INFO,"Got DetailEntry = " + de.toString());
           String s = de.getElementName().getLocalName();
           if (s.equals("GetLastTradePrice"))
             foundName1 = true;
           else if (s.equals("GetCurrentTradePrice"))
             foundName2 = true;
           else {
-            TestUtil.logErr("Unexpected DetailEntry of " + s);
+            logger.log(Logger.Level.ERROR,"Unexpected DetailEntry of " + s);
             pass = false;
           }
         }
         if (!foundName1 || !foundName2) {
-          TestUtil.logErr("Did not find all expected DetailEntry objects");
+          logger.log(Logger.Level.ERROR,"Did not find all expected DetailEntry objects");
           pass = false;
         }
 
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

@@ -26,9 +26,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.xml.soap.MessageFactory;
 import jakarta.xml.soap.SOAPConnection;
@@ -38,6 +37,9 @@ import jakarta.xml.soap.SOAPFactory;
 import jakarta.xml.soap.SOAPMessage;
 
 public final class SOAP_Util_Client {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SOAP_Util_Client.class.getName());
+
   public static final String SOAP11 = "soap11";
 
   public static final String SOAP12 = "soap12";
@@ -101,9 +103,9 @@ public final class SOAP_Util_Client {
     System.out.println("SOAP_Util_Client:setSOAPVersion");
     soapVersion = s;
     if (soapVersion == null || soapVersion.equals(SOAP_Util_Client.SOAP11))
-      TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+      logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
     else
-      TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+      logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
   }
 
   public static SOAPConnection openSOAPConnection() throws Exception {
@@ -203,16 +205,16 @@ public final class SOAP_Util_Client {
   }
 
   public static void dumpSOAPMessage(SOAPMessage msg) {
-    TestUtil.logMsg("***** Begin Dumping SOAPMessage *****");
+    logger.log(Logger.Level.INFO,"***** Begin Dumping SOAPMessage *****");
     try {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       msg.writeTo(baos);
-      TestUtil.logMsg(baos.toString());
+      logger.log(Logger.Level.INFO,baos.toString());
     } catch (Exception e) {
       System.err.println("Exception occurred: " + e);
       e.printStackTrace();
     }
-    TestUtil.logMsg("***** Done Dumping SOAPMessage *****");
+    logger.log(Logger.Level.INFO,"***** Done Dumping SOAPMessage *****");
   }
 
   public static String returnSOAPMessageAsString(SOAPMessage msg) {
@@ -230,8 +232,7 @@ public final class SOAP_Util_Client {
   }
 
   public static void dumpSOAPMessageWOA(SOAPMessage msg) {
-    TestUtil
-        .logMsg("***** Begin Dumping SOAPMessage Without Attachments *****");
+    logger.log(Logger.Level.INFO,"***** Begin Dumping SOAPMessage Without Attachments *****");
     try {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       msg.writeTo(baos);
@@ -241,11 +242,11 @@ public final class SOAP_Util_Client {
       tmpMsg.saveChanges();
       baos = new ByteArrayOutputStream();
       tmpMsg.writeTo(baos);
-      TestUtil.logMsg(baos.toString());
+      logger.log(Logger.Level.INFO,baos.toString());
     } catch (Exception e) {
       System.err.println("Exception occurred: " + e);
       e.printStackTrace();
     }
-    TestUtil.logMsg("***** Done Dumping SOAPMessage Without Attachments *****");
+    logger.log(Logger.Level.INFO,"***** Done Dumping SOAPMessage Without Attachments *****");
   }
 }

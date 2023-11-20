@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.System.Logger;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -49,6 +50,9 @@ import com.sun.ts.lib.util.TestUtil;
 import jakarta.xml.soap.SOAPConstants;
 
 public final class XMLUtils {
+	
+	  private static final Logger logger = (Logger) System.getLogger(XMLUtils.class.getName());
+
   private static TransformerFactory tfactory = null;
 
   private static DocumentBuilderFactory dbfactory = null;
@@ -139,9 +143,9 @@ public final class XMLUtils {
 
           public void warning(SAXParseException e) throws SAXParseException {
             if (tckmode) {
-              TestUtil.logMsg("** Warning, line " + e.getLineNumber() + ", uri "
+              logger.log(Logger.Level.INFO,"** Warning, line " + e.getLineNumber() + ", uri "
                   + e.getSystemId());
-              TestUtil.logMsg("   " + e.getMessage());
+              logger.log(Logger.Level.INFO,"   " + e.getMessage());
             } else {
               System.out.println("** Warning, line " + e.getLineNumber()
                   + ", uri " + e.getSystemId());
@@ -161,8 +165,8 @@ public final class XMLUtils {
         XmlDumpDOMNodes(XMLUtils.getRootElement());
     } catch (SAXParseException e) {
       if (tckmode) {
-        TestUtil.logErr("SAXParseException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"SAXParseException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("SAXParseException");
         System.err.println("  " + e.getMessage());
@@ -176,8 +180,8 @@ public final class XMLUtils {
       errors = true;
     } catch (SAXException e) {
       if (tckmode) {
-        TestUtil.logErr("SAXException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"SAXException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("SAXException");
         System.err.println("  " + e.getMessage());
@@ -245,9 +249,9 @@ public final class XMLUtils {
 
           public void warning(SAXParseException e) throws SAXParseException {
             if (tckmode) {
-              TestUtil.logMsg("** Warning, line " + e.getLineNumber() + ", uri "
+              logger.log(Logger.Level.INFO,"** Warning, line " + e.getLineNumber() + ", uri "
                   + e.getSystemId());
-              TestUtil.logMsg("   " + e.getMessage());
+              logger.log(Logger.Level.INFO,"   " + e.getMessage());
             } else {
               System.out.println("** Warning, line " + e.getLineNumber()
                   + ", uri " + e.getSystemId());
@@ -260,8 +264,8 @@ public final class XMLUtils {
       transformer = tfactory.newTransformer();
     } catch (TransformerConfigurationException e) {
       if (tckmode) {
-        TestUtil.logErr("TransformerConfigurationException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"TransformerConfigurationException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("TransformerConfigurationException");
         System.err.println("  " + e.getMessage());
@@ -274,8 +278,8 @@ public final class XMLUtils {
       errors = true;
     } catch (Exception e) {
       if (tckmode) {
-        TestUtil.logErr("Exception");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"Exception");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
         TestUtil.printStackTrace(e);
       } else {
         System.err.println("Exception");
@@ -299,8 +303,8 @@ public final class XMLUtils {
       faultElement = (Element) node;
     } catch (SAXParseException e) {
       if (tckmode) {
-        TestUtil.logErr("SAXParseException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"SAXParseException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("SAXParseException");
         System.err.println("  " + e.getMessage());
@@ -314,8 +318,8 @@ public final class XMLUtils {
       errors = true;
     } catch (SAXException e) {
       if (tckmode) {
-        TestUtil.logErr("SAXException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"SAXException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("SAXException");
         System.err.println("  " + e.getMessage());
@@ -329,8 +333,8 @@ public final class XMLUtils {
       errors = true;
     } catch (IOException e) {
       if (tckmode) {
-        TestUtil.logErr("IOException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"IOException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
         TestUtil.printStackTrace(e);
       } else {
         System.err.println("IOException");
@@ -340,8 +344,8 @@ public final class XMLUtils {
       errors = true;
     } catch (Exception e) {
       if (tckmode) {
-        TestUtil.logErr("Exception");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"Exception");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
         TestUtil.printStackTrace(e);
       } else {
         System.err.println("Exception");
@@ -360,8 +364,8 @@ public final class XMLUtils {
       rootElement = document.getDocumentElement();
     } catch (SAXParseException e) {
       if (tckmode) {
-        TestUtil.logErr("SAXParseException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"SAXParseException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("SAXParseException");
         System.err.println("  " + e.getMessage());
@@ -375,8 +379,8 @@ public final class XMLUtils {
       errors = true;
     } catch (SAXException e) {
       if (tckmode) {
-        TestUtil.logErr("SAXException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"SAXException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("SAXException");
         System.err.println("  " + e.getMessage());
@@ -390,8 +394,8 @@ public final class XMLUtils {
       errors = true;
     } catch (IOException e) {
       if (tckmode) {
-        TestUtil.logErr("IOException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"IOException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
         TestUtil.printStackTrace(e);
       } else {
         System.err.println("IOException");
@@ -401,8 +405,8 @@ public final class XMLUtils {
       errors = true;
     } catch (Exception e) {
       if (tckmode) {
-        TestUtil.logErr("Exception");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"Exception");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
         TestUtil.printStackTrace(e);
       } else {
         System.err.println("Exception");
@@ -422,8 +426,8 @@ public final class XMLUtils {
       transformer.transform(source, result);
     } catch (TransformerConfigurationException e) {
       if (tckmode) {
-        TestUtil.logErr("TransformerConfigurationException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"TransformerConfigurationException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("TransformerConfigurationException");
         System.err.println("  " + e.getMessage());
@@ -436,8 +440,8 @@ public final class XMLUtils {
       errors = true;
     } catch (TransformerException e) {
       if (tckmode) {
-        TestUtil.logErr("TransformerException");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"TransformerException");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
       } else {
         System.err.println("TransformerException");
         System.err.println("  " + e.getMessage());
@@ -451,8 +455,8 @@ public final class XMLUtils {
       errors = true;
     } catch (Exception e) {
       if (tckmode) {
-        TestUtil.logErr("Exception");
-        TestUtil.logErr("  " + e.getMessage());
+        logger.log(Logger.Level.ERROR,"Exception");
+        logger.log(Logger.Level.ERROR,"  " + e.getMessage());
         TestUtil.printStackTrace(e);
       } else {
         System.err.println("Exception");
@@ -488,7 +492,7 @@ public final class XMLUtils {
         String attValue = attnode.getNodeValue();
         setSpaces();
         if (tckmode)
-          TestUtil.logMsg(spacesString + "<Attribute>" + attName + "="
+          logger.log(Logger.Level.INFO,spacesString + "<Attribute>" + attName + "="
               + attValue + "</Attribute>");
         else
           System.out.print(spacesString + "<Attribute>" + attName + "="
@@ -508,18 +512,18 @@ public final class XMLUtils {
   public static void XmlDumpDOMNodes(Element element) {
     spaces = 0;
     if (tckmode)
-      TestUtil.logMsg("Begin Dumping DOM Nodes");
+      logger.log(Logger.Level.INFO,"Begin Dumping DOM Nodes");
     else
       System.out.println("Begin Dumping DOM Nodes");
     String rootNodeName = element.getNodeName();
     if (tckmode)
-      TestUtil.logMsg("<RootElement>" + rootNodeName + "</RootElement>");
+      logger.log(Logger.Level.INFO,"<RootElement>" + rootNodeName + "</RootElement>");
     else
       System.out.print("<RootElement>" + rootNodeName + "</RootElement>\n");
     spaces += 2;
     XmlDumpDOMNodes_(element);
     if (tckmode)
-      TestUtil.logMsg("Done Dumping DOM Nodes");
+      logger.log(Logger.Level.INFO,"Done Dumping DOM Nodes");
     else
       System.out.println("Done Dumping DOM Nodes");
   }
@@ -527,18 +531,18 @@ public final class XMLUtils {
   public static void XmlDumpDOMNodes(Node node) {
     spaces = 0;
     if (tckmode)
-      TestUtil.logMsg("Begin Dumping DOM Nodes");
+      logger.log(Logger.Level.INFO,"Begin Dumping DOM Nodes");
     else
       System.out.println("Begin Dumping DOM Nodes");
     String rootNodeName = node.getNodeName();
     if (tckmode)
-      TestUtil.logMsg("<RootElement>" + rootNodeName + "</RootElement>");
+      logger.log(Logger.Level.INFO,"<RootElement>" + rootNodeName + "</RootElement>");
     else
       System.out.print("<RootElement>" + rootNodeName + "</RootElement>\n");
     spaces += 2;
     XmlDumpDOMNodes_((Element) node);
     if (tckmode)
-      TestUtil.logMsg("Done Dumping DOM Nodes");
+      logger.log(Logger.Level.INFO,"Done Dumping DOM Nodes");
     else
       System.out.println("Done Dumping DOM Nodes");
   }
@@ -554,7 +558,7 @@ public final class XMLUtils {
       case Node.ATTRIBUTE_NODE:
         setSpaces();
         if (tckmode)
-          TestUtil.logMsg(spacesString + "<Attribute>" + nodeName + "="
+          logger.log(Logger.Level.INFO,spacesString + "<Attribute>" + nodeName + "="
               + nodeValue + "</Attribute>");
         else
           System.out.print(spacesString + "<Attribute>" + nodeName + "="
@@ -562,38 +566,38 @@ public final class XMLUtils {
         break;
       case Node.CDATA_SECTION_NODE:
         if (tckmode)
-          TestUtil.logMsg("<CDATA>" + nodeValue + "</CDATA>");
+          logger.log(Logger.Level.INFO,"<CDATA>" + nodeValue + "</CDATA>");
         else
           System.out.print("<CDATA>" + nodeValue + "</CDATA>\n");
         break;
       case Node.COMMENT_NODE:
         if (tckmode)
-          TestUtil.logMsg("<Comment>" + nodeValue + "</Comment>");
+          logger.log(Logger.Level.INFO,"<Comment>" + nodeValue + "</Comment>");
         else
           System.out.print("<Comment>" + nodeValue + "</Comment>\n");
         break;
       case Node.DOCUMENT_FRAGMENT_NODE:
         if (tckmode)
-          TestUtil.logMsg("<DocumentFragment/>");
+          logger.log(Logger.Level.INFO,"<DocumentFragment/>");
         else
           System.out.print("<DocumentFragment/>\n");
         break;
       case Node.DOCUMENT_NODE:
         if (tckmode)
-          TestUtil.logMsg("<Document/>");
+          logger.log(Logger.Level.INFO,"<Document/>");
         else
           System.out.print("<Document/>\n");
         break;
       case Node.DOCUMENT_TYPE_NODE:
         if (tckmode)
-          TestUtil.logMsg("<DocumentType>" + nodeName + "</DocumentType>");
+          logger.log(Logger.Level.INFO,"<DocumentType>" + nodeName + "</DocumentType>");
         else
           System.out.print("<DocumentType>" + nodeName + "</DocumentType>\n");
         break;
       case Node.ELEMENT_NODE:
         setSpaces();
         if (tckmode)
-          TestUtil.logMsg(spacesString + "<Element>" + nodeName + "</Element>");
+          logger.log(Logger.Level.INFO,spacesString + "<Element>" + nodeName + "</Element>");
         else
           System.out
               .print(spacesString + "<Element>" + nodeName + "</Element>\n");
@@ -602,27 +606,26 @@ public final class XMLUtils {
         break;
       case Node.ENTITY_NODE:
         if (tckmode)
-          TestUtil.logMsg("<Entity>" + nodeValue + "</Entity>");
+          logger.log(Logger.Level.INFO,"<Entity>" + nodeValue + "</Entity>");
         else
           System.out.print("<Entity>" + nodeValue + "</Entity>\n");
         break;
       case Node.ENTITY_REFERENCE_NODE:
         if (tckmode)
-          TestUtil
-              .logMsg("<EntityReference>" + nodeValue + "</EntityReference>");
+          logger.log(Logger.Level.INFO,"<EntityReference>" + nodeValue + "</EntityReference>");
         else
           System.out
               .print("<EntityReference>" + nodeValue + "</EntityReference>\n");
         break;
       case Node.NOTATION_NODE:
         if (tckmode)
-          TestUtil.logMsg("<Notation>" + nodeValue + "</Notation>");
+          logger.log(Logger.Level.INFO,"<Notation>" + nodeValue + "</Notation>");
         else
           System.out.print("<Notation>" + nodeValue + "</Notation>\n");
         break;
       case Node.PROCESSING_INSTRUCTION_NODE:
         if (tckmode)
-          TestUtil.logMsg("<ProcessingInstruction>" + nodeName
+          logger.log(Logger.Level.INFO,"<ProcessingInstruction>" + nodeName
               + "</ProcessingInstruction>");
         else
           System.out.print("<ProcessingInstruction>" + nodeName
@@ -633,14 +636,14 @@ public final class XMLUtils {
         if (!text.equals("")) {
           setSpaces();
           if (tckmode)
-            TestUtil.logMsg(spacesString + "<Text>" + text + "</text>");
+            logger.log(Logger.Level.INFO,spacesString + "<Text>" + text + "</text>");
           else
             System.out.print(spacesString + "<Text>" + text + "</text>\n");
         }
         break;
       default:
         if (tckmode)
-          TestUtil.logMsg("<" + nodeName + ">");
+          logger.log(Logger.Level.INFO,"<" + nodeName + ">");
         else
           System.out.print("<" + nodeName + ">\n");
         break;

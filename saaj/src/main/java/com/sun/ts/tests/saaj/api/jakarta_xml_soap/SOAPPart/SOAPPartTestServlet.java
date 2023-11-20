@@ -23,6 +23,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPPart;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Properties;
@@ -32,6 +33,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPFault.URLClient;
 import com.sun.ts.tests.saaj.common.SOAP_Util;
 
 import jakarta.activation.DataHandler;
@@ -47,6 +49,8 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SOAPPartTestServlet extends HttpServlet {
+	  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -93,7 +97,7 @@ public class SOAPPartTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
@@ -110,27 +114,27 @@ public class SOAPPartTestServlet extends HttpServlet {
 
     // soap 11 envelope
     url = tsurl.getURL("http", host, port, cntxroot + "/attach.xml");
-    TestUtil.logMsg("Get DataHandler to xml attachment: attach.xml");
-    TestUtil.logMsg("URL = " + url);
+    logger.log(Logger.Level.INFO,"Get DataHandler to xml attachment: attach.xml");
+    logger.log(Logger.Level.INFO,"URL = " + url);
     dh = new DataHandler(url);
-    TestUtil.logMsg("Get InputStream of DataHandler");
+    logger.log(Logger.Level.INFO,"Get InputStream of DataHandler");
     in = dh.getInputStream();
-    TestUtil.logMsg("in = " + in);
-    TestUtil.logMsg("Get StreamSource from InputStream");
+    logger.log(Logger.Level.INFO,"in = " + in);
+    logger.log(Logger.Level.INFO,"Get StreamSource from InputStream");
     ssrc = new StreamSource(in);
-    TestUtil.logMsg("ssrc = " + ssrc);
+    logger.log(Logger.Level.INFO,"ssrc = " + ssrc);
 
     // soap 12 envelope
     url2 = tsurl.getURL("http", host, port, cntxroot + "/attach12.xml");
-    TestUtil.logMsg("Get DataHandler to xml attachment: attach12.xml");
-    TestUtil.logMsg("URL = " + url2);
+    logger.log(Logger.Level.INFO,"Get DataHandler to xml attachment: attach12.xml");
+    logger.log(Logger.Level.INFO,"URL = " + url2);
     dh2 = new DataHandler(url2);
-    TestUtil.logMsg("Get InputStream of DataHandler");
+    logger.log(Logger.Level.INFO,"Get InputStream of DataHandler");
     in2 = dh2.getInputStream();
-    TestUtil.logMsg("in2 = " + in2);
-    TestUtil.logMsg("Get StreamSource from InputStream");
+    logger.log(Logger.Level.INFO,"in2 = " + in2);
+    logger.log(Logger.Level.INFO,"Get StreamSource from InputStream");
     ssrc2 = new StreamSource(in2);
-    TestUtil.logMsg("ssrc2 = " + ssrc2);
+    logger.log(Logger.Level.INFO,"ssrc2 = " + ssrc2);
   }
 
   private void dispatch(HttpServletRequest req, HttpServletResponse res)
@@ -139,25 +143,25 @@ public class SOAPPartTestServlet extends HttpServlet {
     soapVersion = SOAP_Util.getHarnessProps().getProperty("SOAPVERSION");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("addMimeHeader1Test")) {
-      TestUtil.logMsg("Starting addMimeHeader1Test");
+      logger.log(Logger.Level.INFO,"Starting addMimeHeader1Test");
       addMimeHeader1Test(req, res);
     } else if (testname.equals("addMimeHeader2Test")) {
-      TestUtil.logMsg("Starting addMimeHeader2Test");
+      logger.log(Logger.Level.INFO,"Starting addMimeHeader2Test");
       addMimeHeader2Test(req, res);
     } else if (testname.equals("addMimeHeader3Test")) {
-      TestUtil.logMsg("Starting addMimeHeader3Test");
+      logger.log(Logger.Level.INFO,"Starting addMimeHeader3Test");
       addMimeHeader3Test(req, res);
     } else if (testname.equals("addMimeHeader4Test")) {
-      TestUtil.logMsg("Starting addMimeHeader4Test");
+      logger.log(Logger.Level.INFO,"Starting addMimeHeader4Test");
       addMimeHeader4Test(req, res);
     } else if (testname.equals("addMimeHeader5Test")) {
-      TestUtil.logMsg("Starting addMimeHeader5Test");
+      logger.log(Logger.Level.INFO,"Starting addMimeHeader5Test");
       addMimeHeader5Test(req, res);
     } else if (testname.equals("addMimeHeader6Test")) {
-      TestUtil.logMsg("Starting addMimeHeader6Test");
+      logger.log(Logger.Level.INFO,"Starting addMimeHeader6Test");
       addMimeHeader6Test(req, res);
     } else if (testname.equals("addMimeHeader7Test")) {
-      TestUtil.logMsg("Starting addMimeHeader7Test");
+      logger.log(Logger.Level.INFO,"Starting addMimeHeader7Test");
       addMimeHeader7Test(req, res);
     } else if (testname.equals("getAllMimeHeaders1Test")) {
       TestUtil.logTrace("Starting getAllMimeHeaders1Test");
@@ -172,142 +176,142 @@ public class SOAPPartTestServlet extends HttpServlet {
       TestUtil.logTrace("Starting getAllMimeHeaders4Test");
       getAllMimeHeaders4Test(req, res);
     } else if (testname.equals("getContentId1Test")) {
-      TestUtil.logMsg("Starting getContentId1Test");
+      logger.log(Logger.Level.INFO,"Starting getContentId1Test");
       getContentId1Test(req, res);
     } else if (testname.equals("getContentId2Test")) {
-      TestUtil.logMsg("Starting getContentId2Test");
+      logger.log(Logger.Level.INFO,"Starting getContentId2Test");
       getContentId2Test(req, res);
     } else if (testname.equals("getContentId3Test")) {
-      TestUtil.logMsg("Starting getContentId3Test");
+      logger.log(Logger.Level.INFO,"Starting getContentId3Test");
       getContentId3Test(req, res);
     } else if (testname.equals("getContentLocation1Test")) {
-      TestUtil.logMsg("Starting getContentLocation1Test");
+      logger.log(Logger.Level.INFO,"Starting getContentLocation1Test");
       getContentLocation1Test(req, res);
     } else if (testname.equals("getContentLocation2Test")) {
-      TestUtil.logMsg("Starting getContentLocation2Test");
+      logger.log(Logger.Level.INFO,"Starting getContentLocation2Test");
       getContentLocation2Test(req, res);
     } else if (testname.equals("getContentLocation3Test")) {
-      TestUtil.logMsg("Starting getContentLocation3Test");
+      logger.log(Logger.Level.INFO,"Starting getContentLocation3Test");
       getContentLocation3Test(req, res);
     } else if (testname.equals("getContentLocation4Test")) {
-      TestUtil.logMsg("Starting getContentLocation4Test");
+      logger.log(Logger.Level.INFO,"Starting getContentLocation4Test");
       getContentLocation4Test(req, res);
     } else if (testname.equals("getEnvelope1Test")) {
-      TestUtil.logMsg("Starting getEnvelope1Test");
+      logger.log(Logger.Level.INFO,"Starting getEnvelope1Test");
       getEnvelope1Test(req, res);
     } else if (testname.equals("getMatchingMimeHeaders1Test")) {
-      TestUtil.logMsg("Starting getMatchingMimeHeaders1Test");
+      logger.log(Logger.Level.INFO,"Starting getMatchingMimeHeaders1Test");
       getMatchingMimeHeaders1Test(req, res);
     } else if (testname.equals("getMatchingMimeHeaders2Test")) {
-      TestUtil.logMsg("Starting getMatchingMimeHeaders2Test");
+      logger.log(Logger.Level.INFO,"Starting getMatchingMimeHeaders2Test");
       getMatchingMimeHeaders2Test(req, res);
     } else if (testname.equals("getMatchingMimeHeaders3Test")) {
-      TestUtil.logMsg("Starting getMatchingMimeHeaders3Test");
+      logger.log(Logger.Level.INFO,"Starting getMatchingMimeHeaders3Test");
       getMatchingMimeHeaders3Test(req, res);
     } else if (testname.equals("getMatchingMimeHeaders4Test")) {
-      TestUtil.logMsg("Starting getMatchingMimeHeaders4Test");
+      logger.log(Logger.Level.INFO,"Starting getMatchingMimeHeaders4Test");
       getMatchingMimeHeaders4Test(req, res);
     } else if (testname.equals("getMatchingMimeHeaders5Test")) {
-      TestUtil.logMsg("Starting getMatchingMimeHeaders5Test");
+      logger.log(Logger.Level.INFO,"Starting getMatchingMimeHeaders5Test");
       getMatchingMimeHeaders5Test(req, res);
     } else if (testname.equals("getMimeHeader1Test")) {
-      TestUtil.logMsg("Starting getMimeHeader1Test");
+      logger.log(Logger.Level.INFO,"Starting getMimeHeader1Test");
       getMimeHeader1Test(req, res);
     } else if (testname.equals("getMimeHeader2Test")) {
-      TestUtil.logMsg("Starting getMimeHeader2Test");
+      logger.log(Logger.Level.INFO,"Starting getMimeHeader2Test");
       getMimeHeader2Test(req, res);
     } else if (testname.equals("getMimeHeader3Test")) {
-      TestUtil.logMsg("Starting getMimeHeader3Test");
+      logger.log(Logger.Level.INFO,"Starting getMimeHeader3Test");
       getMimeHeader3Test(req, res);
     } else if (testname.equals("getMimeHeader4Test")) {
-      TestUtil.logMsg("Starting getMimeHeader4Test");
+      logger.log(Logger.Level.INFO,"Starting getMimeHeader4Test");
       getMimeHeader4Test(req, res);
     } else if (testname.equals("getNonMatchingMimeHeaders1Test")) {
-      TestUtil.logMsg("Starting getNonMatchingMimeHeaders1Test");
+      logger.log(Logger.Level.INFO,"Starting getNonMatchingMimeHeaders1Test");
       getNonMatchingMimeHeaders1Test(req, res);
     } else if (testname.equals("getNonMatchingMimeHeaders2Test")) {
-      TestUtil.logMsg("Starting getNonMatchingMimeHeaders2Test");
+      logger.log(Logger.Level.INFO,"Starting getNonMatchingMimeHeaders2Test");
       getNonMatchingMimeHeaders2Test(req, res);
     } else if (testname.equals("getNonMatchingMimeHeaders3Test")) {
-      TestUtil.logMsg("Starting getNonMatchingMimeHeaders3Test");
+      logger.log(Logger.Level.INFO,"Starting getNonMatchingMimeHeaders3Test");
       getNonMatchingMimeHeaders3Test(req, res);
     } else if (testname.equals("getNonMatchingMimeHeaders4Test")) {
-      TestUtil.logMsg("Starting getNonMatchingMimeHeaders4Test");
+      logger.log(Logger.Level.INFO,"Starting getNonMatchingMimeHeaders4Test");
       getNonMatchingMimeHeaders4Test(req, res);
     } else if (testname.equals("getNonMatchingMimeHeaders5Test")) {
-      TestUtil.logMsg("Starting getNonMatchingMimeHeaders5Test");
+      logger.log(Logger.Level.INFO,"Starting getNonMatchingMimeHeaders5Test");
       getNonMatchingMimeHeaders5Test(req, res);
     } else if (testname.equals("removeAllMimeHeaders1Test")) {
-      TestUtil.logMsg("Starting removeAllMimeHeaders1Test");
+      logger.log(Logger.Level.INFO,"Starting removeAllMimeHeaders1Test");
       removeAllMimeHeaders1Test(req, res);
     } else if (testname.equals("removeAllMimeHeaders2Test")) {
-      TestUtil.logMsg("Starting removeAllMimeHeaders2Test");
+      logger.log(Logger.Level.INFO,"Starting removeAllMimeHeaders2Test");
       removeAllMimeHeaders2Test(req, res);
     } else if (testname.equals("removeAllMimeHeaders3Test")) {
-      TestUtil.logMsg("Starting removeAllMimeHeaders3Test");
+      logger.log(Logger.Level.INFO,"Starting removeAllMimeHeaders3Test");
       removeAllMimeHeaders3Test(req, res);
     } else if (testname.equals("removeAllMimeHeaders4Test")) {
-      TestUtil.logMsg("Starting removeAllMimeHeaders4Test");
+      logger.log(Logger.Level.INFO,"Starting removeAllMimeHeaders4Test");
       removeAllMimeHeaders4Test(req, res);
     } else if (testname.equals("removeMimeHeader1Test")) {
-      TestUtil.logMsg("Starting removeMimeHeader1Test");
+      logger.log(Logger.Level.INFO,"Starting removeMimeHeader1Test");
       removeMimeHeader1Test(req, res);
     } else if (testname.equals("removeMimeHeader2Test")) {
-      TestUtil.logMsg("Starting removeMimeHeader2Test");
+      logger.log(Logger.Level.INFO,"Starting removeMimeHeader2Test");
       removeMimeHeader2Test(req, res);
     } else if (testname.equals("removeMimeHeader3Test")) {
-      TestUtil.logMsg("Starting removeMimeHeader3Test");
+      logger.log(Logger.Level.INFO,"Starting removeMimeHeader3Test");
       removeMimeHeader3Test(req, res);
     } else if (testname.equals("removeMimeHeader4Test")) {
-      TestUtil.logMsg("Starting removeMimeHeader4Test");
+      logger.log(Logger.Level.INFO,"Starting removeMimeHeader4Test");
       removeMimeHeader4Test(req, res);
     } else if (testname.equals("setContentId1Test")) {
-      TestUtil.logMsg("Starting setContentId1Test");
+      logger.log(Logger.Level.INFO,"Starting setContentId1Test");
       setContentId1Test(req, res);
     } else if (testname.equals("setContentId2Test")) {
-      TestUtil.logMsg("Starting setContentId2Test");
+      logger.log(Logger.Level.INFO,"Starting setContentId2Test");
       setContentId2Test(req, res);
     } else if (testname.equals("setContentId3Test")) {
-      TestUtil.logMsg("Starting setContentId3Test");
+      logger.log(Logger.Level.INFO,"Starting setContentId3Test");
       setContentId3Test(req, res);
     } else if (testname.equals("setContentId4Test")) {
-      TestUtil.logMsg("Starting setContentId4Test");
+      logger.log(Logger.Level.INFO,"Starting setContentId4Test");
       setContentId4Test(req, res);
     } else if (testname.equals("setContentLocation1Test")) {
-      TestUtil.logMsg("Starting setContentLocation1Test");
+      logger.log(Logger.Level.INFO,"Starting setContentLocation1Test");
       setContentLocation1Test(req, res);
     } else if (testname.equals("setContentLocation2Test")) {
-      TestUtil.logMsg("Starting setContentLocation2Test");
+      logger.log(Logger.Level.INFO,"Starting setContentLocation2Test");
       setContentLocation2Test(req, res);
     } else if (testname.equals("setContentLocation3Test")) {
-      TestUtil.logMsg("Starting setContentLocation3Test");
+      logger.log(Logger.Level.INFO,"Starting setContentLocation3Test");
       setContentLocation3Test(req, res);
     } else if (testname.equals("setContentLocation4Test")) {
-      TestUtil.logMsg("Starting setContentLocation4Test");
+      logger.log(Logger.Level.INFO,"Starting setContentLocation4Test");
       setContentLocation4Test(req, res);
     } else if (testname.equals("setContentLocation5Test")) {
-      TestUtil.logMsg("Starting setContentLocation5Test");
+      logger.log(Logger.Level.INFO,"Starting setContentLocation5Test");
       setContentLocation5Test(req, res);
     } else if (testname.equals("setContent1Test")) {
-      TestUtil.logMsg("Starting setContent1Test");
+      logger.log(Logger.Level.INFO,"Starting setContent1Test");
       setContent1Test(req, res);
     } else if (testname.equals("getContent1Test")) {
-      TestUtil.logMsg("Starting getContent1Test");
+      logger.log(Logger.Level.INFO,"Starting getContent1Test");
       getContent1Test(req, res);
     } else if (testname.equals("setMimeHeader1Test")) {
-      TestUtil.logMsg("Starting setMimeHeader1Test");
+      logger.log(Logger.Level.INFO,"Starting setMimeHeader1Test");
       setMimeHeader1Test(req, res);
     } else if (testname.equals("setMimeHeader2Test")) {
-      TestUtil.logMsg("Starting setMimeHeader2Test");
+      logger.log(Logger.Level.INFO,"Starting setMimeHeader2Test");
       setMimeHeader2Test(req, res);
     } else if (testname.equals("setMimeHeader3Test")) {
-      TestUtil.logMsg("Starting setMimeHeader3Test");
+      logger.log(Logger.Level.INFO,"Starting setMimeHeader3Test");
       setMimeHeader3Test(req, res);
     } else if (testname.equals("setMimeHeader4Test")) {
-      TestUtil.logMsg("Starting setMimeHeader4Test");
+      logger.log(Logger.Level.INFO,"Starting setMimeHeader4Test");
       setMimeHeader4Test(req, res);
     } else if (testname.equals("setMimeHeader5Test")) {
-      TestUtil.logMsg("Starting setMimeHeader5Test");
+      logger.log(Logger.Level.INFO,"Starting setMimeHeader5Test");
       setMimeHeader5Test(req, res);
     } else {
       throw new ServletException(
@@ -339,18 +343,18 @@ public class SOAPPartTestServlet extends HttpServlet {
   private void displayArray(String[] array) {
     int len = array.length;
     for (int i = 0; i < len; i++) {
-      TestUtil.logMsg("array[" + i + "]=" + array[i]);
+      logger.log(Logger.Level.INFO,"array[" + i + "]=" + array[i]);
     }
   }
 
   private void displayHeaders() {
-    TestUtil.logMsg("Getting all MimeHeaders");
+    logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
     iterator = sp.getAllMimeHeaders();
     while (iterator.hasNext()) {
       mh = (MimeHeader) iterator.next();
       String name = mh.getName();
       String value = mh.getValue();
-      TestUtil.logMsg("received: name=" + name + ", value=" + value);
+      logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
     }
   }
 
@@ -366,11 +370,11 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -394,12 +398,12 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Id", "id@abc.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -423,12 +427,12 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -452,16 +456,16 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader with invalid arguments");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with invalid arguments");
       sp.addMimeHeader("", "");
 
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Error: expected java.lang.IllegalArgumentException to be thrown");
       pass = false;
     } catch (java.lang.IllegalArgumentException ia) {
       // test passed
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -485,16 +489,16 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader with invalid arguments");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with invalid arguments");
       sp.addMimeHeader("", "some text");
 
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Error: expected java.lang.IllegalArgumentException to be thrown");
       pass = false;
     } catch (java.lang.IllegalArgumentException ia) {
       // test passed
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -518,13 +522,13 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader with null value");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with null value");
       sp.addMimeHeader("Content-Description", null);
 
-      TestUtil.logMsg("Adding MimeHeader with null string value");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with null string value");
       sp.addMimeHeader("Content-Description", "");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -548,16 +552,16 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader with invalid arguments");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with invalid arguments");
       sp.addMimeHeader(null, null);
 
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Error: expected java.lang.IllegalArgumentException to be thrown");
       pass = false;
     } catch (java.lang.IllegalArgumentException ia) {
       // test passed
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -581,13 +585,13 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders");
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -596,21 +600,21 @@ public class SOAPPartTestServlet extends HttpServlet {
         String name = mh.getName();
         String value = mh.getValue();
         if (name.equals("Content-Description") && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeader did match");
+          logger.log(Logger.Level.INFO,"MimeHeader did match");
         } else {
-          TestUtil.logErr("MimeHeader did not match");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"MimeHeader did not match");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -634,14 +638,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders");
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       boolean foundHeader1 = false;
@@ -654,44 +658,44 @@ public class SOAPPartTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Id") && value.equals("id@abc.com")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
 
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -715,14 +719,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders");
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       boolean foundHeader1 = false;
@@ -736,44 +740,44 @@ public class SOAPPartTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -797,7 +801,7 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       boolean foundDefaultHeader = false;
@@ -809,18 +813,18 @@ public class SOAPPartTestServlet extends HttpServlet {
         if (name.equals("Content-Type") && value.equals("text/xml")) {
           if (!foundDefaultHeader) {
             foundDefaultHeader = true;
-            TestUtil.logMsg("MimeHeaders do match for the default MimeHeader ");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for the default MimeHeader ");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same the default MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -844,20 +848,20 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Id");
+      logger.log(Logger.Level.INFO,"Setting Content Id");
       sp.setContentId("id@abc.com");
 
-      TestUtil.logMsg("Getting Content Id");
+      logger.log(Logger.Level.INFO,"Getting Content Id");
       String result = sp.getContentId();
 
       if (!result.equals("id@abc.com")) {
-        TestUtil.logErr("Error: received invalid value from getContentId()");
-        TestUtil.logErr("expected result: id@abc.com");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"Error: received invalid value from getContentId()");
+        logger.log(Logger.Level.ERROR,"expected result: id@abc.com");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -881,24 +885,24 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Id");
+      logger.log(Logger.Level.INFO,"Setting Content Id");
       sp.setContentId("id@abc.com");
 
-      TestUtil.logMsg("Setting Content Id again");
+      logger.log(Logger.Level.INFO,"Setting Content Id again");
       sp.setContentId("id2@abc2.com");
 
-      TestUtil.logMsg("Getting Content Id");
+      logger.log(Logger.Level.INFO,"Getting Content Id");
       String result = sp.getContentId();
 
       if (!result.equals("id2@abc2.com")) {
-        TestUtil.logErr("Error: received invalid value from getContentId()");
-        TestUtil.logErr("expected result: id2@abc2.com");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"Error: received invalid value from getContentId()");
+        logger.log(Logger.Level.ERROR,"expected result: id2@abc2.com");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -923,20 +927,20 @@ public class SOAPPartTestServlet extends HttpServlet {
       setup();
 
       String result = null;
-      TestUtil.logMsg("Remove all MimeHeader's");
+      logger.log(Logger.Level.INFO,"Remove all MimeHeader's");
       sp.removeAllMimeHeaders();
-      TestUtil.logMsg("Getting Content Id");
+      logger.log(Logger.Level.INFO,"Getting Content Id");
       result = sp.getContentId();
 
       if (result != null && !result.equals("")) {
-        TestUtil.logErr("Error: received invalid value from getContentId()");
-        TestUtil.logErr("expected result: null or null string");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"Error: received invalid value from getContentId()");
+        logger.log(Logger.Level.ERROR,"expected result: null or null string");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -960,21 +964,21 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location");
+      logger.log(Logger.Level.INFO,"Setting Content Location");
       sp.setContentLocation("http://localhost/someapp");
 
-      TestUtil.logMsg("Getting Content Location");
+      logger.log(Logger.Level.INFO,"Getting Content Location");
       String result = sp.getContentLocation();
 
       if (!result.equals("http://localhost/someapp")) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: received invalid Location value from getContentLocation()");
-        TestUtil.logErr("expected result: http://localhost/someapp");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"expected result: http://localhost/someapp");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -998,18 +1002,18 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Getting Content Location");
+      logger.log(Logger.Level.INFO,"Getting Content Location");
       String result = sp.getContentLocation();
 
       if (result != null) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: received invalid Location value from getContentLocation()");
-        TestUtil.logErr("expected result: null");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"expected result: null");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1033,21 +1037,21 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location");
+      logger.log(Logger.Level.INFO,"Setting Content Location");
       sp.setContentLocation("/WEB-INF/somefile");
 
-      TestUtil.logMsg("Getting Content Location");
+      logger.log(Logger.Level.INFO,"Getting Content Location");
       String result = sp.getContentLocation();
 
       if (!result.equals("/WEB-INF/somefile")) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: received invalid Location value from getContentLocation()");
-        TestUtil.logErr("expected result: /WEB-INF/somefile");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"expected result: /WEB-INF/somefile");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1071,24 +1075,24 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location");
+      logger.log(Logger.Level.INFO,"Setting Content Location");
       sp.setContentLocation("http://localhost/someapp");
 
-      TestUtil.logMsg("Setting Content Location again");
+      logger.log(Logger.Level.INFO,"Setting Content Location again");
       sp.setContentLocation("/WEB-INF/somefile");
 
-      TestUtil.logMsg("Getting Content Location");
+      logger.log(Logger.Level.INFO,"Getting Content Location");
       String result = sp.getContentLocation();
 
       if (!result.equals("/WEB-INF/somefile")) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: received invalid Location value from getContentLocation()");
-        TestUtil.logErr("expected result: /WEB-INF/somefile");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"expected result: /WEB-INF/somefile");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1114,11 +1118,11 @@ public class SOAPPartTestServlet extends HttpServlet {
 
       envelope = sp.getEnvelope();
       if (envelope == null) {
-        TestUtil.logErr("Error: received null value from getEnvelope()");
+        logger.log(Logger.Level.ERROR,"Error: received null value from getEnvelope()");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1142,16 +1146,16 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
       displayHeaders();
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting matching MimeHeaders");
       iterator = sp.getMatchingMimeHeaders(sArray);
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -1160,23 +1164,23 @@ public class SOAPPartTestServlet extends HttpServlet {
         String name = mh.getName();
         String value = mh.getValue();
         if (name.equals("Content-Description") && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one item to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1200,17 +1204,17 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Id", "id@abc.com");
 
       displayHeaders();
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting matching MimeHeaders");
       iterator = sp.getMatchingMimeHeaders(sArray);
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -1219,23 +1223,23 @@ public class SOAPPartTestServlet extends HttpServlet {
         String name = mh.getName();
         String value = mh.getValue();
         if (name.equals("Content-Description") && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one item to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1259,17 +1263,17 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
 
       displayHeaders();
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting matching MimeHeaders");
       iterator = sp.getMatchingMimeHeaders(sArray);
       int cnt = 0;
       boolean foundHeader1 = false;
@@ -1282,46 +1286,46 @@ public class SOAPPartTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected three items to be returned, got a total of:"
                 + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1345,16 +1349,16 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
       displayHeaders();
 
       String sArray[] = { "doesnotexist" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non-existent MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting non-existent MimeHeader");
       iterator = sp.getMatchingMimeHeaders(sArray);
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -1362,18 +1366,18 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an unexpected MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1398,7 +1402,7 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 3 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 3 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
       sp.addMimeHeader("Content-Id", "id@abc.com");
@@ -1407,10 +1411,10 @@ public class SOAPPartTestServlet extends HttpServlet {
 
       String sArray[] = { "Content-Description", "Content-Id",
           "Content-Location" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting matching MimeHeaders");
       iterator = sp.getMatchingMimeHeaders(sArray);
       int cnt = 0;
       boolean foundHeader1 = false;
@@ -1424,56 +1428,56 @@ public class SOAPPartTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Id") && value.equals("id@abc.com")) {
           if (!foundHeader3) {
             foundHeader3 = true;
-            TestUtil.logMsg("MimeHeaders do match for header3");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header3");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header3 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2 && foundHeader3)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
       if (cnt != 3) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected three items to be returned, got a total of:"
                 + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1497,14 +1501,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = sp.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + len);
         pass = false;
@@ -1513,15 +1517,15 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1545,14 +1549,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Id", "id@abc.com");
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = sp.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -1561,10 +1565,10 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
@@ -1572,7 +1576,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       sArray = sp.getMimeHeader("Content-Id");
       len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Id), got a total of:"
                 + len);
         pass = false;
@@ -1581,16 +1585,16 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("id@abc.com")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Id)");
-          TestUtil.logErr("expected result: id@abc.com");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: id@abc.com");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1614,14 +1618,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = sp.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -1630,16 +1634,16 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text") && !temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text or some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text or some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1663,21 +1667,21 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting non-existent MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting non-existent MimeHeader");
       String sArray[] = sp.getMimeHeader("doesnotexist");
       if (sArray != null && sArray.length > 0) {
-        TestUtil.logErr("Error: was able to get a non-existent MimeHeader");
+        logger.log(Logger.Level.ERROR,"Error: was able to get a non-existent MimeHeader");
         pass = false;
         int len = sArray.length;
         for (int i = 0; i < len; i++) {
-          TestUtil.logErr("actual result:" + sArray[i]);
+          logger.log(Logger.Level.ERROR,"actual result:" + sArray[i]);
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1702,19 +1706,19 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders");
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
       displayHeaders();
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = sp.getNonMatchingMimeHeaders(sArray);
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -1722,18 +1726,18 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an invalid MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an invalid MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1757,20 +1761,20 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders");
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Id", "id@abc.com");
 
       displayHeaders();
 
       String sArray[] = { "Content-Id" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = sp.getNonMatchingMimeHeaders(sArray);
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -1779,22 +1783,22 @@ public class SOAPPartTestServlet extends HttpServlet {
         String name = mh.getName();
         String value = mh.getValue();
         if (name.equals("Content-Description") && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one item to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1821,17 +1825,17 @@ public class SOAPPartTestServlet extends HttpServlet {
       // Remove any MimeHeaders if any
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
 
       displayHeaders();
 
       String sArray[] = { "Content-Id" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = sp.getNonMatchingMimeHeaders(sArray);
       int cnt = 0;
       boolean foundHeader1 = false;
@@ -1844,45 +1848,45 @@ public class SOAPPartTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1909,16 +1913,16 @@ public class SOAPPartTestServlet extends HttpServlet {
       // Remove any MimeHeaders if any
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
       displayHeaders();
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = sp.getNonMatchingMimeHeaders(sArray);
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -1926,19 +1930,19 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an invalid MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an invalid MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1965,7 +1969,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       // Remove any MimeHeaders if any
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Adding 3 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 3 MimeHeaders");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
       sp.addMimeHeader("Content-Id", "id@abc.com");
@@ -1973,10 +1977,10 @@ public class SOAPPartTestServlet extends HttpServlet {
       displayHeaders();
 
       String sArray[] = { "Content-Id", "Content-Location" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = sp.getNonMatchingMimeHeaders(sArray);
       int cnt = 0;
       boolean foundHeader1 = false;
@@ -1989,44 +1993,44 @@ public class SOAPPartTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2050,13 +2054,13 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Removing all MimeHeaders...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders...");
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders...");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2064,19 +2068,19 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected Mimeheader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected Mimeheader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2100,14 +2104,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Removing all MimeHeaders...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders...");
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders...");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2115,19 +2119,19 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected Mimeheader");
-        TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected Mimeheader");
+        logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2151,14 +2155,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Removing all MimeHeaders...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders...");
       sp.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders...");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2166,19 +2170,19 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected Mimeheader");
-        TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected Mimeheader");
+        logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2202,11 +2206,11 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing all MimeHeaders...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders...");
       sp.removeAllMimeHeaders();
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2230,13 +2234,13 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Removing MimeHeader");
+      logger.log(Logger.Level.INFO,"Removing MimeHeader");
       sp.removeMimeHeader("Content-Description");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2244,19 +2248,19 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logErr("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got atotal of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2280,14 +2284,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Removing MimeHeader");
+      logger.log(Logger.Level.INFO,"Removing MimeHeader");
       sp.removeMimeHeader("Content-Id");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2296,22 +2300,22 @@ public class SOAPPartTestServlet extends HttpServlet {
         String name = mh.getName();
         String value = mh.getValue();
         if (name.equals("Content-Description") && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeader did match");
+          logger.log(Logger.Level.INFO,"MimeHeader did match");
         } else {
-          TestUtil.logErr("MimeHeader did not match");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"MimeHeader did not match");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one item to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2335,14 +2339,14 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       sp.addMimeHeader("Content-Description", "some text");
       sp.addMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Removing MimeHeader");
+      logger.log(Logger.Level.INFO,"Removing MimeHeader");
       sp.removeMimeHeader("Content-Description");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2350,18 +2354,18 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2385,10 +2389,10 @@ public class SOAPPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing MimeHeader");
+      logger.log(Logger.Level.INFO,"Removing MimeHeader");
       sp.removeMimeHeader("doesnotexist");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = sp.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2396,18 +2400,18 @@ public class SOAPPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2436,7 +2440,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       sp.setContentId("name@abc.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2464,7 +2468,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       TestUtil.logTrace("Setting Content Id to null string value");
       sp.setContentId("");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2495,7 +2499,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       sp.setContentId("id2@abc2.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2526,7 +2530,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       sp.setContentId("id@cde.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2554,7 +2558,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       sp.setContentLocation("http://localhost/someapp");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2581,7 +2585,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       TestUtil.logTrace("Setting Content Location to null string value");
       sp.setContentLocation("");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2609,7 +2613,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       sp.setContentLocation("/WEB-INF/somefile");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2640,7 +2644,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       sp.setContentLocation("http://localhost/someapp");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2667,7 +2671,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       TestUtil.logTrace("Setting Content Location to null value");
       sp.setContentLocation(null);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2697,7 +2701,7 @@ public class SOAPPartTestServlet extends HttpServlet {
         sp.setContent(ssrc2);
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2732,11 +2736,11 @@ public class SOAPPartTestServlet extends HttpServlet {
       Source ssrc3 = null;
       ssrc3 = sp.getContent();
       if (ssrc3 == null) {
-        TestUtil.logErr("Error: getContent() returned null");
+        logger.log(Logger.Level.ERROR,"Error: getContent() returned null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2770,7 +2774,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       String sArray[] = sp.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + len);
         pass = false;
@@ -2779,15 +2783,15 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from setMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2822,7 +2826,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       String sArray[] = sp.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2831,10 +2835,10 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from setMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
@@ -2843,7 +2847,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       sArray = sp.getMimeHeader("Content-Id");
       len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(name2), got a total of:"
                 + len);
         pass = false;
@@ -2852,16 +2856,16 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("id@abc.com")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Id)");
-          TestUtil.logErr("expected result: id@abc.com");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: id@abc.com");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2896,7 +2900,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       String sArray[] = sp.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2905,16 +2909,16 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("image/jpeg")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: image/jpeg");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: image/jpeg");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2945,7 +2949,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       String sArray[] = sp.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2954,15 +2958,15 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3000,7 +3004,7 @@ public class SOAPPartTestServlet extends HttpServlet {
       String sArray[] = sp.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -3009,16 +3013,16 @@ public class SOAPPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("impage/jpeg")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: impage/jpeg");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: impage/jpeg");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
