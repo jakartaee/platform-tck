@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -108,6 +105,7 @@ public class URLClient extends EETest {
    * Description: Create a SOAPHeaderElement object
    *
    */
+  @Test
   public void addHeaderElementTest1() throws Exception {
     boolean pass = true;
     try {
@@ -151,6 +149,7 @@ public class URLClient extends EETest {
    * Description: Create a SOAPHeaderElement object
    *
    */
+  @Test
   public void addHeaderElementTest2() throws Exception {
     boolean pass = true;
     try {
@@ -194,6 +193,7 @@ public class URLClient extends EETest {
    * Description: Examine SOAPHeaderElements that have specified actor
    *
    */
+  @Test
   public void examineHeaderElementsTest1() throws Exception {
     boolean pass = true;
     try {
@@ -236,6 +236,7 @@ public class URLClient extends EETest {
    * Description: Examine SOAPHeaderElements that have specified actor
    *
    */
+  @Test
   public void examineHeaderElementsTest2() throws Exception {
     boolean pass = true;
     try {
@@ -278,6 +279,7 @@ public class URLClient extends EETest {
    * Description: Examine SOAPHeaderElements that have specified actor
    *
    */
+  @Test
   public void examineHeaderElementsTest3() throws Exception {
     boolean pass = true;
     try {
@@ -320,6 +322,7 @@ public class URLClient extends EETest {
    * Description: Examine SOAPHeaderElements that have specified actor
    *
    */
+  @Test
   public void examineHeaderElementsTest4() throws Exception {
     boolean pass = true;
     try {
@@ -362,6 +365,7 @@ public class URLClient extends EETest {
    * Description: Extract SOAPHeaderElements that have specified actor
    *
    */
+  @Test
   public void extractHeaderElementsTest1() throws Exception {
     boolean pass = true;
     try {
@@ -404,6 +408,7 @@ public class URLClient extends EETest {
    * Description: Extract SOAPHeaderElements that have specified actor
    *
    */
+  @Test
   public void extractHeaderElementsTest2() throws Exception {
     boolean pass = true;
     try {
@@ -446,6 +451,7 @@ public class URLClient extends EETest {
    * Description: Extract SOAPHeaderElements that have specified actor
    *
    */
+  @Test
   public void extractHeaderElementsTest3() throws Exception {
     boolean pass = true;
     try {
@@ -488,6 +494,7 @@ public class URLClient extends EETest {
    * Description: Add NotUnderstood SOAPHeaderElement and verify contents.
    *
    */
+  @Test
   public void addNotUnderstoodHeaderElementTest() throws Exception {
     boolean pass = true;
     try {
@@ -534,6 +541,7 @@ public class URLClient extends EETest {
    * Description: Add Upgrade SOAPHeaderElement and verify contents.
    *
    */
+  @Test
   public void addUpgradeHeaderElementTest1() throws Exception {
     boolean pass = true;
     try {
@@ -578,6 +586,7 @@ public class URLClient extends EETest {
    * Description: Add Upgrade SOAPHeaderElement and verify contents.
    *
    */
+  @Test
   public void addUpgradeHeaderElementTest2() throws Exception {
     boolean pass = true;
     try {
@@ -622,6 +631,7 @@ public class URLClient extends EETest {
    * Description: Add Upgrade SOAPHeaderElement and verify contents.
    *
    */
+  @Test
   public void addUpgradeHeaderElementTest3() throws Exception {
     boolean pass = true;
     try {
@@ -666,6 +676,7 @@ public class URLClient extends EETest {
    * Description: Examine all SOAPHeaderElements.
    *
    */
+  @Test
   public void examineAllHeaderElementsTest1() throws Exception {
     boolean pass = true;
     try {
@@ -709,6 +720,7 @@ public class URLClient extends EETest {
    * Description: Examine all SOAPHeaderElement
    *
    */
+  @Test
   public void examineAllHeaderElementsTest2() throws Exception {
     boolean pass = true;
     try {
@@ -752,6 +764,7 @@ public class URLClient extends EETest {
    * Description: Examine all SOAPHeaderElements.
    *
    */
+  @Test
   public void examineAllHeaderElementsTest3() throws Exception {
     boolean pass = true;
     try {
@@ -795,6 +808,7 @@ public class URLClient extends EETest {
    * Description: Examine SOAPHeaderElements
    *
    */
+  @Test
   public void examineMustUnderstandHeaderElementsTest1() throws Exception {
     boolean pass = true;
     try {
@@ -839,6 +853,7 @@ public class URLClient extends EETest {
    * Description: Examine SOAPHeaderElements
    *
    */
+  @Test
   public void examineMustUnderstandHeaderElementsTest2() throws Exception {
     boolean pass = true;
     try {
@@ -883,6 +898,7 @@ public class URLClient extends EETest {
    * Description: Examine SOAPHeaderElements
    *
    */
+  @Test
   public void examineMustUnderstandHeaderElementsTest3() throws Exception {
     boolean pass = true;
     try {
@@ -926,6 +942,7 @@ public class URLClient extends EETest {
    * Description: Examine all SOAPHeaderElements.
    *
    */
+  @Test
   public void extractAllHeaderElementsTest1() throws Exception {
     boolean pass = true;
     try {
@@ -969,6 +986,7 @@ public class URLClient extends EETest {
    * Description: Examine all SOAPHeaderElement
    *
    */
+  @Test
   public void extractAllHeaderElementsTest2() throws Exception {
     boolean pass = true;
     try {
@@ -1012,6 +1030,7 @@ public class URLClient extends EETest {
    * Description: Examine all SOAPHeaderElements.
    *
    */
+  @Test
   public void extractAllHeaderElementsTest3() throws Exception {
     boolean pass = true;
     try {

@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -108,6 +105,7 @@ public class URLClient extends EETest {
    * SOAPElement object.
    *
    */
+  @Test
   public void addAttributeTest1() throws Exception {
     boolean pass = true;
     try {
@@ -151,6 +149,7 @@ public class URLClient extends EETest {
    * SOAPElement object.
    *
    */
+  @Test
   public void addAttributeTest2() throws Exception {
     boolean pass = true;
     try {
@@ -194,6 +193,7 @@ public class URLClient extends EETest {
    * this SOAPElement object.
    *
    */
+  @Test
   public void getAttributeValueTest1() throws Exception {
     boolean pass = true;
     try {
@@ -237,6 +237,7 @@ public class URLClient extends EETest {
    * this SOAPElement object.
    *
    */
+  @Test
   public void getAttributeValueTest2() throws Exception {
     boolean pass = true;
     try {
@@ -280,6 +281,7 @@ public class URLClient extends EETest {
    * SOAPElement object.
    *
    */
+  @Test
   public void getAllAttributesTest() throws Exception {
     boolean pass = true;
     try {
@@ -324,6 +326,7 @@ public class URLClient extends EETest {
    * SOAPElement object.
    *
    */
+  @Test
   public void removeAttributeTest1() throws Exception {
     boolean pass = true;
     try {
@@ -368,6 +371,7 @@ public class URLClient extends EETest {
    * SOAPElement object.
    *
    */
+  @Test
   public void removeAttributeTest2() throws Exception {
     boolean pass = true;
     try {
@@ -411,6 +415,7 @@ public class URLClient extends EETest {
    * Description: Returns the name of this SOAPElement object.
    *
    */
+  @Test
   public void getElementNameTest() throws Exception {
     boolean pass = true;
     try {
@@ -454,6 +459,7 @@ public class URLClient extends EETest {
    * Description: Returns the name of this SOAPElement object.
    *
    */
+  @Test
   public void getElementQNameTest() throws Exception {
     boolean pass = true;
     try {
@@ -498,6 +504,7 @@ public class URLClient extends EETest {
    * to this SOAPElement object.
    *
    */
+  @Test
   public void addNamespaceDeclarationTest() throws Exception {
     boolean pass = true;
     try {
@@ -542,6 +549,7 @@ public class URLClient extends EETest {
    * prefix.
    *
    */
+  @Test
   public void removeNamespaceDeclarationTest() throws Exception {
     boolean pass = true;
     try {
@@ -585,6 +593,7 @@ public class URLClient extends EETest {
    * Description: Return an iterator of namespace prefixes.
    *
    */
+  @Test
   public void getNamespacePrefixesTest() throws Exception {
     boolean pass = true;
     try {
@@ -628,6 +637,7 @@ public class URLClient extends EETest {
    * Description: Return the URI of the namespace that has the given prefix.
    *
    */
+  @Test
   public void getNamespaceURITest() throws Exception {
     boolean pass = true;
     try {
@@ -672,6 +682,7 @@ public class URLClient extends EETest {
    * this SOAPElement object. Add text object to SOAPBody.
    *
    */
+  @Test
   public void addTextNodeTest1() throws Exception {
     boolean pass = true;
     try {
@@ -716,6 +727,7 @@ public class URLClient extends EETest {
    * SOAP1.1 message but illegal for a SOAP1.2 message.
    *
    */
+  @Test
   public void addTextNodeTest2() throws Exception {
     boolean pass = true;
     try {
@@ -760,6 +772,7 @@ public class URLClient extends EETest {
    * Description: Sets the encoding style for this SOAPElement object.
    *
    */
+  @Test
   public void setEncodingStyleTest1() throws Exception {
     boolean pass = true;
     try {
@@ -804,6 +817,7 @@ public class URLClient extends EETest {
    * Description: Sets the encoding style for this SOAPElement object.
    *
    */
+  @Test
   public void getEncodingStyleTest1() throws Exception {
     boolean pass = true;
     try {
@@ -849,6 +863,7 @@ public class URLClient extends EETest {
    * Name object and adds this new element to this SOAPElement object.
    *
    */
+  @Test
   public void addChildElementTest1() throws Exception {
     boolean pass = true;
     try {
@@ -892,6 +907,7 @@ public class URLClient extends EETest {
    * String object and adds this new element to this SOAPElement object.
    *
    */
+  @Test
   public void addChildElementTest2() throws Exception {
     boolean pass = true;
     try {
@@ -936,6 +952,7 @@ public class URLClient extends EETest {
    * SOAPElement object.
    *
    */
+  @Test
   public void addChildElementTest3() throws Exception {
     boolean pass = true;
     try {
@@ -980,6 +997,7 @@ public class URLClient extends EETest {
    * SOAPElement object.
    *
    */
+  @Test
   public void addChildElementTest4() throws Exception {
     boolean pass = true;
     try {
@@ -1023,6 +1041,7 @@ public class URLClient extends EETest {
    * SOAPElement object and adds this new element to this SOAPElement object.
    *
    */
+  @Test
   public void addChildElementTest5() throws Exception {
     boolean pass = true;
     try {
@@ -1066,6 +1085,7 @@ public class URLClient extends EETest {
    * QName object and adds this new element to this SOAPElement object.
    *
    */
+  @Test
   public void addChildElementTest6() throws Exception {
     boolean pass = true;
     try {
@@ -1109,6 +1129,7 @@ public class URLClient extends EETest {
    * element.
    *
    */
+  @Test
   public void getChildElementsTest1() throws Exception {
     boolean pass = true;
     try {
@@ -1152,6 +1173,7 @@ public class URLClient extends EETest {
    * specified name.
    *
    */
+  @Test
   public void getChildElementsTest2() throws Exception {
     boolean pass = true;
     try {
@@ -1195,6 +1217,7 @@ public class URLClient extends EETest {
    * element.
    *
    */
+  @Test
   public void getChildElementsTest3() throws Exception {
     boolean pass = true;
     try {
@@ -1238,6 +1261,7 @@ public class URLClient extends EETest {
    * specified name.
    *
    */
+  @Test
   public void getChildElementsTest4() throws Exception {
     boolean pass = true;
     try {
@@ -1280,6 +1304,7 @@ public class URLClient extends EETest {
    * Description:
    * 
    */
+  @Test
   public void removeContentsTest() throws Exception {
     boolean pass = true;
     try {
@@ -1321,6 +1346,7 @@ public class URLClient extends EETest {
    * Description: Return an iterator of visible namespace prefixes.
    *
    */
+  @Test
   public void getVisibleNamespacePrefixesTest() throws Exception {
     boolean pass = true;
     try {
@@ -1363,6 +1389,7 @@ public class URLClient extends EETest {
    * Description: Changes the name of this Element if possible.
    *
    */
+  @Test
   public void setElementQNameTest1() throws Exception {
     boolean pass = true;
     try {
@@ -1406,6 +1433,7 @@ public class URLClient extends EETest {
    * cases for SOAPException to be thrown.
    *
    */
+  @Test
   public void setElementQNameTest2() throws Exception {
     boolean pass = true;
     try {
@@ -1448,6 +1476,7 @@ public class URLClient extends EETest {
    * Description: Create a qname.
    *
    */
+  @Test
   public void createQNameTest1() throws Exception {
     boolean pass = true;
     try {
@@ -1491,6 +1520,7 @@ public class URLClient extends EETest {
    * thrown.
    *
    */
+  @Test
   public void createQNameTest2() throws Exception {
     boolean pass = true;
     try {

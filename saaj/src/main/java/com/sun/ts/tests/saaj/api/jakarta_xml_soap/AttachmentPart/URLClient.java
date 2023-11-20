@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,17 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -107,6 +103,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeader object.
    */
+  @Test
   public void addMimeHeader1Test() throws Exception {
     try {
       boolean pass = true;
@@ -148,6 +145,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeader object.
    */
+  @Test
   public void addMimeHeader2Test() throws Exception {
     try {
       boolean pass = true;
@@ -190,6 +188,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeader object.
    */
+  @Test
   public void addMimeHeader3Test() throws Exception {
     try {
       boolean pass = true;
@@ -232,6 +231,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeader object.
    */
+  @Test
   public void addMimeHeader4Test() throws Exception {
     try {
       boolean pass = true;
@@ -274,6 +274,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeader object.
    */
+  @Test
   public void addMimeHeader5Test() throws Exception {
     try {
       boolean pass = true;
@@ -316,6 +317,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeader object.
    */
+  @Test
   public void addMimeHeader6Test() throws Exception {
     try {
       boolean pass = true;
@@ -358,6 +360,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeader object.
    */
+  @Test
   public void addMimeHeader7Test() throws Exception {
     try {
       boolean pass = true;
@@ -399,6 +402,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getMimeHeader1Test() throws Exception {
     try {
       boolean pass = true;
@@ -440,6 +444,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getMimeHeader2Test() throws Exception {
     try {
       boolean pass = true;
@@ -481,6 +486,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getMimeHeader3Test() throws Exception {
     try {
       boolean pass = true;
@@ -522,6 +528,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getMimeHeader4Test() throws Exception {
     try {
       boolean pass = true;
@@ -563,6 +570,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object. Get single.
    */
+  @Test
   public void getAllMimeHeaders1Test() throws Exception {
     try {
       boolean pass = true;
@@ -604,6 +612,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getAllMimeHeaders2Test() throws Exception {
     try {
       boolean pass = true;
@@ -646,6 +655,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getAllMimeHeaders3Test() throws Exception {
     try {
       boolean pass = true;
@@ -688,6 +698,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getAllMimeHeaders4Test() throws Exception {
     try {
       boolean pass = true;
@@ -729,6 +740,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeader object.
    */
+  @Test
   public void removeAllMimeHeaders1Test() throws Exception {
     try {
       boolean pass = true;
@@ -770,6 +782,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeader object.
    */
+  @Test
   public void removeAllMimeHeaders2Test() throws Exception {
     try {
       boolean pass = true;
@@ -812,6 +825,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeader object.
    */
+  @Test
   public void removeAllMimeHeaders3Test() throws Exception {
     try {
       boolean pass = true;
@@ -853,6 +867,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeader object.
    */
+  @Test
   public void removeAllMimeHeaders4Test() throws Exception {
     try {
       boolean pass = true;
@@ -894,6 +909,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace a MimeHeader object.
    */
+  @Test
   public void setMimeHeader1Test() throws Exception {
     try {
       boolean pass = true;
@@ -936,6 +952,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace a MimeHeader object.
    */
+  @Test
   public void setMimeHeader2Test() throws Exception {
     try {
       boolean pass = true;
@@ -978,6 +995,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace/Construct a MimeHeader object.
    */
+  @Test
   public void setMimeHeader3Test() throws Exception {
     try {
       boolean pass = true;
@@ -1019,6 +1037,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace/Construct a MimeHeader object.
    */
+  @Test
   public void setMimeHeader4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1060,6 +1079,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace/Construct a MimeHeader object.
    */
+  @Test
   public void setMimeHeader5Test() throws Exception {
     try {
       boolean pass = true;
@@ -1101,6 +1121,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeader object.
    */
+  @Test
   public void removeMimeHeader1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1143,6 +1164,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace a MimeHeader object.
    */
+  @Test
   public void removeMimeHeader2Test() throws Exception {
     try {
       boolean pass = true;
@@ -1185,6 +1207,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeader object.
    */
+  @Test
   public void removeMimeHeader3Test() throws Exception {
     try {
       boolean pass = true;
@@ -1226,6 +1249,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeader object.
    */
+  @Test
   public void removeMimeHeader4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1267,6 +1291,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object. Get single header.
    */
+  @Test
   public void getMatchingMimeHeaders1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1309,6 +1334,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getMatchingMimeHeaders2Test() throws Exception {
     try {
       boolean pass = true;
@@ -1351,6 +1377,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getMatchingMimeHeaders3Test() throws Exception {
     try {
       boolean pass = true;
@@ -1393,6 +1420,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getMatchingMimeHeaders4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1435,6 +1463,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getMatchingMimeHeaders5Test() throws Exception {
     try {
       boolean pass = true;
@@ -1476,6 +1505,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getNonMatchingMimeHeaders1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1518,6 +1548,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getNonMatchingMimeHeaders2Test() throws Exception {
     try {
       boolean pass = true;
@@ -1560,6 +1591,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getNonMatchingMimeHeaders3Test() throws Exception {
     try {
       boolean pass = true;
@@ -1602,6 +1634,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getNonMatchingMimeHeaders4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1644,6 +1677,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeader object.
    */
+  @Test
   public void getNonMatchingMimeHeaders5Test() throws Exception {
     try {
       boolean pass = true;
@@ -1685,6 +1719,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void setContentId1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1726,6 +1761,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id Set the id to null.
    */
+  @Test
   public void setContentId2Test() throws Exception {
     try {
       boolean pass = true;
@@ -1768,6 +1804,7 @@ public class URLClient extends EETest {
    * Description: Set the Mime Header named Content-Id Set the id twice in a
    * row.
    */
+  @Test
   public void setContentId3Test() throws Exception {
     try {
       boolean pass = true;
@@ -1809,6 +1846,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void setContentId4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1850,6 +1888,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the Mime Header named Content-Id
    */
+  @Test
   public void getContentId1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1892,6 +1931,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the Mime Header named Content-Id
    */
+  @Test
   public void getContentId2Test() throws Exception {
     try {
       boolean pass = true;
@@ -1933,6 +1973,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void setContentLocation1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1974,6 +2015,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void setContentLocation2Test() throws Exception {
     try {
       boolean pass = true;
@@ -2015,6 +2057,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void setContentLocation3Test() throws Exception {
     try {
       boolean pass = true;
@@ -2056,6 +2099,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void setContentLocation4Test() throws Exception {
     try {
       boolean pass = true;
@@ -2097,6 +2141,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void setContentLocation5Test() throws Exception {
     try {
       boolean pass = true;
@@ -2138,6 +2183,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the Mime Header named Content-Id
    */
+  @Test
   public void getContentLocation1Test() throws Exception {
     try {
       boolean pass = true;
@@ -2180,6 +2226,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void getContentLocation2Test() throws Exception {
     try {
       boolean pass = true;
@@ -2221,6 +2268,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Mime Header named Content-Id
    */
+  @Test
   public void getContentLocation3Test() throws Exception {
     try {
       boolean pass = true;
@@ -2262,6 +2310,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Content
    */
+  @Test
   public void setContent1Test() throws Exception {
     try {
       boolean pass = true;
@@ -2303,6 +2352,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Content
    */
+  @Test
   public void setContent2Test() throws Exception {
     try {
       boolean pass = true;
@@ -2344,6 +2394,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the Content
    */
+  @Test
   public void setContent3Test() throws Exception {
     try {
       boolean pass = true;
@@ -2385,6 +2436,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the Content
    */
+  @Test
   public void getContent1Test() throws Exception {
     try {
       boolean pass = true;
@@ -2427,6 +2479,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the Content
    */
+  @Test
   public void getContent2Test() throws Exception {
     try {
       boolean pass = true;
@@ -2468,6 +2521,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the Content
    */
+  @Test
   public void getContent3Test() throws Exception {
     try {
       boolean pass = true;
@@ -2509,6 +2563,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the Content
    */
+  @Test
   public void getContent4Test() throws Exception {
     try {
       boolean pass = true;
@@ -2550,6 +2605,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the Content
    */
+  @Test
   public void getContent5Test() throws Exception {
     try {
       boolean pass = true;
@@ -2591,6 +2647,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the DataHandler object
    */
+  @Test
   public void setDataHandler1Test() throws Exception {
     try {
       boolean pass = true;
@@ -2632,6 +2689,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the DataHandler object
    */
+  @Test
   public void setDataHandler2Test() throws Exception {
     try {
       boolean pass = true;
@@ -2673,6 +2731,7 @@ public class URLClient extends EETest {
    *
    * Description: Set the DataHandler object
    */
+  @Test
   public void setDataHandler3Test() throws Exception {
     try {
       boolean pass = true;
@@ -2714,6 +2773,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the DataHandler object
    */
+  @Test
   public void getDataHandler1Test() throws Exception {
     try {
       boolean pass = true;
@@ -2755,6 +2815,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the DataHandler object
    */
+  @Test
   public void getDataHandler2Test() throws Exception {
     try {
       boolean pass = true;
@@ -2796,6 +2857,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the DataHandler object
    */
+  @Test
   public void getDataHandler3Test() throws Exception {
     try {
       boolean pass = true;
@@ -2836,6 +2898,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the size of the AttachmentPart Object
    */
+  @Test
   public void getSize1Test() throws Exception {
     try {
       boolean pass = true;
@@ -2876,6 +2939,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the size of the AttachmentPart Object
    */
+  @Test
   public void getSize2Test() throws Exception {
     try {
       boolean pass = true;
@@ -2917,6 +2981,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the size of the AttachmentPart Object
    */
+  @Test
   public void getSize3Test() throws Exception {
     try {
       boolean pass = true;
@@ -2958,6 +3023,7 @@ public class URLClient extends EETest {
    *
    * Description: Get the size of the AttachmentPart Object
    */
+  @Test
   public void getSize4Test() throws Exception {
     try {
       boolean pass = true;
@@ -2998,6 +3064,7 @@ public class URLClient extends EETest {
    *
    * Description: Clear content of AttachmentPart object
    */
+  @Test
   public void clearContent1Test() throws Exception {
     try {
       boolean pass = true;
@@ -3039,6 +3106,7 @@ public class URLClient extends EETest {
    *
    * Description: Clear content of AttachmentPart object
    */
+  @Test
   public void clearContent2Test() throws Exception {
     try {
       boolean pass = true;
@@ -3080,6 +3148,7 @@ public class URLClient extends EETest {
    *
    * Description: Clear content of AttachmentPart object
    */
+  @Test
   public void clearContent3Test() throws Exception {
     try {
       boolean pass = true;
@@ -3121,6 +3190,7 @@ public class URLClient extends EETest {
    *
    * Description: Clear content of AttachmentPart object
    */
+  @Test
   public void clearContent4Test() throws Exception {
     try {
       boolean pass = true;
@@ -3160,6 +3230,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setBase64Content/getBase64Content and
    * verify correct behavior.
    */
+  @Test
   public void SetGetBase64ContentTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3199,6 +3270,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setBase64Content/getBase64Content and
    * verify correct behavior.
    */
+  @Test
   public void SetGetBase64ContentTest2() throws Exception {
     try {
       boolean pass = true;
@@ -3238,6 +3310,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setBase64Content/getBase64Content and
    * verify correct behavior.
    */
+  @Test
   public void SetGetBase64ContentTest3() throws Exception {
     try {
       boolean pass = true;
@@ -3277,6 +3350,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setBase64Content and test for
    * IOException.
    */
+  @Test
   public void SetBase64ContentIOExceptionTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3316,6 +3390,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setBase64Content and test for
    * NullPointerException.
    */
+  @Test
   public void SetBase64ContentNullPointerExceptionTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3356,6 +3431,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setBase64Content and test for
    * SOAPException.
    */
+  @Test
   public void SetBase64ContentSOAPExceptionTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3395,6 +3471,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.getBase64Content and test for
    * SOAPException.
    */
+  @Test
   public void GetBase64ContentSOAPExceptionTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3434,6 +3511,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setRawContent/getRawContent and verify
    * correct behavior.
    */
+  @Test
   public void SetGetRawContentTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3473,6 +3551,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setRawContent/getRawContent and verify
    * correct behavior.
    */
+  @Test
   public void SetGetRawContentTest2() throws Exception {
     try {
       boolean pass = true;
@@ -3512,6 +3591,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setRawContent/getRawContent and verify
    * correct behavior.
    */
+  @Test
   public void SetGetRawContentTest3() throws Exception {
     try {
       boolean pass = true;
@@ -3551,6 +3631,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setRawContent/getRawContent and verify
    * correct behavior.
    */
+  @Test
   public void SetGetRawContentTest4() throws Exception {
     try {
       boolean pass = true;
@@ -3590,6 +3671,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setRawContentBytes/getRawContentBytes
    * and verify correct behavior.
    */
+  @Test
   public void SetGetRawContentBytesTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3629,6 +3711,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setRawContentBytes with a null byte[]
    * array and verify correct behavior.
    */
+  @Test
   public void SetRawContentBytesSOAPOrNullPointerExceptionTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3671,6 +3754,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.getRawContentBytes on an empty
    * Attachment object and verify correct behavior.
    */
+  @Test
   public void GetRawContentBytesSOAPOrNullPointerExceptionTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3712,6 +3796,7 @@ public class URLClient extends EETest {
    *
    * @test_Strategy: Call AttachmentPart.setRawContent and test for IOException.
    */
+  @Test
   public void SetRawContentIOExceptionTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3751,6 +3836,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.setRawContent and test for
    * NullPointerException.
    */
+  @Test
   public void SetRawContentNullPointerExceptionTest1() throws Exception {
     try {
       boolean pass = true;
@@ -3790,6 +3876,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Call AttachmentPart.getRawContent and test for
    * SOAPException.
    */
+  @Test
   public void GetRawContentSOAPExceptionTest1() throws Exception {
     try {
       boolean pass = true;

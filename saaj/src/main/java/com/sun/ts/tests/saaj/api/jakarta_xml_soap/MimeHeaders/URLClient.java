@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -107,6 +104,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeaders object.
    */
+  @Test
   public void addHeader1Test() throws Exception {
     try {
       boolean pass = true;
@@ -148,6 +146,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeaders object.
    */
+  @Test
   public void addHeader2Test() throws Exception {
     try {
       boolean pass = true;
@@ -190,6 +189,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeaders object.
    */
+  @Test
   public void addHeader3Test() throws Exception {
     try {
       boolean pass = true;
@@ -232,6 +232,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeaders object.
    */
+  @Test
   public void addHeader4Test() throws Exception {
     try {
       boolean pass = true;
@@ -274,6 +275,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeaders object.
    */
+  @Test
   public void addHeader5Test() throws Exception {
     try {
       boolean pass = true;
@@ -316,6 +318,7 @@ public class URLClient extends EETest {
    *
    * Description: Construct a MimeHeaders object.
    */
+  @Test
   public void addHeader6Test() throws Exception {
     try {
       boolean pass = true;
@@ -357,6 +360,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getHeader1Test() throws Exception {
     try {
       boolean pass = true;
@@ -398,6 +402,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getHeader2Test() throws Exception {
     try {
       boolean pass = true;
@@ -439,6 +444,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getHeader3Test() throws Exception {
     try {
       boolean pass = true;
@@ -480,6 +486,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getHeader4Test() throws Exception {
     try {
       boolean pass = true;
@@ -521,6 +528,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getAllHeaders1Test() throws Exception {
     try {
       boolean pass = true;
@@ -562,6 +570,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getAllHeaders2Test() throws Exception {
     try {
       boolean pass = true;
@@ -604,6 +613,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getAllHeaders3Test() throws Exception {
     try {
       boolean pass = true;
@@ -645,6 +655,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getAllHeaders4Test() throws Exception {
     try {
       boolean pass = true;
@@ -686,6 +697,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeaders object.
    */
+  @Test
   public void removeAllHeaders1Test() throws Exception {
     try {
       boolean pass = true;
@@ -727,6 +739,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeaders object.
    */
+  @Test
   public void removeAllHeaders2Test() throws Exception {
     try {
       boolean pass = true;
@@ -769,6 +782,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeaders object.
    */
+  @Test
   public void removeAllHeaders3Test() throws Exception {
     try {
       boolean pass = true;
@@ -810,6 +824,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeaders object.
    */
+  @Test
   public void removeAllHeaders4Test() throws Exception {
     try {
       boolean pass = true;
@@ -851,6 +866,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace a MimeHeaders object.
    */
+  @Test
   public void setHeader1Test() throws Exception {
     try {
       boolean pass = true;
@@ -893,6 +909,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace a MimeHeaders object.
    */
+  @Test
   public void setHeader2Test() throws Exception {
     try {
       boolean pass = true;
@@ -935,6 +952,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace/Construct a MimeHeaders object.
    */
+  @Test
   public void setHeader3Test() throws Exception {
     try {
       boolean pass = true;
@@ -976,6 +994,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace/Construct a MimeHeaders object.
    */
+  @Test
   public void setHeader4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1017,6 +1036,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace/Construct a MimeHeaders object.
    */
+  @Test
   public void setHeader5Test() throws Exception {
     try {
       boolean pass = true;
@@ -1058,6 +1078,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace/Construct a MimeHeaders object.
    */
+  @Test
   public void setHeader6Test() throws Exception {
     try {
       boolean pass = true;
@@ -1099,6 +1120,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeaders object.
    */
+  @Test
   public void removeHeader1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1140,6 +1162,7 @@ public class URLClient extends EETest {
    *
    * Description: Replace a MimeHeaders object.
    */
+  @Test
   public void removeHeader2Test() throws Exception {
     try {
       boolean pass = true;
@@ -1182,6 +1205,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeaders object.
    */
+  @Test
   public void removeHeader3Test() throws Exception {
     try {
       boolean pass = true;
@@ -1223,6 +1247,7 @@ public class URLClient extends EETest {
    *
    * Description: Remove a MimeHeaders object.
    */
+  @Test
   public void removeHeader4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1264,6 +1289,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object. Get single header.
    */
+  @Test
   public void getMatchingHeaders1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1306,6 +1332,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getMatchingHeaders2Test() throws Exception {
     try {
       boolean pass = true;
@@ -1348,6 +1375,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getMatchingHeaders3Test() throws Exception {
     try {
       boolean pass = true;
@@ -1390,6 +1418,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getMatchingHeaders4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1432,6 +1461,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getMatchingHeaders5Test() throws Exception {
     try {
       boolean pass = true;
@@ -1473,6 +1503,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getNonMatchingHeaders1Test() throws Exception {
     try {
       boolean pass = true;
@@ -1515,6 +1546,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getNonMatchingHeaders2Test() throws Exception {
     try {
       boolean pass = true;
@@ -1557,6 +1589,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getNonMatchingHeaders3Test() throws Exception {
     try {
       boolean pass = true;
@@ -1599,6 +1632,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getNonMatchingHeaders4Test() throws Exception {
     try {
       boolean pass = true;
@@ -1641,6 +1675,7 @@ public class URLClient extends EETest {
    *
    * Description: Retrieve a MimeHeaders object.
    */
+  @Test
   public void getNonMatchingHeaders5Test() throws Exception {
     try {
       boolean pass = true;

@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -105,6 +102,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the SOAP encodingStyle attribute information item.
    *
    */
+  @Test
   public void VerifyEncodingStyleAttributeInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -173,6 +171,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the SOAP Relay attribute information item.
    *
    */
+  @Test
   public void VerifyRelayAttributeInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -207,6 +206,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the SOAP mustUnderstand attribute information item.
    *
    */
+  @Test
   public void VerifyMustUnderstandAttributeInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -241,6 +241,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the SOAP Envelope element information item.
    *
    */
+  @Test
   public void VerifyEnvelopeElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -275,6 +276,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the SOAP Header element information item.
    *
    */
+  @Test
   public void VerifyHeaderElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -309,6 +311,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the SOAP Body element information item.
    *
    */
+  @Test
   public void VerifyBodyElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -343,6 +346,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the SOAP Body Child element information item.
    *
    */
+  @Test
   public void VerifyBodyChildElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -377,6 +381,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the SOAP Fault element information item.
    *
    */
+  @Test
   public void VerifyFaultElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -411,6 +416,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the Fault Code element information item.
    *
    */
+  @Test
   public void VerifyCodeElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -445,6 +451,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the Fault Subcode element information item.
    *
    */
+  @Test
   public void VerifySubcodeElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -479,6 +486,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the Detail element information item.
    *
    */
+  @Test
   public void VerifyDetailElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -513,6 +521,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the Upgrade element information item.
    *
    */
+  @Test
   public void VerifyUpgradeElementInfoItem() throws Exception {
     boolean pass = true;
     try {
@@ -547,6 +556,7 @@ public class URLClient extends EETest {
    * @test_Strategy: Verify the NotUnderstood element information item.
    *
    */
+  @Test
   public void VerifyNotUnderstoodElementInfoItem() throws Exception {
     boolean pass = true;
     try {

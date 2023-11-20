@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -108,6 +105,7 @@ public class URLClient extends EETest {
    * SOAPEnvelope, SOAPBody, and SOAPHeader objects.
    *
    */
+  @Test
   public void createMessageTest1() throws Exception {
     boolean pass = true;
     try {
@@ -152,6 +150,7 @@ public class URLClient extends EETest {
    * a new SOAPMessage object and returns the SOAPMessage object.
    *
    */
+  @Test
   public void createMessageTest2() throws Exception {
     boolean pass = true;
     try {
@@ -195,6 +194,7 @@ public class URLClient extends EETest {
    * default implementation.
    *
    */
+  @Test
   public void newInstanceTest1() throws Exception {
     boolean pass = true;
     try {
@@ -233,6 +233,7 @@ public class URLClient extends EETest {
    * implementation.
    *
    */
+  @Test
   public void newInstanceTest2() throws Exception {
     boolean pass = true;
     try {
@@ -273,6 +274,7 @@ public class URLClient extends EETest {
    * implementation.
    *
    */
+  @Test
   public void newInstanceTest3() throws Exception {
     boolean pass = true;
     try {
@@ -313,6 +315,7 @@ public class URLClient extends EETest {
    * factory implementation.
    *
    */
+  @Test
   public void newInstanceTest4() throws Exception {
     boolean pass = true;
     try {
@@ -353,6 +356,7 @@ public class URLClient extends EETest {
    * factory implementation.
    *
    */
+  @Test
   public void newInstanceTest4b() throws Exception {
     boolean pass = true;
     try {
@@ -393,6 +397,7 @@ public class URLClient extends EETest {
    * expect a SOAPException.
    *
    */
+  @Test
   public void newInstanceTest5() throws Exception {
     boolean pass = true;
     try {
@@ -432,6 +437,7 @@ public class URLClient extends EETest {
    * factory implementation.
    *
    */
+  @Test
   public void newInstanceTest6() throws Exception {
     boolean pass = true;
     try {

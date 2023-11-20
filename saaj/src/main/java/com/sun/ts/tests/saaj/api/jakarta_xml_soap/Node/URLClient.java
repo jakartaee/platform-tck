@@ -24,12 +24,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.junit.jupiter.api.Test;
+
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
-public class URLClient extends EETest {
+public class URLClient {
   private static final String PROTOCOL = "http";
 
   private static final String HOSTNAME = "localhost";
@@ -54,11 +56,6 @@ public class URLClient extends EETest {
 
   private int portnum = PORTNUM;
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup */
 
@@ -66,18 +63,18 @@ public class URLClient extends EETest {
    * @class.setup_props: webServerHost; webServerPort;
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
+  public void setup() throws Exception {
+
     boolean pass = true;
 
     try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
+      hostname = System.getProperty(WEBSERVERHOSTPROP);
       if (hostname == null)
         pass = false;
       else if (hostname.equals(""))
         pass = false;
       try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
+        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
       } catch (Exception e) {
         pass = false;
       }
@@ -108,6 +105,7 @@ public class URLClient extends EETest {
    * Description: Through the Node interface you can detach a node element
    *
    */
+  @Test
   public void detachNodeTest() throws Exception {
     boolean pass = true;
     try {
@@ -151,6 +149,7 @@ public class URLClient extends EETest {
    * Description: Through the Node interface you can recycle a node element
    *
    */
+  @Test
   public void recycleNodeTest() throws Exception {
     boolean pass = true;
     try {
@@ -195,6 +194,7 @@ public class URLClient extends EETest {
    * a Node that has a parent.
    *
    */
+  @Test
   public void getParentElementTest1() throws Exception {
     boolean pass = true;
     try {
@@ -239,6 +239,7 @@ public class URLClient extends EETest {
    * of a Node that does not have a parent.
    *
    */
+  @Test
   public void getParentElementTest2() throws Exception {
     boolean pass = true;
     try {
@@ -282,6 +283,7 @@ public class URLClient extends EETest {
    * Description: Through the Node interface you can set parent node element
    *
    */
+  @Test
   public void setParentElementTest1() throws Exception {
     boolean pass = true;
     try {
@@ -327,6 +329,7 @@ public class URLClient extends EETest {
    * to an improper parent.
    *
    */
+  @Test
   public void setParentElementTest2() throws Exception {
     boolean pass = true;
     try {
@@ -372,6 +375,7 @@ public class URLClient extends EETest {
    * to a null parent.
    *
    */
+  @Test
   public void setParentElementTest3() throws Exception {
     boolean pass = true;
     try {
@@ -416,6 +420,7 @@ public class URLClient extends EETest {
    * immediate child of a node element if a child does not exist.
    *
    */
+  @Test
   public void getValueTest1() throws Exception {
     boolean pass = true;
     try {
@@ -460,6 +465,7 @@ public class URLClient extends EETest {
    * immediate child of a node element if a child exists.
    *
    */
+  @Test
   public void getValueTest2() throws Exception {
     boolean pass = true;
     try {
@@ -504,6 +510,7 @@ public class URLClient extends EETest {
    * immediate child of this node otherwise.
    *
    */
+  @Test
   public void setValueTest1() throws Exception {
     boolean pass = true;
     try {
@@ -547,6 +554,7 @@ public class URLClient extends EETest {
    * immediate child of this node otherwise.
    *
    */
+  @Test
   public void setValueTest2() throws Exception {
     boolean pass = true;
     try {
@@ -592,6 +600,7 @@ public class URLClient extends EETest {
    * IllegalStateException MUST be thrown.
    *
    */
+  @Test
   public void setValueTest3() throws Exception {
     boolean pass = true;
     try {
