@@ -26,7 +26,7 @@
         <version>11.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>saaj</artifactId>
+    <artifactId>saaj-tck</artifactId>
     <packaging>jar</packaging>
 
     <name>saaj</name>

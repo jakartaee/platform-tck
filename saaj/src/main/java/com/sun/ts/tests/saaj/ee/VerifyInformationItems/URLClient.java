@@ -20,16 +20,24 @@
 
 package com.sun.ts.tests.saaj.ee.VerifyInformationItems;
 
+import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
+@ExtendWith(ArquillianExtension.class)
 public class URLClient {
   private static final String PROTOCOL = "http";
 
@@ -57,6 +65,15 @@ public class URLClient {
   
   private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
+  @Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "VerifyInformationItems_web.war");
+		archive.addPackages(false, Filters.exclude(URLClient.class),
+				"com.sun.ts.tests.saaj.ee.VerifyInformationItems");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
 
 
   /* Test setup */

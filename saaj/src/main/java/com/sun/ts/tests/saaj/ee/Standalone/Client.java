@@ -20,15 +20,23 @@
 
 package com.sun.ts.tests.saaj.ee.Standalone;
 
+import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPElement.URLClient;
 import com.sun.ts.tests.saaj.common.SOAP_Util_Client;
 
 import jakarta.activation.DataHandler;
@@ -44,6 +52,7 @@ import jakarta.xml.soap.SOAPHeaderElement;
 import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
+@ExtendWith(ArquillianExtension.class)
 public class Client {
   private SOAPConnection con = null;
 
@@ -76,6 +85,17 @@ public class Client {
   private TSURL tsurl = new TSURL();
 
   private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
+  @Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "Standalone_web.war");
+		archive.addPackages(false, Filters.exclude(URLClient.class),
+				"com.sun.ts.tests.saaj.ee.Standalone");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsResource("com/sun/ts/tests/saaj/ee/Standalone/contentRoot");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
 
 
   /* Test setup */
