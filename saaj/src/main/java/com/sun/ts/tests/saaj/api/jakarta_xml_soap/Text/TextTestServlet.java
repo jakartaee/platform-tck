@@ -24,10 +24,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPFault.URLClient;
 import com.sun.ts.tests.saaj.common.SOAP_Util;
 
 import jakarta.servlet.ServletConfig;
@@ -49,6 +51,8 @@ import jakarta.xml.soap.SOAPPart;
 import jakarta.xml.soap.Text;
 
 public class TextTestServlet extends HttpServlet {
+	  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -102,10 +106,10 @@ public class TextTestServlet extends HttpServlet {
 
     name = envelope.createName("foo", "f", "foo-URI");
 
-    TestUtil.logMsg("Creating SOAPHeaderElement");
+    logger.log(Logger.Level.INFO,"Creating SOAPHeaderElement");
     she = hdr.addHeaderElement(envelope.createName("foo", "f", "foo-URI"));
 
-    TestUtil.logMsg("Creating SOAPBodyElement");
+    logger.log(Logger.Level.INFO,"Creating SOAPBodyElement");
     bodye = body.addBodyElement(envelope.createName("foo", "f", "foo-URI"));
 
     baos = new ByteArrayOutputStream();
@@ -159,38 +163,38 @@ public class TextTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Add text node with text [This is text]");
+      logger.log(Logger.Level.INFO,"Add text node with text [This is text]");
       SOAPElement se = body.addBodyElement(envelope.createName("mytext"))
           .addTextNode("This is text");
       msg.writeTo(ps);
-      TestUtil.logMsg("Dumping SOAPMessage\n" + baos.toString());
-      TestUtil.logMsg("get child elements");
+      logger.log(Logger.Level.INFO,"Dumping SOAPMessage\n" + baos.toString());
+      logger.log(Logger.Level.INFO,"get child elements");
       Iterator iterator = se.getChildElements();
       Node n = null;
       if (!iterator.hasNext())
-        TestUtil.logMsg("no child elements");
+        logger.log(Logger.Level.INFO,"no child elements");
       while (iterator.hasNext()) {
         n = (Node) iterator.next();
-        TestUtil.logMsg("Node is: " + n);
+        logger.log(Logger.Level.INFO,"Node is: " + n);
         if (n instanceof Text)
           break;
       }
 
       if (!(n instanceof Text)) {
-        TestUtil.logErr("no Text element was added - unexpected");
+        logger.log(Logger.Level.ERROR,"no Text element was added - unexpected");
         pass = false;
       } else {
         Text t = (Text) n;
-        TestUtil.logMsg("Executing IsComment");
+        logger.log(Logger.Level.INFO,"Executing IsComment");
         boolean bResult = t.isComment();
         if (bResult == true) {
-          TestUtil.logErr("addTextNodeTest() test FAILED");
-          TestUtil.logErr("isComment() did not return false");
+          logger.log(Logger.Level.ERROR,"addTextNodeTest() test FAILED");
+          logger.log(Logger.Level.ERROR,"isComment() did not return false");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -213,37 +217,37 @@ public class TextTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Add text node with text <!-- This is text -->");
+      logger.log(Logger.Level.INFO,"Add text node with text <!-- This is text -->");
       SOAPElement se = body.addTextNode("<!-- This is text -->");
       msg.writeTo(ps);
-      TestUtil.logMsg("Dumping SOAPMessage\n" + baos.toString());
-      TestUtil.logMsg("get child elements");
+      logger.log(Logger.Level.INFO,"Dumping SOAPMessage\n" + baos.toString());
+      logger.log(Logger.Level.INFO,"get child elements");
       Iterator iterator = se.getChildElements();
       Node n = null;
       if (!iterator.hasNext())
-        TestUtil.logMsg("no child elements");
+        logger.log(Logger.Level.INFO,"no child elements");
       while (iterator.hasNext()) {
         n = (Node) iterator.next();
-        TestUtil.logMsg("Node is: " + n);
+        logger.log(Logger.Level.INFO,"Node is: " + n);
         if (n instanceof Text)
           break;
       }
 
       if (!(n instanceof Text)) {
-        TestUtil.logErr("no Text element was added - unexpected");
+        logger.log(Logger.Level.ERROR,"no Text element was added - unexpected");
         pass = false;
       } else {
         Text t = (Text) n;
-        TestUtil.logMsg("Executing IsComment");
+        logger.log(Logger.Level.INFO,"Executing IsComment");
         boolean bResult = t.isComment();
         if (bResult == false) {
-          TestUtil.logErr("addTextNodeTest() test FAILED");
-          TestUtil.logErr("isComment() did not return true");
+          logger.log(Logger.Level.ERROR,"addTextNodeTest() test FAILED");
+          logger.log(Logger.Level.ERROR,"isComment() did not return true");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

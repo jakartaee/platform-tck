@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPEnvelope;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -45,6 +46,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SOAPEnvelopeTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SOAPEnvelopeTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -69,25 +73,25 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
     // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     body = envelope.getBody();
   }
 
@@ -96,25 +100,25 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("addBodyTest")) {
-      TestUtil.logMsg("Starting addBodyTest");
+      logger.log(Logger.Level.INFO,"Starting addBodyTest");
       addBodyTest(req, res);
     } else if (testname.equals("getBodyTest")) {
-      TestUtil.logMsg("Starting getBodyTest");
+      logger.log(Logger.Level.INFO,"Starting getBodyTest");
       getBodyTest(req, res);
     } else if (testname.equals("addHeaderTest")) {
-      TestUtil.logMsg("Starting addHeaderTest");
+      logger.log(Logger.Level.INFO,"Starting addHeaderTest");
       addHeaderTest(req, res);
     } else if (testname.equals("getHeaderTest")) {
-      TestUtil.logMsg("Starting getHeaderTest");
+      logger.log(Logger.Level.INFO,"Starting getHeaderTest");
       getHeaderTest(req, res);
     } else if (testname.equals("createNameTest1")) {
-      TestUtil.logMsg("Starting createNameTest1");
+      logger.log(Logger.Level.INFO,"Starting createNameTest1");
       createNameTest1(req, res);
     } else if (testname.equals("createNameTest2")) {
-      TestUtil.logMsg("Starting createNameTest2");
+      logger.log(Logger.Level.INFO,"Starting createNameTest2");
       createNameTest2(req, res);
     } else if (testname.equals("createNameTest3")) {
-      TestUtil.logMsg("Starting createNameTest3");
+      logger.log(Logger.Level.INFO,"Starting createNameTest3");
       createNameTest3(req, res);
     } else {
       throw new ServletException(
@@ -154,31 +158,31 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
     try {
       setup();
       try {
-        TestUtil.logMsg("Add SOAPBody to envelope that already"
+        logger.log(Logger.Level.INFO,"Add SOAPBody to envelope that already"
             + " has a SOAPBody (expect SOAPException)");
         SOAPBody mybdy = envelope.addBody();
-        TestUtil.logErr("Did not get expected SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not get expected SOAPException");
         pass = false;
       } catch (SOAPException e) {
-        TestUtil.logMsg("Got expected SOAPException");
+        logger.log(Logger.Level.INFO,"Got expected SOAPException");
       }
-      TestUtil.logMsg("Detach SOAPBody from this envelope");
+      logger.log(Logger.Level.INFO,"Detach SOAPBody from this envelope");
       envelope.getBody().detachNode();
-      TestUtil.logMsg("Add a SOAPBody to this envelope");
+      logger.log(Logger.Level.INFO,"Add a SOAPBody to this envelope");
       SOAPBody mybdy = envelope.addBody();
       if (mybdy == null) {
-        TestUtil.logErr("SOAPBody return value is null");
+        logger.log(Logger.Level.ERROR,"SOAPBody return value is null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("addBodyTest() test PASSED");
+      logger.log(Logger.Level.INFO,"addBodyTest() test PASSED");
     else
-      TestUtil.logErr("addBodyTest() test FAILED");
+      logger.log(Logger.Level.ERROR,"addBodyTest() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -201,35 +205,35 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
       SOAPBody mybdy2 = null;
 
       setup();
-      TestUtil.logMsg("Detach SOAPBody from this envelope");
+      logger.log(Logger.Level.INFO,"Detach SOAPBody from this envelope");
       envelope.getBody().detachNode();
-      TestUtil.logMsg("Get SOAPBody from envelope that has no"
+      logger.log(Logger.Level.INFO,"Get SOAPBody from envelope that has no"
           + " SOAPBody (expect return of null)");
       mybdy = envelope.getBody();
       if (mybdy != null) {
-        TestUtil.logErr("Did not get return of null");
+        logger.log(Logger.Level.ERROR,"Did not get return of null");
         pass = false;
       }
-      TestUtil.logMsg("Add a SOAPBody to this envelope");
+      logger.log(Logger.Level.INFO,"Add a SOAPBody to this envelope");
       mybdy = envelope.addBody();
-      TestUtil.logMsg("Get the SOAPBody of this envelope");
+      logger.log(Logger.Level.INFO,"Get the SOAPBody of this envelope");
       mybdy2 = envelope.getBody();
       if (mybdy2 == null) {
-        TestUtil.logErr("SOAPBody return value is null");
+        logger.log(Logger.Level.ERROR,"SOAPBody return value is null");
         pass = false;
       } else if (!mybdy2.equals(mybdy)) {
-        TestUtil.logErr("SOAPBody mybdy2 not equal to SOAPBody mybdy");
+        logger.log(Logger.Level.ERROR,"SOAPBody mybdy2 not equal to SOAPBody mybdy");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("getBodyTest() test PASSED");
+      logger.log(Logger.Level.INFO,"getBodyTest() test PASSED");
     else
-      TestUtil.logErr("getBodyTest() test FAILED");
+      logger.log(Logger.Level.ERROR,"getBodyTest() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -250,31 +254,31 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
     try {
       setup();
       try {
-        TestUtil.logMsg("Add SOAPHeader to envelope that already"
+        logger.log(Logger.Level.INFO,"Add SOAPHeader to envelope that already"
             + " has a SOAPHeader (expect SOAPException)");
         SOAPHeader myhdr = envelope.addHeader();
-        TestUtil.logErr("Did not get expected SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not get expected SOAPException");
         pass = false;
       } catch (SOAPException e) {
-        TestUtil.logMsg("Got expected SOAPException");
+        logger.log(Logger.Level.INFO,"Got expected SOAPException");
       }
-      TestUtil.logMsg("Detach SOAPHeader from this envelope");
+      logger.log(Logger.Level.INFO,"Detach SOAPHeader from this envelope");
       envelope.getHeader().detachNode();
-      TestUtil.logMsg("Add a SOAPHeader to this envelope");
+      logger.log(Logger.Level.INFO,"Add a SOAPHeader to this envelope");
       SOAPHeader myhdr = envelope.addHeader();
       if (myhdr == null) {
-        TestUtil.logErr("SOAPHeader return value is null");
+        logger.log(Logger.Level.ERROR,"SOAPHeader return value is null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("addHeaderTest() test PASSED");
+      logger.log(Logger.Level.INFO,"addHeaderTest() test PASSED");
     else
-      TestUtil.logErr("addHeaderTest() test FAILED");
+      logger.log(Logger.Level.ERROR,"addHeaderTest() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -297,35 +301,35 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
       SOAPHeader myhdr2 = null;
 
       setup();
-      TestUtil.logMsg("Detach SOAPHeader from this envelope");
+      logger.log(Logger.Level.INFO,"Detach SOAPHeader from this envelope");
       envelope.getHeader().detachNode();
-      TestUtil.logMsg("Get SOAPHeader from envelope that has no"
+      logger.log(Logger.Level.INFO,"Get SOAPHeader from envelope that has no"
           + " SOAPHeader (expect return of null)");
       myhdr = envelope.getHeader();
       if (myhdr != null) {
-        TestUtil.logErr("Did not get expected return of null");
+        logger.log(Logger.Level.ERROR,"Did not get expected return of null");
         pass = false;
       }
-      TestUtil.logMsg("Add a SOAPHeader to this envelope");
+      logger.log(Logger.Level.INFO,"Add a SOAPHeader to this envelope");
       myhdr = envelope.addHeader();
-      TestUtil.logMsg("Get the SOAPHeader of this envelope");
+      logger.log(Logger.Level.INFO,"Get the SOAPHeader of this envelope");
       myhdr2 = envelope.getHeader();
       if (myhdr2 == null) {
-        TestUtil.logErr("SOAPHeader return value is null");
+        logger.log(Logger.Level.ERROR,"SOAPHeader return value is null");
         pass = false;
       } else if (!myhdr2.equals(myhdr)) {
-        TestUtil.logErr("SOAPHeader myhdr2 not equal to SOAPHeader myhdr");
+        logger.log(Logger.Level.ERROR,"SOAPHeader myhdr2 not equal to SOAPHeader myhdr");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("getHeaderTest() test PASSED");
+      logger.log(Logger.Level.INFO,"getHeaderTest() test PASSED");
     else
-      TestUtil.logErr("getHeaderTest() test FAILED");
+      logger.log(Logger.Level.ERROR,"getHeaderTest() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -345,41 +349,41 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Create name element localName=MyName1");
+      logger.log(Logger.Level.INFO,"Create name element localName=MyName1");
       Name name = envelope.createName("MyName1");
       if (name == null) {
-        TestUtil.logErr("createName() returned null");
+        logger.log(Logger.Level.ERROR,"createName() returned null");
         pass = false;
       } else {
         String localName = name.getLocalName();
         String prefix = name.getPrefix();
         String uri = name.getURI();
-        TestUtil.logMsg("localName=" + localName);
-        TestUtil.logMsg("prefix=" + prefix);
-        TestUtil.logMsg("uri=" + uri);
+        logger.log(Logger.Level.INFO,"localName=" + localName);
+        logger.log(Logger.Level.INFO,"prefix=" + prefix);
+        logger.log(Logger.Level.INFO,"uri=" + uri);
         if (localName == null) {
-          TestUtil.logErr("localName is null (expected MyName1)");
+          logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
           pass = false;
         } else if (!localName.equals("MyName1")) {
-          TestUtil.logErr("localName is wrong (expected MyName1)");
+          logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
           pass = false;
         } else if (prefix != null && !prefix.equals("")) {
-          TestUtil.logErr("prefix is wrong (expected null or null string)");
+          logger.log(Logger.Level.ERROR,"prefix is wrong (expected null or null string)");
           pass = false;
         } else if (uri != null && !uri.equals("")) {
-          TestUtil.logErr("uri is wrong (expected null or null string)");
+          logger.log(Logger.Level.ERROR,"uri is wrong (expected null or null string)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("createNameTest1() test PASSED");
+      logger.log(Logger.Level.INFO,"createNameTest1() test PASSED");
     else
-      TestUtil.logErr("createNameTest1() test FAILED");
+      logger.log(Logger.Level.ERROR,"createNameTest1() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -399,48 +403,48 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Create name element localName=MyName1, "
+      logger.log(Logger.Level.INFO,"Create name element localName=MyName1, "
           + "prefix=MyPrefix1, uri=MyUri1");
       Name name = envelope.createName("MyName1", "MyPrefix1", "MyUri1");
       if (name == null) {
-        TestUtil.logErr("createName() returned null");
+        logger.log(Logger.Level.ERROR,"createName() returned null");
         pass = false;
       } else {
         String localName = name.getLocalName();
         String prefix = name.getPrefix();
         String uri = name.getURI();
-        TestUtil.logMsg("localName=" + localName);
-        TestUtil.logMsg("prefix=" + prefix);
-        TestUtil.logMsg("uri=" + uri);
+        logger.log(Logger.Level.INFO,"localName=" + localName);
+        logger.log(Logger.Level.INFO,"prefix=" + prefix);
+        logger.log(Logger.Level.INFO,"uri=" + uri);
         if (localName == null) {
-          TestUtil.logErr("localName is null (expected MyName1)");
+          logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
           pass = false;
         } else if (!localName.equals("MyName1")) {
-          TestUtil.logErr("localName is wrong (expected MyName1)");
+          logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
           pass = false;
         } else if (prefix == null) {
-          TestUtil.logErr("prefix is null (expected MyPrefix1)");
+          logger.log(Logger.Level.ERROR,"prefix is null (expected MyPrefix1)");
           pass = false;
         } else if (!prefix.equals("MyPrefix1")) {
-          TestUtil.logErr("prefix is wrong (expected MyPrefix1)");
+          logger.log(Logger.Level.ERROR,"prefix is wrong (expected MyPrefix1)");
           pass = false;
         } else if (uri == null) {
-          TestUtil.logErr("uri is null (expected MyUri1)");
+          logger.log(Logger.Level.ERROR,"uri is null (expected MyUri1)");
           pass = false;
         } else if (!uri.equals("MyUri1")) {
-          TestUtil.logErr("uri is wrong (expected MyUri1)");
+          logger.log(Logger.Level.ERROR,"uri is wrong (expected MyUri1)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("createNameTest2() test PASSED");
+      logger.log(Logger.Level.INFO,"createNameTest2() test PASSED");
     else
-      TestUtil.logErr("createNameTest2() test FAILED");
+      logger.log(Logger.Level.ERROR,"createNameTest2() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -460,40 +464,40 @@ public class SOAPEnvelopeTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Create name element localName=MyName1, "
+      logger.log(Logger.Level.INFO,"Create name element localName=MyName1, "
           + "uri=MyUri1");
       Name name = envelope.createName("MyName1", "MyUri1");
       if (name == null) {
-        TestUtil.logErr("createName() returned null");
+        logger.log(Logger.Level.ERROR,"createName() returned null");
         pass = false;
       } else {
         String localName = name.getLocalName();
         String uri = name.getURI();
-        TestUtil.logMsg("localName=" + localName);
-        TestUtil.logMsg("uri=" + uri);
+        logger.log(Logger.Level.INFO,"localName=" + localName);
+        logger.log(Logger.Level.INFO,"uri=" + uri);
         if (localName == null) {
-          TestUtil.logErr("localName is null (expected MyName1)");
+          logger.log(Logger.Level.ERROR,"localName is null (expected MyName1)");
           pass = false;
         } else if (!localName.equals("MyName1")) {
-          TestUtil.logErr("localName is wrong (expected MyName1)");
+          logger.log(Logger.Level.ERROR,"localName is wrong (expected MyName1)");
           pass = false;
         } else if (uri == null) {
-          TestUtil.logErr("uri is null (expected MyUri1)");
+          logger.log(Logger.Level.ERROR,"uri is null (expected MyUri1)");
           pass = false;
         } else if (!uri.equals("MyUri1")) {
-          TestUtil.logErr("uri is wrong (expected MyUri1)");
+          logger.log(Logger.Level.ERROR,"uri is wrong (expected MyUri1)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("createNameTest3() test PASSED");
+      logger.log(Logger.Level.INFO,"createNameTest3() test PASSED");
     else
-      TestUtil.logErr("createNameTest3() test FAILED");
+      logger.log(Logger.Level.ERROR,"createNameTest3() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");

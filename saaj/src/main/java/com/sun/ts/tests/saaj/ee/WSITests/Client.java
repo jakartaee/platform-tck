@@ -22,14 +22,13 @@ package com.sun.ts.tests.saaj.ee.WSITests;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import javax.xml.transform.stream.StreamSource;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.xml.soap.MessageFactory;
@@ -39,7 +38,7 @@ import jakarta.xml.soap.SOAPHeader;
 import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
-public class Client extends ServiceEETest {
+public class Client {
   private String GoodSoapMessage = "<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:soapenc=\"http://schemas.xmlsoap.org/soap/encoding/\" xmlns:tns=\"http://helloservice.org/wsdl\" xmlns:xsi=\"http://www.w3.org/451/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/451/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:hello><String_1 xsi:type=\"xsd:string\">&lt;Bozo&gt;</String_1></tns:hello></soap:Body></soap:Envelope>";
 
   private String GoodSoapMessageSOAP12 = "<soap:Envelope xmlns:soap=\"http://www.w3.org/2003/05/soap-envelope\" xmlns:soapenc=\"http://www.w3.org/2003/05/soap-encoding\" xmlns:tns=\"http://helloservice.org/wsdl\" xmlns:xsi=\"http://www.w3.org/451/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/451/XMLSchema\"><soap:Body soap:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\"><tns:hello><String_1 xsi:type=\"xsd:string\">&lt;Bozo&gt;</String_1></tns:hello></soap:Body></soap:Envelope>";
@@ -48,11 +47,7 @@ public class Client extends ServiceEETest {
 
   private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
   /* Test setup */
 
@@ -61,11 +56,11 @@ public class Client extends ServiceEETest {
    */
 
   public void setup() throws Exception {
-    logMsg("setup ok");
+    logger.log(Logger.Level.INFO,"setup ok");
   }
 
   public void cleanup() throws Exception {
-    logMsg("cleanup ok");
+    logger.log(Logger.Level.INFO,"cleanup ok");
   }
 
   /*
@@ -79,16 +74,16 @@ public class Client extends ServiceEETest {
   public void TestSetCharEncodingUtf16() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("TestSetCharEncodingUtf16");
+      logger.log(Logger.Level.INFO,"TestSetCharEncodingUtf16");
       for (int i = 0; i < 2; i++) {
         MessageFactory factory = null;
         ByteArrayInputStream bais = null;
         if (i == 0) {
-          TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessage.getBytes());
         } else {
-          TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessageSOAP12.getBytes());
         }
@@ -96,20 +91,20 @@ public class Client extends ServiceEETest {
         SOAPPart sp = message.getSOAPPart();
         SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();
         SOAPHeader header = envelope.getHeader();
-        TestUtil.logMsg("Read in SOAP Message from ByteArrayInputStream");
+        logger.log(Logger.Level.INFO,"Read in SOAP Message from ByteArrayInputStream");
         ssrc = new StreamSource(bais);
         sp.setContent(ssrc);
-        TestUtil.logMsg("Set character encoding to utf-16");
+        logger.log(Logger.Level.INFO,"Set character encoding to utf-16");
         message.setProperty(SOAPMessage.CHARACTER_SET_ENCODING, "utf-16");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         message.writeTo(baos);
-        TestUtil.logMsg("Dumping utf-16 encoded SOAP message");
+        logger.log(Logger.Level.INFO,"Dumping utf-16 encoded SOAP message");
         String utf16message = new String(baos.toByteArray());
-        TestUtil.logMsg(utf16message);
-        TestUtil.logMsg("No exception means (expected)");
+        logger.log(Logger.Level.INFO,utf16message);
+        logger.log(Logger.Level.INFO,"No exception means (expected)");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       throw new Exception("TestSetCharEncodingUtf16 failed", e);
     }
@@ -129,16 +124,16 @@ public class Client extends ServiceEETest {
   public void TestSetCharEncodingUtf8() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("TestSetCharEncodingUtf8");
+      logger.log(Logger.Level.INFO,"TestSetCharEncodingUtf8");
       for (int i = 0; i < 2; i++) {
         MessageFactory factory = null;
         ByteArrayInputStream bais = null;
         if (i == 0) {
-          TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessage.getBytes());
         } else {
-          TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessageSOAP12.getBytes());
         }
@@ -146,20 +141,20 @@ public class Client extends ServiceEETest {
         SOAPPart sp = message.getSOAPPart();
         SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();
         SOAPHeader header = envelope.getHeader();
-        TestUtil.logMsg("Read in SOAP Message from ByteArrayInputStream");
+        logger.log(Logger.Level.INFO,"Read in SOAP Message from ByteArrayInputStream");
         ssrc = new StreamSource(bais);
         sp.setContent(ssrc);
-        TestUtil.logMsg("Set character encoding to utf-8");
+        logger.log(Logger.Level.INFO,"Set character encoding to utf-8");
         message.setProperty(SOAPMessage.CHARACTER_SET_ENCODING, "utf-8");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         message.writeTo(baos);
-        TestUtil.logMsg("Dumping utf-8 encoded SOAP message");
+        logger.log(Logger.Level.INFO,"Dumping utf-8 encoded SOAP message");
         String utf8message = new String(baos.toByteArray());
-        TestUtil.logMsg(utf8message);
-        TestUtil.logMsg("No exception means (expected)");
+        logger.log(Logger.Level.INFO,utf8message);
+        logger.log(Logger.Level.INFO,"No exception means (expected)");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       throw new Exception("TestSetCharEncodingUtf8 failed", e);
     }
@@ -179,16 +174,16 @@ public class Client extends ServiceEETest {
   public void TestVerifyXmlDeclarationUtf16() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("TestVerifyXmlDeclarationUtf16");
+      logger.log(Logger.Level.INFO,"TestVerifyXmlDeclarationUtf16");
       for (int i = 0; i < 2; i++) {
         MessageFactory factory = null;
         ByteArrayInputStream bais = null;
         if (i == 0) {
-          TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessage.getBytes());
         } else {
-          TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessageSOAP12.getBytes());
         }
@@ -196,31 +191,31 @@ public class Client extends ServiceEETest {
         SOAPPart sp = message.getSOAPPart();
         SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();
         SOAPHeader header = envelope.getHeader();
-        TestUtil.logMsg("Read in SOAP Message from ByteArrayInputStream");
+        logger.log(Logger.Level.INFO,"Read in SOAP Message from ByteArrayInputStream");
         ssrc = new StreamSource(bais);
         sp.setContent(ssrc);
-        TestUtil.logMsg("Set character encoding to utf-16");
-        TestUtil.logMsg("Allow xml declaration in SOAP message");
+        logger.log(Logger.Level.INFO,"Set character encoding to utf-16");
+        logger.log(Logger.Level.INFO,"Allow xml declaration in SOAP message");
         message.setProperty(SOAPMessage.WRITE_XML_DECLARATION, "true");
         message.setProperty(SOAPMessage.CHARACTER_SET_ENCODING, "utf-16");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         message.writeTo(baos);
-        TestUtil.logMsg("Dumping utf-16 encoded SOAP message");
+        logger.log(Logger.Level.INFO,"Dumping utf-16 encoded SOAP message");
         String utf16message = new String(baos.toByteArray());
-        TestUtil.logMsg(utf16message);
+        logger.log(Logger.Level.INFO,utf16message);
         String decoded = new String(baos.toByteArray(), "utf-16");
-        TestUtil.logMsg("Dumping utf-16 decoded SOAP message");
-        TestUtil.logMsg(decoded);
-        TestUtil.logMsg("Verify xml declaration is present with utf-16");
+        logger.log(Logger.Level.INFO,"Dumping utf-16 decoded SOAP message");
+        logger.log(Logger.Level.INFO,decoded);
+        logger.log(Logger.Level.INFO,"Verify xml declaration is present with utf-16");
         if (decoded.indexOf("<?xml") != -1 && decoded.indexOf("utf-16") != -1)
-          TestUtil.logMsg("xml declaration is present (expected)");
+          logger.log(Logger.Level.INFO,"xml declaration is present (expected)");
         else {
-          TestUtil.logErr("xml declaration is not present (unexpected)");
+          logger.log(Logger.Level.ERROR,"xml declaration is not present (unexpected)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       throw new Exception("TestVerifyXmlDeclarationUtf16 failed", e);
     }
@@ -240,16 +235,16 @@ public class Client extends ServiceEETest {
   public void TestVerifyXmlDeclarationUtf8() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("TestVerifyXmlDeclarationUtf8");
+      logger.log(Logger.Level.INFO,"TestVerifyXmlDeclarationUtf8");
       for (int i = 0; i < 2; i++) {
         MessageFactory factory = null;
         ByteArrayInputStream bais = null;
         if (i == 0) {
-          TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessage.getBytes());
         } else {
-          TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessageSOAP12.getBytes());
         }
@@ -257,29 +252,29 @@ public class Client extends ServiceEETest {
         SOAPPart sp = message.getSOAPPart();
         SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();
         SOAPHeader header = envelope.getHeader();
-        TestUtil.logMsg("Read in SOAP Message from ByteArrayInputStream");
+        logger.log(Logger.Level.INFO,"Read in SOAP Message from ByteArrayInputStream");
         ssrc = new StreamSource(bais);
         sp.setContent(ssrc);
-        TestUtil.logMsg("Set character encoding to utf-8");
-        TestUtil.logMsg("Allow xml declaration in SOAP message");
+        logger.log(Logger.Level.INFO,"Set character encoding to utf-8");
+        logger.log(Logger.Level.INFO,"Allow xml declaration in SOAP message");
         message.setProperty(SOAPMessage.WRITE_XML_DECLARATION, "true");
         message.setProperty(SOAPMessage.CHARACTER_SET_ENCODING, "utf-8");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         message.writeTo(baos);
-        TestUtil.logMsg("Dumping utf-8 encoded SOAP message");
+        logger.log(Logger.Level.INFO,"Dumping utf-8 encoded SOAP message");
         String utf8message = new String(baos.toByteArray());
-        TestUtil.logMsg(utf8message);
-        TestUtil.logMsg("Verify xml declaration is present with utf-8");
+        logger.log(Logger.Level.INFO,utf8message);
+        logger.log(Logger.Level.INFO,"Verify xml declaration is present with utf-8");
         if (utf8message.indexOf("<?xml") != -1
             && utf8message.indexOf("utf-8") != -1)
-          TestUtil.logMsg("xml declaration is present (expected)");
+          logger.log(Logger.Level.INFO,"xml declaration is present (expected)");
         else {
-          TestUtil.logErr("xml declaration is not present (unexpected)");
+          logger.log(Logger.Level.ERROR,"xml declaration is not present (unexpected)");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       throw new Exception("TestVerifyXmlDeclarationUtf8 failed", e);
     }
@@ -299,16 +294,16 @@ public class Client extends ServiceEETest {
   public void TestVerifyNoXmlDeclarationOutput() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("TestVerifyNoXmlDeclarationOutput");
+      logger.log(Logger.Level.INFO,"TestVerifyNoXmlDeclarationOutput");
       for (int i = 0; i < 2; i++) {
         MessageFactory factory = null;
         ByteArrayInputStream bais = null;
         if (i == 0) {
-          TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessage.getBytes());
         } else {
-          TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessageSOAP12.getBytes());
         }
@@ -316,26 +311,26 @@ public class Client extends ServiceEETest {
         SOAPPart sp = message.getSOAPPart();
         SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();
         SOAPHeader header = envelope.getHeader();
-        TestUtil.logMsg("Read in SOAP Message from ByteArrayInputStream");
+        logger.log(Logger.Level.INFO,"Read in SOAP Message from ByteArrayInputStream");
         ssrc = new StreamSource(bais);
         sp.setContent(ssrc);
-        TestUtil.logMsg("Disallow xml declaration in SOAP message");
+        logger.log(Logger.Level.INFO,"Disallow xml declaration in SOAP message");
         message.setProperty(SOAPMessage.WRITE_XML_DECLARATION, "false");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         message.writeTo(baos);
-        TestUtil.logMsg("Dumping SOAP message");
+        logger.log(Logger.Level.INFO,"Dumping SOAP message");
         String soapmessage = new String(baos.toByteArray());
-        TestUtil.logMsg(soapmessage);
-        TestUtil.logMsg("Verify xml declaration is not present");
+        logger.log(Logger.Level.INFO,soapmessage);
+        logger.log(Logger.Level.INFO,"Verify xml declaration is not present");
         if (soapmessage.indexOf("<?xml") != -1) {
-          TestUtil.logErr("xml declaration is present (unexpected)");
+          logger.log(Logger.Level.ERROR,"xml declaration is present (unexpected)");
           pass = false;
         } else {
-          TestUtil.logMsg("xml declaration is not present (expected)");
+          logger.log(Logger.Level.INFO,"xml declaration is not present (expected)");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       throw new Exception("TestVerifyNoXmlDeclarationOutput failed", e);
     }
@@ -356,16 +351,16 @@ public class Client extends ServiceEETest {
   public void TestVerifyNoXmlDeclarationDefaultCase() throws Exception {
     boolean pass = true;
     try {
-      TestUtil.logMsg("TestVerifyNoXmlDeclarationDefaultCase");
+      logger.log(Logger.Level.INFO,"TestVerifyNoXmlDeclarationDefaultCase");
       for (int i = 0; i < 2; i++) {
         MessageFactory factory = null;
         ByteArrayInputStream bais = null;
         if (i == 0) {
-          TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessage.getBytes());
         } else {
-          TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+          logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
           factory = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
           bais = new ByteArrayInputStream(GoodSoapMessageSOAP12.getBytes());
         }
@@ -373,24 +368,24 @@ public class Client extends ServiceEETest {
         SOAPPart sp = message.getSOAPPart();
         SOAPEnvelope envelope = message.getSOAPPart().getEnvelope();
         SOAPHeader header = envelope.getHeader();
-        TestUtil.logMsg("Read in SOAP Message from ByteArrayInputStream");
+        logger.log(Logger.Level.INFO,"Read in SOAP Message from ByteArrayInputStream");
         ssrc = new StreamSource(bais);
         sp.setContent(ssrc);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         message.writeTo(baos);
-        TestUtil.logMsg("Dumping SOAP message");
+        logger.log(Logger.Level.INFO,"Dumping SOAP message");
         String soapmessage = new String(baos.toByteArray());
-        TestUtil.logMsg(soapmessage);
-        TestUtil.logMsg("Verify xml declaration is not present");
+        logger.log(Logger.Level.INFO,soapmessage);
+        logger.log(Logger.Level.INFO,"Verify xml declaration is not present");
         if (soapmessage.indexOf("<?xml") != -1) {
-          TestUtil.logErr("xml declaration is present (unexpected)");
+          logger.log(Logger.Level.ERROR,"xml declaration is present (unexpected)");
           pass = false;
         } else {
-          TestUtil.logMsg("xml declaration is not present (expected)");
+          logger.log(Logger.Level.INFO,"xml declaration is not present (expected)");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       throw new Exception("TestVerifyNoXmlDeclarationDefaultCase failed", e);
     }

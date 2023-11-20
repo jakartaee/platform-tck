@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnection;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.net.URL;
 import java.util.Properties;
 
@@ -47,6 +48,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SOAPConnectionTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SOAPConnectionTestServlet.class.getName());
+
   private String hostname = "localhost";
 
   private int portnum = 8080;
@@ -71,19 +75,19 @@ public class SOAPConnectionTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("closeTest")) {
-      TestUtil.logMsg("Starting closeTest");
+      logger.log(Logger.Level.INFO,"Starting closeTest");
       closeTest(req, res);
     } else if (testname.equals("callTest")) {
-      TestUtil.logMsg("Starting callTest");
+      logger.log(Logger.Level.INFO,"Starting callTest");
       callTest(req, res);
     } else if (testname.equals("getTest1")) {
-      TestUtil.logMsg("Starting getTest1");
+      logger.log(Logger.Level.INFO,"Starting getTest1");
       getTest1(req, res);
     } else if (testname.equals("getTest2")) {
-      TestUtil.logMsg("Starting getTest2");
+      logger.log(Logger.Level.INFO,"Starting getTest2");
       getTest2(req, res);
     } else if (testname.equals("getTest3")) {
-      TestUtil.logMsg("Starting getTest3");
+      logger.log(Logger.Level.INFO,"Starting getTest3");
       getTest3(req, res);
     } else {
       throw new ServletException(
@@ -123,29 +127,29 @@ public class SOAPConnectionTestServlet extends HttpServlet {
     try {
       setup();
       // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
+      logger.log(Logger.Level.INFO,"Check if SOAPConnectionFactory is supported");
       if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
+        logger.log(Logger.Level.INFO,"SOAPConnectionFactory.newInstance() is "
             + "unsupported (skipping test)");
         resultProps.setProperty("TESTRESULT", "pass");
         resultProps.list(out);
         return;
       }
-      TestUtil.logMsg("Create SOAPConnection object");
+      logger.log(Logger.Level.INFO,"Create SOAPConnection object");
       SOAPConnectionFactory sf = SOAP_Util.getSOAPConnectionFactory();
       SOAPConnection soapcon = sf.createConnection();
-      TestUtil.logMsg("Close SOAPConnection object");
+      logger.log(Logger.Level.INFO,"Close SOAPConnection object");
       soapcon.close();
       try {
-        TestUtil.logMsg("Try and close SOAPConnection object again");
+        logger.log(Logger.Level.INFO,"Try and close SOAPConnection object again");
         soapcon.close();
-        TestUtil.logErr("Did not get expected SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not get expected SOAPException");
         pass = false;
       } catch (SOAPException e) {
-        TestUtil.logMsg("Did get expected SOAPException");
+        logger.log(Logger.Level.INFO,"Did get expected SOAPException");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -169,16 +173,16 @@ public class SOAPConnectionTestServlet extends HttpServlet {
     try {
       setup();
       // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
+      logger.log(Logger.Level.INFO,"Check if SOAPConnectionFactory is supported");
       if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
+        logger.log(Logger.Level.INFO,"SOAPConnectionFactory.newInstance() is "
             + "unsupported (skipping test)");
         resultProps.setProperty("TESTRESULT", "pass");
         resultProps.list(out);
         return;
       }
       // Create a soap connection object
-      TestUtil.logMsg("Create SOAPConnection object");
+      logger.log(Logger.Level.INFO,"Create SOAPConnection object");
       SOAPConnectionFactory sf = SOAP_Util.getSOAPConnectionFactory();
       SOAPConnection soapcon = sf.createConnection();
 
@@ -186,36 +190,36 @@ public class SOAPConnectionTestServlet extends HttpServlet {
       MessageFactory mf = MessageFactory.newInstance();
 
       // Create a soap message from the message factory.
-      TestUtil.logMsg("Create SOAP message from message factory");
+      logger.log(Logger.Level.INFO,"Create SOAP message from message factory");
       SOAPMessage msg = mf.createMessage();
 
       // Message creation takes care of creating the SOAPPart - a
       // required part of the message as per the SOAP 1.1 spec.
-      TestUtil.logMsg("Get SOAP Part");
+      logger.log(Logger.Level.INFO,"Get SOAP Part");
       SOAPPart sp = msg.getSOAPPart();
 
       // Retrieve the envelope from the soap part to start building
       // the soap message.
-      TestUtil.logMsg("Get SOAP Envelope");
+      logger.log(Logger.Level.INFO,"Get SOAP Envelope");
       SOAPEnvelope envelope = sp.getEnvelope();
 
       // Create a soap header from the envelope.
-      TestUtil.logMsg("Create SOAP Header");
+      logger.log(Logger.Level.INFO,"Create SOAP Header");
       SOAPHeader hdr = envelope.getHeader();
 
       // Create a soap body from the envelope.
-      TestUtil.logMsg("Create SOAP Body");
+      logger.log(Logger.Level.INFO,"Create SOAP Body");
       SOAPBody bdy = envelope.getBody();
 
       // Add a soap header element to the header.
-      TestUtil.logMsg("Add SOAP Header element [MyTransaction]");
+      logger.log(Logger.Level.INFO,"Add SOAP Header element [MyTransaction]");
       SOAPHeaderElement transaction = hdr.addHeaderElement(
           envelope.createName("MyTransaction", "t", "request-uri"));
       transaction.setMustUnderstand(true);
       transaction.addTextNode("5");
 
       // Add a soap body element to the soap body
-      TestUtil.logMsg("Add SOAP Body element [GetLastTradePrice]");
+      logger.log(Logger.Level.INFO,"Add SOAP Body element [GetLastTradePrice]");
       SOAPBodyElement gltp = bdy.addBodyElement(envelope.createName(
           "GetLastTradePrice", "ztrade", "http://wombat.ztrade.com"));
 
@@ -224,33 +228,33 @@ public class SOAPConnectionTestServlet extends HttpServlet {
           .addTextNode("SUNW");
 
       msg.saveChanges();
-      TestUtil.logMsg("Done creating SOAP message");
+      logger.log(Logger.Level.INFO,"Done creating SOAP message");
 
       // Create a url endpoint for the recipient of the message.
       hostname = SOAP_Util.getHostname();
       portnum = SOAP_Util.getPortnum();
       URL urlEndpoint = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg("URLEndpoint = " + urlEndpoint);
+      logger.log(Logger.Level.INFO,"URLEndpoint = " + urlEndpoint);
 
       // Send the message to the endpoint using the connection.
-      TestUtil.logMsg("Send sync message with no attachments");
+      logger.log(Logger.Level.INFO,"Send sync message with no attachments");
       soapcon.call(msg, urlEndpoint);
-      TestUtil.logMsg("Message sent successfully .....");
+      logger.log(Logger.Level.INFO,"Message sent successfully .....");
 
       // Try and send message on a closed SOAPConnection object
-      TestUtil.logMsg("Try and send message on a closed SOAPConnection object");
+      logger.log(Logger.Level.INFO,"Try and send message on a closed SOAPConnection object");
       try {
-        TestUtil.logMsg("Close SOAPConnection object");
+        logger.log(Logger.Level.INFO,"Close SOAPConnection object");
         soapcon.close();
-        TestUtil.logMsg("Send message on closed SOAPConnection object");
+        logger.log(Logger.Level.INFO,"Send message on closed SOAPConnection object");
         soapcon.call(msg, urlEndpoint);
-        TestUtil.logErr("Did not get expected SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not get expected SOAPException");
         pass = false;
       } catch (SOAPException e) {
-        TestUtil.logMsg("Did get expected SOAPException");
+        logger.log(Logger.Level.INFO,"Did get expected SOAPException");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -274,35 +278,34 @@ public class SOAPConnectionTestServlet extends HttpServlet {
     try {
       setup();
       // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
+      logger.log(Logger.Level.INFO,"Check if SOAPConnectionFactory is supported");
       if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
+        logger.log(Logger.Level.INFO,"SOAPConnectionFactory.newInstance() is "
             + "unsupported (skipping test)");
         resultProps.setProperty("TESTRESULT", "pass");
         resultProps.list(out);
         return;
       }
 
-      TestUtil.logMsg("Create SOAPConnection object");
+      logger.log(Logger.Level.INFO,"Create SOAPConnection object");
       SOAPConnectionFactory sf = SOAP_Util.getSOAPConnectionFactory();
       SOAPConnection con = sf.createConnection();
-      TestUtil
-          .logMsg("Create a valid webservice endpoint for invoking HTTP-GET");
+      logger.log(Logger.Level.INFO,"Create a valid webservice endpoint for invoking HTTP-GET");
       hostname = SOAP_Util.getHostname();
       portnum = SOAP_Util.getPortnum();
       URL urlEndpoint = tsurl.getURL(PROTOCOL, hostname, portnum, GETSERVLET);
-      TestUtil.logMsg("Valid Webservice Endpoint=" + urlEndpoint);
+      logger.log(Logger.Level.INFO,"Valid Webservice Endpoint=" + urlEndpoint);
 
-      TestUtil.logMsg("Invoking HTTP-GET with a valid webservice "
+      logger.log(Logger.Level.INFO,"Invoking HTTP-GET with a valid webservice "
           + "endpoint should succeed");
       SOAPMessage reply = con.get(urlEndpoint);
-      TestUtil.logMsg("HTTP-GET succeeded (expected)");
+      logger.log(Logger.Level.INFO,"HTTP-GET succeeded (expected)");
       SOAP_Util.dumpSOAPMessage(reply);
     } catch (SOAPException e) {
-      TestUtil.logErr("Caught unexpected SOAPException");
+      logger.log(Logger.Level.ERROR,"Caught unexpected SOAPException");
       pass = false;
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -326,35 +329,35 @@ public class SOAPConnectionTestServlet extends HttpServlet {
     try {
       setup();
       // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
+      logger.log(Logger.Level.INFO,"Check if SOAPConnectionFactory is supported");
       if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
+        logger.log(Logger.Level.INFO,"SOAPConnectionFactory.newInstance() is "
             + "unsupported (skipping test)");
         resultProps.setProperty("TESTRESULT", "pass");
         resultProps.list(out);
         return;
       }
 
-      TestUtil.logMsg("Create SOAPConnection object");
+      logger.log(Logger.Level.INFO,"Create SOAPConnection object");
       SOAPConnectionFactory sf = SOAP_Util.getSOAPConnectionFactory();
       SOAPConnection con = sf.createConnection();
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Create a valid non webservice endpoint for invoking HTTP-GET");
       hostname = SOAP_Util.getHostname();
       portnum = SOAP_Util.getPortnum();
       URL urlEndpoint = tsurl.getURL(PROTOCOL, hostname, portnum, "/");
-      TestUtil.logMsg("Valid Non Webservice Endpoint=" + urlEndpoint);
+      logger.log(Logger.Level.INFO,"Valid Non Webservice Endpoint=" + urlEndpoint);
 
-      TestUtil.logMsg("Invoking HTTP-GET with a valid non webservice "
+      logger.log(Logger.Level.INFO,"Invoking HTTP-GET with a valid non webservice "
           + "endpoint should throw a SOAPException");
       con.get(urlEndpoint);
-      TestUtil.logErr("HTTP-GET succeeded (unexpected)");
-      TestUtil.logErr("Did not get expected SOAPException");
+      logger.log(Logger.Level.ERROR,"HTTP-GET succeeded (unexpected)");
+      logger.log(Logger.Level.ERROR,"Did not get expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did get expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did get expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -378,32 +381,32 @@ public class SOAPConnectionTestServlet extends HttpServlet {
     try {
       setup();
       // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
+      logger.log(Logger.Level.INFO,"Check if SOAPConnectionFactory is supported");
       if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
+        logger.log(Logger.Level.INFO,"SOAPConnectionFactory.newInstance() is "
             + "unsupported (skipping test)");
         resultProps.setProperty("TESTRESULT", "pass");
         resultProps.list(out);
         return;
       }
 
-      TestUtil.logMsg("Create SOAPConnection object");
+      logger.log(Logger.Level.INFO,"Create SOAPConnection object");
       SOAPConnectionFactory sf = SOAP_Util.getSOAPConnectionFactory();
       SOAPConnection con = sf.createConnection();
-      TestUtil.logMsg("Create an invalid endpoint for invoking HTTP-GET");
+      logger.log(Logger.Level.INFO,"Create an invalid endpoint for invoking HTTP-GET");
       URL urlEndpoint = new URL(PROTOCOL, "bogus.com", 80, "/bogus/bogus");
-      TestUtil.logMsg("Invalid Non Existant Endpoint=" + urlEndpoint);
+      logger.log(Logger.Level.INFO,"Invalid Non Existant Endpoint=" + urlEndpoint);
 
-      TestUtil.logMsg("Invoking HTTP-GET with an invalid "
+      logger.log(Logger.Level.INFO,"Invoking HTTP-GET with an invalid "
           + "endpoint should throw a SOAPException");
       con.get(urlEndpoint);
-      TestUtil.logErr("HTTP-GET succeeded (unexpected)");
-      TestUtil.logErr("Did not get expected SOAPException");
+      logger.log(Logger.Level.ERROR,"HTTP-GET succeeded (unexpected)");
+      logger.log(Logger.Level.ERROR,"Did not get expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did get expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did get expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

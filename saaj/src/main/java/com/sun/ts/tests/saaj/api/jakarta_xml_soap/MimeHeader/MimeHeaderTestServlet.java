@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.MimeHeader;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -39,6 +40,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class MimeHeaderTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(MimeHeaderTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -55,7 +59,7 @@ public class MimeHeaderTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
@@ -73,10 +77,10 @@ public class MimeHeaderTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("getNameTest")) {
-      TestUtil.logMsg("Starting getNameTest");
+      logger.log(Logger.Level.INFO,"Starting getNameTest");
       getNameTest(req, res);
     } else if (testname.equals("getValueTest")) {
-      TestUtil.logMsg("Starting getValueTest");
+      logger.log(Logger.Level.INFO,"Starting getValueTest");
       getValueTest(req, res);
     } else {
       throw new ServletException(
@@ -115,24 +119,24 @@ public class MimeHeaderTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeader object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeader object ...");
       mimeHeader = new MimeHeader("Content-Type", "application/xml");
 
-      TestUtil.logMsg("Obtaining name");
+      logger.log(Logger.Level.INFO,"Obtaining name");
       String name = mimeHeader.getName();
 
-      TestUtil.logMsg("Validating name results ...");
+      logger.log(Logger.Level.INFO,"Validating name results ...");
       if (name == null) {
-        TestUtil.logErr("name is null");
+        logger.log(Logger.Level.ERROR,"name is null");
         pass = false;
       } else if (!name.equals("Content-Type")) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "name mismatch - expected: Content-Type, received: " + name);
         pass = false;
       } else
-        TestUtil.logMsg("name matches: " + name);
+        logger.log(Logger.Level.INFO,"name matches: " + name);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -156,24 +160,24 @@ public class MimeHeaderTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeader object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeader object ...");
       mimeHeader = new MimeHeader("Content-Type", "application/xml");
 
-      TestUtil.logMsg("Obtaining value");
+      logger.log(Logger.Level.INFO,"Obtaining value");
       String value = mimeHeader.getValue();
 
-      TestUtil.logMsg("Validating value results ...");
+      logger.log(Logger.Level.INFO,"Validating value results ...");
       if (value == null) {
-        TestUtil.logErr("value is null");
+        logger.log(Logger.Level.ERROR,"value is null");
         pass = false;
       } else if (!value.equals("application/xml")) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "value mismatch - expected: application/xml, received: " + value);
         pass = false;
       } else
-        TestUtil.logMsg("value matches: " + value);
+        logger.log(Logger.Level.INFO,"value matches: " + value);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

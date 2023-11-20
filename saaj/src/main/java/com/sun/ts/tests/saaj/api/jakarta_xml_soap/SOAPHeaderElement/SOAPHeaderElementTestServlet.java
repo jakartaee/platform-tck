@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPHeaderElement;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -40,6 +41,8 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SOAPHeaderElementTestServlet extends HttpServlet {
+	  private static final Logger logger = (Logger) System.getLogger(SOAPHeaderElementTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -58,24 +61,24 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart - a
     // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
-    TestUtil.logMsg("Creating SOAPHeaderElement");
+    logger.log(Logger.Level.INFO,"Creating SOAPHeaderElement");
     she = hdr.addHeaderElement(envelope.createName("foo", "f", "foo-URI"));
 
   }
@@ -85,46 +88,46 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("setRelaySOAP11Test")) {
-      TestUtil.logMsg("Starting setRelaySOAP11Test");
+      logger.log(Logger.Level.INFO,"Starting setRelaySOAP11Test");
       setRelaySOAP11Test(req, res);
     } else if (testname.equals("setRelaySOAP12Test")) {
-      TestUtil.logMsg("Starting setRelaySOAP12Test");
+      logger.log(Logger.Level.INFO,"Starting setRelaySOAP12Test");
       setRelaySOAP12Test(req, res);
     } else if (testname.equals("getRelaySOAP11Test")) {
-      TestUtil.logMsg("Starting getRelaySOAP11Test");
+      logger.log(Logger.Level.INFO,"Starting getRelaySOAP11Test");
       getRelaySOAP11Test(req, res);
     } else if (testname.equals("getRelaySOAP12Test")) {
-      TestUtil.logMsg("Starting getRelaySOAP12Test");
+      logger.log(Logger.Level.INFO,"Starting getRelaySOAP12Test");
       getRelaySOAP12Test(req, res);
     } else if (testname.equals("getActorTest")) {
-      TestUtil.logMsg("Starting getActorTest");
+      logger.log(Logger.Level.INFO,"Starting getActorTest");
       getActorTest(req, res);
     } else if (testname.equals("getRoleSOAP11Test")) {
-      TestUtil.logMsg("Starting getRoleSOAP11Test");
+      logger.log(Logger.Level.INFO,"Starting getRoleSOAP11Test");
       getRoleSOAP11Test(req, res);
     } else if (testname.equals("getRoleSOAP12Test")) {
-      TestUtil.logMsg("Starting getRoleSOAP12Test");
+      logger.log(Logger.Level.INFO,"Starting getRoleSOAP12Test");
       getRoleSOAP12Test(req, res);
     } else if (testname.equals("getMustUnderstandTrueTest")) {
-      TestUtil.logMsg("Starting getMustUnderstandTrueTest");
+      logger.log(Logger.Level.INFO,"Starting getMustUnderstandTrueTest");
       getMustUnderstandTrueTest(req, res);
     } else if (testname.equals("getMustUnderstandFalseTest")) {
-      TestUtil.logMsg("Starting getMustUnderstandFalseTest");
+      logger.log(Logger.Level.INFO,"Starting getMustUnderstandFalseTest");
       getMustUnderstandFalseTest(req, res);
     } else if (testname.equals("setActorTest")) {
-      TestUtil.logMsg("Starting setActorTest");
+      logger.log(Logger.Level.INFO,"Starting setActorTest");
       setActorTest(req, res);
     } else if (testname.equals("setRoleSOAP11Test")) {
-      TestUtil.logMsg("Starting setRoleSOAP11Test");
+      logger.log(Logger.Level.INFO,"Starting setRoleSOAP11Test");
       setRoleSOAP11Test(req, res);
     } else if (testname.equals("setRoleSOAP12Test")) {
-      TestUtil.logMsg("Starting setRoleSOAP12Test");
+      logger.log(Logger.Level.INFO,"Starting setRoleSOAP12Test");
       setRoleSOAP12Test(req, res);
     } else if (testname.equals("setMustUnderstandTrueTest")) {
-      TestUtil.logMsg("Starting setMustUnderstandTrueTest");
+      logger.log(Logger.Level.INFO,"Starting setMustUnderstandTrueTest");
       setMustUnderstandTrueTest(req, res);
     } else if (testname.equals("setMustUnderstandFalseTest")) {
-      TestUtil.logMsg("Starting setMustUnderstandFalseTest");
+      logger.log(Logger.Level.INFO,"Starting setMustUnderstandFalseTest");
       setMustUnderstandFalseTest(req, res);
     } else {
       throw new ServletException(
@@ -163,15 +166,15 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Calling setRelay() should throw UnsupportedOperationException");
       she.setRelay(true);
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -195,14 +198,13 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Set relay attribute for this SOAPHeaderElement to true");
+      logger.log(Logger.Level.INFO,"Set relay attribute for this SOAPHeaderElement to true");
       she.setRelay(true);
 
-      TestUtil
-          .logMsg("Set relay attribute for this SOAPHeaderElement to false");
+      logger.log(Logger.Level.INFO,"Set relay attribute for this SOAPHeaderElement to false");
       she.setRelay(false);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -226,15 +228,15 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Calling getRelay() should throw UnsupportedOperationException");
       boolean relay = she.getRelay();
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -258,37 +260,35 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Set relay attribute for this SOAPHeaderElement to true");
+      logger.log(Logger.Level.INFO,"Set relay attribute for this SOAPHeaderElement to true");
       she.setRelay(true);
 
-      TestUtil.logMsg("Get relay attribute for this SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Get relay attribute for this SOAPHeaderElement");
       boolean relay = she.getRelay();
-      TestUtil.logMsg("Verify that relay attribute is true");
+      logger.log(Logger.Level.INFO,"Verify that relay attribute is true");
       if (relay) {
-        TestUtil.logMsg("SOAPHeaderElement relay attribute is true (expected)");
+        logger.log(Logger.Level.INFO,"SOAPHeaderElement relay attribute is true (expected)");
       } else {
         TestUtil
             .logErr("SOAPHeaderElement relay attribute is false (unexpected)");
         pass = false;
       }
 
-      TestUtil
-          .logMsg("Set relay attribute for this SOAPHeaderElement to false");
+      logger.log(Logger.Level.INFO,"Set relay attribute for this SOAPHeaderElement to false");
       she.setRelay(false);
 
-      TestUtil.logMsg("Get relay attribute for this SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Get relay attribute for this SOAPHeaderElement");
       relay = she.getRelay();
-      TestUtil.logMsg("Verify that relay attribute is false");
+      logger.log(Logger.Level.INFO,"Verify that relay attribute is false");
       if (!relay) {
-        TestUtil
-            .logMsg("SOAPHeaderElement relay attribute is false (expected)");
+        logger.log(Logger.Level.INFO,"SOAPHeaderElement relay attribute is false (expected)");
       } else {
         TestUtil
             .logErr("SOAPHeaderElement relay attribute is true (unexpected)");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -312,20 +312,20 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Set the actor associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Set the actor associated with SOAPHeaderElement");
       she.setActor("actor-URI");
 
-      TestUtil.logMsg("Validating actor associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Validating actor associated with SOAPHeaderElement");
       String actor = she.getActor();
       if (actor.equals("actor-URI")) {
-        TestUtil.logMsg("SOAPHeaderElement actor setting is actor-URI");
+        logger.log(Logger.Level.INFO,"SOAPHeaderElement actor setting is actor-URI");
       } else {
-        TestUtil.logErr("SOAPHeaderElement actor setting: expected "
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement actor setting: expected "
             + "actor-URI" + ", received " + actor);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -349,15 +349,15 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Calling getRole() should throw UnsupportedOperationException");
       String role = she.getRole();
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -381,20 +381,20 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Set the role associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Set the role associated with SOAPHeaderElement");
       she.setRole("role-URI");
 
-      TestUtil.logMsg("Validating role associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Validating role associated with SOAPHeaderElement");
       String role = she.getRole();
       if (role.equals("role-URI")) {
-        TestUtil.logMsg("SOAPHeaderElement role setting is role-URI");
+        logger.log(Logger.Level.INFO,"SOAPHeaderElement role setting is role-URI");
       } else {
-        TestUtil.logErr("SOAPHeaderElement role setting: expected " + "role-URI"
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement role setting: expected " + "role-URI"
             + ", received " + role);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -418,21 +418,20 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil
-          .logMsg("Set the SOAPHeaderElement mustunderstand attribute to true");
+      logger.log(Logger.Level.INFO,"Set the SOAPHeaderElement mustunderstand attribute to true");
       she.setMustUnderstand(true);
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Validating SOAPHeaderElement mustunderstand attribute setting to true ...");
       if (she.getMustUnderstand()) {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "SOAPHeaderElement mustunderstand attribute setting is true");
       } else {
-        TestUtil.logErr("SOAPHeaderElement mustunderstand attribute is false");
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement mustunderstand attribute is false");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -456,21 +455,21 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Set the SOAPHeaderElement mustunderstand attribute to false");
       she.setMustUnderstand(false);
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Validating SOAPHeaderElement mustunderstand attribute setting to false ...");
       if (!she.getMustUnderstand()) {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "SOAPHeaderElement mustunderstand attribute setting is false");
       } else {
-        TestUtil.logErr("SOAPHeaderElement mustunderstand attribute is true");
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement mustunderstand attribute is true");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -494,20 +493,20 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Set the actor associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Set the actor associated with SOAPHeaderElement");
       she.setActor("actor-URI");
 
-      TestUtil.logMsg("Validating actor associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Validating actor associated with SOAPHeaderElement");
       String actor = she.getActor();
       if (actor.equals("actor-URI")) {
-        TestUtil.logMsg("SOAPHeaderElement actor setting is actor-URI");
+        logger.log(Logger.Level.INFO,"SOAPHeaderElement actor setting is actor-URI");
       } else {
-        TestUtil.logErr("SOAPHeaderElement actor setting: expected "
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement actor setting: expected "
             + "actor-URI" + ", received " + actor);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -531,15 +530,15 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Calling setRole() should throw UnsupportedOperationException");
       she.setRole("role-URI");
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -563,20 +562,20 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Set the role associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Set the role associated with SOAPHeaderElement");
       she.setRole("role-URI");
 
-      TestUtil.logMsg("Validating role associated with SOAPHeaderElement");
+      logger.log(Logger.Level.INFO,"Validating role associated with SOAPHeaderElement");
       String role = she.getRole();
       if (role.equals("role-URI")) {
-        TestUtil.logMsg("SOAPHeaderElement role setting is role-URI");
+        logger.log(Logger.Level.INFO,"SOAPHeaderElement role setting is role-URI");
       } else {
-        TestUtil.logErr("SOAPHeaderElement role setting: expected " + "role-URI"
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement role setting: expected " + "role-URI"
             + ", received " + role);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -600,21 +599,20 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil
-          .logMsg("Set the SOAPHeaderElement mustunderstand attribute to true");
+      logger.log(Logger.Level.INFO,"Set the SOAPHeaderElement mustunderstand attribute to true");
       she.setMustUnderstand(true);
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Validating SOAPHeaderElement mustunderstand attribute setting to true ...");
       if (she.getMustUnderstand()) {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "SOAPHeaderElement mustunderstand attribute setting is true");
       } else {
-        TestUtil.logErr("SOAPHeaderElement mustunderstand attribute is false");
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement mustunderstand attribute is false");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -638,21 +636,21 @@ public class SOAPHeaderElementTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Set the SOAPHeaderElement mustunderstand attribute to false");
       she.setMustUnderstand(false);
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Validating SOAPHeaderElement mustunderstand attribute setting to false ...");
       if (!she.getMustUnderstand()) {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "SOAPHeaderElement mustunderstand attribute setting is false");
       } else {
-        TestUtil.logErr("SOAPHeaderElement mustunderstand attribute is true");
+        logger.log(Logger.Level.ERROR,"SOAPHeaderElement mustunderstand attribute is true");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

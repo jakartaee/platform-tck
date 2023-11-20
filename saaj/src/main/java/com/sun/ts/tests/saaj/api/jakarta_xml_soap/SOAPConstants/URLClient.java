@@ -20,14 +20,13 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConstants;
 
+import java.lang.System.Logger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
@@ -56,6 +55,8 @@ public class URLClient {
 
   private int portnum = PORTNUM;
 
+  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
+
 
   /* Test setup */
 
@@ -82,16 +83,16 @@ public class URLClient {
       throw new Exception("setup failed:", e);
     }
     if (!pass) {
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Please specify host & port of web server " + "in config properties: "
               + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
       throw new Exception("setup failed:");
     }
-    logMsg("setup ok");
+    logger.log(Logger.Level.INFO,"setup ok");
   }
 
   public void cleanup() throws Exception {
-    logMsg("cleanup ok");
+    logger.log(Logger.Level.INFO,"cleanup ok");
   }
 
   /*
@@ -109,21 +110,21 @@ public class URLClient {
     boolean pass = true;
     try {
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "SOAPConstantsTest: verify SOAP1.1 and SOAP1.2 protocol constants");
-      TestUtil.logMsg("Creating url to test servlet.....");
+      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
       url = tsurl.getURL(PROTOCOL, hostname, portnum,
           SOAPCONSTANTS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
+      logger.log(Logger.Level.INFO,url.toString());
+      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
       props.setProperty("TESTNAME", "SOAPConstantsTest");
       urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
+      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
       Properties resProps = TestUtil.getResponseProperties(urlConn);
       if (!resProps.getProperty("TESTRESULT").equals("pass"))
         pass = false;
     } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
       e.printStackTrace();
       throw new Exception("SOAPConstantsTest failed", e);
     }

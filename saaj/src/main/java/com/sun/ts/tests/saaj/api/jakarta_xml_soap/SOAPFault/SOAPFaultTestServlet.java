@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPFault;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Properties;
@@ -50,6 +51,8 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SOAPFaultTestServlet extends HttpServlet {
+	  private static final Logger logger = (Logger) System.getLogger(SOAPFaultTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPFactory sfactory = null;
@@ -72,26 +75,26 @@ public class SOAPFaultTestServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     msg = SOAP_Util.getMessageFactory().createMessage();
     sfactory = SOAP_Util.getSOAPFactory();
 
     // Message creation takes care of creating the SOAPPart - a
     // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = msg.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
     prefix = envelope.getElementName().getPrefix();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     body = envelope.getBody();
 
-    TestUtil.logMsg("Creating SOAPFault");
+    logger.log(Logger.Level.INFO,"Creating SOAPFault");
     sf = body.addFault();
   }
 
@@ -100,136 +103,136 @@ public class SOAPFaultTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("SetGetFaultString1Test")) {
-      TestUtil.logMsg("Starting SetGetFaultString1Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultString1Test");
       SetGetFaultString1Test(req, res);
     } else if (testname.equals("SetGetFaultCode1Test")) {
-      TestUtil.logMsg("Starting SetGetFaultCode1Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultCode1Test");
       SetGetFaultCode1Test(req, res);
     } else if (testname.equals("SetGetFaultActor1Test")) {
-      TestUtil.logMsg("Starting SetGetFaultActor1Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultActor1Test");
       SetGetFaultActor1Test(req, res);
     } else if (testname.equals("AddGetDetail1Test")) {
-      TestUtil.logMsg("Starting AddGetDetail1Test");
+      logger.log(Logger.Level.INFO,"Starting AddGetDetail1Test");
       AddGetDetail1Test(req, res);
     } else if (testname.equals("addFaultReasonText1Test")) {
-      TestUtil.logMsg("Starting addFaultReasonText1Test");
+      logger.log(Logger.Level.INFO,"Starting addFaultReasonText1Test");
       addFaultReasonText1Test(req, res);
     } else if (testname.equals("addFaultReasonText2Test")) {
-      TestUtil.logMsg("Starting addFaultReasonText2Test");
+      logger.log(Logger.Level.INFO,"Starting addFaultReasonText2Test");
       addFaultReasonText2Test(req, res);
     } else if (testname.equals("addFaultReasonText3Test")) {
-      TestUtil.logMsg("Starting addFaultReasonText3Test");
+      logger.log(Logger.Level.INFO,"Starting addFaultReasonText3Test");
       addFaultReasonText3Test(req, res);
     } else if (testname.equals("addFaultReasonText4Test")) {
-      TestUtil.logMsg("Starting addFaultReasonText4Test");
+      logger.log(Logger.Level.INFO,"Starting addFaultReasonText4Test");
       addFaultReasonText4Test(req, res);
     } else if (testname.equals("getFaultReasonText1Test")) {
-      TestUtil.logMsg("Starting getFaultReasonText1Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultReasonText1Test");
       getFaultReasonText1Test(req, res);
     } else if (testname.equals("getFaultReasonText2Test")) {
-      TestUtil.logMsg("Starting getFaultReasonText2Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultReasonText2Test");
       getFaultReasonText2Test(req, res);
     } else if (testname.equals("getFaultReasonText3Test")) {
-      TestUtil.logMsg("Starting getFaultReasonText3Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultReasonText3Test");
       getFaultReasonText3Test(req, res);
     } else if (testname.equals("getFaultReasonTexts1Test")) {
-      TestUtil.logMsg("Starting getFaultReasonTexts1Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultReasonTexts1Test");
       getFaultReasonTexts1Test(req, res);
     } else if (testname.equals("getFaultReasonTexts2Test")) {
-      TestUtil.logMsg("Starting getFaultReasonTexts2Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultReasonTexts2Test");
       getFaultReasonTexts2Test(req, res);
     } else if (testname.equals("getFaultReasonTexts3Test")) {
-      TestUtil.logMsg("Starting getFaultReasonTexts3Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultReasonTexts3Test");
       getFaultReasonTexts3Test(req, res);
     } else if (testname.equals("setFaultNode1Test")) {
-      TestUtil.logMsg("Starting setFaultNode1Test");
+      logger.log(Logger.Level.INFO,"Starting setFaultNode1Test");
       setFaultNode1Test(req, res);
     } else if (testname.equals("SetGetFaultNode1Test")) {
-      TestUtil.logMsg("Starting SetGetFaultNode1Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultNode1Test");
       SetGetFaultNode1Test(req, res);
     } else if (testname.equals("SetGetFaultNode2Test")) {
-      TestUtil.logMsg("Starting SetGetFaultNode2Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultNode2Test");
       SetGetFaultNode2Test(req, res);
     } else if (testname.equals("getFaultNode1Test")) {
-      TestUtil.logMsg("Starting getFaultNode1Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultNode1Test");
       getFaultNode1Test(req, res);
     } else if (testname.equals("getFaultNode2Test")) {
-      TestUtil.logMsg("Starting getFaultNode2Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultNode2Test");
       getFaultNode2Test(req, res);
     } else if (testname.equals("setFaultRole1Test")) {
-      TestUtil.logMsg("Starting setFaultRole1Test");
+      logger.log(Logger.Level.INFO,"Starting setFaultRole1Test");
       setFaultRole1Test(req, res);
     } else if (testname.equals("SetGetFaultRole1Test")) {
-      TestUtil.logMsg("Starting SetGetFaultRole1Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultRole1Test");
       SetGetFaultRole1Test(req, res);
     } else if (testname.equals("getFaultRole1Test")) {
-      TestUtil.logMsg("Starting getFaultRole1Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultRole1Test");
       getFaultRole1Test(req, res);
     } else if (testname.equals("getFaultRole2Test")) {
-      TestUtil.logMsg("Starting getFaultRole2Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultRole2Test");
       getFaultRole2Test(req, res);
     } else if (testname.equals("SetGetFaultStringLocale1Test")) {
-      TestUtil.logMsg("Starting SetGetFaultStringLocale1Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultStringLocale1Test");
       SetGetFaultStringLocale1Test(req, res);
     } else if (testname.equals("setFaultStringLocale1Test")) {
-      TestUtil.logMsg("Starting setFaultStringLocale1Test");
+      logger.log(Logger.Level.INFO,"Starting setFaultStringLocale1Test");
       setFaultStringLocale1Test(req, res);
     } else if (testname.equals("getFaultStringLocale1SOAP11Test")) {
-      TestUtil.logMsg("Starting getFaultStringLocale1SOAP11Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultStringLocale1SOAP11Test");
       getFaultStringLocale1SOAP11Test(req, res);
     } else if (testname.equals("getFaultStringLocale1SOAP12Test")) {
-      TestUtil.logMsg("Starting getFaultStringLocale1SOAP12Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultStringLocale1SOAP12Test");
       getFaultStringLocale1SOAP12Test(req, res);
     } else if (testname.equals("SetGetFaultCodeAsName1Test")) {
-      TestUtil.logMsg("Starting SetGetFaultCodeAsName1Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultCodeAsName1Test");
       SetGetFaultCodeAsName1Test(req, res);
     } else if (testname.equals("SetGetFaultCodeAsQName1Test")) {
-      TestUtil.logMsg("Starting SetGetFaultCodeAsQName1Test");
+      logger.log(Logger.Level.INFO,"Starting SetGetFaultCodeAsQName1Test");
       SetGetFaultCodeAsQName1Test(req, res);
     } else if (testname.equals("getFaultReasonLocales1Test")) {
-      TestUtil.logMsg("Starting getFaultReasonLocales1Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultReasonLocales1Test");
       getFaultReasonLocales1Test(req, res);
     } else if (testname.equals("getFaultReasonLocales2Test")) {
-      TestUtil.logMsg("Starting getFaultReasonLocales2Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultReasonLocales2Test");
       getFaultReasonLocales2Test(req, res);
     } else if (testname.equals("appendFaultSubcode1Test")) {
-      TestUtil.logMsg("Starting appendFaultSubcode1Test");
+      logger.log(Logger.Level.INFO,"Starting appendFaultSubcode1Test");
       appendFaultSubcode1Test(req, res);
     } else if (testname.equals("appendFaultSubcode2Test")) {
-      TestUtil.logMsg("Starting appendFaultSubcode2Test");
+      logger.log(Logger.Level.INFO,"Starting appendFaultSubcode2Test");
       appendFaultSubcode2Test(req, res);
     } else if (testname.equals("getFaultSubcodes1Test")) {
-      TestUtil.logMsg("Starting getFaultSubcodes1Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultSubcodes1Test");
       getFaultSubcodes1Test(req, res);
     } else if (testname.equals("getFaultSubcodes2Test")) {
-      TestUtil.logMsg("Starting getFaultSubcodes2Test");
+      logger.log(Logger.Level.INFO,"Starting getFaultSubcodes2Test");
       getFaultSubcodes2Test(req, res);
     } else if (testname.equals("hasDetail1Test")) {
-      TestUtil.logMsg("Starting hasDetail1Test");
+      logger.log(Logger.Level.INFO,"Starting hasDetail1Test");
       hasDetail1Test(req, res);
     } else if (testname.equals("hasDetail2Test")) {
-      TestUtil.logMsg("Starting hasDetail2Test");
+      logger.log(Logger.Level.INFO,"Starting hasDetail2Test");
       hasDetail2Test(req, res);
     } else if (testname.equals("removeAllFaultSubcodes1Test")) {
-      TestUtil.logMsg("Starting removeAllFaultSubcodes1Test");
+      logger.log(Logger.Level.INFO,"Starting removeAllFaultSubcodes1Test");
       removeAllFaultSubcodes1Test(req, res);
     } else if (testname.equals("removeAllFaultSubcodes2Test")) {
-      TestUtil.logMsg("Starting removeAllFaultSubcodes2Test");
+      logger.log(Logger.Level.INFO,"Starting removeAllFaultSubcodes2Test");
       removeAllFaultSubcodes2Test(req, res);
     } else if (testname.equals("SetFaultCodeNameSOAPExceptionTest")) {
-      TestUtil.logMsg("Starting SetFaultCodeNameSOAPExceptionTest");
+      logger.log(Logger.Level.INFO,"Starting SetFaultCodeNameSOAPExceptionTest");
       SetFaultCodeNameSOAPExceptionTest(req, res);
     } else if (testname.equals("SetFaultCodeQNameSOAPExceptionTest")) {
-      TestUtil.logMsg("Starting SetFaultCodeQNameSOAPExceptionTest");
+      logger.log(Logger.Level.INFO,"Starting SetFaultCodeQNameSOAPExceptionTest");
       SetFaultCodeQNameSOAPExceptionTest(req, res);
     } else if (testname.equals("SetFaultCodeStringSOAPExceptionTest")) {
-      TestUtil.logMsg("Starting SetFaultCodeStringSOAPExceptionTest");
+      logger.log(Logger.Level.INFO,"Starting SetFaultCodeStringSOAPExceptionTest");
       SetFaultCodeStringSOAPExceptionTest(req, res);
     } else if (testname.equals("AppendFaultSubcodeSOAPExceptionTest")) {
-      TestUtil.logMsg("Starting AppendFaultSubcodeSOAPExceptionTest");
+      logger.log(Logger.Level.INFO,"Starting AppendFaultSubcodeSOAPExceptionTest");
       AppendFaultSubcodeSOAPExceptionTest(req, res);
     } else if (testname.equals("AddDetailSOAPExceptionTest")) {
-      TestUtil.logMsg("Starting AddDetailSOAPExceptionTest");
+      logger.log(Logger.Level.INFO,"Starting AddDetailSOAPExceptionTest");
       AddDetailSOAPExceptionTest(req, res);
     } else {
       throw new ServletException(
@@ -270,26 +273,26 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       String expected = "this is the fault string";
-      TestUtil.logMsg("Setting fault string");
+      logger.log(Logger.Level.INFO,"Setting fault string");
       sf.setFaultString(expected);
 
-      TestUtil.logMsg("Getting fault string");
+      logger.log(Logger.Level.INFO,"Getting fault string");
       String result = sf.getFaultString();
       if (result != null) {
         if (!result.equals(expected)) {
           TestUtil
               .logErr("setFaultString()/getFaultString() behaved incorrectly");
-          TestUtil.logErr("expected=" + expected);
+          logger.log(Logger.Level.ERROR,"expected=" + expected);
           pass = false;
         } else {
-          TestUtil.logMsg("result=" + result);
+          logger.log(Logger.Level.INFO,"result=" + result);
         }
       } else {
-        TestUtil.logErr("getFaultString() returned a null result");
+        logger.log(Logger.Level.ERROR,"getFaultString() returned a null result");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -315,9 +318,9 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
       if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
         String expected = prefix + ":Server";
-        TestUtil.logMsg("Setting fault code to:" + expected);
+        logger.log(Logger.Level.INFO,"Setting fault code to:" + expected);
         sf.setFaultCode(expected);
-        TestUtil.logMsg("Getting fault code");
+        logger.log(Logger.Level.INFO,"Getting fault code");
         String result = sf.getFaultCode();
         if (result != null) {
           if (!result.equals(expected)) {
@@ -325,17 +328,17 @@ public class SOAPFaultTestServlet extends HttpServlet {
                 .logErr("setFaultCode()/getFaultCode() behaved incorrectly");
             pass = false;
           }
-          TestUtil.logMsg("result=" + result);
+          logger.log(Logger.Level.INFO,"result=" + result);
         } else {
-          TestUtil.logErr("getFaultCode() returned a null");
+          logger.log(Logger.Level.ERROR,"getFaultCode() returned a null");
           pass = false;
         }
       } else {
         QName qname = SOAPConstants.SOAP_SENDER_FAULT;
         String expected = prefix + ":" + qname.getLocalPart();
-        TestUtil.logMsg("Setting fault code to:" + expected);
+        logger.log(Logger.Level.INFO,"Setting fault code to:" + expected);
         sf.setFaultCode(expected);
-        TestUtil.logMsg("Getting fault code");
+        logger.log(Logger.Level.INFO,"Getting fault code");
         String result = sf.getFaultCode();
         if (result != null) {
           if (!result.equals(expected)) {
@@ -343,14 +346,14 @@ public class SOAPFaultTestServlet extends HttpServlet {
                 .logErr("setFaultCode()/getFaultCode() behaved incorrectly");
             pass = false;
           }
-          TestUtil.logMsg("result=" + result);
+          logger.log(Logger.Level.INFO,"result=" + result);
         } else {
-          TestUtil.logErr("getFaultCode() returned a null");
+          logger.log(Logger.Level.ERROR,"getFaultCode() returned a null");
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -375,26 +378,26 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       String expected = "http://www.my.org/faultActorURI";
-      TestUtil.logMsg("Calling setFaultActor()");
+      logger.log(Logger.Level.INFO,"Calling setFaultActor()");
       sf.setFaultActor(expected);
-      TestUtil.logMsg("Calling getFaultActor()");
+      logger.log(Logger.Level.INFO,"Calling getFaultActor()");
       String result = sf.getFaultActor();
       if (result != null) {
         if (!result.equals(expected)) {
           TestUtil
               .logErr("setFaultActor()/getFaultActor() behaved incorrectly");
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "setFaultActor=" + expected + ", getFaultActor=" + result);
           pass = false;
         } else
-          TestUtil.logMsg("setFaultActor()/getFaultActor() behaved correctly");
+          logger.log(Logger.Level.INFO,"setFaultActor()/getFaultActor() behaved correctly");
       } else {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "getFaultActor() returned a null result, eventhough an actor was set");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -418,25 +421,25 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting fault code");
+      logger.log(Logger.Level.INFO,"Setting fault code");
       sf.setFaultCode(prefix + ":Server");
 
-      TestUtil.logMsg("Getting fault code");
+      logger.log(Logger.Level.INFO,"Getting fault code");
       String result = sf.getFaultCode();
       if (result != null) {
         if (!result.equals(prefix + ":Server")) {
-          TestUtil.logErr("Error: getFaultCode() returned an incorrect result");
-          TestUtil.logErr("result=" + result);
+          logger.log(Logger.Level.ERROR,"Error: getFaultCode() returned an incorrect result");
+          logger.log(Logger.Level.ERROR,"result=" + result);
           pass = false;
         } else {
-          TestUtil.logMsg("result=" + result);
+          logger.log(Logger.Level.INFO,"result=" + result);
         }
       } else {
-        TestUtil.logErr("getFaultCode() returned a null");
+        logger.log(Logger.Level.ERROR,"getFaultCode() returned a null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -468,27 +471,27 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
       Detail d2 = sf.getDetail();
       if (d2 == null) {
-        TestUtil.logErr("getDetail() returned null");
+        logger.log(Logger.Level.ERROR,"getDetail() returned null");
         pass = false;
       } else {
-        TestUtil.logMsg("getDetail() returned a non-null detail");
+        logger.log(Logger.Level.INFO,"getDetail() returned a non-null detail");
         Iterator i = d2.getDetailEntries();
         int count = SOAP_Util.getIteratorCount(i);
         i = body.getAllAttributes();
         if (count != 1) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Wrong iterator count returned of " + count + ", expected 1");
           pass = false;
         } else {
           boolean foundName1 = false;
           while (i.hasNext()) {
             DetailEntry de = (DetailEntry) i.next();
-            TestUtil.logMsg("Got DetailEntry = " + de.toString());
+            logger.log(Logger.Level.INFO,"Got DetailEntry = " + de.toString());
             String s = de.getValue();
             if (s.equals("GetLastTradePrice"))
               foundName1 = true;
             else {
-              TestUtil.logErr("Bad DetailEntry has name of " + s);
+              logger.log(Logger.Level.ERROR,"Bad DetailEntry has name of " + s);
               pass = false;
             }
           }
@@ -496,7 +499,7 @@ public class SOAPFaultTestServlet extends HttpServlet {
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -520,15 +523,15 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Calling addFaultReasonText() must"
+      logger.log(Logger.Level.INFO,"Calling addFaultReasonText() must"
           + " throw UnsupportedOperationException");
       sf.addFaultReasonText("Its my fault", Locale.ENGLISH);
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -555,10 +558,10 @@ public class SOAPFaultTestServlet extends HttpServlet {
       String expected1 = "Its my fault";
       boolean found1 = false;
 
-      TestUtil.logMsg("Adding FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding FaultReasonText to SOAPFault");
       sf.addFaultReasonText(expected1, Locale.ENGLISH);
 
-      TestUtil.logMsg("Getting FaultReasonTexts from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultReasonTexts from SOAPFault");
       Iterator i = sf.getFaultReasonTexts();
       int j = 0;
       while (i.hasNext()) {
@@ -568,41 +571,41 @@ public class SOAPFaultTestServlet extends HttpServlet {
           if (actual.equals(expected1)) {
             if (!found1) {
               found1 = true;
-              TestUtil.logMsg("Reason= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Reason= '" + actual + "'");
             } else {
               TestUtil
                   .logErr("Received a duplicate Reason text:'" + actual + "'");
               pass = false;
             }
           } else {
-            TestUtil.logErr("Did not receive expected reason text:");
-            TestUtil.logErr("expected= '" + expected1 + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"Did not receive expected reason text:");
+            logger.log(Logger.Level.ERROR,"expected= '" + expected1 + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of String was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No reason text was returned");
+        logger.log(Logger.Level.ERROR,"No reason text was returned");
         pass = false;
       }
       if (j > 1) {
-        TestUtil.logErr("More than one reason text was returned");
+        logger.log(Logger.Level.ERROR,"More than one reason text was returned");
         pass = false;
       }
       if (!found1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Reason text was not received: '" + expected1 + "'");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -630,11 +633,11 @@ public class SOAPFaultTestServlet extends HttpServlet {
       String expected2 = "Its my fault again";
       boolean found1 = false;
       boolean found2 = false;
-      TestUtil.logMsg("Adding FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding FaultReasonText to SOAPFault");
       sf.addFaultReasonText(expected1, Locale.UK);
-      TestUtil.logMsg("Adding another FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding another FaultReasonText to SOAPFault");
       sf.addFaultReasonText(expected2, Locale.ENGLISH);
-      TestUtil.logMsg("Getting FaultReasonTexts from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultReasonTexts from SOAPFault");
       Iterator i = sf.getFaultReasonTexts();
       int j = 0;
       while (i.hasNext()) {
@@ -644,7 +647,7 @@ public class SOAPFaultTestServlet extends HttpServlet {
           if (actual.equals(expected1)) {
             if (!found1) {
               found1 = true;
-              TestUtil.logMsg("Reason= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Reason= '" + actual + "'");
             } else {
               TestUtil
                   .logErr("Received a duplicate Reason text:'" + actual + "'");
@@ -653,7 +656,7 @@ public class SOAPFaultTestServlet extends HttpServlet {
           } else if (actual.equals(expected2)) {
             if (!found2) {
               found2 = true;
-              TestUtil.logMsg("Reason= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Reason= '" + actual + "'");
             } else {
               TestUtil
                   .logErr("Received a duplicate Reason text:'" + actual + "'");
@@ -661,40 +664,40 @@ public class SOAPFaultTestServlet extends HttpServlet {
             }
 
           } else {
-            TestUtil.logErr("Did not receive expected reason text:");
+            logger.log(Logger.Level.ERROR,"Did not receive expected reason text:");
             TestUtil
                 .logErr("expected= '" + expected1 + "' or '" + expected2 + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of String was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No reason text was returned");
+        logger.log(Logger.Level.ERROR,"No reason text was returned");
         pass = false;
       }
       if (j > 2) {
-        TestUtil.logErr("More than two reason texts were returned");
+        logger.log(Logger.Level.ERROR,"More than two reason texts were returned");
         pass = false;
       }
       if (!found1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Reason text was not received: '" + expected1 + "'");
         pass = false;
       }
       if (!found2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Reason text was not received: '" + expected2 + "'");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -720,11 +723,11 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
       String expected = "Its my fault again";
       boolean found = false;
-      TestUtil.logMsg("Adding FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding FaultReasonText to SOAPFault");
       sf.addFaultReasonText("Its my fault", Locale.ENGLISH);
-      TestUtil.logMsg("Adding another FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding another FaultReasonText to SOAPFault");
       sf.addFaultReasonText(expected, Locale.ENGLISH);
-      TestUtil.logMsg("Getting FaultReasonTexts from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultReasonTexts from SOAPFault");
       Iterator i = sf.getFaultReasonTexts();
       int j = 0;
       while (i.hasNext()) {
@@ -734,7 +737,7 @@ public class SOAPFaultTestServlet extends HttpServlet {
           if (actual.equals(expected)) {
             if (!found) {
               found = true;
-              TestUtil.logMsg("Reason= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Reason= '" + actual + "'");
             } else {
               TestUtil
                   .logErr("Received a duplicate Reason text:'" + actual + "'");
@@ -742,34 +745,34 @@ public class SOAPFaultTestServlet extends HttpServlet {
             }
 
           } else {
-            TestUtil.logErr("Did not receive expected reason text:");
-            TestUtil.logErr("expected= '" + expected + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"Did not receive expected reason text:");
+            logger.log(Logger.Level.ERROR,"expected= '" + expected + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of String was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No reason text was returned");
+        logger.log(Logger.Level.ERROR,"No reason text was returned");
         pass = false;
       }
       if (j > 1) {
-        TestUtil.logErr("More than one reason text was returned");
+        logger.log(Logger.Level.ERROR,"More than one reason text was returned");
         pass = false;
       }
       if (!found) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Reason text was not received: '" + expected + "'");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -792,15 +795,15 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Calling getFaultReasonLocales() must"
+      logger.log(Logger.Level.INFO,"Calling getFaultReasonLocales() must"
           + " throw UnsupportedOperationException");
       sf.getFaultReasonLocales();
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -831,13 +834,13 @@ public class SOAPFaultTestServlet extends HttpServlet {
       boolean found2 = false;
       boolean found3 = false;
 
-      TestUtil.logMsg("Adding FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding FaultReasonText to SOAPFault");
       sf.addFaultReasonText("Its my fault1", expected1);
       sf.addFaultReasonText("Its my fault2", expected2);
       sf.addFaultReasonText("Its my fault3", expected3);
-      TestUtil.logMsg("Getting FaultReasonLocales from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultReasonLocales from SOAPFault");
       Iterator i = sf.getFaultReasonLocales();
-      TestUtil.logMsg("Locale iterator count=" + SOAP_Util.getIteratorCount(i));
+      logger.log(Logger.Level.INFO,"Locale iterator count=" + SOAP_Util.getIteratorCount(i));
       i = sf.getFaultReasonLocales();
       int j = 0;
       while (i.hasNext()) {
@@ -847,67 +850,67 @@ public class SOAPFaultTestServlet extends HttpServlet {
           if (actual.equals(expected1)) {
             if (!found1) {
               found1 = true;
-              TestUtil.logMsg("Locale= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Locale= '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Locale:'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Locale:'" + actual + "'");
               pass = false;
             }
           } else if (actual.equals(expected2)) {
             if (!found2) {
               found2 = true;
-              TestUtil.logMsg("Locale '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Locale '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Locale:'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Locale:'" + actual + "'");
               pass = false;
             }
           } else if (actual.equals(expected3)) {
             if (!found3) {
               found3 = true;
-              TestUtil.logMsg("Locale '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Locale '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Locale:'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Locale:'" + actual + "'");
               pass = false;
             }
           } else {
-            TestUtil.logErr("Did not receive expected reason text:");
-            TestUtil.logErr("expected= '" + expected1 + "' or '" + expected2
+            logger.log(Logger.Level.ERROR,"Did not receive expected reason text:");
+            logger.log(Logger.Level.ERROR,"expected= '" + expected1 + "' or '" + expected2
                 + "' or '" + expected3 + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of Locale was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No reason text was returned");
+        logger.log(Logger.Level.ERROR,"No reason text was returned");
         pass = false;
       }
       if (j > 3) {
-        TestUtil.logErr("More than 3 Locales were returned");
+        logger.log(Logger.Level.ERROR,"More than 3 Locales were returned");
         pass = false;
       }
       if (!found1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Locale was not received: '" + expected1 + "'");
         pass = false;
       }
       if (!found2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Locale was not received: '" + expected2 + "'");
         pass = false;
       }
       if (!found3) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Locale was not received: '" + expected3 + "'");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -930,16 +933,16 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Calling getFaultReasonText(Locale) must"
+      logger.log(Logger.Level.INFO,"Calling getFaultReasonText(Locale) must"
           + " throw UnsupportedOperationException");
 
       String result = sf.getFaultReasonText(Locale.ENGLISH);
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -964,27 +967,27 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding FaultReasonText to SOAPFault");
       sf.addFaultReasonText("Its my fault", Locale.ENGLISH);
       sf.addFaultReasonText("Its my fault2", Locale.ENGLISH);
       sf.addFaultReasonText(expected, Locale.UK);
-      TestUtil.logMsg("Getting FaultReasonText from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultReasonText from SOAPFault");
       String actual = sf.getFaultReasonText(Locale.UK);
       if (actual != null) {
         if (actual.equals(expected)) {
-          TestUtil.logMsg("Reason = " + actual);
+          logger.log(Logger.Level.INFO,"Reason = " + actual);
         } else {
-          TestUtil.logErr("An incorrect result was returned:");
-          TestUtil.logErr("expected :" + expected);
-          TestUtil.logErr("actual :" + actual);
+          logger.log(Logger.Level.ERROR,"An incorrect result was returned:");
+          logger.log(Logger.Level.ERROR,"expected :" + expected);
+          logger.log(Logger.Level.ERROR,"actual :" + actual);
           pass = false;
         }
       } else {
-        TestUtil.logErr("Null result was returned(unexpected)");
+        logger.log(Logger.Level.ERROR,"Null result was returned(unexpected)");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1009,28 +1012,28 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding a FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding a FaultReasonText to SOAPFault");
       sf.addFaultReasonText("Its my fault1", Locale.ENGLISH);
-      TestUtil.logMsg("Adding another FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding another FaultReasonText to SOAPFault");
       sf.addFaultReasonText(expected, Locale.ENGLISH);
-      TestUtil.logMsg("All FaultReasonTexts were added to SOAPFault");
+      logger.log(Logger.Level.INFO,"All FaultReasonTexts were added to SOAPFault");
       String actual = sf.getFaultReasonText(Locale.ENGLISH);
       if (actual != null) {
         if (actual.equals(expected)) {
-          TestUtil.logMsg("Reason = " + actual);
+          logger.log(Logger.Level.INFO,"Reason = " + actual);
         } else {
-          TestUtil.logErr("An incorrect result was returned:");
-          TestUtil.logErr("expected :" + expected);
-          TestUtil.logErr("actual :" + actual);
+          logger.log(Logger.Level.ERROR,"An incorrect result was returned:");
+          logger.log(Logger.Level.ERROR,"expected :" + expected);
+          logger.log(Logger.Level.ERROR,"actual :" + actual);
           pass = false;
         }
       } else {
-        TestUtil.logErr("A null was returned for the reason text");
+        logger.log(Logger.Level.ERROR,"A null was returned for the reason text");
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1054,15 +1057,15 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Calling getFaultReasonTexts() must"
+      logger.log(Logger.Level.INFO,"Calling getFaultReasonTexts() must"
           + " throw UnsupportedOperationException");
       sf.getFaultReasonTexts();
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1086,9 +1089,9 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
       String expected = "Its my fault";
-      TestUtil.logMsg("Adding FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding FaultReasonText to SOAPFault");
       sf.addFaultReasonText(expected, Locale.ENGLISH);
-      TestUtil.logMsg("Getting FaultReasonTexts from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultReasonTexts from SOAPFault");
       Iterator i = sf.getFaultReasonTexts();
       int j = 0;
       while (i.hasNext()) {
@@ -1096,31 +1099,31 @@ public class SOAPFaultTestServlet extends HttpServlet {
         if (o instanceof String) {
           String actual = (String) o;
           if (actual.equals(expected)) {
-            TestUtil.logMsg("Reason= '" + actual + "'");
+            logger.log(Logger.Level.INFO,"Reason= '" + actual + "'");
           } else {
-            TestUtil.logErr("Did not receive expected reason text:");
-            TestUtil.logErr("expected= '" + expected + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"Did not receive expected reason text:");
+            logger.log(Logger.Level.ERROR,"expected= '" + expected + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of String was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No reason text was returned");
+        logger.log(Logger.Level.ERROR,"No reason text was returned");
         pass = false;
       }
       if (j > 1) {
-        TestUtil.logErr("More than one reason text was returned");
+        logger.log(Logger.Level.ERROR,"More than one reason text was returned");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1146,11 +1149,11 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
       String expected1 = "Its my fault";
       String expected2 = "Its my fault again";
-      TestUtil.logMsg("Adding FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding FaultReasonText to SOAPFault");
       sf.addFaultReasonText(expected1, Locale.ENGLISH);
-      TestUtil.logMsg("Adding another FaultReasonText to SOAPFault");
+      logger.log(Logger.Level.INFO,"Adding another FaultReasonText to SOAPFault");
       sf.addFaultReasonText(expected2, Locale.UK);
-      TestUtil.logMsg("Getting FaultReasonTexts from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultReasonTexts from SOAPFault");
       Iterator i = sf.getFaultReasonTexts();
       int j = 0;
       while (i.hasNext()) {
@@ -1158,32 +1161,32 @@ public class SOAPFaultTestServlet extends HttpServlet {
         if (o instanceof String) {
           String actual = (String) o;
           if ((actual.equals(expected1)) || (actual.equals(expected2))) {
-            TestUtil.logMsg("Reason= '" + actual + "'");
+            logger.log(Logger.Level.INFO,"Reason= '" + actual + "'");
           } else {
-            TestUtil.logErr("Did not receive expected reason text:");
+            logger.log(Logger.Level.ERROR,"Did not receive expected reason text:");
             TestUtil
                 .logErr("expected='" + expected1 + "' or '" + expected2 + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of String was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No reason text was returned");
+        logger.log(Logger.Level.ERROR,"No reason text was returned");
         pass = false;
       }
       if (j > 2) {
-        TestUtil.logErr("More than two reason text's were returned");
+        logger.log(Logger.Level.ERROR,"More than two reason text's were returned");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1207,15 +1210,15 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Calling setFaultNode() must"
+      logger.log(Logger.Level.INFO,"Calling setFaultNode() must"
           + " throw UnsupportedOperationException");
       sf.setFaultNode("http://faultnode.com");
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1240,23 +1243,23 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       String expected = "http://faultnode.com";
-      TestUtil.logMsg("Calling setFaultNode()");
+      logger.log(Logger.Level.INFO,"Calling setFaultNode()");
       sf.setFaultNode("http://faultnode.com");
       String result = sf.getFaultNode();
       if (result != null) {
         if (!result.equals(expected)) {
-          TestUtil.logErr("The wrong node was returned");
-          TestUtil.logErr("expected = " + expected);
+          logger.log(Logger.Level.ERROR,"The wrong node was returned");
+          logger.log(Logger.Level.ERROR,"expected = " + expected);
           pass = false;
         }
-        TestUtil.logMsg("result = " + result);
+        logger.log(Logger.Level.INFO,"result = " + result);
       } else {
         TestUtil
             .logErr("getFaultNode returned a null when a node was configured");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1281,28 +1284,28 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       String expected1 = "http://faultnode.com";
-      TestUtil.logMsg("Calling setFaultNode()");
+      logger.log(Logger.Level.INFO,"Calling setFaultNode()");
       sf.setFaultNode(expected1);
 
       String expected2 = "http://www.faultnode.com";
-      TestUtil.logMsg("Calling setFaultNode() a second time");
+      logger.log(Logger.Level.INFO,"Calling setFaultNode() a second time");
       sf.setFaultNode(expected2);
 
       String result = sf.getFaultNode();
       if (result != null) {
         if (!result.equals(expected2)) {
-          TestUtil.logErr("The wrong node was returned");
-          TestUtil.logErr("expected = " + expected2);
+          logger.log(Logger.Level.ERROR,"The wrong node was returned");
+          logger.log(Logger.Level.ERROR,"expected = " + expected2);
           pass = false;
         }
-        TestUtil.logMsg("result = " + result);
+        logger.log(Logger.Level.INFO,"result = " + result);
       } else {
         TestUtil
             .logErr("getFaultNode returned a null when a node was configured");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1326,15 +1329,15 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Calling getFaultNode() must"
+      logger.log(Logger.Level.INFO,"Calling getFaultNode() must"
           + " throw UnsupportedOperationException");
       sf.getFaultNode();
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1358,17 +1361,17 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Calling getFaultNode() to retrieve Fault Node");
+      logger.log(Logger.Level.INFO,"Calling getFaultNode() to retrieve Fault Node");
       String result = sf.getFaultNode();
       if (result == null) {
-        TestUtil.logMsg("getFaultNode returned null (expected)");
+        logger.log(Logger.Level.INFO,"getFaultNode returned null (expected)");
       } else {
-        TestUtil.logErr("Calling getFaultNode returned a non null node");
-        TestUtil.logErr("result = " + result);
+        logger.log(Logger.Level.ERROR,"Calling getFaultNode returned a non null node");
+        logger.log(Logger.Level.ERROR,"result = " + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1392,15 +1395,15 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Calling setFaultRole() must"
+      logger.log(Logger.Level.INFO,"Calling setFaultRole() must"
           + " throw UnsupportedOperationException");
       sf.setFaultRole("http://faultrole.com");
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1424,24 +1427,24 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
       String expected = "http://faultrole.com";
-      TestUtil.logMsg("Calling setFaultRole()");
+      logger.log(Logger.Level.INFO,"Calling setFaultRole()");
       sf.setFaultRole(expected);
-      TestUtil.logMsg("Calling getFaultRole()");
+      logger.log(Logger.Level.INFO,"Calling getFaultRole()");
       String result = sf.getFaultRole();
       if (result != null) {
         if (!result.equals(expected)) {
-          TestUtil.logErr("setFaultRole()/getFaultRole() behaved incorrectly");
+          logger.log(Logger.Level.ERROR,"setFaultRole()/getFaultRole() behaved incorrectly");
           TestUtil
               .logErr("setFaultRole=" + expected + ", getFaultRole=" + result);
           pass = false;
         } else
-          TestUtil.logMsg("setFaultRole()/getFaultRole() behaved correctly");
+          logger.log(Logger.Level.INFO,"setFaultRole()/getFaultRole() behaved correctly");
       } else {
-        TestUtil.logErr("getFaultRole() returned a null");
+        logger.log(Logger.Level.ERROR,"getFaultRole() returned a null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1465,15 +1468,15 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Calling getFaultRole() must"
+      logger.log(Logger.Level.INFO,"Calling getFaultRole() must"
           + " throw UnsupportedOperationException");
       sf.getFaultRole();
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1497,17 +1500,17 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Calling getFaultRole() to retrieve Fault Role");
+      logger.log(Logger.Level.INFO,"Calling getFaultRole() to retrieve Fault Role");
       String s = sf.getFaultRole();
       if (s == null) {
-        TestUtil.logMsg("Calling getFaultRole returned null (expected)");
+        logger.log(Logger.Level.INFO,"Calling getFaultRole returned null (expected)");
       } else {
-        TestUtil.logErr("Calling getFaultRole returned a non null");
-        TestUtil.logErr("getFaultRole result=" + s);
+        logger.log(Logger.Level.ERROR,"Calling getFaultRole returned a non null");
+        logger.log(Logger.Level.ERROR,"getFaultRole result=" + s);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1532,23 +1535,22 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
-        TestUtil.logMsg("Creating Name of: <myfault, flt, http://example.com>");
+        logger.log(Logger.Level.INFO,"Creating Name of: <myfault, flt, http://example.com>");
         Name name = sfactory.createName("myfault", "flt", "http://example.com");
-        TestUtil
-            .logMsg("Calling setFaultCode() with " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"Calling setFaultCode() with " + name.getQualifiedName());
         sf.setFaultCode(name);
-        TestUtil.logMsg("Calling getFaultCodeAsName() to retrieve Fault Code");
+        logger.log(Logger.Level.INFO,"Calling getFaultCodeAsName() to retrieve Fault Code");
         Name name2 = sf.getFaultCodeAsName();
         if (name2 != null)
-          TestUtil.logMsg("Qualified name=" + name2.getQualifiedName());
+          logger.log(Logger.Level.INFO,"Qualified name=" + name2.getQualifiedName());
         if (name2 == null) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Calling getFaultCodeAsName " + "returned null (unexpected)");
           pass = false;
         } else if (!name2.getLocalName().equals(name.getLocalName())
             || !name2.getPrefix().equals(name.getPrefix())
             || !name2.getURI().equals(name.getURI())) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Calling getFaultCodeAsName returned <" + name2.getLocalName()
                   + "," + name2.getPrefix() + "," + name2.getURI()
                   + ">, expected " + "<myfault,flt,http://example.com>");
@@ -1556,24 +1558,23 @@ public class SOAPFaultTestServlet extends HttpServlet {
         }
       } else {
         QName qname = SOAPConstants.SOAP_SENDER_FAULT;
-        TestUtil.logMsg("Creating Name of: " + qname);
+        logger.log(Logger.Level.INFO,"Creating Name of: " + qname);
         Name name = SOAP_Util.getSOAPFactory().createName(qname.getLocalPart(),
             qname.getPrefix(), qname.getNamespaceURI());
-        TestUtil
-            .logMsg("Calling setFaultCode() with " + name.getQualifiedName());
+        logger.log(Logger.Level.INFO,"Calling setFaultCode() with " + name.getQualifiedName());
         sf.setFaultCode(name);
-        TestUtil.logMsg("Calling getFaultCodeAsName() to retrieve Fault Code");
+        logger.log(Logger.Level.INFO,"Calling getFaultCodeAsName() to retrieve Fault Code");
         Name name2 = sf.getFaultCodeAsName();
         if (name2 != null)
-          TestUtil.logMsg("Qualified name=" + name2.getQualifiedName());
+          logger.log(Logger.Level.INFO,"Qualified name=" + name2.getQualifiedName());
         if (name2 == null) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Calling getFaultCodeAsName " + "returned null (unexpected)");
           pass = false;
         } else if (!name2.getLocalName().equals(name.getLocalName())
             || !name2.getPrefix().equals(name.getPrefix())
             || !name2.getURI().equals(name.getURI())) {
-          TestUtil.logErr("Calling getFaultCodeAsName returned <"
+          logger.log(Logger.Level.ERROR,"Calling getFaultCodeAsName returned <"
               + name2.getLocalName() + "," + name2.getPrefix() + ","
               + name2.getURI() + ">, expected " + "<" + name.getLocalName()
               + "," + name.getPrefix() + "," + name.getURI() + ">");
@@ -1581,7 +1582,7 @@ public class SOAPFaultTestServlet extends HttpServlet {
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1606,23 +1607,22 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
-        TestUtil
-            .logMsg("Creating QName of: <myfault, flt, http://example.com>");
+        logger.log(Logger.Level.INFO,"Creating QName of: <myfault, flt, http://example.com>");
         QName name = new QName("http://example.com", "myfault", "flt");
-        TestUtil.logMsg("Calling setFaultCode() with " + name.toString());
+        logger.log(Logger.Level.INFO,"Calling setFaultCode() with " + name.toString());
         sf.setFaultCode(name);
-        TestUtil.logMsg("Calling getFaultCodeAsQName() to retrieve Fault Code");
+        logger.log(Logger.Level.INFO,"Calling getFaultCodeAsQName() to retrieve Fault Code");
         QName name2 = sf.getFaultCodeAsQName();
         if (name2 != null)
-          TestUtil.logMsg("Qualified name=" + name2.toString());
+          logger.log(Logger.Level.INFO,"Qualified name=" + name2.toString());
         if (name2 == null) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Calling getFaultCodeAsQName " + "returned null (unexpected)");
           pass = false;
         } else if (!name2.getLocalPart().equals(name.getLocalPart())
             || !name2.getPrefix().equals(name.getPrefix())
             || !name2.getNamespaceURI().equals(name.getNamespaceURI())) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Calling getFaultCodeAsQName returned <" + name2.getLocalPart()
                   + "," + name2.getPrefix() + "," + name2.getNamespaceURI()
                   + ">, expected " + "<myfault,flt,http://example.com>");
@@ -1630,21 +1630,21 @@ public class SOAPFaultTestServlet extends HttpServlet {
         }
       } else {
         QName name = SOAPConstants.SOAP_SENDER_FAULT;
-        TestUtil.logMsg("Creating QName of: " + name);
-        TestUtil.logMsg("Calling setFaultCode() with " + name.toString());
+        logger.log(Logger.Level.INFO,"Creating QName of: " + name);
+        logger.log(Logger.Level.INFO,"Calling setFaultCode() with " + name.toString());
         sf.setFaultCode(name);
-        TestUtil.logMsg("Calling getFaultCodeAsQName() to retrieve Fault Code");
+        logger.log(Logger.Level.INFO,"Calling getFaultCodeAsQName() to retrieve Fault Code");
         QName name2 = sf.getFaultCodeAsQName();
         if (name2 != null)
-          TestUtil.logMsg("Qualified name=" + name2.toString());
+          logger.log(Logger.Level.INFO,"Qualified name=" + name2.toString());
         if (name2 == null) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Calling getFaultCodeAsQName " + "returned null (unexpected)");
           pass = false;
         } else if (!name2.getLocalPart().equals(name.getLocalPart())
             || !name2.getPrefix().equals(name.getPrefix())
             || !name2.getNamespaceURI().equals(name.getNamespaceURI())) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Calling getFaultCodeAsQName returned <" + name2.getLocalPart()
                   + "," + name2.getPrefix() + "," + name2.getNamespaceURI()
                   + ">, expected " + "<" + name.getLocalPart() + ","
@@ -1653,7 +1653,7 @@ public class SOAPFaultTestServlet extends HttpServlet {
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1678,26 +1678,26 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       Locale expected = Locale.ENGLISH;
-      TestUtil.logMsg("Setting fault string to Locale " + expected);
+      logger.log(Logger.Level.INFO,"Setting fault string to Locale " + expected);
       sf.setFaultString("this is the fault string", expected);
 
-      TestUtil.logMsg("calling getFaultStringLocale()");
+      logger.log(Logger.Level.INFO,"calling getFaultStringLocale()");
       Locale result = sf.getFaultStringLocale();
       if (result != null) {
         if (!result.equals(expected)) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "setFaultString(string,Locale)/getFaultStringLocale behaved incorrectly");
-          TestUtil.logErr("expected=" + expected);
+          logger.log(Logger.Level.ERROR,"expected=" + expected);
           pass = false;
         }
-        TestUtil.logMsg("result=" + result);
+        logger.log(Logger.Level.INFO,"result=" + result);
       } else {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "getFaultStringLocale() returned a null result, eventhough the fault string has a locale");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1722,14 +1722,14 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       String expected1 = "this is the fault string one";
-      TestUtil.logMsg("Setting fault string one to Locale " + Locale.ENGLISH);
+      logger.log(Logger.Level.INFO,"Setting fault string one to Locale " + Locale.ENGLISH);
       sf.addFaultReasonText(expected1, Locale.ENGLISH);
 
       String expected2 = "this is the fault string two";
-      TestUtil.logMsg("Setting fault string two to Locale " + Locale.ENGLISH);
+      logger.log(Logger.Level.INFO,"Setting fault string two to Locale " + Locale.ENGLISH);
       sf.setFaultString(expected2, Locale.ENGLISH);
 
-      TestUtil.logMsg("Getting FaultReasonTexts from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultReasonTexts from SOAPFault");
       Iterator i = sf.getFaultReasonTexts();
       boolean found = false;
       int j = 0;
@@ -1740,41 +1740,41 @@ public class SOAPFaultTestServlet extends HttpServlet {
           if (actual.equals(expected2)) {
             if (!found) {
               found = true;
-              TestUtil.logMsg("Reason= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Reason= '" + actual + "'");
             } else {
               TestUtil
                   .logErr("Received a duplicate Reason text:'" + actual + "'");
               pass = false;
             }
           } else {
-            TestUtil.logErr("Did not receive expected reason text:");
-            TestUtil.logErr("expected= '" + expected1 + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"Did not receive expected reason text:");
+            logger.log(Logger.Level.ERROR,"expected= '" + expected1 + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of String was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No reason text was returned");
+        logger.log(Logger.Level.ERROR,"No reason text was returned");
         pass = false;
       }
       if (j > 1) {
-        TestUtil.logErr("More than one reason text was returned");
+        logger.log(Logger.Level.ERROR,"More than one reason text was returned");
         pass = false;
       }
       if (!found) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Reason text was not received: '" + expected1 + "'");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1798,20 +1798,20 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting fault string with no Locale");
+      logger.log(Logger.Level.INFO,"Setting fault string with no Locale");
       sf.setFaultString("this is the fault string");
 
-      TestUtil.logMsg("calling getFaultStringLocale()");
+      logger.log(Logger.Level.INFO,"calling getFaultStringLocale()");
       Locale result = sf.getFaultStringLocale();
       if (result == null) {
-        TestUtil.logMsg("null Locale returned (expected)");
+        logger.log(Logger.Level.INFO,"null Locale returned (expected)");
       } else {
-        TestUtil.logErr("getFaultStringLocale() returned a non-null result");
-        TestUtil.logErr("result=" + result);
+        logger.log(Logger.Level.ERROR,"getFaultStringLocale() returned a non-null result");
+        logger.log(Logger.Level.ERROR,"result=" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1835,18 +1835,18 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting fault string with no Locale");
+      logger.log(Logger.Level.INFO,"Setting fault string with no Locale");
       sf.setFaultString("this is the fault string");
 
-      TestUtil.logMsg("calling getFaultStringLocale()");
+      logger.log(Logger.Level.INFO,"calling getFaultStringLocale()");
       Locale result = sf.getFaultStringLocale();
       if (result == null) {
-        TestUtil.logErr("null Locale returned (unexpected)");
+        logger.log(Logger.Level.ERROR,"null Locale returned (unexpected)");
         pass = false;
       } else {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "getFaultStringLocale() returned a non-null result (expected)");
-        TestUtil.logMsg("result=" + result);
+        logger.log(Logger.Level.INFO,"result=" + result);
         if (!result.equals(Locale.getDefault())) {
           TestUtil
               .logErr("Got: " + result + ", Expected: " + Locale.getDefault());
@@ -1854,7 +1854,7 @@ public class SOAPFaultTestServlet extends HttpServlet {
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1878,15 +1878,15 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Appending fault Subcode");
+      logger.log(Logger.Level.INFO,"Appending fault Subcode");
       QName expected1 = new QName("http://example.com", "myfault1", "flt1");
       sf.appendFaultSubcode(expected1);
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1916,12 +1916,12 @@ public class SOAPFaultTestServlet extends HttpServlet {
       boolean found1 = false;
       boolean found2 = false;
 
-      TestUtil.logMsg("Appending fault Subcode");
+      logger.log(Logger.Level.INFO,"Appending fault Subcode");
       sf.appendFaultSubcode(expected1);
-      TestUtil.logMsg("Appending a second fault Subcode");
+      logger.log(Logger.Level.INFO,"Appending a second fault Subcode");
       sf.appendFaultSubcode(expected2);
 
-      TestUtil.logMsg("Getting FaultSubCodes from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultSubCodes from SOAPFault");
       Iterator i = sf.getFaultSubcodes();
       int j = 0;
       while (i.hasNext()) {
@@ -1931,56 +1931,56 @@ public class SOAPFaultTestServlet extends HttpServlet {
           if (actual.equals(expected1)) {
             if (!found1) {
               found1 = true;
-              TestUtil.logMsg("Subcode= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Subcode= '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Subcode :'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Subcode :'" + actual + "'");
               pass = false;
             }
           } else if (actual.equals(expected2)) {
             if (!found2) {
               found2 = true;
-              TestUtil.logMsg("Subcode= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Subcode= '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Subcode :'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Subcode :'" + actual + "'");
               pass = false;
             }
 
           } else {
-            TestUtil.logErr("Did not receive expected Subcodes:");
+            logger.log(Logger.Level.ERROR,"Did not receive expected Subcodes:");
             TestUtil
                 .logErr("expected= '" + expected1 + "' or '" + expected2 + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of QName was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No Subcode was returned");
+        logger.log(Logger.Level.ERROR,"No Subcode was returned");
         pass = false;
       }
       if (j > 2) {
-        TestUtil.logErr("More than two Subcodes were returned");
+        logger.log(Logger.Level.ERROR,"More than two Subcodes were returned");
         pass = false;
       }
       if (!found1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Subcode was not received: '" + expected1 + "'");
         pass = false;
       }
       if (!found2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Subcode was not received: '" + expected2 + "'");
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2004,14 +2004,14 @@ public class SOAPFaultTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Appending fault Subcode");
+      logger.log(Logger.Level.INFO,"Appending fault Subcode");
       sf.getFaultSubcodes();
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2041,12 +2041,11 @@ public class SOAPFaultTestServlet extends HttpServlet {
       boolean found1 = false;
       boolean found2 = false;
 
-      TestUtil.logMsg("Appending fault Subcode");
+      logger.log(Logger.Level.INFO,"Appending fault Subcode");
       sf.appendFaultSubcode(expected1);
-      TestUtil.logMsg("Appending a second fault Subcode");
+      logger.log(Logger.Level.INFO,"Appending a second fault Subcode");
       sf.appendFaultSubcode(expected2);
-      TestUtil
-          .logMsg("Getting FaultSubCodes from SOAPFault for the first time");
+      logger.log(Logger.Level.INFO,"Getting FaultSubCodes from SOAPFault for the first time");
       Iterator i = sf.getFaultSubcodes();
       int j = 0;
       while (i.hasNext()) {
@@ -2056,56 +2055,55 @@ public class SOAPFaultTestServlet extends HttpServlet {
           if (actual.equals(expected1)) {
             if (!found1) {
               found1 = true;
-              TestUtil.logMsg("Subcode= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Subcode= '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Subcode :'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Subcode :'" + actual + "'");
               pass = false;
             }
           } else if (actual.equals(expected2)) {
             if (!found2) {
               found2 = true;
-              TestUtil.logMsg("Subcode= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Subcode= '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Subcode :'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Subcode :'" + actual + "'");
               pass = false;
             }
 
           } else {
-            TestUtil.logErr("Did not receive expected Subcodes:");
+            logger.log(Logger.Level.ERROR,"Did not receive expected Subcodes:");
             TestUtil
                 .logErr("expected= '" + expected1 + "' or '" + expected2 + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of QName was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No Subcode was returned");
+        logger.log(Logger.Level.ERROR,"No Subcode was returned");
         pass = false;
       }
       if (j > 2) {
-        TestUtil.logErr("More than two Subcodes were returned");
+        logger.log(Logger.Level.ERROR,"More than two Subcodes were returned");
         pass = false;
       }
       if (!found1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Subcode was not received: '" + expected1 + "'");
         pass = false;
       }
       if (!found2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Subcode was not received: '" + expected2 + "'");
         pass = false;
       }
 
-      TestUtil
-          .logMsg("Getting FaultSubCodes from SOAPFault for the second time");
+      logger.log(Logger.Level.INFO,"Getting FaultSubCodes from SOAPFault for the second time");
       i = sf.getFaultSubcodes();
       j = 0;
       found1 = false;
@@ -2117,55 +2115,55 @@ public class SOAPFaultTestServlet extends HttpServlet {
           if (actual.equals(expected1)) {
             if (!found1) {
               found1 = true;
-              TestUtil.logMsg("Subcode= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Subcode= '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Subcode :'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Subcode :'" + actual + "'");
               pass = false;
             }
           } else if (actual.equals(expected2)) {
             if (!found2) {
               found2 = true;
-              TestUtil.logMsg("Subcode= '" + actual + "'");
+              logger.log(Logger.Level.INFO,"Subcode= '" + actual + "'");
             } else {
-              TestUtil.logErr("Received a duplicate Subcode :'" + actual + "'");
+              logger.log(Logger.Level.ERROR,"Received a duplicate Subcode :'" + actual + "'");
               pass = false;
             }
 
           } else {
-            TestUtil.logErr("Did not receive expected Subcodes:");
+            logger.log(Logger.Level.ERROR,"Did not receive expected Subcodes:");
             TestUtil
                 .logErr("expected= '" + expected1 + "' or '" + expected2 + "'");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "An object that is not an instance of QName was returned");
-          TestUtil.logErr("The object is:" + o);
+          logger.log(Logger.Level.ERROR,"The object is:" + o);
           pass = false;
         }
         j++;
       }
       if (j < 1) {
-        TestUtil.logErr("No Subcode was returned");
+        logger.log(Logger.Level.ERROR,"No Subcode was returned");
         pass = false;
       }
       if (j > 2) {
-        TestUtil.logErr("More than two Subcodes were returned");
+        logger.log(Logger.Level.ERROR,"More than two Subcodes were returned");
         pass = false;
       }
       if (!found1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Subcode was not received: '" + expected1 + "'");
         pass = false;
       }
       if (!found2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "The following Subcode was not received: '" + expected2 + "'");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2191,13 +2189,13 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
       boolean result = sf.hasDetail();
       if (result == false) {
-        TestUtil.logMsg("hasDetail() returned false");
+        logger.log(Logger.Level.INFO,"hasDetail() returned false");
       } else {
-        TestUtil.logErr("hasDetail() returned true when no detail existed");
+        logger.log(Logger.Level.ERROR,"hasDetail() returned true when no detail existed");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2224,20 +2222,20 @@ public class SOAPFaultTestServlet extends HttpServlet {
       Detail d = null;
       d = sf.addDetail();
       if (d == null) {
-        TestUtil.logErr("addDetail() returned null");
+        logger.log(Logger.Level.ERROR,"addDetail() returned null");
         pass = false;
       } else {
-        TestUtil.logMsg("addDetail() called successfully");
+        logger.log(Logger.Level.INFO,"addDetail() called successfully");
         boolean result = sf.hasDetail();
         if (result == false) {
-          TestUtil.logErr("hasDetail() returned false when a detail did exist");
+          logger.log(Logger.Level.ERROR,"hasDetail() returned false when a detail did exist");
           pass = false;
         } else {
-          TestUtil.logMsg("hasDetail() returned true");
+          logger.log(Logger.Level.INFO,"hasDetail() returned true");
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2262,12 +2260,12 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
 
       sf.removeAllFaultSubcodes();
-      TestUtil.logErr("Did not throw UnsupportedOperationException");
+      logger.log(Logger.Level.ERROR,"Did not throw UnsupportedOperationException");
       pass = false;
     } catch (UnsupportedOperationException e) {
-      TestUtil.logMsg("Did throw UnsupportedOperationException");
+      logger.log(Logger.Level.INFO,"Did throw UnsupportedOperationException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2294,37 +2292,37 @@ public class SOAPFaultTestServlet extends HttpServlet {
       QName expected1 = new QName("http://example.com", "myfault1", "flt1");
       QName expected2 = new QName("http://example.com", "myfault2", "flt2");
 
-      TestUtil.logMsg("Appending fault Subcode");
+      logger.log(Logger.Level.INFO,"Appending fault Subcode");
       sf.appendFaultSubcode(expected1);
-      TestUtil.logMsg("Appending a second fault Subcode");
+      logger.log(Logger.Level.INFO,"Appending a second fault Subcode");
       sf.appendFaultSubcode(expected2);
 
-      TestUtil.logMsg("Removing all  FaultSubCodes from SOAPFault");
+      logger.log(Logger.Level.INFO,"Removing all  FaultSubCodes from SOAPFault");
       sf.removeAllFaultSubcodes();
 
-      TestUtil.logMsg("Getting FaultSubCodes from SOAPFault");
+      logger.log(Logger.Level.INFO,"Getting FaultSubCodes from SOAPFault");
       Iterator i = sf.getFaultSubcodes();
       if (i.hasNext() == false) {
-        TestUtil.logMsg("All FaultSubcodes were removed");
+        logger.log(Logger.Level.INFO,"All FaultSubcodes were removed");
       } else {
-        TestUtil.logMsg("Not all FaultSubcodes were removed:");
+        logger.log(Logger.Level.INFO,"Not all FaultSubcodes were removed:");
         while (i.hasNext()) {
           Object o = i.next();
           if (o instanceof QName) {
             QName actual = (QName) o;
-            TestUtil.logErr("Received unexpected Subcodes:");
-            TestUtil.logErr("actual= '" + actual + "'");
+            logger.log(Logger.Level.ERROR,"Received unexpected Subcodes:");
+            logger.log(Logger.Level.ERROR,"actual= '" + actual + "'");
             pass = false;
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "An object that is not an instance of QName was returned");
-            TestUtil.logErr("The object is:" + o);
+            logger.log(Logger.Level.ERROR,"The object is:" + o);
             pass = false;
           }
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2349,24 +2347,24 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
       if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
         try {
-          TestUtil.logMsg("Calling setFaultCode() with unqualified Name object"
+          logger.log(Logger.Level.INFO,"Calling setFaultCode() with unqualified Name object"
               + " may succeed for SOAP1.1 protocol");
           Name name = sfactory.createName("myfault");
           sf.setFaultCode(name);
         } catch (SOAPException e) {
         }
       } else {
-        TestUtil.logMsg("Calling setFaultCode() with unqualified Name object"
+        logger.log(Logger.Level.INFO,"Calling setFaultCode() with unqualified Name object"
             + " must throw SOAPException for SOAP1.2 protocol");
         Name name = sfactory.createName("myfault");
         sf.setFaultCode(name);
-        TestUtil.logErr("Did not throw SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not throw SOAPException");
         pass = false;
       }
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2391,22 +2389,22 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
       if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
         try {
-          TestUtil.logMsg("Calling setFaultCode() with unqualified QName object"
+          logger.log(Logger.Level.INFO,"Calling setFaultCode() with unqualified QName object"
               + " may succeed for SOAP1.1 protocol");
           sf.setFaultCode(new QName("myfault"));
         } catch (SOAPException e) {
         }
       } else {
-        TestUtil.logMsg("Calling setFaultCode() with unqualified QName object"
+        logger.log(Logger.Level.INFO,"Calling setFaultCode() with unqualified QName object"
             + " must throw SOAPException for SOAP1.2 protocol");
         sf.setFaultCode(new QName("myfault"));
-        TestUtil.logErr("Did not throw SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not throw SOAPException");
         pass = false;
       }
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2431,23 +2429,22 @@ public class SOAPFaultTestServlet extends HttpServlet {
       setup();
       if (SOAP_Util.getSOAPVersion().equals(SOAP_Util.SOAP11)) {
         try {
-          TestUtil
-              .logMsg("Calling setFaultCode() with unqualified String object"
+          logger.log(Logger.Level.INFO,"Calling setFaultCode() with unqualified String object"
                   + " may succeed for SOAP1.1 protocol");
           sf.setFaultCode("Server");
         } catch (SOAPException e) {
         }
       } else {
-        TestUtil.logMsg("Calling setFaultCode() with unqualified String object"
+        logger.log(Logger.Level.INFO,"Calling setFaultCode() with unqualified String object"
             + " must throw SOAPException for SOAP1.2 protocol");
         sf.setFaultCode("Server");
-        TestUtil.logErr("Did not throw SOAPException");
+        logger.log(Logger.Level.ERROR,"Did not throw SOAPException");
         pass = false;
       }
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2470,17 +2467,16 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil
-          .logMsg("Calling appendFaultSubcode() with unqualified QName object"
+      logger.log(Logger.Level.INFO,"Calling appendFaultSubcode() with unqualified QName object"
               + " must throw SOAPException");
       QName name = new QName("mysubcode");
       sf.appendFaultSubcode(name);
-      TestUtil.logErr("Did not throw SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2506,21 +2502,21 @@ public class SOAPFaultTestServlet extends HttpServlet {
       Detail d1 = null;
       d1 = sf.addDetail();
       if (d1 == null) {
-        TestUtil.logErr("addDetail() returned null");
+        logger.log(Logger.Level.ERROR,"addDetail() returned null");
         pass = false;
       } else {
-        TestUtil.logMsg("addDetail() returned a non-null detail");
+        logger.log(Logger.Level.INFO,"addDetail() returned a non-null detail");
       }
 
       try {
         sf.addDetail();
-        TestUtil.logErr("A SOAPException should have been thrown");
+        logger.log(Logger.Level.ERROR,"A SOAPException should have been thrown");
         pass = false;
       } catch (SOAPException se) {
         pass = true;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

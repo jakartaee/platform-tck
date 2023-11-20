@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnectionFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -36,6 +37,8 @@ import jakarta.xml.soap.SOAPConnection;
 import jakarta.xml.soap.SOAPConnectionFactory;
 
 public class SOAPConnectionFactoryTestServlet extends HttpServlet {
+	  private static final Logger logger = (Logger) System.getLogger(SOAPConnectionFactoryTestServlet.class.getName());
+
   private String hostname = "localhost";
 
   private int portnum = 8080;
@@ -52,10 +55,10 @@ public class SOAPConnectionFactoryTestServlet extends HttpServlet {
     TestUtil.logTrace("dispatch");
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
     if (testname.equals("newInstanceTest")) {
-      TestUtil.logMsg("Starting newInstanceTest");
+      logger.log(Logger.Level.INFO,"Starting newInstanceTest");
       newInstanceTest(req, res);
     } else if (testname.equals("createConnectionTest")) {
-      TestUtil.logMsg("Starting createConnectionTest");
+      logger.log(Logger.Level.INFO,"Starting createConnectionTest");
       createConnectionTest(req, res);
     } else {
       throw new ServletException(
@@ -95,29 +98,29 @@ public class SOAPConnectionFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
+      logger.log(Logger.Level.INFO,"Check if SOAPConnectionFactory is supported");
       if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
+        logger.log(Logger.Level.INFO,"SOAPConnectionFactory.newInstance() is "
             + "unsupported (skipping test)");
         resultProps.setProperty("TESTRESULT", "pass");
         resultProps.list(out);
         return;
       }
-      TestUtil.logMsg("Create SOAPConnectionFactory object");
+      logger.log(Logger.Level.INFO,"Create SOAPConnectionFactory object");
       SOAPConnectionFactory sfactory = SOAP_Util.getSOAPConnectionFactory();
       if (sfactory == null) {
-        TestUtil.logErr("SOAPConnectionFactory.newInstance() returned null");
+        logger.log(Logger.Level.ERROR,"SOAPConnectionFactory.newInstance() returned null");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("newInstanceTest() test PASSED");
+      logger.log(Logger.Level.INFO,"newInstanceTest() test PASSED");
     else
-      TestUtil.logErr("newInstanceTest() test FAILED");
+      logger.log(Logger.Level.ERROR,"newInstanceTest() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");
@@ -138,32 +141,32 @@ public class SOAPConnectionFactoryTestServlet extends HttpServlet {
     try {
       setup();
       // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
+      logger.log(Logger.Level.INFO,"Check if SOAPConnectionFactory is supported");
       if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
+        logger.log(Logger.Level.INFO,"SOAPConnectionFactory.newInstance() is "
             + "unsupported (skipping test)");
         resultProps.setProperty("TESTRESULT", "pass");
         resultProps.list(out);
         return;
       }
-      TestUtil.logMsg("Create SOAPConnectionFactory object");
+      logger.log(Logger.Level.INFO,"Create SOAPConnectionFactory object");
       SOAPConnectionFactory sfactory = SOAP_Util.getSOAPConnectionFactory();
-      TestUtil.logMsg("Create SOAPConnection object");
+      logger.log(Logger.Level.INFO,"Create SOAPConnection object");
       SOAPConnection scon = sfactory.createConnection();
       if (scon == null) {
-        TestUtil.logErr("SOAPConnection.createConnection() returned null");
+        logger.log(Logger.Level.ERROR,"SOAPConnection.createConnection() returned null");
         pass = false;
       } else
         scon.close();
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     if (pass)
-      TestUtil.logMsg("createConnectionTest() test PASSED");
+      logger.log(Logger.Level.INFO,"createConnectionTest() test PASSED");
     else
-      TestUtil.logErr("createConnectionTest() test FAILED");
+      logger.log(Logger.Level.ERROR,"createConnectionTest() test FAILED");
     // Send response object and test result back to client
     if (pass)
       resultProps.setProperty("TESTRESULT", "pass");

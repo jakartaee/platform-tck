@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.ee.SendVariousMimeAttachments;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Properties;
@@ -50,6 +51,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SendingServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SendingServlet.class.getName());
+
   private SOAPConnection con = null;
 
   private Properties harnessProps = null;
@@ -102,7 +106,7 @@ public class SendingServlet extends HttpServlet {
     System.out.println("SendingServlet:doGet");
     if (harnessProps.getProperty("TESTNAME")
         .equals("SendVariousMimeAttachmentsTest")) {
-      TestUtil.logMsg("Starting SendVariousMimeAttachmentsTest");
+      logger.log(Logger.Level.INFO,"Starting SendVariousMimeAttachmentsTest");
       System.out.println("Starting SendVariousMimeAttachmentsTest");
       SendVariousMimeAttachmentsTest(req, res);
     }
@@ -131,59 +135,59 @@ public class SendingServlet extends HttpServlet {
 
     try {
       // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
+      logger.log(Logger.Level.INFO,"Check if SOAPConnectionFactory is supported");
       if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
+        logger.log(Logger.Level.INFO,"SOAPConnectionFactory.newInstance() is "
             + "unsupported (skipping test)");
         resultProps.setProperty("TESTRESULT", "pass");
         resultProps.list(out);
         return;
       }
 
-      TestUtil.logMsg("Create SOAP message from message factory");
+      logger.log(Logger.Level.INFO,"Create SOAP message from message factory");
       SOAPMessage msg = SOAP_Util.getMessageFactory().createMessage();
 
       // Message creation takes care of creating the SOAPPart - a
       // required part of the message as per the SOAP 1.1 spec.
-      TestUtil.logMsg("Get SOAP Part");
+      logger.log(Logger.Level.INFO,"Get SOAP Part");
       SOAPPart sp = msg.getSOAPPart();
 
       // Retrieve the envelope from the soap part to start building
       // the soap message.
-      TestUtil.logMsg("Get SOAP Envelope");
+      logger.log(Logger.Level.INFO,"Get SOAP Envelope");
       SOAPEnvelope envelope = sp.getEnvelope();
 
       // Create a soap header from the envelope.
-      TestUtil.logMsg("Create SOAP Header");
+      logger.log(Logger.Level.INFO,"Create SOAP Header");
       SOAPHeader hdr = envelope.getHeader();
 
       // Create a soap body from the envelope.
-      TestUtil.logMsg("Create SOAP Body");
+      logger.log(Logger.Level.INFO,"Create SOAP Body");
       SOAPBody bdy = envelope.getBody();
 
       // Add some soap header elements
-      TestUtil.logMsg("Add SOAP HeaderElement Header1");
+      logger.log(Logger.Level.INFO,"Add SOAP HeaderElement Header1");
       SOAPElement se = hdr
           .addHeaderElement(envelope.createName("Header1", NS_PREFIX, NS_URI))
           .addTextNode("This is Header1");
       SOAPHeaderElement she = (SOAPHeaderElement) se;
       she.setMustUnderstand(true);
 
-      TestUtil.logMsg("Add SOAP HeaderElement Header2");
+      logger.log(Logger.Level.INFO,"Add SOAP HeaderElement Header2");
       se = hdr
           .addHeaderElement(envelope.createName("Header2", NS_PREFIX, NS_URI))
           .addTextNode("This is Header2");
       she = (SOAPHeaderElement) se;
       she.setMustUnderstand(false);
 
-      TestUtil.logMsg("Add SOAP HeaderElement Header3");
+      logger.log(Logger.Level.INFO,"Add SOAP HeaderElement Header3");
       se = hdr
           .addHeaderElement(envelope.createName("Header3", NS_PREFIX, NS_URI))
           .addTextNode("This is Header3");
       she = (SOAPHeaderElement) se;
       she.setMustUnderstand(true);
 
-      TestUtil.logMsg("Add SOAP HeaderElement Header4");
+      logger.log(Logger.Level.INFO,"Add SOAP HeaderElement Header4");
       se = hdr
           .addHeaderElement(envelope.createName("Header4", NS_PREFIX, NS_URI))
           .addTextNode("This is Header4");
@@ -191,19 +195,19 @@ public class SendingServlet extends HttpServlet {
       she.setMustUnderstand(false);
 
       // Add a soap body element
-      TestUtil.logMsg("Add SOAP BodyElement Body1");
+      logger.log(Logger.Level.INFO,"Add SOAP BodyElement Body1");
       SOAPBodyElement sbe = bdy
           .addBodyElement(envelope.createName("Body1", NS_PREFIX, NS_URI));
 
       // Add a some child elements
-      TestUtil.logMsg("Add ChildElement Child1");
+      logger.log(Logger.Level.INFO,"Add ChildElement Child1");
       sbe.addChildElement(envelope.createName("Child1", NS_PREFIX, NS_URI))
           .addTextNode("This is Child1");
-      TestUtil.logMsg("Add ChildElement Child2");
+      logger.log(Logger.Level.INFO,"Add ChildElement Child2");
       sbe.addChildElement(envelope.createName("Child2", NS_PREFIX, NS_URI))
           .addTextNode("This is Child2");
 
-      TestUtil.logMsg("Add various mime type attachments to SOAP message");
+      logger.log(Logger.Level.INFO,"Add various mime type attachments to SOAP message");
       URL url1 = tsurl.getURL(PROTOCOL, hostname, portnum,
           cntxroot + "/attach.xml");
       URL url2 = tsurl.getURL(PROTOCOL, hostname, portnum,
@@ -215,24 +219,24 @@ public class SendingServlet extends HttpServlet {
       URL url5 = tsurl.getURL(PROTOCOL, hostname, portnum,
           cntxroot + "/attach.jpeg");
 
-      TestUtil.logMsg("Create SOAP Attachment (XML document)");
-      TestUtil.logMsg("URL1=" + url1);
+      logger.log(Logger.Level.INFO,"Create SOAP Attachment (XML document)");
+      logger.log(Logger.Level.INFO,"URL1=" + url1);
       AttachmentPart ap1 = msg.createAttachmentPart(new DataHandler(url1));
 
-      TestUtil.logMsg("Create SOAP Attachment (GIF image)");
-      TestUtil.logMsg("URL2=" + url2);
+      logger.log(Logger.Level.INFO,"Create SOAP Attachment (GIF image)");
+      logger.log(Logger.Level.INFO,"URL2=" + url2);
       AttachmentPart ap2 = msg.createAttachmentPart(new DataHandler(url2));
 
-      TestUtil.logMsg("Create SOAP Attachment (Plain text)");
-      TestUtil.logMsg("URL3=" + url3);
+      logger.log(Logger.Level.INFO,"Create SOAP Attachment (Plain text)");
+      logger.log(Logger.Level.INFO,"URL3=" + url3);
       AttachmentPart ap3 = msg.createAttachmentPart(new DataHandler(url3));
 
-      TestUtil.logMsg("Create SOAP Attachment (HTML document)");
-      TestUtil.logMsg("URL4=" + url4);
+      logger.log(Logger.Level.INFO,"Create SOAP Attachment (HTML document)");
+      logger.log(Logger.Level.INFO,"URL4=" + url4);
       AttachmentPart ap4 = msg.createAttachmentPart(new DataHandler(url4));
 
-      TestUtil.logMsg("Create SOAP Attachment (JPEG image)");
-      TestUtil.logMsg("URL5=" + url5);
+      logger.log(Logger.Level.INFO,"Create SOAP Attachment (JPEG image)");
+      logger.log(Logger.Level.INFO,"URL5=" + url5);
       AttachmentPart ap5 = msg.createAttachmentPart(new DataHandler(url5));
 
       ap1.setContentType("text/xml");
@@ -242,18 +246,18 @@ public class SendingServlet extends HttpServlet {
       ap5.setContentType("image/jpeg");
 
       // Add the attachments to the message.
-      TestUtil.logMsg("Add SOAP Attachment (XML document) to SOAP message");
+      logger.log(Logger.Level.INFO,"Add SOAP Attachment (XML document) to SOAP message");
       msg.addAttachmentPart(ap1);
-      TestUtil.logMsg("Add SOAP Attachment (GIF image) to SOAP message");
+      logger.log(Logger.Level.INFO,"Add SOAP Attachment (GIF image) to SOAP message");
       msg.addAttachmentPart(ap2);
-      TestUtil.logMsg("Add SOAP Attachment (Plain text) to SOAP message");
+      logger.log(Logger.Level.INFO,"Add SOAP Attachment (Plain text) to SOAP message");
       msg.addAttachmentPart(ap3);
-      TestUtil.logMsg("Add SOAP Attachment (HTML document) to SOAP message");
+      logger.log(Logger.Level.INFO,"Add SOAP Attachment (HTML document) to SOAP message");
       msg.addAttachmentPart(ap4);
-      TestUtil.logMsg("Add SOAP Attachment (JPEG image) to SOAP message");
+      logger.log(Logger.Level.INFO,"Add SOAP Attachment (JPEG image) to SOAP message");
       msg.addAttachmentPart(ap5);
       msg.saveChanges();
-      TestUtil.logMsg("Done creating SOAP message");
+      logger.log(Logger.Level.INFO,"Done creating SOAP message");
 
       // Create a url endpoint for the recipient of the message.
       URL urlEndpoint = null;
@@ -261,26 +265,26 @@ public class SendingServlet extends HttpServlet {
         urlEndpoint = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET1);
       else
         urlEndpoint = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET2);
-      TestUtil.logMsg("URLEndpoint = " + urlEndpoint);
+      logger.log(Logger.Level.INFO,"URLEndpoint = " + urlEndpoint);
 
       // Send the message to the endpoint using the connection.
-      TestUtil.logMsg("Send SOAP message with various MIME attachments");
+      logger.log(Logger.Level.INFO,"Send SOAP message with various MIME attachments");
       SOAPMessage replymsg = con.call(msg, urlEndpoint);
-      TestUtil.logMsg("Message sent successfully (PASSED)");
+      logger.log(Logger.Level.INFO,"Message sent successfully (PASSED)");
 
       // Check if reply message
-      TestUtil.logMsg("Check the reply message");
+      logger.log(Logger.Level.INFO,"Check the reply message");
       if (ValidateReplyMessage(replymsg)) {
-        TestUtil.logMsg("Reply message is correct (PASSED)");
+        logger.log(Logger.Level.INFO,"Reply message is correct (PASSED)");
       } else {
         pass = false;
-        TestUtil.logErr("Reply message is incorrect (FAILED)");
+        logger.log(Logger.Level.ERROR,"Reply message is incorrect (FAILED)");
       }
 
       // Set status code to OK
       res.setStatus(HttpServletResponse.SC_OK);
     } catch (Exception e) {
-      TestUtil.logErr("SendVariousMimeAttachmentsTest Exception: " + e);
+      logger.log(Logger.Level.ERROR,"SendVariousMimeAttachmentsTest Exception: " + e);
       TestUtil.printStackTrace(e);
       System.err.println("SendVariousMimeAttachmentsTest Exception: " + e);
       e.printStackTrace(System.err);
@@ -293,7 +297,7 @@ public class SendingServlet extends HttpServlet {
       resultProps.setProperty("TESTRESULT", "pass");
     else
       resultProps.setProperty("TESTRESULT", "fail");
-    TestUtil.logMsg("TESTRESULT=" + resultProps.getProperty("TESTRESULT"));
+    logger.log(Logger.Level.INFO,"TESTRESULT=" + resultProps.getProperty("TESTRESULT"));
     resultProps.list(out);
   }
 
@@ -302,7 +306,7 @@ public class SendingServlet extends HttpServlet {
       boolean pass = true;
       SOAPEnvelope envelope = msg.getSOAPPart().getEnvelope();
 
-      TestUtil.logMsg("Verify soap headers");
+      logger.log(Logger.Level.INFO,"Verify soap headers");
       boolean foundHeader1 = false;
       boolean foundHeader2 = false;
       boolean foundHeader3 = false;
@@ -328,11 +332,11 @@ public class SendingServlet extends HttpServlet {
           foundHeader4 = true;
       }
       if (!foundHeader1 || !foundHeader2 || !foundHeader3 || !foundHeader4) {
-        TestUtil.logErr("Did not find expected soap headers in reply message");
+        logger.log(Logger.Level.ERROR,"Did not find expected soap headers in reply message");
         pass = false;
       } else
-        TestUtil.logMsg("Did find expected soap headers in reply message");
-      TestUtil.logMsg("Verify soap body");
+        logger.log(Logger.Level.INFO,"Did find expected soap headers in reply message");
+      logger.log(Logger.Level.INFO,"Verify soap body");
       boolean foundBody1 = false;
       boolean foundChild1 = false;
       boolean foundChild2 = false;
@@ -357,24 +361,23 @@ public class SendingServlet extends HttpServlet {
         }
       }
       if (!foundBody1) {
-        TestUtil.logErr("Did not find expected soap body in reply message");
+        logger.log(Logger.Level.ERROR,"Did not find expected soap body in reply message");
         pass = false;
       } else
-        TestUtil.logMsg("Did find expected soap body in reply message");
+        logger.log(Logger.Level.INFO,"Did find expected soap body in reply message");
       if (!foundChild1 || !foundChild2) {
-        TestUtil.logErr("Did not find expected soap body "
+        logger.log(Logger.Level.ERROR,"Did not find expected soap body "
             + "child elements in reply message");
         pass = false;
       } else
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "Did find expected soap body child " + "elements in reply message");
-      TestUtil.logMsg("Verify attachments");
+      logger.log(Logger.Level.INFO,"Verify attachments");
       int count = msg.countAttachments();
       if (count == 5) {
-        TestUtil
-            .logMsg("Got expected " + count + " attachments in reply message");
+        logger.log(Logger.Level.INFO,"Got expected " + count + " attachments in reply message");
         i = msg.getAttachments();
-        TestUtil.logMsg("Verify correct MIME types of attachments");
+        logger.log(Logger.Level.INFO,"Verify correct MIME types of attachments");
         boolean gifFound = false;
         boolean xmlFound = false;
         boolean textFound = false;
@@ -383,7 +386,7 @@ public class SendingServlet extends HttpServlet {
         while (i.hasNext()) {
           AttachmentPart a = (AttachmentPart) i.next();
           String type = a.getContentType();
-          TestUtil.logMsg("MIME type of attachment = " + type);
+          logger.log(Logger.Level.INFO,"MIME type of attachment = " + type);
           if (type.equals("image/gif"))
             gifFound = true;
           else if (type.equals("text/xml"))
@@ -395,29 +398,29 @@ public class SendingServlet extends HttpServlet {
           else if (type.equals("image/jpeg"))
             jpegFound = true;
           else {
-            TestUtil.logErr("Got unexpected MIME type: " + type);
+            logger.log(Logger.Level.ERROR,"Got unexpected MIME type: " + type);
             pass = false;
           }
         }
-        TestUtil.logMsg("GIF attachment found = " + gifFound);
-        TestUtil.logMsg("XML attachment found = " + xmlFound);
-        TestUtil.logMsg("TEXT attachment found = " + textFound);
-        TestUtil.logMsg("HTML attachment found = " + htmlFound);
-        TestUtil.logMsg("JPEG attachment found = " + jpegFound);
+        logger.log(Logger.Level.INFO,"GIF attachment found = " + gifFound);
+        logger.log(Logger.Level.INFO,"XML attachment found = " + xmlFound);
+        logger.log(Logger.Level.INFO,"TEXT attachment found = " + textFound);
+        logger.log(Logger.Level.INFO,"HTML attachment found = " + htmlFound);
+        logger.log(Logger.Level.INFO,"JPEG attachment found = " + jpegFound);
         if (!gifFound || !xmlFound || !textFound || !htmlFound || !jpegFound) {
           TestUtil
               .logErr("Did not find all expected MIME types in reply message");
           pass = false;
         } else
-          TestUtil.logMsg("Did find all expected MIME types in reply message");
+          logger.log(Logger.Level.INFO,"Did find all expected MIME types in reply message");
         return pass;
       } else {
-        TestUtil.logErr("Got unexpected " + count
+        logger.log(Logger.Level.ERROR,"Got unexpected " + count
             + " attachments in reply message, expected 5");
         return false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("ValidateReplyMessage Exception: " + e);
+      logger.log(Logger.Level.ERROR,"ValidateReplyMessage Exception: " + e);
       TestUtil.printStackTrace(e);
       return false;
     }

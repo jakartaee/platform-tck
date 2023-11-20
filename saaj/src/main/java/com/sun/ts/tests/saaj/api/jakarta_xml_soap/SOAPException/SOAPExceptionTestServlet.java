@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPException;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -35,6 +36,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.xml.soap.SOAPException;
 
 public class SOAPExceptionTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SOAPExceptionTestServlet.class.getName());
+
 
   private void dispatch(HttpServletRequest req, HttpServletResponse res)
       throws ServletException, IOException {
@@ -43,19 +47,19 @@ public class SOAPExceptionTestServlet extends HttpServlet {
     String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
 
     if (testname.equals("SOAPExceptionConstructor1Test")) {
-      TestUtil.logMsg("Starting SOAPExceptionConstructor1Test");
+      logger.log(Logger.Level.INFO,"Starting SOAPExceptionConstructor1Test");
       SOAPExceptionConstructor1Test(req, res);
     } else if (testname.equals("SOAPExceptionConstructor2Test")) {
-      TestUtil.logMsg("Starting SOAPExceptionConstructor2Test");
+      logger.log(Logger.Level.INFO,"Starting SOAPExceptionConstructor2Test");
       SOAPExceptionConstructor2Test(req, res);
     } else if (testname.equals("SOAPExceptionConstructor3Test")) {
-      TestUtil.logMsg("Starting SOAPExceptionConstructor3Test");
+      logger.log(Logger.Level.INFO,"Starting SOAPExceptionConstructor3Test");
       SOAPExceptionConstructor3Test(req, res);
     } else if (testname.equals("SOAPExceptionConstructor4Test")) {
-      TestUtil.logMsg("Starting SOAPExceptionConstructor4Test");
+      logger.log(Logger.Level.INFO,"Starting SOAPExceptionConstructor4Test");
       SOAPExceptionConstructor4Test(req, res);
     } else if (testname.equals("InitGetCauseTest")) {
-      TestUtil.logMsg("Starting InitGetCauseTest");
+      logger.log(Logger.Level.INFO,"Starting InitGetCauseTest");
       InitGetCauseTest(req, res);
     } else {
       throw new ServletException(
@@ -97,10 +101,10 @@ public class SOAPExceptionTestServlet extends HttpServlet {
       throw new SOAPException();
     } catch (Exception e) {
       if (e instanceof SOAPException) {
-        TestUtil.logMsg("SOAPExceptionConstructor1Test test PASSED");
+        logger.log(Logger.Level.INFO,"SOAPExceptionConstructor1Test test PASSED");
       } else {
-        TestUtil.logErr("SOAPExceptionConstructor1Test test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
+        logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor1Test test FAILED");
+        logger.log(Logger.Level.ERROR,"Exception thrown was not of type SOAPException");
         pass = false;
       }
     }
@@ -127,15 +131,15 @@ public class SOAPExceptionTestServlet extends HttpServlet {
       if (e instanceof SOAPException) {
         String reason = e.getMessage();
         if (reason.equals("foobar"))
-          TestUtil.logMsg("SOAPExceptionConstructor2Test test PASSED");
+          logger.log(Logger.Level.INFO,"SOAPExceptionConstructor2Test test PASSED");
         else {
-          TestUtil.logErr("SOAPExceptionConstructor2Test test FAILED");
-          TestUtil.logErr("reason: expected foobar, received " + reason);
+          logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor2Test test FAILED");
+          logger.log(Logger.Level.ERROR,"reason: expected foobar, received " + reason);
           pass = false;
         }
       } else {
-        TestUtil.logErr("SOAPExceptionConstructor2Test test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
+        logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor2Test test FAILED");
+        logger.log(Logger.Level.ERROR,"Exception thrown was not of type SOAPException");
         pass = false;
       }
     }
@@ -163,21 +167,21 @@ public class SOAPExceptionTestServlet extends HttpServlet {
       if (e instanceof SOAPException) {
         String reason = e.getMessage();
         if (reason.equals("foobar"))
-          TestUtil.logMsg("SOAPExceptionConstructor3Test test PASSED");
+          logger.log(Logger.Level.INFO,"SOAPExceptionConstructor3Test test PASSED");
         else {
-          TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
-          TestUtil.logErr("reason: expected foobar, received " + reason);
+          logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor3Test test FAILED");
+          logger.log(Logger.Level.ERROR,"reason: expected foobar, received " + reason);
           pass = false;
         }
         /*
          * Throwable t = ((SOAPException)e).getCause(); if (t.equals(foo))
-         * TestUtil.logMsg("SOAPExceptionConstructor3Test test PASSED"); else {
-         * TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
-         * TestUtil.logErr("Throwable objects do not match"); pass = false; }
+         * logger.log(Logger.Level.INFO,"SOAPExceptionConstructor3Test test PASSED"); else {
+         * logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor3Test test FAILED");
+         * logger.log(Logger.Level.ERROR,"Throwable objects do not match"); pass = false; }
          */
       } else {
-        TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
+        logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor3Test test FAILED");
+        logger.log(Logger.Level.ERROR,"Exception thrown was not of type SOAPException");
         pass = false;
       }
     }
@@ -203,17 +207,17 @@ public class SOAPExceptionTestServlet extends HttpServlet {
       throw new SOAPException(foo);
     } catch (Exception e) {
       if (e instanceof SOAPException) {
-        TestUtil.logMsg("SOAPExceptionConstructor4Test test PASSED");
+        logger.log(Logger.Level.INFO,"SOAPExceptionConstructor4Test test PASSED");
         Throwable t = ((SOAPException) e).getCause();
         if (t.equals(foo))
-          TestUtil.logMsg("SOAPExceptionConstructor4Test test PASSED");
+          logger.log(Logger.Level.INFO,"SOAPExceptionConstructor4Test test PASSED");
         else {
-          TestUtil.logErr("SOAPExceptionConstructor4Test test FAILED");
-          TestUtil.logErr("Throwable objects do not match");
+          logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor4Test test FAILED");
+          logger.log(Logger.Level.ERROR,"Throwable objects do not match");
         }
       } else {
-        TestUtil.logErr("SOAPExceptionConstructor4Test test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
+        logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor4Test test FAILED");
+        logger.log(Logger.Level.ERROR,"Exception thrown was not of type SOAPException");
         pass = false;
       }
     }
@@ -243,15 +247,15 @@ public class SOAPExceptionTestServlet extends HttpServlet {
       if (e instanceof SOAPException) {
         Throwable t = ((SOAPException) e).getCause();
         if (t.equals(foo))
-          TestUtil.logMsg("InitGetCauseTest test PASSED");
+          logger.log(Logger.Level.INFO,"InitGetCauseTest test PASSED");
         else {
-          TestUtil.logErr("InitGetCauseTest test FAILED");
-          TestUtil.logErr("Throwable objects do not match");
+          logger.log(Logger.Level.ERROR,"InitGetCauseTest test FAILED");
+          logger.log(Logger.Level.ERROR,"Throwable objects do not match");
           pass = false;
         }
       } else {
-        TestUtil.logErr("InitGetCauseTest test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
+        logger.log(Logger.Level.ERROR,"InitGetCauseTest test FAILED");
+        logger.log(Logger.Level.ERROR,"Exception thrown was not of type SOAPException");
         pass = false;
       }
     }

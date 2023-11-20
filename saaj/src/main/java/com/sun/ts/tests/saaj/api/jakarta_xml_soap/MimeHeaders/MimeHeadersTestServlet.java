@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.MimeHeaders;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -40,6 +41,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class MimeHeadersTestServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(MimeHeadersTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -192,22 +196,22 @@ public class MimeHeadersTestServlet extends HttpServlet {
       TestUtil.logTrace("Starting removeHeader4Test");
       removeHeader4Test(req, res);
     } else if (testname.equals("setHeader1Test")) {
-      TestUtil.logMsg("Starting setHeader1Test");
+      logger.log(Logger.Level.INFO,"Starting setHeader1Test");
       setHeader1Test(req, res);
     } else if (testname.equals("setHeader2Test")) {
-      TestUtil.logMsg("Starting setHeader2Test");
+      logger.log(Logger.Level.INFO,"Starting setHeader2Test");
       setHeader2Test(req, res);
     } else if (testname.equals("setHeader3Test")) {
-      TestUtil.logMsg("Starting setHeader3Test");
+      logger.log(Logger.Level.INFO,"Starting setHeader3Test");
       setHeader3Test(req, res);
     } else if (testname.equals("setHeader4Test")) {
-      TestUtil.logMsg("Starting setHeader4Test");
+      logger.log(Logger.Level.INFO,"Starting setHeader4Test");
       setHeader4Test(req, res);
     } else if (testname.equals("setHeader5Test")) {
-      TestUtil.logMsg("Starting setHeader5Test");
+      logger.log(Logger.Level.INFO,"Starting setHeader5Test");
       setHeader5Test(req, res);
     } else if (testname.equals("setHeader6Test")) {
-      TestUtil.logMsg("Starting setHeader6Test");
+      logger.log(Logger.Level.INFO,"Starting setHeader6Test");
       setHeader6Test(req, res);
     } else {
       throw new ServletException(
@@ -248,14 +252,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -279,15 +283,15 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -311,15 +315,15 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -343,19 +347,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader(null, "some text");
 
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Error: expected java.lang.IllegalArgumentException to be thrown");
       pass = false;
     } catch (java.lang.IllegalArgumentException ia) {
       pass = true;
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -379,26 +383,26 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header with null value");
+      logger.log(Logger.Level.INFO,"Adding header with null value");
       mimeHeaders.addHeader("Content-Description", null);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header with null string value");
+      logger.log(Logger.Level.INFO,"Adding header with null string value");
       mimeHeaders.addHeader("Content-Description", "");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -422,19 +426,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader(null, null);
 
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Error: expected java.lang.IllegalArgumentException to be thrown");
       pass = false;
     } catch (java.lang.IllegalArgumentException ia) {
       pass = true;
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -458,10 +462,10 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
       Iterator iterator = mimeHeaders.getAllHeaders();
@@ -473,22 +477,22 @@ public class MimeHeadersTestServlet extends HttpServlet {
         String value = mh.getValue();
         if (!(name.equals("Content-Description")
             && value.equals("some text"))) {
-          TestUtil.logErr("Mimeheader did not match");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Mimeheader did not match");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         } else {
-          TestUtil.logMsg("MimeHeader did match");
+          logger.log(Logger.Level.INFO,"MimeHeader did match");
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + cnt);
         pass = false;
       }
 
-      TestUtil.logMsg("Try a second time");
+      logger.log(Logger.Level.INFO,"Try a second time");
       Iterator iterator2 = mimeHeaders.getAllHeaders();
       int cnt2 = 0;
       while (iterator2.hasNext()) {
@@ -498,22 +502,22 @@ public class MimeHeadersTestServlet extends HttpServlet {
         String value = mh.getValue();
         if (!(name.equals("Content-Description")
             && value.equals("some text"))) {
-          TestUtil.logErr("Mimeheader did not match, second time through");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Mimeheader did not match, second time through");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         } else {
-          TestUtil.logMsg("MimeHeader did match second time through");
+          logger.log(Logger.Level.INFO,"MimeHeader did match second time through");
         }
       }
       if (cnt2 != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned second time through, got a total of:"
                 + cnt2);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -537,10 +541,10 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
 
@@ -556,42 +560,42 @@ public class MimeHeadersTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header1 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header1 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Id") && value.equals("id@abc.com")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header2 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header2 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both headers");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both headers");
         pass = false;
       }
 
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
-      TestUtil.logMsg("Try a second time");
+      logger.log(Logger.Level.INFO,"Try a second time");
       Iterator iterator2 = mimeHeaders.getAllHeaders();
       int cnt2 = 0;
       foundHeader1 = false;
@@ -604,31 +608,31 @@ public class MimeHeadersTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg(
+            logger.log(Logger.Level.INFO,
                 "MimeHeaders do match for header1, second time through");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 header twice, second time through");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Id") && value.equals("id@abc.com")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg(
+            logger.log(Logger.Level.INFO,
                 "MimeHeaders do match for header2, second time through");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 header twice, second time through");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: Received an invalid header , the second time through");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
@@ -640,14 +644,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
       }
 
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned second time through, got a total of:"
                 + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -671,10 +675,10 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
 
@@ -690,42 +694,42 @@ public class MimeHeadersTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header1 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header1 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header2 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header2 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both headers");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both headers");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
-      TestUtil.logMsg("Try a second time");
+      logger.log(Logger.Level.INFO,"Try a second time");
       Iterator iterator2 = mimeHeaders.getAllHeaders();
       int cnt2 = 0;
       foundHeader1 = false;
@@ -738,32 +742,32 @@ public class MimeHeadersTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg(
+            logger.log(Logger.Level.INFO,
                 "MimeHeaders do match for header1, second time through");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 header twice, second time through");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg(
+            logger.log(Logger.Level.INFO,
                 "MimeHeaders do match for header2, second time through");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 header twice, second time through");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: Received an invalid header , the second time through");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
@@ -775,14 +779,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
       }
 
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned second time through, got a total of:"
                 + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -806,7 +810,7 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
       Iterator iterator = mimeHeaders.getAllHeaders();
@@ -818,19 +822,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an invalid header");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -854,16 +858,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
       String sArray[] = mimeHeaders.getHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + len);
         pass = false;
@@ -872,15 +876,15 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -904,16 +908,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
       String sArray[] = mimeHeaders.getHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -922,10 +926,10 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
@@ -933,7 +937,7 @@ public class MimeHeadersTestServlet extends HttpServlet {
       sArray = mimeHeaders.getHeader("Content-Id");
       len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getHeader(Content-Id), got a total of:"
                 + len);
         pass = false;
@@ -942,16 +946,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("id@abc.com")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getHeader(Content-Id)");
-          TestUtil.logErr("expected result: id@abc.com");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: id@abc.com");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -975,16 +979,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
       String sArray[] = mimeHeaders.getHeader("Content-Description");
       int len = sArray.length;
       if (len != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -993,16 +997,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text") && !temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text or some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text or some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1026,24 +1030,24 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting non-existent header");
+      logger.log(Logger.Level.INFO,"Getting non-existent header");
       String sArray[] = mimeHeaders.getHeader("doesnotexist");
       if (sArray != null && sArray.length > 0) {
-        TestUtil.logErr("Error: was able to get a non-existent Header");
+        logger.log(Logger.Level.ERROR,"Error: was able to get a non-existent Header");
         pass = false;
         int len = sArray.length;
         for (int i = 0; i < len; i++) {
-          TestUtil.logErr("actual result:" + sArray[i]);
+          logger.log(Logger.Level.ERROR,"actual result:" + sArray[i]);
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1068,16 +1072,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1085,14 +1089,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching headers");
+      logger.log(Logger.Level.INFO,"Getting matching headers");
       iterator = mimeHeaders.getMatchingHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1101,23 +1105,23 @@ public class MimeHeadersTestServlet extends HttpServlet {
         String name = mh.getName();
         String value = mh.getValue();
         if (name.equals("Content-Description") && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one item to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1141,17 +1145,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1159,14 +1163,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching headers");
+      logger.log(Logger.Level.INFO,"Getting matching headers");
       iterator = mimeHeaders.getMatchingHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1175,23 +1179,23 @@ public class MimeHeadersTestServlet extends HttpServlet {
         String name = mh.getName();
         String value = mh.getValue();
         if (name.equals("Content-Description") && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1215,17 +1219,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1233,14 +1237,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching headers");
+      logger.log(Logger.Level.INFO,"Getting matching headers");
       iterator = mimeHeaders.getMatchingHeaders(sArray);
       cnt = 0;
       boolean foundHeader1 = false;
@@ -1253,43 +1257,43 @@ public class MimeHeadersTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header1 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header1 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header2 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header2 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both headers");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both headers");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1313,16 +1317,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1330,14 +1334,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "doesnotexist" };
-      TestUtil.logMsg("List of Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non-existent header");
+      logger.log(Logger.Level.INFO,"Getting non-existent header");
       iterator = mimeHeaders.getMatchingHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1345,18 +1349,18 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an invalid header");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1381,10 +1385,10 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
@@ -1392,7 +1396,7 @@ public class MimeHeadersTestServlet extends HttpServlet {
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1400,14 +1404,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description", "Content-Location" };
-      TestUtil.logMsg("List of Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching headers");
+      logger.log(Logger.Level.INFO,"Getting matching headers");
       iterator = mimeHeaders.getMatchingHeaders(sArray);
       cnt = 0;
       boolean foundHeader1 = false;
@@ -1420,42 +1424,42 @@ public class MimeHeadersTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header1 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header1 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header2 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header2 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both headers");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both headers");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1479,16 +1483,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1496,14 +1500,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of Non Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Non Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching headers");
+      logger.log(Logger.Level.INFO,"Getting non matching headers");
       iterator = mimeHeaders.getNonMatchingHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1511,19 +1515,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an invalid header");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1547,17 +1551,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1565,14 +1569,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Id" };
-      TestUtil.logMsg("List of Non Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Non Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching headers");
+      logger.log(Logger.Level.INFO,"Getting non matching headers");
       iterator = mimeHeaders.getNonMatchingHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1581,23 +1585,23 @@ public class MimeHeadersTestServlet extends HttpServlet {
         String name = mh.getName();
         String value = mh.getValue();
         if (name.equals("Content-Description") && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1621,17 +1625,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1639,14 +1643,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Id" };
-      TestUtil.logMsg("List of Non Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Non Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching headers");
+      logger.log(Logger.Level.INFO,"Getting non matching headers");
       iterator = mimeHeaders.getNonMatchingHeaders(sArray);
       cnt = 0;
       boolean foundHeader1 = false;
@@ -1659,43 +1663,43 @@ public class MimeHeadersTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header1 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header1 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header2 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header2 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both headers");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both headers");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1719,16 +1723,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1736,14 +1740,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of Non Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Non Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching headers");
+      logger.log(Logger.Level.INFO,"Getting non matching headers");
       iterator = mimeHeaders.getNonMatchingHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1751,19 +1755,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an invalid header");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1787,10 +1791,10 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
@@ -1798,7 +1802,7 @@ public class MimeHeadersTestServlet extends HttpServlet {
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all headers");
+      logger.log(Logger.Level.INFO,"Getting all headers");
       iterator = mimeHeaders.getAllHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1806,14 +1810,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Id", "Content-Location" };
-      TestUtil.logMsg("List of Non Matching headers contains:");
+      logger.log(Logger.Level.INFO,"List of Non Matching headers contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching headers");
+      logger.log(Logger.Level.INFO,"Getting non matching headers");
       iterator = mimeHeaders.getNonMatchingHeaders(sArray);
       cnt = 0;
       boolean foundHeader1 = false;
@@ -1826,42 +1830,42 @@ public class MimeHeadersTestServlet extends HttpServlet {
         if (name.equals("Content-Description") && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header1 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header1 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equals("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header2 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header2 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both headers");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both headers");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1885,16 +1889,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Removing all MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders object ...");
       mimeHeaders.removeAllHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders object ...");
       Iterator iterator = mimeHeaders.getAllHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -1902,19 +1906,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received invalid Mimeheader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received invalid Mimeheader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1938,17 +1942,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Removing all MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders object ...");
       mimeHeaders.removeAllHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders object ...");
       Iterator iterator = mimeHeaders.getAllHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -1956,19 +1960,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received invalid Mimeheader");
-        TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received invalid Mimeheader");
+        logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1992,17 +1996,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Removing all MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders object ...");
       mimeHeaders.removeAllHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders object ...");
       Iterator iterator = mimeHeaders.getAllHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2010,19 +2014,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received invalid Mimeheader");
-        TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received invalid Mimeheader");
+        logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2046,14 +2050,14 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Removing all MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders object ...");
       mimeHeaders.removeAllHeaders();
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2077,16 +2081,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Removing header");
+      logger.log(Logger.Level.INFO,"Removing header");
       mimeHeaders.removeHeader("Content-Description");
 
-      TestUtil.logMsg("Getting headers");
+      logger.log(Logger.Level.INFO,"Getting headers");
       Iterator iterator = mimeHeaders.getAllHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2094,19 +2098,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received invalid Mimeheader");
-        TestUtil.logErr("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received invalid Mimeheader");
+        logger.log(Logger.Level.ERROR,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got atotal of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2130,17 +2134,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Removing header");
+      logger.log(Logger.Level.INFO,"Removing header");
       mimeHeaders.removeHeader("Content-Id");
 
-      TestUtil.logMsg("Getting headers");
+      logger.log(Logger.Level.INFO,"Getting headers");
       Iterator iterator = mimeHeaders.getAllHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2150,23 +2154,23 @@ public class MimeHeadersTestServlet extends HttpServlet {
         String value = mh.getValue();
         if (!(name.equals("Content-Description")
             && value.equals("some text"))) {
-          TestUtil.logErr("Mimeheader did not match");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Mimeheader did not match");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         } else {
-          TestUtil.logMsg("MimeHeader did match");
+          logger.log(Logger.Level.INFO,"MimeHeader did match");
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2190,17 +2194,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Removing header");
+      logger.log(Logger.Level.INFO,"Removing header");
       mimeHeaders.removeHeader("Content-Description");
 
-      TestUtil.logMsg("Getting headers");
+      logger.log(Logger.Level.INFO,"Getting headers");
       Iterator iterator = mimeHeaders.getAllHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2208,18 +2212,18 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received invalid Mimeheader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received invalid Mimeheader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2243,13 +2247,13 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Removing header");
+      logger.log(Logger.Level.INFO,"Removing header");
       mimeHeaders.removeHeader("doesnotexist");
 
-      TestUtil.logMsg("Getting header");
+      logger.log(Logger.Level.INFO,"Getting header");
       Iterator iterator = mimeHeaders.getAllHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -2257,18 +2261,18 @@ public class MimeHeadersTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received invalid Mimeheader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received invalid Mimeheader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2293,20 +2297,20 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Setting header");
+      logger.log(Logger.Level.INFO,"Setting header");
       mimeHeaders.setHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Getting header");
+      logger.log(Logger.Level.INFO,"Getting header");
       String sArray[] = mimeHeaders.getHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + len);
         pass = false;
@@ -2315,15 +2319,15 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from setHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2347,21 +2351,21 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
       mimeHeaders.addHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Setting header");
+      logger.log(Logger.Level.INFO,"Setting header");
       mimeHeaders.setHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Getting header");
+      logger.log(Logger.Level.INFO,"Getting header");
       String sArray[] = mimeHeaders.getHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2370,19 +2374,19 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from setHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
-      TestUtil.logMsg("Getting header");
+      logger.log(Logger.Level.INFO,"Getting header");
       sArray = mimeHeaders.getHeader("Content-Id");
       len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getHeader(name2), got a total of:"
                 + len);
         pass = false;
@@ -2391,16 +2395,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("id@abc.com")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getHeader(Content-Id)");
-          TestUtil.logErr("expected result: id@abc.com");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: id@abc.com");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2424,21 +2428,21 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.setHeader("Content-Description", "some text");
       mimeHeaders.setHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Setting header");
+      logger.log(Logger.Level.INFO,"Setting header");
       mimeHeaders.setHeader("Content-Description", "image/jpeg");
 
-      TestUtil.logMsg("Getting header");
+      logger.log(Logger.Level.INFO,"Getting header");
       String sArray[] = mimeHeaders.getHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2447,16 +2451,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("image/jpeg")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getHeader(Content-Description)");
-          TestUtil.logErr("expected result: image/jpeg");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: image/jpeg");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2480,17 +2484,17 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Setting header");
+      logger.log(Logger.Level.INFO,"Setting header");
       mimeHeaders.setHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting header");
+      logger.log(Logger.Level.INFO,"Getting header");
       String sArray[] = mimeHeaders.getHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2499,15 +2503,15 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2532,23 +2536,23 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Adding header");
+      logger.log(Logger.Level.INFO,"Adding header");
       mimeHeaders.addHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Setting header");
+      logger.log(Logger.Level.INFO,"Setting header");
       mimeHeaders.setHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Setting header again");
+      logger.log(Logger.Level.INFO,"Setting header again");
       mimeHeaders.setHeader("Content-Description", "impage/jpeg");
 
-      TestUtil.logMsg("Getting header");
+      logger.log(Logger.Level.INFO,"Getting header");
       String sArray[] = mimeHeaders.getHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2557,16 +2561,16 @@ public class MimeHeadersTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("impage/jpeg")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getHeader(Content-Description)");
-          TestUtil.logErr("expected result: impage/jpeg");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: impage/jpeg");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2590,26 +2594,26 @@ public class MimeHeadersTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Setting header with null value");
+      logger.log(Logger.Level.INFO,"Setting header with null value");
       mimeHeaders.setHeader("Content-Description", null);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     try {
       setup();
 
-      TestUtil.logMsg("Creating MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Creating MimeHeaders object ...");
       mimeHeaders = new MimeHeaders();
 
-      TestUtil.logMsg("Setting header with null string value");
+      logger.log(Logger.Level.INFO,"Setting header with null string value");
       mimeHeaders.setHeader("Content-Description", "");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }

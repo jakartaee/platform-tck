@@ -26,6 +26,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.lang.System.Logger;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Properties;
@@ -44,6 +45,9 @@ import jakarta.xml.soap.SOAPFactory;
 import jakarta.xml.soap.SOAPMessage;
 
 public final class SOAP_Util {
+	
+	  private static final Logger logger = (Logger) System.getLogger(SOAP_Util.class.getName());
+
   public static final String SOAP11 = "soap11";
 
   public static final String SOAP12 = "soap12";
@@ -135,7 +139,7 @@ public final class SOAP_Util {
         TestUtil.list(harnessProps);
       }
     } catch (Exception e) {
-      TestUtil.logErr("SOAP_Util:doServletPost Exception: " + e);
+      logger.log(Logger.Level.ERROR,"SOAP_Util:doServletPost Exception: " + e);
       TestUtil.printStackTrace(e);
       System.err.println("SOAP_Util:doServletPost Exception: " + e);
       e.printStackTrace(System.err);
@@ -159,27 +163,27 @@ public final class SOAP_Util {
       if (harnessProps.getProperty(PLATFORMMODE) != null)
         platformMode = harnessProps.getProperty(PLATFORMMODE);
     } catch (Exception e) {
-      TestUtil.logMsg("Caught exception: " + e);
+      logger.log(Logger.Level.INFO,"Caught exception: " + e);
       e.printStackTrace();
     }
 
     if (hostname == null || portnum == -1) {
       String s = null;
       if (hostname == null) {
-        TestUtil.logErr("FATAL:" + WEBSERVERHOSTPROP + " property not set!");
+        logger.log(Logger.Level.ERROR,"FATAL:" + WEBSERVERHOSTPROP + " property not set!");
         s = "FATAL: " + WEBSERVERHOSTPROP + " property not set!";
       }
       if (portnum == -1) {
-        TestUtil.logErr("FATAL: " + WEBSERVERPORTPROP + " property not set!");
+        logger.log(Logger.Level.ERROR,"FATAL: " + WEBSERVERPORTPROP + " property not set!");
         s = s + "\nFATAL: " + WEBSERVERPORTPROP + " property not set!";
       }
       throw new ServletException(s);
     }
 
     if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11))
-      TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+      logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
     else
-      TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+      logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
   }
 
   public static Properties getHarnessProps() {
@@ -227,9 +231,9 @@ public final class SOAP_Util {
     System.out.println("SOAP_Util:setSOAPVersion");
     soapVersion = s;
     if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11))
-      TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
+      logger.log(Logger.Level.INFO,"Testing SOAP Version 1.1 Protocol");
     else
-      TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
+      logger.log(Logger.Level.INFO,"Testing SOAP Version 1.2 Protocol");
   }
 
   public static SOAPConnection openSOAPConnection() throws Exception {
@@ -329,16 +333,16 @@ public final class SOAP_Util {
   }
 
   public static void dumpSOAPMessage(SOAPMessage msg) {
-    TestUtil.logMsg("***** Begin Dumping SOAPMessage *****");
+    logger.log(Logger.Level.INFO,"***** Begin Dumping SOAPMessage *****");
     try {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       msg.writeTo(baos);
-      TestUtil.logMsg(baos.toString());
+      logger.log(Logger.Level.INFO,baos.toString());
     } catch (Exception e) {
       System.err.println("Exception occurred: " + e);
       e.printStackTrace();
     }
-    TestUtil.logMsg("***** Done Dumping SOAPMessage *****");
+    logger.log(Logger.Level.INFO,"***** Done Dumping SOAPMessage *****");
   }
 
   public static String returnSOAPMessageAsString(SOAPMessage msg) {
@@ -356,8 +360,7 @@ public final class SOAP_Util {
   }
 
   public static void dumpSOAPMessageWOA(SOAPMessage msg) {
-    TestUtil
-        .logMsg("***** Begin Dumping SOAPMessage Without Attachments *****");
+    logger.log(Logger.Level.INFO,"***** Begin Dumping SOAPMessage Without Attachments *****");
     try {
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
       msg.writeTo(baos);
@@ -367,11 +370,11 @@ public final class SOAP_Util {
       tmpMsg.saveChanges();
       baos = new ByteArrayOutputStream();
       tmpMsg.writeTo(baos);
-      TestUtil.logMsg(baos.toString());
+      logger.log(Logger.Level.INFO,baos.toString());
     } catch (Exception e) {
       System.err.println("Exception occurred: " + e);
       e.printStackTrace();
     }
-    TestUtil.logMsg("***** Done Dumping SOAPMessage Without Attachments *****");
+    logger.log(Logger.Level.INFO,"***** Done Dumping SOAPMessage Without Attachments *****");
   }
 }

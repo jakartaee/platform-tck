@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.ee.RestrictionsAllowables;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.porting.TSURL;
@@ -47,6 +48,9 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class RestrictionsAllowablesServlet extends HttpServlet {
+	
+	  private static final Logger logger = (Logger) System.getLogger(RestrictionsAllowablesServlet.class.getName());
+
   private SOAPConnection con = null;
 
   private Properties harnessProps = null;
@@ -111,52 +115,52 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
     System.out.println("RestrictionsAllowablesServlet:doGet");
     if (harnessProps.getProperty("TESTNAME")
         .equals("encodingStyleAttrSOAP11Test1")) {
-      TestUtil.logMsg("Starting encodingStyleAttrSOAP11Test1");
+      logger.log(Logger.Level.INFO,"Starting encodingStyleAttrSOAP11Test1");
       System.out.println("Starting encodingStyleAttrSOAP11Test1");
       encodingStyleAttrSOAP11Test1(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("encodingStyleAttrSOAP11Test2")) {
-      TestUtil.logMsg("Starting encodingStyleAttrSOAP11Test2");
+      logger.log(Logger.Level.INFO,"Starting encodingStyleAttrSOAP11Test2");
       System.out.println("Starting encodingStyleAttrSOAP11Test2");
       encodingStyleAttrSOAP11Test2(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("noTrailingBlockBodySOAP11Test")) {
-      TestUtil.logMsg("Starting noTrailingBlockBodySOAP11Test");
+      logger.log(Logger.Level.INFO,"Starting noTrailingBlockBodySOAP11Test");
       System.out.println("Starting noTrailingBlockBodySOAP11Test");
       noTrailingBlockBodySOAP11Test(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("enforcedQNameBodyElemSOAP11Test")) {
-      TestUtil.logMsg("Starting enforcedQNameBodyElemSOAP11Test");
+      logger.log(Logger.Level.INFO,"Starting enforcedQNameBodyElemSOAP11Test");
       System.out.println("Starting enforcedQNameBodyElemSOAP11Test");
       enforcedQNameBodyElemSOAP11Test(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("encodingStyleAttrSOAP12Test1")) {
-      TestUtil.logMsg("Starting encodingStyleAttrSOAP12Test1");
+      logger.log(Logger.Level.INFO,"Starting encodingStyleAttrSOAP12Test1");
       System.out.println("Starting encodingStyleAttrSOAP12Test1");
       encodingStyleAttrSOAP12Test1(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("encodingStyleAttrSOAP12Test2")) {
-      TestUtil.logMsg("Starting encodingStyleAttrSOAP12Test2");
+      logger.log(Logger.Level.INFO,"Starting encodingStyleAttrSOAP12Test2");
       System.out.println("Starting encodingStyleAttrSOAP12Test2");
       encodingStyleAttrSOAP12Test2(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("noTrailingBlockBodySOAP12Test")) {
-      TestUtil.logMsg("Starting noTrailingBlockBodySOAP12Test");
+      logger.log(Logger.Level.INFO,"Starting noTrailingBlockBodySOAP12Test");
       System.out.println("Starting noTrailingBlockBodySOAP12Test");
       noTrailingBlockBodySOAP12Test(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("enforcedQNameHdrElemTest1")) {
-      TestUtil.logMsg("Starting enforcedQNameHdrElemTest1");
+      logger.log(Logger.Level.INFO,"Starting enforcedQNameHdrElemTest1");
       System.out.println("Starting enforcedQNameHdrElemTest1");
       enforcedQNameHdrElemTest1(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("enforcedQNameHdrElemTest2")) {
-      TestUtil.logMsg("Starting enforcedQNameHdrElemTest2");
+      logger.log(Logger.Level.INFO,"Starting enforcedQNameHdrElemTest2");
       System.out.println("Starting enforcedQNameHdrElemTest2");
       enforcedQNameHdrElemTest2(req, res);
     } else if (harnessProps.getProperty("TESTNAME")
         .equals("enforcedQNameBodyElemSOAP12Test")) {
-      TestUtil.logMsg("Starting enforcedQNameBodyElemSOAP12Test");
+      logger.log(Logger.Level.INFO,"Starting enforcedQNameBodyElemSOAP12Test");
       System.out.println("Starting enforcedQNameBodyElemSOAP12Test");
       enforcedQNameBodyElemSOAP12Test(req, res);
     }
@@ -180,24 +184,24 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
     SOAP_Util.setup();
 
     // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
+    logger.log(Logger.Level.INFO,"Create message from message factory");
     message = SOAP_Util.getMessageFactory().createMessage();
 
     // Message creation takes care of creating the SOAPPart
-    TestUtil.logMsg("Get SOAP Part");
+    logger.log(Logger.Level.INFO,"Get SOAP Part");
     sp = message.getSOAPPart();
 
     // Retrieve the envelope from the soap part to start building
     // the soap message.
-    TestUtil.logMsg("Get SOAP Envelope");
+    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
     envelope = sp.getEnvelope();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Header");
+    logger.log(Logger.Level.INFO,"Get SOAP Header");
     hdr = envelope.getHeader();
 
     // Retrieve the soap header from the envelope.
-    TestUtil.logMsg("Get SOAP Body");
+    logger.log(Logger.Level.INFO,"Get SOAP Body");
     body = envelope.getBody();
   }
 
@@ -215,13 +219,13 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("SOAP1.1 allows the encodingStyle attribute"
+      logger.log(Logger.Level.INFO,"SOAP1.1 allows the encodingStyle attribute"
           + " to be set on Envelope");
-      TestUtil.logMsg("Call SOAPEnvelope.setEncodingStyle() and "
+      logger.log(Logger.Level.INFO,"Call SOAPEnvelope.setEncodingStyle() and "
           + "(expect SOAPException)");
       envelope.setEncodingStyle("http://example.com/MyEncodings");
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -246,15 +250,15 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("SOAP1.1 does not allow encodingStyle attribute"
+      logger.log(Logger.Level.INFO,"SOAP1.1 does not allow encodingStyle attribute"
           + " to be set on Envelope");
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Call SOAPEnvelope.addAttribute() and " + "(expect SOAPException)");
       Name encodingStyle = envelope.createName("encodingStyle", "es",
           SOAPConstants.URI_NS_SOAP_ENVELOPE);
       envelope.addAttribute(encodingStyle, "http://example.com/MyEncodings");
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -279,17 +283,17 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("SOAP1.1 allows trailing blocks after" + "the Body");
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,"SOAP1.1 allows trailing blocks after" + "the Body");
+      logger.log(Logger.Level.INFO,
           "Call SOAPEnvelope.addChildElement() and " + "(expect success)");
       Name afterBody = envelope.createName("AfterBody", "e", "some-uri");
       envelope.addChildElement(afterBody);
-      TestUtil.logMsg("Successfully added trailing block after Body");
+      logger.log(Logger.Level.INFO,"Successfully added trailing block after Body");
     } catch (SOAPException e) {
-      TestUtil.logErr("Unexpected SOAPException: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected SOAPException: " + e.getMessage());
       pass = false;
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -314,17 +318,16 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("SOAP1.1 does not require Body elements to be"
+      logger.log(Logger.Level.INFO,"SOAP1.1 does not require Body elements to be"
           + " namespace qualified");
-      TestUtil.logMsg("Specifying no namespace on Body should succeed");
+      logger.log(Logger.Level.INFO,"Specifying no namespace on Body should succeed");
       body.addChildElement("nouri-just-localname");
-      TestUtil
-          .logMsg("Successfully created BodyElement with unqualified QName");
+      logger.log(Logger.Level.INFO,"Successfully created BodyElement with unqualified QName");
     } catch (SOAPException e) {
-      TestUtil.logErr("Unexpected SOAPException: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected SOAPException: " + e.getMessage());
       pass = false;
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -349,17 +352,17 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("SOAP1.2 does not allow encodingStyle attribute"
+      logger.log(Logger.Level.INFO,"SOAP1.2 does not allow encodingStyle attribute"
           + " to be set on Envelope");
-      TestUtil.logMsg("Call SOAPEnvelope.setEncodingStyle() and "
+      logger.log(Logger.Level.INFO,"Call SOAPEnvelope.setEncodingStyle() and "
           + "(expect SOAPException)");
       envelope.setEncodingStyle("http://example.com/MyEncodings");
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -384,19 +387,19 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("SOAP1.2 does not allow encodingStyle attribute"
+      logger.log(Logger.Level.INFO,"SOAP1.2 does not allow encodingStyle attribute"
           + " to be set on Envelope");
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Call SOAPEnvelope.addAttribute() and " + "(expect SOAPException)");
       Name encodingStyle = envelope.createName("encodingStyle", "es",
           SOAPConstants.URI_NS_SOAP_1_2_ENVELOPE);
       envelope.addAttribute(encodingStyle, "http://example.com/MyEncodings");
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -421,18 +424,17 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil
-          .logMsg("SOAP1.2 does not allow trailing blocks after" + "the Body");
-      TestUtil.logMsg("Call SOAPEnvelope.addChildElement() and "
+      logger.log(Logger.Level.INFO,"SOAP1.2 does not allow trailing blocks after" + "the Body");
+      logger.log(Logger.Level.INFO,"Call SOAPEnvelope.addChildElement() and "
           + "(expect SOAPException)");
       Name afterBody = envelope.createName("AfterBody", "e", "some-uri");
       envelope.addChildElement(afterBody);
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -458,18 +460,18 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
     // Try to add a headerelement not belonging to any namespace.
     try {
       setup();
-      TestUtil.logMsg("SOAP1.1 and SOAP1.2 requires all HeaderElements to be"
+      logger.log(Logger.Level.INFO,"SOAP1.1 and SOAP1.2 requires all HeaderElements to be"
           + " namespace qualified");
-      TestUtil.logMsg("Try adding HeaderElement with unqualified QName "
+      logger.log(Logger.Level.INFO,"Try adding HeaderElement with unqualified QName "
           + "not belonging to any namespace (expect SOAPException)");
-      TestUtil.logMsg("No URI and no PREFIX in QName");
+      logger.log(Logger.Level.INFO,"No URI and no PREFIX in QName");
       hdr.addHeaderElement(envelope.createName("Transaction"));
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -494,20 +496,18 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil
-          .logMsg("SOAP1.1 and SOAP1.2 requires all Header ChildElements to be"
+      logger.log(Logger.Level.INFO,"SOAP1.1 and SOAP1.2 requires all Header ChildElements to be"
               + " namespace qualified");
-      TestUtil
-          .logMsg("Try adding ChildElement to Header with unqualified QName "
+      logger.log(Logger.Level.INFO,"Try adding ChildElement to Header with unqualified QName "
               + "not belonging to any namespace (expect SOAPException)");
-      TestUtil.logMsg("No URI and no PREFIX in QName");
+      logger.log(Logger.Level.INFO,"No URI and no PREFIX in QName");
       hdr.addChildElement("MyChildElement");
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client
@@ -533,12 +533,12 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("SOAP1.2 does not require Body elements to be"
+      logger.log(Logger.Level.INFO,"SOAP1.2 does not require Body elements to be"
           + " namespace qualified");
-      TestUtil.logMsg("Specifying no namespace on Body should succeed");
+      logger.log(Logger.Level.INFO,"Specifying no namespace on Body should succeed");
       body.addChildElement("nouri-just-localname");
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception: " + e.getMessage());
+      logger.log(Logger.Level.ERROR,"Unexpected Exception: " + e.getMessage());
       pass = false;
     }
     // Send response object and test result back to client

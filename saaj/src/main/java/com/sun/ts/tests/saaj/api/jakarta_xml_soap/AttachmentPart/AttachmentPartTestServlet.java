@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Properties;
@@ -53,6 +54,8 @@ import jakarta.xml.soap.SOAPException;
 import jakarta.xml.soap.SOAPMessage;
 
 public class AttachmentPartTestServlet extends HttpServlet {
+	  private static final Logger logger = (Logger) System.getLogger(AttachmentPartTestServlet.class.getName());
+
   private MessageFactory mf = null;
 
   private SOAPMessage msg = null;
@@ -470,11 +473,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -498,12 +501,12 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Id", "id@abc.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -527,12 +530,12 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -556,16 +559,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader with invalid arguments");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with invalid arguments");
       ap.addMimeHeader("", "");
 
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Error: expected java.lang.IllegalArgumentException to be thrown");
       pass = false;
     } catch (java.lang.IllegalArgumentException ia) {
       // test passed
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -589,16 +592,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader with invalid arguments");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with invalid arguments");
       ap.addMimeHeader("", "some text");
 
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Error: expected java.lang.IllegalArgumentException to be thrown");
       pass = false;
     } catch (java.lang.IllegalArgumentException ia) {
       // test passed
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -622,23 +625,23 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader with null value");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with null value");
       ap.addMimeHeader("Content-Description", null);
 
-      TestUtil.logMsg("Adding MimeHeader with null string value");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with null string value");
       ap.addMimeHeader("Content-Description", "");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader with null value");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader with null value");
       ap.addMimeHeader("Content-Description", null);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -662,16 +665,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader invalid arguments");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader invalid arguments");
       ap.addMimeHeader(null, null);
 
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Error: expected java.lang.IllegalArgumentException to be thrown");
       pass = false;
     } catch (java.lang.IllegalArgumentException ia) {
       // test passed
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -695,24 +698,24 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content ");
+      logger.log(Logger.Level.INFO,"Setting Content ");
       ap.setContent(new StreamSource(in1), "text/xml");
 
-      TestUtil.logMsg("Clearing Content ");
+      logger.log(Logger.Level.INFO,"Clearing Content ");
       ap.clearContent();
 
       try {
 
-        TestUtil.logMsg("Getting Content ");
+        logger.log(Logger.Level.INFO,"Getting Content ");
         InputStream is = (InputStream) ap.getContent();
 
-        TestUtil.logErr("Error: SOAPException should have been thrown");
+        logger.log(Logger.Level.ERROR,"Error: SOAPException should have been thrown");
         pass = false;
       } catch (SOAPException e) {
         pass = true;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -736,27 +739,27 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content ");
+      logger.log(Logger.Level.INFO,"Setting Content ");
       ap.setContent(new StreamSource(in1), "text/xml");
 
-      TestUtil.logMsg("Setting Content a second time");
+      logger.log(Logger.Level.INFO,"Setting Content a second time");
       ap.setContent(new StreamSource(in2), "text/xml");
 
-      TestUtil.logMsg("Clearing Content ");
+      logger.log(Logger.Level.INFO,"Clearing Content ");
       ap.clearContent();
 
       try {
 
-        TestUtil.logMsg("Getting Content ");
+        logger.log(Logger.Level.INFO,"Getting Content ");
         InputStream is = (InputStream) ap.getContent();
 
-        TestUtil.logErr("Error: SOAPException should have been thrown");
+        logger.log(Logger.Level.ERROR,"Error: SOAPException should have been thrown");
         pass = false;
       } catch (SOAPException e) {
         pass = true;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -780,24 +783,24 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Mime Header ");
+      logger.log(Logger.Level.INFO,"Setting Mime Header ");
       ap.setMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Setting Content Id Header ");
+      logger.log(Logger.Level.INFO,"Setting Content Id Header ");
       ap.setContentId("id@abc.com");
 
-      TestUtil.logMsg("Setting Content ");
+      logger.log(Logger.Level.INFO,"Setting Content ");
       ap.setContent(new StreamSource(in1), "text/xml");
 
-      TestUtil.logMsg("Clearing Content ");
+      logger.log(Logger.Level.INFO,"Clearing Content ");
       ap.clearContent();
 
       try {
 
-        TestUtil.logMsg("Getting Content ");
+        logger.log(Logger.Level.INFO,"Getting Content ");
         InputStream is = (InputStream) ap.getContent();
 
-        TestUtil.logErr("Error: SOAPException should have been thrown");
+        logger.log(Logger.Level.ERROR,"Error: SOAPException should have been thrown");
         pass = false;
       } catch (SOAPException e) {
         pass = true;
@@ -817,50 +820,50 @@ public class AttachmentPartTestServlet extends HttpServlet {
             && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header1 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header1 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-ID")
             && value.equals("id@abc.com")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr("Error: Received the same header2 header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"Error: Received the same header2 header twice");
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-Type")
             && value.equals("text/xml")) {
           if (!foundDefaultHeader) {
             foundDefaultHeader = true;
-            TestUtil.logMsg("MimeHeaders do match for default header");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for default header");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
             TestUtil
                 .logErr("Error: Received the same default header header twice");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an invalid header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an invalid header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both headers");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both headers");
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -884,11 +887,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Clearing Content ");
+      logger.log(Logger.Level.INFO,"Clearing Content ");
       ap.clearContent();
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -912,10 +915,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = ap.getAllMimeHeaders();
       boolean foundHeader1 = false;
       int cnt = 0;
@@ -928,32 +931,32 @@ public class AttachmentPartTestServlet extends HttpServlet {
             && value.equals("some text"))) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeader did match");
-            TestUtil.logMsg("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeader did match");
+            logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("MimeHeader did not match");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"MimeHeader did not match");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!foundHeader1) {
-        TestUtil.logErr("Error: did not receive expected MimeHeader");
+        logger.log(Logger.Level.ERROR,"Error: did not receive expected MimeHeader");
         pass = false;
       }
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one item to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -977,11 +980,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       boolean foundHeader1 = false;
@@ -995,45 +998,45 @@ public class AttachmentPartTestServlet extends HttpServlet {
             && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-Id")
             && value.equals("id@abc.com")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header2 MimeHeader again (unxpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
 
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected 2 items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1057,11 +1060,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       boolean foundHeader1 = false;
@@ -1075,44 +1078,44 @@ public class AttachmentPartTestServlet extends HttpServlet {
             && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected 2 items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1144,19 +1147,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1180,20 +1183,20 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Id");
+      logger.log(Logger.Level.INFO,"Setting Content Id");
       ap.setContentId("id@abc.com");
 
-      TestUtil.logMsg("Getting Content Id");
+      logger.log(Logger.Level.INFO,"Getting Content Id");
       String result = ap.getContentId();
 
       if (!result.equals("id@abc.com")) {
-        TestUtil.logErr("Error: received invalid value from getContentId()");
-        TestUtil.logErr("expected result: id@abc.com");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"Error: received invalid value from getContentId()");
+        logger.log(Logger.Level.ERROR,"expected result: id@abc.com");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1217,24 +1220,24 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Id");
+      logger.log(Logger.Level.INFO,"Setting Content Id");
       ap.setContentId("id@abc.com");
 
-      TestUtil.logMsg("Setting Content Id again");
+      logger.log(Logger.Level.INFO,"Setting Content Id again");
       ap.setContentId("id2@abc2.com");
 
-      TestUtil.logMsg("Getting Content Id");
+      logger.log(Logger.Level.INFO,"Getting Content Id");
       String result = ap.getContentId();
 
       if (!result.equals("id2@abc2.com")) {
-        TestUtil.logErr("Error: received invalid value from getContentId()");
-        TestUtil.logErr("expected result: id2@abc2.com");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"Error: received invalid value from getContentId()");
+        logger.log(Logger.Level.ERROR,"expected result: id2@abc2.com");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1258,21 +1261,21 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location");
+      logger.log(Logger.Level.INFO,"Setting Content Location");
       ap.setContentLocation("http://localhost/someapp");
 
-      TestUtil.logMsg("Getting Content Location");
+      logger.log(Logger.Level.INFO,"Getting Content Location");
       String result = ap.getContentLocation();
 
       if (!result.equals("http://localhost/someapp")) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: received invalid Location value from getContentLocation()");
-        TestUtil.logErr("expected result: http://localhost/someapp");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"expected result: http://localhost/someapp");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1296,21 +1299,21 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location");
+      logger.log(Logger.Level.INFO,"Setting Content Location");
       ap.setContentLocation("/WEB-INF/somefile");
 
-      TestUtil.logMsg("Getting Content Location");
+      logger.log(Logger.Level.INFO,"Getting Content Location");
       String result = ap.getContentLocation();
 
       if (!result.equals("/WEB-INF/somefile")) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: received invalid Location value from getContentLocation()");
-        TestUtil.logErr("expected result: /WEB-INF/somefile");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"expected result: /WEB-INF/somefile");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1334,24 +1337,24 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location");
+      logger.log(Logger.Level.INFO,"Setting Content Location");
       ap.setContentLocation("http://localhost/someapp");
 
-      TestUtil.logMsg("Setting Content Location again");
+      logger.log(Logger.Level.INFO,"Setting Content Location again");
       ap.setContentLocation("/WEB-INF/somefile");
 
-      TestUtil.logMsg("Getting Content Location");
+      logger.log(Logger.Level.INFO,"Getting Content Location");
       String result = ap.getContentLocation();
 
       if (!result.equals("/WEB-INF/somefile")) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: received invalid Location value from getContentLocation()");
-        TestUtil.logErr("expected result: /WEB-INF/somefile");
-        TestUtil.logErr("actual result:" + result);
+        logger.log(Logger.Level.ERROR,"expected result: /WEB-INF/somefile");
+        logger.log(Logger.Level.ERROR,"actual result:" + result);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1376,32 +1379,31 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + XML_FILE);
-      TestUtil.logMsg("Get DataHandler to xml attachment: " + XML_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to xml attachment: " + XML_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
 
-      TestUtil
-          .logMsg("Setting Content for text/xml mime type using StreamSource");
+      logger.log(Logger.Level.INFO,"Setting Content for text/xml mime type using StreamSource");
       ap.setContent(new StreamSource(dh.getInputStream()), "text/xml");
 
-      TestUtil.logMsg("Getting Content should return StreamSource object");
+      logger.log(Logger.Level.INFO,"Getting Content should return StreamSource object");
       Object o = ap.getContent();
-      TestUtil.logMsg("object returned=" + o);
+      logger.log(Logger.Level.INFO,"object returned=" + o);
       if (o != null) {
         if (o instanceof StreamSource)
-          TestUtil.logMsg("StreamSource object was returned (ok)");
+          logger.log(Logger.Level.INFO,"StreamSource object was returned (ok)");
         else {
-          TestUtil.logErr("Unexpected object was returned (not ok)");
-          TestUtil.logErr("Unexpected object=" + o);
+          logger.log(Logger.Level.ERROR,"Unexpected object was returned (not ok)");
+          logger.log(Logger.Level.ERROR,"Unexpected object=" + o);
           pass = false;
         }
       } else {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1426,35 +1428,33 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + HTML_FILE);
-      TestUtil.logMsg("Get DataHandler to html attachment: " + HTML_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to html attachment: " + HTML_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       DataHandler dh = new DataHandler(url);
 
-      TestUtil
-          .logMsg("Setting Content for text/html mime type using InputStream");
+      logger.log(Logger.Level.INFO,"Setting Content for text/html mime type using InputStream");
       ap.setContent(dh.getInputStream(), "text/html");
 
-      TestUtil
-          .logMsg("Getting Content should return String or InputStream object");
+      logger.log(Logger.Level.INFO,"Getting Content should return String or InputStream object");
       Object o = ap.getContent();
-      TestUtil.logMsg("object returned=" + o);
+      logger.log(Logger.Level.INFO,"object returned=" + o);
       if (o != null) {
         if (o instanceof String)
-          TestUtil.logMsg("String object was returned (ok)");
+          logger.log(Logger.Level.INFO,"String object was returned (ok)");
         else if (o instanceof InputStream)
-          TestUtil.logMsg("InputStream object was returned (ok)");
+          logger.log(Logger.Level.INFO,"InputStream object was returned (ok)");
         else {
-          TestUtil.logErr("Unexpected object was returned (not ok)");
-          TestUtil.logErr("Unexpected object=" + o);
+          logger.log(Logger.Level.ERROR,"Unexpected object was returned (not ok)");
+          logger.log(Logger.Level.ERROR,"Unexpected object=" + o);
           pass = false;
         }
       } else {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1482,48 +1482,48 @@ public class AttachmentPartTestServlet extends HttpServlet {
       /******
        * Comment out (using DataHandler for gif requires DISPLAY environment
        * variable to be set because GifDataContentHandler appserver code calls
-       * Toolkit.getDefaultToolkit() TestUtil.logMsg("Get DataHandler to gif
-       * attachment: " + GIF_FILE); TestUtil.logMsg("URL = " + url); dh = new
-       * DataHandler(url); TestUtil.logMsg("DataHandler = " + dh);
+       * Toolkit.getDefaultToolkit() logger.log(Logger.Level.INFO,"Get DataHandler to gif
+       * attachment: " + GIF_FILE); logger.log(Logger.Level.INFO,"URL = " + url); dh = new
+       * DataHandler(url); logger.log(Logger.Level.INFO,"DataHandler = " + dh);
        * 
-       * TestUtil.logMsg("Create image/gif mime attachment using DataHandler");
-       * ap = msg.createAttachmentPart(dh); TestUtil.logMsg("Set the content
+       * logger.log(Logger.Level.INFO,"Create image/gif mime attachment using DataHandler");
+       * ap = msg.createAttachmentPart(dh); logger.log(Logger.Level.INFO,"Set the content
        * type to image/gif"); ap.setContentType("image/gif");
        *****/
-      TestUtil.logMsg("Create image/gif mime attachment using ImageIO");
+      logger.log(Logger.Level.INFO,"Create image/gif mime attachment using ImageIO");
       Image image = javax.imageio.ImageIO.read(url);
       ap = msg.createAttachmentPart(image, "image/gif");
 
-      TestUtil.logMsg("Getting Content should return an Image object");
+      logger.log(Logger.Level.INFO,"Getting Content should return an Image object");
       Object o = ap.getContent();
-      TestUtil.logMsg("object returned=" + o);
+      logger.log(Logger.Level.INFO,"object returned=" + o);
       if (o != null) {
         if (o instanceof Image)
-          TestUtil.logMsg("Image object was returned (ok)");
+          logger.log(Logger.Level.INFO,"Image object was returned (ok)");
         else {
-          TestUtil.logErr("Unexpected object was returned (not ok)");
-          TestUtil.logErr("Unexpected object=" + o);
+          logger.log(Logger.Level.ERROR,"Unexpected object was returned (not ok)");
+          logger.log(Logger.Level.ERROR,"Unexpected object=" + o);
         }
       } else {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
       /*****
        * Comment out (appserver does not allow use of
-       * Toolkit.getDefaultToolkit()) ap.clearContent(); TestUtil.logMsg(
+       * Toolkit.getDefaultToolkit()) ap.clearContent(); logger.log(Logger.Level.INFO,
        * "Setting Content via Image for image/gif mime type");
-       * TestUtil.logMsg("URL to GIF file=" + url); Image image =
+       * logger.log(Logger.Level.INFO,"URL to GIF file=" + url); Image image =
        * Toolkit.getDefaultToolkit().createImage(url);
-       * ap.setContent(image,"image/gif"); TestUtil.logMsg("Getting Content
+       * ap.setContent(image,"image/gif"); logger.log(Logger.Level.INFO,"Getting Content
        * should return Image object"); o = ap.getContent();
-       * TestUtil.logMsg("object returned="+o); if(o != null) { if(o instanceof
-       * Image) TestUtil.logMsg("Image object was returned (ok)"); else {
-       * TestUtil.logErr("Unexpected object was returned (not ok)");
-       * TestUtil.logErr("Unexpected object="+o); } } else {
-       * TestUtil.logErr("null was returned"); pass = false; }
+       * logger.log(Logger.Level.INFO,"object returned="+o); if(o != null) { if(o instanceof
+       * Image) logger.log(Logger.Level.INFO,"Image object was returned (ok)"); else {
+       * logger.log(Logger.Level.ERROR,"Unexpected object was returned (not ok)");
+       * logger.log(Logger.Level.ERROR,"Unexpected object="+o); } } else {
+       * logger.log(Logger.Level.ERROR,"null was returned"); pass = false; }
        *****/
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1548,46 +1548,46 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + JPEG_FILE);
-      TestUtil.logMsg("Get DataHandler to jpeg attachment: " + JPEG_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to jpeg attachment: " + JPEG_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("DataHandler = " + dh);
+      logger.log(Logger.Level.INFO,"DataHandler = " + dh);
 
-      TestUtil.logMsg("Create image/jpeg mime attachment using DataHandler");
+      logger.log(Logger.Level.INFO,"Create image/jpeg mime attachment using DataHandler");
       ap = msg.createAttachmentPart(dh);
-      TestUtil.logMsg("Set the content type to image/jpeg");
+      logger.log(Logger.Level.INFO,"Set the content type to image/jpeg");
       ap.setContentType("image/jpeg");
 
-      TestUtil.logMsg("Getting Content should return an Image object");
+      logger.log(Logger.Level.INFO,"Getting Content should return an Image object");
       Object o = ap.getContent();
-      TestUtil.logMsg("object returned=" + o);
+      logger.log(Logger.Level.INFO,"object returned=" + o);
       if (o != null) {
         if (o instanceof Image)
-          TestUtil.logMsg("Image object was returned (ok)");
+          logger.log(Logger.Level.INFO,"Image object was returned (ok)");
         else {
-          TestUtil.logErr("Unexpected object was returned (not ok)");
-          TestUtil.logErr("Unexpected object=" + o);
+          logger.log(Logger.Level.ERROR,"Unexpected object was returned (not ok)");
+          logger.log(Logger.Level.ERROR,"Unexpected object=" + o);
         }
       } else {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
       /*****
        * Comment out (appserver does not allow use of
-       * Toolkit.getDefaultToolkit()) ap.clearContent(); TestUtil.logMsg(
+       * Toolkit.getDefaultToolkit()) ap.clearContent(); logger.log(Logger.Level.INFO,
        * "Setting Content via Image for image/jpeg mime type");
-       * TestUtil.logMsg("URL to JPEG file=" + url); Image image =
+       * logger.log(Logger.Level.INFO,"URL to JPEG file=" + url); Image image =
        * Toolkit.getDefaultToolkit().createImage(url);
-       * ap.setContent(image,"image/jpeg"); TestUtil.logMsg("Getting Content
+       * ap.setContent(image,"image/jpeg"); logger.log(Logger.Level.INFO,"Getting Content
        * should return Image object"); o = ap.getContent();
-       * TestUtil.logMsg("object returned="+o); if(o != null) { if(o instanceof
-       * Image) TestUtil.logMsg("Image object was returned (ok)"); else {
-       * TestUtil.logErr("Unexpected object was returned (not ok)");
-       * TestUtil.logErr("Unexpected object="+o); } } else {
-       * TestUtil.logErr("null was returned"); pass = false; }
+       * logger.log(Logger.Level.INFO,"object returned="+o); if(o != null) { if(o instanceof
+       * Image) logger.log(Logger.Level.INFO,"Image object was returned (ok)"); else {
+       * logger.log(Logger.Level.ERROR,"Unexpected object was returned (not ok)");
+       * logger.log(Logger.Level.ERROR,"Unexpected object="+o); } } else {
+       * logger.log(Logger.Level.ERROR,"null was returned"); pass = false; }
        *****/
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1611,45 +1611,45 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content for text/plain mime type using String");
+      logger.log(Logger.Level.INFO,"Setting Content for text/plain mime type using String");
       String exp = "some text";
       ap.setContent(exp, "text/plain");
 
-      TestUtil.logMsg("Getting Content should return String object");
+      logger.log(Logger.Level.INFO,"Getting Content should return String object");
       Object o = ap.getContent();
-      TestUtil.logMsg("object returned=" + o);
+      logger.log(Logger.Level.INFO,"object returned=" + o);
       String s = null;
       if (o != null) {
         if (o instanceof String) {
-          TestUtil.logMsg("String object was returned (ok)");
+          logger.log(Logger.Level.INFO,"String object was returned (ok)");
           s = (String) o;
         } else {
-          TestUtil.logErr("Unexpected object was returned (not ok)");
-          TestUtil.logErr("Unexpected object=" + o);
+          logger.log(Logger.Level.ERROR,"Unexpected object was returned (not ok)");
+          logger.log(Logger.Level.ERROR,"Unexpected object=" + o);
           pass = false;
         }
       } else {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
 
       if (s != null) {
-        TestUtil.logMsg("Verifying contents");
+        logger.log(Logger.Level.INFO,"Verifying contents");
         if (s.equals(exp)) {
-          TestUtil.logMsg("contents are equal - expected");
+          logger.log(Logger.Level.INFO,"contents are equal - expected");
         } else {
-          TestUtil.logErr("contents not equal - unexpected");
-          TestUtil.logErr("expected (" + exp + ")");
-          TestUtil.logErr("received (" + s + ")");
+          logger.log(Logger.Level.ERROR,"contents not equal - unexpected");
+          logger.log(Logger.Level.ERROR,"expected (" + exp + ")");
+          logger.log(Logger.Level.ERROR,"received (" + s + ")");
           pass = false;
         }
       } else {
-        TestUtil.logErr("s is null");
+        logger.log(Logger.Level.ERROR,"s is null");
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1673,25 +1673,25 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating DataHandler");
+      logger.log(Logger.Level.INFO,"Creating DataHandler");
       DataHandler dh1 = new DataHandler(url);
 
-      TestUtil.logMsg("Setting DataHandler");
+      logger.log(Logger.Level.INFO,"Setting DataHandler");
       ap.setDataHandler(dh1);
 
-      TestUtil.logMsg("Getting DataHandler");
+      logger.log(Logger.Level.INFO,"Getting DataHandler");
       DataHandler dh = ap.getDataHandler();
 
-      TestUtil.logMsg("compare attachment received is same as one added");
+      logger.log(Logger.Level.INFO,"compare attachment received is same as one added");
       if (dh1.equals(dh)) {
-        TestUtil.logMsg("Got AttachmentPart object");
+        logger.log(Logger.Level.INFO,"Got AttachmentPart object");
       } else {
-        TestUtil.logErr("AttachmentPart object mismatch");
+        logger.log(Logger.Level.ERROR,"AttachmentPart object mismatch");
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1716,16 +1716,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       try {
-        TestUtil.logMsg("Getting DataHandler");
+        logger.log(Logger.Level.INFO,"Getting DataHandler");
         ap.getDataHandler();
-        TestUtil.logErr("Error: Expected a SOAPException to be returned");
+        logger.log(Logger.Level.ERROR,"Error: Expected a SOAPException to be returned");
         pass = false;
       } catch (SOAPException se) {
         pass = true;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1749,30 +1749,30 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Creating DataHandler");
+      logger.log(Logger.Level.INFO,"Creating DataHandler");
       DataHandler dh1 = new DataHandler(url);
 
-      TestUtil.logMsg("Creating second DataHandler");
+      logger.log(Logger.Level.INFO,"Creating second DataHandler");
       DataHandler dh2 = new DataHandler(url2);
 
-      TestUtil.logMsg("Setting DataHandler");
+      logger.log(Logger.Level.INFO,"Setting DataHandler");
       ap.setDataHandler(dh2);
 
-      TestUtil.logMsg("Setting DataHandler a second time");
+      logger.log(Logger.Level.INFO,"Setting DataHandler a second time");
       ap.setDataHandler(dh1);
 
-      TestUtil.logMsg("Getting DataHandler");
+      logger.log(Logger.Level.INFO,"Getting DataHandler");
       DataHandler dh = ap.getDataHandler();
 
-      TestUtil.logMsg("compare attachment received is same as one added");
+      logger.log(Logger.Level.INFO,"compare attachment received is same as one added");
       if (dh1.equals(dh)) {
-        TestUtil.logMsg("Got AttachmentPart object");
+        logger.log(Logger.Level.INFO,"Got AttachmentPart object");
       } else {
-        TestUtil.logErr("AttachmentPart object mismatch");
+        logger.log(Logger.Level.ERROR,"AttachmentPart object mismatch");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1803,13 +1803,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1817,14 +1817,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting matching MimeHeaders");
       iterator = ap.getMatchingMimeHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1834,23 +1834,23 @@ public class AttachmentPartTestServlet extends HttpServlet {
         String value = mh.getValue();
         if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one item to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1874,14 +1874,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Id", "id@abc.com");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1889,14 +1889,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting matching MimeHeaders");
       iterator = ap.getMatchingMimeHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1906,23 +1906,23 @@ public class AttachmentPartTestServlet extends HttpServlet {
         String value = mh.getValue();
         if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -1946,14 +1946,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -1961,14 +1961,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting matching MimeHeaders");
       iterator = ap.getMatchingMimeHeaders(sArray);
       cnt = 0;
       boolean foundHeader1 = false;
@@ -1982,45 +1982,45 @@ public class AttachmentPartTestServlet extends HttpServlet {
             && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both MimeHeaders");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2044,13 +2044,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2058,14 +2058,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "doesnotexist" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non-existent MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting non-existent MimeHeader");
       iterator = ap.getMatchingMimeHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2073,18 +2073,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an unexpected MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2109,7 +2109,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 3 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 3 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
       ap.addMimeHeader("Content-Id", "id@abc.com");
@@ -2117,7 +2117,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2125,15 +2125,15 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description", "Content-Id",
           "Content-Location" };
-      TestUtil.logMsg("List of matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting matching MimeHeaders");
       iterator = ap.getMatchingMimeHeaders(sArray);
       cnt = 0;
       boolean foundHeader1 = false;
@@ -2148,57 +2148,57 @@ public class AttachmentPartTestServlet extends HttpServlet {
             && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-Id")
             && value.equals("id@abc.com")) {
           if (!foundHeader3) {
             foundHeader3 = true;
-            TestUtil.logMsg("MimeHeaders do match for header3");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header3");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the header3 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2 && foundHeader3)) {
-        TestUtil.logErr("Error: did not receive all MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive all MimeHeaders");
         pass = false;
       }
       if (cnt != 3) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected three items to be returned, got a total of:"
                 + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2222,14 +2222,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = ap.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + len);
         pass = false;
@@ -2238,15 +2238,15 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2270,15 +2270,15 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = ap.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2287,10 +2287,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
@@ -2298,7 +2298,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
       sArray = ap.getMimeHeader("Content-Id");
       len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Id), got a total of:"
                 + len);
         pass = false;
@@ -2307,16 +2307,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("id@abc.com")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Id)");
-          TestUtil.logErr("expected result: id@abc.com");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: id@abc.com");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2340,15 +2340,15 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = ap.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -2357,16 +2357,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text") && !temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text or some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text or some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2390,21 +2390,21 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting non-existent MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting non-existent MimeHeader");
       String sArray[] = ap.getMimeHeader("doesnotexist");
       if (sArray != null && sArray.length > 0) {
-        TestUtil.logErr("Error: was able to get a non-existent MimeHeader");
+        logger.log(Logger.Level.ERROR,"Error: was able to get a non-existent MimeHeader");
         pass = false;
         int len = sArray.length;
         for (int i = 0; i < len; i++) {
-          TestUtil.logErr("actual result:" + sArray[i]);
+          logger.log(Logger.Level.ERROR,"actual result:" + sArray[i]);
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2429,13 +2429,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2443,14 +2443,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Id" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = ap.getNonMatchingMimeHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2460,23 +2460,23 @@ public class AttachmentPartTestServlet extends HttpServlet {
         String value = mh.getValue();
         if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2500,14 +2500,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Id", "id@abc.com");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2515,14 +2515,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Id" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = ap.getNonMatchingMimeHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2532,23 +2532,23 @@ public class AttachmentPartTestServlet extends HttpServlet {
         String value = mh.getValue();
         if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text")) {
-          TestUtil.logMsg("MimeHeaders do match ");
-          TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.INFO,"MimeHeaders do match ");
+          logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected one items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2572,14 +2572,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2587,14 +2587,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Id" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = ap.getNonMatchingMimeHeaders(sArray);
       cnt = 0;
       boolean foundHeader1 = false;
@@ -2608,45 +2608,45 @@ public class AttachmentPartTestServlet extends HttpServlet {
             && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected header");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected header");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both MimeHeaders");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2670,13 +2670,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2684,14 +2684,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Description" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = ap.getNonMatchingMimeHeaders(sArray);
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2699,19 +2699,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Error: Received an unexpected MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2735,7 +2735,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 3 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 3 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
       ap.addMimeHeader("Content-Id", "id@abc.com");
@@ -2743,7 +2743,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
       Iterator iterator = null;
       int cnt = 0;
 
-      TestUtil.logMsg("Getting all MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders");
       iterator = ap.getAllMimeHeaders();
       cnt = 0;
       while (iterator.hasNext()) {
@@ -2751,14 +2751,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logMsg("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.INFO,"received: name=" + name + ", value=" + value);
       }
 
       String sArray[] = { "Content-Id", "Content-Location" };
-      TestUtil.logMsg("List of non matching MimeHeaders contains:");
+      logger.log(Logger.Level.INFO,"List of non matching MimeHeaders contains:");
       displayArray(sArray);
 
-      TestUtil.logMsg("Getting non matching MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting non matching MimeHeaders");
       iterator = ap.getNonMatchingMimeHeaders(sArray);
       cnt = 0;
       boolean foundHeader1 = false;
@@ -2772,44 +2772,44 @@ public class AttachmentPartTestServlet extends HttpServlet {
             && value.equals("some text")) {
           if (!foundHeader1) {
             foundHeader1 = true;
-            TestUtil.logMsg("MimeHeaders do match for header1");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header1");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header1 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else if (name.equalsIgnoreCase("Content-Description")
             && value.equals("some text2")) {
           if (!foundHeader2) {
             foundHeader2 = true;
-            TestUtil.logMsg("MimeHeaders do match for header2");
-            TestUtil.logMsg("receive: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.INFO,"MimeHeaders do match for header2");
+            logger.log(Logger.Level.INFO,"receive: name=" + name + ", value=" + value);
           } else {
-            TestUtil.logErr(
+            logger.log(Logger.Level.ERROR,
                 "Error: Received the same header2 MimeHeader again (unexpected)");
-            TestUtil.logErr("received: name=" + name + ", value=" + value);
+            logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
             pass = false;
           }
         } else {
-          TestUtil.logErr("Error: Received an unexpected MimeHeader");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"Error: Received an unexpected MimeHeader");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         }
       }
 
       if (!(foundHeader1 && foundHeader2)) {
-        TestUtil.logErr("Error: did not receive both MimeHeaders");
+        logger.log(Logger.Level.ERROR,"Error: did not receive both MimeHeaders");
         pass = false;
       }
       if (cnt != 2) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected two items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2833,16 +2833,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Getting Size on attachment with no content set");
+      logger.log(Logger.Level.INFO,"Getting Size on attachment with no content set");
       int size = ap.getSize();
-      TestUtil.logMsg("The returned size = " + size);
+      logger.log(Logger.Level.INFO,"The returned size = " + size);
       if (size != -1 && size != 0) {
-        TestUtil.logErr("Error: received invalid size from getSize()");
-        TestUtil.logErr("received:" + size + ", expected:0");
+        logger.log(Logger.Level.ERROR,"Error: received invalid size from getSize()");
+        logger.log(Logger.Level.ERROR,"received:" + size + ", expected:0");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2866,28 +2866,28 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Getting Size on attachment with no content set");
+      logger.log(Logger.Level.INFO,"Getting Size on attachment with no content set");
       int size1 = ap.getSize();
-      TestUtil.logMsg("The returned size1 = " + size1);
+      logger.log(Logger.Level.INFO,"The returned size1 = " + size1);
       if (size1 != -1 && size1 != 0) {
-        TestUtil.logErr("Error: received invalid size from getSize()");
-        TestUtil.logErr("received:" + size1 + ", expected:0");
+        logger.log(Logger.Level.ERROR,"Error: received invalid size from getSize()");
+        logger.log(Logger.Level.ERROR,"received:" + size1 + ", expected:0");
         pass = false;
       }
-      TestUtil.logMsg("Setting Mime Header for attachment via addMimeHeader()");
+      logger.log(Logger.Level.INFO,"Setting Mime Header for attachment via addMimeHeader()");
       ap.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting Size");
+      logger.log(Logger.Level.INFO,"Getting Size");
       int size2 = ap.getSize();
-      TestUtil.logMsg("The returned size2 = " + size2);
+      logger.log(Logger.Level.INFO,"The returned size2 = " + size2);
       if (size2 != -1 && size2 != 0) {
-        TestUtil.logErr("Error: received invalid size from getSize()");
-        TestUtil.logErr("received:" + size2);
+        logger.log(Logger.Level.ERROR,"Error: received invalid size from getSize()");
+        logger.log(Logger.Level.ERROR,"received:" + size2);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2911,27 +2911,27 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Getting Size on attachment with no content set");
+      logger.log(Logger.Level.INFO,"Getting Size on attachment with no content set");
       int size1 = ap.getSize();
-      TestUtil.logMsg("The returned size1 = " + size1);
+      logger.log(Logger.Level.INFO,"The returned size1 = " + size1);
       if (size1 != -1 && size1 != 0) {
-        TestUtil.logErr("Error: received invalid size from getSize()");
-        TestUtil.logErr("received:" + size1 + ", expected:0");
+        logger.log(Logger.Level.ERROR,"Error: received invalid size from getSize()");
+        logger.log(Logger.Level.ERROR,"received:" + size1 + ", expected:0");
         pass = false;
       }
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Setting Content for attachment via setContent() and mimetype=text/xml");
       ap.setContent(new StreamSource(in1), "text/xml");
-      TestUtil.logMsg("Getting Size");
+      logger.log(Logger.Level.INFO,"Getting Size");
       int size2 = ap.getSize();
-      TestUtil.logMsg("The returned size2 = " + size2);
+      logger.log(Logger.Level.INFO,"The returned size2 = " + size2);
       if (size2 <= 0) {
-        TestUtil.logErr("Error: received invalid size from getSize()");
-        TestUtil.logErr("received:" + size2 + ", expected > 0");
+        logger.log(Logger.Level.ERROR,"Error: received invalid size from getSize()");
+        logger.log(Logger.Level.ERROR,"received:" + size2 + ", expected > 0");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -2955,29 +2955,28 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Getting Size on attachment with no content set");
+      logger.log(Logger.Level.INFO,"Getting Size on attachment with no content set");
       int size1 = ap.getSize();
-      TestUtil.logMsg("The returned size1 = " + size1);
+      logger.log(Logger.Level.INFO,"The returned size1 = " + size1);
       if (size1 != -1 && size1 != 0) {
-        TestUtil.logErr("Error: received invalid size from getSize()");
-        TestUtil.logErr("received:" + size1 + ", expected:0");
+        logger.log(Logger.Level.ERROR,"Error: received invalid size from getSize()");
+        logger.log(Logger.Level.ERROR,"received:" + size1 + ", expected:0");
         pass = false;
       }
 
-      TestUtil
-          .logMsg("Setting DataHandler for attachment using setDataHandler()");
+      logger.log(Logger.Level.INFO,"Setting DataHandler for attachment using setDataHandler()");
       ap.setDataHandler(new DataHandler(url));
-      TestUtil.logMsg("Getting Size");
+      logger.log(Logger.Level.INFO,"Getting Size");
       int size2 = ap.getSize();
-      TestUtil.logMsg("The returned size2 = " + size2);
+      logger.log(Logger.Level.INFO,"The returned size2 = " + size2);
       if (size2 <= 0) {
-        TestUtil.logErr("Error: received invalid size from getSize()");
-        TestUtil.logErr("received:" + size2);
+        logger.log(Logger.Level.ERROR,"Error: received invalid size from getSize()");
+        logger.log(Logger.Level.ERROR,"received:" + size2);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3001,13 +3000,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Removing all MimeHeaders ...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders ...");
       ap.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders ...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders ...");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -3015,19 +3014,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3051,14 +3050,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Removing all MimeHeaders ...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders ...");
       ap.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders ...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders ...");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -3066,19 +3065,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logErr("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3102,14 +3101,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Removing all MimeHeaders ...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders ...");
       ap.removeAllMimeHeaders();
 
-      TestUtil.logMsg("Getting all MimeHeaders ...");
+      logger.log(Logger.Level.INFO,"Getting all MimeHeaders ...");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -3117,19 +3116,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logErr("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3153,11 +3152,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing all MimeHeaders object ...");
+      logger.log(Logger.Level.INFO,"Removing all MimeHeaders object ...");
       ap.removeAllMimeHeaders();
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3181,13 +3180,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Removing MimeHeader");
+      logger.log(Logger.Level.INFO,"Removing MimeHeader");
       ap.removeMimeHeader("Content-Description");
 
-      TestUtil.logMsg("Getting MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting MimeHeaders");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -3195,19 +3194,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logErr("receive: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"receive: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got atotal of:" + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3231,14 +3230,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Removing MimeHeader");
+      logger.log(Logger.Level.INFO,"Removing MimeHeader");
       ap.removeMimeHeader("Content-Id");
 
-      TestUtil.logMsg("Getting MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting MimeHeaders");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -3248,23 +3247,23 @@ public class AttachmentPartTestServlet extends HttpServlet {
         String value = mh.getValue();
         if (!(name.equalsIgnoreCase("Content-Description")
             && value.equals("some text"))) {
-          TestUtil.logErr("MimeHeader did not match");
-          TestUtil.logErr("received: name=" + name + ", value=" + value);
+          logger.log(Logger.Level.ERROR,"MimeHeader did not match");
+          logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
           pass = false;
         } else {
-          TestUtil.logMsg("MimeHeader did match");
+          logger.log(Logger.Level.INFO,"MimeHeader did match");
         }
       }
 
       if (cnt != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + cnt);
         pass = false;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3288,14 +3287,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Removing MimeHeader");
+      logger.log(Logger.Level.INFO,"Removing MimeHeader");
       ap.removeMimeHeader("Content-Description");
 
-      TestUtil.logMsg("Getting MimeHeaders");
+      logger.log(Logger.Level.INFO,"Getting MimeHeaders");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -3303,18 +3302,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3338,10 +3337,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Removing MimeHeader");
+      logger.log(Logger.Level.INFO,"Removing MimeHeader");
       ap.removeMimeHeader("doesnotexist");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       Iterator iterator = ap.getAllMimeHeaders();
       int cnt = 0;
       while (iterator.hasNext()) {
@@ -3349,18 +3348,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
         mh = (MimeHeader) iterator.next();
         String name = mh.getName();
         String value = mh.getValue();
-        TestUtil.logErr("Received unexpected MimeHeader");
-        TestUtil.logErr("received: name=" + name + ", value=" + value);
+        logger.log(Logger.Level.ERROR,"Received unexpected MimeHeader");
+        logger.log(Logger.Level.ERROR,"received: name=" + name + ", value=" + value);
         pass = false;
       }
 
       if (cnt != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected no items to be returned, got a total of:" + cnt);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3385,11 +3384,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Id");
+      logger.log(Logger.Level.INFO,"Setting Content Id");
       ap.setContentId("name@abc.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3412,19 +3411,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Setting Content Id to null");
+      logger.log(Logger.Level.INFO,"Setting Content Id to null");
       ap.setContentId(null);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     try {
       setup();
-      TestUtil.logMsg("Setting Content Id to null string");
+      logger.log(Logger.Level.INFO,"Setting Content Id to null string");
       ap.setContentId("");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3447,14 +3446,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Setting Content Id");
+      logger.log(Logger.Level.INFO,"Setting Content Id");
       ap.setContentId("id@abc.com");
 
-      TestUtil.logMsg("Setting Content Id again");
+      logger.log(Logger.Level.INFO,"Setting Content Id again");
       ap.setContentId("id2@abc2.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3478,14 +3477,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Id");
+      logger.log(Logger.Level.INFO,"Setting Content Id");
       ap.setContentId("id@abc.com");
 
-      TestUtil.logMsg("Setting Content Id again");
+      logger.log(Logger.Level.INFO,"Setting Content Id again");
       ap.setContentId("id2@ced.com");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3509,11 +3508,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location");
+      logger.log(Logger.Level.INFO,"Setting Content Location");
       ap.setContentLocation("http://localhost/someapp");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3537,20 +3536,20 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location to null string");
+      logger.log(Logger.Level.INFO,"Setting Content Location to null string");
       ap.setContentLocation("");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location to null");
+      logger.log(Logger.Level.INFO,"Setting Content Location to null");
       ap.setContentLocation(null);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3574,11 +3573,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location again");
+      logger.log(Logger.Level.INFO,"Setting Content Location again");
       ap.setContentLocation("/WEB-INF/somefile");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3602,14 +3601,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content Location again");
+      logger.log(Logger.Level.INFO,"Setting Content Location again");
       ap.setContentLocation("/WEB-INF/somefile");
 
-      TestUtil.logMsg("Setting Content Location again");
+      logger.log(Logger.Level.INFO,"Setting Content Location again");
       ap.setContentLocation("http://localhost/someapp");
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3632,19 +3631,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Setting Content Location to null");
+      logger.log(Logger.Level.INFO,"Setting Content Location to null");
       ap.setContentLocation(null);
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
     try {
       setup();
-      TestUtil.logMsg("Setting Content Location to null string");
+      logger.log(Logger.Level.INFO,"Setting Content Location to null string");
       ap.setContentLocation("");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3668,21 +3667,20 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil
-          .logMsg("Setting Content using StreamSource for text/xml mime type");
+      logger.log(Logger.Level.INFO,"Setting Content using StreamSource for text/xml mime type");
       ap.setContent(new StreamSource(in1), "text/xml");
-      TestUtil.logMsg("Now get the content");
+      logger.log(Logger.Level.INFO,"Now get the content");
       Object o = ap.getContent();
       if (o == null) {
-        TestUtil.logErr("Getting the content returned null (unexpected)");
+        logger.log(Logger.Level.ERROR,"Getting the content returned null (unexpected)");
         pass = false;
       } else if (!(o instanceof StreamSource)) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Getting the content did not return a StreamSource for text/xml content");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3706,22 +3704,22 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting Content a first time");
+      logger.log(Logger.Level.INFO,"Setting Content a first time");
       ap.setContent(new StreamSource(in1), "text/xml");
-      TestUtil.logMsg("Resetting Content a second time");
+      logger.log(Logger.Level.INFO,"Resetting Content a second time");
       ap.setContent(new StreamSource(in2), "text/xml");
-      TestUtil.logMsg("Now get the content");
+      logger.log(Logger.Level.INFO,"Now get the content");
       Object o = ap.getContent();
       if (o == null) {
-        TestUtil.logErr("Getting the content returned null (unexpected)");
+        logger.log(Logger.Level.ERROR,"Getting the content returned null (unexpected)");
         pass = false;
       } else if (!(o instanceof StreamSource)) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Getting the content did not return a StreamSource for text/xml content");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3745,46 +3743,46 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
       try {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "Setting Content with invalid param (a null) may throw IllegalArgumentException");
         ap.setContent(in1, null);
         // test passed
       } catch (java.lang.IllegalArgumentException iae) {
         // test passed
-        TestUtil.logMsg("IllegalArgumentException was thrown (ok)");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException was thrown (ok)");
       }
       try {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "Setting Content with invalid param (wrong object for text/xml) may throw IllegalArgumentException");
-        TestUtil.logMsg("IllegalArgumentException may be thrown");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException may be thrown");
         ap.setContent(in1, "text/xml");
         // test passed
       } catch (java.lang.IllegalArgumentException iae) {
         // test passed
-        TestUtil.logMsg("IllegalArgumentException was thrown (ok)");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException was thrown (ok)");
       }
       try {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "Setting Content with invalid param (wrong object for image/gif) may throw IllegalArgumentException");
-        TestUtil.logMsg("IllegalArgumentException may be thrown");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException may be thrown");
         ap.setContent("The Content", "image/gif");
         // test passed
       } catch (java.lang.IllegalArgumentException iae) {
         // test passed
-        TestUtil.logMsg("IllegalArgumentException was thrown (ok)");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException was thrown (ok)");
       }
       try {
-        TestUtil.logMsg(
+        logger.log(Logger.Level.INFO,
             "Setting Content with invalid param (wrong object for image/jpeg) may throw IllegalArgumentException");
-        TestUtil.logMsg("IllegalArgumentException may be thrown");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException may be thrown");
         ap.setContent("The Content", "image/jpeg");
         // test passed
       } catch (java.lang.IllegalArgumentException iae) {
         // test passed
-        TestUtil.logMsg("IllegalArgumentException was thrown (ok)");
+        logger.log(Logger.Level.INFO,"IllegalArgumentException was thrown (ok)");
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3808,11 +3806,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting DataHandler");
+      logger.log(Logger.Level.INFO,"Setting DataHandler");
       ap.setDataHandler(new DataHandler(url));
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3837,14 +3835,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       try {
-        TestUtil.logMsg("Setting DataHandler");
+        logger.log(Logger.Level.INFO,"Setting DataHandler");
         ap.setDataHandler(null);
       } catch (IllegalArgumentException iae) {
         pass = true;
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3868,14 +3866,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting DataHandler");
+      logger.log(Logger.Level.INFO,"Setting DataHandler");
       ap.setDataHandler(new DataHandler(url));
 
-      TestUtil.logMsg("Setting DataHandler");
+      logger.log(Logger.Level.INFO,"Setting DataHandler");
       ap.setDataHandler(new DataHandler(url2));
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3899,17 +3897,17 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Setting MimeHeader");
+      logger.log(Logger.Level.INFO,"Setting MimeHeader");
       ap.setMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = ap.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned, got a total of:"
                 + len);
         pass = false;
@@ -3918,15 +3916,15 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from setMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -3950,18 +3948,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.addMimeHeader("Content-Description", "some text");
       ap.addMimeHeader("Content-Id", "id@abc.com");
 
-      TestUtil.logMsg("Setting MimeHeader");
+      logger.log(Logger.Level.INFO,"Setting MimeHeader");
       ap.setMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = ap.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -3970,19 +3968,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text2")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from setMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text2");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text2");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       sArray = ap.getMimeHeader("Content-Id");
       len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(name2), got a total of:"
                 + len);
         pass = false;
@@ -3991,16 +3989,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("id@abc.com")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Id)");
-          TestUtil.logErr("expected result: id@abc.com");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: id@abc.com");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4024,18 +4022,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding 2 MimeHeaders");
+      logger.log(Logger.Level.INFO,"Adding 2 MimeHeaders");
       ap.setMimeHeader("Content-Description", "some text");
       ap.setMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Setting MimeHeader");
+      logger.log(Logger.Level.INFO,"Setting MimeHeader");
       ap.setMimeHeader("Content-Description", "image/jpeg");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = ap.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -4044,16 +4042,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("image/jpeg")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: image/jpeg");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: image/jpeg");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4077,14 +4075,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Setting MimeHeader");
+      logger.log(Logger.Level.INFO,"Setting MimeHeader");
       ap.setMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = ap.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -4093,15 +4091,15 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("some text")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: some text");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: some text");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4126,20 +4124,20 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg("Adding MimeHeader");
+      logger.log(Logger.Level.INFO,"Adding MimeHeader");
       ap.addMimeHeader("Content-Description", "some text");
 
-      TestUtil.logMsg("Setting MimeHeader");
+      logger.log(Logger.Level.INFO,"Setting MimeHeader");
       ap.setMimeHeader("Content-Description", "some text2");
 
-      TestUtil.logMsg("Setting MimeHeader again");
+      logger.log(Logger.Level.INFO,"Setting MimeHeader again");
       ap.setMimeHeader("Content-Description", "impage/jpeg");
 
-      TestUtil.logMsg("Getting MimeHeader");
+      logger.log(Logger.Level.INFO,"Getting MimeHeader");
       String sArray[] = ap.getMimeHeader("Content-Description");
       int len = sArray.length;
       if (len != 1) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "Error: expected only one item to be returned for getMimeHeader(Content-Description), got a total of:"
                 + len);
         pass = false;
@@ -4148,16 +4146,16 @@ public class AttachmentPartTestServlet extends HttpServlet {
       for (int i = 0; i < len; i++) {
         String temp = sArray[i];
         if (!temp.equals("impage/jpeg")) {
-          TestUtil.logErr(
+          logger.log(Logger.Level.ERROR,
               "Error: received invalid value from getMimeHeader(Content-Description)");
-          TestUtil.logErr("expected result: impage/jpeg");
-          TestUtil.logErr("actual result:" + temp);
+          logger.log(Logger.Level.ERROR,"expected result: impage/jpeg");
+          logger.log(Logger.Level.ERROR,"actual result:" + temp);
           pass = false;
         }
       }
 
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4182,14 +4180,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + JPEG_FILE);
-      TestUtil.logMsg("Get DataHandler to jpeg attachment: " + JPEG_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to jpeg attachment: " + JPEG_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Create InputStream from DataHandler's InputStream");
+      logger.log(Logger.Level.INFO,"Create InputStream from DataHandler's InputStream");
       InputStream is = dh.getInputStream();
 
-      TestUtil
-          .logMsg("Setting Content via InputStream for image/jpeg mime type");
+      logger.log(Logger.Level.INFO,"Setting Content via InputStream for image/jpeg mime type");
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
       OutputStream ret = new BASE64EncoderStream(bos);
       int count;
@@ -4202,15 +4199,15 @@ public class AttachmentPartTestServlet extends HttpServlet {
       InputStream stream = new ByteArrayInputStream(buf);
       ap.setBase64Content(stream, "image/jpeg");
 
-      TestUtil.logMsg("Getting Content should return InputStream object");
+      logger.log(Logger.Level.INFO,"Getting Content should return InputStream object");
       InputStream r = ap.getBase64Content();
-      TestUtil.logMsg("object returned=" + r);
+      logger.log(Logger.Level.INFO,"object returned=" + r);
       if (r == null) {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4239,12 +4236,12 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + XML_FILE);
-      TestUtil.logMsg("Get DataHandler to xml attachment: " + XML_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to xml attachment: " + XML_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Get InputStream from DataHandler");
+      logger.log(Logger.Level.INFO,"Get InputStream from DataHandler");
       InputStream is1 = dh.getInputStream();
-      TestUtil.logMsg("Save attachment data in buf1");
+      logger.log(Logger.Level.INFO,"Save attachment data in buf1");
       int length1 = 0, count1 = 0;
       while (count1 != -1) {
         count1 = is1.read(buf1, length1, (30000 - length1));
@@ -4252,14 +4249,13 @@ public class AttachmentPartTestServlet extends HttpServlet {
           length1 += count1;
       }
       is1.close();
-      TestUtil.logMsg("length1=" + length1);
-      TestUtil.logMsg("Get DataHandler to xml attachment again: " + XML_FILE);
+      logger.log(Logger.Level.INFO,"length1=" + length1);
+      logger.log(Logger.Level.INFO,"Get DataHandler to xml attachment again: " + XML_FILE);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Create InputStream from DataHandler's InputStream");
+      logger.log(Logger.Level.INFO,"Create InputStream from DataHandler's InputStream");
       InputStream is = dh.getInputStream();
 
-      TestUtil
-          .logMsg("Setting Content via InputStream for image/xml mime type");
+      logger.log(Logger.Level.INFO,"Setting Content via InputStream for image/xml mime type");
       ByteArrayOutputStream bos = new ByteArrayOutputStream();
       OutputStream ret = new BASE64EncoderStream(bos);
       int count;
@@ -4272,11 +4268,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
       InputStream stream = new ByteArrayInputStream(buf);
       ap.setBase64Content(stream, "text/xml");
 
-      TestUtil.logMsg("Getting Content should return InputStream object");
+      logger.log(Logger.Level.INFO,"Getting Content should return InputStream object");
       InputStream r = ap.getBase64Content();
-      TestUtil.logMsg("object returned=" + r);
+      logger.log(Logger.Level.INFO,"object returned=" + r);
       if (r != null) {
-        TestUtil.logMsg("Save attachment data in buf2");
+        logger.log(Logger.Level.INFO,"Save attachment data in buf2");
         r = new BASE64DecoderStream(r);
         int length2 = 0, count2 = 0;
         while (count2 != -1) {
@@ -4285,19 +4281,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
             length2 += count2;
         }
         r.close();
-        TestUtil.logMsg("length2=" + length2);
+        logger.log(Logger.Level.INFO,"length2=" + length2);
         for (int i = 0; i < length2; i++)
           buf2[i] = cbuf2[i];
-        TestUtil.logMsg("Compare data in buf1 and buf2 (Must be Equal)");
+        logger.log(Logger.Level.INFO,"Compare data in buf1 and buf2 (Must be Equal)");
         if (length1 != length2) {
-          TestUtil.logErr("Lengths are different: length1=" + length1
+          logger.log(Logger.Level.ERROR,"Lengths are different: length1=" + length1
               + ", length2=" + length2);
           pass = false;
         } else {
-          TestUtil.logMsg("Lengths are equal (ok)");
+          logger.log(Logger.Level.INFO,"Lengths are equal (ok)");
           for (int i = 0; i < length1; i++) {
             if (buf1[i] != buf2[i]) {
-              TestUtil.logErr("Data is different: buf1[" + i + "]=" + buf1
+              logger.log(Logger.Level.ERROR,"Data is different: buf1[" + i + "]=" + buf1
                   + ", buf2[" + i + "]=" + buf2);
               pass = false;
               break;
@@ -4305,11 +4301,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
           }
         }
       } else {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4334,23 +4330,23 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + NULL_FILE);
-      TestUtil.logMsg("Get DataHandler to null attachment: " + NULL_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to null attachment: " + NULL_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Create InputStream from DataHandler's InputStream");
+      logger.log(Logger.Level.INFO,"Create InputStream from DataHandler's InputStream");
       InputStream is = dh.getInputStream();
 
-      TestUtil.logMsg("Call setBase64Content() with null content");
+      logger.log(Logger.Level.INFO,"Call setBase64Content() with null content");
       ap.setBase64Content(is, "image/jpeg");
       int size = ap.getSize();
       if (size != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "setBase64Content() with null content should return size=0, got size="
                 + size);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4374,25 +4370,24 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
       url = tsurl.getURL("http", host, port, cntxroot + "/" + GIF_FILE);
-      TestUtil.logMsg("Get DataHandler to gif attachment: " + GIF_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to gif attachment: " + GIF_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Get InputStream from DataHandler");
+      logger.log(Logger.Level.INFO,"Get InputStream from DataHandler");
       InputStream is1 = dh.getInputStream();
 
-      TestUtil
-          .logMsg("Setting Content via InputStream for image/gif mime type");
+      logger.log(Logger.Level.INFO,"Setting Content via InputStream for image/gif mime type");
       ap.setRawContent(is1, "image/gif");
 
-      TestUtil.logMsg("Getting Content should return InputStream object");
+      logger.log(Logger.Level.INFO,"Getting Content should return InputStream object");
       InputStream is2 = ap.getRawContent();
-      TestUtil.logMsg("object returned=" + is2);
+      logger.log(Logger.Level.INFO,"object returned=" + is2);
       if (is2 == null) {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4418,25 +4413,24 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
       url = tsurl.getURL("http", host, port,
           cntxroot + "/" + XML_RESOURCE_FILE);
-      TestUtil
-          .logMsg("Get DataHandler to gif attachment: " + XML_RESOURCE_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to gif attachment: " + XML_RESOURCE_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Get InputStream from DataHandler");
+      logger.log(Logger.Level.INFO,"Get InputStream from DataHandler");
       InputStream is1 = dh.getInputStream();
 
-      TestUtil.logMsg("Setting Content via InputStream for text/xml mime type");
+      logger.log(Logger.Level.INFO,"Setting Content via InputStream for text/xml mime type");
       ap.setRawContent(is1, "text/xml");
 
-      TestUtil.logMsg("Getting Content should return InputStream object");
+      logger.log(Logger.Level.INFO,"Getting Content should return InputStream object");
       InputStream is2 = ap.getRawContent();
-      TestUtil.logMsg("object returned=" + is2);
+      logger.log(Logger.Level.INFO,"object returned=" + is2);
       if (is2 == null) {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4464,12 +4458,12 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + JPEG_FILE);
-      TestUtil.logMsg("Get DataHandler to gif attachment: " + JPEG_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to gif attachment: " + JPEG_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Get InputStream from DataHandler");
+      logger.log(Logger.Level.INFO,"Get InputStream from DataHandler");
       InputStream is1 = dh.getInputStream();
-      TestUtil.logMsg("Save attachment data in buf1");
+      logger.log(Logger.Level.INFO,"Save attachment data in buf1");
       int length1 = 0, count1 = 0;
       while (count1 != -1) {
         count1 = is1.read(buf1, length1, (30000 - length1));
@@ -4477,21 +4471,20 @@ public class AttachmentPartTestServlet extends HttpServlet {
           length1 += count1;
       }
       is1.close();
-      TestUtil.logMsg("length1=" + length1);
+      logger.log(Logger.Level.INFO,"length1=" + length1);
       dh = new DataHandler(url);
       is1 = dh.getInputStream();
 
-      TestUtil
-          .logMsg("Setting Content via InputStream for image/jpeg mime type");
+      logger.log(Logger.Level.INFO,"Setting Content via InputStream for image/jpeg mime type");
       ap.setRawContent(is1, "image/jpeg");
 
-      TestUtil.logMsg("Getting Content should return InputStream object");
+      logger.log(Logger.Level.INFO,"Getting Content should return InputStream object");
       InputStream is2 = ap.getRawContent();
-      TestUtil.logMsg("object returned=" + is2);
-      TestUtil.logMsg("getSize()=" + ap.getSize());
+      logger.log(Logger.Level.INFO,"object returned=" + is2);
+      logger.log(Logger.Level.INFO,"getSize()=" + ap.getSize());
 
       if (is2 != null) {
-        TestUtil.logMsg("Save attachment data in buf2");
+        logger.log(Logger.Level.INFO,"Save attachment data in buf2");
         int length2 = 0, count2 = 0;
         while (count2 != -1) {
           count2 = is2.read(buf2, length2, (30000 - length2));
@@ -4499,17 +4492,17 @@ public class AttachmentPartTestServlet extends HttpServlet {
             length2 += count2;
         }
         is2.close();
-        TestUtil.logMsg("length2=" + length2);
-        TestUtil.logMsg("Compare data in buf1 and buf2 (Must be Equal)");
+        logger.log(Logger.Level.INFO,"length2=" + length2);
+        logger.log(Logger.Level.INFO,"Compare data in buf1 and buf2 (Must be Equal)");
         if (length1 != length2) {
-          TestUtil.logErr("Lengths are different: length1=" + length1
+          logger.log(Logger.Level.ERROR,"Lengths are different: length1=" + length1
               + ", length2=" + length2);
           pass = false;
         } else {
-          TestUtil.logMsg("Lengths are equal (ok)");
+          logger.log(Logger.Level.INFO,"Lengths are equal (ok)");
           for (int i = 0; i < length1; i++) {
             if (buf1[i] != buf2[i]) {
-              TestUtil.logErr("Data is different: buf1[" + i + "]=" + buf1
+              logger.log(Logger.Level.ERROR,"Data is different: buf1[" + i + "]=" + buf1
                   + ", buf2[" + i + "]=" + buf2);
               pass = false;
               break;
@@ -4517,11 +4510,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
           }
         }
       } else {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4546,23 +4539,23 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + NULL_FILE);
-      TestUtil.logMsg("Get DataHandler to null attachment: " + NULL_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to null attachment: " + NULL_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Get InputStream from DataHandler");
+      logger.log(Logger.Level.INFO,"Get InputStream from DataHandler");
       InputStream is = dh.getInputStream();
 
-      TestUtil.logMsg("Call setRawContent() with null content");
+      logger.log(Logger.Level.INFO,"Call setRawContent() with null content");
       ap.setRawContent(is, "image/gif");
       int size = ap.getSize();
       if (size != 0) {
-        TestUtil.logErr(
+        logger.log(Logger.Level.ERROR,
             "setRawContent() with null content should return size=0, got size="
                 + size);
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4589,12 +4582,12 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + JPEG_FILE);
-      TestUtil.logMsg("Get DataHandler to gif attachment: " + JPEG_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to gif attachment: " + JPEG_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Get InputStream from DataHandler");
+      logger.log(Logger.Level.INFO,"Get InputStream from DataHandler");
       InputStream is1 = dh.getInputStream();
-      TestUtil.logMsg("Save attachment data in buf1");
+      logger.log(Logger.Level.INFO,"Save attachment data in buf1");
       int length1 = 0, count1 = 0;
       while (count1 != -1) {
         count1 = is1.read(buf1, length1, (30000 - length1));
@@ -4602,33 +4595,32 @@ public class AttachmentPartTestServlet extends HttpServlet {
           length1 += count1;
       }
       is1.close();
-      TestUtil.logMsg("length1=" + length1);
+      logger.log(Logger.Level.INFO,"length1=" + length1);
       byte data1[] = new byte[length1];
       for (int i = 0; i < length1; i++)
         data1[i] = buf1[i];
       dh = new DataHandler(url);
       is1 = dh.getInputStream();
 
-      TestUtil
-          .logMsg("Setting Content via byte[] array for image/jpeg mime type");
+      logger.log(Logger.Level.INFO,"Setting Content via byte[] array for image/jpeg mime type");
       ap.setRawContentBytes(data1, 0, length1, "image/jpeg");
 
-      TestUtil.logMsg("Getting Content should return byte[] array");
+      logger.log(Logger.Level.INFO,"Getting Content should return byte[] array");
       byte data2[] = ap.getRawContentBytes();
 
       if (data2 != null) {
         int length2 = data2.length;
-        TestUtil.logMsg("length2=" + length2);
-        TestUtil.logMsg("Compare data in data1 and data2 (Must be Equal)");
+        logger.log(Logger.Level.INFO,"length2=" + length2);
+        logger.log(Logger.Level.INFO,"Compare data in data1 and data2 (Must be Equal)");
         if (length1 != length2) {
-          TestUtil.logErr("Lengths are different: length1=" + length1
+          logger.log(Logger.Level.ERROR,"Lengths are different: length1=" + length1
               + ", length2=" + length2);
           pass = false;
         } else {
-          TestUtil.logMsg("Lengths are equal (ok)");
+          logger.log(Logger.Level.INFO,"Lengths are equal (ok)");
           for (int i = 0; i < length1; i++) {
             if (data1[i] != data2[i]) {
-              TestUtil.logErr("Data is different: data1[" + i + "]=" + data1
+              logger.log(Logger.Level.ERROR,"Data is different: data1[" + i + "]=" + data1
                   + ", data2[" + i + "]=" + data2);
               pass = false;
               break;
@@ -4636,11 +4628,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
           }
         }
       } else {
-        TestUtil.logErr("null was returned");
+        logger.log(Logger.Level.ERROR,"null was returned");
         pass = false;
       }
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4664,18 +4656,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Setting Content via byte[] array that is null");
+      logger.log(Logger.Level.INFO,"Setting Content via byte[] array that is null");
       byte data1[] = null;
       ap.setRawContentBytes(data1, 0, 1, "image/jpeg");
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Did not throw expected SOAPException or NullPointerException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Caught expected SOAPException");
+      logger.log(Logger.Level.INFO,"Caught expected SOAPException");
     } catch (NullPointerException e) {
-      TestUtil.logMsg("Caught expected NullPointerException");
+      logger.log(Logger.Level.INFO,"Caught expected NullPointerException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4699,18 +4691,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Getting Content on an empty attachment");
+      logger.log(Logger.Level.INFO,"Getting Content on an empty attachment");
       byte data1[] = null;
       data1 = ap.getRawContentBytes();
-      TestUtil.logErr(
+      logger.log(Logger.Level.ERROR,
           "Did not throw expected SOAPException or NullPointerException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Caught expected SOAPException");
+      logger.log(Logger.Level.INFO,"Caught expected SOAPException");
     } catch (NullPointerException e) {
-      TestUtil.logMsg("Caught expected NullPointerException");
+      logger.log(Logger.Level.INFO,"Caught expected NullPointerException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4734,18 +4726,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
       url = tsurl.getURL("http", host, port, cntxroot + "/" + NOEXISTS_FILE);
-      TestUtil.logMsg("Get DataHandler to gif attachment: " + NOEXISTS_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to gif attachment: " + NOEXISTS_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
 
-      TestUtil.logMsg("Call setBase64Content() on non existant InputStream");
+      logger.log(Logger.Level.INFO,"Call setBase64Content() on non existant InputStream");
       ap.setBase64Content(dh.getInputStream(), "image/gif");
-      TestUtil.logErr("Did not throw expected IOException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected IOException");
       pass = false;
     } catch (IOException e) {
-      TestUtil.logMsg("Did throw expected IOException");
+      logger.log(Logger.Level.INFO,"Did throw expected IOException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4769,18 +4761,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Call setBase64Content() passing in an InputStream that is null");
       InputStream is = null;
       ap.setBase64Content(is, "image/gif");
-      TestUtil.logErr("Did not throw expected NullPointerException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected NullPointerException");
       pass = false;
     } catch (NullPointerException e) {
-      TestUtil.logMsg("Did throw expected NullPointerException");
+      logger.log(Logger.Level.INFO,"Did throw expected NullPointerException");
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4805,20 +4797,20 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + JPEG_FILE);
-      TestUtil.logMsg("Get DataHandler to jpeg attachment: " + JPEG_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"Get DataHandler to jpeg attachment: " + JPEG_FILE);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
-      TestUtil.logMsg("Create InputStream from DataHandler's InputStream");
+      logger.log(Logger.Level.INFO,"Create InputStream from DataHandler's InputStream");
       InputStream is = dh.getInputStream();
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Call setBase64Content() with an InputStream that is not Base64 encoded");
       ap.setBase64Content(is, "image/jpeg");
-      TestUtil.logErr("Did not throw expected SOAPException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4843,19 +4835,19 @@ public class AttachmentPartTestServlet extends HttpServlet {
       setup();
 
       url = tsurl.getURL("http", host, port, cntxroot + "/" + NOEXISTS_FILE);
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Get DataHandler to attachment that doesn't exist: " + NOEXISTS_FILE);
-      TestUtil.logMsg("URL = " + url);
+      logger.log(Logger.Level.INFO,"URL = " + url);
       dh = new DataHandler(url);
 
-      TestUtil.logMsg("Call setRawContent() on a non existant InputStream");
+      logger.log(Logger.Level.INFO,"Call setRawContent() on a non existant InputStream");
       ap.setRawContent(dh.getInputStream(), "image/gif");
-      TestUtil.logErr("Did not throw expected IOException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected IOException");
       pass = false;
     } catch (IOException e) {
-      TestUtil.logMsg("Did throw expected IOException");
+      logger.log(Logger.Level.INFO,"Did throw expected IOException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4879,18 +4871,18 @@ public class AttachmentPartTestServlet extends HttpServlet {
     try {
       setup();
 
-      TestUtil.logMsg(
+      logger.log(Logger.Level.INFO,
           "Call setRawContent() passing in an InputStream that is null");
       InputStream is = null;
       ap.setRawContent(is, "image/gif");
-      TestUtil.logErr("Did not throw expected NullPointerException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected NullPointerException");
       pass = false;
     } catch (NullPointerException e) {
-      TestUtil.logMsg("Did throw expected NullPointerException");
+      logger.log(Logger.Level.INFO,"Did throw expected NullPointerException");
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4913,14 +4905,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Call getBase64Content() on empty Attachment object");
+      logger.log(Logger.Level.INFO,"Call getBase64Content() on empty Attachment object");
       InputStream is = ap.getBase64Content();
-      TestUtil.logErr("Did not throw expected SOAPFaultException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPFaultException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPFaultException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPFaultException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
@@ -4943,14 +4935,14 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
     try {
       setup();
-      TestUtil.logMsg("Call getRawContent() on empty Attachment object");
+      logger.log(Logger.Level.INFO,"Call getRawContent() on empty Attachment object");
       InputStream is = ap.getRawContent();
-      TestUtil.logErr("Did not throw expected SOAPFaultException");
+      logger.log(Logger.Level.ERROR,"Did not throw expected SOAPFaultException");
       pass = false;
     } catch (SOAPException e) {
-      TestUtil.logMsg("Did throw expected SOAPFaultException");
+      logger.log(Logger.Level.INFO,"Did throw expected SOAPFaultException");
     } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
+      logger.log(Logger.Level.ERROR,"Exception: " + e);
       TestUtil.printStackTrace(e);
       pass = false;
     }
