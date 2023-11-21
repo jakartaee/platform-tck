@@ -32,6 +32,13 @@
     <name>JSP</name>
     <description>JSP</description>
 
+    <properties>
+        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -70,15 +77,68 @@
             <artifactId>jakarta.mail-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
-            <version>1.7.0.Alpha10</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <scope>compile</scope>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
+            <version>${arquillian.junit}</version>
         </dependency>
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>tck-build</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>2.3.2</version>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/java</directory>
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

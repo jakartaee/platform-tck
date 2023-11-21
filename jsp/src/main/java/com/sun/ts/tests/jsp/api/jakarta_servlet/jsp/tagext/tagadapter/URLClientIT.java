@@ -55,7 +55,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
     setContextRoot("/jsp_tagadapter_web");
     setTestJsp("TagAdapterTest");
 

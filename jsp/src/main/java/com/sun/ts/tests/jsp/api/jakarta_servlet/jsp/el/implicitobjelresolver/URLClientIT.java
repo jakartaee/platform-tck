@@ -46,7 +46,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
     setContextRoot("/jsp_implicitobjelresolver_web");
     setTestJsp("ImplicitObjELResolverTest");
 

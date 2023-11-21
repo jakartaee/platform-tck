@@ -52,7 +52,7 @@ public class URLClientIT extends AbstractUrlClient {
     for (short i = 33, idx = 0; i < 90; i++, idx++) {
       CHARS[idx] = (char) i;
     }
-    setup();
+
     setContextRoot("/jsp_jspwriter_web");
     setTestJsp("JspWriterTest");
 

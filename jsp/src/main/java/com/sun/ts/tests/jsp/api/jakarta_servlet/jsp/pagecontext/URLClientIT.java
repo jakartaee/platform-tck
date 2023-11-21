@@ -43,7 +43,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
     setTestJsp("PageContextTest");
     setContextRoot("/jsp_pagecontext_web");
 

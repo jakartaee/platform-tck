@@ -43,7 +43,7 @@ public class URLClientIT extends AbstractUrlClient {
   public static String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/core_syntax/actions/usebean");
     setContextRoot("/jsp_coresyntx_act_usebean_web");

@@ -42,7 +42,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
     setContextRoot("/jsp_methodinfo_web");
     setTestJsp("MethodInfoTest");
   }

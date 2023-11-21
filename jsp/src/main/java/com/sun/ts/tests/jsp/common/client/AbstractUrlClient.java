@@ -34,6 +34,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.lang.System.Logger;
 
 /**
@@ -119,33 +120,25 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     return false;
   }
 
+  @BeforeEach
   public void setup() throws Exception {
 
-    String hostname = System.getProperty(SERVLETHOSTPROP).trim();
-    String portnum = System.getProperty(SERVLETPORTPROP).trim();
+    logger.log(Logger.Level.INFO, "setup method AbstractUrlClient");
 
-    if (isNullOrEmpty(hostname)) {
-      hostname = url.getHost(); 
-    }
-    if (isNullOrEmpty(portnum)) {
-      portnum = Integer.toString(url.getPort()); 
-    }
-    
-    if (!isNullOrEmpty(hostname)) {
-      _hostname = hostname;
-    } else {
+    if (url == null){
       throw new Exception(
-          "[BaseUrlClient] 'webServerHost' was not set");
+          "[AbstractUrlClient] The url was not injected");
     }
 
-    if (!isNullOrEmpty(portnum)) {
-      _port = Integer.parseInt(portnum);
-    } else {
-      throw new Exception(
-          "[BaseUrlClient] 'webServerPort' was not set");
-    }
+		String hostname = url.getHost();
+		String portnum = Integer.toString(url.getPort());
 
-    logger.log(Logger.Level.INFO, "[BaseUrlClient] Test setup OK");
+		assertFalse(isNullOrEmpty(hostname), "[AbstractUrlClient] 'webServerHost' was not set in the properties.");
+		_hostname = hostname.trim();
+		assertFalse(isNullOrEmpty(portnum), "[AbstractUrlClient] 'webServerPort' was not set in the properties.");
+		_port = Integer.parseInt(portnum.trim());
+
+    logger.log(Logger.Level.INFO, "[AbstractUrlClient] Test setup OK");
   }
 
   /**

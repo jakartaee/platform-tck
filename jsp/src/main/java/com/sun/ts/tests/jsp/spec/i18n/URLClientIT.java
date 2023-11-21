@@ -43,7 +43,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/i18n");
     setContextRoot("/jsp_config_encode_web");

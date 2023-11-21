@@ -44,7 +44,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setContextRoot("/jsp_tldres_web");
 

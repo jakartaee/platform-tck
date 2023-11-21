@@ -24,9 +24,10 @@
 
 package com.sun.ts.tests.jsp.spec.configuration.elevaluation;
 
-import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.net.URL;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import com.sun.ts.tests.jsp.common.client.AbstractUrlClient;
@@ -35,7 +36,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
@@ -46,39 +46,33 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
 
+  private static final Logger logger = System.getLogger(URLClientIT.class.getName());
 
   public URLClientIT() throws Exception {
-    setup();
+
     setGeneralURI("/jsp/spec/configuration/elevaluation");
     setContextRoot("/jsp_config_eleval_web");
 
   }
 
-  public void setup() throws Exception {
+  public void setup2() throws Exception {
 
-    String hostname = System.getProperty(SERVLETHOSTPROP).trim();
-    String portnum = System.getProperty(SERVLETPORTPROP).trim();
+    logger.log(Logger.Level.INFO, "setup2 method URLClientIT");
 
-    if (isNullOrEmpty(hostname)) {
-      hostname = url2.getHost(); 
-    }
-    if (isNullOrEmpty(portnum)) {
-      portnum = Integer.toString(url2.getPort()); 
-    }
-    
-    if (!isNullOrEmpty(hostname)) {
-      _hostname = hostname;
-    } else {
+    if (url2 == null){
       throw new Exception(
-          "[elevaluation.URLClientIT] 'webServerHost' was not set");
+          "[URLClientIT] The url was not injected");
     }
 
-    if (!isNullOrEmpty(portnum)) {
-      _port = Integer.parseInt(portnum);
-    } else {
-      throw new Exception(
-          "[elevaluation.URLClientIT] 'webServerPort' was not set");
-    }
+    String hostname = url2.getHost();
+    String portnum = Integer.toString(url2.getPort()); 
+
+		assertFalse(isNullOrEmpty(hostname), "[URLClientIT] 'webServerHost' was not set in the properties.");
+		_hostname = hostname.trim();
+		assertFalse(isNullOrEmpty(portnum), "[URLClientIT] 'webServerPort' was not set in the properties.");
+		_port = Integer.parseInt(portnum.trim());
+
+    logger.log(Logger.Level.INFO, "[URLClientIT] Test setup2 OK");
 
   }
 
@@ -239,6 +233,7 @@ public class URLClientIT extends AbstractUrlClient {
    */
   @Test
   public void elEvaluation23WebApplicationTest() throws Exception {
+    setup2();
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_config_eleval23_web/ElCompatTest.jsp HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING, "${testPassed}");

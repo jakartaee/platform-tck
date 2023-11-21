@@ -45,7 +45,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
     setContextRoot("/jsp_expr_web");
     setTestJsp("ExpressionTest");
 

@@ -45,11 +45,8 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
 
-
-
-
   public URLClientIT() throws Exception {
-    setup();
+
   }
 
   @Deployment(testable = false)

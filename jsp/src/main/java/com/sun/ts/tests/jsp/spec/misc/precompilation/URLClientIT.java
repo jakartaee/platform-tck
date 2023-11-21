@@ -39,7 +39,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/misc/precompilation");
     setContextRoot("/jsp_misc_precompilation_web");

@@ -43,7 +43,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
     setContextRoot("/jsp_errordata_web");
     setTestJsp("ErrorDataTest");
     System.out.println("Running TESTS");

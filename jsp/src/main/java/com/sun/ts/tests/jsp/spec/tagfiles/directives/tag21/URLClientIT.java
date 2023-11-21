@@ -45,7 +45,7 @@ public class URLClientIT extends AbstractUrlClient {
   public static String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/tagfiles/directives/tag21");
     setContextRoot("/jsp_tagfile_directives_tag21_web");

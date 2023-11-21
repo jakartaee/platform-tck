@@ -41,7 +41,7 @@ public class URLClientIT extends AbstractUrlClient {
   private static final String CONTEXT_ROOT = "/jsp_tagfiles_directives_variable_web";
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setContextRoot(CONTEXT_ROOT);
 

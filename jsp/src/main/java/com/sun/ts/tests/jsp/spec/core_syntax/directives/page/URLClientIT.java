@@ -46,7 +46,7 @@ public class URLClientIT extends AbstractUrlClient {
   public static String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/core_syntax/directives/page");
     setContextRoot("/jsp_coresyntx_directive_page_web");

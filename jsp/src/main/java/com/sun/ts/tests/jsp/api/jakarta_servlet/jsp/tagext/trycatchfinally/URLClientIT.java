@@ -51,7 +51,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
     setContextRoot("/jsp_varinfo_web");
     setTestJsp("VariableInfoTest");
 

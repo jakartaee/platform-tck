@@ -44,7 +44,7 @@ public class URLClientIT extends AbstractUrlClient {
   public static String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/core_syntax/scripting/escaping");
     setContextRoot("/jsp_coresyntx_script_escape_web");

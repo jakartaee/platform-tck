@@ -40,7 +40,7 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 public class URLClientIT extends AbstractUrlClient {
 
   public URLClientIT() throws Exception {
-    setup();
+
     setContextRoot("/jsp_beanelresolver_web");
     setTestJsp("BeanELResolverTest");
   }

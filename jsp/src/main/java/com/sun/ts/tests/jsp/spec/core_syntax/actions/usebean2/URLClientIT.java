@@ -41,7 +41,7 @@ public class URLClientIT extends AbstractUrlClient {
   private static final String CONTEXT_ROOT = "/jsp_coresyntx_act_usebean2_web";
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/core_syntax/actions/usebean2");
     setContextRoot("/jsp_coresyntx_act_usebean2_web");

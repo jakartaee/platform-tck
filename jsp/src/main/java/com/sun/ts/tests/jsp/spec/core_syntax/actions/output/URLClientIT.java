@@ -46,7 +46,7 @@ public class URLClientIT extends AbstractUrlClient {
   private static final String CONTEXT_ROOT = "/jsp_core_act_output_web";
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setContextRoot("/jsp_core_act_output_web");
 

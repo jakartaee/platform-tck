@@ -51,7 +51,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
     setContextRoot("/jsp_tagsupport_web");
     setTestJsp("TagSupportApiTest");
 

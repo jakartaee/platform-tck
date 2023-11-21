@@ -44,7 +44,7 @@ public class URLClientIT extends AbstractUrlClient {
   public static String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/core_syntax/scripting/expressions");
     setContextRoot("/jsp_coresyntx_script_expressions_web");

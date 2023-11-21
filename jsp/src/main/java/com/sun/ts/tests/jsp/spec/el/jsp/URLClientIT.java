@@ -44,7 +44,7 @@ public class URLClientIT extends AbstractUrlClient {
 
 
   public URLClientIT() throws Exception {
-    setup();
+
 
     setGeneralURI("/jsp/spec/el/jsp/");
     setContextRoot("/jsp_el_jsp_web");
