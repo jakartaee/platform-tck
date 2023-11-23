@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,54 +14,51 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
 
 package com.sun.ts.tests.jstl.spec.core.conditional.cwo;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
-  /** Creates new JSTLClient */
-  public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
+  public JSTLClient() throws Exception {
     setContextRoot("/jstl_core_cond_cwo_web");
-    setGoldenFileDir("/jstl/spec/core/conditional/cwo");
+  }
 
-    return super.run(args, out, err);
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_cond_cwo_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_cond_cwo_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWONoWhenActionsTest.jsp")), "negativeCWONoWhenActionsTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOOtherwiseExcBodyContentTest.jsp")), "negativeCWOOtherwiseExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOOtherwiseNoParentTest.jsp")), "negativeCWOOtherwiseNoParentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenBeforeOtherwiseTest.jsp")), "negativeCWOWhenBeforeOtherwiseTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenExcBodyContentTest.jsp")), "negativeCWOWhenExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenNoParentTest.jsp")), "negativeCWOWhenNoParentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenTestReqAttrTest.jsp")), "negativeCWOWhenTestReqAttrTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenTypeTest.jsp")), "negativeCWOWhenTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveCWOTest.jsp")), "positiveCWOTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -77,7 +74,10 @@ public class JSTLClient extends AbstractUrlClient {
    * single 'when' evaluating to false which should cause the 'otherwise' action
    * to process its body
    */
+  @Test
   public void positiveCWOTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCWOTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveCWOTest");
     invoke();
   }
@@ -91,7 +91,10 @@ public class JSTLClient extends AbstractUrlClient {
    * jakarta.servlet.jsp.JspTagException if the expression evaluates to a type not
    * expected by the tag.
    */
+  @Test
   public void negativeCWOWhenTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOWhenTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenTypeTest");
     invoke();
   }
@@ -104,7 +107,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that an exception caused by the body content of a
    * when action is properly propagated to and by the choose action.
    */
+  @Test
   public void negativeCWOWhenExcBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOWhenExcBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenExcBodyContentTest");
     invoke();
   }
@@ -117,7 +123,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that an exception caused by the body content of an
    * otherwise action is properly propagaged to and by the choose action.
    */
+  @Test
   public void negativeCWOOtherwiseExcBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOOtherwiseExcBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeCWOOtherwiseExcBodyContentTest");
     invoke();
   }
@@ -130,6 +139,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if the choose
    * action has no nested when actions.
    */
+  @Test
   public void negativeCWONoWhenActionsTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWONoWhenActionsTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWONoWhenActionsTest.jsp");
@@ -145,6 +155,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if otherwise
    * appears before when or if when appears after otherwise.
    */
+  @Test
   public void negativeCWOWhenBeforeOtherwiseTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenBeforeOtherwiseTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWOWhenBeforeOtherwiseTest.jsp");
@@ -160,6 +171,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate a fatal translation error occurs if a when action
    * has no choose as an immediate parent.
    */
+  @Test
   public void negativeCWOWhenNoParentTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenNoParentTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWOWhenNoParentTest.jsp");
@@ -175,6 +187,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate a fatal translation error occurs if an otherwise
    * action has no choose as an immediate parent.
    */
+  @Test
   public void negativeCWOOtherwiseNoParentTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWOOtherwiseNoParentTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWOOtherwiseNoParentTest.jsp");
@@ -190,6 +203,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if a nested
    * when action has no 'test' attribute.
    */
+  @Test
   public void negativeCWOWhenTestReqAttrTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenTestReqAttrTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWOWhenTestReqAttrTest.jsp");

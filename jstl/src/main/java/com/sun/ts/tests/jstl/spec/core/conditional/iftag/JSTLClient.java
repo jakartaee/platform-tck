@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,48 +20,45 @@
 
 package com.sun.ts.tests.jstl.spec.core.conditional.iftag;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
-  /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_core_cond_if_web");
-    setGoldenFileDir("/jstl/spec/core/conditional/iftag");
+  }
 
-    return super.run(args, out, err);
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_cond_if_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_cond_if_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeIfExcBodyContentTest.jsp")), "negativeIfExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeIfTestTypeTest.jsp")), "negativeIfTestTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfBodyBehaviorTest.jsp")), "positiveIfBodyBehaviorTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfExportedVarTypeTest.jsp")), "positiveIfExportedVarTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfTest.jsp")), "positiveIfTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,7 +69,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Verify 'test' and 'var' attribute behavior of the 'if'
    * action with no content body
    */
+  @Test
   public void positiveIfTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfTest");
     invoke();
   }
@@ -85,7 +85,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Verify the behavior of the 'if' action with regards to the
    * result of it's test and it's body content
    */
+  @Test
   public void positiveIfBodyBehaviorTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfBodyBehaviorTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfBodyBehaviorTest");
     invoke();
   }
@@ -100,7 +103,10 @@ public class JSTLClient extends AbstractUrlClient {
    * attribute. If scope is not specified, the exported var should be in the
    * page scope, otherwise the exported var should be in the designated scope.
    */
+  @Test
   public void positiveIfScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfScopeTest");
     invoke();
   }
@@ -113,7 +119,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the variable exported by the 'if' action is of
    * type 'java.lang.Boolean'
    */
+  @Test
   public void positiveIfExportedVarTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfExportedVarTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfExportedVarTypeTest");
     invoke();
   }
@@ -128,7 +137,10 @@ public class JSTLClient extends AbstractUrlClient {
    * passed ot the 'test' attribute is not of the expected type (boolean/Boolean
    * for EL, and boolean for RT).
    */
+  @Test
   public void negativeIfTestTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfTestTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeIfTestTypeTest");
     invoke();
   }
@@ -141,7 +153,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that exceptions caused by the body content are
    * propagated.
    */
+  @Test
   public void negativeIfExcBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfExcBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeIfExcBodyContentTest");
     invoke();
   }
