@@ -14,10 +14,6 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
-
 package com.sun.ts.tests.jstl.spec.core.conditional.iftag;
 
 import java.io.IOException;
@@ -34,11 +30,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class JSTLClient extends AbstractUrlClient {
+public class JSTLClientIT extends AbstractUrlClient {
 
-  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
-  public JSTLClient() {
+  public JSTLClientIT() {
     setContextRoot("/jstl_core_cond_if_web");
   }
 
@@ -47,14 +43,14 @@ public class JSTLClient extends AbstractUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_cond_if_web.war");
-    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_cond_if_web.xml"));
+    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_core_cond_if_web.xml"));
 
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeIfExcBodyContentTest.jsp")), "negativeIfExcBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeIfTestTypeTest.jsp")), "negativeIfTestTypeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfBodyBehaviorTest.jsp")), "positiveIfBodyBehaviorTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfExportedVarTypeTest.jsp")), "positiveIfExportedVarTypeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfTest.jsp")), "positiveIfTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeIfExcBodyContentTest.jsp")), "negativeIfExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeIfTestTypeTest.jsp")), "negativeIfTestTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfBodyBehaviorTest.jsp")), "positiveIfBodyBehaviorTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfExportedVarTypeTest.jsp")), "positiveIfExportedVarTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfTest.jsp")), "positiveIfTest.jsp");
 
     archive.addAsLibrary(getCommonJarArchive());
 
@@ -71,7 +67,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void positiveIfTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfTest");
     invoke();
@@ -87,7 +83,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void positiveIfBodyBehaviorTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfBodyBehaviorTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfBodyBehaviorTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfBodyBehaviorTest");
     invoke();
@@ -105,7 +101,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void positiveIfScopeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfScopeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfScopeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfScopeTest");
     invoke();
@@ -121,7 +117,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void positiveIfExportedVarTypeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfExportedVarTypeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfExportedVarTypeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfExportedVarTypeTest");
     invoke();
@@ -139,7 +135,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void negativeIfTestTypeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfTestTypeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfTestTypeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeIfTestTypeTest");
     invoke();
@@ -155,7 +151,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void negativeIfExcBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfExcBodyContentTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfExcBodyContentTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeIfExcBodyContentTest");
     invoke();

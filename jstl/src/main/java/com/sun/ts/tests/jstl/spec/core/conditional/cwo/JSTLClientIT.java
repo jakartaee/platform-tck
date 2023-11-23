@@ -31,11 +31,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class JSTLClient extends AbstractUrlClient {
+public class JSTLClientIT extends AbstractUrlClient {
 
-  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
-  public JSTLClient() throws Exception {
+  public JSTLClientIT() throws Exception {
     setContextRoot("/jstl_core_cond_cwo_web");
   }
 
@@ -44,17 +44,17 @@ public class JSTLClient extends AbstractUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_cond_cwo_web.war");
-    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_cond_cwo_web.xml"));
+    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_core_cond_cwo_web.xml"));
 
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWONoWhenActionsTest.jsp")), "negativeCWONoWhenActionsTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOOtherwiseExcBodyContentTest.jsp")), "negativeCWOOtherwiseExcBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOOtherwiseNoParentTest.jsp")), "negativeCWOOtherwiseNoParentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenBeforeOtherwiseTest.jsp")), "negativeCWOWhenBeforeOtherwiseTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenExcBodyContentTest.jsp")), "negativeCWOWhenExcBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenNoParentTest.jsp")), "negativeCWOWhenNoParentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenTestReqAttrTest.jsp")), "negativeCWOWhenTestReqAttrTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenTypeTest.jsp")), "negativeCWOWhenTypeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveCWOTest.jsp")), "positiveCWOTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeCWONoWhenActionsTest.jsp")), "negativeCWONoWhenActionsTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeCWOOtherwiseExcBodyContentTest.jsp")), "negativeCWOOtherwiseExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeCWOOtherwiseNoParentTest.jsp")), "negativeCWOOtherwiseNoParentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenBeforeOtherwiseTest.jsp")), "negativeCWOWhenBeforeOtherwiseTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenExcBodyContentTest.jsp")), "negativeCWOWhenExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenNoParentTest.jsp")), "negativeCWOWhenNoParentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenTestReqAttrTest.jsp")), "negativeCWOWhenTestReqAttrTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenTypeTest.jsp")), "negativeCWOWhenTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveCWOTest.jsp")), "positiveCWOTest.jsp");
 
     archive.addAsLibrary(getCommonJarArchive());
 
@@ -76,7 +76,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void positiveCWOTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCWOTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCWOTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveCWOTest");
     invoke();
@@ -93,7 +93,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void negativeCWOWhenTypeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOWhenTypeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOWhenTypeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenTypeTest");
     invoke();
@@ -109,7 +109,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void negativeCWOWhenExcBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOWhenExcBodyContentTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOWhenExcBodyContentTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenExcBodyContentTest");
     invoke();
@@ -125,7 +125,7 @@ public class JSTLClient extends AbstractUrlClient {
    */
   @Test
   public void negativeCWOOtherwiseExcBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOOtherwiseExcBodyContentTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOOtherwiseExcBodyContentTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeCWOOtherwiseExcBodyContentTest");
     invoke();
