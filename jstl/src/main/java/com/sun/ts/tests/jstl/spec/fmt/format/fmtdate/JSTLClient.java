@@ -14,55 +14,59 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.fmt.format.fmtdate;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_fmtdate_web");
-    setGoldenFileDir("/jstl/spec/fmt/format/fmtdate");
-
-    return super.run(args, out, err);
   }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_fmtdate_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_fmtdate_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeFDScopeNoVarTest.jsp")), "negativeFDScopeNoVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDDateStyleTest.jsp")), "positiveFDDateStyleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDFallbackLocaleTest.jsp")), "positiveFDFallbackLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDLocalizationContextTest.jsp")), "positiveFDLocalizationContextTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDPatternTest.jsp")), "positiveFDPatternTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDScopeTest.jsp")), "positiveFDScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDTimeStyleTest.jsp")), "positiveFDTimeStyleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDTimeZoneNullEmptyTest.jsp")), "positiveFDTimeZoneNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDTimeZonePrecedenceTest.jsp")), "positiveFDTimeZonePrecedenceTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDTimeZoneTest.jsp")), "positiveFDTimeZoneTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDTypeTest.jsp")), "positiveFDTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDValueNullTest.jsp")), "positiveFDValueNullTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDValueTest.jsp")), "positiveFDValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDVarTest.jsp")), "positiveFDVarTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveFDValueTest
@@ -73,7 +77,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that formatDate action can properly format dates
    * provided as String literals or as java.util.Date objects.
    */
+  @Test
   public void positiveFDValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDValueTest");
     invoke();
   }
@@ -88,7 +95,10 @@ public class JSTLClient extends AbstractUrlClient {
    * date will be formatted. - The value is properly formatted when explicity
    * using time, date, or both.
    */
+  @Test
   public void positiveFDTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDTypeTest");
     invoke();
   }
@@ -103,7 +113,10 @@ public class JSTLClient extends AbstractUrlClient {
    * dateStyle is not present, the default value for dateStyle, default, will be
    * applied when type is not specified, or is set to date or both.
    */
+  @Test
   public void positiveFDDateStyleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDDateStyleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDDateStyleTest");
     invoke();
   }
@@ -118,7 +131,10 @@ public class JSTLClient extends AbstractUrlClient {
    * present, the default value for timeStyle, default, will be applied when
    * type is set to time or both.
    */
+  @Test
   public void positiveFDTimeStyleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDTimeStyleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDTimeStyleTest");
     invoke();
   }
@@ -131,7 +147,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStragegy: Validate that if pattern is present, it is properly applied
    * to the date value provided.
    */
+  @Test
   public void positiveFDPatternTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDPatternTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDPatternTest");
     invoke();
   }
@@ -145,7 +164,10 @@ public class JSTLClient extends AbstractUrlClient {
    * String literals representing a time zone, as well as java.util.TimeZone
    * objects.
    */
+  @Test
   public void positiveFDTimeZoneTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDTimeZoneTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZoneTest");
     invoke();
   }
@@ -159,7 +181,10 @@ public class JSTLClient extends AbstractUrlClient {
    * is not written to the current JspWriter, but is instead availabe via the
    * PageContext and is of type String (validation performed via custom action).
    */
+  @Test
   public void positiveFDVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDVarTest");
     invoke();
   }
@@ -174,7 +199,10 @@ public class JSTLClient extends AbstractUrlClient {
    * specified by the scope attribute. Also verify that if scope is not present,
    * that var is exported to the page scope by default.
    */
+  @Test
   public void positiveFDScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDScopeTest");
     invoke();
   }
@@ -188,7 +216,10 @@ public class JSTLClient extends AbstractUrlClient {
    * specified, the scoped variable referenced by var is removed. If var, or
    * scope and var is not specified, no action occurs.
    */
+  @Test
   public void positiveFDValueNullTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDValueNullTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDValueNullTest");
     invoke();
   }
@@ -202,7 +233,10 @@ public class JSTLClient extends AbstractUrlClient {
    * be formatted as if it was present. In this case, the time will be formatted
    * using the page's time zone of EST.
    */
+  @Test
   public void positiveFDTimeZoneNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDTimeZoneNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZoneNullEmptyTest");
     invoke();
   }
@@ -219,7 +253,10 @@ public class JSTLClient extends AbstractUrlClient {
    * attribute present, and not wrapped by the fmt:setTimeZone action, use the
    * value of the scoped attribute jakarta.servlet.jsp.jstl.fmt.timeZone
    */
+  @Test
   public void positiveFDTimeZonePrecedenceTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDTimeZonePrecedenceTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZonePrecedenceTest");
     invoke();
   }
@@ -233,10 +270,13 @@ public class JSTLClient extends AbstractUrlClient {
    * the default I18N localization context configuration variable
    * jakarta.servlet.jsp.jstl.fmt.localizationContext.
    */
+  @Test
   public void positiveFDLocalizationContextTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDLocalizationContextTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveFDLocalizationContextTest");
     TEST_PROPS.setProperty(REQUEST, "positiveFDLocalizationContextTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveFDLocalizationContextTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveFDLocalizationContextTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -249,10 +289,13 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if no matching locale can be found, that the
    * fallback locale will be used.
    */
+  @Test
   public void positiveFDFallbackLocaleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDFallbackLocaleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveFDFallbackLocaleTest");
     TEST_PROPS.setProperty(REQUEST, "positiveFDFallbackLocaleTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveFDFallbackLocaleTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveFDFallbackLocaleTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: xx-XX");
     invoke();
   }
@@ -265,6 +308,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: validate that if var is not specified, but scope is, that a
    * fatal translation error occurs.
    */
+  @Test
   public void negativeFDScopeNoVarTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeFDScopeNoVarTest");
     TEST_PROPS.setProperty(REQUEST, "negativeFDScopeNoVarTest.jsp");

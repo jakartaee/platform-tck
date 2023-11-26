@@ -14,54 +14,62 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.fmt.format.fmtnum;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_fmtnum_web");
-    setGoldenFileDir("/jstl/spec/fmt/format/fmtnum");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_fmtnum_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_fmtnum_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNVarTest.jsp")), "positiveFNVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNValueTest.jsp")), "positiveFNValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNValueNullEmptyTest.jsp")), "positiveFNValueNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNTypeTest.jsp")), "positiveFNTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNScopeTest.jsp")), "positiveFNScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNPatternTest.jsp")), "positiveFNPatternTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNMinIntDigitsTest.jsp")), "positiveFNMinIntDigitsTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNMinFracDigitsTest.jsp")), "positiveFNMinFracDigitsTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNMaxIntDigitsTest.jsp")), "positiveFNMaxIntDigitsTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNMaxFracDigitsTest.jsp")), "positiveFNMaxFracDigitsTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNLocalizationContextTest.jsp")), "positiveFNLocalizationContextTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNGroupingUsedTest.jsp")), "positiveFNGroupingUsedTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNFallbackLocaleTest.jsp")), "positiveFNFallbackLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNCurrencySymbolTest.jsp")), "positiveFNCurrencySymbolTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNCurrencyCodeTest.jsp")), "positiveFNCurrencyCodeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNCodeSymbolTest.jsp")), "positiveFNCodeSymbolTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNBodyValueTest.jsp")), "positiveFNBodyValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeFNUnableToParseValueTest.jsp")), "negativeFNUnableToParseValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeFNScopeNoVarTest.jsp")), "negativeFNScopeNoVarTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,7 +80,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the value attribute can accept both String and
    * Number instances as well as the acceptance of dynamic and static values.
    */
+  @Test
   public void positiveFNValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNValueTest");
     invoke();
   }
@@ -87,7 +98,10 @@ public class JSTLClient extends AbstractUrlClient {
    * affects the formatting of the value. Also validate that if type is not
    * specified, that the value will be formatted as a number by default.
    */
+  @Test
   public void positiveFNTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNTypeTest");
     invoke();
   }
@@ -100,7 +114,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a pattern is properly applied when formatting
    * numbers. Also validate that if pattern is specified, that type is ignored.
    */
+  @Test
   public void positiveFNPatternTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNPatternTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNPatternTest");
     invoke();
   }
@@ -114,7 +131,10 @@ public class JSTLClient extends AbstractUrlClient {
    * value when type is currency. If type is not currency, then currencySymbol
    * should not be applied.
    */
+  @Test
   public void positiveFNCurrencySymbolTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNCurrencySymbolTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNCurrencySymbolTest");
     invoke();
   }
@@ -128,7 +148,10 @@ public class JSTLClient extends AbstractUrlClient {
    * value to be formatted when type is currency. If type is not currency, then
    * currencyCode should not be applied.
    */
+  @Test
   public void positiveFNCurrencyCodeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNCurrencyCodeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNCurrencyCodeTest");
     invoke();
   }
@@ -143,7 +166,10 @@ public class JSTLClient extends AbstractUrlClient {
    * percent). If groupingUsed is not specified, groupings will be applied to
    * the value by default.
    */
+  @Test
   public void positiveFNGroupingUsedTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNGroupingUsedTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNGroupingUsedTest");
     invoke();
   }
@@ -159,7 +185,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the number of integer digits exceeds value of the maxIntegerDigits
    * attribute.
    */
+  @Test
   public void positiveFNMaxIntDigitsTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNMaxIntDigitsTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNMaxIntDigitsTest");
     invoke();
   }
@@ -174,7 +203,10 @@ public class JSTLClient extends AbstractUrlClient {
    * should enforce the minimum number of digits in the final result of the
    * format operation.
    */
+  @Test
   public void positiveFNMinIntDigitsTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNMinIntDigitsTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNMinIntDigitsTest");
     invoke();
   }
@@ -187,7 +219,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: fractional digits exceeds value of the maxIntegerDigits
    * attribute.
    */
+  @Test
   public void positiveFNMaxFracDigitsTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNMaxFracDigitsTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNMaxFracDigitsTest");
     invoke();
   }
@@ -202,7 +237,10 @@ public class JSTLClient extends AbstractUrlClient {
    * should enforce the minimum number of fractional digits in the final result
    * of the format operation.
    */
+  @Test
   public void positiveFNMinFracDigitsTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNMinFracDigitsTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNMinFracDigitsTest");
     invoke();
   }
@@ -216,7 +254,10 @@ public class JSTLClient extends AbstractUrlClient {
    * result and can be referenced by the variable name specified by var. Also
    * validate that the type of the scoped variable is java.lang.String.
    */
+  @Test
   public void positiveFNVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNVarTest");
     invoke();
   }
@@ -230,7 +271,10 @@ public class JSTLClient extends AbstractUrlClient {
    * as well as validating that if scope is not specified, var will be exported
    * to the page scope by default.
    */
+  @Test
   public void positiveFNScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNScopeTest");
     invoke();
   }
@@ -243,7 +287,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the value attribute is provided with a null
    * or empty value, that no action is performed.
    */
+  @Test
   public void positiveFNValueNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNValueNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNValueNullEmptyTest");
     invoke();
   }
@@ -256,7 +303,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the value to be formatted can be provided as
    * body content to the action.
    */
+  @Test
   public void positiveFNBodyValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNBodyValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNBodyValueTest");
     invoke();
   }
@@ -273,7 +323,10 @@ public class JSTLClient extends AbstractUrlClient {
    * currencySymbol will take precedence over currencyCode. In this case USD
    * should prefix the formatted value.
    */
+  @Test
   public void positiveFNCodeSymbolTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNCodeSymbolTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveFNCodeSymbolTest");
     invoke();
   }
@@ -287,7 +340,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the default I18N localization context configuration variable
    * jakarta.servlet.jsp.jstl.fmt.localizationContext.
    */
+  @Test
   public void positiveFNLocalizationContextTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNLocalizationContextTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveFNLocalizationContextTest");
     TEST_PROPS.setProperty(REQUEST, "positiveFNLocalizationContextTest.jsp");
     TEST_PROPS.setProperty(GOLDENFILE, "positiveFNLocalizationContextTest.gf");
@@ -303,7 +359,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if no matching locale can be found, that the
    * fallback locale will be used.
    */
+  @Test
   public void positiveFNFallbackLocaleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNFallbackLocaleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveFNFallbackLocaleTest");
     TEST_PROPS.setProperty(REQUEST, "positiveFNFallbackLocaleTest.jsp");
     TEST_PROPS.setProperty(GOLDENFILE, "positiveFNFallbackLocaleTest.gf");
@@ -321,7 +380,10 @@ public class JSTLClient extends AbstractUrlClient {
    * with the rethrown unparsable value in the exception text and the original
    * exception set as the root cause of the JspException.
    */
+  @Test
   public void negativeFNUnableToParseValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeFNUnableToParseValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeFNUnableToParseValueTest");
     invoke();
   }
@@ -334,6 +396,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: validate that if var is not specified, but scope is, that a
    * fatal translation error occurs.
    */
+  @Test
   public void negativeFNScopeNoVarTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeFNScopeNoVarTest");
     TEST_PROPS.setProperty(REQUEST, "negativeFNScopeNoVarTest.jsp");

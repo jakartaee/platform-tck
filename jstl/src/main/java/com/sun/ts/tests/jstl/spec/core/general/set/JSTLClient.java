@@ -14,54 +14,51 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.core.general.set;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import java.io.IOException;
+import java.io.InputStream;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_core_gen_set_web");
-    setGoldenFileDir("/jstl/spec/core/general/set");
+  }
 
-    return super.run(args, out, err);
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_gen_set_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_gen_set_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeSetBodyContentExcTest.jsp")), "negativeSetBodyContentExcTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeSetTargetNullInvalidObjTest.jsp")), "negativeSetTargetNullInvalidObjTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetBodyBehaviorTest.jsp")), "positiveSetBodyBehaviorTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetDeferredValueTest.jsp")), "positiveSetDeferredValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetNullValueTest.jsp")), "positiveSetNullValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetPropertyTest.jsp")), "positiveSetPropertyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetScopeTest.jsp")), "positiveSetScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTest.jsp")), "positiveSetTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -73,7 +70,10 @@ public class JSTLClient extends AbstractUrlClient {
    * 'value' attribute are made available to the test page by using <c:out> to
    * print the values.
    */
+  @Test
   public void positiveSetTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetTest");
     invoke();
   }
@@ -86,7 +86,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the value of the exported var can be set within the
    * body of the <c:set> action. Verify the result using <c:out>
    */
+  @Test
   public void positiveSetBodyBehaviorTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetBodyBehaviorTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetBodyBehaviorTest");
     invoke();
   }
@@ -102,7 +105,10 @@ public class JSTLClient extends AbstractUrlClient {
    * scopes and then print the values using PageContext.getAttribute(String,
    * int).
    */
+  @Test
   public void positiveSetScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetScopeTest");
     invoke();
   }
@@ -121,7 +127,10 @@ public class JSTLClient extends AbstractUrlClient {
    * a property in a Bean and value is null, will return null when calling the
    * get method for that propery after the set completes.
    */
+  @Test
   public void positiveSetNullValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetNullValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetNullValueTest");
     invoke();
   }
@@ -135,7 +144,10 @@ public class JSTLClient extends AbstractUrlClient {
    * and set key/values in Map instances using the target and property
    * attributes.
    */
+  @Test
   public void positiveSetPropertyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetPropertyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetPropertyTest");
     invoke();
   }
@@ -148,7 +160,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the body content of the action is thrown,
    * that it is properly propagated.
    */
+  @Test
   public void negativeSetBodyContextExcTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeSetBodyContentExcTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeSetBodyContentExcTest");
     invoke();
   }
@@ -162,7 +177,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the target attribute is null, or is provided an object that is no a
    * JavaBean or an instance of java.util.Map.
    */
+  @Test
   public void negativeSetTargetNullInvalidObjTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeSetTargetNullInvalidObjTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeSetTargetNullInvalidObjTest");
     invoke();
   }
@@ -176,7 +194,10 @@ public class JSTLClient extends AbstractUrlClient {
    * second tag, set the variable to have application scope. Verify that the
    * value can be retrieved after the execution of the tag.
    */
+  @Test
   public void positiveSetDeferredValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetDeferredValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetDeferredValueTest");
     invoke();
   }

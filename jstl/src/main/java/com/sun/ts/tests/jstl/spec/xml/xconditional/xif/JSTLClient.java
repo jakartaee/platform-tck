@@ -14,55 +14,53 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.xml.xconditional.xif;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_xml_xif_web");
-    setGoldenFileDir("/jstl/spec/xml/xconditional/xif");
-
-    return super.run(args, out, err);
   }
+
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_xml_xif_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_xml_xif_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeIfInvalidScopeTest.jsp")), "negativeIfInvalidScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeIfScopeVarTest.jsp")), "negativeIfScopeVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeIfSelectFailureTest.jsp")), "negativeIfSelectFailureTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeIfSelectReqAttrTest.jsp")), "negativeIfSelectReqAttrTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfSelectTest.jsp")), "positiveIfSelectTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfVarTest.jsp")), "positiveIfVarTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveIfSelectTest
@@ -73,7 +71,10 @@ public class JSTLClient extends AbstractUrlClient {
    * select attribute, will, depending on the result cause the <x:if> action to
    * process its body content.
    */
+  @Test
   public void positiveIfSelectTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfSelectTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfSelectTest");
     invoke();
   }
@@ -88,7 +89,10 @@ public class JSTLClient extends AbstractUrlClient {
    * name provided to var. - if var is present, and the action has a body, the
    * body is still processed.
    */
+  @Test
   public void positiveIfVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfVarTest");
     invoke();
   }
@@ -103,7 +107,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the scope attribute. If scope is not specified, var will be exported to the
    * page scope by default.
    */
+  @Test
   public void positiveIfScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveIfScopeTest");
     invoke();
   }
@@ -116,6 +123,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if scope is provided an invalid value, a fatal
    * translation error occurs.
    */
+  @Test
   public void negativeIfInvalidScopeTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeIfInvalidScopeTest");
     TEST_PROPS.setProperty(REQUEST, "negativeIfInvalidScopeTest.jsp");
@@ -132,6 +140,7 @@ public class JSTLClient extends AbstractUrlClient {
    * having an <x:if> action with no select. A fatal translation error should
    * occur.
    */
+  @Test
   public void negativeIfSelectReqAttrTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeIfSelectReqAttrTest");
     TEST_PROPS.setProperty(REQUEST, "negativeIfSelectReqAttrTest.jsp");
@@ -147,6 +156,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate a fatal translation error occurs if scope is
    * specified by an action, but var is not.
    */
+  @Test
   public void negativeIfScopeVarTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeIfScopeVarTest");
     TEST_PROPS.setProperty(REQUEST, "negativeIfScopeVarTest.jsp");
@@ -163,7 +173,10 @@ public class JSTLClient extends AbstractUrlClient {
    * is thrown if the XPath expression provided to the select attribute fails to
    * evaluate.
    */
+  @Test
   public void negativeIfSelectFailureTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeIfSelectFailureTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeIfSelectFailureTest");
     invoke();
   }

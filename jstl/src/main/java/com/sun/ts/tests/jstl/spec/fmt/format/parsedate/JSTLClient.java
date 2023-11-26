@@ -20,48 +20,57 @@
 
 package com.sun.ts.tests.jstl.spec.fmt.format.parsedate;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_psdate_web");
-    setGoldenFileDir("/jstl/spec/fmt/format/parsedate");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_psdate_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_psdate_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativePDScopeNoVarTest.jsp")), "negativePDScopeNoVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativePDUnableToParseValueTest.jsp")), "negativePDUnableToParseValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDBodyValueTest.jsp")), "positivePDBodyValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDDateStyleTest.jsp")), "positivePDDateStyleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDFallbackLocaleTest.jsp")), "positivePDFallbackLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDLocalizationContextTest.jsp")), "positivePDLocalizationContextTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDParseLocaleNullEmptyTest.jsp")), "positivePDParseLocaleNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDParseLocaleTest.jsp")), "positivePDParseLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDPatternTest.jsp")), "positivePDPatternTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDScopeTest.jsp")), "positivePDScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDTimeStyleTest.jsp")), "positivePDTimeStyleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDTimeZoneNullEmptyTest.jsp")), "positivePDTimeZoneNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDTimeZonePrecedenceTest.jsp")), "positivePDTimeZonePrecedenceTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDTimeZoneTest.jsp")), "positivePDTimeZoneTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDTypeTest.jsp")), "positivePDTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDValueNullEmptyTest.jsp")), "positivePDValueNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDValueTest.jsp")), "positivePDValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDVarTest.jsp")), "positivePDVarTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -73,7 +82,10 @@ public class JSTLClient extends AbstractUrlClient {
    * provided as dynamic or static String values. Pass the parsed value to
    * formatDate to display (due to possible timezone difference).
    */
+  @Test
   public void positivePDValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDValueTest");
     invoke();
   }
@@ -90,7 +102,10 @@ public class JSTLClient extends AbstractUrlClient {
    * parsed value to formatDate to display (due to possible timezone
    * difference).
    */
+  @Test
   public void positivePDTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDTypeTest");
     invoke();
   }
@@ -108,7 +123,10 @@ public class JSTLClient extends AbstractUrlClient {
    * dateStyle is not present, the action will assume the date to be parsed is
    * in the default style.
    */
+  @Test
   public void positivePDDateStyleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDDateStyleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positivePDDateStyleTest");
     TEST_PROPS.setProperty(REQUEST, "positivePDDateStyleTest.jsp");
     TEST_PROPS.setProperty(STATUS_CODE, OK);
@@ -127,7 +145,10 @@ public class JSTLClient extends AbstractUrlClient {
    * be applied when type is set to time or both. - If timeStyle is not present,
    * the action will assume the time to be parsed is in the default style.
    */
+  @Test
   public void positivePDTimeStyleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeStyleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeStyleTest");
     TEST_PROPS.setProperty(REQUEST, "positivePDTimeStyleTest.jsp");
     TEST_PROPS.setProperty(STATUS_CODE, OK);
@@ -144,7 +165,10 @@ public class JSTLClient extends AbstractUrlClient {
    * setting the locale of the page to de_DE, and pass en_US to the action
    * itself. No parsing exceptions should occur.
    */
+  @Test
   public void positivePDParseLocaleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDParseLocaleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positivePDParseLocaleTest");
     TEST_PROPS.setProperty(REQUEST, "positivePDParseLocaleTest.jsp");
     TEST_PROPS.setProperty(STATUS_CODE, OK);
@@ -160,7 +184,10 @@ public class JSTLClient extends AbstractUrlClient {
    * when parsing the date value provided. Pass the parsed value to formatDate
    * to display (due to possible timezone difference).
    */
+  @Test
   public void positivePDPatternTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDPatternTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDPatternTest");
     invoke();
   }
@@ -175,7 +202,10 @@ public class JSTLClient extends AbstractUrlClient {
    * available via the PageContext and is of type java.util.Date (validation
    * performed via custom action).
    */
+  @Test
   public void positivePDVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDVarTest");
     invoke();
   }
@@ -190,7 +220,10 @@ public class JSTLClient extends AbstractUrlClient {
    * specified by the scope attribute. Also verify that if scope is not present,
    * that var is exported to the page scope by default.
    */
+  @Test
   public void positivePDScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDScopeTest");
     invoke();
   }
@@ -207,7 +240,10 @@ public class JSTLClient extends AbstractUrlClient {
    * parsed value to formatDate to display (due to possible timezone
    * difference).
    */
+  @Test
   public void positivePDValueNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDValueNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDValueNullEmptyTest");
     invoke();
   }
@@ -220,7 +256,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the action can properly parse a date string
    * provided as body content to the action.
    */
+  @Test
   public void positivePDBodyValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDBodyValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDBodyValueTest");
     invoke();
   }
@@ -236,7 +275,10 @@ public class JSTLClient extends AbstractUrlClient {
    * configuration variable. Pass the parsed value to formatDate to display (due
    * to possible timezone difference).
    */
+  @Test
   public void positivePDParseLocaleNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDParseLocaleNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDParseLocaleNullEmptyTest");
     invoke();
   }
@@ -251,10 +293,13 @@ public class JSTLClient extends AbstractUrlClient {
    * jakarta.servlet.jsp.jstl.fmt.localizationContext. Pass the parsed value to
    * formatDate to display (due to possible timezone difference).
    */
+  @Test
   public void positivePDLocalizationContextTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDLocalizationContextTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positivePDLocalizationContextTest");
     TEST_PROPS.setProperty(REQUEST, "positivePDLocalizationContextTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positivePDLocalizationContextTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positivePDLocalizationContextTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -268,10 +313,13 @@ public class JSTLClient extends AbstractUrlClient {
    * fallback locale will be used. Pass the parsed value to formatDate to
    * display (due to possible timezone difference).
    */
+  @Test
   public void positivePDFallbackLocaleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDFallbackLocaleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positivePDFallbackLocaleTest");
     TEST_PROPS.setProperty(REQUEST, "positivePDFallbackLocaleTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positivePDFallbackLocaleTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positivePDFallbackLocaleTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: xx-XX");
     invoke();
   }
@@ -286,7 +334,10 @@ public class JSTLClient extends AbstractUrlClient {
    * with the rethrown unparsable value in the exception text and the original
    * exception set as the root cause of the JspException.
    */
+  @Test
   public void negativePDUnableToParseValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativePDUnableToParseValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativePDUnableToParseValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -302,7 +353,10 @@ public class JSTLClient extends AbstractUrlClient {
    * objects. Pass the parsed value to formatDate to display (due to possible
    * timezone difference).
    */
+  @Test
   public void positivePDTimeZoneTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZoneTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDTimeZoneTest");
     invoke();
   }
@@ -317,7 +371,10 @@ public class JSTLClient extends AbstractUrlClient {
    * using the page's time zone of EST. Pass the parsed value to formatDate to
    * display (due to possible timezone difference).
    */
+  @Test
   public void positivePDTimeZoneNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZoneNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDTimeZoneNullEmptyTest");
     invoke();
   }
@@ -336,7 +393,10 @@ public class JSTLClient extends AbstractUrlClient {
    * parsed value to formatDate to display (due to possible timezone
    * difference).
    */
+  @Test
   public void positivePDTimeZonePrecedenceTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZonePrecedenceTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePDTimeZonePrecedenceTest");
     invoke();
   }
@@ -349,6 +409,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: validate that if var is not specified, but scope is, that a
    * fatal translation error occurs.
    */
+  @Test
   public void negativePDScopeNoVarTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativePDScopeNoVarTest");
     TEST_PROPS.setProperty(REQUEST, "negativePDScopeNoVarTest.jsp");

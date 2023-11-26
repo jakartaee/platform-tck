@@ -14,55 +14,54 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.xml.xconditional.xcwo;
 
-import java.io.PrintWriter;
-
-import com.sun.javatest.Status;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.IOException;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_xml_xcwo_web");
-    setGoldenFileDir("/jstl/spec/xml/xconditional/xcwo");
-
-    return super.run(args, out, err);
   }
+
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_xml_xcwo_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_xml_xcwo_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWONoWhenActionsTest.jsp")), "negativeCWONoWhenActionsTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOOtherwiseNoParentTest.jsp")), "negativeCWOOtherwiseNoParentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenBeforeOtherwiseTest.jsp")), "negativeCWOWhenBeforeOtherwiseTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenNoParentTest.jsp")), "negativeCWOWhenNoParentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenSelectFailureTest.jsp")), "negativeCWOWhenSelectFailureTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeCWOWhenSelectReqAttrTest.jsp")), "negativeCWOWhenSelectReqAttrTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveCWOTest.jsp")), "positiveCWOTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveCWOWhiteSpaceTest.jsp")), "positiveCWOWhiteSpaceTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveCWOTest
@@ -79,7 +78,10 @@ public class JSTLClient extends AbstractUrlClient {
    * evaluates to true, and an c:otherwise action is present, the body content
    * of the action is processed.
    */
+  @Test
   public void positiveCWOTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCWOTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveCWOTest");
     invoke();
   }
@@ -93,7 +95,10 @@ public class JSTLClient extends AbstractUrlClient {
    * whitespace is intermixed with choose's nested when and otherwise actions.
    * No translation error should occur.
    */
+  @Test
   public void positiveCWOWhiteSpaceTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCWOWhiteSpaceTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveCWOWhiteSpaceTest");
     invoke();
   }
@@ -106,6 +111,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if the choose
    * action has no nested when actions.
    */
+  @Test
   public void negativeCWONoWhenActionsTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWONoWhenActionsTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWONoWhenActionsTest.jsp");
@@ -121,6 +127,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if otherwise
    * appears before when or if when appears after otherwise.
    */
+  @Test
   public void negativeCWOWhenBeforeOtherwiseTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenBeforeOtherwiseTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWOWhenBeforeOtherwiseTest.jsp");
@@ -136,6 +143,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate a fatal translation error occurs if a when action
    * has no choose as an immediate parent.
    */
+  @Test
   public void negativeCWOWhenNoParentTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenNoParentTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWOWhenNoParentTest.jsp");
@@ -151,6 +159,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate a fatal translation error occurs if an otherwise
    * action has no choose as an immediate parent.
    */
+  @Test
   public void negativeCWOOtherwiseNoParentTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWOOtherwiseNoParentTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWOOtherwiseNoParentTest.jsp");
@@ -166,6 +175,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if a nested
    * when action has no select attribute.
    */
+  @Test
   public void negativeCWOWhenSelectReqAttrTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeCWOWhenSelectReqAttrTest");
     TEST_PROPS.setProperty(REQUEST, "negativeCWOWhenSelectReqAttrTest.jsp");
@@ -182,7 +192,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the when action fails to evaluated an instance of
    * jakarta.servlet.jsp.JspException is thrown.
    */
+  @Test
   public void negativeCWOWhenSelectFailureTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeCWOWhenSelectFailureTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeCWOWhenSelectFailureTest");
     invoke();
   }

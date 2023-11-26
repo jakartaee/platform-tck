@@ -14,54 +14,51 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.core.general.outtag;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_core_gen_out_web");
-    setGoldenFileDir("/jstl/spec/core/general/outtag");
+  }
 
-    return super.run(args, out, err);
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_gen_out_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_gen_out_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveOutValueAttributeTest.jsp")), "positiveOutValueAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveOutDefaultAttributeTest.jsp")), "positiveOutDefaultAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveOutBodyBehaviorTest.jsp")), "positiveOutBodyBehaviorTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveOutEscXmlDefaultTest.jsp")), "positiveOutEscXmlDefaultTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveOutEscXmlTest.jsp")), "positiveOutEscXmlTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeOutBodyContentExcTest.jsp")), "negativeOutBodyContentExcTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveOutReaderTest.jsp")), "positiveOutReaderTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,7 +69,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the the 'value' attribute of the out action can
    * accept both EL and static values.
    */
+  @Test
   public void positiveOutValueAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveOutValueAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveOutValueAttributeTest");
     invoke();
   }
@@ -85,7 +85,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the 'default' attribute of the out action can
    * accept both EL and static values.
    */
+  @Test
   public void positiveOutDefaultAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveOutDefaultAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveOutDefaultAttributeTest");
     invoke();
   }
@@ -100,7 +103,10 @@ public class JSTLClient extends AbstractUrlClient {
    * action.
    *
    */
+  @Test
   public void positiveOutBodyBehaviorTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveOutBodyBehaviorTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveOutBodyBehaviorTest");
     invoke();
   }
@@ -113,7 +119,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if escapeXml is not specified, the escaping of
    * <, >, ', ", & will be performed by default.
    */
+  @Test
   public void positiveOutEscXmlDefaultTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveOutEscXmlDefaultTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveOutEscXmlDefaultTest");
     invoke();
   }
@@ -128,7 +137,10 @@ public class JSTLClient extends AbstractUrlClient {
    * setting is true or false. If true, <, >, ', ", and & will be escaped, and
    * if false, no escaping is performed.
    */
+  @Test
   public void positiveOutEscXmlTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveOutEscXmlTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveOutEscXmlTest");
     invoke();
   }
@@ -141,7 +153,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that an exception caused by the body content is
    * properly propagated and not handled by the action.
    */
+  @Test
   public void negativeOutBodyContentExcTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeOutBodyContentExcTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeOutBodyContentExcTest");
     invoke();
   }
@@ -155,6 +170,7 @@ public class JSTLClient extends AbstractUrlClient {
    * value attribute of the out tag, that the contents of the reader are emitted
    * to the current JspWriter object.
    */
+  @Test
   public void positiveOutReaderTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_core_gen_out_web/positiveOutReaderTest.jsp HTTP/1.1");

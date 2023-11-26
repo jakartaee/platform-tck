@@ -14,55 +14,44 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.xml.xmlcore.bindings;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_xml_bindings_web");
-    setGoldenFileDir("/jstl/spec/xml/xmlcore/bindings");
-
-    return super.run(args, out, err);
   }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_xml_bindings_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_xml_bindings_web.xml"));
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveXPathVariableBindingsTest.jsp")), "positiveXPathVariableBindingsTest.jsp");
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveXPathVariableBindingsTest
@@ -83,14 +72,17 @@ public class JSTLClient extends AbstractUrlClient {
    * PageContext.SESSION_SCOPE) $applicationScope:foo -
    * pageContext.getAttribute("foo", PageContext.APPLICATION_SCOPE)
    */
+  @Test
   public void positiveXPathVariableBindingsTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveXPathVariableBindingsTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveXPathVariableBindingsTest");
     TEST_PROPS.setProperty(REQUEST,
         "positiveXPathVariableBindingsTest.jsp?param1=RequestParameter1");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "reqheader:RequestHeader|Cookie: $Version=1; mycookie=CookieFound; $Domain="
             + _hostname + "; $Path=/jstl_xml_bindings_web");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveXPathVariableBindingsTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveXPathVariableBindingsTest.gf");
     invoke();
   }
 }

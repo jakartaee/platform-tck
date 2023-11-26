@@ -20,48 +20,45 @@
 
 package com.sun.ts.tests.jstl.spec.fmt.format.settimezone;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_stz_web");
-    setGoldenFileDir("/jstl/spec/fmt/format/settimezone");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_stz_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_stz_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneAttrScopeTest.jsp")), "positiveSetTimezoneAttrScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneScopeTest.jsp")), "positiveSetTimezoneScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneSetAttrTest.jsp")), "positiveSetTimezoneSetAttrTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneValueNullEmptyTest.jsp")), "positiveSetTimezoneValueNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneValueTest.jsp")), "positiveSetTimezoneValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneVarTest.jsp")), "positiveSetTimezoneVarTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -75,7 +72,10 @@ public class JSTLClient extends AbstractUrlClient {
    * as well as three letter timezones (ex. PST) or fully qualified values (ex.
    * America/Los_Angeles).
    */
+  @Test
   public void positiveSetTimezoneValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -89,7 +89,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a scoped variable of type java.util.TimeZone
    * is properly set and associated with the variable name specified by var.
    */
+  @Test
   public void positiveSetTimezoneVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneVarTest");
     invoke();
   }
@@ -105,7 +108,10 @@ public class JSTLClient extends AbstractUrlClient {
    * that if var is specified and scope is not, that var is exported to the page
    * scope by default.
    */
+  @Test
   public void positiveSetTimezoneScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneScopeTest");
     invoke();
   }
@@ -118,7 +124,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the value attribute is null or empty, the
    * GMT+0 timezone is used by the formatting actions that rely on timezone.
    */
+  @Test
   public void positiveSetTimezoneValueNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueNullEmptyTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -132,7 +141,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if var is not set, the scoped variable
    * jakarta.servlet.jsp.jstl.fmt.timeZone is properly set.
    */
+  @Test
   public void positiveSetTimezoneSetAttrTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneSetAttrTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneSetAttrTest");
     invoke();
   }
@@ -147,7 +159,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the scoped variable, jakarta.servlet.jsp.jstl.fmt.timeZone is exported to the
    * appropriate scope.
    */
+  @Test
   public void positiveSetTimezoneAttrScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneAttrScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneAttrScopeTest");
     invoke();
   }

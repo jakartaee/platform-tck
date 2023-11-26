@@ -14,54 +14,49 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.fmt.i18n.bundle;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_bundle_web");
-    setGoldenFileDir("/jstl/spec/fmt/i18n/bundle");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_bundle_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_bundle_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBundleBasenameNullEmptyTest.jsp")), "positiveBundleBasenameNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBundleBasenameTest.jsp")), "positiveBundleBasenameTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBundleFallbackLocaleTest.jsp")), "positiveBundleFallbackLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBundleLocaleConfigurationTest.jsp")), "positiveBundleLocaleConfigurationTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBundleLocalizationScopeTest.jsp")), "positiveBundleLocalizationScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBundlePrefixTest.jsp")), "positiveBundlePrefixTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,10 +67,13 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that ResourceBundles can be properly located by the
    * specifed basename attribute and that the appropriate messages are printed.
    */
+  @Test
   public void positiveBundleBasenameTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundleBasenameTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveBundleBasenameTest");
     TEST_PROPS.setProperty(REQUEST, "positiveBundleBasenameTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveBundleBasenameTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveBundleBasenameTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
@@ -88,10 +86,13 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStragegy: Validate that messages can be properly looked up and
    * displayed when a prefix is specified.
    */
+  @Test
   public void positiveBundlePrefixTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundlePrefixTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveBundlePrefixTest");
     TEST_PROPS.setProperty(REQUEST, "positiveBundlePrefixTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveBundlePrefixTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveBundlePrefixTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
@@ -105,11 +106,14 @@ public class JSTLClient extends AbstractUrlClient {
    * that are displayed are in the form of "???<key>???" where <key> is the name
    * of the key that failed the lookup
    */
+  @Test
   public void positiveBundleBasenameNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundleBasenameNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveBundleBasenameNullEmptyTest");
     TEST_PROPS.setProperty(REQUEST, "positiveBundleBasenameNullEmptyTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE,
-        "positiveBundleBasenameNullEmptyTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE,
+    //     "positiveBundleBasenameNullEmptyTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
@@ -123,11 +127,14 @@ public class JSTLClient extends AbstractUrlClient {
    * bundle action, that any messages within the body of the bundle action are
    * properly localized and any message actions outside the body are not.
    */
+  @Test
   public void positiveBundleLocalizationScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundleLocalizationScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveBundleLocalizationScopeTest");
     TEST_PROPS.setProperty(REQUEST, "positiveBundleLocalizationScopeTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE,
-        "positiveBundleLocalizationScopeTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE,
+    //     "positiveBundleLocalizationScopeTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
@@ -145,12 +152,15 @@ public class JSTLClient extends AbstractUrlClient {
    * across the wire that, if used, will not resolve to any ResourceBundle (no
    * fallback defined).
    */
+  @Test
   public void positiveBundleLocaleConfigurationTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundleLocaleConfigurationTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveBundleLocaleConfigurationTest");
     TEST_PROPS.setProperty(REQUEST,
         "positiveBundleLocaleConfigurationTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE,
-        "positiveBundleLocaleConfigurationTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE,
+    //     "positiveBundleLocaleConfigurationTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: ja");
     invoke();
   }
@@ -169,9 +179,12 @@ public class JSTLClient extends AbstractUrlClient {
    * configured using a String representation of a locale as well as an Instance
    * of Locale.
    */
+  @Test
   public void positiveBundleFallbackLocaleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundleFallbackLocaleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveBundleFallbackLocaleTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveBundleFallbackLocaleTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveBundleFallbackLocaleTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveBundleFallbackLocaleTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: ja");
     invoke();

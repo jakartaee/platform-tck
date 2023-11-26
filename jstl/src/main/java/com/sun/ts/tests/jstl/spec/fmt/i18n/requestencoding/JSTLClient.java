@@ -14,54 +14,47 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.fmt.i18n.requestencoding;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_reqenc_web");
-    setGoldenFileDir("/jstl/spec/fmt/i18n/requestencoding");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_reqenc_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_reqenc_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveContentTypeEncodingTest.jsp")), "positiveContentTypeEncodingTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDefaultEncodingTest.jsp")), "positiveDefaultEncodingTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveReqEncodingValueTest.jsp")), "positiveReqEncodingValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveScopedAttrEncodingTest.jsp")), "positiveScopedAttrEncodingTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,7 +65,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that setting the value of the requestEncoding
    * action correctly sets the encoding of the page.
    */
+  @Test
   public void positiveReqEncodingValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveReqEncodingValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveReqEncodingValueTest");
     invoke();
   }
@@ -88,12 +84,15 @@ public class JSTLClient extends AbstractUrlClient {
    * getCharacterEncoding() against the request object after the action has been
    * called.
    */
+  @Test
   public void positiveContentTypeEncodingTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveContentTypeEncodingTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveContentTypeEncodingTest");
     TEST_PROPS.setProperty(REQUEST, "positiveContentTypeEncodingTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS,
         "Content-Type: text/plain; charset=UTF-8");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveContentTypeEncodingTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveContentTypeEncodingTest.gf");
     invoke();
   }
 
@@ -109,7 +108,10 @@ public class JSTLClient extends AbstractUrlClient {
    * getCharacterEncoding() against the request object after the action has been
    * called.
    */
+  @Test
   public void positiveScopedAttrEncodingTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveScopedAttrEncodingTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveScopedAttrEncodingTest");
     invoke();
   }
@@ -126,7 +128,10 @@ public class JSTLClient extends AbstractUrlClient {
    * getCharacterEncoding() against the request object after the action has been
    * called.
    */
+  @Test
   public void positiveDefaultEncodingTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDefaultEncodingTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDefaultEncodingTest");
     invoke();
   }

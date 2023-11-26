@@ -14,54 +14,60 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.fmt.i18n.message;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_message_web");
-    setGoldenFileDir("/jstl/spec/fmt/i18n/message");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_message_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_message_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/localeSupportTest.jsp")), "localeSupportTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeLocaleSupportTest.jsp")), "negativeLocaleSupportTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageBundleOverrideTest.jsp")), "positiveMessageBundleOverrideTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageBundleTest.jsp")), "positiveMessageBundleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageCompoundNoParamTest.jsp")), "positiveMessageCompoundNoParamTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageFallbackLocaleTest.jsp")), "positiveMessageFallbackLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageKeyBodyTest.jsp")), "positiveMessageKeyBodyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageKeyNotFoundTest.jsp")), "positiveMessageKeyNotFoundTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageKeyNullEmptyTest.jsp")), "positiveMessageKeyNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageKeyParamBodyTest.jsp")), "positiveMessageKeyParamBodyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageKeyTest.jsp")), "positiveMessageKeyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageLocaleConfigurationTest.jsp")), "positiveMessageLocaleConfigurationTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageNoLocalizationContextTest.jsp")), "positiveMessageNoLocalizationContextTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageParamBodyTest.jsp")), "positiveMessageParamBodyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessagePrefixTest.jsp")), "positiveMessagePrefixTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageScopeTest.jsp")), "positiveMessageScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageVarTest.jsp")), "positiveMessageVarTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -73,9 +79,12 @@ public class JSTLClient extends AbstractUrlClient {
    * and display the message associated with the provided key. This will also
    * establish that the key attribute can accept both static and dynamic values.
    */
+  @Test
   public void positiveMessageKeyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageKeyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageKeyTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -89,9 +98,12 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the message action can lookup a localized
    * message from a ResourceBundle specified via the bundle attribute.
    */
+  @Test
   public void positiveMessageBundleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageBundleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageBundleTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageBundleTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageBundleTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageBundleTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -106,9 +118,12 @@ public class JSTLClient extends AbstractUrlClient {
    * to the current JspWriter, but is exported to the PageContext and associated
    * with the name specified by var.
    */
+  @Test
   public void positiveMessageVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageVarTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageVarTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageVarTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageVarTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -124,9 +139,12 @@ public class JSTLClient extends AbstractUrlClient {
    * var is exported. This will also validate that if var is specified, but
    * scope is not, var is exported to the page scope by default.
    */
+  @Test
   public void positiveMessageScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageScopeTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageScopeTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageScopeTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageScopeTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -140,9 +158,12 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the key attribute evaluates to null, or is
    * empty (""), that '??????' is written to the current JspWriter.
    */
+  @Test
   public void positiveMessageKeyNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageKeyNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyNullEmptyTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyNullEmptyTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyNullEmptyTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageKeyNullEmptyTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -157,9 +178,12 @@ public class JSTLClient extends AbstractUrlClient {
    * does not exist in the ResourceBundle being used, the '???<key>???' is
    * written to the current JspWriter (<key> is the unknown key).
    */
+  @Test
   public void positiveMessageKeyNotFoundTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageKeyNotFoundTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyNotFoundTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyNotFoundTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyNotFoundTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageKeyNotFoundTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -173,9 +197,12 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the message action can properly look up a
    * localized message when the key is provided as body content to the action.
    */
+  @Test
   public void positiveMessageKeyBodyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageKeyBodyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyBodyTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyBodyTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyBodyTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageKeyBodyTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -190,9 +217,12 @@ public class JSTLClient extends AbstractUrlClient {
    * display compound messages with the key and <fmt:param> subtags provided as
    * body content to the action.
    */
+  @Test
   public void positiveMessageKeyParamBodyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageKeyParamBodyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyParamBodyTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyParamBodyTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyParamBodyTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageKeyParamBodyTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -207,9 +237,12 @@ public class JSTLClient extends AbstractUrlClient {
    * replacement of parameters provided as body content against a compound
    * message.
    */
+  @Test
   public void positiveMessageParamBodyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageParamBodyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageParamBodyTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageParamBodyTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageParamBodyTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageParamBodyTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -223,9 +256,12 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if a message is compound and no param subtags
    * are provided, the message is returned as is.
    */
+  @Test
   public void positiveMessageCompoundNoParamTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageCompoundNoParamTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageCompoundNoParamTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageCompoundNoParamTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageCompoundNoParamTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageCompoundNoParamTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -239,9 +275,12 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a message action will use the prefix specified
    * by a parent bundle action when looking up messsage keys.
    */
+  @Test
   public void positiveMessagePrefixTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessagePrefixTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessagePrefixTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessagePrefixTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessagePrefixTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessagePrefixTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -257,9 +296,12 @@ public class JSTLClient extends AbstractUrlClient {
    * the key look up will be performed against the resource bundle specified by
    * the bundle attribute.
    */
+  @Test
   public void positiveMessageBundleOverrideTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageBundleOverrideTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageBundleOverrideTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageBundleOverrideTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageBundleOverrideTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageBundleOverrideTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -274,7 +316,10 @@ public class JSTLClient extends AbstractUrlClient {
    * message action has a null resource bundle, the message displayed is
    * ???<key>???.
    */
+  @Test
   public void positiveMessageNoLocalizationContextTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageNoLocalizationContextTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveMessageNoLocalizationContextTest");
     invoke();
@@ -293,10 +338,13 @@ public class JSTLClient extends AbstractUrlClient {
    * send a preferred locale across the wire that, if used, will not resolve to
    * any ResourceBundle (no fallback defined).
    */
+  @Test
   public void positiveMessageLocaleConfigurationTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageLocaleConfigurationTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageLocaleConfigurationTest");
-    TEST_PROPS.setProperty(GOLDENFILE,
-        "positiveMessageLocaleConfigurationTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE,
+    //     "positiveMessageLocaleConfigurationTest.gf");
     TEST_PROPS.setProperty(REQUEST,
         "positiveMessageLocaleConfigurationTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: ja");
@@ -316,9 +364,12 @@ public class JSTLClient extends AbstractUrlClient {
    * Additionally verify that the fallbackLocale variable can be configured
    * using a String representation of a locale as well as an instance of Locale.
    */
+  @Test
   public void positiveMessageFallbackLocaleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageFallbackLocaleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageFallbackLocaleTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageFallbackLocaleTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageFallbackLocaleTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageFallbackLocaleTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: ja");
     invoke();

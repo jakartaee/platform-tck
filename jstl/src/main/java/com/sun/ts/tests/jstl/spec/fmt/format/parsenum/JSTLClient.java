@@ -14,54 +14,56 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.fmt.format.parsenum;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_psnum_web");
-    setGoldenFileDir("/jstl/spec/fmt/format/parsenum");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_psnum_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_psnum_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativePNScopeNoVarTest.jsp")), "negativePNScopeNoVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativePNUnableToParseValueTest.jsp")), "negativePNUnableToParseValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNBodyValueTest.jsp")), "positivePNBodyValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNFallbackLocaleTest.jsp")), "positivePNFallbackLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNIntegerOnlyTest.jsp")), "positivePNIntegerOnlyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNLocalizationContextTest.jsp")), "positivePNLocalizationContextTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNParseLocaleNullEmptyTest.jsp")), "positivePNParseLocaleNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNParseLocaleTest.jsp")), "positivePNParseLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNPatternTest.jsp")), "positivePNPatternTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNScopeTest.jsp")), "positivePNScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNTypeTest.jsp")), "positivePNTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNValueNullEmptyTest.jsp")), "positivePNValueNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNValueTest.jsp")), "positivePNValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNVarTest.jsp")), "positivePNVarTest.jsp");
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,7 +74,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the action can correctly parse dynamic and static
    * values provided to the value attribute.
    */
+  @Test
   public void positivePNValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNValueTest");
     invoke();
   }
@@ -87,7 +92,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the three supported types (number, currency, percent). Also verify that if
    * type is not provided, that the value is parsed as a number.
    */
+  @Test
   public void positivePNTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNTypeTest");
     invoke();
   }
@@ -100,7 +108,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if a pattern is specified that it will be
    * applied to the parsed value no matter the value of type.
    */
+  @Test
   public void positivePNPatternTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNPatternTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNPatternTest");
     invoke();
   }
@@ -116,7 +127,10 @@ public class JSTLClient extends AbstractUrlClient {
    * validate that the presence of the parseLocale attribute will override the
    * locale of the page.
    */
+  @Test
   public void positivePNParseLocaleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNParseLocaleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNParseLocaleTest");
     invoke();
   }
@@ -131,7 +145,10 @@ public class JSTLClient extends AbstractUrlClient {
    * is not specified, that the entire value will be returned parsed (default
    * value of false).
    */
+  @Test
   public void positivePNIntegerOnlyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNIntegerOnlyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNIntegerOnlyTest");
     invoke();
   }
@@ -144,7 +161,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if var is specifed the parsed result is
    * exported and is of type java.lang.Number.
    */
+  @Test
   public void positivePNVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNVarTest");
     invoke();
   }
@@ -159,7 +179,10 @@ public class JSTLClient extends AbstractUrlClient {
    * by the value of the scope attribute. Also verify that scope is not
    * specified, that var is exported to the page scope.
    */
+  @Test
   public void positivePNScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNScopeTest");
     invoke();
   }
@@ -172,7 +195,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the value to be parsed can be provided as body
    * content to the action.
    */
+  @Test
   public void positivePNBodyValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNBodyValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNBodyValueTest");
     invoke();
   }
@@ -189,7 +215,10 @@ public class JSTLClient extends AbstractUrlClient {
    * After the action completes, use the checkScope tag to validate the variable
    * no longer exists.
    */
+  @Test
   public void positivePNValueNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNValueNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNValueNullEmptyTest");
     invoke();
   }
@@ -204,7 +233,10 @@ public class JSTLClient extends AbstractUrlClient {
    * was used, the parse action should use the locale from the locale
    * configuration variable.
    */
+  @Test
   public void positivePNParseLocaleNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNParseLocaleNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positivePNParseLocaleNullEmptyTest");
     invoke();
   }
@@ -218,10 +250,13 @@ public class JSTLClient extends AbstractUrlClient {
    * the default I18N localization context configuration variable
    * jakarta.servlet.jsp.jstl.fmt.localizationContext.
    */
+  @Test
   public void positivePNLocalizationContextTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNLocalizationContextTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positivePNLocalizationContextTest");
     TEST_PROPS.setProperty(REQUEST, "positivePNLocalizationContextTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positivePNLocalizationContextTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positivePNLocalizationContextTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -234,10 +269,13 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if no matching locale can be found, that the
    * fallback locale will be used.
    */
+  @Test
   public void positivePNFallbackLocaleTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNFallbackLocaleTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positivePNFallbackLocaleTest");
     TEST_PROPS.setProperty(REQUEST, "positivePNFallbackLocaleTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positivePNFallbackLocaleTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positivePNFallbackLocaleTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: xx-XX");
     invoke();
   }
@@ -252,7 +290,10 @@ public class JSTLClient extends AbstractUrlClient {
    * with the rethrown unparsable value in the exception text and the original
    * exception set as the root cause of the JspException.
    */
+  @Test
   public void negativePNUnableToParseValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativePNUnableToParseValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativePNUnableToParseValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -266,6 +307,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: validate that if var is not specified, but scope is, that a
    * fatal translation error occurs.
    */
+  @Test
   public void negativePNScopeNoVarTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativePNScopeNoVarTest");
     TEST_PROPS.setProperty(REQUEST, "negativePNScopeNoVarTest.jsp");

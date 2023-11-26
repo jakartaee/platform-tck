@@ -14,54 +14,53 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.core.urlresource.url;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_core_url_web");
-    setGoldenFileDir("/jstl/spec/core/urlresource/url");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_url_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_url_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlDisplayUrlTest.jsp")), "positiveUrlDisplayUrlTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlValueVarTest.jsp")), "positiveUrlValueVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlScopeTest.jsp")), "positiveUrlScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlNoCharEncodingTest.jsp")), "positiveUrlNoCharEncodingTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlParamsBodyTest.jsp")), "positiveUrlParamsBodyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlAbsUrlNotRewrittenTest.jsp")), "positiveUrlAbsUrlNotRewrittenTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUrlExcBodyContentTest.jsp")), "negativeUrlExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUrlContextUrlInvalidValueTest.jsp")), "negativeUrlContextUrlInvalidValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlContextTest.jsp")), "positiveUrlContextTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlRelUrlRewrittenTest.jsp")), "positiveUrlRelUrlRewrittenTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,6 +71,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if var is not specified, the resulting value
    * of the url action is written to the current JspWriter.
    */
+  @Test
   public void positiveUrlDisplayUrlTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "positiveUrlDisplayUrlTest");
     TEST_PROPS.setProperty(REQUEST, "positiveUrlDisplayUrlTest.jsp");
@@ -88,7 +88,10 @@ public class JSTLClient extends AbstractUrlClient {
    * attribute is properly associated with a variable designated by var. Compare
    * the result with that returned by response.encodeUrl().
    */
+  @Test
   public void positiveUrlValueVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUrlValueVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUrlValueVarTest");
     invoke();
   }
@@ -102,7 +105,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the behavior of the scope attribute with respect to
    * var, both when scope is explicitly defined and when not defined.
    */
+  @Test
   public void positiveUrlScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUrlScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUrlScopeTest");
     invoke();
   }
@@ -115,7 +121,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the URL to be encoded contains special
    * characters, that they are not encoded by the action.
    */
+  @Test
   public void positiveUrlNoCharEncodingTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUrlNoCharEncodingTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUrlNoCharEncodingTest");
     invoke();
   }
@@ -128,7 +137,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the URL action can properly interact with nested
    * param subtags.
    */
+  @Test
   public void positiveUrlParamsBodyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUrlParamsBodyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUrlParamsBodyTest");
     invoke();
   }
@@ -141,7 +153,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if an absolute URL is provided to the URL
    * action, the result is not rewritten.
    */
+  @Test
   public void positiveUrlAbsUrlNotRewrittenTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUrlAbsUrlNotRewrittenTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUrlAbsUrlNotRewrittenTest");
     invoke();
   }
@@ -154,7 +169,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that an Exception is thrown if the body content of
    * the action causes an exception.
    */
+  @Test
   public void negativeUrlExcBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUrlExcBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeUrlExcBodyContentTest");
     invoke();
   }
@@ -168,7 +186,10 @@ public class JSTLClient extends AbstractUrlClient {
    * context or url (when context is specified) doesn't begin with a leading
    * slash.
    */
+  @Test
   public void negativeUrlContextUrlInvalidValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUrlContextUrlInvalidValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeUrlContextUrlInvalidValueTest");
     invoke();
   }

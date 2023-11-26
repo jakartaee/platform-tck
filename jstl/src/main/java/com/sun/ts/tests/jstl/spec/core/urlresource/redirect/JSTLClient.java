@@ -14,54 +14,48 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.core.urlresource.redirect;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_core_url_redirect_web");
-    setGoldenFileDir("/jstl/spec/core/urlresource/redirect");
+  }
 
-    return super.run(args, out, err);
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_url_redirect_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_url_redirect_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeRedirectContextUrlInvalidValueTest.jsp")), "negativeRedirectContextUrlInvalidValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeRedirectExcBodyContentTest.jsp")), "negativeRedirectExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveRedirectParamsBodyTest.jsp")), "positiveRedirectParamsBodyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveRedirectTest.jsp")), "positiveRedirectTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,6 +66,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the action can properly redirect when the url
    * attribute is provided either a dynamic or static values.
    */
+  @Test
   public void positiveRedirectTest() throws Exception {
 
     TEST_PROPS.setProperty(TEST_NAME, "positiveRedirectTest");
@@ -128,6 +123,7 @@ public class JSTLClient extends AbstractUrlClient {
    * body content consists of param subtags. The params should be added to the
    * redirect URI.
    */
+  @Test
   public void positiveRedirectParamsBodyTest() throws Exception {
 
     /* RT */
@@ -157,16 +153,20 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the body content of the action causes an
    * exception that it is properly propagated.
    */
+  @Test
   public void negativeRedirectExcBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeRedirectExcBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "negativeRedirectExcBodyContentTest");
     TEST_PROPS.setProperty(REQUEST,
         "negativeRedirectExcBodyContentTest.jsp?el=true");
-    TEST_PROPS.setProperty(GOLDENFILE, "negativeRedirectExcBodyContentTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "negativeRedirectExcBodyContentTest.gf");
     invoke();
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "negativeRedirectExcBodyContentTest");
     TEST_PROPS.setProperty(REQUEST,
         "negativeRedirectExcBodyContentTest.jsp?rt=true");
-    TEST_PROPS.setProperty(GOLDENFILE, "negativeRedirectExcBodyContentTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "negativeRedirectExcBodyContentTest.gf");
     invoke();
   }
 
@@ -179,7 +179,10 @@ public class JSTLClient extends AbstractUrlClient {
    * either context or url are provided values that don't start with a leading
    * slash, an exception occurs.
    */
+  @Test
   public void negativeRedirectContextUrlInvalidValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeRedirectContextUrlInvalidValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeRedirectContextUrlInvalidValueTest");
     invoke();

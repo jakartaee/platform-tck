@@ -14,55 +14,62 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.xml.xmlcore.parse;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_xml_parse_web");
-    setGoldenFileDir("/jstl/spec/xml/xmlcore/parse");
-
-    return super.run(args, out, err);
   }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_xml_parse_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_xml_parse_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/xfiles/resolve.xml")), "xfiles/resolve.xml");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.xml")), "import.xml");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeParseDocNullEmptyTest.jsp")), "negativeParseDocNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeParseInvalidScopeTest.jsp")), "negativeParseInvalidScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeParseScopeVarDomSyntaxTest.jsp")), "negativeParseScopeVarDomSyntaxTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeParseScopeVarSyntaxTest.jsp")), "negativeParseScopeVarSyntaxTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseFilterNullTest.jsp")), "positiveParseFilterNullTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseFilterTest.jsp")), "positiveParseFilterTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseNoDTDValidationTest.jsp")), "positiveParseNoDTDValidationTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseScopeDomTest.jsp")), "positiveParseScopeDomTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseScopeTest.jsp")), "positiveParseScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseSystemIdTest.jsp")), "positiveParseSystemIdTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseVarDomTest.jsp")), "positiveParseVarDomTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseVarTest.jsp")), "positiveParseVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseXmlAttrTest.jsp")), "positiveParseXmlAttrTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseXmlBodyTest.jsp")), "positiveParseXmlBodyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseXmlInputTest.jsp")), "positiveParseXmlInputTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveParseXmlInputTest
@@ -75,7 +82,10 @@ public class JSTLClient extends AbstractUrlClient {
    * x:transform No validation will be performed against the result. The test
    * will be considered a success if no parse exceptions are thrown.
    */
+  @Test
   public void positiveParseXmlInputTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseXmlInputTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseXmlInputTest");
     invoke();
   }
@@ -91,7 +101,10 @@ public class JSTLClient extends AbstractUrlClient {
    * attribute ('test') to the provided elements. XPath will be used to verify
    * that the attribute exists.
    */
+  @Test
   public void positiveParseFilterTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseFilterTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseFilterTest");
     invoke();
   }
@@ -105,7 +118,10 @@ public class JSTLClient extends AbstractUrlClient {
    * is specified, the result is available via the PageContext and is of type
    * java.lang.Object.
    */
+  @Test
   public void positiveParseVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseVarTest");
     invoke();
   }
@@ -119,7 +135,10 @@ public class JSTLClient extends AbstractUrlClient {
    * varDom is specified, the result is available via the PageContext and is of
    * type org.w3c.dom.Document.
    */
+  @Test
   public void positiveParseVarDomTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseVarDomTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseVarDomTest");
     invoke();
   }
@@ -134,7 +153,10 @@ public class JSTLClient extends AbstractUrlClient {
    * var to the specified scope. If var is provided, but scope is not, verify
    * that var is exported to the page scope by default.
    */
+  @Test
   public void positiveParseScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseScopeTest");
     invoke();
   }
@@ -149,7 +171,10 @@ public class JSTLClient extends AbstractUrlClient {
    * exports varDom to the specified scope. If varDom is provided, but scopeDom
    * is not, verify that varDom is exported to the page scope by default.
    */
+  @Test
   public void positiveParseScopeDomTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseScopeDomTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseScopeDomTest");
     invoke();
   }
@@ -163,7 +188,10 @@ public class JSTLClient extends AbstractUrlClient {
    * as body content to the action. No exception should occur, and the result
    * should be available via an XPath expression.
    */
+  @Test
   public void positiveParseXmlBodyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseXmlBodyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseXmlBodyTest");
     invoke();
   }
@@ -176,7 +204,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the 'filter' attribute is null, no
    * filtering takes place and the parse operation proceed normally.
    */
+  @Test
   public void positiveParseFilterNullTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseFilterNullTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseFilterNullTest");
     invoke();
   }
@@ -189,7 +220,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that when the SystemID attribute is used, it's able
    * to resolve external Entities referenced by the provided XML document.
    */
+  @Test
   public void positiveParseSystemIdTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseSystemIdTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseSystemIdTest");
     invoke();
   }
@@ -203,7 +237,10 @@ public class JSTLClient extends AbstractUrlClient {
    * document provided with a DTD. Confirm by providing an XML document that
    * goes against the provided DTD. No parsing exception should occur.
    */
+  @Test
   public void positiveParseNoDTDValidationTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseNoDTDValidationTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParseNoDTDValidationTest");
     invoke();
   }
@@ -216,6 +253,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if scope is specified, but var is not, that a
    * fatal translation error occurs.
    */
+  @Test
   public void negativeParseScopeVarSyntaxTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeParseScopeVarSyntaxTest");
     TEST_PROPS.setProperty(REQUEST, "negativeParseScopeVarSyntaxTest.jsp");
@@ -231,6 +269,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if scopeDom is specified, but varDom is not,
    * that a fatal translation error occurs.
    */
+  @Test
   public void negativeParseScopeVarDomSyntaxTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeParseScopeVarDomSyntaxTest");
     TEST_PROPS.setProperty(REQUEST, "negativeParseScopeVarSyntaxTest.jsp");
@@ -246,6 +285,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if the scope
    * attribute is provided an invalid value.
    */
+  @Test
   public void negativeParseInvalidScopeTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeParseInvalidScopeTest");
     TEST_PROPS.setProperty(REQUEST, "negativeParseInvalidScopeTest.jsp");
@@ -261,7 +301,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if doc is null or empty, that an instance of
    * jakarta.servlet.jsp.JspException is thrown.
    */
+  @Test
   public void negativeParseDocNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeParseDocNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeParseDocNullEmptyTest");
     invoke();
   }
@@ -274,7 +317,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that the xml attribute is still available for use
    * (deprecated and not removed).
    */
+  @Test
   public void positiveParseXmlAttrTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseXmlAttrTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_xml_parse_web/positiveParseXmlAttrTest.jsp HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");

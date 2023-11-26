@@ -14,54 +14,68 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.core.iteration.foreach;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.sun.javatest.Status;
+import java.io.InputStream;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_core_iter_foreach_web");
-    setGoldenFileDir("/jstl/spec/core/iteration/foreach");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_iter_foreach_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_iter_foreach_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveVarTest.jsp")), "positiveVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveVarStatusTest.jsp")), "positiveVarStatusTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveNoItemsIterationTest.jsp")), "positiveNoItemsIterationTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsStepTest.jsp")), "positiveItemsStepTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsPrimArrayTest.jsp")), "positiveItemsPrimArrayTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsObjArrayTest.jsp")), "positiveItemsObjArrayTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsNullTest.jsp")), "positiveItemsNullTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsMapTest.jsp")), "positiveItemsMapTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsIteratorTest.jsp")), "positiveItemsIteratorTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsEnumerationTest.jsp")), "positiveItemsEnumerationTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsEndTest.jsp")), "positiveItemsEndTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsCommaSepStringTest.jsp")), "positiveItemsCommaSepStringTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsCollectionTest.jsp")), "positiveItemsCollectionTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsBeginTest.jsp")), "positiveItemsBeginTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveForEachEndLTBeginTest.jsp")), "positiveForEachEndLTBeginTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveForEachDeferredValueTest3.jsp")), "positiveForEachDeferredValueTest3.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveForEachDeferredValueTest2.jsp")), "positiveForEachDeferredValueTest2.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveForEachDeferredValueTest1.jsp")), "positiveForEachDeferredValueTest1.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBodyBehaviorTest.jsp")), "positiveBodyBehaviorTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeFEStepTypeTest.jsp")), "negativeFEStepTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeFEItemsTypeTest.jsp")), "negativeFEItemsTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeFEExcBodyContentTest.jsp")), "negativeFEExcBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeFEEndTypeTest.jsp")), "negativeFEEndTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeFEBeginTypeTest.jsp")), "negativeFEBeginTypeTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+    
+    return archive;
   }
 
   /*
@@ -75,7 +89,10 @@ public class JSTLClient extends AbstractUrlClient {
    * by var, previously existed, it should no longer exist after completion of
    * the action.
    */
+  @Test
   public void positiveVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveVarTest");
     invoke();
   }
@@ -89,7 +106,10 @@ public class JSTLClient extends AbstractUrlClient {
    * by 'forEach' and that the values in the underlying array are wrapped with
    * its corresponding wrapper type.
    */
+  @Test
   public void positiveItemsPrimArrayTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsPrimArrayTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsPrimArrayTest");
     invoke();
   }
@@ -102,7 +122,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that arrays of Object types can be handled by
    * 'forEach'.
    */
+  @Test
   public void positiveItemsObjArrayTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsObjArrayTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsObjArrayTest");
     invoke();
   }
@@ -115,7 +138,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that 'forEach' can handle various Collection
    * objects.
    */
+  @Test
   public void positiveItemsCollectionTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsCollectionTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsCollectionTest");
     invoke();
   }
@@ -127,7 +153,10 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that 'forEach' can handle an Enumeration
    */
+  @Test
   public void positiveItemsEnumerationTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsEnumerationTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsEnumerationTest");
     invoke();
   }
@@ -139,7 +168,10 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that 'forEach' can handle an Iterator
    */
+  @Test
   public void positiveItemsIteratorTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsIteratorTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_core_iter_foreach_web/positiveItemsIteratorTest.jsp HTTP/1.1");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
@@ -154,7 +186,10 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that 'forEach' can handle Map objects
    */
+  @Test
   public void positiveItemsMapTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsMapTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_core_iter_foreach_web/positiveItemsMapTest.jsp HTTP/1.1");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Test FAILED");
@@ -168,7 +203,10 @@ public class JSTLClient extends AbstractUrlClient {
    * 
    * @testStrategy: Validate that 'forEach' can handle a comma-separated string
    */
+  @Test
   public void positiveItemsCommaSepStringTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsCommaSepStringTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsCommaSepStringTest");
     invoke();
   }
@@ -182,7 +220,10 @@ public class JSTLClient extends AbstractUrlClient {
    * attribute accept dynamic and static attribute values - Behavior of the
    * action when the 'begin' attribute is specified
    */
+  @Test
   public void positiveItemsBeginTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsBeginTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsBeginTest");
     invoke();
   }
@@ -196,7 +237,10 @@ public class JSTLClient extends AbstractUrlClient {
    * attribute accept dynamic and static attribute values - Behavior of the
    * action when the 'end' attribute is specified
    */
+  @Test
   public void positiveItemsEndTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsEndTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsEndTest");
     invoke();
   }
@@ -210,7 +254,10 @@ public class JSTLClient extends AbstractUrlClient {
    * attribute accept dynamic and static attribute values - Behavior of the
    * action when the 'step' attribute is specified
    */
+  @Test
   public void positiveItemsStepTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsStepTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsStepTest");
     invoke();
   }
@@ -223,7 +270,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that varStatus is properly exported with nested
    * scope and is of type jakarta.servlet.jsp.jstl. LoopTagStatus.
    */
+  @Test
   public void positiveVarStatusTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveVarStatusTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveVarStatusTest");
     invoke();
   }
@@ -236,7 +286,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate tag behavior when no 'items' attribute is
    * specified.
    */
+  @Test
   public void positiveNoItemsIterationTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveNoItemsIterationTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveNoItemsIterationTest");
     invoke();
   }
@@ -249,7 +302,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the 'forEach' action can handle body content
    * as well as an empty body.
    */
+  @Test
   public void positiveBodyBehaviorTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBodyBehaviorTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveBodyBehaviorTest");
     invoke();
   }
@@ -262,7 +318,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that no iteration is performed by forEach if items
    * is null.
    */
+  @Test
   public void positiveItemsNullTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsNullTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveItemsNullTest");
     invoke();
   }
@@ -275,7 +334,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
    * the EL expression passed to items evaluates to an incorrect type.
    */
+  @Test
   public void negativeFEItemsTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeFEItemsTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeFEItemsTypeTest");
     invoke();
   }
@@ -288,7 +350,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
    * the EL expression passed to begin evaluates to an incorrect type.
    */
+  @Test
   public void negativeFEBeginTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeFEBeginTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeFEBeginTypeTest");
     invoke();
   }
@@ -301,7 +366,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
    * the EL expression passed to end evaluates to an incorrect type.
    */
+  @Test
   public void negativeFEEndTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeFEEndTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeFEEndTypeTest");
     invoke();
   }
@@ -314,7 +382,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a jakarta.servlet.jsp.JspException is thrown if
    * the EL expression passed to step evaluates to an incorrect type.
    */
+  @Test
   public void negativeFEStepTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeFEStepTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeFEStepTypeTest");
     invoke();
   }
@@ -327,7 +398,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that an exception caused by the body content is
    * propagated.
    */
+  @Test
   public void negativeFEExcBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeFEExcBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeFEExcBodyContentTest");
     invoke();
   }
@@ -340,6 +414,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @test_Strategy: Validate an end attribute value that is less than the begin
    * attribute value will result in the action not being executed.
    */
+  @Test
   public void positiveForEachEndLTBeginTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_core_iter_foreach_web/positiveForEachEndLTBeginTest.jsp HTTP/1.1");
@@ -357,7 +432,10 @@ public class JSTLClient extends AbstractUrlClient {
    * tag, set each item to have application scope. Verify that the items can be
    * retrieved after the execution of the tag.
    */
+  @Test
   public void positiveForEachDeferredValueTest1() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveForEachDeferredValueTest1.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveForEachDeferredValueTest1");
     invoke();
   }
@@ -373,7 +451,10 @@ public class JSTLClient extends AbstractUrlClient {
    * scope. Verify that the items can be retrieved after the execution of the
    * tag.
    */
+  @Test
   public void positiveForEachDeferredValueTest2() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveForEachDeferredValueTest2.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveForEachDeferredValueTest2");
     invoke();
   }
@@ -388,7 +469,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the body of the tag, set each item to have application scope. Verify that
    * the items can be retrieved after the execution of the tag.
    */
+  @Test
   public void positiveForEachDeferredValueTest3() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveForEachDeferredValueTest3.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveForEachDeferredValueTest3");
     invoke();
   }

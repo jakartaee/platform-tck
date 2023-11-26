@@ -14,57 +14,69 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.xml.xtransform.transform;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
+
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   private static String CONTEXT_ROOT = "/jstl_xml_xform_web";
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
-
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot(CONTEXT_ROOT);
-    setGoldenFileDir("/jstl/spec/xml/xtransform/transform");
-
-    return super.run(args, out, err);
   }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_xml_xform_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_xml_xform_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/xfiles/resolve.xml")), "xfiles/resolve.xml");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/xfiles/resolve.xsl")), "xfiles/resolve.xsl");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.xml")), "import.xml");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.xsl")), "import.xsl");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeTransformXmlXsltNullEmptyTest.jsp")), "negativeTransformXmlXsltNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/param.xsl")), "param.xsl");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformBodyParamsTest.jsp")), "positiveTransformBodyParamsTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformBodyXmlParamsTest.jsp")), "positiveTransformBodyXmlParamsTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformDocSystemIdTest.jsp")), "positiveTransformDocSystemIdTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformResultTest.jsp")), "positiveTransformResultTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformScopeTest.jsp")), "positiveTransformScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformVarTest.jsp")), "positiveTransformVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformXmlAndXmlSystemIdTest.jsp")), "positiveTransformXmlAndXmlSystemIdTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformXmlBodyTest.jsp")), "positiveTransformXmlBodyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformXmlInputTest.jsp")), "positiveTransformXmlInputTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformXsltInputTest.jsp")), "positiveTransformXsltInputTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformXsltSystemIdTest.jsp")), "positiveTransformXsltSystemIdTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple.xml")), "simple.xml");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple.xsl")), "simple.xsl");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple2.xml")), "simple2.xml");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple2.xsl")), "simple2.xsl");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple3.xsl")), "simple3.xsl");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveTransformXmlInputTest
@@ -77,6 +89,7 @@ public class JSTLClient extends AbstractUrlClient {
    * from the following sources: - String - Reader - javax.xml.transform.Source
    * - Objects exported by: + x:parse + x:set + x:transform
    */
+  @Test
   public void positiveTransformXmlInputTest() throws Exception {
     String testName = "positiveTransformXmlInputTest";
     TEST_PROPS.setProperty(REQUEST,
@@ -102,6 +115,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the transform action is able to accept XSL input
    * from the following sources: - String - Reader - javax.xml.transform.Source.
    */
+  @Test
   public void positiveTransformXsltInputTest() throws Exception {
     String testName = "positiveTransformXsltInputTest";
     TEST_PROPS.setProperty(REQUEST,
@@ -125,6 +139,7 @@ public class JSTLClient extends AbstractUrlClient {
    * that the entities can be resolved when parsing both as as a String provided
    * to the xml attribute and as body content to the action.
    */
+  @Test
   public void positiveTransformDocSystemIdTest() throws Exception {
     String testName = "positiveTransformDocSystemIdTest";
     TEST_PROPS.setProperty(REQUEST,
@@ -142,7 +157,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the transform action is able to properly resolve
    * external references within a style sheet.
    */
+  @Test
   public void positiveTransformXsltSystemIdTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTransformXsltSystemIdTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTransformXsltSystemIdTest");
     invoke();
   }
@@ -156,7 +174,10 @@ public class JSTLClient extends AbstractUrlClient {
    * reference by var is available in the PageContext and is of type
    * org.w3c.dom.Document.
    */
+  @Test
   public void positiveTransformVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTransformVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTransformVarTest");
     invoke();
   }
@@ -171,7 +192,10 @@ public class JSTLClient extends AbstractUrlClient {
    * that var is exported to the specified scope. If var is specified and scope
    * is not, validate that var is exported to the page scope by default.
    */
+  @Test
   public void positiveTransformScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTransformScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTransformScopeTest");
     invoke();
   }
@@ -187,7 +211,10 @@ public class JSTLClient extends AbstractUrlClient {
    * transform action. The Result object is obtained from scope, and is then
    * manipulated to display the results of the transformation.
    */
+  @Test
   public void positiveTransformResultTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTransformResultTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTransformResultTest");
     invoke();
   }
@@ -200,6 +227,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the transform action is able to parse and then
    * transform an XML document provided as body content to the action.
    */
+  @Test
   public void positiveTransformXmlBodyTest() throws Exception {
     String testName = "positiveTransformXmlBodyTest";
     TEST_PROPS.setProperty(REQUEST,
@@ -216,6 +244,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that xsl parameters provided as x:param subtags to
    * the transform action are properly passed to the stylesheet.
    */
+  @Test
   public void positiveTransformBodyParamsTest() throws Exception {
     // TEST_PROPS.setProperty(STANDARD, "positiveTransformBodyParamsTest");
     String testName = "positiveTransformBodyParamsTest";
@@ -236,6 +265,7 @@ public class JSTLClient extends AbstractUrlClient {
    * parsed and transform with the parameters properly supplied to the
    * stylesheet.
    */
+  @Test
   public void positiveTransformBodyXmlParamsTest() throws Exception {
     // TEST_PROPS.setProperty(STANDARD, "positiveTransformBodyXmlParamsTest");
     String testName = "positiveTransformBodyXmlParamsTest";
@@ -255,7 +285,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if either the xml or xslt attributes are null
    * or empty, that a JspException is thrown.
    */
+  @Test
   public void negativeTransformXmlXsltNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeTransformXmlXsltNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeTransformXmlXsltNullEmptyTest");
     invoke();
   }
@@ -268,6 +301,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @test_Strategy: Validate that the xml and xmlSystemId attributes can still
    * be used (deprecated and not removed).
    */
+  @Test
   public void positiveTransformXmlAndXmlSystemIdTest() throws Exception {
     String testName = "positiveTransformXmlAndXmlSystemIdTest";
     TEST_PROPS.setProperty(REQUEST,

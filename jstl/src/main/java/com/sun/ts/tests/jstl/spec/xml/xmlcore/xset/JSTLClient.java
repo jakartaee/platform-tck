@@ -14,55 +14,51 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.xml.xmlcore.xset;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_xml_xset_web");
-    setGoldenFileDir("/jstl/spec/xml/xmlcore/xset");
-
-    return super.run(args, out, err);
   }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_xml_xset_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_xml_xset_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeSetInvalidScopeTest.jsp")), "negativeSetInvalidScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeSetSelectFailureTest.jsp")), "negativeSetSelectFailureTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeSetSelectReqAttrTest.jsp")), "negativeSetSelectReqAttrTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeSetVarReqAttrTest.jsp")), "negativeSetVarReqAttrTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetScopeTest.jsp")), "positiveSetScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetSelectVarTest.jsp")), "positiveSetSelectVarTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveSetSelectVarTest
@@ -74,7 +70,10 @@ public class JSTLClient extends AbstractUrlClient {
    * select is provided a valid XPath expression and the the variable reference
    * by var is available to another action.
    */
+  @Test
   public void positiveSetSelectVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetSelectVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetSelectVarTest");
     invoke();
   }
@@ -90,7 +89,10 @@ public class JSTLClient extends AbstractUrlClient {
    * exports var to the specified scope. Also verify that if scope is not
    * specified, that var is exported to the page scope by default.
    */
+  @Test
   public void positiveSetScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetScopeTest");
     invoke();
   }
@@ -103,7 +105,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the XPath expression fails to evaluate an
    * instance of jakarta.servet.jsp.JspException is thrown.
    */
+  @Test
   public void negativeSetSelectFailureTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeSetSelectFailureTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeSetSelectFailureTest");
     invoke();
   }
@@ -116,6 +121,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if the var
    * attribute is not present.
    */
+  @Test
   public void negativeSetVarReqAttrTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeSetVarReqAttrTest");
     TEST_PROPS.setProperty(REQUEST, "negativeSetVarReqAttrTest.jsp");
@@ -131,6 +137,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if the select
    * attribute is not present.
    */
+  @Test
   public void negativeSetSelectReqAttrTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeSetSelectReqAttrTest");
     TEST_PROPS.setProperty(REQUEST, "negativeSetSelectReqAttrTest.jsp");
@@ -146,6 +153,7 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that a fatal translation error occurs if the select
    * attribute is not present.
    */
+  @Test
   public void negativeSetInvalidScopeTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeSetInvalidScopeTest");
     TEST_PROPS.setProperty(REQUEST, "negativeSetInvalidScopeTest.jsp");

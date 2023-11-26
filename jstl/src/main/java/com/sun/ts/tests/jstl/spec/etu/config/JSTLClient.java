@@ -14,56 +14,51 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
 
 package com.sun.ts.tests.jstl.spec.etu.config;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
+    setContextRoot("/jstl_etu_config_web");    
   }
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_etu_config_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_etu_config_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveConfigStaticMemebersTest.jsp")), "positiveConfigStaticMemebersTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveConfigGetSetRemoveSessionTest.jsp")), "positiveConfigGetSetRemoveSessionTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveConfigGetSetRemoveRequestTest.jsp")), "positiveConfigGetSetRemoveRequestTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveConfigGetSetRemovePageContextTest.jsp")), "positiveConfigGetSetRemovePageContextTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveConfigGetSetRemoveApplicationTest.jsp")), "positiveConfigGetSetRemoveApplicationTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveConfigFindTest.jsp")), "positiveConfigFindTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    setContextRoot("/jstl_etu_config_web");
-    setGoldenFileDir("/jstl/spec/etu/config");
-
-    return super.run(args, out, err);
-  }
-
+  
   /*
    * @testName: positiveConfigStaticMembersTest
    * 
@@ -73,7 +68,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the public static member values of the
    * jakarta.servlet.jsp.jstl.core.Config class agree with the javadoc.
    */
+  @Test
   public void positiveConfigStaticMembersTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveConfigStaticMemebersTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveConfigStaticMemebersTest");
     invoke();
   }
@@ -91,7 +89,10 @@ public class JSTLClient extends AbstractUrlClient {
    * validate that once the variables are removed, that additional calls to get
    * for the same variables, will return null.
    */
+  @Test
   public void positiveConfigGetSetRemovePageContextTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveConfigGetSetRemovePageContextTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveConfigGetSetRemovePageContextTest");
     invoke();
@@ -107,7 +108,10 @@ public class JSTLClient extends AbstractUrlClient {
    * removed, that additional calls to get for the same variable, will return
    * null.
    */
+  @Test
   public void positiveConfigGetSetRemoveRequestTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveConfigGetSetRemoveRequestTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveConfigGetSetRemoveRequestTest");
     invoke();
   }
@@ -122,6 +126,7 @@ public class JSTLClient extends AbstractUrlClient {
    * removed, that additional calls to get for the same variable, will return
    * null.
    */
+  @Test
   public void positiveConfigGetSetRemoveSessionTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_etu_config_web/positiveConfigGetSetRemoveSessionTest.jsp HTTP/1.0");
@@ -140,7 +145,10 @@ public class JSTLClient extends AbstractUrlClient {
    * removed, that additional calls to get for the same variable, will return
    * null.
    */
+  @Test
   public void positiveConfigGetSetRemoveApplicationTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveConfigGetSetRemoveApplicationTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveConfigGetSetRemoveApplicationTest");
     invoke();
@@ -157,7 +165,10 @@ public class JSTLClient extends AbstractUrlClient {
    * method will attempt to find a context initialization parameter by the name
    * provided.
    */
+  @Test
   public void positiveConfigFindTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveConfigFindTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveConfigFindTest");
     invoke();
   }

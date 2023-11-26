@@ -14,54 +14,43 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
 
 package com.sun.ts.tests.jstl.spec.etu.tlv.permitted;
 
-import java.io.PrintWriter;
+import java.io.IOException;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_etu_tlv_perm_web");
-    setGoldenFileDir("/jstl/spec/etu/tlv/permitted");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_etu_tlv_perm_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_etu_tlv_perm_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativePermittedTlvTest.jsp")), "negativePermittedTlvTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePermittedTlvTest.jsp")), "positivePermittedTlvTest.jsp");
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -74,6 +63,7 @@ public class JSTLClient extends AbstractUrlClient {
    * libraries is specified as a parameter to the PermittedTaglibsTLV, that the
    * use of this library doesn't generate a translation error.
    */
+  @Test
   public void positivePermittedTlvTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "positivePermittedTlvTest");
     TEST_PROPS.setProperty(REQUEST, "positivePermittedTlvTest.jsp");
@@ -90,6 +80,7 @@ public class JSTLClient extends AbstractUrlClient {
    * libraries is not specified as a parameter to the PermittedTaglibsTLV, that
    * the use of this library generates a translation error.
    */
+  @Test
   public void negativePermittedTlvTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativePermittedTlvTest");
     TEST_PROPS.setProperty(REQUEST, "negativePermittedTlvTest.jsp");

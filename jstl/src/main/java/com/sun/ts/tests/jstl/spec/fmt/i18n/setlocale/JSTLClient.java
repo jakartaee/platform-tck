@@ -14,54 +14,49 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.fmt.i18n.setlocale;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_fmt_setlocale_web");
-    setGoldenFileDir("/jstl/spec/fmt/i18n/setlocale");
+  }
 
-    return super.run(args, out, err);
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_fmt_setlocale_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_fmt_setlocale_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleOverrideTest.jsp")), "positiveSetLocaleOverrideTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleScopeTest.jsp")), "positiveSetLocaleScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleValueNullEmptyTest.jsp")), "positiveSetLocaleValueNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleValueTest.jsp")), "positiveSetLocaleValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleVariantIgnoreTest.jsp")), "positiveSetLocaleVariantIgnoreTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleVariantTest.jsp")), "positiveSetLocaleVariantTest.jsp");
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,7 +67,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate value can accept both String representations of
    * locales as well as instances of java.util.Locale.
    */
+  @Test
   public void positiveSetLocaleValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleValueTest");
     invoke();
   }
@@ -86,7 +84,10 @@ public class JSTLClient extends AbstractUrlClient {
    * values as well as validate that the jakarta.servlet.jsp.jstl.fmt.locale
    * scoped variable is set with the proper value.
    */
+  @Test
   public void positiveSetLocaleVariantTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleVariantTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleVariantTest");
     invoke();
   }
@@ -99,7 +100,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if value is provided with a null or empty
    * value that the runtime default locale is used.
    */
+  @Test
   public void positiveSetLocaleValueNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleValueNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleValueNullEmptyTest");
     invoke();
   }
@@ -115,7 +119,10 @@ public class JSTLClient extends AbstractUrlClient {
    * configuration variable is in the expected scope. If scope is not specifed,
    * verify that it is in the page scope.
    */
+  @Test
   public void positiveSetLocaleScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleScopeTest");
     invoke();
   }
@@ -131,12 +138,15 @@ public class JSTLClient extends AbstractUrlClient {
    * page will be set to en_US. The en resources bundle should be used and not
    * the sw bundle.
    */
+  @Test
   public void positiveSetLocaleOverrideTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleOverrideTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveSetLocaleOverrideTest");
     TEST_PROPS.setProperty(REQUEST,
         "positiveSetLocaleOverrideTest.jsp?res=AlgoResources5&fall=de");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: sw");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveSetLocaleOverrideTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveSetLocaleOverrideTest.gf");
     invoke();
   }
 
@@ -150,7 +160,10 @@ public class JSTLClient extends AbstractUrlClient {
    * that the variant is ignored and the expected locale of en_US is returned by
    * the test.
    */
+  @Test
   public void positiveSetLocaleVariantIgnoreTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleVariantIgnoreTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveSetLocaleVariantIgnoreTest");
     invoke();
   }

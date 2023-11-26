@@ -14,54 +14,86 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $URL$ $LastChangedDate$
- */
+
 
 package com.sun.ts.tests.jstl.spec.core.urlresource.importtag;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.AbstractUrlClient;
 
+import jakarta.servlet.ServletException;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends AbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setContextRoot("/jstl_core_url_import_web");
-    setGoldenFileDir("/jstl/spec/core/urlresource/importtag");
+  }
 
-    return super.run(args, out, err);
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_core_url_import_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_core_url_import_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportAbsResourceNon2xxTest.jsp")), "negativeImportAbsResourceNon2xxTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportCtxInvalidValueTest.jsp")), "negativeImportCtxInvalidValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportCtxUrlInvalidValueTest.jsp")), "negativeImportCtxUrlInvalidValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportRequestDispatcherNon2xxTest.jsp")), "negativeImportRequestDispatcherNon2xxTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportRequestDispatcherRTIOExceptionTest.jsp")), "negativeImportRequestDispatcherRTIOExceptionTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportRequestDispatcherServletExceptionTest.jsp")), "negativeImportRequestDispatcherServletExceptionTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportUrlEmptyTest.jsp")), "negativeImportUrlEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportUrlInvalidTest.jsp")), "negativeImportUrlInvalidTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeImportUrlNullTest.jsp")), "negativeImportUrlNullTest.jsp");
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportAbsUrlEnvPropTest.jsp")), "positiveImportAbsUrlEnvPropTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportAbsUrlTest.jsp")), "positiveImportAbsUrlTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportBodyParamTest.jsp")), "positiveImportBodyParamTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportCharEncodingNullEmptyTest.jsp")), "positiveImportCharEncodingNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportCharEncodingTest.jsp")), "positiveImportCharEncodingTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportCtxRelUrlTest.jsp")), "positiveImportCtxRelUrlTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportEncodingNotSpecifiedTest.jsp")), "positiveImportEncodingNotSpecifiedTest.jsp");
+    
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportFollowRedirectTest.jsp")), "positiveImportFollowRedirectTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportPageRelUrlTest.jsp")), "positiveImportPageRelUrlTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportRelUrlEnvPropTest.jsp")), "positiveImportRelUrlEnvPropTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportScopeTest.jsp")), "positiveImportScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportUrlTest.jsp")), "positiveImportUrlTest.jsp");
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportVarReaderTest.jsp")), "positiveImportVarReaderTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportVarTest.jsp")), "positiveImportVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/ResponseInternalServerError.jsp")), "ResponseInternalServerError.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/ResponseScCreated.jsp")), "ResponseScCreated.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/ResponseScGone.jsp")), "ResponseScGone.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/ResponseSendRedirect.jsp")), "ResponseSendRedirect.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/RuntimeException.jsp")), "RuntimeException.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/ServletException.jsp")), "ServletException.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/ServletExceptionRootCause.jsp")), "ServletExceptionRootCause.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/encoding/Encoding.jsp")), "encoding/Encoding.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/env.jsp")), "env.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import-encoded.txt")), "import-encoded.txt");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.jsp")), "import.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.txt")), "import.txt");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/IOException.jsp")), "IOException.jsp");
+
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
   }
 
   /*
@@ -72,7 +104,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that the 'url' attribute accepts both dynamic and
    * static values.
    */
+  @Test
   public void positiveImportUrlTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportUrlTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportUrlTest");
     invoke();
   }
@@ -85,7 +120,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that resources identified by an absolute URL can be
    * imported and displayed. This will test absolute URLs for HTTP and FTP
    */
+  @Test
   public void positiveImportAbsUrlTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportAbsUrlTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportAbsUrlTest");
     invoke();
   }
@@ -100,7 +138,10 @@ public class JSTLClient extends AbstractUrlClient {
    * that sets the status to some 2xx value doesn't cause the page to throw an
    * Exception.
    */
+  @Test
   public void positiveImportCtxRelUrlTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportCtxRelUrlTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportCtxRelUrlTest");
     invoke();
   }
@@ -115,7 +156,10 @@ public class JSTLClient extends AbstractUrlClient {
    * sets the status to some 2xx value doesn't cause the page to throw an
    * Exception.
    */
+  @Test
   public void positiveImportPageRelUrlTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportPageRelUrlTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportPageRelUrlTest");
     invoke();
   }
@@ -128,7 +172,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that content of the imported resource is associated
    * with the variable name defined by the 'var' attribute.
    */
+  @Test
   public void positiveImportVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportVarTest");
     invoke();
   }
@@ -143,7 +190,10 @@ public class JSTLClient extends AbstractUrlClient {
    * the appropriate scope based on the presence or absence of the 'scope'
    * attribute.
    */
+  @Test
   public void positiveImportScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportScopeTest");
     invoke();
   }
@@ -157,11 +207,14 @@ public class JSTLClient extends AbstractUrlClient {
    * that Application, Session, Request, and Request Parameters are available to
    * the target resource.
    */
+  @Test
   public void positiveImportRelUrlEnvPropTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportRelUrlEnvPropTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveImportRelUrlEnvPropTest");
     TEST_PROPS.setProperty(REQUEST,
         "positiveImportRelUrlEnvPropTest.jsp?reqpar=parm");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveImportRelUrlEnvPropTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveImportRelUrlEnvPropTest.gf");
     invoke();
   }
 
@@ -174,11 +227,14 @@ public class JSTLClient extends AbstractUrlClient {
    * that only the Application (Context) information is available to the target
    * resource.
    */
+  @Test
   public void positiveImportAbsUrlEnvPropTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportAbsUrlEnvPropTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveImportAbsUrlEnvPropTest");
     TEST_PROPS.setProperty(REQUEST,
         "positiveImportAbsUrlEnvPropTest.jsp?reqpar=parm");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveImportAbsUrlEnvPropTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveImportAbsUrlEnvPropTest.gf");
     invoke();
   }
 
@@ -190,7 +246,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the charEncoding attribute is set that the
    * encoding is indeed applied to the imported resource.
    */
+  @Test
   public void positiveImportCharEncodingTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportCharEncodingTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_core_url_import_web/positiveImportCharEncodingTest.jsp HTTP/1.1");
     TEST_PROPS.setProperty(SEARCH_STRING,
@@ -207,7 +266,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the charEncoding attribute is null or
    * empty, the action behaves as if it was not specified.
    */
+  @Test
   public void positiveImportCharEncodingNullEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportCharEncodingNullEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportCharEncodingNullEmptyTest");
     invoke();
   }
@@ -220,7 +282,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate the import action can properly handle nested param
    * subtags within the body content.
    */
+  @Test
   public void positiveImportBodyParamTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportBodyParamTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportBodyParamTest");
     invoke();
   }
@@ -235,7 +300,10 @@ public class JSTLClient extends AbstractUrlClient {
    * variable during - and after the import action completed (variable is not
    * visible after action completes).
    */
+  @Test
   public void positiveImportVarReaderTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportVarReaderTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportVarReaderTest");
     invoke();
   }
@@ -248,7 +316,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the imported absolute resource sends a
    * redirect, the action properly follows the redirect and imports the target.
    */
+  @Test
   public void positiveImportFollowRedirectTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportFollowRedirectTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportFollowRedirectTest");
     invoke();
   }
@@ -261,7 +332,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if context is provided an invalid value
    * (content root without a leading slash) an Exception is thrown.
    */
+  @Test
   public void negativeImportCtxInvalidValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportCtxInvalidValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeImportCtxInvalidValueTest");
     invoke();
   }
@@ -275,7 +349,10 @@ public class JSTLClient extends AbstractUrlClient {
    * is provided an incorrect value (a path with no leading slash), an Exception
    * is thrown.
    */
+  @Test
   public void negativeImportCtxUrlInvalidValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportCtxUrlInvalidValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeImportCtxUrlInvalidValueTest");
     invoke();
   }
@@ -288,7 +365,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the value of url is null, a
    * jakarta.servlet.jsp.JspException is thrown.
    */
+  @Test
   public void negativeImportUrlNullTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportUrlNullTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeImportUrlNullTest");
     invoke();
   }
@@ -301,7 +381,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if the value of url is empty ("") a
    * jakarta.servlet.jsp.JspException is thrown.
    */
+  @Test
   public void negativeImportUrlEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportUrlEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeImportUrlEmptyTest");
     invoke();
   }
@@ -314,7 +397,10 @@ public class JSTLClient extends AbstractUrlClient {
    * @testStrategy: Validate that if url is provided an invalid URL an instance
    * of jakarta.servlet.jsp.JspException is thrown.
    */
+  @Test
   public void negativeImportUrlInvalidTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportUrlInvalidTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeImportUrlInvalidTest");
     invoke();
   }
@@ -329,7 +415,10 @@ public class JSTLClient extends AbstractUrlClient {
    * included in the Exception message. In this case, the test will import a JSP
    * via an absolute URL that sets the response to 410.
    */
+  @Test
   public void negativeImportAbsResourceNon2xxTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportAbsResourceNon2xxTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeImportAbsResourceNon2xxTest");
     invoke();
   }
@@ -344,7 +433,10 @@ public class JSTLClient extends AbstractUrlClient {
    * code included in the Exception message. In this case, the test will import
    * a JSP via a relative URL that sets the response to 410.
    */
+  @Test
   public void negativeImportRequestDispatcherNon2xxTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportRequestDispatcherNon2xxTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeImportRequestDispatcherNon2xxTest");
     invoke();
@@ -360,7 +452,10 @@ public class JSTLClient extends AbstractUrlClient {
    * of original exception included in the message and the original exception as
    * the root cause.
    */
+  @Test
   public void negativeImportRequestDispatcherRTIOExceptionTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportRequestDispatcherRTIOExceptionTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeImportRequestDispatcherRTIOExceptionTest");
     invoke();
@@ -378,8 +473,11 @@ public class JSTLClient extends AbstractUrlClient {
    * if no root cause is present, the message of the ServletException is used
    * and the ServletException is the root cause of the JspException.
    */
+  @Test
   public void negativeImportRequestDispatcherServletExceptionTest()
       throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeImportRequestDispatcherServletExceptionTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeImportRequestDispatcherServletExceptionTest");
     invoke();
@@ -395,7 +493,10 @@ public class JSTLClient extends AbstractUrlClient {
    * resource specifies no charset, then the default charset of ISO-8859-1 will
    * be used.
    */
+  @Test
   public void positiveImportEncodingNotSpecifiedTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportEncodingNotSpecifiedTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveImportEncodingNotSpecifiedTest");
     invoke();
   }
