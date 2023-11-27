@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,181 +22,112 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnectionFactory;
 
 import java.io.IOException;
 import java.lang.System.Logger;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Properties;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-@ExtendWith(ArquillianExtension.class)
-public class URLClient {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
+	private static final String SOAPCONNECTIONFACTORY_TESTSERVLET = "/SOAPConnectionFactory_web/SOAPConnectionFactoryTestServlet";
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final String HOSTNAME = "localhost";
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "SOAPConnectionFactory_web.war");
+		archive.addPackages(false, Filters.exclude(URLClient.class),
+				"com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnectionFactory");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
 
-  private static final int PORTNUM = 8000;
+	/*
+	 * @testName: newInstanceTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:152; SAAJ:JAVADOC:153; SAAJ:JAVADOC:154;
+	 *
+	 * @test_Strategy: Call SOAPConnectionFactory.newInstance().
+	 *
+	 * Description: Creates an instance of the default SOAPConnectionFactory object.
+	 *
+	 */
+	@Test
+	public void newInstanceTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "newInstanceTest: create a SOAPConnectionFactory object");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPCONNECTIONFACTORY_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "newInstanceTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  private static final String SOAPCONNECTIONFACTORY_TESTSERVLET = "/SOAPConnectionFactory_web/SOAPConnectionFactoryTestServlet";
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("newInstanceTest failed", e);
+		}
 
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
+		if (!pass)
+			throw new Exception("newInstanceTest failed");
+	}
 
-  private static final String WEBSERVERPORTPROP = "webServerPort";
+	/*
+	 * @testName: createConectionTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:155; SAAJ:JAVADOC:156;
+	 *
+	 * @test_Strategy: Call SOAPConnectionFactory.createConnection().
+	 *
+	 * Description: Create a SOAPConntection object.
+	 *
+	 */
+	@Test
+	public void createConectionTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "createConectionTest: create a SOAPConnection object");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPCONNECTIONFACTORY_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "createConnectionTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  private TSURL tsurl = new TSURL();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("createConnectionTest failed", e);
+		}
 
-  private URL url = null;
-
-  private URLConnection urlConn = null;
-
-  private Properties props = null;
-
-  private String hostname = HOSTNAME;
-
-  private int portnum = PORTNUM;
-  
-  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
-
-  @Deployment(testable = false)
- 	public static WebArchive createDeployment() throws IOException {
- 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "SOAPConnectionFactory_web.war");
- 		archive.addPackages(false, Filters.exclude(URLClient.class),
- 				"com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnectionFactory");
- 		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
- 		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
- 		return archive;
- 	};
-
-
-  /* Test setup */
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-
-  public void setup() throws Exception {
-
-    boolean pass = true;
-
-    try {
-      hostname = System.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      logger.log(Logger.Level.ERROR,
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-    logger.log(Logger.Level.INFO,"setup ok");
-  }
-
-  public void cleanup() throws Exception {
-    logger.log(Logger.Level.INFO,"cleanup ok");
-  }
-
-  /*
-   * @testName: newInstanceTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:152; SAAJ:JAVADOC:153; SAAJ:JAVADOC:154;
-   *
-   * @test_Strategy: Call SOAPConnectionFactory.newInstance().
-   *
-   * Description: Creates an instance of the default SOAPConnectionFactory
-   * object.
-   *
-   */
-  @Test
-  public void newInstanceTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"newInstanceTest: create a SOAPConnectionFactory object");
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPCONNECTIONFACTORY_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "newInstanceTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("newInstanceTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("newInstanceTest failed");
-  }
-
-  /*
-   * @testName: createConectionTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:155; SAAJ:JAVADOC:156;
-   *
-   * @test_Strategy: Call SOAPConnectionFactory.createConnection().
-   *
-   * Description: Create a SOAPConntection object.
-   *
-   */
-  @Test
-  public void createConectionTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"createConectionTest: create a SOAPConnection object");
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPCONNECTIONFACTORY_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "createConnectionTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("createConnectionTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("createConnectionTest failed");
-  }
+		if (!pass)
+			throw new Exception("createConnectionTest failed");
+	}
 }

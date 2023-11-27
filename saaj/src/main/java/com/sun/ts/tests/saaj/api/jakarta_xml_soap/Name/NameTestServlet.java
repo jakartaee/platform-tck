@@ -40,242 +40,232 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class NameTestServlet extends HttpServlet {
-	
-	  private static final Logger logger = (Logger) System.getLogger(NameTestServlet.class.getName());
 
-  private MessageFactory mf = null;
+	private static final Logger logger = (Logger) System.getLogger(NameTestServlet.class.getName());
 
-  private SOAPMessage msg = null;
+	private MessageFactory mf = null;
 
-  private SOAPPart sp = null;
+	private SOAPMessage msg = null;
 
-  private SOAPEnvelope envelope = null;
+	private SOAPPart sp = null;
 
-  Name name = null;
+	private SOAPEnvelope envelope = null;
 
-  private void setup() throws Exception {
-    TestUtil.logTrace("setup");
+	Name name = null;
 
-    SOAP_Util.setup();
+	private void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
 
-    // Create a message from the message factory.
-    logger.log(Logger.Level.INFO,"Create message from message factory");
-    msg = SOAP_Util.getMessageFactory().createMessage();
+		SOAP_Util.setup();
 
-    // Message creation takes care of creating the SOAPPart - a
-    // required part of the message as per the SOAP 1.1
-    // specification.
-    sp = msg.getSOAPPart();
+		// Create a message from the message factory.
+		logger.log(Logger.Level.INFO, "Create message from message factory");
+		msg = SOAP_Util.getMessageFactory().createMessage();
 
-    // Retrieve the envelope from the soap part to start building
-    // the soap message.
-    envelope = sp.getEnvelope();
-  }
+		// Message creation takes care of creating the SOAPPart - a
+		// required part of the message as per the SOAP 1.1
+		// specification.
+		sp = msg.getSOAPPart();
 
-  private void dispatch(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("dispatch");
-    String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
-    if (testname.equals("getLocalNameTest")) {
-      logger.log(Logger.Level.INFO,"Starting getLocalNameTest");
-      getLocalNameTest(req, res);
-    } else if (testname.equals("getPrefixTest")) {
-      logger.log(Logger.Level.INFO,"Starting getPrefixTest");
-      getPrefixTest(req, res);
-    } else if (testname.equals("getQualifiedNameTest")) {
-      logger.log(Logger.Level.INFO,"Starting getQualifiedNameTest");
-      getQualifiedNameTest(req, res);
-    } else if (testname.equals("getURITest")) {
-      logger.log(Logger.Level.INFO,"Starting getURITest");
-      getURITest(req, res);
-    } else {
-      throw new ServletException(
-          "The testname '" + testname + "' was not found in the test servlet");
+		// Retrieve the envelope from the soap part to start building
+		// the soap message.
+		envelope = sp.getEnvelope();
+	}
 
-    }
+	private void dispatch(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "dispatch");
+		String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
+		if (testname.equals("getLocalNameTest")) {
+			logger.log(Logger.Level.INFO, "Starting getLocalNameTest");
+			getLocalNameTest(req, res);
+		} else if (testname.equals("getPrefixTest")) {
+			logger.log(Logger.Level.INFO, "Starting getPrefixTest");
+			getPrefixTest(req, res);
+		} else if (testname.equals("getQualifiedNameTest")) {
+			logger.log(Logger.Level.INFO, "Starting getQualifiedNameTest");
+			getQualifiedNameTest(req, res);
+		} else if (testname.equals("getURITest")) {
+			logger.log(Logger.Level.INFO, "Starting getURITest");
+			getURITest(req, res);
+		} else {
+			throw new ServletException("The testname '" + testname + "' was not found in the test servlet");
 
-  }
+		}
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-    System.out.println("GetLocalNameTestServlet:init (Entering)");
-    System.out.println("GetLocalNameTestServlet:init (Leaving)");
-  }
+	}
 
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doGet");
-    dispatch(req, res);
-  }
+	public void init(ServletConfig servletConfig) throws ServletException {
+		super.init(servletConfig);
+		System.out.println("GetLocalNameTestServlet:init (Entering)");
+		System.out.println("GetLocalNameTestServlet:init (Leaving)");
+	}
 
-  public void doPost(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doPost");
-    SOAP_Util.doServletPost(req, res);
-    doGet(req, res);
-  }
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doGet");
+		dispatch(req, res);
+	}
 
-  private void getLocalNameTest(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("getLocalNameTest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doPost");
+		SOAP_Util.doServletPost(req, res);
+		doGet(req, res);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void getLocalNameTest(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "getLocalNameTest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Creating Name object ...");
-      name = envelope.createName("namespace", "ns", "namespace-uri");
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Obtaining local name");
-      String localName = name.getLocalName();
+			logger.log(Logger.Level.INFO, "Creating Name object ...");
+			name = envelope.createName("namespace", "ns", "namespace-uri");
 
-      logger.log(Logger.Level.INFO,"Validating local name results ...");
-      if (localName == null) {
-        logger.log(Logger.Level.ERROR,"localName is null");
-        pass = false;
-      } else if (!localName.equals("namespace")) {
-        logger.log(Logger.Level.ERROR,"local name mismatch - expected: namespace, received: "
-            + localName);
-        pass = false;
-      } else
-        logger.log(Logger.Level.INFO,"local name matches: " + localName);
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Obtaining local name");
+			String localName = name.getLocalName();
 
-  private void getPrefixTest(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("getPrefixTest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Validating local name results ...");
+			if (localName == null) {
+				logger.log(Logger.Level.ERROR, "localName is null");
+				pass = false;
+			} else if (!localName.equals("namespace")) {
+				logger.log(Logger.Level.ERROR, "local name mismatch - expected: namespace, received: " + localName);
+				pass = false;
+			} else
+				logger.log(Logger.Level.INFO, "local name matches: " + localName);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void getPrefixTest(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "getPrefixTest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Creating Name object ...");
-      name = envelope.createName("namespace", "ns", "namespace-uri");
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Obtaining prefix name");
-      String prefix = name.getPrefix();
+			logger.log(Logger.Level.INFO, "Creating Name object ...");
+			name = envelope.createName("namespace", "ns", "namespace-uri");
 
-      logger.log(Logger.Level.INFO,"Validating prefix results ...");
-      if (prefix == null) {
-        logger.log(Logger.Level.ERROR,"prefix is null");
-        pass = false;
-      } else if (!prefix.equals("ns")) {
-        logger.log(Logger.Level.ERROR,"prefix mismatch - expected: ns, received: " + prefix);
-        pass = false;
-      } else
-        logger.log(Logger.Level.INFO,"prefix matches: " + prefix);
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Obtaining prefix name");
+			String prefix = name.getPrefix();
 
-  private void getQualifiedNameTest(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("getQualifiedNameTest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Validating prefix results ...");
+			if (prefix == null) {
+				logger.log(Logger.Level.ERROR, "prefix is null");
+				pass = false;
+			} else if (!prefix.equals("ns")) {
+				logger.log(Logger.Level.ERROR, "prefix mismatch - expected: ns, received: " + prefix);
+				pass = false;
+			} else
+				logger.log(Logger.Level.INFO, "prefix matches: " + prefix);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void getQualifiedNameTest(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "getQualifiedNameTest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Creating Name object ...");
-      name = envelope.createName("namespace", "ns", "namespace-uri");
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Obtaining qualified name");
-      String qualifiedName = name.getQualifiedName();
+			logger.log(Logger.Level.INFO, "Creating Name object ...");
+			name = envelope.createName("namespace", "ns", "namespace-uri");
 
-      logger.log(Logger.Level.INFO,"Validating qualified name results ...");
-      if (qualifiedName == null) {
-        logger.log(Logger.Level.ERROR,"qualifiedName is null");
-        pass = false;
-      } else if (!qualifiedName.equals("ns:namespace")) {
-        TestUtil
-            .logErr("qualified name mismatch - expected: namespace, received: "
-                + qualifiedName);
-        pass = false;
-      } else
-        logger.log(Logger.Level.INFO,"qualified name matches: " + qualifiedName);
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Obtaining qualified name");
+			String qualifiedName = name.getQualifiedName();
 
-  private void getURITest(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("getURITest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Validating qualified name results ...");
+			if (qualifiedName == null) {
+				logger.log(Logger.Level.ERROR, "qualifiedName is null");
+				pass = false;
+			} else if (!qualifiedName.equals("ns:namespace")) {
+				TestUtil.logErr("qualified name mismatch - expected: namespace, received: " + qualifiedName);
+				pass = false;
+			} else
+				logger.log(Logger.Level.INFO, "qualified name matches: " + qualifiedName);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void getURITest(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "getURITest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Creating Name object ...");
-      name = envelope.createName("namespace", "ns", "namespace-uri");
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Obtaining URI name");
-      String uri = name.getURI();
+			logger.log(Logger.Level.INFO, "Creating Name object ...");
+			name = envelope.createName("namespace", "ns", "namespace-uri");
 
-      logger.log(Logger.Level.INFO,"Validating URI results ...");
-      if (uri == null) {
-        logger.log(Logger.Level.ERROR,"uri is null");
-        pass = false;
-      } else if (!uri.equals("namespace-uri")) {
-        TestUtil
-            .logErr("uri mismatch - expected: namespace-uri, received: " + uri);
-        pass = false;
-      } else
-        logger.log(Logger.Level.INFO,"uri matches: " + uri);
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Obtaining URI name");
+			String uri = name.getURI();
+
+			logger.log(Logger.Level.INFO, "Validating URI results ...");
+			if (uri == null) {
+				logger.log(Logger.Level.ERROR, "uri is null");
+				pass = false;
+			} else if (!uri.equals("namespace-uri")) {
+				TestUtil.logErr("uri mismatch - expected: namespace-uri, received: " + uri);
+				pass = false;
+			} else
+				logger.log(Logger.Level.INFO, "uri matches: " + uri);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 }

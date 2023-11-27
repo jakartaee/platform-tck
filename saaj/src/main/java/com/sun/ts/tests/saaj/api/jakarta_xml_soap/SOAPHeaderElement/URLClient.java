@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,50 +22,24 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPHeaderElement;
 
 import java.io.IOException;
 import java.lang.System.Logger;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Properties;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-@ExtendWith(ArquillianExtension.class)
-public class URLClient {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
 
-  private static final String HOSTNAME = "localhost";
+	private static final String SOAPHEADERELEMENT_TESTSERVLET = "/SOAPHeaderElement_web/SOAPHeaderElementTestServlet";
 
-  private static final int PORTNUM = 8000;
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final String SOAPHEADERELEMENT_TESTSERVLET = "/SOAPHeaderElement_web/SOAPHeaderElementTestServlet";
-
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
-
-  private static final String WEBSERVERPORTPROP = "webServerPort";
-
-  private TSURL tsurl = new TSURL();
-
-  private URL url = null;
-
-  private URLConnection urlConn = null;
-
-  private Properties props = null;
-
-  private String hostname = HOSTNAME;
-
-  private int portnum = PORTNUM;
-  
-  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
-
-  @Deployment(testable = false)
+	@Deployment(testable = false)
 	public static WebArchive createDeployment() throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "SOAPHeaderElement_web.war");
 		archive.addPackages(false, Filters.exclude(URLClient.class),
@@ -75,517 +49,469 @@ public class URLClient {
 		return archive;
 	};
 
+	/*
+	 * @testName: setMustUnderstandTrueTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:162;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.setMustUnderstand(true) method and
+	 * verify mustunderstand attribute is set to true
+	 *
+	 * Description: Set the mustunderstand attribute associated with the soap header
+	 * element to true
+	 *
+	 */
+	@Test
+	public void setMustUnderstandTrueTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "setMustUnderstandTrueTest");
 
-  /* Test setup */
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "setMustUnderstandTrueTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("setMustUnderstandTrueTest failed", e);
+		}
 
-  public void setup() throws Exception {
+		if (!pass)
+			throw new Exception("setMustUnderstandTrueTest failed");
+	}
 
-    boolean pass = true;
+	/*
+	 * @testName: setMustUnderstandFalseTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:162;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.setMustUnderstand(false) method and
+	 * verify mustunderstand attribute is set to false
+	 *
+	 * Description: Set the mustunderstand attribute associated with the soap header
+	 * element to false
+	 *
+	 */
+	@Test
+	public void setMustUnderstandFalseTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "setMustUnderstandFalseTest");
 
-    try {
-      hostname = System.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      logger.log(Logger.Level.ERROR,
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-    logger.log(Logger.Level.INFO,"setup ok");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "setMustUnderstandFalseTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  public void cleanup() throws Exception {
-    logger.log(Logger.Level.INFO,"cleanup ok");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("setMustUnderstandFalseTest failed", e);
+		}
 
-  /*
-   * @testName: setMustUnderstandTrueTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:162;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.setMustUnderstand(true) method and
-   * verify mustunderstand attribute is set to true
-   *
-   * Description: Set the mustunderstand attribute associated with the soap
-   * header element to true
-   *
-   */
-  @Test
-  public void setMustUnderstandTrueTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"setMustUnderstandTrueTest");
+		if (!pass)
+			throw new Exception("setMustUnderstandFalseTest failed");
+	}
 
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "setMustUnderstandTrueTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+	/*
+	 * @testName: getMustUnderstandTrueTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:163;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.getMustUnderstand() method and verify
+	 * mustunderstand attribute is set to true
+	 *
+	 * Description: Get the mustunderstand attribute associated with the soap header
+	 * element when it is true
+	 *
+	 */
+	@Test
+	public void getMustUnderstandTrueTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "getMustUnderstandTrueTest");
 
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("setMustUnderstandTrueTest failed", e);
-    }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "getMustUnderstandTrueTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("setMustUnderstandTrueTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getMustUnderstandTrueTest failed", e);
+		}
 
-  /*
-   * @testName: setMustUnderstandFalseTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:162;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.setMustUnderstand(false) method and
-   * verify mustunderstand attribute is set to false
-   *
-   * Description: Set the mustunderstand attribute associated with the soap
-   * header element to false
-   *
-   */
-  @Test
-  public void setMustUnderstandFalseTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"setMustUnderstandFalseTest");
+		if (!pass)
+			throw new Exception("getMustUnderstandTrueTest failed");
+	}
 
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "setMustUnderstandFalseTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+	/*
+	 * @testName: getMustUnderstandFalseTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:163;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.getMustUnderstand() method and verify
+	 * mustunderstand attribute is set to false
+	 *
+	 * Description: Get the mustunderstand attribute associated with the soap header
+	 * element when it is false
+	 *
+	 */
+	@Test
+	public void getMustUnderstandFalseTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "getMustUnderstandFalseTest");
 
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("setMustUnderstandFalseTest failed", e);
-    }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "getMustUnderstandFalseTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("setMustUnderstandFalseTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getMustUnderstandFalseTest failed", e);
+		}
 
-  /*
-   * @testName: getMustUnderstandTrueTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:163;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.getMustUnderstand() method and
-   * verify mustunderstand attribute is set to true
-   *
-   * Description: Get the mustunderstand attribute associated with the soap
-   * header element when it is true
-   *
-   */
-  @Test
-  public void getMustUnderstandTrueTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"getMustUnderstandTrueTest");
+		if (!pass)
+			throw new Exception("getMustUnderstandFalseTest failed");
+	}
 
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "getMustUnderstandTrueTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+	/*
+	 * @testName: setActorTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:157;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.setActor(actor) method and verify
+	 * actor associated is set properly.
+	 *
+	 * Description: Set the actor associated with the soap header element. For a
+	 * SOAP1.1 or SOAP1.2 message this should succeed.
+	 *
+	 */
+	@Test
+	public void setActorTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "setActorTest");
 
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getMustUnderstandTrueTest failed", e);
-    }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				if (i == 0) {
+					props.setProperty("TESTNAME", "setActorTest");
+					props.setProperty("SOAPVERSION", "soap11");
+				} else {
+					props.setProperty("TESTNAME", "setActorTest");
+					props.setProperty("SOAPVERSION", "soap12");
+				}
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("getMustUnderstandTrueTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("setActorTest failed", e);
+		}
 
-  /*
-   * @testName: getMustUnderstandFalseTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:163;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.getMustUnderstand() method and
-   * verify mustunderstand attribute is set to false
-   *
-   * Description: Get the mustunderstand attribute associated with the soap
-   * header element when it is false
-   *
-   */
-  @Test
-  public void getMustUnderstandFalseTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"getMustUnderstandFalseTest");
+		if (!pass)
+			throw new Exception("setActorTest failed");
+	}
 
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "getMustUnderstandFalseTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+	/*
+	 * @testName: getActorTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:160;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.getActor() method and verify actor
+	 * associated is set properly.
+	 *
+	 * Description: Get the actor associated with the soap header element. For a
+	 * SOAP1.1 or SOAP1.2 message this should succeed.
+	 *
+	 */
+	@Test
+	public void getActorTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "getActorTest");
 
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getMustUnderstandFalseTest failed", e);
-    }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				if (i == 0) {
+					props.setProperty("TESTNAME", "getActorTest");
+					props.setProperty("SOAPVERSION", "soap11");
+				} else {
+					props.setProperty("TESTNAME", "getActorTest");
+					props.setProperty("SOAPVERSION", "soap12");
+				}
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("getMustUnderstandFalseTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getActorTest failed", e);
+		}
 
-  /*
-   * @testName: setActorTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:157;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.setActor(actor) method and verify
-   * actor associated is set properly.
-   *
-   * Description: Set the actor associated with the soap header element. For a
-   * SOAP1.1 or SOAP1.2 message this should succeed.
-   *
-   */
-  @Test
-  public void setActorTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"setActorTest");
+		if (!pass)
+			throw new Exception("getActorTest failed");
+	}
 
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        if (i == 0) {
-          props.setProperty("TESTNAME", "setActorTest");
-          props.setProperty("SOAPVERSION", "soap11");
-        } else {
-          props.setProperty("TESTNAME", "setActorTest");
-          props.setProperty("SOAPVERSION", "soap12");
-        }
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+	/*
+	 * @testName: setRoleTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:158; SAAJ:JAVADOC:159;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.setRole(role) method and verify role
+	 * associated is set properly.
+	 *
+	 * Description: Set the role associated with the soap header element. For a
+	 * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
+	 * UnsupportedOperation- Exception.
+	 *
+	 */
+	@Test
+	public void setRoleTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "setRoleTest");
 
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("setActorTest failed", e);
-    }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				if (i == 0) {
+					props.setProperty("TESTNAME", "setRoleSOAP11Test");
+					props.setProperty("SOAPVERSION", "soap11");
+				} else {
+					props.setProperty("TESTNAME", "setRoleSOAP12Test");
+					props.setProperty("SOAPVERSION", "soap12");
+				}
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("setActorTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("setRoleTest failed", e);
+		}
 
-  /*
-   * @testName: getActorTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:160;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.getActor() method and verify actor
-   * associated is set properly.
-   *
-   * Description: Get the actor associated with the soap header element. For a
-   * SOAP1.1 or SOAP1.2 message this should succeed.
-   *
-   */
-  @Test
-  public void getActorTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"getActorTest");
+		if (!pass)
+			throw new Exception("setRoleTest failed");
+	}
 
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        if (i == 0) {
-          props.setProperty("TESTNAME", "getActorTest");
-          props.setProperty("SOAPVERSION", "soap11");
-        } else {
-          props.setProperty("TESTNAME", "getActorTest");
-          props.setProperty("SOAPVERSION", "soap12");
-        }
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+	/*
+	 * @testName: getRoleTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:161;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.getRole() method and verify role
+	 * associated is set properly.
+	 *
+	 * Description: Get the role associated with the soap header element. For a
+	 * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
+	 * UnsupportedOperation- Exception.
+	 *
+	 */
+	@Test
+	public void getRoleTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "getRoleTest");
 
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getActorTest failed", e);
-    }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				if (i == 0) {
+					props.setProperty("TESTNAME", "getRoleSOAP11Test");
+					props.setProperty("SOAPVERSION", "soap11");
+				} else {
+					props.setProperty("TESTNAME", "getRoleSOAP12Test");
+					props.setProperty("SOAPVERSION", "soap12");
+				}
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("getActorTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getRoleTest failed", e);
+		}
 
-  /*
-   * @testName: setRoleTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:158; SAAJ:JAVADOC:159;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.setRole(role) method and verify role
-   * associated is set properly.
-   *
-   * Description: Set the role associated with the soap header element. For a
-   * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
-   * UnsupportedOperation- Exception.
-   *
-   */
-  @Test
-  public void setRoleTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"setRoleTest");
+		if (!pass)
+			throw new Exception("getRoleTest failed");
+	}
 
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        if (i == 0) {
-          props.setProperty("TESTNAME", "setRoleSOAP11Test");
-          props.setProperty("SOAPVERSION", "soap11");
-        } else {
-          props.setProperty("TESTNAME", "setRoleSOAP12Test");
-          props.setProperty("SOAPVERSION", "soap12");
-        }
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+	/*
+	 * @testName: setRelayTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:164; SAAJ:JAVADOC:165;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.setRelay(relay) method and verify
+	 * relay attribute is set properly.
+	 *
+	 * Description: Set the relay attribute for this soap header element. For a
+	 * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
+	 * UnsupportedOperation- Exception.
+	 *
+	 */
+	@Test
+	public void setRelayTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "setRelayTest");
 
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("setRoleTest failed", e);
-    }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				if (i == 0) {
+					props.setProperty("TESTNAME", "setRelaySOAP11Test");
+					props.setProperty("SOAPVERSION", "soap11");
+				} else {
+					props.setProperty("TESTNAME", "setRelaySOAP12Test");
+					props.setProperty("SOAPVERSION", "soap12");
+				}
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("setRoleTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("setRelayTest failed", e);
+		}
 
-  /*
-   * @testName: getRoleTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:161;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.getRole() method and verify role
-   * associated is set properly.
-   *
-   * Description: Get the role associated with the soap header element. For a
-   * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
-   * UnsupportedOperation- Exception.
-   *
-   */
-  @Test
-  public void getRoleTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"getRoleTest");
+		if (!pass)
+			throw new Exception("setRelayTest failed");
+	}
 
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        if (i == 0) {
-          props.setProperty("TESTNAME", "getRoleSOAP11Test");
-          props.setProperty("SOAPVERSION", "soap11");
-        } else {
-          props.setProperty("TESTNAME", "getRoleSOAP12Test");
-          props.setProperty("SOAPVERSION", "soap12");
-        }
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+	/*
+	 * @testName: getRelayTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:166;
+	 *
+	 * @test_Strategy: Call SOAPHeaderElement.getRelay() method and verify relay
+	 * attribute is set properly.
+	 *
+	 * Description: Get the relay attribute for this soap header element. For a
+	 * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
+	 * UnsupportedOperation- Exception.
+	 *
+	 */
+	@Test
+	public void getRelayTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "getRelayTest");
 
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getRoleTest failed", e);
-    }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPHEADERELEMENT_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				if (i == 0) {
+					props.setProperty("TESTNAME", "getRelaySOAP11Test");
+					props.setProperty("SOAPVERSION", "soap11");
+				} else {
+					props.setProperty("TESTNAME", "getRelaySOAP12Test");
+					props.setProperty("SOAPVERSION", "soap12");
+				}
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("getRoleTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getRelayTest failed", e);
+		}
 
-  /*
-   * @testName: setRelayTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:164; SAAJ:JAVADOC:165;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.setRelay(relay) method and verify
-   * relay attribute is set properly.
-   *
-   * Description: Set the relay attribute for this soap header element. For a
-   * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
-   * UnsupportedOperation- Exception.
-   *
-   */
-  @Test
-  public void setRelayTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"setRelayTest");
-
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        if (i == 0) {
-          props.setProperty("TESTNAME", "setRelaySOAP11Test");
-          props.setProperty("SOAPVERSION", "soap11");
-        } else {
-          props.setProperty("TESTNAME", "setRelaySOAP12Test");
-          props.setProperty("SOAPVERSION", "soap12");
-        }
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("setRelayTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("setRelayTest failed");
-  }
-
-  /*
-   * @testName: getRelayTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:166;
-   *
-   * @test_Strategy: Call SOAPHeaderElement.getRelay() method and verify relay
-   * attribute is set properly.
-   *
-   * Description: Get the relay attribute for this soap header element. For a
-   * SOAP1.2 message this should succeed and for a SOAP1.1 message it must throw
-   * UnsupportedOperation- Exception.
-   *
-   */
-  @Test
-  public void getRelayTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"getRelayTest");
-
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPHEADERELEMENT_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        if (i == 0) {
-          props.setProperty("TESTNAME", "getRelaySOAP11Test");
-          props.setProperty("SOAPVERSION", "soap11");
-        } else {
-          props.setProperty("TESTNAME", "getRelaySOAP12Test");
-          props.setProperty("SOAPVERSION", "soap12");
-        }
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getRelayTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("getRelayTest failed");
-  }
+		if (!pass)
+			throw new Exception("getRelayTest failed");
+	}
 }

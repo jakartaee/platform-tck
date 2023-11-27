@@ -20,48 +20,23 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.AttachmentPart;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Properties;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-@ExtendWith(ArquillianExtension.class)
-public class URLClient {
-	private static final String PROTOCOL = "http";
-
-	private static final String HOSTNAME = "localhost";
-
-	private static final int PORTNUM = 8000;
+public class URLClient extends Client {
 
 	private static final String TESTSERVLET = "/AttachmentPart_web/AttachmentPartTestServlet";
-
-	private static final String WEBSERVERHOSTPROP = "webServerHost";
-
-	private static final String WEBSERVERPORTPROP = "webServerPort";
-
-	private TSURL tsurl = new TSURL();
-
-	private URL url = null;
-
-	private URLConnection urlConn = null;
-
-	private Properties props = null;
-
-	private String hostname = HOSTNAME;
-
-	private int portnum = PORTNUM;
 
 	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
@@ -71,45 +46,15 @@ public class URLClient {
 		archive.addPackages(false, Filters.exclude(URLClient.class),
 				"com.sun.ts.tests.saaj.api.jakarta_xml_soap.AttachmentPart");
 		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
-		archive.addAsResource("com/sun/ts/tests/saaj/api/jakarta_xml_soap/AttachmentPart/contentRoot");
+		final String CONTENT_ROOT = URLClient.class.getPackageName().replace(".", "/") + "/contentRoot/";
+		String[] attachement = { "attach2.xml", "attach.gif", "attach.html", "attach.jpeg", "attach.null",
+				"attach.xml" };
+		addFilesToArchive(CONTENT_ROOT, attachement, archive);
 		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
 		return archive;
-	};
+	}
 
 	/* Test setup */
-
-	/*
-	 * @class.setup_props: webServerHost; webServerPort;
-	 */
-
-	public void setup() throws Exception {
-		boolean pass = true;
-
-		try {
-			hostname = System.getProperty(WEBSERVERHOSTPROP);
-			if (hostname == null)
-				pass = false;
-			else if (hostname.equals(""))
-				pass = false;
-			try {
-				portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
-			} catch (Exception e) {
-				pass = false;
-			}
-		} catch (Exception e) {
-			throw new Exception("setup failed:", e);
-		}
-		if (!pass) {
-			logger.log(Logger.Level.ERROR, "Please specify host & port of web server " + "in config properties: "
-					+ WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-			throw new Exception("setup failed:");
-		}
-		logger.log(Logger.Level.INFO, "setup ok");
-	}
-
-	public void cleanup() throws Exception {
-		logger.log(Logger.Level.INFO, "cleanup ok");
-	}
 
 	/*
 	 * @testName: addMimeHeader1Test
@@ -386,6 +331,12 @@ public class URLClient {
 			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
 			url = tsurl.getURL(PROTOCOL, hostname, portnum, TESTSERVLET);
 			logger.log(Logger.Level.INFO, url.toString());
+
+			for (Object name : props.keySet()) {
+				String key = name.toString();
+				String value = props.get(name).toString();
+			}
+
 			for (int i = 0; i < 2; i++) {
 				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
 				props.setProperty("TESTNAME", "addMimeHeader7Test");
