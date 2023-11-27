@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,50 +22,23 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.MimeHeader;
 
 import java.io.IOException;
 import java.lang.System.Logger;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Properties;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-@ExtendWith(ArquillianExtension.class)
-public class URLClient {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
+	private static final String MIMEHEADER_TESTSERVLET = "/MimeHeader_web/MimeHeaderTestServlet";
 
-  private static final String HOSTNAME = "localhost";
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final int PORTNUM = 8000;
-
-  private static final String MIMEHEADER_TESTSERVLET = "/MimeHeader_web/MimeHeaderTestServlet";
-
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
-
-  private static final String WEBSERVERPORTPROP = "webServerPort";
-
-  private TSURL tsurl = new TSURL();
-
-  private URL url = null;
-
-  private URLConnection urlConn = null;
-
-  private Properties props = null;
-
-  private String hostname = HOSTNAME;
-
-  private int portnum = PORTNUM;
-  
-  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
-
-  @Deployment(testable = false)
+	@Deployment(testable = false)
 	public static WebArchive createDeployment() throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "MimeHeader_web.war");
 		archive.addPackages(false, Filters.exclude(URLClient.class),
@@ -75,124 +48,87 @@ public class URLClient {
 		return archive;
 	};
 
-  /* Test setup */
+	/*
+	 * @testName: getNameTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:107;
+	 *
+	 * @test_Strategy: MimeHeader.getName() will return the name associated with
+	 * this MimeHeader object.
+	 *
+	 * Description: get name associated with MimeHeader object
+	 */
+	@Test
+	public void getNameTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "getNameTest: get name associated with MimeHeader");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, MIMEHEADER_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "getNameTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getNameTest failed", e);
+		}
 
-  public void setup() throws Exception {
+		if (!pass)
+			throw new Exception("getNameTest failed");
+	}
 
-    boolean pass = true;
+	/*
+	 * @testName: getValueTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:108;
+	 *
+	 * @test_Strategy: MimeHeader.getValue() will return the value associated with
+	 * this MimeHeader object.
+	 *
+	 * Description: get Value associated with MimeHeader
+	 */
+	@Test
+	public void getValueTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "getValueTest: get value associated with MimeHeader");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, MIMEHEADER_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "getValueTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    try {
-      hostname = System.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      logger.log(Logger.Level.ERROR,
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-    logger.log(Logger.Level.INFO,"setup ok");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getValueTest failed", e);
+		}
 
-  public void cleanup() throws Exception {
-    logger.log(Logger.Level.INFO,"cleanup ok");
-  }
-
-  /*
-   * @testName: getNameTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:107;
-   *
-   * @test_Strategy: MimeHeader.getName() will return the name associated with
-   * this MimeHeader object.
-   *
-   * Description: get name associated with MimeHeader object
-   */
-  @Test
-  public void getNameTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"getNameTest: get name associated with MimeHeader");
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, MIMEHEADER_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "getNameTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getNameTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("getNameTest failed");
-  }
-
-  /*
-   * @testName: getValueTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:108;
-   *
-   * @test_Strategy: MimeHeader.getValue() will return the value associated with
-   * this MimeHeader object.
-   *
-   * Description: get Value associated with MimeHeader
-   */
-  @Test
-  public void getValueTest() throws Exception {
-    boolean pass = true;
-    try {
-      logger.log(Logger.Level.INFO,"getValueTest: get value associated with MimeHeader");
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, MIMEHEADER_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      for (int i = 0; i < 2; i++) {
-        logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "getValueTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getValueTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("getValueTest failed");
-  }
+		if (!pass)
+			throw new Exception("getValueTest failed");
+	}
 }

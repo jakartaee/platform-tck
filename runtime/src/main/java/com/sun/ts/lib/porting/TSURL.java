@@ -66,7 +66,9 @@ public class TSURL implements TSURLInterface, Serializable {
     if (ctsURL == null) {
       try {
         // create and initialize a new instance of TSURLInterface
-        Class c = Class.forName(TestUtil.getProperty(sClass));
+    	String className = TestUtil.getProperty(sClass);
+    	className = (className != null )? className : System.getProperty(sClass, "com.sun.ts.tests.saaj.lib.implementation.sun.common.SunRIURL");
+        Class c = Class.forName(className);
         ctsURL = (TSURLInterface) c.newInstance();
       } catch (Exception e) {
         e.printStackTrace();

@@ -49,381 +49,365 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class SAAJResultTestServlet extends HttpServlet {
-	
-	  private static final Logger logger = (Logger) System.getLogger(SAAJResultTestServlet.class.getName());
 
-  private MessageFactory mf = null;
+	private static final Logger logger = (Logger) System.getLogger(SAAJResultTestServlet.class.getName());
 
-  private SOAPMessage msg = null;
+	private MessageFactory mf = null;
 
-  private SOAPPart sp = null;
+	private SOAPMessage msg = null;
 
-  private SOAPEnvelope envelope = null;
+	private SOAPPart sp = null;
 
-  private SOAPHeader hdr = null;
+	private SOAPEnvelope envelope = null;
 
-  private SOAPBody body = null;
+	private SOAPHeader hdr = null;
 
-  private SOAPElement se = null;
+	private SOAPBody body = null;
 
-  private static final String NS_PREFIX = "ns-prefix";
+	private SOAPElement se = null;
 
-  private static final String NS_URI = "ns-uri";
+	private static final String NS_PREFIX = "ns-prefix";
 
-  private void setup() throws Exception {
-    TestUtil.logTrace("setup");
+	private static final String NS_URI = "ns-uri";
 
-    SOAP_Util.setup();
+	private void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
 
-    // Create a message from the message factory.
-    logger.log(Logger.Level.INFO,"Create message from message factory");
-    msg = SOAP_Util.getMessageFactory().createMessage();
+		SOAP_Util.setup();
 
-    // Message creation takes care of creating the SOAPPart - a
-    // required part of the message as per the SOAP 1.1 spec.
-    logger.log(Logger.Level.INFO,"Get SOAP Part");
-    sp = msg.getSOAPPart();
+		// Create a message from the message factory.
+		logger.log(Logger.Level.INFO, "Create message from message factory");
+		msg = SOAP_Util.getMessageFactory().createMessage();
 
-    // Retrieve the envelope from the soap part to start building
-    // the soap message.
-    logger.log(Logger.Level.INFO,"Get SOAP Envelope");
-    envelope = sp.getEnvelope();
+		// Message creation takes care of creating the SOAPPart - a
+		// required part of the message as per the SOAP 1.1 spec.
+		logger.log(Logger.Level.INFO, "Get SOAP Part");
+		sp = msg.getSOAPPart();
 
-    // Retrieve the soap header from the envelope.
-    logger.log(Logger.Level.INFO,"Get SOAP Header");
-    hdr = envelope.getHeader();
+		// Retrieve the envelope from the soap part to start building
+		// the soap message.
+		logger.log(Logger.Level.INFO, "Get SOAP Envelope");
+		envelope = sp.getEnvelope();
 
-    // Retrieve the soap header from the envelope.
-    logger.log(Logger.Level.INFO,"Get SOAP Body");
-    body = envelope.getBody();
+		// Retrieve the soap header from the envelope.
+		logger.log(Logger.Level.INFO, "Get SOAP Header");
+		hdr = envelope.getHeader();
 
-    Name name = envelope.createName("MyAttr1");
-    String value = "MyValue1";
-    se = body.addAttribute(name, value);
-  }
+		// Retrieve the soap header from the envelope.
+		logger.log(Logger.Level.INFO, "Get SOAP Body");
+		body = envelope.getBody();
 
-  private void dispatch(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("dispatch");
-    String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
-    if (testname.equals("SAAJResultConstructorTest1")) {
-      logger.log(Logger.Level.INFO,"Starting SAAJResultConstructorTest1");
-      SAAJResultConstructorTest1(req, res);
-    } else if (testname.equals("SAAJResultConstructorTest2")) {
-      logger.log(Logger.Level.INFO,"Starting SAAJResultConstructorTest2");
-      SAAJResultConstructorTest2(req, res);
-    } else if (testname.equals("SAAJResultConstructorTest3")) {
-      logger.log(Logger.Level.INFO,"Starting SAAJResultConstructorTest3");
-      SAAJResultConstructorTest3(req, res);
-    } else if (testname.equals("SAAJResultConstructorTest4")) {
-      logger.log(Logger.Level.INFO,"Starting SAAJResultConstructorTest4");
-      SAAJResultConstructorTest4(req, res);
-    } else if (testname.equals("getResultTest1")) {
-      logger.log(Logger.Level.INFO,"Starting getResultTest1");
-      getResultTest1(req, res);
-    } else if (testname.equals("getResultTest2")) {
-      logger.log(Logger.Level.INFO,"Starting getResultTest2");
-      getResultTest2(req, res);
-    } else {
-      throw new ServletException(
-          "The testname '" + testname + "' was not found in the test servlet");
-    }
-  }
+		Name name = envelope.createName("MyAttr1");
+		String value = "MyValue1";
+		se = body.addAttribute(name, value);
+	}
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-    System.out.println("SAAJResultTestServlet:init (Entering)");
-    SOAP_Util.doServletInit(servletConfig);
-    System.out.println("SAAJResultTestServlet:init (Leaving)");
-  }
+	private void dispatch(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "dispatch");
+		String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
+		if (testname.equals("SAAJResultConstructorTest1")) {
+			logger.log(Logger.Level.INFO, "Starting SAAJResultConstructorTest1");
+			SAAJResultConstructorTest1(req, res);
+		} else if (testname.equals("SAAJResultConstructorTest2")) {
+			logger.log(Logger.Level.INFO, "Starting SAAJResultConstructorTest2");
+			SAAJResultConstructorTest2(req, res);
+		} else if (testname.equals("SAAJResultConstructorTest3")) {
+			logger.log(Logger.Level.INFO, "Starting SAAJResultConstructorTest3");
+			SAAJResultConstructorTest3(req, res);
+		} else if (testname.equals("SAAJResultConstructorTest4")) {
+			logger.log(Logger.Level.INFO, "Starting SAAJResultConstructorTest4");
+			SAAJResultConstructorTest4(req, res);
+		} else if (testname.equals("getResultTest1")) {
+			logger.log(Logger.Level.INFO, "Starting getResultTest1");
+			getResultTest1(req, res);
+		} else if (testname.equals("getResultTest2")) {
+			logger.log(Logger.Level.INFO, "Starting getResultTest2");
+			getResultTest2(req, res);
+		} else {
+			throw new ServletException("The testname '" + testname + "' was not found in the test servlet");
+		}
+	}
 
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doGet");
-    dispatch(req, res);
-  }
+	public void init(ServletConfig servletConfig) throws ServletException {
+		super.init(servletConfig);
+		System.out.println("SAAJResultTestServlet:init (Entering)");
+		SOAP_Util.doServletInit(servletConfig);
+		System.out.println("SAAJResultTestServlet:init (Leaving)");
+	}
 
-  public void doPost(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doPost");
-    SOAP_Util.doServletPost(req, res);
-    doGet(req, res);
-  }
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doGet");
+		dispatch(req, res);
+	}
 
-  private void SAAJResultConstructorTest1(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("SAAJResultConstructorTest1");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doPost");
+		SOAP_Util.doServletPost(req, res);
+		doGet(req, res);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void SAAJResultConstructorTest1(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "SAAJResultConstructorTest1");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Create a SAAJResult object using constructor");
-      SAAJResult sr = new SAAJResult();
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Validating SAAJResult object creation");
-      if (sr == null) {
-        logger.log(Logger.Level.ERROR,"SAAJResult is null");
-        pass = false;
-      } else {
-        logger.log(Logger.Level.INFO,"SAAJResult was created");
-      }
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Create a SAAJResult object using constructor");
+			SAAJResult sr = new SAAJResult();
 
-  private void SAAJResultConstructorTest2(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("SAAJResultConstructorTest2");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Validating SAAJResult object creation");
+			if (sr == null) {
+				logger.log(Logger.Level.ERROR, "SAAJResult is null");
+				pass = false;
+			} else {
+				logger.log(Logger.Level.INFO, "SAAJResult was created");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void SAAJResultConstructorTest2(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "SAAJResultConstructorTest2");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Create a SAAJResult object using constructor");
-      SAAJResult sr = new SAAJResult(se);
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Validating SAAJResult object creation");
-      if (sr == null) {
-        logger.log(Logger.Level.ERROR,"SAAJResult is null");
-        pass = false;
-      } else {
-        logger.log(Logger.Level.INFO,"SAAJResult was created");
-      }
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Create a SAAJResult object using constructor");
+			SAAJResult sr = new SAAJResult(se);
 
-  private void SAAJResultConstructorTest3(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("SAAJResultConstructorTest3");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Validating SAAJResult object creation");
+			if (sr == null) {
+				logger.log(Logger.Level.ERROR, "SAAJResult is null");
+				pass = false;
+			} else {
+				logger.log(Logger.Level.INFO, "SAAJResult was created");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void SAAJResultConstructorTest3(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "SAAJResultConstructorTest3");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Create a SAAJResult object using constructor");
-      SAAJResult sr = new SAAJResult(msg);
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Validating SAAJResult object creation");
-      if (sr == null) {
-        logger.log(Logger.Level.ERROR,"SAAJResult is null");
-        pass = false;
-      } else {
-        logger.log(Logger.Level.INFO,"SAAJResult was created");
-      }
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Create a SAAJResult object using constructor");
+			SAAJResult sr = new SAAJResult(msg);
 
-  private void SAAJResultConstructorTest4(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("SAAJResultConstructorTest4");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Validating SAAJResult object creation");
+			if (sr == null) {
+				logger.log(Logger.Level.ERROR, "SAAJResult is null");
+				pass = false;
+			} else {
+				logger.log(Logger.Level.INFO, "SAAJResult was created");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void SAAJResultConstructorTest4(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "SAAJResultConstructorTest4");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Create a SAAJResult object using constructor");
-      SAAJResult sr = new SAAJResult(SOAPConstants.SOAP_1_1_PROTOCOL);
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Validating SAAJResult object creation");
-      if (sr == null) {
-        logger.log(Logger.Level.ERROR,"SAAJResult is null");
-        pass = false;
-      } else {
-        logger.log(Logger.Level.INFO,"SAAJResult was created");
-      }
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Create a SAAJResult object using constructor");
+			SAAJResult sr = new SAAJResult(SOAPConstants.SOAP_1_1_PROTOCOL);
 
-  private void getResultTest1(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("getResultTest1");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Validating SAAJResult object creation");
+			if (sr == null) {
+				logger.log(Logger.Level.ERROR, "SAAJResult is null");
+				pass = false;
+			} else {
+				logger.log(Logger.Level.INFO, "SAAJResult was created");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void getResultTest1(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "getResultTest1");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Create a SAAJResult object using constructor");
-      SAAJResult sr = new SAAJResult();
+		try {
+			setup();
 
-      logger.log(Logger.Level.INFO,"Validating getResult object creation");
-      Node node = sr.getResult();
-      if (node == null) {
-        logger.log(Logger.Level.INFO,"Node is null (expected)");
-      } else {
-        logger.log(Logger.Level.INFO,"Node tree was returned");
-        XMLUtils.XmlDumpDOMNodes(node);
-      }
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Create a SAAJResult object using constructor");
+			SAAJResult sr = new SAAJResult();
 
-  private void getResultTest2(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("getResultTest2");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Validating getResult object creation");
+			Node node = sr.getResult();
+			if (node == null) {
+				logger.log(Logger.Level.INFO, "Node is null (expected)");
+			} else {
+				logger.log(Logger.Level.INFO, "Node tree was returned");
+				XMLUtils.XmlDumpDOMNodes(node);
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void getResultTest2(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "getResultTest2");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      logger.log(Logger.Level.INFO,"Create SOAP message from message factory");
-      SOAPMessage msg = SOAP_Util.getMessageFactory().createMessage();
+		try {
+			setup();
 
-      // Message creation takes care of creating the SOAPPart - a
-      // required part of the message as per the SOAP 1.1 spec.
-      logger.log(Logger.Level.INFO,"Get SOAP Part");
-      SOAPPart sp = msg.getSOAPPart();
+			logger.log(Logger.Level.INFO, "Create SOAP message from message factory");
+			SOAPMessage msg = SOAP_Util.getMessageFactory().createMessage();
 
-      // Retrieve the envelope from the soap part to start building
-      // the soap message.
-      logger.log(Logger.Level.INFO,"Get SOAP Envelope");
-      SOAPEnvelope envelope = sp.getEnvelope();
+			// Message creation takes care of creating the SOAPPart - a
+			// required part of the message as per the SOAP 1.1 spec.
+			logger.log(Logger.Level.INFO, "Get SOAP Part");
+			SOAPPart sp = msg.getSOAPPart();
 
-      // Create a soap header from the envelope.
-      logger.log(Logger.Level.INFO,"Create SOAP Header");
-      SOAPHeader hdr = envelope.getHeader();
+			// Retrieve the envelope from the soap part to start building
+			// the soap message.
+			logger.log(Logger.Level.INFO, "Get SOAP Envelope");
+			SOAPEnvelope envelope = sp.getEnvelope();
 
-      // Create a soap body from the envelope.
-      logger.log(Logger.Level.INFO,"Create SOAP Body");
-      SOAPBody bdy = envelope.getBody();
+			// Create a soap header from the envelope.
+			logger.log(Logger.Level.INFO, "Create SOAP Header");
+			SOAPHeader hdr = envelope.getHeader();
 
-      // Add some soap header elements
-      logger.log(Logger.Level.INFO,"Add SOAP HeaderElement Header1");
-      SOAPElement se = hdr
-          .addHeaderElement(envelope.createName("Header1", NS_PREFIX, NS_URI))
-          .addTextNode("This is Header1");
-      SOAPHeaderElement she = (SOAPHeaderElement) se;
-      she.setMustUnderstand(true);
+			// Create a soap body from the envelope.
+			logger.log(Logger.Level.INFO, "Create SOAP Body");
+			SOAPBody bdy = envelope.getBody();
 
-      logger.log(Logger.Level.INFO,"Add SOAP HeaderElement Header2");
-      se = hdr
-          .addHeaderElement(envelope.createName("Header2", NS_PREFIX, NS_URI))
-          .addTextNode("This is Header2");
-      she = (SOAPHeaderElement) se;
-      she.setMustUnderstand(false);
+			// Add some soap header elements
+			logger.log(Logger.Level.INFO, "Add SOAP HeaderElement Header1");
+			SOAPElement se = hdr.addHeaderElement(envelope.createName("Header1", NS_PREFIX, NS_URI))
+					.addTextNode("This is Header1");
+			SOAPHeaderElement she = (SOAPHeaderElement) se;
+			she.setMustUnderstand(true);
 
-      logger.log(Logger.Level.INFO,"Add SOAP HeaderElement Header3");
-      se = hdr
-          .addHeaderElement(envelope.createName("Header3", NS_PREFIX, NS_URI))
-          .addTextNode("This is Header3");
-      she = (SOAPHeaderElement) se;
-      she.setMustUnderstand(true);
+			logger.log(Logger.Level.INFO, "Add SOAP HeaderElement Header2");
+			se = hdr.addHeaderElement(envelope.createName("Header2", NS_PREFIX, NS_URI)).addTextNode("This is Header2");
+			she = (SOAPHeaderElement) se;
+			she.setMustUnderstand(false);
 
-      logger.log(Logger.Level.INFO,"Add SOAP HeaderElement Header4");
-      se = hdr
-          .addHeaderElement(envelope.createName("Header4", NS_PREFIX, NS_URI))
-          .addTextNode("This is Header4");
-      she = (SOAPHeaderElement) se;
-      she.setMustUnderstand(false);
+			logger.log(Logger.Level.INFO, "Add SOAP HeaderElement Header3");
+			se = hdr.addHeaderElement(envelope.createName("Header3", NS_PREFIX, NS_URI)).addTextNode("This is Header3");
+			she = (SOAPHeaderElement) se;
+			she.setMustUnderstand(true);
 
-      // Add a soap body element
-      logger.log(Logger.Level.INFO,"Add SOAP BodyElement Body1");
-      SOAPBodyElement sbe = bdy
-          .addBodyElement(envelope.createName("Body1", NS_PREFIX, NS_URI));
+			logger.log(Logger.Level.INFO, "Add SOAP HeaderElement Header4");
+			se = hdr.addHeaderElement(envelope.createName("Header4", NS_PREFIX, NS_URI)).addTextNode("This is Header4");
+			she = (SOAPHeaderElement) se;
+			she.setMustUnderstand(false);
 
-      // Add a some child elements
-      logger.log(Logger.Level.INFO,"Add ChildElement Child1");
-      sbe.addChildElement(envelope.createName("Child1", NS_PREFIX, NS_URI))
-          .addTextNode("This is Child1");
-      logger.log(Logger.Level.INFO,"Add ChildElement Child2");
-      sbe.addChildElement(envelope.createName("Child2", NS_PREFIX, NS_URI))
-          .addTextNode("This is Child2");
-      logger.log(Logger.Level.INFO,"Done creating SOAP message");
+			// Add a soap body element
+			logger.log(Logger.Level.INFO, "Add SOAP BodyElement Body1");
+			SOAPBodyElement sbe = bdy.addBodyElement(envelope.createName("Body1", NS_PREFIX, NS_URI));
 
-      logger.log(Logger.Level.INFO,"Create a SAAJResult object using constructor");
-      SAAJResult sr = new SAAJResult(msg);
+			// Add a some child elements
+			logger.log(Logger.Level.INFO, "Add ChildElement Child1");
+			sbe.addChildElement(envelope.createName("Child1", NS_PREFIX, NS_URI)).addTextNode("This is Child1");
+			logger.log(Logger.Level.INFO, "Add ChildElement Child2");
+			sbe.addChildElement(envelope.createName("Child2", NS_PREFIX, NS_URI)).addTextNode("This is Child2");
+			logger.log(Logger.Level.INFO, "Done creating SOAP message");
 
-      logger.log(Logger.Level.INFO,"Validating getResult object creation");
-      Node node = sr.getResult();
-      if (node == null) {
-        logger.log(Logger.Level.ERROR,"Node is null");
-        pass = false;
-      } else {
-        logger.log(Logger.Level.INFO,"Node tree was returned");
-      }
-      XMLUtils.XmlDumpDOMNodes(node);
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Create a SAAJResult object using constructor");
+			SAAJResult sr = new SAAJResult(msg);
+
+			logger.log(Logger.Level.INFO, "Validating getResult object creation");
+			Node node = sr.getResult();
+			if (node == null) {
+				logger.log(Logger.Level.ERROR, "Node is null");
+				pass = false;
+			} else {
+				logger.log(Logger.Level.INFO, "Node tree was returned");
+			}
+			XMLUtils.XmlDumpDOMNodes(node);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 }

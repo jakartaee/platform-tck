@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,50 +22,24 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConstants;
 
 import java.io.IOException;
 import java.lang.System.Logger;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Properties;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-@ExtendWith(ArquillianExtension.class)
-public class URLClient {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
 
-  private static final String HOSTNAME = "localhost";
+	private static final String SOAPCONSTANTS_TESTSERVLET = "/SOAPConstants_web/SOAPConstantsTestServlet";
 
-  private static final int PORTNUM = 8000;
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final String SOAPCONSTANTS_TESTSERVLET = "/SOAPConstants_web/SOAPConstantsTestServlet";
-
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
-
-  private static final String WEBSERVERPORTPROP = "webServerPort";
-
-  private TSURL tsurl = new TSURL();
-
-  private URL url = null;
-
-  private URLConnection urlConn = null;
-
-  private Properties props = null;
-
-  private String hostname = HOSTNAME;
-
-  private int portnum = PORTNUM;
-
-  private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
-
-  @Deployment(testable = false)
+	@Deployment(testable = false)
 	public static WebArchive createDeployment() throws IOException {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "SOAPConstants_web.war");
 		archive.addPackages(false, Filters.exclude(URLClient.class),
@@ -75,79 +49,39 @@ public class URLClient {
 		return archive;
 	};
 
+	/*
+	 * @testName: SOAPConstantsTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:0;
+	 *
+	 * @test_Strategy: Verify the SOAP1.1 and SOAP1.2 protocol constants
+	 *
+	 * Description: Verify the SOAP1.1 and SOAP1.2 protocol constants
+	 *
+	 */
+	@Test
+	public void SOAPConstantsTest() throws Exception {
+		boolean pass = true;
+		try {
 
-  /* Test setup */
+			logger.log(Logger.Level.INFO, "SOAPConstantsTest: verify SOAP1.1 and SOAP1.2 protocol constants");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPCONSTANTS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "SOAPConstantsTest");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("SOAPConstantsTest failed", e);
+		}
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-
-  public void setup() throws Exception {
-
-    boolean pass = true;
-
-    try {
-      hostname = System.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(System.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      logger.log(Logger.Level.ERROR,
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-    logger.log(Logger.Level.INFO,"setup ok");
-  }
-
-  public void cleanup() throws Exception {
-    logger.log(Logger.Level.INFO,"cleanup ok");
-  }
-
-  /*
-   * @testName: SOAPConstantsTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:0;
-   *
-   * @test_Strategy: Verify the SOAP1.1 and SOAP1.2 protocol constants
-   *
-   * Description: Verify the SOAP1.1 and SOAP1.2 protocol constants
-   *
-   */
-  @Test
-  public void SOAPConstantsTest() throws Exception {
-    boolean pass = true;
-    try {
-
-      logger.log(Logger.Level.INFO,
-          "SOAPConstantsTest: verify SOAP1.1 and SOAP1.2 protocol constants");
-      logger.log(Logger.Level.INFO,"Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPCONSTANTS_TESTSERVLET);
-      logger.log(Logger.Level.INFO,url.toString());
-      logger.log(Logger.Level.INFO,"Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "SOAPConstantsTest");
-      urlConn = TestUtil.sendPostData(props, url);
-      logger.log(Logger.Level.INFO,"Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      logger.log(Logger.Level.ERROR,"Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("SOAPConstantsTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("SOAPConstantsTest failed");
-  }
+		if (!pass)
+			throw new Exception("SOAPConstantsTest failed");
+	}
 }
