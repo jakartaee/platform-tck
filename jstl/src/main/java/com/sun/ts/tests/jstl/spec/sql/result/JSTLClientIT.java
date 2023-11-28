@@ -34,14 +34,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class JSTLClient extends SqlUrlClient {
+public class JSTLClientIT extends SqlUrlClient {
 
-  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
 
 
   /** Creates new JSTLClient */
-  public JSTLClient() {
+  public JSTLClientIT() {
     setGeneralURI("/jstl/spec/sql/result");
     setContextRoot("/jstl_sql_result_web");
     setGoldenFileDir("/jstl/spec/sql/result");
@@ -51,18 +51,18 @@ public class JSTLClient extends SqlUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_sql_result_web.war");
-    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_sql_result_web.xml"));
+    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_sql_result_web.xml"));
 
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetColumnNamesCountTest.jsp")), "positiveResultGetColumnNamesCountTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetColumnNamesTest.jsp")), "positiveResultGetColumnNamesTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsByIndexCountTest.jsp")), "positiveResultGetRowsByIndexCountTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsByIndexTest.jsp")), "positiveResultGetRowsByIndexTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsCountTest.jsp")), "positiveResultGetRowsCountTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsLowerCaseTest.jsp")), "positiveResultGetRowsLowerCaseTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsUpperCaseTest.jsp")), "positiveResultGetRowsUpperCaseTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultIsLimitedByMaxRowsTest.jsp")), "positiveResultIsLimitedByMaxRowsTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultGetColumnNamesCountTest.jsp")), "positiveResultGetColumnNamesCountTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultGetColumnNamesTest.jsp")), "positiveResultGetColumnNamesTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsByIndexCountTest.jsp")), "positiveResultGetRowsByIndexCountTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsByIndexTest.jsp")), "positiveResultGetRowsByIndexTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsCountTest.jsp")), "positiveResultGetRowsCountTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsLowerCaseTest.jsp")), "positiveResultGetRowsLowerCaseTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsUpperCaseTest.jsp")), "positiveResultGetRowsUpperCaseTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultIsLimitedByMaxRowsTest.jsp")), "positiveResultIsLimitedByMaxRowsTest.jsp");
 
-    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
+    archive.addAsWebInfResource(JSTLClientIT.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
 
     archive.addAsLibrary(getCommonJarArchive());
 
@@ -80,7 +80,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveResultIsLimitedByMaxRowsTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultIsLimitedByMaxRowsTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultIsLimitedByMaxRowsTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveResultIsLimitedByMaxRowsTest");
     invoke();
@@ -96,7 +96,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveResultGetRowsLowerCaseTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsLowerCaseTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsLowerCaseTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsLowerCaseTest");
     invoke();
@@ -112,7 +112,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveResultGetRowsUpperCaseTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsUpperCaseTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsUpperCaseTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsUpperCaseTest");
     invoke();
@@ -128,7 +128,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveResultGetColumnNamesTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetColumnNamesTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetColumnNamesTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveResultGetColumnNamesTest");
     invoke();
@@ -144,7 +144,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveResultGetRowsByIndexTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsByIndexTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsByIndexTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsByIndexTest");
     invoke();
@@ -160,7 +160,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveResultGetRowsByIndexCountTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsByIndexCountTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsByIndexCountTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsByIndexCountTest");
     invoke();
@@ -176,7 +176,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveResultGetRowsCountTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsCountTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsCountTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveResultGetRowsCountTest");
     invoke();
@@ -192,7 +192,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveResultGetColumnNamesCountTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetColumnNamesCountTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetColumnNamesCountTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveResultGetColumnNamesCountTest");
     invoke();

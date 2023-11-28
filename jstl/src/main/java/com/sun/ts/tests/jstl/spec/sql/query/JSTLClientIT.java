@@ -34,14 +34,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class JSTLClient extends SqlUrlClient {
+public class JSTLClientIT extends SqlUrlClient {
 
-  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
 
 
   /** Creates new JSTLClient */
-  public JSTLClient() {
+  public JSTLClientIT() {
     setGeneralURI("/jstl/spec/sql/query");
     setContextRoot("/jstl_sql_query_web");
     setGoldenFileDir("/jstl/spec/sql/query");
@@ -52,38 +52,38 @@ public class JSTLClient extends SqlUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_sql_query_web.war");
-    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_sql_query_web.xml"));
+    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_sql_query_web.xml"));
 
-    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "WEB-INF/resultSetQuery.tld", "resultSetQuery.tld");
+    archive.addAsWebInfResource(JSTLClientIT.class.getPackage(), "WEB-INF/resultSetQuery.tld", "resultSetQuery.tld");
 
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryBodyContentTest.jsp")), "negativeQueryBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceAttributeEmptyTest.jsp")), "negativeQueryDataSourceAttributeEmptyTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceAttributeTest.jsp")), "negativeQueryDataSourceAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceNullAttributeTest.jsp")), "negativeQueryDataSourceNullAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsAttributeTest2.jsp")), "negativeQueryMaxRowsAttributeTest2.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsConfigTest.jsp")), "negativeQueryMaxRowsConfigTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsConfigTest2.jsp")), "negativeQueryMaxRowsConfigTest2.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryNoVarAttributeTest.jsp")), "negativeQueryNoVarAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryScopeAttributeTest.jsp")), "negativeQueryScopeAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQuerySQLAttributeTest.jsp")), "negativeQuerySQLAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryVarAttributeTest.jsp")), "negativeQueryVarAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryBodyContentTest.jsp")), "positiveQueryBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceAttributeDataSourceTest.jsp")), "positiveQueryDataSourceAttributeDataSourceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceAttributeDriverManagerTest.jsp")), "positiveQueryDataSourceAttributeDriverManagerTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigDataSourceTest.jsp")), "positiveQueryDataSourceConfigDataSourceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigDriverManagerTest.jsp")), "positiveQueryDataSourceConfigDriverManagerTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigPrecedenceTest.jsp")), "positiveQueryDataSourceConfigPrecedenceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryEmptyResultTest.jsp")), "positiveQueryEmptyResultTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsAttributeTest.jsp")), "positiveQueryMaxRowsAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsConfigTest.jsp")), "positiveQueryMaxRowsConfigTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsIntegerConfigTest.jsp")), "positiveQueryMaxRowsIntegerConfigTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryScopeAttributeTest.jsp")), "positiveQueryScopeAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQuerySQLAttributeTest.jsp")), "positiveQuerySQLAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryStartRowAttributeTest.jsp")), "positiveQueryStartRowAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryVarAttributeTest.jsp")), "positiveQueryVarAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultSupportTest.jsp")), "positiveResultSupportTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryBodyContentTest.jsp")), "negativeQueryBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceAttributeEmptyTest.jsp")), "negativeQueryDataSourceAttributeEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceAttributeTest.jsp")), "negativeQueryDataSourceAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceNullAttributeTest.jsp")), "negativeQueryDataSourceNullAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsAttributeTest2.jsp")), "negativeQueryMaxRowsAttributeTest2.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsConfigTest.jsp")), "negativeQueryMaxRowsConfigTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsConfigTest2.jsp")), "negativeQueryMaxRowsConfigTest2.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryNoVarAttributeTest.jsp")), "negativeQueryNoVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryScopeAttributeTest.jsp")), "negativeQueryScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQuerySQLAttributeTest.jsp")), "negativeQuerySQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryVarAttributeTest.jsp")), "negativeQueryVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryBodyContentTest.jsp")), "positiveQueryBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceAttributeDataSourceTest.jsp")), "positiveQueryDataSourceAttributeDataSourceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceAttributeDriverManagerTest.jsp")), "positiveQueryDataSourceAttributeDriverManagerTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigDataSourceTest.jsp")), "positiveQueryDataSourceConfigDataSourceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigDriverManagerTest.jsp")), "positiveQueryDataSourceConfigDriverManagerTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigPrecedenceTest.jsp")), "positiveQueryDataSourceConfigPrecedenceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryEmptyResultTest.jsp")), "positiveQueryEmptyResultTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsAttributeTest.jsp")), "positiveQueryMaxRowsAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsConfigTest.jsp")), "positiveQueryMaxRowsConfigTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsIntegerConfigTest.jsp")), "positiveQueryMaxRowsIntegerConfigTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryScopeAttributeTest.jsp")), "positiveQueryScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQuerySQLAttributeTest.jsp")), "positiveQuerySQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryStartRowAttributeTest.jsp")), "positiveQueryStartRowAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryVarAttributeTest.jsp")), "positiveQueryVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultSupportTest.jsp")), "positiveResultSupportTest.jsp");
 
-    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
+    archive.addAsWebInfResource(JSTLClientIT.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
 
     archive.addAsLibrary(getCommonJarArchive());
 
@@ -104,7 +104,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryBodyContentTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryBodyContentTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryBodyContentTest");
     invoke();
@@ -121,7 +121,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryDataSourceAttributeDataSourceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceAttributeDataSourceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceAttributeDataSourceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceAttributeDataSourceTest");
@@ -139,7 +139,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryDataSourceAttributeDriverManagerTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceAttributeDriverManagerTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceAttributeDriverManagerTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceAttributeDriverManagerTest");
@@ -158,7 +158,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQuerySQLAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQuerySQLAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQuerySQLAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQuerySQLAttributeTest");
     invoke();
@@ -176,7 +176,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryScopeAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryScopeAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryScopeAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryScopeAttributeTest");
     invoke();
@@ -192,7 +192,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryVarAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryVarAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryVarAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryVarAttributeTest");
     invoke();
@@ -208,7 +208,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryEmptyResultTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryEmptyResultTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryEmptyResultTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryEmptyResultTest");
     invoke();
@@ -226,7 +226,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryMaxRowsAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryMaxRowsAttributeTest");
     invoke();
@@ -247,7 +247,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryStartRowAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryStartRowAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryStartRowAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryStartRowAttributeTest");
     invoke();
@@ -266,7 +266,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryMaxRowsConfigTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsConfigTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsConfigTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryMaxRowsConfigTest");
     invoke();
@@ -285,7 +285,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryMaxRowsIntegerConfigTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsIntegerConfigTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsIntegerConfigTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryMaxRowsIntegerConfigTest");
     invoke();
@@ -302,7 +302,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryDataSourceConfigPrecedenceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigPrecedenceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigPrecedenceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceConfigPrecedenceTest");
@@ -320,7 +320,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryDataSourceConfigDataSourceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigDataSourceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigDataSourceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceConfigDataSourceTest");
@@ -339,7 +339,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveQueryDataSourceConfigDriverManagerTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigDriverManagerTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigDriverManagerTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceConfigDriverManagerTest");
@@ -356,7 +356,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeQuerySQLAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQuerySQLAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQuerySQLAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQuerySQLAttributeTest");
     invoke();
@@ -372,7 +372,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeQueryMaxRowsAttributeTest2() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsAttributeTest2.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsAttributeTest2.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryMaxRowsAttributeTest2");
     invoke();
@@ -389,7 +389,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeQueryMaxRowsConfigTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsConfigTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsConfigTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryMaxRowsConfigTest");
     invoke();
@@ -406,7 +406,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeQueryMaxRowsConfigTest2() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsConfigTest2.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsConfigTest2.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryMaxRowsConfigTest2");
     invoke();
@@ -471,7 +471,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeQueryBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryBodyContentTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryBodyContentTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryBodyContentTest");
     invoke();
@@ -488,7 +488,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeQueryDataSourceAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryDataSourceAttributeTest");
     invoke();
@@ -505,7 +505,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeQueryDataSourceAttributeEmptyTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceAttributeEmptyTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceAttributeEmptyTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeQueryDataSourceAttributeEmptyTest");
@@ -522,7 +522,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeQueryDataSourceNullAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceNullAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceNullAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeQueryDataSourceNullAttributeTest");

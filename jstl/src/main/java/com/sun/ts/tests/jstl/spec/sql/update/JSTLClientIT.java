@@ -34,14 +34,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class JSTLClient extends SqlUrlClient {
+public class JSTLClientIT extends SqlUrlClient {
 
-  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
 
 
   /** Creates new JSTLClient */
-  public JSTLClient() {
+  public JSTLClientIT() {
     setGeneralURI("/jstl/spec/sql/update");
     setContextRoot("/jstl_sql_update_web");
     setGoldenFileDir("/jstl/spec/sql/update");
@@ -52,32 +52,32 @@ public class JSTLClient extends SqlUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_sql_update_web.war");
-    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_sql_update_web.xml"));
+    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_sql_update_web.xml"));
 
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativesetDataSourceScopeAttributeTest.jsp")), "negativesetDataSourceScopeAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateBodyContentTest.jsp")), "negativeUpdateBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateDataSourceAttributeEmptyTest.jsp")), "negativeUpdateDataSourceAttributeEmptyTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateDataSourceAttributeTest.jsp")), "negativeUpdateDataSourceAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateDataSourceNullAttributeTest.jsp")), "negativeUpdateDataSourceNullAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateScopeAttributeTest.jsp")), "negativeUpdateScopeAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateScopeVarAttributeTest.jsp")), "negativeUpdateScopeVarAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateSQLAttributeTest.jsp")), "negativeUpdateSQLAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateSQLAttributeTest2.jsp")), "negativeUpdateSQLAttributeTest2.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeUpdateVarAttributeTest.jsp")), "negativeUpdateVarAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateBodyContentTest.jsp")), "positiveUpdateBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceAttributeDataSourceTest.jsp")), "positiveUpdateDataSourceAttributeDataSourceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceAttributeDriverManagerTest.jsp")), "positiveUpdateDataSourceAttributeDriverManagerTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceConfigDataSourceTest.jsp")), "positiveUpdateDataSourceConfigDataSourceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceConfigDriverManagerTest.jsp")), "positiveUpdateDataSourceConfigDriverManagerTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceConfigPrecedenceTest.jsp")), "positiveUpdateDataSourceConfigPrecedenceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateNoRowsResultTest.jsp")), "positiveUpdateNoRowsResultTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateNoVarAttributeTest.jsp")), "positiveUpdateNoVarAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateRowsResultTest.jsp")), "positiveUpdateRowsResultTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateScopeAttributeTest.jsp")), "positiveUpdateScopeAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateSQLAttributeTest.jsp")), "positiveUpdateSQLAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateVarAttributeTest.jsp")), "positiveUpdateVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativesetDataSourceScopeAttributeTest.jsp")), "negativesetDataSourceScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateBodyContentTest.jsp")), "negativeUpdateBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateDataSourceAttributeEmptyTest.jsp")), "negativeUpdateDataSourceAttributeEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateDataSourceAttributeTest.jsp")), "negativeUpdateDataSourceAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateDataSourceNullAttributeTest.jsp")), "negativeUpdateDataSourceNullAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateScopeAttributeTest.jsp")), "negativeUpdateScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateScopeVarAttributeTest.jsp")), "negativeUpdateScopeVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateSQLAttributeTest.jsp")), "negativeUpdateSQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateSQLAttributeTest2.jsp")), "negativeUpdateSQLAttributeTest2.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeUpdateVarAttributeTest.jsp")), "negativeUpdateVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateBodyContentTest.jsp")), "positiveUpdateBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceAttributeDataSourceTest.jsp")), "positiveUpdateDataSourceAttributeDataSourceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceAttributeDriverManagerTest.jsp")), "positiveUpdateDataSourceAttributeDriverManagerTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceConfigDataSourceTest.jsp")), "positiveUpdateDataSourceConfigDataSourceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceConfigDriverManagerTest.jsp")), "positiveUpdateDataSourceConfigDriverManagerTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateDataSourceConfigPrecedenceTest.jsp")), "positiveUpdateDataSourceConfigPrecedenceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateNoRowsResultTest.jsp")), "positiveUpdateNoRowsResultTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateNoVarAttributeTest.jsp")), "positiveUpdateNoVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateRowsResultTest.jsp")), "positiveUpdateRowsResultTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateScopeAttributeTest.jsp")), "positiveUpdateScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateSQLAttributeTest.jsp")), "positiveUpdateSQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateVarAttributeTest.jsp")), "positiveUpdateVarAttributeTest.jsp");
     
-    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
+    archive.addAsWebInfResource(JSTLClientIT.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
 
     archive.addAsLibrary(getCommonJarArchive());
 
@@ -95,7 +95,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateDataSourceAttributeDataSourceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceAttributeDataSourceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceAttributeDataSourceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveUpdateDataSourceAttributeDataSourceTest");
@@ -114,7 +114,7 @@ public class JSTLClient extends SqlUrlClient {
   @Test
   public void positiveUpdateDataSourceAttributeDriverManagerTest()
       throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceAttributeDriverManagerTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceAttributeDriverManagerTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveUpdateDataSourceAttributeDriverManagerTest");
@@ -133,7 +133,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateScopeAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateScopeAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateScopeAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUpdateScopeAttributeTest");
     invoke();
@@ -149,7 +149,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateVarAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateVarAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateVarAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUpdateVarAttributeTest");
     invoke();
@@ -165,7 +165,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateNoVarAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateNoVarAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateNoVarAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUpdateNoVarAttributeTest");
     invoke();
@@ -182,7 +182,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateNoRowsResultTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateNoRowsResultTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateNoRowsResultTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUpdateNoRowsResultTest");
     invoke();
@@ -199,7 +199,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateRowsResultTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateRowsResultTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateRowsResultTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUpdateRowsResultTest");
     invoke();
@@ -215,7 +215,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateBodyContentTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateBodyContentTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUpdateBodyContentTest");
     invoke();
@@ -231,7 +231,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateSQLAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateSQLAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateSQLAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveUpdateSQLAttributeTest");
     invoke();
@@ -249,7 +249,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateDataSourceConfigDataSourceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceConfigDataSourceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceConfigDataSourceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveUpdateDataSourceConfigDataSourceTest");
@@ -268,7 +268,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateDataSourceConfigDriverManagerTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceConfigDriverManagerTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceConfigDriverManagerTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveUpdateDataSourceConfigDriverManagerTest");
@@ -286,7 +286,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveUpdateDataSourceConfigPrecedenceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceConfigPrecedenceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateDataSourceConfigPrecedenceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveUpdateDataSourceConfigPrecedenceTest");
@@ -304,7 +304,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeUpdateSQLAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateSQLAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateSQLAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeUpdateSQLAttributeTest");
     invoke();
@@ -321,7 +321,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeUpdateSQLAttributeTest2() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateSQLAttributeTest2.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateSQLAttributeTest2.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeUpdateSQLAttributeTest2");
     invoke();
@@ -338,7 +338,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeUpdateBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateBodyContentTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateBodyContentTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeUpdateBodyContentTest");
     invoke();
@@ -403,7 +403,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeUpdateDataSourceAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateDataSourceAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateDataSourceAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeUpdateDataSourceAttributeTest");
     invoke();
@@ -420,7 +420,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeUpdateDataSourceNullAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateDataSourceNullAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateDataSourceNullAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeUpdateDataSourceNullAttributeTest");
@@ -438,7 +438,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeUpdateDataSourceAttributeEmptyTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateDataSourceAttributeEmptyTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeUpdateDataSourceAttributeEmptyTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeUpdateDataSourceAttributeEmptyTest");

@@ -34,14 +34,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class JSTLClient extends SqlUrlClient {
+public class JSTLClientIT extends SqlUrlClient {
 
-  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
 
 
   /** Creates new JSTLClient */
-  public JSTLClient() {
+  public JSTLClientIT() {
     setGeneralURI("/jstl/spec/sql/transaction");
     setContextRoot("/jstl_sql_transaction_web");
     setGoldenFileDir("/jstl/spec/sql/transaction");
@@ -52,29 +52,29 @@ public class JSTLClient extends SqlUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_sql_transaction_web.war");
-    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_sql_transaction_web.xml"));
+    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_sql_transaction_web.xml"));
 
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeTxDataSourceAttributeEmptyTest.jsp")), "negativeTxDataSourceAttributeEmptyTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeTxDataSourceAttributeTest.jsp")), "negativeTxDataSourceAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeTxDataSourceNullAttributeTest.jsp")), "negativeTxDataSourceNullAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeTxIsolationLevelAttributeTest.jsp")), "negativeTxIsolationLevelAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeTxQueryDataSourceAttributeTest.jsp")), "negativeTxQueryDataSourceAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeTxUpdateDataSourceAttributeTest.jsp")), "negativeTxUpdateDataSourceAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxCommitLifeCycleTest.jsp")), "positiveTxCommitLifeCycleTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceAttributeDataSourceTest.jsp")), "positiveTxDataSourceAttributeDataSourceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceAttributeDriverManagerTest.jsp")), "positiveTxDataSourceAttributeDriverManagerTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceConfigDataSourceTest.jsp")), "positiveTxDataSourceConfigDataSourceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceConfigDriverManagerTest.jsp")), "positiveTxDataSourceConfigDriverManagerTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceConfigPrecedenceTest.jsp")), "positiveTxDataSourceConfigPrecedenceTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxIsolationAttributeSerializable.jsp")), "positiveTxIsolationAttributeSerializable.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxQueryCommitTest.jsp")), "positiveTxQueryCommitTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxQueryParamCommitTest.jsp")), "positiveTxQueryParamCommitTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxRollbackLifeCycleTest.jsp")), "positiveTxRollbackLifeCycleTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxUpdateCommitTest.jsp")), "positiveTxUpdateCommitTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxUpdateParamCommitTest.jsp")), "positiveTxUpdateParamCommitTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxUpdateRollbackTest.jsp")), "positiveTxUpdateRollbackTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeTxDataSourceAttributeEmptyTest.jsp")), "negativeTxDataSourceAttributeEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeTxDataSourceAttributeTest.jsp")), "negativeTxDataSourceAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeTxDataSourceNullAttributeTest.jsp")), "negativeTxDataSourceNullAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeTxIsolationLevelAttributeTest.jsp")), "negativeTxIsolationLevelAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeTxQueryDataSourceAttributeTest.jsp")), "negativeTxQueryDataSourceAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeTxUpdateDataSourceAttributeTest.jsp")), "negativeTxUpdateDataSourceAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxCommitLifeCycleTest.jsp")), "positiveTxCommitLifeCycleTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceAttributeDataSourceTest.jsp")), "positiveTxDataSourceAttributeDataSourceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceAttributeDriverManagerTest.jsp")), "positiveTxDataSourceAttributeDriverManagerTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceConfigDataSourceTest.jsp")), "positiveTxDataSourceConfigDataSourceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceConfigDriverManagerTest.jsp")), "positiveTxDataSourceConfigDriverManagerTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxDataSourceConfigPrecedenceTest.jsp")), "positiveTxDataSourceConfigPrecedenceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxIsolationAttributeSerializable.jsp")), "positiveTxIsolationAttributeSerializable.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxQueryCommitTest.jsp")), "positiveTxQueryCommitTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxQueryParamCommitTest.jsp")), "positiveTxQueryParamCommitTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxRollbackLifeCycleTest.jsp")), "positiveTxRollbackLifeCycleTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxUpdateCommitTest.jsp")), "positiveTxUpdateCommitTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxUpdateParamCommitTest.jsp")), "positiveTxUpdateParamCommitTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxUpdateRollbackTest.jsp")), "positiveTxUpdateRollbackTest.jsp");
 
-    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
+    archive.addAsWebInfResource(JSTLClientIT.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
 
     archive.addAsLibrary(getCommonJarArchive());
 
@@ -94,7 +94,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxDataSourceConfigDataSourceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceConfigDataSourceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceConfigDataSourceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveTxDataSourceConfigDataSourceTest");
@@ -113,7 +113,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxDataSourceConfigDriverManagerTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceConfigDriverManagerTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceConfigDriverManagerTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveTxDataSourceConfigDriverManagerTest");
@@ -131,7 +131,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxDataSourceConfigPrecedenceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceConfigPrecedenceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceConfigPrecedenceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveTxDataSourceConfigPrecedenceTest");
@@ -148,7 +148,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxDataSourceAttributeDataSourceTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceAttributeDataSourceTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceAttributeDataSourceTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveTxDataSourceAttributeDataSourceTest");
@@ -167,7 +167,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxDataSourceAttributeDriverManagerTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceAttributeDriverManagerTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxDataSourceAttributeDriverManagerTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveTxDataSourceAttributeDriverManagerTest");
@@ -184,7 +184,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxQueryCommitTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxQueryCommitTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxQueryCommitTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTxQueryCommitTest");
     invoke();
@@ -200,7 +200,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxUpdateCommitTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxUpdateCommitTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxUpdateCommitTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTxUpdateCommitTest");
     invoke();
@@ -217,7 +217,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxUpdateRollbackTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxUpdateRollbackTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxUpdateRollbackTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTxUpdateRollbackTest");
     invoke();
@@ -233,7 +233,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxIsolationAttributeSerializable() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxIsolationAttributeSerializable.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxIsolationAttributeSerializable.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveTxIsolationAttributeSerializable");
@@ -250,7 +250,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxCommitLifeCycleTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxCommitLifeCycleTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxCommitLifeCycleTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTxCommitLifeCycleTest");
     invoke();
@@ -266,7 +266,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxRollbackLifeCycleTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxRollbackLifeCycleTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxRollbackLifeCycleTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTxRollbackLifeCycleTest");
     invoke();
@@ -282,7 +282,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxQueryParamCommitTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxQueryParamCommitTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxQueryParamCommitTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTxQueryParamCommitTest");
     invoke();
@@ -298,7 +298,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void positiveTxUpdateParamCommitTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxUpdateParamCommitTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxUpdateParamCommitTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTxUpdateParamCommitTest");
     invoke();
@@ -314,7 +314,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeTxDataSourceAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeTxDataSourceAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeTxDataSourceAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeTxDataSourceAttributeTest");
     invoke();
@@ -331,7 +331,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeTxDataSourceNullAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeTxDataSourceNullAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeTxDataSourceNullAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeTxDataSourceNullAttributeTest");
     invoke();
@@ -348,7 +348,7 @@ public class JSTLClient extends SqlUrlClient {
    */
   @Test
   public void negativeTxDataSourceAttributeEmptyTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeTxDataSourceAttributeEmptyTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/negativeTxDataSourceAttributeEmptyTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeTxDataSourceAttributeEmptyTest");
     invoke();
