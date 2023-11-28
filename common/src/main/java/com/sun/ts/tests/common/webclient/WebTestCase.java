@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.common.webclient;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -93,6 +94,8 @@ public class WebTestCase implements TestCase {
    * Path to goldenfile.
    */
   private String _goldenfilePath = null;
+
+  private InputStream _goldenfileStream = null;
 
   /**
    * A List of strings that will be searched for in the response in the order
@@ -225,6 +228,17 @@ public class WebTestCase implements TestCase {
    */
   public void setGoldenFilePath(String gfPath) {
     _goldenfilePath = gfPath;
+  }
+
+
+  /**
+   * Sets the InputStream of the goldenfile the test case should use.
+   *
+   * @param in
+   *          an InputStream value of the goldenfile.
+   */
+  public void setGoldenFileStream(InputStream in) {
+    _goldenfileStream = in;
   }
 
   /**
@@ -456,6 +470,15 @@ public class WebTestCase implements TestCase {
    */
   public String getGoldenfilePath() {
     return _goldenfilePath;
+  }
+
+  /**
+   * Returns the InputStream of the goldenfile.
+   *
+   * @return InputStream of the goldenfile
+   */
+  public InputStream getGoldenfileStream() {
+    return _goldenfileStream;
   }
 
   /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,44 @@ import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
+import java.net.URL;
+
+import java.util.stream.Collectors;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import java.lang.System.Logger;
+
 /**
  * Base client for JSP tests.
  */
 public abstract class AbstractUrlClient extends BaseUrlClient {
+
+  private static final Logger logger = System.getLogger(AbstractUrlClient.class.getName());
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
+
+  @ArquillianResource
+	@OperateOnDeployment("_DEFAULT_")
+	public URL url;
 
   /**
    * Identifier for a set of properties to be used for API Tests.
@@ -50,6 +84,16 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
    */
   private String _jspName = null;
 
+  protected InputStream goldenFileStream = null;
+
+  public InputStream getGoldenFileStream() {
+    return goldenFileStream;
+  }
+
+  public void setGoldenFileStream(InputStream gfStream) {
+    goldenFileStream = gfStream;
+  }
+
   /**
    * Sets the test properties for this testCase.
    *
@@ -59,9 +103,42 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
   protected void setTestProperties(WebTestCase testCase) {
 
     setStandardProperties(TEST_PROPS.getProperty(STANDARD), testCase);
+    setGoldenFileStreamProperty(testCase, goldenFileStream);
     setApiTestProperties(TEST_PROPS.getProperty(APITEST), testCase);
     setApiTest1Properties(TEST_PROPS.getProperty(APITEST1), testCase);
     super.setTestProperties(testCase);
+  }
+
+  private void setGoldenFileStreamProperty(WebTestCase testCase, InputStream gfStream) {
+    testCase.setGoldenFileStream(gfStream);
+  }
+
+  protected boolean isNullOrEmpty(String val) {
+    if (val == null || val.equals("")) {
+      return true;
+    }
+    return false;
+  }
+
+  @BeforeEach
+  public void setup() throws Exception {
+
+    logger.log(Logger.Level.INFO, "setup method AbstractUrlClient");
+
+    if (url == null){
+      throw new Exception(
+          "[AbstractUrlClient] The url was not injected");
+    }
+
+		String hostname = url.getHost();
+		String portnum = Integer.toString(url.getPort());
+
+		assertFalse(isNullOrEmpty(hostname), "[AbstractUrlClient] 'webServerHost' was not set in the properties.");
+		_hostname = hostname.trim();
+		assertFalse(isNullOrEmpty(portnum), "[AbstractUrlClient] 'webServerPort' was not set in the properties.");
+		_port = Integer.parseInt(portnum.trim());
+
+    logger.log(Logger.Level.INFO, "[AbstractUrlClient] Test setup OK");
   }
 
   /**
@@ -183,4 +260,11 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
     sb.append(testName).append(HTTP11);
     return sb.toString();
   }
+
+  public static String toString(InputStream inStream) throws IOException{
+    try (BufferedReader bufReader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8))) {
+      return bufReader.lines().collect(Collectors.joining(System.lineSeparator()));
+    }
+  }
+
 }

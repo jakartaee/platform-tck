@@ -1,0 +1,1 @@
+Included template text in tag file.
