@@ -28,7 +28,19 @@
     <packaging>jar</packaging>
 
     <properties>
+        <db.delimiter>;</db.delimiter>
+        <db.name>derby</db.name>
+        <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
         <jakarta.platform.version>10.0.0</jakarta.platform.version>
+        <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
+        <jdbc.db>derby</jdbc.db>
+        <jstl.db.driver>org.apache.derby.jdbc.ClientDriver</jstl.db.driver>
+        <jstl.db.name>derbyDB</jstl.db.name>
+        <jstl.db.password>cts1</jstl.db.password>
+        <jstl.db.port>1527</jstl.db.port>
+        <jstl.db.server>localhost</jstl.db.server>
+        <jstl.db.url>jdbc:derby://${jstl.db.server}:${jstl.db.port}/${jstl.db.name};create=true</jstl.db.url>
+        <jstl.db.user>cts1</jstl.db.user>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>jstl-tck</tck.artifactId>
         <tck.version>5.0.0</tck.version>
@@ -260,6 +272,71 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>stop-database</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-database</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>start-database</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>initdb</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <sql autocommit="true" classpath="${jdbc.classpath}" delimiter="${db.delimiter}" driver="${jstl.db.driver}" onerror="continue" password="${jstl.db.password}" url="${jstl.db.url}" userid="${jstl.db.user}">
+                                    <transaction src="${project.build.directory}/../sql/${db.name}/${db.name}.ddl.jstl.sql"></transaction>
+                                </sql>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.0.0-M5</version>
@@ -288,7 +365,7 @@
                                 <jspservlet.classes>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet-api.jar:${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp-api.jar:${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.el-api.jar</jspservlet.classes>
                                 <jstl.classes>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp.jstl.jar:${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp.jstl-api.jar</jstl.classes>
                                 <junit.log.traceflag>true</junit.log.traceflag>
-                                <jstl.db.name>tderbyDBrue</jstl.db.name>
+                                <jstl.db.name>derbyDB</jstl.db.name>
                                 <jstl.db.server>localhost</jstl.db.server>
                                 <jstl.db.port>1527</jstl.db.port>
                                 <jstl.db.url>jdbc:derby://${jstl.db.server}:${jstl.db.port}/${jstl.db.name};create=true</jstl.db.url>

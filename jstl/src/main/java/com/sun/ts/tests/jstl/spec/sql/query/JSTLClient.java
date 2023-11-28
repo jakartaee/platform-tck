@@ -20,51 +20,76 @@
 
 package com.sun.ts.tests.jstl.spec.sql.query;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.SqlUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends SqlUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url;
-   * jstl.db.user; jstl.db.password; jstl.db.driver;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+
+
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setGeneralURI("/jstl/spec/sql/query");
     setContextRoot("/jstl_sql_query_web");
     setGoldenFileDir("/jstl/spec/sql/query");
-
-    return super.run(args, out, err);
   }
+
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_sql_query_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_sql_query_web.xml"));
+
+    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "WEB-INF/resultSetQuery.tld", "resultSetQuery.tld");
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryBodyContentTest.jsp")), "negativeQueryBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceAttributeEmptyTest.jsp")), "negativeQueryDataSourceAttributeEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceAttributeTest.jsp")), "negativeQueryDataSourceAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryDataSourceNullAttributeTest.jsp")), "negativeQueryDataSourceNullAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsAttributeTest2.jsp")), "negativeQueryMaxRowsAttributeTest2.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsConfigTest.jsp")), "negativeQueryMaxRowsConfigTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryMaxRowsConfigTest2.jsp")), "negativeQueryMaxRowsConfigTest2.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryNoVarAttributeTest.jsp")), "negativeQueryNoVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryScopeAttributeTest.jsp")), "negativeQueryScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQuerySQLAttributeTest.jsp")), "negativeQuerySQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeQueryVarAttributeTest.jsp")), "negativeQueryVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryBodyContentTest.jsp")), "positiveQueryBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceAttributeDataSourceTest.jsp")), "positiveQueryDataSourceAttributeDataSourceTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceAttributeDriverManagerTest.jsp")), "positiveQueryDataSourceAttributeDriverManagerTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigDataSourceTest.jsp")), "positiveQueryDataSourceConfigDataSourceTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigDriverManagerTest.jsp")), "positiveQueryDataSourceConfigDriverManagerTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryDataSourceConfigPrecedenceTest.jsp")), "positiveQueryDataSourceConfigPrecedenceTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryEmptyResultTest.jsp")), "positiveQueryEmptyResultTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsAttributeTest.jsp")), "positiveQueryMaxRowsAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsConfigTest.jsp")), "positiveQueryMaxRowsConfigTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryMaxRowsIntegerConfigTest.jsp")), "positiveQueryMaxRowsIntegerConfigTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryScopeAttributeTest.jsp")), "positiveQueryScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQuerySQLAttributeTest.jsp")), "positiveQuerySQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryStartRowAttributeTest.jsp")), "positiveQueryStartRowAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryVarAttributeTest.jsp")), "positiveQueryVarAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultSupportTest.jsp")), "positiveResultSupportTest.jsp");
+
+    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveQueryBodyContentTest
@@ -77,7 +102,10 @@ public class JSTLClient extends SqlUrlClient {
    * within the body of the sql:query acton and validate that you get the
    * expected number of rows back.
    */
+  @Test
   public void positiveQueryBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryBodyContentTest");
     invoke();
   }
@@ -91,7 +119,10 @@ public class JSTLClient extends SqlUrlClient {
    * That a query can be successfully executed when the dataSource attribute is
    * passed an instance of a DataSource.
    */
+  @Test
   public void positiveQueryDataSourceAttributeDataSourceTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceAttributeDataSourceTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceAttributeDataSourceTest");
     invoke();
@@ -106,7 +137,10 @@ public class JSTLClient extends SqlUrlClient {
    * setting it to a String representing JDBC DriverManager parameters. The
    * query is passed as body content
    */
+  @Test
   public void positiveQueryDataSourceAttributeDriverManagerTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceAttributeDriverManagerTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceAttributeDriverManagerTest");
     invoke();
@@ -122,7 +156,10 @@ public class JSTLClient extends SqlUrlClient {
    * for defining the query and validate that you get the expected number of
    * rows back.
    */
+  @Test
   public void positiveQuerySQLAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQuerySQLAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQuerySQLAttributeTest");
     invoke();
   }
@@ -137,7 +174,10 @@ public class JSTLClient extends SqlUrlClient {
    * as well as validating that if scope is not specified, var will be exported
    * to the page scope by default.
    */
+  @Test
   public void positiveQueryScopeAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryScopeAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryScopeAttributeTest");
     invoke();
   }
@@ -150,7 +190,10 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate that the var attribute within a <sql:query> action
    * is of type jakarta.servlet.jsp.jstl.sql.Result.
    */
+  @Test
   public void positiveQueryVarAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryVarAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryVarAttributeTest");
     invoke();
   }
@@ -163,7 +206,10 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate that if a sql query returns no rows, that an empty
    * Result object is returned
    */
+  @Test
   public void positiveQueryEmptyResultTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryEmptyResultTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryEmptyResultTest");
     invoke();
   }
@@ -178,7 +224,10 @@ public class JSTLClient extends SqlUrlClient {
    * maxRows is '-1'. - That 'maxRows'rows returned if maxRows specified. - That
    * 'maxRows' can be specified as an expression or specified directly.
    */
+  @Test
   public void positiveQueryMaxRowsAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryMaxRowsAttributeTest");
     invoke();
   }
@@ -196,7 +245,10 @@ public class JSTLClient extends SqlUrlClient {
    * used with maxRows - That 'startRow' can be specified as an expression or
    * specified directly.
    */
+  @Test
   public void positiveQueryStartRowAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryStartRowAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryStartRowAttributeTest");
     invoke();
   }
@@ -212,7 +264,10 @@ public class JSTLClient extends SqlUrlClient {
    * are returned if the config param is '-1'. - That maxRows attribute takes
    * precedence over the config param.
    */
+  @Test
   public void positiveQueryMaxRowsConfigTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsConfigTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryMaxRowsConfigTest");
     invoke();
   }
@@ -228,7 +283,10 @@ public class JSTLClient extends SqlUrlClient {
    * rows are returned if the config param is '-1'. - That maxRows attribute
    * takes precedence over the config param.
    */
+  @Test
   public void positiveQueryMaxRowsIntegerConfigTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryMaxRowsIntegerConfigTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveQueryMaxRowsIntegerConfigTest");
     invoke();
   }
@@ -242,7 +300,10 @@ public class JSTLClient extends SqlUrlClient {
    * precedence over the configuration parameter
    * jakarta.servlet.jsp.jstl.sql.dataSource.
    */
+  @Test
   public void positiveQueryDataSourceConfigPrecedenceTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigPrecedenceTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceConfigPrecedenceTest");
     invoke();
@@ -257,7 +318,10 @@ public class JSTLClient extends SqlUrlClient {
    * parameter jakarta.servlet.jsp.jstl.sql.dataSource and setting it to a
    * DataSource Object. The query is passed as body content.
    */
+  @Test
   public void positiveQueryDataSourceConfigDataSourceTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigDataSourceTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceConfigDataSourceTest");
     invoke();
@@ -273,7 +337,10 @@ public class JSTLClient extends SqlUrlClient {
    * representing JDBC DriverManager parameters. The query is passed as body
    * content
    */
+  @Test
   public void positiveQueryDataSourceConfigDriverManagerTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryDataSourceConfigDriverManagerTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveQueryDataSourceConfigDriverManagerTest");
     invoke();
@@ -287,7 +354,10 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate the sql:query use of the sql attribute - That a
    * JspException is thrown when an invalid value is specified for sql.
    */
+  @Test
   public void negativeQuerySQLAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQuerySQLAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQuerySQLAttributeTest");
     invoke();
   }
@@ -300,7 +370,10 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate the sql:query use of the maxRows attribute - That a
    * JspException is thrown when an value < -1 is specified for maxRows.
    */
+  @Test
   public void negativeQueryMaxRowsAttributeTest2() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsAttributeTest2.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryMaxRowsAttributeTest2");
     invoke();
   }
@@ -314,7 +387,10 @@ public class JSTLClient extends SqlUrlClient {
    * jakarta.servlet.jsp.sql.jstl.maxRows config parameter - That a JspException
    * is thrown when an invalid value is specified.
    */
+  @Test
   public void negativeQueryMaxRowsConfigTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsConfigTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryMaxRowsConfigTest");
     invoke();
   }
@@ -328,7 +404,10 @@ public class JSTLClient extends SqlUrlClient {
    * jakarta.servlet.jsp.sql.jstl.maxRows config parameter - That a JspException
    * is thrown when an value < -1 is specified.
    */
+  @Test
   public void negativeQueryMaxRowsConfigTest2() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryMaxRowsConfigTest2.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryMaxRowsConfigTest2");
     invoke();
   }
@@ -341,6 +420,7 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate that if a sql:query utilizes the scope attribute
    * that is invalid, that a translation error will occur.
    */
+  @Test
   public void negativeQueryScopeAttributeTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeQueryScopeAttributeTest");
     TEST_PROPS.setProperty(REQUEST, "negativeQueryScopeAttributeTest.jsp");
@@ -356,6 +436,7 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate the sql:query action that when the var attribute is
    * not specified, a translation error occurs.
    */
+  @Test
   public void negativeQueryNoVarAttributeTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeQueryNoVarAttributeTest");
     TEST_PROPS.setProperty(REQUEST, "negativeQueryNoVarAttributeTest.jsp");
@@ -371,6 +452,7 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate the sql:query action that when the var attribute is
    * empty, a translation error occurs.
    */
+  @Test
   public void negativeQueryVarAttributeTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeQueryVarAttributeTest");
     TEST_PROPS.setProperty(REQUEST, "negativeQueryVarAttributeTest.jsp");
@@ -387,7 +469,10 @@ public class JSTLClient extends SqlUrlClient {
    * a JspException is thrown when an invalid value is specified for sql. via
    * body content.
    */
+  @Test
   public void negativeQueryBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryBodyContentTest");
     invoke();
   }
@@ -401,7 +486,10 @@ public class JSTLClient extends SqlUrlClient {
    * That a JspException is thrown when an invalid value is specified for
    * dataSource.
    */
+  @Test
   public void negativeQueryDataSourceAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeQueryDataSourceAttributeTest");
     invoke();
   }
@@ -415,7 +503,10 @@ public class JSTLClient extends SqlUrlClient {
    * Object which is uninitialized for the dataSource attribute will generate a
    * JspException.
    */
+  @Test
   public void negativeQueryDataSourceAttributeEmptyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceAttributeEmptyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeQueryDataSourceAttributeEmptyTest");
     invoke();
@@ -429,7 +520,10 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate the sql:query action which specifies null for the
    * dataSource attribute will generate a JspException.
    */
+  @Test
   public void negativeQueryDataSourceNullAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeQueryDataSourceNullAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "negativeQueryDataSourceNullAttributeTest");
     invoke();

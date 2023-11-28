@@ -20,51 +20,67 @@
 
 package com.sun.ts.tests.jstl.spec.sql.param;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.SqlUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends SqlUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url;
-   * jstl.db.user; jstl.db.password; jstl.db.driver;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setGeneralURI("/jstl/spec/sql/param");
     setContextRoot("/jstl_sql_param_web");
-    setGoldenFileDir("/jstl/spec/sql/param");
-
-    return super.run(args, out, err);
   }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_sql_param_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_sql_param_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeDateParamTypeAttributeTest.jsp")), "negativeDateParamTypeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeParamQueryBodyContentTest.jsp")), "negativeParamQueryBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeParamQuerySQLAttributeTest.jsp")), "negativeParamQuerySQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeParamUpdateBodyContentTest.jsp")), "negativeParamUpdateBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamQueryDateTest.jsp")), "positiveDateParamQueryDateTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamQueryNoTypeTest.jsp")), "positiveDateParamQueryNoTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamQueryTimestampTest.jsp")), "positiveDateParamQueryTimestampTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamQueryTimeTest.jsp")), "positiveDateParamQueryTimeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamUpdateDateTest.jsp")), "positiveDateParamUpdateDateTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamUpdateNoTypeTest.jsp")), "positiveDateParamUpdateNoTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamUpdateTimestampTest.jsp")), "positiveDateParamUpdateTimestampTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamUpdateTimeTest.jsp")), "positiveDateParamUpdateTimeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamBodyContentQueryTest.jsp")), "positiveParamBodyContentQueryTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamBodyContentUpdateTest.jsp")), "positiveParamBodyContentUpdateTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamQueryBodyContentTest.jsp")), "positiveParamQueryBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamQueryMultiBodyContentTest.jsp")), "positiveParamQueryMultiBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamQueryMultiSQLAttributeTest.jsp")), "positiveParamQueryMultiSQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamQuerySQLAttributeTest.jsp")), "positiveParamQuerySQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamUpdateBodyContentTest.jsp")), "positiveParamUpdateBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamUpdateMultiBodyContentTest.jsp")), "positiveParamUpdateMultiBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamUpdateMultiSQLAttributeTest.jsp")), "positiveParamUpdateMultiSQLAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamUpdateSQLAttributeTest.jsp")), "positiveParamUpdateSQLAttributeTest.jsp");
+
+    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
 
   /*
    * @testName: positiveParamQuerySQLAttributeTest
@@ -75,7 +91,10 @@ public class JSTLClient extends SqlUrlClient {
    * can be executed using sql attribute and sql:param action - Validate that
    * you get the expected number of rows back.
    */
+  @Test
   public void positiveParamQuerySQLAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamQuerySQLAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamQuerySQLAttributeTest");
     invoke();
   }
@@ -89,7 +108,10 @@ public class JSTLClient extends SqlUrlClient {
    * can be executed using sql:param action and passing the query as body
    * content. - Validate that you get the expected number of rows back.
    */
+  @Test
   public void positiveParamQueryBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamQueryBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamQueryBodyContentTest");
     invoke();
   }
@@ -105,7 +127,10 @@ public class JSTLClient extends SqlUrlClient {
    * the sql:params action is the order the placeholders in the query are filled
    * in.
    */
+  @Test
   public void positiveParamQueryMultiSQLAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamQueryMultiSQLAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamQueryMultiSQLAttributeTest");
     invoke();
   }
@@ -121,7 +146,10 @@ public class JSTLClient extends SqlUrlClient {
    * That the order of the sql:params action is the order the placeholders in
    * the query are filled in.
    */
+  @Test
   public void positiveParamQueryMultiBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamQueryMultiBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamQueryMultiBodyContentTest");
     invoke();
   }
@@ -135,7 +163,10 @@ public class JSTLClient extends SqlUrlClient {
    * query can be executed using sql attribute and multiple sql:param actions -
    * Validate that you get the expected number of rows back.
    */
+  @Test
   public void positiveParamUpdateMultiSQLAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamUpdateMultiSQLAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD,
         "positiveParamUpdateMultiSQLAttributeTest");
     invoke();
@@ -150,7 +181,10 @@ public class JSTLClient extends SqlUrlClient {
    * query can be executed using mutiple sql:param actions and passing the query
    * as body content. - Validate that you get the expected number of rows back.
    */
+  @Test
   public void positiveParamUpdateMultiBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamUpdateMultiBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamUpdateMultiBodyContentTest");
     invoke();
   }
@@ -164,7 +198,10 @@ public class JSTLClient extends SqlUrlClient {
    * can be executed using sql:dateParam action specifying a type of 'date' -
    * Validate that you get the expected number of rows back.
    */
+  @Test
   public void positiveDateParamQueryDateTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamQueryDateTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDateParamQueryDateTest");
     invoke();
   }
@@ -178,7 +215,10 @@ public class JSTLClient extends SqlUrlClient {
    * can be executed using sql:dateParam action specifying a type of 'time' -
    * Validate that you get the expected number of rows back.
    */
+  @Test
   public void positiveDateParamQueryTimeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamQueryTimeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDateParamQueryTimeTest");
     invoke();
   }
@@ -192,7 +232,10 @@ public class JSTLClient extends SqlUrlClient {
    * can be executed using sql:dateParam action specifying a type of 'timestamp'
    * - Validate that you get the expected number of rows back.
    */
+  @Test
   public void positiveDateParamQueryTimestampTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamQueryTimestampTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDateParamQueryTimestampTest");
     invoke();
   }
@@ -207,7 +250,10 @@ public class JSTLClient extends SqlUrlClient {
    * defaults to 'timestamp' - Validate that you get the expected number of rows
    * back.
    */
+  @Test
   public void positiveDateParamQueryNoTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamQueryNoTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDateParamQueryNoTypeTest");
     invoke();
   }
@@ -221,7 +267,10 @@ public class JSTLClient extends SqlUrlClient {
    * query can be executed using sql:dateParam action specifying a type of
    * 'date'.
    */
+  @Test
   public void positiveDateParamUpdateDateTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamUpdateDateTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDateParamUpdateDateTest");
     invoke();
   }
@@ -235,7 +284,10 @@ public class JSTLClient extends SqlUrlClient {
    * query can be executed using sql:dateParam action specifying a type of
    * 'time'.
    */
+  @Test
   public void positiveDateParamUpdateTimeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamUpdateTimeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDateParamUpdateTimeTest");
     invoke();
   }
@@ -249,7 +301,10 @@ public class JSTLClient extends SqlUrlClient {
    * query can be executed using sql:dateParam action specifying a type of
    * 'timestamp'.
    */
+  @Test
   public void positiveDateParamUpdateTimestampTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamUpdateTimestampTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDateParamUpdateTimestampTest");
     invoke();
   }
@@ -264,7 +319,10 @@ public class JSTLClient extends SqlUrlClient {
    * defaults to 'timestamp' - Validate that you get the expected number of rows
    * back.
    */
+  @Test
   public void positiveDateParamUpdateNoTypeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamUpdateNoTypeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveDateParamUpdateNoTypeTest");
     invoke();
   }
@@ -277,7 +335,10 @@ public class JSTLClient extends SqlUrlClient {
    * @testStrategy: Validate the behavior of the sql:update action - That a
    * query can be executed by specifying a paramater via sql:param action
    */
+  @Test
   public void positiveParamUpdateBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamUpdateBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamUpdateBodyContentTest");
     invoke();
   }
@@ -291,7 +352,10 @@ public class JSTLClient extends SqlUrlClient {
    * attribute - That a query can be executed by specifying a paramater via
    * sql:param action
    */
+  @Test
   public void positiveParamUpdateSQLAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamUpdateSQLAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamUpdateSQLAttributeTest");
     invoke();
   }
@@ -305,7 +369,10 @@ public class JSTLClient extends SqlUrlClient {
    * can be executed by specifying a paramater via sql:param action which passes
    * the parameter value as a String.
    */
+  @Test
   public void positiveParamBodyContentQueryTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamBodyContentQueryTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamBodyContentQueryTest");
     invoke();
   }
@@ -319,7 +386,10 @@ public class JSTLClient extends SqlUrlClient {
    * query can be executed by specifying a paramater via sql:param action which
    * passes the parameter value as a String.
    */
+  @Test
   public void positiveParamBodyContentUpdateTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamBodyContentUpdateTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveParamBodyContentUpdateTest");
     invoke();
   }
@@ -334,7 +404,10 @@ public class JSTLClient extends SqlUrlClient {
    * action - Validate that a JspException is thrown when the sql:param action
    * is omitted
    */
+  @Test
   public void negativeParamQuerySQLAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeParamQuerySQLAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeParamQuerySQLAttributeTest");
     invoke();
   }
@@ -349,7 +422,10 @@ public class JSTLClient extends SqlUrlClient {
    * requires a sql:param action - Validate that a JspException is thrown when
    * the sql:param action is omitted
    */
+  @Test
   public void negativeParamQueryBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeParamQueryBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeParamQueryBodyContentTest");
     invoke();
   }
@@ -363,7 +439,10 @@ public class JSTLClient extends SqlUrlClient {
    * that a JspException is thrown when an invalid value is provided for the
    * type attribute.
    */
+  @Test
   public void negativeDateParamTypeAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/negativeDateParamTypeAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "negativeDateParamTypeAttributeTest");
     invoke();
   }
