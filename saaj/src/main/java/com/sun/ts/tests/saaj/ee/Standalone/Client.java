@@ -24,17 +24,14 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.net.URL;
 import java.util.Iterator;
-import java.util.Properties;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.saaj.common.SOAP_Util_Client;
 
@@ -77,15 +74,25 @@ public class Client extends com.sun.ts.tests.saaj.common.Client {
 		WebArchive archive = ShrinkWrap.create(WebArchive.class, "Standalone_web.war");
 		archive.addPackages(false, Filters.exclude(Client.class), "com.sun.ts.tests.saaj.ee.Standalone");
 		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
-		final String CONTEXT_ROOT = Client.class.getCanonicalName().replace(".", "/") + "/contentRoot/";
-		archive.addAsResource(CONTEXT_ROOT + "attach.gif");
-		archive.addAsResource(CONTEXT_ROOT + "attach.xml");
-		archive.addAsResource(CONTEXT_ROOT + "attach.jpeg");
-		archive.addAsResource(CONTEXT_ROOT + "attach.html");
-		archive.addAsResource(CONTEXT_ROOT + "attach.txt");
+		final String CONTENT_ROOT = Client.class.getPackageName().replace(".", "/") + "/contentRoot/";
+		String[] attachement = { "attach.gif", "attach.html", "attach.jpeg", "attach.txt", "attach.xml" };
+		addFilesToArchive(CONTENT_ROOT, attachement, archive);
 		archive.addAsWebInfResource(Client.class.getPackage(), "standalone.web.xml", "web.xml");
 		return archive;
 	};
+
+	@BeforeEach
+	public void setup() throws Exception {
+
+		try {
+			super.setup();
+			SOAP_Util_Client.setup();
+			con = SOAP_Util_Client.getSOAPConnection();
+		} catch (Exception e) {
+			throw new Exception("setup failed: ", e);
+		}
+		logger.log(Logger.Level.INFO, "Standalone Client setup ok");
+	}
 
 	/*
 	 * @testName: SASendVariousMimeAttachmentsSOAP11Test

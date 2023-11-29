@@ -164,9 +164,9 @@ public class SOAPBodyTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("SOAPBodyTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SOAPBodyTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
-		System.out.println("SOAPBodyTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SOAPBodyTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

@@ -65,9 +65,9 @@ public class SOAPExceptionTestServlet extends HttpServlet {
 	}
 
 	public void init(ServletConfig servletConfig) throws ServletException {
-		System.out.println("SOAPExceptionTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SOAPExceptionTestServlet:init (Entering)");
 		super.init(servletConfig);
-		System.out.println("SOAPExceptionTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SOAPExceptionTestServlet:init (Leaving)");
 
 	}
 

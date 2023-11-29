@@ -88,8 +88,8 @@ public class MimeHeaderTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("MimeHeaderTestServlet:init (Entering)");
-		System.out.println("MimeHeaderTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"MimeHeaderTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"MimeHeaderTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

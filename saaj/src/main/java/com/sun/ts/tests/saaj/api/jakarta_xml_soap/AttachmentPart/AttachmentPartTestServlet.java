@@ -433,10 +433,10 @@ public class AttachmentPartTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("AddHeaderTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"AddHeaderTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
 		servletContext = servletConfig.getServletContext();
-		System.out.println("AddHeaderTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"AddHeaderTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -1455,8 +1455,11 @@ public class AttachmentPartTestServlet extends HttpServlet {
 			 * logger.log(Logger.Level.INFO,"Set the content type to image/gif");
 			 * ap.setContentType("image/gif");
 			 *****/
+			logger.log(Logger.Level.INFO, "URL =" + url);
+						
 			logger.log(Logger.Level.INFO, "Create image/gif mime attachment using ImageIO");
 			Image image = javax.imageio.ImageIO.read(url);
+			
 			ap = msg.createAttachmentPart(image, "image/gif");
 
 			logger.log(Logger.Level.INFO, "Getting Content should return an Image object");
@@ -1491,6 +1494,9 @@ public class AttachmentPartTestServlet extends HttpServlet {
 			TestUtil.printStackTrace(e);
 			pass = false;
 		}
+		
+		logger.log(Logger.Level.ERROR, "Test result: " + pass);
+
 		// Send response object and test result back to client
 		if (pass)
 			resultProps.setProperty("TESTRESULT", "pass");
@@ -1498,6 +1504,7 @@ public class AttachmentPartTestServlet extends HttpServlet {
 			resultProps.setProperty("TESTRESULT", "fail");
 		resultProps.list(out);
 	}
+	
 
 	private void getContent4Test(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.log(Logger.Level.TRACE, "getContent4Test");
@@ -1520,6 +1527,8 @@ public class AttachmentPartTestServlet extends HttpServlet {
 			ap = msg.createAttachmentPart(dh);
 			logger.log(Logger.Level.INFO, "Set the content type to image/jpeg");
 			ap.setContentType("image/jpeg");
+			
+			
 
 			logger.log(Logger.Level.INFO, "Getting Content should return an Image object");
 			Object o = ap.getContent();

@@ -335,9 +335,9 @@ public class SOAPPartTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("AddHeaderTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"AddHeaderTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
-		System.out.println("AddHeaderTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"AddHeaderTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

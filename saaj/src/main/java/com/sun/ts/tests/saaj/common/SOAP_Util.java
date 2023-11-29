@@ -94,17 +94,17 @@ public final class SOAP_Util {
 	private static SOAPFactory sfactorySOAP12 = null;
 
 	public static void doServletInit(ServletConfig servletConfig) throws ServletException {
-		System.out.println("SOAP_Util:doServletInit");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:doServletInit");
 		setup();
 	}
 
 	public static void setup() throws ServletException {
-		System.out.println("SOAP_Util:setup");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:setup");
 		try {
-			System.out.println("Create SOAPConnectionFactory object");
+			logger.log(Logger.Level.TRACE,"Create SOAPConnectionFactory object");
 			if (sconfactory == null)
 				sconfactory = SOAPConnectionFactory.newInstance();
-			System.out.println("Create SOAPConnection object");
+			logger.log(Logger.Level.TRACE,"Create SOAPConnection object");
 			if (scon == null)
 				scon = sconfactory.createConnection();
 		} catch (UnsupportedOperationException e) {
@@ -117,7 +117,7 @@ public final class SOAP_Util {
 	}
 
 	public static void doServletPost(HttpServletRequest req, HttpServletResponse res) throws ServletException {
-		System.out.println("SOAP_Util:doServletPost");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:doServletPost");
 
 		harnessProps = new Properties();
 
@@ -234,12 +234,12 @@ public final class SOAP_Util {
 	}
 
 	public static SOAPConnection getSOAPConnection() {
-		System.out.println("SOAP_Util:getSOAPConnection");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:getSOAPConnection");
 		return scon;
 	}
 
 	public static String getSOAPVersion() {
-		System.out.println("SOAP_Util:getSOAPVersion");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:getSOAPVersion");
 		if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11))
 			return SOAP_Util.SOAP11;
 		else
@@ -247,7 +247,7 @@ public final class SOAP_Util {
 	}
 
 	public static void setSOAPVersion(String s) {
-		System.out.println("SOAP_Util:setSOAPVersion");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:setSOAPVersion");
 		soapVersion = s;
 		if (soapVersion == null || soapVersion.equals(SOAP_Util.SOAP11))
 			logger.log(Logger.Level.INFO, "Testing SOAP Version 1.1 Protocol");
@@ -256,14 +256,14 @@ public final class SOAP_Util {
 	}
 
 	public static SOAPConnection openSOAPConnection() throws Exception {
-		System.out.println("SOAP_Util:openSOAPConnection");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:openSOAPConnection");
 		if (SOAPConnectionFactorySupported && sconfactory != null)
 			scon = sconfactory.createConnection();
 		return scon;
 	}
 
 	public static void closeSOAPConnection() {
-		System.out.println("SOAP_Util:closeSOAPConnection");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:closeSOAPConnection");
 		try {
 			if (SOAPConnectionFactorySupported && scon != null)
 				scon.close();
@@ -273,12 +273,12 @@ public final class SOAP_Util {
 	}
 
 	public static SOAPConnectionFactory getSOAPConnectionFactory() {
-		System.out.println("SOAP_Util:getSOAPConnectionFactory");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:getSOAPConnectionFactory");
 		return sconfactory;
 	}
 
 	public static MessageFactory getMessageFactory() throws Exception {
-		System.out.println("SOAP_Util:getMessageFactory");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:getMessageFactory");
 		if (soapVersion == null) {
 			if (mfactorySOAP11 == null)
 				mfactorySOAP11 = MessageFactory.newInstance();
@@ -295,7 +295,7 @@ public final class SOAP_Util {
 	}
 
 	public static SOAPFactory getSOAPFactory() throws Exception {
-		System.out.println("SOAP_Util:getSOAPFactory");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:getSOAPFactory");
 		if (soapVersion == null) {
 			if (sfactorySOAP11 == null)
 				sfactorySOAP11 = SOAPFactory.newInstance();
@@ -312,7 +312,7 @@ public final class SOAP_Util {
 	}
 
 	public static SOAPMessage createSOAPMessage() throws Exception {
-		System.out.println("SOAP_Util:createSOAPMessage");
+		logger.log(Logger.Level.TRACE,"SOAP_Util:createSOAPMessage");
 		SOAPMessage message = getMessageFactory().createMessage();
 		return message;
 	}
@@ -320,7 +320,7 @@ public final class SOAP_Util {
 	public static int getIteratorCount(Iterator i) {
 		int count = 0;
 
-		System.out.println("SOAP_Util.getIteratorCount");
+		logger.log(Logger.Level.TRACE,"SOAP_Util.getIteratorCount");
 
 		while (i.hasNext()) {
 			count++;
@@ -330,7 +330,7 @@ public final class SOAP_Util {
 	}
 
 	public static StringBuffer copyToBuffer(InputStream is) {
-		System.out.println("SOAP_Util.copyToBuffer");
+		logger.log(Logger.Level.TRACE,"SOAP_Util.copyToBuffer");
 
 		if (is == null)
 			return null;

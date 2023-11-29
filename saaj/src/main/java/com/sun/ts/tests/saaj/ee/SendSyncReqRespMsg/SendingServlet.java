@@ -82,7 +82,7 @@ public class SendingServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("SendingServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SendingServlet:init (Entering)");
 		try {
 			SOAP_Util.setup();
 			con = SOAP_Util.getSOAPConnection();
@@ -91,30 +91,30 @@ public class SendingServlet extends HttpServlet {
 			e.printStackTrace(System.err);
 			throw new ServletException("Exception occurred: " + e.getMessage());
 		}
-		System.out.println("SendingServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SendingServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.log(Logger.Level.TRACE, "SendingServlet:doGet");
-		System.out.println("SendingServlet:doGet");
+		logger.log(Logger.Level.TRACE,"SendingServlet:doGet");
 		if (harnessProps.getProperty("TESTNAME").equals("SendSyncReqRespMsgTest1")) {
 			logger.log(Logger.Level.INFO, "Starting SendSyncReqRespMsgTest1");
-			System.out.println("Starting SendSyncReqRespMsgTest1");
+			logger.log(Logger.Level.TRACE,"Starting SendSyncReqRespMsgTest1");
 			SendSyncReqRespMsgTest1(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("SendSyncReqRespMsgTest2")) {
 			logger.log(Logger.Level.INFO, "Starting SendSyncReqRespMsgTest2");
-			System.out.println("Starting SendSyncReqRespMsgTest2");
+			logger.log(Logger.Level.TRACE,"Starting SendSyncReqRespMsgTest2");
 			SendSyncReqRespMsgTest2(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("SendSyncReqRespMsgTest3")) {
 			logger.log(Logger.Level.INFO, "Starting SendSyncReqRespMsgTest3");
-			System.out.println("Starting SendSyncReqRespMsgTest3");
+			logger.log(Logger.Level.TRACE,"Starting SendSyncReqRespMsgTest3");
 			SendSyncReqRespMsgTest3(req, res);
 		}
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.log(Logger.Level.TRACE, "SendingServlet:doPost");
-		System.out.println("SendingServlet:doPost");
+		logger.log(Logger.Level.TRACE,"SendingServlet:doPost");
 		SOAP_Util.doServletPost(req, res);
 		hostname = SOAP_Util.getHostname();
 		portnum = SOAP_Util.getPortnum();
