@@ -66,9 +66,9 @@ public class SOAPConnectionFactoryTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("SOAPEnvelopeTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SOAPEnvelopeTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
-		System.out.println("SOAPEnvelopeTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SOAPEnvelopeTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

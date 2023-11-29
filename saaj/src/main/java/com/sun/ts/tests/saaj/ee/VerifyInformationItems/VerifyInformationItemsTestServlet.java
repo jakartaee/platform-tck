@@ -161,9 +161,9 @@ public class VerifyInformationItemsTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("VerifyInformationItemsTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"VerifyInformationItemsTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
-		System.out.println("VerifyInformationItemsTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"VerifyInformationItemsTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

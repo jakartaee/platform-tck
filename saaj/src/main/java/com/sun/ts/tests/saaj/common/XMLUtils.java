@@ -112,17 +112,17 @@ public final class XMLUtils {
 		}
 		String data = "";
 		try {
-			System.out.println("validating=" + validating);
-			System.out.println("namespaceaware=" + nsaware);
-			System.out.println("file=" + filename);
-			System.out.println("schema=" + schema);
+			logger.log(Logger.Level.TRACE,"validating=" + validating);
+			logger.log(Logger.Level.TRACE,"namespaceaware=" + nsaware);
+			logger.log(Logger.Level.TRACE,"file=" + filename);
+			logger.log(Logger.Level.TRACE,"schema=" + schema);
 			BufferedReader in = new BufferedReader(new FileReader(filename));
 			String line = "";
 			while ((line = in.readLine()) != null) {
 				data += line;
 			}
 			in.close();
-			System.out.println("data=" + data);
+			logger.log(Logger.Level.TRACE,"data=" + data);
 			dbfactory = DocumentBuilderFactory.newInstance();
 			if (validating) {
 				dbfactory.setValidating(validating);
@@ -147,8 +147,8 @@ public final class XMLUtils {
 									"** Warning, line " + e.getLineNumber() + ", uri " + e.getSystemId());
 							logger.log(Logger.Level.INFO, "   " + e.getMessage());
 						} else {
-							System.out.println("** Warning, line " + e.getLineNumber() + ", uri " + e.getSystemId());
-							System.out.println("   " + e.getMessage());
+							logger.log(Logger.Level.TRACE,"** Warning, line " + e.getLineNumber() + ", uri " + e.getSystemId());
+							logger.log(Logger.Level.TRACE,"   " + e.getMessage());
 						}
 					}
 				});
@@ -250,8 +250,8 @@ public final class XMLUtils {
 									"** Warning, line " + e.getLineNumber() + ", uri " + e.getSystemId());
 							logger.log(Logger.Level.INFO, "   " + e.getMessage());
 						} else {
-							System.out.println("** Warning, line " + e.getLineNumber() + ", uri " + e.getSystemId());
-							System.out.println("   " + e.getMessage());
+							logger.log(Logger.Level.TRACE,"** Warning, line " + e.getLineNumber() + ", uri " + e.getSystemId());
+							logger.log(Logger.Level.TRACE,"   " + e.getMessage());
 						}
 					}
 				});
@@ -509,7 +509,7 @@ public final class XMLUtils {
 		if (tckmode)
 			logger.log(Logger.Level.INFO, "Begin Dumping DOM Nodes");
 		else
-			System.out.println("Begin Dumping DOM Nodes");
+			logger.log(Logger.Level.TRACE,"Begin Dumping DOM Nodes");
 		String rootNodeName = element.getNodeName();
 		if (tckmode)
 			logger.log(Logger.Level.INFO, "<RootElement>" + rootNodeName + "</RootElement>");
@@ -520,7 +520,7 @@ public final class XMLUtils {
 		if (tckmode)
 			logger.log(Logger.Level.INFO, "Done Dumping DOM Nodes");
 		else
-			System.out.println("Done Dumping DOM Nodes");
+			logger.log(Logger.Level.TRACE,"Done Dumping DOM Nodes");
 	}
 
 	public static void XmlDumpDOMNodes(Node node) {
@@ -528,7 +528,7 @@ public final class XMLUtils {
 		if (tckmode)
 			logger.log(Logger.Level.INFO, "Begin Dumping DOM Nodes");
 		else
-			System.out.println("Begin Dumping DOM Nodes");
+			logger.log(Logger.Level.TRACE,"Begin Dumping DOM Nodes");
 		String rootNodeName = node.getNodeName();
 		if (tckmode)
 			logger.log(Logger.Level.INFO, "<RootElement>" + rootNodeName + "</RootElement>");
@@ -539,7 +539,7 @@ public final class XMLUtils {
 		if (tckmode)
 			logger.log(Logger.Level.INFO, "Done Dumping DOM Nodes");
 		else
-			System.out.println("Done Dumping DOM Nodes");
+			logger.log(Logger.Level.TRACE,"Done Dumping DOM Nodes");
 	}
 
 	public static void XmlDumpDOMNodes_(Element element) {

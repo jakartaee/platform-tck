@@ -95,9 +95,9 @@ public class SOAPConnectionTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("SOAPEnvelopeTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SOAPEnvelopeTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
-		System.out.println("SOAPEnvelopeTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SOAPEnvelopeTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -180,7 +180,7 @@ public class SOAPConnectionTestServlet extends HttpServlet {
 			SOAPConnectionFactory sf = SOAP_Util.getSOAPConnectionFactory();
 			SOAPConnection soapcon = sf.createConnection();
 
-			System.out.println("Create MessageFactory object");
+			logger.log(Logger.Level.TRACE,"Create MessageFactory object");
 			MessageFactory mf = MessageFactory.newInstance();
 
 			// Create a soap message from the message factory.
@@ -251,6 +251,9 @@ public class SOAPConnectionTestServlet extends HttpServlet {
 			TestUtil.printStackTrace(e);
 			pass = false;
 		}
+		
+		logger.log(Logger.Level.INFO, "Pass  " + pass);
+		
 		// Send response object and test result back to client
 		if (pass)
 			resultProps.setProperty("TESTRESULT", "pass");

@@ -84,7 +84,7 @@ public class SendingServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("SendingServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SendingServlet:init (Entering)");
 		try {
 			SOAP_Util.setup();
 			con = SOAP_Util.getSOAPConnection();
@@ -93,22 +93,22 @@ public class SendingServlet extends HttpServlet {
 			e.printStackTrace(System.err);
 			throw new ServletException("Exception occurred: " + e.getMessage());
 		}
-		System.out.println("SendingServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SendingServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.log(Logger.Level.TRACE, "SendingServlet:doGet");
-		System.out.println("SendingServlet:doGet");
+		logger.log(Logger.Level.TRACE,"SendingServlet:doGet");
 		if (harnessProps.getProperty("TESTNAME").equals("SendVariousMimeAttachmentsTest")) {
 			logger.log(Logger.Level.INFO, "Starting SendVariousMimeAttachmentsTest");
-			System.out.println("Starting SendVariousMimeAttachmentsTest");
+			logger.log(Logger.Level.TRACE,"Starting SendVariousMimeAttachmentsTest");
 			SendVariousMimeAttachmentsTest(req, res);
 		}
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.log(Logger.Level.TRACE, "SendingServlet:doPost");
-		System.out.println("SendingServlet:doPost");
+		logger.log(Logger.Level.TRACE,"SendingServlet:doPost");
 		SOAP_Util.doServletPost(req, res);
 		hostname = SOAP_Util.getHostname();
 		portnum = SOAP_Util.getPortnum();

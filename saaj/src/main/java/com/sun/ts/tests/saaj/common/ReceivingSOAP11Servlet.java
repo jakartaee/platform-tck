@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.System.Logger;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Properties;
@@ -43,6 +44,9 @@ import jakarta.xml.soap.SOAPConnection;
 import jakarta.xml.soap.SOAPMessage;
 
 public class ReceivingSOAP11Servlet extends HttpServlet {
+	
+	private static final Logger logger = (Logger) System.getLogger(ReceivingSOAP11Servlet.class.getName());
+
 	private SOAPConnection con = null;
 
 	private MessageFactory mf = null;
@@ -55,17 +59,17 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("ReceivingSOAP11Servlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"ReceivingSOAP11Servlet:init (Entering)");
 		try {
 			SOAP_Util.setup();
 			con = SOAP_Util.getSOAPConnection();
 			mf = MessageFactory.newInstance();
 		} catch (Exception e) {
-			System.err.println("Exception occurred: " + e.getMessage());
+			logger.log(Logger.Level.ERROR,"Exception occurred: " + e.getMessage());
 			e.printStackTrace();
 			throw new ServletException("Exception occurred: " + e.getMessage());
 		}
-		System.out.println("ReceivingSOAP11Servlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"ReceivingSOAP11Servlet:init (Leaving)");
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -98,16 +102,16 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
 				os.flush();
 
 				if (debug) {
-					System.out.println("---------------------------------------------------");
-					System.out.println("Dumping SOAPMessage HTTP-RESPONSE minus attachments");
-					System.out.println("---------------------------------------------------");
+					logger.log(Logger.Level.TRACE,"---------------------------------------------------");
+					logger.log(Logger.Level.TRACE,"Dumping SOAPMessage HTTP-RESPONSE minus attachments");
+					logger.log(Logger.Level.TRACE,"---------------------------------------------------");
 					dumpSOAPMessage(respMsg);
 				}
 
 			} else
 				resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
 		} catch (Exception e) {
-			System.err.println("Exception occurred: " + e.getMessage());
+			logger.log(Logger.Level.ERROR,"Exception occurred: " + e.getMessage());
 			e.printStackTrace();
 			throw new ServletException("ReceivingSOAP11Servlet:doPost failed " + e.getMessage());
 		}
@@ -120,16 +124,16 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
 		int k = 0;
 
 		if (debug) {
-			System.out.println("----------------------------------------");
-			System.out.println("Dumping SOAPMessage HTTP-REQUEST headers");
-			System.out.println("----------------------------------------");
+			logger.log(Logger.Level.TRACE,"----------------------------------------");
+			logger.log(Logger.Level.TRACE,"Dumping SOAPMessage HTTP-REQUEST headers");
+			logger.log(Logger.Level.TRACE,"----------------------------------------");
 		}
 
 		while (enumlist.hasMoreElements()) {
 			String headerName = (String) enumlist.nextElement();
 			String headerValue = req.getHeader(headerName);
 			if (debug) {
-				System.out.println("HeaderName" + k + "=" + headerName + "\nHeaderValue" + k + "=" + headerValue);
+				logger.log(Logger.Level.TRACE,"HeaderName" + k + "=" + headerName + "\nHeaderValue" + k + "=" + headerValue);
 				++k;
 			}
 
@@ -146,9 +150,9 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
 
 		Iterator it = headers.getAllHeaders();
 		if (debug) {
-			System.out.println("-----------------------------------------");
-			System.out.println("Dumping SOAPMessage HTTP-RESPONSE headers");
-			System.out.println("-----------------------------------------");
+			logger.log(Logger.Level.TRACE,"-----------------------------------------");
+			logger.log(Logger.Level.TRACE,"Dumping SOAPMessage HTTP-RESPONSE headers");
+			logger.log(Logger.Level.TRACE,"-----------------------------------------");
 		}
 		int k = 0;
 		while (it.hasNext()) {
@@ -158,7 +162,7 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
 			if (values.length == 1)
 				res.setHeader(header.getName(), header.getValue());
 			if (debug) {
-				System.out.println(
+				logger.log(Logger.Level.TRACE,
 						"HeaderName" + k + "=" + header.getName() + "\nHeaderValue" + k + "=" + header.getValue());
 				++k;
 			} else {
@@ -181,12 +185,12 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
 
 	private SOAPMessage onMessage(SOAPMessage reqMsg) {
 		SOAPMessage respMsg = null;
-		System.out.println("ReceivingSOAP11Servlet:onMessage");
+		logger.log(Logger.Level.TRACE,"ReceivingSOAP11Servlet:onMessage");
 		try {
 			if (debug) {
-				System.out.println("--------------------------------------------------");
-				System.out.println("Dumping SOAPMessage HTTP-REQUEST minus attachments");
-				System.out.println("--------------------------------------------------");
+				logger.log(Logger.Level.TRACE,"--------------------------------------------------");
+				logger.log(Logger.Level.TRACE,"Dumping SOAPMessage HTTP-REQUEST minus attachments");
+				logger.log(Logger.Level.TRACE,"--------------------------------------------------");
 				dumpSOAPMessage(reqMsg);
 			}
 			// Create the soap response to be identical to the soap request
@@ -197,7 +201,7 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
 				respMsg.addAttachmentPart((AttachmentPart) i.next());
 			respMsg.saveChanges();
 		} catch (Exception e) {
-			System.err.println("Exception occurred: " + e);
+			logger.log(Logger.Level.ERROR,"Exception occurred: " + e);
 			e.printStackTrace();
 		}
 		return respMsg;
@@ -211,9 +215,9 @@ public class ReceivingSOAP11Servlet extends HttpServlet {
 			tmpMsg.removeAllAttachments();
 			tmpMsg.saveChanges();
 			tmpMsg.writeTo(System.out);
-			System.out.println("");
+			logger.log(Logger.Level.TRACE,"");
 		} catch (Exception e) {
-			System.err.println("Exception occurred: " + e);
+			logger.log(Logger.Level.ERROR,"Exception occurred: " + e);
 			e.printStackTrace();
 		}
 	}

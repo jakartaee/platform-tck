@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.AttachmentPart;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.util.Properties;
@@ -2518,6 +2517,7 @@ public class URLClient extends Client {
 			throw new Exception("getContent3Test failed", e);
 		}
 	}
+	
 
 	/*
 	 * @testName: getContent4Test

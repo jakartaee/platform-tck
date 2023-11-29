@@ -90,6 +90,7 @@ public class URLClient extends Client {
 	 * @test_Strategy: Verify the SOAP Role attribute information item.
 	 *
 	 */
+	@Test
 	public void VerifyRoleAttributeInfoItem() throws Exception {
 		boolean pass = true;
 		try {

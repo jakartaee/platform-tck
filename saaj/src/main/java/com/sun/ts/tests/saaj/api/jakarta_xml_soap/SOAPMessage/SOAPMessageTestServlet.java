@@ -242,10 +242,10 @@ public class SOAPMessageTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("SOAPMessageTestServet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SOAPMessageTestServet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
 		servletContext = servletConfig.getServletContext();
-		System.out.println("SOAPMessageTestServet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SOAPMessageTestServet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

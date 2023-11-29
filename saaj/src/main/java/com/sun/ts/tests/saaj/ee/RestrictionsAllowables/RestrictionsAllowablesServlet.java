@@ -92,7 +92,7 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("RestrictionsAllowablesServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"RestrictionsAllowablesServlet:init (Entering)");
 		try {
 			SOAP_Util.setup();
 			con = SOAP_Util.getSOAPConnection();
@@ -101,58 +101,58 @@ public class RestrictionsAllowablesServlet extends HttpServlet {
 			e.printStackTrace(System.err);
 			throw new ServletException("Exception occurred: " + e.getMessage());
 		}
-		System.out.println("RestrictionsAllowablesServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"RestrictionsAllowablesServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.log(Logger.Level.TRACE, "RestrictionsAllowablesServlet:doGet");
-		System.out.println("RestrictionsAllowablesServlet:doGet");
+		logger.log(Logger.Level.TRACE,"RestrictionsAllowablesServlet:doGet");
 		if (harnessProps.getProperty("TESTNAME").equals("encodingStyleAttrSOAP11Test1")) {
 			logger.log(Logger.Level.INFO, "Starting encodingStyleAttrSOAP11Test1");
-			System.out.println("Starting encodingStyleAttrSOAP11Test1");
+			logger.log(Logger.Level.TRACE,"Starting encodingStyleAttrSOAP11Test1");
 			encodingStyleAttrSOAP11Test1(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("encodingStyleAttrSOAP11Test2")) {
 			logger.log(Logger.Level.INFO, "Starting encodingStyleAttrSOAP11Test2");
-			System.out.println("Starting encodingStyleAttrSOAP11Test2");
+			logger.log(Logger.Level.TRACE,"Starting encodingStyleAttrSOAP11Test2");
 			encodingStyleAttrSOAP11Test2(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("noTrailingBlockBodySOAP11Test")) {
 			logger.log(Logger.Level.INFO, "Starting noTrailingBlockBodySOAP11Test");
-			System.out.println("Starting noTrailingBlockBodySOAP11Test");
+			logger.log(Logger.Level.TRACE,"Starting noTrailingBlockBodySOAP11Test");
 			noTrailingBlockBodySOAP11Test(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("enforcedQNameBodyElemSOAP11Test")) {
 			logger.log(Logger.Level.INFO, "Starting enforcedQNameBodyElemSOAP11Test");
-			System.out.println("Starting enforcedQNameBodyElemSOAP11Test");
+			logger.log(Logger.Level.TRACE,"Starting enforcedQNameBodyElemSOAP11Test");
 			enforcedQNameBodyElemSOAP11Test(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("encodingStyleAttrSOAP12Test1")) {
 			logger.log(Logger.Level.INFO, "Starting encodingStyleAttrSOAP12Test1");
-			System.out.println("Starting encodingStyleAttrSOAP12Test1");
+			logger.log(Logger.Level.TRACE,"Starting encodingStyleAttrSOAP12Test1");
 			encodingStyleAttrSOAP12Test1(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("encodingStyleAttrSOAP12Test2")) {
 			logger.log(Logger.Level.INFO, "Starting encodingStyleAttrSOAP12Test2");
-			System.out.println("Starting encodingStyleAttrSOAP12Test2");
+			logger.log(Logger.Level.TRACE,"Starting encodingStyleAttrSOAP12Test2");
 			encodingStyleAttrSOAP12Test2(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("noTrailingBlockBodySOAP12Test")) {
 			logger.log(Logger.Level.INFO, "Starting noTrailingBlockBodySOAP12Test");
-			System.out.println("Starting noTrailingBlockBodySOAP12Test");
+			logger.log(Logger.Level.TRACE,"Starting noTrailingBlockBodySOAP12Test");
 			noTrailingBlockBodySOAP12Test(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("enforcedQNameHdrElemTest1")) {
 			logger.log(Logger.Level.INFO, "Starting enforcedQNameHdrElemTest1");
-			System.out.println("Starting enforcedQNameHdrElemTest1");
+			logger.log(Logger.Level.TRACE,"Starting enforcedQNameHdrElemTest1");
 			enforcedQNameHdrElemTest1(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("enforcedQNameHdrElemTest2")) {
 			logger.log(Logger.Level.INFO, "Starting enforcedQNameHdrElemTest2");
-			System.out.println("Starting enforcedQNameHdrElemTest2");
+			logger.log(Logger.Level.TRACE,"Starting enforcedQNameHdrElemTest2");
 			enforcedQNameHdrElemTest2(req, res);
 		} else if (harnessProps.getProperty("TESTNAME").equals("enforcedQNameBodyElemSOAP12Test")) {
 			logger.log(Logger.Level.INFO, "Starting enforcedQNameBodyElemSOAP12Test");
-			System.out.println("Starting enforcedQNameBodyElemSOAP12Test");
+			logger.log(Logger.Level.TRACE,"Starting enforcedQNameBodyElemSOAP12Test");
 			enforcedQNameBodyElemSOAP12Test(req, res);
 		}
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.log(Logger.Level.TRACE, "RestrictionsAllowablesServlet:doPost");
-		System.out.println("RestrictionsAllowablesServlet:doPost");
+		logger.log(Logger.Level.TRACE,"RestrictionsAllowablesServlet:doPost");
 		SOAP_Util.doServletPost(req, res);
 		hostname = SOAP_Util.getHostname();
 		portnum = SOAP_Util.getPortnum();

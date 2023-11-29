@@ -240,9 +240,9 @@ public class SOAPFaultTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("SOAPFaultTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SOAPFaultTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
-		System.out.println("SOAPFaultTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SOAPFaultTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

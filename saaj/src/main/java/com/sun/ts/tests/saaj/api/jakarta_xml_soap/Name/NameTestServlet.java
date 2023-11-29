@@ -96,8 +96,8 @@ public class NameTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("GetLocalNameTestServlet:init (Entering)");
-		System.out.println("GetLocalNameTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"GetLocalNameTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"GetLocalNameTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

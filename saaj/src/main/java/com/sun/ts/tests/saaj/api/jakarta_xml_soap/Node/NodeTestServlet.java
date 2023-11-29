@@ -148,9 +148,9 @@ public class NodeTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("NodeTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"NodeTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
-		System.out.println("NodeTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"NodeTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

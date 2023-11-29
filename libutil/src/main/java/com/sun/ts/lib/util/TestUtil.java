@@ -918,14 +918,10 @@ public final class TestUtil {
 
   public static URLConnection sendPostData(Properties p, URL url)
       throws IOException {
-	  System.out.println("######################" + url.toString());
     TestUtil.logMsg("Openning url connection to: " + url.toString());
     URLConnection urlConn = url.openConnection();
     // Begin POST of properties to SERVLET
     String argString = TestUtil.toEncodedString(p);
-    
-	  System.out.println("######################" + argString);
-
     urlConn.setDoOutput(true);
     urlConn.setDoInput(true);
     urlConn.setUseCaches(false);

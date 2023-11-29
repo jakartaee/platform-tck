@@ -232,9 +232,9 @@ public class SOAPElementTestServlet extends HttpServlet {
 
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		System.out.println("SOAPElementTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"SOAPElementTestServlet:init (Entering)");
 		SOAP_Util.doServletInit(servletConfig);
-		System.out.println("SOAPElementTestServlet:init (Leaving)");
+		logger.log(Logger.Level.TRACE,"SOAPElementTestServlet:init (Leaving)");
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
