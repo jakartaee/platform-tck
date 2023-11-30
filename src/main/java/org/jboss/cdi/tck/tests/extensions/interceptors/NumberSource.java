@@ -19,7 +19,7 @@ package org.jboss.cdi.tck.tests.extensions.interceptors;
 import jakarta.enterprise.context.Dependent;
 
 /**
- * @author Stuart Douglas <stuart@baileyroberts.com.au>
+ * @author Stuart Douglas stuart@baileyroberts.com.au
  */
 @Dependent
 public class NumberSource {

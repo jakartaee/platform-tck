@@ -22,7 +22,7 @@ import jakarta.interceptor.Interceptor;
 import jakarta.interceptor.InvocationContext;
 
 /**
- * @author Stuart Douglas <stuart@baileyroberts.com.au>
+ * @author Stuart Douglas stuart@baileyroberts.com.au
  */
 @FullMarathon
 @Interceptor

@@ -44,7 +44,7 @@ import org.testng.annotations.Test;
  *
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  * @author Martin Kouba
- * @see https://issues.jboss.org/browse/JBAS-8683
+ * @see <a href="https://issues.jboss.org/browse/JBAS-8683">JBAS-8683</a>
  */
 @SpecVersion(spec = "cdi", version = "2.0")
 public class SingleWebModuleWithExtensionTest extends AbstractTest {

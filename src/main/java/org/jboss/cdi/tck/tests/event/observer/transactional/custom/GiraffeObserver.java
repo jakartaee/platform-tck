@@ -31,7 +31,7 @@ public class GiraffeObserver {
 
     /**
      * 
-     * @param withdrawal
+     * @param giraffe
      * @throws Exception
      */
     public void withdrawAfterCompletion(@Observes(during = TransactionPhase.AFTER_COMPLETION) Giraffe giraffe) throws Exception {
@@ -40,7 +40,7 @@ public class GiraffeObserver {
 
     /**
      * 
-     * @param withdrawal
+     * @param giraffe
      * @throws Exception
      */
     public void withdrawBeforeCompletion(@Observes(during = TransactionPhase.BEFORE_COMPLETION) Giraffe giraffe)

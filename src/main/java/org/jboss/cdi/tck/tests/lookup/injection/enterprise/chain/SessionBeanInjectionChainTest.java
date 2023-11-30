@@ -35,7 +35,7 @@ import org.testng.annotations.Test;
 /**
  * 
  * @author Martin Kouba
- * @see CDITCK-15
+ * @see <a>CDITCK-15</a>
  */
 @Test(groups = INTEGRATION)
 @SpecVersion(spec = "cdi", version = "2.0")

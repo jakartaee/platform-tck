@@ -44,7 +44,7 @@ import org.testng.annotations.Test;
  *
  * @author <a href="http://community.jboss.org/people/jharting">Jozef Hartinger</a>
  * @author Martin Kouba
- * @see http://java.net/jira/browse/GLASSFISH-16303
+ * @see <a href="http://java.net/jira/browse/GLASSFISH-16303">GLASSFISH-16303</a>
  */
 @SpecVersion(spec = "cdi", version = "2.0")
 public class MultiWebModuleWithExtensionTest extends AbstractTest {

@@ -57,9 +57,7 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 
 /**
- * <p/>
  * This test was originally part of Weld test suite.
- * <p/>
  *
  * @author Jozef Hartinger
  * @author Martin Kouba

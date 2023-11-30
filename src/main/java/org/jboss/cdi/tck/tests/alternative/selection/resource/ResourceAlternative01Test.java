@@ -43,7 +43,7 @@ import org.testng.annotations.Test;
  * WAR deployment with 2 libraries:
  * <ul>
  * <li>WEB-INF/classes - alpha - does not declare any alternative</li>
- * <li>lib 1 - bravo - declares {@link BravoResouceProducer} alternative selected for the app with priority 1000</li>
+ * <li>lib 1 - bravo - declares {@link BravoResourceProducer} alternative selected for the app with priority 1000</li>
  * <li>lib 2 - charlie - does not declare any alternative</li>
  * </ul>
  *

@@ -31,7 +31,7 @@ import org.jboss.cdi.tck.util.annotated.AnnotatedMethodWrapper;
 import org.jboss.cdi.tck.util.annotated.AnnotatedTypeWrapper;
 
 /**
- * @author Stuart Douglas <stuart@baileyroberts.com.au>
+ * @author Stuart Douglas stuart@baileyroberts.com.au
  * @author Martin Kouba
  */
 public class InterceptorExtension implements Extension {

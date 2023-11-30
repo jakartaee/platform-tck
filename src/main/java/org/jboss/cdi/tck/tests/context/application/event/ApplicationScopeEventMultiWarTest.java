@@ -43,16 +43,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
+ * <p>
  * Verifies that an observer is not notified of a non-visible {@link ServletContext}.
- * <p/>
+ * </p>
  * <p>
  * Note that this test has to run in as-client mode since arquillian cannot work with such archive (doesn't know which WAR to
  * enrich).
  * </p>
- * <p/>
- * <p/>
+ * <p>
  * This test was originally part of Weld test suite.
- * <p/>
+ * </p>
  *
  * @author Jozef Hartinger
  * @author Martin Kouba

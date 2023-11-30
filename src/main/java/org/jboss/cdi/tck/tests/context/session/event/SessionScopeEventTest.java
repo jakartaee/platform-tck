@@ -38,7 +38,7 @@ import com.gargoylesoftware.htmlunit.WebClient;
 /**
  * <p>
  * This test was originally part of Weld test suite.
- * <p>
+ * </p>
  *
  * @author Jozef Hartinger
  * @author Martin Kouba

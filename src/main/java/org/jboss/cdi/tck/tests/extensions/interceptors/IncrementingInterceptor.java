@@ -23,7 +23,7 @@ import jakarta.interceptor.InvocationContext;
 /**
  * Interceptor that adds one to the result of a method
  * 
- * @author Stuart Douglas <stuart@baileyroberts.com.au>
+ * @author Stuart Douglas stuart@baileyroberts.com.au>
  */
 @Incremented
 @Interceptor

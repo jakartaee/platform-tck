@@ -43,7 +43,7 @@ import org.testng.annotations.Test;
  * This test was originally part of Weld test suite.
  * <p>
  * 
- * @author Stuart Douglas <stuart@baileyroberts.com.au>
+ * @author Stuart Douglas stuart@baileyroberts.com.au
  * @author Martin Kouba
  */
 @Test(groups = INTEGRATION)
