@@ -28,7 +28,6 @@ import java.net.URL;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;

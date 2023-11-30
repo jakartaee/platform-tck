@@ -14,56 +14,90 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * @(#)JSTLClient.java	1.2 03/19/02
- */
-
 package com.sun.ts.tests.jstl.compat.onedotzero;
 
-import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.InputStream;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.jstl.common.client.CompatAbstractUrlClient;
 
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+
+@ExtendWith(ArquillianExtension.class)
 public class JSTLClient extends CompatAbstractUrlClient {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home; jstl.db.url;
-   * jstl.db.user; jstl.db.password; jstl.db.driver;
-   */
+  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
   public JSTLClient() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JSTLClient theTests = new JSTLClient();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
     setGeneralURI("/jstl/compat/onedotzero");
     setContextRoot("/jstl_1_0_compat_web");
-
-    return super.run(args, out, err);
   }
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_1_0_compat_web.war");
+    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_1_0_compat_web.xml"));
+
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.jsp")), "import.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.txt")), "import.txt");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeScriptFreeTlvNoDeclTest.jsp")), "negativeScriptFreeTlvNoDeclTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/param.xsl")), "param.xsl");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBundleLocalizationScopeTest.jsp")), "positiveBundleLocalizationScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveCatchVarTest.jsp")), "positiveCatchVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveCWOTest.jsp")), "positiveCWOTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamQueryTimestampTest.jsp")), "positiveDateParamQueryTimestampTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDefaultEncodingTest.jsp")), "positiveDefaultEncodingTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDValueTest.jsp")), "positiveFDValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNScopeTest.jsp")), "positiveFNScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextI18NTest.jsp")), "positiveFormatLocalizationContextI18NTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveForTokensTest.jsp")), "positiveForTokensTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportAbsUrlTest.jsp")), "positiveImportAbsUrlTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsObjArrayTest.jsp")), "positiveItemsObjArrayTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveJSTLURITest.jsp")), "positiveJSTLURITest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageKeyTest.jsp")), "positiveMessageKeyTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveOutEscXmlTest.jsp")), "positiveOutEscXmlTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamNameValueTest.jsp")), "positiveParamNameValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamValueTest.jsp")), "positiveParamValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseVarTest.jsp")), "positiveParseVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDValueTest.jsp")), "positivePDValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePermittedTlvTest.jsp")), "positivePermittedTlvTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNValueTest.jsp")), "positivePNValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryScopeAttributeTest.jsp")), "positiveQueryScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveRedirectTest.jsp")), "positiveRedirectTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveRemoveScopeVarTest.jsp")), "positiveRemoveScopeVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsCountTest.jsp")), "positiveResultGetRowsCountTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetBundleScopeVarTest.jsp")), "positiveSetBundleScopeVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetDataSourceScopeAttributeTest.jsp")), "positiveSetDataSourceScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleValueTest.jsp")), "positiveSetLocaleValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetScopeTest.jsp")), "positiveSetScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetSelectVarTest.jsp")), "positiveSetSelectVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneValueTest.jsp")), "positiveSetTimezoneValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTimezoneValueTest.jsp")), "positiveTimezoneValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformVarTest.jsp")), "positiveTransformVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxQueryCommitTest.jsp")), "positiveTxQueryCommitTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateBodyContentTest.jsp")), "positiveUpdateBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlScopeTest.jsp")), "positiveUrlScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveXParamNameTest.jsp")), "positiveXParamNameTest.jsp");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple2.xml")), "simple2.xml");
+    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple2.xsl")), "simple2.xsl");
+
+    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
+
+    archive.addAsLibrary(getCommonJarArchive());
+
+    return archive;
+  }
+
+
 
   /*
    * @testName: positiveBundleLocalizationScopeTest
@@ -74,12 +108,15 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * bundle action, that any messages within the body of the bundle action are
    * properly localized and any message actions outside the body are not.
    */
+  @Test
   public void positiveBundleLocalizationScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundleLocalizationScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveBundleLocalizationScopeTest");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_1_0_compat_web/positiveBundleLocalizationScopeTest.jsp HTTP/1.1");
-    TEST_PROPS.setProperty(GOLDENFILE,
-        "positiveBundleLocalizationScopeTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE,
+    //     "positiveBundleLocalizationScopeTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
@@ -93,7 +130,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * into the variable name designated by the var attribute and validate the
    * type of var as it should be the type of the Throwable.
    */
+  @Test
   public void positiveCatchVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCatchVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveCatchVarTest");
     invoke();
   }
@@ -111,7 +151,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * single 'when' evaluating to false which should cause the 'otherwise' action
    * to process its body
    */
+  @Test
   public void positiveCWOTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCWOTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveCWOTest");
     invoke();
   }
@@ -125,7 +168,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * can be executed using sql:dateParam action specifying a type of 'timestamp'
    * - Validate that you get the expected number of rows back.
    */
+  @Test
   public void positiveDateParamQueryTimestampTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamQueryTimestampTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT,
         "positiveDateParamQueryTimestampTest");
     invoke();
@@ -143,7 +189,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * getCharacterEncoding() against the request object after the action has been
    * called.
    */
+  @Test
   public void positiveDefaultEncodingTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDefaultEncodingTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveDefaultEncodingTest");
     invoke();
   }
@@ -156,7 +205,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate that formatDate action can properly format dates
    * provided as String literals or as java.util.Date objects.
    */
+  @Test
   public void positiveFDValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveFDValueTest");
     invoke();
   }
@@ -170,7 +222,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * as well as validating that if scope is not specified, var will be exported
    * to the page scope by default.
    */
+  @Test
   public void positiveFNScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveFNScopeTest");
     invoke();
   }
@@ -189,13 +244,16 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * action correctly uses the locale from the base name attribute, then no
    * parse exception will occur.
    */
+  @Test
   public void positiveFormatLocalizationContextI18NTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME,
         "positiveFormatLocalizationContextI18NTest");
     TEST_PROPS.setProperty(REQUEST,
         "positiveFormatLocalizationContextI18NTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE,
-        "positiveFormatLocalizationContextI18NTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE,
+    //     "positiveFormatLocalizationContextI18NTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -208,7 +266,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate that forTokens can properly Iterate over a String
    * provided with specified delimiters.
    */
+  @Test
   public void positiveForTokensTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveForTokensTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveForTokensTest");
     invoke();
   }
@@ -223,7 +284,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * attribute. If scope is not specified, the exported var should be in the
    * page scope, otherwise the exported var should be in the designated scope.
    */
+  @Test
   public void positiveIfScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveIfScopeTest");
     invoke();
   }
@@ -236,7 +300,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate that resources identified by an absolute URL can be
    * imported and displayed. This will test absolute URLs for HTTP and FTP
    */
+  @Test
   public void positiveImportAbsUrlTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportAbsUrlTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveImportAbsUrlTest");
     invoke();
   }
@@ -249,7 +316,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate that arrays of Object types can be handled by
    * 'forEach'.
    */
+  @Test
   public void positiveItemsObjArrayTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsObjArrayTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveItemsObjArrayTest");
     invoke();
   }
@@ -264,6 +334,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * tags. If defined correctly, a fatal translation error should not occur (
    * per section 7.3.6.2 of the JavaServer Pages 1.2 Specification.
    */
+  @Test
   public void positiveJSTLURITest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "positiveJSTLURITest");
     TEST_PROPS.setProperty(REQUEST, "positiveJSTLURITest.jsp");
@@ -280,9 +351,12 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * and display the message associated with the provided key. This will also
    * establish that the key attribute can accept both static and dynamic values.
    */
+  @Test
   public void positiveMessageKeyTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageKeyTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveMessageKeyTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -297,7 +371,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * occur if the escapeXml is not present, or the value is true. Also validate
    * that no escaping occurs if the value is false.
    */
+  @Test
   public void positiveOutEscXmlTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveOutEscXmlTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveOutEscXmlTest");
     invoke();
   }
@@ -310,7 +387,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate the the name and value attributes can accept both
    * dynamic and static values.
    */
+  @Test
   public void positiveParamNameValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamNameValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveParamNameValueTest");
     invoke();
   }
@@ -324,9 +404,12 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate that parametric replacement occurs when param
    * subtags are specified with either dynamic or static values.
    */
+  @Test
   public void positiveParamValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveParamValueTest");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveParamValueTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveParamValueTest.gf");
     TEST_PROPS.setProperty(REQUEST, "positiveParamValueTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -341,7 +424,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * is specified, the result is available via the PageContext and is of type
    * java.lang.Object.
    */
+  @Test
   public void positiveParseVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveParseVarTest");
     invoke();
   }
@@ -355,7 +441,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * provided as dynamic or static String values. Pass the parsed value to
    * formatDate to display (due to possible timezone difference).
    */
+  @Test
   public void positivePDValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positivePDValueTest");
     invoke();
   }
@@ -369,6 +458,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * libraries is specified as a paramter to the PermittedTaglibsTLV, that the
    * use of this library doesn't generate a translation error.
    */
+  @Test
   public void positivePermittedTlvTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "positivePermittedTlvTest");
     TEST_PROPS.setProperty(REQUEST, "positivePermittedTlvTest.jsp");
@@ -384,7 +474,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate the action can correctly parse dynamic and static
    * values provided to the value attribute.
    */
+  @Test
   public void positivePNValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positivePNValueTest");
     invoke();
   }
@@ -399,7 +492,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * as well as validating that if scope is not specified, var will be exported
    * to the page scope by default.
    */
+  @Test
   public void positiveQueryScopeAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryScopeAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveQueryScopeAttributeTest");
     invoke();
   }
@@ -413,6 +509,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate that the action can properly redirect when the url
    * attribute is provided either a dynamic or static values.
    */
+  @Test
   public void positiveRedirectTest() throws Exception {
     /* EL */
     // abs
@@ -520,7 +617,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * remove the attribute no matter the scope in which it exists. Also validate
    * that if scope is specified, the var is properly removed.
    */
+  @Test
   public void positiveRemoveScopeVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveRemoveScopeVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveRemoveScopeVarTest");
     invoke();
   }
@@ -533,7 +633,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate that the correct number of rows is returned by
    * Result.getRows().
    */
+  @Test
   public void positiveResultGetRowsCountTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsCountTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveResultGetRowsCountTest");
     invoke();
   }
@@ -547,6 +650,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * configured validator, a translation error occurs if a declaration is
    * encountered.
    */
+  @Test
   public void negativeScriptFreeTlvNoDeclTest() throws Exception {
     TEST_PROPS.setProperty(TEST_NAME, "negativeScriptFreeTlvNoDeclTest");
     TEST_PROPS.setProperty(REQUEST, "negativeScriptFreeTlvNoDeclTest.jsp");
@@ -564,11 +668,14 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * scope attribute. If scope is not present and var is, var will be exported
    * to the page scope by default.
    */
+  @Test
   public void positiveSetBundleScopeVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetBundleScopeVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleScopeVarTest");
     TEST_PROPS.setProperty(REQUEST, "positiveSetBundleScopeVarTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveSetBundleScopeVarTest.gf");
+    // TEST_PROPS.setProperty(GOLDENFILE, "positiveSetBundleScopeVarTest.gf");
     invoke();
   }
 
@@ -580,7 +687,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate sql:setDataSource exports the var attribute to the
    * correct scope.
    */
+  @Test
   public void positiveSetDataSourceScopeAttributeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetDataSourceScopeAttributeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT,
         "positiveSetDataSourceScopeAttributeTest");
     invoke();
@@ -594,7 +704,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate value can accept both String representations or
    * locales as well as instances of java.util.Locale.
    */
+  @Test
   public void positiveSetLocaleValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetLocaleValueTest");
     invoke();
   }
@@ -610,7 +723,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * scopes and then print the values using PageContext.getAttribute(String,
    * int).
    */
+  @Test
   public void positiveSetScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetScopeTest");
     invoke();
   }
@@ -624,7 +740,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * select is provided a valid XPath expression and the the variable reference
    * by var is available to another action.
    */
+  @Test
   public void positiveSetSelectVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetSelectVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetSelectVarTest");
     invoke();
   }
@@ -639,7 +758,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * values as well as three letter timezones (ex. PST) or fully qualified
    * values (ex. America/Los_Angeles).
    */
+  @Test
   public void positiveSetTimezoneValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetTimezoneValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -655,7 +777,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * values as well as three letter timezones (ex. PST) or fully qualified
    * values (ex. America/Los_Angeles).
    */
+  @Test
   public void positiveTimezoneValueTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveTimezoneValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
@@ -672,7 +797,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * reference by var is available in the PageContext and is of type
    * org.w3c.dom.Document.
    */
+  @Test
   public void positiveTransformVarTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTransformVarTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveTransformVarTest");
     invoke();
   }
@@ -685,7 +813,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate sql:transaction and sql:query actions allow a query
    * to be successfully executed.
    */
+  @Test
   public void positiveTxQueryCommitTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxQueryCommitTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveTxQueryCommitTest");
     invoke();
   }
@@ -698,7 +829,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate the sql:update action - That a SQL query can be
    * passed as body content.
    */
+  @Test
   public void positiveUpdateBodyContentTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateBodyContentTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveUpdateBodyContentTest");
     invoke();
   }
@@ -711,7 +845,10 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate the behavior of the scope attribute with respect to
    * var, both when scope is explicitly defined and when not defined.
    */
+  @Test
   public void positiveUrlScopeTest() throws Exception {
+    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUrlScopeTest.gf");
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveUrlScopeTest");
     invoke();
   }
@@ -724,6 +861,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    * @testStrategy: Validate the name attribute of the x:param action is able to
    * accept both static and dynamic values.
    */
+  @Test
   public void positiveXParamNameTest() throws Exception {
     // TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveXParamNameTest");
     TEST_PROPS.setProperty(REQUEST,
