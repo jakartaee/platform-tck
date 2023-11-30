@@ -30,12 +30,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 @ExtendWith(ArquillianExtension.class)
-public class JSTLClient extends CompatAbstractUrlClient {
+public class JSTLClientIT extends CompatAbstractUrlClient {
 
-  public static String packagePath = JSTLClient.class.getPackageName().replace(".", "/");
+  public static String packagePath = JSTLClientIT.class.getPackageName().replace(".", "/");
 
   /** Creates new JSTLClient */
-  public JSTLClient() {
+  public JSTLClientIT() {
     setGeneralURI("/jstl/compat/onedotzero");
     setContextRoot("/jstl_1_0_compat_web");
   }
@@ -44,53 +44,53 @@ public class JSTLClient extends CompatAbstractUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_1_0_compat_web.war");
-    archive.setWebXML(JSTLClient.class.getClassLoader().getResource(packagePath+"/jstl_1_0_compat_web.xml"));
+    archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_1_0_compat_web.xml"));
 
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.jsp")), "import.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/import.txt")), "import.txt");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/negativeScriptFreeTlvNoDeclTest.jsp")), "negativeScriptFreeTlvNoDeclTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/param.xsl")), "param.xsl");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveBundleLocalizationScopeTest.jsp")), "positiveBundleLocalizationScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveCatchVarTest.jsp")), "positiveCatchVarTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveCWOTest.jsp")), "positiveCWOTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDateParamQueryTimestampTest.jsp")), "positiveDateParamQueryTimestampTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveDefaultEncodingTest.jsp")), "positiveDefaultEncodingTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFDValueTest.jsp")), "positiveFDValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFNScopeTest.jsp")), "positiveFNScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextI18NTest.jsp")), "positiveFormatLocalizationContextI18NTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveForTokensTest.jsp")), "positiveForTokensTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveImportAbsUrlTest.jsp")), "positiveImportAbsUrlTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveItemsObjArrayTest.jsp")), "positiveItemsObjArrayTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveJSTLURITest.jsp")), "positiveJSTLURITest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveMessageKeyTest.jsp")), "positiveMessageKeyTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveOutEscXmlTest.jsp")), "positiveOutEscXmlTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamNameValueTest.jsp")), "positiveParamNameValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParamValueTest.jsp")), "positiveParamValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveParseVarTest.jsp")), "positiveParseVarTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePDValueTest.jsp")), "positivePDValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePermittedTlvTest.jsp")), "positivePermittedTlvTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positivePNValueTest.jsp")), "positivePNValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveQueryScopeAttributeTest.jsp")), "positiveQueryScopeAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveRedirectTest.jsp")), "positiveRedirectTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveRemoveScopeVarTest.jsp")), "positiveRemoveScopeVarTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsCountTest.jsp")), "positiveResultGetRowsCountTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetBundleScopeVarTest.jsp")), "positiveSetBundleScopeVarTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetDataSourceScopeAttributeTest.jsp")), "positiveSetDataSourceScopeAttributeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleValueTest.jsp")), "positiveSetLocaleValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetScopeTest.jsp")), "positiveSetScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetSelectVarTest.jsp")), "positiveSetSelectVarTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneValueTest.jsp")), "positiveSetTimezoneValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTimezoneValueTest.jsp")), "positiveTimezoneValueTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTransformVarTest.jsp")), "positiveTransformVarTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveTxQueryCommitTest.jsp")), "positiveTxQueryCommitTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUpdateBodyContentTest.jsp")), "positiveUpdateBodyContentTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveUrlScopeTest.jsp")), "positiveUrlScopeTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/positiveXParamNameTest.jsp")), "positiveXParamNameTest.jsp");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple2.xml")), "simple2.xml");
-    archive.add(new UrlAsset(JSTLClient.class.getClassLoader().getResource(packagePath+"/simple2.xsl")), "simple2.xsl");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/import.jsp")), "import.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/import.txt")), "import.txt");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeScriptFreeTlvNoDeclTest.jsp")), "negativeScriptFreeTlvNoDeclTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/param.xsl")), "param.xsl");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveBundleLocalizationScopeTest.jsp")), "positiveBundleLocalizationScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveCatchVarTest.jsp")), "positiveCatchVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveCWOTest.jsp")), "positiveCWOTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveDateParamQueryTimestampTest.jsp")), "positiveDateParamQueryTimestampTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveDefaultEncodingTest.jsp")), "positiveDefaultEncodingTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFDValueTest.jsp")), "positiveFDValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFNScopeTest.jsp")), "positiveFNScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextI18NTest.jsp")), "positiveFormatLocalizationContextI18NTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveForTokensTest.jsp")), "positiveForTokensTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveImportAbsUrlTest.jsp")), "positiveImportAbsUrlTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveItemsObjArrayTest.jsp")), "positiveItemsObjArrayTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveJSTLURITest.jsp")), "positiveJSTLURITest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveMessageKeyTest.jsp")), "positiveMessageKeyTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveOutEscXmlTest.jsp")), "positiveOutEscXmlTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveParamNameValueTest.jsp")), "positiveParamNameValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveParamValueTest.jsp")), "positiveParamValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveParseVarTest.jsp")), "positiveParseVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDValueTest.jsp")), "positivePDValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePermittedTlvTest.jsp")), "positivePermittedTlvTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePNValueTest.jsp")), "positivePNValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveQueryScopeAttributeTest.jsp")), "positiveQueryScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveRedirectTest.jsp")), "positiveRedirectTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveRemoveScopeVarTest.jsp")), "positiveRemoveScopeVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveResultGetRowsCountTest.jsp")), "positiveResultGetRowsCountTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetBundleScopeVarTest.jsp")), "positiveSetBundleScopeVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetDataSourceScopeAttributeTest.jsp")), "positiveSetDataSourceScopeAttributeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetLocaleValueTest.jsp")), "positiveSetLocaleValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetScopeTest.jsp")), "positiveSetScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetSelectVarTest.jsp")), "positiveSetSelectVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveSetTimezoneValueTest.jsp")), "positiveSetTimezoneValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTimezoneValueTest.jsp")), "positiveTimezoneValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTransformVarTest.jsp")), "positiveTransformVarTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveTxQueryCommitTest.jsp")), "positiveTxQueryCommitTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUpdateBodyContentTest.jsp")), "positiveUpdateBodyContentTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveUrlScopeTest.jsp")), "positiveUrlScopeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveXParamNameTest.jsp")), "positiveXParamNameTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/simple2.xml")), "simple2.xml");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/simple2.xsl")), "simple2.xsl");
 
-    archive.addAsWebInfResource(JSTLClient.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
+    archive.addAsWebInfResource(JSTLClientIT.class.getPackage(), "tssql.stmt", "jstl-sql.properties");    
 
     archive.addAsLibrary(getCommonJarArchive());
 
@@ -110,7 +110,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveBundleLocalizationScopeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundleLocalizationScopeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveBundleLocalizationScopeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveBundleLocalizationScopeTest");
     TEST_PROPS.setProperty(REQUEST,
@@ -132,7 +132,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveCatchVarTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCatchVarTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCatchVarTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveCatchVarTest");
     invoke();
@@ -153,7 +153,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveCWOTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCWOTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveCWOTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveCWOTest");
     invoke();
@@ -170,7 +170,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveDateParamQueryTimestampTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamQueryTimestampTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDateParamQueryTimestampTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT,
         "positiveDateParamQueryTimestampTest");
@@ -191,7 +191,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveDefaultEncodingTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDefaultEncodingTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveDefaultEncodingTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveDefaultEncodingTest");
     invoke();
@@ -207,7 +207,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveFDValueTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDValueTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFDValueTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveFDValueTest");
     invoke();
@@ -224,7 +224,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveFNScopeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNScopeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFNScopeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveFNScopeTest");
     invoke();
@@ -246,7 +246,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveFormatLocalizationContextI18NTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME,
         "positiveFormatLocalizationContextI18NTest");
@@ -268,7 +268,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveForTokensTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveForTokensTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveForTokensTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveForTokensTest");
     invoke();
@@ -286,7 +286,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveIfScopeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfScopeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveIfScopeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveIfScopeTest");
     invoke();
@@ -302,7 +302,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveImportAbsUrlTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportAbsUrlTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveImportAbsUrlTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveImportAbsUrlTest");
     invoke();
@@ -318,7 +318,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveItemsObjArrayTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsObjArrayTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveItemsObjArrayTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveItemsObjArrayTest");
     invoke();
@@ -353,7 +353,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveMessageKeyTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageKeyTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveMessageKeyTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveMessageKeyTest");
     // TEST_PROPS.setProperty(GOLDENFILE, "positiveMessageKeyTest.gf");
@@ -373,7 +373,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveOutEscXmlTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveOutEscXmlTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveOutEscXmlTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveOutEscXmlTest");
     invoke();
@@ -389,7 +389,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveParamNameValueTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamNameValueTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamNameValueTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveParamNameValueTest");
     invoke();
@@ -406,7 +406,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveParamValueTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamValueTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParamValueTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveParamValueTest");
     // TEST_PROPS.setProperty(GOLDENFILE, "positiveParamValueTest.gf");
@@ -426,7 +426,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveParseVarTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseVarTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveParseVarTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveParseVarTest");
     invoke();
@@ -443,7 +443,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positivePDValueTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDValueTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDValueTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positivePDValueTest");
     invoke();
@@ -476,7 +476,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positivePNValueTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNValueTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePNValueTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positivePNValueTest");
     invoke();
@@ -494,7 +494,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveQueryScopeAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryScopeAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveQueryScopeAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveQueryScopeAttributeTest");
     invoke();
@@ -619,7 +619,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveRemoveScopeVarTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveRemoveScopeVarTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveRemoveScopeVarTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveRemoveScopeVarTest");
     invoke();
@@ -635,7 +635,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveResultGetRowsCountTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsCountTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveResultGetRowsCountTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveResultGetRowsCountTest");
     invoke();
@@ -670,7 +670,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveSetBundleScopeVarTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetBundleScopeVarTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetBundleScopeVarTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME, "positiveSetBundleScopeVarTest");
     TEST_PROPS.setProperty(REQUEST, "positiveSetBundleScopeVarTest.jsp");
@@ -689,7 +689,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveSetDataSourceScopeAttributeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetDataSourceScopeAttributeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetDataSourceScopeAttributeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT,
         "positiveSetDataSourceScopeAttributeTest");
@@ -706,7 +706,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveSetLocaleValueTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleValueTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetLocaleValueTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetLocaleValueTest");
     invoke();
@@ -725,7 +725,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveSetScopeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetScopeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetScopeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetScopeTest");
     invoke();
@@ -742,7 +742,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveSetSelectVarTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetSelectVarTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetSelectVarTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetSelectVarTest");
     invoke();
@@ -760,7 +760,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveSetTimezoneValueTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetTimezoneValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
@@ -779,7 +779,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveTimezoneValueTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveTimezoneValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
@@ -799,7 +799,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveTransformVarTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTransformVarTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTransformVarTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveTransformVarTest");
     invoke();
@@ -815,7 +815,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveTxQueryCommitTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxQueryCommitTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTxQueryCommitTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveTxQueryCommitTest");
     invoke();
@@ -831,7 +831,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveUpdateBodyContentTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateBodyContentTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUpdateBodyContentTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveUpdateBodyContentTest");
     invoke();
@@ -847,7 +847,7 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveUrlScopeTest() throws Exception {
-    InputStream gfStream = JSTLClient.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUrlScopeTest.gf");
+    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveUrlScopeTest.gf");
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveUrlScopeTest");
     invoke();
