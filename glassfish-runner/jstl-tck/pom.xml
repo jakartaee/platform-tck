@@ -155,7 +155,53 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>3-EnableTraceRequests</id>
+                        <id>3-create-jvm-options</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <arguments>
+                                <argument>create-jvm-options</argument>
+                                <argument>-Djavax.xml.accessExternalStylesheet=all</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>4-create-jvm-options</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <arguments>
+                                <argument>create-jvm-options</argument>
+                                <argument>-Djavax.xml.accessExternalDTD=file,http</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>5-create-jvm-options</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <arguments>
+                                <argument>create-jvm-options</argument>
+                                <argument>-Djavax.xml.accessExternalSchema=all</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>6-EnableTraceRequests</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -169,7 +215,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>4-DeleteUser-j2ee</id>
+                        <id>7-DeleteUser-j2ee</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -189,7 +235,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>5-AddUser-j2ee</id>
+                        <id>8-AddUser-j2ee</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -207,7 +253,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>6-DeleteUser-javajoe</id>
+                        <id>9-DeleteUser-javajoe</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -227,7 +273,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>7-AddUser-javajoe</id>
+                        <id>A-AddUser-javajoe</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -245,7 +291,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>8-list-users</id>
+                        <id>B-list-users</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -258,7 +304,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>9-StopDomain</id>
+                        <id>C-StopDomain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -272,7 +318,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>

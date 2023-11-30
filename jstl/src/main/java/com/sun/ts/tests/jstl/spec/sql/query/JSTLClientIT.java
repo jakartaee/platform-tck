@@ -53,7 +53,7 @@ public class JSTLClientIT extends SqlUrlClient {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jstl_sql_query_web.war");
     archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_sql_query_web.xml"));
-
+    archive.addClasses(ResultSetQueryTag.class);
     archive.addAsWebInfResource(JSTLClientIT.class.getPackage(), "WEB-INF/resultSetQuery.tld", "resultSetQuery.tld");
 
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativeQueryBodyContentTest.jsp")), "negativeQueryBodyContentTest.jsp");

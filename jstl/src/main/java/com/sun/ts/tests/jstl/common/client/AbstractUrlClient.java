@@ -26,6 +26,9 @@ import java.io.InputStream;
 import java.lang.System.Logger;
 import java.net.URL;
 
+import com.sun.ts.tests.jstl.common.tags.TestTag;
+import com.sun.ts.tests.jstl.common.resources.Resources_en;
+
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -83,17 +86,21 @@ public class AbstractUrlClient extends BaseUrlClient {
   }
 
   protected static JavaArchive getCommonJarArchive() {
-    String packagePathTags = com.sun.ts.tests.jstl.common.tags.TestTag.class.getPackageName().replace(".", "/");
+    String packagePathTags = TestTag.class.getPackageName().replace(".", "/");
+    String packagePathResources = Resources_en.class.getPackageName().replace(".", "/");
 
     JavaArchive jstlTCKCommonJar = ShrinkWrap.create(JavaArchive.class, "jstltck-common.jar");
-    jstlTCKCommonJar.addAsResource(new UrlAsset(com.sun.ts.tests.jstl.common.tags.TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/jstltck-util.tld")), "META-INF/jstltck-util.tld");
-    jstlTCKCommonJar.addAsResource(new UrlAsset(com.sun.ts.tests.jstl.common.tags.TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/permitted.tld")), "META-INF/permitted.tld");
-    jstlTCKCommonJar.addAsResource(new UrlAsset(com.sun.ts.tests.jstl.common.tags.TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_nodecl.tld")), "META-INF/scrfree_nodecl.tld");
-    jstlTCKCommonJar.addAsResource(new UrlAsset(com.sun.ts.tests.jstl.common.tags.TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_noexpr.tld")), "META-INF/scrfree_noexpr.tld");
-    jstlTCKCommonJar.addAsResource(new UrlAsset(com.sun.ts.tests.jstl.common.tags.TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_nortexpr.tld")), "META-INF/scrfree_nortexpr.tld");
-    jstlTCKCommonJar.addAsResource(new UrlAsset(com.sun.ts.tests.jstl.common.tags.TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_noscr.tld")), "META-INF/scrfree_noscr.tld");
-
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/jstltck-util.tld")), "META-INF/jstltck-util.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/permitted.tld")), "META-INF/permitted.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_nodecl.tld")), "META-INF/scrfree_nodecl.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_noexpr.tld")), "META-INF/scrfree_noexpr.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_nortexpr.tld")), "META-INF/scrfree_nortexpr.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_noscr.tld")), "META-INF/scrfree_noscr.tld");
+        
     jstlTCKCommonJar.addPackages(true,"com.sun.ts.tests.jstl.common");
+
+    jstlTCKCommonJar.add(new UrlAsset(Resources_en.class.getClassLoader().getResource(packagePathResources+"/AlgoResources_en_IE_EURO.properties")), packagePathResources+"/AlgoResources_en_IE_EURO.properties");
+    jstlTCKCommonJar.add(new UrlAsset(Resources_en.class.getClassLoader().getResource(packagePathResources+"/AlgoResources.properties")), packagePathResources+"/AlgoResources.properties");
 
     return jstlTCKCommonJar;
   }
