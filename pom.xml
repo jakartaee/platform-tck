@@ -12,16 +12,15 @@
     <description>CDI Web TCK tests</description>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
             <!-- Jakarta EE APIs in Web Profile -->
             <!-- Wave0 -->
-            <annotations.api.version>2.1.0</annotations.api.version>
-            <jpa.api.version>3.1.0</jpa.api.version>
+            <jpa.api.version>3.2.0-M1</jpa.api.version>
             <jms.api.version>3.1.0</jms.api.version>
             <!-- Wave1 -->
             <atinject.api.version>2.0.1</atinject.api.version>
-            <interceptors.api.version>2.1.0</interceptors.api.version>
+            <interceptors.api.version>2.2.0-M1</interceptors.api.version>
             <servlet.api.version>6.0.0</servlet.api.version>
             <!-- Wave2 -->
             <jsp.api.version>3.1.0</jsp.api.version>
