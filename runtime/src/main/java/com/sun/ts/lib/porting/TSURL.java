@@ -37,6 +37,8 @@ public class TSURL implements TSURLInterface, Serializable {
   private TSURLInterface ctsURL = null;
 
   private String sClass = "porting.ts.url.class.1";
+  
+  private String portingDefault = "com.sun.ts.lib.porting.implementation.SunRIURL";
 
   public TSURL() {
     // we'll initialize the impl when the individual method is called
@@ -66,7 +68,7 @@ public class TSURL implements TSURLInterface, Serializable {
     if (ctsURL == null) {
       try {
         // create and initialize a new instance of TSURLInterface
-        Class c = Class.forName(TestUtil.getProperty(sClass));
+        Class c = Class.forName(System.getProperty(sClass, portingDefault));
         ctsURL = (TSURLInterface) c.newInstance();
       } catch (Exception e) {
         e.printStackTrace();
@@ -95,7 +97,7 @@ public class TSURL implements TSURLInterface, Serializable {
     if (ctsURL == null) {
       try {
         // create and initialize a new instance of TSURLInterface
-        Class c = Class.forName(TestUtil.getProperty(sClass));
+        Class c = Class.forName(System.getProperty(sClass, portingDefault));
         ctsURL = (TSURLInterface) c.newInstance();
       } catch (Exception e) {
         e.printStackTrace();
@@ -118,7 +120,7 @@ public class TSURL implements TSURLInterface, Serializable {
         // create and initialize a new instance of TSURLInterface
         // Class c = Class.forName(TestUtil.getProperty(sClass));
         // Use the system property porting.ts.url.class.1
-        Class c = Class.forName(System.getProperty(sClass, "com.sun.ts.tests.jaxrs.lib.implementation.sun.common.SunRIURL"));
+        Class c = Class.forName(System.getProperty(sClass, portingDefault));
         ctsURL = (TSURLInterface) c.newInstance();
       } catch (Exception e) {
         e.printStackTrace();
