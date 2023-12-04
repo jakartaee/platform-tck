@@ -38,9 +38,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
 @ExtendWith(ArquillianExtension.class)
-public class URLClient extends AbstractUrlClient {
+public class URLClientIT extends AbstractUrlClient {
 
-  public URLClient() {
+  public URLClientIT() {
     setServletName("TestServlet");
   }
 
@@ -50,8 +50,8 @@ public class URLClient extends AbstractUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "javaee_resource_servlet.war");
-    archive.addPackages(true, Filters.exclude(URLClient.class, Pojo.class),
-            URLClient.class.getPackageName());
+    archive.addPackages(true, Filters.exclude(URLClientIT.class, Pojo.class),
+            URLClientIT.class.getPackageName());
     archive.addClasses(HttpTCKServlet.class, ServletTestUtil.class, Data.class);
     archive.addAsLibrary(prepackage());
     return archive;
