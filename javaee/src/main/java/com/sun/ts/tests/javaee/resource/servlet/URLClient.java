@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,25 +22,47 @@ package com.sun.ts.tests.javaee.resource.servlet;
 
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
+import java.io.IOException;
+
+import com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet;
+import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import com.sun.ts.tests.servlet.common.util.Data;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+
+@ExtendWith(ArquillianExtension.class)
 public class URLClient extends AbstractUrlClient {
 
   public URLClient() {
     setServletName("TestServlet");
   }
 
-  /**
-   * Entry point for different-VM execution.
-   */
-  public static void main(String[] args) {
-    // TODO remove
+  /* Run test */
+
+  @Deployment(testable = false)
+  public static WebArchive createDeployment() throws IOException {
+
+    WebArchive archive = ShrinkWrap.create(WebArchive.class, "javaee_resource_servlet.war");
+    archive.addPackages(true, Filters.exclude(URLClient.class, Pojo.class),
+            URLClient.class.getPackageName());
+    archive.addClasses(HttpTCKServlet.class, ServletTestUtil.class, Data.class);
+    archive.addAsLibrary(prepackage());
+    return archive;
+
   }
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort; ts_home;
-   *
-   */
-
-  /* Run test */
+  public static JavaArchive prepackage() throws IOException {
+    JavaArchive archive = ShrinkWrap.create(JavaArchive.class, "lib.jar");
+    archive.addClasses(Pojo.class);
+    return archive;
+  }
 
   /*
    * @testName: resourceCompTest
@@ -56,6 +78,7 @@ public class URLClient extends AbstractUrlClient {
    * of the Servlet and check that the resource is injected and has the expected
    * property configured.
    */
+  @Test
   public void resourceCompTest() throws Exception {
     String testName = "resourceCompTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -78,6 +101,7 @@ public class URLClient extends AbstractUrlClient {
    * of the Servlet and check that the resource is injected and has the expected
    * property configured.
    */
+  @Test
   public void resourceModuleTest() throws Exception {
     String testName = "resourceModuleTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -100,6 +124,7 @@ public class URLClient extends AbstractUrlClient {
    * of the Servlet and check that the resource is injected and has the expected
    * property configured.
    */
+  @Test
   public void resourceAppTest() throws Exception {
     String testName = "resourceAppTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -122,6 +147,7 @@ public class URLClient extends AbstractUrlClient {
    * of the Servlet and check that the resource is injected and has the expected
    * property configured.
    */
+  @Test
   public void resourceGlobalTest() throws Exception {
     String testName = "resourceGlobalTest";
     TEST_PROPS.setProperty(TEST_NAME, testName);
@@ -144,6 +170,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet in the same web module and check that the resource is found and has
    * the expected property configured.
    */
+  @Test
   public void resRefTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "resRefTest");
     invoke();
@@ -163,6 +190,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet in the same web module and check that the resource is found and has
    * the expected property configured.
    */
+  @Test
   public void compTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "compTest");
     invoke();
@@ -182,6 +210,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet in the same web module and check that the resource is found and has
    * the expected property configured.
    */
+  @Test
   public void moduleTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "moduleTest");
     invoke();
@@ -201,6 +230,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet in the same application and check that the resource is found and
    * has the expected property configured.
    */
+  @Test
   public void appTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "appTest");
     invoke();
@@ -220,6 +250,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet and check that the resource is found and has the expected property
    * configured.
    */
+  @Test
   public void globalTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "globalTest");
     invoke();
@@ -239,6 +270,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet in the same web module and check that the resource is found and has
    * the expected property configured.
    */
+  @Test
   public void compEqualsModuleTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "compEqualsModuleTest");
     invoke();
@@ -258,6 +290,7 @@ public class URLClient extends AbstractUrlClient {
    * Servlet in the same web module and check that the resource is found and has
    * the expected property configured.
    */
+  @Test
   public void moduleEqualsCompTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "moduleEqualsCompTest");
     invoke();
@@ -277,6 +310,7 @@ public class URLClient extends AbstractUrlClient {
    * and check that the resource is found and has the expected property
    * configured.
    */
+  @Test
   public void beanTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanTest");
     invoke();
@@ -296,6 +330,7 @@ public class URLClient extends AbstractUrlClient {
    * the same web module and check that the resource is found and has the
    * expected property configured.
    */
+  @Test
   public void beanCompTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanCompTest");
     invoke();
@@ -315,6 +350,7 @@ public class URLClient extends AbstractUrlClient {
    * the same web module and check that the resource is found and has the
    * expected property configured.
    */
+  @Test
   public void beanModuleTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanModuleTest");
     invoke();
@@ -334,6 +370,7 @@ public class URLClient extends AbstractUrlClient {
    * the same application and check that the resource is found and has the
    * expected property configured.
    */
+  @Test
   public void beanAppTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanAppTest");
     invoke();
@@ -353,6 +390,7 @@ public class URLClient extends AbstractUrlClient {
    * and check that the resource is found and has the expected property
    * configured.
    */
+  @Test
   public void beanGlobalTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanGlobalTest");
     invoke();
@@ -372,6 +410,7 @@ public class URLClient extends AbstractUrlClient {
    * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
    * the resource is found and has the expected property configured.
    */
+  @Test
   public void beanResourceCompTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanResourceCompTest");
     invoke();
@@ -391,6 +430,7 @@ public class URLClient extends AbstractUrlClient {
    * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
    * the resource is found and has the expected property configured.
    */
+  @Test
   public void beanResourceModuleTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanResourceModuleTest");
     invoke();
@@ -410,6 +450,7 @@ public class URLClient extends AbstractUrlClient {
    * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
    * the resource is found and has the expected property configured.
    */
+  @Test
   public void beanResourceAppTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanResourceAppTest");
     invoke();
@@ -429,6 +470,7 @@ public class URLClient extends AbstractUrlClient {
    * @MailSessionResource on a Servlet, inject it into a CDI bean and check that
    * the resource is found and has the expected property configured.
    */
+  @Test
   public void beanResourceGlobalTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanResourceGlobalTest");
     invoke();
@@ -450,6 +492,7 @@ public class URLClient extends AbstractUrlClient {
    * bean using JNDI, and check that the resource is found and has the expected
    * property configured.
    */
+  @Test
   public void beanRefCompTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanRefCompTest");
     invoke();
@@ -471,6 +514,7 @@ public class URLClient extends AbstractUrlClient {
    * bean using JNDI, and check that the resource is found and has the expected
    * property configured.
    */
+  @Test
   public void beanRefModuleTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanRefModuleTest");
     invoke();
@@ -492,6 +536,7 @@ public class URLClient extends AbstractUrlClient {
    * bean using JNDI, and check that the resource is found and has the expected
    * property configured.
    */
+  @Test
   public void beanRefAppTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanRefAppTest");
     invoke();
@@ -513,6 +558,7 @@ public class URLClient extends AbstractUrlClient {
    * bean using JNDI, and check that the resource is found and has the expected
    * property configured.
    */
+  @Test
   public void beanRefGlobalTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "beanRefGlobalTest");
     invoke();
