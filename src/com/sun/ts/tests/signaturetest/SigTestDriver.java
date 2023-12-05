@@ -61,7 +61,7 @@ public class SigTestDriver extends SignatureTestDriver {
   
   private static final String EXCLUDE_JDK_CLASS_FLAG = "-IgnoreJDKClass";
 
-  private static String[] excludeJdkClasses = {
+  private static final String[] excludeJdkClasses = {
           "java.util.Map",
           "java.lang.Object",
           "java.io.ByteArrayInputStream",
@@ -71,8 +71,15 @@ public class SigTestDriver extends SignatureTestDriver {
           "java.io.OutputStream",
           "java.util.List",
           "java.util.Collection",
+          "java.util.concurrent.ExecutorService",
+          "java.util.concurrent.Future",
+          "java.util.HashSet",
+          "java.util.LinkedHashSet",
+          "java.util.SequencedCollection",
+          "java.util.SequencedSet",
           "java.lang.instrument.IllegalClassFormatException",
           "javax.transaction.xa.XAException",
+          "java.lang.AutoCloseable",
           "java.lang.annotation.Repeatable",
           "java.lang.InterruptedException",
           "java.lang.CloneNotSupportedException",
