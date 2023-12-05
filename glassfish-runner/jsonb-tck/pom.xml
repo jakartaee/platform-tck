@@ -77,6 +77,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.0.0-M5</version>
         <configuration>
+          <useModulePath>false</useModulePath>
           <argLine>-Djava.locale.providers=COMPAT</argLine>
           <trimStackTrace>false</trimStackTrace>
           <failIfNoTests>true</failIfNoTests>
