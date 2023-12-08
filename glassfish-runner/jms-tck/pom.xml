@@ -530,6 +530,10 @@
                             <excludes>
                                 <exclude>**/ee*/**</exclude>
                             </excludes>
+                            <includes>
+                                <include>**/*Client*/**</include>
+                                <include>**/*Test*/**</include>
+                            </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.jms-api.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-corba-omgapi.jar</additionalClasspathElement>
