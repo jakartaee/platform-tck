@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
@@ -46,6 +47,22 @@ public class Client2IT extends Client {
 		String[] classes = { pkgName + "Employee" };
 		return createDeploymentJar("jpa_core_criteriaapi_parameter2.jar", pkgNameWithoutSuffix, classes);
 	}
+	
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			getEntityManager();
+			removeTestData();
+			createTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
+
 
 	/*
 	 * @testName: parameterExpressionInObjectArrayTest

@@ -64,9 +64,9 @@ public class ClientIT extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-		super.cleanup();
+			super.cleanup();
 		} finally {
-		removeTestJarFromCP();
+			removeTestJarFromCP();
 		}
 	}
 

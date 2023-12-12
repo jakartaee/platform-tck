@@ -30,8 +30,8 @@ public class Client1IT extends Client {
 	private static final Logger logger = (Logger) System.getLogger(Client1IT.class.getName());
 
 	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
+		String pkgNameWithoutSuffix = Client1IT.class.getPackageName();
+		String pkgName = Client1IT.class.getPackageName() + ".";
 		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
 				"com.sun.ts.tests.jpa.core.types.common.Grade" };
 		return createDeploymentJar("jpa_core_annotations_access_property1.jar", pkgNameWithoutSuffix, classes);
@@ -48,7 +48,6 @@ public class Client1IT extends Client {
 
 			super.setup();
 			createDeployment();
-
 			removeTestData();
 			createTestData();
 			logger.log(Logger.Level.TRACE, "Done creating test data");

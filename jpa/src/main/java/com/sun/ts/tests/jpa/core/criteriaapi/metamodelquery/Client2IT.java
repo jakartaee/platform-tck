@@ -576,6 +576,60 @@ public class Client2IT extends UtilOrderData {
 	}
 
 	/*
+	 * @testName: queryTest27
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:369.5
+	 * 
+	 * @test_Strategy: Execute a query which includes the arithmetic function ABS in
+	 * a functional expression within the WHERE clause. Verify the results were
+	 * accurately returned.
+	 */
+	@SetupMethod(name = "setupOrderData")
+	@Test
+	public void queryTest27() throws Exception {
+		boolean pass = false;
+		String expectedPKs[];
+
+		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
+
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "find all Orders with a total price greater than 1180");
+			CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
+			Root<Order> order = cquery.from(Order.class);
+			cquery.where(
+					cbuilder.lt(cbuilder.parameter(Double.class, "dbl"), cbuilder.abs(order.get(Order_.totalPrice))));
+			cquery.select(order);
+			TypedQuery<Order> tquery = getEntityManager().createQuery(cquery);
+			tquery.setParameter("dbl", 1180D);
+			tquery.setMaxResults(orderRef.length);
+			List<Order> olist = tquery.getResultList();
+
+			expectedPKs = new String[9];
+			expectedPKs[0] = "1";
+			expectedPKs[1] = "2";
+			expectedPKs[2] = "4";
+			expectedPKs[3] = "5";
+			expectedPKs[4] = "6";
+			expectedPKs[5] = "11";
+			expectedPKs[6] = "16";
+			expectedPKs[7] = "17";
+			expectedPKs[8] = "18";
+			if (!checkEntityPK(olist, expectedPKs)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 9 references, got: " + olist.size());
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.TRACE, "Caught unexpected exception:", e);
+
+		}
+	}
+
+	/*
 	 * @testName: queryTest29
 	 * 
 	 * @assertion_ids: PERSISTENCE:SPEC:363.1; PERSISTENCE:SPEC:365

@@ -97,10 +97,10 @@ public class Client2IT extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
-		super.cleanup();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
 		} finally {
-		removeTestJarFromCP();
+			removeTestJarFromCP();
 		}
 	}
 

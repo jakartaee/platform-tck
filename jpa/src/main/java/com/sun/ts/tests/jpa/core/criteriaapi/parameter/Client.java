@@ -20,7 +20,6 @@ import java.lang.System.Logger;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
@@ -32,31 +31,17 @@ public abstract class Client extends PMClientBase {
 
 	final java.sql.Date d1 = getSQLDate("2000-02-14");
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			createDeployment();
-			getEntityManager();
-			removeTestData();
-			createTestData();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
-	}
 
 	abstract public JavaArchive createDeployment() throws Exception;
 
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-		logger.log(Logger.Level.TRACE, "calling super.cleanup");
-		removeTestData();
-		super.cleanup();
+			logger.log(Logger.Level.TRACE, "calling super.cleanup");
+			removeTestData();
+			super.cleanup();
 		} finally {
-		removeTestJarFromCP();
+			removeTestJarFromCP();
 		}
 	}
 

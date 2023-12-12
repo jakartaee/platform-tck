@@ -64,10 +64,10 @@ public class Client2IT extends PMClientBase {
 	@AfterEach
 	public void cleanupNoData() throws Exception {
 		try {
-		logger.log(Logger.Level.TRACE, "in cleanupNoData");
-		super.cleanup();
+			logger.log(Logger.Level.TRACE, "in cleanupNoData");
+			super.cleanup();
 		} finally {
-		removeTestJarFromCP();
+			removeTestJarFromCP();
 		}
 	}
 

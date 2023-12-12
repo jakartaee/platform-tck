@@ -126,10 +126,10 @@ public class ClientIT extends PMClientBase {
 	@BeforeEach
 	public void setup() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup");
-			super.setup();
-			createDeployment();
-			createPluggabilityJar();
-			initEntityManager("ALTPROVIDERPU", false);
+		super.setup();
+		createDeployment();
+		createPluggabilityJar();
+		initEntityManager("ALTPROVIDERPU", false);
 	}
 
 	public void getLogProcessor() {
@@ -677,12 +677,12 @@ public class ClientIT extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-		logger.log(Logger.Level.TRACE, "cleanup");
-		logger.log(Logger.Level.TRACE, "calling super.cleanup");
-		super.cleanup();
-		removeTestJarFromCP();
+			logger.log(Logger.Level.TRACE, "cleanup");
+			logger.log(Logger.Level.TRACE, "calling super.cleanup");
+			super.cleanup();
+			removeTestJarFromCP();
 		} finally {
-		removePluggabilityJarFromCP();
+			removePluggabilityJarFromCP();
 		}
 
 	}

@@ -278,8 +278,6 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <!--
-                            <test>com.sun.ts.tests.jpa.se.entityManagerFactory.ClientIT#createEntityManagerFactoryNoBeanValidatorTest</test>-->
                             <excludes>
                                 <exclude>**/jpa/ee/**/*.*</exclude>
                             </excludes>
@@ -312,10 +310,6 @@
                             <dependenciesToScan>jakartatck:jpa-tck</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                                <user>j2ee</user>
-                                <password>j2ee</password>
-                                <authuser>javajoe</authuser>
-                                <authpassword>javajoe</authpassword>
                                 <platform.mode>standalone</platform.mode>
                                 <persistence.unit.name>JPATCK</persistence.unit.name>
                                 <persistence.unit.name.2>JPATCK2</persistence.unit.name.2>
@@ -326,8 +320,6 @@
                                 <jakarta.persistence.jdbc.password>${jakarta.persistence.jdbc.password}</jakarta.persistence.jdbc.password>
                                 <jpa.provider.implementation.specific.properties>eclipselink.logging.level=OFF</jpa.provider.implementation.specific.properties>
                                 <persistence.second.level.caching.supported>true</persistence.second.level.caching.supported>
-                                <webServerHost>localhost</webServerHost>
-                                <webServerPort>8080</webServerPort>
                                 <vehicle>standalone</vehicle>
                                 <user.dir>/tmp</user.dir>
                                 <db.supports.sequence>true</db.supports.sequence>
@@ -339,6 +331,29 @@
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                             </environmentVariables>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <executions>
+                    <execution>
+                        <id>stop-database-final</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-database</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
                         </configuration>
                     </execution>
                 </executions>

@@ -99,19 +99,14 @@ public abstract class Util extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-		logger.log(Logger.Level.TRACE, "Cleanup data");
-		removeTestData();
-		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
-		super.cleanup();
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
 		} finally {
-		removeTestJarFromCP();
+			removeTestJarFromCP();
 		}
 
-	}
-
-	public void cleanupNoData() throws Exception {
-		logger.log(Logger.Level.TRACE, "in cleanupNoData");
-		super.cleanup();
 	}
 
 	public void createTrimData() throws Exception {

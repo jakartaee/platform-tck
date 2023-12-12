@@ -83,16 +83,16 @@ public class ClientIT extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-		logger.log(Logger.Level.INFO, "Cleanup: JPA 2.2 Java 8 date and time types test");
-		Properties props = getPersistenceUnitProperties();
-		props.put("jakarta.persistence.schema-generation.database.action", "drop");
-		displayProperties(props);
-		logger.log(Logger.Level.INFO, " - executing persistence schema cleanup");
-		Persistence.generateSchema(getPersistenceUnitName(), props);
-		closeEMAndEMF();
-		super.cleanup();
-		}finally {
-		removeTestJarFromCP();
+			logger.log(Logger.Level.INFO, "Cleanup: JPA 2.2 Java 8 date and time types test");
+			Properties props = getPersistenceUnitProperties();
+			props.put("jakarta.persistence.schema-generation.database.action", "drop");
+			displayProperties(props);
+			logger.log(Logger.Level.INFO, " - executing persistence schema cleanup");
+			Persistence.generateSchema(getPersistenceUnitName(), props);
+			closeEMAndEMF();
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
 		}
 	}
 

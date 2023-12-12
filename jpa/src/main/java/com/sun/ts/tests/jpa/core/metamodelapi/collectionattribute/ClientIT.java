@@ -149,20 +149,20 @@ public class ClientIT extends PMClientBase {
 	}
 
 	@AfterEach
-	public void cleanup() throws Exception {		
+	public void cleanup() throws Exception {
 		try {
-		logger.log(Logger.Level.TRACE, "in cleanup");
-		try {
-			if (getEntityTransaction().isActive()) {
-				getEntityTransaction().rollback();
+			logger.log(Logger.Level.TRACE, "in cleanup");
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
 			}
-		} catch (Exception fe) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
-		}
-		logger.log(Logger.Level.TRACE, "done cleanup, calling super.cleanup");
-		super.cleanup();
+			logger.log(Logger.Level.TRACE, "done cleanup, calling super.cleanup");
+			super.cleanup();
 		} finally {
-		removeTestJarFromCP();
+			removeTestJarFromCP();
 		}
 	}
 }
