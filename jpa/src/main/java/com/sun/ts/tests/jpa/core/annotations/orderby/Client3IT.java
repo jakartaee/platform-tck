@@ -196,11 +196,14 @@ public class Client3IT extends PMClientBase {
 
 	@AfterEach
 	public void cleanupCust() throws Exception {
+		try {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeCustTestData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 
 	private void removeCustTestData() {

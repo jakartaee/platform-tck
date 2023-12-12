@@ -89,10 +89,13 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanupData() throws Exception {
+		try {
 		logger.log(Logger.Level.TRACE, "cleanupData");
 		removeTestData();
 		cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 
 	/*

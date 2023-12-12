@@ -569,11 +569,14 @@ public class ClientIT extends EntityCallbackClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup");
-		removeTestData();
-		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
-		super.cleanup();
-		removeTestJarFromCP();
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
 	}
 
 	private void removeTestData() {

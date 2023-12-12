@@ -149,8 +149,8 @@ public class ClientIT extends PMClientBase {
 	}
 
 	@AfterEach
-	public void cleanup() throws Exception {
-
+	public void cleanup() throws Exception {		
+		try {
 		logger.log(Logger.Level.TRACE, "in cleanup");
 		try {
 			if (getEntityTransaction().isActive()) {
@@ -161,6 +161,8 @@ public class ClientIT extends PMClientBase {
 		}
 		logger.log(Logger.Level.TRACE, "done cleanup, calling super.cleanup");
 		super.cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 }

@@ -36,10 +36,8 @@ public class Client1IT extends Client {
 			removeTestData();
 			createTestData();
 			logger.log(Logger.Level.TRACE, "Done creating test data");
-
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
-			e.printStackTrace();
 			throw new Exception("Setup failed:", e);
 		}
 	}

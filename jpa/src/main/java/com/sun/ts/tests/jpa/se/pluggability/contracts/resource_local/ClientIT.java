@@ -676,11 +676,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
+		try {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		super.cleanup();
 		removeTestJarFromCP();
+		} finally {
 		removePluggabilityJarFromCP();
+		}
 
 	}
 }

@@ -26,12 +26,6 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.jpa.common.schema30.Address;
-import com.sun.ts.tests.jpa.common.schema30.Address_;
-import com.sun.ts.tests.jpa.common.schema30.Customer;
-import com.sun.ts.tests.jpa.common.schema30.Customer_;
-import com.sun.ts.tests.jpa.common.schema30.Phone;
-import com.sun.ts.tests.jpa.common.schema30.Phone_;
 import com.sun.ts.tests.jpa.common.schema30.Product;
 import com.sun.ts.tests.jpa.common.schema30.Product_;
 import com.sun.ts.tests.jpa.common.schema30.ShelfLife_;
@@ -40,7 +34,6 @@ import com.sun.ts.tests.jpa.common.schema30.UtilProductData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
 
 public class Client4IT extends UtilProductData {

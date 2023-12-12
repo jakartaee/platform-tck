@@ -73,8 +73,6 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 
-//@ExtendWith(ArquillianExtension.class)
-//@TestInstance(Lifecycle.PER_CLASS)
 abstract public class PMClientBase implements UseEntityManager, UseEntityManagerFactory, java.io.Serializable {
 
 	private static final Logger logger = (Logger) System.getLogger(PMClientBase.class.getName());

@@ -72,10 +72,13 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanupEmployeeData() throws Exception {
+		try {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		removeTestData();
 		cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 
 	/*

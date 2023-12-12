@@ -24,7 +24,6 @@ public class Client2IT extends Client {
 	public void setup2() throws Exception {
 		logger.log(Logger.Level.TRACE, "setup2");
 		try {
-
 			super.setup();
 			createDeployment();
 			removeTestData();

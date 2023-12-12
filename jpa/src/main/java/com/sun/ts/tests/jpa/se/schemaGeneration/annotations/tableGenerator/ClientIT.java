@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.jpa.common.PMClientBase;
@@ -225,11 +225,14 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
+		try {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeTestData(true);
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 
 	private void removeTestData(boolean expectExist) {

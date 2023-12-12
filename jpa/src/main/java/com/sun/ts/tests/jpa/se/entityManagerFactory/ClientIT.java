@@ -63,8 +63,11 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanupNoData() throws Exception {
+		try {
 		super.cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 
 	/*

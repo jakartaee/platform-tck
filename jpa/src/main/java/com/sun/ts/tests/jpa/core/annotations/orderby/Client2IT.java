@@ -254,11 +254,14 @@ public class Client2IT extends PMClientBase {
 
 	@AfterEach
 	public void cleanupAddress() throws Exception {
+		try {
 		logger.log(Logger.Level.TRACE, "cleanup");
 		removeAddressData();
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 
 	private void removeAddressData() {

@@ -1718,13 +1718,16 @@ public class ClientIT extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
+		try {
 		logger.log(Logger.Level.TRACE, "Cleanup data");
 		if (getEntityManager().isOpen()) {
 			removeTestData();
 		}
 		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
 		super.cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 
 	private void removeTestData() {

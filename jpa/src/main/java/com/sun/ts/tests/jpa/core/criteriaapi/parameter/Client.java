@@ -51,10 +51,13 @@ public abstract class Client extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
+		try {
 		logger.log(Logger.Level.TRACE, "calling super.cleanup");
 		removeTestData();
 		super.cleanup();
+		} finally {
 		removeTestJarFromCP();
+		}
 	}
 
 	protected void createTestData() {
