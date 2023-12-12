@@ -98,8 +98,8 @@ public class Client extends SigTest {
   /*
    * @class.setup_props: ts_home;
    */
-  public void setup(String[] args, Properties p) throws Exception {
-    super.setup(args, p);
+  public void setup() {
+    super.setup();
   }
 
   /*

@@ -22,8 +22,8 @@ import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
 
 /**
@@ -32,6 +32,8 @@ import com.sun.ts.lib.util.TestUtil;
  * </p>
  */
 public class SigTestDriver extends SignatureTestDriver {
+
+  private static final Logger logger = System.getLogger(SigTestDriver.class.getName());
 
   private static final String CLASSPATH_FLAG = "-Classpath";
 
@@ -184,12 +186,13 @@ public class SigTestDriver extends SignatureTestDriver {
 
     // currently, there is no way to determine if there are error msgs in
     // the rawmessages, so we will always dump this and call it a status.
-    TestUtil.logMsg(
-        "********** Status Report '" + packageOrClassName + "' **********\n");
-    TestUtil.logMsg(rawMessages);
+    // TestUtil.logMsg(
+    //     "********** Status Report '" + packageOrClassName + "' **********\n");
+    // TestUtil.logMsg(rawMessages);
+    logger.log(Logger.Level.INFO, "********** Status Report '" + packageOrClassName + "' **********\n");
+    logger.log(Logger.Level.INFO, rawMessages);    
 
-    return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
-
+    return sigTestInstance.toString().substring(7).startsWith("Passed.");
   } // END runSignatureTest
 
   /*
@@ -230,11 +233,13 @@ public class SigTestDriver extends SignatureTestDriver {
 
     // currently, there is no way to determine if there are error msgs in
     // the rawmessages, so we will always dump this and call it a status.
-    TestUtil.logMsg(
-        "********** Status Report '" + packageOrClassName + "' **********\n");
-    TestUtil.logMsg(rawMessages);
+    // TestUtil.logMsg(
+    //     "********** Status Report '" + packageOrClassName + "' **********\n");
+    // TestUtil.logMsg(rawMessages);
+    logger.log(Logger.Level.INFO, "********** Status Report '" + packageOrClassName + "' **********\n");
+    logger.log(Logger.Level.INFO, rawMessages);
 
-    return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
+    return sigTestInstance.toString().substring(7).startsWith("Passed.");
   }
 
   /*
@@ -281,8 +286,11 @@ public class SigTestDriver extends SignatureTestDriver {
 
     // currently, there is no way to determine if there are error msgs in 
     // the rawmessages, so we will always dump this and call it a status.
-    TestUtil.logMsg("********** Status Report JTA JAR validation **********\n");
-    TestUtil.logMsg(rawMessages);
-    return Status.parse(sigTestInstance.toString().substring(7)).isPassed();
+    // TestUtil.logMsg("********** Status Report JTA JAR validation **********\n");
+    // TestUtil.logMsg(rawMessages);
+    logger.log(Logger.Level.INFO, "********** Status Report JTA JAR validation **********\n");
+    logger.log(Logger.Level.INFO, rawMessages);
+
+    return sigTestInstance.toString().substring(7).startsWith("Passed.");
   }
 }

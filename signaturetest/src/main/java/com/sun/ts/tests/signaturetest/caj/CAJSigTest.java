@@ -43,6 +43,8 @@ import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
  */
 public class CAJSigTest extends SigTest {
 
+  private Properties props = null;
+
   // all the classes that make up common annotations
   private final String GENERATED = "jakarta.annotation.Generated";
 
@@ -167,6 +169,10 @@ public class CAJSigTest extends SigTest {
 
   }
 
+  public CAJSigTest (){
+    props = System.getProperties();
+  }
+
   /***** Boilerplate Code *****/
 
   /**
@@ -214,39 +220,39 @@ public class CAJSigTest extends SigTest {
    * ca.sig.securityrunas; ca.sig.sqldatasourcedefinition;
    * ca.sig.sqldatasourcedefinitions;
    */
-  public void setup(String[] args, Properties p) throws Exception {
-    super.setup(args, p);
+  public void setup() {
+    super.setup();
 
     // read in the values from the ts.jte file
-    ca_generated = Boolean.valueOf(p.getProperty("ca.sig.generated"))
+    ca_generated = Boolean.valueOf(props.getProperty("ca.sig.generated"))
         .booleanValue();
-    ca_managedbean = Boolean.valueOf(p.getProperty("ca.sig.managedbean"))
+    ca_managedbean = Boolean.valueOf(props.getProperty("ca.sig.managedbean"))
         .booleanValue();
-    ca_postconstruct = Boolean.valueOf(p.getProperty("ca.sig.postconstruct"))
+    ca_postconstruct = Boolean.valueOf(props.getProperty("ca.sig.postconstruct"))
         .booleanValue();
-    ca_priority = Boolean.valueOf(p.getProperty("ca.sig.priority"))
+    ca_priority = Boolean.valueOf(props.getProperty("ca.sig.priority"))
         .booleanValue();
-    ca_predestroy = Boolean.valueOf(p.getProperty("ca.sig.predestroy"))
+    ca_predestroy = Boolean.valueOf(props.getProperty("ca.sig.predestroy"))
         .booleanValue();
-    ca_resource = Boolean.valueOf(p.getProperty("ca.sig.resource"))
+    ca_resource = Boolean.valueOf(props.getProperty("ca.sig.resource"))
         .booleanValue();
-    ca_resources = Boolean.valueOf(p.getProperty("ca.sig.resources"))
+    ca_resources = Boolean.valueOf(props.getProperty("ca.sig.resources"))
         .booleanValue();
     ca_securitydeclareroles = Boolean
-        .valueOf(p.getProperty("ca.sig.securitydeclareroles")).booleanValue();
+        .valueOf(props.getProperty("ca.sig.securitydeclareroles")).booleanValue();
     ca_securitydenyall = Boolean
-        .valueOf(p.getProperty("ca.sig.securitydenyall")).booleanValue();
+        .valueOf(props.getProperty("ca.sig.securitydenyall")).booleanValue();
     ca_securitypermitall = Boolean
-        .valueOf(p.getProperty("ca.sig.securitypermitall")).booleanValue();
+        .valueOf(props.getProperty("ca.sig.securitypermitall")).booleanValue();
     ca_securityrolesallowed = Boolean
-        .valueOf(p.getProperty("ca.sig.securityrolesallowed")).booleanValue();
-    ca_securityrunas = Boolean.valueOf(p.getProperty("ca.sig.securityrunas"))
+        .valueOf(props.getProperty("ca.sig.securityrolesallowed")).booleanValue();
+    ca_securityrunas = Boolean.valueOf(props.getProperty("ca.sig.securityrunas"))
         .booleanValue();
     ca_sqldatasourcedefinition = Boolean
-        .valueOf(p.getProperty("ca.sig.sqldatasourcedefinition"))
+        .valueOf(props.getProperty("ca.sig.sqldatasourcedefinition"))
         .booleanValue();
     ca_sqldatasourcedefinitions = Boolean
-        .valueOf(p.getProperty("ca.sig.sqldatasourcedefinitions"))
+        .valueOf(props.getProperty("ca.sig.sqldatasourcedefinitions"))
         .booleanValue();
   }
 
