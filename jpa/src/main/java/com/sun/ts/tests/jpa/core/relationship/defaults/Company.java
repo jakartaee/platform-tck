@@ -23,7 +23,7 @@ package com.sun.ts.tests.jpa.core.relationship.defaults;
 import java.lang.System.Logger;
 import java.util.Collection;
 
-import com.sun.ts.tests.jpa.core.override.entitylistener.ClientIT;
+import com.sun.ts.tests.jpa.core.override.entitylistener.Client;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -37,7 +37,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Company implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(ClientIT.class.getName());
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
 	private long companyId;
 
