@@ -87,21 +87,21 @@ public class Client extends PMClientBase {
   public void propertyTypeTest1() throws Fault {
 
     boolean pass = false;
-    final Character newChar = 'b';
+    final char newChar = 'b';
 
     try {
       getEntityTransaction().begin();
       d1 = getEntityManager().find(DataTypes.class, 1);
 
       if (null != d1) {
-        if (d1.getCharacterData().equals('a')) {
+        if (d1.getCharacterData() == 'a') {
           d1.setCharacterData(newChar);
         }
 
         getEntityManager().merge(d1);
         getEntityManager().flush();
 
-        if (d1.getCharacterData().equals(newChar)) {
+        if (d1.getCharacterData() == newChar) {
           pass = true;
         }
 
@@ -518,9 +518,9 @@ public class Client extends PMClientBase {
   public void propertyTypeTest9() throws Fault {
 
     boolean pass = false;
-    final Byte[] b = { 31, 32, 33, 63, 64, 65 };
-    final Byte bv = 5;
-    Byte[] a = null;
+    final byte[] b = { 31, 32, 33, 63, 64, 65 };
+    final byte bv = 5;
+    byte[] a = null;
 
     try {
       getEntityTransaction().begin();
@@ -590,7 +590,7 @@ public class Client extends PMClientBase {
 
     try {
       getEntityTransaction().begin();
-      Character[] charData = new Character[] { 'C', 'T', 'S' };
+      char[] charData = { 'C', 'T', 'S' };
       TestUtil.logTrace("FIND D1 IN propertyTypeTest10");
       d1 = getEntityManager().find(DataTypes.class, 1);
 
@@ -801,8 +801,8 @@ public class Client extends PMClientBase {
       if (p.size() == 1) {
         DataTypes d = p.get(0);
         TestUtil.logTrace("DataType:" + d.toString());
-        Character actual = d.getCharacterData();
-        if (actual.equals(expected)) {
+        char actual = d.getCharacterData();
+        if (actual == expected) {
           TestUtil.logTrace("Received expected Character data:" + actual);
           pass2 = true;
         } else {
@@ -982,8 +982,8 @@ public class Client extends PMClientBase {
     try {
       getEntityTransaction().begin();
 
-      Character[] cArray = { 'a' };
-      Byte[] bArray = { (byte) 100 };
+      char[] cArray = { 'a' };
+      byte[] bArray = { (byte) 100 };
       d1 = new DataTypes(1, 'a', true, (short) 100, 500, 300L, 50D, 1.0F,
           cArray, bArray);
       d1.setEnumData(Grade.C);

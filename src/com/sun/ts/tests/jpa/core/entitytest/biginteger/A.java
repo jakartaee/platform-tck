@@ -82,13 +82,13 @@ public class A implements java.io.Serializable {
   protected char[] basicCharArray;
 
   @Basic
-  protected Character[] basicBigCharArray;
+  protected char[] basicBigCharArray;
 
   @Basic
   protected byte[] basicByteArray;
 
   @Basic
-  protected Byte[] basicBigByteArray;
+  protected byte[] basicBigByteArray;
 
   @Id
   protected BigInteger basicBigInteger;
@@ -120,8 +120,8 @@ public class A implements java.io.Serializable {
       short basicShort, Short basicBigShort, float basicFloat,
       Float basicBigFloat, long basicLong, Long basicBigLong,
       double basicDouble, Double basicBigDouble, char basicChar,
-      char[] basicCharArray, Character[] basicBigCharArray,
-      byte[] basicByteArray, Byte[] basicBigByteArray,
+      char[] basicCharArray, char[] basicBigCharArray,
+      byte[] basicByteArray, byte[] basicBigByteArray,
       BigInteger basicBigInteger, BigDecimal basicBigDecimal, Date basicDate,
       Time basicTime, Timestamp basicTimestamp, Calendar basicCalendar) {
 
@@ -239,19 +239,19 @@ public class A implements java.io.Serializable {
     this.basicShort = basicShort;
   }
 
-  public Byte[] getBasicBigByteArray() {
+  public byte[] getBasicBigByteArray() {
     return basicBigByteArray;
   }
 
-  public void setBasicBigByteArray(Byte[] basicBigByteArray) {
+  public void setBasicBigByteArray(byte[] basicBigByteArray) {
     this.basicBigByteArray = basicBigByteArray;
   }
 
-  public Character[] getBasicBigCharArray() {
+  public char[] getBasicBigCharArray() {
     return basicBigCharArray;
   }
 
-  public void setBasicBigCharArray(Character[] basicBigCharArray) {
+  public void setBasicBigCharArray(char[] basicBigCharArray) {
     this.basicBigCharArray = basicBigCharArray;
   }
 
