@@ -26,7 +26,8 @@
         <version>10.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>el-tck</artifactId>
+    <artifactId>jakarta-expression-language-tck</artifactId>
+    <version>6.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>el-tck</name>
@@ -36,14 +37,22 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>libutil</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
+            <version>${jakarta.el-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
