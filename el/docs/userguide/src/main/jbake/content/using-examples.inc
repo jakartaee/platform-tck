@@ -3,15 +3,15 @@ NOTE TO WRITERS:
 These CLI examples can be customized as necessary.
 ///////////////////////////////////////////////////////////////////////
 
-1.  Change to any subdirectory under `<TS_HOME>/src/com/sun/ts/tests`.
-2.  Start JavaTest using the following command:
-+
+Start the Junit tests using the following command:
+
 --
 [source,oac_no_warn]
 ----
-ant runclient
+mvn verify
 ----
 --
+
 
 [[GCMCU]]
 
@@ -22,8 +22,7 @@ following commands:
 
 [source,subs="attributes"]
 ----
-cd {sigTestDirectoryExample}
-ant runclient
+mvn verify -Dit.test=com.sun.ts.tests.el.signaturetest.**
 ----
 
 [[GCMBV]]
@@ -35,8 +34,7 @@ To run a single test directory, enter the following commands:
 
 [source,subs="attributes"]
 ----
-cd {singleTestDirectoryExample}
-ant runclient
+mvn verify -Dit.test={singleTestDirectoryExample}.**
 ----
 
 [[GCMCA]]
@@ -48,6 +46,5 @@ To run a subset of test directories, enter the following commands:
 
 [source,subs="attributes"]
 ----
-cd {subsetTestDirectoryExample}
-ant runclient
+mvn verify -Dit.test={subsetTestDirectoryExample}.**
 ----

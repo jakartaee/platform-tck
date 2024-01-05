@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     Copyright (c) 2023 Oracle and/or its affiliates. All rights reserved.
 
@@ -13,24 +14,24 @@
     
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.glassfish</groupId>
+        <artifactId>standalone-tck</artifactId>
+        <version>10.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.el-tck</artifactId>
     <version>10.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <modelVersion>4.0.0</modelVersion>
-    
-    <parent>
-        <groupId>org.glassfish</groupId>
-        <artifactId>standalone-tck</artifactId>
-        <version>10.0.0</version>
-        <relativePath>../pom.xml</relativePath>
-    </parent>
 
     <properties>
-        <tck.artifactId>el-tck</tck.artifactId>
-        <tck.version>5.0.0</tck.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <tck.artifactId>jakarta-expression-language-tck</tck.artifactId>
+        <tck.version>6.0.0</tck.version>
     </properties>
 
     <dependencyManagement>
@@ -45,7 +46,6 @@
         </dependencies>
     </dependencyManagement>
 
-    
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -54,8 +54,8 @@
         </dependency>
         <dependency>
             <groupId>jakartatck</groupId>
-            <artifactId>el-tck</artifactId>
-            <version>10.0.0-SNAPSHOT</version>
+            <artifactId>jakarta-expression-language-tck</artifactId>
+            <version>6.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.main.common</groupId>
@@ -64,24 +64,6 @@
         </dependency>
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-    </profiles>
-    
     <build>
         <plugins>
             <plugin>
@@ -91,10 +73,10 @@
                 <executions>
                     <execution>
                         <id>unpack</id>
-                        <phase>pre-integration-test</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
@@ -111,16 +93,16 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <executions>
                     <execution>
-                        <id>StopDomain1</id>
-                        <phase>pre-integration-test</phase>
+                        <id>1-StopDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -129,11 +111,11 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StartDomain1</id>
-                        <phase>pre-integration-test</phase>
+                        <id>2-StartDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -142,11 +124,11 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Enable Trace requests</id>
-                        <phase>pre-integration-test</phase>
+                        <id>3-Enable Trace requests</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -156,11 +138,11 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Delete User j2ee</id>
-                        <phase>pre-integration-test</phase>
+                        <id>4-Delete User j2ee</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -176,11 +158,11 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Add User j2ee</id>
-                        <phase>pre-integration-test</phase>
+                        <id>5-Add User j2ee</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -194,11 +176,11 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Delete User javajoe</id>
-                        <phase>pre-integration-test</phase>
+                        <id>6-Delete User javajoe</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -214,11 +196,11 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Add User javajoe</id>
-                        <phase>pre-integration-test</phase>
+                        <id>7-Add User javajoe</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -232,11 +214,11 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>list users</id>
-                        <phase>pre-integration-test</phase>
+                        <id>8-list users</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -245,11 +227,11 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StopDomain</id>
-                        <phase>pre-integration-test</phase>
+                        <id>9-StopDomain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
@@ -274,7 +256,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.el-api.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/expressly.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>jakartatck:el-tck</dependenciesToScan> 
+                            <dependenciesToScan>jakartatck:jakarta-expression-language-tck</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <webServerHost>localhost</webServerHost>
@@ -299,4 +281,22 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>full</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+            </properties>
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+            </properties>
+        </profile>
+    </profiles>
 </project>

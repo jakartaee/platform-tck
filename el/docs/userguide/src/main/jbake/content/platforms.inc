@@ -1,1 +1,1 @@
-* CentOS Linux 7
+* Debian GNU/Linux 10
