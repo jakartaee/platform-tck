@@ -1,0 +1,14 @@
+remote_theme: jakartaee/jekyll-theme-jakarta-ee
+
+title: [tck_uml_v3_0]
+description: [Oracle Technology Compatibility Kit User's Guide for Expression Language 6.0 for Technology Licensees, Release 6.0]
+
+# sidebar links url
+links:
+  source: https://github.com/jakartaee/platform-tck
+  download: https://download.eclipse.org/jakartaee/expression-language/
+  #mailinglist: https://javaee.groups.io/g/tck_uml_v3_0
+  #javadocs:
+  docs: https://jakarta.ee/specifications/expression-language/6.0/apidocs
+  #faq:
+

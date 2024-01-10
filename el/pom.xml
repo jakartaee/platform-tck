@@ -26,7 +26,8 @@
         <version>10.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>el-tck</artifactId>
+    <artifactId>jakarta-expression-language-tck</artifactId>
+    <version>6.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>el-tck</name>
@@ -36,14 +37,22 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>libutil</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
+            <version>${jakarta.el-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -51,5 +60,79 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <finalName>${bundle-name}-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>LICENSE_${license}.md</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>distribution</id>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                            <escapeString>\</escapeString>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${bundle-name}-${project.version}</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>EFTL</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <bundle-name>jakarta-expression-language-tck</bundle-name>
+                <license>EFTL</license>
+            </properties>
+        </profile>
+        <profile>
+            <id>EPL</id>
+            <properties>
+                <bundle-name>expression-language-tck</bundle-name>
+                <license>EPL</license>
+            </properties>
+        </profile>
+    </profiles>
 
 </project>
