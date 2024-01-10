@@ -73,7 +73,7 @@ public class ELClientIT {
    * 
    * @test_Strategy: Verify the following method calls work as expected:
    *                 getValue() getType() setValue() isReadOnly()
-   *                 getCommonPropertyType() getFeatureDescriptors()
+   *                 getCommonPropertyType() 
    */
   @Test
   public void staticFieldELResolverTest() throws Exception {
@@ -163,13 +163,13 @@ public class ELClientIT {
     buf.append("getCommonPropertyType() returns " + commonPropertyType.getName()
         + TestUtil.NEW_LINE);
 
-    // getFeatureDescriptors()
-    context.setPropertyResolved(false);
-    Iterator<?> i = resolver.getFeatureDescriptors(context, base);
+    // getFeatureDescriptors() commenting below as the method is deprecated in EL 6.0
+    // context.setPropertyResolved(false);
+    // Iterator<?> i = resolver.getFeatureDescriptors(context, base);
 
-    if (i == null) {
-      buf.append("getFeatureDescriptors() returns null" + TestUtil.NEW_LINE);
-    }
+    // if (i == null) {
+    //   buf.append("getFeatureDescriptors() returns null" + TestUtil.NEW_LINE);
+    // }
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + TestUtil.NEW_LINE + buf.toString());
