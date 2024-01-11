@@ -33,6 +33,10 @@
     <name>el-tck</name>
     <description>EL TCK</description>
 
+    <properties>
+        <jakarta.el-api.version>6.0.0-M1</jakarta.el-api.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>

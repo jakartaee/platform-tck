@@ -15,8 +15,8 @@ Executing Tests
 5 Executing Tests
 -----------------
 
-The {TechnologyShortName} TCK uses the Junit and Jboss Arquillian 
-frameworks to execute the tests.
+The {TechnologyShortName} TCK uses the Junit 
+framework to execute the tests.
 
 This chapter includes the following topics:
 
@@ -148,9 +148,32 @@ mvn verify -DexcludedGroups={groupsExample}
 The tests in the group +{groupsExample}+ is exclued from the run. 
 Multiple groups can be separated by comma.
 
+[[GBFVK]][[Running-Signature-Test]]
+
+5.3 Running Signature Test
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+sigtest-maven-plugin is used to run the EL signature test. Please refer the 
+sample provided in the platform TCK repository.
+
+[NOTE]
+=======================================================================
+
+Use below configuration while using sigtest-maven-plugin with goal as `check`.
+
+    <configuration>
+        <sigfile>path-to-sig-file-provided-with-TCK</sigfile>
+        <packages>jakarta.el</packages>
+        <classes><path-to-api-jar</classes>
+        <report>sig-report.txt</report>
+    </configuration>
+
+=======================================================================
+
+
 [[GCLRR]][[running-the-tck-against-the-ri]]
 
-5.3 Running the TCK Against another CI
+5.4 Running the TCK Against another CI
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Some test scenarios are designed to ensure that the configuration and deployment of
@@ -169,7 +192,7 @@ of the Tests."]
 
 [[GCLRZ]][[running-the-tck-against-a-vendors-implementation]]
 
-5.4 Running the TCK Against a Vendor's Implementation
+5.5 Running the TCK Against a Vendor's Implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This test scenario is one of the compatibility test phases that all
@@ -187,7 +210,7 @@ of the Tests."]
 
 [[GBFVK]][[test-reports]]
 
-5.5 Test Reports
+5.6 Test Reports
 ~~~~~~~~~~~~~~~~
 
 A set of report files is created for every test run. These report files
