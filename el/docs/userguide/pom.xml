@@ -28,8 +28,8 @@
     <groupId>org.glassfish</groupId>
     <artifactId>tck_el</artifactId>
     <packaging>pom</packaging>
-    <version>5.0.0</version>
-    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Expression Language for Jakarta EE, Release 5.0</name>
+    <version>6.0.0</version>
+    <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Expression Language for Jakarta EE, Release 6.0</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,9 +37,9 @@
         <maven.site.skip>true</maven.site.skip>
         <asciidoctorj.version>2.4.2</asciidoctorj.version>
         <asciidoctorj.diagram.version>2.1.0</asciidoctorj.diagram.version>
-        <asciidoctorj.maven.plugin.version>2.1.0</asciidoctorj.maven.plugin.version>
+        <asciidoctorj.maven.plugin.version>2.2.4</asciidoctorj.maven.plugin.version>
         <asciidoctorj.pdf.version>1.5.3</asciidoctorj.pdf.version>
-        <jbake.maven.plugin.version>0.3.3</jbake.maven.plugin.version>
+        <jbake.maven.plugin.version>2.7.0-rc.7</jbake.maven.plugin.version>
         <freemarker.version>2.3.30</freemarker.version>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status></status>
@@ -82,8 +82,8 @@
                         <configuration>
                             <rules>
                                 <requireJavaVersion>
-                                    <version>[1.8.0,)</version>
-                                    <message>You need JDK8 or newer</message>
+                                    <version>[17,)</version>
+                                    <message>You need JDK17 or newer</message>
                                 </requireJavaVersion>
                             </rules>
                         </configuration>
