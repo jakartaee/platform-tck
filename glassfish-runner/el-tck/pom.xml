@@ -32,7 +32,7 @@
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>jakarta-expression-language-tck</tck.artifactId>
-        <tck.version>6.0.0-SNAPSHOT</tck.version>
+        <tck.version>6.0.0</tck.version>
     </properties>
 
     <dependencyManagement>
