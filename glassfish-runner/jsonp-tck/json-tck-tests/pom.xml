@@ -99,6 +99,7 @@
              <goal>test</goal>
             </goals>
             <configuration>
+            <useModulePath>false</useModulePath>
             <reuseForks>false</reuseForks>
             <trimStackTrace>false</trimStackTrace>
             <failIfNoTests>true</failIfNoTests>
