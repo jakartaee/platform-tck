@@ -32,7 +32,7 @@
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>jakarta-expression-language-tck</tck.artifactId>
-        <tck.version>6.0.0</tck.version>
+        <tck.version>6.0.0-SNAPSHOT</tck.version>
     </properties>
 
     <dependencyManagement>
@@ -55,8 +55,8 @@
         </dependency>
         <dependency>
             <groupId>jakartatck</groupId>
-            <artifactId>jakarta-expression-language-tck</artifactId>
-            <version>6.0.0-SNAPSHOT</version>
+            <artifactId>${tck.artifactId}</artifactId>
+            <version>${tck.version}</version>
         </dependency>
         <!-- <dependency>
             <groupId>org.glassfish.main.common</groupId>
@@ -105,6 +105,33 @@
                                 <unzip dest="target/" src="target/glassfish.zip"></unzip>
                                 <chmod dir="target/glassfish7/glassfish/bin/asadmin" perm="777"></chmod>
                             </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakartatck</groupId>
+                                    <artifactId>${tck.artifactId}</artifactId>
+                                    <version>${tck.version}</version>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
                         </configuration>
                     </execution>
                 </executions>
@@ -291,7 +318,7 @@
                 <artifactId>sigtest-maven-plugin</artifactId>
                 <version>1.5</version>
                 <configuration>
-                    <sigfile>jakarta.el.sig_6.0</sigfile>
+                    <sigfile>target/el-tck/jakarta.el.sig_6.0</sigfile>
                     <packages>jakarta.el</packages>
                     <classes>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.el-api.jar</classes>
                     <report>target/sig-report.txt</report>
