@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -131,15 +131,6 @@ public class ResolverTest {
     buf.append("getCommonPropertyType() returns ");
     buf.append(commonPropertyType.getName() + NL);
 
-    // getFeatureDescriptors()
-    elContext.setPropertyResolved(false);
-    Iterator i = compResolver.getFeatureDescriptors(elContext, null);
-    boolean fdPass = ResolverTest.testFeatureDescriptors(i, compResolver, null,
-        buf);
-    if (!fdPass) {
-      pass = false;
-    }
-
     return pass;
   }
 
@@ -243,14 +234,6 @@ public class ResolverTest {
     buf.append("getCommonPropertyType() returns ");
     buf.append(commonPropertyType.getName() + "" + NL);
 
-    // getFeatureDescriptors()
-    elContext.setPropertyResolved(false);
-    Iterator i = resolver.getFeatureDescriptors(elContext, base);
-    boolean fdPass = ResolverTest.testFeatureDescriptors(i, resolver, base,
-        buf);
-    if (!fdPass) {
-      pass = false;
-    }
     return pass;
   }
 
