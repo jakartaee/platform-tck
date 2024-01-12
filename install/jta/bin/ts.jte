@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2008, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2008, 2024 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -72,7 +72,8 @@ jta.classes=${jtaJarClasspath}${pathsep}\
             ${webServerHome}/modules/glassfish-naming.jar${pathsep}\
             ${webServerHome}/modules/jakarta.servlet-api.jar${pathsep}\
             ${webServerHome}/modules/bean-validator.jar${pathsep}\
-            ${webServerHome}/modules/jakarta.enterprise.cdi-api.jar
+            ${webServerHome}/modules/jakarta.enterprise.cdi-api.jar${pathsep}\
+            ${webServerHome}/lib/bootstrap/glassfish-jul-extension.jar
 
 tck.classes=${ts.home}/lib/tsharness.jar${pathsep}\
             ${ts.home}/lib/jtatck.jar${pathsep}\
@@ -156,6 +157,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
                     windir=${windir} \
                     SYSTEMROOT=${SYSTEMROOT} \
                     ${JAVA_HOME}/bin/java \
+                    -DnoSecurityManager=true \
                     ${JAVA_OPTIONS} $testExecuteClass $testExecuteArgs
 
 ########################################################################

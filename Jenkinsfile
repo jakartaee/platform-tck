@@ -168,6 +168,9 @@ spec:
     string(name: 'GF_VERSION_URL', 
            defaultValue: '', 
            description: 'URL required for downloading GlassFish version details' )
+    string(name: 'GF_TOPLEVEL_DIR',
+           defaultValue: 'glassfish7', 
+           description: 'top level director of glassfish installation' )
     string(name: 'OLD_GF_BUNDLE_URL',
            defaultValue: '', 
            description: 'URL required for downloading Old GlassFish Full/Web profile bundle' )
