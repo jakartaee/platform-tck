@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2013, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -64,24 +64,40 @@ public class WSTestServer {
 	@OnMessage
 	public void respondString(String message, Session session) {
 		logger.log(Logger.Level.INFO,"TCKTestServer got String message: " + message);
-		try {
-			if (message.startsWith("testName=") && message.endsWith("Test")) {
-				testName = message.substring(9);
-				Method method = WSTestServer.class.getMethod(testName, TEST_ARGS);
-				method.invoke(this, new Object[] { message, session });
-			} else {
-				session.getBasicRemote().sendText("========TCKTestServer received String:" + message);
-				session.getBasicRemote().sendText("========TCKTestServer responds, please close your session");
-			}
-		} catch (InvocationTargetException ite) {
-			logger.log(Logger.Level.ERROR,"Cannot run method " + testName);
-			ite.printStackTrace();
-		} catch (NoSuchMethodException nsme) {
-			logger.log(Logger.Level.ERROR,"Test: " + testName + " does not exist");
-			nsme.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    if (message.startsWith("testName=") && message.endsWith("Test")) {
+      /*
+       * The call to this method was triggered by a WebSocket message. If the container doesn't dispatch message
+       * handling to a new thread (and nothing in the Jakarta WebSocket specification requires it to do that) then the
+       * processing of the message that triggered this method call will not complete until the test completes. That will
+       * cause problems if the test expects to receive additional WebSocket frames as they will not be processed until
+       * this method returns.
+       *
+       * To avoid any issues such as those described above, run the test a separate thread.
+       */
+      Runnable test = () -> {
+    		try {
+    			testName = message.substring(9);
+    			Method method = WSTestServer.class.getMethod(testName, TEST_ARGS);
+    			method.invoke(this, new Object[] { message, session });
+    		} catch (InvocationTargetException ite) {
+    			logger.log(Logger.Level.ERROR,"Cannot run method " + testName);
+    			ite.printStackTrace();
+    		} catch (NoSuchMethodException nsme) {
+    			logger.log(Logger.Level.ERROR,"Test: " + testName + " does not exist");
+    			nsme.printStackTrace();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+      };
+      new Thread(test).start();
+    } else {
+      try {
+        session.getBasicRemote().sendText("========TCKTestServer received String:" + message);
+        session.getBasicRemote().sendText("========TCKTestServer responds, please close your session");
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
 	}
 
 	@OnMessage
@@ -90,32 +106,44 @@ public class WSTestServer {
 
 		logger.log(Logger.Level.INFO,"TCKTestServer got ByteBuffer message: " + message_string);
 
-		try {
-			if (message_string.startsWith("testName=")) {
-				testName = message_string.substring(9);
-				Method method = WSTestServer.class.getMethod(testName, TEST_ARGS_BYTEBUFFER);
-				method.invoke(this, new Object[] { message, session });
-			} else {
-				ByteBuffer data = ByteBuffer.wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
-				ByteBuffer data1 = ByteBuffer.wrap(("========TCKTestServer responds: Message in bytes").getBytes());
-				ByteBuffer dataOrig = ByteBuffer.wrap(message_string.getBytes());
-				try {
-					session.getBasicRemote().sendBinary(data);
-					session.getBasicRemote().sendBinary(dataOrig);
-					session.getBasicRemote().sendBinary(data1);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		} catch (InvocationTargetException ite) {
-			logger.log(Logger.Level.ERROR,"Cannot run method " + testName);
-			ite.printStackTrace();
-		} catch (NoSuchMethodException nsme) {
-			logger.log(Logger.Level.ERROR,"Test: " + testName + " does not exist");
-			nsme.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    if (message_string.startsWith("testName=")) {
+      /*
+       * The call to this method was triggered by a WebSocket message. If the container doesn't dispatch message
+       * handling to a new thread (and nothing in the Jakarta WebSocket specification requires it to do that) then the
+       * processing of the message that triggered this method call will not complete until the test completes. That will
+       * cause problems if the test expects to receive additional WebSocket frames as they will not be processed until
+       * this method returns.
+       *
+       * To avoid any issues such as those described above, run the test a separate thread.
+       */
+      Runnable test = () -> {
+    		try {
+    			testName = message_string.substring(9);
+    			Method method = WSTestServer.class.getMethod(testName, TEST_ARGS_BYTEBUFFER);
+    			method.invoke(this, new Object[] { message, session });
+    		} catch (InvocationTargetException ite) {
+    			logger.log(Logger.Level.ERROR,"Cannot run method " + testName);
+    			ite.printStackTrace();
+    		} catch (NoSuchMethodException nsme) {
+    			logger.log(Logger.Level.ERROR,"Test: " + testName + " does not exist");
+    			nsme.printStackTrace();
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+      };
+      new Thread(test).start();
+    } else {
+      ByteBuffer data = ByteBuffer.wrap(("========TCKTestServer received ByteBuffer: ").getBytes());
+      ByteBuffer data1 = ByteBuffer.wrap(("========TCKTestServer responds: Message in bytes").getBytes());
+      ByteBuffer dataOrig = ByteBuffer.wrap(message_string.getBytes());
+      try {
+        session.getBasicRemote().sendBinary(data);
+        session.getBasicRemote().sendBinary(dataOrig);
+        session.getBasicRemote().sendBinary(data1);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
 	}
 
 	@OnError
