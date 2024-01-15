@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -309,5 +309,35 @@ public class ELClientIT {
     if (!pass) {
       throw new Exception("Failed: No exception thrown.");
     }
+  }
+
+
+  /*
+   * @testName: arrayELResolverLengthTest
+   * 
+   * @test_Strategy: Verify that the length of an array is available as a read-only property.
+   */
+  @Test
+  public void arrayELResolverLengthTest() throws Exception {
+
+    boolean pass;
+    StringBuffer buf = new StringBuffer();
+    String[] colors = { "red", "blue", "green" };
+
+    try {
+      ArrayELResolver arrayResolver = new ArrayELResolver();
+      BareBonesELContext barebonesContext = new BareBonesELContext();
+      ELContext context = barebonesContext.getELContext();
+
+      pass = ResolverTest.testELResolver(context, arrayResolver, colors,
+          "length", "3", buf, true);
+    } catch (Exception ex) {
+      throw new Exception(ex);
+    }
+
+    if (!pass) {
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    }
+    logger.log(Logger.Level.TRACE, buf.toString());
   }
 }
