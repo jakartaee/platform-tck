@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -15,14 +15,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
-
 package com.sun.ts.tests.el.api.jakarta_el.beanelresolver;
-
-import java.util.Properties;
-
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
@@ -195,8 +188,7 @@ public class ELClientIT {
       Class<?>[] types = { String.class, String.class };
       String[] values = { "Doug", "Donahue" };
 
-      pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb,
-          "isName", types, values, false, buf);
+      pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb, "isName", types, values, Boolean.FALSE, buf);
     } catch (Exception ex) {
       throw new Exception(ex);
     }
@@ -234,8 +226,8 @@ public class ELClientIT {
 
       if (null == result) {
         // validate the new values.
-        pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb,
-            "isName", types, values, false, buf);
+        pass = ResolverTest.testELResolverInvoke(
+            context, beanResolver, sb, "isName", types, values, Boolean.FALSE, buf);
       } else {
         pass = false;
         buf.append("Unexpected Value returned!" + TestUtil.NEW_LINE
@@ -275,8 +267,8 @@ public class ELClientIT {
       Class<?>[] types = { String.class, String.class };
       String[] values = { "Doug", "Donahue" };
 
-      pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb,
-          "bogus_Method", types, values, true, buf);
+      pass = ResolverTest.testELResolverInvoke(
+          context, beanResolver, sb, "bogus_Method", types, values, Boolean.TRUE, buf);
 
     } catch (Exception ex) {
       throw new Exception(ex);
