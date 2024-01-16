@@ -32,6 +32,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
 import java.lang.System.Logger;
+import java.util.TimeZone;
 
 public class ELClientIT {
 
@@ -379,6 +380,37 @@ public class ELClientIT {
     try {
       pass = ResolverTest.testELResolverPNWE(context, resolver, sb, "intention",
           "billy", buf);
+    } catch (Exception ex) {
+      throw new Exception(ex);
+    }
+
+    if (!pass) {
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    }
+    logger.log(Logger.Level.TRACE, buf.toString());
+  }
+  
+  /**
+   * @testName: beanELResolverMethodVisibilityTest
+   * 
+   * @test_Strategy: Verify that API calls work as expected for a property that is not visible via the implementing
+   *                 class (it is in an internal, non-exported class) but is visible via an interface method:
+   *                 beanELResolver() getValue() getType() setValue() isReadOnly() getCommonPropertyType()
+   *                 getFeatureDescriptors()
+   */
+  @Test
+  public void beanELResolverMethodVisibilityTest() throws Exception {
+
+    boolean pass = false;
+    StringBuffer buf = new StringBuffer();
+    TimeZone tz = TimeZone.getDefault();
+    
+    try {
+      BeanELResolver beanResolver = new BeanELResolver();
+      BareBonesELContext barebonesContext = new BareBonesELContext();
+      ELContext context = barebonesContext.getELContext();
+
+      pass = ResolverTest.testELResolver(context, beanResolver, tz, "rawOffset", Integer.valueOf(0), buf, false);
     } catch (Exception ex) {
       throw new Exception(ex);
     }
