@@ -21,8 +21,6 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.arrayelresolver;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
@@ -258,7 +256,7 @@ public class ELClientIT {
     ELContext context = barebonesContext.getELContext();
 
     try {
-      Object value = resolver.getValue(context, names, 5);
+      Object value = resolver.getValue(context, names, Integer.valueOf(5));
 
       if (value != null) {
         pass = false;
