@@ -39,12 +39,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.el.ELException;
 import jakarta.servlet.jsp.tagext.BodyTag;
 import jakarta.servlet.jsp.tagext.IterationTag;
 import jakarta.servlet.jsp.tagext.Tag;
 import jakarta.servlet.jsp.tagext.ValidationMessage;
-
+//replacing the removed jakarta.servlet.jsp.el.ELException class from JSP 4.0
+import jakarta.el.ELException;
 /**
  * JSP TCK Utility class.
  */
@@ -122,7 +122,7 @@ public class JspTestUtil {
     out.println("Type: " + t.getClass().getName());
     out.println("Message: " + t.getMessage());
     if (t instanceof ELException) {
-      Throwable sub = ((ELException) t).getRootCause();
+      Throwable sub = ((ELException) t).getCause();
       if (sub != null) {
         out.println("Root Cause: " + sub);
         out.println("Root Cause Message: " + sub.getMessage());

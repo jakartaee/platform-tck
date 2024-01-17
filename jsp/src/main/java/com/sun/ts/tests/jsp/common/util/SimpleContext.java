@@ -32,8 +32,6 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.PageContext;
-import jakarta.servlet.jsp.el.ExpressionEvaluator;
-import jakarta.servlet.jsp.el.VariableResolver;
 
 /**
  * Simple class to validate release is called on the PageContext object provide
@@ -112,24 +110,6 @@ public class SimpleContext extends PageContext {
    * @return null
    */
   public HttpSession getSession() {
-    return null;
-  }
-
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public VariableResolver getVariableResolver() {
-    return null;
-  }
-
-  /**
-   * Returns null.
-   * 
-   * @return null
-   */
-  public ExpressionEvaluator getExpressionEvaluator() {
     return null;
   }
 
