@@ -131,25 +131,6 @@ public class JspResolverTest {
       buf.append("getCommonPropertyType() returns Class java.lang.String\n");
     }
 
-    // avoid the usage of removed method getFeatureDescriptors from EL 6.0(EE11)
-    // getFeatureDescriptors()
-    // elContext.setPropertyResolved(false);
-    // Iterator i = resolver.getFeatureDescriptors(elContext, base);
-    // if (base != null) {
-    //   if (i == null) {
-    //     buf.append("getFeatureDescriptors() returned null for ");
-    //     buf.append("a non-null base as expected\n");
-    //   } else {
-    //     buf.append("getFeatureDescriptors() returned non-null ");
-    //     buf.append("value for a non-null base\n");
-    //     pass = false;
-    //   }
-    // } else {
-    //   boolean fdPass = ResolverTest.testFeatureDescriptors(i, resolver, base,
-    //       buf);
-    //   if (!fdPass)
-    //     pass = false;
-    // }
     return pass;
   }
 
@@ -250,25 +231,6 @@ public class JspResolverTest {
       buf.append("getCommonPropertyType() returns Class java.lang.String\n");
     }
 
-    // avoid the usage of removed method getFeatureDescriptors from EL 6.0(EE11)
-    // getFeatureDescriptors()
-    // elContext.setPropertyResolved(false);
-    // Iterator i = resolver.getFeatureDescriptors(elContext, base);
-    // if (base != null) {
-    //   if (i == null) {
-    //     buf.append("getFeatureDescriptors() returned null for ");
-    //     buf.append("a non-null base as expected\n");
-    //   } else {
-    //     buf.append("getFeatureDescriptors() returned non-null ");
-    //     buf.append("value for a non-null base\n");
-    //     pass = false;
-    //   }
-    // } else {
-    //   boolean fdPass = ResolverTest.testFeatureDescriptors(i, resolver, base,
-    //       buf);
-    //   if (!fdPass)
-    //     pass = false;
-    // }
     return pass;
   }
 }
