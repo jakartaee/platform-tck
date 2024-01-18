@@ -63,7 +63,7 @@
     throws ServletException, IOException {
         SkipPageException spe = new SkipPageException(new NullPointerException());
         if (spe != null) {
-            Throwable t = spe.getRootCause();
+            Throwable t = spe.getCause();
             if (t != null && t instanceof NullPointerException) {
                 out.println("Test PASSED");
             } else {
@@ -86,7 +86,7 @@
         if (spe != null) {
             String message = spe.getMessage();
             if (message != null && message.equals("Exception Message")) {
-                Throwable t = spe.getRootCause();
+                Throwable t = spe.getCause();
                 if (t != null && t instanceof ServletException) {
                     out.println("Test PASSED");
                 } else {

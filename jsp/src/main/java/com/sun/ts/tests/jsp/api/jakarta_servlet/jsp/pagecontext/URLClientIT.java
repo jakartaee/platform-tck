@@ -646,7 +646,7 @@ public class URLClientIT extends AbstractUrlClient {
    *                 PageContext.getExpressionEvaluator. Note: This is inherited
    *                 from JspContext.
    */
-  @Test
+  //@Test
   public void pageContextGetExpressionEvaluatorTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetExpressionEvaluatorTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");
@@ -659,7 +659,7 @@ public class URLClientIT extends AbstractUrlClient {
    * @test_Strategy: Validate the behavior of PageContext.getVariableResolver().
    *                 Note: This is inherited from JspContext.
    */
-  @Test
+  // @Test
   public void pageContextGetVariableResolverTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "pageContextGetVariableResolverTest");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "Error page invoked");

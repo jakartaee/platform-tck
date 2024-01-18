@@ -63,7 +63,7 @@
     throws ServletException, IOException {
         JspTagException jte = new JspTagException(new NullPointerException());
         if (jte != null) {
-            Throwable t = jte.getRootCause();
+            Throwable t = jte.getCause();
             if (t != null && t instanceof NullPointerException) {
                 out.println("Test PASSED");
             } else {
@@ -86,7 +86,7 @@
         if (jte != null) {
             String message = jte.getMessage();
             if (message != null && message.equals("Exception Message")) {
-                Throwable t = jte.getRootCause();
+                Throwable t = jte.getCause();
                 if (t != null && t instanceof ServletException) {
                     out.println("Test PASSED");
                 } else {

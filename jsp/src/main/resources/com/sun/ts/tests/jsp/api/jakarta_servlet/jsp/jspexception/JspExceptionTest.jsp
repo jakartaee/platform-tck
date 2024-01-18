@@ -63,7 +63,7 @@
     throws ServletException, IOException {
         JspException je = new JspException(new NullPointerException());
         if (je != null) {
-            Throwable t = je.getRootCause();
+            Throwable t = je.getCause();
             if (t != null && t instanceof NullPointerException) {
                 out.println("Test PASSED");
             } else {
@@ -86,7 +86,7 @@
         if (je != null) {
             String message = je.getMessage();
             if (message != null && message.equals("Exception Message")) {
-                Throwable t = je.getRootCause();
+                Throwable t = je.getCause();
                 if (t != null && t instanceof ServletException) {
                     out.println("Test PASSED");
                 } else {
@@ -111,28 +111,28 @@
         JspException je = new JspException(new ServletException());
         JspException je1 = new JspException("exception", new NullPointerException());
 
-        Throwable t = je.getRootCause();
-        Throwable t1 = je1.getRootCause();
+        Throwable t = je.getCause();
+        Throwable t1 = je1.getCause();
         if (t != null) {
             if (t instanceof ServletException) {
                 if (t1 != null) {
                     if (t1 instanceof NullPointerException) {
                         out.println("Test PASSED");
                     } else {
-                        out.println("Test FAILED.  JspException.getRootCause returned unexpected" +
+                        out.println("Test FAILED.  JspException.getCause returned unexpected" +
                             " exception: " + t.getClass().getName());
                         out.println("Expected: NullPointerException");
                     }
                 } else {
-                    out.println("Test FAILED.  JspException.getRootCause returned null.");
+                    out.println("Test FAILED.  JspException.getCause returned null.");
                 }
             } else {
-                out.println("Test FAILED.  JspException.getRootCause returned unexpected" +
+                out.println("Test FAILED.  JspException.getCause returned unexpected" +
                     " exception: " + t.getClass().getName());
                 out.println("Expected: ServletException");
             }
         } else {
-            out.println("Test FAILED.  JspException.getRootCause returned null.");
+            out.println("Test FAILED.  JspException.getCause returned null.");
         }
     }
 %>

@@ -128,7 +128,7 @@ public class URLClientIT extends AbstractUrlClient {
    * 
    * @test_Strategy: Validate the behavior of JspException.getRootCause().
    */
-  @Test
+  // @Test
   public void jspExceptionGetRootCauseTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "jspExceptionGetRootCauseTest");
     invoke();
