@@ -24,6 +24,7 @@ import java.beans.FeatureDescriptor;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 import jakarta.el.ArrayELResolver;
 import jakarta.el.BeanELResolver;
@@ -172,7 +173,7 @@ public class ResolverTest {
       pass = false;
     }
 
-    if (!readOnly && valueRetrieved != value) {
+    if (!readOnly && !Objects.equals(valueRetrieved, value)) {
       if (valueRetrieved == null) {
         buf.append("null value returned from getValue() method call!" + NL);
         pass = false;
