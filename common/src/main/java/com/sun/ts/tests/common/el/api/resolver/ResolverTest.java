@@ -99,7 +99,7 @@ public class ResolverTest {
 
     // getType()
     elContext.setPropertyResolved(false);
-    Class type = compResolver.getType(elContext, null, "Bar");
+    Class<?> type = compResolver.getType(elContext, null, "Bar");
     if (!elContext.isPropertyResolved()) {
       buf.append("getType() did not resolve" + NL);
       pass = false;
@@ -127,8 +127,7 @@ public class ResolverTest {
 
     // getCommonPropertyType()
     elContext.setPropertyResolved(false);
-    Class commonPropertyType = (compResolver.getCommonPropertyType(elContext,
-        null));
+    Class<?> commonPropertyType = (compResolver.getCommonPropertyType(elContext, null));
     buf.append("getCommonPropertyType() returns ");
     buf.append(commonPropertyType.getName() + NL);
 
@@ -193,7 +192,7 @@ public class ResolverTest {
 
     // getType()
     elContext.setPropertyResolved(false);
-    Class type = resolver.getType(elContext, base, property);
+    Class<?> type = resolver.getType(elContext, base, property);
     if (!elContext.isPropertyResolved()) {
       buf.append("getType() did not resolve" + NL);
       pass = false;
@@ -230,8 +229,7 @@ public class ResolverTest {
 
     // getCommonPropertyType()
     elContext.setPropertyResolved(false);
-    Class commonPropertyType = (resolver.getCommonPropertyType(elContext,
-        base));
+    Class<?> commonPropertyType = (resolver.getCommonPropertyType(elContext, base));
     buf.append("getCommonPropertyType() returns ");
     buf.append(commonPropertyType.getName() + "" + NL);
 
@@ -260,7 +258,7 @@ public class ResolverTest {
    * @return
    */
   public static boolean testELResolverInvoke(ELContext elContext,
-      ELResolver resolver, Object beanName, Object methodName, Class[] types,
+      ELResolver resolver, Object beanName, Object methodName, Class<?>[] types,
       Object[] values, Boolean negTest, StringBuffer buf) {
 
     boolean pass = true;
@@ -271,13 +269,13 @@ public class ResolverTest {
       Boolean nameMatch = (Boolean) resolver.invoke(elContext, beanName,
           methodName, types, values);
 
-      if (!nameMatch) {
+      if (!nameMatch.booleanValue()) {
         buf.append("invoke() did not Run properly." + NL);
         pass = false;
       }
 
     } catch (MethodNotFoundException mnfe) {
-      if (negTest) {
+      if (negTest.booleanValue()) {
         buf.append("Test Passed  invoke() threw MethodNotFoundException");
       } else {
         pass = false;
