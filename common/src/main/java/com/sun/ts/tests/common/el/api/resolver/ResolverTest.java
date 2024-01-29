@@ -20,18 +20,12 @@
  */
 package com.sun.ts.tests.common.el.api.resolver;
 
-import java.beans.FeatureDescriptor;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Objects;
 
-import jakarta.el.ArrayELResolver;
 import jakarta.el.BeanELResolver;
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
-import jakarta.el.ListELResolver;
-import jakarta.el.MapELResolver;
 import jakarta.el.MethodNotFoundException;
 import jakarta.el.PropertyNotFoundException;
 import jakarta.el.PropertyNotWritableException;
@@ -98,7 +92,7 @@ public class ResolverTest {
 
     // getType()
     elContext.setPropertyResolved(false);
-    Class type = compResolver.getType(elContext, null, "Bar");
+    Class<?> type = compResolver.getType(elContext, null, "Bar");
     if (!elContext.isPropertyResolved()) {
       buf.append("getType() did not resolve" + NL);
       pass = false;
@@ -126,8 +120,7 @@ public class ResolverTest {
 
     // getCommonPropertyType()
     elContext.setPropertyResolved(false);
-    Class commonPropertyType = (compResolver.getCommonPropertyType(elContext,
-        null));
+    Class<?> commonPropertyType = (compResolver.getCommonPropertyType(elContext, null));
     buf.append("getCommonPropertyType() returns ");
     buf.append(commonPropertyType.getName() + NL);
 
@@ -172,7 +165,7 @@ public class ResolverTest {
       pass = false;
     }
 
-    if (!readOnly && valueRetrieved != value) {
+    if (!readOnly && !Objects.equals(valueRetrieved, value)) {
       if (valueRetrieved == null) {
         buf.append("null value returned from getValue() method call!" + NL);
         pass = false;
@@ -192,7 +185,7 @@ public class ResolverTest {
 
     // getType()
     elContext.setPropertyResolved(false);
-    Class type = resolver.getType(elContext, base, property);
+    Class<?> type = resolver.getType(elContext, base, property);
     if (!elContext.isPropertyResolved()) {
       buf.append("getType() did not resolve" + NL);
       pass = false;
@@ -229,8 +222,7 @@ public class ResolverTest {
 
     // getCommonPropertyType()
     elContext.setPropertyResolved(false);
-    Class commonPropertyType = (resolver.getCommonPropertyType(elContext,
-        base));
+    Class<?> commonPropertyType = (resolver.getCommonPropertyType(elContext, base));
     buf.append("getCommonPropertyType() returns ");
     buf.append(commonPropertyType.getName() + "" + NL);
 
@@ -259,7 +251,7 @@ public class ResolverTest {
    * @return
    */
   public static boolean testELResolverInvoke(ELContext elContext,
-      ELResolver resolver, Object beanName, Object methodName, Class[] types,
+      ELResolver resolver, Object beanName, Object methodName, Class<?>[] types,
       Object[] values, Boolean negTest, StringBuffer buf) {
 
     boolean pass = true;
@@ -270,13 +262,13 @@ public class ResolverTest {
       Boolean nameMatch = (Boolean) resolver.invoke(elContext, beanName,
           methodName, types, values);
 
-      if (!nameMatch) {
+      if (!nameMatch.booleanValue()) {
         buf.append("invoke() did not Run properly." + NL);
         pass = false;
       }
 
     } catch (MethodNotFoundException mnfe) {
-      if (negTest) {
+      if (negTest.booleanValue()) {
         buf.append("Test Passed  invoke() threw MethodNotFoundException");
       } else {
         pass = false;
@@ -290,67 +282,6 @@ public class ResolverTest {
     return pass;
   }
 
-  public static boolean testFeatureDescriptors(Iterator i, ELResolver resolver,
-      Object base, StringBuffer buf) {
-
-    if (i == null) {
-      buf.append("getFeatureDescriptors() returns null" + NL);
-      if (resolver instanceof ArrayELResolver
-          || resolver instanceof ListELResolver) {
-        return true;
-      } else if (resolver instanceof MapELResolver && !(base instanceof Map)) {
-        return true;
-      } else if (resolver instanceof BeanELResolver && base != null) {
-        return true;
-      } else if (resolver instanceof BarELResolver) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    while (i.hasNext()) {
-      Object obj = i.next();
-      if (!(obj instanceof FeatureDescriptor)) {
-        buf.append("getFeatureDescriptors() ");
-        buf.append(
-            "does not return a collection of " + "FeatureDescriptors" + NL);
-        return false;
-      } else {
-        int numAttribs = 0;
-        FeatureDescriptor fd = (FeatureDescriptor) obj;
-        Enumeration e = fd.attributeNames();
-        while (e.hasMoreElements()) {
-          String attrib = (String) e.nextElement();
-          if (attrib.equals("type")) {
-            ++numAttribs;
-            if (!(fd.getValue(attrib) instanceof Class)) {
-              buf.append("getFeatureDescriptors(): ");
-              buf.append("Invalid attribute for type." + NL);
-              return false;
-            }
-          }
-          if (attrib.equals("resolvableAtDesignTime")) {
-            ++numAttribs;
-            if (!(fd.getValue(attrib) instanceof Boolean)) {
-              buf.append("getFeatureDescriptors(): ");
-              buf.append(
-                  "Invalid attribute for " + "resolvableAtDesignTime." + NL);
-              return false;
-            }
-          }
-        }
-        if (numAttribs < 2) {
-          buf.append("getFeatureDescriptors(): ");
-          buf.append("Required attribute missing." + NL);
-          return false;
-        }
-      } // else
-    } // while
-
-    buf.append("Passed all getFeatureDescriptors() tests" + NL);
-    return true;
-  }
 
   // --- Start Negative Method Tests ---
   public static boolean testELResolverNPE(ELResolver resolver, Object base,
