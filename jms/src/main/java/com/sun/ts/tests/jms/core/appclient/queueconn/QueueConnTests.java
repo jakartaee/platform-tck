@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,11 +19,14 @@
  */
 package com.sun.ts.tests.jms.core.appclient.queueconn;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
@@ -34,249 +37,231 @@ import jakarta.jms.QueueSession;
 import jakarta.jms.Session;
 import jakarta.jms.TextMessage;
 
-public class QueueConnTests extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core.appclient.queueconn.QueueConnTests";
 
-  private static final String testDir = System.getProperty("user.dir");
+public class QueueConnTests {
+	private static final String testName = "com.sun.ts.tests.jms.core.appclient.queueconn.QueueConnTests";
 
-  private static final long serialVersionUID = 1L;
+	private static final String testDir = System.getProperty("user.dir");
 
-  // JMS objects
-  private transient JmsTool tool = null;
+	private static final long serialVersionUID = 1L;
 
-  // Harness req's
-  private Properties props = null;
+	private static final Logger logger = (Logger) System.getLogger(QueueConnTests.class.getName());
 
-  // properties read from ts.jte file
-  long timeout;
+	// JMS objects
+	private transient JmsTool tool = null;
 
-  String user;
+	// Harness req's
+	private Properties props = null;
 
-  String password;
+	// properties read
+	long timeout;
 
-  String mode;
+	String user;
 
-  ArrayList queues = null;
+	String password;
 
-  ArrayList connections = null;
+	String mode;
 
-  /* Run test in standalone mode */
+	ArrayList queues = null;
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    QueueConnTests theTests = new QueueConnTests();
-    Status s = theTests.run(args, System.out, System.err);
+	ArrayList connections = null;
 
-    s.exit();
-  }
+	/* Test setup: */
 
-  /* Test setup: */
+	/*
+	 * setup() is called before each test
+	 * 
+	 * Creates Administrator object and deletes all previous Destinations.
+	 * Individual tests create the JmsTool object with one default Queue Connection,
+	 * as well as a default Queue and Topic. Tests that require multiple
+	 * Destinations create the extras within the test
+	 * 
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 * @exception Fault
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
 
-  /*
-   * setup() is called before each test
-   * 
-   * Creates Administrator object and deletes all previous Destinations.
-   * Individual tests create the JmsTool object with one default Queue
-   * Connection, as well as a default Queue and Topic. Tests that require
-   * multiple Destinations create the extras within the test
-   * 
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'timeout' (milliseconds) must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'user' is null");
+			}
+			if (password == null) {
+				throw new Exception("'password' is null");
+			}
+			if (mode == null) {
+				throw new Exception("'mode' is null");
+			}
+			queues = new ArrayList(2);
+			connections = new ArrayList(5);
 
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("Setup failed!", e);
+		}
+	}
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception("'timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'user' in ts.jte must be null");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must be null");
-      }
-      if (mode == null) {
-        throw new Exception("'mode' in ts.jte must be null");
-      }
-      queues = new ArrayList(2);
-      connections = new ArrayList(5);
+	/* cleanup */
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("Setup failed!", e);
-    }
-  }
+	/*
+	 * cleanup() is called after each test
+	 * 
+	 * Closes the default connections that are created by setup(). Any separate
+	 * connections made by individual tests should be closed by that test.
+	 * 
+	 * @exception Fault
+	 */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			if (tool != null) {
+				logger.log(Logger.Level.INFO, "Cleanup: Closing Queue Connections");
+				tool.doClientQueueTestCleanup(connections, queues);
+			}
 
-  /* cleanup */
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.ERROR, "An error occurred while cleaning");
+			throw new Exception("Cleanup failed!", e);
+		}
+	}
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
+	/* Tests */
 
-  public void cleanup() throws Exception {
-    try {
-      if (tool != null) {
-        TestUtil.logMsg("Cleanup: Closing Queue Connections");
-        tool.doClientQueueTestCleanup(connections, queues);
-      }
+	/*
+	 * @testName: connStoppedQueueTest
+	 *
+	 * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:100; JMS:SPEC:98; JMS:SPEC:99;
+	 * JMS:JAVADOC:522; JMS:JAVADOC:524; JMS:JAVADOC:120; JMS:JAVADOC:221;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:334;
+	 * 
+	 * @test_Strategy: Stop the connection. Send a msg; start the connection and
+	 * receive the msg. Should get the message
+	 */
+	@Test
+	public void connStoppedQueueTest() throws Exception {
+		boolean pass = true;
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      logErr("An error occurred while cleaning");
-      throw new Exception("Cleanup failed!", e);
-    }
-  }
+		try {
+			TextMessage messageSent = null;
+			TextMessage messageReceived = null;
 
-  /* Tests */
+			// set up test tool for Queue
+			tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+			tool.getDefaultQueueConnection().start();
+			tool.getDefaultQueueConnection().stop();
 
-  /*
-   * @testName: connStoppedQueueTest
-   *
-   * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:100; JMS:SPEC:98; JMS:SPEC:99;
-   * JMS:JAVADOC:522; JMS:JAVADOC:524; JMS:JAVADOC:120; JMS:JAVADOC:221;
-   * JMS:JAVADOC:198; JMS:JAVADOC:334;
-   * 
-   * @test_Strategy: Stop the connection. Send a msg; start the connection and
-   * receive the msg. Should get the message
-   */
+			logger.log(Logger.Level.TRACE, "Creating 1 TextMessage");
+			messageSent = tool.getDefaultQueueSession().createTextMessage();
+			messageSent.setText("Message from connStoppedQueueTest");
+			messageSent.setStringProperty("COM_SUN_JMS_TESTNAME", "connStoppedQueueTest");
 
-  public void connStoppedQueueTest() throws Exception {
-    boolean pass = true;
+			logger.log(Logger.Level.TRACE, "Sending a TextMessage");
+			tool.getDefaultQueueSender().send(messageSent);
 
-    try {
-      TextMessage messageSent = null;
-      TextMessage messageReceived = null;
+			logger.log(Logger.Level.TRACE, "Receiving message");
+			tool.getDefaultQueueConnection().start();
+			messageReceived = (TextMessage) tool.getDefaultQueueReceiver().receive(timeout);
+			if (messageReceived.getText().equals(messageSent.getText())) {
+				logger.log(Logger.Level.INFO, "Pass: Received correct message");
+			} else {
+				throw new Exception("didn't get the right message");
+			}
 
-      // set up test tool for Queue
-      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
-      tool.getDefaultQueueConnection().start();
-      tool.getDefaultQueueConnection().stop();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "connStoppedQueueTest failed: ", e);
+			throw new Exception("connStoppedQueueTest", e);
+		}
+	}
 
-      TestUtil.logTrace("Creating 1 TextMessage");
-      messageSent = tool.getDefaultQueueSession().createTextMessage();
-      messageSent.setText("Message from connStoppedQueueTest");
-      messageSent.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "connStoppedQueueTest");
+	/*
+	 * @testName: closedQueueConnectionNoForcedAckTest
+	 *
+	 * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:105; JMS:JAVADOC:429; JMS:SPEC:115;
+	 *
+	 * @test_Strategy: Send and receive single message, don't acknowledge it. close
+	 * the queue connection, get the message with a second connection.
+	 */
+	@Test
+	public void closedQueueConnectionNoForcedAckTest() throws Exception {
+		boolean pass = true;
 
-      TestUtil.logTrace("Sending a TextMessage");
-      tool.getDefaultQueueSender().send(messageSent);
+		try {
+			TextMessage messageSent = null;
+			TextMessage messageReceived = null;
+			QueueSession qSession = null;
+			QueueReceiver qReceiver = null;
+			QueueSender qSender = null;
 
-      TestUtil.logTrace("Receiving message");
-      tool.getDefaultQueueConnection().start();
-      messageReceived = (TextMessage) tool.getDefaultQueueReceiver()
-          .receive(timeout);
-      if (messageReceived.getText().equals(messageSent.getText())) {
-        TestUtil.logMsg("Pass: Received correct message");
-      } else {
-        throw new Exception("didn't get the right message");
-      }
+			// set up test tool for Queue
+			tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
 
-    } catch (Exception e) {
-      TestUtil.logErr("connStoppedQueueTest failed: ", e);
-      throw new Exception("connStoppedQueueTest", e);
-    }
-  }
+			QueueConnection newConn = (QueueConnection) tool.getNewConnection(JmsTool.QUEUE, user, password);
+			connections.add(newConn);
 
-  /*
-   * @testName: closedQueueConnectionNoForcedAckTest
-   *
-   * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:105; JMS:JAVADOC:429;
-   * JMS:SPEC:115;
-   *
-   * @test_Strategy: Send and receive single message, don't acknowledge it.
-   * close the queue connection, get the message with a second connection.
-   */
+			qSession = newConn.createQueueSession(false, Session.CLIENT_ACKNOWLEDGE);
+			tool.getDefaultQueueReceiver().close();
+			tool.getDefaultQueueSession().close();
 
-  public void closedQueueConnectionNoForcedAckTest() throws Exception {
-    boolean pass = true;
+			qReceiver = qSession.createReceiver(tool.getDefaultQueue());
+			qSender = qSession.createSender(tool.getDefaultQueue());
+			logger.log(Logger.Level.INFO, "create a new connection");
+			newConn.start();
 
-    try {
-      TextMessage messageSent = null;
-      TextMessage messageReceived = null;
-      QueueSession qSession = null;
-      QueueReceiver qReceiver = null;
-      QueueSender qSender = null;
+			logger.log(Logger.Level.INFO, "Creating 1 TextMessage");
+			messageSent = qSession.createTextMessage();
+			messageSent.setText("just a test");
+			messageSent.setStringProperty("COM_SUN_JMS_TESTNAME", "closedQueueConnectionNoForcedAckTest");
+			logger.log(Logger.Level.INFO, "Sending a TextMessage");
+			qSender.send(messageSent);
 
-      // set up test tool for Queue
-      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+			logger.log(Logger.Level.INFO, "Receive the TextMessage");
+			messageReceived = (TextMessage) qReceiver.receive(timeout);
+			qReceiver.close();
+			logger.log(Logger.Level.INFO, "Close the connection with no ack of message received");
+			newConn.close();
 
-      QueueConnection newConn = (QueueConnection) tool
-          .getNewConnection(JmsTool.QUEUE, user, password);
-      connections.add(newConn);
+			logger.log(Logger.Level.INFO, "Use default connection to retrieve the unacknowledged message");
+			qSession = tool.getDefaultQueueConnection().createQueueSession(false, Session.CLIENT_ACKNOWLEDGE);
+			qReceiver = qSession.createReceiver(tool.getDefaultQueue());
+			tool.getDefaultQueueConnection().start();
 
-      qSession = newConn.createQueueSession(false, Session.CLIENT_ACKNOWLEDGE);
-      tool.getDefaultQueueReceiver().close();
-      tool.getDefaultQueueSession().close();
+			messageReceived = (TextMessage) qReceiver.receive(timeout);
+			if (messageReceived == null) {
+				logger.log(Logger.Level.ERROR, "Fail: no message received.");
+				pass = false;
+			} else if (messageReceived.getText().equals(messageSent.getText())) {
+				logger.log(Logger.Level.INFO, "Pass: received correct msg");
+			} else {
+				logger.log(Logger.Level.ERROR, "Fail: didnt get correct msg");
+				pass = false;
+			}
 
-      qReceiver = qSession.createReceiver(tool.getDefaultQueue());
-      qSender = qSession.createSender(tool.getDefaultQueue());
-      TestUtil.logMsg("create a new connection");
-      newConn.start();
-
-      TestUtil.logMsg("Creating 1 TextMessage");
-      messageSent = qSession.createTextMessage();
-      messageSent.setText("just a test");
-      messageSent.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "closedQueueConnectionNoForcedAckTest");
-      TestUtil.logMsg("Sending a TextMessage");
-      qSender.send(messageSent);
-
-      TestUtil.logMsg("Receive the TextMessage");
-      messageReceived = (TextMessage) qReceiver.receive(timeout);
-      qReceiver.close();
-      TestUtil.logMsg("Close the connection with no ack of message received");
-      newConn.close();
-
-      TestUtil.logMsg(
-          "Use default connection to retrieve the unacknowledged message");
-      qSession = tool.getDefaultQueueConnection().createQueueSession(false,
-          Session.CLIENT_ACKNOWLEDGE);
-      qReceiver = qSession.createReceiver(tool.getDefaultQueue());
-      tool.getDefaultQueueConnection().start();
-
-      messageReceived = (TextMessage) qReceiver.receive(timeout);
-      if (messageReceived == null) {
-        TestUtil.logErr("Fail: no message received.");
-        pass = false;
-      } else if (messageReceived.getText().equals(messageSent.getText())) {
-        TestUtil.logMsg("Pass: received correct msg");
-      } else {
-        TestUtil.logErr("Fail: didnt get correct msg");
-        pass = false;
-      }
-
-      try {
-        messageReceived.acknowledge();
-      } catch (Exception e) {
-        pass = false;
-        TestUtil.logErr("Exception thrown on ack!", e);
-      }
-      if (!pass) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("closedQueueConnectionNoForcedAckTest");
-    }
-  }
+			try {
+				messageReceived.acknowledge();
+			} catch (Exception e) {
+				pass = false;
+				logger.log(Logger.Level.ERROR, "Exception thrown on ack!", e);
+			}
+			if (!pass) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("closedQueueConnectionNoForcedAckTest");
+		}
+	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,194 +16,191 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.mdb;
 
+import java.lang.System.Logger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.porting.TSURL;
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
 
-public class Client extends EETest {
-  // The webserver defaults (overidden by harness properties)
-  private static final String PROTOCOL = "http";
 
-  private static final String HOSTNAME = "localhost";
+public class Client {
+	// The webserver defaults
+	private static final String PROTOCOL = "http";
 
-  private static final int PORTNUM = 8000;
+	private static final String HOSTNAME = "localhost";
 
-  private TSURL ctsurl = new TSURL();
+	private static final int PORTNUM = 8000;
 
-  private Properties props = null;
+	private TSURL ctsurl = new TSURL();
 
-  private String hostname = HOSTNAME;
+	private Properties props = null;
 
-  private int portnum = PORTNUM;
+	private String hostname = HOSTNAME;
 
-  // URL properties used by the test
-  private URL url = null;
+	private int portnum = PORTNUM;
 
-  private URLConnection urlConn = null;
+	// URL properties used by the test
+	private URL url = null;
 
-  private String SERVLET = "/cditestsmdb_web/ServletTest";
+	private URLConnection urlConn = null;
 
-  @EJB(name = "ejb/CDITestsMDBClntBean")
-  static EjbClientIF ejbclient;
+	private String SERVLET = "/cditestsmdb_web/ServletTest";
 
-  private static final long serialVersionUID = 1L;
+	@EJB(name = "ejb/CDITestsMDBClntBean")
+	static EjbClientIF ejbclient;
 
-  long timeout;
+	private static final long serialVersionUID = 1L;
 
-  String user;
+	long timeout;
 
-  String password;
+	String user;
 
-  String mode;
+	String password;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	String mode;
 
-  /* Test setup */
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  /*
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * webServerHost; webServerPort;
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    boolean pass = true;
-    try {
-      // get props
-      timeout = Integer.parseInt(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
-      hostname = p.getProperty("webServerHost");
+	/* Test setup */
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception(
-            "'jms_timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'user' in ts.jte must not be null ");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must not be null ");
-      }
-      if (mode == null) {
-        throw new Exception("'platform.mode' in ts.jte must not be null");
-      }
-      if (hostname == null) {
-        throw new Exception("'webServerHost' in ts.jte must not be null");
-      }
-      try {
-        portnum = Integer.parseInt(p.getProperty("webServerPort"));
-      } catch (Exception e) {
-        throw new Exception("'webServerPort' in ts.jte must be a number");
-      }
-      TestUtil.logMsg("AppClient DEBUG: ejbclient=" + ejbclient);
-      if (ejbclient == null) {
-        throw new Exception("setup failed: ejbclient injection failure");
-      } else {
-        ejbclient.init(p);
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    ejbclient.init(p);
-    TestUtil.logMsg("setup ok");
-  }
+	/*
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * webServerHost; webServerPort;
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		boolean pass = true;
+		try {
+			// get props
+			timeout = Integer.parseInt(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
+			hostname = System.getProperty("webServerHost");
 
-  public void cleanup() throws Exception {
-    TestUtil.logMsg("cleanup ok");
-  }
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'jms_timeout' (milliseconds) in must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'user' is null ");
+			}
+			if (password == null) {
+				throw new Exception("'password' is null ");
+			}
+			if (mode == null) {
+				throw new Exception("'platform.mode' is null");
+			}
+			if (hostname == null) {
+				throw new Exception("'webServerHost' is null");
+			}
+			try {
+				portnum = Integer.parseInt(System.getProperty("webServerPort"));
+			} catch (Exception e) {
+				throw new Exception("'webServerPort' in must be a number");
+			}
+			logger.log(Logger.Level.INFO, "AppClient DEBUG: ejbclient=" + ejbclient);
+			if (ejbclient == null) {
+				throw new Exception("setup failed: ejbclient injection failure");
+			} else {
+				// ejbclient.init(p);
+			}
+		} catch (Exception e) {
+			throw new Exception("setup failed:", e);
+		}
+		// ejbclient.init(p);
+		logger.log(Logger.Level.INFO, "setup ok");
+	}
 
-  /*
-   * @testName: testCDIInjectionOfMDBWithQueueReplyFromEjb
-   * 
-   * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-   * JMS:JAVADOC:1128; JMS:SPEC:280;
-   * 
-   * @test_Strategy: Test CDI injection in a MDB. Send a message to the MDB and
-   * MDB sends a reply back to the Reply Queue using the CDI injected
-   * JMSContext.
-   */
-  public void testCDIInjectionOfMDBWithQueueReplyFromEjb() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("------------------------------------------");
-      TestUtil.logMsg("testCDIInjectionOfMDBWithQueueReplyFromEjb");
-      TestUtil.logMsg("------------------------------------------");
-      boolean passEjb = ejbclient
-          .echo("testCDIInjectionOfMDBWithQueueReplyFromEjb");
-      if (!passEjb) {
-        pass = false;
-        TestUtil.logErr("CDI injection test failed from Ejb");
-      } else {
-        TestUtil.logMsg("CDI injection test passed from Ejb");
-      }
-      passEjb = ejbclient.echo("testCDIInjectionOfMDBWithQueueReplyFromEjb");
-      if (!passEjb) {
-        pass = false;
-        TestUtil.logErr("CDI injection test failed from Ejb");
-      } else {
-        TestUtil.logMsg("CDI injection test passed from Ejb");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("CDI injection test failed from Ejb");
-      pass = false;
-    }
+	@AfterEach
+	public void cleanup() throws Exception {
+		logger.log(Logger.Level.INFO, "cleanup ok");
+	}
 
-    if (!pass) {
-      throw new Exception("testCDIInjectionOfMDBWithQueueReplyFromEjb failed");
-    }
-  }
+	/*
+	 * @testName: testCDIInjectionOfMDBWithQueueReplyFromEjb
+	 * 
+	 * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
+	 * JMS:JAVADOC:1128; JMS:SPEC:280;
+	 * 
+	 * @test_Strategy: Test CDI injection in a MDB. Send a message to the MDB and
+	 * MDB sends a reply back to the Reply Queue using the CDI injected JMSContext.
+	 */
+	@Test
+	public void testCDIInjectionOfMDBWithQueueReplyFromEjb() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "------------------------------------------");
+			logger.log(Logger.Level.INFO, "testCDIInjectionOfMDBWithQueueReplyFromEjb");
+			logger.log(Logger.Level.INFO, "------------------------------------------");
+			boolean passEjb = ejbclient.echo("testCDIInjectionOfMDBWithQueueReplyFromEjb");
+			if (!passEjb) {
+				pass = false;
+				logger.log(Logger.Level.ERROR, "CDI injection test failed from Ejb");
+			} else {
+				logger.log(Logger.Level.INFO, "CDI injection test passed from Ejb");
+			}
+			passEjb = ejbclient.echo("testCDIInjectionOfMDBWithQueueReplyFromEjb");
+			if (!passEjb) {
+				pass = false;
+				logger.log(Logger.Level.ERROR, "CDI injection test failed from Ejb");
+			} else {
+				logger.log(Logger.Level.INFO, "CDI injection test passed from Ejb");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "CDI injection test failed from Ejb");
+			pass = false;
+		}
 
-  /*
-   * @testName: testCDIInjectionOfMDBWithTopicReplyFromEjb
-   * 
-   * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
-   * JMS:JAVADOC:1128; JMS:SPEC:280;
-   * 
-   * @test_Strategy: Test CDI injection in a MDB. Send a message to the MDB and
-   * MDB sends a reply back to the Reply Topic using the CDI injected
-   * JMSContext.
-   */
-  public void testCDIInjectionOfMDBWithTopicReplyFromEjb() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("------------------------------------------");
-      TestUtil.logMsg("testCDIInjectionOfMDBWithTopicReplyFromEjb");
-      TestUtil.logMsg("------------------------------------------");
-      boolean passEjb = ejbclient
-          .echo("testCDIInjectionOfMDBWithTopicReplyFromEjb");
-      if (!passEjb) {
-        pass = false;
-        TestUtil.logErr("CDI injection test failed from Ejb");
-      } else {
-        TestUtil.logMsg("CDI injection test passed from Ejb");
-      }
-      passEjb = ejbclient.echo("testCDIInjectionOfMDBWithTopicReplyFromEjb");
-      if (!passEjb) {
-        pass = false;
-        TestUtil.logErr("CDI injection test failed from Ejb");
-      } else {
-        TestUtil.logMsg("CDI injection test passed from Ejb");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("CDI injection test failed from Ejb");
-      pass = false;
-    }
+		if (!pass) {
+			throw new Exception("testCDIInjectionOfMDBWithQueueReplyFromEjb failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Exception("testCDIInjectionOfMDBWithTopicReplyFromEjb failed");
-    }
-  }
+	/*
+	 * @testName: testCDIInjectionOfMDBWithTopicReplyFromEjb
+	 * 
+	 * @assertion_ids: JMS:JAVADOC:1120; JMS:JAVADOC:1121; JMS:JAVADOC:1127;
+	 * JMS:JAVADOC:1128; JMS:SPEC:280;
+	 * 
+	 * @test_Strategy: Test CDI injection in a MDB. Send a message to the MDB and
+	 * MDB sends a reply back to the Reply Topic using the CDI injected JMSContext.
+	 */
+	@Test
+	public void testCDIInjectionOfMDBWithTopicReplyFromEjb() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "------------------------------------------");
+			logger.log(Logger.Level.INFO, "testCDIInjectionOfMDBWithTopicReplyFromEjb");
+			logger.log(Logger.Level.INFO, "------------------------------------------");
+			boolean passEjb = ejbclient.echo("testCDIInjectionOfMDBWithTopicReplyFromEjb");
+			if (!passEjb) {
+				pass = false;
+				logger.log(Logger.Level.ERROR, "CDI injection test failed from Ejb");
+			} else {
+				logger.log(Logger.Level.INFO, "CDI injection test passed from Ejb");
+			}
+			passEjb = ejbclient.echo("testCDIInjectionOfMDBWithTopicReplyFromEjb");
+			if (!passEjb) {
+				pass = false;
+				logger.log(Logger.Level.ERROR, "CDI injection test failed from Ejb");
+			} else {
+				logger.log(Logger.Level.INFO, "CDI injection test passed from Ejb");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "CDI injection test failed from Ejb");
+			pass = false;
+		}
+
+		if (!pass) {
+			throw new Exception("testCDIInjectionOfMDBWithTopicReplyFromEjb failed");
+		}
+	}
 }

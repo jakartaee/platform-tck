@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,10 +19,13 @@
  */
 package com.sun.ts.tests.jms.ee.mdb.mdb_synchrec;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
@@ -39,244 +42,237 @@ import jakarta.jms.QueueSession;
 import jakarta.jms.Session;
 import jakarta.jms.TextMessage;
 
-public class MDBClient extends EETest {
 
-  // Naming specific member variables
-  private TSNamingContextInterface context = null;
+public class MDBClient {
 
-  private Properties props = null;
+	// Naming specific member variables
+	private TSNamingContextInterface context = null;
 
-  private Queue mdbRcvrQueue;
+	private Properties props = new Properties();
 
-  private Queue rcvrQueue;
+	private Queue mdbRcvrQueue;
 
-  private QueueConnection qConnect;
+	private Queue rcvrQueue;
 
-  private Queue cmtQ;
+	private QueueConnection qConnect;
 
-  private QueueSession session;
+	private Queue cmtQ;
 
-  private QueueConnectionFactory qFactory;
+	private QueueSession session;
 
-  private QueueSender qSender;
+	private QueueConnectionFactory qFactory;
 
-  private String jmsUser = null;
+	private QueueSender qSender;
 
-  private String jmsPassword = null;
+	private String jmsUser = null;
 
-  private TextMessage msg = null;
+	private String jmsPassword = null;
 
-  // get this from ts.jte
-  long timeout;
+	private TextMessage msg = null;
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    MDBClient theTests = new MDBClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	// get this from ts.jte
+	long timeout;
 
-  /*
-   * Test setup:
-   * 
-   * @class.setup_props: jms_timeout, in milliseconds - how long to wait on
-   * synchronous receive; user;password;harness.log.port; harness.log.traceflag;
-   *
-   */
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    jmsUser = p.getProperty("user");
-    jmsPassword = p.getProperty("password");
-    try {
-      timeout = Integer.parseInt(p.getProperty("jms_timeout"));
+	private static final Logger logger = (Logger) System.getLogger(MDBClient.class.getName());
 
-      TestUtil.logTrace("in client setup");
+	/*
+	 * Test setup:
+	 * 
+	 * @class.setup_props: jms_timeout, in milliseconds - how long to wait on
+	 * synchronous receive; user;password
+	 *
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		jmsUser = System.getProperty("user");
+		jmsPassword = System.getProperty("password");
+		try {
+			timeout = Integer.parseInt(System.getProperty("jms_timeout"));
 
-      context = new TSNamingContext();
-      TestUtil.logTrace("Client: Do lookups!");
-      qFactory = (QueueConnectionFactory) context
-          .lookup("java:comp/env/jms/MyQueueConnectionFactory");
-      cmtQ = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE");
-      rcvrQueue = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
-      mdbRcvrQueue = (Queue) context.lookup("java:comp/env/jms/MY_QUEUE");
-      qConnect = qFactory.createQueueConnection(jmsUser, jmsPassword);
-      session = qConnect.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
-      qConnect.start();
-      cleanTheQueue(rcvrQueue);
-      cleanTheQueue(mdbRcvrQueue);
+			logger.log(Logger.Level.TRACE, "in client setup");
 
-    } catch (Exception e) {
-      throw new Exception("Setup Failed!", e);
-    }
-  }
-  /* Run tests */
+			context = new TSNamingContext();
+			logger.log(Logger.Level.TRACE, "Client: Do lookups!");
+			qFactory = (QueueConnectionFactory) context.lookup("java:comp/env/jms/MyQueueConnectionFactory");
+			cmtQ = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE");
+			rcvrQueue = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
+			mdbRcvrQueue = (Queue) context.lookup("java:comp/env/jms/MY_QUEUE");
+			qConnect = qFactory.createQueueConnection(jmsUser, jmsPassword);
+			session = qConnect.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+			qConnect.start();
+			cleanTheQueue(rcvrQueue);
+			cleanTheQueue(mdbRcvrQueue);
 
-  /*
-   * @testName: test1
-   *
-   * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
-   * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
-   * JMS:JAVADOC:198; JMS:JAVADOC:184; JMS:JAVADOC:334; JMS:JAVADOC:405;
-   * 
-   * @test_Strategy: Verify synchronous receive in an mdb. send a msg to
-   * MDB_QURUR_REPLY - mdb will do a synchronous rec on it Invoke a cmt mdb by
-   * writing to MDB_QUEUE In onMessage mdb method, do a synchronous receive
-   * Notify the client by sending a message to QUEUE_REPLY if mdb was able to
-   * successfully receive the message
-   *
-   */
-  public void test1() throws Exception {
-    String TestCase = "syncRecTest1";
-    int TestNum = 1;
-    String mdbMessage = "my mdb message";
+		} catch (Exception e) {
+			throw new Exception("Setup Failed!", e);
+		}
+	}
+	/* Run tests */
 
-    try {
-      // create a text message
-      createTestMessage(TestCase, TestNum);
-      // send a message to receiver queue that the mdb can synchronously receive
-      qSender = session.createSender(mdbRcvrQueue);
-      // send the message to invoke mdb
-      JmsUtil.addPropsToMessage(msg, props);
-      msg.setStringProperty("TestCase", mdbMessage);
-      qSender.send(msg);
+	/*
+	 * @testName: test1
+	 *
+	 * @assertion_ids: JavaEE:SPEC:214; JMS:JAVADOC:270; JMS:JAVADOC:522;
+	 * JMS:JAVADOC:188; JMS:JAVADOC:221; JMS:JAVADOC:120; JMS:JAVADOC:425;
+	 * JMS:JAVADOC:198; JMS:JAVADOC:184; JMS:JAVADOC:334; JMS:JAVADOC:405;
+	 * 
+	 * @test_Strategy: Verify synchronous receive in an mdb. send a msg to
+	 * MDB_QURUR_REPLY - mdb will do a synchronous rec on it Invoke a cmt mdb by
+	 * writing to MDB_QUEUE In onMessage mdb method, do a synchronous receive Notify
+	 * the client by sending a message to QUEUE_REPLY if mdb was able to
+	 * successfully receive the message
+	 *
+	 */
+	@Test
+	public void test1() throws Exception {
+		String TestCase = "syncRecTest1";
+		int TestNum = 1;
+		String mdbMessage = "my mdb message";
 
-      msg.setStringProperty("COM_SUN_JMS_TESTNAME", TestCase);
-      qSender = session.createSender(cmtQ);
-      // send the message to invoke mdb
-      qSender.send(msg);
+		try {
+			// create a text message
+			createTestMessage(TestCase, TestNum);
+			// send a message to receiver queue that the mdb can synchronously receive
+			qSender = session.createSender(mdbRcvrQueue);
+			// send the message to invoke mdb
+			JmsUtil.addPropsToMessage(msg, props);
+			msg.setStringProperty("TestCase", mdbMessage);
+			qSender.send(msg);
 
-      // verify that message was requeued and pass
-      TestCase = "mdbResponse";
-      if (!checkOnResponse(TestCase)) {
-        throw new Exception("syncRecTest1 - ");
-      }
-    } catch (Exception e) {
-      throw new Exception("Test Failed!", e);
-    }
-  }
+			msg.setStringProperty("COM_SUN_JMS_TESTNAME", TestCase);
+			qSender = session.createSender(cmtQ);
+			// send the message to invoke mdb
+			qSender.send(msg);
 
-  /* cleanup -- none in this case */
-  public void cleanup() throws Exception {
-    try {
-      msg = null;
-      if (qConnect != null) {
-        qConnect.close();
-      }
-      logMsg("End  of client cleanup;");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-    }
-  }
+			// verify that message was requeued and pass
+			TestCase = "mdbResponse";
+			if (!checkOnResponse(TestCase)) {
+				throw new Exception("syncRecTest1 - ");
+			}
+		} catch (Exception e) {
+			throw new Exception("Test Failed!", e);
+		}
+	}
 
-  private void createTestMessage(String TestCase, int num) {
-    String myMessage = "MDB synchronous receive test";
-    try {
-      msg = session.createTextMessage();
-      msg.setStringProperty("user", jmsUser);
-      msg.setStringProperty("password", jmsPassword);
-      msg.setText(myMessage);
-      msg.setIntProperty("TestCaseNum", num);
+	/* cleanup -- none in this case */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			msg = null;
+			if (qConnect != null) {
+				qConnect.close();
+			}
+			logger.log(Logger.Level.INFO, "End  of client cleanup;");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+		}
+	}
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      TestUtil.logMsg("Error setting user and password in jms msg");
-    }
-  }
+	private void createTestMessage(String TestCase, int num) {
+		String myMessage = "MDB synchronous receive test";
+		try {
+			msg = session.createTextMessage();
+			msg.setStringProperty("user", jmsUser);
+			msg.setStringProperty("password", jmsPassword);
+			msg.setText(myMessage);
+			msg.setIntProperty("TestCaseNum", num);
 
-  public boolean checkOnResponse(String prop) {
-    boolean status = false;
-    try {
-      TestUtil.logTrace("@checkOnResponse");
-      for (int i = 0; i < 10; i++) {
-        status = getMessage(session, prop);
-        if (status)
-          break;
-      }
-      TestUtil.logTrace("Close the session");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-    }
-    return status;
-  }
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.INFO, "Error setting user and password in jms msg");
+		}
+	}
 
-  private boolean getMessage(QueueSession session, String prop)
-      throws Exception {
-    try {
-      TestUtil.logTrace("top of getMessage");
-      boolean gotit = false;
-      String selector = "TestCase = 'mdbResponse'";
-      QueueReceiver rcvr = session.createReceiver(rcvrQueue, selector);
-      // dequeue the response from the mdb
-      Message msgRec = null;
-      msgRec = rcvr.receive(timeout);
-      if (msgRec == null) {
-        // not good
-        TestUtil.logTrace("No message to receive!!!");
-      } else {
-        TestUtil.logTrace("Success: getMessage received a msg!!!");
-        gotit = recvMessageInternal(msgRec, prop);
-      }
+	public boolean checkOnResponse(String prop) {
+		boolean status = false;
+		try {
+			logger.log(Logger.Level.TRACE, "@checkOnResponse");
+			for (int i = 0; i < 10; i++) {
+				status = getMessage(session, prop);
+				if (status)
+					break;
+			}
+			logger.log(Logger.Level.TRACE, "Close the session");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+		}
+		return status;
+	}
 
-      return gotit;
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      TestUtil.logErr("exception: ", e);
-      throw new Exception("getMessage threw an exception!");
-    }
+	private boolean getMessage(QueueSession session, String prop) throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "top of getMessage");
+			boolean gotit = false;
+			String selector = "TestCase = 'mdbResponse'";
+			QueueReceiver rcvr = session.createReceiver(rcvrQueue, selector);
+			// dequeue the response from the mdb
+			Message msgRec = null;
+			msgRec = rcvr.receive(timeout);
+			if (msgRec == null) {
+				// not good
+				logger.log(Logger.Level.TRACE, "No message to receive!!!");
+			} else {
+				logger.log(Logger.Level.TRACE, "Success: getMessage received a msg!!!");
+				gotit = recvMessageInternal(msgRec, prop);
+			}
 
-  }
+			return gotit;
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.ERROR, "exception: ", e);
+			throw new Exception("getMessage threw an exception!");
+		}
 
-  private boolean recvMessageInternal(Message msgRec, String prop)
-      throws JMSException {
-    boolean retcode = false;
-    TestUtil.logTrace("@recvMessageInternal");
-    if (msgRec != null) {
+	}
 
-      TestUtil.logTrace("Msg: " + msgRec.toString());
-      TestUtil.logTrace("TestCase: " + msgRec.getStringProperty("TestCase"));
-      TestUtil.logTrace("Status: " + msgRec.getStringProperty("Status"));
-      TestUtil.logTrace("=================================================");
-      TestUtil.logTrace("Msg: " + msgRec.toString());
+	private boolean recvMessageInternal(Message msgRec, String prop) throws JMSException {
+		boolean retcode = false;
+		logger.log(Logger.Level.TRACE, "@recvMessageInternal");
+		if (msgRec != null) {
 
-      if (msgRec.getStringProperty("TestCase").equals(prop)
-          && msgRec.getStringProperty("Status").equals("Pass")) {
-        TestUtil.logTrace("TestCase: " + msgRec.getStringProperty("TestCase"));
-        TestUtil
-            .logTrace("Status from msg: " + msgRec.getStringProperty("Status"));
-        TestUtil.logTrace("Pass: we got the expected msg back! ");
-        retcode = true;
-      } else if (msgRec.getStringProperty("Status").equals("Fail")) {
-        TestUtil.logTrace("TestCase: " + msgRec.getStringProperty("TestCase"));
-        TestUtil
-            .logTrace("Status from msg: " + msgRec.getStringProperty("Status"));
-        TestUtil.logTrace("Fail: Error(s) occurred! ");
-      } else {
-        TestUtil.logTrace("Fail: we didnt get the expected msg back! ");
-        TestUtil.logTrace("TestCase:  " + msgRec.getStringProperty("TestCase"));
-      }
-    } else if (msgRec == null) {
-      TestUtil.logTrace("Fail: we didnt get the expected msg back! ");
-    }
-    return retcode;
-  }
+			logger.log(Logger.Level.TRACE, "Msg: " + msgRec.toString());
+			logger.log(Logger.Level.TRACE, "TestCase: " + msgRec.getStringProperty("TestCase"));
+			logger.log(Logger.Level.TRACE, "Status: " + msgRec.getStringProperty("Status"));
+			logger.log(Logger.Level.TRACE, "=================================================");
+			logger.log(Logger.Level.TRACE, "Msg: " + msgRec.toString());
 
-  private void cleanTheQueue(Queue q) {
+			if (msgRec.getStringProperty("TestCase").equals(prop)
+					&& msgRec.getStringProperty("Status").equals("Pass")) {
+				logger.log(Logger.Level.TRACE, "TestCase: " + msgRec.getStringProperty("TestCase"));
+				logger.log(Logger.Level.TRACE, "Status from msg: " + msgRec.getStringProperty("Status"));
+				logger.log(Logger.Level.TRACE, "Pass: we got the expected msg back! ");
+				retcode = true;
+			} else if (msgRec.getStringProperty("Status").equals("Fail")) {
+				logger.log(Logger.Level.TRACE, "TestCase: " + msgRec.getStringProperty("TestCase"));
+				logger.log(Logger.Level.TRACE, "Status from msg: " + msgRec.getStringProperty("Status"));
+				logger.log(Logger.Level.TRACE, "Fail: Error(s) occurred! ");
+			} else {
+				logger.log(Logger.Level.TRACE, "Fail: we didnt get the expected msg back! ");
+				logger.log(Logger.Level.TRACE, "TestCase:  " + msgRec.getStringProperty("TestCase"));
+			}
+		} else if (msgRec == null) {
+			logger.log(Logger.Level.TRACE, "Fail: we didnt get the expected msg back! ");
+		}
+		return retcode;
+	}
 
-    try {
-      // make sure nothing is left in QUEUE_REPLY
-      TestUtil.logTrace("Check if any messages left in queue");
-      QueueReceiver qR = session.createReceiver(q);
-      Message msg = qR.receive(timeout);
-      while (msg != null) {
-        TestUtil.logTrace("Cleaned up a message in QUEUE!");
-        msg = qR.receive(timeout);
-      }
-      qR.close();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      TestUtil.logTrace("Error in cleanTheQueue");
-    }
+	private void cleanTheQueue(Queue q) {
 
-  }
+		try {
+			// make sure nothing is left in QUEUE_REPLY
+			logger.log(Logger.Level.TRACE, "Check if any messages left in queue");
+			QueueReceiver qR = session.createReceiver(q);
+			Message msg = qR.receive(timeout);
+			while (msg != null) {
+				logger.log(Logger.Level.TRACE, "Cleaned up a message in QUEUE!");
+				msg = qR.receive(timeout);
+			}
+			qR.close();
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.TRACE, "Error in cleanTheQueue");
+		}
+
+	}
 
 }

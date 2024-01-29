@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,11 +19,14 @@
  */
 package com.sun.ts.tests.jms.core.appclient.closedQueueConnection;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
@@ -40,433 +43,415 @@ import jakarta.jms.TextMessage;
 /**
  * JMS TS tests. Testing method calls on closed QueueConnection objects.
  */
-public class ClosedQueueConnectionTests extends ServiceEETest {
-  private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueConnection.ClosedQueueConnectionTests";
 
-  private static final String testDir = System.getProperty("user.dir");
+public class ClosedQueueConnectionTests {
+	private static final String TestName = "com.sun.ts.tests.jms.core.appclient.closedQueueConnection.ClosedQueueConnectionTests";
 
-  private static final long serialVersionUID = 1L;
+	private static final String testDir = System.getProperty("user.dir");
 
-  // JMS objects
-  private transient JmsTool tool = null;
+	private static final long serialVersionUID = 1L;
 
-  // Harness req's
-  private Properties props = null;
+	private static final Logger logger = (Logger) System.getLogger(ClosedQueueConnectionTests.class.getName());
 
-  // properties read from ts.jte file
-  long timeout;
+	// JMS objects
+	private transient JmsTool tool = null;
 
-  String user;
+	// Harness req's
+	private Properties props = null;
 
-  String password;
+	// properties read
+	long timeout;
 
-  String mode;
+	String user;
 
-  ArrayList queues = null;
+	String password;
 
-  ArrayList connections = null;
+	String mode;
 
-  /* Run test in standalone mode */
+	ArrayList queues = null;
 
-  /**
-   * Main method is used when not run from the JavaTest GUI.
-   * 
-   * @param args
-   */
-  public static void main(String[] args) {
-    ClosedQueueConnectionTests theTests = new ClosedQueueConnectionTests();
-    Status s = theTests.run(args, System.out, System.err);
+	ArrayList connections = null;
 
-    s.exit();
-  }
+	/* Utility methods for tests */
 
-  /* Utility methods for tests */
+	/**
+	 * Used by tests that need a closed connection for testing. Passes any
+	 * exceptions up to caller.
+	 * 
+	 * @param int The type of session that needs to be created and closed
+	 */
+	private void createAndCloseConnection(int type) throws Exception {
+		if ((type == JmsTool.QUEUE) || (type == JmsTool.TX_QUEUE)) {
+			tool = new JmsTool(type, user, password, mode);
+			tool.getDefaultQueueConnection().start();
 
-  /**
-   * Used by tests that need a closed connection for testing. Passes any
-   * exceptions up to caller.
-   * 
-   * @param int
-   *          The type of session that needs to be created and closed
-   */
-  private void createAndCloseConnection(int type) throws Exception {
-    if ((type == JmsTool.QUEUE) || (type == JmsTool.TX_QUEUE)) {
-      tool = new JmsTool(type, user, password, mode);
-      tool.getDefaultQueueConnection().start();
+			logger.log(Logger.Level.TRACE, "Closing queue Connection");
+			tool.getDefaultQueueConnection().close();
+		}
+		logger.log(Logger.Level.TRACE, "Connection closed");
+	}
 
-      logTrace("Closing queue Connection");
-      tool.getDefaultQueueConnection().close();
-    }
-    logTrace("Connection closed");
-  }
+	/* Test setup: */
 
-  /* Test setup: */
+	/*
+	 * setup() is called before each test
+	 * 
+	 * Creates Administrator object and deletes all previous Destinations.
+	 * Individual tests create the JmsTool object with one default Queue and/or
+	 * Topic Connection, as well as a default Queue and Topic. Tests that require
+	 * multiple Destinations create the extras within the test
+	 * 
+	 * 
+	 * @class.setup_props: jms_timeout; user; password; platform.mode;
+	 * 
+	 * @exception Fault
+	 */
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
 
-  /*
-   * setup() is called before each test
-   * 
-   * Creates Administrator object and deletes all previous Destinations.
-   * Individual tests create the JmsTool object with one default Queue and/or
-   * Topic Connection, as well as a default Queue and Topic. Tests that require
-   * multiple Destinations create the extras within the test
-   * 
-   * 
-   * @class.setup_props: jms_timeout; user; password; platform.mode;
-   * 
-   * @exception Fault
-   */
+			// get props
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+			user = System.getProperty("user");
+			password = System.getProperty("password");
+			mode = System.getProperty("platform.mode");
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+			// check props for errors
+			if (timeout < 1) {
+				throw new Exception("'timeout' (milliseconds) must be > 0");
+			}
+			if (user == null) {
+				throw new Exception("'users' is null");
+			}
+			if (password == null) {
+				throw new Exception("'password' is null");
+			}
+			if (mode == null) {
+				throw new Exception("'mode' is null");
+			}
+			queues = new ArrayList(2);
+			// get ready for new test
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("Setup failed!", e);
+		}
+	}
 
-      // get props
-      timeout = Long.parseLong(p.getProperty("jms_timeout"));
-      user = p.getProperty("user");
-      password = p.getProperty("password");
-      mode = p.getProperty("platform.mode");
+	/* cleanup */
 
-      // check props for errors
-      if (timeout < 1) {
-        throw new Exception("'timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (user == null) {
-        throw new Exception("'users' in ts.jte must be null");
-      }
-      if (password == null) {
-        throw new Exception("'password' in ts.jte must be null");
-      }
-      if (mode == null) {
-        throw new Exception("'mode' in ts.jte must be null");
-      }
-      queues = new ArrayList(2);
-      // get ready for new test
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("Setup failed!", e);
-    }
-  }
+	/*
+	 * cleanup() is called after each test
+	 * 
+	 * Closes the default connections that are created by setup(). Any separate
+	 * connections made by individual tests should be closed by that test.
+	 * 
+	 * @exception Fault
+	 */
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			if (tool != null) {
+				tool.doClientQueueTestCleanup(connections, queues);
+			}
 
-  /* cleanup */
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			logger.log(Logger.Level.ERROR, "An error occurred while cleaning");
+			throw new Exception("Cleanup failed!", e);
+		}
+	}
 
-  /*
-   * cleanup() is called after each test
-   * 
-   * Closes the default connections that are created by setup(). Any separate
-   * connections made by individual tests should be closed by that test.
-   * 
-   * @exception Fault
-   */
+	/* Tests */
 
-  public void cleanup() throws Exception {
-    try {
-      if (tool != null) {
-        tool.doClientQueueTestCleanup(connections, queues);
-      }
+	/*
+	 * @testName: closedQueueConnectionSetClientIDTest
+	 *
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
+	 * JMS:JAVADOC:514;
+	 *
+	 * @test_Strategy: Close default Connection and call setClientID() method on it.
+	 * Check for IllegalStateException.
+	 */
+	@Test
+	public void closedQueueConnectionSetClientIDTest() throws Exception {
+		boolean passed = false;
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      logErr("An error occurred while cleaning");
-      throw new Exception("Cleanup failed!", e);
-    }
-  }
+		try {
+			createAndCloseConnection(JmsTool.QUEUE);
+			logger.log(Logger.Level.TRACE, "Try to call setClientID");
+			try {
+				tool.getDefaultQueueConnection().setClientID("foo");
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueConnectionSetClientIDTest", e);
+		}
+	}
 
-  /* Tests */
+	/*
+	 * @testName: closedQueueConnectionSetExceptionListenerTest
+	 *
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
+	 * JMS:JAVADOC:520; JMS:JAVADOC:483;
+	 *
+	 * @test_Strategy: Close default Connection and call the setExceptionListener
+	 * method on it. Check for IllegalStateException.
+	 */
+	@Test
+	public void closedQueueConnectionSetExceptionListenerTest() throws Exception {
+		boolean passed = false;
 
-  /*
-   * @testName: closedQueueConnectionSetClientIDTest
-   *
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-   * JMS:JAVADOC:514;
-   *
-   * @test_Strategy: Close default Connection and call setClientID() method on
-   * it. Check for IllegalStateException.
-   */
-  public void closedQueueConnectionSetClientIDTest() throws Exception {
-    boolean passed = false;
+		try {
+			createAndCloseConnection(JmsTool.QUEUE);
+			logger.log(Logger.Level.TRACE, "Try to call setExceptionListener");
+			try {
+				ExceptionListener foo = new ExceptionListener() {
 
-    try {
-      createAndCloseConnection(JmsTool.QUEUE);
-      logTrace("Try to call setClientID");
-      try {
-        tool.getDefaultQueueConnection().setClientID("foo");
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueConnectionSetClientIDTest", e);
-    }
-  }
+					public void onException(JMSException jmsE) {
+					}
 
-  /*
-   * @testName: closedQueueConnectionSetExceptionListenerTest
-   *
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-   * JMS:JAVADOC:520; JMS:JAVADOC:483;
-   *
-   * @test_Strategy: Close default Connection and call the setExceptionListener
-   * method on it. Check for IllegalStateException.
-   */
-  public void closedQueueConnectionSetExceptionListenerTest() throws Exception {
-    boolean passed = false;
+				};
 
-    try {
-      createAndCloseConnection(JmsTool.QUEUE);
-      logTrace("Try to call setExceptionListener");
-      try {
-        ExceptionListener foo = new ExceptionListener() {
+				tool.getDefaultQueueConnection().setExceptionListener(foo);
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueConnectionSetExceptionListenerTest", e);
+		}
+	}
 
-          public void onException(JMSException jmsE) {
-          }
+	/*
+	 * @testName: closedQueueConnectionGetMessageListenerTest
+	 *
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
+	 * JMS:JAVADOC:328;
+	 * 
+	 * @test_Strategy: Close default receiver and call the getMessageListener()
+	 * method on the QueueReceiver associated with it. Check for
+	 * IllegalStateException.
+	 */
+	@Test
+	public void closedQueueConnectionGetMessageListenerTest() throws Exception {
+		boolean passed = false;
 
-        };
+		try {
+			createAndCloseConnection(JmsTool.QUEUE);
+			logger.log(Logger.Level.TRACE, "Try to call getMessageListener");
+			try {
+				MessageListener foo = tool.getDefaultQueueReceiver().getMessageListener();
 
-        tool.getDefaultQueueConnection().setExceptionListener(foo);
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueConnectionSetExceptionListenerTest", e);
-    }
-  }
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueConnectionGetMessageListenerTest", e);
+		}
+	}
 
-  /*
-   * @testName: closedQueueConnectionGetMessageListenerTest
-   *
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-   * JMS:JAVADOC:328;
-   * 
-   * @test_Strategy: Close default receiver and call the getMessageListener()
-   * method on the QueueReceiver associated with it. Check for
-   * IllegalStateException.
-   */
-  public void closedQueueConnectionGetMessageListenerTest() throws Exception {
-    boolean passed = false;
+	/*
+	 * @testName: closedQueueConnectionSetMessageListenerTest
+	 *
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
+	 * JMS:JAVADOC:330; JMS:JAVADOC:325;
+	 *
+	 * @test_Strategy: Close default receiver and call the setMessageListener method
+	 * on the QueueReceiver associated with it. Check for IllegalStateException.
+	 */
+	@Test
+	public void closedQueueConnectionSetMessageListenerTest() throws Exception {
+		boolean passed = false;
 
-    try {
-      createAndCloseConnection(JmsTool.QUEUE);
-      logTrace("Try to call getMessageListener");
-      try {
-        MessageListener foo = tool.getDefaultQueueReceiver()
-            .getMessageListener();
+		try {
+			createAndCloseConnection(JmsTool.QUEUE);
+			logger.log(Logger.Level.TRACE, "Try to call setMessageListener");
+			try {
+				MessageListener foo = new MessageListener() {
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueConnectionGetMessageListenerTest", e);
-    }
-  }
+					public void onMessage(Message m) {
+					}
 
-  /*
-   * @testName: closedQueueConnectionSetMessageListenerTest
-   *
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-   * JMS:JAVADOC:330; JMS:JAVADOC:325;
-   *
-   * @test_Strategy: Close default receiver and call the setMessageListener
-   * method on the QueueReceiver associated with it. Check for
-   * IllegalStateException.
-   */
-  public void closedQueueConnectionSetMessageListenerTest() throws Exception {
-    boolean passed = false;
+				};
 
-    try {
-      createAndCloseConnection(JmsTool.QUEUE);
-      logTrace("Try to call setMessageListener");
-      try {
-        MessageListener foo = new MessageListener() {
+				tool.getDefaultQueueReceiver().setMessageListener(foo);
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueConnectionSetMessageListenerTest", e);
+		}
+	}
 
-          public void onMessage(Message m) {
-          }
+	/*
+	 * @testName: closedQueueConnectionGetExceptionListenerTest
+	 *
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
+	 * JMS:JAVADOC:518;
+	 *
+	 * @test_Strategy: Close default Connection and call the getExceptionListener()
+	 * method on it. Check for IllegalStateException.
+	 */
+	@Test
+	public void closedQueueConnectionGetExceptionListenerTest() throws Exception {
+		boolean passed = false;
 
-        };
+		try {
+			createAndCloseConnection(JmsTool.QUEUE);
+			logger.log(Logger.Level.TRACE, "Try to call getExceptionListener");
+			try {
+				ExceptionListener foo = tool.getDefaultQueueConnection().getExceptionListener();
 
-        tool.getDefaultQueueReceiver().setMessageListener(foo);
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueConnectionSetMessageListenerTest", e);
-    }
-  }
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueConnectionGetExceptionListenerTest", e);
+		}
+	}
 
-  /*
-   * @testName: closedQueueConnectionGetExceptionListenerTest
-   *
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-   * JMS:JAVADOC:518;
-   *
-   * @test_Strategy: Close default Connection and call the
-   * getExceptionListener() method on it. Check for IllegalStateException.
-   */
-  public void closedQueueConnectionGetExceptionListenerTest() throws Exception {
-    boolean passed = false;
+	/*
+	 * @testName: closedQueueConnectionStopTest
+	 *
+	 * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
+	 * JMS:JAVADOC:524;
+	 *
+	 * @test_Strategy: Close default Connection and call the stop method on it.
+	 * Check for IllegalStateException.
+	 */
+	@Test
+	public void closedQueueConnectionStopTest() throws Exception {
+		boolean passed = false;
 
-    try {
-      createAndCloseConnection(JmsTool.QUEUE);
-      logTrace("Try to call getExceptionListener");
-      try {
-        ExceptionListener foo = tool.getDefaultQueueConnection()
-            .getExceptionListener();
+		try {
+			createAndCloseConnection(JmsTool.QUEUE);
+			logger.log(Logger.Level.TRACE, "Try to call stop");
+			try {
+				tool.getDefaultQueueConnection().stop();
+				logger.log(Logger.Level.TRACE, "Fail: Exception was not thrown!");
+			} catch (jakarta.jms.IllegalStateException ise) {
+				logger.log(Logger.Level.TRACE, "Pass: threw expected error");
+				passed = true;
+			} catch (Exception e) {
+				TestUtil.printStackTrace(e);
+				logger.log(Logger.Level.TRACE, "Fail: wrong exception: " + e.getClass().getName() + " was returned");
+			}
+			if (!passed) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			throw new Exception("closedQueueConnectionStopTest", e);
+		}
+	}
 
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueConnectionGetExceptionListenerTest", e);
-    }
-  }
+	/*
+	 * @testName: closedQueueConnectionAckTest
+	 *
+	 * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:106; JMS:JAVADOC:794;
+	 *
+	 * @test_Strategy: Send and receive single message. Close the queue connection,
+	 * call acknowledge, then verify that IllegalStateException is thrown.
+	 */
+	@Test
+	public void closedQueueConnectionAckTest() throws Exception {
+		boolean pass = true;
 
-  /*
-   * @testName: closedQueueConnectionStopTest
-   *
-   * @assertion_ids: JMS:SPEC:107; JMS:JAVADOC:270; JMS:JAVADOC:526;
-   * JMS:JAVADOC:524;
-   *
-   * @test_Strategy: Close default Connection and call the stop method on it.
-   * Check for IllegalStateException.
-   */
-  public void closedQueueConnectionStopTest() throws Exception {
-    boolean passed = false;
+		try {
+			TextMessage messageSent = null;
+			TextMessage messageReceived = null;
+			QueueSession qSession = null;
+			QueueReceiver qReceiver = null;
+			QueueSender qSender = null;
 
-    try {
-      createAndCloseConnection(JmsTool.QUEUE);
-      logTrace("Try to call stop");
-      try {
-        tool.getDefaultQueueConnection().stop();
-        logTrace("Fail: Exception was not thrown!");
-      } catch (jakarta.jms.IllegalStateException ise) {
-        logTrace("Pass: threw expected error");
-        passed = true;
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        logTrace("Fail: wrong exception: " + e.getClass().getName()
-            + " was returned");
-      }
-      if (!passed) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      throw new Exception("closedQueueConnectionStopTest", e);
-    }
-  }
+			// set up test tool for Queue
+			tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+			tool.getDefaultQueueReceiver().close();
+			tool.getDefaultQueueSession().close();
 
-  /*
-   * @testName: closedQueueConnectionAckTest
-   *
-   * @assertion_ids: JMS:JAVADOC:272; JMS:SPEC:106; JMS:JAVADOC:794;
-   *
-   * @test_Strategy: Send and receive single message. Close the queue
-   * connection, call acknowledge, then verify that IllegalStateException is
-   * thrown.
-   */
-  public void closedQueueConnectionAckTest() throws Exception {
-    boolean pass = true;
+			logger.log(Logger.Level.TRACE, "Creating new session");
+			qSession = tool.getDefaultQueueConnection().createQueueSession(false, Session.CLIENT_ACKNOWLEDGE);
+			qReceiver = qSession.createReceiver(tool.getDefaultQueue());
+			qSender = qSession.createSender(tool.getDefaultQueue());
+			tool.getDefaultQueueConnection().start();
 
-    try {
-      TextMessage messageSent = null;
-      TextMessage messageReceived = null;
-      QueueSession qSession = null;
-      QueueReceiver qReceiver = null;
-      QueueSender qSender = null;
+			logger.log(Logger.Level.INFO, "Creating 1 TextMessage");
+			messageSent = qSession.createTextMessage();
+			messageSent.setText("Message from closedQueueConnectionAckTest");
+			messageSent.setStringProperty("COM_SUN_JMS_TESTNAME", "closedQueueConnectionAckTest");
 
-      // set up test tool for Queue
-      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
-      tool.getDefaultQueueReceiver().close();
-      tool.getDefaultQueueSession().close();
+			logger.log(Logger.Level.INFO, "Sending a TextMessage");
+			qSender.send(messageSent);
 
-      TestUtil.logTrace("Creating new session");
-      qSession = tool.getDefaultQueueConnection().createQueueSession(false,
-          Session.CLIENT_ACKNOWLEDGE);
-      qReceiver = qSession.createReceiver(tool.getDefaultQueue());
-      qSender = qSession.createSender(tool.getDefaultQueue());
-      tool.getDefaultQueueConnection().start();
+			logger.log(Logger.Level.INFO, "Receiving TextMessage");
+			messageReceived = (TextMessage) qReceiver.receive(timeout);
+			logger.log(Logger.Level.INFO, "Closing DefaultQueueConnection");
+			qReceiver.close();
+			qSender.close();
+			qSession.close();
+			tool.getDefaultQueueConnection().close();
 
-      TestUtil.logMsg("Creating 1 TextMessage");
-      messageSent = qSession.createTextMessage();
-      messageSent.setText("Message from closedQueueConnectionAckTest");
-      messageSent.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "closedQueueConnectionAckTest");
+			try {
+				if (messageReceived == null) {
+					pass = false;
+					logger.log(Logger.Level.ERROR, "Didnot receive any message!!");
+				} else {
+					messageReceived.acknowledge();
+					pass = false;
+					logger.log(Logger.Level.ERROR, "Should not be here!");
+				}
+			} catch (jakarta.jms.IllegalStateException is) {
+				logger.log(Logger.Level.INFO, "Pass: IllegalStateException thrown by acknowledge as expected");
+			} catch (Exception e) {
+				pass = false;
+				logger.log(Logger.Level.ERROR, "Expected IllegalStateException, got", e);
+			}
 
-      TestUtil.logMsg("Sending a TextMessage");
-      qSender.send(messageSent);
-
-      TestUtil.logMsg("Receiving TextMessage");
-      messageReceived = (TextMessage) qReceiver.receive(timeout);
-      TestUtil.logMsg("Closing DefaultQueueConnection");
-      qReceiver.close();
-      qSender.close();
-      qSession.close();
-      tool.getDefaultQueueConnection().close();
-
-      try {
-        if (messageReceived == null) {
-          pass = false;
-          TestUtil.logErr("Didnot receive any message!!");
-        } else {
-          messageReceived.acknowledge();
-          pass = false;
-          TestUtil.logErr("Should not be here!");
-        }
-      } catch (jakarta.jms.IllegalStateException is) {
-        TestUtil.logMsg(
-            "Pass: IllegalStateException thrown by acknowledge as expected");
-      } catch (Exception e) {
-        pass = false;
-        TestUtil.logErr("Expected IllegalStateException, got", e);
-      }
-
-      if (!pass) {
-        throw new Exception("Error: failures occurred during tests");
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new Exception("closedQueueConnectionAckTest");
-    }
-  }
+			if (!pass) {
+				throw new Exception("Error: failures occurred during tests");
+			}
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new Exception("closedQueueConnectionAckTest");
+		}
+	}
 }
