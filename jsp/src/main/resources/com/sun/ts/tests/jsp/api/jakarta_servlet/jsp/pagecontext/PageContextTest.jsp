@@ -19,9 +19,7 @@
 <%@ page import="com.sun.ts.tests.jsp.common.util.JspTestUtil,
                  java.io.IOException,
                  jakarta.servlet.jsp.tagext.BodyContent,
-                 java.util.Enumeration,
-                 jakarta.servlet.jsp.el.ExpressionEvaluator,
-                 jakarta.servlet.jsp.el.VariableResolver" %>
+                 java.util.Enumeration" %>
 <%@ page contentType="text/plain" errorPage="ErrorPage.jsp"%>
 
 <%!
@@ -1202,45 +1200,6 @@
     }
 %>
 
-<%!
-    public void pageContextGetExpressionEvaluatorTest(HttpServletRequest req,
-                                                      HttpServletResponse res,
-                                                      JspWriter out)
-    throws ServletException, IOException {
-        PageContext pc = (PageContext) req.getAttribute(PAGECONTEXT_ATTR);
-        if (pc != null) {
-            ExpressionEvaluator eval = pc.getExpressionEvaluator();
-            if (eval != null) {
-                out.println("Test PASSED");
-            } else {
-                out.println("Test FAILED.  PageContext.getExpressionEvaluator" +
-                    " returned null.");
-            }
-        } else {
-            out.println("Test FAILED. No PageContext object available.");
-        }
-    }
-%>
-
-<%!
-    public void pageContextGetVariableResolverTest(HttpServletRequest req,
-                                                   HttpServletResponse res,
-                                                   JspWriter out)
-    throws ServletException, IOException {
-        PageContext pc = (PageContext) req.getAttribute(PAGECONTEXT_ATTR);
-        if (pc != null) {
-            VariableResolver resolver = pc.getVariableResolver();
-            if (resolver != null) {
-                out.println("Test PASSED");
-            } else {
-                out.println("Test FAILED.  PageContext.getVariableResolver()" +
-                    " returned null.");
-            }
-        } else {
-            out.println("Test FAILED. No PageContext object available.");
-        }
-    }
-%>
 
 <%!
     public void pageContextFindAttributeNullNameTest(HttpServletRequest req,
