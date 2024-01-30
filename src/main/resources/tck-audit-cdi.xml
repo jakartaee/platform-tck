@@ -11252,7 +11252,7 @@
     <section id="process_injection_point_ee" title="ProcessInjectionPoint event and EJB" level="3">
         <assertion id="a">
             <text>When running in Jakarta EE, the container must also fire an event for every injection point of every Jakarta EE component class supporting injection
-                that may be instantiated by the container at runtime, including EJB session or message-driven
+                that may be instantiated by the container at runtime, including every EJB session or message-driven
                 bean.
             </text>
         </assertion>
