@@ -1,41 +1,75 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <artifactId>cdi-tck-parent</artifactId>
-        <groupId>jakarta.enterprise</groupId>
-        <version>4.1.0-SNAPSHOT</version>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.9</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>cdi-tck-web-impl</artifactId>
-    <name>CDI Web TCK Test Suite</name>
+    <groupId>jakarta.enterprise</groupId>
+    <artifactId>cdi-tck-ee-impl</artifactId>
+    <version>11.0.0-SNAPSHOT</version>
+    <name>CDI EE Integration TCK Test Suite</name>
 
-    <description>CDI Web TCK tests</description>
+    <description>CDI EE Integration TCK tests</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-            <!-- Jakarta EE APIs in Web Profile -->
-            <!-- Wave0 -->
-            <jpa.api.version>3.2.0-M1</jpa.api.version>
-            <jms.api.version>3.1.0</jms.api.version>
-            <!-- Wave1 -->
-            <atinject.api.version>2.0.1</atinject.api.version>
-            <interceptors.api.version>2.2.0-M1</interceptors.api.version>
-            <servlet.api.version>6.0.0</servlet.api.version>
-            <!-- Wave2 -->
-            <jsp.api.version>3.1.0</jsp.api.version>
+        <testng.version>7.9.0</testng.version>
+        <jboss.test.audit.version>2.0.0.Final</jboss.test.audit.version>
+        <arquillian.version>1.8.0.Final</arquillian.version>
+        <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
+        <apache.httpclient.version>3.1</apache.httpclient.version>
+        <htmlunit.version>2.50.0</htmlunit.version>
+        <selenium.version>4.7.2</selenium.version>
+        <xmlunit.version>2.9.1</xmlunit.version>
 
-            <!-- Wave4 -->
-            <jaxrs.api.version>3.1.0</jaxrs.api.version>
-            <jta.api.version>2.0.1</jta.api.version>
+        <!-- CDI API -->
+        <cdi.api.version>4.1.0-M1</cdi.api.version>
+        <cdi.core.tck.version>4.1.0-M1</cdi.core.tck.version>
+        <maven.compiler.release>11</maven.compiler.release>
+        <!-- Jakarta EE APIs Core -->
+        <annotations.api.version>3.0.0-M1</annotations.api.version>
+        <interceptors.api.version>2.2.0-M1</interceptors.api.version>
+        <atinject.api.version>2.0.1</atinject.api.version>
+        <el.api.version>5.0.1</el.api.version>
 
-            <!-- Wave5 -->
-            <ejb.api.version>4.0.1</ejb.api.version>
-            <jca.api.version>2.1.0</jca.api.version>
+        <!-- Jakarta EE APIs in Web Profile -->
+        <!-- Wave0 -->
+        <jpa.api.version>3.2.0-M1</jpa.api.version>
+        <jms.api.version>3.1.0</jms.api.version>
+        <!-- Wave1 -->
+        <atinject.api.version>2.0.1</atinject.api.version>
+        <interceptors.api.version>2.2.0-M1</interceptors.api.version>
+        <servlet.api.version>6.0.0</servlet.api.version>
+        <!-- Wave2 -->
+        <jsp.api.version>3.1.0</jsp.api.version>
 
-            <!-- Wave6 -->
-            <jsf.api.version>3.0.0</jsf.api.version>
+        <!-- Wave4 -->
+        <jaxrs.api.version>3.1.0</jaxrs.api.version>
+        <jta.api.version>2.0.1</jta.api.version>
+
+        <!-- Wave5 -->
+        <ejb.api.version>4.0.1</ejb.api.version>
+        <jca.api.version>2.1.0</jca.api.version>
+
+        <!-- Wave6 -->
+        <jsf.api.version>3.0.0</jsf.api.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
 
@@ -97,32 +131,35 @@
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>cdi-tck-core-impl</artifactId>
-            <version>${project.version}</version>
+            <version>${cdi.core.tck.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>${cdi.api.version}</version>
         </dependency>
 
-        <dependency>
+        <!--dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>cdi-tck-api</artifactId>
-        </dependency>
+        </dependency-->
 
-        <dependency>
+        <!--dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>cdi-tck-ext-lib</artifactId>
-        </dependency>
+        </dependency-->
 
         <dependency>
             <groupId>org.jboss.arquillian.testng</groupId>
             <artifactId>arquillian-testng-container</artifactId>
+            <version>${arquillian.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>container-se-api</artifactId>
+            <version>${arquillian.container.se.api.version}</version>
         </dependency>
 
         <dependency>
@@ -133,51 +170,61 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.interceptor</groupId>
             <artifactId>jakarta.interceptor-api</artifactId>
+            <version>${interceptors.api.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
+            <version>${annotations.api.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
+            <version>${atinject.api.version}</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
+            <version>${el.api.version}</version>
         </dependency>
 
         <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
+            <version>${apache.httpclient.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
+            <version>${selenium.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
+            <version>5.3.1</version>
         </dependency>
 
         <dependency>
             <groupId>net.sourceforge.htmlunit</groupId>
             <artifactId>htmlunit</artifactId>
+            <version>${htmlunit.version}</version>
         </dependency>
 
         <dependency>
@@ -264,10 +311,15 @@
                 <configuration>
                     <systemPropertyVariables>
                         <!-- Dummy porting package impls -->
-                        <org.jboss.cdi.tck.spi.Beans>org.jboss.cdi.tck.test.porting.DummyBeans</org.jboss.cdi.tck.spi.Beans>
-                        <org.jboss.cdi.tck.spi.Contexts>org.jboss.cdi.tck.test.porting.DummyContexts</org.jboss.cdi.tck.spi.Contexts>
-                        <org.jboss.cdi.tck.spi.Contextuals>org.jboss.cdi.tck.test.porting.DummyContextuals</org.jboss.cdi.tck.spi.Contextuals>
-                        <org.jboss.cdi.tck.spi.CreationalContexts>org.jboss.cdi.tck.test.porting.DummyCreationalContexts</org.jboss.cdi.tck.spi.CreationalContexts>
+                        <org.jboss.cdi.tck.spi.Beans>org.jboss.cdi.tck.test.porting.DummyBeans
+                        </org.jboss.cdi.tck.spi.Beans>
+                        <org.jboss.cdi.tck.spi.Contexts>org.jboss.cdi.tck.test.porting.DummyContexts
+                        </org.jboss.cdi.tck.spi.Contexts>
+                        <org.jboss.cdi.tck.spi.Contextuals>org.jboss.cdi.tck.test.porting.DummyContextuals
+                        </org.jboss.cdi.tck.spi.Contextuals>
+                        <org.jboss.cdi.tck.spi.CreationalContexts>
+                            org.jboss.cdi.tck.test.porting.DummyCreationalContexts
+                        </org.jboss.cdi.tck.spi.CreationalContexts>
                         <org.jboss.cdi.tck.spi.EL>org.jboss.cdi.tck.test.porting.DummyEL</org.jboss.cdi.tck.spi.EL>
                     </systemPropertyVariables>
                 </configuration>
@@ -306,7 +358,7 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <ignore />
+                                        <ignore/>
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>

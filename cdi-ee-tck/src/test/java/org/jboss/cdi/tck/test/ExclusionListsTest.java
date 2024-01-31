@@ -36,8 +36,9 @@ public class ExclusionListsTest {
         List<URL> xmls = new ArrayList<>();
         ExclusionListsTest.class.getClassLoader().getResources("tck-tests.xml").asIterator().forEachRemaining(xmls::add);
         assertEquals(xmls.size(), 2);
-        URL control = xmls.stream().filter(it -> !it.toString().contains("web")).findFirst().orElseThrow();
-        URL test = xmls.stream().filter(it -> it.toString().contains("web")).findFirst().orElseThrow();
+        System.out.printf("xmls: %s\n", xmls);
+        URL control = xmls.stream().filter(it -> it.toString().contains("core")).findFirst().orElseThrow();
+        URL test = xmls.stream().filter(it -> !it.toString().contains("core")).findFirst().orElseThrow();
 
         Diff diff = DiffBuilder.compare(control)
                 .withTest(test)
