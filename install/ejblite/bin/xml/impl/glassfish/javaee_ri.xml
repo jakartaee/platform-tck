@@ -1,0 +1,578 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="CTS Java EE RI configuration" basedir="." default="usage">
+
+    <!-- IMPORTS -->
+    <import file="./common.xml" optional="true"/>
+    <import file="../../../../../../bin/xml/impl/glassfish/common.xml" optional="true"/>
+
+    <property name="admin.user"         value="${ri.admin.user}"/>
+    <property name="admin.password"     value="${ri.admin.passwd}" />
+    <property name="server.host"        value="${ri.admin.host}"/>
+    <property name="server.port"        value="${ri.admin.port}"/>
+    <property name="server.orb.port"    value="${orb.port.ri}"/>
+    <property name="cli.path"           value="${ri.admin}"/>
+    <property name="imqbin.loc"         value="${ri.imqbin.loc}"/>
+    <property name="server.domain.name" value="${ri.domain.name}"/>
+    <property name="server.domain"      value="${ri.domain}"/>
+    <property name="server.config.dir"  value="config"/>
+    <property name="server.instance"    value="${ri.server}"/>
+    <property name="server.home"        value="${javaee.home.ri}"/>
+    <property name="drive"              value="${ri.applicationRoot}"/>
+
+    <var name="use.derby.dbName" value="${derby.dbName.ri}"/>
+    <var name="use.derby.server" value="${derby.server.ri}"/>
+    <var name="use.derby.port" value="${derby.port.ri}"/>
+    <var name="use.derby.user" value="${derby.user.ri}"/>
+    <var name="use.derby.passwd" value="${derby.passwd.ri}"/>
+    <var name="use.derby.url" value="${derby.url.ri}"/>
+    <var name="use.derby.driver" value="${derby.driver.ri}"/>
+    <var name="use.derby.system.home" value="${derby.system.home.ri}"/>
+    <var name="use.derby.classpath" value="${derby.classpath.ri}"/>
+    <var name="use.derby.classes" value="${derby.classes.ri}"/>
+    <var name="use.derby.poolName" value="${derby.poolName.ri}"/>
+    <var name="use.derby.dataSource" value="${derby.dataSource.ri}"/>
+    <var name="use.derby.properties" value="${derby.properties.ri}"/>
+    <var name="use.derby.startup.delay" value="${derby.startup.delay.ri}"/>
+
+    <var name="use.jdbc.poolName" value="${jdbc.poolName.ri}"/>
+    <var name="use.jdbc.maxpoolsize" value="${jdbc.maxpoolsize.ri}"/>
+    <var name="use.jdbc.steadypoolsize" value="${jdbc.steadypoolsize.ri}"/>
+
+
+    <property name="interop.on.same.box"  value="${ri.and.vi.run.on.same.host}"/>  
+    <property name="orb.iiop.orbserverid" value="${ri.orb.iiop.orbserverid}"/>
+
+    <condition property="use.orbserverid">
+        <istrue value="${interop.on.same.box}"/>
+    </condition >
+
+
+    <target name="usage">
+        <echo message="The following ant targets are available to configure Java EE RI for CTS:"/>
+        <echo message="ant -f javaee_ri.xml target"/>
+        <echo message=""/>
+        <echo message="The primary tasks are:"/>
+        <echo message=""/>
+        <echo message="clean.ri " />
+        <echo message="config.ri" />
+        <echo message="enable.security" />
+        <echo message="disable.security" />
+   
+        <echo message=""/>
+        <echo message="Additional tasks are:"/>
+        <echo message=""/>
+        <echo message="concat.security" />
+        <echo message="copy.cts.jars" />
+        <echo message="add.cts.users" />
+        <echo message="drop.cts.users" />
+        <echo message="add.jdbc.pools" />
+        <echo message="drop.jdbc.pools" />
+        <echo message="list.jdbc.pools" />
+        <echo message="add.jdbc.resources" />
+        <echo message="drop.jdbc.resources" />
+        <echo message="add.classpathsuffix" />
+        <echo message="drop.classpathsuffix" />
+        <echo message="add.ssl.client.config" />
+        <echo message="drop.ssl.client.config" />
+        <echo message="set.orbport" />
+     </target>
+
+
+     <!-- Configure the OS specific properties based on the OS 
+         is being utilized.
+      -->
+     <target name="configPlatform" 
+           depends="checkPlatform, configUnix, configWindows, convertPaths">
+
+        <!-- Check if we need to set jvm options -->
+        <condition property="jvm.args.set">
+          <not>
+            <equals arg1="" arg2="${ri.jvm.options}" casesensitive="true" trim="true"/>
+          </not>
+        </condition>
+
+        <!-- Check if glassfish is installed and if so, set a property to indicate that -->
+        <condition property="glassfish.installed">
+            <or>
+                <available file="${s1as.admin}" />
+                <available file="${s1as.admin}.bat" />
+            </or>
+        </condition>
+
+     </target>
+
+     <!--
+         Convert the paths correctly for windows/unix
+     -->
+     <target name="convertPaths" >
+        <translatepath escape="yes" propname="ri.asenv.loc"/>
+     </target>
+
+     <!--
+       Include the common targets
+     -->
+     <!--&include;-->
+
+     <!--
+       clean.ri removes all of the configuration settings required by
+       cts.  Note this does not remove the JMS resources.
+     -->
+     <target name="clean.ri" 
+           depends= "drop.cts.users, drop.jdbc.resources, drop.jdbc.pools, drop.classpathsuffix, drop.jvm.options, drop.certs, drop.ssl.client.config, delete.cts.jars" />
+
+     <!--
+       config.ri configures all of the S1AS settings required by
+       cts.  Note this does not configure the JMS and security resources.
+     -->
+     <target name="config.ri" 
+           depends= "filter.password.file, start.appserver, change.applicationRoot, copy.cts.jars, add.cts.users,add.jdbc.pools, add.jdbc.resources,  add.classpathsuffix, drop.jvm.options, add.jvm.options, set.orbport, create.asadmin.bat,concat.security, add.cert, add.ssl.client.config, set.http.ports, enable.trace" />
+
+
+    <!--
+      add.jvm.options installs the jvm options defined in the build.properties
+      file.   
+    -->
+    <target name="add.jvm.options" depends="configPlatform" if="jvm.args.set">
+         <antcall target="create-jvm-options" >
+          <param name="jvm.options" value="${ri.jvm.options}"/>
+         </antcall>
+    </target>
+
+    <!--
+      drop.jvm.options removes the jvm options that have been previously set.
+    -->
+    <target name="drop.jvm.options" depends="configPlatform" if="jvm.args.set">
+         <antcall target="delete-jvm-options" >
+          <param name="jvm.options" value=" ${ri.jvm.options.remove}"/>
+         </antcall>
+    </target>
+
+
+     <!--
+       copy.cts.jars copies the cts jar files to the instance lib directory.
+     -->
+     <target name="copy.cts.jars" >
+        <copy file="${ts.home}/lib/cts.jar" tofile="${ri.domain}/lib/ext/cts.jar" overwrite="yes" />
+        <copy file="${ts.home}/lib/tsharness.jar" tofile="${ri.domain}/lib/ext/tsharness.jar" overwrite="yes" />
+     </target>
+
+     <target name="delete.cts.jars" >
+        <delete file="${ri.domain}/lib/ext/cts.jar" quiet="yes" />
+        <delete file="${ri.domain}/lib/ext/tsharness.jar" quiet="yes" />
+     </target>
+
+     <!--
+       Add the jvm options needed to enable csiv2
+     -->
+     <target name="enable.csiv2" depends="configPlatform" >
+        <copy file="${ts.home}/lib/riinterceptors.jar" tofile="${javaee.home.ri}/lib/riinterceptors.jar" overwrite="yes" />
+        <antcall target="create.csiv2.vm.options"/>
+        <antcall target="add.default.csiv2.interceptor.logging.properties"/>
+        <antcall target="restart.server"/>
+     </target>
+
+     <!--
+       This target was created because we have tools, namely the runcts ant task,
+       that would like to be able to create the CSIV2 VM options for interop but not call
+       server restart.  This was due to techical glitches when restarting the server
+       from a spawned process in the task.
+     -->
+    <target name="create.csiv2.vm.options" depends="configPlatform">
+        <antcall target="create-jvm-options" >
+            <param name="jvm.options" value=" -Dcom.sun.enterprise.iiop.security.interceptorFactory=com.sun.ts.tests.interop.csiv2.common.LoggingSecRequestInterceptorFactory"/>
+        </antcall>
+        <antcall target="create.jvm.option.for.orbserverid"/>
+
+        <!-- add call to set jvm option for use by interop-csiv2 loggerServlet -->
+        <antcall target="create-one-jvm-option" >
+            <param name="jvm.options" value=" -Dri.log.file.location=${ri.log.file.location}"/>
+        </antcall>
+
+    </target>
+
+    <!--
+      This target is used to create a JVM arg in the RI.  This option is needed 
+      due to a problem that arose when trying to run both the RI and VI on the
+      same host when there is zero port configuration.  Setting an ORB server id
+      on the server will help the issues encountered when remote ejbs try to 
+      communicate with target ejbs that are both on the same host.
+      See issue:  http://docs.oracle.com/cd/E19226-01/820-7688/gjktd/index.html
+                  http://java.net/jira/browse/GLASSFISH-11152
+      -->
+    <target name="create.jvm.option.for.orbserverid"  if="use.orbserverid">
+        <antcall target="create-jvm-options" >
+            <param name="jvm.options" value=" -Dorg.glassfish.orb.iiop.orbserverid=${orb.iiop.orbserverid}"/>
+        </antcall>
+    </target>
+
+    <target name="add.default.csiv2.interceptor.logging.properties" depends="configPlatform">
+        <echo append="true" file="${ri.domain}/config/logging.properties" message="com.sun.ts.tests.interop.csiv2.common.LoggingSecRequestInterceptorFactory.level=INFO${line.separator}"/>
+        <echo append="true" file="${ri.domain}/config/logging.properties" message="com.sun.ts.tests.interop.csiv2.common.LoggingSecClientRequestInterceptor.level=INFO${line.separator}"/>
+        <echo append="true" file="${ri.domain}/config/logging.properties" message="com.sun.ts.tests.interop.csiv2.common.LoggingSecServerRequestInterceptor.level=INFO${line.separator}"/>
+
+     </target>
+
+     <!--
+       Remove the  jvm options which are used to enable csiv2 logging
+     -->
+     <target name="disable.csiv2" depends="configPlatform" >
+        <antcall target="delete.csiv2.vm.options"/>
+        <antcall target="delete.default.csiv2.interceptor.logging.properties"/>
+        <delete file="${javaee.home.ri}/lib/riinterceptors.jar" quiet="yes" />
+        <antcall target="restart.server"/>
+     </target>
+
+     <!-- This completely removes the entrees from the file -->
+     <target name="delete.default.csiv2.interceptor.logging.properties" >
+        <loadfile srcfile="${ri.domain}/config/logging.properties" property="props"/>
+        <propertyregex property="csiv2logging.1.prop"
+                 input="${props}"
+                 regexp="(com.sun.ts.tests.interop.csiv2.common.LoggingSecClientRequestInterceptor.level=.*${line.separator})"
+                 replace=""
+                 defaultvalue="${props}"
+                 override="true"/>
+        <propertyregex property="csiv2logging.2.prop"
+                 input="${csiv2logging.1.prop}"
+                 regexp="(com.sun.ts.tests.interop.csiv2.common.LoggingSecServerRequestInterceptor.level=.*${line.separator})"
+                 replace=""
+                 defaultvalue="${csiv2logging.1.prop}"
+                 override="true"/>
+        <propertyregex property="csiv2logging.3.prop"
+                 input="${csiv2logging.2.prop}"
+                 regexp="(com.sun.ts.tests.interop.csiv2.common.LoggingSecRequestInterceptorFactory.level=.*${line.separator})"
+                 replace=""
+                 defaultvalue="${csiv2logging.2.prop}"
+                 override="true"/>
+        <echo message="${csiv2logging.3.prop}" file="${ri.domain}/config/logging.properties"/>
+     </target>
+
+     <!--
+       This target was created because we have tools, namely the runcts ant task,
+       that would like to be able to delete the CSIV2 VM options for interop but not call
+       server restart.  This was due to techical glitches when restarting the server
+       from a spawned process in the task.
+     -->
+     <target name="delete.csiv2.vm.options" depends="configPlatform">
+         <antcall target="delete-jvm-options" >
+          <param name="jvm.options" value=" -Dcom.sun.enterprise.iiop.security.interceptorFactory=com.sun.ts.tests.interop.csiv2.common.LoggingSecRequestInterceptorFactory"/>
+         </antcall>
+         <antcall target="delete-jvm-options" >
+          <param name="jvm.options" value=" -Dorg.glassfish.orb.iiop.orbserverid=${orb.iiop.orbserverid}"/>
+         </antcall>
+         <antcall target="delete-one-jvm-option" >
+            <param name="jvm.options" value=" -Dri.log.file.location=${ri.log.file.location}"/>
+         </antcall>
+
+
+     </target>
+
+     <!--
+       add.classpathsuffix adds the classpath settings as defined in 
+       build.properties.
+
+       The path is converted to correctly reflect the OS that ant is being
+       executed on.
+     -->
+     <target name="add.classpathsuffix" depends="configPlatform" >
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.java-config.classpath_suffix=${javaee.home.ri.classpathsuffix}"/>
+         </antcall>
+     </target>
+
+     <!--
+       add.cts.users configures the users required by cts.
+     -->
+     <target name="add.cts.users" depends="configPlatform">
+         <antcall target="create-file-user" >
+          <param name="userpassword" value="j2ee"/>
+          <param name="usergroups" value="staff:mgr"/>
+          <param name="userName" value="j2ee"/>
+         </antcall>
+         <antcall target="create-file-user" >
+          <param name="userpassword" value="javajoe"/>
+          <param name="usergroups" value="guest"/>
+          <param name="userName" value="javajoe"/>
+         </antcall>
+         <antcall target="create-file-user" >
+          <param name="userpassword" value="j2ee_ri"/>
+          <param name="usergroups" value="staff"/>
+          <param name="userName" value="j2ee_ri"/>
+         </antcall>
+     </target>
+
+     <!--
+       drop.cts.users removes the users required by cts.
+     -->
+     <target name="drop.cts.users" depends="configPlatform">
+         <antcall target="delete-file-user" >
+          <param name="userName" value="j2ee"/>
+         </antcall>
+         <antcall target="delete-file-user" >
+          <param name="userName" value="javajoe"/>
+         </antcall>
+         <antcall target="delete-file-user" >
+          <param name="userName" value="j2ee_ri"/>
+         </antcall>
+     </target>
+
+     <!--
+       add.jdbc.pools configures the connection pools defined in the
+       build.properties files.
+     -->
+     <target name="add.jdbc.pools" depends="configPlatform" >
+         <antcall target="create-jdbc-connection-pool" >
+          <param name="restype" value="javax.sql.DataSource"/>
+          <param name="datasourceclassname" value="${use.derby.dataSource}"/>
+          <param name="pool.properties" value="${use.derby.properties}"/>
+          <param name="poolName" value="${use.derby.poolName}"/>
+         </antcall>
+     </target>
+
+     <!--
+       drop.jdbc.pools remove the connection pools defined in the
+       build.properties files.
+     -->
+     <target name="drop.jdbc.pools" depends="configPlatform">
+         <antcall target="delete-jdbc-connection-pool" >
+          <param name="poolName" value="${use.derby.poolName}"/>
+         </antcall>
+     </target>
+
+     <!--
+       add.jdbc.resources configures the JNDI resources used by cts to
+       the correct connection pool as defined in the build.properties file.
+
+       Also set the maxPoolSize and steadyPoolSize for the connection pool
+       under test.
+     -->
+     <target name="add.jdbc.resources" depends="configPlatform">
+         <antcall target="set" >
+          <param name="set.value" value=" ${resources.dottedname.prefix}.jdbc-connection-pool.${use.derby.poolName}.max_pool_size=${use.jdbc.maxpoolsize}"/>
+         </antcall>
+
+         <antcall target="set" >
+          <param name="set.value" value=" ${resources.dottedname.prefix}.jdbc-connection-pool.${use.derby.poolName}.steady_pool_size=${use.jdbc.steadypoolsize}"/>
+         </antcall>
+
+        <antcall target="create-jdbc-resource" >
+          <param name="connectionpoolid" value="${use.derby.poolName}"/>
+          <param name="jndiName" value="jdbc/DB1"/>
+         </antcall>
+
+      </target>
+
+      <!--
+        drop.jdbc.resources removes the JNDI resources used by cts.
+      -->
+      <target name="drop.jdbc.resources" depends="configPlatform">
+
+        <antcall target="delete-jdbc-resource" >
+          <param name="jndiName" value="jdbc/DB1"/>
+        </antcall>
+      </target>
+
+      <!--
+        set.orbport configures the orb port required by cts.
+      -->
+      <target name="set.orbport" depends="configPlatform" >
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.iiop-service.iiop-listener.${instance.listenerName}.port=${orb.port.ri}"/>
+         </antcall>
+      </target>
+
+      <!--
+        Configure the http ports for the RI
+      -->
+      <target name="set.http.ports" depends="configPlatform">
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.network-config.network-listeners.network-listener.http-listener-1.port=${webServerPort.2}"/>
+         </antcall>
+         <antcall target="set" >
+          <param name="set.value" value=" ${server.instance}-config.network-config.network-listeners.network-listener.http-listener-2.port=${securedWebServicePort.2}"/>
+         </antcall>
+         <antcall target="set" >
+             <!-- need to explicitly enable the https port -->
+              <param name="set.value" value=" ${server.instance}-config.network-config.network-listeners.network-listener.http-listener-2.enabled=true"/>
+         </antcall>
+     </target>
+
+      <!--
+         NOTE:  The following target(s) are called from build.xml.
+                anything specific to  javaee_ri.xml for configuring the
+                RI for interop should be placed above this comment.
+      -->
+
+
+      <!--
+        config.cts configures files that must be available to the machine
+                   where CTS is being run.
+      -->
+      <target name="filter.if.vi.is.glassfish"  depends="configPlatform"  if="glassfish.installed" >
+          <echo message="NOTE - the build determined glassfish exists so filter.sun-acc.xml called for glassfish" />
+          <antcall target="filter.sun-acc.xml">
+            <param name="sun-acc.xml"  value="s1as.sun-acc.xml"/>
+            <param name="sun-acc.host" value="${orb.host}"/>
+            <param name="sun-acc.port" value="${orb.port}"/>
+            <param name="as.base"      value="${javaee.home}"/>
+         </antcall>
+      </target>
+      <target name="config.cts" depends="configPlatform">
+         <echo message="NOTE - filter.sun-acc.xml called for RI" />
+         <antcall target="filter.sun-acc.xml">
+            <param name="sun-acc.xml"  value="ri.sun-acc.xml"/>
+            <param name="sun-acc.host" value="${orb.host.ri}"/>
+            <param name="sun-acc.port" value="${orb.port.ri}"/>
+            <param name="as.base"      value="${javaee.home.ri}"/>
+         </antcall>
+
+         <!-- the following call only does something if we have glassfish installed -->
+         <antcall target="filter.if.vi.is.glassfish"/>
+      </target>
+
+
+      <!-- If one user installs the RI and a different user installs the VI the   -->
+      <!-- config directories need to have their permissions loosened so at       -->
+      <!-- runtime, the appclient container may access the cacerts.jks file in    -->
+      <!-- both the RI and VI.  It also allows one user to config both the RI     -->
+      <!-- and VI.                                                                -->
+      <target name="ri.perms">
+        <chmod file="${ri.domain}/config" perm="ugo+rwx" type="dir"/>
+        <chmod dir="${ri.domain}/config" perm="ugo+rwx" includes="*"/>
+      </target>
+
+       <!--
+          Delete the certs from the RI keystore
+       -->
+       <target name="drop.certs" depends="configPlatform">
+
+          <antcall target="delete.cert" >
+             <param name="cert.alias" value="${client.cert.alias}" />
+             <param name="trustStore" 
+                    value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks"/>
+             <param name="trustStore.password" value="${keystore.password}" />
+          </antcall>
+
+          <antcall target="delete.cert" >
+             <param name="cert.alias" value="VI_CERT" />
+             <param name="trustStore"
+                value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks"/>
+             <param name="trustStore.password" value="${keystore.password}" />
+          </antcall>
+        </target>
+
+     <!--
+       Add cts certificate to the RI
+     -->
+     <target name="add.cert" depends="configPlatform,checkForFiles,generate.certs" >
+        <antcall target="import.cert" >
+            <param name="cert.alias" value="${client.cert.alias}" />
+            <param name="cert.file" value="${cert.file}" />
+            <param name="trustStore.password" value="${keystore.password}" />
+            <param name="trustStore"
+                   value="${ri.domain.dir}/${ri.domain.name}/config/cacerts.jks"/>
+        </antcall>
+
+     </target>
+     
+     <target name="modify.ri.ports" depends="configPlatform" >
+         
+         <!-- Change default iiop-listener SSL port from 3820 to 3821   -->
+         <antcall target="set" >
+             <param name="set.value" value=" ${server.instance}-config.iiop-service.iiop-listener.SSL.port=3821"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- Change default iiop-listener SSL_MUTUALAUTH port from 3920 to 3921   -->
+         <antcall target="set" >
+             <param name="set.value" value=" ${server.instance}-config.iiop-service.iiop-listener.SSL_MUTUALAUTH.port=3921"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- Change default jmx-connector port from 8686 to 8786   -->
+         <antcall target="set" >
+             <param name="set.value" value=" ${server.instance}-config.admin-service.jmx-connector.system.port=8786"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- Change default jms port from 7676 to 7776   -->
+         <antcall target="set" >
+             <param name="set.value" value=" ${server.instance}-config.jms-service.jms-host.default_JMS_host.port=7776"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- delete default osgi.shell.telnet port 6666  -->
+         <antcall target="delete-jvm-options" >
+             <param name="jvm.options" value=" -Dosgi.shell.telnet.port=6666"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- set default osgi.shell.telnet port from 6666 to 6766   -->
+         <antcall target="create-jvm-options" >
+             <param name="jvm.options" value=" -Dosgi.shell.telnet.port=6766"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- set -Dorg.glassfish.orb.iiop.orbserverid=200   -->
+         <antcall target="create-jvm-options" >
+             <param name="jvm.options" value=" -Dorg.glassfish.orb.iiop.orbserverid=200"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- set derby port from 1527   -->
+         <antcall target="set" >
+             <param name="set.value" value=" resources.jdbc-connection-pool.DerbyPool.property.PortNumber=${use.derby.port}"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- Change default admin port from 4848 to $ri.admin.port 4849  -->
+         <antcall target="set" >
+             <param name="set.value" value=" ${server.instance}-config.network-config.network-listeners.network-listener.admin-listener.port=${ri.admin.port}"/>
+             <param name="server.port" value="4848"/>
+         </antcall>
+         
+         <!-- Restart RI  -->
+         <antcall target="restart.server" />
+     </target>
+     
+     <target name="start.javadb.ri.asadmin" depends="configPlatform" >
+         <exec executable="${exec.asadmin}" failifexecutionfails="false">
+             <arg line="${exec.asadmin.part2}" />
+             <arg line=" start-database"/>
+             <arg line=" --dbport ${use.derby.port}"/>
+         </exec>
+     </target>
+
+     <target name="stop.javadb.ri.asadmin"  depends="configPlatform">
+         <exec executable="${exec.asadmin}" failifexecutionfails="false">
+             <arg line="${exec.asadmin.part2}" />
+             <arg line=" stop-database"/>
+             <arg line=" --dbport ${use.derby.port}"/>
+         </exec>
+     </target>
+
+     <!-- Enable & Disable HTTP TRACE requests, they are disabled by default -->
+     <target name="enable.trace" depends="configPlatform">
+        <antcall target="set">
+          <param name="set.value" value=" ${server.instance}-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true"/>
+        </antcall>
+     </target>
+     
+</project>

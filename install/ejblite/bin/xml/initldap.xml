@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="CTS Ldap Initialization" basedir="." default="init.unboundid">
+
+    <property file="${ts.home}/ts.jte"/>    
+
+     <target name="init.ldap">
+        <antcall target="init.unboundid" />
+     </target>
+ 
+    <target name="init.unboundid">
+         <antcall target="unboundid.install" />
+    </target>
+
+
+    <target name="unboundid.install"  if="${ldap.install.server}">
+       <echo message="install inMemoryLdapServer..."/>
+       <if>
+       	  <available file="${ldap.ldif.file}"/>
+          <then>
+		<java classname="com.sun.ts.tests.securityapi.idstore.ldapserver.LdapServerSetup" fork="true" spawn="true">
+	           <sysproperty key="ldif.file" value="${ldap.ldif.file}"/>
+	           <classpath>
+        	     <pathelement location="${unboundid.installation.package}" />
+	             <path location="${ts.home}/lib/securityapi_idstore_ldapserver.jar"/>
+        	   </classpath>
+	       </java>
+	 </then>
+	 <else>
+	    <fail message="ERROR: ldap.ldif doesn't exist, please check ldap.ldif.file property in ts.jte! current path=${ldap.ldif.file}" />
+	 </else>
+	</if>
+    </target>
+
+
+</project>

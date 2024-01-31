@@ -45,6 +45,7 @@
     </target>
  
     <target name="compile" >
+        <echo message="trial rmi.classes : ${rmi.classes}"/>
         <ts.javac includes="${pkg.dir}/harness/**/*.java,
                             ${pkg.dir}/util/**/*.java, 
                             ${pkg.dir}/porting/**/*.java, 
