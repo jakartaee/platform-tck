@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+</h:head>
+<h:body>
+
+	<h:form id="ajaxForm">
+		<h:inputHidden value="#{jakarta.enterprise.context.conversation.id}" id="conversationId" />
+		<h:inputText value="#{storm.strength}" id="stormStrength" />
+		<h:commandButton action="#{storm.beginConversation}"
+			value="Begin conversation" id="beginConversationButton">
+			<f:ajax render="@form" />
+		</h:commandButton>
+		<h:commandButton value="Thunder" id="thunderButton">
+			<f:ajax execute="stormStrength" />
+			<!-- Rerender the whole form - conversation id is part of form action attribute -->
+			<!-- f:param name="cid" value="#{jakarta.enterprise.context.conversation.id}" /-->
+		</h:commandButton>
+	</h:form>
+
+</h:body>
+</html>
