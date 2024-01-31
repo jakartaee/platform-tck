@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<description>Environment variables for managed beans</description>
+	<display-name>Env Injection Tests</display-name>
+
+	<env-entry>
+		<env-entry-name>greeting</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>Hello there my friend</env-entry-value>
+	</env-entry>
+
+	<env-entry>
+		<env-entry-name>check</env-entry-name>
+		<env-entry-type>java.lang.Boolean</env-entry-type>
+		<env-entry-value>true</env-entry-value>
+	</env-entry>
+
+	<session-config>
+		<session-timeout>10</session-timeout>
+	</session-config>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
+
+</web-app>

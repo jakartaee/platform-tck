@@ -1,0 +1,235 @@
+<specification
+    xmlns="http://jboss.com/products/weld/tck/audit"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://jboss.com/products/weld/tck/audit /Users/pmuir/workspace/jboss-test-audit/api/src/main/resources/tck-audit.xsd"
+    name="Jakarta EE: Managed Beans"
+    id="mb"
+    version="1.0.PFD">
+
+  <section id="2" title="Managed Beans Definition">
+
+  </section>
+  
+  <section id="2.1" title="Basic Model">
+  
+  </section>
+  
+  <section id="2.1.1" title="Component definition">
+    <group>
+      <text>A Managed Bean can be declared by annotating its class with the |jakarta.annotation.ManagedBean| annotation.</text>
+      <assertion id="aa">
+         <text>Verify a top-level class</text>
+      </assertion>
+      
+      <assertion id="ab">
+         <text>Verify a static inner class</text>
+      </assertion>
+      
+    </group>
+    
+    
+    <group>
+      <text>A Managed Bean must not be: a final class, an abstract class, a non-static inner class or a generic class.</text>
+      
+      <assertion id="b" testable="false">
+        <text>Test that a managed bean may not be a final class.</text>
+        <note>Doesn't define any error condition</note>
+      </assertion>
+      
+      <assertion id="c" testable="false">
+        <text>Test that a managed bean may not be an abstract class.</text>
+        <note>Doesn't define any error condition</note>
+      </assertion>
+      
+      <assertion id="d" testable="false">
+        <text>Test that a managed bean may not be a non-static inner class.</text>
+        <note>Doesn't define any error condition</note>
+      </assertion>
+      
+      <assertion id="e" testable="false">
+        <text>Test that a managed bean may not be a generic class.</text>
+        <note>Doesn't define any error condition</note>
+      </assertion>
+    </group>
+    
+    <assertion id="f" testable="false">
+      <text>A Managed Bean may not be serializable, unlike a regular JavaBean component.</text>
+      <note>Doesn't define any error condition</note>
+    </assertion>
+    
+    <assertion id="g">
+      <text>Managed Bean implementations must support Managed Beans that have a no-argument constructor.</text>
+    </assertion>
+  </section>
+  
+  <section id="2.1.2" title="Naming">
+    <assertion id="a">
+      <text>A Managed Bean may optionally have a name, a |String|.</text>
+      <note>Verify the name is optional</note>
+    </assertion>
+    
+    <assertion id="b">
+      <text>The name can be specified using an element of the |ManagedBean| annotation.</text>
+    </assertion>
+    
+    <assertion id="c" testable="false">
+      <text>Managed Bean names must be unique within a Jakarta EE module.  It is an error if a Jakarta EE module contains an EJB component and a Managed Bean with the same name.</text>
+      <note>The behaviour here is unspecified.</note>
+    </assertion>
+    
+    <group>
+      <text>For each named Managed Bean, Jakarta EE containers must make available the following entries in JNDI, using the same naming schema used for EJB components.  In the application namespace: |java:app/&lt;module-name&gt;/&lt;bean-name&gt;|.  In the module namespace of the module containing the Managed Bean: |java:module/&lt;bean-name&gt;|.</text>
+      
+      <assertion id="d">
+        <text>Test that the application namespace entry exists.</text>
+      </assertion>
+      
+      <assertion id="e">
+        <text>Test that the module namespace entry exists.</text>
+      </assertion>
+    </group>
+    
+    <group>
+      <text>Jakarta EE applications may obtain a new instance of a Managed Bean by looking up the corresponding names in JNDI or by using resource injection.  See Section MB.2.3, "[Injection of] Managed Bean References" for more details.</text>
+      
+      <assertion id="f">
+        <text>Test obtaining a new instance via JNDI lookup.</text>
+      </assertion>
+      
+      <assertion id="g">
+        <text>Test obtaining a new instance via resource injection.</text>
+      </assertion>    
+    </group>
+
+  </section>
+  
+  <section id="2.1.3" title="Lifecycle and Resource Injection">
+    <group>
+      <text>Managed Beans may use the |jakarta.annotation.PostConstruct| and |jakarta.annotation.PreDestroy| annotations to identify methods to be called back by the container at the appropriate points in the bean's lifecycle.</text>
+      
+      <assertion id="a">
+        <text>Test the |jakarta.annotation.PostConstruct| annotation.</text>
+      </assertion>
+      
+      <assertion id="b">
+        <text>Test the |jakarta.annotation.PreDestroy| annotation.</text>
+      </assertion>
+    </group>
+    
+    <group>
+      <text>In a Jakarta EE implementation, a Managed Bean may use any of the resource injection functionality laid out in Chapter EE.5 of the Jakarta EE Platform specification, "Resources, Naming and Injection".</text>
+      <assertion id="ca">
+         <text>Check @Resource injection</text>
+      </assertion>
+      <assertion id="cb">
+         <text>Check @EJB injection</text>
+      </assertion>
+    </group>
+    
+    <assertion id="d">
+      <text>A Managed Bean does not have its own component-scoped "|java:comp|" namespace.  For this reason, Managed Beans should define resources in the "|java:module|" namespace or above.  JNDI lookup operations from a method defined on a Managed Bean will use the naming context of that method's caller.</text>
+      <note>Check that lookup does use the naming context of the method's caller</note>
+    </assertion>
+  </section>
+  
+  <section id="2.1.4" title="Threading">
+    <assertion id="a">
+      <text>Method invocations on a Managed Bean execute in the same thread as the caller.</text>
+    </assertion>
+  </section>
+  
+  <section id="2.1.5" title="Interceptors">
+    <assertion id="a" testable="false">
+      <text>A Managed Bean may use interceptors as defined in the Interceptor specification.</text>
+      <note>No way to verify as spec doesn't provide a way to bind interceptors to a bean</note>
+    </assertion>
+  </section>
+  
+  <section id="2.2" title="Extensions">
+    <assertion id="a" testable="false">
+      <text>Specifications that build on the present one (called here an "extension specification") may modify some of the aspects of the basic model, as detailed in the rest of this section.</text>
+    </assertion>
+  </section>
+  
+  <section id="2.2.1" title="Component Definition">
+    <assertion id="a"> testable="false">
+      <text>An extension specification may provide ways to declare a Managed Bean that go beyond those in Section MB.2.1.1, "Component Definition".</text>
+    </assertion>
+    
+    <assertion id="b" testable="false">
+      <text>An extension specification may allow a Managed Bean to declare constructors with complex signatures, thus dropping the requirement that a no-argument constructor be present.</text>
+    </assertion>
+  </section>
+  
+  <section id="2.2.2" title="Naming">
+    <assertion id="a" testable="false">
+      <text>An extension specification may offer alternative ways to name a Managed Bean, e.g. as a side-effect of placing some other annotation on the bean class, but, if specified, the |ManagedBean(name="...")| annotation takes priority, and with it the rules in Section MB.2.1.2, "Naming".</text>
+    </assertion>
+    
+    <assertion id="b" testable="false">
+      <text>Of course an extension specification may also introduce one or more additional namespaces in which some or all Managed Beans get registered, either with the Managed Bean name defined in Section MB.2.1.2, "Naming" or with an independently defined name.</text>
+    </assertion>
+  </section>
+  
+  <section id="2.2.3" title="Lifecycle and Resource Injection">
+    <assertion id="a" testable="false">
+      <text>An extension specification may define its own lifecycle model, adding e.g. pooling, sharing of instances, etc., beyond the basic model described in Section MB.2.1.3, "Lifecycle and Resource Injection".</text>
+    </assertion>
+    
+    <assertion id="b" testable="false">
+      <text>An extension specification may allow Managed Beans to have their own "|java:comp|" namespace.</text>
+    </assertion>
+  </section>
+  
+  <section id="2.2.4" title="Threading">
+    <assertion id="a" testable="false">
+      <text>An extension specification may add its own threading requirements, overriding any requirements set in Section MB.2.1.4, "Threading".  For example, invocations on a [proxy for] a Managed Bean may be performed using a different thread than the caller's.</text>
+    </assertion>
+  </section>
+  
+  <section id="2.2.5" title="Interceptors">
+    <assertion id="a" testable="false">
+      <text>An extension specification may add its own interceptor-like facilities to the predefined one. For example, an extension specification may allow declaring type-safe interceptors, defined using a different set of APIs than those in the |jakarta.interceptor| package.</text>
+    </assertion>
+  </section>
+  
+  <section id="2.3" title="[Injection of] Managed Bean References">
+    <group>
+      <text>An instance of a named Managed Bean can be obtained by looking up its name in JNDI using the same naming scheme used for EJB components: |java:app/&lt;module-name&gt;/&lt;bean-name&gt;|, |java:module/&lt;bean-name&gt;|.  The latter will only work within the module the Managed Bean is declared in.  Each such lookup must return a new instance.</text>
+      
+      <assertion id="a">
+        <text>Test that the latter lookup only works within the Managed Bean's module.</text>
+      </assertion>
+      
+      <assertion id="b">
+        <text>Test that each lookup returns a new instance.</text>
+      </assertion>        
+    </group>
+    
+    <group>
+      <text>The |@Resource| annotation can be used to request the injection of a Managed Bean given either its type or its name.  If no name is specified, the type must be the Managed Bean class itself.  If a name is specified, then the type of the resource can be any of the types that the Managed Bean class implements, including any of its interfaces.</text>
+      
+      <assertion id="c">
+        <text>Test injection with no name.</text>
+      </assertion>
+      
+      <assertion id="d">
+        <text>Test injection with a name.</text>
+      </assertion>        
+    </group>
+  </section>
+  
+  <section id="2.3.1" title="Application Component Provider's Responsibilities">
+    <assertion id="a" testable="false">
+      <text>The Application Component Provider is responsible for requesting injection of a Managed Bean, or by looking it up in JNDI using an appropriate name.</text>
+      <note>What is this about?</note>
+    </assertion>
+  </section>
+  
+  <section id="2.3.2" title="Jakarta EE Product Provider's Responsibilities">
+    <assertion id="a" testable="false">
+      <text>The Jakarta EE Product Provider is responsible for providing appropriate instances of the requested Managed Bean class as required by this specification.</text>
+    </assertion>
+  </section>  
+
+</specification>
