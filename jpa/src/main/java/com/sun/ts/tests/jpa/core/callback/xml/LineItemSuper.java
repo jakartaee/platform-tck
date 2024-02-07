@@ -25,19 +25,18 @@ import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl;
 
 import jakarta.persistence.Column;
 
-public class LineItemSuper extends CallbackStatusImpl
-    implements java.io.Serializable, CallbackStatusIF {
-  public int quantity;
+public class LineItemSuper extends CallbackStatusImpl implements java.io.Serializable, CallbackStatusIF {
+	public int quantity;
 
-  public LineItemSuper() {
-  }
+	public LineItemSuper() {
+	}
 
-  @Column(name = "QUANTITY")
-  public int getQuantity() {
-    return quantity;
-  }
+	@Column(name = "QUANTITY")
+	public int getQuantity() {
+		return quantity;
+	}
 
-  public void setQuantity(int v) {
-    quantity = v;
-  }
+	public void setQuantity(int v) {
+		quantity = v;
+	}
 }

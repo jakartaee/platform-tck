@@ -28,36 +28,36 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("HW")
 public class HardwareProduct extends Product implements java.io.Serializable {
 
-  // Instance variables
-  private int modelNumber;
+	// Instance variables
+	private int modelNumber;
 
-  public HardwareProduct() {
-    super();
-  }
+	public HardwareProduct() {
+		super();
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Column(name = "MODEL", nullable = true)
-  public int getModelNumber() {
-    return modelNumber;
-  }
+	@Column(name = "MODEL", nullable = true)
+	public int getModelNumber() {
+		return modelNumber;
+	}
 
-  public void setModelNumber(int modelNumber) {
-    this.modelNumber = modelNumber;
-  }
+	public void setModelNumber(int modelNumber) {
+		this.modelNumber = modelNumber;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("modelNumber: " + getModelNumber());
-    result.append(", name: " + getName());
-    result.append(", price: " + getPrice());
-    result.append(", quantity: " + getQuantity());
-    result.append(", partNumber: " + getPartNumber());
-    result.append(", wareHouse: " + getWareHouse());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("modelNumber: " + getModelNumber());
+		result.append(", name: " + getName());
+		result.append(", price: " + getPrice());
+		result.append(", quantity: " + getQuantity());
+		result.append(", partNumber: " + getPartNumber());
+		result.append(", wareHouse: " + getWareHouse());
+		result.append("]");
+		return result.toString();
+	}
 }

@@ -27,55 +27,55 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES3")
 public class PropertyBigIntegerId implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected BigInteger id;
+	protected BigInteger id;
 
-  private BigInteger bigInteger;
+	private BigInteger bigInteger;
 
-  // ===========================================================
-  // constructors
-  public PropertyBigIntegerId() {
-  }
+	// ===========================================================
+	// constructors
+	public PropertyBigIntegerId() {
+	}
 
-  public PropertyBigIntegerId(BigInteger id, BigInteger bigInteger) {
+	public PropertyBigIntegerId(BigInteger id, BigInteger bigInteger) {
 
-    this.id = id;
-    this.bigInteger = bigInteger;
+		this.id = id;
+		this.bigInteger = bigInteger;
 
-  }
+	}
 
-  @Id
-  @Column(name = "ID")
-  public BigInteger getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public BigInteger getId() {
+		return id;
+	}
 
-  public void setId(BigInteger id) {
-    this.id = id;
-  }
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
 
-  @Column(name = "THEVALUE")
-  public BigInteger getBigInteger() {
-    return this.bigInteger;
-  }
+	@Column(name = "THEVALUE")
+	public BigInteger getBigInteger() {
+		return this.bigInteger;
+	}
 
-  public void setBigInteger(BigInteger bigInteger) {
-    this.bigInteger = bigInteger;
-  }
+	public void setBigInteger(BigInteger bigInteger) {
+		this.bigInteger = bigInteger;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getBigInteger() != null) {
-      result.append(", BigInteger: " + getBigInteger());
-    } else {
-      result.append(", BigInteger: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getBigInteger() != null) {
+			result.append(", BigInteger: " + getBigInteger());
+		} else {
+			result.append(", BigInteger: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

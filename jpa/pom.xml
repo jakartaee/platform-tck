@@ -19,24 +19,22 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>jakartatck</groupId>
         <artifactId>project</artifactId>
         <version>10.0.0-SNAPSHOT</version>
     </parent>
-
-    <artifactId>jpa</artifactId>
-    <packaging>jar</packaging>
-
+    <artifactId>jpa-tck</artifactId>
     <name>JPA</name>
     <description>JPA</description>
-
+    <properties>
+        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <tck.version>${project.version}</tck.version>
+    </properties>
     <dependencies>
-        <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>libutil</artifactId>
@@ -57,6 +55,20 @@
             <groupId>jakarta.ejb</groupId>
             <artifactId>jakarta.ejb-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
     </dependencies>
-
 </project>

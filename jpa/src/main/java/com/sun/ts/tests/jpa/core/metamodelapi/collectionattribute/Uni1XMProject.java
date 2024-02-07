@@ -30,72 +30,71 @@ import jakarta.persistence.Id;
 @Entity
 public class Uni1XMProject implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-  private String name;
+	private String name;
 
-  private Float budget;
+	private Float budget;
 
-  public Uni1XMProject() {
-  }
+	public Uni1XMProject() {
+	}
 
-  public Float getBudget() {
-    return budget;
-  }
+	public Float getBudget() {
+		return budget;
+	}
 
-  public void setBudget(Float budget) {
-    this.budget = budget;
-  }
+	public void setBudget(Float budget) {
+		this.budget = budget;
+	}
 
-  public Uni1XMProject(long l, String string, Float aFloat) {
-    this.id = l;
-    this.name = string;
-  }
+	public Uni1XMProject(long l, String string, Float aFloat) {
+		this.id = l;
+		this.name = string;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (id != null ? id.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Uni1XMProject)) {
-      return false;
-    }
-    Uni1XMProject other = (Uni1XMProject) object;
-    if ((this.id == null && other.id != null)
-        || (this.id != null && !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof Uni1XMProject)) {
+			return false;
+		}
+		Uni1XMProject other = (Uni1XMProject) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public String toString() {
-    return "unionexmany.Uni1XMProject[id=" + id + "]";
-  }
+	@Override
+	public String toString() {
+		return "unionexmany.Uni1XMProject[id=" + id + "]";
+	}
 }

@@ -25,101 +25,101 @@ import java.util.List;
 
 public class CustomerXML implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+	// Instance variables
+	private String id;
 
-  private String name;
+	private String name;
 
-  private List<String> phones = new ArrayList<String>();
+	private List<String> phones = new ArrayList<String>();
 
-  public CustomerXML() {
-  }
+	public CustomerXML() {
+	}
 
-  public CustomerXML(String id) {
-    this.id = id;
-  }
+	public CustomerXML(String id) {
+		this.id = id;
+	}
 
-  public CustomerXML(String id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public CustomerXML(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for CMP fields
+	// ===========================================================
+	// getters and setters for CMP fields
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String v) {
-    this.id = v;
-  }
+	public void setId(String v) {
+		this.id = v;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String v) {
-    this.name = v;
-  }
+	public void setName(String v) {
+		this.name = v;
+	}
 
-  public List<String> getPhones() {
-    return this.phones;
-  }
+	public List<String> getPhones() {
+		return this.phones;
+	}
 
-  public void setPhones(List<String> phones) {
-    this.phones = phones;
-  }
+	public void setPhones(List<String> phones) {
+		this.phones = phones;
+	}
 
-  public boolean equals(Object o) {
-    CustomerXML other;
-    boolean same = true;
+	public boolean equals(Object o) {
+		CustomerXML other;
+		boolean same = true;
 
-    if (!(o instanceof CustomerXML)) {
-      return false;
-    }
-    other = (CustomerXML) o;
+		if (!(o instanceof CustomerXML)) {
+			return false;
+		}
+		other = (CustomerXML) o;
 
-    same &= this.id.equals(other.id);
+		same &= this.id.equals(other.id);
 
-    return same;
-  }
+		return same;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.id.hashCode();
+		myHash = this.id.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
-    }
-    if (phones.size() > 0) {
-      int size = phones.size();
-      result.append(", phones[");
-      int i = 0;
-      for (String s : phones) {
-        result.append(s);
-        i++;
-        if (i < size) {
-          result.append(",");
-        }
-      }
-      result.append("]");
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getName() != null) {
+			result.append(", name: " + getName());
+		} else {
+			result.append(", name: null");
+		}
+		if (phones.size() > 0) {
+			int size = phones.size();
+			result.append(", phones[");
+			int i = 0;
+			for (String s : phones) {
+				result.append(s);
+				i++;
+				if (i < size) {
+					result.append(",");
+				}
+			}
+			result.append("]");
 
-    } else {
-      result.append(", phones: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+		} else {
+			result.append(", phones: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

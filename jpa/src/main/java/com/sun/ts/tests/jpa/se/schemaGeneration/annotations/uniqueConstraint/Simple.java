@@ -24,84 +24,84 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "SCHEMAGENSIMPLE", uniqueConstraints = @UniqueConstraint(name = "MYUNIQUECONSTRAINT", columnNames = {
-    "ID", "NAME" }))
+		"ID", "NAME" }))
 public class Simple implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  int id;
+	// ===========================================================
+	// instance variables
+	int id;
 
-  String name;
+	String name;
 
-  // ===========================================================
-  // constructors
-  public Simple() {
-  }
+	// ===========================================================
+	// constructors
+	public Simple() {
+	}
 
-  public Simple(int id) {
-    this.id = id;
-  }
+	public Simple(int id) {
+		this.id = id;
+	}
 
-  public Simple(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public Simple(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public int hashCode() {
+	public int hashCode() {
 
-    return this.getId() + this.getName().hashCode();
-  }
+		return this.getId() + this.getName().hashCode();
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Simple))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof Simple))
+			return false;
 
-    Simple o1 = (Simple) o;
+		Simple o1 = (Simple) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getId() == o1.getId() && this.getName().equals(o1.getName())) {
-      result = true;
-    }
+		if (this.getId() == o1.getId() && this.getName().equals(o1.getName())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getName() != null) {
+			result.append(", name: " + getName());
+		} else {
+			result.append(", name: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 
 }

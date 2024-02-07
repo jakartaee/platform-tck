@@ -25,59 +25,57 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class DID3bDependentId implements java.io.Serializable {
 
-  String name;
+	String name;
 
-  DID3bEmployeeId empPK;
+	DID3bEmployeeId empPK;
 
-  public DID3bDependentId() {
-  }
+	public DID3bDependentId() {
+	}
 
-  public DID3bDependentId(String name, DID3bEmployeeId empPK) {
-    this.name = name;
-    this.empPK = empPK;
-  }
+	public DID3bDependentId(String name, DID3bEmployeeId empPK) {
+		this.name = name;
+		this.empPK = empPK;
+	}
 
-  public DID3bEmployeeId getEmpPK() {
-    return empPK;
-  }
+	public DID3bEmployeeId getEmpPK() {
+		return empPK;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final DID3bDependentId other = (DID3bDependentId) obj;
-    if ((this.name == null) ? (other.name != null)
-        : !this.name.equals(other.name)) {
-      return false;
-    }
-    if (this.empPK != other.empPK
-        && (this.empPK == null || !this.empPK.equals(other.empPK))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final DID3bDependentId other = (DID3bDependentId) obj;
+		if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+			return false;
+		}
+		if (this.empPK != other.empPK && (this.empPK == null || !this.empPK.equals(other.empPK))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 5;
-    hash = 37 * hash + (this.name != null ? this.name.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 37 * hash + (this.name != null ? this.name.hashCode() : 0);
+		return hash;
+	}
 
-  public void setEmpPK(DID3bEmployeeId empPK) {
-    this.empPK = empPK;
-  }
+	public void setEmpPK(DID3bEmployeeId empPK) {
+		this.empPK = empPK;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

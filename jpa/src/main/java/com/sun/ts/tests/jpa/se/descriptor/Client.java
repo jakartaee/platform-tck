@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,123 +20,136 @@
 
 package com.sun.ts.tests.jpa.se.descriptor;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-  private static final B bRef[] = new B[5];
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	private static final B bRef[] = new B[5];
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
+	public JavaArchive createDeployment() throws Exception {
 
-      super.setup(args, p);
-      removeTestData();
-      createTestData();
-    } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
-    }
-  }
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFile = { MAPPING_FILE_XML };
+		String[] classes = { pkgName + "A", pkgName + "B" };
+		return createDeploymentJar("jpa_se_descriptor.jar", pkgNameWithoutSuffix, classes, PERSISTENCE_XML, xmlFile);
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:900; PERSISTENCE:SPEC:901;
-   * PERSISTENCE:SPEC:850; PERSISTENCE:SPEC:852; PERSISTENCE:SPEC:854;
-   * PERSISTENCE:SPEC:859; PERSISTENCE:SPEC:952; PERSISTENCE:SPEC:968;
-   * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:910; PERSISTENCE:SPEC:893;
-   * PERSISTENCE:SPEC:939; PERSISTENCE:SPEC:953; PERSISTENCE:SPEC:945;
-   * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:969; PERSISTENCE:SPEC:970;
-   * PERSISTENCE:JAVADOC:162;
-   * 
-   * @test_Strategy: With the above archive, deploy bean, create entities,
-   * persist, then find.
-   *
-   */
+	}
 
-  public void test1() throws Exception {
-    boolean pass = false;
-    try {
+	@BeforeEach
+	public void setup() throws Exception {
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+			createTestData();
+		} catch (Exception e) {
+			throw new Exception("Setup Failed!", e);
+		}
+	}
 
-      B anotherB = getEntityManager().find(B.class, "1");
+	/*
+	 * @testName: test1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:900; PERSISTENCE:SPEC:901;
+	 * PERSISTENCE:SPEC:850; PERSISTENCE:SPEC:852; PERSISTENCE:SPEC:854;
+	 * PERSISTENCE:SPEC:859; PERSISTENCE:SPEC:952; PERSISTENCE:SPEC:968;
+	 * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:910; PERSISTENCE:SPEC:893;
+	 * PERSISTENCE:SPEC:939; PERSISTENCE:SPEC:953; PERSISTENCE:SPEC:945;
+	 * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:969; PERSISTENCE:SPEC:970;
+	 * PERSISTENCE:JAVADOC:162;
+	 * 
+	 * @test_Strategy: With the above archive, deploy bean, create entities,
+	 * persist, then find.
+	 *
+	 */
+	@Test
+	public void test1() throws Exception {
+		boolean pass = false;
+		try {
 
-      if (anotherB != null) {
-        if (anotherB.equals(bRef[0])) {
-          TestUtil.logTrace("get expected B");
-          pass = true;
-        } else {
-          TestUtil.logErr("Did not get expected B:" + anotherB.toString());
-        }
-      }
+			B anotherB = getEntityManager().find(B.class, "1");
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+			if (anotherB != null) {
+				if (anotherB.equals(bRef[0])) {
+					logger.log(Logger.Level.TRACE, "get expected B");
+					pass = true;
+				} else {
+					logger.log(Logger.Level.ERROR, "Did not get expected B:" + anotherB.toString());
+				}
+			}
 
-    if (!pass) {
-      throw new Fault("test1 failed");
-    }
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		}
 
-  public void createTestData() {
-    TestUtil.logTrace("createTestData");
+		if (!pass) {
+			throw new Exception("test1 failed");
+		}
+	}
 
-    try {
+	public void createTestData() {
+		logger.log(Logger.Level.TRACE, "createTestData");
 
-      TestUtil.logTrace("Create 2 B Entities");
-      bRef[0] = new B("1", "myB", 1);
-      bRef[1] = new B("2", "yourB", 2);
+		try {
 
-      TestUtil.logTrace("Start to persist Bs ");
-      for (B b : bRef) {
-        if (b != null) {
-          getEntityManager().persist(b);
-          TestUtil.logTrace("persisted B " + b);
-        }
-      }
+			logger.log(Logger.Level.TRACE, "Create 2 B Entities");
+			bRef[0] = new B("1", "myB", 1);
+			bRef[1] = new B("2", "yourB", 2);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception while creating test data:" + e);
-    }
-  }
+			logger.log(Logger.Level.TRACE, "Start to persist Bs ");
+			for (B b : bRef) {
+				if (b != null) {
+					getEntityManager().persist(b);
+					logger.log(Logger.Level.TRACE, "persisted B " + b);
+				}
+			}
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    super.cleanup();
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception while creating test data:" + e);
+		}
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

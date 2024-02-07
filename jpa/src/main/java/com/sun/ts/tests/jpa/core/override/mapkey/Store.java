@@ -26,62 +26,60 @@ import jakarta.persistence.Id;
 @Entity
 public class Store implements Serializable {
 
-  @Id
-  private Integer id;
+	@Id
+	private Integer id;
 
-  private Map<String, Customers> customers = new HashMap<String, Customers>();
+	private Map<String, Customers> customers = new HashMap<String, Customers>();
 
-  private String name;
+	private String name;
 
-  public Store() {
-  }
+	public Store() {
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Store)) {
-      return false;
-    }
-    Store other = (Store) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof Store)) {
+			return false;
+		}
+		Store other = (Store) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override." + "mapkey.Store[id=" + getId()
-        + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override." + "mapkey.Store[id=" + getId() + "]";
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Map<String, Customers> getCustomers() {
-    return customers;
-  }
+	public Map<String, Customers> getCustomers() {
+		return customers;
+	}
 
-  public void setCustomers(Map<String, Customers> customers) {
-    this.customers = customers;
-  }
+	public void setCustomers(Map<String, Customers> customers) {
+		this.customers = customers;
+	}
 }

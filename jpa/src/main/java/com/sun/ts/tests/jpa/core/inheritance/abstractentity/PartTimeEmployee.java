@@ -34,30 +34,29 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("NONEXEMPT")
 public class PartTimeEmployee extends Employee {
 
-  private float wage;
+	private float wage;
 
-  public PartTimeEmployee() {
-  }
+	public PartTimeEmployee() {
+	}
 
-  public PartTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.wage = wage;
-  }
+	public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+		this.wage = wage;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Column(name = "SALARY")
-  public float getWage() {
-    return wage;
-  }
+	@Column(name = "SALARY")
+	public float getWage() {
+		return wage;
+	}
 
-  public void setWage(float wage) {
-    this.wage = wage;
-  }
+	public void setWage(float wage) {
+		this.wage = wage;
+	}
 
 }

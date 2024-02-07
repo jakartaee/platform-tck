@@ -21,50 +21,50 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class ZipCode implements java.io.Serializable {
 
-  protected String zip;
+	protected String zip;
 
-  protected String plusFour;
+	protected String plusFour;
 
-  public ZipCode() {
-    // TestUtil.logTrace("ZipCode no arg constructor");
-  }
+	public ZipCode() {
+		// logger.log(Logger.Level.TRACE,"ZipCode no arg constructor");
+	}
 
-  public ZipCode(String zip, String plusFour) {
-    this.zip = zip;
-    this.plusFour = plusFour;
-  }
+	public ZipCode(String zip, String plusFour) {
+		this.zip = zip;
+		this.plusFour = plusFour;
+	}
 
-  public String getPlusFour() {
-    return plusFour;
-  }
+	public String getPlusFour() {
+		return plusFour;
+	}
 
-  public void setPlusFour(String plusFour) {
-    this.plusFour = plusFour;
-  }
+	public void setPlusFour(String plusFour) {
+		this.plusFour = plusFour;
+	}
 
-  public String getZip() {
-    return zip;
-  }
+	public String getZip() {
+		return zip;
+	}
 
-  public void setZip(String zip) {
-    this.zip = zip;
-  }
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    if (getZip() != null) {
-      result.append("zip: " + getZip());
-    } else {
-      result.append("zip: null");
-    }
-    if (getPlusFour() != null) {
-      result.append(", plusFour: " + getPlusFour());
-    } else {
-      result.append(", plusFour: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		if (getZip() != null) {
+			result.append("zip: " + getZip());
+		} else {
+			result.append("zip: null");
+		}
+		if (getPlusFour() != null) {
+			result.append(", plusFour: " + getPlusFour());
+		} else {
+			result.append(", plusFour: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

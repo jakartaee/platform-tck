@@ -24,54 +24,54 @@ import jakarta.persistence.Embeddable;
 @Access(AccessType.PROPERTY)
 public class Address implements java.io.Serializable {
 
-  protected String street;
+	protected String street;
 
-  protected String city;
+	protected String city;
 
-  protected int state;
+	protected int state;
 
-  public Address() {
-  }
+	public Address() {
+	}
 
-  public Address(String street, String city, int state) {
-    this.street = street;
-    this.city = city;
-    this.state = state;
-  }
+	public Address(String street, String city, int state) {
+		this.street = street;
+		this.city = city;
+		this.state = state;
+	}
 
-  public String getCity() {
-    return city;
-  }
+	public String getCity() {
+		return city;
+	}
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-  public int getState() {
-    return state;
-  }
+	public int getState() {
+		return state;
+	}
 
-  public void setState(int state) {
-    this.state = state;
-  }
+	public void setState(int state) {
+		this.state = state;
+	}
 
-  public String getStreet() {
-    return street;
-  }
+	public String getStreet() {
+		return street;
+	}
 
-  public void setStreet(String street) {
-    this.street = street;
-  }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("street: " + getStreet());
-    result.append(", city: " + getCity());
-    result.append(", state: " + getState());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("street: " + getStreet());
+		result.append(", city: " + getCity());
+		result.append(", state: " + getState());
+		result.append("]");
+		return result.toString();
+	}
 
 }

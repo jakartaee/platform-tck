@@ -26,8 +26,8 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(ShelfLife.class)
 public class ShelfLife_ {
 
-  public static volatile SingularAttribute<ShelfLife, Date> soldDate;
+	public static volatile SingularAttribute<ShelfLife, Date> soldDate;
 
-  public static volatile SingularAttribute<ShelfLife, Date> inceptionDate;
+	public static volatile SingularAttribute<ShelfLife, Date> inceptionDate;
 
 }

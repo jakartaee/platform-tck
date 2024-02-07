@@ -24,62 +24,60 @@ import jakarta.persistence.Id;
 @Entity
 public class Complaint implements Serializable {
 
-  @Id
-  private Integer id;
+	@Id
+	private Integer id;
 
-  private Applicant applicant;
+	private Applicant applicant;
 
-  private int complaintNumber;
+	private int complaintNumber;
 
-  public Complaint() {
-  }
+	public Complaint() {
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Complaint)) {
-      return false;
-    }
-    Complaint other = (Complaint) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof Complaint)) {
+			return false;
+		}
+		Complaint other = (Complaint) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.embeddable." + "Complaint[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.embeddable." + "Complaint[id=" + getId() + "]";
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public Applicant getApplicant() {
-    return applicant;
-  }
+	public Applicant getApplicant() {
+		return applicant;
+	}
 
-  public void setApplicant(Applicant applicant) {
-    this.applicant = applicant;
-  }
+	public void setApplicant(Applicant applicant) {
+		this.applicant = applicant;
+	}
 
-  public int getComplaintNumber() {
-    return complaintNumber;
-  }
+	public int getComplaintNumber() {
+		return complaintNumber;
+	}
 
-  public void setComplaintNumber(int complaintNumber) {
-    this.complaintNumber = complaintNumber;
-  }
+	public void setComplaintNumber(int complaintNumber) {
+		this.complaintNumber = complaintNumber;
+	}
 }

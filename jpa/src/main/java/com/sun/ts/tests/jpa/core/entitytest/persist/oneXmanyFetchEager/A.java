@@ -16,10 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.persist.oneXmanyFetchEager;
 
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.List;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -33,85 +32,87 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  @Id
-  protected String id;
+	// ===========================================================
+	// instance variables
 
-  @Basic
-  protected String name;
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // constructors
+	@Basic
+	protected int value;
 
-  public A() {
-    TestUtil.logTrace("Entity A no arg constructor");
-  }
+	// ===========================================================
+	// constructors
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A() {
+		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+	}
 
-  public A(String id, String name, int value, List<B> bCol) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.bCol = bCol;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // ===========================================================
-  // relationship fields
+	public A(String id, String name, int value, List<B> bCol) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.bCol = bCol;
+	}
 
-  @OneToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.oneXmanyFetchEager.B.class, cascade = CascadeType.PERSIST, mappedBy = "a1", fetch = FetchType.EAGER)
-  protected List<B> bCol = new java.util.ArrayList<B>();
+	// ===========================================================
+	// relationship fields
 
-  // =======================================================================
-  // Business methods for test cases
+	@OneToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.oneXmanyFetchEager.B.class, cascade = CascadeType.PERSIST, mappedBy = "a1", fetch = FetchType.EAGER)
+	protected List<B> bCol = new java.util.ArrayList<B>();
 
-  public List<B> getBCol() {
-    TestUtil.logTrace("getBCol");
-    return bCol;
-  }
+	// =======================================================================
+	// Business methods for test cases
 
-  public void setBCol(List<B> bCol) {
-    TestUtil.logTrace("setBCol");
-    this.bCol = bCol;
-  }
+	public List<B> getBCol() {
+		logger.log(Logger.Level.TRACE, "getBCol");
+		return bCol;
+	}
 
-  public String getAId() {
-    return id;
-  }
+	public void setBCol(List<B> bCol) {
+		logger.log(Logger.Level.TRACE, "setBCol");
+		this.bCol = bCol;
+	}
 
-  public String getAName() {
-    return name;
-  }
+	public String getAId() {
+		return id;
+	}
 
-  public void setAName(String name) {
-    this.name = name;
-  }
+	public String getAName() {
+		return name;
+	}
 
-  public int getAValue() {
-    return value;
-  }
+	public void setAName(String name) {
+		this.name = name;
+	}
 
-  public List<B> getBInfoFromA() {
-    TestUtil.logTrace("getBInfoFromA");
-    List<B> v = new java.util.ArrayList<B>();
-    if (getBCol().size() != 0) {
-      List<B> bcol = getBCol();
-      Iterator iterator = bcol.iterator();
-      while (iterator.hasNext()) {
-        B b = (B) iterator.next();
-        v.add(b);
-      }
-    }
-    return v;
-  }
+	public int getAValue() {
+		return value;
+	}
+
+	public List<B> getBInfoFromA() {
+		logger.log(Logger.Level.TRACE, "getBInfoFromA");
+		List<B> v = new java.util.ArrayList<B>();
+		if (getBCol().size() != 0) {
+			List<B> bcol = getBCol();
+			Iterator iterator = bcol.iterator();
+			while (iterator.hasNext()) {
+				B b = (B) iterator.next();
+				v.add(b);
+			}
+		}
+		return v;
+	}
 
 }

@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.am;
 
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -46,255 +47,251 @@ import jakarta.persistence.PersistenceUnit;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateless3Bean implements Stateless3IF {
 
-  @PersistenceUnit(unitName = "CTS-APPMANAGED-UNIT")
-  private EntityManagerFactory entityManagerFactory;
+	private static final Logger logger = (Logger) System.getLogger(Stateless3Bean.class.getName());
 
-  private EntityManager entityManager;
+	@PersistenceUnit(unitName = "CTS-APPMANAGED-UNIT")
+	private EntityManagerFactory entityManagerFactory;
 
-  public SessionContext sessionContext;
+	private EntityManager entityManager;
 
-  private Map myMap = new HashMap();
+	public SessionContext sessionContext;
 
-  private Account accountRef;
+	private Map myMap = new HashMap();
 
-  private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
+	private Account accountRef;
 
-  private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0,
-      1000000.0 };
+	private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
 
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
+	private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0, 1000000.0 };
 
-  // Our business methods
+	@Resource
+	public void setSessionContext(SessionContext sessionContext) {
+		this.sessionContext = sessionContext;
+	}
 
-  public void transfer(final int from, final int to, final double amt) {
-    TestUtil.logTrace("transfer()");
-    withdraw(from, amt);
-    deposit(to, amt);
-  }
+	// Our business methods
 
-  public double balance(final int acct) {
-    TestUtil.logTrace("balance()");
-    Account thisAccount = entityManager.find(Account.class, acct);
-    double balance;
-    try {
-      balance = thisAccount.balance();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred in balance: " + e);
-    }
-    return balance;
-  }
+	public void transfer(final int from, final int to, final double amt) {
+		logger.log(Logger.Level.TRACE, "transfer()");
+		withdraw(from, amt);
+		deposit(to, amt);
+	}
 
-  public double deposit(final int acct, final double amt) {
-    TestUtil.logTrace("deposit()");
-    double balance;
-    Account thisAccount = entityManager.find(Account.class, acct);
-    try {
-      balance = thisAccount.deposit(amt);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred in deposit: " + e);
-    }
-    return balance;
-  }
+	public double balance(final int acct) {
+		logger.log(Logger.Level.TRACE, "balance()");
+		Account thisAccount = entityManager.find(Account.class, acct);
+		double balance;
+		try {
+			balance = thisAccount.balance();
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("Exception occurred in balance: " + e);
+		}
+		return balance;
+	}
 
-  public double withdraw(final int acct, final double amt) {
-    TestUtil.logTrace("withdraw()");
-    double balance;
-    Account thisAccount = entityManager.find(Account.class, acct);
-    try {
-      balance = thisAccount.withdraw(amt);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred in withdraw: " + e);
-    }
-    return balance;
-  }
+	public double deposit(final int acct, final double amt) {
+		logger.log(Logger.Level.TRACE, "deposit()");
+		double balance;
+		Account thisAccount = entityManager.find(Account.class, acct);
+		try {
+			balance = thisAccount.deposit(amt);
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("Exception occurred in deposit: " + e);
+		}
+		return balance;
+	}
 
-  public boolean checkAccountStatus(final Account acct) {
-    TestUtil.logTrace("checkAccountStatus()");
-    Account thisAccount = entityManager.find(Account.class, acct.id());
-    if (acct.equals(thisAccount)) {
-      return true;
-    } else {
-      return false;
-    }
+	public double withdraw(final int acct, final double amt) {
+		logger.log(Logger.Level.TRACE, "withdraw()");
+		double balance;
+		Account thisAccount = entityManager.find(Account.class, acct);
+		try {
+			balance = thisAccount.withdraw(amt);
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("Exception occurred in withdraw: " + e);
+		}
+		return balance;
+	}
 
-  }
+	public boolean checkAccountStatus(final Account acct) {
+		logger.log(Logger.Level.TRACE, "checkAccountStatus()");
+		Account thisAccount = entityManager.find(Account.class, acct.id());
+		if (acct.equals(thisAccount)) {
+			return true;
+		} else {
+			return false;
+		}
 
-  public String getAllAccounts() {
-    StringBuffer accounts = new StringBuffer();
-    List result;
-    try {
-      result = entityManager.createQuery("select a from Account a")
-          .getResultList();
+	}
 
-      Iterator i = result.iterator();
-      while (i.hasNext()) {
-        Account a1 = (Account) i.next();
-        accounts.append("" + a1.id() + "  " + (double) a1.balance() + "\n");
-      }
+	public String getAllAccounts() {
+		StringBuffer accounts = new StringBuffer();
+		List result;
+		try {
+			result = entityManager.createQuery("select a from Account a").getResultList();
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred in getAllAccounts: " + e);
-    }
-    return accounts.toString();
-  }
+			Iterator i = result.iterator();
+			while (i.hasNext()) {
+				Account a1 = (Account) i.next();
+				accounts.append("" + a1.id() + "  " + (double) a1.balance() + "\n");
+			}
 
-  // Helpers
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("Exception occurred in getAllAccounts: " + e);
+		}
+		return accounts.toString();
+	}
 
-  public void removeTestData() {
-    TestUtil.logTrace("entering removeTestData()");
-    try {
-      entityManager.createNativeQuery("DELETE FROM ACCOUNT").executeUpdate();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    }
-    // clear the cache if the provider supports caching otherwise
-    // the evictAll is ignored.
-    TestUtil.logTrace("Clearing cache");
-    entityManagerFactory.getCache().evictAll();
-    TestUtil.logTrace("leaving removeTestData()");
-  }
+	// Helpers
 
-  public void createTestData() {
-    TestUtil.logTrace("entering createTestData()");
+	public void removeTestData() {
+		logger.log(Logger.Level.TRACE, "entering removeTestData()");
+		try {
+			entityManager.createNativeQuery("DELETE FROM ACCOUNT").executeUpdate();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		}
+		// clear the cache if the provider supports caching otherwise
+		// the evictAll is ignored.
+		logger.log(Logger.Level.TRACE, "Clearing cache");
+		entityManagerFactory.getCache().evictAll();
+		logger.log(Logger.Level.TRACE, "leaving removeTestData()");
+	}
 
-    try {
+	public void createTestData() {
+		logger.log(Logger.Level.TRACE, "entering createTestData()");
 
-      TestUtil.logTrace("Create 5 Account Entities");
+		try {
 
-      for (int i = 0; i < ACCOUNTS.length; i++) {
-        TestUtil.logTrace(
-            "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
-        System.out.println(
-            "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
-        accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
-        entityManager.persist(accountRef);
+			logger.log(Logger.Level.TRACE, "Create 5 Account Entities");
 
-      }
-      entityManager.flush();
+			for (int i = 0; i < ACCOUNTS.length; i++) {
+				logger.log(Logger.Level.TRACE, "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+				System.out.println("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+				accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
+				entityManager.persist(accountRef);
 
-    } catch (Exception e) {
-      TestUtil.logErr(
-          "createTestData: Unexpected Exception caught in createTestData", e);
-    } finally {
-      TestUtil.logTrace("createTestData complete");
-    }
-    TestUtil.logTrace("leaving createTestData()");
+			}
+			entityManager.flush();
 
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "createTestData: Unexpected Exception caught in createTestData", e);
+		} finally {
+			logger.log(Logger.Level.TRACE, "createTestData complete");
+		}
+		logger.log(Logger.Level.TRACE, "leaving createTestData()");
 
-  public void init(final Properties p) {
-    TestUtil.logTrace("entering init()");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    }
-    TestUtil.logTrace("leaving init()");
-  }
+	}
 
-  // Test Methods
+	public void init(final Properties p) {
+		logger.log(Logger.Level.TRACE, "entering init()");
+		try {
+			TestUtil.init(p);
+		} catch (RemoteLoggingInitException e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException(e.getMessage());
+		}
+		logger.log(Logger.Level.TRACE, "leaving init()");
+	}
 
-  public boolean test1() {
-    String accounts;
-    boolean pass = false;
+	// Test Methods
 
-    try {
+	public boolean test1() {
+		String accounts;
+		boolean pass = false;
 
-      createEntityManager();
+		try {
 
-      createTestData();
+			createEntityManager();
 
-      accounts = getAllAccounts();
+			createTestData();
 
-      if (accounts != null) {
-        TestUtil.logTrace(accounts);
-      }
+			accounts = getAllAccounts();
 
-      Account ACCOUNT = entityManager.find(Account.class, 1075);
-      pass = checkAccountStatus(ACCOUNT);
+			if (accounts != null) {
+				logger.log(Logger.Level.TRACE, accounts);
+			}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception:", e);
-    } finally {
-      closeEntityManager();
-    }
-    TestUtil.logTrace("leaving test1()");
-    return pass;
-  }
+			Account ACCOUNT = entityManager.find(Account.class, 1075);
+			pass = checkAccountStatus(ACCOUNT);
 
-  public boolean test2() {
-    Double EXPECTED_BALANCE = 10540.75D;
-    Double balance;
-    boolean pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+		} finally {
+			closeEntityManager();
+		}
+		logger.log(Logger.Level.TRACE, "leaving test1()");
+		return pass;
+	}
 
-    try {
-      createEntityManager();
+	public boolean test2() {
+		Double EXPECTED_BALANCE = 10540.75D;
+		Double balance;
+		boolean pass = false;
 
-      createTestData();
+		try {
+			createEntityManager();
 
-      Account ACCOUNT = entityManager.find(Account.class, 1075);
+			createTestData();
 
-      balance = balance(ACCOUNT.id());
-      balance = deposit(ACCOUNT.id(), 100.0);
-      balance = withdraw(ACCOUNT.id(), 50.0);
+			Account ACCOUNT = entityManager.find(Account.class, 1075);
 
-      if (EXPECTED_BALANCE.compareTo(balance) == 0) {
-        TestUtil.logTrace("Expected balance received.");
-        pass = true;
-      } else {
-        TestUtil.logErr(" Did not get Expected balance, got:" + balance
-            + "Expected: " + EXPECTED_BALANCE);
-      }
+			balance = balance(ACCOUNT.id());
+			balance = deposit(ACCOUNT.id(), 100.0);
+			balance = withdraw(ACCOUNT.id(), 50.0);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception:", e);
-    } finally {
-      closeEntityManager();
-    }
-    TestUtil.logTrace("leaving test2()");
-    return pass;
-  }
+			if (EXPECTED_BALANCE.compareTo(balance) == 0) {
+				logger.log(Logger.Level.TRACE, "Expected balance received.");
+				pass = true;
+			} else {
+				logger.log(Logger.Level.ERROR,
+						" Did not get Expected balance, got:" + balance + "Expected: " + EXPECTED_BALANCE);
+			}
 
-  public void createEntityManager() {
-    TestUtil.logTrace("entering createEntityManager()");
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+		} finally {
+			closeEntityManager();
+		}
+		logger.log(Logger.Level.TRACE, "leaving test2()");
+		return pass;
+	}
 
-    if (entityManagerFactory != null) {
-      TestUtil.logTrace("EntityManagerFactory is not null");
-      entityManager = entityManagerFactory.createEntityManager(myMap);
-    } else {
-      TestUtil.logErr("Unexpected: EntityManagerFactory is null");
-    }
-    TestUtil.logTrace("leaving createEntityManager()");
+	public void createEntityManager() {
+		logger.log(Logger.Level.TRACE, "entering createEntityManager()");
 
-  }
+		if (entityManagerFactory != null) {
+			logger.log(Logger.Level.TRACE, "EntityManagerFactory is not null");
+			entityManager = entityManagerFactory.createEntityManager(myMap);
+		} else {
+			logger.log(Logger.Level.ERROR, "Unexpected: EntityManagerFactory is null");
+		}
+		logger.log(Logger.Level.TRACE, "leaving createEntityManager()");
 
-  public void closeEntityManager() {
-    TestUtil.logTrace("entering closeEntityManager()");
-    try {
-      if (entityManager.isOpen()) {
-        entityManager.close();
-      }
-    } catch (Exception e) {
-      TestUtil.logErr(
-          "closeEntityManager: Unexpected Exception caught while closing "
-              + "an Application-Managed EntityManager" + e);
-    }
-    TestUtil.logTrace("leaving closeEntityManager()");
-  }
+	}
 
-  public void doCleanup() {
-    TestUtil.logTrace("entering doCleanup()");
-    createEntityManager();
-    removeTestData();
-    closeEntityManager();
-    TestUtil.logTrace("leaving doCleanup()");
-  }
+	public void closeEntityManager() {
+		logger.log(Logger.Level.TRACE, "entering closeEntityManager()");
+		try {
+			if (entityManager.isOpen()) {
+				entityManager.close();
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "closeEntityManager: Unexpected Exception caught while closing "
+					+ "an Application-Managed EntityManager" + e);
+		}
+		logger.log(Logger.Level.TRACE, "leaving closeEntityManager()");
+	}
+
+	public void doCleanup() {
+		logger.log(Logger.Level.TRACE, "entering doCleanup()");
+		createEntityManager();
+		removeTestData();
+		closeEntityManager();
+		logger.log(Logger.Level.TRACE, "leaving doCleanup()");
+	}
 }

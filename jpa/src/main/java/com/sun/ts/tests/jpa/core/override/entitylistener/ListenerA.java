@@ -22,15 +22,15 @@ import jakarta.persistence.PreRemove;
 
 public class ListenerA {
 
-  public ListenerA() {
-  }
+	public ListenerA() {
+	}
 
-  @PreRemove
-  public void preRemove(Object obj) {
-    updateCallBackCount("preRemove");
-  }
+	@PreRemove
+	public void preRemove(Object obj) {
+		updateCallBackCount("preRemove");
+	}
 
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
+	protected void updateCallBackCount(String callBackKeyName) {
+		CallBackCounts.updateCount(callBackKeyName);
+	}
 }

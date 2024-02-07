@@ -22,101 +22,100 @@ import jakarta.persistence.Embedded;
 @Embeddable
 public class Address implements java.io.Serializable {
 
-  protected String street;
+	protected String street;
 
-  protected String city;
+	protected String city;
 
-  protected String state;
+	protected String state;
 
-  protected ZipCode zipcode;
+	protected ZipCode zipcode;
 
-  public Address() {
-  }
+	public Address() {
+	}
 
-  public Address(String street, String city, String state) {
-    this.street = street;
-    this.city = city;
-    this.state = state;
-  }
+	public Address(String street, String city, String state) {
+		this.street = street;
+		this.city = city;
+		this.state = state;
+	}
 
-  public Address(String street, String city, String state, ZipCode zip) {
-    this.street = street;
-    this.city = city;
-    this.state = state;
-    this.zipcode = zip;
-  }
+	public Address(String street, String city, String state, ZipCode zip) {
+		this.street = street;
+		this.city = city;
+		this.state = state;
+		this.zipcode = zip;
+	}
 
-  public String getCity() {
-    return city;
-  }
+	public String getCity() {
+		return city;
+	}
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+	public void setCity(String city) {
+		this.city = city;
+	}
 
-  public String getState() {
-    return state;
-  }
+	public String getState() {
+		return state;
+	}
 
-  public void setState(String state) {
-    this.state = state;
-  }
+	public void setState(String state) {
+		this.state = state;
+	}
 
-  public String getStreet() {
-    return street;
-  }
+	public String getStreet() {
+		return street;
+	}
 
-  public void setStreet(String street) {
-    this.street = street;
-  }
+	public void setStreet(String street) {
+		this.street = street;
+	}
 
-  @Embedded
-  public ZipCode getZipCode() {
-    return zipcode;
-  }
+	@Embedded
+	public ZipCode getZipCode() {
+		return zipcode;
+	}
 
-  public void setZipCode(ZipCode zipcode) {
-    this.zipcode = zipcode;
-  }
+	public void setZipCode(ZipCode zipcode) {
+		this.zipcode = zipcode;
+	}
 
-  public boolean equals(Object o) {
-    Address other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Address other;
+		boolean result = false;
 
-    if (!(o instanceof Address)) {
-      return result;
-    }
-    other = (Address) o;
+		if (!(o instanceof Address)) {
+			return result;
+		}
+		other = (Address) o;
 
-    if (this.getStreet().equals(other.getStreet())
-        && this.getCity().equals(other.getCity())
-        && this.getState().equals(other.getState())
-        && this.getZipCode().getZip().equals(other.getZipCode().getZip())) {
-      result = true;
-    }
+		if (this.getStreet().equals(other.getStreet()) && this.getCity().equals(other.getCity())
+				&& this.getState().equals(other.getState())
+				&& this.getZipCode().getZip().equals(other.getZipCode().getZip())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getStreet().hashCode() + this.getCity().hashCode()
-        + this.getState().hashCode() + this.getZipCode().getZip().hashCode();
+		myHash = this.getStreet().hashCode() + this.getCity().hashCode() + this.getState().hashCode()
+				+ this.getZipCode().getZip().hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("street: " + getStreet());
-    result.append(", city: " + getCity());
-    result.append(", state: " + getState());
-    result.append(", zip: " + getZipCode().getZip());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("street: " + getStreet());
+		result.append(", city: " + getCity());
+		result.append(", state: " + getState());
+		result.append(", zip: " + getZipCode().getZip());
+		result.append("]");
+		return result.toString();
+	}
 
 }

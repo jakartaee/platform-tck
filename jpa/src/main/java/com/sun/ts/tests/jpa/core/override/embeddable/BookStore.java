@@ -25,55 +25,53 @@ import jakarta.persistence.Id;
 @Entity
 public class BookStore implements Serializable {
 
-  @Id
-  private Integer id;
+	@Id
+	private Integer id;
 
-  @Embedded
-  private Publisher publisher;
+	@Embedded
+	private Publisher publisher;
 
-  public BookStore() {
-  }
+	public BookStore() {
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof BookStore)) {
-      return false;
-    }
-    BookStore other = (BookStore) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof BookStore)) {
+			return false;
+		}
+		BookStore other = (BookStore) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.embeddable." + "BookStore[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.embeddable." + "BookStore[id=" + getId() + "]";
+	}
 
-  public Publisher getPublisher() {
-    return publisher;
-  }
+	public Publisher getPublisher() {
+		return publisher;
+	}
 
-  public void setPublisher(Publisher publisher) {
-    this.publisher = publisher;
-  }
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 }

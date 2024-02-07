@@ -20,10 +20,9 @@
 
 package com.sun.ts.tests.jpa.core.relationship.defaults;
 
+import java.lang.System.Logger;
 import java.math.BigDecimal;
 import java.util.Collection;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -38,76 +37,78 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Project implements java.io.Serializable {
 
-  // Instance Variables
-  private long projId;
+	private static final Logger logger = (Logger) System.getLogger(Project.class.getName());
 
-  private String name;
+	// Instance Variables
+	private long projId;
 
-  private BigDecimal budget;
+	private String name;
 
-  private Person projectLead;
+	private BigDecimal budget;
 
-  private Collection<Person> persons = new java.util.ArrayList<Person>();
+	private Person projectLead;
 
-  public Project() {
-    TestUtil.logTrace("Project no-arg constructor");
-  }
+	private Collection<Person> persons = new java.util.ArrayList<Person>();
 
-  public Project(long projId, String name, BigDecimal budget) {
-    this.projId = projId;
-    this.name = name;
-    this.budget = budget;
-  }
+	public Project() {
+		logger.log(Logger.Level.TRACE, "Project no-arg constructor");
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	public Project(long projId, String name, BigDecimal budget) {
+		this.projId = projId;
+		this.name = name;
+		this.budget = budget;
+	}
 
-  @Id
-  public long getProjId() {
-    return projId;
-  }
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public void setProjId(long projId) {
-    this.projId = projId;
-  }
+	@Id
+	public long getProjId() {
+		return projId;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public void setProjId(long projId) {
+		this.projId = projId;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public BigDecimal getBudget() {
-    return budget;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setBudget(BigDecimal budget) {
-    this.budget = budget;
-  }
+	public BigDecimal getBudget() {
+		return budget;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	public void setBudget(BigDecimal budget) {
+		this.budget = budget;
+	}
 
-  /* Bi-Directional OneProjectLeadToOnePerson */
-  @OneToOne(mappedBy = "project")
-  public Person getProjectLead() {
-    return projectLead;
-  }
+	// ===========================================================
+	// getters and setters for the association fields
 
-  public void setProjectLead(Person projectLead) {
-    this.projectLead = projectLead;
-  }
+	/* Bi-Directional OneProjectLeadToOnePerson */
+	@OneToOne(mappedBy = "project")
+	public Person getProjectLead() {
+		return projectLead;
+	}
 
-  /* Bi-Directional ManyPersonsToManyProjects */
-  @ManyToMany(cascade = CascadeType.ALL)
-  public Collection<Person> getPersons() {
-    return persons;
-  }
+	public void setProjectLead(Person projectLead) {
+		this.projectLead = projectLead;
+	}
 
-  public void setPersons(Collection<Person> persons) {
-    this.persons = persons;
-  }
+	/* Bi-Directional ManyPersonsToManyProjects */
+	@ManyToMany(cascade = CascadeType.ALL)
+	public Collection<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(Collection<Person> persons) {
+		this.persons = persons;
+	}
 
 }

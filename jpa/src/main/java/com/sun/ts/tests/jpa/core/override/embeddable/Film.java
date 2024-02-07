@@ -23,26 +23,26 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Film implements Serializable {
 
-  public Film() {
-  }
+	public Film() {
+	}
 
-  private String filmName;
+	private String filmName;
 
-  private String filmCode;
+	private String filmCode;
 
-  public String getFilmName() {
-    return filmName;
-  }
+	public String getFilmName() {
+		return filmName;
+	}
 
-  public void setFilmName(String filmName) {
-    this.filmName = filmName;
-  }
+	public void setFilmName(String filmName) {
+		this.filmName = filmName;
+	}
 
-  public String getFilmCode() {
-    return filmCode;
-  }
+	public String getFilmCode() {
+		return filmCode;
+	}
 
-  public void setFilmCode(String filmCode) {
-    this.filmCode = filmCode;
-  }
+	public void setFilmCode(String filmCode) {
+		this.filmCode = filmCode;
+	}
 }

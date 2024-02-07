@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,214 +20,225 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.basic;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
+	public JavaArchive createDeployment() throws Exception {
 
-    }
-  }
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "A" };
+		return createDeploymentJar("jpa_core_entitytest_detach_basic.jar", pkgNameWithoutSuffix, classes);
 
-  /*
-   * BEGIN Test Cases
-   */
+	}
 
-  /*
-   * @testName: detachBasicTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:635
-   * 
-   * @test_Strategy: If X is a detached entity, invoking the remove method on it
-   * will cause an IllegalArgumentException to be thrown or the transaction
-   * commit will fail. Invoke remove on a detached entity.
-   *
-   */
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			throw new Exception("Setup failed:", e);
 
-  public void detachBasicTest1() throws Exception {
-    TestUtil.logTrace("Begin detachBasicTest1");
-    boolean pass = false;
-    final A aRef = new A("1", "a1", 1);
+		}
+	}
 
-    try {
+	/*
+	 * BEGIN Test Cases
+	 */
 
-      TestUtil.logTrace("Persist Instance");
-      createA(aRef);
+	/*
+	 * @testName: detachBasicTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:635
+	 * 
+	 * @test_Strategy: If X is a detached entity, invoking the remove method on it
+	 * will cause an IllegalArgumentException to be thrown or the transaction commit
+	 * will fail. Invoke remove on a detached entity.
+	 *
+	 */
+	@Test
+	public void detachBasicTest1() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin detachBasicTest1");
+		boolean pass = false;
+		final A aRef = new A("1", "a1", 1);
 
-      clearCache();
+		try {
 
-      getEntityTransaction().begin();
-      TestUtil.logTrace("tx started, see if entity is detached");
-      if (getEntityManager().contains(aRef)) {
-        TestUtil.logErr("contains method returned true; expected false"
-            + " (detached), test fails.");
-        pass = false;
-      } else {
+			logger.log(Logger.Level.TRACE, "Persist Instance");
+			createA(aRef);
 
-        try {
-          TestUtil.logTrace("try remove");
-          getEntityManager().remove(aRef);
-        } catch (IllegalArgumentException iae) {
-          TestUtil.logTrace("IllegalArgumentException caught as expected", iae);
-          pass = true;
-        }
+			clearCache();
 
-      }
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "tx started, see if entity is detached");
+			if (getEntityManager().contains(aRef)) {
+				logger.log(Logger.Level.ERROR,
+						"contains method returned true; expected false" + " (detached), test fails.");
+				pass = false;
+			} else {
 
-      TestUtil.logTrace("tx commit");
-      getEntityTransaction().commit();
+				try {
+					logger.log(Logger.Level.TRACE, "try remove");
+					getEntityManager().remove(aRef);
+				} catch (IllegalArgumentException iae) {
+					logger.log(Logger.Level.TRACE, "IllegalArgumentException caught as expected", iae);
+					pass = true;
+				}
 
-    } catch (Exception e) {
-      TestUtil.logTrace("or, Transaction commit will fail. "
-          + " Test the commit failed by testing"
-          + " the transaction is marked for rollback");
-      if (!pass) {
-        if (e instanceof jakarta.transaction.TransactionRolledbackException
-            || e instanceof jakarta.persistence.PersistenceException) {
-          pass = true;
-        } else {
-          TestUtil.logErr(
-              "Not TransactionRolledbackException nor PersistenceException, totally unexpected:",
-              e);
-        }
-      }
+			}
 
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+			logger.log(Logger.Level.TRACE, "tx commit");
+			getEntityTransaction().commit();
 
-    if (!pass)
-      throw new Fault("detachBasicTest1 failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.TRACE, "or, Transaction commit will fail. " + " Test the commit failed by testing"
+					+ " the transaction is marked for rollback");
+			if (!pass) {
+				if (e instanceof jakarta.transaction.TransactionRolledbackException
+						|| e instanceof jakarta.persistence.PersistenceException) {
+					pass = true;
+				} else {
+					logger.log(Logger.Level.ERROR,
+							"Not TransactionRolledbackException nor PersistenceException, totally unexpected:", e);
+				}
+			}
 
-  /*
-   * @testName: detachBasicTest2
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:323; PERSISTENCE:SPEC:649;
-   * PERSISTENCE:SPEC:650;
-   * 
-   * @test_Strategy: Do a find of an entity, detached it, then modify it. Do
-   * another find and verify the changes were not persisted.
-   *
-   */
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
 
-  public void detachBasicTest2() throws Exception {
-    TestUtil.logTrace("Begin detachBasicTest2");
-    boolean pass = false;
-    final A expected = new A("1", "a1", 1);
+		if (!pass)
+			throw new Exception("detachBasicTest1 failed");
+	}
 
-    try {
+	/*
+	 * @testName: detachBasicTest2
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:323; PERSISTENCE:SPEC:649;
+	 * PERSISTENCE:SPEC:650;
+	 * 
+	 * @test_Strategy: Do a find of an entity, detached it, then modify it. Do
+	 * another find and verify the changes were not persisted.
+	 *
+	 */
+	@Test
+	public void detachBasicTest2() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin detachBasicTest2");
+		boolean pass = false;
+		final A expected = new A("1", "a1", 1);
 
-      TestUtil.logTrace("Persist Instance");
-      createA(new A("1", "a1", 1));
+		try {
 
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Executing find");
-      A newA = getEntityManager().find(A.class, "1");
-      TestUtil.logTrace("newA:" + newA.toString());
+			logger.log(Logger.Level.TRACE, "Persist Instance");
+			createA(new A("1", "a1", 1));
 
-      TestUtil.logTrace("changing name");
-      newA.setAName("foobar");
-      TestUtil.logTrace("newA:" + newA.toString());
-      TestUtil.logTrace("executing detach");
-      getEntityManager().detach(newA);
-      TestUtil.logTrace("newA:" + newA.toString());
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "Executing find");
+			A newA = getEntityManager().find(A.class, "1");
+			logger.log(Logger.Level.TRACE, "newA:" + newA.toString());
 
-      TestUtil.logTrace("tx commit");
-      getEntityTransaction().commit();
-      A newAA = getEntityManager().find(A.class, "1");
-      TestUtil.logTrace("newAA:" + newAA.toString());
+			logger.log(Logger.Level.TRACE, "changing name");
+			newA.setAName("foobar");
+			logger.log(Logger.Level.TRACE, "newA:" + newA.toString());
+			logger.log(Logger.Level.TRACE, "executing detach");
+			getEntityManager().detach(newA);
+			logger.log(Logger.Level.TRACE, "newA:" + newA.toString());
 
-      if (expected.equals(newAA)) {
-        pass = true;
-      } else {
-        TestUtil.logErr(
-            "Changes made to entity were persisted even though it was detached without a flush");
-        TestUtil.logErr("expected A:" + expected.toString() + ", actual A:"
-            + newAA.toString());
+			logger.log(Logger.Level.TRACE, "tx commit");
+			getEntityTransaction().commit();
+			A newAA = getEntityManager().find(A.class, "1");
+			logger.log(Logger.Level.TRACE, "newAA:" + newAA.toString());
 
-      }
+			if (expected.equals(newAA)) {
+				pass = true;
+			} else {
+				logger.log(Logger.Level.ERROR,
+						"Changes made to entity were persisted even though it was detached without a flush");
+				logger.log(Logger.Level.ERROR, "expected A:" + expected.toString() + ", actual A:" + newAA.toString());
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+			}
 
-    if (!pass)
-      throw new Fault("detachBasicTest2 failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
 
-  /*
-   * Business Methods for Test Cases
-   */
+		if (!pass)
+			throw new Exception("detachBasicTest2 failed");
+	}
 
-  private void createA(final A a) {
-    TestUtil.logTrace("Entered createA method");
-    getEntityTransaction().begin();
-    getEntityManager().persist(a);
-    getEntityTransaction().commit();
-  }
+	/*
+	 * Business Methods for Test Cases
+	 */
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	private void createA(final A a) {
+		logger.log(Logger.Level.TRACE, "Entered createA method");
+		getEntityTransaction().begin();
+		getEntityManager().persist(a);
+		getEntityTransaction().commit();
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM AEJB_1XM_BI_BTOB")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM AEJB_1XM_BI_BTOB").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

@@ -33,57 +33,55 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "COLTAB")
-@AttributeOverrides({
-    @AttributeOverride(name = "name", column = @Column(name = "NAME"))
-})
+@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 public class A implements java.io.Serializable {
 
-    private static final long serialVersionUID = 20L;
-    protected String id;
-    protected String name;
+	private static final long serialVersionUID = 20L;
+	protected String id;
+	protected String name;
 
-    protected List<Address> lAddress = new ArrayList<Address>();
+	protected List<Address> lAddress = new ArrayList<Address>();
 
-    public A() {
-    }
+	public A() {
+	}
 
-    public A(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public A(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public A(String id, String name, List<Address> addr) {
-        this.id = id;
-        this.name = name;
-        this.lAddress = addr;
-    }
+	public A(String id, String name, List<Address> addr) {
+		this.id = id;
+		this.name = name;
+		this.lAddress = addr;
+	}
 
-    @Id
-    public String getId() {
-        return id;
-    }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-    @OrderBy("zipCode.zip DESC")
-    public List<Address> getAddressList() {
-        return lAddress;
-    }
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+	@OrderBy("zipCode.zip DESC")
+	public List<Address> getAddressList() {
+		return lAddress;
+	}
 
-    public void setAddressList(List<Address> addr) {
-        this.lAddress = addr;
-    }
+	public void setAddressList(List<Address> addr) {
+		this.lAddress = addr;
+	}
 
 }

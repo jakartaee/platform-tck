@@ -22,107 +22,106 @@ package com.sun.ts.tests.jpa.se.descriptor;
 
 public class B implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected String id;
+	protected String id;
 
-  protected String name;
+	protected String name;
 
-  protected int value;
+	protected int value;
 
-  protected A a;
+	protected A a;
 
-  // ===========================================================
-  // constructors
+	// ===========================================================
+	// constructors
 
-  public B() {
-  }
+	public B() {
+	}
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public B(String id, String name, int value, A a) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.a = a;
-  }
+	public B(String id, String name, int value, A a) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.a = a;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public int getValue() {
-    return value;
-  }
+	public int getValue() {
+		return value;
+	}
 
-  public void setValue(int value) {
-    this.value = value;
-  }
+	public void setValue(int value) {
+		this.value = value;
+	}
 
-  // ===========================================================
-  // relationship fields
+	// ===========================================================
+	// relationship fields
 
-  public A getA() {
-    return a;
-  }
+	public A getA() {
+		return a;
+	}
 
-  public void setA(A a) {
-    this.a = a;
-  }
+	public void setA(A a) {
+		this.a = a;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof B))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof B))
+			return false;
 
-    B o1 = (B) o;
+		B o1 = (B) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getId() == o1.getId()
-        && ((this.getName() == null && o1.getName() == null)
-            || this.getName().equals(o1.getName()))
-        && this.getValue() == o1.getValue()
+		if (this.getId() == o1.getId()
+				&& ((this.getName() == null && o1.getName() == null) || this.getName().equals(o1.getName()))
+				&& this.getValue() == o1.getValue()
 
-    ) {
-      result = true;
-    }
+		) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getName() != null) {
-      result.append(", name: " + getName());
-    } else {
-      result.append(", name: null");
-    }
-    result.append(", value: " + getValue());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getName() != null) {
+			result.append(", name: " + getName());
+		} else {
+			result.append(", name: null");
+		}
+		result.append(", value: " + getValue());
+		result.append("]");
+		return result.toString();
+	}
 }

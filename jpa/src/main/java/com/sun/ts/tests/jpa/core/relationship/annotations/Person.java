@@ -39,115 +39,114 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Person implements java.io.Serializable {
 
-  private int personid;
+	private int personid;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private Project project;
+	private Project project;
 
-  private Team team;
+	private Team team;
 
-  private Collection<AnnualReview> annualReviews = new java.util.ArrayList<AnnualReview>();
+	private Collection<AnnualReview> annualReviews = new java.util.ArrayList<AnnualReview>();
 
-  private Collection<Insurance> carriers = new java.util.ArrayList<Insurance>();
+	private Collection<Insurance> carriers = new java.util.ArrayList<Insurance>();
 
-  private Collection<Project> projects = new java.util.ArrayList<Project>();
+	private Collection<Project> projects = new java.util.ArrayList<Project>();
 
-  public Person() {
-  }
+	public Person() {
+	}
 
-  public Person(int personid, String firstName, String lastName) {
-    this.personid = personid;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+	public Person(int personid, String firstName, String lastName) {
+		this.personid = personid;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  public int getPersonId() {
-    return personid;
-  }
+	@Id
+	public int getPersonId() {
+		return personid;
+	}
 
-  public void setPersonId(int personid) {
-    this.personid = personid;
-  }
+	public void setPersonId(int personid) {
+		this.personid = personid;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  /* Uni-Directional Single-Valued Many(Persons)ToOne(Team) */
-  @ManyToOne
-  @JoinColumn(name = "TEAM_TEAMID")
-  public Team getTeam() {
-    return team;
-  }
+	/* Uni-Directional Single-Valued Many(Persons)ToOne(Team) */
+	@ManyToOne
+	@JoinColumn(name = "TEAM_TEAMID")
+	public Team getTeam() {
+		return team;
+	}
 
-  public void setTeam(Team team) {
-    this.team = team;
-  }
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 
-  /* Bi-Directional OneProjectLead(Person)ToOneProject */
-  @OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-      CascadeType.REFRESH })
-  @JoinColumn(name = "PROJECT_PROJID")
-  public Project getProject() {
-    return project;
-  }
+	/* Bi-Directional OneProjectLead(Person)ToOneProject */
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
+	@JoinColumn(name = "PROJECT_PROJID")
+	public Project getProject() {
+		return project;
+	}
 
-  public void setProject(Project project) {
-    this.project = project;
-  }
+	public void setProject(Project project) {
+		this.project = project;
+	}
 
-  /* Bi-Directional ManyPersonsToManyProjects */
-  @ManyToMany(mappedBy = "persons")
-  public Collection<Project> getProjects() {
-    return projects;
-  }
+	/* Bi-Directional ManyPersonsToManyProjects */
+	@ManyToMany(mappedBy = "persons")
+	public Collection<Project> getProjects() {
+		return projects;
+	}
 
-  public void setProjects(Collection<Project> projects) {
-    this.projects = projects;
-  }
+	public void setProjects(Collection<Project> projects) {
+		this.projects = projects;
+	}
 
-  /* Uni-Directional Single-Valued OnePersonsToManyReviews */
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "PERSON_ANNUALREVIEW", joinColumns = @JoinColumn(name = "Person_PERSONID", referencedColumnName = "PERSONID"), inverseJoinColumns = @JoinColumn(name = "annualReviews_AID", referencedColumnName = "AID"))
-  public Collection<AnnualReview> getAnnualReviews() {
-    return annualReviews;
-  }
+	/* Uni-Directional Single-Valued OnePersonsToManyReviews */
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "PERSON_ANNUALREVIEW", joinColumns = @JoinColumn(name = "Person_PERSONID", referencedColumnName = "PERSONID"), inverseJoinColumns = @JoinColumn(name = "annualReviews_AID", referencedColumnName = "AID"))
+	public Collection<AnnualReview> getAnnualReviews() {
+		return annualReviews;
+	}
 
-  public void setAnnualReviews(Collection<AnnualReview> annualReviews) {
-    this.annualReviews = annualReviews;
-  }
+	public void setAnnualReviews(Collection<AnnualReview> annualReviews) {
+		this.annualReviews = annualReviews;
+	}
 
-  /* Uni-Directional Multi-Valued Relationship ManyInsuranceToManyPersons */
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "PERSON_INSURANCE", joinColumns = @JoinColumn(name = "Person_PERSONID", referencedColumnName = "PERSONID"), inverseJoinColumns = @JoinColumn(name = "insurance_INSID", referencedColumnName = "INSID"))
-  public Collection<Insurance> getInsurance() {
-    return carriers;
-  }
+	/* Uni-Directional Multi-Valued Relationship ManyInsuranceToManyPersons */
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "PERSON_INSURANCE", joinColumns = @JoinColumn(name = "Person_PERSONID", referencedColumnName = "PERSONID"), inverseJoinColumns = @JoinColumn(name = "insurance_INSID", referencedColumnName = "INSID"))
+	public Collection<Insurance> getInsurance() {
+		return carriers;
+	}
 
-  public void setInsurance(Collection<Insurance> carriers) {
-    this.carriers = carriers;
-  }
+	public void setInsurance(Collection<Insurance> carriers) {
+		this.carriers = carriers;
+	}
 
 }

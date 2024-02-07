@@ -22,23 +22,19 @@ import jakarta.persistence.Converter;
 @Converter(autoApply = false)
 public class DotConverter implements AttributeConverter<String, String> {
 
-  public String convertToDatabaseColumn(String attribute) {
-    System.out.println("*** Entering DotConverter:convertToDatabaseColumn["
-        + attribute + "] ***");
-    String s = attribute.replace(".", "#");
-    System.out.println(
-        "*** Leaving DotConverter:convertToDatabaseColumn[" + s + "] ***");
-    return s;
-  }
+	public String convertToDatabaseColumn(String attribute) {
+		System.out.println("*** Entering DotConverter:convertToDatabaseColumn[" + attribute + "] ***");
+		String s = attribute.replace(".", "#");
+		System.out.println("*** Leaving DotConverter:convertToDatabaseColumn[" + s + "] ***");
+		return s;
+	}
 
-  public String convertToEntityAttribute(String dbData) {
-    System.out.println("*** Entering DotConverter:convertToEntityAttribute["
-        + dbData + "] ***");
-    String s = dbData.replace("#", "_");
-    System.out.println(
-        "*** Leaving DotConverter:convertToEntityAttribute[" + s + "] ***");
-    return s;
+	public String convertToEntityAttribute(String dbData) {
+		System.out.println("*** Entering DotConverter:convertToEntityAttribute[" + dbData + "] ***");
+		String s = dbData.replace("#", "_");
+		System.out.println("*** Leaving DotConverter:convertToEntityAttribute[" + s + "] ***");
+		return s;
 
-  }
+	}
 
 }

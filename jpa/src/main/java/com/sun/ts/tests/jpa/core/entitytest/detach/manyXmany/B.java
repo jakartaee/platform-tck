@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.manyXmany;
 
+import java.lang.System.Logger;
 import java.util.Collection;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -35,67 +34,68 @@ import jakarta.persistence.Table;
 @Table(name = "BEJB_MXM_BI_BTOB")
 public class B implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  @Id
-  protected String id;
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  @Basic
-  protected String name;
+	// ===========================================================
+	// instance variables
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // relationship fields
+	@Basic
+	protected int value;
 
-  @ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.detach.manyXmany.A.class, cascade = {
-      CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE,
-      CascadeType.REFRESH }, mappedBy = "bCol")
-  protected Collection aCol = new java.util.ArrayList();
+	// ===========================================================
+	// relationship fields
 
-  // ===========================================================
-  // constructors
+	@ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.detach.manyXmany.A.class, cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH }, mappedBy = "bCol")
+	protected Collection aCol = new java.util.ArrayList();
 
-  public B() {
-    TestUtil.logTrace("Entity B no arg constructor");
-  }
+	// ===========================================================
+	// constructors
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public B() {
+		logger.log(Logger.Level.TRACE, "Entity B no arg constructor");
+	}
 
-  public B(String id, String name, int value, Collection aCol) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.aCol = aCol;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // ==========================================================
-  // Business Methods for Test Cases
+	public B(String id, String name, int value, Collection aCol) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.aCol = aCol;
+	}
 
-  public Collection getACol() {
-    TestUtil.logTrace("getACol");
-    return aCol;
-  }
+	// ==========================================================
+	// Business Methods for Test Cases
 
-  public void setACol(Collection aCol) {
-    TestUtil.logTrace("setACol");
-    this.aCol = aCol;
-  }
+	public Collection getACol() {
+		logger.log(Logger.Level.TRACE, "getACol");
+		return aCol;
+	}
 
-  public String getBId() {
-    return id;
-  }
+	public void setACol(Collection aCol) {
+		logger.log(Logger.Level.TRACE, "setACol");
+		this.aCol = aCol;
+	}
 
-  public String getBName() {
-    return name;
-  }
+	public String getBId() {
+		return id;
+	}
 
-  public int getBValue() {
-    return value;
-  }
+	public String getBName() {
+		return name;
+	}
+
+	public int getBValue() {
+		return value;
+	}
 }

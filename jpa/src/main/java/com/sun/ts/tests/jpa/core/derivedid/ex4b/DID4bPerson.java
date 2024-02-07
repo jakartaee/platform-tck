@@ -28,59 +28,58 @@ import jakarta.persistence.Id;
 @Entity
 public class DID4bPerson implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  private String ssn;
+	@Id
+	private String ssn;
 
-  private String name;
+	private String name;
 
-  public DID4bPerson() {
-  }
+	public DID4bPerson() {
+	}
 
-  public DID4bPerson(String ssn, String name) {
-    this.ssn = ssn;
-    this.name = name;
-  }
+	public DID4bPerson(String ssn, String name) {
+		this.ssn = ssn;
+		this.name = name;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getSsn() {
-    return ssn;
-  }
+	public String getSsn() {
+		return ssn;
+	}
 
-  public void setSsn(String ssn) {
-    this.ssn = ssn;
-  }
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (ssn != null ? ssn.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (ssn != null ? ssn.hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    if (!(object instanceof DID4bPerson)) {
-      return false;
-    }
-    DID4bPerson other = (DID4bPerson) object;
-    if ((this.ssn == null && other.ssn != null)
-        || (this.ssn != null && !this.ssn.equals(other.ssn))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof DID4bPerson)) {
+			return false;
+		}
+		DID4bPerson other = (DID4bPerson) object;
+		if ((this.ssn == null && other.ssn != null) || (this.ssn != null && !this.ssn.equals(other.ssn))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public String toString() {
-    return "derivedssn4.DID4Person[ssn=" + ssn + "]";
-  }
+	@Override
+	public String toString() {
+		return "derivedssn4.DID4Person[ssn=" + ssn + "]";
+	}
 }

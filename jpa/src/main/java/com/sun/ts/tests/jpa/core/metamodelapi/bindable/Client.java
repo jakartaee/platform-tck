@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,11 +16,14 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.bindable;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 import java.util.Set;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.Bindable;
@@ -29,120 +32,130 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: getBindableType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1438; PERSISTENCE:JAVADOC:1225
-   *
-   * @test_Strategy:
-   * 
-   */
-  public void getBindableType() throws Exception {
-    boolean pass = false;
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "ZipCode" };
+		return createDeploymentJar("jpa_core_metamodelapi_bindable.jar", pkgNameWithoutSuffix, classes);
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      Set<EntityType<?>> aSet = metaModel.getEntities();
-      if (aSet != null) {
-        TestUtil.logTrace("Obtained Non-null Set of EntityType");
-        for (EntityType eType : aSet) {
-          TestUtil.logTrace(
-              "entity's BindableType is  = " + eType.getBindableType());
-          if (eType.getBindableType()
-              .equals(Bindable.BindableType.ENTITY_TYPE)) {
-            TestUtil.logTrace("as Expected BindableType is ENTITY_TYPE");
-            pass = true;
-          } else {
-            TestUtil.logTrace("bindableType is non ENTITY_TYPE");
-          }
-        }
-      }
-    }
+	}
 
-    getEntityTransaction().commit();
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("getBindableType failed");
-    }
-  }
+	/*
+	 * @testName: getBindableType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1438; PERSISTENCE:JAVADOC:1225
+	 *
+	 * @test_Strategy:
+	 * 
+	 */
+	@Test
+	public void getBindableType() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: getBindableJavaType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1224
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getBindableJavaType() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			Set<EntityType<?>> aSet = metaModel.getEntities();
+			if (aSet != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of EntityType");
+				for (EntityType eType : aSet) {
+					logger.log(Logger.Level.TRACE, "entity's BindableType is  = " + eType.getBindableType());
+					if (eType.getBindableType().equals(Bindable.BindableType.ENTITY_TYPE)) {
+						logger.log(Logger.Level.TRACE, "as Expected BindableType is ENTITY_TYPE");
+						pass = true;
+					} else {
+						logger.log(Logger.Level.TRACE, "bindableType is non ENTITY_TYPE");
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      Set<EntityType<?>> aSet = metaModel.getEntities();
-      if (aSet != null) {
-        TestUtil.logTrace("Obtained Non-null Set of EntityType");
-        for (EntityType eType : aSet) {
-          TestUtil.logTrace("entity's BindableJavaType is  = "
-              + eType.getBindableJavaType().getName());
-          String bindableJavaType = eType.getBindableJavaType().getName();
+		getEntityTransaction().commit();
 
-          if (bindableJavaType != null) {
-            if (bindableJavaType
-                .equals("com.sun.ts.tests.jpa.core.metamodelapi.bindable.A")) {
-              TestUtil.logTrace(
-                  "as Expected BindableJavaType for A is " + bindableJavaType);
-              pass = true;
-            } else {
-              TestUtil.logTrace("bindableJavaType is incorrect");
-            }
-          }
-        }
-      }
-    }
+		if (!pass) {
+			throw new Exception("getBindableType failed");
+		}
+	}
 
-    getEntityTransaction().commit();
+	/*
+	 * @testName: getBindableJavaType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1224
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getBindableJavaType() throws Exception {
+		boolean pass = false;
 
-    if (!pass) {
-      throw new Fault("getBindableJavaType failed");
-    }
-  }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			Set<EntityType<?>> aSet = metaModel.getEntities();
+			if (aSet != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of EntityType");
+				for (EntityType eType : aSet) {
+					logger.log(Logger.Level.TRACE,
+							"entity's BindableJavaType is  = " + eType.getBindableJavaType().getName());
+					String bindableJavaType = eType.getBindableJavaType().getName();
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+					if (bindableJavaType != null) {
+						if (bindableJavaType.equals("com.sun.ts.tests.jpa.core.metamodelapi.bindable.A")) {
+							logger.log(Logger.Level.TRACE, "as Expected BindableJavaType for A is " + bindableJavaType);
+							pass = true;
+						} else {
+							logger.log(Logger.Level.TRACE, "bindableJavaType is incorrect");
+						}
+					}
+				}
+			}
+		}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-  }
+		getEntityTransaction().commit();
+
+		if (!pass) {
+			throw new Exception("getBindableJavaType failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+	}
 }

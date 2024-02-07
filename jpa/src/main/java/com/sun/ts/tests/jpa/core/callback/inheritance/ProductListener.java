@@ -20,7 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.callback.inheritance;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
+
 import com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF;
 
 import jakarta.persistence.PostLoad;
@@ -37,56 +38,58 @@ import jakarta.persistence.PreUpdate;
  */
 public class ProductListener {
 
-  public ProductListener() {
-    super();
-  }
+	private static final Logger logger = (Logger) System.getLogger(ProductListener.class.getName());
 
-  @PrePersist
-  public void prePersist(CallbackStatusIF b) {
-    TestUtil.logTrace("In ProductListener.prePersist");
-    b.setPrePersistCalled(true);
-    b.addPrePersistCall(this.getClass().getSimpleName());
-  }
+	public ProductListener() {
+		super();
+	}
 
-  @PostPersist
-  public void postPersist(Object b) {
-    ((CallbackStatusIF) b).setPostPersistCalled(true);
-    ((CallbackStatusIF) b).addPostPersistCall(this.getClass().getSimpleName());
-  }
+	@PrePersist
+	public void prePersist(CallbackStatusIF b) {
+		logger.log(Logger.Level.TRACE, "In ProductListener.prePersist");
+		b.setPrePersistCalled(true);
+		b.addPrePersistCall(this.getClass().getSimpleName());
+	}
 
-  @PreRemove
-  public void preRemove(CallbackStatusIF b) {
-    TestUtil.logTrace("In ProductListener.preRemove");
-    b.setPreRemoveCalled(true);
-    b.addPreRemoveCall(this.getClass().getSimpleName());
-  }
+	@PostPersist
+	public void postPersist(Object b) {
+		((CallbackStatusIF) b).setPostPersistCalled(true);
+		((CallbackStatusIF) b).addPostPersistCall(this.getClass().getSimpleName());
+	}
 
-  @PostRemove
-  public void postRemove(Object b) {
-    TestUtil.logTrace("In PartProductListener.postRemove.");
-    ((CallbackStatusIF) b).setPostRemoveCalled(true);
-    ((CallbackStatusIF) b).addPostRemoveCall(this.getClass().getSimpleName());
-  }
+	@PreRemove
+	public void preRemove(CallbackStatusIF b) {
+		logger.log(Logger.Level.TRACE, "In ProductListener.preRemove");
+		b.setPreRemoveCalled(true);
+		b.addPreRemoveCall(this.getClass().getSimpleName());
+	}
 
-  @PreUpdate
-  public void preUpdate(CallbackStatusIF b) {
-    TestUtil.logTrace("In PartProductListener.preUpdate.");
-    b.setPreUpdateCalled(true);
-    b.addPreUpdateCall(this.getClass().getSimpleName());
-  }
+	@PostRemove
+	public void postRemove(Object b) {
+		logger.log(Logger.Level.TRACE, "In PartProductListener.postRemove.");
+		((CallbackStatusIF) b).setPostRemoveCalled(true);
+		((CallbackStatusIF) b).addPostRemoveCall(this.getClass().getSimpleName());
+	}
 
-  @PostUpdate
-  public void postUpdate(Object b) {
-    TestUtil.logTrace("In PartProductListener.postUpdate.");
-    ((CallbackStatusIF) b).setPostUpdateCalled(true);
-    ((CallbackStatusIF) b).addPostUpdateCall(this.getClass().getSimpleName());
-  }
+	@PreUpdate
+	public void preUpdate(CallbackStatusIF b) {
+		logger.log(Logger.Level.TRACE, "In PartProductListener.preUpdate.");
+		b.setPreUpdateCalled(true);
+		b.addPreUpdateCall(this.getClass().getSimpleName());
+	}
 
-  @PostLoad
-  public void postLoad(CallbackStatusIF b) {
-    TestUtil.logTrace("In PartProductListener.postLoad.");
-    b.setPostLoadCalled(true);
-    b.addPostLoadCall(this.getClass().getSimpleName());
-  }
+	@PostUpdate
+	public void postUpdate(Object b) {
+		logger.log(Logger.Level.TRACE, "In PartProductListener.postUpdate.");
+		((CallbackStatusIF) b).setPostUpdateCalled(true);
+		((CallbackStatusIF) b).addPostUpdateCall(this.getClass().getSimpleName());
+	}
+
+	@PostLoad
+	public void postLoad(CallbackStatusIF b) {
+		logger.log(Logger.Level.TRACE, "In PartProductListener.postLoad.");
+		b.setPostLoadCalled(true);
+		b.addPostLoadCall(this.getClass().getSimpleName());
+	}
 
 }

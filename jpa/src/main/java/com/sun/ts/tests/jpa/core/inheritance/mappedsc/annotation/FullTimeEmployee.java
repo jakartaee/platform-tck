@@ -38,40 +38,38 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "EMPLOYEE")
-@AttributeOverrides({
-    @AttributeOverride(name = "id", column = @Column(name = "ID")),
-    @AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
-    @AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
-    @AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE")) })
+@AttributeOverrides({ @AttributeOverride(name = "id", column = @Column(name = "ID")),
+		@AttributeOverride(name = "firstName", column = @Column(name = "FIRSTNAME")),
+		@AttributeOverride(name = "lastName", column = @Column(name = "LASTNAME")),
+		@AttributeOverride(name = "hireDate", column = @Column(name = "HIREDATE")) })
 public class FullTimeEmployee extends Employee implements Serializable {
 
-  private float salary;
+	private float salary;
 
-  public FullTimeEmployee() {
-  }
+	public FullTimeEmployee() {
+	}
 
-  public FullTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-    this.salary = salary;
-  }
+	public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		super(id, firstName, lastName, hireDate);
+		this.salary = salary;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @ManyToOne
-  @JoinColumn(name = "FK_DEPT")
-  public Department getDepartment() {
-    return department;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK_DEPT")
+	public Department getDepartment() {
+		return department;
+	}
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+	@Column(name = "SALARY")
+	public float getSalary() {
+		return salary;
+	}
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
 }

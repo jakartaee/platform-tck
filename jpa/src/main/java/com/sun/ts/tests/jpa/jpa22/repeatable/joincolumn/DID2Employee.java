@@ -26,49 +26,49 @@ import jakarta.persistence.IdClass;
 @IdClass(DID2EmployeeId.class)
 public class DID2Employee implements Serializable {
 
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  @Id
-  String firstName;
+	@Id
+	String firstName;
 
-  @Id
-  String lastName;
+	@Id
+	String lastName;
 
-  int empNo;
+	int empNo;
 
-  public DID2Employee() {
-  }
+	public DID2Employee() {
+	}
 
-  public DID2Employee(DID2EmployeeId eId) {
-    this(eId.getFirstName(), eId.getLastName());
-  }
+	public DID2Employee(DID2EmployeeId eId) {
+		this(eId.getFirstName(), eId.getLastName());
+	}
 
-  public DID2Employee(String firstName, String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+	public DID2Employee(String firstName, String lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-  public int getEmpNo() {
-    return empNo;
-  }
+	public int getEmpNo() {
+		return empNo;
+	}
 
-  public void setEmpNo(int empNo) {
-    this.empNo = empNo;
-  }
+	public void setEmpNo(int empNo) {
+		this.empNo = empNo;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 }

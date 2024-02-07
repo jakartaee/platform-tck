@@ -23,40 +23,40 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "PURCHASE_ORDER")
 public class Order implements java.io.Serializable {
-  private int id;
+	private int id;
 
-  private int total;
+	private int total;
 
-  public Order() {
-  }
+	public Order() {
+	}
 
-  public Order(int total) {
-    this.total = total;
-  }
+	public Order(int total) {
+		this.total = total;
+	}
 
-  public Order(int id, int total) {
-    this.id = id;
-    this.total = total;
-  }
+	public Order(int id, int total) {
+		this.id = id;
+		this.total = total;
+	}
 
-  @Id
-  public int getId() {
-    return id;
-  }
+	@Id
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public int getTotal() {
-    return total;
-  }
+	public int getTotal() {
+		return total;
+	}
 
-  public void setTotal(int total) {
-    this.total = total;
-  }
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
-  public String toString() {
-    return "Order id=" + getId() + ", total=" + getTotal();
-  }
+	public String toString() {
+		return "Order id=" + getId() + ", total=" + getTotal();
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2018, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,88 +16,104 @@
 
 package com.sun.ts.tests.jpa.core.override.table;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-  private static final Long ID = 1L;
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public Client() {
-  }
+	private static final Long ID = 1L;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception:test failed ", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: testNoTableAnnotation
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1028; PERSISTENCE:SPEC:1028.1;
-   * 
-   * @test_Strategy: Table and Entity are defined in orm.xml without using its
-   * annotation. The following test reads the entity and table names from the
-   * orm.xml and persists the entity.
-   */
-  public void testNoTableAnnotation() throws Exception {
-    NoTableAnnotation entity = new NoTableAnnotation();
-    entity.setId(ID);
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("persisting entity" + entity);
-      getEntityManager().persist(entity);
-      TestUtil.logTrace("flushing");
-      getEntityManager().flush();
-      TestUtil.logTrace("Test Passed");
-    } catch (Exception e) {
-      TestUtil.logErr("test failed");
-      throw new Fault(e);
-    }
-  }
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFiles = { ORM_XML };
+		String[] classes = { pkgName + "NoTableAnnotation" };
+		return createDeploymentJar("jpa_core_override_table.jar", pkgNameWithoutSuffix, classes, xmlFiles);
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM NOENTITYLISTENER_TABLE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
+		}
+	}
+
+	/*
+	 * @testName: testNoTableAnnotation
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1028; PERSISTENCE:SPEC:1028.1;
+	 * 
+	 * @test_Strategy: Table and Entity are defined in orm.xml without using its
+	 * annotation. The following test reads the entity and table names from the
+	 * orm.xml and persists the entity.
+	 */
+	@Test
+	public void testNoTableAnnotation() throws Exception {
+		NoTableAnnotation entity = new NoTableAnnotation();
+		entity.setId(ID);
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "persisting entity" + entity);
+			getEntityManager().persist(entity);
+			logger.log(Logger.Level.TRACE, "flushing");
+			getEntityManager().flush();
+			logger.log(Logger.Level.TRACE, "Test Passed");
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "test failed");
+			throw new Exception(e);
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM NOENTITYLISTENER_TABLE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

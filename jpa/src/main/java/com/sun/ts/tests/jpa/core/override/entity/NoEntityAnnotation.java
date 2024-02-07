@@ -22,41 +22,40 @@ import jakarta.persistence.NamedQuery;
 @NamedQuery(name = "findAllNoEntityAnnotation", query = "SELECT m FROM NOENTITYANNOTATION m")
 public class NoEntityAnnotation implements java.io.Serializable {
 
-  private Long id;
+	private Long id;
 
-  public NoEntityAnnotation() {
-  }
+	public NoEntityAnnotation() {
+	}
 
-  @Id
-  public Long getId() {
-    return id;
-  }
+	@Id
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.id != null ? this.id.hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.id != null ? this.id.hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(java.lang.Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof NoEntityAnnotation)) {
-      return false;
-    }
-    NoEntityAnnotation other = (NoEntityAnnotation) object;
-    if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(java.lang.Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof NoEntityAnnotation)) {
+			return false;
+		}
+		NoEntityAnnotation other = (NoEntityAnnotation) object;
+		if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.entity.NoEntityAnnotation[id="
-        + id + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.entity.NoEntityAnnotation[id=" + id + "]";
+	}
 }

@@ -20,9 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.relationship.defaults;
 
+import java.lang.System.Logger;
 import java.util.Collection;
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.jpa.core.override.entitylistener.Client;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -36,70 +37,72 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Company implements java.io.Serializable {
 
-  private long companyId;
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  private String name;
+	private long companyId;
 
-  private Address address;
+	private String name;
 
-  private Collection<Team> teams = new java.util.ArrayList<Team>();
+	private Address address;
 
-  public Company() {
-    TestUtil.logTrace("Company no arg constructor");
-  }
+	private Collection<Team> teams = new java.util.ArrayList<Team>();
 
-  public Company(long companyId, String name) {
-    this.companyId = companyId;
-    this.name = name;
-  }
+	public Company() {
+		logger.log(Logger.Level.TRACE, "Company no arg constructor");
+	}
 
-  public Company(long companyId, String name, Address addr) {
-    this.companyId = companyId;
-    this.name = name;
-    this.address = addr;
-  }
+	public Company(long companyId, String name) {
+		this.companyId = companyId;
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	public Company(long companyId, String name, Address addr) {
+		this.companyId = companyId;
+		this.name = name;
+		this.address = addr;
+	}
 
-  @Id
-  public long getCompanyId() {
-    return companyId;
-  }
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public void setCompanyId(long companyId) {
-    this.companyId = companyId;
-  }
+	@Id
+	public long getCompanyId() {
+		return companyId;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  /* Uni-directional Single-Valued One(Company)ToOne(Address) - Company Owner */
-  @OneToOne
-  public Address getAddress() {
-    return address;
-  }
+	// ===========================================================
+	// getters and setters for the association fields
 
-  public void setAddress(Address address) {
-    this.address = address;
-  }
+	/* Uni-directional Single-Valued One(Company)ToOne(Address) - Company Owner */
+	@OneToOne
+	public Address getAddress() {
+		return address;
+	}
 
-  /* Bi-directional One(Company)ToMany(Teams) - Owner Teams */
-  @OneToMany(mappedBy = "company")
-  public Collection<Team> getTeams() {
-    return teams;
-  }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-  public void setTeams(Collection<Team> teams) {
-    this.teams = teams;
-  }
+	/* Bi-directional One(Company)ToMany(Teams) - Owner Teams */
+	@OneToMany(mappedBy = "company")
+	public Collection<Team> getTeams() {
+		return teams;
+	}
+
+	public void setTeams(Collection<Team> teams) {
+		this.teams = teams;
+	}
 
 }

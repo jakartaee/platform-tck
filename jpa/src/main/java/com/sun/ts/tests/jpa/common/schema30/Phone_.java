@@ -24,12 +24,12 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Phone.class)
 public class Phone_ {
 
-  public static volatile SingularAttribute<Phone, String> id;
+	public static volatile SingularAttribute<Phone, String> id;
 
-  public static volatile SingularAttribute<Phone, String> area;
+	public static volatile SingularAttribute<Phone, String> area;
 
-  public static volatile SingularAttribute<Phone, Address> address;
+	public static volatile SingularAttribute<Phone, Address> address;
 
-  public static volatile SingularAttribute<Phone, String> number;
+	public static volatile SingularAttribute<Phone, String> number;
 
 }

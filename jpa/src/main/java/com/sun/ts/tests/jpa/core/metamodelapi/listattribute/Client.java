@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.listattribute;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.ListAttribute;
@@ -30,272 +33,278 @@ import jakarta.persistence.metamodel.Type;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: getList
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1395; PERSISTENCE:JAVADOC:1362;
-   * 
-   * @test_Strategy:
-   */
-  public void getList() throws Exception {
-    boolean pass = false;
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "BiDirMX1Person", pkgName + "BiDirMX1Project" };
+		return createDeploymentJar("jpa_core_metamodelapi_listattribute.jar", pkgNameWithoutSuffix, classes);
 
-    try {
-      getEntityTransaction().begin();
-      Metamodel metaModel = getEntityManager().getMetamodel();
-      if (metaModel != null) {
-        TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-        ManagedType<BiDirMX1Project> mType = metaModel
-            .managedType(BiDirMX1Project.class);
-        if (mType != null) {
-          TestUtil.logTrace("Obtained Non-null ManagedType");
-          ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType
-              .getList("biDirMX1Persons", BiDirMX1Person.class);
-          Type t = listAttrib.getElementType();
-          if (t != null) {
-            TestUtil.logTrace("element Type  = " + t.getJavaType());
-            String name = t.getJavaType().getName();
-            if (name.equals(
-                "com.sun.ts.tests.jpa.core.metamodelapi.listattribute.BiDirMX1Person")) {
-              pass = true;
-            } else {
-              TestUtil.logErr("Expected: BiDirMX1Person, actual:" + name);
-            }
-          }
-        }
-      }
+	}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass) {
-      throw new Fault("getList Test  failed");
-    }
-  }
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-  /*
-   * @testName: getCollectionType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1361;
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getCollectionType() throws Exception {
-    boolean pass = false;
+	/*
+	 * @testName: getList
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1395; PERSISTENCE:JAVADOC:1362;
+	 * 
+	 * @test_Strategy:
+	 */
+	@Test
+	public void getList() throws Exception {
+		boolean pass = false;
 
-    String expected = PluralAttribute.CollectionType.LIST.name();
-    try {
-      getEntityTransaction().begin();
-      Metamodel metaModel = getEntityManager().getMetamodel();
-      if (metaModel != null) {
-        TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-        ManagedType<BiDirMX1Project> mType = metaModel
-            .managedType(BiDirMX1Project.class);
-        if (mType != null) {
-          TestUtil.logTrace("Obtained Non-null ManagedType");
-          ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType
-              .getList("biDirMX1Persons", BiDirMX1Person.class);
-          PluralAttribute.CollectionType t = listAttrib.getCollectionType();
-          if (t != null) {
-            String sType = t.name();
-            if (sType.equals(expected)) {
-              TestUtil.logTrace("Received expected: " + expected);
-              pass = true;
-            } else {
-              TestUtil.logErr("Expected: " + expected + ", actual:" + sType);
-            }
-          } else {
-            TestUtil.logErr("getCollectionType() returned null");
-          }
-        } else {
-          TestUtil.logErr("managedType(...) returned null");
-        }
-      } else {
-        TestUtil.logErr("getMetamodel() returned null");
-      }
+		try {
+			getEntityTransaction().begin();
+			Metamodel metaModel = getEntityManager().getMetamodel();
+			if (metaModel != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
+				if (mType != null) {
+					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getList("biDirMX1Persons",
+							BiDirMX1Person.class);
+					Type t = listAttrib.getElementType();
+					if (t != null) {
+						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						String name = t.getJavaType().getName();
+						if (name.equals("com.sun.ts.tests.jpa.core.metamodelapi.listattribute.BiDirMX1Person")) {
+							pass = true;
+						} else {
+							logger.log(Logger.Level.ERROR, "Expected: BiDirMX1Person, actual:" + name);
+						}
+					}
+				}
+			}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass) {
-      throw new Fault("getCollectionType Test failed");
-    }
-  }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+		}
+		if (!pass) {
+			throw new Exception("getList Test  failed");
+		}
+	}
 
-  /*
-   * @testName: getDeclaredList
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1377
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getDeclaredList() throws Exception {
-    boolean pass = false;
+	/*
+	 * @testName: getCollectionType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1361;
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getCollectionType() throws Exception {
+		boolean pass = false;
 
-    try {
-      getEntityTransaction().begin();
-      Metamodel metaModel = getEntityManager().getMetamodel();
-      if (metaModel != null) {
-        TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-        ManagedType<BiDirMX1Project> mType = metaModel
-            .managedType(BiDirMX1Project.class);
-        if (mType != null) {
-          TestUtil.logTrace("Obtained Non-null ManagedType");
-          ListAttribute<BiDirMX1Project, BiDirMX1Person> listAttrib = mType
-              .getDeclaredList("biDirMX1Persons", BiDirMX1Person.class);
-          Type t = listAttrib.getElementType();
-          if (t != null) {
-            TestUtil.logTrace("element Type  = " + t.getJavaType());
-            String name = t.getJavaType().getName();
-            if (name.equals(
-                "com.sun.ts.tests.jpa.core.metamodelapi.listattribute.BiDirMX1Person")) {
-              pass = true;
-            } else {
-              TestUtil.logErr("Expected: BiDirMX1Person, actual:" + name);
-            }
-          }
-        }
-      }
+		String expected = PluralAttribute.CollectionType.LIST.name();
+		try {
+			getEntityTransaction().begin();
+			Metamodel metaModel = getEntityManager().getMetamodel();
+			if (metaModel != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
+				if (mType != null) {
+					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getList("biDirMX1Persons",
+							BiDirMX1Person.class);
+					PluralAttribute.CollectionType t = listAttrib.getCollectionType();
+					if (t != null) {
+						String sType = t.name();
+						if (sType.equals(expected)) {
+							logger.log(Logger.Level.TRACE, "Received expected: " + expected);
+							pass = true;
+						} else {
+							logger.log(Logger.Level.ERROR, "Expected: " + expected + ", actual:" + sType);
+						}
+					} else {
+						logger.log(Logger.Level.ERROR, "getCollectionType() returned null");
+					}
+				} else {
+					logger.log(Logger.Level.ERROR, "managedType(...) returned null");
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+			}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass) {
-      throw new Fault("getDeclaredList Test  failed");
-    }
-  }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+		}
+		if (!pass) {
+			throw new Exception("getCollectionType Test failed");
+		}
+	}
 
-  /*
-   * @testName: getList2
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1397;
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getList2() throws Exception {
-    boolean pass = false;
+	/*
+	 * @testName: getDeclaredList
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1377
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getDeclaredList() throws Exception {
+		boolean pass = false;
 
-    try {
-      getEntityTransaction().begin();
-      Metamodel metaModel = getEntityManager().getMetamodel();
-      if (metaModel != null) {
-        TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-        ManagedType<BiDirMX1Project> mType = metaModel
-            .managedType(BiDirMX1Project.class);
-        if (mType != null) {
-          TestUtil.logTrace("Obtained Non-null ManagedType");
-          ListAttribute<? super BiDirMX1Project, ?> listAttrib = mType
-              .getList("biDirMX1Persons");
-          Type t = listAttrib.getElementType();
-          if (t != null) {
-            TestUtil.logTrace("element Type  = " + t.getJavaType());
-            String name = t.getJavaType().getName();
-            if (name.equals(
-                "com.sun.ts.tests.jpa.core.metamodelapi.listattribute.BiDirMX1Person")) {
-              pass = true;
-            } else {
-              TestUtil.logErr("Expected: BiDirMX1Person, actual:" + name);
-            }
-          }
-        }
-      }
+		try {
+			getEntityTransaction().begin();
+			Metamodel metaModel = getEntityManager().getMetamodel();
+			if (metaModel != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
+				if (mType != null) {
+					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					ListAttribute<BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getDeclaredList("biDirMX1Persons",
+							BiDirMX1Person.class);
+					Type t = listAttrib.getElementType();
+					if (t != null) {
+						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						String name = t.getJavaType().getName();
+						if (name.equals("com.sun.ts.tests.jpa.core.metamodelapi.listattribute.BiDirMX1Person")) {
+							pass = true;
+						} else {
+							logger.log(Logger.Level.ERROR, "Expected: BiDirMX1Person, actual:" + name);
+						}
+					}
+				}
+			}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass) {
-      throw new Fault("getList2 Test  failed");
-    }
-  }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+		}
+		if (!pass) {
+			throw new Exception("getDeclaredList Test  failed");
+		}
+	}
 
-  /*
-   * @testName: getDeclaredList2
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1246
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getDeclaredList2() throws Exception {
-    boolean pass = false;
-    try {
+	/*
+	 * @testName: getList2
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1397;
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getList2() throws Exception {
+		boolean pass = false;
 
-      getEntityTransaction().begin();
-      Metamodel metaModel = getEntityManager().getMetamodel();
-      if (metaModel != null) {
-        TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-        ManagedType<BiDirMX1Project> mType = metaModel
-            .managedType(BiDirMX1Project.class);
-        if (mType != null) {
-          TestUtil.logTrace("Obtained Non-null ManagedType");
-          ListAttribute<BiDirMX1Project, ?> listAttrib = mType
-              .getDeclaredList("biDirMX1Persons");
-          Type t = listAttrib.getElementType();
-          if (t != null) {
-            TestUtil.logTrace("element Type  = " + t.getJavaType());
-            String name = t.getJavaType().getName();
-            if (name.equals(
-                "com.sun.ts.tests.jpa.core.metamodelapi.listattribute.BiDirMX1Person")) {
-              pass = true;
-            } else {
-              TestUtil.logErr("Expected: BiDirMX1Person, actual:" + name);
-            }
-          }
-        }
-      }
+		try {
+			getEntityTransaction().begin();
+			Metamodel metaModel = getEntityManager().getMetamodel();
+			if (metaModel != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
+				if (mType != null) {
+					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					ListAttribute<? super BiDirMX1Project, ?> listAttrib = mType.getList("biDirMX1Persons");
+					Type t = listAttrib.getElementType();
+					if (t != null) {
+						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						String name = t.getJavaType().getName();
+						if (name.equals("com.sun.ts.tests.jpa.core.metamodelapi.listattribute.BiDirMX1Person")) {
+							pass = true;
+						} else {
+							logger.log(Logger.Level.ERROR, "Expected: BiDirMX1Person, actual:" + name);
+						}
+					}
+				}
+			}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Received unexpected exception", e);
-    }
-    if (!pass) {
-      throw new Fault("getDeclaredList2 Test  failed");
-    }
-  }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+		}
+		if (!pass) {
+			throw new Exception("getList2 Test  failed");
+		}
+	}
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	/*
+	 * @testName: getDeclaredList2
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1246
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getDeclaredList2() throws Exception {
+		boolean pass = false;
+		try {
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
+			getEntityTransaction().begin();
+			Metamodel metaModel = getEntityManager().getMetamodel();
+			if (metaModel != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
+				if (mType != null) {
+					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					ListAttribute<BiDirMX1Project, ?> listAttrib = mType.getDeclaredList("biDirMX1Persons");
+					Type t = listAttrib.getElementType();
+					if (t != null) {
+						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						String name = t.getJavaType().getName();
+						if (name.equals("com.sun.ts.tests.jpa.core.metamodelapi.listattribute.BiDirMX1Person")) {
+							pass = true;
+						} else {
+							logger.log(Logger.Level.ERROR, "Expected: BiDirMX1Person, actual:" + name);
+						}
+					}
+				}
+			}
 
-    try {
-      if (getEntityTransaction().isActive()) {
-        getEntityTransaction().rollback();
-      }
-    } catch (Exception re) {
-      TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-    }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+		}
+		if (!pass) {
+			throw new Exception("getDeclaredList2 Test  failed");
+		}
+	}
 
-  }
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+
+		try {
+			if (getEntityTransaction().isActive()) {
+				getEntityTransaction().rollback();
+			}
+		} catch (Exception re) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+		}
+
+	}
 }

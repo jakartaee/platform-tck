@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.callback.common;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 /**
  * An annotation-free class that holds the logics for recording entity lifecycle
@@ -28,83 +28,79 @@ import com.sun.ts.lib.util.TestUtil;
  * must not be specified as a entity callback listener.
  */
 abstract public class ListenerBase {
-  protected ListenerBase() {
-    super();
-  }
 
-  public String getShortName() {
-    String name = this.getClass().getName();
-    name = name.substring(name.lastIndexOf('.') + 1);
-    return name;
-  }
+	private static final Logger logger = (Logger) System.getLogger(ListenerBase.class.getName());
 
-  protected void prePersist(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In ListenerBase.prePersist in class " + this,
-        b);
-    b.setPrePersistCalled(true);
-    b.addPrePersistCall(getShortName());
-    String testName = b.getTestName();
-    if (Constants.prePersistRuntimeExceptionTest.equals(testName)) {
-      TestUtil.logTrace("Throwing ArithmeticException in ListenerBase");
-      throw new ArithmeticException("RuntimeException from PrePersist.");
-    }
-  }
+	protected ListenerBase() {
+		super();
+	}
 
-  protected void postPersist(Object b) {
-    CallbackStatusIF p = (CallbackStatusIF) b;
-    GenerictListenerImpl.logTrace("In ListenerBase.postPersist." + this, p);
-    if (!p.isPrePersistCalled()) {
-      TestUtil.logTrace(
-          "When calling postPersist, prePersist has not been called.");
-      throw new IllegalStateException(
-          "When calling postPersist, prePersist has not been called.");
-    }
-    p.setPostPersistCalled(true);
-    p.addPostPersistCall(getShortName());
-  }
+	public String getShortName() {
+		String name = this.getClass().getName();
+		name = name.substring(name.lastIndexOf('.') + 1);
+		return name;
+	}
 
-  protected void preRemove(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In ListenerBase.preRemove." + this, b);
-    b.setPreRemoveCalled(true);
-    b.addPreRemoveCall(getShortName());
-  }
+	protected void prePersist(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In ListenerBase.prePersist in class " + this, b);
+		b.setPrePersistCalled(true);
+		b.addPrePersistCall(getShortName());
+		String testName = b.getTestName();
+		if (Constants.prePersistRuntimeExceptionTest.equals(testName)) {
+			logger.log(Logger.Level.TRACE, "Throwing ArithmeticException in ListenerBase");
+			throw new ArithmeticException("RuntimeException from PrePersist.");
+		}
+	}
 
-  protected void postRemove(Object b) {
-    CallbackStatusIF p = (CallbackStatusIF) b;
-    GenerictListenerImpl.logTrace("In ListenerBase.postRemove." + this, p);
-    if (!p.isPreRemoveCalled()) {
-      TestUtil
-          .logTrace("When calling postRemove, preRemove has not been called.");
-      throw new IllegalStateException(
-          "When calling postRemove, preRemove has not been called.");
-    }
-    p.setPostRemoveCalled(true);
-    p.addPostRemoveCall(getShortName());
-  }
+	protected void postPersist(Object b) {
+		CallbackStatusIF p = (CallbackStatusIF) b;
+		GenerictListenerImpl.logTrace("In ListenerBase.postPersist." + this, p);
+		if (!p.isPrePersistCalled()) {
+			logger.log(Logger.Level.TRACE, "When calling postPersist, prePersist has not been called.");
+			throw new IllegalStateException("When calling postPersist, prePersist has not been called.");
+		}
+		p.setPostPersistCalled(true);
+		p.addPostPersistCall(getShortName());
+	}
 
-  protected void preUpdate(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In ListenerBase.preUpdate." + this, b);
-    b.setPreUpdateCalled(true);
-    b.addPreUpdateCall(getShortName());
-  }
+	protected void preRemove(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In ListenerBase.preRemove." + this, b);
+		b.setPreRemoveCalled(true);
+		b.addPreRemoveCall(getShortName());
+	}
 
-  protected void postUpdate(Object b) {
-    CallbackStatusIF p = (CallbackStatusIF) b;
-    GenerictListenerImpl.logTrace("In ListenerBase.postUpdate." + this, p);
-    if (!p.isPreUpdateCalled()) {
-      TestUtil
-          .logErr("When calling postUpdate, preUpdate has not been called.");
-      throw new IllegalStateException(
-          "When calling postUpdate, preUpdate has not been called.");
-    }
-    p.setPostUpdateCalled(true);
-    p.addPostUpdateCall(getShortName());
-  }
+	protected void postRemove(Object b) {
+		CallbackStatusIF p = (CallbackStatusIF) b;
+		GenerictListenerImpl.logTrace("In ListenerBase.postRemove." + this, p);
+		if (!p.isPreRemoveCalled()) {
+			logger.log(Logger.Level.TRACE, "When calling postRemove, preRemove has not been called.");
+			throw new IllegalStateException("When calling postRemove, preRemove has not been called.");
+		}
+		p.setPostRemoveCalled(true);
+		p.addPostRemoveCall(getShortName());
+	}
 
-  protected void postLoad(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In ListenerBase.postLoad." + this, b);
-    b.setPostLoadCalled(true);
-    b.addPostLoadCall(getShortName());
-  }
+	protected void preUpdate(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In ListenerBase.preUpdate." + this, b);
+		b.setPreUpdateCalled(true);
+		b.addPreUpdateCall(getShortName());
+	}
+
+	protected void postUpdate(Object b) {
+		CallbackStatusIF p = (CallbackStatusIF) b;
+		GenerictListenerImpl.logTrace("In ListenerBase.postUpdate." + this, p);
+		if (!p.isPreUpdateCalled()) {
+			logger.log(Logger.Level.ERROR, "When calling postUpdate, preUpdate has not been called.");
+			throw new IllegalStateException("When calling postUpdate, preUpdate has not been called.");
+		}
+		p.setPostUpdateCalled(true);
+		p.addPostUpdateCall(getShortName());
+	}
+
+	protected void postLoad(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In ListenerBase.postLoad." + this, b);
+		b.setPostLoadCalled(true);
+		b.addPostLoadCall(getShortName());
+	}
 
 }

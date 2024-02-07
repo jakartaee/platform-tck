@@ -29,39 +29,39 @@ import jakarta.persistence.Id;
 @Access(AccessType.PROPERTY)
 public class Department implements java.io.Serializable {
 
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private String name;
+	private String name;
 
-  public Department() {
-  }
+	public Department() {
+	}
 
-  public Department(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public Department(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  public int getId() {
-    return id;
-  }
+	@Id
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -42,259 +43,249 @@ import jakarta.persistence.EntityManagerFactory;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateful3Bean implements Stateful3IF {
 
-  private EntityManager entityManager;
+	private static final Logger logger = (Logger) System.getLogger(Stateful3Bean.class.getName());
 
-  private EntityManagerFactory emf;
+	private EntityManager entityManager;
 
-  private Map myMap = new HashMap();
+	private EntityManagerFactory emf;
 
-  public SessionContext sessionContext;
+	private Map myMap = new HashMap();
 
-  private static final B bRef[] = new B[5];
+	public SessionContext sessionContext;
 
-  private static final C cRef[] = new C[5];
+	private static final B bRef[] = new B[5];
 
-  private EntityManager getEntityManager() {
-    TestUtil.logTrace("Look up EntityManagerFactory,get EntityManager");
-    try {
+	private static final C cRef[] = new C[5];
 
-      emf = (EntityManagerFactory) sessionContext
-          .lookup("persistence/MyPersistenceUnit");
+	private EntityManager getEntityManager() {
+		logger.log(Logger.Level.TRACE, "Look up EntityManagerFactory,get EntityManager");
+		try {
 
-      if (emf != null) {
-        entityManager = emf.createEntityManager(myMap);
-      } else {
-        TestUtil.logErr("EntityManagerFactory is null");
-      }
+			emf = (EntityManagerFactory) sessionContext.lookup("persistence/MyPersistenceUnit");
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception caught while setting EntityManager", e);
-    }
-    return entityManager;
-  }
+			if (emf != null) {
+				entityManager = emf.createEntityManager(myMap);
+			} else {
+				logger.log(Logger.Level.ERROR, "EntityManagerFactory is null");
+			}
 
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception caught while setting EntityManager", e);
+		}
+		return entityManager;
+	}
 
-  public void createTestData() {
-    try {
+	@Resource
+	public void setSessionContext(SessionContext sessionContext) {
+		this.sessionContext = sessionContext;
+	}
 
-      TestUtil.logTrace("createTestData");
+	public void createTestData() {
+		try {
 
-      TestUtil.logTrace("Create 2 B Entities");
-      bRef[0] = new B("1", "myB", 1);
-      bRef[1] = new B("2", "yourB", 2);
+			logger.log(Logger.Level.TRACE, "createTestData");
 
-      TestUtil.logTrace("Start to persist Bs ");
-      for (B b : bRef) {
-        if (b != null) {
-          entityManager.persist(b);
-          TestUtil.logTrace("persisted B " + b);
-        }
-      }
+			logger.log(Logger.Level.TRACE, "Create 2 B Entities");
+			bRef[0] = new B("1", "myB", 1);
+			bRef[1] = new B("2", "yourB", 2);
 
-      TestUtil.logTrace("Create 2 C Entities");
-      cRef[0] = new C("5", "myC", 5);
-      cRef[1] = new C("6", "yourC", 6);
+			logger.log(Logger.Level.TRACE, "Start to persist Bs ");
+			for (B b : bRef) {
+				if (b != null) {
+					entityManager.persist(b);
+					logger.log(Logger.Level.TRACE, "persisted B " + b);
+				}
+			}
 
-      TestUtil.logTrace("Start to persist Cs ");
-      for (C c : cRef) {
-        if (c != null) {
-          entityManager.persist(c);
-          TestUtil.logTrace("persisted C " + c);
-        }
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected while creating test data:" + e);
-    }
-  }
+			logger.log(Logger.Level.TRACE, "Create 2 C Entities");
+			cRef[0] = new C("5", "myC", 5);
+			cRef[1] = new C("6", "yourC", 6);
 
-  public void removeTestData() {
-    TestUtil.logTrace("stateful3Bean removeTestData");
+			logger.log(Logger.Level.TRACE, "Start to persist Cs ");
+			for (C c : cRef) {
+				if (c != null) {
+					entityManager.persist(c);
+					logger.log(Logger.Level.TRACE, "persisted C " + c);
+				}
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:" + e);
+		}
+	}
 
-    try {
-      if ((entityManager == null) || (!entityManager.isOpen())) {
-        entityManager = getEntityManager();
-      }
-      entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB")
-          .executeUpdate();
-      entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB")
-          .executeUpdate();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception caught while cleaning up:", e);
-    } finally {
+	public void removeTestData() {
+		logger.log(Logger.Level.TRACE, "stateful3Bean removeTestData");
 
-      if (entityManager.isOpen()) {
-        entityManager.close();
-      }
-    }
-    // clear the cache if the provider supports caching otherwise
-    // the evictAll is ignored.
-    TestUtil.logTrace("Clearing cache");
-    emf.getCache().evictAll();
-    TestUtil.logTrace("cleanup complete");
-  }
+		try {
+			if ((entityManager == null) || (!entityManager.isOpen())) {
+				entityManager = getEntityManager();
+			}
+			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
+			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught while cleaning up:", e);
+		} finally {
 
-  public void init(Properties p) {
-    TestUtil.logTrace("init");
-    try {
-      TestUtil.init(p);
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException(e.getMessage());
-    }
-  }
+			if (entityManager.isOpen()) {
+				entityManager.close();
+			}
+		}
+		// clear the cache if the provider supports caching otherwise
+		// the evictAll is ignored.
+		logger.log(Logger.Level.TRACE, "Clearing cache");
+		emf.getCache().evictAll();
+		logger.log(Logger.Level.TRACE, "cleanup complete");
+	}
 
-  public boolean test1() {
+	public void init(Properties p) {
+		logger.log(Logger.Level.TRACE, "init");
+		try {
+			TestUtil.init(p);
+		} catch (RemoteLoggingInitException e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException(e.getMessage());
+		}
+	}
 
-    TestUtil.logTrace("Begin test1");
-    boolean pass = false;
-    EntityManager em = getEntityManager();
+	public boolean test1() {
 
-    try {
-      createTestData();
+		logger.log(Logger.Level.TRACE, "Begin test1");
+		boolean pass = false;
+		EntityManager em = getEntityManager();
 
-      B anotherB = em.find(B.class, "1");
+		try {
+			createTestData();
 
-      if (anotherB != null) {
-        TestUtil.logTrace("anotherB found");
-        pass = true;
-      }
+			B anotherB = em.find(B.class, "1");
 
-    } catch (Exception e) {
-      TestUtil.logErr("test1: Unexpected Exception :", e);
-    } finally {
-      try {
-        if (em.isOpen()) {
-          em.close();
-        }
-      } catch (IllegalStateException ise) {
-        TestUtil.logErr(
-            "Unexpected IllegalStateException caught closing EntityManager",
-            ise);
-      } catch (Exception e) {
-        TestUtil.logErr(
-            "Unexpected Exception caught in while closing EntityManager", e);
-      }
-    }
+			if (anotherB != null) {
+				logger.log(Logger.Level.TRACE, "anotherB found");
+				pass = true;
+			}
 
-    return pass;
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "test1: Unexpected Exception :", e);
+		} finally {
+			try {
+				if (em.isOpen()) {
+					em.close();
+				}
+			} catch (IllegalStateException ise) {
+				logger.log(Logger.Level.ERROR, "Unexpected IllegalStateException caught closing EntityManager", ise);
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception caught in while closing EntityManager", e);
+			}
+		}
 
-  public boolean test2() {
-    TestUtil.logTrace("Begin test2");
-    boolean pass = false;
-    EntityManager thisEM = getEntityManager();
+		return pass;
+	}
 
-    try {
-      if (thisEM.isOpen()) {
-        TestUtil.logTrace("EntityManager is OPEN, try close");
-        thisEM.close();
-      }
+	public boolean test2() {
+		logger.log(Logger.Level.TRACE, "Begin test2");
+		boolean pass = false;
+		EntityManager thisEM = getEntityManager();
 
-      if (!thisEM.isOpen()) {
-        TestUtil.logTrace("EntityManager isOpen, returns false as expected");
-        pass = true;
-      } else {
-        TestUtil.logErr("EntityManager isOpen, returns false - unexpected");
-      }
+		try {
+			if (thisEM.isOpen()) {
+				logger.log(Logger.Level.TRACE, "EntityManager is OPEN, try close");
+				thisEM.close();
+			}
 
-    } catch (IllegalStateException ise) {
-      TestUtil.logErr("Unexpected IllegalStateException caught:", ise);
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception caught:", e);
-    }
+			if (!thisEM.isOpen()) {
+				logger.log(Logger.Level.TRACE, "EntityManager isOpen, returns false as expected");
+				pass = true;
+			} else {
+				logger.log(Logger.Level.ERROR, "EntityManager isOpen, returns false - unexpected");
+			}
 
-    return pass;
-  }
+		} catch (IllegalStateException ise) {
+			logger.log(Logger.Level.ERROR, "Unexpected IllegalStateException caught:", ise);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught:", e);
+		}
 
-  public boolean test3() {
-    TestUtil.logTrace("Begin test3");
-    boolean pass = false;
-    EntityManager thatEM = getEntityManager();
+		return pass;
+	}
 
-    try {
-      if (thatEM.isOpen()) {
-        thatEM.close();
-      }
+	public boolean test3() {
+		logger.log(Logger.Level.TRACE, "Begin test3");
+		boolean pass = false;
+		EntityManager thatEM = getEntityManager();
 
-      if (!thatEM.isOpen()) {
-        thatEM.close();
-      }
-    } catch (IllegalStateException ise) {
-      TestUtil.logTrace("IllegalStateException caught as expected");
-      pass = true;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception caught in test3", e);
-    }
+		try {
+			if (thatEM.isOpen()) {
+				thatEM.close();
+			}
 
-    return pass;
-  }
+			if (!thatEM.isOpen()) {
+				thatEM.close();
+			}
+		} catch (IllegalStateException ise) {
+			logger.log(Logger.Level.TRACE, "IllegalStateException caught as expected");
+			pass = true;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in test3", e);
+		}
 
-  public boolean test4() {
-    TestUtil.logTrace("Begin test4");
-    boolean pass = false;
-    try {
-      EntityManager entityManager = getEntityManager();
-      entityManager.getTransaction();
+		return pass;
+	}
 
-    } catch (IllegalStateException e) {
-      TestUtil.logTrace("Caught Expected Exception :" + e);
-      pass = true;
-    } finally {
-      try {
-        if (entityManager.isOpen()) {
-          entityManager.close();
-        }
-      } catch (IllegalStateException ise) {
-        TestUtil.logErr(
-            "Unexpected IllegalStateException caught closing EntityManager",
-            ise);
-      } catch (Exception e) {
-        TestUtil.logErr(
-            "Unexpected Exception caught while closing EntityManager", e);
-      }
-    }
+	public boolean test4() {
+		logger.log(Logger.Level.TRACE, "Begin test4");
+		boolean pass = false;
+		try {
+			EntityManager entityManager = getEntityManager();
+			entityManager.getTransaction();
 
-    return pass;
-  }
+		} catch (IllegalStateException e) {
+			logger.log(Logger.Level.TRACE, "Caught Expected Exception :" + e);
+			pass = true;
+		} finally {
+			try {
+				if (entityManager.isOpen()) {
+					entityManager.close();
+				}
+			} catch (IllegalStateException ise) {
+				logger.log(Logger.Level.ERROR, "Unexpected IllegalStateException caught closing EntityManager", ise);
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception caught while closing EntityManager", e);
+			}
+		}
 
-  public boolean test6() {
+		return pass;
+	}
 
-    TestUtil.logTrace("Begin test6");
-    boolean pass = false;
-    EntityManager em = getEntityManager();
+	public boolean test6() {
 
-    try {
-      createTestData();
+		logger.log(Logger.Level.TRACE, "Begin test6");
+		boolean pass = false;
+		EntityManager em = getEntityManager();
 
-      C c = em.find(C.class, "5");
+		try {
+			createTestData();
 
-      if (c != null) {
-        TestUtil.logTrace("c found");
-        pass = true;
-      }
+			C c = em.find(C.class, "5");
 
-    } catch (Exception e) {
-      TestUtil.logErr("test1: Unexpected Exception :", e);
-    } finally {
-      try {
-        if (em.isOpen()) {
-          em.close();
-        }
-      } catch (IllegalStateException ise) {
-        TestUtil.logErr(
-            "Unexpected IllegalStateException caught closing EntityManager",
-            ise);
-      } catch (Exception e) {
-        TestUtil.logErr(
-            "Unexpected Exception caught in while closing EntityManager", e);
-      }
-    }
+			if (c != null) {
+				logger.log(Logger.Level.TRACE, "c found");
+				pass = true;
+			}
 
-    return pass;
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "test1: Unexpected Exception :", e);
+		} finally {
+			try {
+				if (em.isOpen()) {
+					em.close();
+				}
+			} catch (IllegalStateException ise) {
+				logger.log(Logger.Level.ERROR, "Unexpected IllegalStateException caught closing EntityManager", ise);
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception caught in while closing EntityManager", e);
+			}
+		}
+
+		return pass;
+	}
 
 }

@@ -17,5 +17,5 @@
 package com.sun.ts.tests.jpa.core.annotations.mapkeyenumerated;
 
 public enum Offices {
-  OFF000, OFF001, OFF002, OFF003, OFF004
+	OFF000, OFF001, OFF002, OFF003, OFF004
 };

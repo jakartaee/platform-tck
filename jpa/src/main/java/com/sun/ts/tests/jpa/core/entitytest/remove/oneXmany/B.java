@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
@@ -33,122 +33,124 @@ import jakarta.persistence.Table;
 @Table(name = "BEJB_1XM_BI_BTOB")
 public class B implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  @Id
-  protected String id;
+	private static final Logger logger = (Logger) System.getLogger(B.class.getName());
 
-  @Basic
-  protected String name;
+	// ===========================================================
+	// instance variables
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // relationship fields
+	@Basic
+	protected int value;
 
-  @ManyToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany.A.class)
-  @JoinColumn(name = "FK_FOR_AEJB_1XM_BI_BTOB")
-  protected A a1;
+	// ===========================================================
+	// relationship fields
 
-  // ===========================================================
-  // constructors
+	@ManyToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.remove.oneXmany.A.class)
+	@JoinColumn(name = "FK_FOR_AEJB_1XM_BI_BTOB")
+	protected A a1;
 
-  public B() {
-    TestUtil.logTrace("Entity B no arg constructor");
-  }
+	// ===========================================================
+	// constructors
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public B() {
+		logger.log(Logger.Level.TRACE, "Entity B no arg constructor");
+	}
 
-  public B(String id, String name, int value, A a1) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.a1 = a1;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // ==========================================================
-  // Business Methods for Test Cases
+	public B(String id, String name, int value, A a1) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.a1 = a1;
+	}
 
-  public A getA1() {
-    return a1;
-  }
+	// ==========================================================
+	// Business Methods for Test Cases
 
-  public boolean isA() {
-    TestUtil.logTrace("isA");
-    if (getA1() != null)
-      TestUtil.logTrace("Relationship to A is not null...");
-    else
-      TestUtil.logTrace("Relationship to A is null...");
-    return getA1() != null;
-  }
+	public A getA1() {
+		return a1;
+	}
 
-  public A getA1Info() {
-    TestUtil.logTrace("getA1Info");
-    if (isA()) {
-      A a1 = getA1();
-      return a1;
-    } else
-      return null;
-  }
+	public boolean isA() {
+		logger.log(Logger.Level.TRACE, "isA");
+		if (getA1() != null)
+			logger.log(Logger.Level.TRACE, "Relationship to A is not null...");
+		else
+			logger.log(Logger.Level.TRACE, "Relationship to A is null...");
+		return getA1() != null;
+	}
 
-  public String getBId() {
-    return id;
-  }
+	public A getA1Info() {
+		logger.log(Logger.Level.TRACE, "getA1Info");
+		if (isA()) {
+			A a1 = getA1();
+			return a1;
+		} else
+			return null;
+	}
 
-  public String getBName() {
-    return name;
-  }
+	public String getBId() {
+		return id;
+	}
 
-  public int getBValue() {
-    return value;
-  }
+	public String getBName() {
+		return name;
+	}
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#hashCode()
-   */
-  @Override
-  public int hashCode() {
-    final int PRIME = 31;
-    int result = 1;
-    result = PRIME * result + ((id == null) ? 0 : id.hashCode());
-    result = PRIME * result + ((name == null) ? 0 : name.hashCode());
-    result = PRIME * result + value;
-    return result;
-  }
+	public int getBValue() {
+		return value;
+	}
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#equals(java.lang.Object)
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    final B other = (B) obj;
-    if (id == null) {
-      if (other.id != null)
-        return false;
-    } else if (!id.equals(other.id))
-      return false;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
-    if (value != other.value)
-      return false;
-    return true;
-  }
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int PRIME = 31;
+		int result = 1;
+		result = PRIME * result + ((id == null) ? 0 : id.hashCode());
+		result = PRIME * result + ((name == null) ? 0 : name.hashCode());
+		result = PRIME * result + value;
+		return result;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		final B other = (B) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (value != other.value)
+			return false;
+		return true;
+	}
 }

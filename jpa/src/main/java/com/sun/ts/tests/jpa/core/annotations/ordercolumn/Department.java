@@ -29,82 +29,81 @@ import jakarta.persistence.Table;
 @Table(name = "DEPARTMENT")
 public class Department implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private String name;
+	private String name;
 
-  private List<Employee> employees;
+	private List<Employee> employees;
 
-  public Department() {
-  }
+	public Department() {
+	}
 
-  public Department(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public Department(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @OneToMany(mappedBy = "department")
-  @OrderColumn(name = "THEORDERCOLUMN")
-  public List<Employee> getEmployees() {
-    return employees;
-  }
+	@OneToMany(mappedBy = "department")
+	@OrderColumn(name = "THEORDERCOLUMN")
+	public List<Employee> getEmployees() {
+		return employees;
+	}
 
-  public void setEmployees(List<Employee> employees) {
-    this.employees = employees;
-  }
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", first: " + getName());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", first: " + getName());
+		result.append("]");
+		return result.toString();
+	}
 
-  public boolean equals(Object o) {
-    Department other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Department other;
+		boolean result = false;
 
-    if (!(o instanceof Department)) {
-      return result;
-    }
-    other = (Department) o;
+		if (!(o instanceof Department)) {
+			return result;
+		}
+		other = (Department) o;
 
-    if (this.getId() == other.getId()
-        && this.getName().equals(other.getName())) {
-      result = true;
-    }
+		if (this.getId() == other.getId() && this.getName().equals(other.getName())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId() + this.getName().hashCode();
+		myHash = this.getId() + this.getName().hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 }

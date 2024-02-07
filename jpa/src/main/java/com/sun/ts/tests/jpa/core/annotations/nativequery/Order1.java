@@ -35,115 +35,112 @@ import jakarta.persistence.Table;
  */
 
 @SqlResultSetMappings({
-    @SqlResultSetMapping(name = "Order1ItemResults", entities = {
-        @EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order1.class),
-        @EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Item.class) }),
-    @SqlResultSetMapping(name = "Order2ItemResults", entities = {
-        @EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order1.class, fields = {
-            @FieldResult(name = "id", column = "OID"),
-            @FieldResult(name = "totalPrice", column = "OPRICE"),
-            @FieldResult(name = "item", column = "OITEM") }) }, columns = {
-                @ColumnResult(name = "INAME") }),
-    @SqlResultSetMapping(name = "Order3ItemResults", entities = {
-        @EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order1.class, fields = {
-            @FieldResult(name = "id", column = "THISID"),
-            @FieldResult(name = "totalPrice", column = "THISPRICE"),
-            @FieldResult(name = "item", column = "THISITEM") }),
-        @EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Item.class) }),
-    @SqlResultSetMapping(name = "Order4ItemResults", entities = {
-        @EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order1.class, fields = {
-            @FieldResult(name = "id", column = "OID"),
-            @FieldResult(name = "totalPrice", column = "OPRICE"),
-            @FieldResult(name = "item", column = "OITEM") }) }, columns = {
-                @ColumnResult(name = "INAME", type = String.class) }),
-    @SqlResultSetMapping(name = "Order5ItemResults", classes = {
-        @ConstructorResult(targetClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order2.class, columns = {
-            @ColumnResult(name = "OID"), @ColumnResult(name = "OPRICE"),
-            @ColumnResult(name = "OITEMNAME") }) }),
-    @SqlResultSetMapping(name = "PurchaseOrder1Results", classes = {
-        @ConstructorResult(targetClass = com.sun.ts.tests.jpa.core.annotations.nativequery.PurchaseOrder.class, columns = {
-            @ColumnResult(name = "OID"), @ColumnResult(name = "PTOTAL") }) }),
-    @SqlResultSetMapping(name = "PurchaseOrder2Results", classes = {
-        @ConstructorResult(targetClass = com.sun.ts.tests.jpa.core.annotations.nativequery.PurchaseOrder.class, columns = {
-            @ColumnResult(name = "PTOTAL") }) }) })
+		@SqlResultSetMapping(name = "Order1ItemResults", entities = {
+				@EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order1.class),
+				@EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Item.class) }),
+		@SqlResultSetMapping(name = "Order2ItemResults", entities = {
+				@EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order1.class, fields = {
+						@FieldResult(name = "id", column = "OID"), @FieldResult(name = "totalPrice", column = "OPRICE"),
+						@FieldResult(name = "item", column = "OITEM") }) }, columns = {
+								@ColumnResult(name = "INAME") }),
+		@SqlResultSetMapping(name = "Order3ItemResults", entities = {
+				@EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order1.class, fields = {
+						@FieldResult(name = "id", column = "THISID"),
+						@FieldResult(name = "totalPrice", column = "THISPRICE"),
+						@FieldResult(name = "item", column = "THISITEM") }),
+				@EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Item.class) }),
+		@SqlResultSetMapping(name = "Order4ItemResults", entities = {
+				@EntityResult(entityClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order1.class, fields = {
+						@FieldResult(name = "id", column = "OID"), @FieldResult(name = "totalPrice", column = "OPRICE"),
+						@FieldResult(name = "item", column = "OITEM") }) }, columns = {
+								@ColumnResult(name = "INAME", type = String.class) }),
+		@SqlResultSetMapping(name = "Order5ItemResults", classes = {
+				@ConstructorResult(targetClass = com.sun.ts.tests.jpa.core.annotations.nativequery.Order2.class, columns = {
+						@ColumnResult(name = "OID"), @ColumnResult(name = "OPRICE"),
+						@ColumnResult(name = "OITEMNAME") }) }),
+		@SqlResultSetMapping(name = "PurchaseOrder1Results", classes = {
+				@ConstructorResult(targetClass = com.sun.ts.tests.jpa.core.annotations.nativequery.PurchaseOrder.class, columns = {
+						@ColumnResult(name = "OID"), @ColumnResult(name = "PTOTAL") }) }),
+		@SqlResultSetMapping(name = "PurchaseOrder2Results", classes = {
+				@ConstructorResult(targetClass = com.sun.ts.tests.jpa.core.annotations.nativequery.PurchaseOrder.class, columns = {
+						@ColumnResult(name = "PTOTAL") }) }) })
 @Entity
 @Table(name = "ORDER1")
 public class Order1 implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private double totalPrice;
+	private double totalPrice;
 
-  private Item item;
+	private Item item;
 
-  public Order1() {
-  }
+	public Order1() {
+	}
 
-  public Order1(int id, double totalPrice) {
-    this.id = id;
-    this.totalPrice = totalPrice;
-  }
+	public Order1(int id, double totalPrice) {
+		this.id = id;
+		this.totalPrice = totalPrice;
+	}
 
-  public Order1(int id) {
-    this.id = id;
-  }
+	public Order1(int id) {
+		this.id = id;
+	}
 
-  // ====================================================================
-  // getters and setters for State fields
+	// ====================================================================
+	// getters and setters for State fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "TOTALPRICE")
-  public double getTotalPrice() {
-    return totalPrice;
-  }
+	@Column(name = "TOTALPRICE")
+	public double getTotalPrice() {
+		return totalPrice;
+	}
 
-  public void setTotalPrice(double price) {
-    this.totalPrice = price;
-  }
+	public void setTotalPrice(double price) {
+		this.totalPrice = price;
+	}
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "FK1_FOR_ITEM")
-  public Item getItem() {
-    return item;
-  }
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK1_FOR_ITEM")
+	public Item getItem() {
+		return item;
+	}
 
-  public void setItem(Item v) {
-    item = v;
-  }
+	public void setItem(Item v) {
+		item = v;
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getItem().getId();
-  }
+	@Override
+	public int hashCode() {
+		return this.getItem().getId();
+	}
 
-  public boolean equals(Object obj) {
-    boolean result = false;
+	public boolean equals(Object obj) {
+		boolean result = false;
 
-    if ((obj != null) && (obj instanceof Order1)) {
-      Order1 o = (Order1) obj;
-      result = (o.id == this.id && o.getTotalPrice() == this.totalPrice
-          && o.item.equals(this.item));
-    }
-    return result;
-  }
+		if ((obj != null) && (obj instanceof Order1)) {
+			Order1 o = (Order1) obj;
+			result = (o.id == this.id && o.getTotalPrice() == this.totalPrice && o.item.equals(this.item));
+		}
+		return result;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", total price: " + getTotalPrice());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", total price: " + getTotalPrice());
+		result.append("]");
+		return result.toString();
+	}
 }

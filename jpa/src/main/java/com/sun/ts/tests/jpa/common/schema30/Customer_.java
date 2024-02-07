@@ -27,28 +27,28 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Customer.class)
 public class Customer_ {
 
-  public static volatile SingularAttribute<Customer, String> id;
+	public static volatile SingularAttribute<Customer, String> id;
 
-  public static volatile SingularAttribute<Customer, Address> work;
+	public static volatile SingularAttribute<Customer, Address> work;
 
-  public static volatile SingularAttribute<Customer, Address> home;
+	public static volatile SingularAttribute<Customer, Address> home;
 
-  public static volatile CollectionAttribute<Customer, Alias> aliasesNoop;
+	public static volatile CollectionAttribute<Customer, Alias> aliasesNoop;
 
-  public static volatile SingularAttribute<Customer, Spouse> spouse;
+	public static volatile SingularAttribute<Customer, Spouse> spouse;
 
-  public static volatile SingularAttribute<Customer, String> name;
+	public static volatile SingularAttribute<Customer, String> name;
 
-  public static volatile CollectionAttribute<Customer, Order> orders;
+	public static volatile CollectionAttribute<Customer, Order> orders;
 
-  public static volatile CollectionAttribute<Customer, Alias> aliases;
+	public static volatile CollectionAttribute<Customer, Alias> aliases;
 
-  public static volatile CollectionAttribute<Customer, CreditCard> creditCards;
+	public static volatile CollectionAttribute<Customer, CreditCard> creditCards;
 
-  public static volatile SingularAttribute<Customer, Country> country;
+	public static volatile SingularAttribute<Customer, Country> country;
 
-  public static volatile SetAttribute<Customer, Order> orders2;
+	public static volatile SetAttribute<Customer, Order> orders2;
 
-  public static volatile ListAttribute<Customer, Order> orders3;
+	public static volatile ListAttribute<Customer, Order> orders3;
 
 }

@@ -16,189 +16,196 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidirmanyxmany;
 
+import java.lang.System.Logger;
 import java.util.Collection;
-import java.util.Properties;
 import java.util.Vector;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-/**
- * @author Raja Perumal
- */
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "BiDirMXMPerson", pkgName + "BiDirMXMProject" };
+		return createDeploymentJar("jpa_core_relationship_bidirmanyxmany.jar", pkgNameWithoutSuffix, classes);
 
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: biDirMXMTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-   * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-   * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-   * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-   * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
-   *
-   * @test_Strategy: Bi-Directional RelationShip OneToMany Mapping
-   *
-   */
-  public void biDirMXMTest1() throws Exception {
-    TestUtil.logTrace("Begin biDirMXMTest1");
-    boolean pass = false;
-    try {
+	public Client() {
+	}
 
-      getEntityTransaction().begin();
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
 
-      BiDirMXMProject project1 = new BiDirMXMProject(1L, "JavaEE", 500.0F);
-      BiDirMXMProject project2 = new BiDirMXMProject(2L, "Identity", 300F);
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      BiDirMXMPerson person1 = new BiDirMXMPerson(1L, "Duke");
-      BiDirMXMPerson person2 = new BiDirMXMPerson(2L, "Foo");
+	/*
+	 * @testName: biDirMXMTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
+	 * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
+	 * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
+	 * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
+	 * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+	 *
+	 * @test_Strategy: Bi-Directional RelationShip OneToMany Mapping
+	 *
+	 */
+	@Test
+	public void biDirMXMTest1() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin biDirMXMTest1");
+		boolean pass = false;
+		try {
 
-      getEntityManager().persist(project1);
-      getEntityManager().persist(project2);
-      getEntityManager().persist(person1);
-      getEntityManager().persist(person2);
+			getEntityTransaction().begin();
 
-      Vector<BiDirMXMProject> projects = new Vector<BiDirMXMProject>();
-      projects.add(project1);
-      projects.add(project2);
+			BiDirMXMProject project1 = new BiDirMXMProject(1L, "JavaEE", 500.0F);
+			BiDirMXMProject project2 = new BiDirMXMProject(2L, "Identity", 300F);
 
-      person1.setProjects(projects);
+			BiDirMXMPerson person1 = new BiDirMXMPerson(1L, "Duke");
+			BiDirMXMPerson person2 = new BiDirMXMPerson(2L, "Foo");
 
-      Vector<BiDirMXMProject> projects2 = new Vector<BiDirMXMProject>();
-      projects2.add(project2);
+			getEntityManager().persist(project1);
+			getEntityManager().persist(project2);
+			getEntityManager().persist(person1);
+			getEntityManager().persist(person2);
 
-      person2.setProjects(projects2);
+			Vector<BiDirMXMProject> projects = new Vector<BiDirMXMProject>();
+			projects.add(project1);
+			projects.add(project2);
 
-      getEntityManager().merge(person1);
-      getEntityManager().merge(person2);
+			person1.setProjects(projects);
 
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-      TestUtil.logTrace("persisted Persons and Project");
+			Vector<BiDirMXMProject> projects2 = new Vector<BiDirMXMProject>();
+			projects2.add(project2);
 
-      getEntityTransaction().begin();
+			person2.setProjects(projects2);
 
-      TestUtil.logTrace("persisted Persons and Project");
+			getEntityManager().merge(person1);
+			getEntityManager().merge(person2);
 
-      boolean pass1 = false;
-      boolean pass2 = false;
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			logger.log(Logger.Level.TRACE, "persisted Persons and Project");
 
-      BiDirMXMPerson newPerson = getEntityManager().find(BiDirMXMPerson.class,
-          1L);
+			getEntityTransaction().begin();
 
-      if (newPerson != null) {
+			logger.log(Logger.Level.TRACE, "persisted Persons and Project");
 
-        Collection<BiDirMXMProject> newProjects = newPerson.getProjects();
-        for (BiDirMXMProject prj : newProjects) {
-          if (prj.getName().equals("Identity")) {
-            TestUtil.logTrace("Found Searched Project Identity");
-            pass1 = true;
-          } else if (prj.getName().equals("JavaEE")) {
-            TestUtil.logTrace("Found Searched Project JavaEE");
-            pass2 = true;
-          }
-        }
+			boolean pass1 = false;
+			boolean pass2 = false;
 
-      }
+			BiDirMXMPerson newPerson = getEntityManager().find(BiDirMXMPerson.class, 1L);
 
-      boolean pass3 = false;
-      BiDirMXMPerson newPerson2 = getEntityManager().find(BiDirMXMPerson.class,
-          2L);
+			if (newPerson != null) {
 
-      if (newPerson2 != null) {
+				Collection<BiDirMXMProject> newProjects = newPerson.getProjects();
+				for (BiDirMXMProject prj : newProjects) {
+					if (prj.getName().equals("Identity")) {
+						logger.log(Logger.Level.TRACE, "Found Searched Project Identity");
+						pass1 = true;
+					} else if (prj.getName().equals("JavaEE")) {
+						logger.log(Logger.Level.TRACE, "Found Searched Project JavaEE");
+						pass2 = true;
+					}
+				}
 
-        Collection<BiDirMXMProject> newProjects2 = newPerson2.getProjects();
-        for (BiDirMXMProject prj : newProjects2) {
-          if (prj.getName().equals("Identity")) {
-            TestUtil.logTrace("Found Searched Project for Person id=2");
-            pass3 = true;
-          }
-        }
+			}
 
-      }
+			boolean pass3 = false;
+			BiDirMXMPerson newPerson2 = getEntityManager().find(BiDirMXMPerson.class, 2L);
 
-      if (pass1 && pass2 && pass3) {
-        TestUtil.logTrace("biDirMXMTest1: Expected results received");
-        pass = true;
-      } else {
-        TestUtil.logErr("Unexpected results received");
-        pass = false;
-      }
+			if (newPerson2 != null) {
 
-      getEntityTransaction().commit();
+				Collection<BiDirMXMProject> newProjects2 = newPerson2.getProjects();
+				for (BiDirMXMProject prj : newProjects2) {
+					if (prj.getName().equals("Identity")) {
+						logger.log(Logger.Level.TRACE, "Found Searched Project for Person id=2");
+						pass3 = true;
+					}
+				}
 
-    } catch (Exception e) {
+			}
 
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+			if (pass1 && pass2 && pass3) {
+				logger.log(Logger.Level.TRACE, "biDirMXMTest1: Expected results received");
+				pass = true;
+			} else {
+				logger.log(Logger.Level.ERROR, "Unexpected results received");
+				pass = false;
+			}
 
-    if (!pass) {
-      throw new Fault("biDirMXMTest1 failed");
-    }
-  }
+			getEntityTransaction().commit();
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		} catch (Exception e) {
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager()
-          .createNativeQuery("DELETE FROM BIDIRMXMPERSON_BIDIRMXMPROJECT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPERSON")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPROJECT")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
+
+		if (!pass) {
+			throw new Exception("biDirMXMTest1 failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPERSON_BIDIRMXMPROJECT").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPERSON").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIRMXMPROJECT").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -24,52 +24,50 @@ import jakarta.persistence.Id;
 @Entity
 public class MovieTicket implements Serializable {
 
-  @Id
-  private Integer id;
+	@Id
+	private Integer id;
 
-  private Film film;
+	private Film film;
 
-  public MovieTicket() {
-  }
+	public MovieTicket() {
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof MovieTicket)) {
-      return false;
-    }
-    MovieTicket other = (MovieTicket) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof MovieTicket)) {
+			return false;
+		}
+		MovieTicket other = (MovieTicket) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.embeddable." + "MovieTicket[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.embeddable." + "MovieTicket[id=" + getId() + "]";
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public Film getFilm() {
-    return film;
-  }
+	public Film getFilm() {
+		return film;
+	}
 
-  public void setFilm(Film film) {
-    this.film = film;
-  }
+	public void setFilm(Film film) {
+		this.film = film;
+	}
 }

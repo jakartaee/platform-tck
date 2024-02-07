@@ -22,7 +22,7 @@ package com.sun.ts.tests.jpa.core.entitytest.apitests;
 
 public class Foo implements java.io.Serializable {
 
-  public Foo() {
-  }
+	public Foo() {
+	}
 
 }

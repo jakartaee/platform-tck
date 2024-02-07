@@ -25,51 +25,51 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES")
 public class PropertyIntId implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected int id;
+	protected int id;
 
-  private int intData;
+	private int intData;
 
-  // ===========================================================
-  // constructors
-  public PropertyIntId() {
-  }
+	// ===========================================================
+	// constructors
+	public PropertyIntId() {
+	}
 
-  public PropertyIntId(int id, int intData) {
+	public PropertyIntId(int id, int intData) {
 
-    this.id = id;
-    this.intData = intData;
+		this.id = id;
+		this.intData = intData;
 
-  }
+	}
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "INTDATA")
-  public int getIntData() {
-    return intData;
-  }
+	@Column(name = "INTDATA")
+	public int getIntData() {
+		return intData;
+	}
 
-  public void setIntData(int intData) {
-    this.intData = intData;
-  }
+	public void setIntData(int intData) {
+		this.intData = intData;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", int: " + getIntData());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", int: " + getIntData());
+		result.append("]");
+		return result.toString();
+	}
 }

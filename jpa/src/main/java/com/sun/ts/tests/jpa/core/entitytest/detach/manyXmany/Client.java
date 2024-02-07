@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,190 +20,201 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.manyXmany;
 
+import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * BEGIN Test Cases
-   */
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "A", pkgName + "B" };
+		return createDeploymentJar("jpa_core_entitytest_detach_manyXmany.jar", pkgNameWithoutSuffix, classes);
 
-  /*
-   * @testName: detachMXMTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:659; PERSISTENCE:SPEC:662;
-   * 
-   * @test_Strategy: The merge operation allows for the propagation of state
-   * from detached entities onto persistence entities managed by the
-   * EntityManager. The semantics of the merge operation applied to entity X are
-   * as follows:
-   *
-   * If X is a detached entity, the state of X is copied onto a pre-existing
-   * managed entity instance X1 of the same identity or a new managed copy of X1
-   * is created.
-   *
-   * If X is a managed entity, it is ignored by the merge operation however, the
-   * merge operation is cascaded to entities referenced by relationships from X
-   * if these relationships have been annotated with the cascade element value
-   *
-   */
+	}
 
-  public void detachMXMTest1() throws Exception {
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    final A aRef = new A("1", "a1", 1);
-    final B b1 = new B("1", "b1", 1);
-    final B b2 = new B("2", "b2", 2);
-    int foundB = 0;
-    final String[] expectedResults = new String[] { "1", "2" };
-    boolean pass1 = true;
-    boolean pass2 = false;
+	/*
+	 * BEGIN Test Cases
+	 */
 
-    try {
+	/*
+	 * @testName: detachMXMTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:659; PERSISTENCE:SPEC:662;
+	 * 
+	 * @test_Strategy: The merge operation allows for the propagation of state from
+	 * detached entities onto persistence entities managed by the EntityManager. The
+	 * semantics of the merge operation applied to entity X are as follows:
+	 *
+	 * If X is a detached entity, the state of X is copied onto a pre-existing
+	 * managed entity instance X1 of the same identity or a new managed copy of X1
+	 * is created.
+	 *
+	 * If X is a managed entity, it is ignored by the merge operation however, the
+	 * merge operation is cascaded to entities referenced by relationships from X if
+	 * these relationships have been annotated with the cascade element value
+	 *
+	 */
+	@Test
+	public void detachMXMTest1() throws Exception {
 
-      TestUtil.logTrace("Begin detachMXMTest1");
-      createA(aRef);
+		final A aRef = new A("1", "a1", 1);
+		final B b1 = new B("1", "b1", 1);
+		final B b2 = new B("2", "b2", 2);
+		int foundB = 0;
+		final String[] expectedResults = new String[] { "1", "2" };
+		boolean pass1 = true;
+		boolean pass2 = false;
 
-      TestUtil.logTrace("Call clean to detach");
-      clearCache();
+		try {
 
-      getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "Begin detachMXMTest1");
+			createA(aRef);
 
-      if (!getEntityManager().contains(aRef)) {
-        TestUtil.logTrace("Status is false as expected, try merge");
-        getEntityManager().merge(aRef);
-        aRef.getBCol().add(b1);
-        aRef.getBCol().add(b2);
-        getEntityManager().merge(aRef);
+			logger.log(Logger.Level.TRACE, "Call clean to detach");
+			clearCache();
 
-        TestUtil.logTrace("findA and getBCol");
-        A a1 = getEntityManager().find(A.class, "1");
-        Collection newCol = a1.getBCol();
+			getEntityTransaction().begin();
 
-        if (newCol.size() != 2) {
-          TestUtil.logErr("detachMXMTest1: Did not get expected results."
-              + "Expected Collection Size of 2 B entities, got: "
-              + newCol.size());
-          pass1 = false;
-        } else if (pass1) {
+			if (!getEntityManager().contains(aRef)) {
+				logger.log(Logger.Level.TRACE, "Status is false as expected, try merge");
+				getEntityManager().merge(aRef);
+				aRef.getBCol().add(b1);
+				aRef.getBCol().add(b2);
+				getEntityManager().merge(aRef);
 
-          Iterator i1 = newCol.iterator();
-          while (i1.hasNext()) {
-            TestUtil.logTrace("Check Collection B entities");
-            B c1 = (B) i1.next();
+				logger.log(Logger.Level.TRACE, "findA and getBCol");
+				A a1 = getEntityManager().find(A.class, "1");
+				Collection newCol = a1.getBCol();
 
-            for (int l = 0; l < 2; l++) {
-              if (expectedResults[l].equals((String) c1.getBId())) {
-                TestUtil.logTrace("Found B Entity : " + (String) c1.getBName());
-                foundB++;
-                break;
-              }
-            }
-          }
-        }
+				if (newCol.size() != 2) {
+					logger.log(Logger.Level.ERROR, "detachMXMTest1: Did not get expected results."
+							+ "Expected Collection Size of 2 B entities, got: " + newCol.size());
+					pass1 = false;
+				} else if (pass1) {
 
-      } else {
-        TestUtil.logTrace("entity is not detached, cannot proceed with test.");
-        pass1 = false;
-        pass2 = false;
-      }
+					Iterator i1 = newCol.iterator();
+					while (i1.hasNext()) {
+						logger.log(Logger.Level.TRACE, "Check Collection B entities");
+						B c1 = (B) i1.next();
 
-      getEntityTransaction().commit();
+						for (int l = 0; l < 2; l++) {
+							if (expectedResults[l].equals((String) c1.getBId())) {
+								logger.log(Logger.Level.TRACE, "Found B Entity : " + (String) c1.getBName());
+								foundB++;
+								break;
+							}
+						}
+					}
+				}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception caught during commit:", e);
-      pass1 = false;
-      pass2 = false;
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
-      }
-    }
+			} else {
+				logger.log(Logger.Level.TRACE, "entity is not detached, cannot proceed with test.");
+				pass1 = false;
+				pass2 = false;
+			}
 
-    if (foundB != 2) {
-      TestUtil.logErr("detachMXMTest1: Did not get expected results");
-      pass2 = false;
-    } else {
-      TestUtil.logTrace("Expected results received");
-      pass2 = true;
-    }
+			getEntityTransaction().commit();
 
-    if (!pass1 || !pass2)
-      throw new Fault("detachMXMTest1 failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught during commit:", e);
+			pass1 = false;
+			pass2 = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			}
+		}
 
-  /*
-   *
-   * Business Methods to set up data for Test Cases
-   */
+		if (foundB != 2) {
+			logger.log(Logger.Level.ERROR, "detachMXMTest1: Did not get expected results");
+			pass2 = false;
+		} else {
+			logger.log(Logger.Level.TRACE, "Expected results received");
+			pass2 = true;
+		}
 
-  private void createA(final A a) {
-    TestUtil.logTrace("Entered createA method");
-    getEntityTransaction().begin();
-    getEntityManager().persist(a);
-    getEntityTransaction().commit();
-  }
+		if (!pass1 || !pass2)
+			throw new Exception("detachMXMTest1 failed");
+	}
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	/*
+	 *
+	 * Business Methods to set up data for Test Cases
+	 */
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM FKEYS_MXM_BI_BTOB")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM AEJB_MXM_BI_BTOB")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM BEJB_MXM_BI_BTOB")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void createA(final A a) {
+		logger.log(Logger.Level.TRACE, "Entered createA method");
+		getEntityTransaction().begin();
+		getEntityManager().persist(a);
+		getEntityTransaction().commit();
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM FKEYS_MXM_BI_BTOB").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM AEJB_MXM_BI_BTOB").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM BEJB_MXM_BI_BTOB").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

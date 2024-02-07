@@ -35,53 +35,53 @@ import jakarta.persistence.OrderBy;
 @Entity
 public class Insurance implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private String carrier;
+	private String carrier;
 
-  private List<Employee> employees;
+	private List<Employee> employees;
 
-  public Insurance() {
-  }
+	public Insurance() {
+	}
 
-  public Insurance(int id, String carrier) {
-    this.id = id;
-    this.carrier = carrier;
-  }
+	public Insurance(int id, String carrier) {
+		this.id = id;
+		this.carrier = carrier;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "INSID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "INSID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public String getCarrier() {
-    return carrier;
-  }
+	public String getCarrier() {
+		return carrier;
+	}
 
-  public void setCarrier(String carrier) {
-    this.carrier = carrier;
-  }
+	public void setCarrier(String carrier) {
+		this.carrier = carrier;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  @OneToMany(mappedBy = "insurance")
-  @OrderBy("firstName DESC")
-  public List<Employee> getEmployees() {
-    return employees;
-  }
+	@OneToMany(mappedBy = "insurance")
+	@OrderBy("firstName DESC")
+	public List<Employee> getEmployees() {
+		return employees;
+	}
 
-  public void setEmployees(List<Employee> employees) {
-    this.employees = employees;
-  }
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
 
 }

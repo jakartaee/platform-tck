@@ -16,7 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.override.entitylistener;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
+
 import com.sun.ts.tests.jpa.core.override.util.CallBackCounts;
 
 import jakarta.persistence.PostPersist;
@@ -24,22 +25,24 @@ import jakarta.persistence.PrePersist;
 
 public class ListenerC {
 
-  public ListenerC() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(ListenerC.class.getName());
 
-  @PrePersist
-  public void prePersistFromXML(Object obj) {
-    updateCallBackCount("prePersist");
-    TestUtil.logTrace("in perpersist");
-  }
+	public ListenerC() {
+	}
 
-  @PostPersist
-  public void postPersistFromXML(Object obj) {
-    updateCallBackCount("postPersist");
-    TestUtil.logTrace("in postpersist");
-  }
+	@PrePersist
+	public void prePersistFromXML(Object obj) {
+		updateCallBackCount("prePersist");
+		logger.log(Logger.Level.TRACE, "in perpersist");
+	}
 
-  protected void updateCallBackCount(String callBackKeyName) {
-    CallBackCounts.updateCount(callBackKeyName);
-  }
+	@PostPersist
+	public void postPersistFromXML(Object obj) {
+		updateCallBackCount("postPersist");
+		logger.log(Logger.Level.TRACE, "in postpersist");
+	}
+
+	protected void updateCallBackCount(String callBackKeyName) {
+		CallBackCounts.updateCount(callBackKeyName);
+	}
 }

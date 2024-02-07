@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -32,33 +32,34 @@ import jakarta.persistence.Table;
 @Table(name = "PKEY")
 public class TestBean3 implements java.io.Serializable {
 
-  @Id
-  private Integer pmIDInteger;
+	private static final Logger logger = (Logger) System.getLogger(TestBean3.class.getName());
 
-  @Id
-  private String pmIDString;
+	@Id
+	private Integer pmIDInteger;
 
-  @Id
-  private Float pmIDFloat;
+	@Id
+	private String pmIDString;
 
-  private String brandName;
+	@Id
+	private Float pmIDFloat;
 
-  private float price;
+	private String brandName;
 
-  public TestBean3() {
-  }
+	private float price;
 
-  public TestBean3(Integer pmIDInteger, String pmIDString, Float pmIDFloat,
-      String brandName, float price) {
-    this.pmIDInteger = pmIDInteger;
-    this.pmIDString = pmIDString;
-    this.pmIDFloat = pmIDFloat;
-    this.brandName = brandName;
-    this.price = price;
-  }
+	public TestBean3() {
+	}
 
-  public void ping() {
-    TestUtil.logTrace("[TestBean] ping()");
-  }
+	public TestBean3(Integer pmIDInteger, String pmIDString, Float pmIDFloat, String brandName, float price) {
+		this.pmIDInteger = pmIDInteger;
+		this.pmIDString = pmIDString;
+		this.pmIDFloat = pmIDFloat;
+		this.brandName = brandName;
+		this.price = price;
+	}
+
+	public void ping() {
+		logger.log(Logger.Level.TRACE, "[TestBean] ping()");
+	}
 
 }

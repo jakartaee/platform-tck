@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,288 +20,297 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.abstractentity;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-  private static final FullTimeEmployee ftRef[] = new FullTimeEmployee[5];
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  private static final PartTimeEmployee ptRef[] = new PartTimeEmployee[5];
+	private static final FullTimeEmployee ftRef[] = new FullTimeEmployee[5];
 
-  private final Date d1 = getSQLDate(2000, 2, 14);
+	private static final PartTimeEmployee ptRef[] = new PartTimeEmployee[5];
 
-  private final Date d2 = getSQLDate(2001, 6, 27);
+	private final Date d1 = getSQLDate(2000, 2, 14);
 
-  private final Date d3 = getSQLDate(2002, 7, 7);
+	private final Date d2 = getSQLDate(2001, 6, 27);
 
-  private final Date d4 = getSQLDate(2003, 3, 3);
+	private final Date d3 = getSQLDate(2002, 7, 7);
 
-  private final Date d5 = getSQLDate(2004, 4, 10);
+	private final Date d4 = getSQLDate(2003, 3, 3);
 
-  private final Date d6 = getSQLDate(2005, 2, 18);
+	private final Date d5 = getSQLDate(2004, 4, 10);
 
-  private final Date d7 = getSQLDate(2000, 9, 17);
+	private final Date d6 = getSQLDate(2005, 2, 18);
 
-  private final Date d8 = getSQLDate(2001, 11, 14);
+	private final Date d7 = getSQLDate(2000, 9, 17);
 
-  private final Date d9 = getSQLDate(2002, 10, 4);
+	private final Date d8 = getSQLDate(2001, 11, 14);
 
-  private final Date d10 = getSQLDate(2003, 1, 25);
+	private final Date d9 = getSQLDate(2002, 10, 4);
 
-  public Client() {
-  }
+	private final Date d10 = getSQLDate(2003, 1, 25);
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-      createTestData();
-      TestUtil.logTrace("Done creating test data");
+	public JavaArchive createDeployment() throws Exception {
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "AbstractPersonnel", pkgName + "Department", pkgName + "Employee",
+				pkgName + "FullTimeEmployee", pkgName + "PartTimeEmployee", pkgName + "Project" };
+		return createDeploymentJar("jpa_core_inheritance_abstractentity.jar", pkgNameWithoutSuffix, classes);
 
-  /*
-   * @testName: abstractEntityTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590;
-   * PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588; PERSISTENCE:SPEC:1126;
-   * PERSISTENCE:SPEC:1126.1; PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4;
-   * PERSISTENCE:JAVADOC:25; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28;
-   * PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116;
-   * PERSISTENCE:SPEC:1118; PERSISTENCE:JAVADOC:23; PERSISTENCE:JAVADOC:86;
-   * PERSISTENCE:JAVADOC:87
-   * 
-   * @test_Strategy: An entity may have a non-entity superclass which may be
-   * either abstract or concrete.
-   */
+	}
 
-  public void abstractEntityTest1() throws Exception {
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
 
-    TestUtil.logTrace("Begin abstractEntityTest1");
-    boolean pass = false;
+			removeTestData();
+			createTestData();
+			logger.log(Logger.Level.TRACE, "Done creating test data");
 
-    try {
-      FullTimeEmployee ftEmp1 = getEntityManager().find(FullTimeEmployee.class,
-          1);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      if (ftEmp1.getFullTimeRep().equals("Mabel Murray")) {
-        pass = true;
-      }
+	/*
+	 * @testName: abstractEntityTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590;
+	 * PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588; PERSISTENCE:SPEC:1126;
+	 * PERSISTENCE:SPEC:1126.1; PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4;
+	 * PERSISTENCE:JAVADOC:25; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28;
+	 * PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116;
+	 * PERSISTENCE:SPEC:1118; PERSISTENCE:JAVADOC:23; PERSISTENCE:JAVADOC:86;
+	 * PERSISTENCE:JAVADOC:87
+	 * 
+	 * @test_Strategy: An entity may have a non-entity superclass which may be
+	 * either abstract or concrete.
+	 */
+	@Test
+	public void abstractEntityTest1() throws Exception {
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+		logger.log(Logger.Level.TRACE, "Begin abstractEntityTest1");
+		boolean pass = false;
 
-    if (!pass)
-      throw new Fault("abstractEntityTest1 failed");
-  }
+		try {
+			FullTimeEmployee ftEmp1 = getEntityManager().find(FullTimeEmployee.class, 1);
 
-  /*
-   * @testName: abstractEntityTest2
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590;
-   * PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588; PERSISTENCE:SPEC:1126;
-   * PERSISTENCE:SPEC:1126.1; PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4;
-   * PERSISTENCE:JAVADOC:25; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28;
-   * PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116;
-   * PERSISTENCE:SPEC:1118; PERSISTENCE:JAVADOC:35
-   * 
-   * @test_Strategy: An entity may have a non-entity superclass which may be
-   * either abstract or concrete.
-   */
+			if (ftEmp1.getFullTimeRep().equals("Mabel Murray")) {
+				pass = true;
+			}
 
-  public void abstractEntityTest2() throws Exception {
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		}
 
-    TestUtil.logTrace("Begin abstractEntityTest2");
-    boolean pass = false;
+		if (!pass)
+			throw new Exception("abstractEntityTest1 failed");
+	}
 
-    try {
-      PartTimeEmployee ptEmp1 = getEntityManager().find(PartTimeEmployee.class,
-          6);
+	/*
+	 * @testName: abstractEntityTest2
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:589; PERSISTENCE:SPEC:590;
+	 * PERSISTENCE:SPEC:591; PERSISTENCE:SPEC:588; PERSISTENCE:SPEC:1126;
+	 * PERSISTENCE:SPEC:1126.1; PERSISTENCE:SPEC:1126.3; PERSISTENCE:SPEC:1126.4;
+	 * PERSISTENCE:JAVADOC:25; PERSISTENCE:JAVADOC:26; PERSISTENCE:JAVADOC:28;
+	 * PERSISTENCE:SPEC:1112; PERSISTENCE:SPEC:1113; PERSISTENCE:SPEC:1116;
+	 * PERSISTENCE:SPEC:1118; PERSISTENCE:JAVADOC:35
+	 * 
+	 * @test_Strategy: An entity may have a non-entity superclass which may be
+	 * either abstract or concrete.
+	 */
+	@Test
+	public void abstractEntityTest2() throws Exception {
 
-      if (ptEmp1.getPartTimeRep().equals("John Cleveland")) {
-        pass = true;
-      }
+		logger.log(Logger.Level.TRACE, "Begin abstractEntityTest2");
+		boolean pass = false;
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+		try {
+			PartTimeEmployee ptEmp1 = getEntityManager().find(PartTimeEmployee.class, 6);
 
-    if (!pass)
-      throw new Fault("abstractEntityTest2 failed");
-  }
+			if (ptEmp1.getPartTimeRep().equals("John Cleveland")) {
+				pass = true;
+			}
 
-  /*
-   * @testName: abstractEntityTest3
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:588.1;PERSISTENCE:SPEC:1352;
-   * PERSISTENCE:SPEC:1353; PERSISTENCE:SPEC:1219;
-   * 
-   * @test_Strategy: An abstract entity is mapped as an entity and can be the
-   * target of queries (which will operate over and/or retrieve instances of its
-   * concrete subclasses).
-   */
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		}
 
-  public void abstractEntityTest3() throws Exception {
+		if (!pass)
+			throw new Exception("abstractEntityTest2 failed");
+	}
 
-    TestUtil.logTrace("Begin abstractEntityTest3");
-    boolean pass1 = true;
-    boolean pass2 = true;
-    List result;
-    int foundEmp = 0;
+	/*
+	 * @testName: abstractEntityTest3
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:588.1;PERSISTENCE:SPEC:1352;
+	 * PERSISTENCE:SPEC:1353; PERSISTENCE:SPEC:1219;
+	 * 
+	 * @test_Strategy: An abstract entity is mapped as an entity and can be the
+	 * target of queries (which will operate over and/or retrieve instances of its
+	 * concrete subclasses).
+	 */
+	@Test
+	public void abstractEntityTest3() throws Exception {
 
-    try {
-      // getEntityTransaction().begin();
-      TestUtil.logTrace("find Employees By ID");
-      result = getEntityManager()
-          .createQuery(
-              "Select e from Employee e where e.id between :param1 and :param2")
-          .setParameter("param1", 4).setParameter("param2", 7).setMaxResults(10)
-          .getResultList();
+		logger.log(Logger.Level.TRACE, "Begin abstractEntityTest3");
+		boolean pass1 = true;
+		boolean pass2 = true;
+		List result;
+		int foundEmp = 0;
 
-      if (result.size() != 4) {
-        TestUtil.logErr(
-            "Did not get expected results.  Expected 4 references, got: "
-                + result.size());
-        pass1 = false;
-      } else if (pass1) {
-        Iterator i = result.iterator();
-        while (i.hasNext()) {
-          TestUtil.logTrace("Check List for Expected Employees");
-          Employee e = (Employee) i.next();
-          TestUtil.logTrace("Got Employee: " + e.getLastName());
+		try {
+			// getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "find Employees By ID");
+			result = getEntityManager().createQuery("Select e from Employee e where e.id between :param1 and :param2")
+					.setParameter("param1", 4).setParameter("param2", 7).setMaxResults(10).getResultList();
 
-          if (e.getLastName().equals("Lee") || e.getLastName().equals("Martin")
-              || e.getLastName().equals("OClaire")
-              || e.getLastName().equals("Rich")) {
-            foundEmp++;
-          }
-        }
-      }
+			if (result.size() != 4) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 4 references, got: " + result.size());
+				pass1 = false;
+			} else if (pass1) {
+				Iterator i = result.iterator();
+				while (i.hasNext()) {
+					logger.log(Logger.Level.TRACE, "Check List for Expected Employees");
+					Employee e = (Employee) i.next();
+					logger.log(Logger.Level.TRACE, "Got Employee: " + e.getLastName());
 
-      if (foundEmp != 4) {
-        TestUtil.logErr("Did not get expected results");
-        pass2 = false;
-      } else {
-        TestUtil.logTrace("Expected results received");
-      }
+					if (e.getLastName().equals("Lee") || e.getLastName().equals("Martin")
+							|| e.getLastName().equals("OClaire") || e.getLastName().equals("Rich")) {
+						foundEmp++;
+					}
+				}
+			}
 
-      // getEntityTransaction().commit();
+			if (foundEmp != 4) {
+				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				pass2 = false;
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+			}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+			// getEntityTransaction().commit();
 
-    if (!pass1 || !pass2)
-      throw new Fault("abstractEntityTest3 failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
 
-  public void createTestData() {
-    TestUtil.logTrace("createTestData");
+		if (!pass1 || !pass2)
+			throw new Exception("abstractEntityTest3 failed");
+	}
 
-    try {
-      getEntityTransaction().begin();
-      ftRef[0] = new FullTimeEmployee(1, "Jonathan", "Smith", d10, 40000.0F);
-      ftRef[1] = new FullTimeEmployee(2, "Mary", "Macy", d9, 40000.0F);
-      ftRef[2] = new FullTimeEmployee(3, "Sid", "Nee", d8, 40000.0F);
-      ftRef[3] = new FullTimeEmployee(4, "Julie", "OClaire", d7, 21000.0F);
-      ftRef[4] = new FullTimeEmployee(5, "Steven", "Rich", d6, 60000.0F);
+	public void createTestData() {
+		logger.log(Logger.Level.TRACE, "createTestData");
 
-      TestUtil.logTrace("Persist full time employees ");
-      for (FullTimeEmployee ft : ftRef) {
-        if (ft != null) {
-          getEntityManager().persist(ft);
-          getEntityManager().flush();
-          TestUtil.logTrace("persisted employee " + ft);
-        }
-      }
+		try {
+			getEntityTransaction().begin();
+			ftRef[0] = new FullTimeEmployee(1, "Jonathan", "Smith", d10, 40000.0F);
+			ftRef[1] = new FullTimeEmployee(2, "Mary", "Macy", d9, 40000.0F);
+			ftRef[2] = new FullTimeEmployee(3, "Sid", "Nee", d8, 40000.0F);
+			ftRef[3] = new FullTimeEmployee(4, "Julie", "OClaire", d7, 21000.0F);
+			ftRef[4] = new FullTimeEmployee(5, "Steven", "Rich", d6, 60000.0F);
 
-      ptRef[0] = new PartTimeEmployee(6, "Kellie", "Lee", d5, 60000.0F);
-      ptRef[1] = new PartTimeEmployee(7, "Nicole", "Martin", d4, 60000.0F);
-      ptRef[2] = new PartTimeEmployee(8, "Mark", "Francis", d3, 60000.0F);
-      ptRef[3] = new PartTimeEmployee(9, "Will", "Forrest", d2, 250000.0F);
-      ptRef[4] = new PartTimeEmployee(10, "Katy", "Hughes", d1, 60000.0F);
+			logger.log(Logger.Level.TRACE, "Persist full time employees ");
+			for (FullTimeEmployee ft : ftRef) {
+				if (ft != null) {
+					getEntityManager().persist(ft);
+					getEntityManager().flush();
+					logger.log(Logger.Level.TRACE, "persisted employee " + ft);
+				}
+			}
 
-      TestUtil.logTrace("Persist part time employees ");
-      for (PartTimeEmployee pt : ptRef) {
-        if (pt != null) {
-          getEntityManager().persist(pt);
-          getEntityManager().flush();
-          TestUtil.logTrace("persisted employee " + pt);
-        }
-      }
-      getEntityTransaction().commit();
+			ptRef[0] = new PartTimeEmployee(6, "Kellie", "Lee", d5, 60000.0F);
+			ptRef[1] = new PartTimeEmployee(7, "Nicole", "Martin", d4, 60000.0F);
+			ptRef[2] = new PartTimeEmployee(8, "Mark", "Francis", d3, 60000.0F);
+			ptRef[3] = new PartTimeEmployee(9, "Will", "Forrest", d2, 250000.0F);
+			ptRef[4] = new PartTimeEmployee(10, "Katy", "Hughes", d1, 60000.0F);
 
-      clearCache();
+			logger.log(Logger.Level.TRACE, "Persist part time employees ");
+			for (PartTimeEmployee pt : ptRef) {
+				if (pt != null) {
+					getEntityManager().persist(pt);
+					getEntityManager().flush();
+					logger.log(Logger.Level.TRACE, "persisted employee " + pt);
+				}
+			}
+			getEntityTransaction().commit();
 
-    } catch (Exception re) {
-      TestUtil.logErr("Unexpected Exception in createTestData:", re);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
-    TestUtil.logTrace("done creating test data ");
+			clearCache();
 
-  }
+		} catch (Exception re) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", re);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
+		logger.log(Logger.Level.TRACE, "done creating test data ");
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

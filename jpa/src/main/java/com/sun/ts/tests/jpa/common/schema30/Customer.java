@@ -41,227 +41,226 @@ import jakarta.persistence.Table;
 @Table(name = "CUSTOMER_TABLE")
 public class Customer implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+	// Instance variables
+	private String id;
 
-  private String name;
+	private String name;
 
-  private Address home;
+	private Address home;
 
-  private Address work;
+	private Address work;
 
-  private Country country;
+	private Country country;
 
-  private Spouse spouse;
+	private Spouse spouse;
 
-  private Collection<CreditCard> creditCards = new java.util.ArrayList<CreditCard>();
+	private Collection<CreditCard> creditCards = new java.util.ArrayList<CreditCard>();
 
-  private Collection<Order> orders = new java.util.ArrayList<Order>();
+	private Collection<Order> orders = new java.util.ArrayList<Order>();
 
-  private Collection<Alias> aliases = new java.util.ArrayList<Alias>();
+	private Collection<Alias> aliases = new java.util.ArrayList<Alias>();
 
-  private Collection<Alias> aliasesNoop = new java.util.ArrayList<Alias>();
+	private Collection<Alias> aliasesNoop = new java.util.ArrayList<Alias>();
 
-  private Set<Order> orders2 = new HashSet();
+	private Set<Order> orders2 = new HashSet();
 
-  private List<Order> orders3 = new ArrayList<Order>();
+	private List<Order> orders3 = new ArrayList<Order>();
 
-  public Customer() {
-  }
+	public Customer() {
+	}
 
-  public Customer(String id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public Customer(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  public Customer(String id, String name, Country country) {
-    this.id = id;
-    this.name = name;
-    this.country = country;
-  }
+	public Customer(String id, String name, Country country) {
+		this.id = id;
+		this.name = name;
+		this.country = country;
+	}
 
-  public Customer(String id, String name, Country country, Address work) {
-    this.id = id;
-    this.name = name;
-    this.country = country;
-    this.work = work;
-  }
+	public Customer(String id, String name, Country country, Address work) {
+		this.id = id;
+		this.name = name;
+		this.country = country;
+		this.work = work;
+	}
 
-  public Customer(String id, String name, Address home, Address work,
-      Country country) {
-    this.id = id;
-    this.name = name;
-    this.home = home;
-    this.work = work;
-    this.country = country;
-  }
+	public Customer(String id, String name, Address home, Address work, Country country) {
+		this.id = id;
+		this.name = name;
+		this.home = home;
+		this.work = work;
+		this.country = country;
+	}
 
-  // ===========================================================
-  // getters and setters for CMP fields
+	// ===========================================================
+	// getters and setters for CMP fields
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String v) {
-    this.id = v;
-  }
+	public void setId(String v) {
+		this.id = v;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String v) {
-    this.name = v;
-  }
+	public void setName(String v) {
+		this.name = v;
+	}
 
-  @Embedded
-  public Country getCountry() {
-    return country;
-  }
+	@Embedded
+	public Country getCountry() {
+		return country;
+	}
 
-  public void setCountry(Country v) {
-    this.country = v;
-  }
+	public void setCountry(Country v) {
+		this.country = v;
+	}
 
-  // ===========================================================
-  // getters and setters for State fields
+	// ===========================================================
+	// getters and setters for State fields
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "FK6_FOR_CUSTOMER_TABLE")
-  public Address getHome() {
-    return home;
-  }
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK6_FOR_CUSTOMER_TABLE")
+	public Address getHome() {
+		return home;
+	}
 
-  public void setHome(Address v) {
-    this.home = v;
-  }
+	public void setHome(Address v) {
+		this.home = v;
+	}
 
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinColumn(name = "FK5_FOR_CUSTOMER_TABLE")
-  public Address getWork() {
-    return work;
-  }
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "FK5_FOR_CUSTOMER_TABLE")
+	public Address getWork() {
+		return work;
+	}
 
-  public void setWork(Address v) {
-    this.work = v;
-  }
+	public void setWork(Address v) {
+		this.work = v;
+	}
 
-  @OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")
-  public Spouse getSpouse() {
-    return spouse;
-  }
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "customer")
+	public Spouse getSpouse() {
+		return spouse;
+	}
 
-  public void setSpouse(Spouse v) {
-    this.spouse = v;
-  }
+	public void setSpouse(Spouse v) {
+		this.spouse = v;
+	}
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-  public Collection<CreditCard> getCreditCards() {
-    return creditCards;
-  }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	public Collection<CreditCard> getCreditCards() {
+		return creditCards;
+	}
 
-  public void setCreditCards(Collection<CreditCard> v) {
-    this.creditCards = v;
-  }
+	public void setCreditCards(Collection<CreditCard> v) {
+		this.creditCards = v;
+	}
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-  public Collection<Order> getOrders() {
-    return orders;
-  }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	public Collection<Order> getOrders() {
+		return orders;
+	}
 
-  public void setOrders(Collection<Order> v) {
-    this.orders = v;
-  }
+	public void setOrders(Collection<Order> v) {
+		this.orders = v;
+	}
 
-  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
-  public Collection<Alias> getAliases() {
-    return aliases;
-  }
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "customers")
+	public Collection<Alias> getAliases() {
+		return aliases;
+	}
 
-  public void setAliases(Collection<Alias> v) {
-    this.aliases = v;
-  }
+	public void setAliases(Collection<Alias> v) {
+		this.aliases = v;
+	}
 
-  @ManyToMany(cascade = CascadeType.ALL, mappedBy = "customersNoop")
-  public Collection<Alias> getAliasesNoop() {
-    return aliasesNoop;
-  }
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "customersNoop")
+	public Collection<Alias> getAliasesNoop() {
+		return aliasesNoop;
+	}
 
-  public void setAliasesNoop(Collection<Alias> v) {
-    this.aliasesNoop = v;
-  }
+	public void setAliasesNoop(Collection<Alias> v) {
+		this.aliasesNoop = v;
+	}
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-  public Set<Order> getOrders2() {
-    return orders2;
-  }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	public Set<Order> getOrders2() {
+		return orders2;
+	}
 
-  public void setOrders2(Set<Order> v) {
-    this.orders2 = v;
-  }
+	public void setOrders2(Set<Order> v) {
+		this.orders2 = v;
+	}
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
-  public List<Order> getOrders3() {
-    return orders3;
-  }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	public List<Order> getOrders3() {
+		return orders3;
+	}
 
-  public void setOrders3(List<Order> v) {
-    this.orders3 = v;
-  }
+	public void setOrders3(List<Order> v) {
+		this.orders3 = v;
+	}
 
-  public boolean equals(Object o) {
-    Customer other;
-    boolean same = true;
+	public boolean equals(Object o) {
+		Customer other;
+		boolean same = true;
 
-    if (!(o instanceof Customer)) {
-      return false;
-    }
-    other = (Customer) o;
+		if (!(o instanceof Customer)) {
+			return false;
+		}
+		other = (Customer) o;
 
-    same &= this.id.equals(other.id);
+		same &= this.id.equals(other.id);
 
-    return same;
-  }
+		return same;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.id.hashCode();
+		myHash = this.id.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(",  name: " + getName());
-    if (getHome() != null) {
-      result.append(", home: " + getHome().getId());
-    } else {
-      result.append(", home: null");
-    }
-    if (getWork() != null) {
-      result.append(", work: " + getWork().getId());
-    } else {
-      result.append(", work: null");
-    }
-    if (getSpouse() != null) {
-      result.append(", spouse: " + getSpouse());
-    } else {
-      result.append(", spouse: null");
-    }
-    if (getCountry() != null) {
-      result.append(", country: " + getCountry());
-    } else {
-      result.append(", country: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(",  name: " + getName());
+		if (getHome() != null) {
+			result.append(", home: " + getHome().getId());
+		} else {
+			result.append(", home: null");
+		}
+		if (getWork() != null) {
+			result.append(", work: " + getWork().getId());
+		} else {
+			result.append(", work: null");
+		}
+		if (getSpouse() != null) {
+			result.append(", spouse: " + getSpouse());
+		} else {
+			result.append(", spouse: null");
+		}
+		if (getCountry() != null) {
+			result.append(", country: " + getCountry());
+		} else {
+			result.append(", country: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

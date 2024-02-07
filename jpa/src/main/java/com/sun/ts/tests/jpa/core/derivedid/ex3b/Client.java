@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,168 +16,180 @@
 
 package com.sun.ts.tests.jpa.core.derivedid.ex3b;
 
+import java.lang.System.Logger;
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-/**
- * @author Raja Perumal
- */
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: DIDTest
-   *
-   * @assertion_ids: PERSISTENCE:SPEC:1335
-   *
-   * @test_Strategy: Derived Identifier The parent entity uses EmbeddedId Case
-   * (b): The dependent entity uses EmbeddedId
-   */
-  public void DIDTest() throws Exception {
-    boolean pass = false;
-    boolean pass1 = false;
-    boolean pass2 = false;
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "DID3bDependent", pkgName + "DID3bDependentId", pkgName + "DID3bEmployee",
+				pkgName + "DID3bEmployeeId" };
+		return createDeploymentJar("jpa_core_derivedid_ex3b.jar", pkgNameWithoutSuffix, classes);
 
-    try {
+	}
 
-      getEntityTransaction().begin();
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      final DID3bEmployeeId eId1 = new DID3bEmployeeId("Java", "Duke");
-      final DID3bEmployeeId eId2 = new DID3bEmployeeId("C", "foo");
+	/*
+	 * @testName: DIDTest
+	 *
+	 * @assertion_ids: PERSISTENCE:SPEC:1335
+	 *
+	 * @test_Strategy: Derived Identifier The parent entity uses EmbeddedId Case
+	 * (b): The dependent entity uses EmbeddedId
+	 */
+	@Test
+	public void DIDTest() throws Exception {
+		boolean pass = false;
+		boolean pass1 = false;
+		boolean pass2 = false;
 
-      final DID3bEmployee employee1 = new DID3bEmployee(eId1);
-      final DID3bEmployee employee2 = new DID3bEmployee(eId2);
+		try {
 
-      final DID3bDependentId depId1 = new DID3bDependentId("Obama", eId1);
-      final DID3bDependentId depId2 = new DID3bDependentId("Michelle", eId1);
-      final DID3bDependentId depId3 = new DID3bDependentId("John", eId2);
-      final DID3bDependent dep1 = new DID3bDependent(depId1, employee1);
-      final DID3bDependent dep2 = new DID3bDependent(depId2, employee1);
-      final DID3bDependent dep3 = new DID3bDependent(depId3, employee2);
+			getEntityTransaction().begin();
 
-      getEntityManager().persist(dep1);
-      getEntityManager().persist(dep2);
-      getEntityManager().persist(dep3);
+			final DID3bEmployeeId eId1 = new DID3bEmployeeId("Java", "Duke");
+			final DID3bEmployeeId eId2 = new DID3bEmployeeId("C", "foo");
 
-      getEntityManager().persist(employee1);
-      getEntityManager().persist(employee2);
+			final DID3bEmployee employee1 = new DID3bEmployee(eId1);
+			final DID3bEmployee employee2 = new DID3bEmployee(eId2);
 
-      TestUtil.logTrace("persisted Employees and Dependents");
-      getEntityManager().flush();
+			final DID3bDependentId depId1 = new DID3bDependentId("Obama", eId1);
+			final DID3bDependentId depId2 = new DID3bDependentId("Michelle", eId1);
+			final DID3bDependentId depId3 = new DID3bDependentId("John", eId2);
+			final DID3bDependent dep1 = new DID3bDependent(depId1, employee1);
+			final DID3bDependent dep2 = new DID3bDependent(depId2, employee1);
+			final DID3bDependent dep3 = new DID3bDependent(depId3, employee2);
 
-      // Refresh Dependents
-      DID3bDependent newDependent = getEntityManager()
-          .find(DID3bDependent.class, depId1);
-      if (newDependent != null) {
-        getEntityManager().refresh(newDependent);
-      }
+			getEntityManager().persist(dep1);
+			getEntityManager().persist(dep2);
+			getEntityManager().persist(dep3);
 
-      DID3bDependent newDependent2 = getEntityManager()
-          .find(DID3bDependent.class, depId2);
-      if (newDependent2 != null) {
-        getEntityManager().refresh(newDependent2);
-      }
+			getEntityManager().persist(employee1);
+			getEntityManager().persist(employee2);
 
-      List depList = getEntityManager().createQuery(
-          "Select d from DID3bDependent d where d.id.name='Obama' and d.emp.empId.firstName='Java'")
-          .getResultList();
-      newDependent = null;
-      if (depList.size() > 0) {
-        newDependent = (DID3bDependent) depList.get(0);
-        if (newDependent == dep1) {
-          pass1 = true;
-          TestUtil.logTrace("Received Expected Dependent");
-        } else {
-          TestUtil.logErr("Searched Dependent not found");
-        }
-      } else {
-        TestUtil.logErr("getEntityManager().createQuery returned null entry");
-      }
+			logger.log(Logger.Level.TRACE, "persisted Employees and Dependents");
+			getEntityManager().flush();
 
-      List depList2 = getEntityManager().createQuery(
-          "Select d from DID3bDependent d where d.id.name='Obama' and d.id.empPK.firstName='Java'")
-          .getResultList();
-      newDependent2 = null;
-      if (depList2.size() > 0) {
-        newDependent2 = (DID3bDependent) depList.get(0);
-        if (newDependent2 == dep1) {
-          pass2 = true;
-          TestUtil.logTrace("Received Expected Dependent");
-        } else {
-          TestUtil.logErr("Searched Dependent not found");
-        }
-      } else {
-        TestUtil.logErr("getEntityManager().createQuery returned null entry");
-      }
+			// Refresh Dependents
+			DID3bDependent newDependent = getEntityManager().find(DID3bDependent.class, depId1);
+			if (newDependent != null) {
+				getEntityManager().refresh(newDependent);
+			}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      getEntityTransaction().rollback();
-    }
+			DID3bDependent newDependent2 = getEntityManager().find(DID3bDependent.class, depId2);
+			if (newDependent2 != null) {
+				getEntityManager().refresh(newDependent2);
+			}
 
-    if (pass1 && pass2) {
-      pass = true;
-    }
+			List depList = getEntityManager()
+					.createQuery(
+							"Select d from DID3bDependent d where d.id.name='Obama' and d.emp.empId.firstName='Java'")
+					.getResultList();
+			newDependent = null;
+			if (depList.size() > 0) {
+				newDependent = (DID3bDependent) depList.get(0);
+				if (newDependent == dep1) {
+					pass1 = true;
+					logger.log(Logger.Level.TRACE, "Received Expected Dependent");
+				} else {
+					logger.log(Logger.Level.ERROR, "Searched Dependent not found");
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "getEntityManager().createQuery returned null entry");
+			}
 
-    if (!pass) {
-      throw new Fault("DIDTest failed");
-    }
-  }
+			List depList2 = getEntityManager()
+					.createQuery(
+							"Select d from DID3bDependent d where d.id.name='Obama' and d.id.empPK.firstName='Java'")
+					.getResultList();
+			newDependent2 = null;
+			if (depList2.size() > 0) {
+				newDependent2 = (DID3bDependent) depList.get(0);
+				if (newDependent2 == dep1) {
+					pass2 = true;
+					logger.log(Logger.Level.TRACE, "Received Expected Dependent");
+				} else {
+					logger.log(Logger.Level.ERROR, "Searched Dependent not found");
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "getEntityManager().createQuery returned null entry");
+			}
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			getEntityTransaction().rollback();
+		}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM DID3BDEPENDENT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM DID3BEMPLOYEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+		if (pass1 && pass2) {
+			pass = true;
+		}
+
+		if (!pass) {
+			throw new Exception("DIDTest failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM DID3BDEPENDENT").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM DID3BEMPLOYEE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

@@ -21,20 +21,20 @@ import java.util.Comparator;
 
 public class RetailOrderCostComparatorDESC implements Comparator, Serializable {
 
-  public RetailOrderCostComparatorDESC() {
-  }
+	public RetailOrderCostComparatorDESC() {
+	}
 
-  public int compare(Object o1, Object o2) {
-    RetailOrder order1 = (RetailOrder) o1;
-    RetailOrder order2 = (RetailOrder) o2;
+	public int compare(Object o1, Object o2) {
+		RetailOrder order1 = (RetailOrder) o1;
+		RetailOrder order2 = (RetailOrder) o2;
 
-    // Below returns values to support descending order
-    if (order1.getCost() > order2.getCost()) {
-      return -1;
-    }
-    if (order1.getCost() < order2.getCost()) {
-      return 1;
-    }
-    return 0;
-  }
+		// Below returns values to support descending order
+		if (order1.getCost() > order2.getCost()) {
+			return -1;
+		}
+		if (order1.getCost() < order2.getCost()) {
+			return 1;
+		}
+		return 0;
+	}
 }

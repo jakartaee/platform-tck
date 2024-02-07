@@ -26,91 +26,90 @@ import jakarta.persistence.Version;
 @Table(name = "A_BASIC")
 public class Short_Property implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected String id;
+	protected String id;
 
-  protected short basicShort;
+	protected short basicShort;
 
-  protected String name;
+	protected String name;
 
-  // ===========================================================
-  // constructors
-  public Short_Property() {
-  }
+	// ===========================================================
+	// constructors
+	public Short_Property() {
+	}
 
-  public Short_Property(String id) {
-    this.id = id;
-  }
+	public Short_Property(String id) {
+		this.id = id;
+	}
 
-  public Short_Property(String id, short value) {
+	public Short_Property(String id, short value) {
 
-    this.id = id;
-    this.basicShort = value;
-  }
+		this.id = id;
+		this.basicShort = value;
+	}
 
-  @Id
-  public String getId() {
-    return id;
-  }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Basic
-  public String getName() {
-    return this.name;
-  }
+	@Basic
+	public String getName() {
+		return this.name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Version
-  public short getBasicShort() {
-    return this.basicShort;
-  }
+	@Version
+	public short getBasicShort() {
+		return this.basicShort;
+	}
 
-  public void setBasicShort(short value) {
-    this.basicShort = value;
-  }
+	public void setBasicShort(short value) {
+		this.basicShort = value;
+	}
 
-  public boolean equals(Object o) {
-    Short_Property other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Short_Property other;
+		boolean result = false;
 
-    if (!(o instanceof Short_Property)) {
-      return result;
-    }
-    other = (Short_Property) o;
+		if (!(o instanceof Short_Property)) {
+			return result;
+		}
+		other = (Short_Property) o;
 
-    if (this.getId().equals(other.getId())
-        && this.basicShort == other.basicShort
-        && this.name.equals(other.getName())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.basicShort == other.basicShort
+				&& this.name.equals(other.getName())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + this.basicShort + this.name.hashCode();
+		myHash = this.getId().hashCode() + this.basicShort + this.name.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + basicShort);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", version: " + basicShort);
+		result.append(", name: " + name);
+		result.append("]");
+		return result.toString();
+	}
 }

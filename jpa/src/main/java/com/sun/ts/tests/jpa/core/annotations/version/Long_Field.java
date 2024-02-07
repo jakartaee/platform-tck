@@ -29,91 +29,90 @@ import jakarta.persistence.Version;
 @Access(AccessType.FIELD)
 public class Long_Field implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  @Id
-  protected String id;
+	@Id
+	protected String id;
 
-  @Version
-  protected long basicLong;
+	@Version
+	protected long basicLong;
 
-  @Basic
-  protected String name;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // constructors
-  public Long_Field() {
-  }
+	// ===========================================================
+	// constructors
+	public Long_Field() {
+	}
 
-  public Long_Field(String id) {
-    this.id = id;
-  }
+	public Long_Field(String id) {
+		this.id = id;
+	}
 
-  public Long_Field(String id, long value) {
+	public Long_Field(String id, long value) {
 
-    this.id = id;
-    this.basicLong = value;
-  }
+		this.id = id;
+		this.basicLong = value;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public String getName() {
-    return this.name;
-  }
+	public String getName() {
+		return this.name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public long getVersion() {
-    return this.basicLong;
-  }
+	public long getVersion() {
+		return this.basicLong;
+	}
 
-  public void setVersion(long value) {
-    this.basicLong = value;
-  }
+	public void setVersion(long value) {
+		this.basicLong = value;
+	}
 
-  public boolean equals(Object o) {
-    Long_Field other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Long_Field other;
+		boolean result = false;
 
-    if (!(o instanceof Long_Field)) {
-      return result;
-    }
-    other = (Long_Field) o;
+		if (!(o instanceof Long_Field)) {
+			return result;
+		}
+		other = (Long_Field) o;
 
-    if (this.getId().equals(other.getId()) && this.basicLong == other.basicLong
-        && this.name.equals(other.getName())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.basicLong == other.basicLong
+				&& this.name.equals(other.getName())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + (int) this.basicLong
-        + this.name.hashCode();
+		myHash = this.getId().hashCode() + (int) this.basicLong + this.name.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + basicLong);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", version: " + basicLong);
+		result.append(", name: " + name);
+		result.append("]");
+		return result.toString();
+	}
 }

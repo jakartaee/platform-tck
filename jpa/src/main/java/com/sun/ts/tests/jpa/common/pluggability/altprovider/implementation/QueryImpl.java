@@ -29,182 +29,180 @@ import jakarta.persistence.TemporalType;
 import jakarta.persistence.TypedQuery;
 
 public class QueryImpl<X> implements TypedQuery<X> {
-  public String jpQL;
+	public String jpQL;
 
-  public String name;
+	public String name;
 
-  public String nativeSQL;
+	public String nativeSQL;
 
-  public Class queryOnClass;
+	public Class queryOnClass;
 
-  public String resultsetMapping;
+	public String resultsetMapping;
 
-  protected TSLogger logger;
+	protected TSLogger logger;
 
-  public QueryImpl() {
-    logger = TSLogger.getInstance();
-  }
+	public QueryImpl() {
+		logger = TSLogger.getInstance();
+	}
 
-  @Override
-  public int executeUpdate() {
-    return 0;
-  }
+	@Override
+	public int executeUpdate() {
+		return 0;
+	}
 
-  @Override
-  public int getFirstResult() {
-    return 0;
-  }
+	@Override
+	public int getFirstResult() {
+		return 0;
+	}
 
-  @Override
-  public FlushModeType getFlushMode() {
-    return null;
-  }
+	@Override
+	public FlushModeType getFlushMode() {
+		return null;
+	}
 
-  @Override
-  public Map<String, Object> getHints() {
-    return null;
-  }
+	@Override
+	public Map<String, Object> getHints() {
+		return null;
+	}
 
-  @Override
-  public LockModeType getLockMode() {
-    return null;
-  }
+	@Override
+	public LockModeType getLockMode() {
+		return null;
+	}
 
-  @Override
-  public int getMaxResults() {
-    return 0;
-  }
+	@Override
+	public int getMaxResults() {
+		return 0;
+	}
 
-  @Override
-  public Parameter<?> getParameter(String arg0) {
-    return null;
-  }
+	@Override
+	public Parameter<?> getParameter(String arg0) {
+		return null;
+	}
 
-  @Override
-  public Parameter<?> getParameter(int arg0) {
-    return null;
-  }
+	@Override
+	public Parameter<?> getParameter(int arg0) {
+		return null;
+	}
 
-  @Override
-  public <T> Parameter<T> getParameter(String arg0, Class<T> arg1) {
-    return null;
-  }
+	@Override
+	public <T> Parameter<T> getParameter(String arg0, Class<T> arg1) {
+		return null;
+	}
 
-  @Override
-  public <T> Parameter<T> getParameter(int arg0, Class<T> arg1) {
-    return null;
-  }
+	@Override
+	public <T> Parameter<T> getParameter(int arg0, Class<T> arg1) {
+		return null;
+	}
 
-  @Override
-  public <T> T getParameterValue(Parameter<T> arg0) {
-    return null;
-  }
+	@Override
+	public <T> T getParameterValue(Parameter<T> arg0) {
+		return null;
+	}
 
-  @Override
-  public Object getParameterValue(String arg0) {
-    return null;
-  }
+	@Override
+	public Object getParameterValue(String arg0) {
+		return null;
+	}
 
-  @Override
-  public Object getParameterValue(int arg0) {
-    return null;
-  }
+	@Override
+	public Object getParameterValue(int arg0) {
+		return null;
+	}
 
-  @Override
-  public Set<Parameter<?>> getParameters() {
-    return null;
-  }
+	@Override
+	public Set<Parameter<?>> getParameters() {
+		return null;
+	}
 
-  @Override
-  public List getResultList() {
-    return null;
-  }
+	@Override
+	public List getResultList() {
+		return null;
+	}
 
-  @Override
-  public X getSingleResult() {
-    return null;
-  }
+	@Override
+	public X getSingleResult() {
+		return null;
+	}
 
-  @Override
-  public boolean isBound(Parameter<?> arg0) {
-    return false;
-  }
+	@Override
+	public boolean isBound(Parameter<?> arg0) {
+		return false;
+	}
 
-  @Override
-  public TypedQuery setFirstResult(int arg0) {
-    return this;
-  }
+	@Override
+	public TypedQuery setFirstResult(int arg0) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setFlushMode(FlushModeType arg0) {
-    return this;
-  }
+	@Override
+	public TypedQuery setFlushMode(FlushModeType arg0) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setHint(String arg0, Object arg1) {
-    return this;
-  }
+	@Override
+	public TypedQuery setHint(String arg0, Object arg1) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setLockMode(LockModeType arg0) {
-    return this;
-  }
+	@Override
+	public TypedQuery setLockMode(LockModeType arg0) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setMaxResults(int arg0) {
-    return this;
-  }
+	@Override
+	public TypedQuery setMaxResults(int arg0) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setParameter(String arg0, Object arg1) {
-    return this;
-  }
+	@Override
+	public TypedQuery setParameter(String arg0, Object arg1) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setParameter(int arg0, Object arg1) {
-    return this;
-  }
+	@Override
+	public TypedQuery setParameter(int arg0, Object arg1) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setParameter(String arg0, Calendar arg1,
-      TemporalType arg2) {
-    return this;
-  }
+	@Override
+	public TypedQuery setParameter(String arg0, Calendar arg1, TemporalType arg2) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setParameter(String arg0, Date arg1, TemporalType arg2) {
-    return this;
-  }
+	@Override
+	public TypedQuery setParameter(String arg0, Date arg1, TemporalType arg2) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setParameter(int arg0, Calendar arg1, TemporalType arg2) {
-    return this;
-  }
+	@Override
+	public TypedQuery setParameter(int arg0, Calendar arg1, TemporalType arg2) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setParameter(int arg0, Date arg1, TemporalType arg2) {
-    return this;
-  }
+	@Override
+	public TypedQuery setParameter(int arg0, Date arg1, TemporalType arg2) {
+		return this;
+	}
 
-  @Override
-  public <T> T unwrap(Class<T> arg0) {
-    return null;
-  }
+	@Override
+	public <T> T unwrap(Class<T> arg0) {
+		return null;
+	}
 
-  @Override
-  public <T> TypedQuery setParameter(Parameter<T> arg0, T arg1) {
-    return this;
-  }
+	@Override
+	public <T> TypedQuery setParameter(Parameter<T> arg0, T arg1) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setParameter(Parameter<Calendar> arg0, Calendar arg1,
-      TemporalType arg2) {
-    return this;
-  }
+	@Override
+	public TypedQuery setParameter(Parameter<Calendar> arg0, Calendar arg1, TemporalType arg2) {
+		return this;
+	}
 
-  @Override
-  public TypedQuery setParameter(Parameter arg0, Date arg1, TemporalType arg2) {
-    return this;
-  }
+	@Override
+	public TypedQuery setParameter(Parameter arg0, Date arg1, TemporalType arg2) {
+		return this;
+	}
 
 }

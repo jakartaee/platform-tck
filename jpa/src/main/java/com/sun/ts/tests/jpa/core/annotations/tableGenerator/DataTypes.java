@@ -29,45 +29,45 @@ import jakarta.persistence.TableGenerator;
 @TableGenerator(name = "myTableGenerator", table = "GENERATOR_TABLE", pkColumnName = "PK_COL", valueColumnName = "VAL_COL", pkColumnValue = "DT1_ID", allocationSize = 1, initialValue = 1)
 public class DataTypes implements java.io.Serializable {
 
-  private int id;
+	private int id;
 
-  private String stringData;
+	private String stringData;
 
-  public DataTypes() {
-  }
+	public DataTypes() {
+	}
 
-  public DataTypes(String stringData) {
-    this.stringData = stringData;
-  }
+	public DataTypes(String stringData) {
+		this.stringData = stringData;
+	}
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.TABLE, generator = "myTableGenerator")
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "myTableGenerator")
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "CHARARRAYDATA")
-  public String getStringData() {
-    return stringData;
-  }
+	@Column(name = "CHARARRAYDATA")
+	public String getStringData() {
+		return stringData;
+	}
 
-  public void setStringData(String stringData) {
-    this.stringData = stringData;
-  }
+	public void setStringData(String stringData) {
+		this.stringData = stringData;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", stringData: " + getStringData());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", stringData: " + getStringData());
+		result.append("]");
+		return result.toString();
+	}
 
 }

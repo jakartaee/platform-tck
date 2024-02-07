@@ -33,25 +33,24 @@ import jakarta.persistence.Table;
 @AssociationOverride(name = "address", joinColumns = @JoinColumn(name = "ADDRESS_ID"))
 public class PartTimeEmployee extends Employee {
 
-  private float wage;
+	private float wage;
 
-  public PartTimeEmployee() {
-  }
+	public PartTimeEmployee() {
+	}
 
-  public PartTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-    this.wage = wage;
-  }
+	public PartTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		super(id, firstName, lastName, hireDate);
+		this.wage = wage;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
-  @Column(name = "SALARY")
-  public float getWage() {
-    return wage;
-  }
+	// ===========================================================
+	// getters and setters for the state fields
+	@Column(name = "SALARY")
+	public float getWage() {
+		return wage;
+	}
 
-  public void setWage(float wage) {
-    this.wage = wage;
-  }
+	public void setWage(float wage) {
+		this.wage = wage;
+	}
 }

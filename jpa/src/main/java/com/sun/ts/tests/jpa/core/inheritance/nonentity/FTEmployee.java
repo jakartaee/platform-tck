@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 
 /*
@@ -28,18 +29,19 @@ import java.sql.Date;
 
 public class FTEmployee extends Employee {
 
-  private float salary;
+	private static final Logger logger = (Logger) System.getLogger(FTEmployee.class.getName());
 
-  public FTEmployee() {
-  }
+	private float salary;
 
-  public FTEmployee(int id, String firstName, String lastName, Date hireDate,
-      float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.salary = salary;
-  }
+	public FTEmployee() {
+	}
+
+	public FTEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+		this.salary = salary;
+	}
 
 }

@@ -30,50 +30,50 @@ import jakarta.persistence.PreUpdate;
 
 public class GenerictListener extends GenerictListenerImpl {
 
-  public GenerictListener() {
-    super();
-  }
+	public GenerictListener() {
+		super();
+	}
 
-  @Override
-  @PrePersist
-  public void prePersist(CallbackStatusIF b) {
-    super.prePersist(b);
-  }
+	@Override
+	@PrePersist
+	public void prePersist(CallbackStatusIF b) {
+		super.prePersist(b);
+	}
 
-  @Override
-  @PostPersist
-  public void postPersist(Object b) {
-    super.postPersist(b);
-  }
+	@Override
+	@PostPersist
+	public void postPersist(Object b) {
+		super.postPersist(b);
+	}
 
-  @Override
-  @PreRemove
-  public void preRemove(CallbackStatusIF b) {
-    super.preRemove(b);
-  }
+	@Override
+	@PreRemove
+	public void preRemove(CallbackStatusIF b) {
+		super.preRemove(b);
+	}
 
-  @Override
-  @PostRemove
-  public void postRemove(Object b) {
-    super.postRemove(b);
-  }
+	@Override
+	@PostRemove
+	public void postRemove(Object b) {
+		super.postRemove(b);
+	}
 
-  @Override
-  @PreUpdate
-  public void preUpdate(CallbackStatusIF b) {
-    super.preUpdate(b);
-  }
+	@Override
+	@PreUpdate
+	public void preUpdate(CallbackStatusIF b) {
+		super.preUpdate(b);
+	}
 
-  @Override
-  @PostUpdate
-  public void postUpdate(Object b) {
-    super.postUpdate(b);
-  }
+	@Override
+	@PostUpdate
+	public void postUpdate(Object b) {
+		super.postUpdate(b);
+	}
 
-  @PostLoad
-  @Override
-  public void postLoad(CallbackStatusIF b) {
-    super.postLoad(b);
-  }
+	@PostLoad
+	@Override
+	public void postLoad(CallbackStatusIF b) {
+		super.postLoad(b);
+	}
 
 }

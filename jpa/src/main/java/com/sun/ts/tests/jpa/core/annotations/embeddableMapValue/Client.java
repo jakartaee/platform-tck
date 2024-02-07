@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2010, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,12 +16,15 @@
 
 package com.sun.ts.tests.jpa.core.annotations.embeddableMapValue;
 
+import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
@@ -29,169 +32,170 @@ import jakarta.persistence.EntityTransaction;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	public Client() {
+	}
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "Address", pkgName + "Employee" };
+		return createDeploymentJar("jpa_core_annotations_embeddableMapValue.jar", pkgNameWithoutSuffix, classes);
 
-    }
-  }
+	}
 
-  /*
-   * @testName: embeddableMapValue
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1195;
-   * 
-   * @test_Strategy: Use Embeddable class in MapValue
-   *
-   */
-  public void embeddableMapValue() throws Exception {
-    TestUtil.logTrace("Begin embeddableMapValue");
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
-    boolean pass4 = false;
-    boolean pass5 = false;
-    EntityManager em = getEntityManager();
-    EntityTransaction et = getEntityTransaction();
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
 
-    try {
-      TestUtil.logTrace("New instances");
+		}
+	}
 
-      final Address addr1 = new Address("1", "1 Network Drive", "Burlington",
-          "MA", "01801");
-      final Address addr2 = new Address("2", "Some Address", "Boston", "MA",
-          "01803");
+	/*
+	 * @testName: embeddableMapValue
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1195;
+	 * 
+	 * @test_Strategy: Use Embeddable class in MapValue
+	 *
+	 */
+	@Test
+	public void embeddableMapValue() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin embeddableMapValue");
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
+		boolean pass4 = false;
+		boolean pass5 = false;
+		EntityManager em = getEntityManager();
+		EntityTransaction et = getEntityTransaction();
 
-      Employee emp1 = new Employee(1, "Barack", "Obama");
+		try {
+			logger.log(Logger.Level.TRACE, "New instances");
 
-      Map<String, Address> locationAddressMap = new HashMap<String, Address>();
-      locationAddressMap.put("home", addr2);
-      locationAddressMap.put("office", addr1);
-      emp1.setLocationAddress(locationAddressMap);
+			final Address addr1 = new Address("1", "1 Network Drive", "Burlington", "MA", "01801");
+			final Address addr2 = new Address("2", "Some Address", "Boston", "MA", "01803");
 
-      TestUtil.logTrace("Created new Employee");
+			Employee emp1 = new Employee(1, "Barack", "Obama");
 
-      et.begin();
-      em.persist(emp1);
-      TestUtil.logTrace("persisted new Employee");
-      em.flush();
-      clearCache();
+			Map<String, Address> locationAddressMap = new HashMap<String, Address>();
+			locationAddressMap.put("home", addr2);
+			locationAddressMap.put("office", addr1);
+			emp1.setLocationAddress(locationAddressMap);
 
-      TestUtil.logTrace("query for Employee");
-      final Employee newEmployee = em.find(Employee.class, 1);
+			logger.log(Logger.Level.TRACE, "Created new Employee");
 
-      final int newEmployeeId = newEmployee.getId();
-      final String newEmployeeFirstName = newEmployee.getFirstName();
-      final String newEmployeeLastName = newEmployee.getLastName();
+			et.begin();
+			em.persist(emp1);
+			logger.log(Logger.Level.TRACE, "persisted new Employee");
+			em.flush();
+			clearCache();
 
-      TestUtil.logTrace("Employee Id = " + newEmployeeId);
-      TestUtil.logTrace("Employee First Name = " + newEmployeeFirstName);
-      TestUtil.logTrace("Employee Last Name = " + newEmployeeLastName);
+			logger.log(Logger.Level.TRACE, "query for Employee");
+			final Employee newEmployee = em.find(Employee.class, 1);
 
-      if (newEmployeeId == 1) {
-        pass1 = true;
-        TestUtil.logTrace("Employee Id match");
-      }
+			final int newEmployeeId = newEmployee.getId();
+			final String newEmployeeFirstName = newEmployee.getFirstName();
+			final String newEmployeeLastName = newEmployee.getLastName();
 
-      if (newEmployeeFirstName.equals("Barack")) {
-        TestUtil.logTrace("Employee First Name match");
-        pass2 = true;
-      }
+			logger.log(Logger.Level.TRACE, "Employee Id = " + newEmployeeId);
+			logger.log(Logger.Level.TRACE, "Employee First Name = " + newEmployeeFirstName);
+			logger.log(Logger.Level.TRACE, "Employee Last Name = " + newEmployeeLastName);
 
-      if (newEmployeeLastName.equals("Obama")) {
-        TestUtil.logTrace("Employee Last Name match");
-        pass3 = true;
-      }
+			if (newEmployeeId == 1) {
+				pass1 = true;
+				logger.log(Logger.Level.TRACE, "Employee Id match");
+			}
 
-      final Map<String, Address> newLocationAddressMap = newEmployee
-          .getLocationAddress();
-      final Address homeAddress = newLocationAddressMap.get("home");
-      final Address officeAddress = newLocationAddressMap.get("office");
+			if (newEmployeeFirstName.equals("Barack")) {
+				logger.log(Logger.Level.TRACE, "Employee First Name match");
+				pass2 = true;
+			}
 
-      if (officeAddress.getStreet().equals("1 Network Drive")
-          && officeAddress.getCity().equals("Burlington")
-          && officeAddress.getState().equals("MA")
-          && officeAddress.getZip().equals("01801")) {
+			if (newEmployeeLastName.equals("Obama")) {
+				logger.log(Logger.Level.TRACE, "Employee Last Name match");
+				pass3 = true;
+			}
 
-        pass4 = true;
-        TestUtil.logTrace("Employee officeAddress match");
-      }
+			final Map<String, Address> newLocationAddressMap = newEmployee.getLocationAddress();
+			final Address homeAddress = newLocationAddressMap.get("home");
+			final Address officeAddress = newLocationAddressMap.get("office");
 
-      if (homeAddress.getStreet().equals("Some Address")
-          && homeAddress.getCity().equals("Boston")
-          && homeAddress.getState().equals("MA")
-          && homeAddress.getZip().equals("01803")) {
+			if (officeAddress.getStreet().equals("1 Network Drive") && officeAddress.getCity().equals("Burlington")
+					&& officeAddress.getState().equals("MA") && officeAddress.getZip().equals("01801")) {
 
-        pass5 = true;
-        TestUtil.logTrace("Employee HomeAddress match");
-      }
+				pass4 = true;
+				logger.log(Logger.Level.TRACE, "Employee officeAddress match");
+			}
 
-      et.commit();
+			if (homeAddress.getStreet().equals("Some Address") && homeAddress.getCity().equals("Boston")
+					&& homeAddress.getState().equals("MA") && homeAddress.getZip().equals("01803")) {
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-    } finally {
-      try {
-        if (et.isActive()) {
-          et.rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
-      }
+				pass5 = true;
+				logger.log(Logger.Level.TRACE, "Employee HomeAddress match");
+			}
 
-    }
+			et.commit();
 
-    if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-      TestUtil.logErr("embeddableMapValue failed");
-    }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+		} finally {
+			try {
+				if (et.isActive()) {
+					et.rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			}
 
-  }
+		}
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
+			logger.log(Logger.Level.ERROR, "embeddableMapValue failed");
+		}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager()
-          .createNativeQuery("Delete from COLTAB_EMP_EMBEDED_ADDRESS")
-          .executeUpdate();
-      getEntityManager()
-          .createNativeQuery("Delete from EMPLOYEE_EMBEDED_ADDRESS")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("Delete from COLTAB_EMP_EMBEDED_ADDRESS").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from EMPLOYEE_EMBEDED_ADDRESS").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

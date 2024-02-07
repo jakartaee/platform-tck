@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,152 +20,166 @@
 
 package com.sun.ts.tests.jpa.core.basic;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
-  public Client() {
-  }
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	public Client() {
+	}
 
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: updateOrderTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
-   * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
-   * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
-   * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
-   * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
-   * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
-   * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
-   * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
-   * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
-   * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
-   * PERSISTENCE:SPEC:846
-   * 
-   * @test_Strategy: With basic entity requirements, persist/remove an entity.
-   */
-  public void updateOrderTest() throws Exception {
-    boolean pass = true;
-    final int count = 6;
-    Order order = null;
-    getEntityTransaction().begin();
-    for (int i = 1; i < count; i++) {
-      order = new Order(i, 100 * i);
-      getEntityManager().persist(order);
-      TestUtil.logTrace("persisted order " + order);
-    }
-    getEntityTransaction().commit();
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "Order" };
+		return createDeploymentJar("jpa_core_basic.jar", pkgNameWithoutSuffix, classes);
 
-    TestUtil.logTrace("find and removing the previously persisted orders");
-    getEntityTransaction().begin();
-    for (int i = 1; i < count; i++) {
-      order = getEntityManager().find(Order.class, i);
-      if (order != null) {
-        getEntityManager().remove(order);
-        TestUtil.logTrace("Found and removed order " + order);
-      } else {
-        TestUtil.logErr("persisted order[" + i + "] DOES NOT EXIST");
-        pass = false;
-      }
-    }
-    getEntityTransaction().commit();
-    if (!pass) {
+	}
 
-      TestUtil.logTrace("clearing the persistence context");
-      clearCache();
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      TestUtil.logTrace("verify the previously removed orders were removed");
-      for (int i = 1; i < count; i++) {
-        order = getEntityManager().find(Order.class, i);
-        if (order == null) {
-          TestUtil
-              .logTrace("persisted order[" + i + "] was removed successfully");
-        } else {
-          TestUtil.logErr("order[" + i + "] was NOT removed");
-          pass = false;
-        }
-      }
-    }
-    if (!pass) {
-      throw new Fault("updateOrderTest failed");
-    }
-  }
+	/*
+	 * @testName: updateOrderTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
+	 * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
+	 * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
+	 * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
+	 * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
+	 * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
+	 * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
+	 * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
+	 * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
+	 * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
+	 * PERSISTENCE:SPEC:846
+	 * 
+	 * @test_Strategy: With basic entity requirements, persist/remove an entity.
+	 */
+	@Test
+	public void updateOrderTest() throws Exception {
+		boolean pass = true;
+		final int count = 6;
+		Order order = null;
+		getEntityTransaction().begin();
+		for (int i = 1; i < count; i++) {
+			order = new Order(i, 100 * i);
+			getEntityManager().persist(order);
+			logger.log(Logger.Level.TRACE, "persisted order " + order);
+		}
+		getEntityTransaction().commit();
 
-  /*
-   * @testName: newEntityTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1375;
-   * 
-   * @test_Strategy: Instantiate entity and verify it didn't get persisted
-   */
-  public void newEntityTest() throws Exception {
-    boolean pass = false;
-    TestUtil.logTrace("Instantiate an order ");
-    Order order = new Order(1, 101);
-    TestUtil.logTrace("Try to find it");
-    Order order2 = getEntityManager().find(Order.class, 1);
-    if (order2 == null) {
-      TestUtil.logTrace("Did not find order as expected");
-      pass = true;
-    } else {
-      TestUtil
-          .logErr("Found order when it should not exist" + order2.toString());
-    }
+		logger.log(Logger.Level.TRACE, "find and removing the previously persisted orders");
+		getEntityTransaction().begin();
+		for (int i = 1; i < count; i++) {
+			order = getEntityManager().find(Order.class, i);
+			if (order != null) {
+				getEntityManager().remove(order);
+				logger.log(Logger.Level.TRACE, "Found and removed order " + order);
+			} else {
+				logger.log(Logger.Level.ERROR, "persisted order[" + i + "] DOES NOT EXIST");
+				pass = false;
+			}
+		}
+		getEntityTransaction().commit();
+		if (!pass) {
 
-    if (!pass) {
-      throw new Fault("newEntityTest failed");
-    }
-  }
+			logger.log(Logger.Level.TRACE, "clearing the persistence context");
+			clearCache();
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+			logger.log(Logger.Level.TRACE, "verify the previously removed orders were removed");
+			for (int i = 1; i < count; i++) {
+				order = getEntityManager().find(Order.class, i);
+				if (order == null) {
+					logger.log(Logger.Level.TRACE, "persisted order[" + i + "] was removed successfully");
+				} else {
+					logger.log(Logger.Level.ERROR, "order[" + i + "] was NOT removed");
+					pass = false;
+				}
+			}
+		}
+		if (!pass) {
+			throw new Exception("updateOrderTest failed");
+		}
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	/*
+	 * @testName: newEntityTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1375;
+	 * 
+	 * @test_Strategy: Instantiate entity and verify it didn't get persisted
+	 */
+	@Test
+	public void newEntityTest() throws Exception {
+		boolean pass = false;
+		logger.log(Logger.Level.TRACE, "Instantiate an order ");
+		Order order = new Order(1, 101);
+		logger.log(Logger.Level.TRACE, "Try to find it");
+		Order order2 = getEntityManager().find(Order.class, 1);
+		if (order2 == null) {
+			logger.log(Logger.Level.TRACE, "Did not find order as expected");
+			pass = true;
+		} else {
+			logger.log(Logger.Level.ERROR, "Found order when it should not exist" + order2.toString());
+		}
+
+		if (!pass) {
+			throw new Exception("newEntityTest failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

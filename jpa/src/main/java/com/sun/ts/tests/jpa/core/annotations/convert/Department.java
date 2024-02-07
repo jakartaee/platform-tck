@@ -29,68 +29,68 @@ import jakarta.persistence.Table;
 @Table(name = "DEPARTMENT")
 public class Department implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private String name;
+	private String name;
 
-  public Department() {
-  }
+	public Department() {
+	}
 
-  public Department(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public Department(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Department))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof Department))
+			return false;
 
-    Department o1 = (Department) o;
+		Department o1 = (Department) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getId() == o1.getId() && this.getName().equals(o1.getName())) {
-      result = true;
-    }
+		if (this.getId() == o1.getId() && this.getName().equals(o1.getName())) {
+			result = true;
+		}
 
-    return result;
+		return result;
 
-  }
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId() + this.getName().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId() + this.getName().hashCode();
+	}
 
-  @Override
-  public String toString() {
-    return "Department: id=" + getId() + ", name=" + getName();
-  }
+	@Override
+	public String toString() {
+		return "Department: id=" + getId() + ", name=" + getName();
+	}
 }

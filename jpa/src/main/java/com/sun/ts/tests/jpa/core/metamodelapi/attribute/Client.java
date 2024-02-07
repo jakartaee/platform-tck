@@ -16,10 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.attribute;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.Attribute;
@@ -28,339 +31,345 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: getName
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1216
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getName() throws Exception {
-    boolean pass = false;
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "Order" };
+		return createDeploymentJar("jpa_core_metamodelapi_attribute.jar", pkgNameWithoutSuffix, classes);
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
-      if (mTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
-        if (attrib != null) {
-          TestUtil.logTrace("attribute Name = " + attrib.getName());
-          if (attrib.getName() != null) {
+	}
 
-            if (attrib.getName().equals("total")) {
-              TestUtil.logTrace("Received expected result:" + attrib.getName());
-              pass = true;
-            } else {
-              TestUtil.logErr("Expected: "
-                  + Attribute.PersistentAttributeType.BASIC.toString()
-                  + ", actual:" + attrib.getName());
-            }
-          }
-        }
-      }
-    }
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    getEntityTransaction().commit();
+	/*
+	 * @testName: getName
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1216
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getName() throws Exception {
+		boolean pass = false;
 
-    if (!pass) {
-      throw new Fault("getName Test  failed");
-    }
-  }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+			if (mTypeOrder != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
+				if (attrib != null) {
+					logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+					if (attrib.getName() != null) {
 
-  /*
-   * @testName: getPersistentAttributeType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1217
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getPersistentAttributeType() throws Exception {
-    boolean pass = false;
+						if (attrib.getName().equals("total")) {
+							logger.log(Logger.Level.TRACE, "Received expected result:" + attrib.getName());
+							pass = true;
+						} else {
+							logger.log(Logger.Level.ERROR,
+									"Expected: " + Attribute.PersistentAttributeType.BASIC.toString() + ", actual:"
+											+ attrib.getName());
+						}
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
-      if (mTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
-        if (attrib != null) {
-          TestUtil.logTrace("attribute Name = " + attrib.getName());
-          Attribute.PersistentAttributeType pAttribType = attrib
-              .getPersistentAttributeType();
-          if (pAttribType == Attribute.PersistentAttributeType.BASIC) {
-            TestUtil.logTrace("Received expected result:" + pAttribType);
-            pass = true;
+		getEntityTransaction().commit();
 
-          } else {
-            TestUtil.logErr("Expected: "
-                + Attribute.PersistentAttributeType.BASIC.toString()
-                + ", actual:" + pAttribType);
-          }
-        }
-      }
-    }
+		if (!pass) {
+			throw new Exception("getName Test  failed");
+		}
+	}
 
-    getEntityTransaction().commit();
+	/*
+	 * @testName: getPersistentAttributeType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1217
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getPersistentAttributeType() throws Exception {
+		boolean pass = false;
 
-    if (!pass) {
-      throw new Fault("getPersistentAttributeType Test  failed");
-    }
-  }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+			if (mTypeOrder != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
+				if (attrib != null) {
+					logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+					Attribute.PersistentAttributeType pAttribType = attrib.getPersistentAttributeType();
+					if (pAttribType == Attribute.PersistentAttributeType.BASIC) {
+						logger.log(Logger.Level.TRACE, "Received expected result:" + pAttribType);
+						pass = true;
 
-  /*
-   * @testName: getDeclaringType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1213
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getDeclaringType() throws Exception {
-    boolean pass = false;
+					} else {
+						logger.log(Logger.Level.ERROR, "Expected: " + Attribute.PersistentAttributeType.BASIC.toString()
+								+ ", actual:" + pAttribType);
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
-      if (mTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
-        if (attrib != null) {
-          TestUtil.logTrace("attribute Name = " + attrib.getName());
-          ManagedType<Order> newTypeOrder = attrib.getDeclaringType();
-          if (newTypeOrder != null) {
-            Class javaType = newTypeOrder.getJavaType();
-            if (javaType.getName().equals(
-                "com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order")) {
-              TestUtil
-                  .logTrace("Received expected result:" + javaType.getName());
-              pass = true;
-            } else {
-              TestUtil.logErr(
-                  "Expected: com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order, actual:"
-                      + javaType.getName());
-            }
-          }
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("getPersistentAttributeType Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("getDeclaringType Test  failed");
-    }
-  }
+	/*
+	 * @testName: getDeclaringType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1213
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getDeclaringType() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: getJavaType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1215
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getJavaType() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+			if (mTypeOrder != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
+				if (attrib != null) {
+					logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+					ManagedType<Order> newTypeOrder = attrib.getDeclaringType();
+					if (newTypeOrder != null) {
+						Class javaType = newTypeOrder.getJavaType();
+						if (javaType.getName().equals("com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order")) {
+							logger.log(Logger.Level.TRACE, "Received expected result:" + javaType.getName());
+							pass = true;
+						} else {
+							logger.log(Logger.Level.ERROR,
+									"Expected: com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order, actual:"
+											+ javaType.getName());
+						}
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
-      if (mTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
-        if (attrib != null) {
-          TestUtil.logTrace("attribute JavaType = " + attrib.getJavaType());
-          Class pAttribJavaType = attrib.getJavaType();
-          if (pAttribJavaType.getName().equals("int")) {
-            TestUtil.logTrace("Received expected result:" + pAttribJavaType);
-            pass = true;
-          } else {
-            TestUtil.logErr("Expected: int, actual:" + pAttribJavaType);
-          }
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("getDeclaringType Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("getJavaType Test  failed");
-    }
-  }
+	/*
+	 * @testName: getJavaType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1215
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getJavaType() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: getJavaMember
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1214
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getJavaMember() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+			if (mTypeOrder != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
+				if (attrib != null) {
+					logger.log(Logger.Level.TRACE, "attribute JavaType = " + attrib.getJavaType());
+					Class pAttribJavaType = attrib.getJavaType();
+					if (pAttribJavaType.getName().equals("int")) {
+						logger.log(Logger.Level.TRACE, "Received expected result:" + pAttribJavaType);
+						pass = true;
+					} else {
+						logger.log(Logger.Level.ERROR, "Expected: int, actual:" + pAttribJavaType);
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
-      if (mTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
-        if (attrib != null) {
-          TestUtil.logTrace(
-              "attribute JavaMember = " + attrib.getJavaMember().getName());
-          java.lang.reflect.Member javaMember = attrib.getJavaMember();
-          if (javaMember.getName().equals("getTotal")) {
-            TestUtil
-                .logTrace("Received expected result:" + javaMember.getName());
-            pass = true;
-          } else {
-            TestUtil
-                .logErr("Expected: getTotal, actual:" + javaMember.getName());
-          }
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("getJavaType Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("getJavaMember Test  failed");
-    }
-  }
+	/*
+	 * @testName: getJavaMember
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1214
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getJavaMember() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: isAssociation
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1218
-   *
-   * @test_Strategy:
-   *
-   */
-  public void isAssociation() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+			if (mTypeOrder != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
+				if (attrib != null) {
+					logger.log(Logger.Level.TRACE, "attribute JavaMember = " + attrib.getJavaMember().getName());
+					java.lang.reflect.Member javaMember = attrib.getJavaMember();
+					if (javaMember.getName().equals("getTotal")) {
+						logger.log(Logger.Level.TRACE, "Received expected result:" + javaMember.getName());
+						pass = true;
+					} else {
+						logger.log(Logger.Level.ERROR, "Expected: getTotal, actual:" + javaMember.getName());
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
-      if (mTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
-        if (attrib != null) {
-          TestUtil
-              .logTrace("attribute IsAssociation = " + attrib.isAssociation());
-          if (!attrib.isAssociation()) {
-            TestUtil
-                .logTrace("Received expected result:" + attrib.isAssociation());
-            pass = true;
-          } else {
-            TestUtil.logErr(
-                "Received unexpected result: " + attrib.isAssociation());
-          }
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("getJavaMember Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("isAssociation Test  failed");
-    }
-  }
+	/*
+	 * @testName: isAssociation
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1218
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void isAssociation() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: isCollection
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1219
-   *
-   * @test_Strategy:
-   *
-   */
-  public void isCollection() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+			if (mTypeOrder != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
+				if (attrib != null) {
+					logger.log(Logger.Level.TRACE, "attribute IsAssociation = " + attrib.isAssociation());
+					if (!attrib.isAssociation()) {
+						logger.log(Logger.Level.TRACE, "Received expected result:" + attrib.isAssociation());
+						pass = true;
+					} else {
+						logger.log(Logger.Level.ERROR, "Received unexpected result: " + attrib.isAssociation());
+					}
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel.managedType(
-          com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
-      if (mTypeOrder != null) {
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
-        if (attrib != null) {
-          TestUtil
-              .logTrace("attribute IsCollection = " + attrib.isCollection());
-          if (!attrib.isCollection()) {
-            TestUtil
-                .logTrace("Received expected result:" + attrib.isCollection());
-            pass = true;
-          } else {
-            TestUtil
-                .logErr("Received unexpected result: " + attrib.isCollection());
-          }
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("isAssociation Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("isCollection Test  failed");
-    }
-  }
+	/*
+	 * @testName: isCollection
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1219
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void isCollection() throws Exception {
+		boolean pass = false;
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.attribute.Order.class);
+			if (mTypeOrder != null) {
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
+				if (attrib != null) {
+					logger.log(Logger.Level.TRACE, "attribute IsCollection = " + attrib.isCollection());
+					if (!attrib.isCollection()) {
+						logger.log(Logger.Level.TRACE, "Received expected result:" + attrib.isCollection());
+						pass = true;
+					} else {
+						logger.log(Logger.Level.ERROR, "Received unexpected result: " + attrib.isCollection());
+					}
+				}
+			}
+		}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-  }
+		getEntityTransaction().commit();
+
+		if (!pass) {
+			throw new Exception("isCollection Test  failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+	}
 }

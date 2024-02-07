@@ -25,28 +25,28 @@ import jakarta.persistence.Transient;
 @Embeddable
 public class Publisher1 implements Serializable {
 
-  public Publisher1() {
-  }
+	public Publisher1() {
+	}
 
-  @Transient
-  private String name;
+	@Transient
+	private String name;
 
-  @Column(length = 2)
-  private String stateofusa;
+	@Column(length = 2)
+	private String stateofusa;
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getState() {
-    return stateofusa;
-  }
+	public String getState() {
+		return stateofusa;
+	}
 
-  public void setState(String state) {
-    this.stateofusa = state;
-  }
+	public void setState(String state) {
+		this.stateofusa = state;
+	}
 }

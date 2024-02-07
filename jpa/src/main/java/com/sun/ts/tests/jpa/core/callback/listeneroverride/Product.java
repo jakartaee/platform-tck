@@ -35,74 +35,72 @@ import jakarta.persistence.Table;
 @Table(name = "PRODUCT_TABLE")
 // @EntityListeners({ListenerB.class, ListenerC.class})
 @EntityListeners({ ListenerC.class, ListenerB.class })
-public class Product extends CallbackStatusImpl
-    implements java.io.Serializable, CallbackStatusIF {
-  private String id;
+public class Product extends CallbackStatusImpl implements java.io.Serializable, CallbackStatusIF {
+	private String id;
 
-  private String name;
+	private String name;
 
-  private double price;
+	private double price;
 
-  private int quantity;
+	private int quantity;
 
-  private long partNumber;
+	private long partNumber;
 
-  public Product() {
-    super();
-  }
+	public Product() {
+		super();
+	}
 
-  public Product(String id, String name, double price, int quantity,
-      long partNumber) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
-    this.partNumber = partNumber;
-  }
+	public Product(String id, String name, double price, int quantity, long partNumber) {
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.quantity = quantity;
+		this.partNumber = partNumber;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Column(name = "PRICE")
-  public double getPrice() {
-    return price;
-  }
+	@Column(name = "PRICE")
+	public double getPrice() {
+		return price;
+	}
 
-  public void setPrice(double price) {
-    this.price = price;
-  }
+	public void setPrice(double price) {
+		this.price = price;
+	}
 
-  @Column(name = "QUANTITY")
-  public int getQuantity() {
-    return quantity;
-  }
+	@Column(name = "QUANTITY")
+	public int getQuantity() {
+		return quantity;
+	}
 
-  public void setQuantity(int v) {
-    this.quantity = v;
-  }
+	public void setQuantity(int v) {
+		this.quantity = v;
+	}
 
-  @Column(name = "PNUM")
-  public long getPartNumber() {
-    return partNumber;
-  }
+	@Column(name = "PNUM")
+	public long getPartNumber() {
+		return partNumber;
+	}
 
-  public void setPartNumber(long v) {
-    this.partNumber = v;
-  }
+	public void setPartNumber(long v) {
+		this.partNumber = v;
+	}
 }

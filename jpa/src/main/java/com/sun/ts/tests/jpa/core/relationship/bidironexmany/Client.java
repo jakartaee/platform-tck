@@ -16,208 +16,216 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidironexmany;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 import java.util.Vector;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-/**
- * @author Raja Perumal
- */
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	public JavaArchive createDeployment() throws Exception {
 
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "BiDir1XMPerson", pkgName + "BiDir1XMProject" };
+		return createDeploymentJar("jpa_core_relationship_bidironexmany.jar", pkgNameWithoutSuffix, classes);
 
-  /*
-   * @testName: biDir1XMTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-   * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-   * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-   * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-   * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
-   * 
-   * @test_Strategy: RelationShip OneToMany Mapping
-   *
-   */
-  public void biDir1XMTest1() throws Exception {
-    TestUtil.logTrace("Begin BiDir1X1Test1");
-    boolean pass = false;
-    try {
-      getEntityTransaction().begin();
+	}
 
-      BiDir1XMProject project1 = new BiDir1XMProject(1L, "JavaEE", 500.0F);
-      BiDir1XMProject project2 = new BiDir1XMProject(2L, "Identity", 500.0F);
-      BiDir1XMPerson person = new BiDir1XMPerson(1L, "Duke");
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
 
-      // getEntityManager().persist(person);
-      TestUtil.logTrace("persisted Person Entity");
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      Vector<BiDir1XMProject> projects = new Vector<BiDir1XMProject>();
-      projects.add(project1);
-      projects.add(project2);
+	/*
+	 * @testName: biDir1XMTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
+	 * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
+	 * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
+	 * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
+	 * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+	 * 
+	 * @test_Strategy: RelationShip OneToMany Mapping
+	 *
+	 */
+	@Test
+	public void biDir1XMTest1() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin BiDir1X1Test1");
+		boolean pass = false;
+		try {
+			getEntityTransaction().begin();
 
-      TestUtil.logTrace("set Projects to Person");
-      person.setProjects(projects);
+			BiDir1XMProject project1 = new BiDir1XMProject(1L, "JavaEE", 500.0F);
+			BiDir1XMProject project2 = new BiDir1XMProject(2L, "Identity", 500.0F);
+			BiDir1XMPerson person = new BiDir1XMPerson(1L, "Duke");
 
-      TestUtil.logTrace("set Person to Projects");
-      project1.setBiDir1XMPerson(person);
-      project2.setBiDir1XMPerson(person);
+			// getEntityManager().persist(person);
+			logger.log(Logger.Level.TRACE, "persisted Person Entity");
 
-      getEntityManager().persist(person);
-      TestUtil.logTrace("persisted Person Entity");
+			Vector<BiDir1XMProject> projects = new Vector<BiDir1XMProject>();
+			projects.add(project1);
+			projects.add(project2);
 
-      getEntityManager().flush();
-      getEntityTransaction().commit();
+			logger.log(Logger.Level.TRACE, "set Projects to Person");
+			person.setProjects(projects);
 
-      getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "set Person to Projects");
+			project1.setBiDir1XMPerson(person);
+			project2.setBiDir1XMPerson(person);
 
-      boolean pass1 = false;
-      boolean pass2 = false;
+			getEntityManager().persist(person);
+			logger.log(Logger.Level.TRACE, "persisted Person Entity");
 
-      // Lookup Project1
-      BiDir1XMProject newProject1 = getEntityManager()
-          .find(BiDir1XMProject.class, 1L);
-      if (newProject1 != null) {
-        if (newProject1.getName().equals("JavaEE")) {
-          BiDir1XMPerson newPerson = newProject1.getBiDir1XMPerson();
-          if (newPerson != null) {
-            if (newPerson.getName().equals("Duke")) {
-              TestUtil.logTrace("Found Expected Person Entity");
-              pass1 = true;
-            }
-          } else {
-            TestUtil.logTrace("searched Person not Found");
-          }
-        }
+			getEntityManager().flush();
+			getEntityTransaction().commit();
 
-      } else {
-        TestUtil.logTrace("searched Project not Found");
-      }
+			getEntityTransaction().begin();
 
-      // Lookup Project2
-      BiDir1XMProject newProject2 = getEntityManager()
-          .find(BiDir1XMProject.class, 2L);
-      if (newProject2 != null) {
-        if (newProject2.getName().equals("Identity")) {
-          BiDir1XMPerson newPerson = newProject2.getBiDir1XMPerson();
-          if (newPerson != null) {
-            if (newPerson.getName().equals("Duke")) {
-              TestUtil.logTrace("Found Expected Person Entity");
-              pass2 = true;
-            }
-          } else {
-            TestUtil.logTrace("searched Person not Found");
-          }
-        }
+			boolean pass1 = false;
+			boolean pass2 = false;
 
-      } else {
-        TestUtil.logTrace("searched Project not Found");
-      }
+			// Lookup Project1
+			BiDir1XMProject newProject1 = getEntityManager().find(BiDir1XMProject.class, 1L);
+			if (newProject1 != null) {
+				if (newProject1.getName().equals("JavaEE")) {
+					BiDir1XMPerson newPerson = newProject1.getBiDir1XMPerson();
+					if (newPerson != null) {
+						if (newPerson.getName().equals("Duke")) {
+							logger.log(Logger.Level.TRACE, "Found Expected Person Entity");
+							pass1 = true;
+						}
+					} else {
+						logger.log(Logger.Level.TRACE, "searched Person not Found");
+					}
+				}
 
-      // Alternative Search mechanism
-      /*
-       * BiDir1XMPerson newPerson =
-       * getEntityManager().find(BiDir1XMPerson.class, 1L);
-       * 
-       * if (newPerson != null) {
-       * 
-       * Collection<BiDir1XMProject> newProjects = newPerson.getProjects(); for
-       * (BiDir1XMProject prj : newProjects) { if
-       * (prj.getName().equals("Identity")) { BiDir1XMPerson p =
-       * prj.getBiDir1XMPerson(); if (p != null) { if
-       * (p.getName().equals("Duke")) {
-       * TestUtil.logTrace("Found Expected Person Entity"); pass1 = true; }
-       * 
-       * } else { TestUtil.logTrace("searched Person not Found"); }
-       * 
-       * } else if (prj.getName().equals("JavaEE")) { BiDir1XMPerson p2 =
-       * prj.getBiDir1XMPerson(); if (p2 != null) { if
-       * (p2.getName().equals("Duke")) {
-       * TestUtil.logTrace("Found Expected Person Entity"); pass2 = true; }
-       * 
-       * } else { TestUtil.logTrace("searched Person not Found"); } } } } else {
-       * TestUtil.logTrace("searched Person not Found"); }
-       */
+			} else {
+				logger.log(Logger.Level.TRACE, "searched Project not Found");
+			}
 
-      if (pass1 && pass2) {
-        TestUtil.logTrace("biDir1X1Test1: Expected results received");
-        pass = true;
-      } else {
-        TestUtil.logErr("Unexpected results received");
-        pass = false;
-      }
+			// Lookup Project2
+			BiDir1XMProject newProject2 = getEntityManager().find(BiDir1XMProject.class, 2L);
+			if (newProject2 != null) {
+				if (newProject2.getName().equals("Identity")) {
+					BiDir1XMPerson newPerson = newProject2.getBiDir1XMPerson();
+					if (newPerson != null) {
+						if (newPerson.getName().equals("Duke")) {
+							logger.log(Logger.Level.TRACE, "Found Expected Person Entity");
+							pass2 = true;
+						}
+					} else {
+						logger.log(Logger.Level.TRACE, "searched Person not Found");
+					}
+				}
 
-      getEntityTransaction().commit();
+			} else {
+				logger.log(Logger.Level.TRACE, "searched Project not Found");
+			}
 
-    } catch (Exception e) {
+			// Alternative Search mechanism
+			/*
+			 * BiDir1XMPerson newPerson = getEntityManager().find(BiDir1XMPerson.class, 1L);
+			 * 
+			 * if (newPerson != null) {
+			 * 
+			 * Collection<BiDir1XMProject> newProjects = newPerson.getProjects(); for
+			 * (BiDir1XMProject prj : newProjects) { if (prj.getName().equals("Identity")) {
+			 * BiDir1XMPerson p = prj.getBiDir1XMPerson(); if (p != null) { if
+			 * (p.getName().equals("Duke")) {
+			 * logger.log(Logger.Level.TRACE,"Found Expected Person Entity"); pass1 = true;
+			 * }
+			 * 
+			 * } else { logger.log(Logger.Level.TRACE,"searched Person not Found"); }
+			 * 
+			 * } else if (prj.getName().equals("JavaEE")) { BiDir1XMPerson p2 =
+			 * prj.getBiDir1XMPerson(); if (p2 != null) { if (p2.getName().equals("Duke")) {
+			 * logger.log(Logger.Level.TRACE,"Found Expected Person Entity"); pass2 = true;
+			 * }
+			 * 
+			 * } else { logger.log(Logger.Level.TRACE,"searched Person not Found"); } } } }
+			 * else { logger.log(Logger.Level.TRACE,"searched Person not Found"); }
+			 */
 
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+			if (pass1 && pass2) {
+				logger.log(Logger.Level.TRACE, "biDir1X1Test1: Expected results received");
+				pass = true;
+			} else {
+				logger.log(Logger.Level.ERROR, "Unexpected results received");
+				pass = false;
+			}
 
-    if (!pass) {
-      throw new Fault("biDir1XMTest1 failed");
-    }
-  }
+			getEntityTransaction().commit();
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		} catch (Exception e) {
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM BIDIR1XMPROJECT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM BIDIR1XMPERSON")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
+
+		if (!pass) {
+			throw new Exception("biDir1XMTest1 failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIR1XMPROJECT").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIR1XMPERSON").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

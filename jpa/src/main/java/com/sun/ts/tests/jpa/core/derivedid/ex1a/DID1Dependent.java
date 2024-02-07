@@ -31,61 +31,60 @@ import jakarta.persistence.ManyToOne;
 @IdClass(DID1DependentId.class)
 public class DID1Dependent implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Id
-  String name;
+	@Id
+	String name;
 
-  @Id
-  @ManyToOne
-  DID1Employee emp;
+	@Id
+	@ManyToOne
+	DID1Employee emp;
 
-  public DID1Dependent() {
-  }
+	public DID1Dependent() {
+	}
 
-  public DID1Dependent(String name, DID1Employee emp) {
-    this.name = name;
-    this.emp = emp;
-  }
+	public DID1Dependent(String name, DID1Employee emp) {
+		this.name = name;
+		this.emp = emp;
+	}
 
-  public DID1Employee getEmp() {
-    return emp;
-  }
+	public DID1Employee getEmp() {
+		return emp;
+	}
 
-  public void setEmp(DID1Employee emp) {
-    this.emp = emp;
-  }
+	public void setEmp(DID1Employee emp) {
+		this.emp = emp;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (name != null ? name.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (name != null ? name.hashCode() : 0);
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    if (!(object instanceof DID1Dependent)) {
-      return false;
-    }
-    DID1Dependent other = (DID1Dependent) object;
-    if ((this.name == null && other.name != null)
-        || (this.name != null && !this.name.equals(other.name))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof DID1Dependent)) {
+			return false;
+		}
+		DID1Dependent other = (DID1Dependent) object;
+		if ((this.name == null && other.name != null) || (this.name != null && !this.name.equals(other.name))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public String toString() {
-    return "ex1a.DID1Dependent[id=" + name + "]";
-  }
+	@Override
+	public String toString() {
+		return "ex1a.DID1Dependent[id=" + name + "]";
+	}
 }

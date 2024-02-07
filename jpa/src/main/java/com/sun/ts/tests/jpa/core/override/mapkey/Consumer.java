@@ -28,58 +28,56 @@ import jakarta.persistence.OrderBy;
 @Entity
 public class Consumer implements Serializable {
 
-  @Id
-  private Long id;
+	@Id
+	private Long id;
 
-  @ManyToMany(mappedBy = "customers")
-  @OrderBy("cost ASC")
-  private List<RetailOrder> orders = new ArrayList<RetailOrder>();
+	@ManyToMany(mappedBy = "customers")
+	@OrderBy("cost ASC")
+	private List<RetailOrder> orders = new ArrayList<RetailOrder>();
 
-  public Consumer() {
-  }
+	public Consumer() {
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Consumer)) {
-      return false;
-    }
-    Consumer other = (Consumer) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof Consumer)) {
+			return false;
+		}
+		Consumer other = (Consumer) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.mapkey.Consumer[id=" + getId()
-        + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.mapkey.Consumer[id=" + getId() + "]";
+	}
 
-  public void addOrder(RetailOrder order) {
-    this.getOrders().add(order);
-  }
+	public void addOrder(RetailOrder order) {
+		this.getOrders().add(order);
+	}
 
-  public List<RetailOrder> getOrders() {
-    return orders;
-  }
+	public List<RetailOrder> getOrders() {
+		return orders;
+	}
 
-  public void setOrders(List<RetailOrder> orders) {
-    this.orders = orders;
-  }
+	public void setOrders(List<RetailOrder> orders) {
+		this.orders = orders;
+	}
 }

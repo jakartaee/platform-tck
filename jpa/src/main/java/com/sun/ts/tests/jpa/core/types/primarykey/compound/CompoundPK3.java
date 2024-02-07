@@ -26,55 +26,53 @@ package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
 public class CompoundPK3 implements java.io.Serializable {
 
-  /* Fields */
-  private Integer pmIDInteger;
+	/* Fields */
+	private Integer pmIDInteger;
 
-  private String pmIDString;
+	private String pmIDString;
 
-  private Float pmIDFloat;
+	private Float pmIDFloat;
 
-  /** No-arg Constructor */
-  public CompoundPK3() {
-  }
+	/** No-arg Constructor */
+	public CompoundPK3() {
+	}
 
-  /** Standard Constructor */
-  public CompoundPK3(int intID, String strID, float floatID) {
-    this.pmIDInteger = intID;
-    this.pmIDString = strID;
-    this.pmIDFloat = floatID;
-  }
+	/** Standard Constructor */
+	public CompoundPK3(int intID, String strID, float floatID) {
+		this.pmIDInteger = intID;
+		this.pmIDString = strID;
+		this.pmIDFloat = floatID;
+	}
 
-  /** Override java.lang.Object method */
-  public int hashCode() {
-    int myHash;
+	/** Override java.lang.Object method */
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.pmIDInteger.hashCode() + this.pmIDString.hashCode()
-        + this.pmIDFloat.hashCode();
+		myHash = this.pmIDInteger.hashCode() + this.pmIDString.hashCode() + this.pmIDFloat.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  /** Override java.lang.Object method */
-  public boolean equals(Object o) {
-    CompoundPK3 other;
-    boolean same = true;
+	/** Override java.lang.Object method */
+	public boolean equals(Object o) {
+		CompoundPK3 other;
+		boolean same = true;
 
-    if (!(o instanceof CompoundPK3)) {
-      return false;
-    }
-    other = (CompoundPK3) o;
+		if (!(o instanceof CompoundPK3)) {
+			return false;
+		}
+		other = (CompoundPK3) o;
 
-    same &= this.pmIDInteger.equals(other.pmIDInteger);
-    same &= this.pmIDString.equals(other.pmIDString);
-    same &= this.pmIDFloat.equals(other.pmIDFloat);
+		same &= this.pmIDInteger.equals(other.pmIDInteger);
+		same &= this.pmIDString.equals(other.pmIDString);
+		same &= this.pmIDFloat.equals(other.pmIDFloat);
 
-    return same;
-  }
+		return same;
+	}
 
-  /** Override java.lang.Object method */
-  public String toString() {
-    return "CompoundPK3 [ " + pmIDInteger + ", " + pmIDString + ", " + pmIDFloat
-        + " ]";
-  }
+	/** Override java.lang.Object method */
+	public String toString() {
+		return "CompoundPK3 [ " + pmIDInteger + ", " + pmIDString + ", " + pmIDFloat + " ]";
+	}
 
 }

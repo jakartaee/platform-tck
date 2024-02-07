@@ -16,11 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.nestedembedding;
 
+import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Embedded;
@@ -33,153 +32,154 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "BNE_1XM_BI_BTOB")
 public class B implements java.io.Serializable {
-  // ===========================================================
-  // instance variables
-  @Id
-  protected String id;
 
-  @Basic
-  protected String name;
+	private static final Logger logger = (Logger) System.getLogger(B.class.getName());
 
-  @Basic
-  protected int value;
+	// ===========================================================
+	// instance variables
+	@Id
+	protected String id;
 
-  @Embedded
-  protected Address address;
+	@Basic
+	protected String name;
 
-  public Address getAddress() {
-    return address;
-  }
+	@Basic
+	protected int value;
 
-  public void setAddress(Address address) {
-    this.address = address;
-  }
+	@Embedded
+	protected Address address;
 
-  // ===========================================================
-  // relationship fields
-  @ManyToOne(targetEntity = com.sun.ts.tests.jpa.core.nestedembedding.A.class)
-  @JoinColumn(name = "FK_FOR_ANE_1XM_BI_BTOB", nullable = true)
-  protected A a1;
+	public Address getAddress() {
+		return address;
+	}
 
-  // ===========================================================
-  // constructors
-  public B() {
-    // TestUtil.logTrace("Entity B no arg constructor");
-  }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	// ===========================================================
+	// relationship fields
+	@ManyToOne(targetEntity = com.sun.ts.tests.jpa.core.nestedembedding.A.class)
+	@JoinColumn(name = "FK_FOR_ANE_1XM_BI_BTOB", nullable = true)
+	protected A a1;
 
-  public B(String id, String name, int value, A a1) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.a1 = a1;
-  }
+	// ===========================================================
+	// constructors
+	public B() {
+		// logger.log(Logger.Level.TRACE,"Entity B no arg constructor");
+	}
 
-  // ==========================================================
-  // Business Methods for Test Cases
-  public A getA1() {
-    return a1;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public void setA1(A a1) {
-    this.a1 = a1;
-  }
+	public B(String id, String name, int value, A a1) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.a1 = a1;
+	}
 
-  public boolean isA() {
-    TestUtil.logTrace("isA");
-    if (getA1() != null) {
-      TestUtil.logTrace("Relationship set for A ...");
-    } else {
-      TestUtil.logTrace("Relationship not set for A ...");
-    }
-    return getA1() != null;
-  }
+	// ==========================================================
+	// Business Methods for Test Cases
+	public A getA1() {
+		return a1;
+	}
 
-  public A getA1Info() {
-    TestUtil.logTrace("getA1Info");
-    if (isA()) {
-      A a1 = getA1();
-      return a1;
-    } else {
-      return null;
-    }
-  }
+	public void setA1(A a1) {
+		this.a1 = a1;
+	}
 
-  public String getBId() {
-    return id;
-  }
+	public boolean isA() {
+		logger.log(Logger.Level.TRACE, "isA");
+		if (getA1() != null) {
+			logger.log(Logger.Level.TRACE, "Relationship set for A ...");
+		} else {
+			logger.log(Logger.Level.TRACE, "Relationship not set for A ...");
+		}
+		return getA1() != null;
+	}
 
-  public String getBName() {
-    return name;
-  }
+	public A getA1Info() {
+		logger.log(Logger.Level.TRACE, "getA1Info");
+		if (isA()) {
+			A a1 = getA1();
+			return a1;
+		} else {
+			return null;
+		}
+	}
 
-  public void setBName(String bName) {
-    this.name = bName;
-  }
+	public String getBId() {
+		return id;
+	}
 
-  public int getBValue() {
-    return value;
-  }
+	public String getBName() {
+		return name;
+	}
 
-  public Collection getAInfoFromB() {
-    Vector v = new Vector();
-    if (getA1() != null) {
-      Collection bcol = getA1().getBCol();
-      Iterator iterator = bcol.iterator();
-      while (iterator.hasNext()) {
-        B b = (B) iterator.next();
-        A a = b.getA1();
-        v.add(a);
-      }
-    }
-    return v;
-  }
+	public void setBName(String bName) {
+		this.name = bName;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getBId());
+	public int getBValue() {
+		return value;
+	}
 
-    if (getBName() != null) {
-      result.append("Name: " + getBName());
-    } else {
-      result.append("Name: null");
-    }
-    result.append("Value: " + getBValue());
-    if (getAddress() != null) {
-      result.append("Address: " + getAddress().toString());
-    } else {
-      result.append("Address: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	public Collection getAInfoFromB() {
+		Vector v = new Vector();
+		if (getA1() != null) {
+			Collection bcol = getA1().getBCol();
+			Iterator iterator = bcol.iterator();
+			while (iterator.hasNext()) {
+				B b = (B) iterator.next();
+				A a = b.getA1();
+				v.add(a);
+			}
+		}
+		return v;
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getBId().hashCode() + this.getBName().hashCode()
-        + this.getBValue();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getBId());
 
-  public boolean equals(Object o) {
-    B other;
-    boolean same = true;
+		if (getBName() != null) {
+			result.append("Name: " + getBName());
+		} else {
+			result.append("Name: null");
+		}
+		result.append("Value: " + getBValue());
+		if (getAddress() != null) {
+			result.append("Address: " + getAddress().toString());
+		} else {
+			result.append("Address: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 
-    if (!(o instanceof B)) {
-      return false;
-    }
-    other = (B) o;
+	@Override
+	public int hashCode() {
+		return this.getBId().hashCode() + this.getBName().hashCode() + this.getBValue();
+	}
 
-    same &= this.id.equals(other.id) && this.name.equals(other.name)
-        && this.value == other.value;
+	public boolean equals(Object o) {
+		B other;
+		boolean same = true;
 
-    return same;
-  }
+		if (!(o instanceof B)) {
+			return false;
+		}
+		other = (B) o;
+
+		same &= this.id.equals(other.id) && this.name.equals(other.name) && this.value == other.value;
+
+		return same;
+	}
 
 }

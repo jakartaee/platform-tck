@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,210 +20,203 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.am;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import jakarta.ejb.EJB;
 
-public class Client extends EETest {
+public class Client {
 
-  @EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
-  private static Stateful3IF statefulBean;
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  @EJB(name = "ejb/Stateful3Bean2", beanInterface = Stateful3IF2.class)
-  private static Stateful3IF2 statefulBean2;
+	@EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
+	private static Stateful3IF statefulBean;
 
-  @EJB(name = "ejb/Stateless3Bean", beanInterface = Stateless3IF.class)
-  private static Stateless3IF statelessBean;
+	@EJB(name = "ejb/Stateful3Bean2", beanInterface = Stateful3IF2.class)
+	private static Stateful3IF2 statefulBean2;
 
-  private Properties props;
+	@EJB(name = "ejb/Stateless3Bean", beanInterface = Stateless3IF.class)
+	private static Stateless3IF statelessBean;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	private Properties props;
 
-  /*
-   * @class.setup_props:
-   */
+	/*
+	 * @class.setup_props:
+	 */
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
-      props = p;
-    } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
-    }
-  }
+	@BeforeEach
+	public void setup() throws Exception {
+	}
 
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:684; PERSISTENCE:SPEC:842;
-   * PERSISTENCE:SPEC:850; PERSISTENCE:SPEC:852; PERSISTENCE:SPEC:853;
-   * PERSISTENCE:SPEC:859; PERSISTENCE:SPEC:879; PERSISTENCE:SPEC:880;
-   * PERSISTENCE:SPEC:885; PERSISTENCE:JAVADOC:58; PERSISTENCE:SPEC:1024
-   * 
-   * @test_Strategy: When an application-managed entity manager is used, the
-   * application interacts directly with the persistence provider's entity
-   * manager factory to manage the entity manager life cycle and to obtain and
-   * destroy persistence contexts. All such application-managed pcs are extended
-   * in scope and may span multiple transactions.
-   *
-   * Inject entity manager factory, but open and close each entity manager
-   * within the business method.
-   */
+	/*
+	 * @testName: test1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:684; PERSISTENCE:SPEC:842;
+	 * PERSISTENCE:SPEC:850; PERSISTENCE:SPEC:852; PERSISTENCE:SPEC:853;
+	 * PERSISTENCE:SPEC:859; PERSISTENCE:SPEC:879; PERSISTENCE:SPEC:880;
+	 * PERSISTENCE:SPEC:885; PERSISTENCE:JAVADOC:58; PERSISTENCE:SPEC:1024
+	 * 
+	 * @test_Strategy: When an application-managed entity manager is used, the
+	 * application interacts directly with the persistence provider's entity manager
+	 * factory to manage the entity manager life cycle and to obtain and destroy
+	 * persistence contexts. All such application-managed pcs are extended in scope
+	 * and may span multiple transactions.
+	 *
+	 * Inject entity manager factory, but open and close each entity manager within
+	 * the business method.
+	 */
+	@Test
+	public void test1() throws Exception {
 
-  public void test1() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin test1");
+		boolean pass = false;
 
-    TestUtil.logTrace("Begin test1");
-    boolean pass = false;
+		try {
 
-    try {
+			statelessBean.init(props);
+			statelessBean.doCleanup();
+			pass = statelessBean.test1();
+			statelessBean.doCleanup();
 
-      statelessBean.init(props);
-      statelessBean.doCleanup();
-      pass = statelessBean.test1();
-      statelessBean.doCleanup();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+		}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-    }
+		if (!pass)
+			throw new Exception("test1 failed");
+	}
 
-    if (!pass)
-      throw new Fault("test1 failed");
-  }
+	/*
+	 * @testName: test2
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:880
+	 * 
+	 * @test_Strategy: When an application-managed entity manager is used, the
+	 * application interacts directly with the persistence provider's entity manager
+	 * factory to manage the entity manager life cycle and to obtain and destroy
+	 * persistence contexts. All such application-managed pcs are extended in scope
+	 * and may span multiple transactions.
+	 *
+	 * Inject entity manager factory, but open and close each entity manager within
+	 * the business method.
+	 *
+	 */
+	@Test
+	public void test2() throws Exception {
 
-  /*
-   * @testName: test2
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:880
-   * 
-   * @test_Strategy: When an application-managed entity manager is used, the
-   * application interacts directly with the persistence provider's entity
-   * manager factory to manage the entity manager life cycle and to obtain and
-   * destroy persistence contexts. All such application-managed pcs are extended
-   * in scope and may span multiple transactions.
-   *
-   * Inject entity manager factory, but open and close each entity manager
-   * within the business method.
-   *
-   */
+		logger.log(Logger.Level.TRACE, "Begin test2");
+		boolean pass = false;
 
-  public void test2() throws Exception {
+		try {
 
-    TestUtil.logTrace("Begin test2");
-    boolean pass = false;
+			statelessBean.init(props);
+			statelessBean.doCleanup();
+			pass = statelessBean.test2();
+			statelessBean.doCleanup();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+		}
 
-    try {
+		if (!pass)
+			throw new Exception("test2 failed");
+	}
 
-      statelessBean.init(props);
-      statelessBean.doCleanup();
-      pass = statelessBean.test2();
-      statelessBean.doCleanup();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-    }
+	/*
+	 * @testName: test3
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:692; PERSISTENCE:JAVADOC:140;
+	 * PERSISTENCE:JAVADOC:52
+	 * 
+	 * @test_Strategy: The persistence providers implementation of the merge
+	 * operation must examine the version attribute when an entity is being merged
+	 * and throw an OptimisticLockException if is discovered that the object being
+	 * merged is a stale copy of the entity.
+	 *
+	 */
+	@Test
+	public void test3() throws Exception {
 
-    if (!pass)
-      throw new Fault("test2 failed");
-  }
+		logger.log(Logger.Level.TRACE, "Begin test3");
+		boolean pass = false;
 
-  /*
-   * @testName: test3
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:692; PERSISTENCE:JAVADOC:140;
-   * PERSISTENCE:JAVADOC:52
-   * 
-   * @test_Strategy: The persistence providers implementation of the merge
-   * operation must examine the version attribute when an entity is being merged
-   * and throw an OptimisticLockException if is discovered that the object being
-   * merged is a stale copy of the entity.
-   *
-   */
+		try {
+			statefulBean.init(props);
+			pass = statefulBean.test3();
 
-  public void test3() throws Exception {
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+		}
 
-    TestUtil.logTrace("Begin test3");
-    boolean pass = false;
+		if (!pass)
+			throw new Exception("test3 failed");
+	}
 
-    try {
-      statefulBean.init(props);
-      pass = statefulBean.test3();
+	/*
+	 * @testName: test4
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:886; PERSISTENCE:SPEC:881
+	 * 
+	 * @test_Strategy: When a JTA application-managed entity manager is used, if the
+	 * entity manager is created outside the scope of a current JTA transaction, it
+	 * is the responsibility of the application to associate the entity manager with
+	 * the transaction (if desired) by calling EntityManager.joinTransaction.
+	 *
+	 * The enitity manager factory is injected into the stateful session bean. The
+	 * entity manager is obtained in the PostConstruct method of bean and closed
+	 * with when the bean is removed by a business method annotated with the Remove
+	 * annotation.
+	 *
+	 */
+	@Test
+	public void test4() throws Exception {
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-    }
+		logger.log(Logger.Level.TRACE, "Begin test4");
+		boolean pass = false;
 
-    if (!pass)
-      throw new Fault("test3 failed");
-  }
+		try {
+			statefulBean.init(props);
+			pass = statefulBean.test4();
 
-  /*
-   * @testName: test4
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:886; PERSISTENCE:SPEC:881
-   * 
-   * @test_Strategy: When a JTA application-managed entity manager is used, if
-   * the entity manager is created outside the scope of a current JTA
-   * transaction, it is the responsibility of the application to associate the
-   * entity manager with the transaction (if desired) by calling
-   * EntityManager.joinTransaction.
-   *
-   * The enitity manager factory is injected into the stateful session bean. The
-   * entity manager is obtained in the PostConstruct method of bean and closed
-   * with when the bean is removed by a business method annotated with the
-   * Remove annotation.
-   *
-   */
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+		}
 
-  public void test4() throws Exception {
+		if (!pass)
+			throw new Exception("test4 failed");
+	}
 
-    TestUtil.logTrace("Begin test4");
-    boolean pass = false;
+	/*
+	 * @testName: test5
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:164; PERSISTENCE:SPEC:2420;
+	 * 
+	 * @test_Strategy: Test the @PersistenceUnits and verify that a managed entity
+	 * from one PU is not accessible in the other PU and visa versa.
+	 */
+	@Test
+	public void test5() throws Exception {
 
-    try {
-      statefulBean.init(props);
-      pass = statefulBean.test4();
+		boolean pass = false;
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-    }
+		try {
+			statefulBean2.init(props);
+			pass = statefulBean2.test5();
 
-    if (!pass)
-      throw new Fault("test4 failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+		}
 
-  /*
-   * @testName: test5
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:164; PERSISTENCE:SPEC:2420;
-   * 
-   * @test_Strategy: Test the @PersistenceUnits and verify that a managed entity
-   * from one PU is not accessible in the other PU and visa versa.
-   */
+		if (!pass)
+			throw new Exception("test5 failed");
+	}
 
-  public void test5() throws Exception {
-
-    boolean pass = false;
-
-    try {
-      statefulBean2.init(props);
-      pass = statefulBean2.test5();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception :", e);
-    }
-
-    if (!pass)
-      throw new Fault("test5 failed");
-  }
-
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup complete");
-  }
+	@AfterEach
+	public void cleanup() throws Exception {
+		logger.log(Logger.Level.TRACE, "cleanup complete");
+	}
 
 }

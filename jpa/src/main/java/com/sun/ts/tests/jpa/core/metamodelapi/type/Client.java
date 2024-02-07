@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.type;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.metamodel.EmbeddableType;
@@ -29,143 +32,157 @@ import jakarta.persistence.metamodel.Type;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: getPersistenceType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1472
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getPersistenceType() throws Exception {
-    boolean pass = false;
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "Order", pkgName + "ZipCode" };
+		return createDeploymentJar("jpa_core_metamodelapi_type.jar", pkgNameWithoutSuffix, classes);
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel
-          .managedType(com.sun.ts.tests.jpa.core.metamodelapi.type.Order.class);
-      if (mTypeOrder != null) {
-        Type.PersistenceType type = mTypeOrder.getPersistenceType();
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        if (type.equals(Type.PersistenceType.ENTITY)) {
-          pass = true;
-        } else {
-          TestUtil.logTrace("Persistence type = " + type.name());
-        }
-      }
-    }
+	}
 
-    getEntityTransaction().commit();
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("getPersistenceType Test  failed");
-    }
-  }
+	/*
+	 * @testName: getPersistenceType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1472
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getPersistenceType() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: getEmbeddablePersistenceType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1472
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getEmbeddablePersistenceType() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.type.Order.class);
+			if (mTypeOrder != null) {
+				Type.PersistenceType type = mTypeOrder.getPersistenceType();
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				if (type.equals(Type.PersistenceType.ENTITY)) {
+					pass = true;
+				} else {
+					logger.log(Logger.Level.TRACE, "Persistence type = " + type.name());
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      EmbeddableType<Address> eTypeAddress = metaModel.embeddable(
-          com.sun.ts.tests.jpa.core.metamodelapi.type.Address.class);
-      if (eTypeAddress != null) {
-        Type.PersistenceType type = eTypeAddress.getPersistenceType();
-        TestUtil.logTrace("Obtained Non-null Embeddable Type");
-        if (type.equals(Type.PersistenceType.EMBEDDABLE)) {
-          pass = true;
-        } else {
-          TestUtil.logTrace("Persistence type = " + type);
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("getPersistenceType Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("getEmbeddablePersistenceType Test  failed");
-    }
-  }
+	/*
+	 * @testName: getEmbeddablePersistenceType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1472
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getEmbeddablePersistenceType() throws Exception {
+		boolean pass = false;
 
-  /*
-   * @testName: getJavaType
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:1471
-   *
-   * @test_Strategy:
-   *
-   */
-  public void getJavaType() throws Exception {
-    boolean pass = false;
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			EmbeddableType<Address> eTypeAddress = metaModel
+					.embeddable(com.sun.ts.tests.jpa.core.metamodelapi.type.Address.class);
+			if (eTypeAddress != null) {
+				Type.PersistenceType type = eTypeAddress.getPersistenceType();
+				logger.log(Logger.Level.TRACE, "Obtained Non-null Embeddable Type");
+				if (type.equals(Type.PersistenceType.EMBEDDABLE)) {
+					pass = true;
+				} else {
+					logger.log(Logger.Level.TRACE, "Persistence type = " + type);
+				}
+			}
+		}
 
-    getEntityTransaction().begin();
-    Metamodel metaModel = getEntityManager().getMetamodel();
-    if (metaModel != null) {
-      TestUtil.logTrace("Obtained Non-null Metamodel from EntityManager");
-      ManagedType<Order> mTypeOrder = metaModel
-          .managedType(com.sun.ts.tests.jpa.core.metamodelapi.type.Order.class);
-      if (mTypeOrder != null) {
-        Class javaType = mTypeOrder.getJavaType();
-        TestUtil.logTrace("Obtained Non-null ManagedType");
-        if (javaType.getName()
-            .equals("com.sun.ts.tests.jpa.core.metamodelapi.type.Order")) {
-          pass = true;
-        } else {
-          TestUtil.logTrace("javaType name = " + javaType.getName());
-        }
-      }
-    }
+		getEntityTransaction().commit();
 
-    getEntityTransaction().commit();
+		if (!pass) {
+			throw new Exception("getEmbeddablePersistenceType Test  failed");
+		}
+	}
 
-    if (!pass) {
-      throw new Fault("getJavaType Test  failed");
-    }
-  }
+	/*
+	 * @testName: getJavaType
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:1471
+	 *
+	 * @test_Strategy:
+	 *
+	 */
+	@Test
+	public void getJavaType() throws Exception {
+		boolean pass = false;
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		getEntityTransaction().begin();
+		Metamodel metaModel = getEntityManager().getMetamodel();
+		if (metaModel != null) {
+			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			ManagedType<Order> mTypeOrder = metaModel
+					.managedType(com.sun.ts.tests.jpa.core.metamodelapi.type.Order.class);
+			if (mTypeOrder != null) {
+				Class javaType = mTypeOrder.getJavaType();
+				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				if (javaType.getName().equals("com.sun.ts.tests.jpa.core.metamodelapi.type.Order")) {
+					pass = true;
+				} else {
+					logger.log(Logger.Level.TRACE, "javaType name = " + javaType.getName());
+				}
+			}
+		}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-  }
+		getEntityTransaction().commit();
+
+		if (!pass) {
+			throw new Exception("getJavaType Test  failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+	}
 }

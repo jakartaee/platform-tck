@@ -35,60 +35,58 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "COLTAB")
-@AttributeOverrides({
-    @AttributeOverride(name = "name", column = @Column(name = "NAME"))
-})
+@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 @Access(AccessType.FIELD)
 public class A2 implements java.io.Serializable {
 
-    private static final long serialVersionUID = 20L;
+	private static final long serialVersionUID = 20L;
 
-    @Id
-    protected String id;
-    protected String name;
+	@Id
+	protected String id;
+	protected String name;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-    @OrderBy("zipcode.zip DESC")
-    protected List<Address2> lAddress = new ArrayList<Address2>();
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+	@OrderBy("zipcode.zip DESC")
+	protected List<Address2> lAddress = new ArrayList<Address2>();
 
-    public A2() {
-    }
+	public A2() {
+	}
 
-    public A2(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public A2(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-    public A2(String id, String name, List<Address2> addr) {
-        this.id = id;
-        this.name = name;
-        this.lAddress = addr;
-    }
+	public A2(String id, String name, List<Address2> addr) {
+		this.id = id;
+		this.name = name;
+		this.lAddress = addr;
+	}
 
-    @Id
-    public String getId() {
-        return id;
-    }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public List<Address2> getAddressList() {
-        return lAddress;
-    }
+	public List<Address2> getAddressList() {
+		return lAddress;
+	}
 
-    public void setAddressList(List<Address2> addr) {
-        this.lAddress = addr;
-    }
+	public void setAddressList(List<Address2> addr) {
+		this.lAddress = addr;
+	}
 
 }

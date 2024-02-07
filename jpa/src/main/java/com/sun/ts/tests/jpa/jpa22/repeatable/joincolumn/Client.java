@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,136 +16,151 @@
 
 package com.sun.ts.tests.jpa.jpa22.repeatable.joincolumn;
 
+import java.lang.System.Logger;
 import java.util.List;
-import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-  private static final long serialVersionUID = 22L;
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public Client() {
-  }
+	private static final long serialVersionUID = 22L;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: didTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:91;
-   * 
-   * @test_Strategy: follow up test core/derivedod/ex2a but without @JoinColumns
-   */
-  public void didTest() throws Exception {
-    boolean pass = false;
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "DID2Dependent", pkgName + "DID2DependentId", pkgName + "DID2Employee",
+				pkgName + "DID2EmployeeId" };
+		return createDeploymentJar("jpa_jpa22_repeatable_joincolumn.jar", pkgNameWithoutSuffix, (String[]) classes);
 
-    try {
+	}
 
-      getEntityTransaction().begin();
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      final DID2EmployeeId eId1 = new DID2EmployeeId("Java", "Duke");
-      final DID2EmployeeId eId2 = new DID2EmployeeId("C", "foo");
-      final DID2Employee employee1 = new DID2Employee(eId1);
-      final DID2Employee employee2 = new DID2Employee(eId2);
+	/*
+	 * @testName: didTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:91;
+	 * 
+	 * @test_Strategy: follow up test core/derivedod/ex2a but without @JoinColumns
+	 */
+	@Test
+	public void didTest() throws Exception {
+		boolean pass = false;
 
-      final DID2DependentId dId1 = new DID2DependentId("Obama", eId1);
-      final DID2DependentId dId2 = new DID2DependentId("Michelle", eId1);
-      final DID2DependentId dId3 = new DID2DependentId("John", eId2);
+		try {
 
-      final DID2Dependent dep1 = new DID2Dependent(dId1, employee1);
-      final DID2Dependent dep2 = new DID2Dependent(dId2, employee1);
-      final DID2Dependent dep3 = new DID2Dependent(dId3, employee2);
+			getEntityTransaction().begin();
 
-      getEntityManager().persist(employee1);
-      getEntityManager().persist(employee2);
-      getEntityManager().persist(dep1);
-      getEntityManager().persist(dep2);
-      getEntityManager().persist(dep3);
+			final DID2EmployeeId eId1 = new DID2EmployeeId("Java", "Duke");
+			final DID2EmployeeId eId2 = new DID2EmployeeId("C", "foo");
+			final DID2Employee employee1 = new DID2Employee(eId1);
+			final DID2Employee employee2 = new DID2Employee(eId2);
 
-      getEntityManager().flush();
-      TestUtil.logTrace("persisted Employees and Dependents");
+			final DID2DependentId dId1 = new DID2DependentId("Obama", eId1);
+			final DID2DependentId dId2 = new DID2DependentId("Michelle", eId1);
+			final DID2DependentId dId3 = new DID2DependentId("John", eId2);
 
-      // Refresh Dependent
-      DID2Dependent newDependent = getEntityManager().find(DID2Dependent.class,
-          new DID2DependentId("Obama", new DID2EmployeeId("Java", "Duke")));
-      if (newDependent != null) {
-        getEntityManager().refresh(newDependent);
-      }
+			final DID2Dependent dep1 = new DID2Dependent(dId1, employee1);
+			final DID2Dependent dep2 = new DID2Dependent(dId2, employee1);
+			final DID2Dependent dep3 = new DID2Dependent(dId3, employee2);
 
-      List<?> depList = getEntityManager().createQuery(
-          "Select d from DID2Dependent d where d.name='Obama' and d.emp.firstName='Java'")
-          .getResultList();
-      newDependent = null;
-      if (depList.size() > 0) {
-        newDependent = (DID2Dependent) depList.get(0);
-        if (newDependent == dep1) {
-          pass = true;
-          TestUtil.logTrace("Received Expected Dependent");
-        } else {
-          TestUtil.logErr("Searched Dependent not found");
-        }
-      } else {
-        TestUtil.logErr("getEntityManager().createQuery returned null entry");
-      }
+			getEntityManager().persist(employee1);
+			getEntityManager().persist(employee2);
+			getEntityManager().persist(dep1);
+			getEntityManager().persist(dep2);
+			getEntityManager().persist(dep3);
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      getEntityTransaction().rollback();
-    }
+			getEntityManager().flush();
+			logger.log(Logger.Level.TRACE, "persisted Employees and Dependents");
 
-    if (!pass) {
-      throw new Fault("DIDTest failed");
-    }
-  }
+			// Refresh Dependent
+			DID2Dependent newDependent = getEntityManager().find(DID2Dependent.class,
+					new DID2DependentId("Obama", new DID2EmployeeId("Java", "Duke")));
+			if (newDependent != null) {
+				getEntityManager().refresh(newDependent);
+			}
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+			List<?> depList = getEntityManager()
+					.createQuery("Select d from DID2Dependent d where d.name='Obama' and d.emp.firstName='Java'")
+					.getResultList();
+			newDependent = null;
+			if (depList.size() > 0) {
+				newDependent = (DID2Dependent) depList.get(0);
+				if (newDependent == dep1) {
+					pass = true;
+					logger.log(Logger.Level.TRACE, "Received Expected Dependent");
+				} else {
+					logger.log(Logger.Level.ERROR, "Searched Dependent not found");
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "getEntityManager().createQuery returned null entry");
+			}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM DID2DEPENDENT")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM DID2EMPLOYEE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			getEntityTransaction().rollback();
+		}
+
+		if (!pass) {
+			throw new Exception("DIDTest failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM DID2DEPENDENT").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM DID2EMPLOYEE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

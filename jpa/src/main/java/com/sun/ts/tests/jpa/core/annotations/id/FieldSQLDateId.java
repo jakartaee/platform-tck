@@ -25,48 +25,48 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES2")
 public class FieldSQLDateId implements java.io.Serializable {
 
-  @Id
-  @Column(name = "DATATYPES2_ID")
-  protected java.sql.Date id;
+	@Id
+	@Column(name = "DATATYPES2_ID")
+	protected java.sql.Date id;
 
-  @Column(name = "DATEDATA")
-  private java.sql.Date date;
+	@Column(name = "DATEDATA")
+	private java.sql.Date date;
 
-  public FieldSQLDateId() {
-  }
+	public FieldSQLDateId() {
+	}
 
-  public FieldSQLDateId(java.sql.Date id, java.sql.Date date) {
-    this.id = id;
-    this.date = date;
-  }
+	public FieldSQLDateId(java.sql.Date id, java.sql.Date date) {
+		this.id = id;
+		this.date = date;
+	}
 
-  public java.sql.Date getId() {
-    return id;
-  }
+	public java.sql.Date getId() {
+		return id;
+	}
 
-  public void setId(java.sql.Date id) {
-    this.id = id;
-  }
+	public void setId(java.sql.Date id) {
+		this.id = id;
+	}
 
-  public java.sql.Date getDate() {
-    return date;
-  }
+	public java.sql.Date getDate() {
+		return date;
+	}
 
-  public void setDate(java.sql.Date date) {
-    this.date = date;
-  }
+	public void setDate(java.sql.Date date) {
+		this.date = date;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getDate() != null) {
-      result.append(", date: " + getDate());
-    } else {
-      result.append(", date: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getDate() != null) {
+			result.append(", date: " + getDate());
+		} else {
+			result.append(", date: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 }

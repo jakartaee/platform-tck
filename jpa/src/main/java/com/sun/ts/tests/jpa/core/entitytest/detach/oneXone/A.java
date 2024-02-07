@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.oneXone;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
@@ -32,79 +32,81 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1X1_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  @Id
-  protected String id;
+	// ===========================================================
+	// instance variables
 
-  @Basic
-  protected String name;
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // constructors
+	@Basic
+	protected int value;
 
-  public A() {
-    TestUtil.logTrace("Entity A no arg constructor");
-  }
+	// ===========================================================
+	// constructors
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A() {
+		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+	}
 
-  public A(String id, String name, int value, B b1) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.b1 = b1;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // ===========================================================
-  // relationship fields
+	public A(String id, String name, int value, B b1) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.b1 = b1;
+	}
 
-  @OneToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.detach.oneXone.B.class, mappedBy = "a1")
-  protected B b1;
+	// ===========================================================
+	// relationship fields
 
-  // =======================================================================
-  // Business methods for test cases
+	@OneToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.detach.oneXone.B.class, mappedBy = "a1")
+	protected B b1;
 
-  public B getB1() {
-    return b1;
-  }
+	// =======================================================================
+	// Business methods for test cases
 
-  public boolean isB1() {
-    TestUtil.logTrace("isB1");
-    if (getB1() != null)
-      TestUtil.logTrace("Relationship to B is not null...");
-    else
-      TestUtil.logTrace("Relationship for B is null ...");
-    return getB1() != null;
-  }
+	public B getB1() {
+		return b1;
+	}
 
-  public B getB1Info() {
-    TestUtil.logTrace("getBInfo");
-    if (isB1()) {
-      B b1 = getB1();
-      return b1;
-    } else
-      return null;
-  }
+	public boolean isB1() {
+		logger.log(Logger.Level.TRACE, "isB1");
+		if (getB1() != null)
+			logger.log(Logger.Level.TRACE, "Relationship to B is not null...");
+		else
+			logger.log(Logger.Level.TRACE, "Relationship for B is null ...");
+		return getB1() != null;
+	}
 
-  public String getAId() {
-    return id;
-  }
+	public B getB1Info() {
+		logger.log(Logger.Level.TRACE, "getBInfo");
+		if (isB1()) {
+			B b1 = getB1();
+			return b1;
+		} else
+			return null;
+	}
 
-  public String getAName() {
-    return name;
-  }
+	public String getAId() {
+		return id;
+	}
 
-  public int getAValue() {
-    return value;
-  }
+	public String getAName() {
+		return name;
+	}
+
+	public int getAValue() {
+		return value;
+	}
 
 }

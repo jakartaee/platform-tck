@@ -40,152 +40,142 @@ import jakarta.transaction.UserTransaction;
 
 public class ServletTest extends HttpTCKServlet {
 
-  private static final int ACCOUNT = 1075;
+	private static final int ACCOUNT = 1075;
 
-  private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
+	private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
 
-  private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0,
-      1000000.0 };
+	private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0, 1000000.0 };
 
-  private static final String emfRef = "java:comp/env/persistence/MyPersistenceUnit";
+	private static final String emfRef = "java:comp/env/persistence/MyPersistenceUnit";
 
-  private EntityManager entityManager;
+	private EntityManager entityManager;
 
-  private EntityManagerFactory entityManagerFactory;
+	private EntityManagerFactory entityManagerFactory;
 
-  private UserTransaction ut;
+	private UserTransaction ut;
 
-  private Account accountRef;
+	private Account accountRef;
 
-  private Map myMap = new HashMap();
+	private Map myMap = new HashMap();
 
-  public UserTransaction getTx() {
-    try {
-      TSNamingContext nctx = new TSNamingContext();
-      ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
-    } catch (Exception e) {
-      System.out.println("Naming service exception: " + e.getMessage());
-      e.printStackTrace();
-    }
-    return ut;
-  }
+	public UserTransaction getTx() {
+		try {
+			TSNamingContext nctx = new TSNamingContext();
+			ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
+		} catch (Exception e) {
+			System.out.println("Naming service exception: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return ut;
+	}
 
-  public void test1(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
+	public void test1(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-    PrintWriter pw = res.getWriter();
-    Double EXPECTED_BALANCE = 10540.75D;
-    Double balance;
+		PrintWriter pw = res.getWriter();
+		Double EXPECTED_BALANCE = 10540.75D;
+		Double balance;
 
-    try {
+		try {
 
-      ut = getTx();
-      TSNamingContext nctx = new TSNamingContext();
-      System.out.println("Lookup EntityManagerFactory: " + emfRef);
-      entityManagerFactory = (EntityManagerFactory) nctx.lookup(emfRef);
+			ut = getTx();
+			TSNamingContext nctx = new TSNamingContext();
+			System.out.println("Lookup EntityManagerFactory: " + emfRef);
+			entityManagerFactory = (EntityManagerFactory) nctx.lookup(emfRef);
 
-      System.out.println("createEntityManager with Map of Props");
-      entityManager = entityManagerFactory.createEntityManager(myMap);
+			System.out.println("createEntityManager with Map of Props");
+			entityManager = entityManagerFactory.createEntityManager(myMap);
 
-      System.out.println("Begin TX to create Entities");
-      ut.begin();
-      entityManager.joinTransaction();
-      System.out.println("Create 5 Account Entities");
-      for (int i = 0; i < ACCOUNTS.length; i++) {
-        System.out.println(
-            "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+			System.out.println("Begin TX to create Entities");
+			ut.begin();
+			entityManager.joinTransaction();
+			System.out.println("Create 5 Account Entities");
+			for (int i = 0; i < ACCOUNTS.length; i++) {
+				System.out.println("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 
-        accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
-        entityManager.persist(accountRef);
+				accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
+				entityManager.persist(accountRef);
 
-      }
+			}
 
-      System.out.println("Commit TX to persist Entities");
-      ut.commit();
+			System.out.println("Commit TX to persist Entities");
+			ut.commit();
 
-      System.out.println("In next TX,  modify entity and commit");
+			System.out.println("In next TX,  modify entity and commit");
 
-      ut.begin();
-      entityManager.joinTransaction();
-      accountRef = entityManager.find(Account.class, ACCOUNT);
-      System.out.println("Operating on account: " + ACCOUNT);
-      balance = accountRef.balance();
+			ut.begin();
+			entityManager.joinTransaction();
+			accountRef = entityManager.find(Account.class, ACCOUNT);
+			System.out.println("Operating on account: " + ACCOUNT);
+			balance = accountRef.balance();
 
-      System.out.println("Balance Before Deposit: " + balance);
-      balance = accountRef.deposit(100.0);
-      System.out.println("Balance After Deposit: " + balance);
+			System.out.println("Balance Before Deposit: " + balance);
+			balance = accountRef.deposit(100.0);
+			System.out.println("Balance After Deposit: " + balance);
 
-      balance = accountRef.withdraw(50.0);
-      System.out.println("Balance After Withdraw: " + balance);
+			balance = accountRef.withdraw(50.0);
+			System.out.println("Balance After Withdraw: " + balance);
 
-      ut.commit();
+			ut.commit();
 
-      System.out.println("Retrieve Entity after commit and check balance");
-      Account updatedAccount = entityManager.find(Account.class, ACCOUNT);
-      balance = updatedAccount.balance();
+			System.out.println("Retrieve Entity after commit and check balance");
+			Account updatedAccount = entityManager.find(Account.class, ACCOUNT);
+			balance = updatedAccount.balance();
 
-      if (EXPECTED_BALANCE.compareTo(balance) == 0) {
-        System.out.println(" TEST PASSED. BALANCE IS: " + balance);
-        pw.println(Data.PASSED + ".  Balance of account as expected");
-      } else {
-        System.out.println(
-            " TEST FAILED - Account balance is not correct.  Expected: "
-                + EXPECTED_BALANCE + "got: " + balance);
-        pw.println(Data.FAILED
-            + ".  ERROR: Account balance is not correct.  Expected: "
-            + EXPECTED_BALANCE + "got: " + balance);
-      }
-    } catch (Exception e) {
-      System.out.println("Unexpected exception caught in test1");
-      pw.println(
-          Data.FAILED + ".  ERROR: Unexpected Exception caught in test1");
-      e.printStackTrace();
-      try {
-        if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
-          ut.rollback();
-      } catch (Exception se) {
-        System.out.println(
-            "Unexpected exception caught in test1 while checking TX status ");
-        se.printStackTrace();
-      }
-    } finally {
-      try {
-        ut.begin();
-        entityManager.joinTransaction();
-        for (int i = 0; i < ACCOUNTS.length; i++) {
-          System.out.println("Removing Account Entities");
-          accountRef = entityManager.find(Account.class, ACCOUNTS[i]);
-          if (accountRef != null) {
-            entityManager.remove(accountRef);
-          }
-        }
+			if (EXPECTED_BALANCE.compareTo(balance) == 0) {
+				System.out.println(" TEST PASSED. BALANCE IS: " + balance);
+				pw.println(Data.PASSED + ".  Balance of account as expected");
+			} else {
+				System.out.println(" TEST FAILED - Account balance is not correct.  Expected: " + EXPECTED_BALANCE
+						+ "got: " + balance);
+				pw.println(Data.FAILED + ".  ERROR: Account balance is not correct.  Expected: " + EXPECTED_BALANCE
+						+ "got: " + balance);
+			}
+		} catch (Exception e) {
+			System.out.println("Unexpected exception caught in test1");
+			pw.println(Data.FAILED + ".  ERROR: Unexpected Exception caught in test1");
+			e.printStackTrace();
+			try {
+				if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+					ut.rollback();
+			} catch (Exception se) {
+				System.out.println("Unexpected exception caught in test1 while checking TX status ");
+				se.printStackTrace();
+			}
+		} finally {
+			try {
+				ut.begin();
+				entityManager.joinTransaction();
+				for (int i = 0; i < ACCOUNTS.length; i++) {
+					System.out.println("Removing Account Entities");
+					accountRef = entityManager.find(Account.class, ACCOUNTS[i]);
+					if (accountRef != null) {
+						entityManager.remove(accountRef);
+					}
+				}
 
-        /*
-         * If the [EntityManager] close method is invoked when a transaction is
-         * active, the persistence context remains managed until the transaction
-         * completes.
-         */
+				/*
+				 * If the [EntityManager] close method is invoked when a transaction is active,
+				 * the persistence context remains managed until the transaction completes.
+				 */
 
-        entityManager.close();
-        ut.commit();
+				entityManager.close();
+				ut.commit();
 
-      } catch (Exception e) {
-        System.out.println(
-            "Unexpected exception caught in test1 while cleaning up test data");
-        e.printStackTrace();
-        try {
-          if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
-            ut.rollback();
-        } catch (Exception se) {
-          System.out.println(
-              "Unexpected exception caught in test1 while checking TX status ");
-          se.printStackTrace();
-        }
-      }
-    }
-    // clear the cache if the provider supports caching otherwise
-    // the evictAll is ignored.
-    System.out.println("Clearing cache");
-    entityManagerFactory.getCache().evictAll();
-  }
+			} catch (Exception e) {
+				System.out.println("Unexpected exception caught in test1 while cleaning up test data");
+				e.printStackTrace();
+				try {
+					if (ut.getStatus() != Status.STATUS_NO_TRANSACTION)
+						ut.rollback();
+				} catch (Exception se) {
+					System.out.println("Unexpected exception caught in test1 while checking TX status ");
+					se.printStackTrace();
+				}
+			}
+		}
+		// clear the cache if the provider supports caching otherwise
+		// the evictAll is ignored.
+		System.out.println("Clearing cache");
+		entityManagerFactory.getCache().evictAll();
+	}
 }

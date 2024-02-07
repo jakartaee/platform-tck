@@ -17,5 +17,5 @@
 package com.sun.ts.tests.jpa.core.annotations.mapkeyenumerated;
 
 public enum Numbers {
-  one, two, three, four, five
+	one, two, three, four, five
 };

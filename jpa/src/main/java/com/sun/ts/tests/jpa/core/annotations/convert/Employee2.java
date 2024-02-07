@@ -28,50 +28,50 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass()
 public abstract class Employee2 {
 
-  private int id;
+	private int id;
 
-  private String firstName;
+	private String firstName;
 
-  private char[] lastName;
+	private char[] lastName;
 
-  protected Employee2() {
-  }
+	protected Employee2() {
+	}
 
-  protected Employee2(int id, String firstName, char[] lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+	protected Employee2(int id, String firstName, char[] lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "IDxx")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "IDxx")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "FIRSTNAMExx")
-  public String getFirstName() {
-    return firstName;
-  }
+	@Column(name = "FIRSTNAMExx")
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  @Column(name = "LASTNAMExx")
-  public char[] getLastName() {
-    return lastName;
-  }
+	@Column(name = "LASTNAMExx")
+	public char[] getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(char[] lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(char[] lastName) {
+		this.lastName = lastName;
+	}
 
 }

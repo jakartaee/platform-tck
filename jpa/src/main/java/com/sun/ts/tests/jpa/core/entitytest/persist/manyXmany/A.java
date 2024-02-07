@@ -20,9 +20,8 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.persist.manyXmany;
 
+import java.lang.System.Logger;
 import java.util.Collection;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -37,67 +36,69 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_MXM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  @Id
-  protected String id;
+	// ===========================================================
+	// instance variables
 
-  @Basic
-  protected String name;
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // constructors
+	@Basic
+	protected int value;
 
-  public A() {
-    TestUtil.logTrace("Entity A no arg constructor");
-  }
+	// ===========================================================
+	// constructors
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A() {
+		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+	}
 
-  public A(String id, String name, int value, Collection bCol) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.bCol = bCol;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // ===========================================================
-  // relationship fields
+	public A(String id, String name, int value, Collection bCol) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.bCol = bCol;
+	}
 
-  @ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.manyXmany.B.class, cascade = CascadeType.PERSIST)
-  @JoinTable(name = "FKEYS_MXM_BI_BTOB", joinColumns = @JoinColumn(name = "FK_FOR_AEJB_MXM_BI_BTOB", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "FK_FOR_BEJB_MXM_BI_BTOB", referencedColumnName = "ID"))
-  protected Collection bCol = new java.util.ArrayList();
+	// ===========================================================
+	// relationship fields
 
-  // =======================================================================
-  // Business methods for test cases
+	@ManyToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.persist.manyXmany.B.class, cascade = CascadeType.PERSIST)
+	@JoinTable(name = "FKEYS_MXM_BI_BTOB", joinColumns = @JoinColumn(name = "FK_FOR_AEJB_MXM_BI_BTOB", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "FK_FOR_BEJB_MXM_BI_BTOB", referencedColumnName = "ID"))
+	protected Collection bCol = new java.util.ArrayList();
 
-  public Collection getBCol() {
-    TestUtil.logTrace("getBCol");
-    return bCol;
-  }
+	// =======================================================================
+	// Business methods for test cases
 
-  public String getAId() {
-    return id;
-  }
+	public Collection getBCol() {
+		logger.log(Logger.Level.TRACE, "getBCol");
+		return bCol;
+	}
 
-  public String getAName() {
-    return name;
-  }
+	public String getAId() {
+		return id;
+	}
 
-  public void setAName(String aName) {
-    this.name = aName;
-  }
+	public String getAName() {
+		return name;
+	}
 
-  public int getAValue() {
-    return value;
-  }
+	public void setAName(String aName) {
+		this.name = aName;
+	}
+
+	public int getAValue() {
+		return value;
+	}
 
 }

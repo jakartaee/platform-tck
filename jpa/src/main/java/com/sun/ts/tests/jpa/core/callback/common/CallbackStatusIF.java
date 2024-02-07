@@ -23,65 +23,65 @@ package com.sun.ts.tests.jpa.core.callback.common;
 import java.util.List;
 
 public interface CallbackStatusIF {
-  String getTestName();
+	String getTestName();
 
-  void setTestName(String s);
+	void setTestName(String s);
 
-  String getEntityName();
+	String getEntityName();
 
-  boolean isPrePersistCalled();
+	boolean isPrePersistCalled();
 
-  List getPrePersistCalls();
+	List getPrePersistCalls();
 
-  void setPrePersistCalled(boolean b);
+	void setPrePersistCalled(boolean b);
 
-  void addPrePersistCall(String shortName);
+	void addPrePersistCall(String shortName);
 
-  boolean isPostPersistCalled();
+	boolean isPostPersistCalled();
 
-  List getPostPersistCalls();
+	List getPostPersistCalls();
 
-  void setPostPersistCalled(boolean b);
+	void setPostPersistCalled(boolean b);
 
-  void addPostPersistCall(String shortName);
+	void addPostPersistCall(String shortName);
 
-  boolean isPreRemoveCalled();
+	boolean isPreRemoveCalled();
 
-  List getPreRemoveCalls();
+	List getPreRemoveCalls();
 
-  void setPreRemoveCalled(boolean b);
+	void setPreRemoveCalled(boolean b);
 
-  void addPreRemoveCall(String shortName);
+	void addPreRemoveCall(String shortName);
 
-  boolean isPostRemoveCalled();
+	boolean isPostRemoveCalled();
 
-  List getPostRemoveCalls();
+	List getPostRemoveCalls();
 
-  void setPostRemoveCalled(boolean b);
+	void setPostRemoveCalled(boolean b);
 
-  void addPostRemoveCall(String shortName);
+	void addPostRemoveCall(String shortName);
 
-  boolean isPreUpdateCalled();
+	boolean isPreUpdateCalled();
 
-  List getPreUpdateCalls();
+	List getPreUpdateCalls();
 
-  void setPreUpdateCalled(boolean b);
+	void setPreUpdateCalled(boolean b);
 
-  void addPreUpdateCall(String shortName);
+	void addPreUpdateCall(String shortName);
 
-  boolean isPostUpdateCalled();
+	boolean isPostUpdateCalled();
 
-  List getPostUpdateCalls();
+	List getPostUpdateCalls();
 
-  void setPostUpdateCalled(boolean b);
+	void setPostUpdateCalled(boolean b);
 
-  void addPostUpdateCall(String shortName);
+	void addPostUpdateCall(String shortName);
 
-  boolean isPostLoadCalled();
+	boolean isPostLoadCalled();
 
-  List getPostLoadCalls();
+	List getPostLoadCalls();
 
-  void setPostLoadCalled(boolean b);
+	void setPostLoadCalled(boolean b);
 
-  void addPostLoadCall(String shortName);
+	void addPostLoadCall(String shortName);
 }

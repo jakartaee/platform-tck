@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.types.primarykey.compound;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.EmbeddedId;
@@ -31,50 +31,52 @@ import jakarta.persistence.Table;
 @Table(name = "PKEY")
 public class TestBean implements java.io.Serializable {
 
-  private CompoundPK compoundPK;
+	private static final Logger logger = (Logger) System.getLogger(TestBean.class.getName());
 
-  private String brandName;
+	private CompoundPK compoundPK;
 
-  private float price;
+	private String brandName;
 
-  public TestBean() {
-  }
+	private float price;
 
-  public TestBean(CompoundPK pk, String brandName, float price) {
-    this.compoundPK = pk;
-    this.brandName = brandName;
-    this.price = price;
-  }
+	public TestBean() {
+	}
 
-  @EmbeddedId
-  public CompoundPK getCompoundPK() {
-    return compoundPK;
-  }
+	public TestBean(CompoundPK pk, String brandName, float price) {
+		this.compoundPK = pk;
+		this.brandName = brandName;
+		this.price = price;
+	}
 
-  public void setCompoundPK(CompoundPK compoundPK) {
-    this.compoundPK = compoundPK;
-  }
+	@EmbeddedId
+	public CompoundPK getCompoundPK() {
+		return compoundPK;
+	}
 
-  @Basic
-  public String getBrandName() {
-    return brandName;
-  }
+	public void setCompoundPK(CompoundPK compoundPK) {
+		this.compoundPK = compoundPK;
+	}
 
-  public void setBrandName(String v) {
-    this.brandName = v;
-  }
+	@Basic
+	public String getBrandName() {
+		return brandName;
+	}
 
-  @Basic
-  public float getPrice() {
-    return price;
-  }
+	public void setBrandName(String v) {
+		this.brandName = v;
+	}
 
-  public void setPrice(float v) {
-    this.price = v;
-  }
+	@Basic
+	public float getPrice() {
+		return price;
+	}
 
-  public void ping() {
-    TestUtil.logTrace("[TestBean] ping()");
-  }
+	public void setPrice(float v) {
+		this.price = v;
+	}
+
+	public void ping() {
+		logger.log(Logger.Level.TRACE, "[TestBean] ping()");
+	}
 
 }

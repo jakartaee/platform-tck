@@ -31,112 +31,110 @@ import jakarta.persistence.Table;
 @Table(name = "LINEITEM_TABLE")
 public class LineItem implements java.io.Serializable {
 
-  // Instance variables
-  private String id;
+	// Instance variables
+	private String id;
 
-  private int quantity;
+	private int quantity;
 
-  private Order order;
+	private Order order;
 
-  private Product product;
+	private Product product;
 
-  public LineItem() {
-  }
+	public LineItem() {
+	}
 
-  public LineItem(String v1, int v2, Order v3, Product v4) {
-    id = v1;
-    quantity = v2;
-    order = v3;
-    product = v4;
-  }
+	public LineItem(String v1, int v2, Order v3, Product v4) {
+		id = v1;
+		quantity = v2;
+		order = v3;
+		product = v4;
+	}
 
-  public LineItem(String v1, int v2) {
-    id = v1;
-    quantity = v2;
-  }
+	public LineItem(String v1, int v2) {
+		id = v1;
+		quantity = v2;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String v) {
-    id = v;
-  }
+	public void setId(String v) {
+		id = v;
+	}
 
-  @Column(name = "QUANTITY")
-  public int getQuantity() {
-    return quantity;
-  }
+	@Column(name = "QUANTITY")
+	public int getQuantity() {
+		return quantity;
+	}
 
-  public void setQuantity(int v) {
-    quantity = v;
-  }
+	public void setQuantity(int v) {
+		quantity = v;
+	}
 
-  @ManyToOne
-  @JoinColumn(name = "FK1_FOR_ORDER_TABLE")
-  public Order getOrder() {
-    return order;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK1_FOR_ORDER_TABLE")
+	public Order getOrder() {
+		return order;
+	}
 
-  public void setOrder(Order v) {
-    order = v;
-  }
+	public void setOrder(Order v) {
+		order = v;
+	}
 
-  @ManyToOne
-  @JoinColumn(name = "FK_FOR_PRODUCT_TABLE")
-  public Product getProduct() {
-    return product;
-  }
+	@ManyToOne
+	@JoinColumn(name = "FK_FOR_PRODUCT_TABLE")
+	public Product getProduct() {
+		return product;
+	}
 
-  public void setProduct(Product v) {
-    product = v;
-  }
+	public void setProduct(Product v) {
+		product = v;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", quantity: " + getQuantity());
-    if (getOrder() != null) {
-      result.append(", fk_order.id: " + getOrder().getId());
-    } else {
-      result.append(", fk_order.id: null");
-    }
-    if (getProduct() != null) {
-      result.append(", fk_product.id: " + getProduct().getId());
-    } else {
-      result.append(", fk_product.id: null");
-    }
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", quantity: " + getQuantity());
+		if (getOrder() != null) {
+			result.append(", fk_order.id: " + getOrder().getId());
+		} else {
+			result.append(", fk_order.id: null");
+		}
+		if (getProduct() != null) {
+			result.append(", fk_product.id: " + getProduct().getId());
+		} else {
+			result.append(", fk_product.id: null");
+		}
+		result.append("]");
+		return result.toString();
+	}
 
-  @Override
-  public int hashCode() {
-    return this.getId().hashCode() + this.getQuantity()
-        + this.getOrder().getId().hashCode()
-        + this.getProduct().getId().hashCode();
-  }
+	@Override
+	public int hashCode() {
+		return this.getId().hashCode() + this.getQuantity() + this.getOrder().getId().hashCode()
+				+ this.getProduct().getId().hashCode();
+	}
 
-  public boolean equals(Object o) {
-    LineItem other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		LineItem other;
+		boolean result = false;
 
-    if (!(o instanceof LineItem)) {
-      return result;
-    }
-    other = (LineItem) o;
+		if (!(o instanceof LineItem)) {
+			return result;
+		}
+		other = (LineItem) o;
 
-    if (this.getId().equals(other.getId())
-        && this.getQuantity() == other.getQuantity()
-        && this.getOrder().getId().equals(other.getOrder().getId())
-        && this.getProduct().getId().equals(other.getProduct().getId())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.getQuantity() == other.getQuantity()
+				&& this.getOrder().getId().equals(other.getOrder().getId())
+				&& this.getProduct().getId().equals(other.getProduct().getId())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 }

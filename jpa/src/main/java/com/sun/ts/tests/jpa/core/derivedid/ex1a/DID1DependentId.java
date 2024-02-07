@@ -22,51 +22,50 @@ package com.sun.ts.tests.jpa.core.derivedid.ex1a;
  */
 public class DID1DependentId implements java.io.Serializable {
 
-  String name;
+	String name;
 
-  long emp;
+	long emp;
 
-  public DID1DependentId() {
-  }
+	public DID1DependentId() {
+	}
 
-  public DID1DependentId(String name, long emp) {
-    this.name = name;
-    this.emp = emp;
-  }
+	public DID1DependentId(String name, long emp) {
+		this.name = name;
+		this.emp = emp;
+	}
 
-  public long getEmp() {
-    return emp;
-  }
+	public long getEmp() {
+		return emp;
+	}
 
-  public void setEmp(long emp) {
-    this.emp = emp;
-  }
+	public void setEmp(long emp) {
+		this.emp = emp;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 0;
-    hash += (int) emp;
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (int) emp;
+		return hash;
+	}
 
-  @Override
-  public boolean equals(Object object) {
-    if (!(object instanceof DID1DependentId)) {
-      return false;
-    }
-    DID1DependentId other = (DID1DependentId) object;
-    if (this.emp != other.emp || this.name == null
-        || !(other.name.equals(this.name))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object object) {
+		if (!(object instanceof DID1DependentId)) {
+			return false;
+		}
+		DID1DependentId other = (DID1DependentId) object;
+		if (this.emp != other.emp || this.name == null || !(other.name.equals(this.name))) {
+			return false;
+		}
+		return true;
+	}
 }

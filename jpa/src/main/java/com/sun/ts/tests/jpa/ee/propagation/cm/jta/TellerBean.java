@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.ee.propagation.cm.jta;
 
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.List;
 
@@ -39,137 +40,135 @@ import jakarta.persistence.PersistenceContextType;
 @Local({ Teller.class })
 public class TellerBean implements Teller {
 
-  public SessionContext sessionContext;
+	private static final Logger logger = (Logger) System.getLogger(TellerBean.class.getName());
 
-  // instance variables
-  private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
+	public SessionContext sessionContext;
 
-  private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0,
-      1000000.0 };
+	// instance variables
+	private static final int ACCOUNTS[] = { 1000, 1075, 40, 30564, 387 };
 
-  private Account accountRef;
+	private static final double BALANCES[] = { 50000.0, 10490.75, 200.50, 25000.0, 1000000.0 };
 
-  // ===========================================================
-  // Initialize Bean
+	private Account accountRef;
 
-  @PersistenceContext(unitName = "CTS-JTA-UNIT", type = PersistenceContextType.TRANSACTION)
-  private EntityManager entityManager;
+	// ===========================================================
+	// Initialize Bean
 
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
+	@PersistenceContext(unitName = "CTS-JTA-UNIT", type = PersistenceContextType.TRANSACTION)
+	private EntityManager entityManager;
 
-  // ===========================================================
-  // Teller interface (our business methods)
+	@Resource
+	public void setSessionContext(SessionContext sessionContext) {
+		this.sessionContext = sessionContext;
+	}
 
-  public double balance(final int acct) {
-    TestUtil.logTrace("balance");
-    Account thisAccount = entityManager.find(Account.class, acct);
-    double balance;
-    try {
-      balance = thisAccount.balance();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred in balance: " + e);
-    }
-    return balance;
-  }
+	// ===========================================================
+	// Teller interface (our business methods)
 
-  public double deposit(final int acct, final double amt) {
-    TestUtil.logTrace("deposit");
-    double balance;
-    Account thisAccount = entityManager.find(Account.class, acct);
-    try {
-      balance = thisAccount.deposit(amt);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred in deposit: " + e);
-    }
-    return balance;
-  }
+	public double balance(final int acct) {
+		logger.log(Logger.Level.TRACE, "balance");
+		Account thisAccount = entityManager.find(Account.class, acct);
+		double balance;
+		try {
+			balance = thisAccount.balance();
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("Exception occurred in balance: " + e);
+		}
+		return balance;
+	}
 
-  public double withdraw(final int acct, final double amt) {
-    TestUtil.logTrace("withdraw");
-    double balance;
-    Account thisAccount = entityManager.find(Account.class, acct);
-    try {
-      balance = thisAccount.withdraw(amt);
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred in withdraw: " + e);
-    }
-    return balance;
-  }
+	public double deposit(final int acct, final double amt) {
+		logger.log(Logger.Level.TRACE, "deposit");
+		double balance;
+		Account thisAccount = entityManager.find(Account.class, acct);
+		try {
+			balance = thisAccount.deposit(amt);
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("Exception occurred in deposit: " + e);
+		}
+		return balance;
+	}
 
-  public boolean checkAccountStatus(final Account acct) {
-    TestUtil.logTrace("checkAccountStatus");
-    Account thisAccount = entityManager.find(Account.class, acct.id());
+	public double withdraw(final int acct, final double amt) {
+		logger.log(Logger.Level.TRACE, "withdraw");
+		double balance;
+		Account thisAccount = entityManager.find(Account.class, acct);
+		try {
+			balance = thisAccount.withdraw(amt);
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("Exception occurred in withdraw: " + e);
+		}
+		return balance;
+	}
 
-    if (acct.equals(thisAccount)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+	public boolean checkAccountStatus(final Account acct) {
+		logger.log(Logger.Level.TRACE, "checkAccountStatus");
+		Account thisAccount = entityManager.find(Account.class, acct.id());
 
-  public String getAllAccounts() {
-    StringBuffer accounts = new StringBuffer();
-    List result = null;
-    try {
-      result = entityManager.createQuery("select a from Account a")
-          .getResultList();
+		if (acct.equals(thisAccount)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-      Iterator i = result.iterator();
-      while (i.hasNext()) {
-        Account a1 = (Account) i.next();
-        accounts.append("" + a1.id() + "  " + (double) a1.balance() + "\n");
-      }
+	public String getAllAccounts() {
+		StringBuffer accounts = new StringBuffer();
+		List result = null;
+		try {
+			result = entityManager.createQuery("select a from Account a").getResultList();
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("Exception occurred in getAllAccounts: " + e);
-    }
-    return accounts.toString();
-  }
+			Iterator i = result.iterator();
+			while (i.hasNext()) {
+				Account a1 = (Account) i.next();
+				accounts.append("" + a1.id() + "  " + (double) a1.balance() + "\n");
+			}
 
-  // ===========================================================
-  // Helpers
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("Exception occurred in getAllAccounts: " + e);
+		}
+		return accounts.toString();
+	}
 
-  public void createTestData() {
-    try {
+	// ===========================================================
+	// Helpers
 
-      TestUtil.logTrace("createAccountData");
+	public void createTestData() {
+		try {
 
-      TestUtil.logTrace("Create " + ACCOUNTS.length + " Account Entities");
-      System.out.println("Create " + ACCOUNTS.length + " Account Entities");
+			logger.log(Logger.Level.TRACE, "createAccountData");
 
-      for (int i = 0; i < ACCOUNTS.length; i++) {
-        TestUtil.logTrace(
-            "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
-        System.out.println(
-            "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
-        accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
-        System.out.println("Persisting Account:" + accountRef);
-        entityManager.persist(accountRef);
+			logger.log(Logger.Level.TRACE, "Create " + ACCOUNTS.length + " Account Entities");
+			System.out.println("Create " + ACCOUNTS.length + " Account Entities");
 
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected while creating test data:" + e);
-    }
-  }
+			for (int i = 0; i < ACCOUNTS.length; i++) {
+				logger.log(Logger.Level.TRACE, "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+				System.out.println("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+				accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
+				System.out.println("Persisting Account:" + accountRef);
+				entityManager.persist(accountRef);
 
-  public void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    try {
-      entityManager.createNativeQuery("DELETE FROM ACCOUNT").executeUpdate();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    }
-    // clear the cache if the provider supports caching otherwise
-    // the evictAll is ignored.
-    TestUtil.logTrace("Clearing cache");
-    entityManager.getEntityManagerFactory().getCache().evictAll();
-  }
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:" + e);
+		}
+	}
+
+	public void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		try {
+			entityManager.createNativeQuery("DELETE FROM ACCOUNT").executeUpdate();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		}
+		// clear the cache if the provider supports caching otherwise
+		// the evictAll is ignored.
+		logger.log(Logger.Level.TRACE, "Clearing cache");
+		entityManager.getEntityManagerFactory().getCache().evictAll();
+	}
 
 }

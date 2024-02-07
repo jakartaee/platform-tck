@@ -20,33 +20,33 @@ import jakarta.persistence.Cache;
 
 public class CacheImpl implements Cache {
 
-  protected TSLogger logger;
+	protected TSLogger logger;
 
-  public CacheImpl() {
-    logger = TSLogger.getInstance();
-  }
+	public CacheImpl() {
+		logger = TSLogger.getInstance();
+	}
 
-  @Override
-  public boolean contains(java.lang.Class cls, java.lang.Object primaryKey) {
-    return false;
-  }
+	@Override
+	public boolean contains(java.lang.Class cls, java.lang.Object primaryKey) {
+		return false;
+	}
 
-  @Override
-  public void evict(java.lang.Class cls) {
-  }
+	@Override
+	public void evict(java.lang.Class cls) {
+	}
 
-  @Override
-  public void evict(java.lang.Class cls, java.lang.Object primaryKey) {
-  }
+	@Override
+	public void evict(java.lang.Class cls, java.lang.Object primaryKey) {
+	}
 
-  @Override
-  public void evictAll() {
+	@Override
+	public void evictAll() {
 
-  }
+	}
 
-  @Override
-  public Class unwrap(java.lang.Class cls) {
-    return cls;
-  }
+	@Override
+	public Class unwrap(java.lang.Class cls) {
+		return cls;
+	}
 
 }

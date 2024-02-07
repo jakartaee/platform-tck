@@ -37,54 +37,54 @@ import jakarta.persistence.Table;
 @DiscriminatorValue("Product")
 public class Simple implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  int simple_id;
+	// ===========================================================
+	// instance variables
+	int simple_id;
 
-  // ===========================================================
-  // constructors
-  public Simple() {
-  }
+	// ===========================================================
+	// constructors
+	public Simple() {
+	}
 
-  public Simple(int id) {
-    this.simple_id = id;
-  }
+	public Simple(int id) {
+		this.simple_id = id;
+	}
 
-  @Id
-  public int getSimpleId() {
-    return simple_id;
-  }
+	@Id
+	public int getSimpleId() {
+		return simple_id;
+	}
 
-  public void setSimpleId(int id) {
-    this.simple_id = id;
-  }
+	public void setSimpleId(int id) {
+		this.simple_id = id;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Simple))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof Simple))
+			return false;
 
-    Simple o1 = (Simple) o;
+		Simple o1 = (Simple) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getSimpleId() == o1.getSimpleId()) {
-      result = true;
-    }
+		if (this.getSimpleId() == o1.getSimpleId()) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getSimpleId());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getSimpleId());
+		result.append("]");
+		return result.toString();
+	}
 
 }

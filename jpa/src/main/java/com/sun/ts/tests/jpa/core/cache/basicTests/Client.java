@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.cache.basicTests;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.Cache;
@@ -29,363 +32,374 @@ import jakarta.persistence.EntityTransaction;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	public JavaArchive createDeployment() throws Exception {
 
-      super.setup(args, p);
-      removeTestData();
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "Order" };
+		String[] xmlFiles = {};
+		return createDeploymentJar("jpa_core_cache_basicTests.jar", pkgNameWithoutSuffix, classes, "persistence_se.xml",
+				xmlFiles);
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
 
-  /*
-   * @testName: getcacheTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
-   * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
-   * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
-   * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
-   * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
-   * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
-   * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
-   * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
-   * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
-   * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
-   * PERSISTENCE:SPEC:846; PERSISTENCE:JAVADOC:338
-   * 
-   * @test_Strategy: With basic entity requirements, persist/remove an entity.
-   */
-  public void getcacheTest() throws Exception {
-    Cache cache;
-    boolean pass = false;
-    final int count = 5;
-    if (cachingSupported) {
-      try {
+			super.setup();
+			createDeployment();
+			removeTestData();
 
-        EntityManager em2 = getEntityManager();
-        EntityTransaction et = getEntityTransaction();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-        Order[] orders = new Order[count];
-        et.begin();
+	/*
+	 * @testName: getcacheTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
+	 * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
+	 * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
+	 * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
+	 * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
+	 * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
+	 * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
+	 * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
+	 * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
+	 * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
+	 * PERSISTENCE:SPEC:846; PERSISTENCE:JAVADOC:338
+	 * 
+	 * @test_Strategy: With basic entity requirements, persist/remove an entity.
+	 */
+	@Test
+	public void getcacheTest() throws Exception {
+		Cache cache;
+		boolean pass = false;
+		final int count = 5;
+		if (cachingSupported) {
+			try {
 
-        for (int i = 1; i < count; i++) {
-          orders[i] = new Order(i, 100 * i);
-          em2.persist(orders[i]);
-          TestUtil.logTrace("persisted order " + orders[i]);
-        }
-        em2.flush();
+				EntityManager em2 = getEntityManager();
+				EntityTransaction et = getEntityTransaction();
 
-        EntityManagerFactory emf = getEntityManagerFactory();
-        cache = emf.getCache();
+				Order[] orders = new Order[count];
+				et.begin();
 
-        if (cache != null) {
-          pass = true;
-        } else {
-          TestUtil.logErr("Cache returned was null");
-        }
+				for (int i = 1; i < count; i++) {
+					orders[i] = new Order(i, 100 * i);
+					em2.persist(orders[i]);
+					logger.log(Logger.Level.TRACE, "persisted order " + orders[i]);
+				}
+				em2.flush();
 
-        for (int i = 1; i < count; i++) {
-          em2.remove(orders[i]);
-          TestUtil.logTrace("Removed order " + orders[i]);
-        }
+				EntityManagerFactory emf = getEntityManagerFactory();
+				cache = emf.getCache();
 
-        et.commit();
+				if (cache != null) {
+					pass = true;
+				} else {
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
+				}
 
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception occurred", e);
-      }
-    } else {
-      TestUtil.logMsg("Cache not supported, bypassing test");
-      pass = true;
-    }
-    if (!pass) {
-      throw new Fault("getcacheTest failed");
-    }
+				for (int i = 1; i < count; i++) {
+					em2.remove(orders[i]);
+					logger.log(Logger.Level.TRACE, "Removed order " + orders[i]);
+				}
 
-  }
+				et.commit();
 
-  /*
-   * @testName: evictTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
-   * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
-   * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
-   * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
-   * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
-   * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
-   * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
-   * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
-   * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
-   * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
-   * PERSISTENCE:SPEC:846; PERSISTENCE:JAVADOC:304; PERSISTENCE:JAVADOC:305
-   * 
-   * @test_Strategy: Persist data, evict class and specific PK
-   */
-  public void evictTest1() throws Exception {
-    Cache cache;
-    final int count = 5;
-    boolean pass1 = false;
-    boolean pass2 = false;
-    if (cachingSupported) {
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			}
+		} else {
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
+			pass = true;
+		}
+		if (!pass) {
+			throw new Exception("getcacheTest failed");
+		}
 
-      try {
+	}
 
-        getEntityTransaction().begin();
-        TestUtil.logTrace("Transaction status after begin:"
-            + getEntityTransaction().isActive());
-        Order[] orders = new Order[count];
+	/*
+	 * @testName: evictTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
+	 * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
+	 * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
+	 * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
+	 * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
+	 * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
+	 * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
+	 * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
+	 * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
+	 * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
+	 * PERSISTENCE:SPEC:846; PERSISTENCE:JAVADOC:304; PERSISTENCE:JAVADOC:305
+	 * 
+	 * @test_Strategy: Persist data, evict class and specific PK
+	 */
+	@Test
+	public void evictTest1() throws Exception {
+		Cache cache;
+		final int count = 5;
+		boolean pass1 = false;
+		boolean pass2 = false;
+		if (cachingSupported) {
 
-        for (int i = 1; i < count; i++) {
-          orders[i] = new Order(i, 100 * i);
-          getEntityManager().persist(orders[i]);
-          TestUtil.logTrace("persisted order " + orders[i]);
-        }
-        getEntityManager().flush();
-        getEntityTransaction().commit();
-        TestUtil.logTrace("Transaction status after commit:"
-            + getEntityTransaction().isActive());
+			try {
 
-        cache = getEntityManagerFactory().getCache();
+				getEntityTransaction().begin();
+				logger.log(Logger.Level.TRACE, "Transaction status after begin:" + getEntityTransaction().isActive());
+				Order[] orders = new Order[count];
 
-        if (cache != null) {
-          pass1 = true;
-          TestUtil.logTrace("cache was successfully obtained");
+				for (int i = 1; i < count; i++) {
+					orders[i] = new Order(i, 100 * i);
+					getEntityManager().persist(orders[i]);
+					logger.log(Logger.Level.TRACE, "persisted order " + orders[i]);
+				}
+				getEntityManager().flush();
+				getEntityTransaction().commit();
+				logger.log(Logger.Level.TRACE, "Transaction status after commit:" + getEntityTransaction().isActive());
 
-          boolean cacheContains = cache.contains(Order.class, 1);
+				cache = getEntityManagerFactory().getCache();
 
-          if (cacheContains) {
-            TestUtil.logTrace("Order 1 found, evicting it from cache");
-            cache.evict(Order.class, 1);
+				if (cache != null) {
+					pass1 = true;
+					logger.log(Logger.Level.TRACE, "cache was successfully obtained");
 
-            // Recheck whether the removed entity is still in cache
-            cacheContains = cache.contains(Order.class, 1);
+					boolean cacheContains = cache.contains(Order.class, 1);
 
-            // if not found then evict was successful
-            if (!cacheContains) {
-              pass2 = true;
-              TestUtil.logTrace("Order 1 was successfully evicted");
-            }
-          } else {
-            TestUtil.logErr("cache did not contain Order 1");
-          }
-        } else {
-          TestUtil.logErr(
-              "Cache returned was null, eventhough Cache is supported.");
-        }
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception occurred", e);
-      }
-    } else {
-      TestUtil.logMsg("Cache not supported, bypassing test");
-      pass1 = true;
-      pass2 = true;
-    }
-    if (!pass1 || !pass2) {
-      throw new Fault("evictTest1 failed");
-    }
+					if (cacheContains) {
+						logger.log(Logger.Level.TRACE, "Order 1 found, evicting it from cache");
+						cache.evict(Order.class, 1);
 
-  }
+						// Recheck whether the removed entity is still in cache
+						cacheContains = cache.contains(Order.class, 1);
 
-  /*
-   * @testName: evictTest2
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
-   * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
-   * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
-   * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
-   * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
-   * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
-   * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
-   * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
-   * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
-   * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
-   * PERSISTENCE:SPEC:846; PERSISTENCE:JAVADOC:304; PERSISTENCE:JAVADOC:306
-   *
-   * @test_Strategy: Persist data, evict class
-   */
-  public void evictTest2() throws Exception {
-    Cache cache;
-    final int count = 5;
-    boolean pass1, pass2 = false;
-    pass1 = false;
-    if (cachingSupported) {
+						// if not found then evict was successful
+						if (!cacheContains) {
+							pass2 = true;
+							logger.log(Logger.Level.TRACE, "Order 1 was successfully evicted");
+						}
+					} else {
+						logger.log(Logger.Level.ERROR, "cache did not contain Order 1");
+					}
+				} else {
+					logger.log(Logger.Level.ERROR, "Cache returned was null, eventhough Cache is supported.");
+				}
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			}
+		} else {
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
+			pass1 = true;
+			pass2 = true;
+		}
+		if (!pass1 || !pass2) {
+			throw new Exception("evictTest1 failed");
+		}
 
-      try {
+	}
 
-        Order[] orders = new Order[count];
-        getEntityTransaction().begin();
+	/*
+	 * @testName: evictTest2
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
+	 * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
+	 * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
+	 * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
+	 * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
+	 * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
+	 * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
+	 * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
+	 * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
+	 * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
+	 * PERSISTENCE:SPEC:846; PERSISTENCE:JAVADOC:304; PERSISTENCE:JAVADOC:306
+	 *
+	 * @test_Strategy: Persist data, evict class
+	 */
+	@Test
+	public void evictTest2() throws Exception {
+		Cache cache;
+		final int count = 5;
+		boolean pass1, pass2 = false;
+		pass1 = false;
+		if (cachingSupported) {
 
-        for (int i = 1; i < count; i++) {
-          orders[i] = new Order(i, 100 * i);
-          getEntityManager().persist(orders[i]);
-          TestUtil.logTrace("persisted order " + orders[i]);
-        }
-        getEntityManager().flush();
-        getEntityTransaction().commit();
+			try {
 
-        cache = getEntityManagerFactory().getCache();
+				Order[] orders = new Order[count];
+				getEntityTransaction().begin();
 
-        if (cache != null) {
-          pass1 = true;
-          TestUtil.logTrace("cache was successfully obtained");
+				for (int i = 1; i < count; i++) {
+					orders[i] = new Order(i, 100 * i);
+					getEntityManager().persist(orders[i]);
+					logger.log(Logger.Level.TRACE, "persisted order " + orders[i]);
+				}
+				getEntityManager().flush();
+				getEntityTransaction().commit();
 
-          boolean cacheContains = cache.contains(Order.class, 1);
+				cache = getEntityManagerFactory().getCache();
 
-          if (cacheContains) {
-            TestUtil.logTrace("evicting Order 1 from cache");
-            cache.evict(Order.class);
+				if (cache != null) {
+					pass1 = true;
+					logger.log(Logger.Level.TRACE, "cache was successfully obtained");
 
-            // Recheck whether the removed entity is still in cache
-            cacheContains = cache.contains(Order.class, 1);
+					boolean cacheContains = cache.contains(Order.class, 1);
 
-            // if not found then evict was successful
-            if (!cacheContains) {
-              pass2 = true;
-              TestUtil.logTrace("Order 1 was successfully evicted");
-            }
-          } else {
-            TestUtil.logErr("Cache did not contain Order 1");
-          }
-        } else {
-          TestUtil.logErr(
-              "Cache returned was null, eventhough Cache is supported.");
-        }
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception occurred", e);
-      }
-    } else {
-      TestUtil.logMsg("Cache not supported, bypassing test");
-      pass1 = true;
-      pass2 = true;
-    }
-    if (!pass1 || !pass2) {
-      throw new Fault("evictTest2 failed");
-    }
-  }
+					if (cacheContains) {
+						logger.log(Logger.Level.TRACE, "evicting Order 1 from cache");
+						cache.evict(Order.class);
 
-  /*
-   * @testName: evictallTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
-   * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
-   * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
-   * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
-   * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
-   * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
-   * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
-   * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
-   * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
-   * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
-   * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
-   * PERSISTENCE:SPEC:846; PERSISTENCE:JAVADOC:304; PERSISTENCE:JAVADOC:307
-   *
-   * @test_Strategy: Persist data, evict all
-   */
-  public void evictallTest() throws Exception {
-    Cache cache;
-    final int count = 5;
-    boolean pass1 = false;
-    boolean pass2 = false;
-    int pass2Count = 0;
-    Order[] orders = new Order[count];
-    int[] ids = new int[count];
-    if (cachingSupported) {
+						// Recheck whether the removed entity is still in cache
+						cacheContains = cache.contains(Order.class, 1);
 
-      try {
-        getEntityTransaction().begin();
+						// if not found then evict was successful
+						if (!cacheContains) {
+							pass2 = true;
+							logger.log(Logger.Level.TRACE, "Order 1 was successfully evicted");
+						}
+					} else {
+						logger.log(Logger.Level.ERROR, "Cache did not contain Order 1");
+					}
+				} else {
+					logger.log(Logger.Level.ERROR, "Cache returned was null, eventhough Cache is supported.");
+				}
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			}
+		} else {
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
+			pass1 = true;
+			pass2 = true;
+		}
+		if (!pass1 || !pass2) {
+			throw new Exception("evictTest2 failed");
+		}
+	}
 
-        for (int i = 1; i < count; i++) {
-          orders[i] = new Order(i, 100 * i);
-          ids[i] = orders[i].getId();
-          getEntityManager().persist(orders[i]);
-          TestUtil.logTrace("persisted order " + orders[i]);
-        }
-        getEntityManager().flush();
-        getEntityTransaction().commit();
+	/*
+	 * @testName: evictallTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:500; PERSISTENCE:SPEC:501;
+	 * PERSISTENCE:SPEC:503; PERSISTENCE:SPEC:504; PERSISTENCE:SPEC:505;
+	 * PERSISTENCE:SPEC:506; PERSISTENCE:SPEC:507; PERSISTENCE:SPEC:508;
+	 * PERSISTENCE:SPEC:932; PERSISTENCE:SPEC:936; PERSISTENCE:SPEC:939;
+	 * PERSISTENCE:SPEC:943; PERSISTENCE:SPEC:946; PERSISTENCE:SPEC:930;
+	 * PERSISTENCE:SPEC:1018; PERSISTENCE:SPEC:1019; PERSISTENCE:SPEC:1020;
+	 * PERSISTENCE:SPEC:1021; PERSISTENCE:SPEC:1023; PERSISTENCE:SPEC:1025;
+	 * PERSISTENCE:SPEC:848; PERSISTENCE:SPEC:856; PERSISTENCE:SPEC:908;
+	 * PERSISTENCE:SPEC:909; PERSISTENCE:SPEC:915; PERSISTENCE:SPEC:925;
+	 * PERSISTENCE:SPEC:918; PERSISTENCE:SPEC:928; PERSISTENCE:SPEC:929;
+	 * PERSISTENCE:JAVADOC:149; PERSISTENCE:JAVADOC:152; PERSISTENCE:JAVADOC:163;
+	 * PERSISTENCE:SPEC:846; PERSISTENCE:JAVADOC:304; PERSISTENCE:JAVADOC:307
+	 *
+	 * @test_Strategy: Persist data, evict all
+	 */
+	@Test
+	public void evictallTest() throws Exception {
+		Cache cache;
+		final int count = 5;
+		boolean pass1 = false;
+		boolean pass2 = false;
+		int pass2Count = 0;
+		Order[] orders = new Order[count];
+		int[] ids = new int[count];
+		if (cachingSupported) {
 
-        cache = getEntityManagerFactory().getCache();
+			try {
+				getEntityTransaction().begin();
 
-        if (cache != null) {
-          pass1 = true;
-          TestUtil.logTrace(
-              "cache was successfully obtained, evicting all Orders from cache");
-          cache.evictAll();
-          for (int i : ids) {
-            // Recheck whether the evicted entities are still in cache
-            TestUtil.logTrace("Testing order:" + i);
-            boolean cacheContains = cache.contains(Order.class, i);
+				for (int i = 1; i < count; i++) {
+					orders[i] = new Order(i, 100 * i);
+					ids[i] = orders[i].getId();
+					getEntityManager().persist(orders[i]);
+					logger.log(Logger.Level.TRACE, "persisted order " + orders[i]);
+				}
+				getEntityManager().flush();
+				getEntityTransaction().commit();
 
-            if (!cacheContains) {
-              pass2Count++;
-              TestUtil.logTrace("Order:" + i + " was successfully evicted");
-            }
-          }
-          if (pass2Count == orders.length) {
-            pass2 = true;
-          } else {
-            TestUtil.logErr("Not all orders were evicted.");
-          }
-        } else {
-          TestUtil.logErr(
-              "Cache returned was null, eventhough Cache is supported.");
-        }
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception occurred", e);
-      }
-    } else {
-      TestUtil.logMsg("Cache not supported, bypassing test");
-      pass1 = true;
-      pass2 = true;
-    }
-    if (!pass1 || !pass2) {
-      throw new Fault("evictallTest failed");
-    }
+				cache = getEntityManagerFactory().getCache();
 
-  }
+				if (cache != null) {
+					pass1 = true;
+					logger.log(Logger.Level.TRACE, "cache was successfully obtained, evicting all Orders from cache");
+					cache.evictAll();
+					for (int i : ids) {
+						// Recheck whether the evicted entities are still in cache
+						logger.log(Logger.Level.TRACE, "Testing order:" + i);
+						boolean cacheContains = cache.contains(Order.class, i);
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+						if (!cacheContains) {
+							pass2Count++;
+							logger.log(Logger.Level.TRACE, "Order:" + i + " was successfully evicted");
+						}
+					}
+					if (pass2Count == orders.length) {
+						pass2 = true;
+					} else {
+						logger.log(Logger.Level.ERROR, "Not all orders were evicted.");
+					}
+				} else {
+					logger.log(Logger.Level.ERROR, "Cache returned was null, eventhough Cache is supported.");
+				}
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			}
+		} else {
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
+			pass1 = true;
+			pass2 = true;
+		}
+		if (!pass1 || !pass2) {
+			throw new Exception("evictallTest failed");
+		}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

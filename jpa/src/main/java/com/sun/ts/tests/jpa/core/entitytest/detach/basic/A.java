@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.basic;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
@@ -31,80 +31,80 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  @Id
-  protected String id;
+	// ===========================================================
+	// instance variables
 
-  @Basic
-  protected String name;
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // constructors
+	@Basic
+	protected int value;
 
-  public A() {
-    TestUtil.logTrace("in entity A no arg constructor");
-  }
+	// ===========================================================
+	// constructors
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A() {
+		logger.log(Logger.Level.TRACE, "in entity A no arg constructor");
+	}
 
-  // ===========================================================
-  // methods used by test cases
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public String getAId() {
-    return id;
-  }
+	// ===========================================================
+	// methods used by test cases
 
-  public String getAName() {
-    return name;
-  }
+	public String getAId() {
+		return id;
+	}
 
-  public void setAName(String name) {
-    this.name = name;
-  }
+	public String getAName() {
+		return name;
+	}
 
-  public int getAValue() {
-    return value;
-  }
+	public void setAName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof A))
-      return false;
+	public int getAValue() {
+		return value;
+	}
 
-    A o1 = (A) o;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof A))
+			return false;
 
-    boolean result = false;
+		A o1 = (A) o;
 
-    if (this.getAId() == o1.getAId() && this.getAName().equals(o1.getAName())
-        && this.getAValue() == o1.getAValue()) {
-      result = true;
-    }
+		boolean result = false;
 
-    return result;
+		if (this.getAId() == o1.getAId() && this.getAName().equals(o1.getAName())
+				&& this.getAValue() == o1.getAValue()) {
+			result = true;
+		}
 
-  }
+		return result;
 
-  @Override
-  public int hashCode() {
-    return this.getAId().hashCode() + this.getAName().hashCode()
-        + this.getAValue();
-  }
+	}
 
-  @Override
-  public String toString() {
-    return "[" + this.getAId() + ":" + this.getAName() + ":" + this.getAValue()
-        + "]";
-  }
+	@Override
+	public int hashCode() {
+		return this.getAId().hashCode() + this.getAName().hashCode() + this.getAValue();
+	}
+
+	@Override
+	public String toString() {
+		return "[" + this.getAId() + ":" + this.getAName() + ":" + this.getAValue() + "]";
+	}
 }

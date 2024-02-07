@@ -22,22 +22,18 @@ import jakarta.persistence.Converter;
 @Converter
 public class SalaryConverter implements AttributeConverter<String, Float> {
 
-  public Float convertToDatabaseColumn(String attribute) {
-    System.out.println("*** Entering SalaryConverter:convertToDatabaseColumn["
-        + attribute + "] ***");
-    Float f = Float.valueOf(attribute.replace("#", ""));
-    System.out.println(
-        "*** Leaving SalaryConverter:convertToDatabaseColumn[" + f + "] ***");
-    return f;
-  }
+	public Float convertToDatabaseColumn(String attribute) {
+		System.out.println("*** Entering SalaryConverter:convertToDatabaseColumn[" + attribute + "] ***");
+		Float f = Float.valueOf(attribute.replace("#", ""));
+		System.out.println("*** Leaving SalaryConverter:convertToDatabaseColumn[" + f + "] ***");
+		return f;
+	}
 
-  public String convertToEntityAttribute(Float dbData) {
-    System.out.println("*** Entering SalaryConverter:convertToEntityAttribute["
-        + dbData + "] ***");
-    String s = dbData.toString();
-    System.out.println(
-        "*** Leaving SalaryConverter:convertToEntityAttribute[" + s + "] ***");
-    return s;
+	public String convertToEntityAttribute(Float dbData) {
+		System.out.println("*** Entering SalaryConverter:convertToEntityAttribute[" + dbData + "] ***");
+		String s = dbData.toString();
+		System.out.println("*** Leaving SalaryConverter:convertToEntityAttribute[" + s + "] ***");
+		return s;
 
-  }
+	}
 }

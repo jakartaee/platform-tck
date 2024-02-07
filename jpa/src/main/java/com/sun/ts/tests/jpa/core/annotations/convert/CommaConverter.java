@@ -22,23 +22,19 @@ import jakarta.persistence.Converter;
 @Converter(autoApply = false)
 public class CommaConverter implements AttributeConverter<String, String> {
 
-  public String convertToDatabaseColumn(String attribute) {
-    System.out.println("*** Entering CommaConverter:convertToDatabaseColumn["
-        + attribute + "] ***");
-    String s = attribute.replace(",", "#");
-    System.out.println(
-        "*** Leaving CommaConverter:convertToDatabaseColumn[" + s + "] ***");
-    return s;
-  }
+	public String convertToDatabaseColumn(String attribute) {
+		System.out.println("*** Entering CommaConverter:convertToDatabaseColumn[" + attribute + "] ***");
+		String s = attribute.replace(",", "#");
+		System.out.println("*** Leaving CommaConverter:convertToDatabaseColumn[" + s + "] ***");
+		return s;
+	}
 
-  public String convertToEntityAttribute(String dbData) {
-    System.out.println("*** Entering CommaConverter:convertToEntityAttribute["
-        + dbData + "] ***");
-    String s = dbData.replace("#", "-");
-    System.out.println(
-        "*** Leaving CommaConverter:convertToEntityAttribute[" + s + "] ***");
-    return s;
+	public String convertToEntityAttribute(String dbData) {
+		System.out.println("*** Entering CommaConverter:convertToEntityAttribute[" + dbData + "] ***");
+		String s = dbData.replace("#", "-");
+		System.out.println("*** Leaving CommaConverter:convertToEntityAttribute[" + s + "] ***");
+		return s;
 
-  }
+	}
 
 }

@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.remove.oneXone;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -34,78 +34,80 @@ import jakarta.persistence.Table;
 @Table(name = "BEJB_1X1_BI_BTOB")
 public class B implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  @Id
-  protected String id;
+	private static final Logger logger = (Logger) System.getLogger(B.class.getName());
 
-  @Basic
-  protected String name;
+	// ===========================================================
+	// instance variables
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // relationship fields
+	@Basic
+	protected int value;
 
-  @OneToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.remove.oneXone.A.class, cascade = CascadeType.REMOVE)
-  @JoinColumn(name = "FK_FOR_AEJB_1X1_BI_BTOB")
-  protected A a1;
+	// ===========================================================
+	// relationship fields
 
-  // ===========================================================
-  // constructors
+	@OneToOne(targetEntity = com.sun.ts.tests.jpa.core.entitytest.remove.oneXone.A.class, cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "FK_FOR_AEJB_1X1_BI_BTOB")
+	protected A a1;
 
-  public B() {
-    TestUtil.logTrace("Entity B no arg constructor");
-  }
+	// ===========================================================
+	// constructors
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public B() {
+		logger.log(Logger.Level.TRACE, "Entity B no arg constructor");
+	}
 
-  public B(String id, String name, int value, A a1) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.a1 = a1;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // ==========================================================
-  // Business Methods for Test Cases
+	public B(String id, String name, int value, A a1) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.a1 = a1;
+	}
 
-  public A getA1() {
-    return a1;
-  }
+	// ==========================================================
+	// Business Methods for Test Cases
 
-  public boolean isA() {
-    TestUtil.logTrace("isA");
-    if (getA1() != null)
-      TestUtil.logTrace("Relationship to A is not null...");
-    else
-      TestUtil.logTrace("Relationship to A is null...");
-    return getA1() != null;
-  }
+	public A getA1() {
+		return a1;
+	}
 
-  public A getA1Info() {
-    TestUtil.logTrace("getA1Info");
-    if (isA()) {
-      A a1 = getA1();
-      return a1;
-    } else
-      return null;
-  }
+	public boolean isA() {
+		logger.log(Logger.Level.TRACE, "isA");
+		if (getA1() != null)
+			logger.log(Logger.Level.TRACE, "Relationship to A is not null...");
+		else
+			logger.log(Logger.Level.TRACE, "Relationship to A is null...");
+		return getA1() != null;
+	}
 
-  public String getBId() {
-    return id;
-  }
+	public A getA1Info() {
+		logger.log(Logger.Level.TRACE, "getA1Info");
+		if (isA()) {
+			A a1 = getA1();
+			return a1;
+		} else
+			return null;
+	}
 
-  public String getBName() {
-    return name;
-  }
+	public String getBId() {
+		return id;
+	}
 
-  public int getBValue() {
-    return value;
-  }
+	public String getBName() {
+		return name;
+	}
+
+	public int getBValue() {
+		return value;
+	}
 }

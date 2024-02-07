@@ -18,67 +18,66 @@ package com.sun.ts.tests.jpa.se.cache.xml.disableselective;
 
 public class Order implements java.io.Serializable {
 
-  private int id;
+	private int id;
 
-  private int total;
+	private int total;
 
-  public Order() {
-  }
+	public Order() {
+	}
 
-  public Order(int total) {
-    this.total = total;
-  }
+	public Order(int total) {
+		this.total = total;
+	}
 
-  public Order(int id, int total) {
-    this.id = id;
-    this.total = total;
-  }
+	public Order(int id, int total) {
+		this.id = id;
+		this.total = total;
+	}
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public int getTotal() {
-    return total;
-  }
+	public int getTotal() {
+		return total;
+	}
 
-  public void setTotal(int total) {
-    this.total = total;
-  }
+	public void setTotal(int total) {
+		this.total = total;
+	}
 
-  @Override
-  public String toString() {
-    return "Order id=" + getId() + ", total=" + getTotal();
-  }
+	@Override
+	public String toString() {
+		return "Order id=" + getId() + ", total=" + getTotal();
+	}
 
-  @Override
-  public int hashCode() {
-    int myHash;
+	@Override
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId() + this.getTotal();
+		myHash = this.getId() + this.getTotal();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    Order other;
-    boolean result = false;
+	@Override
+	public boolean equals(Object o) {
+		Order other;
+		boolean result = false;
 
-    if (!(o instanceof Order)) {
-      return result;
-    }
-    other = (Order) o;
+		if (!(o instanceof Order)) {
+			return result;
+		}
+		other = (Order) o;
 
-    if (this.getId() == other.getId()
-        && this.getTotal() == (other.getTotal())) {
-      result = true;
-    }
+		if (this.getId() == other.getId() && this.getTotal() == (other.getTotal())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 }

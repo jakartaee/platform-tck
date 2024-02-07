@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,12 +17,16 @@
 package com.sun.ts.tests.jpa.se.schemaGeneration.annotations.orderColumn;
 
 import java.io.File;
+import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManagerFactory;
@@ -30,282 +34,283 @@ import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
 
 public class Client extends PMClientBase {
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  String schemaGenerationDir = null;
+	String schemaGenerationDir = null;
 
-  Employee expectedEmployee = null;
+	Employee expectedEmployee = null;
 
-  public Client() {
-  }
+	String sTestCase = "jpa_se_schemaGeneration_annotations_orderColumn";
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "Department", pkgName + "Employee" };
+		return createDeploymentJar("jpa_se_schemaGeneration_annotations_orderColumn.jar", pkgNameWithoutSuffix,
+				(String[]) classes);
 
-      schemaGenerationDir = System.getProperty("user.dir");
-      if (!schemaGenerationDir.endsWith(File.separator)) {
-        schemaGenerationDir += File.separator;
-      }
-      schemaGenerationDir += "schemaGeneration";
-      TestUtil.logMsg("schemaGenerationDir=" + this.schemaGenerationDir);
+	}
 
-      File f = new File(schemaGenerationDir);
-      TestUtil.logMsg("Delete existing directory ");
-      deleteItem(f);
-      TestUtil.logMsg("Create new directory ");
-      if (!f.mkdir()) {
-        String msg = "Could not mkdir:" + f.getAbsolutePath();
-        throw new Fault(msg);
-      }
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public Client() {
+	}
 
-  /*
-   * @testName: orderColumnTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:2118.14; PERSISTENCE:SPEC:2118.9;
-   * 
-   * @test_Strategy: Test the @OrderColumn annotation
-   */
-  public void orderColumnTest() throws Exception {
-    boolean pass1a = false;
-    boolean pass1b = false;
-    boolean pass1c = false;
-    boolean pass2a = false;
-    boolean pass2b = false;
-    boolean pass2c = false;
-    boolean pass3 = false;
-    boolean pass4 = false;
-    boolean pass5 = false;
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
 
-    TestUtil.logMsg("Create the script(s)");
-    final String CREATEFILENAME = schemaGenerationDir + File.separator
-        + "create_" + this.sTestCase + ".sql";
-    final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_"
-        + this.sTestCase + ".sql";
+			schemaGenerationDir = System.getProperty("user.dir");
+			if (!schemaGenerationDir.endsWith(File.separator)) {
+				schemaGenerationDir += File.separator;
+			}
+			schemaGenerationDir += "schemaGeneration";
+			logger.log(Logger.Level.INFO, "schemaGenerationDir=" + this.schemaGenerationDir);
 
-    File f1 = new File(CREATEFILENAME);
-    TestUtil.logTrace("Deleting previous create script");
-    deleteItem(f1);
-    File f2 = new File(DROPFILENAME);
-    TestUtil.logTrace("Deleting previous drop script");
-    deleteItem(f2);
+			File f = new File(schemaGenerationDir);
+			logger.log(Logger.Level.INFO, "Delete existing directory ");
+			deleteItem(f);
+			logger.log(Logger.Level.INFO, "Create new directory ");
+			if (!f.mkdir()) {
+				String msg = "Could not mkdir:" + f.getAbsolutePath();
+				throw new Exception(msg);
+			}
+			removeTestData();
 
-    Properties props = getPersistenceUnitProperties();
-    props.put("jakarta.persistence.schema-generation.database.action", "none");
-    props.put("jakarta.persistence.schema-generation.scripts.action",
-        "drop-and-create");
-    props.put("jakarta.persistence.schema-generation.create-database-schemas",
-        "false");
-    props.put("jakarta.persistence.schema-generation.scripts.create-target",
-        convertToURI(CREATEFILENAME));
-    props.put("jakarta.persistence.schema-generation.scripts.drop-target",
-        convertToURI(DROPFILENAME));
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    displayProperties(props);
+	/*
+	 * @testName: orderColumnTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:2118.14; PERSISTENCE:SPEC:2118.9;
+	 * 
+	 * @test_Strategy: Test the @OrderColumn annotation
+	 */
+	@Test
+	public void orderColumnTest() throws Exception {
+		boolean pass1a = false;
+		boolean pass1b = false;
+		boolean pass1c = false;
+		boolean pass2a = false;
+		boolean pass2b = false;
+		boolean pass2c = false;
+		boolean pass3 = false;
+		boolean pass4 = false;
+		boolean pass5 = false;
 
-    TestUtil.logMsg("Executing Persistence.createEntityManagerFactory(...)");
-    EntityManagerFactory emf = Persistence
-        .createEntityManagerFactory(getPersistenceUnitName(), props);
-    emf.close();
-    emf = null;
+		logger.log(Logger.Level.INFO, "Create the script(s)");
+		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
+		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
-    TestUtil.logMsg("Check script(s) content");
+		File f1 = new File(CREATEFILENAME);
+		logger.log(Logger.Level.TRACE, "Deleting previous create script");
+		deleteItem(f1);
+		File f2 = new File(DROPFILENAME);
+		logger.log(Logger.Level.TRACE, "Deleting previous drop script");
+		deleteItem(f2);
 
-    List<String> expected = new ArrayList<String>();
-    expected.add("CREATE TABLE SCHEMAGENEMP");
-    expected.add("EMPID");
-    expected.add("FK_DEPT");
-    expected.add("THEORDERCOLUMN");
-    expected.add("PRIMARY KEY (EMPID)");
-    pass1a = findDataInFile(f1, expected);
+		Properties props = getPersistenceUnitProperties();
+		props.put("jakarta.persistence.schema-generation.database.action", "none");
+		props.put("jakarta.persistence.schema-generation.scripts.action", "drop-and-create");
+		props.put("jakarta.persistence.schema-generation.create-database-schemas", "false");
+		props.put("jakarta.persistence.schema-generation.scripts.create-target", convertToURI(CREATEFILENAME));
+		props.put("jakarta.persistence.schema-generation.scripts.drop-target", convertToURI(DROPFILENAME));
 
-    expected.clear();
-    expected.add("CREATE TABLE SCHEMAGENDEPT");
-    expected.add("DEPTID");
-    expected.add("PRIMARY KEY (DEPTID)");
-    pass1b = findDataInFile(f1, expected);
+		displayProperties(props);
 
-    pass1c = findDataInFile(f1,
-        "ALTER TABLE SCHEMAGENEMP ADD CONSTRAINT MYCONSTRANT FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT (DEPTID)");
+		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
+		emf.close();
+		emf = null;
 
-    /*
-     * CREATE TABLE SCHEMAGENDEPT (DEPTID INTEGER NOT NULL, PRIMARY KEY
-     * (DEPTID)) CREATE TABLE SCHEMAGENEMP (EMPID INTEGER NOT NULL, FK_DEPT
-     * INTEGER, THEORDERCOLUMN INTEGER, PRIMARY KEY (EMPID)) ALTER TABLE
-     * SCHEMAGENEMP ADD CONSTRAINT MYCONSTRANT FOREIGN KEY (FK_DEPT) REFERENCES
-     * SCHEMAGENDEPT (DEPTID)
-     */
+		logger.log(Logger.Level.INFO, "Check script(s) content");
 
-    pass2a = findDataInFile(f2, "DROP TABLE SCHEMAGENEMP");
-    pass2b = findDataInFile(f2, "DROP TABLE SCHEMAGENDEPT");
-    pass2c = findDataInFile(f2, "ALTER TABLE SCHEMAGENEMP DROP");
+		List<String> expected = new ArrayList<String>();
+		expected.add("CREATE TABLE SCHEMAGENEMP");
+		expected.add("EMPID");
+		expected.add("FK_DEPT");
+		expected.add("THEORDERCOLUMN");
+		expected.add("PRIMARY KEY (EMPID)");
+		pass1a = findDataInFile(f1, expected);
 
-    TestUtil.logTrace("Execute the create script");
-    props = getPersistenceUnitProperties();
+		expected.clear();
+		expected.add("CREATE TABLE SCHEMAGENDEPT");
+		expected.add("DEPTID");
+		expected.add("PRIMARY KEY (DEPTID)");
+		pass1b = findDataInFile(f1, expected);
 
-    props.put("jakarta.persistence.schema-generation.database.action", "create");
-    props.put("jakarta.persistence.schema-generation.scripts.action", "none");
-    props.put("jakarta.persistence.schema-generation.create-database-schemas",
-        "true");
-    props.put("jakarta.persistence.schema-generation.create-script-source",
-        convertToURI(CREATEFILENAME));
-    displayProperties(props);
+		pass1c = findDataInFile(f1,
+				"ALTER TABLE SCHEMAGENEMP ADD CONSTRAINT MYCONSTRANT FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT (DEPTID)");
 
-    TestUtil.logMsg("Executing Persistence.generateSchema(...)");
-    Persistence.generateSchema(getPersistenceUnitName(), props);
+		/*
+		 * CREATE TABLE SCHEMAGENDEPT (DEPTID INTEGER NOT NULL, PRIMARY KEY (DEPTID))
+		 * CREATE TABLE SCHEMAGENEMP (EMPID INTEGER NOT NULL, FK_DEPT INTEGER,
+		 * THEORDERCOLUMN INTEGER, PRIMARY KEY (EMPID)) ALTER TABLE SCHEMAGENEMP ADD
+		 * CONSTRAINT MYCONSTRANT FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT
+		 * (DEPTID)
+		 */
 
-    clearEMAndEMF();
-    try {
-      TestUtil.logMsg("Persist some data");
-      getEntityTransaction(true).begin();
+		pass2a = findDataInFile(f2, "DROP TABLE SCHEMAGENEMP");
+		pass2b = findDataInFile(f2, "DROP TABLE SCHEMAGENDEPT");
+		pass2c = findDataInFile(f2, "ALTER TABLE SCHEMAGENEMP DROP");
 
-      Department d1 = new Department(50);
-      getEntityManager().persist(d1);
+		logger.log(Logger.Level.TRACE, "Execute the create script");
+		props = getPersistenceUnitProperties();
 
-      expectedEmployee = new Employee(20, d1);
-      final Employee e2 = new Employee(40, d1);
-      final Employee e3 = new Employee(60, d1);
-      getEntityManager().persist(expectedEmployee);
-      getEntityManager().persist(e2);
-      getEntityManager().persist(e3);
+		props.put("jakarta.persistence.schema-generation.database.action", "create");
+		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
+		props.put("jakarta.persistence.schema-generation.create-database-schemas", "true");
+		props.put("jakarta.persistence.schema-generation.create-script-source", convertToURI(CREATEFILENAME));
+		displayProperties(props);
 
-      List<Employee> expectedEmployees = new ArrayList<Employee>();
-      expectedEmployees.add(e3);
-      expectedEmployees.add(expectedEmployee);
-      expectedEmployees.add(e2);
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
+		Persistence.generateSchema(getPersistenceUnitName(), props);
 
-      d1.setEmployees(expectedEmployees);
-      getEntityManager().merge(d1);
+		clearEMAndEMF();
+		try {
+			logger.log(Logger.Level.INFO, "Persist some data");
+			getEntityTransaction(true).begin();
 
-      TestUtil.logTrace("persisted Entity Data");
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-      clearCache();
-      getEntityTransaction(true).begin();
-      TypedQuery<Employee> q = getEntityManager().createQuery(
-          "SELECT e FROM Department d JOIN d.employees e WHERE d.deptId = 50 AND INDEX(e) = 1",
-          Employee.class);
-      Employee e = q.getSingleResult();
-      if (e != null) {
-        if (e.equals(expectedEmployee)) {
-          TestUtil.logTrace("Received expected:" + expectedEmployee);
-          pass3 = true;
-        } else {
-          TestUtil.logErr("expected:" + expectedEmployee + ", actual:" + e);
-        }
-      } else {
-        TestUtil.logErr("Query of INDEX(1) returned null result");
-      }
-      getEntityTransaction().commit();
-    } catch (Throwable t) {
-      TestUtil.logErr("Received unexpected exception", t);
-    }
-    clearEMAndEMF();
+			Department d1 = new Department(50);
+			getEntityManager().persist(d1);
 
-    TestUtil.logTrace("Execute the drop script");
-    props = getPersistenceUnitProperties();
-    props.put("jakarta.persistence.schema-generation.database.action", "drop");
-    props.put("jakarta.persistence.schema-generation.scripts.action", "none");
-    props.put("jakarta.persistence.schema-generation.drop-script-source",
-        convertToURI(DROPFILENAME));
-    displayProperties(props);
+			expectedEmployee = new Employee(20, d1);
+			final Employee e2 = new Employee(40, d1);
+			final Employee e3 = new Employee(60, d1);
+			getEntityManager().persist(expectedEmployee);
+			getEntityManager().persist(e2);
+			getEntityManager().persist(e3);
 
-    TestUtil.logMsg("Executing Persistence.generateSchema(...)");
-    Persistence.generateSchema(getPersistenceUnitName(), props);
-    clearEMAndEMF();
+			List<Employee> expectedEmployees = new ArrayList<Employee>();
+			expectedEmployees.add(e3);
+			expectedEmployees.add(expectedEmployee);
+			expectedEmployees.add(e2);
 
-    TestUtil.logMsg("Try to persist an entity, it should fail");
-    try {
-      getEntityTransaction(true).begin();
-      Employee e2 = new Employee(2);
-      getEntityManager().persist(e2);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-      TestUtil.logErr(
-          "An exception should have been thrown if drop had occurred successfully");
-    } catch (Exception ex) {
-      TestUtil.logTrace("Receive expected exception");
-      pass4 = true;
-    }
-    try {
-      getEntityTransaction(true).begin();
-      Department d = new Department(2);
-      getEntityManager().persist(d);
-      getEntityManager().flush();
-      getEntityTransaction().commit();
-      TestUtil.logErr(
-          "An exception should have been thrown if drop had occurred successfully");
-    } catch (Exception ex) {
-      TestUtil.logTrace("Receive expected exception");
-      pass5 = true;
-    }
+			d1.setEmployees(expectedEmployees);
+			getEntityManager().merge(d1);
 
-    TestUtil.logTrace("pass1a:" + pass1a);
-    TestUtil.logTrace("pass1b:" + pass1b);
-    TestUtil.logTrace("pass1c:" + pass1c);
-    TestUtil.logTrace("pass2a:" + pass2a);
-    TestUtil.logTrace("pass2b:" + pass2b);
-    TestUtil.logTrace("pass2c:" + pass2c);
-    TestUtil.logTrace("pass3:" + pass3);
-    TestUtil.logTrace("pass4:" + pass4);
-    TestUtil.logTrace("pass5:" + pass5);
-    if (!pass1a || !pass1b || !pass1c || !pass2a || !pass2b || !pass2c || !pass3
-        || !pass4 || !pass5) {
-      throw new Fault("orderColumnTest failed");
-    }
-  }
+			logger.log(Logger.Level.TRACE, "persisted Entity Data");
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			clearCache();
+			getEntityTransaction(true).begin();
+			TypedQuery<Employee> q = getEntityManager().createQuery(
+					"SELECT e FROM Department d JOIN d.employees e WHERE d.deptId = 50 AND INDEX(e) = 1",
+					Employee.class);
+			Employee e = q.getSingleResult();
+			if (e != null) {
+				if (e.equals(expectedEmployee)) {
+					logger.log(Logger.Level.TRACE, "Received expected:" + expectedEmployee);
+					pass3 = true;
+				} else {
+					logger.log(Logger.Level.ERROR, "expected:" + expectedEmployee + ", actual:" + e);
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "Query of INDEX(1) returned null result");
+			}
+			getEntityTransaction().commit();
+		} catch (Throwable t) {
+			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
+		}
+		clearEMAndEMF();
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		logger.log(Logger.Level.TRACE, "Execute the drop script");
+		props = getPersistenceUnitProperties();
+		props.put("jakarta.persistence.schema-generation.database.action", "drop");
+		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
+		props.put("jakarta.persistence.schema-generation.drop-script-source", convertToURI(DROPFILENAME));
+		displayProperties(props);
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logMsg("Try to drop table SCHEMAGENSIMPLE");
-      getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENEMP")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENDEPT")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Throwable t) {
-      TestUtil.logMsg(
-          "AN EXCEPTION WAS THROWN DURING DROP TABLE, IT MAY OR MAY NOT BE A PROBLEM, "
-              + t.getMessage());
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-        clearEntityTransaction();
+		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
+		Persistence.generateSchema(getPersistenceUnitName(), props);
+		clearEMAndEMF();
 
-        // ensure that we close the EM and EMF before proceeding.
-        clearEMAndEMF();
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+		logger.log(Logger.Level.INFO, "Try to persist an entity, it should fail");
+		try {
+			getEntityTransaction(true).begin();
+			Employee e2 = new Employee(2);
+			getEntityManager().persist(e2);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			logger.log(Logger.Level.ERROR, "An exception should have been thrown if drop had occurred successfully");
+		} catch (Exception ex) {
+			logger.log(Logger.Level.TRACE, "Receive expected exception");
+			pass4 = true;
+		}
+		try {
+			getEntityTransaction(true).begin();
+			Department d = new Department(2);
+			getEntityManager().persist(d);
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+			logger.log(Logger.Level.ERROR, "An exception should have been thrown if drop had occurred successfully");
+		} catch (Exception ex) {
+			logger.log(Logger.Level.TRACE, "Receive expected exception");
+			pass5 = true;
+		}
+
+		logger.log(Logger.Level.TRACE, "pass1a:" + pass1a);
+		logger.log(Logger.Level.TRACE, "pass1b:" + pass1b);
+		logger.log(Logger.Level.TRACE, "pass1c:" + pass1c);
+		logger.log(Logger.Level.TRACE, "pass2a:" + pass2a);
+		logger.log(Logger.Level.TRACE, "pass2b:" + pass2b);
+		logger.log(Logger.Level.TRACE, "pass2c:" + pass2c);
+		logger.log(Logger.Level.TRACE, "pass3:" + pass3);
+		logger.log(Logger.Level.TRACE, "pass4:" + pass4);
+		logger.log(Logger.Level.TRACE, "pass5:" + pass5);
+		if (!pass1a || !pass1b || !pass1c || !pass2a || !pass2b || !pass2c || !pass3 || !pass4 || !pass5) {
+			throw new Exception("orderColumnTest failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.INFO, "Try to drop table SCHEMAGENSIMPLE");
+			getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENEMP").executeUpdate();
+			getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENDEPT").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Throwable t) {
+			logger.log(Logger.Level.INFO,
+					"AN EXCEPTION WAS THROWN DURING DROP TABLE, IT MAY OR MAY NOT BE A PROBLEM, " + t.getMessage());
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+				clearEntityTransaction();
+
+				// ensure that we close the EM and EMF before proceeding.
+				clearEMAndEMF();
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

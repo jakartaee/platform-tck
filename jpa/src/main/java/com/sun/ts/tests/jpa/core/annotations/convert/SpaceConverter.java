@@ -22,29 +22,25 @@ import jakarta.persistence.Converter;
 @Converter
 public class SpaceConverter implements AttributeConverter<String, String> {
 
-  public String convertToDatabaseColumn(String attribute) {
-    System.out.println("*** Entering SpaceConverter:convertToDatabaseColumn["
-        + attribute + "] ***");
-    String s = null;
-    if (attribute != null) {
-      s = attribute.replace(" ", "*");
-    }
-    System.out.println(
-        "*** Leaving SpaceConverter:convertToDatabaseColumn[" + s + "] ***");
-    return s;
-  }
+	public String convertToDatabaseColumn(String attribute) {
+		System.out.println("*** Entering SpaceConverter:convertToDatabaseColumn[" + attribute + "] ***");
+		String s = null;
+		if (attribute != null) {
+			s = attribute.replace(" ", "*");
+		}
+		System.out.println("*** Leaving SpaceConverter:convertToDatabaseColumn[" + s + "] ***");
+		return s;
+	}
 
-  public String convertToEntityAttribute(String dbData) {
-    System.out.println("*** Entering SpaceConverter:convertToEntityAttribute["
-        + dbData + "] ***");
-    String s = null;
-    if (dbData != null) {
-      s = dbData.replace("*", "_");
-    }
-    System.out.println(
-        "*** Leaving SpaceConverter:convertToEntityAttribute[" + s + "] ***");
-    return s;
+	public String convertToEntityAttribute(String dbData) {
+		System.out.println("*** Entering SpaceConverter:convertToEntityAttribute[" + dbData + "] ***");
+		String s = null;
+		if (dbData != null) {
+			s = dbData.replace("*", "_");
+		}
+		System.out.println("*** Leaving SpaceConverter:convertToEntityAttribute[" + s + "] ***");
+		return s;
 
-  }
+	}
 
 }

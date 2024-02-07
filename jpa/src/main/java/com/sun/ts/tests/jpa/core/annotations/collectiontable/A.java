@@ -16,10 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.annotations.collectiontable;
 
+import java.lang.System.Logger;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
@@ -32,57 +31,59 @@ import jakarta.persistence.Table;
 @Table(name = "COLTAB")
 public class A implements java.io.Serializable {
 
-  @Id
-  protected String id;
+	@Id
+	protected String id;
 
-  protected String name;
+	protected String name;
 
-  protected int value;
+	protected int value;
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-  protected Set<Address> address = new HashSet();
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  public A() {
-  }
+	@ElementCollection
+	@CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+	protected Set<Address> address = new HashSet();
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A() {
+	}
 
-  public Set<Address> getAddress() {
-    TestUtil.logTrace("getAddress");
-    return address;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public void setAddress(Set<Address> addr) {
-    TestUtil.logTrace("setAddress");
-    this.address = addr;
-  }
+	public Set<Address> getAddress() {
+		logger.log(Logger.Level.TRACE, "getAddress");
+		return address;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public void setAddress(Set<Address> addr) {
+		logger.log(Logger.Level.TRACE, "setAddress");
+		this.address = addr;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public int getValue() {
-    return value;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setValue(int val) {
-    this.value = val;
-  }
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int val) {
+		this.value = val;
+	}
 }

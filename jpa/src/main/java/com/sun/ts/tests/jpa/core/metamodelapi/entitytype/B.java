@@ -21,20 +21,20 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass()
 public abstract class B implements java.io.Serializable {
 
-  protected String name;
+	protected String name;
 
-  public B() {
-  }
+	public B() {
+	}
 
-  public B(String name) {
-    this.name = name;
-  }
+	public B(String name) {
+		this.name = name;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 }

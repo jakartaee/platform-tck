@@ -17,61 +17,59 @@
 package com.sun.ts.tests.jpa.jpa22.repeatable.joincolumn;
 
 public class DID2DependentId implements java.io.Serializable {
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  String name;
+	String name;
 
-  DID2EmployeeId emp;
+	DID2EmployeeId emp;
 
-  public DID2DependentId() {
-  }
+	public DID2DependentId() {
+	}
 
-  public DID2DependentId(String name, DID2EmployeeId emp) {
-    this.name = name;
-    this.emp = emp;
-  }
+	public DID2DependentId(String name, DID2EmployeeId emp) {
+		this.name = name;
+		this.emp = emp;
+	}
 
-  public DID2EmployeeId getEmp() {
-    return emp;
-  }
+	public DID2EmployeeId getEmp() {
+		return emp;
+	}
 
-  public void setEmp(DID2EmployeeId emp) {
-    this.emp = emp;
-  }
+	public void setEmp(DID2EmployeeId emp) {
+		this.emp = emp;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final DID2DependentId other = (DID2DependentId) obj;
-    if ((this.name == null) ? (other.name != null)
-        : !this.name.equals(other.name)) {
-      return false;
-    }
-    if (this.emp != other.emp
-        && (this.emp == null || !this.emp.equals(other.emp))) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final DID2DependentId other = (DID2DependentId) obj;
+		if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+			return false;
+		}
+		if (this.emp != other.emp && (this.emp == null || !this.emp.equals(other.emp))) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 3;
-    hash = 13 * hash + (this.name != null ? this.name.hashCode() : 0);
-    hash = 13 * hash + (this.emp != null ? this.emp.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 13 * hash + (this.name != null ? this.name.hashCode() : 0);
+		hash = 13 * hash + (this.emp != null ? this.emp.hashCode() : 0);
+		return hash;
+	}
 }

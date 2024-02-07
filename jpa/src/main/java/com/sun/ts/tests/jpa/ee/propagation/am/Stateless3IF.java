@@ -23,11 +23,11 @@ package com.sun.ts.tests.jpa.ee.propagation.am;
 import java.util.Properties;
 
 public interface Stateless3IF {
-  public void init(Properties p);
+	public void init(Properties p);
 
-  public boolean test1();
+	public boolean test1();
 
-  public boolean test2();
+	public boolean test2();
 
-  public void doCleanup();
+	public void doCleanup();
 }

@@ -20,11 +20,10 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.detach.oneXmany;
 
+import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -37,87 +36,88 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  @Id
-  protected String id;
+	// ===========================================================
+	// instance variables
 
-  @Basic
-  protected String name;
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  // ===========================================================
-  // constructors
+	@Basic
+	protected int value;
 
-  public A() {
-    TestUtil.logTrace("Entity A no arg constructor");
-  }
+	// ===========================================================
+	// constructors
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	public A() {
+		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+	}
 
-  public A(String id, String name, int value, Collection bCol) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.bCol = bCol;
-  }
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // ===========================================================
-  // relationship fields
+	public A(String id, String name, int value, Collection bCol) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.bCol = bCol;
+	}
 
-  @OneToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.detach.oneXmany.B.class, cascade = {
-      CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE,
-      CascadeType.REFRESH }, mappedBy = "a1")
-  protected Collection bCol = new java.util.ArrayList();
+	// ===========================================================
+	// relationship fields
 
-  // =======================================================================
-  // Business methods for test cases
+	@OneToMany(targetEntity = com.sun.ts.tests.jpa.core.entitytest.detach.oneXmany.B.class, cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE, CascadeType.REFRESH }, mappedBy = "a1")
+	protected Collection bCol = new java.util.ArrayList();
 
-  public Collection getBCol() {
-    TestUtil.logTrace("getBCol");
-    return bCol;
-  }
+	// =======================================================================
+	// Business methods for test cases
 
-  public void setBCol(Collection bCol) {
-    TestUtil.logTrace("setBCol");
-    this.bCol = bCol;
-  }
+	public Collection getBCol() {
+		logger.log(Logger.Level.TRACE, "getBCol");
+		return bCol;
+	}
 
-  public String getAId() {
-    return id;
-  }
+	public void setBCol(Collection bCol) {
+		logger.log(Logger.Level.TRACE, "setBCol");
+		this.bCol = bCol;
+	}
 
-  public String getAName() {
-    return name;
-  }
+	public String getAId() {
+		return id;
+	}
 
-  public void setAName(String name) {
-    this.name = name;
-  }
+	public String getAName() {
+		return name;
+	}
 
-  public int getAValue() {
-    return value;
-  }
+	public void setAName(String name) {
+		this.name = name;
+	}
 
-  public Collection getBInfoFromA() {
-    TestUtil.logTrace("getBInfoFromA");
-    Vector v = new Vector();
-    if (getBCol().size() != 0) {
-      Collection bcol = getBCol();
-      Iterator iterator = bcol.iterator();
-      while (iterator.hasNext()) {
-        B b = (B) iterator.next();
-        v.add(b);
-      }
-    }
-    return v;
-  }
+	public int getAValue() {
+		return value;
+	}
+
+	public Collection getBInfoFromA() {
+		logger.log(Logger.Level.TRACE, "getBInfoFromA");
+		Vector v = new Vector();
+		if (getBCol().size() != 0) {
+			Collection bcol = getBCol();
+			Iterator iterator = bcol.iterator();
+			while (iterator.hasNext()) {
+				B b = (B) iterator.next();
+				v.add(b);
+			}
+		}
+		return v;
+	}
 
 }

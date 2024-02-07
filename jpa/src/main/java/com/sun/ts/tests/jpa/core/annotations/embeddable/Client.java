@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,13 @@
 
 package com.sun.ts.tests.jpa.core.annotations.embeddable;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
@@ -27,166 +30,171 @@ import jakarta.persistence.EntityTransaction;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	public Client() {
+	}
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+	public JavaArchive createDeployment() throws Exception {
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "ZipCode" };
+		return createDeploymentJar("jpa_core_annotations_embeddable.jar", pkgNameWithoutSuffix, classes);
 
-    }
-  }
+	}
 
-  /*
-   * @testName: EM1XMTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:557;
-   * PERSISTENCE:SPEC:1239; PERSISTENCE:SPEC:1190; PERSISTENCE:SPEC:1191;
-   * 
-   * @test_Strategy: Use Nested embeddable class in Query
-   *
-   */
-  public void EM1XMTest() throws Exception {
-    TestUtil.logTrace("Begin EM1XMTest2");
-    boolean pass = false;
-    EntityManager em = getEntityManager();
-    EntityTransaction et = getEntityTransaction();
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
 
-    try {
-      et.begin();
-      TestUtil.logTrace("New instances");
+		}
+	}
 
-      final ZipCode z1 = new ZipCode("01801", "1234");
+	/*
+	 * @testName: EM1XMTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:553; PERSISTENCE:SPEC:557;
+	 * PERSISTENCE:SPEC:1239; PERSISTENCE:SPEC:1190; PERSISTENCE:SPEC:1191;
+	 * 
+	 * @test_Strategy: Use Nested embeddable class in Query
+	 *
+	 */
+	@Test
+	public void EM1XMTest() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin EM1XMTest2");
+		boolean pass = false;
+		EntityManager em = getEntityManager();
+		EntityTransaction et = getEntityTransaction();
 
-      Address addr1 = new Address("1 Network Drive", "Burlington", "MA");
+		try {
+			et.begin();
+			logger.log(Logger.Level.TRACE, "New instances");
 
-      addr1.setZipCode(z1);
+			final ZipCode z1 = new ZipCode("01801", "1234");
 
-      B b1 = new B("1", "b1", 1);
-      b1.setAddress(addr1);
+			Address addr1 = new Address("1 Network Drive", "Burlington", "MA");
 
-      em.persist(b1);
-      em.flush();
+			addr1.setZipCode(z1);
 
-      B newB = findB("1");
-      em.refresh(newB);
+			B b1 = new B("1", "b1", 1);
+			b1.setAddress(addr1);
 
-      final String newStreet = (String) em
-          .createQuery("Select b.address.street from B b ").getSingleResult();
-      final String newState = (String) em
-          .createQuery("Select b.address.state from B b ").getSingleResult();
-      final String newCity = (String) em
-          .createQuery("Select b.address.city from B b ").getSingleResult();
-      final String newPlusFour = (String) em
-          .createQuery("Select b.address.zipCode.plusFour from B b ")
-          .getSingleResult();
-      final String newZip = (String) em
-          .createQuery("Select b.address.zipCode.zip from B b ")
-          .getSingleResult();
+			em.persist(b1);
+			em.flush();
 
-      boolean pass1 = false;
-      boolean pass2 = false;
-      boolean pass3 = false;
-      boolean pass4 = false;
-      boolean pass5 = false;
+			B newB = findB("1");
+			em.refresh(newB);
 
-      // Verify Embedded contents
-      if (addr1.getStreet().equals(newStreet)) {
-        pass1 = true;
-        TestUtil.logTrace("Received Street match");
-      }
+			final String newStreet = (String) em.createQuery("Select b.address.street from B b ").getSingleResult();
+			final String newState = (String) em.createQuery("Select b.address.state from B b ").getSingleResult();
+			final String newCity = (String) em.createQuery("Select b.address.city from B b ").getSingleResult();
+			final String newPlusFour = (String) em.createQuery("Select b.address.zipCode.plusFour from B b ")
+					.getSingleResult();
+			final String newZip = (String) em.createQuery("Select b.address.zipCode.zip from B b ").getSingleResult();
 
-      if (addr1.getState().equals(newState)) {
-        pass2 = true;
-        TestUtil.logTrace("Received State match");
-      }
+			boolean pass1 = false;
+			boolean pass2 = false;
+			boolean pass3 = false;
+			boolean pass4 = false;
+			boolean pass5 = false;
 
-      if (addr1.getCity().equals(newCity)) {
-        pass3 = true;
-        TestUtil.logTrace("Received City match");
-      }
+			// Verify Embedded contents
+			if (addr1.getStreet().equals(newStreet)) {
+				pass1 = true;
+				logger.log(Logger.Level.TRACE, "Received Street match");
+			}
 
-      if (addr1.getZipCode().getPlusFour().equals(newPlusFour)) {
-        pass4 = true;
-        TestUtil.logTrace("Received zipCode PlusFour match");
-      }
+			if (addr1.getState().equals(newState)) {
+				pass2 = true;
+				logger.log(Logger.Level.TRACE, "Received State match");
+			}
 
-      if (addr1.getZipCode().getZip().equals(newZip)) {
-        pass5 = true;
-        TestUtil.logTrace("Received zipCode zip match");
-      }
+			if (addr1.getCity().equals(newCity)) {
+				pass3 = true;
+				logger.log(Logger.Level.TRACE, "Received City match");
+			}
 
-      if (pass1 && pass2 && pass3 && pass4 && pass5) {
-        pass = true;
-        TestUtil.logTrace("Received Address match");
+			if (addr1.getZipCode().getPlusFour().equals(newPlusFour)) {
+				pass4 = true;
+				logger.log(Logger.Level.TRACE, "Received zipCode PlusFour match");
+			}
 
-      } else {
-        TestUtil.logTrace("Received incorrect data");
+			if (addr1.getZipCode().getZip().equals(newZip)) {
+				pass5 = true;
+				logger.log(Logger.Level.TRACE, "Received zipCode zip match");
+			}
 
-      }
+			if (pass1 && pass2 && pass3 && pass4 && pass5) {
+				pass = true;
+				logger.log(Logger.Level.TRACE, "Received Address match");
 
-      et.commit();
+			} else {
+				logger.log(Logger.Level.TRACE, "Received incorrect data");
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (et.isActive()) {
-          et.rollback();
-        }
-      } catch (Exception fe) {
-        TestUtil.logErr("Unexpected exception rolling back TX:", fe);
-      }
+			}
 
-    }
-    if (!pass) {
-      throw new Fault("EM1XMTest failed");
-    }
-  }
+			et.commit();
 
-  private B findB(String id) {
-    // TestUtil.logTrace("Entered findB method");
-    return getEntityManager().find(B.class, id);
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (et.isActive()) {
+					et.rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			}
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		}
+		if (!pass) {
+			throw new Exception("EM1XMTest failed");
+		}
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("Delete from B_EMBEDDABLE")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private B findB(String id) {
+		// logger.log(Logger.Level.TRACE,"Entered findB method");
+		return getEntityManager().find(B.class, id);
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("Delete from B_EMBEDDABLE").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

@@ -16,11 +16,10 @@
 
 package com.sun.ts.tests.jpa.core.nestedembedding;
 
+import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -32,79 +31,82 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "ANE_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
-  // ===========================================================
-  // instance variables
-  @Id
-  protected String id;
 
-  @Basic
-  protected String name;
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  @Basic
-  protected int value;
+	// ===========================================================
+	// instance variables
+	@Id
+	protected String id;
 
-  // ===========================================================
-  // constructors
-  public A() {
-    // TestUtil.logTrace("Entity A no arg constructor");
-  }
+	@Basic
+	protected String name;
 
-  public A(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	@Basic
+	protected int value;
 
-  public A(String id, String name, int value, Collection bCol) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-    this.bCol = bCol;
-  } // ===========================================================
-  // relationship fields
+	// ===========================================================
+	// constructors
+	public A() {
+		// logger.log(Logger.Level.TRACE,"Entity A no arg constructor");
+	}
 
-  @OneToMany(targetEntity = com.sun.ts.tests.jpa.core.nestedembedding.B.class, cascade = CascadeType.ALL, mappedBy = "a1")
-  protected Collection bCol = new java.util.ArrayList();
+	public A(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  // =======================================================================
-  // Business methods for test cases
-  public Collection getBCol() {
-    TestUtil.logTrace("getBCol");
-    return bCol;
-  }
+	public A(String id, String name, int value, Collection bCol) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+		this.bCol = bCol;
+	} // ===========================================================
+		// relationship fields
 
-  public void setBCol(Collection bCol) {
-    TestUtil.logTrace("setBCol");
-    this.bCol = bCol;
-  }
+	@OneToMany(targetEntity = com.sun.ts.tests.jpa.core.nestedembedding.B.class, cascade = CascadeType.ALL, mappedBy = "a1")
+	protected Collection bCol = new java.util.ArrayList();
 
-  public String getAId() {
-    return id;
-  }
+	// =======================================================================
+	// Business methods for test cases
+	public Collection getBCol() {
+		logger.log(Logger.Level.TRACE, "getBCol");
+		return bCol;
+	}
 
-  public String getAName() {
-    return name;
-  }
+	public void setBCol(Collection bCol) {
+		logger.log(Logger.Level.TRACE, "setBCol");
+		this.bCol = bCol;
+	}
 
-  public void setAName(String name) {
-    this.name = name;
-  }
+	public String getAId() {
+		return id;
+	}
 
-  public int getAValue() {
-    return value;
-  }
+	public String getAName() {
+		return name;
+	}
 
-  public Collection getBInfoFromA() {
-    TestUtil.logTrace("getBInfoFromA");
-    Vector v = new Vector();
-    if (getBCol().size() != 0) {
-      Collection bcol = getBCol();
-      Iterator iterator = bcol.iterator();
-      while (iterator.hasNext()) {
-        B b = (B) iterator.next();
-        v.add(b);
-      }
-    }
-    return v;
-  }
+	public void setAName(String name) {
+		this.name = name;
+	}
+
+	public int getAValue() {
+		return value;
+	}
+
+	public Collection getBInfoFromA() {
+		logger.log(Logger.Level.TRACE, "getBInfoFromA");
+		Vector v = new Vector();
+		if (getBCol().size() != 0) {
+			Collection bcol = getBCol();
+			Iterator iterator = bcol.iterator();
+			while (iterator.hasNext()) {
+				B b = (B) iterator.next();
+				v.add(b);
+			}
+		}
+		return v;
+	}
 }

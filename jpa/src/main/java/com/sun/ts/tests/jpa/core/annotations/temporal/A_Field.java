@@ -39,115 +39,112 @@ import jakarta.persistence.TemporalType;
 @Access(AccessType.FIELD)
 public class A_Field implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  @Id
-  protected String id;
+	@Id
+	protected String id;
 
-  @Basic
-  @Temporal(TemporalType.DATE)
-  protected Date basicDate;
+	@Basic
+	@Temporal(TemporalType.DATE)
+	protected Date basicDate;
 
-  @Basic
-  @Temporal(TemporalType.DATE)
-  protected Calendar basicCalendar;
+	@Basic
+	@Temporal(TemporalType.DATE)
+	protected Calendar basicCalendar;
 
-  @ElementCollection
-  @CollectionTable(name = "DATES_TABLE", joinColumns = @JoinColumn(name = "ID"))
-  @Temporal(TemporalType.DATE)
-  @Column(name = "DATES")
-  private List<Date> dates = new ArrayList<Date>();
+	@ElementCollection
+	@CollectionTable(name = "DATES_TABLE", joinColumns = @JoinColumn(name = "ID"))
+	@Temporal(TemporalType.DATE)
+	@Column(name = "DATES")
+	private List<Date> dates = new ArrayList<Date>();
 
-  // ===========================================================
-  // constructors
-  public A_Field() {
-  }
+	// ===========================================================
+	// constructors
+	public A_Field() {
+	}
 
-  public A_Field(String id, Date basicDate, Calendar basicCalendar) {
+	public A_Field(String id, Date basicDate, Calendar basicCalendar) {
 
-    this.id = id;
-    this.basicDate = basicDate;
-    this.basicCalendar = basicCalendar;
+		this.id = id;
+		this.basicDate = basicDate;
+		this.basicCalendar = basicCalendar;
 
-  }
+	}
 
-  public A_Field(String id, Date basicDate, Calendar basicCalendar,
-      List<Date> dates) {
+	public A_Field(String id, Date basicDate, Calendar basicCalendar, List<Date> dates) {
 
-    this.id = id;
-    this.basicDate = basicDate;
-    this.basicCalendar = basicCalendar;
-    this.dates = dates;
-  }
+		this.id = id;
+		this.basicDate = basicDate;
+		this.basicCalendar = basicCalendar;
+		this.dates = dates;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public Calendar getBasicCalendar() {
-    return basicCalendar;
-  }
+	public Calendar getBasicCalendar() {
+		return basicCalendar;
+	}
 
-  public void setBasicCalendar(Calendar basicCalendar) {
-    this.basicCalendar = basicCalendar;
-  }
+	public void setBasicCalendar(Calendar basicCalendar) {
+		this.basicCalendar = basicCalendar;
+	}
 
-  public Date getBasicDate() {
-    return basicDate;
-  }
+	public Date getBasicDate() {
+		return basicDate;
+	}
 
-  public void setBasicDate(Date basicDate) {
-    this.basicDate = basicDate;
-  }
+	public void setBasicDate(Date basicDate) {
+		this.basicDate = basicDate;
+	}
 
-  public List<Date> getDates() {
-    return dates;
-  }
+	public List<Date> getDates() {
+		return dates;
+	}
 
-  public void setDates(List<Date> dates) {
-    this.dates = dates;
-  }
+	public void setDates(List<Date> dates) {
+		this.dates = dates;
+	}
 
-  public boolean equals(Object o) {
-    A_Field other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		A_Field other;
+		boolean result = false;
 
-    if (!(o instanceof A_Field)) {
-      return result;
-    }
-    other = (A_Field) o;
+		if (!(o instanceof A_Field)) {
+			return result;
+		}
+		other = (A_Field) o;
 
-    if (this.getId().equals(other.getId())
-        && this.getBasicCalendar().equals(other.getBasicCalendar())
-        && this.getBasicDate().equals(other.getBasicDate())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.getBasicCalendar().equals(other.getBasicCalendar())
+				&& this.getBasicDate().equals(other.getBasicDate())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + this.getBasicCalendar().hashCode()
-        + this.getBasicDate().hashCode();
+		myHash = this.getId().hashCode() + this.getBasicCalendar().hashCode() + this.getBasicDate().hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", date: " + getBasicDate());
-    result.append(", calendar: " + getBasicCalendar());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", date: " + getBasicDate());
+		result.append(", calendar: " + getBasicCalendar());
+		result.append("]");
+		return result.toString();
+	}
 }

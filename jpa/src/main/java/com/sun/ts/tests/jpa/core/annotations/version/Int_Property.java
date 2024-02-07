@@ -26,90 +26,89 @@ import jakarta.persistence.Version;
 @Table(name = "A_BASIC")
 public class Int_Property implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected String id;
+	protected String id;
 
-  protected int value;
+	protected int value;
 
-  protected String name;
+	protected String name;
 
-  // ===========================================================
-  // constructors
-  public Int_Property() {
-  }
+	// ===========================================================
+	// constructors
+	public Int_Property() {
+	}
 
-  public Int_Property(String id) {
-    this.id = id;
-  }
+	public Int_Property(String id) {
+		this.id = id;
+	}
 
-  public Int_Property(String id, int value) {
+	public Int_Property(String id, int value) {
 
-    this.id = id;
-    this.value = value;
-  }
+		this.id = id;
+		this.value = value;
+	}
 
-  @Id
-  public String getId() {
-    return id;
-  }
+	@Id
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Basic
-  public String getName() {
-    return this.name;
-  }
+	@Basic
+	public String getName() {
+		return this.name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Version
-  public int getValue() {
-    return this.value;
-  }
+	@Version
+	public int getValue() {
+		return this.value;
+	}
 
-  public void setValue(int value) {
-    this.value = value;
-  }
+	public void setValue(int value) {
+		this.value = value;
+	}
 
-  public boolean equals(Object o) {
-    Int_Field other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		Int_Field other;
+		boolean result = false;
 
-    if (!(o instanceof Int_Field)) {
-      return result;
-    }
-    other = (Int_Field) o;
+		if (!(o instanceof Int_Field)) {
+			return result;
+		}
+		other = (Int_Field) o;
 
-    if (this.getId().equals(other.getId()) && this.value == (other.value)
-        && this.name.equals(other.getName())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.value == (other.value) && this.name.equals(other.getName())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + this.value + this.name.hashCode();
+		myHash = this.getId().hashCode() + this.value + this.name.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", version: " + value);
-    result.append(", name: " + name);
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", version: " + value);
+		result.append(", name: " + name);
+		result.append("]");
+		return result.toString();
+	}
 }

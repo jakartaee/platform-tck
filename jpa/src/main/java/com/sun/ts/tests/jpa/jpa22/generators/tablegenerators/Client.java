@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,119 +16,134 @@
 
 package com.sun.ts.tests.jpa.jpa22.generators.tablegenerators;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
-  private static final long serialVersionUID = 22L;
 
-  private DataTypes d0;
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public Client() {
-  }
+	private static final long serialVersionUID = 22L;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	private DataTypes d0;
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	public Client() {
+	}
 
-      super.setup(args, p);
-      removeTestData();
-      createTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	public JavaArchive createDeployment() throws Exception {
 
-  /*
-   * @testName: generatorOnEntityTest
-   * 
-   * @assertion_ids: PERSISTENCE:JAVADOC:3489;
-   * 
-   * @test_Strategy: use a generator specified on an entity
-   */
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "DataTypes" };
+		return createDeploymentJar("jpa_jpa22_generators_tablegenerators.jar", pkgNameWithoutSuffix,
+				(String[]) classes);
 
-  public void generatorOnEntityTest() throws Exception {
+	}
 
-    boolean pass = false;
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+			createTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-    try {
-      getEntityTransaction().begin();
-      int id = d0.getId();
-      TestUtil.logTrace("find id: " + id);
-      DataTypes d = getEntityManager().find(DataTypes.class, id);
-      if (d != null) {
-        if (d.getStringData().equals(d0.getStringData())) {
-          pass = true;
-        }
+	/*
+	 * @testName: generatorOnEntityTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:JAVADOC:3489;
+	 * 
+	 * @test_Strategy: use a generator specified on an entity
+	 */
+	@Test
+	public void generatorOnEntityTest() throws Exception {
 
-        getEntityTransaction().commit();
-      } else {
-        TestUtil.logErr("EntityManager.find returned null result");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
+		boolean pass = false;
 
-    if (!pass)
-      throw new Fault("generatorOnEntityTest failed");
-  }
-  // Methods used for Tests
+		try {
+			getEntityTransaction().begin();
+			int id = d0.getId();
+			logger.log(Logger.Level.TRACE, "find id: " + id);
+			DataTypes d = getEntityManager().find(DataTypes.class, id);
+			if (d != null) {
+				if (d.getStringData().equals(d0.getStringData())) {
+					pass = true;
+				}
 
-  public void createTestData() {
-    try {
-      getEntityTransaction().begin();
+				getEntityTransaction().commit();
+			} else {
+				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		}
 
-      d0 = new DataTypes();
-      d0.setStringData("testData");
-      TestUtil.logTrace("DataType:" + d0.toString());
-      getEntityManager().persist(d0);
+		if (!pass)
+			throw new Exception("generatorOnEntityTest failed");
+	}
+	// Methods used for Tests
 
-      getEntityManager().flush();
-      getEntityTransaction().commit();
+	public void createTestData() {
+		try {
+			getEntityTransaction().begin();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    }
-  }
+			d0 = new DataTypes();
+			d0.setStringData("testData");
+			logger.log(Logger.Level.TRACE, "DataType:" + d0.toString());
+			getEntityManager().persist(d0);
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+			getEntityManager().flush();
+			getEntityTransaction().commit();
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM DATATYPES")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM DATATYPES").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

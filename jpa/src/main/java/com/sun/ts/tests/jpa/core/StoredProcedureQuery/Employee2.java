@@ -28,163 +28,160 @@ import jakarta.persistence.TemporalType;
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee2 implements java.io.Serializable, Comparable<Employee2> {
-  private int id;
+	private int id;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private Calendar hireDate;
+	private Calendar hireDate;
 
-  private float salary;
+	private float salary;
 
-  public Employee2() {
-  }
+	public Employee2() {
+	}
 
-  public Employee2(int id, String firstName, String lastName, Calendar hireDate,
-      float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.salary = salary;
-  }
+	public Employee2(int id, String firstName, String lastName, Calendar hireDate, float salary) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+		this.salary = salary;
+	}
 
-  public Employee2(int id, String firstName, String lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+	public Employee2(int id, String firstName, String lastName) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
-  public Employee2(int id, String firstName) {
-    this.id = id;
-    this.firstName = firstName;
-  }
-  // ===========================================================
-  // getters and setters for the state fields
+	public Employee2(int id, String firstName) {
+		this.id = id;
+		this.firstName = firstName;
+	}
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "FIRSTNAME")
-  public String getFirstName() {
-    return firstName;
-  }
+	@Column(name = "FIRSTNAME")
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  @Column(name = "LASTNAME")
-  public String getLastName() {
-    return lastName;
-  }
+	@Column(name = "LASTNAME")
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  @Column(name = "HIREDATE")
-  @Temporal(TemporalType.DATE)
-  public Calendar getHireDate() {
-    return hireDate;
-  }
+	@Column(name = "HIREDATE")
+	@Temporal(TemporalType.DATE)
+	public Calendar getHireDate() {
+		return hireDate;
+	}
 
-  public void setHireDate(Calendar hireDate) {
-    this.hireDate = hireDate;
-  }
+	public void setHireDate(Calendar hireDate) {
+		this.hireDate = hireDate;
+	}
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+	@Column(name = "SALARY")
+	public float getSalary() {
+		return salary;
+	}
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Employee2))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof Employee2))
+			return false;
 
-    Employee2 o1 = (Employee2) o;
+		Employee2 o1 = (Employee2) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getId() == o1.getId() && this.getSalary() == o1.getSalary() &&
+		if (this.getId() == o1.getId() && this.getSalary() == o1.getSalary() &&
 
-        ((this.getFirstName() == null && o1.getFirstName() == null)
-            || this.getFirstName().equals(o1.getFirstName()))
-        &&
+				((this.getFirstName() == null && o1.getFirstName() == null)
+						|| this.getFirstName().equals(o1.getFirstName()))
+				&&
 
-        ((this.getLastName() == null && o1.getLastName() == null)
-            || this.getLastName().equals(o1.getLastName()))
-        &&
+				((this.getLastName() == null && o1.getLastName() == null)
+						|| this.getLastName().equals(o1.getLastName()))
+				&&
 
-        ((this.getHireDate() == null && o1.getHireDate() == null)
-            || this.getHireDate().equals(o1.getHireDate()))) {
-      result = true;
-    }
+				((this.getHireDate() == null && o1.getHireDate() == null)
+						|| this.getHireDate().equals(o1.getHireDate()))) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  @Override
-  public int hashCode() {
-    int i = this.getId() + new Float(this.getSalary()).hashCode();
-    if (this.getFirstName() != null) {
-      i += this.getFirstName().hashCode();
-    }
-    if (this.getLastName() != null) {
-      i += this.getLastName().hashCode();
-    }
-    if (this.getHireDate() != null) {
-      i += this.getHireDate().hashCode();
-    }
-    return i;
-  }
+	@Override
+	public int hashCode() {
+		int i = this.getId() + new Float(this.getSalary()).hashCode();
+		if (this.getFirstName() != null) {
+			i += this.getFirstName().hashCode();
+		}
+		if (this.getLastName() != null) {
+			i += this.getLastName().hashCode();
+		}
+		if (this.getHireDate() != null) {
+			i += this.getHireDate().hashCode();
+		}
+		return i;
+	}
 
-  public int compareTo(Employee2 emp) {
-    int lastCmp = Integer.valueOf(getId())
-        .compareTo(Integer.valueOf(emp.getId()));
-    return (lastCmp != 0 ? lastCmp
-        : Integer.valueOf(getId()).compareTo(Integer.valueOf(emp.getId())));
-  }
+	public int compareTo(Employee2 emp) {
+		int lastCmp = Integer.valueOf(getId()).compareTo(Integer.valueOf(emp.getId()));
+		return (lastCmp != 0 ? lastCmp : Integer.valueOf(getId()).compareTo(Integer.valueOf(emp.getId())));
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    if (getFirstName() != null) {
-      result.append(", first: " + getFirstName());
-    } else {
-      result.append(", first: null");
-    }
-    if (getLastName() != null) {
-      result.append(", last: " + getLastName());
-    } else {
-      result.append(", last: null");
-    }
-    if (getHireDate() != null) {
-      result.append(", hire: " + getHireDate());
-    } else {
-      result.append(", hire: null");
-    }
-    result.append(", salary: " + getSalary());
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		if (getFirstName() != null) {
+			result.append(", first: " + getFirstName());
+		} else {
+			result.append(", first: null");
+		}
+		if (getLastName() != null) {
+			result.append(", last: " + getLastName());
+		} else {
+			result.append(", last: null");
+		}
+		if (getHireDate() != null) {
+			result.append(", hire: " + getHireDate());
+		} else {
+			result.append(", hire: null");
+		}
+		result.append(", salary: " + getSalary());
 
-    result.append("]");
-    return result.toString();
-  }
+		result.append("]");
+		return result.toString();
+	}
 }

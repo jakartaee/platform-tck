@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,132 +16,141 @@
 
 package com.sun.ts.tests.jpa.core.relationship.bidironexone;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
-/**
- * @author Raja Perumal
- */
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	public JavaArchive createDeployment() throws Exception {
 
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "BiDir1X1Person", pkgName + "BiDir1X1Project" };
+		return createDeploymentJar("jpa_core_relationship_bidironexone.jar", pkgNameWithoutSuffix, classes);
 
-  /*
-   * @testName: biDir1X1Test1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
-   * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
-   * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
-   * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
-   * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
-   * 
-   * @test_Strategy: RelationShip OneToOne Mapping
-   *
-   */
-  public void biDir1X1Test1() throws Exception {
-    TestUtil.logTrace("Begin biDir1X1Test1");
-    boolean pass = false;
-    try {
-      getEntityTransaction().begin();
+	}
 
-      BiDir1X1Project project = new BiDir1X1Project(1L, "JavaEE", 500.0F);
-      BiDir1X1Person person = new BiDir1X1Person(1L, "Duke");
-      project.setBiDir1X1Person(person);
-      person.setProject(project);
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
 
-      // persist project
-      getEntityManager().persist(project);
-      getEntityTransaction().commit();
-      TestUtil
-          .logTrace("persisted Project this in turn must persist Person too..");
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-      getEntityTransaction().begin();
+	/*
+	 * @testName: biDir1X1Test1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1094; PERSISTENCE:JAVADOC:135;
+	 * PERSISTENCE:JAVADOC:91; PERSISTENCE:SPEC:561; PERSISTENCE:SPEC:562;
+	 * PERSISTENCE:SPEC:567; PERSISTENCE:SPEC:570; PERSISTENCE:SPEC:571;
+	 * PERSISTENCE:SPEC:573; PERSISTENCE:SPEC:961; PERSISTENCE:SPEC:1028;
+	 * PERSISTENCE:SPEC:1037; PERSISTENCE:SPEC:1038; PERSISTENCE:SPEC:1039
+	 * 
+	 * @test_Strategy: RelationShip OneToOne Mapping
+	 *
+	 */
+	@Test
+	public void biDir1X1Test1() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin biDir1X1Test1");
+		boolean pass = false;
+		try {
+			getEntityTransaction().begin();
 
-      // since this is a bi-directional relationship with cascade=ALL
-      // persisting project must have persisted person too
-      BiDir1X1Person newPerson = getEntityManager().find(BiDir1X1Person.class,
-          1L);
-      if (newPerson != null) {
-        TestUtil.logTrace("Found Searched Person Entity");
-        if ((getEntityManager().contains(newPerson))
-            && (newPerson.getName().equals("Duke"))) {
-          TestUtil.logTrace("biDir1X1Test1: Expected results received");
-          pass = true;
-        }
-      } else {
-        TestUtil.logTrace("searched Person not found");
-      }
-      getEntityTransaction().commit();
+			BiDir1X1Project project = new BiDir1X1Project(1L, "JavaEE", 500.0F);
+			BiDir1X1Person person = new BiDir1X1Person(1L, "Duke");
+			project.setBiDir1X1Person(person);
+			person.setProject(project);
 
-    } catch (Exception e) {
+			// persist project
+			getEntityManager().persist(project);
+			getEntityTransaction().commit();
+			logger.log(Logger.Level.TRACE, "persisted Project this in turn must persist Person too..");
 
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+			getEntityTransaction().begin();
 
-    if (!pass) {
-      throw new Fault("biDir1X1Test1 failed");
-    }
-  }
+			// since this is a bi-directional relationship with cascade=ALL
+			// persisting project must have persisted person too
+			BiDir1X1Person newPerson = getEntityManager().find(BiDir1X1Person.class, 1L);
+			if (newPerson != null) {
+				logger.log(Logger.Level.TRACE, "Found Searched Person Entity");
+				if ((getEntityManager().contains(newPerson)) && (newPerson.getName().equals("Duke"))) {
+					logger.log(Logger.Level.TRACE, "biDir1X1Test1: Expected results received");
+					pass = true;
+				}
+			} else {
+				logger.log(Logger.Level.TRACE, "searched Person not found");
+			}
+			getEntityTransaction().commit();
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+		} catch (Exception e) {
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM BIDIR1X1PERSON")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM BIDIR1X1PROJECT")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
+
+		if (!pass) {
+			throw new Exception("biDir1X1Test1 failed");
+		}
+	}
+
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIR1X1PERSON").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM BIDIR1X1PROJECT").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

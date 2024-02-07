@@ -36,81 +36,80 @@ import jakarta.persistence.Version;
 @Table(name = "MEMBER")
 public class Member implements java.io.Serializable {
 
-  private int memberId;
+	private int memberId;
 
-  private Integer version;
+	private Integer version;
 
-  private String memberName;
+	private String memberName;
 
-  private boolean duesPaid;
+	private boolean duesPaid;
 
-  private BigInteger donation;
+	private BigInteger donation;
 
-  public Member() {
-  }
+	public Member() {
+	}
 
-  public Member(int memberId, String memberName, boolean duesPaid) {
-    this.memberId = memberId;
-    this.memberName = memberName;
-    this.duesPaid = duesPaid;
-  }
+	public Member(int memberId, String memberName, boolean duesPaid) {
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.duesPaid = duesPaid;
+	}
 
-  public Member(int memberId, String memberName, boolean duesPaid,
-      BigInteger donation) {
-    this.memberId = memberId;
-    this.memberName = memberName;
-    this.duesPaid = duesPaid;
-    this.donation = donation;
-  }
+	public Member(int memberId, String memberName, boolean duesPaid, BigInteger donation) {
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.duesPaid = duesPaid;
+		this.donation = donation;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "MEMBER_ID")
-  public int getMemberId() {
-    return memberId;
-  }
+	@Id
+	@Column(name = "MEMBER_ID")
+	public int getMemberId() {
+		return memberId;
+	}
 
-  public void setMemberId(int memberId) {
-    this.memberId = memberId;
-  }
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
 
-  @Version
-  @Column(name = "VERSION")
-  public Integer getVersion() {
-    return version;
-  }
+	@Version
+	@Column(name = "VERSION")
+	public Integer getVersion() {
+		return version;
+	}
 
-  public void setVersion(Integer i) {
-    version = i;
-  }
+	public void setVersion(Integer i) {
+		version = i;
+	}
 
-  @Column(name = "MEMBER_NAME", length = 255)
-  public String getMemberName() {
-    return memberName;
-  }
+	@Column(name = "MEMBER_NAME", length = 255)
+	public String getMemberName() {
+		return memberName;
+	}
 
-  public void setMemberName(String memberName) {
-    this.memberName = memberName;
-  }
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
 
-  @Column(name = "DUES")
-  public boolean isDuesPaid() {
-    return duesPaid;
-  }
+	@Column(name = "DUES")
+	public boolean isDuesPaid() {
+		return duesPaid;
+	}
 
-  public void setDuesPaid(boolean duesPaid) {
-    this.duesPaid = duesPaid;
-  }
+	public void setDuesPaid(boolean duesPaid) {
+		this.duesPaid = duesPaid;
+	}
 
-  @Column(name = "DONATION", precision = 18, scale = 0, table = "MEMBER")
-  public BigInteger getDonation() {
-    return donation;
-  }
+	@Column(name = "DONATION", precision = 18, scale = 0, table = "MEMBER")
+	public BigInteger getDonation() {
+		return donation;
+	}
 
-  public void setDonation(BigInteger donation) {
-    this.donation = donation;
-  }
+	public void setDonation(BigInteger donation) {
+		this.donation = donation;
+	}
 
 }

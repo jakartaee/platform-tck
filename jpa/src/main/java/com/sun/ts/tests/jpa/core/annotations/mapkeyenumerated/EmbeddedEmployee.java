@@ -24,18 +24,18 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class EmbeddedEmployee implements Serializable {
 
-  private static final long serialVersionUID = 22L;
+	private static final long serialVersionUID = 22L;
 
-  public String employeeName;
+	public String employeeName;
 
-  public int employeeId;
+	public int employeeId;
 
-  public EmbeddedEmployee() {
-    // for JPA
-  }
+	public EmbeddedEmployee() {
+		// for JPA
+	}
 
-  public EmbeddedEmployee(Employee4 employee) {
-    this.employeeName = employee.getLastName();
-    this.employeeId = employee.getId();
-  }
+	public EmbeddedEmployee(Employee4 employee) {
+		this.employeeName = employee.getLastName();
+		this.employeeId = employee.getId();
+	}
 }

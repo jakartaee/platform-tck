@@ -22,66 +22,66 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Country implements java.io.Serializable {
 
-  // Instance variables
-  private String country;
+	// Instance variables
+	private String country;
 
-  private String code;
+	private String code;
 
-  public Country() {
-  }
+	public Country() {
+	}
 
-  public Country(String v1, String v2) {
-    country = v1;
-    code = v2;
-  }
+	public Country(String v1, String v2) {
+		country = v1;
+		code = v2;
+	}
 
-  @Basic
-  public String getCountry() {
-    return country;
-  }
+	@Basic
+	public String getCountry() {
+		return country;
+	}
 
-  public void setCountry(String v) {
-    country = v;
-  }
+	public void setCountry(String v) {
+		country = v;
+	}
 
-  @Basic
-  public String getCode() {
-    return code;
-  }
+	@Basic
+	public String getCode() {
+		return code;
+	}
 
-  public void setCode(String v) {
-    code = v;
-  }
+	public void setCode(String v) {
+		code = v;
+	}
 
-  public boolean equals(Object o) {
-    Country other;
-    boolean same = false;
+	public boolean equals(Object o) {
+		Country other;
+		boolean same = false;
 
-    if (!(o instanceof Country)) {
-      return false;
-    }
-    other = (Country) o;
+		if (!(o instanceof Country)) {
+			return false;
+		}
+		other = (Country) o;
 
-    same = this.country.equals(other.country) && (this.code.equals(other.code));
+		same = this.country.equals(other.country) && (this.code.equals(other.code));
 
-    return same;
-  }
+		return same;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.country.hashCode() + this.code.hashCode();
+		myHash = this.country.hashCode() + this.code.hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("country: " + getCountry());
-    result.append(", code: " + getCode());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("country: " + getCountry());
+		result.append(", code: " + getCode());
+		result.append("]");
+		return result.toString();
+	}
 }

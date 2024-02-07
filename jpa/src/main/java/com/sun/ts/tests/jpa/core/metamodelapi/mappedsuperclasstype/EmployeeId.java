@@ -22,42 +22,42 @@ package com.sun.ts.tests.jpa.core.metamodelapi.mappedsuperclasstype;
  */
 public class EmployeeId implements java.io.Serializable {
 
-  String id;
+	String id;
 
-  public EmployeeId() {
-  }
+	public EmployeeId() {
+	}
 
-  public EmployeeId(String id) {
-    this.id = id;
-  }
+	public EmployeeId(String id) {
+		this.id = id;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String firstName) {
-    this.id = id;
-  }
+	public void setId(String firstName) {
+		this.id = id;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final EmployeeId other = (EmployeeId) obj;
-    if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
-      return false;
-    }
-    return true;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final EmployeeId other = (EmployeeId) obj;
+		if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
+			return false;
+		}
+		return true;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 5;
-    hash = 29 * hash + (this.id != null ? this.id.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public int hashCode() {
+		int hash = 5;
+		hash = 29 * hash + (this.id != null ? this.id.hashCode() : 0);
+		return hash;
+	}
 }

@@ -22,36 +22,36 @@ import jakarta.persistence.Id;
 @Entity
 public class Semester implements java.io.Serializable {
 
-  @Id
-  int id;
+	@Id
+	int id;
 
-  public Semester() {
-  }
+	public Semester() {
+	}
 
-  public Semester(int id) {
-    this.id = id;
-  }
+	public Semester(int id) {
+		this.id = id;
+	}
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int semester) {
-    this.id = semester;
-  }
+	public void setId(int semester) {
+		this.id = semester;
+	}
 
-  public int hashCode() {
+	public int hashCode() {
 
-    return id;
-  }
+		return id;
+	}
 
-  public boolean equals(Object obj) {
-    boolean result = false;
+	public boolean equals(Object obj) {
+		boolean result = false;
 
-    if ((obj != null) && (obj instanceof Semester)) {
-      Semester semester = (Semester) obj;
-      result = (semester.getId() == (this.id));
-    }
-    return result;
-  }
+		if ((obj != null) && (obj instanceof Semester)) {
+			Semester semester = (Semester) obj;
+			result = (semester.getId() == (this.id));
+		}
+		return result;
+	}
 }

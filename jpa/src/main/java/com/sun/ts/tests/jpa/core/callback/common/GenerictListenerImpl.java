@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.callback.common;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 /**
  * An annotation-free class that holds the logics for recording entity lifecycle
@@ -29,80 +29,76 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class GenerictListenerImpl {
 
-  public GenerictListenerImpl() {
-    super();
-  }
+	private static final Logger logger = (Logger) System.getLogger(GenerictListenerImpl.class.getName());
 
-  public static void logTrace(String s, CallbackStatusIF b) {
-    String ss = b.getEntityName() + ": " + s;
-    TestUtil.logTrace(ss);
-  }
+	public GenerictListenerImpl() {
+		super();
+	}
 
-  public void prePersist(CallbackStatusIF b) {
-    logTrace("In prePersist in class " + this, b);
-    b.setPrePersistCalled(true);
-    b.addPrePersistCall(b.getEntityName());
-    String testName = b.getTestName();
-    if (Constants.prePersistRuntimeExceptionTest.equals(testName)) {
-      throw new ArithmeticException("RuntimeException from PrePersist.");
-    }
-  }
+	public static void logTrace(String s, CallbackStatusIF b) {
+		String ss = b.getEntityName() + ": " + s;
+		logger.log(Logger.Level.TRACE, ss);
+	}
 
-  public void postPersist(Object b) {
-    CallbackStatusIF p = (CallbackStatusIF) b;
-    logTrace("In postPersist.", p);
-    if (!p.isPrePersistCalled()) {
-      TestUtil.logTrace(
-          "When calling postPersist, prePersist has not been called.");
-      throw new IllegalStateException(
-          "When calling postPersist, prePersist has not been called.");
-    }
-    p.setPostPersistCalled(true);
-    p.addPostPersistCall(p.getEntityName());
-  }
+	public void prePersist(CallbackStatusIF b) {
+		logTrace("In prePersist in class " + this, b);
+		b.setPrePersistCalled(true);
+		b.addPrePersistCall(b.getEntityName());
+		String testName = b.getTestName();
+		if (Constants.prePersistRuntimeExceptionTest.equals(testName)) {
+			throw new ArithmeticException("RuntimeException from PrePersist.");
+		}
+	}
 
-  public void preRemove(CallbackStatusIF b) {
-    logTrace("In preRemove.", b);
-    b.setPreRemoveCalled(true);
-    b.addPreRemoveCall(b.getEntityName());
-  }
+	public void postPersist(Object b) {
+		CallbackStatusIF p = (CallbackStatusIF) b;
+		logTrace("In postPersist.", p);
+		if (!p.isPrePersistCalled()) {
+			logger.log(Logger.Level.TRACE, "When calling postPersist, prePersist has not been called.");
+			throw new IllegalStateException("When calling postPersist, prePersist has not been called.");
+		}
+		p.setPostPersistCalled(true);
+		p.addPostPersistCall(p.getEntityName());
+	}
 
-  public void postRemove(Object b) {
-    CallbackStatusIF p = (CallbackStatusIF) b;
-    logTrace("In postRemove.", p);
-    if (!p.isPreRemoveCalled()) {
-      TestUtil
-          .logTrace("When calling postRemove, preRemove has not been called.");
-      throw new IllegalStateException(
-          "When calling postRemove, preRemove has not been called.");
-    }
-    p.setPostRemoveCalled(true);
-    p.addPostRemoveCall(p.getEntityName());
-  }
+	public void preRemove(CallbackStatusIF b) {
+		logTrace("In preRemove.", b);
+		b.setPreRemoveCalled(true);
+		b.addPreRemoveCall(b.getEntityName());
+	}
 
-  public void preUpdate(CallbackStatusIF b) {
-    logTrace("In preUpdate.", b);
-    b.setPreUpdateCalled(true);
-    b.addPreUpdateCall(b.getEntityName());
-  }
+	public void postRemove(Object b) {
+		CallbackStatusIF p = (CallbackStatusIF) b;
+		logTrace("In postRemove.", p);
+		if (!p.isPreRemoveCalled()) {
+			logger.log(Logger.Level.TRACE, "When calling postRemove, preRemove has not been called.");
+			throw new IllegalStateException("When calling postRemove, preRemove has not been called.");
+		}
+		p.setPostRemoveCalled(true);
+		p.addPostRemoveCall(p.getEntityName());
+	}
 
-  public void postUpdate(Object b) {
-    CallbackStatusIF p = (CallbackStatusIF) b;
-    logTrace("In postUpdate.", p);
-    if (!p.isPreUpdateCalled()) {
-      TestUtil
-          .logErr("When calling postUpdate, preUpdate has not been called.");
-      throw new IllegalStateException(
-          "When calling postUpdate, preUpdate has not been called.");
-    }
-    p.setPostUpdateCalled(true);
-    p.addPostUpdateCall(p.getEntityName());
-  }
+	public void preUpdate(CallbackStatusIF b) {
+		logTrace("In preUpdate.", b);
+		b.setPreUpdateCalled(true);
+		b.addPreUpdateCall(b.getEntityName());
+	}
 
-  public void postLoad(CallbackStatusIF b) {
-    logTrace("In postLoad.", b);
-    b.setPostLoadCalled(true);
-    b.addPostLoadCall(b.getEntityName());
-  }
+	public void postUpdate(Object b) {
+		CallbackStatusIF p = (CallbackStatusIF) b;
+		logTrace("In postUpdate.", p);
+		if (!p.isPreUpdateCalled()) {
+			logger.log(Logger.Level.ERROR, "When calling postUpdate, preUpdate has not been called.");
+			throw new IllegalStateException("When calling postUpdate, preUpdate has not been called.");
+		}
+		p.setPostUpdateCalled(true);
+		p.addPostUpdateCall(p.getEntityName());
+	}
+
+	public void postLoad(CallbackStatusIF b) {
+		logTrace("In postLoad.", b);
+		b.setPostLoadCalled(true);
+		b.addPostLoadCall(b.getEntityName());
+	}
 
 }

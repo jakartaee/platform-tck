@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,10 +16,13 @@
 
 package com.sun.ts.tests.jpa.se.cache.xml.enableselective;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 import jakarta.persistence.Cache;
@@ -29,146 +32,156 @@ import jakarta.persistence.EntityTransaction;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
+	public JavaArchive createDeployment() throws Exception {
 
-      super.setup(args, p);
-      removeTestData();
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] xmlFile = { ORM_XML };
+		String[] classes = { pkgName + "Customer", pkgName + "Department", pkgName + "Order" };
+		return createDeploymentJar("jpa_se_cache_xml_enableselective.jar", pkgNameWithoutSuffix, (String[]) classes,
+				PERSISTENCE_XML, xmlFile);
 
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
-    }
-  }
+	}
 
-  /*
-   * @testName: containsTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:1498; PERSISTENCE:SPEC:1498.1;
-   * PERSISTENCE:SPEC:1498.2; PERSISTENCE:SPEC:1866; PERSISTENCE:SPEC:1978;
-   * 
-   * @test_Strategy: Using the xml shared-cache-mode element with a value of
-   * ENABLE_SELECTIVE persist some entities with various Cachable values and
-   * verify the behavior of whether or not each is retained or not in the cache.
-   */
-  public void containsTest() throws Exception {
-    Cache cache;
-    boolean pass1 = false;
-    boolean pass2 = false;
-    boolean pass3 = false;
-    if (cachingSupported) {
-      try {
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
-        EntityManager em2 = getEntityManager();
-        EntityTransaction et = getEntityTransaction();
+	/*
+	 * @testName: containsTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:1498; PERSISTENCE:SPEC:1498.1;
+	 * PERSISTENCE:SPEC:1498.2; PERSISTENCE:SPEC:1866; PERSISTENCE:SPEC:1978;
+	 * 
+	 * @test_Strategy: Using the xml shared-cache-mode element with a value of
+	 * ENABLE_SELECTIVE persist some entities with various Cachable values and
+	 * verify the behavior of whether or not each is retained or not in the cache.
+	 */
+	@Test
+	public void containsTest() throws Exception {
+		Cache cache;
+		boolean pass1 = false;
+		boolean pass2 = false;
+		boolean pass3 = false;
+		if (cachingSupported) {
+			try {
 
-        et.begin();
+				EntityManager em2 = getEntityManager();
+				EntityTransaction et = getEntityTransaction();
 
-        Order order = new Order(1, 101);
-        em2.persist(order);
-        TestUtil.logTrace("persisted Order " + order);
+				et.begin();
 
-        Customer cust = new Customer("1", "one");
-        em2.persist(cust);
-        TestUtil.logTrace("persisted Customer " + cust);
+				Order order = new Order(1, 101);
+				em2.persist(order);
+				logger.log(Logger.Level.TRACE, "persisted Order " + order);
 
-        Department dept = new Department(1, "one");
-        em2.persist(dept);
-        TestUtil.logTrace("persisted Department " + dept);
+				Customer cust = new Customer("1", "one");
+				em2.persist(cust);
+				logger.log(Logger.Level.TRACE, "persisted Customer " + cust);
 
-        em2.flush();
-        et.commit();
+				Department dept = new Department(1, "one");
+				em2.persist(dept);
+				logger.log(Logger.Level.TRACE, "persisted Department " + dept);
 
-        EntityManagerFactory emf = getEntityManagerFactory();
-        cache = emf.getCache();
+				em2.flush();
+				et.commit();
 
-        if (cache != null) {
-          boolean b1 = cache.contains(Order.class, 1);
-          if (b1) {
-            TestUtil.logTrace("Cache returned: " + b1
-                + ", therefore cache does contain order " + order);
-            pass1 = true;
-          } else {
-            TestUtil.logErr("Cache returned: " + b1
-                + ", therefore cache does not contain order " + order);
-          }
-          boolean b2 = cache.contains(Customer.class, "1");
-          if (!b2) {
-            TestUtil.logTrace("Cache returned: " + b2
-                + ", therefore cache does not contain Customer " + cust);
-            pass2 = true;
-          } else {
-            TestUtil.logErr("Cache returned: " + b2
-                + ", therefore cache does contain Customer " + cust);
-          }
-          boolean b3 = cache.contains(Department.class, 1);
-          if (!b3) {
-            TestUtil.logTrace("Cache returned: " + b3
-                + ", therefore cache does not contain Department " + dept);
-            pass3 = true;
-          } else {
-            TestUtil.logErr("Cache returned: " + b3
-                + ", therefore cache does contain Department " + dept);
-          }
-        } else {
-          TestUtil.logErr("Cache returned was null");
-        }
-      } catch (Exception e) {
-        TestUtil.logErr("Unexpected exception occurred", e);
-      }
-    } else {
-      TestUtil.logMsg("Cache not supported, bypassing test");
-      pass1 = true;
-      pass2 = true;
-      pass3 = true;
-    }
-    if (!pass1 || !pass2 || !pass3) {
-      throw new Fault("containsTest failed");
-    }
+				EntityManagerFactory emf = getEntityManagerFactory();
+				cache = emf.getCache();
 
-  }
+				if (cache != null) {
+					boolean b1 = cache.contains(Order.class, 1);
+					if (b1) {
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b1 + ", therefore cache does contain order " + order);
+						pass1 = true;
+					} else {
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b1 + ", therefore cache does not contain order " + order);
+					}
+					boolean b2 = cache.contains(Customer.class, "1");
+					if (!b2) {
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b2 + ", therefore cache does not contain Customer " + cust);
+						pass2 = true;
+					} else {
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b2 + ", therefore cache does contain Customer " + cust);
+					}
+					boolean b3 = cache.contains(Department.class, 1);
+					if (!b3) {
+						logger.log(Logger.Level.TRACE,
+								"Cache returned: " + b3 + ", therefore cache does not contain Department " + dept);
+						pass3 = true;
+					} else {
+						logger.log(Logger.Level.ERROR,
+								"Cache returned: " + b3 + ", therefore cache does contain Department " + dept);
+					}
+				} else {
+					logger.log(Logger.Level.ERROR, "Cache returned was null");
+				}
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			}
+		} else {
+			logger.log(Logger.Level.INFO, "Cache not supported, bypassing test");
+			pass1 = true;
+			pass2 = true;
+			pass3 = true;
+		}
+		if (!pass1 || !pass2 || !pass3) {
+			throw new Exception("containsTest failed");
+		}
 
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("cleanup");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
+	}
 
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM CUSTOMER_TABLE")
-          .executeUpdate();
-      getEntityManager().createNativeQuery("DELETE FROM DEPARTMENT")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "cleanup");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
+
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM CUSTOMER_TABLE").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM DEPARTMENT").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 }

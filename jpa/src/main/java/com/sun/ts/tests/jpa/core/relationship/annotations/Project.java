@@ -38,76 +38,76 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Project implements java.io.Serializable {
 
-  // Instance Variables
-  private long projId;
+	// Instance Variables
+	private long projId;
 
-  private String name;
+	private String name;
 
-  private BigDecimal budget;
+	private BigDecimal budget;
 
-  private Person projectLead;
+	private Person projectLead;
 
-  private Collection<Person> persons = new java.util.ArrayList<Person>();
+	private Collection<Person> persons = new java.util.ArrayList<Person>();
 
-  public Project() {
-  }
+	public Project() {
+	}
 
-  public Project(long projId, String name, BigDecimal budget) {
-    this.projId = projId;
-    this.name = name;
-    this.budget = budget;
-  }
+	public Project(long projId, String name, BigDecimal budget) {
+		this.projId = projId;
+		this.name = name;
+		this.budget = budget;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  public long getProjId() {
-    return projId;
-  }
+	@Id
+	public long getProjId() {
+		return projId;
+	}
 
-  public void setProjId(long projId) {
-    this.projId = projId;
-  }
+	public void setProjId(long projId) {
+		this.projId = projId;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public BigDecimal getBudget() {
-    return budget;
-  }
+	public BigDecimal getBudget() {
+		return budget;
+	}
 
-  public void setBudget(BigDecimal budget) {
-    this.budget = budget;
-  }
+	public void setBudget(BigDecimal budget) {
+		this.budget = budget;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  /* Bi-Directional OneProjectLeadToOnePerson */
-  @OneToOne(mappedBy = "project")
-  public Person getProjectLead() {
-    return projectLead;
-  }
+	/* Bi-Directional OneProjectLeadToOnePerson */
+	@OneToOne(mappedBy = "project")
+	public Person getProjectLead() {
+		return projectLead;
+	}
 
-  public void setProjectLead(Person projectLead) {
-    this.projectLead = projectLead;
-  }
+	public void setProjectLead(Person projectLead) {
+		this.projectLead = projectLead;
+	}
 
-  /* Bi-Directional ManyProjectsToManyPersons */
-  @ManyToMany(cascade = CascadeType.ALL)
-  @JoinTable(name = "PROJECT_PERSON", joinColumns = @JoinColumn(name = "projects_PROJID", referencedColumnName = "PROJID"), inverseJoinColumns = @JoinColumn(name = "persons_PERSONID", referencedColumnName = "PERSONID"))
-  public Collection<Person> getPersons() {
-    return persons;
-  }
+	/* Bi-Directional ManyProjectsToManyPersons */
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "PROJECT_PERSON", joinColumns = @JoinColumn(name = "projects_PROJID", referencedColumnName = "PROJID"), inverseJoinColumns = @JoinColumn(name = "persons_PERSONID", referencedColumnName = "PERSONID"))
+	public Collection<Person> getPersons() {
+		return persons;
+	}
 
-  public void setPersons(Collection<Person> persons) {
-    this.persons = persons;
-  }
+	public void setPersons(Collection<Person> persons) {
+		this.persons = persons;
+	}
 
 }

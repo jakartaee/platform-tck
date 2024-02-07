@@ -28,67 +28,65 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Hardware implements Serializable {
 
-  @Id
-  @Column(name = "ID")
-  private Integer id;
+	@Id
+	@Column(name = "ID")
+	private Integer id;
 
-  @ManyToOne()
-  @JoinColumns({ @JoinColumn(name = "cubedID", referencedColumnName = "id"),
-      @JoinColumn(name = "location", referencedColumnName = "location") })
-  private Cubicle cubicle;
+	@ManyToOne()
+	@JoinColumns({ @JoinColumn(name = "cubedID", referencedColumnName = "id"),
+			@JoinColumn(name = "location", referencedColumnName = "location") })
+	private Cubicle cubicle;
 
-  @Column(name = "CODE")
-  private String salesCode;
+	@Column(name = "CODE")
+	private String salesCode;
 
-  public Hardware() {
-  }
+	public Hardware() {
+	}
 
-  public Cubicle getCubicle() {
-    return cubicle;
-  }
+	public Cubicle getCubicle() {
+		return cubicle;
+	}
 
-  public void setCubicle(Cubicle cubicle) {
-    this.cubicle = cubicle;
-  }
+	public void setCubicle(Cubicle cubicle) {
+		this.cubicle = cubicle;
+	}
 
-  public Integer getId() {
-    return id;
-  }
+	public Integer getId() {
+		return id;
+	}
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-  public int hashCode() {
-    int hash = 0;
-    hash += (this.getId() != null ? this.getId().hashCode() : 0);
-    return hash;
-  }
+	public int hashCode() {
+		int hash = 0;
+		hash += (this.getId() != null ? this.getId().hashCode() : 0);
+		return hash;
+	}
 
-  public boolean equals(Object object) {
-    // TODO: Warning - this method won't work in the case the id fields are not
-    // set
-    if (!(object instanceof Hardware)) {
-      return false;
-    }
-    Hardware other = (Hardware) object;
-    if (this.getId() != other.getId()
-        && (this.getId() == null || !this.getId().equals(other.getId()))) {
-      return false;
-    }
-    return true;
-  }
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not
+		// set
+		if (!(object instanceof Hardware)) {
+			return false;
+		}
+		Hardware other = (Hardware) object;
+		if (this.getId() != other.getId() && (this.getId() == null || !this.getId().equals(other.getId()))) {
+			return false;
+		}
+		return true;
+	}
 
-  public String toString() {
-    return "com.sun.ts.tests.jpa.core.override.joincolumn." + "Hardware[id="
-        + getId() + "]";
-  }
+	public String toString() {
+		return "com.sun.ts.tests.jpa.core.override.joincolumn." + "Hardware[id=" + getId() + "]";
+	}
 
-  public String getSalesCode() {
-    return salesCode;
-  }
+	public String getSalesCode() {
+		return salesCode;
+	}
 
-  public void setSalesCode(String salesCode) {
-    this.salesCode = salesCode;
-  }
+	public void setSalesCode(String salesCode) {
+		this.salesCode = salesCode;
+	}
 }

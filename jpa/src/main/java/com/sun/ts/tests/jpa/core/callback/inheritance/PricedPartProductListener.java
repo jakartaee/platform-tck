@@ -26,14 +26,12 @@ import com.sun.ts.tests.jpa.core.callback.common.GenerictListenerImpl;
 
 public class PricedPartProductListener extends GenerictListener {
 
-  public PricedPartProductListener() {
-    super();
-  }
+	public PricedPartProductListener() {
+		super();
+	}
 
-  public void prePersist(CallbackStatusIF b) {
-    GenerictListenerImpl.logTrace("In PricedPartProductListener.prePersist.",
-        b);
-    throw new IllegalStateException(
-        "This is not a callback and should never be called.");
-  }
+	public void prePersist(CallbackStatusIF b) {
+		GenerictListenerImpl.logTrace("In PricedPartProductListener.prePersist.", b);
+		throw new IllegalStateException("This is not a callback and should never be called.");
+	}
 }

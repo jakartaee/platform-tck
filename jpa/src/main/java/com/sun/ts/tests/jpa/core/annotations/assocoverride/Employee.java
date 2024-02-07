@@ -29,67 +29,67 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass()
 public abstract class Employee {
 
-  private int id;
+	private int id;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private Date hireDate;
+	private Date hireDate;
 
-  protected Address address;
+	protected Address address;
 
-  protected Employee() {
-  }
+	protected Employee() {
+	}
 
-  protected Employee(int id, String firstName, String lastName, Date hireDate) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = (Date) hireDate.clone();
-  }
+	protected Employee(int id, String firstName, String lastName, Date hireDate) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = (Date) hireDate.clone();
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
-  @Id
-  public int getId() {
-    return id;
-  }
+	// ===========================================================
+	// getters and setters for the state fields
+	@Id
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public String getFirstName() {
-    return firstName;
-  }
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  public String getLastName() {
-    return lastName;
-  }
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  public Date getHireDate() {
-    return hireDate;
-  }
+	public Date getHireDate() {
+		return hireDate;
+	}
 
-  public void setHireDate(Date hireDate) {
-    this.hireDate = hireDate;
-  }
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
 
-  @ManyToOne
-  public Address getAddress() {
-    return address;
-  }
+	@ManyToOne
+	public Address getAddress() {
+		return address;
+	}
 
-  public void setAddress(Address address) {
-    this.address = address;
-  }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 }

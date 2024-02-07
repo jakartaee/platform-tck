@@ -16,10 +16,9 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.entitytype;
 
+import java.lang.System.Logger;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
@@ -34,52 +33,53 @@ import jakarta.persistence.Version;
 
 @Entity
 @Table(name = "COLTAB")
-@AttributeOverrides({
-    @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
+@AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 public class A extends B {
 
-  @Id
-  protected String id;
+	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
 
-  @Version
-  protected Integer value;
+	@Id
+	protected String id;
 
-  @ElementCollection
-  @CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
-  protected Set<Address> address = new HashSet();
+	@Version
+	protected Integer value;
 
-  public A() {
-  }
+	@ElementCollection
+	@CollectionTable(name = "COLTAB_ADDRESS", joinColumns = @JoinColumn(name = "A_ID"))
+	protected Set<Address> address = new HashSet();
 
-  public A(String id, String name, int value) {
-    super(name);
-    this.id = id;
-    this.value = value;
-  }
+	public A() {
+	}
 
-  public Set<Address> getAddress() {
-    TestUtil.logTrace("getAddress");
-    return address;
-  }
+	public A(String id, String name, int value) {
+		super(name);
+		this.id = id;
+		this.value = value;
+	}
 
-  public void setAddress(Set<Address> addr) {
-    TestUtil.logTrace("setAddress");
-    this.address = addr;
-  }
+	public Set<Address> getAddress() {
+		logger.log(Logger.Level.TRACE, "getAddress");
+		return address;
+	}
 
-  public String getId() {
-    return id;
-  }
+	public void setAddress(Set<Address> addr) {
+		logger.log(Logger.Level.TRACE, "setAddress");
+		this.address = addr;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public String getId() {
+		return id;
+	}
 
-  public Integer getValue() {
-    return value;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  public void setValue(Integer val) {
-    this.value = val;
-  }
+	public Integer getValue() {
+		return value;
+	}
+
+	public void setValue(Integer val) {
+		this.value = val;
+	}
 }

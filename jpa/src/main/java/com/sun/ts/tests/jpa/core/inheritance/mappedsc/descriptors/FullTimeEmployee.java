@@ -30,26 +30,25 @@ import java.sql.Date;
 
 public class FullTimeEmployee extends Employee implements Serializable {
 
-  private float salary;
+	private float salary;
 
-  public FullTimeEmployee() {
-  }
+	public FullTimeEmployee() {
+	}
 
-  public FullTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    super(id, firstName, lastName, hireDate);
-    this.salary = salary;
-  }
+	public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		super(id, firstName, lastName, hireDate);
+		this.salary = salary;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public float getSalary() {
-    return salary;
-  }
+	public float getSalary() {
+		return salary;
+	}
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
 }

@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jpa.core.inheritance.nonentity;
 
+import java.lang.System.Logger;
 import java.sql.Date;
 
 import jakarta.persistence.Column;
@@ -34,30 +35,31 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("EXEMPT")
 public class FullTimeEmployee extends Employee {
 
-  private float salary;
+	private static final Logger logger = (Logger) System.getLogger(FullTimeEmployee.class.getName());
 
-  public FullTimeEmployee() {
-  }
+	private float salary;
 
-  public FullTimeEmployee(int id, String firstName, String lastName,
-      Date hireDate, float salary) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-    this.salary = salary;
-  }
+	public FullTimeEmployee() {
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	public FullTimeEmployee(int id, String firstName, String lastName, Date hireDate, float salary) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+		this.salary = salary;
+	}
 
-  @Column(name = "SALARY")
-  public float getSalary() {
-    return salary;
-  }
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public void setSalary(float salary) {
-    this.salary = salary;
-  }
+	@Column(name = "SALARY")
+	public float getSalary() {
+		return salary;
+	}
+
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
 
 }

@@ -31,46 +31,46 @@ import jakarta.persistence.TableGenerator;
 @Access(AccessType.FIELD)
 public class DataTypes3 implements java.io.Serializable {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.TABLE, generator = "myTableGenerator3")
-  @TableGenerator(name = "myTableGenerator3", table = "GENERATOR_TABLE", pkColumnName = "PK_COL", valueColumnName = "VAL_COL", pkColumnValue = "DT3_ID", allocationSize = 1, initialValue = 1000)
-  @Column(name = "ID")
-  private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "myTableGenerator3")
+	@TableGenerator(name = "myTableGenerator3", table = "GENERATOR_TABLE", pkColumnName = "PK_COL", valueColumnName = "VAL_COL", pkColumnValue = "DT3_ID", allocationSize = 1, initialValue = 1000)
+	@Column(name = "ID")
+	private int id;
 
-  @Column(name = "CHARARRAYDATA")
-  private String stringData;
+	@Column(name = "CHARARRAYDATA")
+	private String stringData;
 
-  public DataTypes3() {
-  }
+	public DataTypes3() {
+	}
 
-  public DataTypes3(String stringData) {
-    this.stringData = stringData;
-  }
+	public DataTypes3(String stringData) {
+		this.stringData = stringData;
+	}
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public String getStringData() {
-    return stringData;
-  }
+	public String getStringData() {
+		return stringData;
+	}
 
-  public void setStringData(String stringData) {
-    this.stringData = stringData;
-  }
+	public void setStringData(String stringData) {
+		this.stringData = stringData;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", stringData: " + getStringData());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", stringData: " + getStringData());
+		result.append("]");
+		return result.toString();
+	}
 
 }

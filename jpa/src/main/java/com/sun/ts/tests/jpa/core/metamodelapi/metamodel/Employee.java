@@ -26,72 +26,72 @@ import jakarta.persistence.Version;
 
 @MappedSuperclass()
 public abstract class Employee implements Serializable {
-  @Id
-  private int id;
+	@Id
+	private int id;
 
-  @Version
-  private Integer version;
+	@Version
+	private Integer version;
 
-  private String firstName;
+	private String firstName;
 
-  private String lastName;
+	private String lastName;
 
-  private Date hireDate;
+	private Date hireDate;
 
-  public Employee() {
-  }
+	public Employee() {
+	}
 
-  public Employee(int id, String firstName, String lastName, Date hireDate) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.hireDate = hireDate;
-  }
+	public Employee(int id, String firstName, String lastName, Date hireDate) {
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.hireDate = hireDate;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  public int getId() {
-    return id;
-  }
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  public Integer getVersion() {
-    return version;
-  }
+	public Integer getVersion() {
+		return version;
+	}
 
-  public void setVersion(Integer ver) {
-    this.version = ver;
-  }
+	public void setVersion(Integer ver) {
+		this.version = ver;
+	}
 
-  @Column(name = "FIRSTNAMExx")
-  public String getFirstName() {
-    return firstName;
-  }
+	@Column(name = "FIRSTNAMExx")
+	public String getFirstName() {
+		return firstName;
+	}
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-  @Column(name = "LASTNAMExx")
-  public String getLastName() {
-    return lastName;
-  }
+	@Column(name = "LASTNAMExx")
+	public String getLastName() {
+		return lastName;
+	}
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-  @Column(name = "HIREDATExx")
-  public Date getHireDate() {
-    return hireDate;
-  }
+	@Column(name = "HIREDATExx")
+	public Date getHireDate() {
+		return hireDate;
+	}
 
-  public void setHireDate(Date hireDate) {
-    this.hireDate = hireDate;
-  }
+	public void setHireDate(Date hireDate) {
+		this.hireDate = hireDate;
+	}
 
 }

@@ -23,18 +23,18 @@ package com.sun.ts.tests.jpa.ee.packaging.ejb.descriptor;
 import java.util.Properties;
 
 public interface Stateful3IF {
-  public void removeTestData();
+	public void removeTestData();
 
-  public void init(Properties p);
+	public void init(Properties p);
 
-  public boolean test1();
+	public boolean test1();
 
-  public boolean test2();
+	public boolean test2();
 
-  public boolean test3();
+	public boolean test3();
 
-  public boolean test4();
+	public boolean test4();
 
-  public boolean test6();
+	public boolean test6();
 
 }

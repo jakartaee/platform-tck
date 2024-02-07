@@ -16,6 +16,8 @@
 
 package com.sun.ts.tests.jpa.core.metamodelapi.metamodel;
 
+import java.lang.System.Logger;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -26,93 +28,93 @@ import jakarta.persistence.Table;
 @Table(name = "B_EMBEDDABLE")
 public class B implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
-  @Id
-  protected String id;
+	private static final Logger logger = (Logger) System.getLogger(B.class.getName());
 
-  @Basic
-  protected String name;
+	// ===========================================================
+	// instance variables
+	@Id
+	protected String id;
 
-  @Basic
-  protected int value;
+	@Basic
+	protected String name;
 
-  @Embedded
-  protected Address address;
+	@Basic
+	protected int value;
 
-  public Address getAddress() {
-    return address;
-  }
+	@Embedded
+	protected Address address;
 
-  public void setAddress(Address address) {
-    this.address = address;
-  }
+	public Address getAddress() {
+		return address;
+	}
 
-  // ===========================================================
-  // constructors
-  public B() {
-    // TestUtil.logTrace("Entity B no arg constructor");
-  }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
-  public B(String id, String name, int value) {
-    this.id = id;
-    this.name = name;
-    this.value = value;
-  }
+	// ===========================================================
+	// constructors
+	public B() {
+		// logger.log(Logger.Level.TRACE,"Entity B no arg constructor");
+	}
 
-  public String getBId() {
-    return id;
-  }
+	public B(String id, String name, int value) {
+		this.id = id;
+		this.name = name;
+		this.value = value;
+	}
 
-  public String getBName() {
-    return name;
-  }
+	public String getBId() {
+		return id;
+	}
 
-  public void setBName(String bName) {
-    this.name = bName;
-  }
+	public String getBName() {
+		return name;
+	}
 
-  public int getBValue() {
-    return value;
-  }
+	public void setBName(String bName) {
+		this.name = bName;
+	}
 
-  public void setBValue(int value) {
-    this.value = value;
-  }
+	public int getBValue() {
+		return value;
+	}
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    final B other = (B) obj;
-    if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
-      return false;
-    }
-    if ((this.name == null) ? (other.name != null)
-        : !this.name.equals(other.name)) {
-      return false;
-    }
-    if (this.value != other.value) {
-      return false;
-    }
-    if (this.address != other.address
-        && (this.address == null || !this.address.equals(other.address))) {
-      return false;
-    }
-    return true;
-  }
+	public void setBValue(int value) {
+		this.value = value;
+	}
 
-  @Override
-  public int hashCode() {
-    int hash = 7;
-    hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
-    hash = 89 * hash + (this.name != null ? this.name.hashCode() : 0);
-    hash = 89 * hash + this.value;
-    hash = 89 * hash + (this.address != null ? this.address.hashCode() : 0);
-    return hash;
-  }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final B other = (B) obj;
+		if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
+			return false;
+		}
+		if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+			return false;
+		}
+		if (this.value != other.value) {
+			return false;
+		}
+		if (this.address != other.address && (this.address == null || !this.address.equals(other.address))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 89 * hash + (this.id != null ? this.id.hashCode() : 0);
+		hash = 89 * hash + (this.name != null ? this.name.hashCode() : 0);
+		hash = 89 * hash + this.value;
+		hash = 89 * hash + (this.address != null ? this.address.hashCode() : 0);
+		return hash;
+	}
 }

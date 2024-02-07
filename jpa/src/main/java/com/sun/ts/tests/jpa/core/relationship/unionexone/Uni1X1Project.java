@@ -22,45 +22,45 @@ import jakarta.persistence.Id;
 @Entity
 public class Uni1X1Project implements java.io.Serializable {
 
-  private long projId;
+	private long projId;
 
-  private String name;
+	private String name;
 
-  private float budget;
+	private float budget;
 
-  public Uni1X1Project() {
-  }
+	public Uni1X1Project() {
+	}
 
-  public Uni1X1Project(long projId, String name, float budget) {
-    this.projId = projId;
-    this.name = name;
-    this.budget = budget;
-  }
+	public Uni1X1Project(long projId, String name, float budget) {
+		this.projId = projId;
+		this.name = name;
+		this.budget = budget;
+	}
 
-  @Id
-  public long getProjId() {
-    return projId;
+	@Id
+	public long getProjId() {
+		return projId;
 
-  }
+	}
 
-  public void setProjId(long projId) {
-    this.projId = projId;
-  }
+	public void setProjId(long projId) {
+		this.projId = projId;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public float getBudget() {
-    return budget;
-  }
+	public float getBudget() {
+		return budget;
+	}
 
-  public void setBudget(float budget) {
-    this.budget = budget;
-  }
+	public void setBudget(float budget) {
+		this.budget = budget;
+	}
 
 }

@@ -31,37 +31,37 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES")
 public class DataTypes4 implements java.io.Serializable {
 
-  private int id;
+	private int id;
 
-  private Integer integerData;
+	private Integer integerData;
 
-  public DataTypes4() {
-  }
+	public DataTypes4() {
+	}
 
-  public DataTypes4(Integer integerData) {
-    this.integerData = integerData;
+	public DataTypes4(Integer integerData) {
+		this.integerData = integerData;
 
-  }
+	}
 
-  @Id
-  @SequenceGenerator(name = "SEQGENERATOR", allocationSize = 1, initialValue = 10)
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQGENERATOR")
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@SequenceGenerator(name = "SEQGENERATOR", allocationSize = 1, initialValue = 10)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQGENERATOR")
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "INTDATA")
-  public Integer getIntegerData() {
-    return integerData;
-  }
+	@Column(name = "INTDATA")
+	public Integer getIntegerData() {
+		return integerData;
+	}
 
-  public void setIntegerData(Integer integerData) {
-    this.integerData = integerData;
-  }
+	public void setIntegerData(Integer integerData) {
+		this.integerData = integerData;
+	}
 
 }

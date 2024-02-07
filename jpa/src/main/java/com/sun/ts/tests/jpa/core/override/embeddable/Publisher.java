@@ -24,27 +24,27 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class Publisher implements Serializable {
 
-  public Publisher() {
-  }
+	public Publisher() {
+	}
 
-  private String name;
+	private String name;
 
-  @Basic
-  private String location;
+	@Basic
+	private String location;
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public String getLocation() {
-    return location;
-  }
+	public String getLocation() {
+		return location;
+	}
 
-  public void setLocation(String location) {
-    this.location = location;
-  }
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

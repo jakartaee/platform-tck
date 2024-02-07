@@ -32,56 +32,56 @@ import jakarta.persistence.Table;
 @Table(name = "DEPARTMENT")
 public class Department3 implements java.io.Serializable {
 
-  // Instance variables
-  private int id;
+	// Instance variables
+	private int id;
 
-  private String name;
+	private String name;
 
-  private Map lastNameEmployees;
+	private Map lastNameEmployees;
 
-  public Department3() {
-  }
+	public Department3() {
+	}
 
-  public Department3(int id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+	public Department3(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the state fields
+	// ===========================================================
+	// getters and setters for the state fields
 
-  @Id
-  @Column(name = "ID")
-  public int getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  // ===========================================================
-  // getters and setters for the association fields
+	// ===========================================================
+	// getters and setters for the association fields
 
-  @OneToMany(targetEntity = Employee3.class, mappedBy = "department")
-  @MapKeyClass(Offices.class)
-  @MapKeyColumn(name = "OFFICE_ID")
-  @MapKeyEnumerated(EnumType.STRING)
-  public Map getLastNameEmployees() {
-    return lastNameEmployees;
-  }
+	@OneToMany(targetEntity = Employee3.class, mappedBy = "department")
+	@MapKeyClass(Offices.class)
+	@MapKeyColumn(name = "OFFICE_ID")
+	@MapKeyEnumerated(EnumType.STRING)
+	public Map getLastNameEmployees() {
+		return lastNameEmployees;
+	}
 
-  public void setLastNameEmployees(Map lastNameEmployees) {
-    this.lastNameEmployees = lastNameEmployees;
-  }
+	public void setLastNameEmployees(Map lastNameEmployees) {
+		this.lastNameEmployees = lastNameEmployees;
+	}
 
 }

@@ -32,47 +32,47 @@ import jakarta.persistence.Table;
 @DiscriminatorColumn(name = "PRODUCT_TYPE", discriminatorType = DiscriminatorType.INTEGER)
 @DiscriminatorValue("0")
 public class Product2 implements java.io.Serializable {
-  private String id;
+	private String id;
 
-  private String name;
+	private String name;
 
-  private int quantity;
+	private int quantity;
 
-  public Product2() {
-    super();
-  }
+	public Product2() {
+		super();
+	}
 
-  public Product2(String id, String name, int quantity) {
-    this.id = id;
-    this.name = name;
-    this.quantity = quantity;
-  }
+	public Product2(String id, String name, int quantity) {
+		this.id = id;
+		this.name = name;
+		this.quantity = quantity;
+	}
 
-  @Id
-  @Column(name = "ID")
-  public String getId() {
-    return id;
-  }
+	@Id
+	@Column(name = "ID")
+	public String getId() {
+		return id;
+	}
 
-  public void setId(String id) {
-    this.id = id;
-  }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-  @Column(name = "NAME")
-  public String getName() {
-    return name;
-  }
+	@Column(name = "NAME")
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  @Column(name = "QUANTITY")
-  public int getQuantity() {
-    return quantity;
-  }
+	@Column(name = "QUANTITY")
+	public int getQuantity() {
+		return quantity;
+	}
 
-  public void setQuantity(int v) {
-    this.quantity = v;
-  }
+	public void setQuantity(int v) {
+		this.quantity = v;
+	}
 }

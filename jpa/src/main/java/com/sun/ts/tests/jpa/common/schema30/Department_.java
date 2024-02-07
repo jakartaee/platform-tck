@@ -25,10 +25,10 @@ import jakarta.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Department.class)
 public class Department_ {
 
-  public static volatile SingularAttribute<Department, Integer> id;
+	public static volatile SingularAttribute<Department, Integer> id;
 
-  public static volatile SingularAttribute<Department, String> name;
+	public static volatile SingularAttribute<Department, String> name;
 
-  public static volatile MapAttribute<Department, String, Employee> lastNameEmployees;
+	public static volatile MapAttribute<Department, String, Employee> lastNameEmployees;
 
 }

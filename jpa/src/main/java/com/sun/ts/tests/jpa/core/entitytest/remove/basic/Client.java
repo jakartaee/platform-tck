@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,397 +20,407 @@
 
 package com.sun.ts.tests.jpa.core.entitytest.remove.basic;
 
-import java.util.Properties;
+import java.lang.System.Logger;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.util.TestUtil;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.tests.jpa.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-  public Client() {
-  }
+	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	public Client() {
+	}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    TestUtil.logTrace("setup");
-    try {
-      super.setup(args, p);
-      removeTestData();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: ", e);
-      throw new Fault("Setup failed:", e);
+	public JavaArchive createDeployment() throws Exception {
 
-    }
-  }
+		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgName = pkgNameWithoutSuffix + ".";
+		String[] classes = { pkgName + "A" };
+		return createDeploymentJar("jpa_core_entitytest_remove_basic.jar", pkgNameWithoutSuffix, classes);
 
-  /*
-   * BEGIN Test Cases
-   */
+	}
 
-  /*
-   * @testName: removeBasicTest1
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:628;
-   * PERSISTENCE:SPEC:629
-   * 
-   * @test_Strategy: A managed entity instance becomes removed by invoking the
-   * remove method on it or by cascading the remove operation. The semantics of
-   * the remove operation, applied to an entity X are as follows:
-   *
-   * If X is a new entity, it is ignored by the remove operation.
-   *
-   * Invoke remove on a new entity.
-   *
-   */
+	@BeforeEach
+	public void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		try {
+			super.setup();
+			createDeployment();
+			removeTestData();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("Setup failed:", e);
 
-  public void removeBasicTest1() throws Exception {
-    TestUtil.logTrace("Begin removeBasicTest1");
-    boolean pass = false;
-    final A a1 = new A("1", "a1", 1);
+		}
+	}
 
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().remove(a1);
-      pass = true;
-      getEntityTransaction().commit();
-    } catch (Exception fe) {
-      TestUtil.logErr(
-          "Unexpected Exception during remove operation.  Should have been ignored.",
-          fe);
-      pass = false;
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+	/*
+	 * BEGIN Test Cases
+	 */
 
-    if (!pass)
-      throw new Fault("removeBasicTest1 failed");
-  }
+	/*
+	 * @testName: removeBasicTest1
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:628;
+	 * PERSISTENCE:SPEC:629
+	 * 
+	 * @test_Strategy: A managed entity instance becomes removed by invoking the
+	 * remove method on it or by cascading the remove operation. The semantics of
+	 * the remove operation, applied to an entity X are as follows:
+	 *
+	 * If X is a new entity, it is ignored by the remove operation.
+	 *
+	 * Invoke remove on a new entity.
+	 *
+	 */
+	@Test
+	public void removeBasicTest1() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin removeBasicTest1");
+		boolean pass = false;
+		final A a1 = new A("1", "a1", 1);
 
-  /*
-   * @testName: removeBasicTest2
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:632
-   * 
-   * @test_Strategy: If X is a managed entity, the remove operation causes it to
-   * transition to the removed state. Invoke remove on a managed entity.
-   *
-   */
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().remove(a1);
+			pass = true;
+			getEntityTransaction().commit();
+		} catch (Exception fe) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception during remove operation.  Should have been ignored.",
+					fe);
+			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
 
-  public void removeBasicTest2() throws Exception {
-    TestUtil.logTrace("Begin removeBasicTest2");
-    boolean pass = false;
-    final A a1 = new A("2", "a2", 2);
-    createA(a1);
+		if (!pass)
+			throw new Exception("removeBasicTest1 failed");
+	}
 
-    getEntityTransaction().begin();
-    try {
-      final A newA = findA("2");
-      getEntityManager().remove(newA);
-      TestUtil.logTrace("Call contains after remove()");
-      pass = (!getEntityManager().contains(newA));
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-      pass = false;
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+	/*
+	 * @testName: removeBasicTest2
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:632
+	 * 
+	 * @test_Strategy: If X is a managed entity, the remove operation causes it to
+	 * transition to the removed state. Invoke remove on a managed entity.
+	 *
+	 */
+	@Test
+	public void removeBasicTest2() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin removeBasicTest2");
+		boolean pass = false;
+		final A a1 = new A("2", "a2", 2);
+		createA(a1);
 
-    if (!pass)
-      throw new Fault("removeBasicTest2 failed");
-  }
+		getEntityTransaction().begin();
+		try {
+			final A newA = findA("2");
+			getEntityManager().remove(newA);
+			logger.log(Logger.Level.TRACE, "Call contains after remove()");
+			pass = (!getEntityManager().contains(newA));
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
 
-  /*
-   * @testName: removeBasicTest3
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:636
-   * 
-   * @test_Strategy: If X is a removed entity, invoking the remove method on it
-   * will be ignored.
-   *
-   * Invoke remove on a removed entity.
-   *
-   */
+		if (!pass)
+			throw new Exception("removeBasicTest2 failed");
+	}
 
-  public void removeBasicTest3() throws Exception {
-    final A a1 = new A("4", "a4", 4);
-    boolean pass = false;
+	/*
+	 * @testName: removeBasicTest3
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:636
+	 * 
+	 * @test_Strategy: If X is a removed entity, invoking the remove method on it
+	 * will be ignored.
+	 *
+	 * Invoke remove on a removed entity.
+	 *
+	 */
+	@Test
+	public void removeBasicTest3() throws Exception {
+		final A a1 = new A("4", "a4", 4);
+		boolean pass = false;
 
-    try {
-      getEntityTransaction().begin();
-      TestUtil.logTrace("Persist Instance");
-      getEntityManager().persist(a1);
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "Persist Instance");
+			getEntityManager().persist(a1);
 
-      if (getEntityManager().contains(a1)) {
-        try {
-          getEntityManager().remove(a1);
-          getEntityManager().flush();
+			if (getEntityManager().contains(a1)) {
+				try {
+					getEntityManager().remove(a1);
+					getEntityManager().flush();
 
-          final A stillExists = findA("4");
+					final A stillExists = findA("4");
 
-          if (stillExists == null) {
-            getEntityManager().remove(a1);
-            pass = true;
-          }
-        } catch (Exception e) {
-          TestUtil.logErr("Unexpected exception caught trying to remove"
-              + " a removed entity, should have been ignored", e);
-          pass = false;
-        }
-      } else {
-        TestUtil.logTrace("entity not managed, unexpected, test fails.");
-        pass = false;
-      }
-      getEntityTransaction().commit();
+					if (stillExists == null) {
+						getEntityManager().remove(a1);
+						pass = true;
+					}
+				} catch (Exception e) {
+					logger.log(Logger.Level.ERROR, "Unexpected exception caught trying to remove"
+							+ " a removed entity, should have been ignored", e);
+					pass = false;
+				}
+			} else {
+				logger.log(Logger.Level.TRACE, "entity not managed, unexpected, test fails.");
+				pass = false;
+			}
+			getEntityTransaction().commit();
 
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected exception occurred", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
 
-    if (!pass)
-      throw new Fault("removeBasicTest3 failed");
-  }
+		if (!pass)
+			throw new Exception("removeBasicTest3 failed");
+	}
 
-  /*
-   * @testName: removeBasicTest4
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:637;
-   * PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:648
-   * 
-   * @test_Strategy: A removed entity will be removed from the database at or
-   * before transaction commit or as a result of a flush operation.
-   *
-   * Remove an entity. Verify the entity is removed from the database at as a
-   * result of the flush operation.
-   *
-   * The flush method can be used for force synchronization. The semantics of
-   * the flush operation applied to an entity X is as follows:
-   *
-   * If X is a removed entity, it is removed from the database.
-   *
-   */
+	/*
+	 * @testName: removeBasicTest4
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:617; PERSISTENCE:SPEC:637;
+	 * PERSISTENCE:SPEC:641; PERSISTENCE:SPEC:648
+	 * 
+	 * @test_Strategy: A removed entity will be removed from the database at or
+	 * before transaction commit or as a result of a flush operation.
+	 *
+	 * Remove an entity. Verify the entity is removed from the database at as a
+	 * result of the flush operation.
+	 *
+	 * The flush method can be used for force synchronization. The semantics of the
+	 * flush operation applied to an entity X is as follows:
+	 *
+	 * If X is a removed entity, it is removed from the database.
+	 *
+	 */
+	@Test
+	public void removeBasicTest4() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin removeBasicTest4");
+		boolean pass = false;
+		final A a1 = new A("5", "a5", 5);
+		getEntityTransaction().begin();
+		getEntityManager().persist(a1);
 
-  public void removeBasicTest4() throws Exception {
-    TestUtil.logTrace("Begin removeBasicTest4");
-    boolean pass = false;
-    final A a1 = new A("5", "a5", 5);
-    getEntityTransaction().begin();
-    getEntityManager().persist(a1);
+		try {
+			A newA = findA("5");
+			if (null != newA) {
+				logger.log(Logger.Level.TRACE, "Found newA, try Remove");
+				getEntityManager().remove(newA);
+				getEntityManager().flush();
 
-    try {
-      A newA = findA("5");
-      if (null != newA) {
-        TestUtil.logTrace("Found newA, try Remove");
-        getEntityManager().remove(newA);
-        getEntityManager().flush();
+				logger.log(Logger.Level.TRACE, "Removed, try to find and verify the entity has been removed");
+				newA = findA("5");
+				if (null == newA) {
+					logger.log(Logger.Level.TRACE, "NewA is Null as expected");
+					pass = true;
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "Could not find persisted entity.");
+				pass = false;
+			}
 
-        TestUtil.logTrace(
-            "Removed, try to find and verify the entity has been removed");
-        newA = findA("5");
-        if (null == newA) {
-          TestUtil.logTrace("NewA is Null as expected");
-          pass = true;
-        }
-      } else {
-        TestUtil.logErr("Could not find persisted entity.");
-        pass = false;
-      }
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			pass = false;
+			logger.log(Logger.Level.ERROR, "Unexpected Exception attempting to find removed entity:" + e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr(
-          "Unexpected Exception attempting to find removed entity:" + e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+		if (!pass)
+			throw new Exception("removeBasicTest4 failed");
+	}
 
-    if (!pass)
-      throw new Fault("removeBasicTest4 failed");
-  }
+	/*
+	 * @testName: removeBasicTest5
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:673
+	 * 
+	 * @test_Strategy: The contains method [used to determine whether an entity
+	 * instance is in the managed state] returns false:
+	 *
+	 * If the remove method has been called on the entity.
+	 *
+	 */
+	@Test
+	public void removeBasicTest5() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin removeBasicTest5");
+		boolean pass = false;
+		final A a1 = new A("6", "a6", 6);
+		createA(a1);
 
-  /*
-   * @testName: removeBasicTest5
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:671; PERSISTENCE:SPEC:673
-   * 
-   * @test_Strategy: The contains method [used to determine whether an entity
-   * instance is in the managed state] returns false:
-   *
-   * If the remove method has been called on the entity.
-   *
-   */
+		try {
+			getEntityTransaction().begin();
 
-  public void removeBasicTest5() throws Exception {
-    TestUtil.logTrace("Begin removeBasicTest5");
-    boolean pass = false;
-    final A a1 = new A("6", "a6", 6);
-    createA(a1);
+			final A a2 = findA("6");
+			getEntityManager().remove(a2);
 
-    try {
-      getEntityTransaction().begin();
+			if (!getEntityManager().contains(a2)) {
+				pass = true;
+			}
 
-      final A a2 = findA("6");
-      getEntityManager().remove(a2);
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			pass = false;
+			logger.log(Logger.Level.ERROR, "Unexpected Exception caught:" + e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
 
-      if (!getEntityManager().contains(a2)) {
-        pass = true;
-      }
+		if (!pass)
+			throw new Exception("removeBasicTest5 failed");
+	}
 
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      pass = false;
-      TestUtil.logErr("Unexpected Exception caught:" + e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
+	/*
+	 * @testName: removeMergeBasicTest
+	 * 
+	 * @assertion_ids: PERSISTENCE:SPEC:661
+	 * 
+	 * @test_Strategy: To merge a removed entity will result in
+	 * IllegalArgumentException, or commit will fail.
+	 */
+	@Test
+	public void removeMergeBasicTest() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin removeMergeBasicTest");
+		boolean pass = false;
+		String reason = null;
+		final String aId = "7";
+		final A a1 = new A(aId, "a7", 7);
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().persist(a1);
+			getEntityManager().flush();
+			getEntityManager().remove(a1);
 
-    if (!pass)
-      throw new Fault("removeBasicTest5 failed");
-  }
+			try {
+				getEntityManager().merge(a1);
+			} catch (IllegalArgumentException e) {
+				logger.log(Logger.Level.TRACE, "Got expected exception when merging a removed entity:" + e);
+				pass = true;
+			}
+			if (!pass) {
+				getEntityTransaction().commit();
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.TRACE,
+					"This exception may be expected, but we need to check" + " if the commit really failed:" + e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
+		if (!pass) {
+			A aFound = findA(aId);
+			if (aFound == null) {
+				pass = true;
+				logger.log(Logger.Level.TRACE,
+						"No entity with id " + aId + " was found.  The commit " + "must have failed, as expected.");
+			} else {
+				reason = "Entity with id " + aId + " was found: " + aFound
+						+ ".  It means the previous commit unexpectedly succeeded.";
+				logger.log(Logger.Level.TRACE, reason);
+			}
+		}
+		if (!pass)
+			throw new Exception("removeMergeBasicTest failed, reason: " + reason);
+	}
 
-  /*
-   * @testName: removeMergeBasicTest
-   * 
-   * @assertion_ids: PERSISTENCE:SPEC:661
-   * 
-   * @test_Strategy: To merge a removed entity will result in
-   * IllegalArgumentException, or commit will fail.
-   */
+	/*
+	 * Business Methods to set up data for Test Cases
+	 */
 
-  public void removeMergeBasicTest() throws Exception {
-    TestUtil.logTrace("Begin removeMergeBasicTest");
-    boolean pass = false;
-    String reason = null;
-    final String aId = "7";
-    final A a1 = new A(aId, "a7", 7);
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().persist(a1);
-      getEntityManager().flush();
-      getEntityManager().remove(a1);
+	private void createA(final A a) {
+		logger.log(Logger.Level.TRACE, "Entered createA method");
+		getEntityTransaction().begin();
+		getEntityManager().persist(a);
+		getEntityTransaction().commit();
 
-      try {
-        getEntityManager().merge(a1);
-      } catch (IllegalArgumentException e) {
-        TestUtil.logTrace(
-            "Got expected exception when merging a removed entity:" + e);
-        pass = true;
-      }
-      if (!pass) {
-        getEntityTransaction().commit();
-      }
-    } catch (Exception e) {
-      TestUtil.logTrace("This exception may be expected, but we need to check"
-          + " if the commit really failed:" + e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in rollback:", re);
-      }
-    }
-    if (!pass) {
-      A aFound = findA(aId);
-      if (aFound == null) {
-        pass = true;
-        TestUtil.logTrace("No entity with id " + aId
-            + " was found.  The commit " + "must have failed, as expected.");
-      } else {
-        reason = "Entity with id " + aId + " was found: " + aFound
-            + ".  It means the previous commit unexpectedly succeeded.";
-        TestUtil.logTrace(reason);
-      }
-    }
-    if (!pass)
-      throw new Fault("removeMergeBasicTest failed, reason: " + reason);
-  }
+	}
 
-  /*
-   * Business Methods to set up data for Test Cases
-   */
+	private A findA(final String id) {
+		logger.log(Logger.Level.TRACE, "Entered findA method");
+		return getEntityManager().find(A.class, id);
+	}
 
-  private void createA(final A a) {
-    TestUtil.logTrace("Entered createA method");
-    getEntityTransaction().begin();
-    getEntityManager().persist(a);
-    getEntityTransaction().commit();
+	@AfterEach
+	public void cleanup() throws Exception {
+		try {
+			logger.log(Logger.Level.TRACE, "Cleanup data");
+			removeTestData();
+			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			super.cleanup();
+		} finally {
+			removeTestJarFromCP();
+		}
+	}
 
-  }
-
-  private A findA(final String id) {
-    TestUtil.logTrace("Entered findA method");
-    return getEntityManager().find(A.class, id);
-  }
-
-  public void cleanup() throws Exception {
-    TestUtil.logTrace("Cleanup data");
-    removeTestData();
-    TestUtil.logTrace("cleanup complete, calling super.cleanup");
-    super.cleanup();
-  }
-
-  private void removeTestData() {
-    TestUtil.logTrace("removeTestData");
-    if (getEntityTransaction().isActive()) {
-      getEntityTransaction().rollback();
-    }
-    try {
-      getEntityTransaction().begin();
-      getEntityManager().createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB")
-          .executeUpdate();
-      getEntityTransaction().commit();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception encountered while removing entities:", e);
-    } finally {
-      try {
-        if (getEntityTransaction().isActive()) {
-          getEntityTransaction().rollback();
-        }
-      } catch (Exception re) {
-        TestUtil.logErr("Unexpected Exception in removeTestData:", re);
-      }
-    }
-  }
+	private void removeTestData() {
+		logger.log(Logger.Level.TRACE, "removeTestData");
+		if (getEntityTransaction().isActive()) {
+			getEntityTransaction().rollback();
+		}
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+	}
 
 }

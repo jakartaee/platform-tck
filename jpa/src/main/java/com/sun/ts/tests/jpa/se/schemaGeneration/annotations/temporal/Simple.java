@@ -28,77 +28,76 @@ import jakarta.persistence.TemporalType;
 @Table(name = "SCHEMAGENSIMPLE")
 public class Simple implements java.io.Serializable {
 
-  int id;
+	int id;
 
-  Date utilDate;
+	Date utilDate;
 
-  public Simple() {
-  }
+	public Simple() {
+	}
 
-  public Simple(int id) {
-    this.id = id;
-  }
+	public Simple(int id) {
+		this.id = id;
+	}
 
-  public Simple(int id, Date utilDate) {
-    this.id = id;
-    this.utilDate = utilDate;
-  }
+	public Simple(int id, Date utilDate) {
+		this.id = id;
+		this.utilDate = utilDate;
+	}
 
-  @Id
-  public int getId() {
-    return id;
-  }
+	@Id
+	public int getId() {
+		return id;
+	}
 
-  public void setId(int id) {
-    this.id = id;
-  }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-  @Temporal(TemporalType.DATE)
-  public Date getUtilDate() {
-    return utilDate;
-  }
+	@Temporal(TemporalType.DATE)
+	public Date getUtilDate() {
+		return utilDate;
+	}
 
-  public void setUtilDate(Date utilDate) {
-    this.utilDate = utilDate;
-  }
+	public void setUtilDate(Date utilDate) {
+		this.utilDate = utilDate;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId() + this.getUtilDate().hashCode();
+		myHash = this.getId() + this.getUtilDate().hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public boolean equals(Object o) {
-    // check for self-comparison
-    if (this == o)
-      return true;
-    if (!(o instanceof Simple))
-      return false;
+	@Override
+	public boolean equals(Object o) {
+		// check for self-comparison
+		if (this == o)
+			return true;
+		if (!(o instanceof Simple))
+			return false;
 
-    Simple o1 = (Simple) o;
+		Simple o1 = (Simple) o;
 
-    boolean result = false;
+		boolean result = false;
 
-    if (this.getId() == o1.getId()
-        && (this.getUtilDate() != null && o1.getUtilDate() != null
-            && this.getUtilDate().equals(o1.getUtilDate()))) {
-      result = true;
-    }
+		if (this.getId() == o1.getId() && (this.getUtilDate() != null && o1.getUtilDate() != null
+				&& this.getUtilDate().equals(o1.getUtilDate()))) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", date " + getUtilDate());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", date " + getUtilDate());
+		result.append("]");
+		return result.toString();
+	}
 
 }

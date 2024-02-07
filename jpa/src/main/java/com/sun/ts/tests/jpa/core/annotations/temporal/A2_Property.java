@@ -28,77 +28,76 @@ import jakarta.persistence.TemporalType;
 @Table(name = "DATE_TABLE")
 public class A2_Property implements java.io.Serializable {
 
-  // ===========================================================
-  // instance variables
+	// ===========================================================
+	// instance variables
 
-  protected Calendar id;
+	protected Calendar id;
 
-  protected String stringVersion = null;
+	protected String stringVersion = null;
 
-  // ===========================================================
-  // constructors
-  public A2_Property() {
-  }
+	// ===========================================================
+	// constructors
+	public A2_Property() {
+	}
 
-  public A2_Property(Calendar id) {
-    this.id = id;
-  }
+	public A2_Property(Calendar id) {
+		this.id = id;
+	}
 
-  public A2_Property(Calendar id, String stringVersion) {
-    this.id = id;
-    this.stringVersion = stringVersion;
-  }
+	public A2_Property(Calendar id, String stringVersion) {
+		this.id = id;
+		this.stringVersion = stringVersion;
+	}
 
-  @Id
-  @Temporal(TemporalType.DATE)
-  public Calendar getId() {
-    return id;
-  }
+	@Id
+	@Temporal(TemporalType.DATE)
+	public Calendar getId() {
+		return id;
+	}
 
-  public void setId(Calendar id) {
-    this.id = id;
-  }
+	public void setId(Calendar id) {
+		this.id = id;
+	}
 
-  public String getStringVersion() {
-    return this.stringVersion;
-  }
+	public String getStringVersion() {
+		return this.stringVersion;
+	}
 
-  public void setStringVersion(String stringVersion) {
-    this.stringVersion = stringVersion;
-  }
+	public void setStringVersion(String stringVersion) {
+		this.stringVersion = stringVersion;
+	}
 
-  public boolean equals(Object o) {
-    A2_Property other;
-    boolean result = false;
+	public boolean equals(Object o) {
+		A2_Property other;
+		boolean result = false;
 
-    if (!(o instanceof A2_Property)) {
-      return result;
-    }
-    other = (A2_Property) o;
+		if (!(o instanceof A2_Property)) {
+			return result;
+		}
+		other = (A2_Property) o;
 
-    if (this.getId().equals(other.getId())
-        && this.getStringVersion().equals(other.getStringVersion())) {
-      result = true;
-    }
+		if (this.getId().equals(other.getId()) && this.getStringVersion().equals(other.getStringVersion())) {
+			result = true;
+		}
 
-    return result;
-  }
+		return result;
+	}
 
-  public int hashCode() {
-    int myHash;
+	public int hashCode() {
+		int myHash;
 
-    myHash = this.getId().hashCode() + this.getStringVersion().hashCode();
+		myHash = this.getId().hashCode() + this.getStringVersion().hashCode();
 
-    return myHash;
-  }
+		return myHash;
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder result = new StringBuilder();
-    result.append(this.getClass().getSimpleName() + "[");
-    result.append("id: " + getId());
-    result.append(", Calendar: " + getStringVersion());
-    result.append("]");
-    return result.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		result.append(this.getClass().getSimpleName() + "[");
+		result.append("id: " + getId());
+		result.append(", Calendar: " + getStringVersion());
+		result.append("]");
+		return result.toString();
+	}
 }
