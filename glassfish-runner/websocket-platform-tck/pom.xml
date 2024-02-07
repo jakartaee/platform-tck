@@ -51,17 +51,17 @@
             <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>libutil</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>runtime</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -71,12 +71,12 @@
             <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>websocket-tck</artifactId>
             <version>10.0.0-SNAPSHOT</version>
         </dependency>
@@ -155,7 +155,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>jakartatck</groupId>
+                                    <groupId>jakarta.tck</groupId>
                                     <artifactId>libutil</artifactId>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
@@ -348,7 +348,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/tyrus-container-grizzly-client.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/tyrus-spi.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>jakartatck:websocket-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:websocket-tck</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
