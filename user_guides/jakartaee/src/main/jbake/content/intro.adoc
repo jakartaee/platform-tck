@@ -524,7 +524,6 @@ also pass the standalone TCKs for the following technologies:
 * Jakarta Faces -- see https://jakarta.ee/specifications/faces/4.0/ for additional details
 * Jakarta JSON Binding -- see https://jakarta.ee/specifications/jsonb/3.0/ for additional details
 * Jakarta JSON Processing -- see https://jakarta.ee/specifications/jsonp/2.1/ for additional details
-* Jakarta Mail -- see https://jakarta.ee/specifications/mail/2.1/ for additional details
 * Jakarta RESTFul Web Services -- see https://jakarta.ee/specifications/restful-ws/3.1/ for additional details
 * Jakarta Security -- see https://jakarta.ee/specifications/security/3.0/ for additional details
 * Jakarta XML Binding -- see https://jakarta.ee/specifications/xml-binding/3.0/ for additional details
