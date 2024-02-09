@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates and others.
+ * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,19 +15,23 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
-
-package com.sun.ts.tests.signaturetest.jaxws;
+package com.sun.ts.tests.signaturetest.el;
 
 import java.io.PrintWriter;
-import java.util.Properties;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.File;
+
+import org.junit.jupiter.api.Test;
 
 import com.sun.javatest.Status;
-import com.sun.ts.tests.signaturetest.SigTestEE;
+import com.sun.ts.tests.signaturetest.SigTest;
 import com.sun.ts.tests.signaturetest.SignatureTestDriver;
 import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
+
+import java.util.Properties;
+import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 /*
  * This class is a simple example of a signature test that extends the
@@ -36,9 +41,13 @@ import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
  * To see a complete TCK example see the javaee directory for the Java EE
  * TCK signature test class.
  */
-public class JAXWSSigTest extends SigTestEE {
+public class ELSigTestIT extends SigTest {
 
-  private static final long serialVersionUID = -2869098797765586541L;
+  private static final Logger logger = System.getLogger(ELSigTestIT.class.getName());
+
+  public ELSigTestIT(){
+    setup();
+  }
 
   /***** Abstract Method Implementation *****/
 
@@ -50,36 +59,10 @@ public class JAXWSSigTest extends SigTestEE {
    * @return String[] The names of the packages whose signatures should be
    *         verified.
    */
-  protected String[] getPackages(String vehicleName) {
-    return new String[] { "jakarta.xml.ws", "jakarta.xml.ws.handler",
-        "jakarta.xml.ws.handler.soap", "jakarta.xml.ws.http", "jakarta.xml.ws.soap",
-        "jakarta.xml.ws.spi", "jakarta.xml.ws.spi.http",
-        "jakarta.xml.ws.wsaddressing", };
-
+  protected String[] getPackages() {
+    return new String[] { "jakarta.el" };
   }
 
-  /***** Boilerplate Code *****/
-
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    JAXWSSigTest theTests = new JAXWSSigTest();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    return super.run(args, out, err);
-  }
 
   /*
    * The following comments are specified in the base class that defines the
@@ -97,23 +80,58 @@ public class JAXWSSigTest extends SigTestEE {
   // signature tests need. Please do not use both comments.
 
   /*
-   * @class.setup_props: sigTestClasspath, Location of JAXWS jar files; ts_home;
+   * @class.setup_props: ts_home, The base path of this TCK; sigTestClasspath;
    */
-  public void setup() throws Exception {
-    super.setup();
-  }
 
   /*
    * @testName: signatureTest
    * 
-   * @assertion: A JAXWS platform must implement the required classes and APIs
-   * specified in the JAXWS Specification.
+   * @assertion: An EL container must implement the required classes and APIs
+   * specified in the EL Specification.
    * 
    * @test_Strategy: Using reflection, gather the implementation specific
    * classes and APIs. Compare these results with the expected (required)
    * classes and APIs.
    *
    */
+  @Test
+  public void signatureTest() throws Exception {
+
+    logger.log(Logger.Level.INFO, "$$$ SigTestIT.signatureTest() called");
+    String mapFile = null;
+    String packageFile = null;
+    String repositoryDir = null;
+    Properties mapFileAsProps = null;
+    String[] packages = getPackages();
+    String apiPackage = "jakarta.el";
+
+    try {
+
+    InputStream inStreamMapfile = ELSigTestIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/signaturetest/el/sig-test.map");
+    File mFile = writeStreamToTempFile(inStreamMapfile, "sig-test", ".map");
+    mapFile = mFile.getCanonicalPath();
+    logger.log(Logger.Level.INFO, "mapFile location is :"+mapFile);
+
+    InputStream inStreamPackageFile = ELSigTestIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/signaturetest/el/sig-test-pkg-list.txt");
+    File pFile = writeStreamToTempFile(inStreamPackageFile, "sig-test-pkg-list", ".txt");
+    packageFile = pFile.getCanonicalPath();
+    logger.log(Logger.Level.INFO, "packageFile location is :"+packageFile);
+  
+    mapFileAsProps = getSigTestDriver().loadMapFile(mapFile);
+    String packageVersion = mapFileAsProps.getProperty(apiPackage);
+    logger.log(Logger.Level.INFO, "Package version from mapfile :"+packageVersion);
+
+    InputStream inStreamSigFile = ELSigTestIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/signaturetest/el/jakarta.el.sig_"+packageVersion);
+    File sigFile = writeStreamToSigFile(inStreamSigFile, apiPackage, packageVersion);
+    logger.log(Logger.Level.INFO, "signature File location is :"+sigFile.getCanonicalPath());
+
+    } catch(IOException ex) {
+        logger.log(Logger.Level.ERROR, "Exception while creating temp files :"+ex);
+    }
+
+    super.signatureTest(mapFile, packageFile, mapFileAsProps, packages);
+  }
+
 
   /*
    * Call the parent class's cleanup method.
@@ -122,6 +140,7 @@ public class JAXWSSigTest extends SigTestEE {
   /*
    * define which sig driver we will use
    */
+  @Override
   protected SignatureTestDriver getSigTestDriver() {
     driver = SignatureTestDriverFactory
         .getInstance(SignatureTestDriverFactory.SIG_TEST);
@@ -129,5 +148,4 @@ public class JAXWSSigTest extends SigTestEE {
     return driver;
 
   } // END getSigTestDriver
-
-} // end class JAXWSSigTest
+}

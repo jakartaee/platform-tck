@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2022 Oracle and/or its affiliates and others.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -34,6 +34,8 @@ import com.sun.ts.lib.util.TestUtil;
 public abstract class SignatureTestDriver {
 
   private static final String SIG_FILE_EXT = ".sig";
+
+  private static final String SIG_FILE_VER_SEP = "_";
 
   // ---------------------------------------------------------- Public Methods
 
@@ -448,7 +450,7 @@ public abstract class SignatureTestDriver {
    *           file, can also be thrown if there is an error creating an input
    *           stream from the specified file.
    */
-  protected Properties loadMapFile(String mapFile)
+  public Properties loadMapFile(String mapFile)
       throws IOException, FileNotFoundException {
 
     FileInputStream in = null;
@@ -479,19 +481,23 @@ public abstract class SignatureTestDriver {
    *          the base portion of the signature filename
    * @param repositoryDir
    *          the directory in which the signatures are stored
+   * @param version
+   *          the version of the signature file
    * @throws FileNotFoundException
    *           if the file cannot be validated as existing and is in fact a file
    * @return a valid, fully qualified filename, appropriate for the system the
    *         test is being run on
    */
-  protected String getSigFileName(String baseName, String repositoryDir) 
-    throws FileNotFoundException {
+  protected String getSigFileName(String baseName, String repositoryDir,
+      String version) throws FileNotFoundException {
 
     String sigFile;
     if (repositoryDir.endsWith(File.separator)) {
-      sigFile = repositoryDir + baseName + SIG_FILE_EXT;
+      sigFile = repositoryDir + baseName + SIG_FILE_EXT + SIG_FILE_VER_SEP
+          + version;
     } else {
-      sigFile = repositoryDir + File.separator + baseName + SIG_FILE_EXT;
+      sigFile = repositoryDir + File.separator + baseName + SIG_FILE_EXT
+          + SIG_FILE_VER_SEP + version;
     }
 
     File testFile = new File(sigFile);
@@ -574,7 +580,7 @@ public abstract class SignatureTestDriver {
 
     /* Return the expected name of the signature file */
 
-    return new SignatureFileInfo(getSigFileName(name, repositoryDir),
+    return new SignatureFileInfo(getSigFileName(name, repositoryDir, version),
         version);
 
   } // END getSigFileInfo

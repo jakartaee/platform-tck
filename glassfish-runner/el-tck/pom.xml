@@ -29,6 +29,7 @@
     <packaging>jar</packaging>
 
     <properties>
+        <glassfish.container.version>8.0.0-M1</glassfish.container.version>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>jakarta-expression-language-tck</tck.artifactId>
@@ -58,58 +59,15 @@
             <artifactId>${tck.artifactId}</artifactId>
             <version>${tck.version}</version>
         </dependency>
-        <!-- <dependency>
+        <dependency>
             <groupId>org.glassfish.main.common</groupId>
             <artifactId>simple-glassfish-api</artifactId>
             <version>${glassfish.container.version}</version>
-        </dependency> -->
-        <dependency>
-            <groupId>org.netbeans.tools</groupId>
-            <artifactId>sigtest-maven-plugin</artifactId>
-            <version>1.5</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>com.googlecode.maven-download-plugin</groupId>
-                <artifactId>download-maven-plugin</artifactId>
-                <version>1.3.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <url>https://github.com/eclipse-ee4j/glassfish/releases/download/8.0.0-M1/glassfish-8.0.0-M1.zip</url>
-                            <outputFileName>glassfish.zip</outputFileName>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <tasks>
-                                <echo message="unzipping file"></echo>
-                                <unzip dest="target/" src="target/glassfish.zip"></unzip>
-                                <chmod dir="target/glassfish7/glassfish/bin/asadmin" perm="777"></chmod>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -137,7 +95,7 @@
                 </executions>
             </plugin>
 
-            <!-- <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.2.0</version>
@@ -162,7 +120,7 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin> -->
+            </plugin>
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -313,7 +271,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.netbeans.tools</groupId>
                 <artifactId>sigtest-maven-plugin</artifactId>
                 <version>1.5</version>
@@ -332,7 +290,7 @@
                         <phase>verify</phase>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
@@ -364,6 +322,8 @@
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
                                 <porting.ts.url.class.1>com.sun.ts.tests.websocket.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
+                                <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
+                                <sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.el-api.jar:${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/expressly.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming</sigTestClasspath>
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>

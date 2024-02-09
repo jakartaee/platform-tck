@@ -81,6 +81,16 @@
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>signaturetest</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.tools</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
             <groupId>javatest</groupId>
             <artifactId>javatest</artifactId>
         </dependency>
@@ -209,6 +219,36 @@
                 <bundle-name>pages-tck</bundle-name>
                 <license>EPL</license>
             </properties>
+        </profile>
+        <profile>
+            <id>record-signature</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <bundle-name>jakarta-pages-tck</bundle-name>
+                <license>EFTL</license>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.netbeans.tools</groupId>
+                        <artifactId>sigtest-maven-plugin</artifactId>
+                        <version>1.4</version>
+                        <configuration>
+                            <FileName>${project.build.directory}/jakarta.servlet.jsp.sig_${project.version}</FileName>
+                            <packages>jakarta.servlet.jsp,jakarta.servlet.jsp.el,jakarta.servlet.jsp.tagext</packages>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 

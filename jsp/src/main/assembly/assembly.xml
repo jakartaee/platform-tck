@@ -32,8 +32,8 @@
             <destName>LICENSE.md</destName>
         </file>
         <file>
-            <source>${project.basedir}/src/main/resources/jakarta.servlet.jsp.sig_3.0</source>
-            <destName>jakarta.servlet.jsp.sig_3.0</destName>
+            <source>${project.basedir}/src/main/resources/jakarta.servlet.jsp.sig_4.0</source>
+            <destName>jakarta.servlet.jsp.sig_4.0</destName>
         </file>
     </files>
     <fileSets>
