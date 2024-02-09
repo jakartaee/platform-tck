@@ -64,16 +64,6 @@
             <artifactId>simple-glassfish-api</artifactId>
             <version>${glassfish.container.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.netbeans.tools</groupId>
-            <artifactId>sigtest-maven-plugin</artifactId>
-            <version>1.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans.tools</groupId>
-            <artifactId>sigtest-maven-plugin</artifactId>
-            <version>1.4</version>
-        </dependency>
     </dependencies>
 
     <build>
