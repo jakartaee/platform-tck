@@ -56,10 +56,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>signaturetest</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common</artifactId>
+            <version>${project.parent.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.el</groupId>
@@ -80,6 +77,7 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>LICENSE_${license}.md</include>
+                    <include>com/</include>
                 </includes>
             </resource>
         </resources>
@@ -151,6 +149,37 @@
                 <license>EPL</license>
             </properties>
         </profile>
+        <profile>
+            <id>record-signature</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <bundle-name>jakarta-expression-language-tck</bundle-name>
+                <license>EFTL</license>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.netbeans.tools</groupId>
+                        <artifactId>sigtest-maven-plugin</artifactId>
+                        <version>1.4</version>
+                        <configuration>
+                            <FileName>${project.build.directory}/jakarta.el.sig_${project.parent.version}</FileName>
+                            <packages>jakarta.el</packages>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
 </project>
