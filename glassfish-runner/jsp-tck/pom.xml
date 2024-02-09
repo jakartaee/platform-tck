@@ -335,9 +335,6 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <includes>
-                                <include>com/sun/ts/tests/signaturetest/jsp/JSPSigTestIT.java</include>
-                            </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet-api.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.el-api.jar</additionalClasspathElement>
