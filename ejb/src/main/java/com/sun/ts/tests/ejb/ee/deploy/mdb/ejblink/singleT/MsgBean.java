@@ -49,36 +49,6 @@ public class MsgBean extends MDBWrapper {
     return new Boolean(pass);
   }
 
-  public Boolean testBMPInternal(Properties props) {
-    pass = TestCode.testBMPInternal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testBMPExternal(Properties props) {
-    pass = TestCode.testBMPExternal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testCMP11Internal(Properties props) {
-    pass = TestCode.testCMP11Internal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testCMP11External(Properties props) {
-    pass = TestCode.testCMP11External(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testCMP20Internal(Properties props) {
-    pass = TestCode.testCMP20Internal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testCMP20External(Properties props) {
-    pass = TestCode.testCMP20External(nctx, props);
-    return new Boolean(pass);
-  }
-
   public Boolean cleanUpBean(Properties props) {
     TestCode.cleanUpStatefulBean();
     return Boolean.TRUE;

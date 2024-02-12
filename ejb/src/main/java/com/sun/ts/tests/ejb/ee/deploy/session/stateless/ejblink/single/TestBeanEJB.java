@@ -43,30 +43,6 @@ public class TestBeanEJB extends StatelessWrapper {
     return TestCode.testStatefulExternal(nctx, props);
   }
 
-  public boolean testBMPInternal(Properties props) {
-    return TestCode.testBMPInternal(nctx, props);
-  }
-
-  public boolean testBMPExternal(Properties props) {
-    return TestCode.testBMPExternal(nctx, props);
-  }
-
-  public boolean testCMP11Internal(Properties props) {
-    return TestCode.testCMP11Internal(nctx, props);
-  }
-
-  public boolean testCMP11External(Properties props) {
-    return TestCode.testCMP11External(nctx, props);
-  }
-
-  public boolean testCMP20Internal(Properties props) {
-    return TestCode.testCMP20Internal(nctx, props);
-  }
-
-  public boolean testCMP20External(Properties props) {
-    return TestCode.testCMP20External(nctx, props);
-  }
-
   public void cleanUpBean() {
     TestCode.cleanUpStatefulBean();
   }

@@ -35,18 +35,6 @@ public interface TestBean extends EJBObject {
 
   public boolean testStatefulExternal(Properties props) throws RemoteException;
 
-  public boolean testBMPInternal(Properties props) throws RemoteException;
-
-  public boolean testBMPExternal(Properties props) throws RemoteException;
-
-  public boolean testCMP11Internal(Properties props) throws RemoteException;
-
-  public boolean testCMP11External(Properties props) throws RemoteException;
-
-  public boolean testCMP20Internal(Properties props) throws RemoteException;
-
-  public boolean testCMP20External(Properties props) throws RemoteException;
-
   public void cleanUpBean() throws RemoteException;
 
 }
