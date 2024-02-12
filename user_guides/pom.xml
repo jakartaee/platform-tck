@@ -42,7 +42,6 @@
         <module>parent</module>
         <module>platform</module>
         <module>saaj</module>
-        <module>websocket</module>
     </modules>
 
 </project>
