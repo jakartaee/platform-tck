@@ -490,6 +490,7 @@ Subsets
 |Technology |Keyword
 |EJB 1.x, CMP, BMP, entity beans |`ejb_1x_optional or` `javaee_optional`
 |EJB 2.x, CMP, BMP, entity beans |`ejb_2x_optional` or `javaee_optional`
+|EJB CMP, BMP, entity beans |`entitybeans_optional` or `javaee_optional`
 |EJBQL |`javaee_optional`
 |JAXR |`javaee_optional`
 |=======================================================================
@@ -593,7 +594,9 @@ components; components without an asterisk are not required by EJB Lite.
 |Component |TCK Keyword
 |Message-Driven Beans |`ejb_mdb_optional`
 
-|1x CMP/BMP Entity Beans * |ejb_1x_optional
+|All CMP/BMP Entity Beans * |`entitybeans_optional`
+
+|1x CMP/BMP Entity Beans * |`ejb_1x_optional`
 
 |2x CMP/BMP Entity Beans, Remote/Home Component, Local/Home Component *
 |`ejb_2x_optional`
