@@ -22,9 +22,9 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPException;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.saaj.common.SOAP_Util;
 
 import jakarta.servlet.ServletConfig;
@@ -36,230 +36,230 @@ import jakarta.xml.soap.SOAPException;
 
 public class SOAPExceptionTestServlet extends HttpServlet {
 
-  private void dispatch(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("dispatch");
+	private static final Logger logger = (Logger) System.getLogger(SOAPExceptionTestServlet.class.getName());
 
-    String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
+	private void dispatch(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "dispatch");
 
-    if (testname.equals("SOAPExceptionConstructor1Test")) {
-      TestUtil.logMsg("Starting SOAPExceptionConstructor1Test");
-      SOAPExceptionConstructor1Test(req, res);
-    } else if (testname.equals("SOAPExceptionConstructor2Test")) {
-      TestUtil.logMsg("Starting SOAPExceptionConstructor2Test");
-      SOAPExceptionConstructor2Test(req, res);
-    } else if (testname.equals("SOAPExceptionConstructor3Test")) {
-      TestUtil.logMsg("Starting SOAPExceptionConstructor3Test");
-      SOAPExceptionConstructor3Test(req, res);
-    } else if (testname.equals("SOAPExceptionConstructor4Test")) {
-      TestUtil.logMsg("Starting SOAPExceptionConstructor4Test");
-      SOAPExceptionConstructor4Test(req, res);
-    } else if (testname.equals("InitGetCauseTest")) {
-      TestUtil.logMsg("Starting InitGetCauseTest");
-      InitGetCauseTest(req, res);
-    } else {
-      throw new ServletException(
-          "The testname '" + testname + "' was not found in the test servlet");
+		String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
 
-    }
-  }
+		if (testname.equals("SOAPExceptionConstructor1Test")) {
+			logger.log(Logger.Level.INFO, "Starting SOAPExceptionConstructor1Test");
+			SOAPExceptionConstructor1Test(req, res);
+		} else if (testname.equals("SOAPExceptionConstructor2Test")) {
+			logger.log(Logger.Level.INFO, "Starting SOAPExceptionConstructor2Test");
+			SOAPExceptionConstructor2Test(req, res);
+		} else if (testname.equals("SOAPExceptionConstructor3Test")) {
+			logger.log(Logger.Level.INFO, "Starting SOAPExceptionConstructor3Test");
+			SOAPExceptionConstructor3Test(req, res);
+		} else if (testname.equals("SOAPExceptionConstructor4Test")) {
+			logger.log(Logger.Level.INFO, "Starting SOAPExceptionConstructor4Test");
+			SOAPExceptionConstructor4Test(req, res);
+		} else if (testname.equals("InitGetCauseTest")) {
+			logger.log(Logger.Level.INFO, "Starting InitGetCauseTest");
+			InitGetCauseTest(req, res);
+		} else {
+			throw new ServletException("The testname '" + testname + "' was not found in the test servlet");
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    System.out.println("SOAPExceptionTestServlet:init (Entering)");
-    super.init(servletConfig);
-    System.out.println("SOAPExceptionTestServlet:init (Leaving)");
+		}
+	}
 
-  }
+	public void init(ServletConfig servletConfig) throws ServletException {
+		logger.log(Logger.Level.TRACE,"SOAPExceptionTestServlet:init (Entering)");
+		super.init(servletConfig);
+		logger.log(Logger.Level.TRACE,"SOAPExceptionTestServlet:init (Leaving)");
 
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doGet");
-    dispatch(req, res);
-  }
+	}
 
-  public void doPost(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doPost");
-    SOAP_Util.doServletPost(req, res);
-    doGet(req, res);
-  }
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doGet");
+		dispatch(req, res);
+	}
 
-  private void SOAPExceptionConstructor1Test(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("SOAPExceptionConstructor1Test");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doPost");
+		SOAP_Util.doServletPost(req, res);
+		doGet(req, res);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void SOAPExceptionConstructor1Test(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "SOAPExceptionConstructor1Test");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      throw new SOAPException();
-    } catch (Exception e) {
-      if (e instanceof SOAPException) {
-        TestUtil.logMsg("SOAPExceptionConstructor1Test test PASSED");
-      } else {
-        TestUtil.logErr("SOAPExceptionConstructor1Test test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
-        pass = false;
-      }
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-  private void SOAPExceptionConstructor2Test(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("SOAPExceptionConstructor2Test");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+		try {
+			throw new SOAPException();
+		} catch (Exception e) {
+			if (e instanceof SOAPException) {
+				logger.log(Logger.Level.INFO, "SOAPExceptionConstructor1Test test PASSED");
+			} else {
+				logger.log(Logger.Level.ERROR, "SOAPExceptionConstructor1Test test FAILED");
+				logger.log(Logger.Level.ERROR, "Exception thrown was not of type SOAPException");
+				pass = false;
+			}
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void SOAPExceptionConstructor2Test(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "SOAPExceptionConstructor2Test");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      throw new SOAPException("foobar");
-    } catch (Exception e) {
-      if (e instanceof SOAPException) {
-        String reason = e.getMessage();
-        if (reason.equals("foobar"))
-          TestUtil.logMsg("SOAPExceptionConstructor2Test test PASSED");
-        else {
-          TestUtil.logErr("SOAPExceptionConstructor2Test test FAILED");
-          TestUtil.logErr("reason: expected foobar, received " + reason);
-          pass = false;
-        }
-      } else {
-        TestUtil.logErr("SOAPExceptionConstructor2Test test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
-        pass = false;
-      }
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-  private void SOAPExceptionConstructor3Test(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("SOAPExceptionConstructor3Test");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+		try {
+			throw new SOAPException("foobar");
+		} catch (Exception e) {
+			if (e instanceof SOAPException) {
+				String reason = e.getMessage();
+				if (reason.equals("foobar"))
+					logger.log(Logger.Level.INFO, "SOAPExceptionConstructor2Test test PASSED");
+				else {
+					logger.log(Logger.Level.ERROR, "SOAPExceptionConstructor2Test test FAILED");
+					logger.log(Logger.Level.ERROR, "reason: expected foobar, received " + reason);
+					pass = false;
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "SOAPExceptionConstructor2Test test FAILED");
+				logger.log(Logger.Level.ERROR, "Exception thrown was not of type SOAPException");
+				pass = false;
+			}
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void SOAPExceptionConstructor3Test(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "SOAPExceptionConstructor3Test");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    Exception foo = new Exception("foo");
-    try {
-      throw new SOAPException("foobar", foo);
-    } catch (Exception e) {
-      if (e instanceof SOAPException) {
-        String reason = e.getMessage();
-        if (reason.equals("foobar"))
-          TestUtil.logMsg("SOAPExceptionConstructor3Test test PASSED");
-        else {
-          TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
-          TestUtil.logErr("reason: expected foobar, received " + reason);
-          pass = false;
-        }
-        /*
-         * Throwable t = ((SOAPException)e).getCause(); if (t.equals(foo))
-         * TestUtil.logMsg("SOAPExceptionConstructor3Test test PASSED"); else {
-         * TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
-         * TestUtil.logErr("Throwable objects do not match"); pass = false; }
-         */
-      } else {
-        TestUtil.logErr("SOAPExceptionConstructor3Test test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
-        pass = false;
-      }
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-  private void SOAPExceptionConstructor4Test(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("SOAPExceptionConstructor4Test");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+		Exception foo = new Exception("foo");
+		try {
+			throw new SOAPException("foobar", foo);
+		} catch (Exception e) {
+			if (e instanceof SOAPException) {
+				String reason = e.getMessage();
+				if (reason.equals("foobar"))
+					logger.log(Logger.Level.INFO, "SOAPExceptionConstructor3Test test PASSED");
+				else {
+					logger.log(Logger.Level.ERROR, "SOAPExceptionConstructor3Test test FAILED");
+					logger.log(Logger.Level.ERROR, "reason: expected foobar, received " + reason);
+					pass = false;
+				}
+				/*
+				 * Throwable t = ((SOAPException)e).getCause(); if (t.equals(foo))
+				 * logger.log(Logger.Level.INFO,"SOAPExceptionConstructor3Test test PASSED");
+				 * else {
+				 * logger.log(Logger.Level.ERROR,"SOAPExceptionConstructor3Test test FAILED");
+				 * logger.log(Logger.Level.ERROR,"Throwable objects do not match"); pass =
+				 * false; }
+				 */
+			} else {
+				logger.log(Logger.Level.ERROR, "SOAPExceptionConstructor3Test test FAILED");
+				logger.log(Logger.Level.ERROR, "Exception thrown was not of type SOAPException");
+				pass = false;
+			}
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void SOAPExceptionConstructor4Test(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "SOAPExceptionConstructor4Test");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    Exception foo = new Exception("foo");
-    try {
-      throw new SOAPException(foo);
-    } catch (Exception e) {
-      if (e instanceof SOAPException) {
-        TestUtil.logMsg("SOAPExceptionConstructor4Test test PASSED");
-        Throwable t = ((SOAPException) e).getCause();
-        if (t.equals(foo))
-          TestUtil.logMsg("SOAPExceptionConstructor4Test test PASSED");
-        else {
-          TestUtil.logErr("SOAPExceptionConstructor4Test test FAILED");
-          TestUtil.logErr("Throwable objects do not match");
-        }
-      } else {
-        TestUtil.logErr("SOAPExceptionConstructor4Test test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
-        pass = false;
-      }
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-  private void InitGetCauseTest(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("InitGetCauseTest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+		Exception foo = new Exception("foo");
+		try {
+			throw new SOAPException(foo);
+		} catch (Exception e) {
+			if (e instanceof SOAPException) {
+				logger.log(Logger.Level.INFO, "SOAPExceptionConstructor4Test test PASSED");
+				Throwable t = ((SOAPException) e).getCause();
+				if (t.equals(foo))
+					logger.log(Logger.Level.INFO, "SOAPExceptionConstructor4Test test PASSED");
+				else {
+					logger.log(Logger.Level.ERROR, "SOAPExceptionConstructor4Test test FAILED");
+					logger.log(Logger.Level.ERROR, "Throwable objects do not match");
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "SOAPExceptionConstructor4Test test FAILED");
+				logger.log(Logger.Level.ERROR, "Exception thrown was not of type SOAPException");
+				pass = false;
+			}
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void InitGetCauseTest(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "InitGetCauseTest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    Exception foo = new Exception("foo");
-    try {
-      SOAPException soape = new SOAPException("foobar");
-      soape.initCause(foo);
-      throw soape;
-    } catch (Exception e) {
-      if (e instanceof SOAPException) {
-        Throwable t = ((SOAPException) e).getCause();
-        if (t.equals(foo))
-          TestUtil.logMsg("InitGetCauseTest test PASSED");
-        else {
-          TestUtil.logErr("InitGetCauseTest test FAILED");
-          TestUtil.logErr("Throwable objects do not match");
-          pass = false;
-        }
-      } else {
-        TestUtil.logErr("InitGetCauseTest test FAILED");
-        TestUtil.logErr("Exception thrown was not of type SOAPException");
-        pass = false;
-      }
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
+
+		Exception foo = new Exception("foo");
+		try {
+			SOAPException soape = new SOAPException("foobar");
+			soape.initCause(foo);
+			throw soape;
+		} catch (Exception e) {
+			if (e instanceof SOAPException) {
+				Throwable t = ((SOAPException) e).getCause();
+				if (t.equals(foo))
+					logger.log(Logger.Level.INFO, "InitGetCauseTest test PASSED");
+				else {
+					logger.log(Logger.Level.ERROR, "InitGetCauseTest test FAILED");
+					logger.log(Logger.Level.ERROR, "Throwable objects do not match");
+					pass = false;
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "InitGetCauseTest test FAILED");
+				logger.log(Logger.Level.ERROR, "Exception thrown was not of type SOAPException");
+				pass = false;
+			}
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 }

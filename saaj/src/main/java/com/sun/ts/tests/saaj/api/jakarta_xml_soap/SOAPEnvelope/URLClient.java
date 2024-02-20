@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,377 +20,333 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPEnvelope;
 
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.IOException;
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.porting.TSURL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-public class URLClient extends EETest {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
 
-  private static final String HOSTNAME = "localhost";
+	private static final String SOAPENVELOPE_TESTSERVLET = "/SOAPEnvelope_web/SOAPEnvelopeTestServlet";
 
-  private static final int PORTNUM = 8000;
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final String SOAPENVELOPE_TESTSERVLET = "/SOAPEnvelope_web/SOAPEnvelopeTestServlet";
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "SOAPEnvelope_web.war");
+		archive.addPackages(false, Filters.exclude(URLClient.class),
+				"com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPEnvelope");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
 
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
+	/*
+	 * @testName: addBodyTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:234; SAAJ:JAVADOC:235;
+	 *
+	 * @test_Strategy: Call SOAPEnvelope.addBody().
+	 *
+	 * Description: Creates a SOAPBody object and sets it as the SOAPBody object for
+	 * this SOAPEnvelope object.
+	 *
+	 */
+	@Test
+	public void addBodyTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "addBodyTest: create a SOAPBody object for " + "this SOAPEnvelope object");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "addBodyTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  private static final String WEBSERVERPORTPROP = "webServerPort";
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("addBodyTest failed", e);
+		}
 
-  private TSURL tsurl = new TSURL();
+		if (!pass)
+			throw new Exception("addBodyTest failed");
+	}
 
-  private URL url = null;
+	/*
+	 * @testName: getBodyTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:230; SAAJ:JAVADOC:231;
+	 *
+	 * @test_Strategy: Call SOAPEnvelope.getBody().
+	 *
+	 * Description: Returns the SOAPBody object associated with this SOAPEnvelope
+	 * object.
+	 *
+	 */
+	@Test
+	public void getBodyTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "getBodyTest: retrieve a SOAPBody object for " + "this SOAPEnvelope object");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "getBodyTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  private URLConnection urlConn = null;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getBodyTest failed", e);
+		}
 
-  private Properties props = null;
+		if (!pass)
+			throw new Exception("getBodyTest failed");
+	}
 
-  private String hostname = HOSTNAME;
+	/*
+	 * @testName: addHeaderTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:232; SAAJ:JAVADOC:233;
+	 *
+	 * @test_Strategy: Call SOAPEnvelope.addHeader().
+	 *
+	 * Description: Creates a SOAPHeader object and sets it as the SOAPHeader object
+	 * for this SOAPEnvelope object.
+	 *
+	 */
+	@Test
+	public void addHeaderTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO,
+					"addHeaderTest: create a SOAPHeader object for " + "this SOAPEnvelope object");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "addHeaderTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  private int portnum = PORTNUM;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("addHeaderTest failed", e);
+		}
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+		if (!pass)
+			throw new Exception("addHeaderTest failed");
+	}
 
-  /* Test setup */
+	/*
+	 * @testName: getHeaderTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:228; SAAJ:JAVADOC:229;
+	 *
+	 * @test_Strategy: Call SOAPEnvelope.getHeader().
+	 *
+	 * Description: Returns the SOAPHeader object associated with this SOAPEnvelope
+	 * object.
+	 */
+	@Test
+	public void getHeaderTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO,
+					"getHeaderTest: retrieve a SOAPHeader object for " + "this SOAPEnvelope object");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "getHeaderTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getHeaderTest failed", e);
+		}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    boolean pass = true;
+		if (!pass)
+			throw new Exception("getHeaderTest failed");
+	}
 
-    try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      TestUtil.logErr(
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-    logMsg("setup ok");
-  }
+	/*
+	 * @testName: createNameTest1
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:226; SAAJ:JAVADOC:227;
+	 *
+	 * @test_Strategy: Call SOAPEnvelope.createName(String).
+	 *
+	 * Description: Creates a new Name object initialized with the given local name.
+	 *
+	 */
+	@Test
+	public void createNameTest1() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "createNameTest1: create a Name object constructor1");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "createNameTest1");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  public void cleanup() throws Exception {
-    logMsg("cleanup ok");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("createNameTest1 failed", e);
+		}
 
-  /*
-   * @testName: addBodyTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:234; SAAJ:JAVADOC:235;
-   *
-   * @test_Strategy: Call SOAPEnvelope.addBody().
-   *
-   * Description: Creates a SOAPBody object and sets it as the SOAPBody object
-   * for this SOAPEnvelope object.
-   *
-   */
-  public void addBodyTest() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("addBodyTest: create a SOAPBody object for "
-          + "this SOAPEnvelope object");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "addBodyTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+		if (!pass)
+			throw new Exception("createNameTest1 failed");
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("addBodyTest failed", e);
-    }
+	/*
+	 * @testName: createNameTest2
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:224; SAAJ:JAVADOC:225;
+	 *
+	 * @test_Strategy: Call SOAPEnvelope.createName(String, String, String).
+	 *
+	 * Description: Creates a new Name object initialized with the given local name,
+	 * prefix, and URI.
+	 *
+	 */
+	@Test
+	public void createNameTest2() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "createNameTest2: create a Name object constructor2");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "createNameTest2");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("addBodyTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("createNameTest2 failed", e);
+		}
 
-  /*
-   * @testName: getBodyTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:230; SAAJ:JAVADOC:231;
-   *
-   * @test_Strategy: Call SOAPEnvelope.getBody().
-   *
-   * Description: Returns the SOAPBody object associated with this SOAPEnvelope
-   * object.
-   *
-   */
-  public void getBodyTest() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("getBodyTest: retrieve a SOAPBody object for "
-          + "this SOAPEnvelope object");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "getBodyTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
+		if (!pass)
+			throw new Exception("createNameTest2 failed");
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getBodyTest failed", e);
-    }
+	/*
+	 * @testName: createNameTest3
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:329;
+	 *
+	 * @test_Strategy: Call SOAPEnvelope.createName(String, String).
+	 *
+	 * Description: Creates a new Name object initialized with the given local name,
+	 * prefix, and URI.
+	 *
+	 */
+	@Test
+	public void createNameTest3() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO, "createNameTest3: create a Name object constructor2");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "createNameTest3");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-    if (!pass)
-      throw new Exception("getBodyTest failed");
-  }
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("createNameTest3 failed", e);
+		}
 
-  /*
-   * @testName: addHeaderTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:232; SAAJ:JAVADOC:233;
-   *
-   * @test_Strategy: Call SOAPEnvelope.addHeader().
-   *
-   * Description: Creates a SOAPHeader object and sets it as the SOAPHeader
-   * object for this SOAPEnvelope object.
-   *
-   */
-  public void addHeaderTest() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("addHeaderTest: create a SOAPHeader object for "
-          + "this SOAPEnvelope object");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "addHeaderTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("addHeaderTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("addHeaderTest failed");
-  }
-
-  /*
-   * @testName: getHeaderTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:228; SAAJ:JAVADOC:229;
-   *
-   * @test_Strategy: Call SOAPEnvelope.getHeader().
-   *
-   * Description: Returns the SOAPHeader object associated with this
-   * SOAPEnvelope object.
-   */
-  public void getHeaderTest() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("getHeaderTest: retrieve a SOAPHeader object for "
-          + "this SOAPEnvelope object");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "getHeaderTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getHeaderTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("getHeaderTest failed");
-  }
-
-  /*
-   * @testName: createNameTest1
-   *
-   * @assertion_ids: SAAJ:JAVADOC:226; SAAJ:JAVADOC:227;
-   *
-   * @test_Strategy: Call SOAPEnvelope.createName(String).
-   *
-   * Description: Creates a new Name object initialized with the given local
-   * name.
-   *
-   */
-  public void createNameTest1() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("createNameTest1: create a Name object constructor1");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "createNameTest1");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("createNameTest1 failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("createNameTest1 failed");
-  }
-
-  /*
-   * @testName: createNameTest2
-   *
-   * @assertion_ids: SAAJ:JAVADOC:224; SAAJ:JAVADOC:225;
-   *
-   * @test_Strategy: Call SOAPEnvelope.createName(String, String, String).
-   *
-   * Description: Creates a new Name object initialized with the given local
-   * name, prefix, and URI.
-   *
-   */
-  public void createNameTest2() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("createNameTest2: create a Name object constructor2");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "createNameTest2");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("createNameTest2 failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("createNameTest2 failed");
-  }
-
-    /*
-   * @testName: createNameTest3
-   *
-   * @assertion_ids: SAAJ:JAVADOC:329;
-   *
-   * @test_Strategy: Call SOAPEnvelope.createName(String, String).
-   *
-   * Description: Creates a new Name object initialized with the given local
-   * name, prefix, and URI.
-   *
-   */
-  public void createNameTest3() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("createNameTest3: create a Name object constructor2");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPENVELOPE_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "createNameTest3");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("createNameTest3 failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("createNameTest3 failed");
-  }
+		if (!pass)
+			throw new Exception("createNameTest3 failed");
+	}
 }

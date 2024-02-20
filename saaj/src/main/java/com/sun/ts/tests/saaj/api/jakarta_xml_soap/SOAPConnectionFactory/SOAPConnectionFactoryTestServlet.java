@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConnectionFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -36,139 +37,136 @@ import jakarta.xml.soap.SOAPConnection;
 import jakarta.xml.soap.SOAPConnectionFactory;
 
 public class SOAPConnectionFactoryTestServlet extends HttpServlet {
-  private String hostname = "localhost";
+	private static final Logger logger = (Logger) System.getLogger(SOAPConnectionFactoryTestServlet.class.getName());
 
-  private int portnum = 8080;
+	private String hostname = "localhost";
 
-  private String cntxroot = "/SOAPConnectionFactory_web";
+	private int portnum = 8080;
 
-  private void setup() throws Exception {
-    TestUtil.logTrace("setup");
-    SOAP_Util.setup();
-  }
+	private String cntxroot = "/SOAPConnectionFactory_web";
 
-  private void dispatch(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("dispatch");
-    String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
-    if (testname.equals("newInstanceTest")) {
-      TestUtil.logMsg("Starting newInstanceTest");
-      newInstanceTest(req, res);
-    } else if (testname.equals("createConnectionTest")) {
-      TestUtil.logMsg("Starting createConnectionTest");
-      createConnectionTest(req, res);
-    } else {
-      throw new ServletException(
-          "The testname '" + testname + "' was not found in the test servlet");
-    }
-  }
+	private void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
+		SOAP_Util.setup();
+	}
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-    System.out.println("SOAPEnvelopeTestServlet:init (Entering)");
-    SOAP_Util.doServletInit(servletConfig);
-    System.out.println("SOAPEnvelopeTestServlet:init (Leaving)");
-  }
+	private void dispatch(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "dispatch");
+		String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
+		if (testname.equals("newInstanceTest")) {
+			logger.log(Logger.Level.INFO, "Starting newInstanceTest");
+			newInstanceTest(req, res);
+		} else if (testname.equals("createConnectionTest")) {
+			logger.log(Logger.Level.INFO, "Starting createConnectionTest");
+			createConnectionTest(req, res);
+		} else {
+			throw new ServletException("The testname '" + testname + "' was not found in the test servlet");
+		}
+	}
 
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doGet");
-    dispatch(req, res);
-  }
+	public void init(ServletConfig servletConfig) throws ServletException {
+		super.init(servletConfig);
+		logger.log(Logger.Level.TRACE,"SOAPEnvelopeTestServlet:init (Entering)");
+		SOAP_Util.doServletInit(servletConfig);
+		logger.log(Logger.Level.TRACE,"SOAPEnvelopeTestServlet:init (Leaving)");
+	}
 
-  public void doPost(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doPost");
-    SOAP_Util.doServletPost(req, res);
-    doGet(req, res);
-  }
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doGet");
+		dispatch(req, res);
+	}
 
-  private void newInstanceTest(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("newInstanceTest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doPost");
+		SOAP_Util.doServletPost(req, res);
+		doGet(req, res);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void newInstanceTest(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "newInstanceTest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
-      // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
-      if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
-            + "unsupported (skipping test)");
-        resultProps.setProperty("TESTRESULT", "pass");
-        resultProps.list(out);
-        return;
-      }
-      TestUtil.logMsg("Create SOAPConnectionFactory object");
-      SOAPConnectionFactory sfactory = SOAP_Util.getSOAPConnectionFactory();
-      if (sfactory == null) {
-        TestUtil.logErr("SOAPConnectionFactory.newInstance() returned null");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    if (pass)
-      TestUtil.logMsg("newInstanceTest() test PASSED");
-    else
-      TestUtil.logErr("newInstanceTest() test FAILED");
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-  private void createConnectionTest(HttpServletRequest req,
-      HttpServletResponse res) throws ServletException, IOException {
-    TestUtil.logTrace("createConnectionTest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+		try {
+			setup();
+			// Check if SOAPConnectionFactory is supported
+			logger.log(Logger.Level.INFO, "Check if SOAPConnectionFactory is supported");
+			if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
+				logger.log(Logger.Level.INFO,
+						"SOAPConnectionFactory.newInstance() is " + "unsupported (skipping test)");
+				resultProps.setProperty("TESTRESULT", "pass");
+				resultProps.list(out);
+				return;
+			}
+			logger.log(Logger.Level.INFO, "Create SOAPConnectionFactory object");
+			SOAPConnectionFactory sfactory = SOAP_Util.getSOAPConnectionFactory();
+			if (sfactory == null) {
+				logger.log(Logger.Level.ERROR, "SOAPConnectionFactory.newInstance() returned null");
+				pass = false;
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		if (pass)
+			logger.log(Logger.Level.INFO, "newInstanceTest() test PASSED");
+		else
+			logger.log(Logger.Level.ERROR, "newInstanceTest() test FAILED");
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void createConnectionTest(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "createConnectionTest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
-      // Check if SOAPConnectionFactory is supported
-      TestUtil.logMsg("Check if SOAPConnectionFactory is supported");
-      if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
-        TestUtil.logMsg("SOAPConnectionFactory.newInstance() is "
-            + "unsupported (skipping test)");
-        resultProps.setProperty("TESTRESULT", "pass");
-        resultProps.list(out);
-        return;
-      }
-      TestUtil.logMsg("Create SOAPConnectionFactory object");
-      SOAPConnectionFactory sfactory = SOAP_Util.getSOAPConnectionFactory();
-      TestUtil.logMsg("Create SOAPConnection object");
-      SOAPConnection scon = sfactory.createConnection();
-      if (scon == null) {
-        TestUtil.logErr("SOAPConnection.createConnection() returned null");
-        pass = false;
-      } else
-        scon.close();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    if (pass)
-      TestUtil.logMsg("createConnectionTest() test PASSED");
-    else
-      TestUtil.logErr("createConnectionTest() test FAILED");
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
+
+		try {
+			setup();
+			// Check if SOAPConnectionFactory is supported
+			logger.log(Logger.Level.INFO, "Check if SOAPConnectionFactory is supported");
+			if (!SOAP_Util.isSOAPConnectionFactorySupported()) {
+				logger.log(Logger.Level.INFO,
+						"SOAPConnectionFactory.newInstance() is " + "unsupported (skipping test)");
+				resultProps.setProperty("TESTRESULT", "pass");
+				resultProps.list(out);
+				return;
+			}
+			logger.log(Logger.Level.INFO, "Create SOAPConnectionFactory object");
+			SOAPConnectionFactory sfactory = SOAP_Util.getSOAPConnectionFactory();
+			logger.log(Logger.Level.INFO, "Create SOAPConnection object");
+			SOAPConnection scon = sfactory.createConnection();
+			if (scon == null) {
+				logger.log(Logger.Level.ERROR, "SOAPConnection.createConnection() returned null");
+				pass = false;
+			} else
+				scon.close();
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		if (pass)
+			logger.log(Logger.Level.INFO, "createConnectionTest() test PASSED");
+		else
+			logger.log(Logger.Level.ERROR, "createConnectionTest() test FAILED");
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 }

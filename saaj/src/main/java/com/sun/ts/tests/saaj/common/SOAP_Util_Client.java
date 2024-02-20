@@ -26,9 +26,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.xml.soap.MessageFactory;
 import jakarta.xml.soap.SOAPConnection;
@@ -38,214 +37,212 @@ import jakarta.xml.soap.SOAPFactory;
 import jakarta.xml.soap.SOAPMessage;
 
 public final class SOAP_Util_Client {
-  public static final String SOAP11 = "soap11";
 
-  public static final String SOAP12 = "soap12";
+	private static final Logger logger = (Logger) System.getLogger(SOAP_Util_Client.class.getName());
 
-  public static final String SOAPVERSION = "SOAPVERSION";
+	public static final String SOAP11 = "soap11";
 
-  private static String soapVersion = null;
+	public static final String SOAP12 = "soap12";
 
-  private static boolean debug = false;
+	public static final String SOAPVERSION = "SOAPVERSION";
 
-  private static boolean SOAPConnectionFactorySupported = true;
+	private static String soapVersion = null;
 
-  private static SOAPConnection scon = null;
+	private static boolean debug = false;
 
-  private static SOAPConnectionFactory sconfactory = null;
+	private static boolean SOAPConnectionFactorySupported = true;
 
-  private static MessageFactory mfactorySOAP11 = null;
+	private static SOAPConnection scon = null;
 
-  private static MessageFactory mfactorySOAP12 = null;
+	private static SOAPConnectionFactory sconfactory = null;
 
-  private static SOAPFactory sfactorySOAP11 = null;
+	private static MessageFactory mfactorySOAP11 = null;
 
-  private static SOAPFactory sfactorySOAP12 = null;
+	private static MessageFactory mfactorySOAP12 = null;
 
-  public static void setup() throws Exception {
-    System.out.println("SOAP_Util_Client:setup");
-    try {
-      System.out.println("Create SOAPConnectionFactory object");
-      if (sconfactory == null)
-        sconfactory = SOAPConnectionFactory.newInstance();
-      System.out.println("Create SOAPConnection object");
-      if (scon == null)
-        scon = sconfactory.createConnection();
-    } catch (UnsupportedOperationException e) {
-      SOAPConnectionFactorySupported = false;
-    } catch (Exception e) {
-      System.err.println("Exception occurred: " + e.getMessage());
-      e.printStackTrace(System.err);
-      throw e;
-    }
-  }
+	private static SOAPFactory sfactorySOAP11 = null;
 
-  public static boolean isSOAPConnectionFactorySupported() {
-    return SOAPConnectionFactorySupported;
-  }
+	private static SOAPFactory sfactorySOAP12 = null;
 
-  public static SOAPConnection getSOAPConnection() {
-    System.out.println("SOAP_Util_Client:getSOAPConnection");
-    return scon;
-  }
+	public static void setup() throws Exception {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:setup");
+		try {
+			logger.log(Logger.Level.TRACE,"Create SOAPConnectionFactory object");
+			if (sconfactory == null)
+				sconfactory = SOAPConnectionFactory.newInstance();
+			logger.log(Logger.Level.TRACE,"Create SOAPConnection object");
+			if (scon == null)
+				scon = sconfactory.createConnection();
+		} catch (UnsupportedOperationException e) {
+			SOAPConnectionFactorySupported = false;
+		} catch (Exception e) {
+			System.err.println("Exception occurred: " + e.getMessage());
+			e.printStackTrace(System.err);
+			throw e;
+		}
+	}
 
-  public static String getSOAPVersion() {
-    System.out.println("SOAP_Util_Client:getSOAPVersion");
-    if (soapVersion == null || soapVersion.equals(SOAP_Util_Client.SOAP11))
-      return SOAP_Util_Client.SOAP11;
-    else
-      return SOAP_Util_Client.SOAP12;
-  }
+	public static boolean isSOAPConnectionFactorySupported() {
+		return SOAPConnectionFactorySupported;
+	}
 
-  public static void setSOAPVersion(String s) {
-    System.out.println("SOAP_Util_Client:setSOAPVersion");
-    soapVersion = s;
-    if (soapVersion == null || soapVersion.equals(SOAP_Util_Client.SOAP11))
-      TestUtil.logMsg("Testing SOAP Version 1.1 Protocol");
-    else
-      TestUtil.logMsg("Testing SOAP Version 1.2 Protocol");
-  }
+	public static SOAPConnection getSOAPConnection() {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:getSOAPConnection");
+		return scon;
+	}
 
-  public static SOAPConnection openSOAPConnection() throws Exception {
-    System.out.println("SOAP_Util_Client:openSOAPConnection");
-    if (SOAPConnectionFactorySupported && sconfactory != null)
-      scon = sconfactory.createConnection();
-    return scon;
-  }
+	public static String getSOAPVersion() {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:getSOAPVersion");
+		if (soapVersion == null || soapVersion.equals(SOAP_Util_Client.SOAP11))
+			return SOAP_Util_Client.SOAP11;
+		else
+			return SOAP_Util_Client.SOAP12;
+	}
 
-  public static void closeSOAPConnection() {
-    System.out.println("SOAP_Util_Client:closeSOAPConnection");
-    try {
-      if (SOAPConnectionFactorySupported && scon != null)
-        scon.close();
-    } catch (Exception e) {
-    }
-    scon = null;
-  }
+	public static void setSOAPVersion(String s) {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:setSOAPVersion");
+		soapVersion = s;
+		if (soapVersion == null || soapVersion.equals(SOAP_Util_Client.SOAP11))
+			logger.log(Logger.Level.INFO, "Testing SOAP Version 1.1 Protocol");
+		else
+			logger.log(Logger.Level.INFO, "Testing SOAP Version 1.2 Protocol");
+	}
 
-  public static SOAPConnectionFactory getSOAPConnectionFactory() {
-    System.out.println("SOAP_Util_Client:getSOAPConnectionFactory");
-    return sconfactory;
-  }
+	public static SOAPConnection openSOAPConnection() throws Exception {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:openSOAPConnection");
+		if (SOAPConnectionFactorySupported && sconfactory != null)
+			scon = sconfactory.createConnection();
+		return scon;
+	}
 
-  public static MessageFactory getMessageFactory() throws Exception {
-    System.out.println("SOAP_Util_Client:getMessageFactory");
-    if (soapVersion == null) {
-      if (mfactorySOAP11 == null)
-        mfactorySOAP11 = MessageFactory.newInstance();
-      return mfactorySOAP11;
-    } else if (soapVersion.equals(SOAP11)) {
-      if (mfactorySOAP11 == null)
-        mfactorySOAP11 = MessageFactory
-            .newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
-      return mfactorySOAP11;
-    } else {
-      if (mfactorySOAP12 == null)
-        mfactorySOAP12 = MessageFactory
-            .newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
-      return mfactorySOAP12;
-    }
-  }
+	public static void closeSOAPConnection() {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:closeSOAPConnection");
+		try {
+			if (SOAPConnectionFactorySupported && scon != null)
+				scon.close();
+		} catch (Exception e) {
+		}
+		scon = null;
+	}
 
-  public static SOAPFactory getSOAPFactory() throws Exception {
-    System.out.println("SOAP_Util_Client:getSOAPFactory");
-    if (soapVersion == null) {
-      if (sfactorySOAP11 == null)
-        sfactorySOAP11 = SOAPFactory.newInstance();
-      return sfactorySOAP11;
-    } else if (soapVersion.equals(SOAP11)) {
-      if (sfactorySOAP11 == null)
-        sfactorySOAP11 = SOAPFactory
-            .newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
-      return sfactorySOAP11;
-    } else {
-      if (sfactorySOAP12 == null)
-        sfactorySOAP12 = SOAPFactory
-            .newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
-      return sfactorySOAP12;
-    }
-  }
+	public static SOAPConnectionFactory getSOAPConnectionFactory() {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:getSOAPConnectionFactory");
+		return sconfactory;
+	}
 
-  public static SOAPMessage createSOAPMessage() throws Exception {
-    System.out.println("SOAP_Util_Client:createSOAPMessage");
-    SOAPMessage message = getMessageFactory().createMessage();
-    return message;
-  }
+	public static MessageFactory getMessageFactory() throws Exception {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:getMessageFactory");
+		if (soapVersion == null) {
+			if (mfactorySOAP11 == null)
+				mfactorySOAP11 = MessageFactory.newInstance();
+			return mfactorySOAP11;
+		} else if (soapVersion.equals(SOAP11)) {
+			if (mfactorySOAP11 == null)
+				mfactorySOAP11 = MessageFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
+			return mfactorySOAP11;
+		} else {
+			if (mfactorySOAP12 == null)
+				mfactorySOAP12 = MessageFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+			return mfactorySOAP12;
+		}
+	}
 
-  public static int getIteratorCount(Iterator i) {
-    int count = 0;
+	public static SOAPFactory getSOAPFactory() throws Exception {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:getSOAPFactory");
+		if (soapVersion == null) {
+			if (sfactorySOAP11 == null)
+				sfactorySOAP11 = SOAPFactory.newInstance();
+			return sfactorySOAP11;
+		} else if (soapVersion.equals(SOAP11)) {
+			if (sfactorySOAP11 == null)
+				sfactorySOAP11 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_1_PROTOCOL);
+			return sfactorySOAP11;
+		} else {
+			if (sfactorySOAP12 == null)
+				sfactorySOAP12 = SOAPFactory.newInstance(SOAPConstants.SOAP_1_2_PROTOCOL);
+			return sfactorySOAP12;
+		}
+	}
 
-    System.out.println("SOAP_Util_Client.getIteratorCount");
+	public static SOAPMessage createSOAPMessage() throws Exception {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client:createSOAPMessage");
+		SOAPMessage message = getMessageFactory().createMessage();
+		return message;
+	}
 
-    while (i.hasNext()) {
-      count++;
-      i.next();
-    }
-    return count;
-  }
+	public static int getIteratorCount(Iterator i) {
+		int count = 0;
 
-  public static StringBuffer copyToBuffer(InputStream is) {
-    System.out.println("SOAP_Util_Client.copyToBuffer");
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client.getIteratorCount");
 
-    if (is == null)
-      return null;
+		while (i.hasNext()) {
+			count++;
+			i.next();
+		}
+		return count;
+	}
 
-    StringWriter sw = new StringWriter();
-    BufferedReader br = new BufferedReader(new InputStreamReader(is));
+	public static StringBuffer copyToBuffer(InputStream is) {
+		logger.log(Logger.Level.TRACE,"SOAP_Util_Client.copyToBuffer");
 
-    try {
-      String s;
-      while ((s = br.readLine()) != null)
-        sw.write(s);
-    } catch (Exception e) {
-    }
-    return sw.getBuffer();
-  }
+		if (is == null)
+			return null;
 
-  public static void dumpSOAPMessage(SOAPMessage msg) {
-    TestUtil.logMsg("***** Begin Dumping SOAPMessage *****");
-    try {
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      msg.writeTo(baos);
-      TestUtil.logMsg(baos.toString());
-    } catch (Exception e) {
-      System.err.println("Exception occurred: " + e);
-      e.printStackTrace();
-    }
-    TestUtil.logMsg("***** Done Dumping SOAPMessage *****");
-  }
+		StringWriter sw = new StringWriter();
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-  public static String returnSOAPMessageAsString(SOAPMessage msg) {
-    ByteArrayOutputStream baos = null;
-    String s = null;
-    try {
-      baos = new ByteArrayOutputStream();
-      msg.writeTo(baos);
-      s = baos.toString();
-    } catch (Exception e) {
-      System.err.println("Exception occurred: " + e);
-      e.printStackTrace();
-    }
-    return s;
-  }
+		try {
+			String s;
+			while ((s = br.readLine()) != null)
+				sw.write(s);
+		} catch (Exception e) {
+		}
+		return sw.getBuffer();
+	}
 
-  public static void dumpSOAPMessageWOA(SOAPMessage msg) {
-    TestUtil
-        .logMsg("***** Begin Dumping SOAPMessage Without Attachments *****");
-    try {
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      msg.writeTo(baos);
-      SOAPMessage tmpMsg = getMessageFactory().createMessage(
-          msg.getMimeHeaders(), new ByteArrayInputStream(baos.toByteArray()));
-      tmpMsg.removeAllAttachments();
-      tmpMsg.saveChanges();
-      baos = new ByteArrayOutputStream();
-      tmpMsg.writeTo(baos);
-      TestUtil.logMsg(baos.toString());
-    } catch (Exception e) {
-      System.err.println("Exception occurred: " + e);
-      e.printStackTrace();
-    }
-    TestUtil.logMsg("***** Done Dumping SOAPMessage Without Attachments *****");
-  }
+	public static void dumpSOAPMessage(SOAPMessage msg) {
+		logger.log(Logger.Level.INFO, "***** Begin Dumping SOAPMessage *****");
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			msg.writeTo(baos);
+			logger.log(Logger.Level.INFO, baos.toString());
+		} catch (Exception e) {
+			System.err.println("Exception occurred: " + e);
+			e.printStackTrace();
+		}
+		logger.log(Logger.Level.INFO, "***** Done Dumping SOAPMessage *****");
+	}
+
+	public static String returnSOAPMessageAsString(SOAPMessage msg) {
+		ByteArrayOutputStream baos = null;
+		String s = null;
+		try {
+			baos = new ByteArrayOutputStream();
+			msg.writeTo(baos);
+			s = baos.toString();
+		} catch (Exception e) {
+			System.err.println("Exception occurred: " + e);
+			e.printStackTrace();
+		}
+		return s;
+	}
+
+	public static void dumpSOAPMessageWOA(SOAPMessage msg) {
+		logger.log(Logger.Level.INFO, "***** Begin Dumping SOAPMessage Without Attachments *****");
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			msg.writeTo(baos);
+			SOAPMessage tmpMsg = getMessageFactory().createMessage(msg.getMimeHeaders(),
+					new ByteArrayInputStream(baos.toByteArray()));
+			tmpMsg.removeAllAttachments();
+			tmpMsg.saveChanges();
+			baos = new ByteArrayOutputStream();
+			tmpMsg.writeTo(baos);
+			logger.log(Logger.Level.INFO, baos.toString());
+		} catch (Exception e) {
+			System.err.println("Exception occurred: " + e);
+			e.printStackTrace();
+		}
+		logger.log(Logger.Level.INFO, "***** Done Dumping SOAPMessage Without Attachments *****");
+	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,210 +20,165 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.Detail;
 
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.IOException;
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.porting.TSURL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-public class URLClient extends EETest {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
 
-  private static final String HOSTNAME = "localhost";
+	private static final String DETAIL_TESTSERVLET = "/Detail_web/DetailTestServlet";
 
-  private static final int PORTNUM = 8000;
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final String DETAIL_TESTSERVLET = "/Detail_web/DetailTestServlet";
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "Detail_web.war");
+		archive.addPackages(false, Filters.exclude(URLClient.class),
+				"com.sun.ts.tests.saaj.api.jakarta_xml_soap.Detail");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
 
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
+	/*
+	 * @testName: addDetailEntryTest1
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:310; SAAJ:JAVADOC:311;
+	 *
+	 * @test_Strategy: Call Detail.addDetailEntry(Name).
+	 *
+	 * Description: Adds the given Name object to this Detail object.
+	 *
+	 */
+	@Test
+	public void addDetailEntryTest1() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO,
+					"addDetailEntryTest1: add DetailEntry Name " + "object to this Detail object");
+			logger.log(Logger.Level.INFO, "protocol=" + PROTOCOL + ", hostname=" + hostname + ", portnum=" + portnum
+					+ ", servlet=" + DETAIL_TESTSERVLET);
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, DETAIL_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "addDetailEntryTest1");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  private static final String WEBSERVERPORTPROP = "webServerPort";
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("addDetailEntryTest1 failed", e);
+		}
 
-  private TSURL tsurl = new TSURL();
+		if (!pass)
+			throw new Exception("addDetailEntryTest1 failed");
+	}
 
-  private URL url = null;
+	/*
+	 * @testName: addDetailEntryTest2
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:312; SAAJ:JAVADOC:313;
+	 *
+	 * @test_Strategy: Call Detail.addDetailEntry(QName).
+	 *
+	 * Description: Adds the given Name object to this Detail object.
+	 *
+	 */
+	@Test
+	public void addDetailEntryTest2() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO,
+					"addDetailEntryTest2: add DetailEntry Name " + "object to this Detail object");
+			logger.log(Logger.Level.INFO, "protocol=" + PROTOCOL + ", hostname=" + hostname + ", portnum=" + portnum
+					+ ", servlet=" + DETAIL_TESTSERVLET);
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, DETAIL_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "addDetailEntryTest2");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  private URLConnection urlConn = null;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("addDetailEntryTest2 failed", e);
+		}
 
-  private Properties props = null;
+		if (!pass)
+			throw new Exception("addDetailEntryTest2 failed");
+	}
 
-  private String hostname = HOSTNAME;
+	/*
+	 * @testName: getDetailEntriesTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:314;
+	 *
+	 * @test_Strategy: Call Detail.getDetailEntries().
+	 *
+	 * Description: Gets a list of the detail entries in this Detail object.
+	 *
+	 */
+	@Test
+	public void getDetailEntriesTest() throws Exception {
+		boolean pass = true;
+		try {
+			logger.log(Logger.Level.INFO,
+					"getDetailEntriesTest: get a list of the " + "DetailEntry objects in this Detail object");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, DETAIL_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "getDetailEntriesTest");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  private int portnum = PORTNUM;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("getDetailEntriesTest failed", e);
+		}
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    boolean pass = true;
-
-    try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      TestUtil.logErr(
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-    logMsg("setup ok");
-  }
-
-  public void cleanup() throws Exception {
-    logMsg("cleanup ok");
-  }
-
-  /*
-   * @testName: addDetailEntryTest1
-   *
-   * @assertion_ids: SAAJ:JAVADOC:310; SAAJ:JAVADOC:311;
-   *
-   * @test_Strategy: Call Detail.addDetailEntry(Name).
-   *
-   * Description: Adds the given Name object to this Detail object.
-   *
-   */
-  public void addDetailEntryTest1() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("addDetailEntryTest1: add DetailEntry Name "
-          + "object to this Detail object");
-      TestUtil.logMsg("protocol=" + PROTOCOL + ", hostname=" + hostname
-          + ", portnum=" + portnum + ", servlet=" + DETAIL_TESTSERVLET);
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, DETAIL_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "addDetailEntryTest1");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("addDetailEntryTest1 failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("addDetailEntryTest1 failed");
-  }
-
-  /*
-   * @testName: addDetailEntryTest2
-   *
-   * @assertion_ids: SAAJ:JAVADOC:312; SAAJ:JAVADOC:313;
-   *
-   * @test_Strategy: Call Detail.addDetailEntry(QName).
-   *
-   * Description: Adds the given Name object to this Detail object.
-   *
-   */
-  public void addDetailEntryTest2() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("addDetailEntryTest2: add DetailEntry Name "
-          + "object to this Detail object");
-      TestUtil.logMsg("protocol=" + PROTOCOL + ", hostname=" + hostname
-          + ", portnum=" + portnum + ", servlet=" + DETAIL_TESTSERVLET);
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, DETAIL_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "addDetailEntryTest2");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("addDetailEntryTest2 failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("addDetailEntryTest2 failed");
-  }
-
-  /*
-   * @testName: getDetailEntriesTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:314;
-   *
-   * @test_Strategy: Call Detail.getDetailEntries().
-   *
-   * Description: Gets a list of the detail entries in this Detail object.
-   *
-   */
-  public void getDetailEntriesTest() throws Exception {
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("getDetailEntriesTest: get a list of the "
-          + "DetailEntry objects in this Detail object");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, DETAIL_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "getDetailEntriesTest");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("getDetailEntriesTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("getDetailEntriesTest failed");
-  }
+		if (!pass)
+			throw new Exception("getDetailEntriesTest failed");
+	}
 }

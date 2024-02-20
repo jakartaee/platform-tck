@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,6 +22,7 @@ package com.sun.ts.tests.saaj.api.jakarta_xml_soap.MimeHeader;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -39,149 +40,144 @@ import jakarta.xml.soap.SOAPMessage;
 import jakarta.xml.soap.SOAPPart;
 
 public class MimeHeaderTestServlet extends HttpServlet {
-  private MessageFactory mf = null;
 
-  private SOAPMessage msg = null;
+	private static final Logger logger = (Logger) System.getLogger(MimeHeaderTestServlet.class.getName());
 
-  private SOAPPart sp = null;
+	private MessageFactory mf = null;
 
-  private SOAPEnvelope envelope = null;
+	private SOAPMessage msg = null;
 
-  MimeHeader mimeHeader = null;
+	private SOAPPart sp = null;
 
-  private void setup() throws Exception {
-    TestUtil.logTrace("setup");
+	private SOAPEnvelope envelope = null;
 
-    SOAP_Util.setup();
+	MimeHeader mimeHeader = null;
 
-    // Create a message from the message factory.
-    TestUtil.logMsg("Create message from message factory");
-    msg = SOAP_Util.getMessageFactory().createMessage();
+	private void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
 
-    // Message creation takes care of creating the SOAPPart - a
-    // required part of the message as per the SOAP 1.1
-    // specification.
-    sp = msg.getSOAPPart();
+		SOAP_Util.setup();
 
-    // Retrieve the envelope from the soap part to start building
-    // the soap message.
-    envelope = sp.getEnvelope();
-  }
+		// Create a message from the message factory.
+		logger.log(Logger.Level.INFO, "Create message from message factory");
+		msg = SOAP_Util.getMessageFactory().createMessage();
 
-  private void dispatch(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("dispatch");
-    String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
-    if (testname.equals("getNameTest")) {
-      TestUtil.logMsg("Starting getNameTest");
-      getNameTest(req, res);
-    } else if (testname.equals("getValueTest")) {
-      TestUtil.logMsg("Starting getValueTest");
-      getValueTest(req, res);
-    } else {
-      throw new ServletException(
-          "The testname '" + testname + "' was not found in the test servlet");
-    }
-  }
+		// Message creation takes care of creating the SOAPPart - a
+		// required part of the message as per the SOAP 1.1
+		// specification.
+		sp = msg.getSOAPPart();
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-    System.out.println("MimeHeaderTestServlet:init (Entering)");
-    System.out.println("MimeHeaderTestServlet:init (Leaving)");
-  }
+		// Retrieve the envelope from the soap part to start building
+		// the soap message.
+		envelope = sp.getEnvelope();
+	}
 
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doGet");
-    dispatch(req, res);
-  }
+	private void dispatch(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "dispatch");
+		String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
+		if (testname.equals("getNameTest")) {
+			logger.log(Logger.Level.INFO, "Starting getNameTest");
+			getNameTest(req, res);
+		} else if (testname.equals("getValueTest")) {
+			logger.log(Logger.Level.INFO, "Starting getValueTest");
+			getValueTest(req, res);
+		} else {
+			throw new ServletException("The testname '" + testname + "' was not found in the test servlet");
+		}
+	}
 
-  public void doPost(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doPost");
-    SOAP_Util.doServletPost(req, res);
-    doGet(req, res);
-  }
+	public void init(ServletConfig servletConfig) throws ServletException {
+		super.init(servletConfig);
+		logger.log(Logger.Level.TRACE,"MimeHeaderTestServlet:init (Entering)");
+		logger.log(Logger.Level.TRACE,"MimeHeaderTestServlet:init (Leaving)");
+	}
 
-  private void getNameTest(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("getNameTest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doGet");
+		dispatch(req, res);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doPost");
+		SOAP_Util.doServletPost(req, res);
+		doGet(req, res);
+	}
 
-    try {
-      setup();
+	private void getNameTest(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "getNameTest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-      TestUtil.logMsg("Creating MimeHeader object ...");
-      mimeHeader = new MimeHeader("Content-Type", "application/xml");
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      TestUtil.logMsg("Obtaining name");
-      String name = mimeHeader.getName();
+		try {
+			setup();
 
-      TestUtil.logMsg("Validating name results ...");
-      if (name == null) {
-        TestUtil.logErr("name is null");
-        pass = false;
-      } else if (!name.equals("Content-Type")) {
-        TestUtil.logErr(
-            "name mismatch - expected: Content-Type, received: " + name);
-        pass = false;
-      } else
-        TestUtil.logMsg("name matches: " + name);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Creating MimeHeader object ...");
+			mimeHeader = new MimeHeader("Content-Type", "application/xml");
 
-  private void getValueTest(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("getValueTest");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			logger.log(Logger.Level.INFO, "Obtaining name");
+			String name = mimeHeader.getName();
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+			logger.log(Logger.Level.INFO, "Validating name results ...");
+			if (name == null) {
+				logger.log(Logger.Level.ERROR, "name is null");
+				pass = false;
+			} else if (!name.equals("Content-Type")) {
+				logger.log(Logger.Level.ERROR, "name mismatch - expected: Content-Type, received: " + name);
+				pass = false;
+			} else
+				logger.log(Logger.Level.INFO, "name matches: " + name);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    try {
-      setup();
+	private void getValueTest(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "getValueTest");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-      TestUtil.logMsg("Creating MimeHeader object ...");
-      mimeHeader = new MimeHeader("Content-Type", "application/xml");
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      TestUtil.logMsg("Obtaining value");
-      String value = mimeHeader.getValue();
+		try {
+			setup();
 
-      TestUtil.logMsg("Validating value results ...");
-      if (value == null) {
-        TestUtil.logErr("value is null");
-        pass = false;
-      } else if (!value.equals("application/xml")) {
-        TestUtil.logErr(
-            "value mismatch - expected: application/xml, received: " + value);
-        pass = false;
-      } else
-        TestUtil.logMsg("value matches: " + value);
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+			logger.log(Logger.Level.INFO, "Creating MimeHeader object ...");
+			mimeHeader = new MimeHeader("Content-Type", "application/xml");
+
+			logger.log(Logger.Level.INFO, "Obtaining value");
+			String value = mimeHeader.getValue();
+
+			logger.log(Logger.Level.INFO, "Validating value results ...");
+			if (value == null) {
+				logger.log(Logger.Level.ERROR, "value is null");
+				pass = false;
+			} else if (!value.equals("application/xml")) {
+				logger.log(Logger.Level.ERROR, "value mismatch - expected: application/xml, received: " + value);
+				pass = false;
+			} else
+				logger.log(Logger.Level.INFO, "value matches: " + value);
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 }

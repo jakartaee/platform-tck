@@ -24,10 +24,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.lang.System.Logger;
 import java.util.Iterator;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPFault.URLClient;
 import com.sun.ts.tests.saaj.common.SOAP_Util;
 
 import jakarta.servlet.ServletConfig;
@@ -49,209 +51,204 @@ import jakarta.xml.soap.SOAPPart;
 import jakarta.xml.soap.Text;
 
 public class TextTestServlet extends HttpServlet {
-  private MessageFactory mf = null;
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private SOAPMessage msg = null;
+	private MessageFactory mf = null;
 
-  private SOAPPart sp = null;
+	private SOAPMessage msg = null;
 
-  private SOAPEnvelope envelope = null;
+	private SOAPPart sp = null;
 
-  private SOAPHeader hdr = null;
+	private SOAPEnvelope envelope = null;
 
-  private SOAPHeaderElement she = null;
+	private SOAPHeader hdr = null;
 
-  private SOAPBody body = null;
+	private SOAPHeaderElement she = null;
 
-  private SOAPBodyElement bodye = null;
+	private SOAPBody body = null;
 
-  private SOAPElement se = null;
+	private SOAPBodyElement bodye = null;
 
-  private PrintStream ps = null;
+	private SOAPElement se = null;
 
-  private ByteArrayOutputStream baos = null;
+	private PrintStream ps = null;
 
-  Name name = null;
+	private ByteArrayOutputStream baos = null;
 
-  private void setup() throws Exception {
-    TestUtil.logTrace("setup");
+	Name name = null;
 
-    SOAP_Util.setup();
+	private void setup() throws Exception {
+		logger.log(Logger.Level.TRACE, "setup");
 
-    // Create a message from the message factory.
-    TestUtil.logTrace("Create message from message factory");
-    msg = SOAP_Util.getMessageFactory().createMessage();
+		SOAP_Util.setup();
 
-    // Message creation takes care of creating the SOAPPart - a
-    // required part of the message as per the SOAP 1.1 spec.
-    TestUtil.logTrace("Get SOAP Part");
-    sp = msg.getSOAPPart();
+		// Create a message from the message factory.
+		logger.log(Logger.Level.TRACE, "Create message from message factory");
+		msg = SOAP_Util.getMessageFactory().createMessage();
 
-    // Retrieve the envelope from the soap part to start building
-    // the soap message.
-    TestUtil.logTrace("Get SOAP Envelope");
-    envelope = sp.getEnvelope();
+		// Message creation takes care of creating the SOAPPart - a
+		// required part of the message as per the SOAP 1.1 spec.
+		logger.log(Logger.Level.TRACE, "Get SOAP Part");
+		sp = msg.getSOAPPart();
 
-    // Retrieve the soap header from the envelope.
-    TestUtil.logTrace("Get SOAP Header");
-    hdr = envelope.getHeader();
+		// Retrieve the envelope from the soap part to start building
+		// the soap message.
+		logger.log(Logger.Level.TRACE, "Get SOAP Envelope");
+		envelope = sp.getEnvelope();
 
-    // Retrieve the soap header from the envelope.
-    TestUtil.logTrace("Get SOAP Body");
-    body = envelope.getBody();
+		// Retrieve the soap header from the envelope.
+		logger.log(Logger.Level.TRACE, "Get SOAP Header");
+		hdr = envelope.getHeader();
 
-    name = envelope.createName("foo", "f", "foo-URI");
+		// Retrieve the soap header from the envelope.
+		logger.log(Logger.Level.TRACE, "Get SOAP Body");
+		body = envelope.getBody();
 
-    TestUtil.logMsg("Creating SOAPHeaderElement");
-    she = hdr.addHeaderElement(envelope.createName("foo", "f", "foo-URI"));
+		name = envelope.createName("foo", "f", "foo-URI");
 
-    TestUtil.logMsg("Creating SOAPBodyElement");
-    bodye = body.addBodyElement(envelope.createName("foo", "f", "foo-URI"));
+		logger.log(Logger.Level.INFO, "Creating SOAPHeaderElement");
+		she = hdr.addHeaderElement(envelope.createName("foo", "f", "foo-URI"));
 
-    baos = new ByteArrayOutputStream();
-    ps = new PrintStream(baos);
-  }
+		logger.log(Logger.Level.INFO, "Creating SOAPBodyElement");
+		bodye = body.addBodyElement(envelope.createName("foo", "f", "foo-URI"));
 
-  private void dispatch(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("dispatch");
-    String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
-    if (testname.equals("Text1Test")) {
-      TestUtil.logTrace("Starting Text1Test");
-      Text1Test(req, res);
-    } else if (testname.equals("Text2Test")) {
-      TestUtil.logTrace("Starting Text2Test");
-      Text2Test(req, res);
-    } else {
-      throw new ServletException(
-          "The testname '" + testname + "' was not found in the test servlet");
-    }
-  }
+		baos = new ByteArrayOutputStream();
+		ps = new PrintStream(baos);
+	}
 
-  public void init(ServletConfig servletConfig) throws ServletException {
-    super.init(servletConfig);
-    System.out.println("IsCommentTestServlet:init (Entering)");
-    SOAP_Util.doServletInit(servletConfig);
-    System.out.println("IsCommentTestServlet:init (Leaving)");
-  }
+	private void dispatch(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "dispatch");
+		String testname = SOAP_Util.getHarnessProps().getProperty("TESTNAME");
+		if (testname.equals("Text1Test")) {
+			logger.log(Logger.Level.TRACE, "Starting Text1Test");
+			Text1Test(req, res);
+		} else if (testname.equals("Text2Test")) {
+			logger.log(Logger.Level.TRACE, "Starting Text2Test");
+			Text2Test(req, res);
+		} else {
+			throw new ServletException("The testname '" + testname + "' was not found in the test servlet");
+		}
+	}
 
-  public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doGet");
-    dispatch(req, res);
-  }
+	public void init(ServletConfig servletConfig) throws ServletException {
+		super.init(servletConfig);
+		logger.log(Logger.Level.TRACE,"IsCommentTestServlet:init (Entering)");
+		SOAP_Util.doServletInit(servletConfig);
+		logger.log(Logger.Level.TRACE,"IsCommentTestServlet:init (Leaving)");
+	}
 
-  public void doPost(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("doPost");
-    SOAP_Util.doServletPost(req, res);
-    doGet(req, res);
-  }
+	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doGet");
+		dispatch(req, res);
+	}
 
-  private void Text1Test(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("Text1Test");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "doPost");
+		SOAP_Util.doServletPost(req, res);
+		doGet(req, res);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void Text1Test(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "Text1Test");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
-      TestUtil.logMsg("Add text node with text [This is text]");
-      SOAPElement se = body.addBodyElement(envelope.createName("mytext"))
-          .addTextNode("This is text");
-      msg.writeTo(ps);
-      TestUtil.logMsg("Dumping SOAPMessage\n" + baos.toString());
-      TestUtil.logMsg("get child elements");
-      Iterator iterator = se.getChildElements();
-      Node n = null;
-      if (!iterator.hasNext())
-        TestUtil.logMsg("no child elements");
-      while (iterator.hasNext()) {
-        n = (Node) iterator.next();
-        TestUtil.logMsg("Node is: " + n);
-        if (n instanceof Text)
-          break;
-      }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      if (!(n instanceof Text)) {
-        TestUtil.logErr("no Text element was added - unexpected");
-        pass = false;
-      } else {
-        Text t = (Text) n;
-        TestUtil.logMsg("Executing IsComment");
-        boolean bResult = t.isComment();
-        if (bResult == true) {
-          TestUtil.logErr("addTextNodeTest() test FAILED");
-          TestUtil.logErr("isComment() did not return false");
-          pass = false;
-        }
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		try {
+			setup();
+			logger.log(Logger.Level.INFO, "Add text node with text [This is text]");
+			SOAPElement se = body.addBodyElement(envelope.createName("mytext")).addTextNode("This is text");
+			msg.writeTo(ps);
+			logger.log(Logger.Level.INFO, "Dumping SOAPMessage\n" + baos.toString());
+			logger.log(Logger.Level.INFO, "get child elements");
+			Iterator iterator = se.getChildElements();
+			Node n = null;
+			if (!iterator.hasNext())
+				logger.log(Logger.Level.INFO, "no child elements");
+			while (iterator.hasNext()) {
+				n = (Node) iterator.next();
+				logger.log(Logger.Level.INFO, "Node is: " + n);
+				if (n instanceof Text)
+					break;
+			}
 
-  private void Text2Test(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
-    TestUtil.logTrace("Text2Test");
-    Properties resultProps = new Properties();
-    boolean pass = true;
+			if (!(n instanceof Text)) {
+				logger.log(Logger.Level.ERROR, "no Text element was added - unexpected");
+				pass = false;
+			} else {
+				Text t = (Text) n;
+				logger.log(Logger.Level.INFO, "Executing IsComment");
+				boolean bResult = t.isComment();
+				if (bResult == true) {
+					logger.log(Logger.Level.ERROR, "addTextNodeTest() test FAILED");
+					logger.log(Logger.Level.ERROR, "isComment() did not return false");
+					pass = false;
+				}
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 
-    res.setContentType("text/plain");
-    PrintWriter out = res.getWriter();
+	private void Text2Test(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		logger.log(Logger.Level.TRACE, "Text2Test");
+		Properties resultProps = new Properties();
+		boolean pass = true;
 
-    try {
-      setup();
-      TestUtil.logMsg("Add text node with text <!-- This is text -->");
-      SOAPElement se = body.addTextNode("<!-- This is text -->");
-      msg.writeTo(ps);
-      TestUtil.logMsg("Dumping SOAPMessage\n" + baos.toString());
-      TestUtil.logMsg("get child elements");
-      Iterator iterator = se.getChildElements();
-      Node n = null;
-      if (!iterator.hasNext())
-        TestUtil.logMsg("no child elements");
-      while (iterator.hasNext()) {
-        n = (Node) iterator.next();
-        TestUtil.logMsg("Node is: " + n);
-        if (n instanceof Text)
-          break;
-      }
+		res.setContentType("text/plain");
+		PrintWriter out = res.getWriter();
 
-      if (!(n instanceof Text)) {
-        TestUtil.logErr("no Text element was added - unexpected");
-        pass = false;
-      } else {
-        Text t = (Text) n;
-        TestUtil.logMsg("Executing IsComment");
-        boolean bResult = t.isComment();
-        if (bResult == false) {
-          TestUtil.logErr("addTextNodeTest() test FAILED");
-          TestUtil.logErr("isComment() did not return true");
-          pass = false;
-        }
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Exception: " + e);
-      TestUtil.printStackTrace(e);
-      pass = false;
-    }
-    // Send response object and test result back to client
-    if (pass)
-      resultProps.setProperty("TESTRESULT", "pass");
-    else
-      resultProps.setProperty("TESTRESULT", "fail");
-    resultProps.list(out);
-  }
+		try {
+			setup();
+			logger.log(Logger.Level.INFO, "Add text node with text <!-- This is text -->");
+			SOAPElement se = body.addTextNode("<!-- This is text -->");
+			msg.writeTo(ps);
+			logger.log(Logger.Level.INFO, "Dumping SOAPMessage\n" + baos.toString());
+			logger.log(Logger.Level.INFO, "get child elements");
+			Iterator iterator = se.getChildElements();
+			Node n = null;
+			if (!iterator.hasNext())
+				logger.log(Logger.Level.INFO, "no child elements");
+			while (iterator.hasNext()) {
+				n = (Node) iterator.next();
+				logger.log(Logger.Level.INFO, "Node is: " + n);
+				if (n instanceof Text)
+					break;
+			}
+
+			if (!(n instanceof Text)) {
+				logger.log(Logger.Level.ERROR, "no Text element was added - unexpected");
+				pass = false;
+			} else {
+				Text t = (Text) n;
+				logger.log(Logger.Level.INFO, "Executing IsComment");
+				boolean bResult = t.isComment();
+				if (bResult == false) {
+					logger.log(Logger.Level.ERROR, "addTextNodeTest() test FAILED");
+					logger.log(Logger.Level.ERROR, "isComment() did not return true");
+					pass = false;
+				}
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: " + e);
+			TestUtil.printStackTrace(e);
+			pass = false;
+		}
+		// Send response object and test result back to client
+		if (pass)
+			resultProps.setProperty("TESTRESULT", "pass");
+		else
+			resultProps.setProperty("TESTRESULT", "fail");
+		resultProps.list(out);
+	}
 }
