@@ -65,11 +65,7 @@ public class ELClientIT {
     StringBuffer buf = new StringBuffer();
     Object testObject = Optional.empty();
     
-    try {
-      pass = testOptionalELResolver(buf, testObject, null, null);
-    } catch (Exception ex) {
-      throw new Exception(ex);
-    }
+    pass = testOptionalELResolver(buf, testObject, null, null);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -90,11 +86,7 @@ public class ELClientIT {
     StringBuffer buf = new StringBuffer();
     Object testObject = Optional.empty();
     
-    try {
-      pass = testOptionalELResolver(buf, testObject, "property", null);
-    } catch (Exception ex) {
-      throw new Exception(ex);
-    }
+    pass = testOptionalELResolver(buf, testObject, "property", null);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -116,11 +108,7 @@ public class ELClientIT {
     TestBean testBean = new TestBean("data");
     Object testObject = Optional.of(testBean);
     
-    try {
-      pass = testOptionalELResolver(buf, testObject, null, testBean);
-    } catch (Exception ex) {
-      throw new Exception(ex);
-    }
+    pass = testOptionalELResolver(buf, testObject, null, testBean);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -142,11 +130,7 @@ public class ELClientIT {
     TestBean testBean = new TestBean("data");
     Object testObject = Optional.of(testBean);
     
-    try {
-      pass = testOptionalELResolver(buf, testObject, "propertyA", "data");
-    } catch (Exception ex) {
-      throw new Exception(ex);
-    }
+    pass = testOptionalELResolver(buf, testObject, "propertyA", "data");
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
