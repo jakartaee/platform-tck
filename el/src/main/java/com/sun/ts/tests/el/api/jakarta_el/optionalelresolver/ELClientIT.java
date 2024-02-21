@@ -65,7 +65,7 @@ public class ELClientIT {
     StringBuffer buf = new StringBuffer();
     Object testObject = Optional.empty();
     
-    pass = testOptionalELResolver(buf, testObject, null, null);
+    pass = testOptionalELResolverProperty(buf, testObject, null, null);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -86,7 +86,7 @@ public class ELClientIT {
     StringBuffer buf = new StringBuffer();
     Object testObject = Optional.empty();
     
-    pass = testOptionalELResolver(buf, testObject, "property", null);
+    pass = testOptionalELResolverProperty(buf, testObject, "property", null);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -108,7 +108,7 @@ public class ELClientIT {
     TestBean testBean = new TestBean("data");
     Object testObject = Optional.of(testBean);
     
-    pass = testOptionalELResolver(buf, testObject, null, testBean);
+    pass = testOptionalELResolverProperty(buf, testObject, null, testBean);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -130,7 +130,7 @@ public class ELClientIT {
     TestBean testBean = new TestBean("data");
     Object testObject = Optional.of(testBean);
     
-    pass = testOptionalELResolver(buf, testObject, "propertyA", "data");
+    pass = testOptionalELResolverProperty(buf, testObject, "propertyA", "data");
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -138,7 +138,7 @@ public class ELClientIT {
     logger.log(Logger.Level.TRACE, buf.toString());
   }
 
-  public static boolean testOptionalELResolver(StringBuffer buf, Object base, Object property, Object expectedValue) {
+  public static boolean testOptionalELResolverProperty(StringBuffer buf, Object base, Object property, Object expectedValue) {
     boolean pass = true;
     
     BareBonesELContext barebonesContext = new BareBonesELContext();
