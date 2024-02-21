@@ -91,7 +91,7 @@ public class ELClientIT {
     Object testObject = Optional.empty();
     
     try {
-      pass = testOptionalELResolver(buf, testObject, "property", Optional.empty());
+      pass = testOptionalELResolver(buf, testObject, "property", null);
     } catch (Exception ex) {
       throw new Exception(ex);
     }
