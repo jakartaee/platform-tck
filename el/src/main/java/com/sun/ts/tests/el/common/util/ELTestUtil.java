@@ -22,9 +22,8 @@ package com.sun.ts.tests.el.common.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 import java.lang.System.Logger;
 
@@ -223,4 +222,18 @@ public final class ELTestUtil {
     return FAIL + " Unexpected Exception Thrown!" + NL + "Expected: "
         + exceptionName + NL + "Received: ";
   }
+
+  public static void printStackTrace(Throwable e) {
+    if (e == null) {
+      return;
+    }
+    try {
+      StringWriter sw = new StringWriter();
+      PrintWriter writer = new PrintWriter(sw);
+      e.printStackTrace(writer);
+      writer.close();
+    } catch (Exception E) {
+    }
+  }
+
 }

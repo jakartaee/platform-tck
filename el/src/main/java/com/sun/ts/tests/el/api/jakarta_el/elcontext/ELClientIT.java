@@ -26,7 +26,7 @@ import java.util.Locale;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
 import jakarta.el.ELContext;
@@ -79,7 +79,7 @@ public class ELClientIT {
 
     if (!testStr.equals(result)) {
       throw new Exception(ELTestUtil.FAIL + " Unexpected Context Returned!"
-          + TestUtil.NEW_LINE + "Expected: " + testStr + TestUtil.NEW_LINE
+          + ELTestUtil.NL + "Expected: " + testStr + ELTestUtil.NL
           + "Received: " + result);
     }
 
@@ -105,7 +105,7 @@ public class ELClientIT {
 
     if (!result.equalsIgnoreCase(disName)) {
       throw new Exception(ELTestUtil.FAIL + " Unexpected Locale Returned!"
-          + TestUtil.NEW_LINE + "Expected: " + disName + TestUtil.NEW_LINE
+          + ELTestUtil.NL + "Expected: " + disName + ELTestUtil.NL
           + "Received: " + result);
     }
 
@@ -130,7 +130,7 @@ public class ELClientIT {
     if (isProp) {
       throw new Exception(
           ELTestUtil.FAIL + " Unexpected result from isPropertyResolved()!"
-              + TestUtil.NEW_LINE + "Should have been false!");
+              + ELTestUtil.NL + "Should have been false!");
     }
 
     elc.setPropertyResolved(true);
@@ -139,7 +139,7 @@ public class ELClientIT {
     if (!isProp) {
       throw new Exception(
           ELTestUtil.FAIL + " Unexpected result from isPropertyResolved()!"
-              + TestUtil.NEW_LINE + "Should have been true!");
+              + ELTestUtil.NL + "Should have been true!");
     }
 
   } // end elContextIsSetPropertyResolvedTest

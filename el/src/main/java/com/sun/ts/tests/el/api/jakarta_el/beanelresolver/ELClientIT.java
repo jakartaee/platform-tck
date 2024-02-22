@@ -17,8 +17,8 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.beanelresolver;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+
+import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.SimpleBean;
@@ -118,8 +118,8 @@ public class ELClientIT {
     } catch (Exception ex) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Test of a valid expression using a Bean with a read-only " +
-          "property implemented via default methods threw an Exception!" + TestUtil.NEW_LINE +
-          "Received: " + ex.toString() + TestUtil.NEW_LINE);
+          "property implemented via default methods threw an Exception!" + ELTestUtil.NL +
+          "Received: " + ex.toString() + ELTestUtil.NL);
 
       ex.printStackTrace();
     }
@@ -156,8 +156,8 @@ public class ELClientIT {
     } catch (Exception ex) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Test of a valid expression using a Bean with a read-write " +
-          "property implemented via default methods threw an Exception!" + TestUtil.NEW_LINE +
-          "Received: " + ex.toString() + TestUtil.NEW_LINE);
+          "property implemented via default methods threw an Exception!" + ELTestUtil.NL +
+          "Received: " + ex.toString() + ELTestUtil.NL);
 
       ex.printStackTrace();
     }
@@ -231,8 +231,8 @@ public class ELClientIT {
             context, beanResolver, sb, "isName", types, values, Boolean.FALSE, buf);
       } else {
         pass = false;
-        buf.append("Unexpected Value returned!" + TestUtil.NEW_LINE
-            + "Expected: null" + TestUtil.NEW_LINE + "Recieved: "
+        buf.append("Unexpected Value returned!" + ELTestUtil.NL
+            + "Expected: null" + ELTestUtil.NL + "Recieved: "
             + result.getClass().getName());
       }
 

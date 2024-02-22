@@ -24,13 +24,11 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.signaturetest.SigTest;
 import com.sun.ts.tests.signaturetest.SignatureTestDriver;
 import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
 
 import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
 import java.lang.System.Logger;
 
 /*

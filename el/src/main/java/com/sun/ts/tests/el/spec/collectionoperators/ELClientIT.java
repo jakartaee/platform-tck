@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.spec.collectionoperators;
 import java.lang.reflect.Array;
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.tests.el.common.util.DataBase;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
@@ -521,7 +521,7 @@ public class ELClientIT {
     } catch (Exception e) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Construction and use of a valid Set literal threw an Exception!" +
-          TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+          ELTestUtil.NL + "Received: " + e.toString() + ELTestUtil.NL);
 
       e.printStackTrace();
     }
@@ -557,7 +557,7 @@ public class ELClientIT {
     } catch (Exception e) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Construction and use of a valid List literal threw an Exception!" +
-          TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+          ELTestUtil.NL + "Received: " + e.toString() + ELTestUtil.NL);
 
       e.printStackTrace();
     }
@@ -593,7 +593,7 @@ public class ELClientIT {
     } catch (Exception e) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Construction and use of a valid Map literal threw an Exception!" +
-          TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+          ELTestUtil.NL + "Received: " + e.toString() + ELTestUtil.NL);
 
       e.printStackTrace();
     }

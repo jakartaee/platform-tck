@@ -28,7 +28,7 @@ import java.math.RoundingMode;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 
 import jakarta.el.ELContext;
@@ -275,8 +275,7 @@ public final class ExprEval {
 
       // add the object
       context.putContext(cl, value);
-      TestUtil
-          .logTrace("Adding value: " + "\"" + value + "\"" + " To Context!");
+      logger.log(Logger.Level.TRACE, "Adding value: " + "\"" + value + "\"" + " To Context!");
 
       // test the expression
       if (!(ExprEval.compareValue(exprVal, vexp.getValue(context)))) {

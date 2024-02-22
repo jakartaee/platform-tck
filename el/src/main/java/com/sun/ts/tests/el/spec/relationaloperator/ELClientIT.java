@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
 import com.sun.ts.tests.el.common.util.TestNum;
@@ -1794,7 +1793,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(BigDecimal testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -1855,7 +1853,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. >, >=, <,
    *          <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(BigInteger testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -1924,7 +1921,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(Float testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -1992,7 +1988,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(Double testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2060,7 +2055,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(Long testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2068,8 +2062,7 @@ public class ELClientIT {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      TestUtil
-          .logTrace("*** Start " + "\"" + "Long" + "\"" + " Test Sequence ***");
+      logger.log(Logger.Level.TRACE, "*** Start " + "\"" + "Long" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
 
@@ -2107,8 +2100,7 @@ public class ELClientIT {
 
       } finally {
         ExprEval.cleanup();
-        TestUtil
-            .logTrace("*** End " + "\"" + "Long" + "\"" + " Test Sequence ***");
+        logger.log(Logger.Level.TRACE, "*** End " + "\"" + "Long" + "\"" + " Test Sequence ***");
       }
 
       if (!pass)
@@ -2129,7 +2121,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(Integer testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2199,7 +2190,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(Short testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2263,7 +2253,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. >, >=, <,
    *          <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(Byte testVal, Boolean expectedVal,
       String booleanOperator) throws Exception {
@@ -2271,8 +2260,7 @@ public class ELClientIT {
     boolean pass;
 
     for (int i = 0; numberList.size() > i; i++) {
-      TestUtil
-          .logTrace("*** Start " + "\"" + "Byte" + "\"" + " Test Sequence ***");
+      logger.log(Logger.Level.TRACE, "*** Start " + "\"" + "Byte" + "\"" + " Test Sequence ***");
 
       Object testNum = numberList.get(i);
 
@@ -2305,8 +2293,7 @@ public class ELClientIT {
 
       } finally {
         ExprEval.cleanup();
-        TestUtil
-            .logTrace("*** End " + "\"" + "Byte" + "\"" + " Test Sequence ***");
+        logger.log(Logger.Level.TRACE, "*** End " + "\"" + "Byte" + "\"" + " Test Sequence ***");
       }
 
       if (!pass)
@@ -2327,7 +2314,6 @@ public class ELClientIT {
    * @param booleanOperator
    *          - The operator in which the operands are compared. (i.e. ">, >=,
    *          <, <=, gt, ge, lt, le, ==, !=, eq, ne)
-   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   private void testOperatorBoolean(Object testValOne, Object testValTwo,
       Boolean expectedVal, String booleanOperator) throws Exception {
@@ -2358,8 +2344,7 @@ public class ELClientIT {
 
     } finally {
       ExprEval.cleanup();
-      TestUtil
-          .logTrace("*** End " + "\"" + "String" + "\"" + " Test Sequence ***");
+      logger.log(Logger.Level.TRACE, "*** End " + "\"" + "String" + "\"" + " Test Sequence ***");
     }
 
     if (!pass)

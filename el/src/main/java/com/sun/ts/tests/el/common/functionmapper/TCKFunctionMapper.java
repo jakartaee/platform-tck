@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.common.functionmapper;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.util.ELTestUtil;
 
 import jakarta.el.FunctionMapper;
 
@@ -51,7 +51,7 @@ public class TCKFunctionMapper extends FunctionMapper {
       fMap.put(KEY, clazz.getMethod("valueOf", String.class));
     } catch (NoSuchMethodException nsme) {
       logger.log(Logger.Level.ERROR, "CONSTRUCTOR: Can't find method!");
-      TestUtil.printStackTrace(nsme);
+      ELTestUtil.printStackTrace(nsme);
     }
   }
 
@@ -68,7 +68,7 @@ public class TCKFunctionMapper extends FunctionMapper {
       fMap.put(KEY, clazz.getMethod("toString", int.class));
     } catch (NoSuchMethodException nsme) {
       logger.log(Logger.Level.ERROR, "UPDATE: Can't find method!");
-      TestUtil.printStackTrace(nsme);
+      ELTestUtil.printStackTrace(nsme);
     }
   }
 }

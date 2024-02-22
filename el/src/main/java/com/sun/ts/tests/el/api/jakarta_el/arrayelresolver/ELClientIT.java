@@ -21,8 +21,8 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.arrayelresolver;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+
+import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
@@ -260,7 +260,7 @@ public class ELClientIT {
 
       if (value != null) {
         pass = false;
-        buf.append("Expected Value: 'null'").append(TestUtil.NEW_LINE)
+        buf.append("Expected Value: 'null'").append(ELTestUtil.NL)
             .append("Received Value: ").append(value.toString());
       }
 

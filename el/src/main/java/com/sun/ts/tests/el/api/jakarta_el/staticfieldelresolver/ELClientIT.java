@@ -25,8 +25,8 @@ import java.util.Iterator;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+
+import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
 import jakarta.el.ELClass;
@@ -93,36 +93,36 @@ public class ELClientIT {
     context.setPropertyResolved(false);
     try {
       resolver.setValue(context, base, property, value);
-      buf.append(ELTestUtil.FAIL + TestUtil.NEW_LINE
+      buf.append(ELTestUtil.FAIL + ELTestUtil.NL
           + "Expected PropertyNotWritableException to be "
-          + "thrown when calling setValue()!" + TestUtil.NEW_LINE
-          + "No exception was thown!" + TestUtil.NEW_LINE);
+          + "thrown when calling setValue()!" + ELTestUtil.NL
+          + "No exception was thown!" + ELTestUtil.NL);
       pass = false;
 
     } catch (PropertyNotWritableException pnwe) {
-      buf.append(ELTestUtil.PASS + TestUtil.NEW_LINE
+      buf.append(ELTestUtil.PASS + ELTestUtil.NL
           + "PropertyNotWritableException Thrown as expected for "
-          + "setValue()!" + TestUtil.NEW_LINE);
+          + "setValue()!" + ELTestUtil.NL);
     } catch (Exception e) {
-      buf.append(ELTestUtil.FAIL + TestUtil.NEW_LINE
-          + "Wrong Exception Thrownfor setValue()!" + TestUtil.NEW_LINE
-          + "Expected: PropertyNotWritableException" + TestUtil.NEW_LINE
-          + "Received: " + e.getClass().getSimpleName() + TestUtil.NEW_LINE);
+      buf.append(ELTestUtil.FAIL + ELTestUtil.NL
+          + "Wrong Exception Thrownfor setValue()!" + ELTestUtil.NL
+          + "Expected: PropertyNotWritableException" + ELTestUtil.NL
+          + "Received: " + e.getClass().getSimpleName() + ELTestUtil.NL);
     }
 
     // getValue()
     context.setPropertyResolved(false);
     Object valueRetrieved = resolver.getValue(context, base, property);
     if (!context.isPropertyResolved()) {
-      buf.append("getValue() did not resolve" + TestUtil.NEW_LINE);
+      buf.append("getValue() did not resolve" + ELTestUtil.NL);
       pass = false;
     }
 
     if (valueRetrieved != value) {
-      buf.append("Invalid value from getValue():" + TestUtil.NEW_LINE
-          + "Value expected: " + value.toString() + TestUtil.NEW_LINE
+      buf.append("Invalid value from getValue():" + ELTestUtil.NL
+          + "Value expected: " + value.toString() + ELTestUtil.NL
           + "Value retrieved: " + valueRetrieved.toString()
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL);
       pass = false;
     }
 
@@ -130,30 +130,30 @@ public class ELClientIT {
     context.setPropertyResolved(false);
     Class<?> type = resolver.getType(context, base, property);
     if (!context.isPropertyResolved()) {
-      buf.append("getType() did not resolve" + TestUtil.NEW_LINE);
+      buf.append("getType() did not resolve" + ELTestUtil.NL);
       pass = false;
     } else if (type != null) {
-      buf.append("getType() returns " + type.getName() + " rather than null" + TestUtil.NEW_LINE);
+      buf.append("getType() returns " + type.getName() + " rather than null" + ELTestUtil.NL);
       pass = false;
     } else {
-      buf.append("getType() returns null" + TestUtil.NEW_LINE + "as expected." + TestUtil.NEW_LINE);
+      buf.append("getType() returns null" + ELTestUtil.NL + "as expected." + ELTestUtil.NL);
     }
 
     // isReadOnly
     context.setPropertyResolved(false);
     boolean nonWritable = resolver.isReadOnly(context, base, property);
     if (!context.isPropertyResolved()) {
-      buf.append("isReadOnly() did not resolve" + TestUtil.NEW_LINE);
+      buf.append("isReadOnly() did not resolve" + ELTestUtil.NL);
       pass = false;
 
     } else if (!nonWritable) {
-      buf.append("isReadOnly() returned unexpected value: " + TestUtil.NEW_LINE
-          + "Expected: false" + TestUtil.NEW_LINE + "Received: " + nonWritable
-          + TestUtil.NEW_LINE);
+      buf.append("isReadOnly() returned unexpected value: " + ELTestUtil.NL
+          + "Expected: false" + ELTestUtil.NL + "Received: " + nonWritable
+          + ELTestUtil.NL);
       pass = false;
 
     } else {
-      buf.append("isReadOnly() returns false as expected" + TestUtil.NEW_LINE);
+      buf.append("isReadOnly() returns false as expected" + ELTestUtil.NL);
     }
 
     // getCommonPropertyType()
@@ -161,18 +161,18 @@ public class ELClientIT {
     Class<?> commonPropertyType = (resolver.getCommonPropertyType(context,
         base));
     buf.append("getCommonPropertyType() returns " + commonPropertyType.getName()
-        + TestUtil.NEW_LINE);
+        + ELTestUtil.NL);
 
     // getFeatureDescriptors() commenting below as the method is deprecated in EL 6.0
     // context.setPropertyResolved(false);
     // Iterator<?> i = resolver.getFeatureDescriptors(context, base);
 
     // if (i == null) {
-    //   buf.append("getFeatureDescriptors() returns null" + TestUtil.NEW_LINE);
+    //   buf.append("getFeatureDescriptors() returns null" + ELTestUtil.NL);
     // }
 
     if (!pass) {
-      throw new Exception(ELTestUtil.FAIL + TestUtil.NEW_LINE + buf.toString());
+      throw new Exception(ELTestUtil.FAIL + ELTestUtil.NL + buf.toString());
     }
 
   } // End staticFieldELResolverTest
@@ -327,32 +327,32 @@ public class ELClientIT {
     try {
       resolver.getType(context, base, property);
       buf.append(ELTestUtil.FAIL + " getType() did not throw any exception."
-          + TestUtil.NEW_LINE + "Expected: PropertyNotFoundException "
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL + "Expected: PropertyNotFoundException "
+          + ELTestUtil.NL);
 
     } catch (PropertyNotFoundException pnfe) {
       buf.append(ELTestUtil.PASS);
 
     } catch (Exception e) {
       buf.append(ELTestUtil.FAIL + "Wrong Exception thrown for getType()!"
-          + TestUtil.NEW_LINE + " Expected: PropertyNotFoundException"
-          + TestUtil.NEW_LINE + "Received: " + e.getClass().getSimpleName());
+          + ELTestUtil.NL + " Expected: PropertyNotFoundException"
+          + ELTestUtil.NL + "Received: " + e.getClass().getSimpleName());
     }
 
     // getValue()
     try {
       resolver.getValue(context, base, property);
       buf.append(ELTestUtil.FAIL + " getValue() did not throw any exception."
-          + TestUtil.NEW_LINE + "Expected: PropertyNotFoundException "
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL + "Expected: PropertyNotFoundException "
+          + ELTestUtil.NL);
 
     } catch (PropertyNotFoundException pnfe) {
       buf.append(ELTestUtil.PASS);
 
     } catch (Exception e) {
       buf.append(ELTestUtil.FAIL + "Wrong Exception thrown getValue()!"
-          + TestUtil.NEW_LINE + " Expected: PropertyNotFoundException"
-          + TestUtil.NEW_LINE + "Received: " + e.getClass().getSimpleName());
+          + ELTestUtil.NL + " Expected: PropertyNotFoundException"
+          + ELTestUtil.NL + "Received: " + e.getClass().getSimpleName());
     }
 
   }// End testForPNFE

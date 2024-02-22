@@ -24,8 +24,8 @@ package com.sun.ts.tests.el.api.jakarta_el.expression;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
+
+import com.sun.ts.tests.el.common.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.ResolverType;
@@ -91,7 +91,7 @@ public class ELClientIT {
 
       if (ExpressionTest.equalsTest(vexp1, null, buf)) {
         pass = false;
-        buf.append("ValueExpression tested equal to null" + TestUtil.NEW_LINE);
+        buf.append("ValueExpression tested equal to null" + ELTestUtil.NL);
       }
 
       MethodExpression mexp1 = expFactory.createMethodExpression(context,
@@ -99,7 +99,7 @@ public class ELClientIT {
 
       if (ExpressionTest.equalsTest(mexp1, null, buf)) {
         pass = false;
-        buf.append("MethodExpression tested equal to null" + TestUtil.NEW_LINE);
+        buf.append("MethodExpression tested equal to null" + ELTestUtil.NL);
       }
 
       // compare ValueExpressions to MethodExpressions
@@ -112,13 +112,13 @@ public class ELClientIT {
       if (ExpressionTest.equalsTest(vexp2, mexp2, buf)) {
         pass = false;
         buf.append("ValueExpression tested equal to " + "MethodExpression"
-            + TestUtil.NEW_LINE);
+            + ELTestUtil.NL);
       }
 
       if (ExpressionTest.equalsTest(mexp2, vexp2, buf)) {
         pass = false;
         buf.append("MethodExpression tested equal to " + "ValueExpression"
-            + TestUtil.NEW_LINE);
+            + ELTestUtil.NL);
       }
 
     } catch (Exception ex) {
