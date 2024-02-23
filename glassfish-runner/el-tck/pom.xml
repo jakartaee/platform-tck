@@ -55,7 +55,7 @@
             <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>${tck.artifactId}</artifactId>
             <version>${tck.version}</version>
         </dependency>
@@ -82,7 +82,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>jakartatck</groupId>
+                                    <groupId>jakarta.tck</groupId>
                                     <artifactId>${tck.artifactId}</artifactId>
                                     <version>${tck.version}</version>
                                     <type>zip</type>
@@ -307,7 +307,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.el-api.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/expressly.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>jakartatck:jakarta-expression-language-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:jakarta-expression-language-tck</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <webServerHost>localhost</webServerHost>

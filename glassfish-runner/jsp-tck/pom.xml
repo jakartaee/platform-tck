@@ -42,7 +42,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>${tck.artifactId}</artifactId>
             <version>${tck.version}</version>
         </dependency>
@@ -111,7 +111,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>jakartatck</groupId>
+                                    <groupId>jakarta.tck</groupId>
                                     <artifactId>${tck.artifactId}</artifactId>
                                     <version>${tck.version}</version>
                                     <type>zip</type>
@@ -341,7 +341,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp-api.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp.jstl-api.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>jakartatck:${tck.artifactId}</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <webServerHome>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</webServerHome>

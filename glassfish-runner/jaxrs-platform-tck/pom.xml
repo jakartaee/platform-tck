@@ -42,17 +42,17 @@
 
   <dependencies>
     <dependency>
-      <groupId>jakartatck</groupId>
+      <groupId>jakarta.tck</groupId>
       <artifactId>common</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>jakartatck</groupId>
+      <groupId>jakarta.tck</groupId>
       <artifactId>libutil</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>jakartatck</groupId>
+      <groupId>jakarta.tck</groupId>
       <artifactId>runtime</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -85,7 +85,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>jakartatck</groupId>
+      <groupId>jakarta.tck</groupId>
       <artifactId>${tck.artifactId}</artifactId>
       <version>${tck.version}</version>
       <scope>test</scope>
@@ -385,7 +385,7 @@
                   ${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/angus-activation.jar
                 </additionalClasspathElement>
               </additionalClasspathElements>
-              <dependenciesToScan>jakartatck:${tck.artifactId}</dependenciesToScan>
+              <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
               <systemPropertyVariables>
                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                 <servlet_adaptor>org.glassfish.jersey.servlet.ServletContainer</servlet_adaptor>

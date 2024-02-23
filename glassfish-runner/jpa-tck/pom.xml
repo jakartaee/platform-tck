@@ -28,7 +28,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <properties>
-        <tck.artifactId>jakartatck.jpa-tck</tck.artifactId>
+        <tck.artifactId>jakarta.tck.jpa-tck</tck.artifactId>
         <tck.version>3.1.0</tck.version>
         <admin.user>admin</admin.user>
         <admin.pass>admin</admin.pass>
@@ -64,7 +64,7 @@
             <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -80,13 +80,13 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>jpa-tck</artifactId>
             <version>10.0.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>dbprocedures</artifactId>
             <version>10.0.0-SNAPSHOT</version>
             <scope>test</scope>
@@ -164,7 +164,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>jakartatck</groupId>
+                                    <groupId>jakarta.tck</groupId>
                                     <artifactId>dbprocedures</artifactId>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
@@ -310,7 +310,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/expressly.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/classmate.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>jakartatck:jpa-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:jpa-tck</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <platform.mode>standalone</platform.mode>
