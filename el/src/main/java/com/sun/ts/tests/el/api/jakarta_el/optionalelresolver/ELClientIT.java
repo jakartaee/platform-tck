@@ -30,6 +30,7 @@ import jakarta.el.BeanELResolver;
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
+import jakarta.el.MethodNotFoundException;
 import jakarta.el.OptionalELResolver;
 import jakarta.el.PropertyNotWritableException;
 
@@ -65,11 +66,7 @@ public class ELClientIT {
     StringBuffer buf = new StringBuffer();
     Object testObject = Optional.empty();
     
-    try {
-      pass = testOptionalELResolver(buf, testObject, null, null);
-    } catch (Exception ex) {
-      throw new Exception(ex);
-    }
+    pass = testOptionalELResolverProperty(buf, testObject, null, null);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -90,11 +87,7 @@ public class ELClientIT {
     StringBuffer buf = new StringBuffer();
     Object testObject = Optional.empty();
     
-    try {
-      pass = testOptionalELResolver(buf, testObject, "property", Optional.empty());
-    } catch (Exception ex) {
-      throw new Exception(ex);
-    }
+    pass = testOptionalELResolverProperty(buf, testObject, "property", null);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -116,11 +109,7 @@ public class ELClientIT {
     TestBean testBean = new TestBean("data");
     Object testObject = Optional.of(testBean);
     
-    try {
-      pass = testOptionalELResolver(buf, testObject, null, testBean);
-    } catch (Exception ex) {
-      throw new Exception(ex);
-    }
+    pass = testOptionalELResolverProperty(buf, testObject, null, testBean);
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -142,11 +131,7 @@ public class ELClientIT {
     TestBean testBean = new TestBean("data");
     Object testObject = Optional.of(testBean);
     
-    try {
-      pass = testOptionalELResolver(buf, testObject, "propertyA", "data");
-    } catch (Exception ex) {
-      throw new Exception(ex);
-    }
+    pass = testOptionalELResolverProperty(buf, testObject, "propertyA", "data");
 
     if (!pass) {
       throw new Exception(ELTestUtil.FAIL + buf.toString());
@@ -154,12 +139,12 @@ public class ELClientIT {
     logger.log(Logger.Level.TRACE, buf.toString());
   }
 
-  public static boolean testOptionalELResolver(StringBuffer buf, Object base, Object property, Object expectedValue) {
+  public static boolean testOptionalELResolverProperty(StringBuffer buf, Object base, Object property, Object expectedValue) {
     boolean pass = true;
     
     BareBonesELContext barebonesContext = new BareBonesELContext();
     
-    // OptionalELResolver depends on BeanELResolver to resolve properties of an Optional
+    // OptionalELResolver depends on BeanELResolver to resolve properties of an object wrapped in an Optional
     ELResolver resolver = barebonesContext.getELResolver();
     BeanELResolver beanResolver = new BeanELResolver();
     OptionalELResolver optionalResolver = new OptionalELResolver();
@@ -204,13 +189,104 @@ public class ELClientIT {
     return pass;
   }
   
-  public class TestBean {
+  @Test
+  public void optionalELResolverEmptyInvoke() throws Exception {
+    boolean pass = true;
+    StringBuffer buf = new StringBuffer();
+    Object testObject = Optional.empty();
+    
+    pass = testOptionalELResolverInvoke(buf, testObject, "doSomething", null);
+
+    if (!pass) {
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    }
+    logger.log(Logger.Level.TRACE, buf.toString());
+  }
+  
+  @Test
+  public void optionalELResolverEmptyInvokeInvalid() throws Exception {
+    boolean pass = true;
+    StringBuffer buf = new StringBuffer();
+    Object testObject = Optional.empty();
+    
+    pass = testOptionalELResolverInvoke(buf, testObject, "unknownMethod", null);
+
+    if (!pass) {
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    }
+    logger.log(Logger.Level.TRACE, buf.toString());
+  }
+  
+  @Test
+  public void optionalELResolverObjectInvoke() throws Exception {
+    boolean pass = true;
+    StringBuffer buf = new StringBuffer();
+    TestBean testBean = new TestBean("data");
+    Object testObject = Optional.of(testBean);
+    
+    pass = testOptionalELResolverInvoke(buf, testObject, "doSomething", TestBean.DATA);
+
+    if (!pass) {
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    }
+    logger.log(Logger.Level.TRACE, buf.toString());
+  }
+  
+  @Test
+  public void optionalELResolverObjectInvokeInvalid() throws Exception {
+    boolean pass = true;
+    StringBuffer buf = new StringBuffer();
+    TestBean testBean = new TestBean("data");
+    Object testObject = Optional.of(testBean);
+    
+    try {
+      testOptionalELResolverInvoke(buf, testObject, "unknownMethod", null);
+      pass = false;
+      buf.append("invoke(): Expected MethodNotFoundException but no exception was thrown"); 
+    } catch (MethodNotFoundException mnfe) {
+      // Expected (so pass is not set to false)
+    }
+
+    if (!pass) {
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    }
+    logger.log(Logger.Level.TRACE, buf.toString());
+  }
+  
+  public static boolean testOptionalELResolverInvoke(StringBuffer buf, Object base, Object method, Object expectedValue) {
+    boolean pass = true;
+    
+    BareBonesELContext barebonesContext = new BareBonesELContext();
+    
+    // OptionalELResolver depends on BeanELResolver to invoke methods of an object wrapped in an Optional
+    ELResolver resolver = barebonesContext.getELResolver();
+    BeanELResolver beanResolver = new BeanELResolver();
+    OptionalELResolver optionalResolver = new OptionalELResolver();
+    ((CompositeELResolver) resolver).add(optionalResolver);
+    ((CompositeELResolver) resolver).add(beanResolver);
+    ELContext context = barebonesContext.getELContext();
+
+    // invoke()
+    Object result = resolver.invoke(context, base, method, null, null);
+    if (expectedValue == null && result != null || expectedValue != null && !expectedValue.equals(result)) {
+      buf.append("invoke(): Expected [" + expectedValue + "] but got [" + result + "]");
+      pass = false;
+    }
+    
+    return pass;
+  }
+  
+  public static class TestBean {
+    private static final String DATA = "interesting data"; 
     private final String propertyA; 
     public TestBean(String propertyA) {
       this.propertyA = propertyA;
     }
     public String getPropertyA() {
       return propertyA;
+    }
+    public String doSomething() {
+      return DATA;
     }
   }
 }
