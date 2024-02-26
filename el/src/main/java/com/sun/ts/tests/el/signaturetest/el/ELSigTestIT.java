@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2023 Oracle and/or its affiliates and others.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -24,22 +24,13 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
-import com.sun.ts.tests.signaturetest.SigTest;
-import com.sun.ts.tests.signaturetest.SignatureTestDriver;
-import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;
-
 import java.util.Properties;
-import com.sun.ts.lib.util.TestUtil;
 import java.lang.System.Logger;
 
 /*
  * This class is a simple example of a signature test that extends the
  * SigTest framework class.  This signature test is run outside of the
- * Java EE containers.  This class also contains the boilerplate
- * code necessary to create a signature test using the test framework.
- * To see a complete TCK example see the javaee directory for the Java EE
- * TCK signature test class.
+ * EE containers.
  */
 public class ELSigTestIT extends SigTest {
 
@@ -80,10 +71,6 @@ public class ELSigTestIT extends SigTest {
   // signature tests need. Please do not use both comments.
 
   /*
-   * @class.setup_props: ts_home, The base path of this TCK; sigTestClasspath;
-   */
-
-  /*
    * @testName: signatureTest
    * 
    * @assertion: An EL container must implement the required classes and APIs
@@ -100,7 +87,6 @@ public class ELSigTestIT extends SigTest {
     logger.log(Logger.Level.INFO, "$$$ SigTestIT.signatureTest() called");
     String mapFile = null;
     String packageFile = null;
-    String repositoryDir = null;
     Properties mapFileAsProps = null;
     String[] packages = getPackages();
     String apiPackage = "jakarta.el";
