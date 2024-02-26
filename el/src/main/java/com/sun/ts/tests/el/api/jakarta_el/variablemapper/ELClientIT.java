@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.api.jakarta_el.variablemapper;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.tests.el.common.elcontext.VarMapperELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
@@ -87,9 +87,9 @@ public class ELClientIT {
     if (varMapper.resolveVariable("foo") != null) {
       pass = false;
       buf.append("Expected call to resolveVariable() to unassigned "
-          + "variable to return null" + TestUtil.NEW_LINE
+          + "variable to return null" + ELTestUtil.NL
           + "Instead call returned " + varMapper.resolveVariable("foo")
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL);
     }
 
     ValueExpression vexp1 = expFactory.createValueExpression(context, "${bar}",
@@ -99,8 +99,8 @@ public class ELClientIT {
     if (vexp2 != null) {
       pass = false;
       buf.append("Expected call to setVariable() to return null "
-          + "for previously unassigned variable" + TestUtil.NEW_LINE
-          + "Instead return value was " + vexp2 + TestUtil.NEW_LINE);
+          + "for previously unassigned variable" + ELTestUtil.NL
+          + "Instead return value was " + vexp2 + ELTestUtil.NL);
     }
 
     ValueExpression vexp3 = varMapper.resolveVariable("foo");
@@ -108,8 +108,8 @@ public class ELClientIT {
     if (!vexp3.equals(vexp1)) {
       pass = false;
       buf.append("Expected call to resolveVariable() to assigned "
-          + "variable to return " + vexp1.toString() + TestUtil.NEW_LINE
-          + "Instead call returned " + vexp3.toString() + TestUtil.NEW_LINE);
+          + "variable to return " + vexp1.toString() + ELTestUtil.NL
+          + "Instead call returned " + vexp3.toString() + ELTestUtil.NL);
     }
 
     ValueExpression vexp4 = varMapper.setVariable("foo", null);
@@ -117,8 +117,8 @@ public class ELClientIT {
     if (!vexp4.equals(vexp1)) {
       pass = false;
       buf.append("Expected call to resolveVariable() to assigned "
-          + "variable to return " + vexp1.toString() + TestUtil.NEW_LINE
-          + "Instead call returned " + vexp4.toString() + TestUtil.NEW_LINE);
+          + "variable to return " + vexp1.toString() + ELTestUtil.NL
+          + "Instead call returned " + vexp4.toString() + ELTestUtil.NL);
     }
 
     ValueExpression vexp5 = varMapper.resolveVariable("foo");
@@ -126,8 +126,8 @@ public class ELClientIT {
     if (vexp5 != null) {
       pass = false;
       buf.append("Expected call to resolveVariable() to return null"
-          + " after unassignment" + TestUtil.NEW_LINE
-          + "Instead return value was " + vexp5 + TestUtil.NEW_LINE);
+          + " after unassignment" + ELTestUtil.NL
+          + "Instead return value was " + vexp5 + ELTestUtil.NL);
     }
 
     if (!pass)

@@ -22,7 +22,7 @@ package com.sun.ts.tests.el.common.elcontext;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 
 import jakarta.el.CompositeELResolver;

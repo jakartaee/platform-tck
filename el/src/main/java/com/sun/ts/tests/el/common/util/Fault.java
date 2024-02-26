@@ -20,7 +20,7 @@ package com.sun.ts.tests.el.common.util;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 
-import com.sun.ts.lib.util.TestUtil;
+
 
 /**
    * This exception must be thrown to signify a
@@ -40,7 +40,7 @@ import com.sun.ts.lib.util.TestUtil;
      */
     public Fault(String msg) {
       super(msg);
-      TestUtil.logErr(msg);
+      // TestUtil.logErr(msg);
     }
 
     /**

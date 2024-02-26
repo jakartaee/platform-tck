@@ -24,8 +24,8 @@ package com.sun.ts.tests.el.api.jakarta_el.compositeelresolver;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+
+import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.SimpleBean;
@@ -166,7 +166,7 @@ public class ELClientIT {
 
       compResolver.add(null);
 
-      buf.append(TestUtil.NEW_LINE + "Tested Failed, CompositeResolver.add(), "
+      buf.append(ELTestUtil.NL + "Tested Failed, CompositeResolver.add(), "
           + "should have thrown NullPointerException!");
       pass = false;
 
@@ -175,9 +175,9 @@ public class ELClientIT {
           + " null resolver to Composite.add()");
 
     } catch (Exception e) {
-      buf.append("test failed with: " + TestUtil.NEW_LINE + "EXPECTED: "
-          + "NullPointerException to be thrown " + TestUtil.NEW_LINE
-          + "RECEIVED: " + e.toString() + "" + TestUtil.NEW_LINE);
+      buf.append("test failed with: " + ELTestUtil.NL + "EXPECTED: "
+          + "NullPointerException to be thrown " + ELTestUtil.NL
+          + "RECEIVED: " + e.toString() + "" + ELTestUtil.NL);
       pass = false;
     }
 

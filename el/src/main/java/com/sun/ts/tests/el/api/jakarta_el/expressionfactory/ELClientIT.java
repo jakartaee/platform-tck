@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.api.jakarta_el.expressionfactory;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
@@ -131,12 +131,12 @@ public class ELClientIT {
         } catch (NullPointerException npe) {
           pass = false;
           logger.log(Logger.Level.ERROR, ELTestUtil.FAIL + exprStr[i]);
-          TestUtil.printStackTrace(npe);
+          ELTestUtil.printStackTrace(npe);
           continue;
         } catch (ELException ee) {
           pass = false;
           logger.log(Logger.Level.ERROR, ELTestUtil.FAIL + exprStr[i]);
-          TestUtil.printStackTrace(ee);
+          ELTestUtil.printStackTrace(ee);
           continue;
         }
 
@@ -187,7 +187,7 @@ public class ELClientIT {
       } catch (Exception e) {
         pass = false;
         logger.log(Logger.Level.ERROR, "Exception: Test Case " + i);
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
     }
 
@@ -245,7 +245,7 @@ public class ELClientIT {
         } catch (NullPointerException npe) {
           pass = false;
           logger.log(Logger.Level.ERROR, ELTestUtil.FAIL + exprStr[i]);
-          TestUtil.printStackTrace(npe);
+          ELTestUtil.printStackTrace(npe);
           continue;
         }
         pass = false;
@@ -300,12 +300,12 @@ public class ELClientIT {
         } catch (NullPointerException npe) {
           pass = false;
           logger.log(Logger.Level.ERROR, ELTestUtil.FAIL + exprStr[i]);
-          TestUtil.printStackTrace(npe);
+          ELTestUtil.printStackTrace(npe);
           continue;
         } catch (ELException ee) {
           pass = false;
           logger.log(Logger.Level.ERROR, ELTestUtil.FAIL + exprStr[i]);
-          TestUtil.printStackTrace(ee);
+          ELTestUtil.printStackTrace(ee);
           continue;
         }
 
@@ -377,13 +377,12 @@ public class ELClientIT {
         } catch (NullPointerException npe) {
           pass = false;
           logger.log(Logger.Level.ERROR, ELTestUtil.FAIL + exprStr[i]);
-          TestUtil.printStackTrace(npe);
+          ELTestUtil.printStackTrace(npe);
           continue;
         }
         pass = false;
         logger.log(Logger.Level.ERROR, "Failed. No ELException thrown when calling");
-        TestUtil
-            .logErr("createMethodExpression() with parameter " + exprStr[i]);
+        logger.log(Logger.Level.ERROR, "createMethodExpression() with parameter " + exprStr[i]);
       }
 
     } catch (Exception ex) {
@@ -474,7 +473,7 @@ public class ELClientIT {
       } catch (Exception e) {
         pass = false;
         logger.log(Logger.Level.ERROR, "Exception: Test Case " + i);
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
     }
 
@@ -517,7 +516,7 @@ public class ELClientIT {
         pass = false;
         logger.log(Logger.Level.ERROR, "Test Case " + i + " threw an exception");
         logger.log(Logger.Level.ERROR, "but it was not an ELException");
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
     }
 

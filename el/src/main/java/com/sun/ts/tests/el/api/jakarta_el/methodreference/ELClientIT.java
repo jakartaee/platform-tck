@@ -17,9 +17,9 @@ package com.sun.ts.tests.el.api.jakarta_el.methodreference;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
+
 import com.sun.ts.tests.el.common.util.Fault;
-import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
+import com.sun.ts.tests.el.common.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.VarMapperELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.MethodsBean;
@@ -133,8 +133,8 @@ public class ELClientIT {
       }
       
     } catch (Exception ex) {
-      logger.log(Logger.Level.ERROR, "Test getMethodReference threw an Exception!" + TestUtil.NEW_LINE +
-          "Received: " + ex.toString() + TestUtil.NEW_LINE);
+      logger.log(Logger.Level.ERROR, "Test getMethodReference threw an Exception!" + ELTestUtil.NL +
+          "Received: " + ex.toString() + ELTestUtil.NL);
       ex.printStackTrace();
       throw new Fault(ex);
     }

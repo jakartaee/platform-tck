@@ -39,21 +39,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>runtime</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
-        <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
             <version>${jakarta.el-api.version}</version>
@@ -64,9 +49,9 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.netbeans.tools</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>1.7</version>
+            <version>2.1</version>
         </dependency>
 
     </dependencies>
@@ -162,9 +147,9 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.netbeans.tools</groupId>
+                        <groupId>jakarta.tck</groupId>
                         <artifactId>sigtest-maven-plugin</artifactId>
-                        <version>1.4</version>
+                        <version>2.1</version>
                         <configuration>
                             <FileName>${project.build.directory}/jakarta.el.sig_${project.parent.version}</FileName>
                             <packages>jakarta.el</packages>

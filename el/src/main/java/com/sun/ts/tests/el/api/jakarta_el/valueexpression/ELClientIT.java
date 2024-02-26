@@ -22,8 +22,8 @@ import java.util.Hashtable;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
+
+import com.sun.ts.tests.el.common.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.elcontext.VRContext;
@@ -98,7 +98,7 @@ public class ELClientIT {
 
       // string variable
       // readOTestUtil.NEW_LINEy() and isLiteralText() expected to return false
-      buf.append("Testing expression 1 " + TestUtil.NEW_LINE);
+      buf.append("Testing expression 1 " + ELTestUtil.NL);
       String exprStr1 = "${foo}";
       ValueExpression vexp1 = expFactory.createValueExpression(context,
           exprStr1, String.class);
@@ -107,7 +107,7 @@ public class ELClientIT {
 
       // literal expression
       // readOTestUtil.NEW_LINEy() and isLiteralText() expected to return true
-      buf.append("Testing expression 2 " + TestUtil.NEW_LINE);
+      buf.append("Testing expression 2 " + ELTestUtil.NL);
       String exprStr2 = "foo";
       ValueExpression vexp2 = expFactory.createValueExpression(context,
           exprStr2, String.class);
@@ -117,7 +117,7 @@ public class ELClientIT {
       // expression that is not an l-value
       // readOTestUtil.NEW_LINEy() expected to return true
       // isLiteralText() expected to return false
-      buf.append("Testing expression 3 " + TestUtil.NEW_LINE);
+      buf.append("Testing expression 3 " + ELTestUtil.NL);
       String exprStr3 = "#{1 + 1}";
       ValueExpression vexp3 = expFactory.createValueExpression(context,
           exprStr3, Integer.class);
@@ -125,7 +125,7 @@ public class ELClientIT {
           Integer.class, Integer.valueOf(2), true, false, buf);
 
       // Expression test for ValueReference.
-      buf.append("Testing expression 4 " + TestUtil.NEW_LINE);
+      buf.append("Testing expression 4 " + ELTestUtil.NL);
       pass4 = true;
 
       ELContext contextTwo = new VRContext(testProps);
@@ -145,8 +145,8 @@ public class ELClientIT {
         if (base != null) {
           String baseName = base.getClass().getSimpleName();
           if (!"Worker".equals(baseName)) {
-            buf.append("Unexpected Base Value!" + TestUtil.NEW_LINE
-                + "Expected: Worker" + TestUtil.NEW_LINE + "Received: "
+            buf.append("Unexpected Base Value!" + ELTestUtil.NL
+                + "Expected: Worker" + ELTestUtil.NL + "Received: "
                 + baseName);
             pass4 = false;
           }
@@ -209,8 +209,8 @@ public class ELClientIT {
       vexp.getValue(null);
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to getValue() with null ELContext parameter "
-          + "did not" + TestUtil.NEW_LINE + " cause an exception to be thrown"
-          + TestUtil.NEW_LINE);
+          + "did not" + ELTestUtil.NL + " cause an exception to be thrown"
+          + ELTestUtil.NL);
 
     } catch (NullPointerException npe) {
       pass = true;
@@ -219,16 +219,16 @@ public class ELClientIT {
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to getValue() with null ELContext "
           + "parameter caused an exception to be thrown, but it was not a"
-          + TestUtil.NEW_LINE + " NullPointerException: " + e.toString()
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL + " NullPointerException: " + e.toString()
+          + ELTestUtil.NL);
     }
 
     try {
       vexp.setValue(null, "foo");
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to setValue() with null ELContext parameter "
-          + "did not" + TestUtil.NEW_LINE + " cause an exception to be thrown"
-          + TestUtil.NEW_LINE);
+          + "did not" + ELTestUtil.NL + " cause an exception to be thrown"
+          + ELTestUtil.NL);
 
     } catch (NullPointerException npe) {
       pass = true;
@@ -236,17 +236,17 @@ public class ELClientIT {
     } catch (Exception e) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to setValue() with null ELContext "
-          + "parameter caused" + TestUtil.NEW_LINE
-          + " an exception to be thrown, but it was not a" + TestUtil.NEW_LINE
-          + " NullPointerException: " + e.toString() + TestUtil.NEW_LINE);
+          + "parameter caused" + ELTestUtil.NL
+          + " an exception to be thrown, but it was not a" + ELTestUtil.NL
+          + " NullPointerException: " + e.toString() + ELTestUtil.NL);
     }
 
     try {
       vexp.isReadOnly(null);
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to isReadOTestUtil.NEW_LINEy() with null ELContext "
-          + "parameter did not" + TestUtil.NEW_LINE
-          + " cause an exception to be thrown" + TestUtil.NEW_LINE);
+          + "parameter did not" + ELTestUtil.NL
+          + " cause an exception to be thrown" + ELTestUtil.NL);
 
     } catch (NullPointerException npe) {
       pass = true;
@@ -254,17 +254,17 @@ public class ELClientIT {
     } catch (Exception e) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to isReadOTestUtil.NEW_LINEy() with null ELContext "
-          + "parameter caused" + TestUtil.NEW_LINE
-          + "an exception to be thrown, but it was not a" + TestUtil.NEW_LINE
-          + "NullPointerException: " + e.toString() + TestUtil.NEW_LINE);
+          + "parameter caused" + ELTestUtil.NL
+          + "an exception to be thrown, but it was not a" + ELTestUtil.NL
+          + "NullPointerException: " + e.toString() + ELTestUtil.NL);
     }
 
     try {
       vexp.getType(null);
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to getType() with null ELContext parameter "
-          + "did not" + TestUtil.NEW_LINE + "cause an exception to be thrown"
-          + TestUtil.NEW_LINE);
+          + "did not" + ELTestUtil.NL + "cause an exception to be thrown"
+          + ELTestUtil.NL);
 
     } catch (NullPointerException npe) {
       pass = true;
@@ -272,9 +272,9 @@ public class ELClientIT {
     } catch (Exception e) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to getType() with null ELContext parameter "
-          + "caused" + TestUtil.NEW_LINE
-          + "an exception to be thrown, but it was not a" + TestUtil.NEW_LINE
-          + "NullPointerException: " + e.toString() + TestUtil.NEW_LINE);
+          + "caused" + ELTestUtil.NL
+          + "an exception to be thrown, but it was not a" + ELTestUtil.NL
+          + "NullPointerException: " + e.toString() + ELTestUtil.NL);
     }
 
     // PropertyNotFoundException
@@ -282,8 +282,8 @@ public class ELClientIT {
       vexp.setValue(emptyContext, "foo");
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to setValue() for non-existent property did "
-          + "not cause" + TestUtil.NEW_LINE + "an exception to be thrown"
-          + TestUtil.NEW_LINE);
+          + "not cause" + ELTestUtil.NL + "an exception to be thrown"
+          + ELTestUtil.NL);
 
     } catch (PropertyNotFoundException pnfe) {
       pass = true;
@@ -292,15 +292,15 @@ public class ELClientIT {
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to setValue() for non-existent property "
           + "caused an exception to be thrown, but it was not a"
-          + TestUtil.NEW_LINE + "PropertyNotFoundException: " + e.toString()
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL + "PropertyNotFoundException: " + e.toString()
+          + ELTestUtil.NL);
     }
 
     try {
       vexp.getValue(emptyContext);
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to getValue() for non-existent property did "
-          + "not cause an exception to be thrown" + TestUtil.NEW_LINE);
+          + "not cause an exception to be thrown" + ELTestUtil.NL);
 
     } catch (PropertyNotFoundException pnfe) {
       pass = true;
@@ -309,7 +309,7 @@ public class ELClientIT {
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to getValue() for non-existent property "
           + "caused an exception to be thrown, but it was not a PropertyNotFoundException: "
-          + TestUtil.NEW_LINE + e.toString() + TestUtil.NEW_LINE);
+          + ELTestUtil.NL + e.toString() + ELTestUtil.NL);
     }
 
     try {
@@ -317,7 +317,7 @@ public class ELClientIT {
       pass = false;
       logger.log(Logger.Level.ERROR, 
           "Call to isReadOTestUtil.NEW_LINEy() for non-existent property did "
-              + "not cause an exception to be thrown" + TestUtil.NEW_LINE);
+              + "not cause an exception to be thrown" + ELTestUtil.NL);
 
     } catch (PropertyNotFoundException pnfe) {
       pass = true;
@@ -327,15 +327,15 @@ public class ELClientIT {
       logger.log(Logger.Level.ERROR, 
           "Call to isReadOTestUtil.NEW_LINEy() for non-existent property "
               + "caused an exception to be thrown, but it was not a"
-              + " PropertyNotFoundException: " + TestUtil.NEW_LINE
-              + e.toString() + TestUtil.NEW_LINE);
+              + " PropertyNotFoundException: " + ELTestUtil.NL
+              + e.toString() + ELTestUtil.NL);
     }
 
     try {
       vexp.getType(emptyContext);
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to getType() for non-existent property did not "
-          + "cause an exception to be thrown" + TestUtil.NEW_LINE);
+          + "cause an exception to be thrown" + ELTestUtil.NL);
 
     } catch (PropertyNotFoundException pnfe) {
       pass = true;
@@ -344,8 +344,8 @@ public class ELClientIT {
       pass = false;
       logger.log(Logger.Level.ERROR, "Call to getType() for non-existent property "
           + "caused an exception to be thrown, but it was not a"
-          + TestUtil.NEW_LINE + " PropertyNotFoundException: " + e.toString()
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL + " PropertyNotFoundException: " + e.toString()
+          + ELTestUtil.NL);
     }
 
     if (!pass) {
@@ -385,19 +385,19 @@ public class ELClientIT {
         ValueExpression evalvexp = expFactory.createValueExpression(context,
             "${" + testValue + "}", testClass);
         logger.log(Logger.Level.TRACE, "Eval Value Expression For Testing: "
-            + evalvexp.toString() + TestUtil.NEW_LINE);
+            + evalvexp.toString() + ELTestUtil.NL);
 
         // Set literal-expression
         ValueExpression literalvexp = expFactory.createValueExpression(context,
             "\"" + testValue + "\"", testClass);
         logger.log(Logger.Level.TRACE, "Literal Value Expression For Testing: "
-            + literalvexp.toString() + TestUtil.NEW_LINE);
+            + literalvexp.toString() + ELTestUtil.NL);
 
         // Set Composite Expression
         ValueExpression compositevexp = expFactory.createValueExpression(
             context, "#{" + testValue + "}" + " " + testValue, testClass);
         logger.log(Logger.Level.TRACE, "Composite Value Expression For Testing: "
-            + compositevexp.toString() + TestUtil.NEW_LINE);
+            + compositevexp.toString() + ELTestUtil.NL);
 
         // Test eval, literal, & composite expressions.
         if (!(ExpressionTest.expressionSerializableTest(evalvexp, buf)
@@ -467,14 +467,14 @@ public class ELClientIT {
           exprStr2, String.class);
 
       buf.append("vexp1 has value " + (String) vexp1.getValue(context)
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL);
       buf.append("vexp2 has value " + (String) vexp2.getValue(context)
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL);
 
       if (ExpressionTest.equalsTest(vexp1, vexp2, buf)) {
         pass = false;
         buf.append(
-            "Failed: case 1: same type and equal value" + TestUtil.NEW_LINE);
+            "Failed: case 1: same type and equal value" + ELTestUtil.NL);
       }
 
       // case 2: White space is ignored
@@ -487,7 +487,7 @@ public class ELClientIT {
           exprStr4, Object.class);
 
       if (!ExpressionTest.equalsTest(vexp3, vexp4, buf)) {
-        buf.append("Failed: case 2: white space" + TestUtil.NEW_LINE);
+        buf.append("Failed: case 2: white space" + ELTestUtil.NL);
         pass = false;
       }
 
@@ -501,7 +501,7 @@ public class ELClientIT {
           exprStr6, Object.class);
 
       if (!ExpressionTest.equalsTest(vexp5, vexp6, buf)) {
-        buf.append("Failed: case 3: equivalent operators" + TestUtil.NEW_LINE);
+        buf.append("Failed: case 3: equivalent operators" + ELTestUtil.NL);
         pass = false;
       }
 
@@ -515,7 +515,7 @@ public class ELClientIT {
           exprStr8, Object.class);
 
       if (ExpressionTest.equalsTest(vexp7, vexp8, buf)) {
-        buf.append("Failed: case 4: reversed operands" + TestUtil.NEW_LINE);
+        buf.append("Failed: case 4: reversed operands" + ELTestUtil.NL);
         pass = false;
       }
 
@@ -529,7 +529,7 @@ public class ELClientIT {
           exprStr10, Object.class);
 
       if (!ExpressionTest.equalsTest(vexp9, vexp10, buf)) {
-        buf.append("Failed: case 5: delimiters" + TestUtil.NEW_LINE);
+        buf.append("Failed: case 5: delimiters" + ELTestUtil.NL);
         pass = false;
       }
 

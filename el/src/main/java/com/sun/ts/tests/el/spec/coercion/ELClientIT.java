@@ -31,9 +31,9 @@ import java.util.Properties;
 import java.util.function.Predicate;
 
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
+import com.sun.ts.tests.el.common.util.ELTestUtil;
 
 import jakarta.el.ELException;
 import jakarta.el.ELProcessor;
@@ -682,7 +682,7 @@ public class ELClientIT {
     } catch (RuntimeException re) {
       throw new Exception(re);
     } catch (Exception e) {
-      TestUtil.printStackTrace(e);
+      ELTestUtil.printStackTrace(e);
       throw new Exception(e);
     }
 
@@ -749,7 +749,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
-      TestUtil.printStackTrace(e);
+      ELTestUtil.printStackTrace(e);
     }
 
     if (!pass)
@@ -790,7 +790,7 @@ public class ELClientIT {
 
       } catch (Exception e) {
         logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
 
       if (!pass)
@@ -807,7 +807,7 @@ public class ELClientIT {
 
       } catch (Exception e) {
         logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
 
       if (!pass)
@@ -1744,7 +1744,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       logger.log(Logger.Level.ERROR, "Testing coercion to arrays " +
-          "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+          "threw an Exception!" + ELTestUtil.NL + "Received: " + e.toString() + ELTestUtil.NL);
 
       throw new Exception(e);
     } finally {
@@ -1848,7 +1848,7 @@ public class ELClientIT {
       }
     } catch (Exception e) {
       logger.log(Logger.Level.ERROR, "Testing coercion of lambda expressions to functional interfaces " +
-          "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+          "threw an Exception!" + ELTestUtil.NL + "Received: " + e.toString() + ELTestUtil.NL);
 
       throw new Exception(e);
     } finally {
