@@ -50,12 +50,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>servlet</artifactId>
             <version>10.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>libutil</artifactId>
             <version>10.0.0-SNAPSHOT</version>
         </dependency>
@@ -128,7 +128,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>jakartatck</groupId>
+                                    <groupId>jakarta.tck</groupId>
                                     <artifactId>libutil</artifactId>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
@@ -221,7 +221,7 @@
                     <failIfNoTests>false</failIfNoTests>
                     <failIfNoSpecifiedTests>true</failIfNoSpecifiedTests>
                     <dependenciesToScan>
-                        <dependenciesToScan>jakartatck:servlet</dependenciesToScan>
+                        <dependenciesToScan>jakarta.tck:servlet</dependenciesToScan>
                     </dependenciesToScan>
                     <includes>
                         <include>**/URLClient*</include>

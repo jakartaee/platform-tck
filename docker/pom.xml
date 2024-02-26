@@ -23,7 +23,7 @@
      mvn -Pstaging clean install
   -->
   <parent>
-    <groupId>jakartatck</groupId>
+    <groupId>jakarta.tck</groupId>
     <version>10.0.0-SNAPSHOT</version>
     <artifactId>project</artifactId>
   </parent>
