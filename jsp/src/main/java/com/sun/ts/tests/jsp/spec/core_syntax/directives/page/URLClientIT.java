@@ -75,7 +75,6 @@ public class URLClientIT extends AbstractUrlClient {
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/positiveErrorPage.jsp")), "positiveErrorPage.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/positiveDuplicateSession.jsp")), "positiveDuplicateSession.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/positiveDuplicateLanguage.jsp")), "positiveDuplicateLanguage.jsp");
-    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/positiveDuplicateIsThreadSafe.jsp")), "positiveDuplicateIsThreadSafe.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/positiveDuplicateIsErrorPage.jsp")), "positiveDuplicateIsErrorPage.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/positiveDuplicateIsELIgnored.jsp")), "positiveDuplicateIsELIgnored.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/positiveDuplicateInfo.jsp")), "positiveDuplicateInfo.jsp");
@@ -97,8 +96,6 @@ public class URLClientIT extends AbstractUrlClient {
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/negativeDuplicateSessionFatalTranslationError.jsp")), "negativeDuplicateSessionFatalTranslationError.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/negativeDuplicateLanguageFatalTranslationError2.jsp")), "negativeDuplicateLanguageFatalTranslationError2.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/negativeDuplicateLanguageFatalTranslationError.jsp")), "negativeDuplicateLanguageFatalTranslationError.jsp");
-    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/negativeDuplicateIsThreadSafeFatalTranslationError2.jsp")), "negativeDuplicateIsThreadSafeFatalTranslationError2.jsp");
-    archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/negativeDuplicateIsThreadSafeFatalTranslationError.jsp")), "negativeDuplicateIsThreadSafeFatalTranslationError.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/negativeDuplicateIsErrorPageFatalTranslationError2.jsp")), "negativeDuplicateIsErrorPageFatalTranslationError2.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/negativeDuplicateIsErrorPageFatalTranslationError.jsp")), "negativeDuplicateIsErrorPageFatalTranslationError.jsp");
     archive.add(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/negativeDuplicateIsELIgnoredFatalTranslationError2.jsp")), "negativeDuplicateIsELIgnoredFatalTranslationError2.jsp");
@@ -281,45 +278,6 @@ public class URLClientIT extends AbstractUrlClient {
   public void negativeDuplicateAutoFlushFatalTranslationError2Test()
       throws Exception {
     String testName = "negativeDuplicateAutoFlushFatalTranslationError2";
-    TEST_PROPS.setProperty(TEST_NAME, testName + "Test");
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_coresyntx_directive_page_web/" + testName + ".jsp HTTP/1.0");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    invoke();
-  }
-
-  /*
-   * @testName: negativeDuplicateIsThreadSafeFatalTranslationErrorTest
-   * 
-   * @assertion_ids: JSP:SPEC:21
-   * 
-   * @test_Strategy: Declare a page directive with two isThreadSafe attributes
-   * of different values. Validate that a fatal translation error occurs.
-   */
-
-  @Test
-  public void negativeDuplicateIsThreadSafeFatalTranslationErrorTest()
-      throws Exception {
-    String testName = "negativeDuplicateIsThreadSafeFatalTranslationError";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_coresyntx_directive_page_web/" + testName + ".jsp HTTP/1.0");
-    TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
-    invoke();
-  }
-
-  /*
-   * @testName: negativeDuplicateIsThreadSafeFatalTranslationError2Test
-   * 
-   * @assertion_ids: JSP:SPEC:21
-   * 
-   * @test_Strategy: Declare two page directives with isThreadSafe attributes of
-   * different values. Validate that a fatal translation error occurs.
-   */
-
-  @Test
-  public void negativeDuplicateIsThreadSafeFatalTranslationError2Test()
-      throws Exception {
-    String testName = "negativeDuplicateIsThreadSafeFatalTranslationError2";
     TEST_PROPS.setProperty(TEST_NAME, testName + "Test");
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_coresyntx_directive_page_web/" + testName + ".jsp HTTP/1.0");
@@ -1023,24 +981,6 @@ public class URLClientIT extends AbstractUrlClient {
   @Test
   public void positiveDuplicateAutoFlushTest() throws Exception {
     String testName = "positiveDuplicateAutoFlush";
-    TEST_PROPS.setProperty(REQUEST,
-        "GET /jsp_coresyntx_directive_page_web/" + testName + ".jsp HTTP/1.0");
-    TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
-    invoke();
-  }
-
-  /*
-   * @testName: positiveDuplicateIsThreadSafeTest
-   * 
-   * @assertion_ids: JSP:SPEC:21
-   * 
-   * @test_Strategy: Declare a page directive with two identical isThreadSafe
-   * attributes.
-   */
-
-  @Test
-  public void positiveDuplicateIsThreadSafeTest() throws Exception {
-    String testName = "positiveDuplicateIsThreadSafe";
     TEST_PROPS.setProperty(REQUEST,
         "GET /jsp_coresyntx_directive_page_web/" + testName + ".jsp HTTP/1.0");
     TEST_PROPS.setProperty(SEARCH_STRING, "Test PASSED");
