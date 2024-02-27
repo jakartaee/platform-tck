@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2021 Contributors to the Eclipse Foundation.
+    Copyright (c) 2024 Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,10 +17,10 @@
 --%>
 
 <%-- jakarta.servlet.* --%>
-${AsyncContext.ASYNC_CONTEXT_PATH}
+${DispatcherType.ASYNC}
 
 <%-- jakarta.servlet.jsp.* --%>
-${PageContext.PAGE}
+<%-- No public, concrete classes with public constants --%>
 
 <%-- jakarta.servlet.http.* --%>
-${HttpServletRequest.BASIC_AUTH}
+${MappingMatch.CONTEXT_ROOT}
