@@ -23,28 +23,75 @@
         <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
         <version>10.0.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>persistence-tck</artifactId>
+    <version>3.2.0</version>
     <packaging>pom</packaging>
     <name>persistence</name>
-    <version>3.2.0</version>
     <description>persistence tck tests</description>
     <modules>
-        <module>tck-docs/userguide</module>
-        <module>tck-tests-common</module>
-        <module>tck-tests</module>
-        <module>tck-tests-platform</module>
+        <module>common</module>
+        <module>dist</module>
+        <module>docs/userguide</module>
+        <module>platform-tests</module>
+        <module>procedures</module>
+        <module>spec-tests</module>
     </modules>
+    <properties>
+        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>common</artifactId>
+            <version>10.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>libutil</artifactId>
+            <version>10.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>runtime</artifactId>
+            <version>10.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>signaturetest</artifactId>
+            <version>10.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ejb</groupId>
+            <artifactId>jakarta.ejb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.tools</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+    </dependencies>
     <build>
-        <finalName>${bundle-name}-${project.version}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>LICENSE_${license}.md</include>
-                </includes>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -64,47 +111,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
-                <executions>
-                    <execution>
-                        <id>distribution</id>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <descriptors>
-                                <descriptor>src/main/assembly/assembly.xml</descriptor>
-                            </descriptors>
-                            <escapeString>\</escapeString>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <finalName>${bundle-name}-${project.version}</finalName>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>EFTL</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <bundle-name>jakarta-persistence-tck</bundle-name>
-                <license>EFTL</license>
-            </properties>
-        </profile>
-        <profile>
-            <id>EPL</id>
-            <properties>
-                <bundle-name>persistence-tck</bundle-name>
-                <license>EPL</license>
-            </properties>
-        </profile>
-    </profiles>
 </project>

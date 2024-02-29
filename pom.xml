@@ -58,7 +58,6 @@
         <module>jdbc</module>
         <module>jms</module>
         <module>jpa</module>
-        <module>jpa_extras</module>
         <module>jsonb</module>
         <module>jsonp</module>
         <module>jsp</module>
@@ -144,7 +143,7 @@
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
         <webservices-tools.version>3.0.0</webservices-tools.version>
         <!-- Jakarta WebSocket -->
-        <websocket-api.version>2.1.0</websocket-api.version>
+        <websocket-api.version>2.2.0</websocket-api.version>
         <websocket-client-api.version>2.1.0</websocket-client-api.version>
     </properties>
 
@@ -808,6 +807,38 @@
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.36.0</version>
+                <configuration>
+                    <pom>
+                        <includes>
+                            <include>pom.xml</include>
+                        </includes>
+                        <sortPom>
+                            <nrOfIndentSpace>4</nrOfIndentSpace>
+                            <!-- default see https://github.com/Ekryd/sortpom/wiki/PredefinedSortOrderProfiles -->
+                            <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                            <!-- Sort properties -->
+                            <sortProperties>true</sortProperties>
+                            <!-- Sort modules -->
+                            <sortModules>true</sortModules>
+                            <!-- Sort plugin executions -->
+                            <sortExecutions>true</sortExecutions>
+                        </sortPom>
+                    </pom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check-spotless-poms</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
                     </execution>
                 </executions>
             </plugin>

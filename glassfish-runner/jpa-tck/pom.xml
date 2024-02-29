@@ -30,10 +30,6 @@
     <properties>
         <tck.artifactId>jakarta.tck.persistence-tck-tests</tck.artifactId>
         <tck.version>3.1.0</tck.version>
-        <admin.user>admin</admin.user>
-        <admin.pass>admin</admin.pass>
-        <admin.pass.file>/tmp/ripassword</admin.pass.file>
-        <admin.pass.file.encoded>${admin.pass.file}.encoded</admin.pass.file.encoded>
         <jakarta.persistence.provider>org.eclipse.persistence.jpa.PersistenceProvider</jakarta.persistence.provider>
         <jakarta.persistence.jdbc.driver>org.apache.derby.jdbc.ClientDriver</jakarta.persistence.jdbc.driver>
         <jakarta.persistence.jdbc.url>jdbc:derby://localhost:1527/derbyDB;create=true</jakarta.persistence.jdbc.url>
