@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package com.sun.ts.tests.jpa.jpa22.datetime;
+package com.sun.ts.tests.jpa.core.types.datetime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +26,7 @@ import jakarta.persistence.Table;
  * Dummy JPA entity used to verify schema generation process.
  */
 @Entity
-@Table(name = "JPA22_DT_DUMMY_ENTITY")
+@Table(name = "DT_DUMMY_ENTITY")
 public class DummyEntity implements java.io.Serializable {
 	private static final long serialVersionUID = 22L;
 

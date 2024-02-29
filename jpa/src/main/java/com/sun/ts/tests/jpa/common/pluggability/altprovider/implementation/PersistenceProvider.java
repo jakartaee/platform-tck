@@ -25,6 +25,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceConfiguration;
 import jakarta.persistence.spi.LoadState;
 import jakarta.persistence.spi.PersistenceProviderResolver;
 import jakarta.persistence.spi.PersistenceProviderResolverHolder;
@@ -148,6 +149,12 @@ public class PersistenceProvider
 		}
 		System.out.println("returning ALTERNATE_PROVIDER factory:" + emf.toString());
 		return emf;
+	}
+
+	@Override
+	public EntityManagerFactory createEntityManagerFactory(PersistenceConfiguration configuration) {
+		//TODO implement
+		return null;
 	}
 
 	public ProviderUtil getProviderUtil() {

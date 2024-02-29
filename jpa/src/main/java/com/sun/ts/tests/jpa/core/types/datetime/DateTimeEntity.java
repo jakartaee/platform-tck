@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,13 +14,15 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package com.sun.ts.tests.jpa.jpa22.datetime;
+package com.sun.ts.tests.jpa.core.types.datetime;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
+import java.time.Year;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,22 +32,26 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 /**
- * Entity containing new JPA 2.2 date and time types.
+ * Entity containing new JPA date and time types.
  */
 @Entity
-@Table(name = "JPA22_DT_DATE_TIME_ENTITY")
+@Table(name = "DATATYPES_DATE_TIME")
 // Query on exact value match.
 @NamedQuery(name = "DateTimeEntity.findByLocalDate", query = "SELECT e FROM DateTimeEntity e WHERE e.localDate = :date")
 @NamedQuery(name = "DateTimeEntity.findByLocalTime", query = "SELECT e FROM DateTimeEntity e WHERE e.localTimeAttr = :time")
 @NamedQuery(name = "DateTimeEntity.findByLocalDateTime", query = "SELECT e FROM DateTimeEntity e WHERE e.localDateTime = :dateTime")
 @NamedQuery(name = "DateTimeEntity.findByOffsetTime", query = "SELECT e FROM DateTimeEntity e WHERE e.offsetTime = :time")
 @NamedQuery(name = "DateTimeEntity.findByOffsetDateTime", query = "SELECT e FROM DateTimeEntity e WHERE e.offsetDateTime = :dateTime")
+@NamedQuery(name = "DateTimeEntity.findByInstant", query = "SELECT e FROM DateTimeEntity e WHERE e.instantAttr = :instant")
+@NamedQuery(name = "DateTimeEntity.findByYear", query = "SELECT e FROM DateTimeEntity e WHERE e.yearAttr = :year")
 // Query on values range match.
 @NamedQuery(name = "DateTimeEntity.findLocalDateRange", query = "SELECT e FROM DateTimeEntity e WHERE e.localDate > :min AND e.localDate < :max")
 @NamedQuery(name = "DateTimeEntity.findLocalTimeRange", query = "SELECT e FROM DateTimeEntity e WHERE e.localTimeAttr > :min AND e.localTimeAttr < :max")
 @NamedQuery(name = "DateTimeEntity.findLocalDateTimeRange", query = "SELECT e FROM DateTimeEntity e WHERE e.localDateTime > :min AND e.localDateTime < :max")
 @NamedQuery(name = "DateTimeEntity.findOffsetTimeRange", query = "SELECT e FROM DateTimeEntity e WHERE e.offsetTime > :min AND e.offsetTime < :max")
 @NamedQuery(name = "DateTimeEntity.findOffsetDateTimeRange", query = "SELECT e FROM DateTimeEntity e WHERE e.offsetDateTime > :min AND e.offsetDateTime < :max")
+@NamedQuery(name = "DateTimeEntity.findByInstantRange", query = "SELECT e FROM DateTimeEntity e WHERE e.instantAttr > :min AND e.instantAttr < :max")
+@NamedQuery(name = "DateTimeEntity.findByYearRange", query = "SELECT e FROM DateTimeEntity e WHERE e.yearAttr > :min AND e.yearAttr < :max")
 public class DateTimeEntity implements java.io.Serializable {
 	private static final long serialVersionUID = 22L;
 
@@ -53,6 +59,11 @@ public class DateTimeEntity implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
+
+	/** Java 8 Instant attribute.
+	 * From Jakarta Persistence 3.2
+	 **/
+	private Instant instantAttr;
 
 	/** Java 8 LocalDate attribute. */
 	private LocalDate localDate;
@@ -70,6 +81,11 @@ public class DateTimeEntity implements java.io.Serializable {
 	/** Java 8 OffsetDateTime attribute. */
 	private OffsetDateTime offsetDateTime;
 
+	/** Java 8 Instant attribute.
+	 * From Jakarta Persistence 3.2
+	 **/
+	private Year yearAttr;
+
 	/**
 	 * Creates an instance of Java 9 date and time entity. Entity attributes are not
 	 * initialized.
@@ -82,23 +98,27 @@ public class DateTimeEntity implements java.io.Serializable {
 	 * initialized using provided values.
 	 * 
 	 * @param id             date and time entity primary key
+	 * @param instant      	 Java 8 Instant attribute
 	 * @param localDate      Java 8 LocalDate attribute
 	 * @param localTime      Java 8 LocalTime attribute
 	 * @param localDateTime  Java 8 LocalDateTime attribute
 	 * @param offsetTime     Java 8 OffsetTime attribute
 	 * @param offsetDateTime Java 8 OffsetDateTime attribute
+	 * @param year      	 Java 8 Year attribute
 	 */
-	public DateTimeEntity(Long id, LocalDate localDate, LocalTime localTime, LocalDateTime localDateTime,
-			OffsetTime offsetTime, OffsetDateTime offsetDateTime) {
+	public DateTimeEntity(Long id, Instant instant, LocalDate localDate, LocalTime localTime, LocalDateTime localDateTime,
+			OffsetTime offsetTime, OffsetDateTime offsetDateTime, Year year) {
 		// bug 27376147:as a result of GenerationType.Auto,
 		// Client is picking incorrect ID values
 		// this.id = id;
 
+		this.instantAttr = instant;
 		this.localDate = localDate;
 		this.localTimeAttr = localTime;
 		this.localDateTime = localDateTime;
 		this.offsetTime = offsetTime;
 		this.offsetDateTime = offsetDateTime;
+		this.yearAttr = year;
 	}
 
 	/**
@@ -117,6 +137,24 @@ public class DateTimeEntity implements java.io.Serializable {
 	 */
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	/**
+	 * Get Java 8 Instant attribute.
+	 *
+	 * @return Instant attribute
+	 */
+	java.time.Instant getInstantAttr() {
+		return instantAttr;
+	}
+
+	/**
+	 * Set Java 8 Instant attribute.
+	 *
+	 * @param instantAttr Instant attribute to set
+	 */
+	void setInstantAttr(java.time.Instant instantAttr) {
+		this.instantAttr = instantAttr;
 	}
 
 	/**
@@ -209,6 +247,24 @@ public class DateTimeEntity implements java.io.Serializable {
 		this.offsetDateTime = offsetDateTime;
 	}
 
+	/**
+	 * Get Java 8 Year attribute.
+	 *
+	 * @return Year attribute
+	 */
+	java.time.Year getYearAttr() {
+		return yearAttr;
+	}
+
+	/**
+	 * Set Java 8 Year attribute.
+	 *
+	 * @param yearAttr Year attribute to set
+	 */
+	void setYearAttr(java.time.Year yearAttr) {
+		this.yearAttr = yearAttr;
+	}
+
 	@Override
 	public int hashCode() {
 		return (id != null ? id.hashCode() : 0);
@@ -230,6 +286,8 @@ public class DateTimeEntity implements java.io.Serializable {
 		result.append(this.getClass().getSimpleName()).append('[');
 		result.append("id=").append(id != null ? id.toString() : "null");
 		result.append(',');
+		result.append("instant=").append(instantAttr != null ? instantAttr.toString() : "null");
+		result.append(',');
 		result.append("localDate=").append(localDate != null ? localDate.toString() : "null");
 		result.append(',');
 		result.append("localTime=").append(localTimeAttr != null ? localTimeAttr.toString() : "null");
@@ -239,6 +297,8 @@ public class DateTimeEntity implements java.io.Serializable {
 		result.append("offsetTime=").append(offsetTime != null ? offsetTime.toString() : "null");
 		result.append(',');
 		result.append("offsetDateTime=").append(offsetDateTime != null ? offsetDateTime.toString() : "null");
+		result.append(',');
+		result.append("year=").append(yearAttr != null ? yearAttr.toString() : "null");
 		result.append(']');
 		return result.toString();
 	}

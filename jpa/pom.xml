@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2021  Contributors to the Eclipse Foundation
+    Copyright (c) 2021, 2024  Contributors to the Eclipse Foundation
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -46,6 +46,7 @@
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.2.0-M2</version>
         </dependency>
         <dependency>
             <groupId>jakarta.annotation</groupId>

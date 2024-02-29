@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -128,6 +128,16 @@ public class PersistenceUnitInfoImpl implements PersistenceUnitInfo, Cloneable {
 		logger.log("Called PersistenceUnitInfoImpl.getPersistenceProviderClassName()");
 		logger.log("PersistenceProviderClassName:" + persistenceProviderClassName);
 		return persistenceProviderClassName;
+	}
+
+	@Override
+	public String getScopeAnnotationName() {
+		return null;
+	}
+
+	@Override
+	public List<String> getQualifierAnnotationNames() {
+		return null;
 	}
 
 	@Override

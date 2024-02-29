@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2017, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,14 +14,16 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package com.sun.ts.tests.jpa.jpa22.datetime;
+package com.sun.ts.tests.jpa.core.types.datetime;
 
 import java.lang.System.Logger;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
+import java.time.Year;
 import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -44,8 +46,6 @@ public class Client extends PMClientBase {
 
 	private static final long serialVersionUID = 22L;
 
-	String schemaGenerationDir = null;
-
 	public Client() {
 	}
 
@@ -54,14 +54,14 @@ public class Client extends PMClientBase {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "DateTimeEntity", pkgName + "DummyEntity" };
-		return createDeploymentJar("jpa_jpa22_datetime.jar", pkgNameWithoutSuffix, (String[]) classes);
+		return createDeploymentJar("jpa_datetime.jar", pkgNameWithoutSuffix, (String[]) classes);
 
 	}
 
 	@Override
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.INFO, "Setup: JPA 2.2 Java 8 date and time types test");
+		logger.log(Logger.Level.INFO, "Setup: Jakarta Persistence Java 8 date and time types test");
 		try {
 			super.setup();
 			createDeployment();
@@ -74,7 +74,7 @@ public class Client extends PMClientBase {
 			clearEMAndEMF();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "caught Exception: ", e);
-			throw new Exception(" ! JPA 2.2 Java 8 date and time types test setup failed", e);
+			throw new Exception(" ! Jakarta Persistence Java 8 date and time types test setup failed", e);
 		}
 		verifySchema();
 	}
@@ -83,7 +83,7 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.INFO, "Cleanup: JPA 2.2 Java 8 date and time types test");
+			logger.log(Logger.Level.INFO, "Cleanup: Jakarta Persistence 2.2 Java 8 date and time types test");
 			Properties props = getPersistenceUnitProperties();
 			props.put("jakarta.persistence.schema-generation.database.action", "drop");
 			displayProperties(props);
@@ -95,6 +95,12 @@ public class Client extends PMClientBase {
 			removeTestJarFromCP();
 		}
 	}
+
+	/** Default Instant constant. */
+	private static final Instant INSTANT_DEF = Instant.ofEpochSecond(0);
+
+	/** Instant constant. */
+	private static final Instant INSTANT = Instant.now();
 
 	/** Default LocalDate constant. */
 	private static final LocalDate LOCAL_DATE_DEF = LocalDate.of(1970, 1, 1);
@@ -127,17 +133,27 @@ public class Client extends PMClientBase {
 	/** OffsetDateTime constant. */
 	private static final OffsetDateTime OFFSET_DATE_TIME = OffsetDateTime.of(LOCAL_DATE_TIME, ZoneOffset.ofHours(0));
 
+	/** Default Year constant. */
+	private static final Year YEAR_DEF = Year.of(0);
+
+	/** Year constant. */
+	private static final Year YEAR = Year.now();
+
 	private static final DateTimeEntity[] entities = {
-			new DateTimeEntity(1L, LOCAL_DATE, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF,
-					OFFSET_DATE_TIME_DEF),
-			new DateTimeEntity(2L, LOCAL_DATE_DEF, LOCAL_TIME, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF,
-					OFFSET_DATE_TIME_DEF),
-			new DateTimeEntity(3L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME, OFFSET_TIME_DEF,
-					OFFSET_DATE_TIME_DEF),
-			new DateTimeEntity(4L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME,
-					OFFSET_DATE_TIME_DEF),
-			new DateTimeEntity(5L, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF,
-					OFFSET_DATE_TIME) };
+			new DateTimeEntity(1L, INSTANT_DEF, LOCAL_DATE, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF,
+					OFFSET_DATE_TIME_DEF, YEAR_DEF),
+			new DateTimeEntity(2L, INSTANT_DEF, LOCAL_DATE_DEF, LOCAL_TIME, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF,
+					OFFSET_DATE_TIME_DEF, YEAR_DEF),
+			new DateTimeEntity(3L, INSTANT_DEF, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME, OFFSET_TIME_DEF,
+					OFFSET_DATE_TIME_DEF, YEAR_DEF),
+			new DateTimeEntity(4L, INSTANT_DEF, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME,
+					OFFSET_DATE_TIME_DEF, YEAR_DEF),
+			new DateTimeEntity(5L, INSTANT_DEF, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF,
+					OFFSET_DATE_TIME, YEAR_DEF),
+			new DateTimeEntity(6L, INSTANT, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF,
+					OFFSET_DATE_TIME_DEF, YEAR_DEF),
+			new DateTimeEntity(7L, INSTANT_DEF, LOCAL_DATE_DEF, LOCAL_TIME_DEF, LOCAL_DATE_TIME_DEF, OFFSET_TIME_DEF,
+							   OFFSET_DATE_TIME_DEF, YEAR)};
 
 	// Databases precision is usually not nanoseconds. Truncate to miliseconds.
 	private static LocalDateTime initLocalDateTime() {
@@ -151,15 +167,15 @@ public class Client extends PMClientBase {
 	 * @assertion_ids: PERSISTENCE:JAVADOC:320; PERSISTENCE:SPEC:2118.19;
 	 * PERSISTENCE:SPEC:2118.5;
 	 * 
-	 * @test_Strategy: Test new JPA 2.2 date and time types: java.time.LocalDate,
-	 * java.time.LocalTime, java.time.LocalDateTime, java.time.OffsetTime and
-	 * java.time.OffsetDateTime
+	 * @test_Strategy: Test Jakarta Persistence date and time types: java.time.Instant,
+	 * java.time.LocalDate, java.time.LocalTime, java.time.LocalDateTime, java.time.OffsetTime,
+	 * java.time.OffsetDateTime and java.time.Year
 	 * 
 	 * @throws com.sun.ts.lib.harness.EETest.Exception when test failed
 	 */
 	@Test
 	public void dateTimeTest() throws Exception {
-		logger.log(Logger.Level.INFO, "Test: JPA 2.2 Java 8 date and time types");
+		logger.log(Logger.Level.INFO, "Test: Jakarta Persistence Java 8 date and time types");
 		verifySchema();
 		boolean createResult = createEntities();
 		boolean allFindResult = true;
@@ -174,6 +190,8 @@ public class Client extends PMClientBase {
 		boolean offsetTimeResult = queryEntities("DateTimeEntity.findByOffsetTime", "time", OFFSET_TIME, entities[3]);
 		boolean offsetDateTimeResult = queryEntities("DateTimeEntity.findByOffsetDateTime", "dateTime",
 				OFFSET_DATE_TIME, entities[4]);
+		boolean instantResult = queryEntities("DateTimeEntity.findByInstant", "instant", INSTANT, entities[5]);
+		boolean yearResult = queryEntities("DateTimeEntity.findByYear", "year", YEAR, entities[6]);
 		boolean localDateRangeResult = queryEntitiesRange("DateTimeEntity.findLocalDateRange", "min",
 				LOCAL_DATE.minus(10, ChronoUnit.DAYS), "max", LOCAL_DATE.plus(10, ChronoUnit.DAYS), entities[0]);
 		boolean localTimeRangeResult = queryEntitiesRange("DateTimeEntity.findLocalTimeRange", "min",
@@ -187,9 +205,15 @@ public class Client extends PMClientBase {
 		boolean offsetDateTimeRangeResult = queryEntitiesRange("DateTimeEntity.findOffsetDateTimeRange", "min",
 				OFFSET_DATE_TIME.minus(10, ChronoUnit.DAYS).minus(10, ChronoUnit.MINUTES), "max",
 				OFFSET_DATE_TIME.plus(10, ChronoUnit.DAYS).plus(10, ChronoUnit.MINUTES), entities[4]);
+		boolean instantRangeResult = queryEntitiesRange("DateTimeEntity.findByInstantRange", "min",
+				INSTANT.minus(10, ChronoUnit.DAYS).minus(10, ChronoUnit.MINUTES), "max",
+				INSTANT.plus(10, ChronoUnit.DAYS).plus(10, ChronoUnit.MINUTES), entities[5]);
+		boolean yearRangeResult = queryEntitiesRange("DateTimeEntity.findByYearRange", "min",
+				YEAR.minus(10, ChronoUnit.YEARS), "max",
+				YEAR.plus(10, ChronoUnit.YEARS), entities[6]);
 		logger.log(Logger.Level.INFO,
 				"--------------------------------------------------------------------------------");
-		logger.log(Logger.Level.INFO, " - JPA 2.2 Java 8 date and time types test results:");
+		logger.log(Logger.Level.INFO, " - Jakarta Persistence Java 8 date and time types test results:");
 		logTestResult("Entities creation", createResult);
 		for (int i = 0; i < entities.length; i++) {
 			logTestResult("Find by ID=" + entities[i].getId().toString(), findResults[i]);
@@ -200,16 +224,23 @@ public class Client extends PMClientBase {
 		logTestResult("Query DateTimeEntity.findByLocalDateTime", localDateTimeResult);
 		logTestResult("Query DateTimeEntity.findByOffsetTime", offsetTimeResult);
 		logTestResult("Query DateTimeEntity.findByOffsetDateTime", offsetDateTimeResult);
+		logTestResult("Query DateTimeEntity.findByInstant", instantResult);
+		logTestResult("Query DateTimeEntity.findByYear", yearResult);
 		logTestResult("Query DateTimeEntity.findLocalDateRange", localDateRangeResult);
 		logTestResult("Query DateTimeEntity.findLocalTimeRange", localTimeRangeResult);
 		logTestResult("Query DateTimeEntity.findLocalDateTimeRange", localDateTimeRangeResult);
 		logTestResult("Query DateTimeEntity.findOffsetTimeRange", offsetTimeRangeResult);
 		logTestResult("Query DateTimeEntity.findOffsetDateTimeRange", offsetDateTimeRangeResult);
+		logTestResult("Query DateTimeEntity.findByInstantRange", instantRangeResult);
+		logTestResult("Query DateTimeEntity.findByYearRange", yearRangeResult);
 		logger.log(Logger.Level.INFO,
 				"--------------------------------------------------------------------------------");
 		if (!(createResult && allFindResult && localDateResult && localTimeResult && localDateTimeResult
-				&& offsetTimeResult && offsetDateTimeResult)) {
-			throw new Exception("dateTimeTest (JPA 2.2 Java 8 date and time types test) failed");
+				&& offsetTimeResult && offsetDateTimeResult && instantResult && yearResult
+				&& localDateRangeResult && localTimeRangeResult && localDateTimeRangeResult
+				&& offsetTimeRangeResult && offsetDateTimeRangeResult && instantRangeResult
+				&& yearRangeResult)) {
+			throw new Exception("dateTimeTest (Jakarta Persistence Java 8 date and time types test) failed");
 		}
 	}
 
@@ -313,8 +344,10 @@ public class Client extends PMClientBase {
 	 * 
 	 * @param queryName  named query identifier (named queries are defined in
 	 *                   DateTimeEntity class)
-	 * @param paramName  name of query parameter to set
-	 * @param paramValue query parameter value to set
+	 * @param minName	 name of query parameter (for minimal value) to set
+	 * @param minValue	 query parameter for a minimal value to set
+	 * @param maxName	 name of query parameter (for maximal value) to set
+	 * @param maxValue	 query parameter for a maximal value to set
 	 * @param expected   expected returned entity
 	 * @return value of {@code true} when exactly one entity was found and matches
 	 *         {@code expected} argument or {@code false} otherwise
