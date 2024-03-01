@@ -73,6 +73,7 @@
         <module>samples</module>
         <module>servlet</module>
         <module>signaturetest</module>
+        <module>user_guides</module>
         <module>webartifacts/jsf</module>
         <module>webartifacts/jsp</module>
         <module>webartifacts/jstl</module>

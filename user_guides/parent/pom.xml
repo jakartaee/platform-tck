@@ -57,20 +57,6 @@
         <freemarker.version>2.3.32</freemarker.version>
     </properties>
 
-    <modules>
-        <module>../connector</module>
-        <module>../jacc</module>
-        <module>../jaxws</module>
-        <module>../jms</module>
-        <module>../jpa</module>
-        <module>../jsp</module>
-        <module>../jstl</module>
-        <module>../jta</module>
-        <module>../saaj</module>
-        <module>../websocket</module>
-        <module>../../user_guides</module>
-    </modules>
-
     <build>
         <defaultGoal>package</defaultGoal>
         <pluginManagement>
