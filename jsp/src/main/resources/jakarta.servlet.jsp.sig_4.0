@@ -22,14 +22,15 @@ meth public abstract void service(jakarta.servlet.ServletRequest,jakarta.servlet
 CLSS public final jakarta.servlet.jsp.ErrorData
 cons public init(java.lang.Throwable,int,java.lang.String,java.lang.String)
  anno 0 java.lang.Deprecated(boolean forRemoval=true, java.lang.String since="4.0")
-cons public init(java.lang.Throwable,int,java.lang.String,java.lang.String,java.lang.String)
+cons public init(java.lang.Throwable,int,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 meth public int getStatusCode()
+meth public java.lang.String getMethod()
 meth public java.lang.String getQueryString()
 meth public java.lang.String getRequestURI()
 meth public java.lang.String getServletName()
 meth public java.lang.Throwable getThrowable()
 supr java.lang.Object
-hfds queryString,servletName,statusCode,throwable,uri
+hfds method,queryString,servletName,statusCode,throwable,uri
 
 CLSS public abstract interface jakarta.servlet.jsp.HttpJspPage
 intf jakarta.servlet.jsp.JspPage
