@@ -32,11 +32,11 @@
     <description>persistence tck tests</description>
     <modules>
         <module>common</module>
-        <module>dist</module>
         <module>docs/userguide</module>
         <module>platform-tests</module>
         <module>procedures</module>
         <module>spec-tests</module>
+        <module>distribution</module>
     </modules>
     <properties>
         <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
