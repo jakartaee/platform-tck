@@ -28,12 +28,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <properties>
-        <tck.artifactId>jakarta.tck.jpa-tck</tck.artifactId>
+        <tck.artifactId>jakarta.tck.persistence-tck-tests</tck.artifactId>
         <tck.version>3.1.0</tck.version>
-        <admin.user>admin</admin.user>
-        <admin.pass>admin</admin.pass>
-        <admin.pass.file>/tmp/ripassword</admin.pass.file>
-        <admin.pass.file.encoded>${admin.pass.file}.encoded</admin.pass.file.encoded>
         <jakarta.persistence.provider>org.eclipse.persistence.jpa.PersistenceProvider</jakarta.persistence.provider>
         <jakarta.persistence.jdbc.driver>org.apache.derby.jdbc.ClientDriver</jakarta.persistence.jdbc.driver>
         <jakarta.persistence.jdbc.url>jdbc:derby://localhost:1527/derbyDB;create=true</jakarta.persistence.jdbc.url>
@@ -81,7 +77,7 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>jpa-tck</artifactId>
+            <artifactId>persistence-tck-tests</artifactId>
             <version>10.0.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
@@ -280,6 +276,7 @@
                         <configuration>
                             <includes>
                                 <include>**/*Client*.*</include>
+                                <include>**/*JPASigTest*.*</include>
                             </includes>
                             <excludes>
                                 <exclude>**/jpa/ee/**/*.*</exclude>
@@ -310,7 +307,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/expressly.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/classmate.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>jakarta.tck:jpa-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:persistence-tck-tests</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <platform.mode>standalone</platform.mode>
@@ -330,6 +327,8 @@
                                 <Select_Jpa_Purchase_Order>SELECT ID, TOTAL FROM PURCHASE_ORDER WHERE ID=?</Select_Jpa_Purchase_Order>
                                 <log.file.location>/tmp</log.file.location>
                                 <jdbc.db>${jdbc.db}</jdbc.db>
+                                <sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.persistence-api.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming</sigTestClasspath>
+                                <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>

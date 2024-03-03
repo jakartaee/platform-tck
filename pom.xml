@@ -58,7 +58,6 @@
         <module>jdbc</module>
         <module>jms</module>
         <module>jpa</module>
-        <module>jpa_extras</module>
         <module>jsonb</module>
         <module>jsonp</module>
         <module>jsp</module>
@@ -145,7 +144,7 @@
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
         <webservices-tools.version>3.0.0</webservices-tools.version>
         <!-- Jakarta WebSocket -->
-        <websocket-api.version>2.1.0</websocket-api.version>
+        <websocket-api.version>2.2.0</websocket-api.version>
         <websocket-client-api.version>2.1.0</websocket-client-api.version>
     </properties>
 
