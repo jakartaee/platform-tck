@@ -36,7 +36,7 @@
         <module>platform-tests</module>
         <module>procedures</module>
         <module>spec-tests</module>
-        <module>distribution</module>
+        <module>tck-dist</module>
     </modules>
     <properties>
         <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
