@@ -15,30 +15,38 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <groupId>jakarta.tck</groupId>
     <artifactId>persistence-tck-runner</artifactId>
     <version>3.2.0</version>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.9</version>
     </parent>
-
+    <repositories>
+        <repository>
+            <id>repo1</id>
+            <name>maven repo</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>repo2</id>
+            <name>staging repo</name>
+            <url>https://jakarta.oss.sonatype.org/content/repositories/staging</url>
+        </repository>
+    </repositories>
     <properties>
-        <tck.common.artifactId>persistence-tck-common</tck.common.artifactId>
-        <tck.artifactId>persistence-tck-spec-tests</tck.artifactId>
+        <!--glassfish properties-->
         <glassfish.container.version>8.0.0-M2</glassfish.container.version>
         <glassfish.toplevel.dir>${project.build.directory}/glassfish8</glassfish.toplevel.dir>
         <glassfish.module.dir>${glassfish.toplevel.dir}/glassfish/modules</glassfish.module.dir>
-        <jpa.classes>
-            ${glassfish.module.dir}/jakarta.persistence-api.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jar,${glassfish.module.dir}/jakarta.servlet-api.jar,${glassfish.module.dir}/jakarta.transaction-api.jar,${glassfish.module.dir}/jakarta.ejb-api.jar,${glassfish.module.dir}/org.eclipse.persistence.antlr.jar,${glassfish.module.dir}/org.eclipse.persistence.asm.jar,${glassfish.module.dir}/org.eclipse.persistence.core.jar,${glassfish.module.dir}/org.eclipse.persistence.dbws.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jpql.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.modelgen.processor.jar,${glassfish.module.dir}/org.eclipse.persistence.moxy.jar,${glassfish.module.dir}/org.eclipse.persistence.oracle.jar,${glassfish.module.dir}/jakarta.validation-api.jar,${glassfish.module.dir}/hibernate-validator-cdi.jar,${glassfish.module.dir}/hibernate-validator.jar
-        </jpa.classes>
-        <javadb.lib>${glassfish.toplevel.dir}/javadb/lib</javadb.lib>
+        <exec.asadmin>${glassfish.toplevel.dir}/bin/asadmin</exec.asadmin>
+        <!--tck properties-->
+        <jpa.classes>${glassfish.module.dir}/jakarta.persistence-api.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jar,${glassfish.module.dir}/jakarta.servlet-api.jar,${glassfish.module.dir}/jakarta.transaction-api.jar,${glassfish.module.dir}/jakarta.ejb-api.jar,${glassfish.module.dir}/org.eclipse.persistence.antlr.jar,${glassfish.module.dir}/org.eclipse.persistence.asm.jar,${glassfish.module.dir}/org.eclipse.persistence.core.jar,${glassfish.module.dir}/org.eclipse.persistence.dbws.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jpql.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.modelgen.processor.jar,${glassfish.module.dir}/org.eclipse.persistence.moxy.jar,${glassfish.module.dir}/org.eclipse.persistence.oracle.jar,${glassfish.module.dir}/jboss-logging.jar,${glassfish.module.dir}/jakarta.el-api.jar,${glassfish.module.dir}/expressly.jar,${glassfish.module.dir}/classmate.jar,${glassfish.module.dir}/jakarta.validation-api.jar</jpa.classes>
+        <validator.classes>${glassfish.module.dir}/jakarta.validation-api.jar,${glassfish.module.dir}/hibernate-validator-cdi.jar,${glassfish.module.dir}/hibernate-validator.jar</validator.classes>
         <jdbc.lib.classpath>${javadb.lib}/derbyclient.jar,${javadb.lib}/derbyshared.jar,${javadb.lib}/derbytools.jar</jdbc.lib.classpath>
         <jdbc.driver.classes>${javadb.lib}/derbyclient.jar:${javadb.lib}/derbyshared.jar:${javadb.lib}/derbytools.jar</jdbc.driver.classes>
         <jdbc.db>derby</jdbc.db>
@@ -48,23 +56,22 @@
         <jakarta.persistence.jdbc.user>cts1</jakarta.persistence.jdbc.user>
         <jakarta.persistence.jdbc.password>cts1</jakarta.persistence.jdbc.password>
         <jpa.provider.implementation.specific.properties>eclipselink.logging.level=OFF</jpa.provider.implementation.specific.properties>
-        <sigTestClasspath/>
         <db.supports.sequence>true</db.supports.sequence>
         <persistence.second.level.caching.supported>true</persistence.second.level.caching.supported>
-        <exec.asadmin>${glassfish.toplevel.dir}/bin/asadmin</exec.asadmin>
         <db.delimiter>;</db.delimiter>
-        <sql.directory>${project.basedir}/../../sql</sql.directory>
-
         <!--Dependencies version-->
+        <tck.common.artifactId>persistence-tck-common</tck.common.artifactId>
+        <tck.artifactId>persistence-tck-spec-tests</tck.artifactId>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <persistence.tck.version>3.2.0</persistence.tck.version>
         <arquillian.junit5.version>1.7.0.Alpha14</arquillian.junit5.version>
-        <jakarta.persistence.version>3.2.0-M2</jakarta.persistence.version>
         <el.version>5.0.0-M1</el.version>
         <hibernate.version>8.0.1.Final</hibernate.version>
+        <javadb.lib>${glassfish.toplevel.dir}/javadb/lib</javadb.lib>
+        <sql.directory>../sql</sql.directory>
+        <persistence.api.version>3.2.0-M2</persistence.api.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -88,37 +95,56 @@
             <version>${el.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>${hibernate.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.tck</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>${tck.common.artifactId}</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>${persistence.api.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>jakarta.tck</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>${tck.artifactId}</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>jakarta.tck</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
             <version>${tck.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.tck</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>dbprocedures</artifactId>
             <version>${persistence.tck.version}</version>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>jakarta.persistence</groupId>
+                    <artifactId>jakarta.persistence-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
@@ -131,7 +157,6 @@
             <version>${arquillian.junit5.version}</version>
         </dependency>
     </dependencies>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -151,8 +176,8 @@
                     <version>3.2.5</version>
                 </plugin>
                 <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
                     <version>3.2.5</version>
                 </plugin>
                 <plugin>
@@ -162,7 +187,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -268,8 +292,7 @@
                         </goals>
                         <configuration>
                             <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue"
-                                     password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
+                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
                                     <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.persistence.sql"/>
                                 </sql>
                             </target>
@@ -283,8 +306,7 @@
                         </goals>
                         <configuration>
                             <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue"
-                                     password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
+                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
                                     <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.persistence.sprocs.sql"/>
                                 </sql>
                             </target>
@@ -298,8 +320,7 @@
                         </goals>
                         <configuration>
                             <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}"
-                                     url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">CALL sqlj.remove_jar('APP.dbprocedures', 0);
+                                <sql autocommit="true" classpath="${jdbc.driver.classes}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">CALL sqlj.remove_jar('APP.dbprocedures', 0);
                                     CALL sqlj.install_jar('${project.build.directory}/dbprocedures.jar', 'APP.dbprocedures', 0);
                                     CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'APP.dbprocedures');
                                 </sql>
@@ -313,7 +334,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>gf-tests</id>
+                        <id>persistence-tests-1</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
@@ -323,6 +344,46 @@
                                 <include>**/*Client*.*</include>
                                 <include>**/*JPASigTest*.*</include>
                             </includes>
+                            <test>!**/ee/jakarta/tck/persistence/se/entityManagerFactory/Client2#createEntityManagerFactoryNoBeanValidatorTest</test>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${jpa.classes}</additionalClasspathElement>
+                                <additionalClasspathElement>${jdbc.lib.classpath}</additionalClasspathElement>
+                                <additionalClasspathElement>${validator.classes}</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <dependenciesToScan>${project.groupId}:${tck.artifactId}</dependenciesToScan>
+                            <systemPropertyVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                                <platform.mode>standalone</platform.mode>
+                                <persistence.unit.name>JPATCK</persistence.unit.name>
+                                <persistence.unit.name.2>JPATCK2</persistence.unit.name.2>
+                                <jakarta.persistence.provider>${jakarta.persistence.provider}</jakarta.persistence.provider>
+                                <jakarta.persistence.jdbc.driver>${jakarta.persistence.jdbc.driver}</jakarta.persistence.jdbc.driver>
+                                <jakarta.persistence.jdbc.url>${jakarta.persistence.jdbc.url}</jakarta.persistence.jdbc.url>
+                                <jakarta.persistence.jdbc.user>${jakarta.persistence.jdbc.user}</jakarta.persistence.jdbc.user>
+                                <jakarta.persistence.jdbc.password>${jakarta.persistence.jdbc.password}</jakarta.persistence.jdbc.password>
+                                <jpa.provider.implementation.specific.properties>eclipselink.logging.level=OFF</jpa.provider.implementation.specific.properties>
+                                <persistence.second.level.caching.supported>true</persistence.second.level.caching.supported>
+                                <vehicle>standalone</vehicle>
+                                <user.dir>/tmp</user.dir>
+                                <db.supports.sequence>${db.supports.sequence}</db.supports.sequence>
+                                <Insert_Jpa_Purchase_Order>INSERT INTO PURCHASE_ORDER(ID, TOTAL, DESCRIPTION) VALUES(?, ?, null)</Insert_Jpa_Purchase_Order>
+                                <Select_Jpa_Purchase_Order>SELECT ID, TOTAL FROM PURCHASE_ORDER WHERE ID=?</Select_Jpa_Purchase_Order>
+                                <log.file.location>/tmp</log.file.location>
+                                <jdbc.db>${jdbc.db}</jdbc.db>
+                                <sigTestClasspath>${glassfish.module.dir}/jakarta.persistence-api.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming
+                                </sigTestClasspath>
+                                <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>persistence-tests-2</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <test>**/ee/jakarta/tck/persistence/se/entityManagerFactory/Client2#createEntityManagerFactoryNoBeanValidatorTest</test>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${jpa.classes}</additionalClasspathElement>
                                 <additionalClasspathElement>${jdbc.lib.classpath}</additionalClasspathElement>
@@ -347,10 +408,6 @@
                                 <Select_Jpa_Purchase_Order>SELECT ID, TOTAL FROM PURCHASE_ORDER WHERE ID=?</Select_Jpa_Purchase_Order>
                                 <log.file.location>/tmp</log.file.location>
                                 <jdbc.db>${jdbc.db}</jdbc.db>
-                                <sigTestClasspath>
-                                    ${glassfish.module.dir}/jakarta.persistence-api.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming
-                                </sigTestClasspath>
-                                <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -400,7 +457,6 @@
             </plugin>
         </plugins>
     </build>
-
     <profiles>
         <profile>
             <id>full</id>

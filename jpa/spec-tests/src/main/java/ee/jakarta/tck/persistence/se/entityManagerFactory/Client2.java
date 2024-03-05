@@ -31,18 +31,18 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 
-public class Client extends PMClientBase {
+public class Client2 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
 
 	Properties props = null;
 
-	public Client() {
+	public Client2() {
 	}
 
 	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
+		String pkgNameWithoutSuffix = Client2.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = { pkgName + "Member", pkgName + "Member_", pkgName + "Order", pkgName + "Order_" };
 		return createDeploymentJar("jpa_se_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
@@ -62,40 +62,10 @@ public class Client extends PMClientBase {
 	}
 
 	@AfterEach
-	public void cleanupNoData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
-			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
-		}
-	}
-
-	/*
-	 * @testName: getMetamodelIllegalStateExceptionTest
-	 * 
-	 * @assertion_ids: PERSISTENCE:JAVADOC:536;
-	 * 
-	 * @test_Strategy: Close the EntityManagerFactory, then call emf.getMetaModel()
-	 */
-	@Test
-	public void getMetamodelIllegalStateExceptionTest() throws Exception {
-		boolean pass = false;
-		try {
-			EntityManagerFactory emf = getEntityManager().getEntityManagerFactory();
-			emf.close();
-			try {
-				emf.getMetamodel();
-				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
-			} catch (IllegalStateException ise) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
-				pass = true;
-			}
-
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
-		}
-		if (!pass) {
-			throw new Exception("getMetamodelIllegalStateExceptionTest failed");
 		}
 	}
 

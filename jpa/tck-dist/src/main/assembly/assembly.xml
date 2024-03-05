@@ -34,22 +34,6 @@
     </files>
     <fileSets>
         <fileSet>
-            <directory>${project.basedir}/../spec-tests/target</directory>
-            <outputDirectory>artifacts</outputDirectory>
-            <fileMode>755</fileMode>
-            <includes>
-                <include>**/*.jar</include>
-            </includes>
-        </fileSet>
-        <fileSet>
-            <directory>${project.basedir}/../common/target</directory>
-            <outputDirectory>artifacts</outputDirectory>
-            <fileMode>755</fileMode>
-            <includes>
-                <include>**/*.jar</include>
-            </includes>
-        </fileSet>
-        <fileSet>
             <directory>${project.basedir}/../docs</directory>
             <outputDirectory>docs</outputDirectory>
             <fileMode>755</fileMode>
@@ -57,14 +41,6 @@
                 <include>assertions/**</include>
                 <include>*.html</include>
                 <include>*.txt</include>
-            </includes>
-        </fileSet>
-        <fileSet>
-            <directory>${project.basedir}/../procedures/target</directory>
-            <outputDirectory>artifacts</outputDirectory>
-            <fileMode>755</fileMode>
-            <includes>
-                <include>**/*.jar</include>
             </includes>
         </fileSet>
         <fileSet>
@@ -100,6 +76,27 @@
             <includes>
                 <include>**/**</include>
             </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/</directory>
+            <outputDirectory>artifacts</outputDirectory>
+            <fileMode>755</fileMode>
+            <includes>
+                <include>*.sh</include>
+            </includes>
         </fileSet>      
     </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <includes>
+                <include>jakarta.tck:persistence-tck</include>
+                <include>jakarta.tck:persistence-tck-common</include>
+                <include>jakarta.tck:persistence-tck-spec-tests</include>
+                <include>jakarta.tck:dbprocedures</include>
+            </includes>
+            <useTransitiveDependencies>false</useTransitiveDependencies>
+            <outputDirectory>artifacts</outputDirectory>
+            <useProjectArtifact>false</useProjectArtifact>
+        </dependencySet>
+    </dependencySets>
 </assembly>
