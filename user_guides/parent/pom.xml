@@ -272,8 +272,8 @@
                         <outputFile>${doc.pdf}</outputFile>
                         <attributes>
                             <imagesDir>${ug.staging.dir}</imagesDir>
-                            <pdf-stylesdir>${project.build.commonResourcesDirectory}/theme</pdf-stylesdir>
-                            <pdf-style>jakartaee</pdf-style>
+                            <pdf-theme>${project.build.commonResourcesDirectory}/theme/jakartaee-theme.yml</pdf-theme>
+                            <title-logo-image>image:${project.build.commonResourcesDirectory}/theme/jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
                             <doctype>book</doctype>
                             <status>${status}</status>
                             <compat-mode/>
