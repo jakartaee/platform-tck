@@ -13,7 +13,6 @@ mvn verify
 ----
 --
 
-
 [[GCMCU]]
 
 Example 5-1 {TechnologyShortName} TCK Signature Tests
@@ -26,7 +25,6 @@ following commands:
 mvn verify -Dit.test=ee.jakarta.tck.persistence.signaturetest.**
 ----
 
-
 [[GCMBV]]
 
 
@@ -38,7 +36,6 @@ To run a single test directory, enter the following commands:
 ----
 mvn verify -Dit.test={singleTestDirectoryExample}.**
 ----
-
 
 [[GCMCA]]
 

@@ -37,17 +37,17 @@ the authors of this guide.
 
 =======================================================================
 
-Jakarta EE is a community sponsored and community run program. 
-Organizations contribute, along side individual contributors who use, evolve 
+Jakarta EE is a community sponsored and community run program.
+Organizations contribute, along side individual contributors who use, evolve
 and assist others.
 Commercial support is not available through the Eclipse Foundation resources.
 Please refer to the Eclipse EE4J project site
 (https://projects.eclipse.org/projects/ee4j).
-There, you will find additional details as well as a list of all the associated sub-projects 
-(Implementations and APIs), that make up Jakarta EE and define these specifications. 
+There, you will find additional details as well as a list of all the associated sub-projects
+(Implementations and APIs), that make up Jakarta EE and define these specifications.
 If you have questions about this Specification you may
-send inquiries to {SpecificationInquiryList}. 
-If you have questions about this TCK, you may send inquiries to 
+send inquiries to {SpecificationInquiryList}.
+If you have questions about this TCK, you may send inquiries to
 {TCKInquiryList}.
 
 [[TCJRS00034]][[GBFUS]]
@@ -70,9 +70,8 @@ that verifies compatibility of their implementation of the
 Before You Read This Book
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 You should be familiar with the {TechnologyShortName}
-{TechnologyVersion}, version {TechnologyVersion} Specification, 
+{TechnologyVersion}, version {TechnologyVersion} Specification,
 which can be found at {SpecificationURL}.
 
 [[TCJRS00036]][[GBFWF]]
