@@ -83,8 +83,8 @@ public class JPASigTest extends SigTest {
   /*
    * @testName: signatureTest
    * 
-   * @assertion: An EL container must implement the required classes and APIs
-   * specified in the EL Specification.
+   * @assertion: An persistence container must implement the required classes and APIs
+   * specified in the persistence Specification.
    * 
    * @test_Strategy: Using reflection, gather the implementation specific
    * classes and APIs. Compare these results with the expected (required)

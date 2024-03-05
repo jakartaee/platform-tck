@@ -43,10 +43,12 @@ slashes as a path separator instead.
   and `M2_HOME/bin`
 2.  set the following system properties:
   a.  Set `jpa.classes` to include all of the necessary JAR files that
-  pertain to your implementation.
+  pertain to your implementation using comma separator in the TCK runner.
   b.  Set `jdbc.lib.classpath` to the location where the JDBC drivers are
-  installed.
-  c.  Set `jdbc.db` to the name of the database under test. Valid values
+  installed using comma separator in the TCK runner.
+  c.  Set `jdbc.driver.classes` to the location where the JDBC drivers are
+  installed using CLASSPATH separator in the TCK runner.
+  d.  Set `jdbc.db` to the name of the database under test. Valid values
   include:
 +
 --
@@ -62,7 +64,7 @@ postgresql
 ----
 --
 +
-  d.  Set `jakarta.persistence.provider`, `jakarta.persistence.jdbc.driver`,
+  e.  Set `jakarta.persistence.provider`, `jakarta.persistence.jdbc.driver`,
   `jakarta.persistence.jdbc.url`, `jakarta.persistence.jdbc.user`, and
   `jakarta.persistence.jdbc.password` to the appropriate values for the
   database and persistence provider under test. +
@@ -70,15 +72,15 @@ postgresql
   creation of the `EntityManagerFactory`. Any additional values, for
   example setting an implementation's logging level, must be set by
   following the instructions in Step 2e.
-  e.  Set the `jpa.provider.implementation.specific.properties` property
+  f.  Set the `jpa.provider.implementation.specific.properties` property
   to include any implementation-specific settings that need to be passed
   to the provider when the `EntityManagerFactory` is created.
-  f.  Set `sigTestClasspath` to include any additional classes not
+  g.  Set `sigTestClasspath` to include any additional classes not
   specified with the `jpa.classes` property.
-  g.  Set db.supports.sequence to false if the database does not support
+  h.  Set db.supports.sequence to false if the database does not support
   the use of SEQUENCE. +
   The default value is true.
-  h. Set `persistence.second.level.caching.supported` to false if your
+  i. Set `persistence.second.level.caching.supported` to false if your
   persistence provider does not support second level caching. +
   The default value is true.
 +
@@ -89,10 +91,9 @@ postgresql
   Considerations for MS SQL Server,"] and proceed to Step 4.
 +
 4.  Start the database under test.
-5.  Initialize the database under test. +
-Execute following SQL scripts for database initilization:
-  a. <db-name>.ddl.persistence.sql
-  b. <db-name>.ddl.persistence.sprocs.sql
+5.  Initialize the database under test. Execute following SQL scripts for database initilization:
+  a. <jdbc.db>.ddl.persistence.sql
+  b. <jdbc.db>.ddl.persistence.sprocs.sql
 
 
 [[GCLHU]][[configuring-your-environment-to-repackage-and-run-the-tck-against-the-vendor-implementation]]
