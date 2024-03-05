@@ -15,7 +15,7 @@ Executing Tests
 5 Executing Tests
 -----------------
 
-The {TechnologyShortName} TCK uses the Junit and Jboss Arquillian 
+The {TechnologyShortName} TCK uses the Junit and Jboss Arquillian
 frameworks to execute the tests.
 
 This chapter includes the following topics:
@@ -28,10 +28,10 @@ This chapter includes the following topics:
 [NOTE]
 =======================================================================
 
-The {TechnologyShortName}  TCK is not depended on any particular build tool to 
-run the tests. It will be convenient and advisable to create a 
-Apache Maven project to setup and run the TCK. This chapter will 
-henceforth use instructions and steps to provide setup with Apache 
+The {TechnologyShortName}  TCK is not depended on any particular build tool to
+run the tests. It will be convenient and advisable to create a
+Apache Maven project to setup and run the TCK. This chapter will
+henceforth use instructions and steps to provide setup with Apache
 Maven as a build tool.
 
 =======================================================================
@@ -49,7 +49,7 @@ endif::rebuild[]
 5.1 Starting Test
 ~~~~~~~~~~~~~~~~~
 
-The {TechnologyShortName} TCK can be run from the command line 
+The {TechnologyShortName} TCK can be run from the command line
 in your shell environment by executing the TCK jar.
 
 

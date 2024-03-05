@@ -36,7 +36,6 @@
         <module>jacc</module>
         <module>jaxws</module>
         <module>jms</module>
-        <module>jpa</module>
         <module>jsp</module>
         <module>jstl</module>
         <module>jta</module>

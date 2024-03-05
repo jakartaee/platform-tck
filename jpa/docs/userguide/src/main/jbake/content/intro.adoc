@@ -17,7 +17,7 @@ Introduction
 
 This chapter provides an overview of the principles that apply
 generally to all Technology Compatibility Kits (TCKs) and describes the
-{TechnologyFullName} TCK ({TechnologyShortName} {TechnologyVersion} TCK). 
+{TechnologyFullName} TCK ({TechnologyShortName} {TechnologyVersion} TCK).
 It also includes a high level listing
 of what is needed to get up and running with the {TechnologyShortName}
 TCK.
@@ -187,7 +187,7 @@ include::platforms.inc[]
 1.2.3 TCK Compatibility Test Suite
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The test suite is the collection of tests 
+The test suite is the collection of tests
 to test a particular technology implementation. In this case, it is the
 collection of JUnit tests used by the {TechnologyShortName} TCK
 {TechnologyVersion} to test a {TechnologyShortName} {TechnologyVersion}
@@ -197,7 +197,7 @@ specification. The individual tests correspond to assertions of the
 specification.
 
 The tests that make up the TCK compatibility test suite are precompiled
-and indexed within the TCK jar directory structure. 
+and indexed within the TCK jar directory structure.
 
 [[GBFSH]][[exclude-lists]]
 
@@ -205,9 +205,9 @@ and indexed within the TCK jar directory structure.
 ^^^^^^^^^^^^^^^^^^^
 
 Each version of a TCK includes an Exclude List contained in a `TCK-Exclude-List.txt`
-file. 
+file.
 This is a list of test file URLs that identify tests which do not
-have to be run for the specific version of the TCK being used. 
+have to be run for the specific version of the TCK being used.
 Whenever tests are run, the Junit framework automatically excludes
 these tests from being executed as those are disabled using '@Disabled' tag in JUnit.
 
@@ -223,7 +223,7 @@ for documentation purpose.
 
 From time to time, updates to the Exclude List are made available.
 The exclude list is included in the Jakarta TCK ZIP archive.
-Each time an update is approved and released, the version number 
+Each time an update is approved and released, the version number
 will be incremented.
 You should always make sure you are using an up-to-date copy of the
 Exclude List before running the {TechnologyShortName} TCK to verify your
