@@ -18,7 +18,7 @@
  * $Id$
  */
 
-package com.sun.ts.tests.ejb.ee.bb.session.stateless.argsemantics;
+package com.sun.ts.tests.ejb.ee.bb.session.stateful.argsemantics;
 
 import java.util.Properties;
 
@@ -62,7 +62,7 @@ public class Client extends EETest {
       logTrace("[Client] Looking up " + beanLookup);
       beanHome = (CallerBeanHome) nctx.lookup(beanLookup, CallerBeanHome.class);
       logTrace("[Client] Create EJB instance...");
-      bean = (CallerBean) beanHome.create();
+      bean = (CallerBean) beanHome.create(props);
     } catch (Exception e) {
       throw new Fault("Setup failed:", e);
     }
@@ -73,16 +73,15 @@ public class Client extends EETest {
    *
    * @assertion_ids: EJB:SPEC:906
    *
-   * @test_Strategy:
-   * 
-   *                 This is applicable to : - a Session Stateful Callee bean
+   *
+   * @test_Strategy: This is applicable to : - a Session Stateful Callee bean
    *                 defining a remote client view only (No local view). - a
-   *                 Stateless Caller bean, Calling this Callee Bean home or
+   *                 Stateful Caller bean, Calling this Callee Bean home or
    *                 remote interface.
    * 
    *                 We package in the same ejb-jar: - a Session Stateful Callee
    *                 bean defining a remote client view only (No local view). -
-   *                 a Stateless Caller bean
+   *                 a Stateful Caller bean
    *
    *                 Remote Home arg semantics verification:
    *
@@ -132,15 +131,18 @@ public class Client extends EETest {
    *
    * @assertion_ids: EJB:SPEC:907.2; EJB:SPEC:1
    *
-   * @test_Strategy: This is applicable to : - a Session Stateful Callee bean
+   * 
+   * @test_Strategy:
+   *
+   *                 This is applicable to : - a Session Stateful Callee bean
    *                 defining a local client view only (No remote view).
    *
-   *                 - a Stateless Caller bean, Calling this Callee Bean local
+   *                 - a Stateful Caller bean, Calling this Callee Bean local
    *                 home or local interface.
    * 
    *                 We package in the same ejb-jar: - a Session Stateful Callee
    *                 bean defining a local client view only (No remote view). -
-   *                 a Stateless Caller bean
+   *                 a Stateful Caller bean
    *
    *                 Local Home arg semantics verification:
    *
@@ -193,19 +195,23 @@ public class Client extends EETest {
    * @assertion_ids: EJB:SPEC:906; EJB:SPEC:907; EJB:SPEC:907.2
    *
    *
-   * @test_Strategy: This is applicable to :
+   * @test_Strategy:
+   *
+   *                 This is applicable to :
    *
    *                 - a Session Stateful Callee bean defining a remote AND a
    *                 local client view.
    *
-   *                 - a Stateless Caller bean, Calling this Callee Bean home,
+   *                 - a Stateful Caller bean, Calling this Callee Bean home,
    *                 local home, remote, or local interface.
    * 
    *                 The test strategy is a cumulated version of the two
    *                 previous tests ('testStatefulRemote' and
    *                 'testStatefulLocal') on the Callee bean defining a local
    *                 and a remote client view.
+   *
    */
+
   public void testStatefulBoth() throws Fault {
     boolean pass;
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sun-web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 8.0 Servlet 2.4//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-web-app_2_4-0.dtd">
+<!DOCTYPE sun-application-client PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 8.0 Application Client 1.4//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-application-client_1_4-0.dtd">
 <!--
 
     Copyright (c) 2018,2024 Oracle and/or its affiliates. All rights reserved.
@@ -18,13 +18,9 @@
 
 -->
 
-<sun-web-app>
+<sun-application-client>
   <ejb-ref>
-    <ejb-ref-name>ejb/BEJB</ejb-ref-name>
-    <jndi-name>ejb_ee_bb_localaccess_webaccesstest_BEJB</jndi-name>
+    <ejb-ref-name>ejb/Caller</ejb-ref-name>
+    <jndi-name>ejb_ee_bb_session_stateful_argsemantics_CallerBean</jndi-name>
   </ejb-ref>
-  <ejb-ref>
-    <ejb-ref-name>ejb/DEJB</ejb-ref-name>
-    <jndi-name>ejb_ee_bb_localaccess_webaccesstest_DEJB</jndi-name>
-  </ejb-ref>
-</sun-web-app>
+</sun-application-client>

@@ -21,11 +21,46 @@
   <display-name>Ejb1</display-name>
   <enterprise-beans>
     <session>
+      <ejb-name>StatefulCalleeLocal</ejb-name>
+      <local-home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocalHome</local-home>
+      <local>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocal</local>
+      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeEJB</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+    <session>
+      <ejb-name>StatefulCalleeBoth</ejb-name>
+      <home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeHome</home>
+      <remote>com.sun.ts.tests.common.ejb.calleebeans.StatefulCallee</remote>
+      <local-home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocalHome</local-home>
+      <local>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocal</local>
+      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeEJB</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+    <session>
+      <ejb-name>StatefulCalleeRemote</ejb-name>
+      <home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeHome</home>
+      <remote>com.sun.ts.tests.common.ejb.calleebeans.StatefulCallee</remote>
+      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeEJB</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+      <security-identity>
+        <use-caller-identity/>
+      </security-identity>
+    </session>
+    <session>
       <ejb-name>CallerBean</ejb-name>
-      <home>com.sun.ts.tests.ejb.ee.bb.session.stateless.argsemantics.CallerBeanHome</home>
-      <remote>com.sun.ts.tests.ejb.ee.bb.session.stateless.argsemantics.CallerBean</remote>
-      <ejb-class>com.sun.ts.tests.ejb.ee.bb.session.stateless.argsemantics.CallerBeanEJB</ejb-class>
-      <session-type>Stateless</session-type>
+      <home>com.sun.ts.tests.ejb.ee.bb.session.stateful.argsemantics.CallerBeanHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.bb.session.stateful.argsemantics.CallerBean</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.bb.session.stateful.argsemantics.CallerBeanEJB</ejb-class>
+      <session-type>Stateful</session-type>
       <transaction-type>Container</transaction-type>
       <ejb-ref>
         <ejb-ref-name>ejb/StatefulCalleeBothRemote</ejb-ref-name>
@@ -59,43 +94,56 @@
         <use-caller-identity/>
       </security-identity>
     </session>
-    <session>
-      <ejb-name>StatefulCalleeBoth</ejb-name>
-      <home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeHome</home>
-      <remote>com.sun.ts.tests.common.ejb.calleebeans.StatefulCallee</remote>
-      <local-home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocalHome</local-home>
-      <local>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocal</local>
-      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeEJB</ejb-class>
-      <session-type>Stateful</session-type>
-      <transaction-type>Container</transaction-type>
-      <security-identity>
-        <use-caller-identity/>
-      </security-identity>
-    </session>
-    <session>
-      <ejb-name>StatefulCalleeLocal</ejb-name>
-      <local-home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocalHome</local-home>
-      <local>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocal</local>
-      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeEJB</ejb-class>
-      <session-type>Stateful</session-type>
-      <transaction-type>Container</transaction-type>
-      <security-identity>
-        <use-caller-identity/>
-      </security-identity>
-    </session>
-    <session>
-      <ejb-name>StatefulCalleeRemote</ejb-name>
-      <home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeHome</home>
-      <remote>com.sun.ts.tests.common.ejb.calleebeans.StatefulCallee</remote>
-      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeEJB</ejb-class>
-      <session-type>Stateful</session-type>
-      <transaction-type>Container</transaction-type>
-      <security-identity>
-        <use-caller-identity/>
-      </security-identity>
-    </session>
   </enterprise-beans>
   <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>StatefulCalleeLocal</ejb-name>
+        <method-intf>Local</method-intf>
+        <method-name>call</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>StatefulCalleeBoth</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>call</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>StatefulCalleeBoth</ejb-name>
+        <method-intf>Local</method-intf>
+        <method-name>call</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <method>
+        <ejb-name>StatefulCalleeRemote</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>call</method-name>
+        <method-params>
+          <method-param>java.util.Properties</method-param>
+          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Supports</trans-attribute>
+    </container-transaction>
     <container-transaction>
       <method>
         <ejb-name>CallerBean</ejb-name>
@@ -128,54 +176,6 @@
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>StatefulCalleeBoth</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>call</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>Supports</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>StatefulCalleeBoth</ejb-name>
-        <method-intf>Local</method-intf>
-        <method-name>call</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>Supports</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>StatefulCalleeLocal</ejb-name>
-        <method-intf>Local</method-intf>
-        <method-name>call</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>Supports</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>StatefulCalleeRemote</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>call</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>Supports</trans-attribute>
     </container-transaction>
     <container-transaction>
       <method>

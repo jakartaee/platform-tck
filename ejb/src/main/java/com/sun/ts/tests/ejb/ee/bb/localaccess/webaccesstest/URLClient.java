@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,11 +33,7 @@ public class URLClient extends EETest {
 
   private static final String PROTOCOL = "http";
 
-  private static final String JSPA = "/bb_localaccess_webaccesstest_web/jsp2aejb.jsp";
-
   private static final String JSPB = "/bb_localaccess_webaccesstest_web/jsp2bejb.jsp";
-
-  private static final String JSPC = "/bb_localaccess_webaccesstest_web/jsp2cejb.jsp";
 
   private static final String JSPD = "/bb_localaccess_webaccesstest_web/jsp2dejb.jsp";
 
@@ -100,46 +96,6 @@ public class URLClient extends EETest {
   }
 
   /*
-   * @testName: webLocalAccessTest1
-   * 
-   * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:147.1; EJB:SPEC:147.2;
-   * EJB:SPEC:147.5
-   * 
-   * @test_Strategy: A web component has access to the LocalHome and Local
-   * Interfaces of a Local Entity Bean (CMP20). Verify local access from JSP to
-   * a local Entity CMP20 Bean.
-   */
-
-  public void webLocalAccessTest1() throws Fault {
-    try {
-      String expectedResult1 = "entity-cmp";
-      boolean pass = true;
-      url = ctsurl.getURL(PROTOCOL, hostname, portnum, JSPA);
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil
-          .logMsg("Getting response from url connection: " + url.toString());
-      TestUtil.logMsg("Response is ................");
-      Properties p = TestUtil.getResponseProperties(urlConn);
-      TestUtil.list(p);
-      String s = p.getProperty("whoAmI");
-
-      if (!expectedResult1.equals(s)) {
-        TestUtil.logErr("Incorrect Results: Expected: " + expectedResult1
-            + " Received: " + s);
-        pass = false;
-      }
-
-      if (!pass)
-        throw new Fault("webLocalAccessTest1 failed");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Fault("webLocalAccessTest1 failed", e);
-    }
-  }
-
-  /*
    * @testName: webLocalAccessTest2
    * 
    * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:45.1; EJB:SPEC:45.2; EJB:SPEC:45.4
@@ -176,47 +132,6 @@ public class URLClient extends EETest {
       TestUtil.logErr("Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       throw new Fault("webLocalAccessTest2 failed", e);
-    }
-  }
-
-  /*
-   * @testName: webLocalAccessTest3
-   * 
-   * @assertion_ids: EJB:SPEC:2.4; EJB:SPEC:147.1; EJB:SPEC:147.2;
-   * EJB:SPEC:147.5
-   * 
-   * @test_Strategy: A web component has access to the LocalHome and Local
-   * Interfaces of a Local Entity BMP Bean. Verify local access from JSP to a
-   * local Entity BMP Bean.
-   *
-   *
-   */
-  public void webLocalAccessTest3() throws Fault {
-    try {
-      String expectedResult3 = "entity-bmp";
-      boolean pass = true;
-      url = ctsurl.getURL(PROTOCOL, hostname, portnum, JSPC);
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil
-          .logMsg("Getting response from url connection: " + url.toString());
-      TestUtil.logMsg("Response is ................");
-      Properties p = TestUtil.getResponseProperties(urlConn);
-      TestUtil.list(p);
-      String s = p.getProperty("whoAmI");
-
-      if (!expectedResult3.equals(s)) {
-        TestUtil.logErr("Incorrect Results: Expected: " + expectedResult3
-            + " Received: " + s);
-        pass = false;
-      }
-
-      if (!pass)
-        throw new Fault("webLocalAccessTest3 failed");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      throw new Fault("webLocalAccessTest3 failed", e);
     }
   }
 

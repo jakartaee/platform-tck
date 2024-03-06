@@ -18,30 +18,29 @@
  * $Id$
  */
 
-package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejblink.single;
+package com.sun.ts.tests.ejb.ee.bb.session.stateful.argsemantics;
 
-import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
+import java.util.Properties;
+
 import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
+import com.sun.ts.tests.common.testlogic.ejb.bb.argsemantics.TestLogic;
 
-public class TestBeanEJB extends StatefulWrapper {
+public class CallerBeanEJB extends StatefulWrapper {
 
-  public boolean testStatelessInternal() {
-    return TestCode.testStatelessInternal(nctx, props);
+  public boolean testStatefulRemote(Properties props) {
+    return TestLogic.testStatefulRemote(nctx, props);
   }
 
-  public boolean testStatelessExternal() {
-    return TestCode.testStatelessExternal(nctx, props);
+  public boolean testStatefulLocal(Properties props) {
+    return TestLogic.testStatefulLocal(nctx, props);
   }
 
-  public boolean testStatefulInternal() {
-    return TestCode.testStatefulInternal(nctx, props);
-  }
-
-  public boolean testStatefulExternal() {
-    return TestCode.testStatefulExternal(nctx, props);
+  public boolean testStatefulBoth(Properties props) {
+    return TestLogic.testStatefulBoth(nctx, props);
   }
 
   public void cleanUpBean() {
-    TestCode.cleanUpStatefulBean();
+    TestLogic.cleanUpStatefulBean();
   }
+
 }

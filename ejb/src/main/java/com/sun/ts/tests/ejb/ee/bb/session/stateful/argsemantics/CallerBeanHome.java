@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,22 +18,17 @@
  * $Id$
  */
 
-package com.sun.ts.tests.ejb.ee.bb.localaccess.mdbtaccesstest;
+package com.sun.ts.tests.ejb.ee.bb.session.stateful.argsemantics;
 
-import jakarta.ejb.EJBLocalObject;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
-public interface ALocal extends EJBLocalObject {
-  // Business Methods for ALocal CMP Fields
-  public Integer getId();
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
-  public String getName();
+public interface CallerBeanHome extends EJBHome {
 
-  public void setName(String v);
+  public CallerBean create(Properties props)
+      throws RemoteException, CreateException;
 
-  public int getValue();
-
-  public void setValue(int v);
-
-  // Other Business Methods
-  public String whoAmI();
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,14 +18,21 @@
  * $Id$
  */
 
-package com.sun.ts.tests.ejb.ee.bb.localaccess.webaccesstest;
+package com.sun.ts.tests.ejb.ee.bb.session.stateful.argsemantics;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBLocalHome;
-import jakarta.ejb.FinderException;
+import java.rmi.RemoteException;
+import java.util.Properties;
 
-public interface ALocalHome extends EJBLocalHome {
-  public ALocal createA(int id, String name, int value) throws CreateException;
+import jakarta.ejb.EJBObject;
 
-  public ALocal findByPrimaryKey(Integer id) throws FinderException;
+public interface CallerBean extends EJBObject {
+
+  public boolean testStatefulRemote(Properties props) throws RemoteException;
+
+  public boolean testStatefulLocal(Properties props) throws RemoteException;
+
+  public boolean testStatefulBoth(Properties props) throws RemoteException;
+
+  public void cleanUpBean() throws RemoteException;
+
 }
