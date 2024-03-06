@@ -1516,7 +1516,7 @@ public class Client extends Util {
 
       getEntityTransaction().begin();
 
-      CriteriaQuery cquery = cbuilder.createQuery(Expression.class);
+      CriteriaQuery cquery = cbuilder.createQuery(Employee.class);
       From<Department, Department> department = cquery.from(Department.class);
       cquery.where(cbuilder.equal(department.get("id"), 1));
       cquery.select(department.get(Department_.lastNameEmployees));
@@ -1577,7 +1577,7 @@ public class Client extends Util {
 
       getEntityTransaction().begin();
 
-      CriteriaQuery cquery = cbuilder.createQuery(Expression.class);
+      CriteriaQuery cquery = cbuilder.createQuery(Employee.class);
       Path<Department> department = cquery.from(Department.class);
       cquery.where(cbuilder.equal(department.get("id"), 1));
       cquery.select(department.get(Department_.lastNameEmployees));
