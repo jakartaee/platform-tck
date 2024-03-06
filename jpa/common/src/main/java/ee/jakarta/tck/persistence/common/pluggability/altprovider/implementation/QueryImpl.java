@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import jakarta.persistence.CacheRetrieveMode;
+import jakarta.persistence.CacheStoreMode;
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.Parameter;
@@ -126,6 +128,11 @@ public class QueryImpl<X> implements TypedQuery<X> {
 	}
 
 	@Override
+	public X getSingleResultOrNull() {
+		return null;
+	}
+
+	@Override
 	public boolean isBound(Parameter<?> arg0) {
 		return false;
 	}
@@ -148,6 +155,36 @@ public class QueryImpl<X> implements TypedQuery<X> {
 	@Override
 	public TypedQuery setLockMode(LockModeType arg0) {
 		return this;
+	}
+
+	@Override
+	public TypedQuery<X> setCacheRetrieveMode(CacheRetrieveMode cacheRetrieveMode) {
+		return null;
+	}
+
+	@Override
+	public TypedQuery<X> setCacheStoreMode(CacheStoreMode cacheStoreMode) {
+		return null;
+	}
+
+	@Override
+	public CacheRetrieveMode getCacheRetrieveMode() {
+		return null;
+	}
+
+	@Override
+	public CacheStoreMode getCacheStoreMode() {
+		return null;
+	}
+
+	@Override
+	public TypedQuery<X> setTimeout(Integer timeout) {
+		return null;
+	}
+
+	@Override
+	public Integer getTimeout() {
+		return null;
 	}
 
 	@Override

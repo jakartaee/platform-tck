@@ -34,6 +34,16 @@ final public class NoopTransactionWrapper implements EntityTransaction {
     return true;
   }
 
+  @Override
+  public void setTimeout(Integer timeout) {
+
+  }
+
+  @Override
+  public Integer getTimeout() {
+    return null;
+  }
+
   public void commit() {
   }
 
