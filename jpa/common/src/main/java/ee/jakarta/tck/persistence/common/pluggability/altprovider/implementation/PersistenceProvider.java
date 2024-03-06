@@ -25,6 +25,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceConfiguration;
 import jakarta.persistence.spi.LoadState;
 import jakarta.persistence.spi.PersistenceProviderResolver;
 import jakarta.persistence.spi.PersistenceProviderResolverHolder;
@@ -38,7 +39,7 @@ public class PersistenceProvider
 	// Used to store static PersistenceUnitInfo where this is the provider
 	static Map<String, PersistenceUnitInfoImpl> puInfoMap;
 
-	static private PersistenceProvider provider = new PersistenceProvider();
+	static private final PersistenceProvider provider = new PersistenceProvider();
 
 	protected TSLogger logger;
 
@@ -148,6 +149,11 @@ public class PersistenceProvider
 		}
 		System.out.println("returning ALTERNATE_PROVIDER factory:" + emf.toString());
 		return emf;
+	}
+
+	@Override
+	public EntityManagerFactory createEntityManagerFactory(PersistenceConfiguration configuration) {
+		return null;
 	}
 
 	public ProviderUtil getProviderUtil() {

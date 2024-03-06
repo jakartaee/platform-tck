@@ -131,6 +131,16 @@ public class PersistenceUnitInfoImpl implements PersistenceUnitInfo, Cloneable {
 	}
 
 	@Override
+	public String getScopeAnnotationName() {
+		return null;
+	}
+
+	@Override
+	public List<String> getQualifierAnnotationNames() {
+		return null;
+	}
+
+	@Override
 	public String getPersistenceUnitName() {
 		logger.log("Called PersistenceUnitInfoImpl.getPersistenceUnitName()");
 		logger.log("PersistenceUnitName:" + puName);
