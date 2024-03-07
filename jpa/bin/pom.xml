@@ -55,6 +55,7 @@
         <db.delimiter>;</db.delimiter>
         <sql.directory>${project.basedir}/../../sql</sql.directory>
 
+        <!--Dependencies version-->
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <persistence.tck.version>3.2.0</persistence.tck.version>
@@ -63,6 +64,7 @@
         <el.version>5.0.0-M1</el.version>
         <hibernate.version>8.0.1.Final</hibernate.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -131,11 +133,40 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.2.5</version>
+                </plugin>
+                <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>3.2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>unpack</id>
@@ -228,7 +259,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <id>initdb</id>
@@ -279,8 +309,8 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>
@@ -290,11 +320,8 @@
                         </goals>
                         <configuration>
                             <includes>
-<!--
                                 <include>**/*Client*.*</include>
                                 <include>**/*JPASigTest*.*</include>
--->
-                                <include>ee.jakarta.tck.persistence.core.query.language.Client3</include>
                             </includes>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${jpa.classes}</additionalClasspathElement>
@@ -349,8 +376,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>stop-database-final</id>
@@ -443,7 +470,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-dependency-plugin</artifactId>
-                        <version>3.2.0</version>
                         <executions>
                             <execution>
                                 <id>copy-eclipselink-lib</id>
