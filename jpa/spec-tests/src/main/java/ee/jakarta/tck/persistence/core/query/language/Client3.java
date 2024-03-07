@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,6 +20,7 @@ import java.lang.System.Logger;
 import java.util.Arrays;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Customer;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -933,5 +934,317 @@ public class Client3 extends UtilAliasData {
 
 		if (!pass)
 			throw new Exception(" test_substringHavingClause failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_leftStringExpression() throws Exception {
+
+		String result;
+		boolean pass = false;
+		//Irene M.
+		String expectedName = customerRef[7].getName().substring(0, 8);
+
+		try {
+			getEntityTransaction().begin();
+			result = getEntityManager()
+					.createQuery("select LEFT(c.name, 8) FROM Customer c WHERE LEFT(c.name, 5)='Irene' ", String.class)
+					.getSingleResult();
+
+			if (!result.equals(expectedName)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 references, got: " + result);
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception caught exception in test_leftStringExpression: ", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_leftStringExpression failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_rightStringExpression() throws Exception {
+
+		String result;
+		boolean pass = false;
+		//M. Caruso
+		String expectedName = customerRef[7].getName().substring(6, 15);
+
+		try {
+			getEntityTransaction().begin();
+			result = getEntityManager()
+					.createQuery("select RIGHT(c.name, 9) FROM Customer c WHERE RIGHT(c.name, 9)='M. Caruso' ", String.class)
+					.getSingleResult();
+
+			if (!result.equals(expectedName)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 references, got: " + result);
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception caught exception in test_rightStringExpression: ", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_rightStringExpression failed");
+	}
+
+/*	Prepared bur DERBY doesn't support REPLACE
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_replaceStringExpression() throws Exception {
+
+		String result;
+		boolean pass = false;
+		//Irene M. Caruso -> Irene J. Caruso
+		String expectedName = customerRef[7].getName().replace("M.", "J.");
+
+		try {
+			getEntityTransaction().begin();
+			result = getEntityManager()
+					.createQuery("select REPLACE(c.name, 'M.', 'J.') FROM Customer c WHERE REPLACE(c.name, 'M.', 'A.') = 'Irene A. Caruso' ", String.class)
+					.getSingleResult();
+
+			if (!result.equals(expectedName)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 references, got: " + result);
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception caught exception in test_replaceStringExpression: ", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_replaceStringExpression failed");
+	}
+*/
+
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_concatStringOperator() throws Exception {
+
+		String result;
+		boolean pass = false;
+		//8Irene M. CarusoUnited States
+		String expectedResult = customerRef[7].getId() + customerRef[7].getName() + customerRef[7].getCountry().getCountry();
+
+		try {
+			getEntityTransaction().begin();
+			result = getEntityManager()
+					.createQuery("select c.id || c.name || c.country.country FROM Customer c WHERE c.id || c.name = '8Irene M. Caruso' ", String.class)
+					.getSingleResult();
+
+			if (!result.equals(expectedResult)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 references, got: " + result);
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception caught exception in test_concatStringOperator: ", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_concatStringOperator failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_castExpression() throws Exception {
+
+		int result;
+		boolean pass = false;
+		//8
+		int expectedId = Integer.valueOf(customerRef[7].getId());
+
+		try {
+			getEntityTransaction().begin();
+			result = getEntityManager()
+					.createQuery("select CAST(c.id AS INTEGER) FROM Customer c WHERE CAST(c.id AS INTEGER)=8 ", Integer.class)
+					.getSingleResult();
+
+			if (result !=expectedId) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 1 references, got: " + result);
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception caught exception in test_castExpression: ", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_castExpression failed");
+	}
+
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_unionOperator() throws Exception {
+		List result;
+		boolean pass = false;
+		String expectedPKs[] = new String[] {"1", "2", "3", "6", "7", "8"};
+
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "UNION Executing Query");
+			result = getEntityManager()
+					.createQuery("SELECT c from Customer c WHERE c.id IN ('1', '2', '3') UNION SELECT c from Customer c WHERE c.id IN ('6', '7', '8')")
+					.getResultList();
+
+			if (!checkEntityPK(result, expectedPKs)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 6 references, got: " + result.size());
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_unionOperator failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_intersectOperator() throws Exception {
+		List result;
+		boolean pass = false;
+		String expectedPKs[] = new String[] {"2", "3"};
+
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "UNION Executing Query");
+			result = getEntityManager()
+					.createQuery("SELECT c from Customer c WHERE c.id IN ('1', '2', '3') INTERSECT SELECT c from Customer c WHERE c.id IN ('2', '3', '4')")
+					.getResultList();
+
+			if (!checkEntityPK(result, expectedPKs)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 2 references, got: " + result.size());
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_intersectOperator failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_exceptOperator() throws Exception {
+		List result;
+		boolean pass = false;
+		String expectedPKs[] = new String[] {"1", "2"};
+
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "UNION Executing Query");
+			result = getEntityManager()
+					.createQuery("SELECT c from Customer c WHERE c.id IN ('1', '2', '3', '4') EXCEPT SELECT c from Customer c WHERE c.id IN ('3', '4')")
+					.getResultList();
+
+			if (!checkEntityPK(result, expectedPKs)) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected 2 references, got: " + result.size());
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_exceptOperator failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_orderByNullsFirst() throws Exception {
+		List result;
+		boolean pass = false;
+
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "UNION Executing Query");
+			result = getEntityManager()
+					.createQuery("SELECT c from Customer c ORDER BY c.home ASC NULLS FIRST")
+					.getResultList();
+
+			if (((Customer) result.get(0)).getHome() != null & ((Customer) result.get(1)).getHome() != null) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected first two references, got not null home address");
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_orderByNullsFirst failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_orderByNullsLast() throws Exception {
+		List result;
+		boolean pass = false;
+
+		try {
+			getEntityTransaction().begin();
+			logger.log(Logger.Level.TRACE, "UNION Executing Query");
+			result = getEntityManager()
+					.createQuery("SELECT c from Customer c ORDER BY c.home ASC NULLS LAST")
+					.getResultList();
+
+			if (((Customer) result.get(result.size() - 1)).getHome() != null & ((Customer) result.get(result.size() - 2)).getHome() != null) {
+				logger.log(Logger.Level.ERROR,
+						"Did not get expected results.  Expected last two references, got not null home address");
+			} else {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			}
+			getEntityTransaction().commit();
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_orderByNullsLast failed");
 	}
 }
