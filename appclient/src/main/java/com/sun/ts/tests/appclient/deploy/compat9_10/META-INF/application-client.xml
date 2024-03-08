@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,13 +17,16 @@
 
 -->
 
-<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="10" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd">
-  <display-name>appclient_dep_compat12_13_client</display-name>
+<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee"
+	      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	      xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+	      https://jakarta.ee/xml/ns/jakartaee/application-client_9.xsd"
+	      version="9">
+  <display-name>appclient_dep_compat9_10_client</display-name>
   <ejb-ref>
     <ejb-ref-name>ejb/TestBean</ejb-ref-name>
     <ejb-ref-type>Session</ejb-ref-type>
-    <home>com.sun.ts.tests.appclient.deploy.compat12_13.TestBeanHome</home>
-    <remote>com.sun.ts.tests.appclient.deploy.compat12_13.TestBean</remote>
+    <remote>com.sun.ts.tests.appclient.deploy.compat9_10.TestBean</remote>
     <ejb-link>TestBean</ejb-link>
   </ejb-ref>
 </application-client>
