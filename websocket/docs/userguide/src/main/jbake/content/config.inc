@@ -75,11 +75,11 @@ slashes as a path separator instead.
   d. Set the `porting.ts.url.class.1` property to your porting
   implementation class that is used for obtaining URLs. +
   The default setting for this property is
-  `com.sun.ts.lib.implementation.sun.common.SunRIURL`.
+  `com.sun.ts.tests.websocket.lib.implementation.sun.common.SunRIURL`.
 +
 3. Set the below jars to the classpath 
   a. JAR file for the {TechnologyShortName} {TechnologyVersion} API. +
-  eg.  `${web.home}/modules/jakarta.ws.rs-api.jar`.
+  eg.  `${web.home}/modules/jakarta.websocket-api.jar`.
   b. Arquillian JAR arquillian-junit5-container
   Maven cordinates :  
 +
@@ -125,28 +125,20 @@ slashes as a path separator instead.
 +
 [source,oac_no_warn]
 ----
-${web.home}/modules/jersey-client.jar:
-${web.home}/modules/jersey-common.jar:
-${web.home}/modules/jersey-server.jar:
-${web.home}/modules/jersey-container-servlet.jar:
-${web.home}/modules/jersey-container-servlet-core.jar:
-${web.home}/modules/jersey-media-jaxb.jar:
-${web.home}/modules/jersey-media-sse.jar:
-${web.home}/modules/jersey-hk2.jar:
-${web.home}/modules/osgi-resource-locator.jar:
-${web.home}/modules/jakarta.inject-api.jar:
-${web.home}/modules/guava.jar:
-${web.home}/modules/hk2-api.jar:
-${web.home}/modules/hk2-locator.jar:
-${web.home}/modules/hk2-utils.jar:
-${web.home}/modules/cglib.jar:
-${web.home}/modules/asm-all-repackaged.jar:
-${web.home}/modules/bean-validator.jar:
-${web.home}/modules/jakarta.annotation-api.jar:
-${web.home}/modules/jakarta.xml.bind-api.jar:
-${web.home}/modules/jaxb-osgi.jar:
-${web.home}/modules/jakarta.activation.jar:
-${web.home}/modules/javassist.jar
+${web.home}/modules/jakarta.websocket-api.jar
+${web.home}/modules/jakarta.websocket-client-api.jar
+${web.home}/modules/jakarta.servlet-api.jar
+${web.home}/modules/jakarta.enterprise.cdi-api.jar
+${web.home}/modules/tyrus-websocket-core.jar
+${web.home}/modules/tyrus-client.jar
+${web.home}/modules/tyrus-core.jar
+${web.home}/modules/tyrus-container-grizzly.jar
+${web.home}/modules/glassfish-grizzly-extra-all.jar
+${web.home}/modules/nucleus-grizzly-all.jar
+${web.home}/modules/tyrus-server.jar
+${web.home}/modules/tyrus-container-servlet.jar
+${web.home}/modules/tyrus-container-grizzly-client.jar
+${web.home}/modules/tyrus-spi.jar
 ----
 +
 4.  Provide compatible implementation of the porting package interface
@@ -207,14 +199,14 @@ will be run and determine to which Servlet–compliant Web server the
   The default setting is `8080`.
   c.  Set the `web.home` property to the installation directory of Jakarta EE
   {JakartaEEVersion} CI.
-  f. Set the `porting.ts.url.class.1` property to your porting
+  e. Set the `porting.ts.url.class.1` property to your porting
   implementation class that is used for obtaining URLs. +
   The default setting for this property is
   `com.sun.ts.lib.implementation.sun.common.SunRIURL`.
 +
 3. Set the below jars to the classpath 
   a. JAR file for the {TechnologyShortName} {TechnologyVersion} API. +
-  eg.  `${web.home}/modules/jakarta.ws.rs-api.jar`.
+  eg.  `${web.home}/modules/jakarta.websocket-api.jar`.
   b. Arquillian JAR arquillian-junit5-container
   Maven cordinates :  
 +
@@ -247,28 +239,20 @@ will be run and determine to which Servlet–compliant Web server the
 +
 [source,oac_no_warn]
 ----
-${web.home}/modules/jersey-client.jar:
-${web.home}/modules/jersey-common.jar:
-${web.home}/modules/jersey-server.jar:
-${web.home}/modules/jersey-container-servlet.jar:
-${web.home}/modules/jersey-container-servlet-core.jar:
-${web.home}/modules/jersey-media-jaxb.jar:
-${web.home}/modules/jersey-media-sse.jar:
-${web.home}/modules/jersey-hk2.jar:
-${web.home}/modules/osgi-resource-locator.jar:
-${web.home}/modules/jakarta.inject-api.jar:
-${web.home}/modules/guava.jar:
-${web.home}/modules/hk2-api.jar:
-${web.home}/modules/hk2-locator.jar:
-${web.home}/modules/hk2-utils.jar:
-${web.home}/modules/cglib.jar:
-${web.home}/modules/asm-all-repackaged.jar:
-${web.home}/modules/bean-validator.jar:
-${web.home}/modules/jakarta.annotation-api.jar:
-${web.home}/modules/jakarta.xml.bind-api.jar:
-${web.home}/modules/jaxb-osgi.jar:
-${web.home}/modules/jakarta.activation.jar:
-${web.home}/modules/javassist.jar
+${web.home}/modules/jakarta.websocket-api.jar
+${web.home}/modules/jakarta.websocket-client-api.jar
+${web.home}/modules/jakarta.servlet-api.jar
+${web.home}/modules/jakarta.enterprise.cdi-api.jar
+${web.home}/modules/tyrus-websocket-core.jar
+${web.home}/modules/tyrus-client.jar
+${web.home}/modules/tyrus-core.jar
+${web.home}/modules/tyrus-container-grizzly.jar
+${web.home}/modules/glassfish-grizzly-extra-all.jar
+${web.home}/modules/nucleus-grizzly-all.jar
+${web.home}/modules/tyrus-server.jar
+${web.home}/modules/tyrus-container-servlet.jar
+${web.home}/modules/tyrus-container-grizzly-client.jar
+${web.home}/modules/tyrus-spi.jar
 ----
 +
 4.  Provide compatible implementation of the porting package interface

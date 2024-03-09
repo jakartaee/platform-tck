@@ -22,7 +22,7 @@ following commands:
 
 [source,subs="attributes"]
 ----
-mvn verify -Dit.test=ee.jakarta.tck.ws.rs.signaturetest.**
+mvn verify -Dit.test=com.sun.ts.tests.websocket.signaturetest.**
 ----
 
 [[GCMBV]]
