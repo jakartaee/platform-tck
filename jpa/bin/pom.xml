@@ -15,20 +15,30 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <groupId>jakarta.tck</groupId>
     <artifactId>persistence-tck-runner</artifactId>
     <version>3.2.0</version>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.9</version>
+    </parent>
+
     <properties>
         <tck.common.artifactId>persistence-tck-common</tck.common.artifactId>
         <tck.artifactId>persistence-tck-spec-tests</tck.artifactId>
-        <tck.version>3.2.0</tck.version>
-        <glassfish.container.version>7.0.0</glassfish.container.version>
-        <glassfish.toplevel.dir>${project.build.directory}/glassfish7</glassfish.toplevel.dir>
+        <glassfish.container.version>8.0.0-M2</glassfish.container.version>
+        <glassfish.toplevel.dir>${project.build.directory}/glassfish8</glassfish.toplevel.dir>
         <glassfish.module.dir>${glassfish.toplevel.dir}/glassfish/modules</glassfish.module.dir>
-        <jpa.classes>${glassfish.module.dir}/jakarta.persistence-api.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jar,${glassfish.module.dir}/jakarta.servlet-api.jar,${glassfish.module.dir}/jakarta.transaction-api.jar,${glassfish.module.dir}/jakarta.ejb-api.jar,${glassfish.module.dir}/org.eclipse.persistence.antlr.jar,${glassfish.module.dir}/org.eclipse.persistence.asm.jar,${glassfish.module.dir}/org.eclipse.persistence.core.jar,${glassfish.module.dir}/org.eclipse.persistence.dbws.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jpql.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.modelgen.processor.jar,${glassfish.module.dir}/org.eclipse.persistence.moxy.jar,${glassfish.module.dir}/org.eclipse.persistence.oracle.jar,${glassfish.module.dir}/jakarta.validation-api.jar,${glassfish.module.dir}/hibernate-validator-cdi.jar,${glassfish.module.dir}/hibernate-validator.jar</jpa.classes>
+        <jpa.classes>
+            ${glassfish.module.dir}/jakarta.persistence-api.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jar,${glassfish.module.dir}/jakarta.servlet-api.jar,${glassfish.module.dir}/jakarta.transaction-api.jar,${glassfish.module.dir}/jakarta.ejb-api.jar,${glassfish.module.dir}/org.eclipse.persistence.antlr.jar,${glassfish.module.dir}/org.eclipse.persistence.asm.jar,${glassfish.module.dir}/org.eclipse.persistence.core.jar,${glassfish.module.dir}/org.eclipse.persistence.dbws.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.jpql.jar,${glassfish.module.dir}/org.eclipse.persistence.jpa.modelgen.processor.jar,${glassfish.module.dir}/org.eclipse.persistence.moxy.jar,${glassfish.module.dir}/org.eclipse.persistence.oracle.jar,${glassfish.module.dir}/jakarta.validation-api.jar,${glassfish.module.dir}/hibernate-validator-cdi.jar,${glassfish.module.dir}/hibernate-validator.jar
+        </jpa.classes>
+        <javadb.lib>${glassfish.toplevel.dir}/javadb/lib</javadb.lib>
         <jdbc.lib.classpath>${javadb.lib}/derbyclient.jar,${javadb.lib}/derbyshared.jar,${javadb.lib}/derbytools.jar</jdbc.lib.classpath>
         <jdbc.driver.classes>${javadb.lib}/derbyclient.jar:${javadb.lib}/derbyshared.jar:${javadb.lib}/derbytools.jar</jdbc.driver.classes>
         <jdbc.db>derby</jdbc.db>
@@ -43,10 +53,18 @@
         <persistence.second.level.caching.supported>true</persistence.second.level.caching.supported>
         <exec.asadmin>${glassfish.toplevel.dir}/bin/asadmin</exec.asadmin>
         <db.delimiter>;</db.delimiter>
+        <sql.directory>${project.basedir}/../../sql</sql.directory>
+
+        <!--Dependencies version-->
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
-        <javadb.lib>${glassfish.toplevel.dir}/javadb/lib</javadb.lib>
-        <sql.directory>${project.basedir}/persistence-tck/sql</sql.directory>
+        <tck.version>11.0.0-SNAPSHOT</tck.version>
+        <persistence.tck.version>3.2.0</persistence.tck.version>
+        <arquillian.junit5.version>1.7.0.Alpha14</arquillian.junit5.version>
+        <jakarta.persistence.version>3.2.0-M2</jakarta.persistence.version>
+        <el.version>5.0.0-M1</el.version>
+        <hibernate.version>8.0.1.Final</hibernate.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -59,6 +77,21 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>${jakarta.persistence.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+            <version>${el.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -79,48 +112,61 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
+            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>dbprocedures</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
+            <version>${persistence.tck.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>1.7.0.Alpha14</version>
+            <version>${arquillian.junit5.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
-            <version>1.7.0.Alpha14</version>
+            <version>${arquillian.junit5.version}</version>
         </dependency>
     </dependencies>
-    <profiles>
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-    </profiles>
+
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.2.5</version>
+                </plugin>
+                <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>3.2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>unpack</id>
@@ -155,6 +201,13 @@
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
                                     <destFileName>dbprocedures.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.persistence</groupId>
+                                    <artifactId>jakarta.persistence-api</artifactId>
+                                    <outputDirectory>${glassfish.module.dir}</outputDirectory>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>jakarta.persistence-api.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -206,7 +259,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
-                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <id>initdb</id>
@@ -216,7 +268,8 @@
                         </goals>
                         <configuration>
                             <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
+                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue"
+                                     password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
                                     <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.persistence.sql"/>
                                 </sql>
                             </target>
@@ -230,7 +283,8 @@
                         </goals>
                         <configuration>
                             <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
+                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue"
+                                     password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
                                     <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.persistence.sprocs.sql"/>
                                 </sql>
                             </target>
@@ -244,18 +298,19 @@
                         </goals>
                         <configuration>
                             <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">CALL sqlj.remove_jar('APP.dbprocedures', 0);
-                 CALL sqlj.install_jar('${project.build.directory}/dbprocedures.jar', 'APP.dbprocedures', 0);
-                 CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'APP.dbprocedures');
-                            </sql>
+                                <sql autocommit="true" classpath="${jdbc.driver.classes}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}"
+                                     url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">CALL sqlj.remove_jar('APP.dbprocedures', 0);
+                                    CALL sqlj.install_jar('${project.build.directory}/dbprocedures.jar', 'APP.dbprocedures', 0);
+                                    CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'APP.dbprocedures');
+                                </sql>
                             </target>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>
@@ -292,7 +347,9 @@
                                 <Select_Jpa_Purchase_Order>SELECT ID, TOTAL FROM PURCHASE_ORDER WHERE ID=?</Select_Jpa_Purchase_Order>
                                 <log.file.location>/tmp</log.file.location>
                                 <jdbc.db>${jdbc.db}</jdbc.db>
-                                <sigTestClasspath>${glassfish.module.dir}/jakarta.persistence-api.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming</sigTestClasspath>
+                                <sigTestClasspath>
+                                    ${glassfish.module.dir}/jakarta.persistence-api.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming
+                                </sigTestClasspath>
                                 <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
                             </systemPropertyVariables>
                         </configuration>
@@ -300,8 +357,27 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <configuration>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-failsafe-html-report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>failsafe-report-only</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/test-reports</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>stop-database-final</id>
@@ -324,4 +400,141 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>full</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+            </properties>
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+            </properties>
+        </profile>
+        <profile>
+            <id>eclipselink</id>
+            <properties>
+                <eclipselink.asm.version>9.6.0</eclipselink.asm.version>
+                <eclipselink.version>5.0.0-B01</eclipselink.version>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.core</artifactId>
+                    <version>${eclipselink.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.jpa</artifactId>
+                    <version>${eclipselink.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.jpa.jpql</artifactId>
+                    <version>${eclipselink.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+                    <version>${eclipselink.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.moxy</artifactId>
+                    <version>${eclipselink.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.dbws</artifactId>
+                    <version>${eclipselink.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.oracle</artifactId>
+                    <version>${eclipselink.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.eclipse.persistence</groupId>
+                    <artifactId>org.eclipse.persistence.asm</artifactId>
+                    <version>${eclipselink.asm.version}</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>copy-eclipselink-lib</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${glassfish.module.dir}</outputDirectory>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.eclipse.persistence</groupId>
+                                            <artifactId>org.eclipse.persistence.core</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>org.eclipse.persistence.core.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.eclipse.persistence</groupId>
+                                            <artifactId>org.eclipse.persistence.jpa</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>org.eclipse.persistence.jpa.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.eclipse.persistence</groupId>
+                                            <artifactId>org.eclipse.persistence.jpa.jpql</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>org.eclipse.persistence.jpa.jpql.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.eclipse.persistence</groupId>
+                                            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>org.eclipse.persistence.jpa.modelgen.processor.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.eclipse.persistence</groupId>
+                                            <artifactId>org.eclipse.persistence.moxy</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>org.eclipse.persistence.moxy.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.eclipse.persistence</groupId>
+                                            <artifactId>org.eclipse.persistence.dbws</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>org.eclipse.persistence.dbws.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.eclipse.persistence</groupId>
+                                            <artifactId>org.eclipse.persistence.oracle</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>org.eclipse.persistence.oracle.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>org.eclipse.persistence</groupId>
+                                            <artifactId>org.eclipse.persistence.asm</artifactId>
+                                            <overWrite>true</overWrite>
+                                            <destFileName>org.eclipse.persistence.asm.jar</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
