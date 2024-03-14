@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,6 +18,8 @@ package ee.jakarta.tck.persistence.common.schema30;
 
 import java.lang.System.Logger;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -66,8 +68,10 @@ public abstract class Util extends PMClientBase {
 
 	protected final Trim trimRef[] = new Trim[20];
 
+	protected final CriteriaEntity criteriaEntity[] = new CriteriaEntity[5];
+
 	private final String[] schema30classes = { "Address_", "Address", "Alias_", "Alias", "Country_", "Country",
-			"CreditCard_", "CreditCard", "Customer_", "Customer", "Department_", "Department", "Employee_", "Employee",
+			"CreditCard_", "CreditCard", "CriteriaEntity", "Customer_", "Customer", "Department_", "Department", "Employee_", "Employee",
 			"HardwareProduct_", "HardwareProduct", "Info_", "Info", "LineItem_", "LineItem", "LineItemException",
 			"Order_", "Order", "Phone_", "Phone", "Product_", "Product", "ShelfLife_", "ShelfLife", "SoftwareProduct_",
 			"SoftwareProduct", "Spouse_", "Spouse", "Trim_", "Trim" };
@@ -1815,6 +1819,34 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
+	public void createCriteriaEntityData() throws Exception {
+		logger.log(Logger.Level.TRACE, "createCriteriaEntityData");
+		getEntityTransaction().begin();
+
+		try {
+
+			criteriaEntity[0] = new CriteriaEntity(1L, "Left", null, null, null, null, null);
+			criteriaEntity[1] = new CriteriaEntity(2L, "right", null, null, null, null, null);
+			criteriaEntity[2] = new CriteriaEntity(3L, "LeftToken", "TokenRight", null, null, null, null);
+			criteriaEntity[3] = new CriteriaEntity(4L, null, null, null, LocalTime.of(10, 11, 12), null, null);
+			criteriaEntity[4] = new CriteriaEntity(5L, null, null, null, null, LocalDate.of(1918, 9, 28), null);
+
+			for (CriteriaEntity c : criteriaEntity) {
+				if (c != null) {
+					getEntityManager().persist(c);
+					logger.log(Logger.Level.TRACE, "persisting CriteriaEntity " + c);
+					doFlush();
+				}
+			}
+			doFlush();
+			getEntityTransaction().commit();
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			throw new Exception("createCriteriaEntityData failed:", e);
+		}
+	}
+
 	public void removeTestData() {
 		logger.log(Logger.Level.TRACE, "removeTestData");
 		if (getEntityTransaction().isActive()) {
@@ -1843,6 +1875,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
 			getEntityManager().createNativeQuery("DELETE FROM DEPARTMENT").executeUpdate();
 			getEntityManager().createNativeQuery("DELETE FROM A_BASIC").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM CRITERIA_TEST_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 			logger.log(Logger.Level.TRACE, "done removeTestData");
 

@@ -21,3 +21,6 @@ CREATE PROCEDURE UpdateEmpSalaryColumn() language java external name 'ee.jakarta
 
 DROP PROCEDURE DeleteAllEmp;
 CREATE PROCEDURE DeleteAllEmp() language java external name 'ee.jakarta.tck.persistence.storedprocedures.CS_Procs.DeleteAllEmp' parameter style java;
+
+DROP FUNCTION REPLACE;
+CREATE FUNCTION REPLACE (origin_string VARCHAR(255), old_string VARCHAR(255), new_string VARCHAR(255)) RETURNS VARCHAR(255) language java external name 'ee.jakarta.tck.persistence.storedprocedures.CS_Procs.ReplaceString' parameter style java;
