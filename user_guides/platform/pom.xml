@@ -37,7 +37,7 @@
     <properties>
         <ug.resources.version>${project.parent.version}</ug.resources.version>
 
-        <jakarta.spec.name>EE</jakarta.spec.name>
+        <jakarta.spec.name>Platform</jakarta.spec.name>
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
     </properties>

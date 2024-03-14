@@ -22,7 +22,7 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>10.0.0-SNAPSHOT</version>
+        <version>11.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -36,14 +36,12 @@
         <module>jacc</module>
         <module>jaxws</module>
         <module>jms</module>
-        <module>jpa</module>
         <module>jsp</module>
         <module>jstl</module>
         <module>jta</module>
         <module>parent</module>
         <module>platform</module>
         <module>saaj</module>
-        <module>websocket</module>
     </modules>
 
 </project>

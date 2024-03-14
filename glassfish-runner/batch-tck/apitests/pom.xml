@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-Copyright (c) 2022 Contributors to the Eclipse Foundation
+<!--
+Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
 
   See the NOTICE file distributed with this work for additional information
   regarding copyright ownership. Licensed under the Apache License,
@@ -187,7 +187,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                 <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>Create Connection Pool</id>
+                        <id>Step 01: StopDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -195,73 +195,12 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
-                                <argument>create-jdbc-connection-pool</argument>
-                                <argument>--datasourceClassname=org.apache.derby.jdbc.ClientDataSource40</argument>
-                                <argument>--resType=javax.sql.DataSource</argument>
-                                <argument>--property</argument>
-                                <argument>DatabaseName=batch:serverName=localhost:PortNumber=1527:User=batch:Password=batch</argument>
-                                <argument>batchtck</argument>
+                                <argument>stop-domain</argument>
                             </arguments>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Create Connection Pool Resource</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
-                            <arguments>
-                                <argument>create-jdbc-resource</argument>
-                                <argument>--poolName=batchtck</argument>
-                                <argument>jdbc/orderDB</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>Execute DDL</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/javadb/bin/ij${script.ext}</executable>
-                            <workingDirectory>${derby.basedir}</workingDirectory>
-                            <arguments>
-                                <argument>${basedir}/src/test/resources/derby.ddl.jbatch-tck.sql</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>StartDatabase</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
-                            <workingDirectory>${derby.basedir}</workingDirectory>
-                            <arguments>
-                                <argument>start-database</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>StartDomain1</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
-                            <arguments>
-                                <argument>start-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>StopDatabase</id>
+                        <id>Step 02: StopDatabase</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -279,11 +218,85 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StopDomain1</id>
+                        <id>Step 03: StartDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
                         <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
+                            <arguments>
+                                <argument>start-domain</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Step 04: StartDatabase</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
+                            <workingDirectory>${derby.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Step 05: Execute DDL</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/javadb/bin/ij${script.ext}</executable>
+                            <workingDirectory>${derby.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>${basedir}/src/test/resources/derby.ddl.jbatch-tck.sql</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Step 06: Create Connection Pool</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
+                            <arguments>
+                                <argument>create-jdbc-connection-pool</argument>
+                                <argument>--datasourceClassname=org.apache.derby.jdbc.ClientDataSource40</argument>
+                                <argument>--resType=javax.sql.DataSource</argument>
+                                <argument>--property</argument>
+                                <argument>DatabaseName=batch:serverName=localhost:PortNumber=1527:User=batch:Password=batch</argument>
+                                <argument>batchtck</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Step 07: Create Connection Pool Resource</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
+                            <arguments>
+                                <argument>create-jdbc-resource</argument>
+                                <argument>--poolName=batchtck</argument>
+                                <argument>jdbc/orderDB</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Step 08: StopDomain1 After Tests</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
@@ -292,7 +305,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StopDatabase After Test</id>
+                        <id>Step 09: StopDatabase After Test</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -302,19 +315,6 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                             <workingDirectory>${derby.basedir}</workingDirectory>
                             <arguments>
                                 <argument>stop-database</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>StopDomain1 After Tests</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>post-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
                             </arguments>
                         </configuration>
                     </execution>

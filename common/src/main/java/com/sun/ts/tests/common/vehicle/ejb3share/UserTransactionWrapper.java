@@ -77,6 +77,16 @@ final public class UserTransactionWrapper implements EntityTransaction {
     return active;
   }
 
+  @Override
+  public void setTimeout(Integer timeout) {
+
+  }
+
+  @Override
+  public Integer getTimeout() {
+    return null;
+  }
+
   public void commit() {
     TestUtil.logTrace("in UserTransactionWrapper.commit()");
 

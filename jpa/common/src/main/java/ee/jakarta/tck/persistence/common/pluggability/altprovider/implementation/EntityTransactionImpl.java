@@ -47,6 +47,16 @@ public class EntityTransactionImpl implements jakarta.persistence.EntityTransact
 	}
 
 	@Override
+	public void setTimeout(Integer timeout) {
+
+	}
+
+	@Override
+	public Integer getTimeout() {
+		return null;
+	}
+
+	@Override
 	public void rollback() {
 
 	}

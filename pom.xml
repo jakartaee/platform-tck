@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2022  Contributors to the Eclipse Foundation
+    Copyright (c) 2022, 2024  Contributors to the Eclipse Foundation
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -28,7 +28,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>project</artifactId>
-    <version>10.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>project</name>
     <description>project</description>
@@ -93,7 +93,7 @@
         <!-- Jakarta Concurrency -->
         <concurrent-api.version>2.0.0</concurrent-api.version>
         <!-- Jakarta Persistence -->
-        <jakarta-persistence-api.version>3.1.0</jakarta-persistence-api.version>
+        <jakarta-persistence-api.version>3.2.0-M2</jakarta-persistence-api.version>
         <jakarta.activation-api.version>2.0.0</jakarta.activation-api.version>
 
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
@@ -123,7 +123,6 @@
         <jakarta.xml.bind-api.version>3.0.0</jakarta.xml.bind-api.version>
         <jakarta.xml.soap-api.version>3.0.0</jakarta.xml.soap-api.version>
         <jakarta.xml.ws-api.version>4.0.0</jakarta.xml.ws-api.version>
-        <java.compiler.release>11</java.compiler.release>
         <javatest.version>5.0</javatest.version>
         <jaxb-osgi.version>3.0.0</jaxb-osgi.version>
         <!-- Jakarta Messaging -->
@@ -135,6 +134,8 @@
         <jsp-api.version>3.1.0</jsp-api.version>
         <!-- Jakarta Standard Tag Library -->
         <jstl-api.version>2.0.0</jstl-api.version>
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j.version>2.0.0</slf4j.version>
@@ -690,10 +691,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.10.1</version>
-                    <configuration>
-                        <release>11</release>
-                    </configuration>
+                    <version>3.12.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

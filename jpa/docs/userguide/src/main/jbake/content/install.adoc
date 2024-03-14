@@ -54,8 +54,8 @@ Download and install the Java SE {SEversion} software from
 http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 Refer to the installation instructions that accompany the software for
 additional information.
-.  Install the Apache Maven {MAvenVersion} software, if it is not already installed. +
-Download and install Apache MAven {AntVersion} software from Apache Maven
+.  Install the Apache Maven {MavenVersion} software, if it is not already installed. +
+Download and install Apache MAven {MavenVersion} software from Apache Maven
 Project.
 .  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
   a.  Copy or download the {TechnologyShortName} TCK software to your

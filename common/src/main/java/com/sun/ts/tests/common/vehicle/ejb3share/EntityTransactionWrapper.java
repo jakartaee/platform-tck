@@ -44,6 +44,16 @@ final public class EntityTransactionWrapper implements EntityTransaction {
     return delegate.isActive();
   }
 
+  @Override
+  public void setTimeout(Integer timeout) {
+    delegate.setTimeout(timeout);
+  }
+
+  @Override
+  public Integer getTimeout() {
+    return delegate.getTimeout();
+  }
+
   public void commit() {
     delegate.commit();
   }
