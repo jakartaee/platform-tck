@@ -87,7 +87,6 @@ public class URLClientIT extends AbstractUrlClient {
     JavaArchive multitaglibJar = ShrinkWrap.create(JavaArchive.class, "multitaglib.jar");
     multitaglibJar.addAsResource(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/multi1.tld")), "META-INF/multi1.tld");
     multitaglibJar.addAsResource(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/jartagpres.tld")), "META-INF/jartagpres.tld");
-    multitaglibJar.addAsResource(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/multi1.tld")), "META-INF/multi1.tld");
     multitaglibJar.addAsResource(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/metainfsub.tld")), "META-INF/sub/metainfsub.tld");
     multitaglibJar.addAsResource(new UrlAsset(URLClientIT.class.getClassLoader().getResource(packagePath+"/multi2.tld")), "META-INF/tlds/multi2.tld");
 

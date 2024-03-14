@@ -133,9 +133,9 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
 		String hostname = url.getHost();
 		String portnum = Integer.toString(url.getPort());
 
-		assertFalse(isNullOrEmpty(hostname), "[AbstractUrlClient] 'webServerHost' was not set in the properties.");
+		assertFalse(isNullOrEmpty(hostname), "[AbstractUrlClient] 'webServerHost' was not set.");
 		_hostname = hostname.trim();
-		assertFalse(isNullOrEmpty(portnum), "[AbstractUrlClient] 'webServerPort' was not set in the properties.");
+		assertFalse(isNullOrEmpty(portnum), "[AbstractUrlClient] 'webServerPort' was not set.");
 		_port = Integer.parseInt(portnum.trim());
 
     logger.log(Logger.Level.INFO, "[AbstractUrlClient] Test setup OK");

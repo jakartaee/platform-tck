@@ -23,8 +23,8 @@ package com.sun.ts.tests.jsp.spec.tagext.resource.listener;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import servlet.tck.common.servlets.GenericTCKServlet;
-import com.sun.ts.tests.servlet.common.util.ServletTestUtil;
+import com.sun.ts.tests.jsp.common.servlet.GenericTCKServlet;
+import com.sun.ts.tests.jsp.common.util.ServletTestUtil;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;

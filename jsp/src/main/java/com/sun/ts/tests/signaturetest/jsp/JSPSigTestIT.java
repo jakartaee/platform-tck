@@ -30,7 +30,6 @@ import org.junit.jupiter.api.Test;
 import com.sun.javatest.Status;
 import com.sun.ts.tests.signaturetest.SigTest;
 import com.sun.ts.tests.signaturetest.SigTestResult;
-import com.sun.ts.lib.util.TestUtil;
 import java.util.Properties;
 import java.lang.System.Logger;
 

@@ -10,7 +10,7 @@
   <group qualifier="glassfish-servers" default="true">
     <container qualifier="http" default="true">
         <configuration>
-            <property name="glassFishHome">target/glassfish7</property>
+            <property name="glassFishHome">target/glassfish8</property>
         </configuration>
     </container>
   </group>

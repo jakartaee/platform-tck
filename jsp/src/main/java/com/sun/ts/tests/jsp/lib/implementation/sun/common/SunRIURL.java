@@ -51,7 +51,7 @@ public class SunRIURL implements TSURLInterface {
     try {
       url = new URL(protocol, host, port, file);
     } catch (MalformedURLException e) {
-      TestUtil.logErr("Failed during URL creation", e);
+      // TestUtil.logErr("Failed during URL creation", e);
       throw e;
     }
     return url;
