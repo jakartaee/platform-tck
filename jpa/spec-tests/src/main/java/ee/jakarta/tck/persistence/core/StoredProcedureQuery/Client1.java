@@ -531,6 +531,97 @@ public class Client1 extends Client {
 	}
 
 	/*
+	 * @testName: getSingleResultOrNullWithValueTest
+	 *
+	 * @assertion_ids: PERSISTENCE:JAVADOC:3482; PERSISTENCE:SPEC:1515;
+	 *
+	 * @test_Strategy: Get single result from returned resultset. Expected result is some value.
+	 *
+	 */
+	@Test
+	public void getSingleResultOrNullWithValueTest() throws Exception {
+		boolean pass = false;
+
+		try {
+			getEntityTransaction().begin();
+			clearCache();
+
+			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS",
+					"id-firstname-lastname");
+			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
+			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
+				logger.log(Logger.Level.TRACE, "register refcursor parameter");
+				spq.registerStoredProcedureParameter(2, void.class, ParameterMode.REF_CURSOR);
+			}
+			spq.setParameter(1, 1);
+			Employee expected = new Employee(emp0.getId(), emp0.getFirstName(), emp0.getLastName());
+			Object o = spq.getSingleResultOrNull();
+			if (o instanceof Employee) {
+				Employee actual = (Employee) o;
+				if (actual.equals(expected)) {
+					logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
+					pass = true;
+				} else {
+					logger.log(Logger.Level.ERROR, "Expected result:" + expected + ", actual:" + actual);
+				}
+			} else {
+				logger.log(Logger.Level.ERROR, "Did not get Integer result:" + o);
+			}
+			getEntityTransaction().commit();
+
+		} catch (Exception ex) {
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
+		}
+
+		if (!pass) {
+			throw new Exception("getSingleResultOrNullWithValueTest failed");
+		}
+	}
+
+	/*
+	 * @testName: getSingleResultOrNullWithNullTest
+	 *
+	 * @assertion_ids: PERSISTENCE:JAVADOC:3482; PERSISTENCE:SPEC:1515;
+	 *
+	 * @test_Strategy: Get single result from returned resultset. Expected result is null.
+	 *
+	 */
+	@Test
+	public void getSingleResultOrNullWithNullTest() throws Exception {
+		boolean pass = false;
+
+		try {
+			getEntityTransaction().begin();
+			clearCache();
+
+			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpIdFNameLNameFromRS",
+					"id-firstname-lastname");
+			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
+			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
+				logger.log(Logger.Level.TRACE, "register refcursor parameter");
+				spq.registerStoredProcedureParameter(2, void.class, ParameterMode.REF_CURSOR);
+			}
+			spq.setParameter(1, 0);
+			Object result = spq.getSingleResultOrNull();
+				if (result == null) {
+					logger.log(Logger.Level.TRACE, "Received expected null value.");
+					pass = true;
+				} else {
+					Employee actual = (Employee)result;
+					logger.log(Logger.Level.ERROR, "Unexpected not null result:" + actual);
+				}
+			getEntityTransaction().commit();
+
+		} catch (Exception ex) {
+			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
+		}
+
+		if (!pass) {
+			throw new Exception("getSingleResultOrNullWithNullTest failed");
+		}
+	}
+
+	/*
 	 * @testName: getSingleResultNoResultExceptionTest
 	 * 
 	 * @assertion_ids: PERSISTENCE:JAVADOC:3483
