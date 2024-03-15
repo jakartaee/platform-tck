@@ -5218,9 +5218,9 @@ public class Client extends Util {
     try {
       getEntityTransaction().begin();
       CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-      From<Customer, Customer> customer = cquery.from(Customer.class);
+      From<Customer, Customer> c1 = cquery.from(Customer.class);
 
-      JoinType jt = customer.fetch(Customer_.spouse).getJoinType();
+      JoinType jt = c1.fetch(Customer_.spouse).getJoinType();
       if (jt.equals(JoinType.INNER)) {
         TestUtil.logTrace("Received expected JoinType:" + jt.name());
         pass1 = true;
@@ -5228,7 +5228,8 @@ public class Client extends Util {
         TestUtil.logErr("Expected JoinType:" + JoinType.INNER.name()
             + ", actual:" + jt.name());
       }
-      jt = customer.fetch(Customer_.spouse, JoinType.INNER).getJoinType();
+      From<Customer, Customer> c2 = cquery.from(Customer.class);
+      jt = c2.fetch(Customer_.spouse, JoinType.INNER).getJoinType();
       if (jt.equals(JoinType.INNER)) {
         TestUtil.logTrace("Received expected JoinType:" + jt.name());
         pass2 = true;
@@ -5237,7 +5238,8 @@ public class Client extends Util {
         TestUtil.logErr("Expected JoinType:" + JoinType.INNER.name()
             + ", actual:" + jt.name());
       }
-      jt = customer.fetch(Customer_.spouse, JoinType.LEFT).getJoinType();
+      From<Customer, Customer> c3 = cquery.from(Customer.class);
+      jt = c3.fetch(Customer_.spouse, JoinType.LEFT).getJoinType();
       if (jt.equals(JoinType.LEFT)) {
         TestUtil.logTrace("Received expected JoinType:" + jt.name());
         pass3 = true;
@@ -5256,7 +5258,8 @@ public class Client extends Util {
        * ", actual:" + jt.name()); }
        */
 
-      Attribute attr = customer.fetch(Customer_.spouse).getAttribute();
+      From<Customer, Customer> c4 = cquery.from(Customer.class);
+      Attribute attr = c4.fetch(Customer_.spouse).getAttribute();
       if (attr.getName().equals(Customer_.spouse.getName())) {
         TestUtil.logTrace("Received expected attribute:" + attr.getName());
         pass4 = true;
