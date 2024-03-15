@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -54,15 +54,21 @@ echo "TS_HOME $TS_HOME"
 
 chmod -R 777 $TS_HOME
 
-cd $TS_HOME/bin
+cd $WORKSPACE
 
 if [[ "$JDK" == "JDK17" || "$JDK" == "jdk17" ]];then
   export JAVA_HOME=${JDK17_HOME}
-fi
+elif [[ "$JDK" == "JDK21" || "$JDK" == "jdk21" ]];then
+  wget https://download.java.net/java/GA/jdk21.0.1/415e3f918a1f4062a0074a2794853d0d/12/GPL/openjdk-21.0.1_linux-x64_bin.tar.gz -O jdk-21.tar.gz
+  tar -xvf jdk-21.tar.gz
+  export JAVA_HOME=$WORKSPACE/jdk-21.0.1
+fi  
 export PATH=$JAVA_HOME/bin:$PATH
 
 which java
 java -version
+
+cd $TS_HOME/bin
 
 sed -i.bak "s#webcontainer\.home=.*#webcontainer.home=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte
 sed -i.bak "s#webcontainer\.home.ri=.*#webcontainer.home.ri=$TCK_HOME/$GF_TOPLEVEL_DIR/glassfish#g" ts.jte

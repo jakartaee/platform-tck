@@ -238,8 +238,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
-        -Djava.security.policy="${bin.dir}/harness.policy" \
-        -Djava.security.manager \
+        -DnoSecurityManager=true \
         -Ddeliverable.class=${deliverable.class} \
             $testExecuteClass $testExecuteArgs
 

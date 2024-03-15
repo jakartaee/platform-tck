@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2024 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -319,6 +319,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         ${JAVA_HOME}/bin/java \
         -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=9008 \
         -Dcts.tmp=$harness.temp.directory \
+        -DnoSecurityManager=true \
         -Djava.protocol.handler.pkgs=javax.net.ssl \
         -Djavax.net.ssl.keyStore=${bin.dir}/certificates/clientcert.jks \
         -Djavax.net.ssl.keyStorePassword=changeit \
