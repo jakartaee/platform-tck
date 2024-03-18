@@ -27,8 +27,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.CleanupMethod;
-import ee.jakarta.tck.persistence.common.PMClientBase;
 
+import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManagerFactory;
 
 public class Client extends PMClientBase {

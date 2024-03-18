@@ -32,8 +32,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
-import ee.jakarta.tck.persistence.common.PMClientBase;
 
+import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.NoResultException;

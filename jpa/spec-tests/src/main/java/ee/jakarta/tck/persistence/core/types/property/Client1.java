@@ -26,7 +26,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import ee.jakarta.tck.persistence.core.types.common.Grade;
 
 public class Client1 extends PMClientBase {

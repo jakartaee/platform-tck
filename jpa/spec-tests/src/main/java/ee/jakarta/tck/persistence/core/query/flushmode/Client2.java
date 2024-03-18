@@ -32,7 +32,6 @@ import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.Spouse;
 import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
-
 import jakarta.persistence.FlushModeType;
 
 public class Client2 extends UtilOrderData {

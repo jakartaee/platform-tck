@@ -26,7 +26,6 @@ import org.junit.jupiter.api.Test;
 import ee.jakarta.tck.persistence.common.schema30.Product;
 import ee.jakarta.tck.persistence.common.schema30.SoftwareProduct;
 import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
-
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaUpdate;

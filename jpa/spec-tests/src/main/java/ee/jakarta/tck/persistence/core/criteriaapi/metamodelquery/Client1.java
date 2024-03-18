@@ -26,6 +26,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
+
 import ee.jakarta.tck.persistence.common.schema30.Address;
 import ee.jakarta.tck.persistence.common.schema30.Address_;
 import ee.jakarta.tck.persistence.common.schema30.Country_;
@@ -34,7 +35,6 @@ import ee.jakarta.tck.persistence.common.schema30.Customer_;
 import ee.jakarta.tck.persistence.common.schema30.Spouse;
 import ee.jakarta.tck.persistence.common.schema30.Spouse_;
 import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
-
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
