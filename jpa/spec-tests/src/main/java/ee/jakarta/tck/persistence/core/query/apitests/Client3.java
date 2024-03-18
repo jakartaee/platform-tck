@@ -236,7 +236,7 @@ public class Client3 extends PMClientBase {
 				// && (dataTypes2.getTimeData().equals(timeValue))
 
 				q = getEntityManager()
-						.createQuery("select d.tsData from DataTypes2 d where d.tsData = '2006-11-11 10:10:10'");
+						.createQuery("select d.tsData from DataTypes2 d where d.tsData = {ts '2006-11-11 10:10:10'}");
 
 				result = q.getResultList();
 				result_size = result.size();

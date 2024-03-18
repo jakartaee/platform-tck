@@ -3974,7 +3974,7 @@ public class Client1 extends PMClientBase {
 		try {
 			logger.log(Logger.Level.TRACE, "Invoking query");
 			getEntityTransaction().begin();
-			q = getEntityManager().createQuery("select e.hireDate from Employee e where e.hireDate = '2000-02-14'");
+			q = getEntityManager().createQuery("select e.hireDate from Employee e where e.hireDate = {d '2000-02-14'}");
 
 			result = q.getResultList();
 			result_size = result.size();
