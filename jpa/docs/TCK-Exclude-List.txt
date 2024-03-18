@@ -18,6 +18,26 @@
 # This is intended only for documentation purpose and is not used to exclude any tests.
 # The tests are excluded from the test source using @Disabled tag in JUnit framework.
 #
-ee/jakarta/tck/persistence/se/schemaGeneration/annotations/tableGenerator/Client.java#tableGeneratorTest
-ee/jakarta/tck/persistence/core/query/language/Client6.java#resultContainsFetchReference
+
+#
 ee/jakarta/tck/persistence/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes
+
+#
+#
+ee/jakarta/tck/persistence/core/entityManagerFactory/Client2.java#createEntityManagerFactoryStringTest
+
+#
+ee/jakarta/tck/persistence/se/schemaGeneration/annotations/tableGenerator/Client.java#tableGeneratorTest
+
+#
+ee/jakarta/tck/persistence/core/query/language/Client6.java#resultContainsFetchReference
+
+
+# https://github.com/jakartaee/persistence/issues/388 exclude Unique constraint creation tests 
+ee/jakarta/tck/persistence/se/schemaGeneration/annotations/index/Client.java#indexTest
+ee/jakarta/tck/persistence/se/schemaGeneration/annotations/uniqueConstraint/Client.java#uniqueConstraintTest
+
+# https://github.com/jakartaee/persistence/issues/391 Wrong typed comparison expressions in TCK
+ee/jakarta/tck/persistence/core/query/apitests/Client1.java#queryAPITest27
+ee/jakarta/tck/persistence/core/query/apitests/Client3.java#queryAPITest29
+ee/jakarta/tck/persistence/se/entityManager/Client.java#typedQueryMethodsAfterClose16Test

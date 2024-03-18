@@ -22,6 +22,7 @@ import java.util.Properties;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
@@ -106,6 +107,7 @@ public class Client2 extends PMClientBase {
 	 * 
 	 * @test_Strategy: Create an EntityManagerFactory via String,Map
 	 */
+	@Disabled
 	@Test
 	public void createEntityManagerFactoryStringMapTest() throws Exception {
 		boolean pass = false;

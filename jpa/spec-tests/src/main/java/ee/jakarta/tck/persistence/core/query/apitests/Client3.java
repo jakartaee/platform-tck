@@ -26,6 +26,7 @@ import java.util.Collection;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
@@ -200,6 +201,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy: Usage of TimeStamp literal in Query
 	 *
 	 */
+	@Disabled
 	@Test
 	public void queryAPITest29() throws Exception {
 

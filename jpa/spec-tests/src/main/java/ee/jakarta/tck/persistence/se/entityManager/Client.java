@@ -26,6 +26,7 @@ import java.util.Properties;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
@@ -3682,6 +3683,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Call TypedQuery.method_name() after calling
 	 * EntityManager.close()and expect IllegalStateException
 	 */
+	@Disabled
 	@Test
 	public void typedQueryMethodsAfterClose16Test() throws Exception {
 		boolean pass = false;
