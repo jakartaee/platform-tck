@@ -1,5 +1,5 @@
 
-  Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+  Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
   This program and the accompanying materials are made available under the
   terms of the Eclipse Public License v. 2.0, which is available at
@@ -15,17 +15,13 @@
 
 The security tests for both JSP and servlet performs the same functionality.
 
-So the common code between JSP and servlet is kept under 
+So the common code between JSP and servlet was previously kept under 
 
-    TS_HOME/src/com/sun/ts/tests/common/jspservletsec/secbasicClient.java
+    TS_HOME/src/com/sun/ts/tests/common/jspservletsec/SecBasicClient.java
     TS_HOME/src/com/sun/ts/tests/common/jspservletsec/secformClient.java
 
+Now they are copied to this folder to be used exclusively for JSP tests.
 And they are extended and used under  
 
-    TS_HOME/src/com/sun/ts/tests/jsp/spec/security/secbasic/Client.java  (JSP)
-    TS_HOME/src/com/sun/ts/tests/servlet/spec/security/secbasic/Client.java (Servlet)
-
-    TS_HOME/src/com/sun/ts/tests/jsp/spec/security/secform/Client.java   (JSP)
-    TS_HOME/src/com/sun/ts/tests/servlet/spec/security/secform/Client.java  (Servlet)
-
- 
+    jsp/src/main/java/com/sun/ts/tests/jsp/sec/secbasic/Client.java  (JSP)
+    jsp/src/main/java/com/sun/ts/tests/jsp/sec/secform/Client.java   (JSP)
