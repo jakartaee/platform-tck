@@ -93,7 +93,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Test the @UniqueConstraint annotation
 	 */
-	@Disabled
 	@Test
 	public void uniqueConstraintTest() throws Exception {
 		boolean pass1a = false;

@@ -93,7 +93,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Test the @Index annotation
 	 */
-	@Disabled
 	@Test
 	public void indexTest() throws Exception {
 		boolean pass1a = false;

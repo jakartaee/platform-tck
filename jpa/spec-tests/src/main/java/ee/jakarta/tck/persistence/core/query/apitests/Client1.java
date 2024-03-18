@@ -29,7 +29,6 @@ import java.util.Set;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
@@ -3962,7 +3961,6 @@ public class Client1 extends PMClientBase {
 	 * 
 	 * @test_Strategy: Usage of Date literals in Query
 	 */
-	@Disabled
 	@Test
 	public void queryAPITest27() throws Exception {
 		Query q;
