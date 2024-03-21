@@ -39,7 +39,6 @@ import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation
 import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerImpl;
 import ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor;
 import ee.jakarta.tck.persistence.common.pluggability.util.LogRecordEntry;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.SharedCacheMode;
 import jakarta.persistence.ValidationMode;

@@ -30,13 +30,13 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
+
 import ee.jakarta.tck.persistence.common.schema30.HardwareProduct;
 import ee.jakarta.tck.persistence.common.schema30.Product;
 import ee.jakarta.tck.persistence.common.schema30.ShelfLife;
 import ee.jakarta.tck.persistence.common.schema30.SoftwareProduct;
 import ee.jakarta.tck.persistence.common.schema30.SoftwareProduct_;
 import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
-
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

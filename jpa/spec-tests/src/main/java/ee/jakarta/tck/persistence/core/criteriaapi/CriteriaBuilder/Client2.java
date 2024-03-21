@@ -28,11 +28,11 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
+
 import ee.jakarta.tck.persistence.common.schema30.Address;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Spouse;
 import ee.jakarta.tck.persistence.common.schema30.UtilCustAliasProductData;
-
 import jakarta.persistence.Query;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;

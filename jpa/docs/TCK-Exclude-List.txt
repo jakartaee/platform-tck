@@ -14,10 +14,22 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
 
-# This file lists the excluded tests from Jakarta EL TCK. 
+# This file lists the excluded tests from Jakarta Persistence TCK. 
 # This is intended only for documentation purpose and is not used to exclude any tests.
 # The tests are excluded from the test source using @Disabled tag in JUnit framework.
 #
-ee/jakarta/tck/persistence/se/schemaGeneration/annotations/tableGenerator/Client.java#tableGeneratorTest
-ee/jakarta/tck/persistence/core/query/language/Client6.java#resultContainsFetchReference
+
+#
 ee/jakarta/tck/persistence/core/metamodelapi/identifiabletype/Client.java#getDeclaredSingularAttributes
+
+#
+#
+ee/jakarta/tck/persistence/core/entityManagerFactory/Client2.java#createEntityManagerFactoryStringTest
+
+#
+ee/jakarta/tck/persistence/se/schemaGeneration/annotations/tableGenerator/Client.java#tableGeneratorTest
+
+#
+ee/jakarta/tck/persistence/core/query/language/Client6.java#resultContainsFetchReference
+
+

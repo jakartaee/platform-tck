@@ -28,7 +28,6 @@ import ee.jakarta.tck.persistence.common.schema30.Employee;
 import ee.jakarta.tck.persistence.common.schema30.Employee_;
 import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.UtilSetup;
-
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;

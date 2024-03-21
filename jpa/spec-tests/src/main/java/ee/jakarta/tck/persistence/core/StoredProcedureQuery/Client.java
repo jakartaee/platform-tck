@@ -25,7 +25,6 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.StoredProcedureQuery;
 
 public class Client extends PMClientBase {

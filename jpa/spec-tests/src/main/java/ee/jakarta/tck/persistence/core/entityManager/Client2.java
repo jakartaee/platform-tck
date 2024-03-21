@@ -31,8 +31,8 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
-import ee.jakarta.tck.persistence.common.PMClientBase;
 
+import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.LockModeType;
