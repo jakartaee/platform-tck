@@ -27,7 +27,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.javatest.Status;
 import com.sun.ts.tests.signaturetest.SigTest;
 import com.sun.ts.tests.signaturetest.SigTestResult;
 import java.util.Properties;
@@ -46,7 +45,7 @@ public class JSPSigTestIT extends SigTest {
 
   private static final Logger logger = System.getLogger(JSPSigTestIT.class.getName());
 
-  public JSPSigTestIT(){
+  public JSPSigTestIT() {
     setup();
   }
 

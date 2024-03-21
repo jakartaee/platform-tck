@@ -36,10 +36,10 @@ import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.WebUtil;
 import com.sun.ts.lib.util.WebUtil.Response;
+
 import java.lang.System.Logger;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
@@ -49,7 +49,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-public class secformClient extends EETest {
+public class secformClient {
   // Configurable constants:
 
   private static final Logger logger = System.getLogger(secformClient.class.getName());
@@ -2255,7 +2255,7 @@ public class secformClient extends EETest {
   }
 
   public void cleanup() throws Exception {
-    logMsg("cleanup");
+    logMessage("cleanup");
   }
 
   /**
