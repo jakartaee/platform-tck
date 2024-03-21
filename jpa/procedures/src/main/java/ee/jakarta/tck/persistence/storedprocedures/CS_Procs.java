@@ -222,4 +222,8 @@ public class CS_Procs {
     con = null;
 
   }
+
+  public static String ReplaceString(String origin_string, String old_string, String new_string) {
+    return origin_string.replace(old_string, new_string);
+  }
 }
