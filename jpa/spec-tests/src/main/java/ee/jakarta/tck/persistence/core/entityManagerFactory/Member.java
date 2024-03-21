@@ -22,6 +22,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 
+import java.util.Objects;
+
 /*
  * Member
  */
@@ -76,4 +78,16 @@ public class Member implements java.io.Serializable {
 		this.memberName = memberName;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Member member = (Member) o;
+		return memberId == member.memberId && Objects.equals(version, member.version) && Objects.equals(memberName, member.memberName);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(memberId, version, memberName);
+	}
 }

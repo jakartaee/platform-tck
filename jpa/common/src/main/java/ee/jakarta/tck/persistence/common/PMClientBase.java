@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -1116,15 +1116,6 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 			InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(persistenceFile);
 			Document document = db.parse(xmlStream);
 			NodeList presistenceElement = document.getElementsByTagName(PERSISTENCE_ELEMENT_TAG);
-			for (int j = 0; j < classes.length; j++) {
-				for (int i = 0; i < presistenceElement.getLength(); i++) {
-					Element classTag = document.createElement(CLASS_ELEMENT_TAG);
-					Text classNode = document.createTextNode(classes[j]);
-					classTag.appendChild(classNode);
-					presistenceElement.item(i).appendChild(classTag);
-				}
-			}
-
 			for (int j = 0; j < xmlFiles.length; j++) {
 				if (!ORM_XML.equalsIgnoreCase(xmlFiles[j])) {
 					for (int i = 0; i < presistenceElement.getLength(); i++) {
@@ -1133,6 +1124,14 @@ abstract public class PMClientBase implements UseEntityManager, UseEntityManager
 						mappingTag.appendChild(mappingNode);
 						presistenceElement.item(i).appendChild(mappingTag);
 					}
+				}
+			}
+			for (int j = 0; j < classes.length; j++) {
+				for (int i = 0; i < presistenceElement.getLength(); i++) {
+					Element classTag = document.createElement(CLASS_ELEMENT_TAG);
+					Text classNode = document.createTextNode(classes[j]);
+					classTag.appendChild(classNode);
+					presistenceElement.item(i).appendChild(classTag);
 				}
 			}
 			StringWriter writer = new StringWriter();
