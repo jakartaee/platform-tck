@@ -49,7 +49,6 @@ public class URLClientIT extends AbstractUrlClient {
   public static WebArchive createDeployment() throws IOException {
 
     String packagePath = URLClientIT.class.getPackageName().replace(".", "/");
-    System.out.println("Alwin packagePath"+ packagePath);
     WebArchive archive = ShrinkWrap.create(WebArchive.class, "jsp_arrayelresolver_web.war");
     archive.addClasses(ArrayELResolverTag.class, JspTestUtil.class, 
             ResolverTest.class, 

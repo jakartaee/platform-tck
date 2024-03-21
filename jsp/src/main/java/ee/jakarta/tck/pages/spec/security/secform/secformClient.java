@@ -1162,9 +1162,7 @@ public class secformClient {
       postData.setProperty("j_username", username);
       postData.setProperty("j_password", password);
       response = WebUtil.sendRequest("POST", InetAddress.getByName(hostname),
-          portnum, tsurl.getRequest(request), postData, cookies);
-          System.out.println("Alwin test10 InetAddress.getByName(hostname):"+InetAddress.getByName(hostname));
-          System.out.println("Alwin test10 response:"+response.content);
+      portnum, tsurl.getRequest(request), postData, cookies);
 
       // Check that the page was found (no error).
       if (response.isError()) {
