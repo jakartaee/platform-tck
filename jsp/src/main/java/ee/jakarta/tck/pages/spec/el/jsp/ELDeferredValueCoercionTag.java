@@ -1,0 +1,85 @@
+/*
+ * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0, which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the
+ * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+ * version 2 with the GNU Classpath Exception, which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+package ee.jakarta.tck.pages.spec.el.jsp;
+
+import java.io.IOException;
+
+import ee.jakarta.tck.pages.common.util.JspTestUtil;
+
+import jakarta.el.ELContext;
+import jakarta.el.ValueExpression;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.tagext.SimpleTagSupport;
+
+public class ELDeferredValueCoercionTag extends SimpleTagSupport {
+
+  private final static int EXPECTEDINTVAL = 8128;
+
+  private final static String EXPECTEDBOOKVAL = "Moby Dick";
+
+  private ValueExpression intExpr, bookExpr;
+
+  public void setIntExpr(ValueExpression intExpr) {
+    this.intExpr = intExpr;
+  }
+
+  public void setBookExpr(ValueExpression bookExpr) {
+    this.bookExpr = bookExpr;
+  }
+
+  public void doTag() throws JspException, IOException {
+    ELContext elContext = getJspContext().getELContext();
+    JspWriter out = getJspContext().getOut();
+
+    try {
+      Class expectedIntClass = intExpr.getExpectedType();
+      if (!expectedIntClass.getName().equals("int")) {
+        out.println("Test FAILED. Expected type = int");
+        out.println("Got type = " + expectedIntClass.getName());
+        return;
+      }
+      Object intVal = intExpr.getValue(elContext);
+      int coercedIntVal = ((Integer) intVal).intValue();
+      if (coercedIntVal != EXPECTEDINTVAL) {
+        out.println("Test FAILED. Wrong value for int expression.");
+        out.println("Expected value: " + EXPECTEDINTVAL);
+        out.println("Got value: " + coercedIntVal);
+        return;
+      }
+
+      Class expectedBookClass = bookExpr.getExpectedType();
+      if (!expectedBookClass.getName().equals("java.lang.String")) {
+        out.println("Test FAILED. Expected type = java.lang.String");
+        out.println("Got type = " + expectedBookClass.getName());
+        return;
+      }
+      Object bookVal = bookExpr.getValue(elContext);
+      String coercedBookVal = (String) bookVal;
+      if (!coercedBookVal.equals(EXPECTEDBOOKVAL)) {
+        out.println("Test FAILED. Wrong value for book expression.");
+        out.println("Expected value: " + EXPECTEDBOOKVAL);
+        out.println("Got value: " + coercedBookVal);
+        return;
+      }
+
+      out.println("Test PASSED.");
+    } catch (Throwable t) {
+      JspTestUtil.handleThrowable(t, out, "ELDeferredValueCoercionTag");
+    }
+  }
+}
