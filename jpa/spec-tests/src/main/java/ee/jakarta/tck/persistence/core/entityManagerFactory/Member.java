@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,62 +32,62 @@ import java.util.Objects;
 @Table(name = "MEMBER")
 public class Member implements java.io.Serializable {
 
-	private int memberId;
+    private int memberId;
 
-	private Integer version;
+    private Integer version;
 
-	private String memberName;
+    private String memberName;
 
-	public Member() {
-	}
+    public Member() {
+    }
 
-	public Member(int memberId, String memberName) {
-		this.memberId = memberId;
-		this.memberName = memberName;
-	}
+    public Member(int memberId, String memberName) {
+        this.memberId = memberId;
+        this.memberName = memberName;
+    }
 
-	// ===========================================================
-	// getters and setters for the state fields
+    // ===========================================================
+    // getters and setters for the state fields
 
-	@Id
-	@Column(name = "MEMBER_ID")
-	public int getMemberId() {
-		return memberId;
-	}
+    @Id
+    @Column(name = "MEMBER_ID")
+    public int getMemberId() {
+        return memberId;
+    }
 
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
-	}
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
+    }
 
-	@Version
-	@Column(name = "VERSION")
-	public Integer getVersion() {
-		return version;
-	}
+    @Version
+    @Column(name = "VERSION")
+    public Integer getVersion() {
+        return version;
+    }
 
-	public void setVersion(Integer i) {
-		version = i;
-	}
+    public void setVersion(Integer i) {
+        version = i;
+    }
 
-	@Column(name = "MEMBER_NAME")
-	public String getMemberName() {
-		return memberName;
-	}
+    @Column(name = "MEMBER_NAME")
+    public String getMemberName() {
+        return memberName;
+    }
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Member member = (Member) o;
-		return memberId == member.memberId && Objects.equals(version, member.version) && Objects.equals(memberName, member.memberName);
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Member member = (Member) o;
+        return memberId == member.memberId && Objects.equals(version, member.version) && Objects.equals(memberName, member.memberName);
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(memberId, version, memberName);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(memberId, version, memberName);
+    }
 }
