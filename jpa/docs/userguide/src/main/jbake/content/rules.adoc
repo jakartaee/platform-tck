@@ -277,7 +277,7 @@ include::rules.inc[]
 2.3 Test Appeals Process
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Refer to https://jakarta.ee/committees/specification/tckprocess (version 1.2) as the definitive source for
+Refer to https://jakarta.ee/committees/specification/tckprocess (version 1.4.1) as the definitive source for
 the TCK rules.
 
 Jakarta has a well established process for managing challenges to its
