@@ -82,6 +82,13 @@
             </resource>
         </resources>
         <plugins>
+            <!-- do not publish this artifact to Maven repositories -->
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>

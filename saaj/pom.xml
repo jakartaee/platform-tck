@@ -54,4 +54,15 @@
             <artifactId>jakarta.xml.ws-api</artifactId>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <!-- do not publish this artifact to Maven repositories -->
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

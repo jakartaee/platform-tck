@@ -126,6 +126,15 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
+        <plugins>
+            <!-- do not publish this artifact to Maven repositories -->
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
