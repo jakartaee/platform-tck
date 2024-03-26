@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -55,29 +55,19 @@ public class EJBVehicleRunner implements VehicleRunnable {
 
     String sVehicle = p.getProperty("vehicle");
 
-    EJBVehicleHome home = null;
     String sEJBVehicleJndiName = "";
     EJBVehicleRemote ref = null;
     try {
       TSNamingContext jc = new TSNamingContext();
       sEJBVehicleJndiName = "java:comp/env/ejb/EJBVehicle";
-      home = (EJBVehicleHome) jc.lookup(sEJBVehicleJndiName,
-          EJBVehicleHome.class);
-      ref = (EJBVehicleRemote) home.create(argv, p);
-      TestUtil.logTrace("in ejbvehicle: home.create() ok; call runTest()");
+      ref = (EJBVehicleRemote) jc.lookup(sEJBVehicleJndiName,
+          EJBVehicleRemote.class);
+      ref.initialize(argv, p);
+      TestUtil.logTrace("in ejbvehicle: initialize ok; call runTest()");
       sTestStatus = (ref.runTest()).toStatus();
     } catch (Exception e) {
       TestUtil.logErr("Test failed", e);
       sTestStatus = Status.failed("Test run in ejb vehicle failed");
-    } finally {
-      if (ref != null) {
-        try {
-          ref.remove();
-        } catch (Exception e2) {
-          TestUtil.logHarnessDebug(
-              "Exception while trying to remove the EJB Vehicle bean.");
-        }
-      }
     }
     return sTestStatus;
   }

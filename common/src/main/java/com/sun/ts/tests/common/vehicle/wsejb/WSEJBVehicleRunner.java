@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,29 +32,19 @@ public class WSEJBVehicleRunner implements VehicleRunnable {
     String sVehicle = p.getProperty("vehicle");
     Status sTestStatus = Status.passed("");
 
-    WSEJBVehicleHome home = null;
     String sEJBVehicleJndiName = "";
     WSEJBVehicleRemote ref = null;
     try {
       TSNamingContext jc = new TSNamingContext();
       sEJBVehicleJndiName = "java:comp/env/ejb/WSEJBVehicle";
-      home = (WSEJBVehicleHome) jc.lookup(sEJBVehicleJndiName,
-          WSEJBVehicleHome.class);
-      ref = (WSEJBVehicleRemote) home.create(argv, p);
-      TestUtil.logTrace("in wsejbvehicle: home.create() ok; call runTest()");
+      ref = (WSEJBVehicleRemote) jc.lookup(sEJBVehicleJndiName,
+          WSEJBVehicleRemote.class);
+      ref.initialize(argv, p);
+      TestUtil.logTrace("in wsejbvehicle: initialize ok; call runTest()");
       sTestStatus = (ref.runTest()).toStatus();
     } catch (Exception e) {
       TestUtil.logErr("Test failed", e);
       sTestStatus = Status.failed("Test run in wsejb vehicle failed");
-    } finally {
-      if (ref != null) {
-        try {
-          ref.remove();
-        } catch (Exception e2) {
-          TestUtil.logHarnessDebug(
-              "Exception while trying to remove the EJB Vehicle bean.");
-        }
-      }
     }
     return sTestStatus;
   }

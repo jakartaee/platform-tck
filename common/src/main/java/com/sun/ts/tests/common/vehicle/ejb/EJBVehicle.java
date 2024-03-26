@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,19 +27,14 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
-
-public class EJBVehicle implements SessionBean {
+public class EJBVehicle {
   private EETest testObj;
 
   private Properties properties;
 
   private String[] arguments;
 
-  public void ejbCreate(String[] args, Properties p) throws CreateException {
+  public void initialize(String[] args, Properties p) {
     // Initialize TestUtil Reporting
     try {
       TestUtil.init(p);
@@ -59,7 +54,7 @@ public class EJBVehicle implements SessionBean {
       TestUtil.logErr("Failed to create the EETest instance in the vehicle", e);
       throw new EJBException();
     }
-    TestUtil.logTrace("ejbcreate");
+    TestUtil.logTrace("initialize");
   }
 
   // the run method that we call here will either throw
@@ -84,17 +79,5 @@ public class EJBVehicle implements SessionBean {
           Status.failed("Test running in ejb vehicle failed"));
     }
     return sTestStatus;
-  }
-
-  public void setSessionContext(SessionContext sc) {
-  }
-
-  public void ejbRemove() {
-  }
-
-  public void ejbActivate() {
-  }
-
-  public void ejbPassivate() {
   }
 }
