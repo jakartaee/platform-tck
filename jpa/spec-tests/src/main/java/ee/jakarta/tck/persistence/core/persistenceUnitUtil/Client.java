@@ -125,6 +125,14 @@ public class Client extends PMClientBase {
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			}
 		}
 		if (!pass) {
 			throw new Exception("getIdentifierTest failed");
@@ -175,6 +183,14 @@ public class Client extends PMClientBase {
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			}
 		}
 		if (!pass) {
 			throw new Exception("getVersionTest failed");

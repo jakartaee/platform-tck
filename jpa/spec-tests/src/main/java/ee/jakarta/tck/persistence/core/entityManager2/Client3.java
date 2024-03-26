@@ -117,8 +117,15 @@ public class Client3 extends PMClientBase {
             }
 
         } catch (Exception e) {
-            getEntityTransaction().rollback();
             logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception fe) {
+                logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+            }
         }
         if (!pass1 || !pass2) {
             throw new Exception("getReferenceForExistingEntityTest failed");
@@ -169,8 +176,15 @@ public class Client3 extends PMClientBase {
                 logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
             }
         } catch (Exception e) {
-            getEntityTransaction().rollback();
             logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception fe) {
+                logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+            }
         }
         if (!pass) {
             throw new Exception("runWithConnectionTest failed");
@@ -215,8 +229,15 @@ public class Client3 extends PMClientBase {
                 logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
             }
         } catch (Exception e) {
-            getEntityTransaction().rollback();
             logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+        } finally {
+            try {
+                if (getEntityTransaction().isActive()) {
+                    getEntityTransaction().rollback();
+                }
+            } catch (Exception fe) {
+                logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+            }
         }
         if (!pass) {
             throw new Exception("callWithConnectionTest failed");
@@ -235,7 +256,6 @@ public class Client3 extends PMClientBase {
                 logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
             }
         } catch (Exception e) {
-            getEntityTransaction().rollback();
             logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
         }
         if (!pass) {
@@ -256,7 +276,6 @@ public class Client3 extends PMClientBase {
                 logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
             }
         } catch (Exception e) {
-            getEntityTransaction().rollback();
             logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
         }
         if (!pass) {
@@ -276,7 +295,6 @@ public class Client3 extends PMClientBase {
                 logger.log(Logger.Level.ERROR, "CacheRetrieveMode property is not set.");
             }
         } catch (Exception e) {
-            getEntityTransaction().rollback();
             logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
         }
         if (!pass) {
@@ -296,7 +314,6 @@ public class Client3 extends PMClientBase {
                 logger.log(Logger.Level.ERROR, "CacheStoreMode property is not set.");
             }
         } catch (Exception e) {
-            getEntityTransaction().rollback();
             logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
         }
         if (!pass) {
