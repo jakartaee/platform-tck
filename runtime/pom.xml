@@ -27,6 +27,7 @@
     </parent>
 
     <artifactId>runtime</artifactId>
+    <version>11.0.0-M1</version>
     <packaging>jar</packaging>
 
     <name>runtime</name>
