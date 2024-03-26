@@ -26,6 +26,7 @@
     </parent>
 
     <artifactId>common</artifactId>
+    <version>11.0.0-M1</version>
     <packaging>jar</packaging>
 
     <name>COMMON</name>
