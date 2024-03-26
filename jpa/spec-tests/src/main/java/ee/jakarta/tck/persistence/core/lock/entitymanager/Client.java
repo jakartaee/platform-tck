@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2008, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,6 +20,8 @@ import java.lang.System.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+import jakarta.persistence.LockOption;
+import jakarta.persistence.Timeout;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -389,6 +391,53 @@ public class Client extends PMClientBase {
 
 		if (!pass) {
 			throw new Exception("lockTest2 failed");
+		}
+	}
+
+	/*
+	 * @testName: lockTest3
+	 *
+	 * @test_Strategy: public void lock(Object entity, LockModeType lockMode,
+	 * LockOption... options);
+	 *
+	 * 1) Create One entity manager 2) Lock entity (coffee) in em1 using
+	 * PESSIMISTIC_WRITE lock 3) Try to obtain same Lock for cofee the same object
+	 * and modify its contents
+	 *
+	 * Note: This test uses lock LockOption... options
+	 */
+	@Test
+	public void lockTest3() throws Exception {
+		logger.log(Logger.Level.TRACE, "Begin lockTest3");
+		boolean pass = false;
+
+		try {
+			getEntityTransaction().begin();
+
+			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and lock");
+			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1);
+			LockOption[] lockOptions = new LockOption[]{Timeout.ms(0)};
+			getEntityManager().lock(coffeeFound, LockModeType.PESSIMISTIC_WRITE, lockOptions);
+
+			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and update");
+			Coffee coffeeFound2 = getEntityManager().find(Coffee.class, 1);
+			getEntityManager().lock(coffeeFound2, LockModeType.PESSIMISTIC_WRITE);
+			coffeeFound2.setPrice(6.0F);
+			getEntityTransaction().commit();
+			pass = true;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+			}
+		}
+		if (!pass) {
+			throw new Exception("lockTest3 failed");
 		}
 	}
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,12 +14,14 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package ee.jakarta.tck.persistence.core.persistenceUtilUtil;
+package ee.jakarta.tck.persistence.core.persistenceUnitUtil;
 
 import java.sql.Date;
 
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -89,6 +91,7 @@ public class Employee implements java.io.Serializable {
 	}
 
 	@Column(name = "SALARY")
+	@Basic(fetch = FetchType.LAZY)
 	public float getSalary() {
 		return salary;
 	}

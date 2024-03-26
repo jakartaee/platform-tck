@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,6 +19,8 @@ package ee.jakarta.tck.persistence.core.entityManager2;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "PURCHASE_ORDER")
@@ -79,5 +81,18 @@ public class Order implements java.io.Serializable {
 
 	public String toString() {
 		return "Order id=" + getId() + ", total=" + getTotal() + ", desc=" + getdescription();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Order order = (Order) o;
+		return id == order.id && total == order.total && Objects.equals(description, order.description);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, total, description);
 	}
 }
