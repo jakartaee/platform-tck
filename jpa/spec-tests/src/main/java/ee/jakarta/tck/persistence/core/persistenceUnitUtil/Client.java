@@ -41,7 +41,7 @@ public class Client extends PMClientBase {
 
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee", "ee.jakarta.tck.persistence.core.versioning.Member" };
+		String[] classes = { pkgName + "Employee", Member.class.getName() };
 		return createDeploymentJar("jpa_core_persistenceUtilUtil.jar", pkgNameWithoutSuffix, classes);
 
 	}

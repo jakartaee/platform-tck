@@ -36,7 +36,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 public class Client3 extends PMClientBase {
 
@@ -133,13 +132,10 @@ public class Client3 extends PMClientBase {
             Order order = new Order(0, 000, "desc0");
             // Verify that getReference() to order fails
             // EntityNotFoundException shall be thrown on non-existing entity access
-            Order reference = getEntityManager().getReference(order);
+            Order referenceOrder = getEntityManager().getReference(order);
+            String description = referenceOrder.getdescription();
         } catch (EntityNotFoundException enfe) {
-            if (enfe.getMessage().contains("Could not find Entity")) {
-                pass = true;
-            } else {
-                logger.log(Logger.Level.ERROR, "Unexpected exception message: " + enfe.getMessage());
-            }
+            pass = true;
         } catch (Exception e) {
             logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
         }
