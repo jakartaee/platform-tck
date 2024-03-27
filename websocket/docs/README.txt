@@ -19,7 +19,7 @@ and set up the following software components:
    unzip <java-zip-bundle>
 
 
-2. Download and install the WebSocket 2.1 Compatible Implementation/jarfile.
+2. Download and install the WebSocket 2.2 Compatible Implementation/jarfile.
 
    mkdir /ci
    cd /ci
