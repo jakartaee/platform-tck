@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,7 +24,6 @@ import java.util.Properties;
 
 import com.sun.javatest.Status;
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.dao.DAOFactory;
 
 import jakarta.jms.Queue;
 
@@ -49,9 +48,6 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
     try {
       this.props = props;
       super.setup(args, props);
-
-      TestUtil.logTrace("[Client] Initializing BMP table...");
-      DAOFactory.getInstance().getCoffeeDAO().cleanup();
 
       mdbQ = (Queue) context.lookup("java:comp/env/jms/MDBTest");
     } catch (Exception e) {
@@ -209,207 +205,4 @@ public class Client extends com.sun.ts.tests.jms.commonee.Client {
     }
   }
 
-  /**
-   * @testName: testBMPInternal
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a message driven queue bean referencing a BMP Entity
-   *                 bean (BMPInternal) part of the same JAR file.
-   *
-   *                 Check at runtime that message-driven queue bean can do a
-   *                 lookup for the ejb reference and use it to create a bean.
-   *                 Then invoke on that instance a business method to be found
-   *                 only in BMPInternal beans in an attempt to check that the
-   *                 EJB reference was resolved consistently with the DD.
-   */
-  public void testBMPInternal() throws Fault {
-
-    String testCase = "testBMPInternal";
-    int testNum = 5;
-
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed!");
-        throw new Exception(testCase + " failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed!", e);
-      throw new Fault(testCase + " failed!", e);
-    }
-  }
-
-  /**
-   * @testName: testBMPExternal
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a message-driven queue bean referencing a BMP emtity
-   *                 bean (BMPExternal) part of the another JAR file.
-   *
-   *                 Check at runtime that a MDB can do a lookup for the ejb
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in BMPExternal
-   *                 beans in an attempt to check that the EJB reference was
-   *                 resolved consistently with the DD.
-   */
-  public void testBMPExternal() throws Fault {
-
-    String testCase = "testBMPExternal";
-    int testNum = 6;
-
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed!");
-        throw new Exception(testCase + " failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed!", e);
-      throw new Fault(testCase + " failed!", e);
-    }
-  }
-
-  /**
-   * @testName: testCMP11Internal
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 1.1
-   *                 Entity bean (CMP11Internal) part of the same JAR file.
-   *
-   *                 Check at runtime that a MDB can do a lookup for the ejb
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in
-   *                 CMP11Internal beans in an attempt to check that the EJB
-   *                 reference was resolved consistently with the DD.
-   */
-  public void testCMP11Internal() throws Fault {
-
-    String testCase = "testCMP11Internal";
-    int testNum = 7;
-
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed!");
-        throw new Exception(testCase + " failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed!", e);
-      throw new Fault(testCase + " failed!", e);
-    }
-  }
-
-  /**
-   * @testName: testCMP11External
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 1.1
-   *                 entity bean (CMP11External) part of another JAR file.
-   *
-   *                 Check at runtime that the MDB can do a lookup for the ejb
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in
-   *                 CMP11External beans in an attempt to check that the EJB
-   *                 reference was resolved consistently with the DD.
-   */
-  public void testCMP11External() throws Fault {
-
-    String testCase = "testCMP11External";
-    int testNum = 8;
-
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed!");
-        throw new Exception(testCase + " failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed!", e);
-      throw new Fault(testCase + " failed!", e);
-    }
-  }
-
-  /**
-   * @testName: testCMP20Internal
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 2.0
-   *                 Entity bean (CMP20Internal) part of the same JAR file.
-   *
-   *                 Check at runtime that a MDB can do a lookup for the ejb
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in
-   *                 CMP20Internal beans in an attempt to check that the EJB
-   *                 reference was resolved consistently with the DD.
-   */
-  public void testCMP20Internal() throws Fault {
-
-    String testCase = "testCMP20Internal";
-    int testNum = 9;
-
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed!");
-        throw new Exception(testCase + " failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed!", e);
-      throw new Fault(testCase + " failed!", e);
-    }
-  }
-
-  /**
-   * @testName: testCMP20External
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a message-driven queue bean referencing a CMP 2.0
-   *                 entity bean (CMP20External) part of another JAR file.
-   *
-   *                 Check at runtime that a MDB can do a lookup for the ejb
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in
-   *                 CMP20External beans in an attempt to check that the EJB
-   *                 reference was resolved consistently with the DD.
-   */
-  public void testCMP20External() throws Fault {
-
-    String testCase = "testCMP20External";
-    int testNum = 10;
-
-    try {
-      qSender = session.createSender(mdbQ);
-      createTestMessage(testCase, testNum);
-      qSender.send(msg);
-
-      if (!checkOnResponse(testCase)) {
-        TestUtil.logErr("[Client] " + testCase + " failed!");
-        throw new Exception(testCase + " failed!");
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("[Client] " + testCase + " failed!", e);
-      throw new Fault(testCase + " failed!", e);
-    }
-  }
 }

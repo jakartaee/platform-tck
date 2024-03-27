@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -38,32 +38,18 @@ public class TestBeanEJB implements SessionBean {
 
   private TSNamingContext nctx = null;
 
-  // Entity Bean (CMP) A -> Local Interface Only
   // Session Bean (SF) B -> Local Interface Only
-  // Entity Bean (BMP) C -> Local Interface Only
   // Session Bean (SL) D -> Local Interface Only
 
-  // JNDI Names for A, B, C, D Local Home Interface
-  private static final String ALocal = "java:comp/env/ejb/AEJBLocal";
-
+  // JNDI Names for B, D Local Home Interface
   private static final String BLocal = "java:comp/env/ejb/BEJBLocal";
-
-  private static final String CLocal = "java:comp/env/ejb/CEJBLocal";
 
   private static final String DLocal = "java:comp/env/ejb/DEJBLocal";
 
-  // References to Local Interfaces for Session and Entity Bean A,B,C,D
-  private ALocal aLocalRef = null;
-
-  private ALocalHome aLocalHome = null;
-
+  // References to Local Interfaces for Session Bean B,D
   private BLocal bLocalRef = null;
 
   private BLocalHome bLocalHome = null;
-
-  private CLocal cLocalRef = null;
-
-  private CLocalHome cLocalHome = null;
 
   private DLocal dLocalRef = null;
 
@@ -72,26 +58,11 @@ public class TestBeanEJB implements SessionBean {
   // ===========================================================
   // private methods
 
-  private ALocal createA(int id, String name, int value) throws Exception {
-    TestUtil.logTrace("createA");
-    aLocalHome = (ALocalHome) nctx.lookup(ALocal);
-    aLocalRef = aLocalHome.createA(id, name, value);
-    return aLocalRef;
-  }
-
   private BLocal createB() throws Exception {
     TestUtil.logTrace("createB");
     bLocalHome = (BLocalHome) nctx.lookup(BLocal);
     bLocalRef = bLocalHome.createB();
     return bLocalRef;
-  }
-
-  private CLocal createC(Properties p, int id, String name, int value)
-      throws Exception {
-    TestUtil.logTrace("createC");
-    cLocalHome = (CLocalHome) nctx.lookup(CLocal);
-    cLocalRef = cLocalHome.createC(p, id, name, value);
-    return cLocalRef;
   }
 
   private DLocal createD() throws Exception {
@@ -141,33 +112,6 @@ public class TestBeanEJB implements SessionBean {
   // ===========================================================
   // TestBean interface (our business methods)
 
-  public boolean test1() {
-    TestUtil.logTrace("test1");
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("Lookup local home of Entity Bean (CMP) and do create");
-      aLocalRef = createA(1, "a1", 1);
-      String s = aLocalRef.whoAmI();
-      TestUtil.logMsg("Calling local business method: " + s);
-      if (!s.equals("entity-cmp")) {
-        TestUtil.logErr(
-            "Wrong string returned: got: " + s + ", expected: entity-cmp");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
-    } finally {
-      try {
-        aLocalRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-    return pass;
-  }
-
   public boolean test2() {
     TestUtil.logTrace("test2");
     boolean pass = true;
@@ -185,33 +129,6 @@ public class TestBeanEJB implements SessionBean {
       TestUtil.logErr("Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       pass = false;
-    }
-    return pass;
-  }
-
-  public boolean test3() {
-    TestUtil.logTrace("test3");
-    boolean pass = true;
-    try {
-      TestUtil.logMsg("Lookup local home of Entity Bean (BMP) and do create");
-      cLocalRef = createC(harnessProps, 1, "c1", 1);
-      String s = cLocalRef.whoAmI();
-      TestUtil.logMsg("Calling local business method: " + s);
-      if (!s.equals("entity-bmp")) {
-        TestUtil.logErr(
-            "Wrong string returned: got: " + s + ", expected: entity-bmp");
-        pass = false;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      TestUtil.printStackTrace(e);
-      pass = false;
-    } finally {
-      try {
-        cLocalRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
     }
     return pass;
   }

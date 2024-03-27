@@ -33,8 +33,6 @@ public final class VehicleRunnerFactory {
 
   private static VehicleRunnable jspRunner;
 
-  private static VehicleRunnable ejbEmbedRunner;
-
   private static VehicleRunnable ejbLiteJsfRunner;
 
   private static VehicleRunnable ejbLiteJspRunner;
@@ -107,19 +105,6 @@ public final class VehicleRunnerFactory {
       }
     }
     return jspRunner;
-  }
-
-  private static VehicleRunnable getEJBEmbedRunner() {
-    if (ejbEmbedRunner == null) {
-      try {
-        Class c = Class
-            .forName("com.sun.ts.tests.common.vehicle.ejbembed.EJBEmbedRunner");
-        ejbEmbedRunner = (VehicleRunnable) c.newInstance();
-      } catch (Exception ex) {
-        ex.printStackTrace();
-      }
-    }
-    return ejbEmbedRunner;
   }
 
   private static VehicleRunnable getEJBLiteJSFRunner() {
@@ -367,8 +352,6 @@ public final class VehicleRunnerFactory {
       return getCustomVehicleRunner();
     } else if (vtype.equalsIgnoreCase("ejblitejsf")) {
       return getEJBLiteJSFRunner();
-    } else if (vtype.equalsIgnoreCase("ejbembed")) {
-      return getEJBEmbedRunner();
     } else if (vtype.equalsIgnoreCase("ejblitejsp")
         || vtype.equalsIgnoreCase("ejbliteservlet")
         || vtype.equalsIgnoreCase("ejbliteservlet2")

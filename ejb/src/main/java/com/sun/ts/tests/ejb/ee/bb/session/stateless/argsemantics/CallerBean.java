@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,12 +32,6 @@ public interface CallerBean extends EJBObject {
   public boolean testStatefulLocal(Properties props) throws RemoteException;
 
   public boolean testStatefulBoth(Properties props) throws RemoteException;
-
-  public boolean testCMP20Remote(Properties props) throws RemoteException;
-
-  public boolean testCMP20Local(Properties props) throws RemoteException;
-
-  public boolean testCMP20Both(Properties props) throws RemoteException;
 
   public void cleanUpBean() throws RemoteException;
 

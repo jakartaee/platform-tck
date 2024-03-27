@@ -57,8 +57,7 @@
                     mainclass="com.sun.ts.tests.ejb.ee.deploy.mdb.ejblink.single.Client"
                     excludedfiles="com/sun/ts/tests/ejb/ee/deploy/mdb/ejblink/single/MsgBean.class">
         <fileset dir="${class.dir}"
-                 includes="${ts.dao.classes.coffee.standard},
-                           ${ts.wrappers.classes.mdb.client}"/>
+                 includes="${ts.wrappers.classes.mdb.client}"/>
       </ts.clientjar>
 
       <ts.ear archivename="${my.app}"/>

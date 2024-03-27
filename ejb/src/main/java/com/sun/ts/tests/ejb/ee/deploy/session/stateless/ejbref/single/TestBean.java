@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -39,22 +39,6 @@ public interface TestBean extends EJBObject {
       throws RemoteException;
 
   public boolean testStatefulExternal(java.util.Properties p)
-      throws RemoteException;
-
-  public boolean testBMPInternal(java.util.Properties p) throws RemoteException;
-
-  public boolean testBMPExternal(java.util.Properties p) throws RemoteException;
-
-  public boolean testCMP11Internal(java.util.Properties p)
-      throws RemoteException;
-
-  public boolean testCMP11External(java.util.Properties p)
-      throws RemoteException;
-
-  public boolean testCMP20Internal(java.util.Properties p)
-      throws RemoteException;
-
-  public boolean testCMP20External(java.util.Properties p)
       throws RemoteException;
 
   public void cleanUpBean() throws RemoteException;

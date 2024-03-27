@@ -35,12 +35,11 @@
                   archivename="appclient_dep_ejbref_single"
                   mainclass="com.sun.ts.tests.appclient.deploy.ejbref.single.Client">
         <fileset dir="${class.dir}" 
-                 includes="${ts.dao.classes.coffee.standard}, 
-                 com/sun/ts/tests/assembly/util/shared/ejbref/single/TestCode.class,  
-                 com/sun/ts/tests/assembly/util/refbean/*Internal.class, 
-                 com/sun/ts/tests/assembly/util/refbean/*InternalHome.class, 
-                 com/sun/ts/tests/assembly/util/refbean/*External.class, 
-                 com/sun/ts/tests/assembly/util/refbean/*ExternalHome.class"/>
+                 includes="com/sun/ts/tests/assembly/util/shared/ejbref/single/TestCode.class,  
+                  com/sun/ts/tests/assembly/util/refbean/*Internal.class, 
+                  com/sun/ts/tests/assembly/util/refbean/*InternalHome.class, 
+                  com/sun/ts/tests/assembly/util/refbean/*External.class, 
+                  com/sun/ts/tests/assembly/util/refbean/*ExternalHome.class"/>
     </ts.clientjar>
     
     <ts.ear archivename="appclient_dep_ejbref_single"/>

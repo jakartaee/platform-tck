@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,11 +25,7 @@ import java.rmi.RemoteException;
 import jakarta.ejb.EJBObject;
 
 public interface TestBean extends EJBObject {
-  public boolean test1() throws RemoteException;
-
   public boolean test2() throws RemoteException;
-
-  public boolean test3() throws RemoteException;
 
   public boolean test4() throws RemoteException;
 
