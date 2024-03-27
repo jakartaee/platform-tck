@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,8 +17,7 @@
 /*
  * $Id$
  */
-
-package com.sun.ts.tests.appclient.deploy.compat12_50;
+package com.sun.ts.tests.appclient.deploy.compat9_10;
 
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 

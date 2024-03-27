@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -17,7 +17,7 @@
 
 -->
 
-<project name="appclient_deploy_compat13_50" basedir="." default="usage">
+<project name="appclient_deploy_compat9_10" basedir="." default="usage">
 
     <!-- IMPORTS -->
     <import file="../../../../../../../../bin/xml/ts.import.xml"/>
@@ -27,14 +27,14 @@
     <target name="package">
 
     <ts.ejbjar descriptor="META-INF/ejb-jar.xml"
-               archivename="appclient_dep_compat13_50"> 
+               archivename="appclient_dep_compat9_10"> 
                <fileset dir="${class.dir}" includes="${pkg.dir}/T*.class, 
                         ${wrapper.dir}/StatelessWrapper.class"/>
     </ts.ejbjar> 
 
     <ts.clientjar   descriptor="META-INF/application-client.xml"
-                    archivename="appclient_dep_compat13_50"
-                    mainclass="com.sun.ts.tests.appclient.deploy.compat13_50.Client"
+                    archivename="appclient_dep_compat9_10"
+                    mainclass="com.sun.ts.tests.appclient.deploy.compat9_10.Client"
                     excludedfiles="${pkg.dir}/TestBeanEJB.class">
         <fileset dir="${class.dir}" 
              includes="${pkg.dir}/Client.class, 
@@ -42,7 +42,7 @@
                        ${pkg.dir}/TestBeanHome.class"/>
     </ts.clientjar>
 
-    <ts.ear archivename="appclient_dep_compat13_50"/> 
+    <ts.ear archivename="appclient_dep_compat9_10"/> 
   </target>
 
 </project>

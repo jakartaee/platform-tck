@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,7 +18,7 @@
  * $Id$
  */
 
-package com.sun.ts.tests.appclient.deploy.compat14_50;
+package com.sun.ts.tests.appclient.deploy.compat9_10;
 
 import java.util.Properties;
 
@@ -59,15 +59,15 @@ public class Client extends EETest {
   }
 
   /**
-   * @testName: test1450DD
+   * @testName: test910DD
    *
    * @assertion_ids: JavaEE:SPEC:283; JavaEE:SPEC:284; JavaEE:SPEC:10109;
    *                 JavaEE:SPEC:10110; JavaEE:SPEC:10111
    *
-   * @test_Strategy: Package an ejb-jar file using a JavaEE 5.0 DD
+   * @test_Strategy: Package an ejb-jar file using a Jakarta EE 10.0 DD
    *
-   *                 Package an .ear file (JavaEE 5.0 DD's) including this
-   *                 ejb-jar and an application client (J2EE 1.4 DD's). This
+   *                 Package an .ear file (Jakarta EE 10.0 DD's) including this
+   *                 ejb-jar and an application client (Jakarta EE 9.0 DD's). This
    *                 application client references a bean in this ejb-jar
    *                 module.
    *
@@ -76,35 +76,23 @@ public class Client extends EETest {
    *                 Run the client and check we can call a business method on
    *                 the referenced bean at runtime.
    */
-  public void test1450DD() throws Exception {
-    TestBeanHome home = null;
+  public void test910DD() throws Exception {
     TestBean bean = null;
     String beanName;
     boolean pass = false;
 
     try {
       TestUtil.logTrace("[Client] Looking up '" + beanLookup + "'...");
-      home = (TestBeanHome) nctx.lookup(beanLookup, TestBeanHome.class);
-      bean = home.create();
+      bean = (TestBean) nctx.lookup(beanLookup, TestBean.class);
       bean.initLogging(props);
       pass = bean.ping();
 
       if (!pass) {
-        throw new Exception("appclient compat14_50 test failed!");
+        throw new Exception("appclient compat9_10 test failed!");
       }
     } catch (Exception e) {
-      TestUtil.logErr("appclient compat14_50 test failed: " + e);
-      throw new Exception("appclient compat14_50 test failed: ", e);
-    } finally {
-      try {
-        if (null != bean) {
-          TestUtil.logTrace("[Client] Removing bean...");
-          bean.remove();
-        }
-      } catch (Exception e) {
-        TestUtil.logErr("[Client] Ignoring Exception on " + "bean remove: " + e,
-            e);
-      }
+      TestUtil.logErr("appclient compat9_10 test failed: " + e);
+      throw new Exception("appclient compat9_10 test failed: ", e);
     }
   }
 

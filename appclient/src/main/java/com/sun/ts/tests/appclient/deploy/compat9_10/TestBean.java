@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,15 +18,12 @@
  * $Id$
  */
 
-package com.sun.ts.tests.appclient.deploy.compat13_14;
+package com.sun.ts.tests.appclient.deploy.compat9_10;
 
-import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
+public interface TestBean {
+  public void initLogging(Properties p);
 
-public interface TestBean extends EJBObject {
-  public void initLogging(Properties p) throws RemoteException;
-
-  public boolean ping() throws RemoteException;
+  public boolean ping();
 }
