@@ -27,7 +27,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>jakarta.tck.user-guide</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.0-M1</version>
     <packaging>pom</packaging>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide Parent for TCK Documentation</name>
 
@@ -51,7 +51,7 @@
         <!-- status: DRAFT, BETA, etc., or blank for final -->
         <status>DRAFT</status>
 
-        <ug.resources.version>11.0.0-SNAPSHOT</ug.resources.version>
+        <ug.resources.version>11.0.0-M1</ug.resources.version>
         <ug.staging.dir>${project.build.directory}/staging</ug.staging.dir>
     </properties>
 

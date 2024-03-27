@@ -19,12 +19,12 @@
     <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>11.0.0-M1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jsp-tck</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.0-M1</version>
     <packaging>jar</packaging>
 
     <properties>

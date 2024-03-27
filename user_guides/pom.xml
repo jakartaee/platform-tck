@@ -22,12 +22,12 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>11.0.0-M1</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>jakarta.tck-user-guide-parent</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.0-M1</version>
     <packaging>pom</packaging>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guides for Jakarta EE ${project.version}</name>
 
