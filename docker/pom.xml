@@ -24,7 +24,7 @@
   -->
   <parent>
     <groupId>jakarta.tck</groupId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.0-M1</version>
     <artifactId>project</artifactId>
   </parent>
   <modelVersion>4.0.0</modelVersion>
