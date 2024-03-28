@@ -23,7 +23,7 @@ else
   VERSION="3.2.0"
 fi
 
-JAKARTAEE_VERSION="11.0.0-M1"
+JAKARTAEE_VERSION="11.0.0-SNAPSHOT"
 
 
 # dbprocedures jar
