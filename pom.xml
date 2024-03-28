@@ -422,6 +422,8 @@
                 <groupId>javatest</groupId>
                 <artifactId>javatest</artifactId>
                 <version>${javatest.version}</version>
+                <scope>compile</scope>
+                <optional>true</optional>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>

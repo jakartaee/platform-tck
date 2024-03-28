@@ -31,7 +31,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
 import java.lang.System.Logger;
 
@@ -41,7 +40,7 @@ import java.lang.System.Logger;
  * implement the getPackages method to specify which packages are to be tested
  * by the signature test framework.
  */
-public abstract class SigTest extends EETest {
+public abstract class SigTest {
 
   private static final Logger logger = System.getLogger(SigTest.class.getName());
 
