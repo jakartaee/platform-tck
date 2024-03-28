@@ -70,7 +70,7 @@
         <hibernate.version>8.0.1.Final</hibernate.version>
         <javadb.lib>${glassfish.toplevel.dir}/javadb/lib</javadb.lib>
         <sql.directory>../sql</sql.directory>
-        <persistence.api.version>3.2.0-M2</persistence.api.version>
+        <persistence.api.version>3.2.0</persistence.api.version>
     </properties>
     <dependencyManagement>
         <dependencies>
