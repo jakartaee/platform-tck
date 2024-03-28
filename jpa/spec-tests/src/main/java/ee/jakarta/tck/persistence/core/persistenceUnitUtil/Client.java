@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2011, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -14,10 +14,12 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package ee.jakarta.tck.persistence.core.persistenceUtilUtil;
+package ee.jakarta.tck.persistence.core.persistenceUnitUtil;
 
 import java.lang.System.Logger;
+import java.math.BigInteger;
 
+import ee.jakarta.tck.persistence.core.versioning.Member;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +32,8 @@ public class Client extends PMClientBase {
 
 	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
+	private final Employee empRef[] = new Employee[2];
+
 	public Client() {
 	}
 
@@ -37,7 +41,7 @@ public class Client extends PMClientBase {
 
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee" };
+		String[] classes = { pkgName + "Employee", Member.class.getName() };
 		return createDeploymentJar("jpa_core_persistenceUtilUtil.jar", pkgNameWithoutSuffix, classes);
 
 	}
@@ -49,6 +53,7 @@ public class Client extends PMClientBase {
 			super.setup();
 			createDeployment();
 			removeTestData();
+			createTestData();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
 			throw new Exception("Setup failed:", e);
@@ -57,9 +62,9 @@ public class Client extends PMClientBase {
 
 	/*
 	 * @testName: getPersistenceUtilUtilTest
-	 * 
+	 *
 	 * @assertion_ids: PERSISTENCE:JAVADOC:384;
-	 * 
+	 *
 	 * @test_Strategy:
 	 *
 	 */
@@ -80,9 +85,9 @@ public class Client extends PMClientBase {
 
 	/*
 	 * @testName: getIdentifierTest
-	 * 
+	 *
 	 * @assertion_ids: PERSISTENCE:JAVADOC:385;
-	 * 
+	 *
 	 * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest on an entity and
 	 * verify the correct id is returned
 	 */
@@ -120,6 +125,14 @@ public class Client extends PMClientBase {
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
 			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			}
 		}
 		if (!pass) {
 			throw new Exception("getIdentifierTest failed");
@@ -128,9 +141,9 @@ public class Client extends PMClientBase {
 
 	/*
 	 * @testName: getIdentifierIllegalArgumentExceptionTest
-	 * 
+	 *
 	 * @assertion_ids: PERSISTENCE:JAVADOC:548;
-	 * 
+	 *
 	 * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest of a non-entity
 	 * and verify IllegalArgumentException is thrown
 	 */
@@ -152,6 +165,97 @@ public class Client extends PMClientBase {
 		}
 	}
 
+	@Test
+	public void getVersionTest() throws Exception {
+		boolean pass = false;
+
+		Member member = new Member(1, "Member 1", true, BigInteger.valueOf(1000L));
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().persist(member);
+
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			getEntityTransaction().commit();
+			Integer version = (Integer) puu.getVersion(member);
+			if (version != null && version.equals(member.getVersion())) {
+				pass = true;
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			pass = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			}
+		}
+		if (!pass) {
+			throw new Exception("getVersionTest failed");
+		}
+	}
+
+	@Test
+	public void loadIsLoadTest() throws Exception {
+		boolean pass = false;
+
+		try {
+			Employee employee = getEntityManager().find(Employee.class, empRef[0].getId());
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			puu.load(employee, "salary");
+			if (puu.isLoaded(employee, "salary")) {
+				pass = true;
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			pass = false;
+		}
+		if (!pass) {
+			throw new Exception("loadIsLoadTest failed");
+		}
+	}
+
+	@Test
+	public void isInstanceTest() throws Exception {
+		boolean pass = false;
+
+		try {
+			Employee foundEmployee = getEntityManager().find(Employee.class, empRef[0].getId());
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			if (puu.isInstance(foundEmployee, Employee.class)) {
+				pass = true;
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			pass = false;
+		}
+		if (!pass) {
+			throw new Exception("isInstanceTest failed");
+		}
+	}
+
+	@Test
+	public void getClassTest() throws Exception {
+		boolean pass = false;
+
+		try {
+			Employee foundEmployee = getEntityManager().find(Employee.class, empRef[0].getId());
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			Class<?> clazz = puu.getClass(foundEmployee);
+			if (clazz == Employee.class) {
+				pass = true;
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			pass = false;
+		}
+		if (!pass) {
+			throw new Exception("getClassTest failed");
+		}
+	}
+
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
@@ -161,6 +265,38 @@ public class Client extends PMClientBase {
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
+		}
+	}
+
+	private void createTestData() throws Exception {
+		logger.log(Logger.Level.TRACE, "createTestData");
+
+		try {
+			getEntityTransaction().begin();
+			// logger.log(Logger.Level.TRACE,"Create 20 employees");
+			empRef[0] = new Employee(100, "Alan", "Frechette", getSQLDate("2000-02-14"), (float) 35000.0);
+
+			// logger.log(Logger.Level.TRACE,"Start to persist employees ");
+			for (Employee e : empRef) {
+				if (e != null) {
+					getEntityManager().persist(e);
+					logger.log(Logger.Level.TRACE, "persisted employee " + e);
+				}
+			}
+
+			getEntityTransaction().commit();
+			logger.log(Logger.Level.TRACE, "Created TestData");
+
+		} catch (Exception re) {
+			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", re);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData while rolling back TX:", re);
+			}
 		}
 	}
 
