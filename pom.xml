@@ -145,8 +145,8 @@
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
         <webservices-tools.version>3.0.0</webservices-tools.version>
         <!-- Jakarta WebSocket -->
-        <websocket-api.version>2.2.0-M1</websocket-api.version>
-        <websocket-client-api.version>2.2.0-M1</websocket-client-api.version>
+        <websocket-api.version>2.2.0</websocket-api.version>
+        <websocket-client-api.version>2.2.0</websocket-client-api.version>
     </properties>
 
     <dependencyManagement>
