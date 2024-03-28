@@ -19,19 +19,15 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
         <version>11.0.0-SNAPSHOT</version>
     </parent>
-
     <artifactId>connector</artifactId>
     <packaging>jar</packaging>
-
     <name>Connector</name>
     <description>Connector</description>
-
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -48,6 +44,13 @@
         <dependency>
             <groupId>jakarta.resource</groupId>
             <artifactId>jakarta.resource-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javatest</groupId>
+            <artifactId>javatest</artifactId>
+            <version>${javatest.version}</version>
+            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
     <build>

@@ -47,23 +47,6 @@ public class ConnectorSigTest extends SigTest {
    */
 
   /*
-   * Initial entry point for JavaTest.
-   */
-  public static void main(String[] args) {
-    ConnectorSigTest theTests = new ConnectorSigTest();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-    return super.run(args, out, err);
-  }
-
-  /*
    * The following comments are specified in the base class that defines the
    * signature tests. This is done so the test finders will find the right class
    * to run. The implementation of these methods is inherited from the super
