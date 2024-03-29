@@ -60,6 +60,14 @@
                 <include>css/**</include>
                 <include>img/**</include>
             </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/</directory>
+            <outputDirectory>artifacts</outputDirectory>
+            <fileMode>755</fileMode>
+            <includes>
+                <include>*.sh</include>
+            </includes>
         </fileSet>        
     </fileSets>
     <dependencySets>
