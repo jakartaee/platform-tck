@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,9 +21,9 @@
 package com.sun.ts.tests.assembly.util.refbean;
 
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+import com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper;
 
-public class StatelessInternalEJB extends StatelessWrapper {
+public class StatelessInternalEJB extends Stateless3xWrapper {
 
   /**
    * Method used to identify this bean (only available for this bean).

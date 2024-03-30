@@ -25,5 +25,7 @@ import java.util.Properties;
 public interface TestBean {
   public void initLogging(Properties p);
 
+  public void createNamingContext();
+
   public boolean ping();
 }

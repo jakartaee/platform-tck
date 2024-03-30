@@ -19,9 +19,9 @@
  */
 package com.sun.ts.tests.appclient.deploy.compat9_10;
 
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+import com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper;
 
-public class TestBeanEJB extends StatelessWrapper {
+public class TestBeanEJB extends Stateless3xWrapper {
 
   public boolean ping() {
     return true;

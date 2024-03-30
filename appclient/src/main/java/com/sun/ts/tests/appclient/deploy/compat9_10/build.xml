@@ -29,7 +29,7 @@
     <ts.ejbjar descriptor="META-INF/ejb-jar.xml"
                archivename="appclient_dep_compat9_10"> 
                <fileset dir="${class.dir}" includes="${pkg.dir}/T*.class, 
-                        ${wrapper.dir}/StatelessWrapper.class"/>
+                        ${wrapper.dir}/Stateless3xWrapper.class"/>
     </ts.ejbjar> 
 
     <ts.clientjar   descriptor="META-INF/application-client.xml"

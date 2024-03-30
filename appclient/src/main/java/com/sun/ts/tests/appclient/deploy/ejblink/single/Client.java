@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,6 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
-import com.sun.ts.tests.common.dao.DAOFactory;
 
 public class Client extends EETest {
 
@@ -58,9 +57,6 @@ public class Client extends EETest {
 
       logTrace("[Client] Getting naming context...");
       nctx = new TSNamingContext();
-
-      logTrace("[Client] Initializing BMP table...");
-      DAOFactory.getInstance().getCoffeeDAO().cleanup();
 
       logMsg("[Client] Setup succeed (got naming context).");
     } catch (Exception e) {
@@ -111,87 +107,6 @@ public class Client extends EETest {
 
     try {
       pass = TestCode.testStatefulExternal(nctx, props);
-      if (!pass) {
-        throw new Exception("ejb-link test failed!");
-      }
-    } catch (Exception e) {
-      throw new Exception("ejb-link test failed: " + e, e);
-    } finally {
-      try {
-        TestCode.cleanUpStatefulBean();
-      } catch (Exception e) {
-        TestUtil.logTrace("Exception caught removing Stateful Session Bean");
-      }
-    }
-  }
-
-  /**
-   * @testName: testBMP
-   *
-   * @assertion_ids: JavaEE:SPEC:10118
-   *
-   * @test_Strategy: Deploy an application client referencing a BMP Entity bean.
-   *                 Check at runtime that the application client can do a
-   *                 lookup for the EJB reference and use it to create a bean.
-   *                 Then invoke on that bean instance a business method to be
-   *                 found only in this particular bean: This is to check that
-   *                 the EJB reference was resolved consistently with the DD.
-   */
-  public void testBMP() throws Exception {
-    boolean pass;
-
-    try {
-      pass = TestCode.testBMPExternal(nctx, props);
-      if (!pass) {
-        throw new Exception("ejb-link test failed!");
-      }
-    } catch (Exception e) {
-      throw new Exception("ejb-link test failed: " + e, e);
-    }
-  }
-
-  /**
-   * @testName: testCMP11
-   *
-   * @assertion_ids: JavaEE:SPEC:10118
-   *
-   * @test_Strategy: Deploy an application client referencing a CMP 1.1 Entity
-   *                 bean. Check at runtime that the application client can do a
-   *                 lookup for the EJB reference and use it to create a bean.
-   *                 Then invoke on that bean instance a business method to be
-   *                 found only in this particular bean: This is to check that
-   *                 the EJB reference was resolved consistently with the DD.
-   */
-  public void testCMP11() throws Exception {
-    boolean pass;
-
-    try {
-      pass = TestCode.testCMP11External(nctx, props);
-      if (!pass) {
-        throw new Exception("ejb-link test failed!");
-      }
-    } catch (Exception e) {
-      throw new Exception("ejb-link test failed: " + e, e);
-    }
-  }
-
-  /**
-   * @testName: testCMP20
-   *
-   * @assertion_ids: JavaEE:SPEC:10118
-   *
-   * @test_Strategy: Deploy an application client referencing a CMP 2.0 Entity
-   *                 bean. Check at runtime that the application client can do a
-   *                 lookup for the EJB reference and use it to create a bean.
-   *                 Then invoke on that bean instance a business method to be
-   *                 found only in this particular bean: This is to check that
-   *                 the EJB reference was resolved consistently with the DD.
-   */
-  public void testCMP20() throws Exception {
-    boolean pass;
-
-    try {
-      pass = TestCode.testCMP20External(nctx, props);
       if (!pass) {
         throw new Exception("ejb-link test failed!");
       }

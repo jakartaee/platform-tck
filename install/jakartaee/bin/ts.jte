@@ -2023,6 +2023,14 @@ ts.wrappers.ejb.root=com/sun/ts/tests/common/ejb/wrappers
 
 ts.wrappers.web.root=com/sun/ts/tests/common/web
 
+## Classes to package in ejb-jar for EJB 3.x Stateless wrapper
+ts.wrappers.classes.stateless.ejb.3x=\
+    ${ts.wrappers.ejb.root}/Stateless3xWrapper.class
+
+## Classes to package in ejb-jar for EJB 3.x Stateful wrapper
+ts.wrappers.classes.stateful.ejb.3x=\
+    ${ts.wrappers.ejb.root}/Stateful3xWrapper.class
+
 ## Classes to package in ejb-jar for EJB Stateless wrapper
 ts.wrappers.classes.stateless.ejb=\
     ${ts.wrappers.ejb.root}/StatelessWrapper.class
