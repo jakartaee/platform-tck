@@ -94,14 +94,6 @@
     </dependencies>
     <build>
         <finalName>${bundle-name}-${project.version}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>LICENSE_${license}.md</include>
-                </includes>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -136,13 +128,6 @@
             <properties>
                 <bundle-name>jakarta-persistence-tck</bundle-name>
                 <license>EFTL</license>
-            </properties>
-        </profile>
-        <profile>
-            <id>EPL</id>
-            <properties>
-                <bundle-name>persistence-tck</bundle-name>
-                <license>EPL</license>
             </properties>
         </profile>
     </profiles>

@@ -28,8 +28,8 @@
     <files>
         <!-- license -->
         <file>
-            <source>${project.basedir}/src/main/resources/LICENSE_${license}.md</source>
-            <destName>LICENSE.md</destName>
+            <source>${project.basedir}/src/main/resources/eftl-1.1.adoc</source>
+            <destName>eftl-1.1.adoc</destName>
         </file>
     </files>
     <fileSets>
