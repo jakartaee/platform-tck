@@ -63,7 +63,7 @@
         <tck.common.artifactId>persistence-tck-common</tck.common.artifactId>
         <tck.artifactId>persistence-tck-spec-tests</tck.artifactId>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
-        <tck.version>11.0.0-SNAPSHOT</tck.version>
+        <jakarta.ee.version>11.0.0-M1</jakarta.ee.version>
         <persistence.tck.version>3.2.0</persistence.tck.version>
         <arquillian.junit5.version>1.7.0.Alpha14</arquillian.junit5.version>
         <el.version>5.0.0-M1</el.version>
@@ -132,7 +132,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
-            <version>${tck.version}</version>
+            <version>${jakarta.ee.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

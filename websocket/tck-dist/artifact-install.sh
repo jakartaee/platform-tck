@@ -23,7 +23,7 @@ else
   VERSION="2.2.0"
 fi
 
-JAKARTAEE_VERSION="11.0.0-SNAPSHOT"
+JAKARTAEE_VERSION="11.0.0-M1"
 
 
 # websocket-tck pom
