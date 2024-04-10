@@ -477,7 +477,7 @@
             <id>eclipselink</id>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-                <eclipselink.asm.version>9.6.0</eclipselink.asm.version>
+                <eclipselink.asm.version>9.7.0</eclipselink.asm.version>
                 <eclipselink.version>5.0.0-B01</eclipselink.version>
             </properties>
             <dependencies>

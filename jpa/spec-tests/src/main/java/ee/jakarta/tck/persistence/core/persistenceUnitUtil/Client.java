@@ -168,8 +168,29 @@ public class Client extends PMClientBase {
 	@Test
 	public void getVersionTest() throws Exception {
 		boolean pass = false;
+		final int ID = 1;
+		Member member = new Member(ID, "Member 1", true, BigInteger.valueOf(1000L));
 
-		Member member = new Member(1, "Member 1", true, BigInteger.valueOf(1000L));
+		//Try cleanup first
+		try {
+			getEntityTransaction().begin();
+			Member member1 = getEntityManager().find(Member.class, ID);
+			if (member1 != null) {
+				getEntityManager().remove(member1);
+				getEntityTransaction().commit();
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entity:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+		//Prepare test data and test created version after commit
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().persist(member);

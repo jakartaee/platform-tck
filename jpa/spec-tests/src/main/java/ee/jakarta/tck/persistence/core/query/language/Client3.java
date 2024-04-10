@@ -17,9 +17,12 @@
 package ee.jakarta.tck.persistence.core.query.language;
 
 import java.lang.System.Logger;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.core.versioning.Member;
+import jakarta.persistence.PersistenceUnitUtil;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +40,8 @@ public class Client3 extends UtilAliasData {
 		String pkgNameWithoutSuffix = Client1.class.getPackageName();
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = getSchema30classes();
+		classes = Arrays.copyOf(classes, classes.length + 1);
+		classes[classes.length - 1] = Member.class.getName();
 		return createDeploymentJar("jpa_core_query_language3.jar", pkgNameWithoutSuffix, classes);
 	}
 
@@ -1246,5 +1251,136 @@ public class Client3 extends UtilAliasData {
 
 		if (!pass)
 			throw new Exception("test_orderByNullsLast failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_selectID() throws Exception {
+		String result;
+		boolean pass = false;
+
+		try {
+			logger.log(Logger.Level.TRACE, "SELECT ID() Executing Query");
+			Query query = getEntityManager()
+					.createQuery("SELECT ID(c) from Customer c WHERE c.id = :idParam");
+			query.setParameter("idParam", customerRef[0].getId());
+			result = (String) query.getSingleResult();
+
+			if (customerRef[0].getId().equals(result)) {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			} else {
+				logger.log(Logger.Level.ERROR,"Did not get expected results.  Expected Customer id |" + customerRef[0].getId() + "| but, got |" + result + "|");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_selectID failed");
+	}
+
+	@SetupMethod(name = "setupAliasData")
+	@Test
+	public void test_selectWhereID() throws Exception {
+		String result;
+		boolean pass = false;
+
+		try {
+			logger.log(Logger.Level.TRACE, "SELECT ID() Executing Query");
+			Query query = getEntityManager()
+					.createQuery("SELECT ID(c) from Customer c WHERE ID(c) = :idParam");
+			query.setParameter("idParam", customerRef[0].getId());
+			result = (String) query.getSingleResult();
+
+			if (customerRef[0].getId().equals(result)) {
+				logger.log(Logger.Level.TRACE, "Expected results received");
+				pass = true;
+			} else {
+				logger.log(Logger.Level.ERROR,"Did not get expected results.  Expected Customer id |" + customerRef[0].getId() + "| but, got |" + result + "|");
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+		}
+
+		if (!pass)
+			throw new Exception("test_selectWhereID failed");
+	}
+
+	@Test
+	public void test_selectVERSION() throws Exception {
+		boolean pass1 = false;
+		boolean pass2 = false;
+		final int ID = 1;
+		Member member = new Member(ID, "Member 1", true, BigInteger.valueOf(1000L));
+
+		//Try cleanup first
+		try {
+			getEntityTransaction().begin();
+			Member member1 = getEntityManager().find(Member.class, ID);
+			if (member1 != null) {
+				getEntityManager().remove(member1);
+				getEntityTransaction().commit();
+			}
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Exception encountered while removing entity:", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception re) {
+				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			}
+		}
+		//Prepare test data and test created version after commit by JPQLs
+		try {
+			getEntityTransaction().begin();
+			getEntityManager().persist(member);
+
+			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
+			getEntityTransaction().commit();
+
+			//First test
+			logger.log(Logger.Level.TRACE, "SELECT VERSION() Executing Query");
+			Query query1 = getEntityManager()
+					.createQuery("SELECT VERSION(m) from Member m WHERE m.memberId = :memberIdParam");
+			query1.setParameter("memberIdParam", member.getMemberId());
+			Integer version1 = (Integer)query1.getSingleResult();
+			if (version1 != null && version1.equals(member.getVersion())) {
+				pass1 = true;
+			} else {
+				logger.log(Logger.Level.ERROR,"Did not get expected results.  Expected Member version |" + member.getVersion() + "| but, got |" + version1 + "|");
+			}
+
+			//Second test
+			logger.log(Logger.Level.TRACE, "SELECT VERSION() WHERE version = VERSION() Executing Query");
+			Query query2 = getEntityManager()
+					.createQuery("SELECT VERSION(m) from Member m WHERE m.memberId = :memberIdParam AND m.version = :memberVersionParam");
+			query2.setParameter("memberIdParam", member.getMemberId());
+			query2.setParameter("memberVersionParam", member.getVersion());
+			Integer version2 = (Integer)query2.getSingleResult();
+			if (version2 != null && version2.equals(member.getVersion())) {
+				pass2 = true;
+			} else {
+				logger.log(Logger.Level.ERROR,"Did not get expected results.  Expected Member version |" + member.getVersion() + "| but, got |" + version2 + "|");
+			}
+
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			pass1 = false;
+			pass2 = false;
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			}
+		}
+		if (!pass1 || !pass2) {
+			throw new Exception("getVersionTest failed");
+		}
 	}
 }
