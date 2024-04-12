@@ -1,0 +1,82 @@
+FROM ubuntu:24.04
+
+ARG HTTPS_PROXY=
+
+ARG AS_TRACE=false
+ARG JAVA_11_VERSION=jdk-11.0.22+7
+ARG JAVA_17_VERSION=jdk-17.0.10+7
+ARG JAVA_21_VERSION=jdk-21.0.2+13
+ARG JAVA_11_URL=https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.22%2B7/OpenJDK11U-jdk_x64_linux_hotspot_11.0.22_7.tar.gz
+ARG JAVA_17_URL=https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.10%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.10_7.tar.gz
+ARG JAVA_21_URL=https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.2%2B13/OpenJDK21U-jdk_x64_linux_hotspot_21.0.2_13.tar.gz
+ARG MAVEN_VERSION=3.9.6
+ARG MAVEN_BASE_URL=https://apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries
+ARG ANT_VERSION=1.10.14
+ARG ANT_BASE_URL=https://apache.org/dist/ant/binaries/
+ARG JENKINS_USER_ID=1003270000
+
+COPY ./ant-props.jar /opt/
+USER root
+
+RUN true \
+    && set -x \
+    && export https_proxy=${HTTPS_PROXY} \
+    && apt -y update \
+    && apt -y install ca-certificates git libfontconfig1 libxi6 libxrender1 libxtst6 openssh-client procps tar unzip wget zip \
+    && apt -y clean \
+    && wget -nv ${JAVA_11_URL} -O /tmp/jdk11.tar.gz \
+    && wget -nv ${JAVA_17_URL} -O /tmp/jdk17.tar.gz \
+    && wget -nv ${JAVA_21_URL} -O /tmp/jdk21.tar.gz \
+    && wget -nv ${MAVEN_BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.tar.gz -O /tmp/apache-maven.tar.gz \
+    && wget -nv ${ANT_BASE_URL}/apache-ant-${ANT_VERSION}-bin.tar.gz -O /tmp/apache-ant.tar.gz \
+    && unset https_proxy \
+    && mkdir -p /usr/share/maven /usr/share/maven/ref /usr/share/ant /opt/jdk11 /opt/jdk17 /opt/jdk21 \
+    && tar -xzf /tmp/jdk11.tar.gz --directory "/opt/jdk11" --strip-components 1 --no-same-owner \
+    && tar -xzf /tmp/jdk17.tar.gz --directory "/opt/jdk17" --strip-components 1 --no-same-owner \
+    && tar -xzf /tmp/jdk21.tar.gz --directory "/opt/jdk21" --strip-components 1 --no-same-owner \
+    && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
+    && tar -xzf /tmp/apache-ant.tar.gz -C /usr/share/ant --strip-components=1 \
+    && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
+    && ln -s /usr/share/ant/bin/ant /usr/bin/ant \
+    && cp /opt/ant-props.jar /usr/share/ant/lib \
+    && rm -f /tmp/jdk11.tar.gz \
+    && rm -f /tmp/jdk17.tar.gz \
+    && rm -f /tmp/jdk21.tar.gz \
+    && rm -f /tmp/apache-maven.tar.gz \
+    && rm -f /tmp/apache-ant.tar.gz \
+    && rm -f /opt/*.tar* \
+    && rm -f /opt/ant-props.jar \
+    && mkdir -p /home/tck \
+    && useradd -l -u ${JENKINS_USER_ID} -d /home/tck -s /bin/bash tck \
+    && chown -R tck:1000 /home/tck \
+    && chmod g+s /home/tck \
+    && true
+
+# User's ID must be the same as the id of the user running the container. It is defined in Jenkinsfile.
+USER tck
+WORKDIR /home/tck
+ENV HOME=/home/tck
+ENV JDK21_HOME=/opt/jdk21
+ENV JDK17_HOME=/opt/jdk17
+ENV JDK11_HOME=/opt/jdk11
+ENV JAVA_HOME=/opt/jdk21
+ENV ANT_HOME=/usr/share/ant
+ENV M2_HOME=/usr/share/maven
+ENV PATH=$JAVA_HOME/bin:$M2_HOME/bin:$ANT_HOME/bin:$PATH
+
+RUN true \
+    && set -x \
+    && mkdir -p /home/tck/.ssh \
+    && mkdir -p /home/tck/.m2 \
+    && chmod go-rwx /home/tck/.ssh \
+    && ssh-keyscan -H github.com >> /home/tck/.ssh/known_hosts \
+    && cat "/etc/hosts" \
+    && bash -c "env | sort" \
+    && /opt/jdk11/bin/java -version \
+    && /opt/jdk17/bin/java -version \
+    && /opt/jdk21/bin/java -version \
+    && /usr/share/ant/bin/ant -version \
+    && /usr/share/maven/bin/mvn -version \
+    &&  echo "Installation was successful."
+
+CMD id && ant -version && mvn -version && ls -la ${HOME}/ && cat /etc/hosts

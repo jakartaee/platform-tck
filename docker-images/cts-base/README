@@ -74,3 +74,24 @@ Build command: docker build -t jakartaee/cts-base:0.4 -f ./Dockerfile4 .
 Image push command : docker push jakartaee/cts-base:0.4
 
 =====================================
+
+Dockerfile5:
+
+Image - jakartaee/cts-base:0.5
+
+Additional softwares to be downloaded - none
+
+JAVA_HOME is set to /opt/jdk21 as default version of Java.
+JDK11_HOME will be available as JDK11 home path at /opt/jdk11
+JDK17_HOME will be available as JDK17 home path at /opt/jdk17
+JDK21_HOME will be available as JDK21 home path at /opt/jdk21
+M2_HOME will be available as Maven Home set at /usr/share/maven
+ANT_HOME will be available as Ant Home set at /usr/share/ant
+
+Maven version : 3.9.6
+Ant Version : 1.10.14
+
+Build command: docker build -t jakartaee/cts-base:0.5 -f ./Dockerfile5 .
+Image push command : docker push jakartaee/cts-base:0.5
+
+=====================================
