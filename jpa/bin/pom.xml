@@ -56,6 +56,7 @@
         <jakarta.persistence.jdbc.user>cts1</jakarta.persistence.jdbc.user>
         <jakarta.persistence.jdbc.password>cts1</jakarta.persistence.jdbc.password>
         <jpa.provider.implementation.specific.properties/>
+        <jpa.provider.implementation.specific.additional.properties/>
         <db.supports.sequence>true</db.supports.sequence>
         <persistence.second.level.caching.supported>true</persistence.second.level.caching.supported>
         <db.delimiter>;</db.delimiter>
@@ -239,48 +240,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
-                <groupId>org.codehaus.mojo</groupId>
-                <executions>
-                    <execution>
-                        <id>stop-database-init</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>stop-database</argument>
-                            </arguments>
-                            <successCodes>
-                                <successCode>0</successCode>
-                                <successCode>1</successCode>
-                            </successCodes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
-                <groupId>org.codehaus.mojo</groupId>
-                <executions>
-                    <execution>
-                        <id>start-database</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>start-database</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
@@ -292,7 +251,11 @@
                         </goals>
                         <configuration>
                             <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
+                                <path id="jdbc.classpath">
+                                    <pathelement path="${jdbc.driver.classes}"/>
+                                    <path refid="maven.runtime.classpath"/>
+                                </path>
+                                <sql autocommit="true" classpathref="jdbc.classpath" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
                                     <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.persistence.sql"/>
                                 </sql>
                             </target>
@@ -306,23 +269,12 @@
                         </goals>
                         <configuration>
                             <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
+                                <path id="jdbc.classpath">
+                                    <pathelement path="${jdbc.driver.classes}"/>
+                                    <path refid="maven.runtime.classpath"/>
+                                </path>
+                                <sql autocommit="true" classpathref="jdbc.classpath" delimiter="${db.delimiter}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">
                                     <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.persistence.sprocs.sql"/>
-                                </sql>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install_java_procedures</id>
-                        <phase>pre-integration-test</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <sql autocommit="true" classpath="${jdbc.driver.classes}" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">CALL sqlj.remove_jar('APP.dbprocedures', 0);
-                                    CALL sqlj.install_jar('${project.build.directory}/dbprocedures.jar', 'APP.dbprocedures', 0);
-                                    CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'APP.dbprocedures');
                                 </sql>
                             </target>
                         </configuration>
@@ -432,29 +384,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>stop-database-final</id>
-                        <phase>post-integration-test</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>stop-database</argument>
-                            </arguments>
-                            <successCodes>
-                                <successCode>0</successCode>
-                                <successCode>1</successCode>
-                            </successCodes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -479,7 +408,8 @@
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
                 <eclipselink.asm.version>9.7.0</eclipselink.asm.version>
                 <eclipselink.version>5.0.0-B01</eclipselink.version>
-                <jpa.provider.implementation.specific.properties>eclipselink.logging.level=OFF</jpa.provider.implementation.specific.properties>
+                <jakarta.persistence.provider>org.eclipse.persistence.jpa.PersistenceProvider</jakarta.persistence.provider>
+                <jpa.provider.implementation.specific.properties>eclipselink.logging.level=OFF${jpa.provider.implementation.specific.additional.properties}</jpa.provider.implementation.specific.properties>
             </properties>
             <dependencies>
                 <dependency>
@@ -598,10 +528,11 @@
             <id>hibernate</id>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-                <hibernate.version>7.0.0-SNAPSHOT</hibernate.version>
+                <hibernate.version>7.0.0</hibernate.version>
                 <jpa.provider.implementation.specific.properties>
-                    hibernate.query.jpaql_strict_compliance=true:hibernate.id.new_generator_mappings=true:hibernate.cache.region.factory_class=org.hibernate.testing.cache.CachingRegionFactory:hibernate.model.generator_name_as_sequence_name=true:hibernate.jpa.compliance.transaction=true:hibernate.jpa.compliance.closed=true:hibernate.jpa.compliance.query=true:hibernate.jpa.compliance.list=true:hibernate.jpa.compliance.caching=true:hibernate.jpa.compliance.global_id_generators=true:hibernate.jpa.compliance=true:hibernate.type.wrapper_array_handling=legacy
+                    hibernate.query.jpaql_strict_compliance=true:hibernate.id.new_generator_mappings=true:hibernate.cache.region.factory_class=org.hibernate.testing.cache.CachingRegionFactory:hibernate.model.generator_name_as_sequence_name=true:hibernate.jpa.compliance.transaction=true:hibernate.jpa.compliance.closed=true:hibernate.jpa.compliance.query=true:hibernate.jpa.compliance.list=true:hibernate.jpa.compliance.caching=true:hibernate.jpa.compliance.global_id_generators=true:hibernate.jpa.compliance=true:hibernate.type.wrapper_array_handling=legacy:hibernate.type.preferred_uuid_jdbc_type=char${jpa.provider.implementation.specific.additional.properties}
                 </jpa.provider.implementation.specific.properties>
+                <jakarta.persistence.provider>org.hibernate.jpa.HibernatePersistenceProvider</jakarta.persistence.provider>
             </properties>
             <dependencyManagement>
                 <dependencies>
@@ -698,6 +629,220 @@
                     </plugin>
                 </plugins>
             </build>
+        </profile>
+        <profile>
+            <id>db2</id>
+            <properties>
+                <db2.jdbc.version>11.5.9.0</db2.jdbc.version>
+                <jdbc.db>db2</jdbc.db>
+                <jakarta.persistence.jdbc.driver>com.ibm.db2.jcc.DB2Driver</jakarta.persistence.jdbc.driver>
+                <db.delimiter>!</db.delimiter>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ibm.db2</groupId>
+                    <artifactId>jcc</artifactId>
+                    <version>${db2.jdbc.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>derby</id>
+            <properties>
+                <derby.jdbc.version>10.15.2.0</derby.jdbc.version>
+                <jdbc.db>derby</jdbc.db>
+                <jakarta.persistence.jdbc.driver>org.apache.derby.jdbc.ClientDriver</jakarta.persistence.jdbc.driver>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.derby</groupId>
+                    <artifactId>derbyclient</artifactId>
+                    <version>${derby.jdbc.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.derby</groupId>
+                    <artifactId>derbytools</artifactId>
+                    <version>${derby.jdbc.version}</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <executions>
+                            <execution>
+                                <id>stop-database-init</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${exec.asadmin}</executable>
+                                    <arguments>
+                                        <argument>stop-database</argument>
+                                    </arguments>
+                                    <successCodes>
+                                        <successCode>0</successCode>
+                                        <successCode>1</successCode>
+                                    </successCodes>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>start-database</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${exec.asadmin}</executable>
+                                    <arguments>
+                                        <argument>start-database</argument>
+                                    </arguments>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>stop-database-final</id>
+                                <phase>post-integration-test</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                                <configuration>
+                                    <executable>${exec.asadmin}</executable>
+                                    <arguments>
+                                        <argument>stop-database</argument>
+                                    </arguments>
+                                    <successCodes>
+                                        <successCode>0</successCode>
+                                        <successCode>1</successCode>
+                                    </successCodes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>install_java_procedures</id>
+                                <phase>pre-integration-test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <path id="jdbc.classpath">
+                                            <pathelement path="${jdbc.driver.classes}"/>
+                                            <path refid="maven.runtime.classpath"/>
+                                        </path>
+                                        <sql autocommit="true" classpathref="jdbc.classpath" driver="${jakarta.persistence.jdbc.driver}" onerror="continue" password="${jakarta.persistence.jdbc.password}" url="${jakarta.persistence.jdbc.url}" userid="${jakarta.persistence.jdbc.user}">CALL sqlj.remove_jar('APP.dbprocedures', 0);
+                                            CALL sqlj.install_jar('${project.build.directory}/dbprocedures.jar', 'APP.dbprocedures', 0);
+                                            CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'APP.dbprocedures');
+                                        </sql>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>mssqlserver</id>
+            <properties>
+                <mssqlserver.jdbc.version>12.4.2.jre11</mssqlserver.jdbc.version>
+                <jdbc.db>mssqlserver</jdbc.db>
+                <jakarta.persistence.jdbc.driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jakarta.persistence.jdbc.driver>
+                <db.delimiter>!</db.delimiter>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.microsoft.sqlserver</groupId>
+                    <artifactId>mssql-jdbc</artifactId>
+                    <version>${mssqlserver.jdbc.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>mysql</id>
+            <properties>
+                <mysql.jdbc.version>8.2.0</mysql.jdbc.version>
+                <jdbc.db>mysql</jdbc.db>
+                <jakarta.persistence.jdbc.driver>com.mysql.cj.jdbc.Driver</jakarta.persistence.jdbc.driver>
+                <db.delimiter>!</db.delimiter>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.mysql</groupId>
+                    <artifactId>mysql-connector-j</artifactId>
+                    <version>${mysql.jdbc.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>oracle</id>
+            <properties>
+                <oracle.jdbc.version>23.3.0.23.09</oracle.jdbc.version>
+                <jdbc.db>oracle</jdbc.db>
+                <jakarta.persistence.jdbc.driver>oracle.jdbc.OracleDriver</jakarta.persistence.jdbc.driver>
+                <db.delimiter>!</db.delimiter>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.oracle.database.jdbc</groupId>
+                    <artifactId>ojdbc11</artifactId>
+                    <version>${oracle.jdbc.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>postgresql</id>
+            <properties>
+                <postgresql.jdbc.version>42.6.2</postgresql.jdbc.version>
+                <jdbc.db>postgresql</jdbc.db>
+                <jakarta.persistence.jdbc.driver>org.postgresql.Driver</jakarta.persistence.jdbc.driver>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>${postgresql.jdbc.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>sybase</id>
+            <properties>
+                <sybase.jdbc.version>1.0.0</sybase.jdbc.version>
+                <jdbc.db>sybase</jdbc.db>
+                <jakarta.persistence.jdbc.driver>com.sybase.jdbc4.jdbc.SybDriver</jakarta.persistence.jdbc.driver>
+                <db.delimiter>!</db.delimiter>
+            </properties>
+            <!--
+                Install with:
+                mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=jconn42.jar -DgroupId=com.sybase -DartifactId=jdbc42 -Dversion=1.0.0 -Dpackaging=jar
+            -->
+            <dependencies>
+                <dependency>
+                    <groupId>com.sybase</groupId>
+                    <artifactId>jdbc42</artifactId>
+                    <version>${sybase.jdbc.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+            <properties>
+                <exec.asadmin>${glassfish.toplevel.dir}/bin/asadmin.bat</exec.asadmin>
+            </properties>
         </profile>
     </profiles>
 </project>
