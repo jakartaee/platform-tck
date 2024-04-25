@@ -747,7 +747,13 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.6.0</version>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <environmentVariables>
+                            <AS_JAVA>${java.home}</AS_JAVA>
+                            <JAVA_HOME>${java.home}</JAVA_HOME>
+                        </environmentVariables>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
