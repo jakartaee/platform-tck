@@ -391,8 +391,8 @@ public class Client9 extends UtilCriteriaEntityData {
             cQuery.where(cb.or(List.of(
                     cb.equal(root.get("strVal1"), cb.parameter(String.class, "strParam1")),
                     cb.equal(root.get("strVal1"), cb.parameter(String.class, "strParam2")),
-                    cb.equal(root.get("timeVal"), cb.parameter(String.class, "timeParam")),
-                    cb.equal(root.get("dateVal"), cb.parameter(String.class, "dateParam"))
+                    cb.equal(root.get("timeVal"), cb.parameter(LocalTime.class, "timeParam")),
+                    cb.equal(root.get("dateVal"), cb.parameter(LocalDate.class, "dateParam"))
             )));
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             query.setParameter("strParam1", "Left");
@@ -902,7 +902,7 @@ public class Client9 extends UtilCriteriaEntityData {
                     cb.parameter(Integer.class, "timeParam"),
                     cb.extract(LocalTimeField.SECOND, root.get("timeVal"))));
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
-            query.setParameter("timeParam", 12);
+            query.setParameter("timeParam", 12d);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
                 logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
@@ -1177,7 +1177,7 @@ public class Client9 extends UtilCriteriaEntityData {
         if (cQuery != null) {
             Root<CriteriaEntity> root = cQuery.from(CriteriaEntity.class);
             cQuery.where(
-                    root.get("strVal1").equalTo(cb.parameter(Integer.class, "strParam")));
+                    root.get("strVal1").equalTo(cb.parameter(String.class, "strParam")));
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             query.setParameter("strParam", "LeftToken");
             List<CriteriaEntity> result = query.getResultList();
@@ -1266,7 +1266,7 @@ public class Client9 extends UtilCriteriaEntityData {
         if (cQuery != null) {
             Root<CriteriaEntity> root = cQuery.from(CriteriaEntity.class);
             cQuery.where(
-                    root.get("strVal1").notEqualTo(cb.parameter(Integer.class, "strParam")));
+                    root.get("strVal1").notEqualTo(cb.parameter(String.class, "strParam")));
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             query.setParameter("strParam", "LeftToken");
             List<CriteriaEntity> result = query.getResultList();
