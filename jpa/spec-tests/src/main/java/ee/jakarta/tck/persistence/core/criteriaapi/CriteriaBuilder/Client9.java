@@ -67,6 +67,8 @@ public class Client9 extends UtilCriteriaEntityData {
 
         CriteriaQuery<CriteriaEntity> cQuery = cb.createQuery(CriteriaEntity.class);
         if (cQuery != null) {
+            Root<CriteriaEntity> root = cQuery.from(CriteriaEntity.class);
+            cQuery.select(root);
             cQuery.where(cb.and(Collections.emptyList()));
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             List<CriteriaEntity> result = query.getResultList();
@@ -103,6 +105,8 @@ public class Client9 extends UtilCriteriaEntityData {
 
         CriteriaQuery<CriteriaEntity> cQuery = cb.createQuery(CriteriaEntity.class);
         if (cQuery != null) {
+            Root<CriteriaEntity> root = cQuery.from(CriteriaEntity.class);
+            cQuery.select(root);
             cQuery.where(cb.or(Collections.emptyList()));
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             List<CriteriaEntity> result = query.getResultList();
