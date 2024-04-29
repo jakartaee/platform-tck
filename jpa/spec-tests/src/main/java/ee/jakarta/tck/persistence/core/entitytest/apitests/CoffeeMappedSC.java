@@ -24,7 +24,7 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 
 @NamedNativeQueries({
-		@NamedNativeQuery(name = "findDecafSQLCoffees", query = "Select c.\"ID\", c.\"BRANDNAME\", c.\"PRICE\" from \"COFFEE\" c where c.\"BRANDNAME\" like '%decaf%' ", resultClass = ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee.class) })
+		@NamedNativeQuery(name = "findDecafSQLCoffees", query = "Select c.ID, c.BRANDNAME, c.PRICE from COFFEE c where c.BRANDNAME like '%decaf%' ", resultClass = ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee.class) })
 @NamedQueries({
 		@NamedQuery(name = "findDecafCoffees", query = "Select c from Coffee c where c.brandName like '%decaf%'") })
 
