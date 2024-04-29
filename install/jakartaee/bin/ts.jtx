@@ -78,6 +78,14 @@ com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest29_from_pmservl
 com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest29_from_puservlet
 com/sun/ts/tests/jpa/core/query/apitests/Client.java#queryAPITest29_from_stateless3
 
+# https://github.com/jakartaee/persistence/issues/591 Multiple fetch joins for same attribute
+com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_appmanaged
+com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_pmservlet
+com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_puservlet
+com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_stateful3
+com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_stateless3
+
 ################
 # Security API
 ################
