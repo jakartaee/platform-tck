@@ -1,5 +1,0 @@
-** `jakarta.annotation`
-
-** `jakarta.annotation.security`
-
-** `jakarta.annotation.sql`
