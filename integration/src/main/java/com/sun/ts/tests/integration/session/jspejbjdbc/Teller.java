@@ -14,27 +14,26 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/**
+/*
  * $Id$
- *
- * @author Raja Perumal
- *         08/22/02
  */
 
-package com.sun.ts.tests.jacc.util;
+package com.sun.ts.tests.integration.session.jspejbjdbc;
 
 import java.rmi.RemoteException;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJBHome;
-import jakarta.ejb.FinderException;
+import jakarta.ejb.EJBObject;
 
-public interface JACCEntityHome extends EJBHome {
+public interface Teller extends EJBObject {
+  public void transfer(int from, int to, double amt) throws RemoteException;
 
-  public JACCEntity create(String arg1, int arg2, long arg3)
-      throws RemoteException, CreateException;
+  public double balance(int acct) throws RemoteException;
 
-  public JACCEntity findByPrimaryKey(JACCEntityKey primaryKey)
-      throws RemoteException, FinderException;
+  public double withdraw(int acct, double amt) throws RemoteException;
 
+  public double deposit(int acct, double amt) throws RemoteException;
+
+  public String getAllAccounts() throws RemoteException;
+
+  public String sayHello() throws RemoteException;
 }

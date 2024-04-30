@@ -14,26 +14,19 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/**
+/*
  * $Id$
- *
- * @author Raja Perumal
- *         08/22/02
  */
 
-package com.sun.ts.tests.jacc.util;
+package com.sun.ts.tests.integration.session.jspejbjdbc;
 
 import java.rmi.RemoteException;
+import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
+import jakarta.ejb.CreateException;
+import jakarta.ejb.EJBHome;
 
-public interface JACCEntity extends EJBObject {
-
-  public String getArg1() throws RemoteException;
-
-  public Integer getArg2() throws RemoteException;
-
-  public Long getArg3() throws RemoteException;
-
-  public boolean accessJACCSession_getCallerName() throws RemoteException;
+public interface TellerHome extends EJBHome {
+  Teller create(String name, Properties props)
+      throws CreateException, RemoteException;
 }
