@@ -34,27 +34,6 @@
     <remote>com.sun.ts.tests.assembly.util.refbean.StatefulExternal</remote>
     <ejb-link>Stateful</ejb-link>
   </ejb-ref>
-  <ejb-ref>
-    <ejb-ref-name>ejb/BMPBean_ExternalJAR</ejb-ref-name>
-    <ejb-ref-type>Entity</ejb-ref-type>
-    <home>com.sun.ts.tests.assembly.util.refbean.BMPExternalHome</home>
-    <remote>com.sun.ts.tests.assembly.util.refbean.BMPExternal</remote>
-    <ejb-link>BMP</ejb-link>
-  </ejb-ref>
-  <ejb-ref>
-    <ejb-ref-name>ejb/CMP11Bean_ExternalJAR</ejb-ref-name>
-    <ejb-ref-type>Entity</ejb-ref-type>
-    <home>com.sun.ts.tests.assembly.util.refbean.CMP11ExternalHome</home>
-    <remote>com.sun.ts.tests.assembly.util.refbean.CMP11External</remote>
-    <ejb-link>CMP11</ejb-link>
-  </ejb-ref>
-  <ejb-ref>
-    <ejb-ref-name>ejb/CMP20Bean_ExternalJAR</ejb-ref-name>
-    <ejb-ref-type>Entity</ejb-ref-type>
-    <home>com.sun.ts.tests.assembly.util.refbean.CMP20ExternalHome</home>
-    <remote>com.sun.ts.tests.assembly.util.refbean.CMP20External</remote>
-    <ejb-link>CMP20</ejb-link>
-  </ejb-ref>
   <resource-ref>
     <res-ref-name>jdbc/DB1</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>

@@ -27,18 +27,6 @@
     <ejb-ref-name>ejb/StatefulBean_ExternalJAR</ejb-ref-name>
     <jndi-name/>
   </ejb-ref>
-  <ejb-ref>
-    <ejb-ref-name>ejb/BMPBean_ExternalJAR</ejb-ref-name>
-    <jndi-name/>
-  </ejb-ref>
-  <ejb-ref>
-    <ejb-ref-name>ejb/CMP11Bean_ExternalJAR</ejb-ref-name>
-    <jndi-name/>
-  </ejb-ref>
-  <ejb-ref>
-    <ejb-ref-name>ejb/CMP20Bean_ExternalJAR</ejb-ref-name>
-    <jndi-name/>
-  </ejb-ref>
   <resource-ref>
     <res-ref-name>jdbc/DB1</res-ref-name>
     <jndi-name>jdbc/DB1</jndi-name>
