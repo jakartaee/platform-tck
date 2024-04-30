@@ -61,8 +61,8 @@
         <restype>javax.sql.DataSource</restype>
         <server.host>localhost</server.host>
         <server.port>4848</server.port>
-        <tck.artifactId>jakarta-pages-tck</tck.artifactId>
-        <tck.version>4.0.0</tck.version>
+        <tck.artifactId>pages-platform-tck</tck.artifactId>
+        <tck.version>11.0.0-SNAPSHOT</tck.version>
     </properties>
 
     <dependencies>
@@ -72,7 +72,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.ee4j</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>${tck.artifactId}</artifactId>
             <version>${tck.version}</version>
         </dependency>
@@ -691,7 +691,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp-api.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp.jstl-api.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>org.eclipse.ee4j:${tck.artifactId}</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <webServerHome>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</webServerHome>
