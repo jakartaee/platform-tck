@@ -148,8 +148,14 @@ public class Client extends PMClientBase {
 		 * SEQUENCE SEQGENERATOR START WITH 10
 		 */
 
-		pass2a = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
-		pass2b = findDataInFile(f2, "DROP SEQUENCE SEQGENERATOR");
+		expected.clear();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENSIMPLE");
+		pass2a = findDataInFile(f2, expected);
+		expected.clear();
+		expected.add("DROP SEQUENCE");
+		expected.add("SEQGENERATOR");
+		pass2b = findDataInFile(f2, expected);
 
 		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();

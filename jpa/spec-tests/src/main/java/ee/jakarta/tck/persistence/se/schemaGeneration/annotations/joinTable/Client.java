@@ -185,22 +185,10 @@ public class Client extends PMClientBase {
 		 * SCHEMAGENCOURSE (COURSEID)
 		 */
 
-		pass2a = findDataInFile(f2, new LinkedList<String>() {
-			private static final long serialVersionUID = 22L;
-			{
-				add("ALTER TABLE");
-				add("SCHEMAGEN_COURSE_STUDENT DROP");
-				add("STUDENTIDCONSTRAINT");
-			}
-		});
-		pass2b = findDataInFile(f2, new LinkedList<String>() {
-			private static final long serialVersionUID = 22L;
-			{
-				add("ALTER TABLE");
-				add("SCHEMAGEN_COURSE_STUDENT DROP");
-				add("COURSEIDCONSTRAINT");
-			}
-		});
+		pass2a = findDataInFile(f2, List.of("ALTER TABLE", "SCHEMAGEN_COURSE_STUDENT DROP", "STUDENTIDCONSTRAINT"));
+		pass2a = pass2a || findDataInFile(f2, List.of("DROP TABLE", "SCHEMAGEN_COURSE_STUDENT", "CASCADE CONSTRAINTS"));
+		pass2b = findDataInFile(f2, List.of("ALTER TABLE", "SCHEMAGEN_COURSE_STUDENT DROP", "COURSEIDCONSTRAINT"));
+		pass2b = pass2b || findDataInFile(f2, List.of("DROP TABLE", "SCHEMAGEN_COURSE_STUDENT", "CASCADE CONSTRAINTS"));
 		expected.clear();
 		expected.add("DROP TABLE");
 		expected.add("SCHEMAGEN_COURSE_STUDENT");

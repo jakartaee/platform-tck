@@ -2612,7 +2612,8 @@ public class Client5 extends UtilProductData {
 
 			Date result = tq.getSingleResult();
 			Date d = Date.valueOf(result.toString());
-			if (d.equals(result)) {
+			// Use String.equals because java.sql.Date will compare milliseconds and current_date will contain these
+			if (d.toString().equals(result.toString())) {
 				logger.log(Logger.Level.TRACE, "Successfully returned expected results");
 				pass = true;
 			} else {

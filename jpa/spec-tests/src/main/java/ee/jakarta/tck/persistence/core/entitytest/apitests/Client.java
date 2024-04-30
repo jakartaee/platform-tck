@@ -992,7 +992,7 @@ public class Client extends PMClientBase {
 		}
 		try {
 			getEntityTransaction().begin();
-			getEntityManager().createNativeQuery("DELETE FROM \"COFFEE\"").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM COFFEE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);

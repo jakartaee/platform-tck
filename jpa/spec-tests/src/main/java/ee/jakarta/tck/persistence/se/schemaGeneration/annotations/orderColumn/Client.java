@@ -171,6 +171,7 @@ public class Client extends PMClientBase {
 		expected.add("ALTER TABLE");
 		expected.add("SCHEMAGENEMP DROP");
 		pass2c = findDataInFile(f2, expected);
+		pass2c = pass2c || findDataInFile(f2, List.of("DROP TABLE", "SCHEMAGENEMP", "CASCADE CONSTRAINTS"));
 
 		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();
