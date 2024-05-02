@@ -96,7 +96,7 @@ public class URLClient extends EETest {
    * @class.testArgs: -ap tssql.stmt
    */
 
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup(String[] args, Properties p) throws Fault {
     props = p;
     boolean pass = true;
 
@@ -113,13 +113,13 @@ public class URLClient extends EETest {
         pass = false;
       }
     } catch (Exception e) {
-      throw new Exception("Setup failed:", e);
+      throw new Fault("Setup failed:", e);
     }
     if (!pass) {
       TestUtil.logErr(
           "Please specify host & port of web server " + "in config properties: "
               + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("Setup failed:");
+      throw new Fault("Setup failed:");
     }
   }
 
@@ -139,7 +139,7 @@ public class URLClient extends EETest {
    * jsp and ejb. Deploy it on the JavaEE server. Verify correct operations.
    *
    */
-  public void test1() throws Exception {
+  public void test1() throws Fault {
     try {
       boolean pass = true;
 
@@ -176,12 +176,12 @@ public class URLClient extends EETest {
         TestUtil.logMsg("Withdraw of account is correct: " + withdraw);
 
       if (!pass)
-        throw new Exception("test1 failed");
+        throw new Fault("test1 failed");
 
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
-      throw new Exception("test1 failed", e);
+      throw new Fault("test1 failed", e);
     }
   }
 
@@ -202,7 +202,7 @@ public class URLClient extends EETest {
    * operations.
    *
    */
-  public void test2() throws Exception {
+  public void test2() throws Fault {
     try {
       boolean pass = true;
 
@@ -239,16 +239,16 @@ public class URLClient extends EETest {
         TestUtil.logMsg("Withdraw of account is correct: " + withdraw);
 
       if (!pass)
-        throw new Exception("test2 failed");
+        throw new Fault("test2 failed");
 
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
-      throw new Exception("test2 failed", e);
+      throw new Fault("test2 failed", e);
     }
   }
 
-  public void cleanup() throws Exception {
+  public void cleanup() throws Fault {
     logMsg("cleanup ok");
   }
 }

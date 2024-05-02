@@ -1975,46 +1975,6 @@ ri.wsimport.verbose=true
 ri.wsimport.debug=false
 ri.wsimport.jvmargs=-Djavax.xml.accessExternalSchema=all
 
-#################################
-## Packaging properties for DAOs
-#################################
-ts.dao.root=com/sun/ts/tests/common/dao
-
-ts.dao.classes.base=\
-    ${ts.dao.root}/InvalidDAOSettingException.class, \
-    ${ts.dao.root}/DAOException.class, \
-    ${ts.dao.root}/DAO.class, \
-    ${ts.dao.root}/DataSourceDAO*.class, \
-    ${ts.dao.root}/DAOFactory.class, \
-    ${ts.dao.root}/TSDAOFactory*.class, \
-    ${ts.dao.root}/coffee/CoffeeBean.class, \
-    ${ts.dao.root}/coffee/CoffeeDAO.class, \
-    ${ts.dao.root}/coffee/TxCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/StringPKCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/LongPKCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/FloatPKCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/CompoundPK.class, \
-    ${ts.dao.root}/coffee/variants/CompoundPKCoffeeDAO.class
-
-ts.dao.classes.impl=\
-    ${ts.dao.root}/coffee/DataSourceCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/StringPKDSCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/LongPKDSCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/FloatPKDSCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/CompoundPKDSCoffeeDAO.class
-
-ts.dao.classes.coffee.standard=\
-    ${ts.dao.classes.base}, \
-    ${ts.dao.classes.impl}
-
-ts.dao.classes.coffee.txaware=\
-    ${ts.dao.classes.base}, \
-    ${ts.dao.classes.impl}
-
-ts.dao.classes.coffee.variants=\
-    ${ts.dao.classes.base}, \
-    ${ts.dao.classes.impl}
-
 #####################################
 ## Packaging properties for Wrappers
 #####################################
@@ -2031,17 +1991,6 @@ ts.wrappers.classes.stateless.ejb=\
 ts.wrappers.classes.stateful.ejb=\
     ${ts.wrappers.ejb.root}/StatefulWrapper.class
 
-## Classes to package in ejb-jar for EJB BMP wrapper
-ts.wrappers.classes.bmp.ejb=\
-    ${ts.dao.classes.coffee.standard}, \
-    ${ts.wrappers.ejb.root}/BMPWrapper.class
-
-## Classes to package in ejb-jar for EJB CMP 1.1 wrapper
-ts.wrappers.classes.cmp11.ejb=${ts.wrappers.ejb.root}/CMP11Wrapper.class
-
-## Classes to package in ejb-jar for EJB CMP 2.0 wrapper
-ts.wrappers.classes.cmp20.ejb=${ts.wrappers.ejb.root}/CMP20Wrapper.class
-
 ## Classes to package in ejb-jar for EJB MDB wrapper
 ts.wrappers.classes.mdb.ejb=\
     com/sun/ts/tests/jms/common/JmsUtil.class, \
@@ -2055,9 +2004,6 @@ ts.wrappers.classes.mdb.client=com/sun/ts/tests/jms/commonee/Client.class
 ts.wrappers.classes.all.ejb=\
     ${ts.wrappers.classes.stateless.ejb}, \
     ${ts.wrappers.classes.stateful.ejb}, \
-    ${ts.wrappers.classes.bmp.ejb}, \
-    ${ts.wrappers.classes.cmp11.ejb}, \
-    ${ts.wrappers.classes.cmp20.ejb}, \
     ${ts.wrappers.classes.mdb.ejb}
 
 ## Classes to package in client module for all WEB wrappers
