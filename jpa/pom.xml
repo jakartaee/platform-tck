@@ -26,7 +26,7 @@
     </parent>
     <groupId>jakarta.tck</groupId>
     <artifactId>persistence-tck</artifactId>
-    <version>3.2.0</version>
+    <version>3.2.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>persistence</name>
     <description>persistence tck tests</description>
@@ -69,7 +69,7 @@
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>${project.version}</version>
+            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.annotation</groupId>
