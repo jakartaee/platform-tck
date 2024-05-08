@@ -87,7 +87,9 @@
 
     <properties>
         <ant.version>1.10.11</ant.version>
-        <arquillian.version>1.7.0.Alpha10</arquillian.version>
+        <arquillian.version>1.8.0.Final</arquillian.version>
+        <version.org.jboss.arquillian.core>1.7.2.Final</version.org.jboss.arquillian.core>
+
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
         <!-- Jakarta Concurrency -->
@@ -451,6 +453,18 @@
                 <version>${arquillian.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>arquillian-container-test-spi</artifactId>
+                <version>${arquillian.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.junit</groupId>
+                <artifactId>arquillian-junit-container</artifactId>
+                <version>${version.org.jboss.arquillian.core}</version>
             </dependency>
 
             <dependency>
@@ -845,16 +859,19 @@
                 </executions>
             </plugin>
             <plugin>
-                <!--  Run with: mvn org.openrewrite.maven:rewrite-maven-plugin:runNoFork -Prewrite-javatest -->
+                <!--  Run with: mvn -Drewrite.exclusions="$PWD/annotations,$PWD/appclient,$PWD/assembly,$PWD/bin,$PWD/common,$PWD/connector,$PWD/core-profile-tck,$PWD/docker,$PWD/docker-images,$PWD/ejb,$PWD/ejb30,$PWD/ejb30-ws,$PWD/ejb32,$PWD/el,$PWD/glassfish-runner,$PWD/glassfishtck,$PWD/install,$PWD/integration,$PWD/internal,$PWD/jacc,$PWD/javaee,$PWD/javamail,$PWD/jaxrs,$PWD/jaxws,$PWD/jaxws-common,$PWD/jdbc,$PWD/jdbc_extras,$PWD/jms,$PWD/jsonb,$PWD/jsonp,$PWD/jsp,$PWD/jstl,$PWD/jta,$PWD/jws,$PWD/jws,$PWD/common,$PWD/lib,$PWD/libutil,$PWD/notes,$PWD/release,$PWD/runtime,$PWD/saaj,$PWD/samples,$PWD/servlet,$PWD/signaturetest,$PWD/sql,$PWD/src,$PWD/user_guides,$PWD/webartifacts,$PWD/webservices12,$PWD/webservices13,$PWD/websocket,$PWD/xa" org.openrewrite.maven:rewrite-maven-plugin:runNoFork  2>&1 | tee /tmp/tck.log
+                -->
                 <groupId>org.openrewrite.maven</groupId>
                 <artifactId>rewrite-maven-plugin</artifactId>
-                <version>5.28.0</version>
+                <version>5.30.0</version>
                 <configuration>
                     <activeRecipes>
                         <recipe>tck.jakarta.platform.rewrite.AddArquillianDeployMethodRecipe</recipe>
                     </activeRecipes>
                     <plainTextMasks>
                         <plainTextMask>**/.txt</plainTextMask>
+                        <plainTextMask>**/.jsp</plainTextMask>
+                        <plainTextMask>**/.xml</plainTextMask>
                     </plainTextMasks>
                 </configuration>
                 <dependencies>

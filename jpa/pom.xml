@@ -39,7 +39,8 @@
         <module>tck-dist</module>
     </modules>
     <properties>
-        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
+        <arquillian.version>1.8.0.Final</arquillian.version>
+        <version.org.jboss.arquillian.core>1.7.2.Final</version.org.jboss.arquillian.core>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.version>${project.version}</tck.version>
         <jakarta.ee.version>11.0.0-M1</jakarta.ee.version>
@@ -90,6 +91,16 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
+            <version>${arquillian.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>${version.org.jboss.arquillian.core}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
