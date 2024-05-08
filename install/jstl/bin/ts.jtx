@@ -16,46 +16,4 @@
 
 #
 # $Id$
-# https://github.com/jakartaee/tags/issues/255
-com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveFormatLocalizationContextI18NTest
-com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveSetTimezoneValueTest
-com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveTimezoneValueTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtdate/JSTLClient.java#positiveFDDateStyleTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtdate/JSTLClient.java#positiveFDFallbackLocaleTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtdate/JSTLClient.java#positiveFDLocalizationContextTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtdate/JSTLClient.java#positiveFDTimeStyleTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtdate/JSTLClient.java#positiveFDTimeZoneNullEmptyTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtdate/JSTLClient.java#positiveFDTimeZonePrecedenceTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtdate/JSTLClient.java#positiveFDTimeZoneTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtdate/JSTLClient.java#positiveFDTypeTest
-com/sun/ts/tests/jstl/spec/fmt/format/localecontext/JSTLClient.java#positiveFormatLocalizationContextBrowserLocaleTest
-com/sun/ts/tests/jstl/spec/fmt/format/localecontext/JSTLClient.java#positiveFormatLocalizationContextBundleTest
-com/sun/ts/tests/jstl/spec/fmt/format/localecontext/JSTLClient.java#positiveFormatLocalizationContextI18NTest
-com/sun/ts/tests/jstl/spec/fmt/format/localecontext/JSTLClient.java#positiveFormatLocalizationContextLocaleTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDBodyValueTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDDateStyleTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDFallbackLocaleTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDLocalizationContextTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDParseLocaleTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDTimeStyleTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDTimeZoneNullEmptyTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDTimeZonePrecedenceTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDTimeZoneTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#positivePDTypeTest
-com/sun/ts/tests/jstl/spec/fmt/format/settimezone/JSTLClient.java#positiveSetTimezoneValueNullEmptyTest
-com/sun/ts/tests/jstl/spec/fmt/format/settimezone/JSTLClient.java#positiveSetTimezoneValueTest
-com/sun/ts/tests/jstl/spec/fmt/format/timezone/JSTLClient.java#positiveTimezoneValueNullEmptyTest
-com/sun/ts/tests/jstl/spec/fmt/format/timezone/JSTLClient.java#positiveTimezoneValueTest
-
-#https://github.com/jakartaee/tags/issues/256
-com/sun/ts/tests/jstl/spec/core/urlresource/importtag/JSTLClient.java#negativeImportRequestDispatcherServletExceptionTest
-com/sun/ts/tests/jstl/spec/core/urlresource/importtag/JSTLClient.java#negativeImportRequestDispatcherRTIOExceptionTest
-com/sun/ts/tests/jstl/spec/fmt/format/fmtnum/JSTLClient.java#negativeFNUnableToParseValueTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsedate/JSTLClient.java#negativePDUnableToParseValueTest
-com/sun/ts/tests/jstl/spec/fmt/format/parsenum/JSTLClient.java#negativePNUnableToParseValueTest
-com/sun/ts/tests/jstl/spec/sql/param/JSTLClient.java#negativeParamQueryBodyContentTest
-com/sun/ts/tests/jstl/spec/sql/param/JSTLClient.java#negativeParamQuerySQLAttributeTest
-com/sun/ts/tests/jstl/spec/sql/query/JSTLClient.java#negativeQueryBodyContentTest
-com/sun/ts/tests/jstl/spec/sql/query/JSTLClient.java#negativeQuerySQLAttributeTest
-com/sun/ts/tests/jstl/spec/sql/update/JSTLClient.java#negativeUpdateBodyContentTest
-com/sun/ts/tests/jstl/spec/sql/update/JSTLClient.java#negativeUpdateSQLAttributeTest2
+#
