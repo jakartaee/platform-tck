@@ -19,19 +19,20 @@
     <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
-        <version>10.0.0-SNAPSHOT</version>
+        <version>11.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.javaee-module-tck</artifactId>
-    <version>10.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
-        <jakarta.platform.version>10.0.0</jakarta.platform.version>
+        <glassfish.container.version>7.0.9</glassfish.container.version>
+        <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>javaee-tck</tck.artifactId>
-        <tck.version>4.0.0</tck.version>
+        <tck.version>11.0.0-SNAPSHOT</tck.version>
     </properties>
 
     <dependencies>
@@ -43,12 +44,7 @@
         <dependency>
             <groupId>jakartatck</groupId>
             <artifactId>javaee-tck</artifactId>
-            <version>10.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.main.common</groupId>
-            <artifactId>simple-glassfish-api</artifactId>
-            <version>${glassfish.container.version}</version>
+            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
