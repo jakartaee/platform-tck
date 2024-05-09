@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,6 +18,8 @@ package ee.jakarta.tck.persistence.se.schemaGeneration.annotations.table;
 
 import java.io.File;
 import java.lang.System.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -26,7 +28,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
@@ -123,7 +124,11 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "CREATE TABLE SCHEMAGENSIMPLE");
-		pass2 = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
+
+		List<String> expected = new ArrayList<String>();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENSIMPLE");
+		pass2 = findDataInFile(f2, expected);
 
 		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();

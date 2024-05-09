@@ -1,7 +1,6 @@
-** JDOM 1.1.3
+** dbprocedures
 
-** Apache Commons HTTP Client 3.1
+** persistence-tck-common
 
-** Apache Commons Logging 1.1.3
+** persistence-tck-spec-tests
 
-** Apache Commons Codec 1.9

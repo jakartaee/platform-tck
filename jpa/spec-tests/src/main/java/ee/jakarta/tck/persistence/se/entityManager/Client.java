@@ -29,7 +29,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.Parameter;
@@ -3691,7 +3690,7 @@ public class Client extends PMClientBase {
 		CriteriaQuery<A> cquery = cbuilder.createQuery(A.class);
 		Root<A> a = cquery.from(A.class);
 		cquery.select(a);
-		ParameterExpression<Integer> param1 = cbuilder.parameter(Integer.class, "idParam");
+		ParameterExpression<String> param1 = cbuilder.parameter(String.class, "idParam");
 		cquery.where(cbuilder.equal(a.get("id"), param1));
 		TypedQuery<A> tquery = getEntityManager().createQuery(cquery);
 		getEntityManager().close();

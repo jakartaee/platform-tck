@@ -145,8 +145,8 @@
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
         <webservices-tools.version>3.0.0</webservices-tools.version>
         <!-- Jakarta WebSocket -->
-        <websocket-api.version>2.2.0-M1</websocket-api.version>
-        <websocket-client-api.version>2.2.0-M1</websocket-client-api.version>
+        <websocket-api.version>2.2.0</websocket-api.version>
+        <websocket-client-api.version>2.2.0</websocket-client-api.version>
     </properties>
 
     <dependencyManagement>
@@ -422,6 +422,8 @@
                 <groupId>javatest</groupId>
                 <artifactId>javatest</artifactId>
                 <version>${javatest.version}</version>
+                <scope>compile</scope>
+                <optional>true</optional>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -745,7 +747,13 @@
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.6.0</version>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <environmentVariables>
+                            <AS_JAVA>${java.home}</AS_JAVA>
+                            <JAVA_HOME>${java.home}</JAVA_HOME>
+                        </environmentVariables>
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -850,6 +858,65 @@
             <modules>
                 <module>glassfish-runner</module>
             </modules>
+        </profile>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <pushChanges>false</pushChanges>
+                            <localCheckout>true</localCheckout>
+                            <preparationGoals>clean install</preparationGoals>
+                            <releaseProfiles>gpg-sign</releaseProfiles>
+                            <tagNameFormat>@{project.version}</tagNameFormat>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <doclet>nl.talsmasoftware.umldoclet.UMLDoclet</doclet>
+                            <docletArtifact>
+                                <groupId>nl.talsmasoftware</groupId>
+                                <artifactId>umldoclet</artifactId>
+                                <version>2.0.18</version>
+                            </docletArtifact>
+                            <useStandardDocletOptions>true</useStandardDocletOptions>
+                            <charset>UTF-8</charset>
+                            <encoding>UTF-8</encoding>
+                            <docencoding>UTF-8</docencoding>
+                            <breakiterator>true</breakiterator>
+                            <version>true</version>
+                            <author>true</author>
+                            <keywords>true</keywords>
+                            <additionalOptions>
+                                <additionalOption>-sourceclasspath ${project.build.outputDirectory}</additionalOption>
+                            </additionalOptions>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 

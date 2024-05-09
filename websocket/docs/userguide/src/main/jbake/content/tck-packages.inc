@@ -1,7 +1,4 @@
-** JDOM 1.1.3
+** websocket-tck-common-2.2.0.jar
 
-** Apache Commons HTTP Client 3.1
+** websocket-tck-spec-tests-2.2.0.jar
 
-** Apache Commons Logging 1.1.3
-
-** Apache Commons Codec 1.9

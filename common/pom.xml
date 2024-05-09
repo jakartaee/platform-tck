@@ -83,6 +83,8 @@
         <dependency>
             <groupId>javatest</groupId>
             <artifactId>javatest</artifactId>
+            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 

@@ -30,7 +30,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.TransactionRequiredException;
 
 public class Client extends PMClientBase {
@@ -106,9 +105,9 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(o9);
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
-			q = getEntityManager().createNativeQuery("Select o.\"ID\" AS \"OID\", o.\"TOTALPRICE\" AS \"OPRICE\", "
-					+ "o.\"FK1_FOR_ITEM\" AS \"OITEM\", i.\"ITEMNAME\" AS \"INAME\" from \"ORDER1\" o, \"ITEM\" i "
-					+ "WHERE (o.\"TOTALPRICE\" < 100) AND (o.\"FK1_FOR_ITEM\" = i.\"ID\")", "Order2ItemResults")
+			q = getEntityManager().createNativeQuery("Select o.ID AS \"OID\", o.TOTALPRICE AS \"OPRICE\", "
+					+ "o.FK1_FOR_ITEM AS \"OITEM\", i.ITEMNAME AS \"INAME\" from ORDER1 o, ITEM i "
+					+ "WHERE (o.TOTALPRICE < 100) AND (o.FK1_FOR_ITEM = i.ID)", "Order2ItemResults")
 					.getResultList();
 
 			if (q.size() != 1) {
@@ -218,9 +217,9 @@ public class Client extends PMClientBase {
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
 			q = getEntityManager()
-					.createNativeQuery("Select o.\"ID\" AS \"THISID\", o.\"TOTALPRICE\" AS \"THISPRICE\", "
-							+ "o.\"FK1_FOR_ITEM\" AS \"THISITEM\", i.\"ID\", i.\"ITEMNAME\" from \"ORDER1\" o, \"ITEM\" i "
-							+ "WHERE (o.\"TOTALPRICE\" > 140) AND (o.\"FK1_FOR_ITEM\" = i.\"ID\")", "Order3ItemResults")
+					.createNativeQuery("Select o.ID AS \"THISID\", o.TOTALPRICE AS \"THISPRICE\", "
+							+ "o.FK1_FOR_ITEM AS \"THISITEM\", i.ID, i.ITEMNAME from ORDER1 o, ITEM i "
+							+ "WHERE (o.TOTALPRICE > 140) AND (o.FK1_FOR_ITEM = i.ID)", "Order3ItemResults")
 					.getResultList();
 
 			if (q.size() != 1) {
@@ -323,9 +322,9 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(o9);
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
-			q = getEntityManager().createNativeQuery("Select o.\"ID\" AS \"OID\", o.\"TOTALPRICE\" AS \"OPRICE\", "
-					+ "o.\"FK1_FOR_ITEM\" AS \"OITEM\", i.\"ITEMNAME\" AS \"INAME\" from \"ORDER1\" o, \"ITEM\" i "
-					+ "WHERE (o.\"TOTALPRICE\" < 100) AND (o.\"FK1_FOR_ITEM\" = i.\"ID\")", "Order4ItemResults")
+			q = getEntityManager().createNativeQuery("Select o.ID AS \"OID\", o.TOTALPRICE AS \"OPRICE\", "
+					+ "o.FK1_FOR_ITEM AS \"OITEM\", i.ITEMNAME AS \"INAME\" from ORDER1 o, ITEM i "
+					+ "WHERE (o.TOTALPRICE < 100) AND (o.FK1_FOR_ITEM = i.ID)", "Order4ItemResults")
 					.getResultList();
 
 			if (q.size() != 1) {
@@ -431,9 +430,9 @@ public class Client extends PMClientBase {
 			logger.log(Logger.Level.TRACE, "Execute Query");
 			q = getEntityManager()
 					.createNativeQuery(
-							"Select o.\"ID\" AS \"OID\", o.\"TOTALPRICE\" AS \"OPRICE\", "
-									+ "i.\"ITEMNAME\" AS \"OITEMNAME\" from \"ORDER1\" o, \"ITEM\" i "
-									+ "WHERE (o.\"TOTALPRICE\" < 100) AND (o.\"FK1_FOR_ITEM\" = i.\"ID\")",
+							"Select o.ID AS \"OID\", o.TOTALPRICE AS \"OPRICE\", "
+									+ "i.ITEMNAME AS \"OITEMNAME\" from ORDER1 o, ITEM i "
+									+ "WHERE (o.TOTALPRICE < 100) AND (o.FK1_FOR_ITEM = i.ID)",
 							"Order5ItemResults")
 					.getResultList();
 
@@ -501,8 +500,8 @@ public class Client extends PMClientBase {
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
 			q = getEntityManager().createNativeQuery(
-					"Select o.\"ID\" AS \"OID\", o.\"TOTAL\" AS \"PTOTAL\" from \"PURCHASE_ORDER\" o "
-							+ "WHERE (o.\"TOTAL\" < 50)",
+					"Select o.ID AS \"OID\", o.TOTAL AS \"PTOTAL\" from PURCHASE_ORDER o "
+							+ "WHERE (o.TOTAL < 50)",
 					"PurchaseOrder1Results").getResultList();
 
 			if (q.size() != 1) {
@@ -569,7 +568,7 @@ public class Client extends PMClientBase {
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
 			q = getEntityManager().createNativeQuery(
-					"Select o.\"TOTAL\" AS \"PTOTAL\" from \"PURCHASE_ORDER\" o " + "WHERE (o.\"TOTAL\" < 50)",
+					"Select o.TOTAL AS \"PTOTAL\" from PURCHASE_ORDER o " + "WHERE (o.TOTAL < 50)",
 					"PurchaseOrder2Results").getResultList();
 
 			if (q.size() != 1) {
@@ -641,7 +640,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(o3);
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
-			q = getEntityManager().createNativeQuery("Select o.\"ID\" from \"ORDER1\" o WHERE o.\"ID\" = 2 ")
+			q = getEntityManager().createNativeQuery("Select o.ID from ORDER1 o WHERE o.ID = 2 ")
 					.getResultList();
 
 			List<Integer> actual = new ArrayList<Integer>();
@@ -704,7 +703,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(o3);
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
-			q = getEntityManager().createNativeQuery("Select * from \"ORDER1\" o WHERE o.\"ID\" = 2 ", Order1.class)
+			q = getEntityManager().createNativeQuery("Select * from ORDER1 o WHERE o.ID = 2 ", Order1.class)
 					.getResultList();
 
 			if (q.size() != 1) {
@@ -766,7 +765,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(o3);
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
-			q = getEntityManager().createNativeQuery("Select * from \"ORDER1\" o WHERE o.\"ID\" = 2 ", Order1.class)
+			q = getEntityManager().createNativeQuery("Select * from ORDER1 o WHERE o.ID = 2 ", Order1.class)
 					.getResultList();
 
 			if (q.size() != 1) {
@@ -805,7 +804,7 @@ public class Client extends PMClientBase {
 	public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
-			getEntityManager().createNativeQuery("Delete from \"ORDER1\"").executeUpdate();
+			getEntityManager().createNativeQuery("Delete from ORDER1").executeUpdate();
 			logger.log(Logger.Level.ERROR, "TransactionRequiredException was not thrown");
 		} catch (TransactionRequiredException ise) {
 			logger.log(Logger.Level.TRACE, "Received expected TransactionRequiredException");
@@ -858,7 +857,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(o3);
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
-			q = getEntityManager().createNativeQuery("Select * from \"ORDER1\" o WHERE o.\"ID\" = ? ", Order1.class)
+			q = getEntityManager().createNativeQuery("Select * from ORDER1 o WHERE o.ID = ? ", Order1.class)
 					.setParameter(1, 2).getResultList();
 
 			if (q.size() != 1) {
@@ -918,7 +917,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(o3);
 
 			logger.log(Logger.Level.TRACE, "Execute Query");
-			q = getEntityManager().createNativeQuery("Select COUNT(*) from \"ORDER1\" o").getSingleResult();
+			q = getEntityManager().createNativeQuery("Select COUNT(*) from ORDER1 o").getSingleResult();
 			int i = 0;
 			i = convertToInt(q);
 			if (i == 3) {
@@ -958,9 +957,9 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createNativeQuery("Delete FROM ORDER2").executeUpdate();
-			getEntityManager().createNativeQuery("Delete FROM \"ORDER1\"").executeUpdate();
-			getEntityManager().createNativeQuery("Delete FROM \"ITEM\"").executeUpdate();
-			getEntityManager().createNativeQuery("Delete FROM \"PURCHASE_ORDER\"").executeUpdate();
+			getEntityManager().createNativeQuery("Delete FROM ORDER1").executeUpdate();
+			getEntityManager().createNativeQuery("Delete FROM ITEM").executeUpdate();
+			getEntityManager().createNativeQuery("Delete FROM PURCHASE_ORDER").executeUpdate();
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {

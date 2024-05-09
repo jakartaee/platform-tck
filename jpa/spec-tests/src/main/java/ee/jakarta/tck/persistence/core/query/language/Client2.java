@@ -25,10 +25,10 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
+
 import ee.jakarta.tck.persistence.common.schema30.Country;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
-
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 

@@ -28,8 +28,8 @@
     <files>
         <!-- license -->
         <file>
-            <source>${project.basedir}/src/main/resources/LICENSE_${license}.md</source>
-            <destName>LICENSE.md</destName>
+            <source>${project.basedir}/src/main/resources/eftl-1.1.adoc</source>
+            <destName>eftl.adoc</destName>
         </file>
     </files>
     <fileSets>
@@ -59,6 +59,14 @@
                 <include>*.html</include>
                 <include>css/**</include>
                 <include>img/**</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.basedir}/</directory>
+            <outputDirectory>artifacts</outputDirectory>
+            <fileMode>755</fileMode>
+            <includes>
+                <include>*.sh</include>
             </includes>
         </fileSet>        
     </fileSets>

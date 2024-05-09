@@ -318,7 +318,7 @@ public class Client extends PMClientBase {
 	public void getPersistenceXMLSchemaVersion() throws Exception {
 		boolean pass1 = false;
 
-		String expected1 = "3.0";
+		String expected1 = "3.2";
 		getClassObjects();
 		String actual = puInfo.getPersistenceXMLSchemaVersion();
 		if (actual.toString().equals(expected1)) {

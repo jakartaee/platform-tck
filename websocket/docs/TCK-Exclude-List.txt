@@ -14,7 +14,7 @@
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 #
 
-# This file lists the excluded tests from Jakarta REST TCK. 
+# This file lists the excluded tests from Jakarta Websocket TCK. 
 # This is intended only for documentation purpose and is not used to exclude any tests.
 # The tests are excluded from the test source using @Disabled tag in JUnit framework.
 #

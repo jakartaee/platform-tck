@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,18 +37,6 @@ public class CallerBeanEJB extends StatelessWrapper {
 
   public boolean testStatefulBoth(Properties props) {
     return TestLogic.testStatefulBoth(nctx, props);
-  }
-
-  public boolean testCMP20Remote(Properties props) {
-    return TestLogic.testCMP20Remote(nctx, props);
-  }
-
-  public boolean testCMP20Local(Properties props) {
-    return TestLogic.testCMP20Local(nctx, props);
-  }
-
-  public boolean testCMP20Both(Properties props) {
-    return TestLogic.testCMP20Both(nctx, props);
   }
 
   public void cleanUpBean() {

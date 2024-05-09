@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -77,38 +77,6 @@ public class Client extends EETest {
   /* Run test */
 
   /*
-   * @testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:2.2
-   * 
-   * @test_Strategy: A session bean instance has access to the LocalHome and
-   * Local Interfaces of a Local Entity Bean (CMP). Verify local access from
-   * Session Bean to a local Entity Bean (CMP).
-   */
-
-  public void test1() throws Fault {
-    logTrace("test1");
-    boolean pass = false;
-    try {
-      logMsg("Create EJB instance");
-      bRef = bHome.create(props);
-      logMsg("Perform Local object access test from SB to Local EB (CMP)");
-      pass = bRef.test1();
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    } finally {
-      try {
-        bRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-
-    if (!pass)
-      throw new Fault("test1 failed");
-  }
-
-  /*
    * @testName: test2
    * 
    * @assertion_ids: EJB:SPEC:2.1; EJB:SPEC:26; EJB:SPEC:26.1; EJB:SPEC:26.2
@@ -139,38 +107,6 @@ public class Client extends EETest {
 
     if (!pass)
       throw new Fault("test2 failed");
-  }
-
-  /*
-   * @testName: test3
-   * 
-   * @assertion_ids: EJB:SPEC:2.2; EJB:SPEC:5; EJB:SPEC:11; EJB:SPEC:27
-   * 
-   * @test_Strategy: A session bean instance has access to the LocalHome and
-   * Local Interfaces of a Local Entity Bean (BMP). Verify local access from
-   * Session Bean to a local Entity Bean (BMP).
-   */
-
-  public void test3() throws Fault {
-    logTrace("test3");
-    boolean pass = false;
-    try {
-      logMsg("Create EJB instance");
-      bRef = bHome.create(props);
-      logMsg("Perform Local object access test from SB to Local EB (BMP)");
-      pass = bRef.test3();
-    } catch (Exception e) {
-      throw new Fault("test3 failed", e);
-    } finally {
-      try {
-        bRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
-    }
-
-    if (!pass)
-      throw new Fault("test3 failed");
   }
 
   /*

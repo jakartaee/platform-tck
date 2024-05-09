@@ -20,8 +20,8 @@
 <entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence/orm
-    https://jakarta.ee/xml/ns/persistence/orm/orm_3_1.xsd"
-    version="3.1">
+    https://jakarta.ee/xml/ns/persistence/orm/orm_3_2.xsd"
+    version="3.2">
     <named-query name="xmlNamedQuery">
         <query>Select c from Coffee c where c.brandName='decaf'</query>
     </named-query>
@@ -29,10 +29,10 @@
         <query>Select c from Coffee c where c.brandName='decaf'</query>
     </named-query>
     <named-native-query name="xmlNamedNativeQuery" result-class="ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee">
-        <query>select c."ID", c."BRANDNAME", c."PRICE" from "COFFEE" c WHERE c."BRANDNAME" = 'decaf'</query>
+        <query>select c.ID, c.BRANDNAME, c.PRICE from COFFEE c WHERE c.BRANDNAME = 'decaf'</query>
     </named-native-query>
     <named-native-query name="xmlOverridesNamedNativeQuery"
                         result-class="ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee">
-        <query>select c."ID", c."BRANDNAME", c."PRICE" from "COFFEE" c WHERE c."BRANDNAME" = 'decaf'</query>
+        <query>select c.ID, c.BRANDNAME, c.PRICE from COFFEE c WHERE c.BRANDNAME = 'decaf'</query>
     </named-native-query>
 </entity-mappings>

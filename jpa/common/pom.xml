@@ -23,10 +23,21 @@
         <groupId>jakarta.tck</groupId>
         <artifactId>persistence-tck</artifactId>
         <version>3.2.0</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>persistence-tck-common</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${jakarta.ee.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>libutil</artifactId>
+            <version>${jakarta.ee.version}</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

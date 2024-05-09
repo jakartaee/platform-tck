@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
@@ -147,8 +146,10 @@ public class Client extends PMClientBase {
 		expected.add("PRIMARY KEY (DEPTID)");
 		pass1b = findDataInFile(f1, expected);
 
-		pass1c = findDataInFile(f1,
-				"ALTER TABLE SCHEMAGENEMP ADD CONSTRAINT MYCONSTRANT FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT (DEPTID)");
+		expected.clear();
+		expected.add("ALTER TABLE");
+		expected.add("SCHEMAGENEMP ADD CONSTRAINT MYCONSTRANT FOREIGN KEY (FK_DEPT) REFERENCES SCHEMAGENDEPT (DEPTID)");
+		pass1c = findDataInFile(f1, expected);
 
 		/*
 		 * CREATE TABLE SCHEMAGENDEPT (DEPTID INTEGER NOT NULL, PRIMARY KEY (DEPTID))
@@ -158,9 +159,19 @@ public class Client extends PMClientBase {
 		 * (DEPTID)
 		 */
 
-		pass2a = findDataInFile(f2, "DROP TABLE SCHEMAGENEMP");
-		pass2b = findDataInFile(f2, "DROP TABLE SCHEMAGENDEPT");
-		pass2c = findDataInFile(f2, "ALTER TABLE SCHEMAGENEMP DROP");
+		expected.clear();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENEMP");
+		pass2a = findDataInFile(f2, expected);
+		expected.clear();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENDEPT");
+		pass2b = findDataInFile(f2, expected);
+		expected.clear();
+		expected.add("ALTER TABLE");
+		expected.add("SCHEMAGENEMP DROP");
+		pass2c = findDataInFile(f2, expected);
+		pass2c = pass2c || findDataInFile(f2, List.of("DROP TABLE", "SCHEMAGENEMP", "CASCADE CONSTRAINTS"));
 
 		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();

@@ -30,7 +30,6 @@ import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.DriverManagerConnection;
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.Cache;
 import jakarta.persistence.CacheRetrieveMode;
 import jakarta.persistence.CacheStoreMode;

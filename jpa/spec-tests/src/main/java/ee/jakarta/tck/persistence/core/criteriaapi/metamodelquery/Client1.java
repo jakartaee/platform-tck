@@ -26,6 +26,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
+
 import ee.jakarta.tck.persistence.common.schema30.Address;
 import ee.jakarta.tck.persistence.common.schema30.Address_;
 import ee.jakarta.tck.persistence.common.schema30.Country_;
@@ -34,7 +35,6 @@ import ee.jakarta.tck.persistence.common.schema30.Customer_;
 import ee.jakarta.tck.persistence.common.schema30.Spouse;
 import ee.jakarta.tck.persistence.common.schema30.Spouse_;
 import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
-
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -1503,16 +1503,17 @@ public class Client1 extends UtilCustomerData {
 		try {
 			getEntityTransaction().begin();
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
-			From<Customer, Customer> customer = cquery.from(Customer.class);
+			From<Customer, Customer> c1 = cquery.from(Customer.class);
 
-			JoinType jt = customer.fetch(Customer_.spouse).getJoinType();
+			JoinType jt = c1.fetch(Customer_.spouse).getJoinType();
 			if (jt.equals(JoinType.INNER)) {
 				logger.log(Logger.Level.TRACE, "Received expected JoinType:" + jt.name());
 				pass1 = true;
 			} else {
 				logger.log(Logger.Level.ERROR, "Expected JoinType:" + JoinType.INNER.name() + ", actual:" + jt.name());
 			}
-			jt = customer.fetch(Customer_.spouse, JoinType.INNER).getJoinType();
+			From<Customer, Customer> c2 = cquery.from(Customer.class);
+			jt = c2.fetch(Customer_.spouse, JoinType.INNER).getJoinType();
 			if (jt.equals(JoinType.INNER)) {
 				logger.log(Logger.Level.TRACE, "Received expected JoinType:" + jt.name());
 				pass2 = true;
@@ -1520,7 +1521,8 @@ public class Client1 extends UtilCustomerData {
 			} else {
 				logger.log(Logger.Level.ERROR, "Expected JoinType:" + JoinType.INNER.name() + ", actual:" + jt.name());
 			}
-			jt = customer.fetch(Customer_.spouse, JoinType.LEFT).getJoinType();
+			From<Customer, Customer> c3 = cquery.from(Customer.class);
+			jt = c3.fetch(Customer_.spouse, JoinType.LEFT).getJoinType();
 			if (jt.equals(JoinType.LEFT)) {
 				logger.log(Logger.Level.TRACE, "Received expected JoinType:" + jt.name());
 				pass3 = true;
@@ -1538,7 +1540,8 @@ public class Client1 extends UtilCustomerData {
 			 * JoinType.RIGHT.name() + ", actual:" + jt.name()); }
 			 */
 
-			Attribute attr = customer.fetch(Customer_.spouse).getAttribute();
+			From<Customer, Customer> c4 = cquery.from(Customer.class);
+			Attribute attr = c4.fetch(Customer_.spouse).getAttribute();
 			if (attr.getName().equals(Customer_.spouse.getName())) {
 				logger.log(Logger.Level.TRACE, "Received expected attribute:" + attr.getName());
 				pass4 = true;

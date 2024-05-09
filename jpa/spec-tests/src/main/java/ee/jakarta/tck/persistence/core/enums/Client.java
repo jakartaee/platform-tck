@@ -30,7 +30,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.AccessType;
 import jakarta.persistence.CacheRetrieveMode;
 import jakarta.persistence.CacheStoreMode;
@@ -3133,7 +3132,7 @@ public class Client extends PMClientBase {
 		}
 		try {
 			getEntityTransaction().begin();
-			getEntityManager().createNativeQuery("DELETE FROM Order").executeUpdate();
+			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);

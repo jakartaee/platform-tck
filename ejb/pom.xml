@@ -48,6 +48,8 @@
         <dependency>
             <groupId>javatest</groupId>
             <artifactId>javatest</artifactId>
+            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>jakarta.ejb</groupId>
@@ -58,5 +60,15 @@
             <artifactId>jakarta.jms-api</artifactId>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <!-- do not publish this artifact to Maven repositories -->
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

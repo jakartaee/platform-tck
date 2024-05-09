@@ -62,33 +62,13 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>web-servlet</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>web-jsp</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>assembly</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>tck-runtime</artifactId>
-            <version>6.1.0-M1</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>signaturetest</artifactId>
             <version>11.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.netbeans.tools</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>1.7</version>
+            <version>2.2</version>
         </dependency>
         <dependency>
             <groupId>javatest</groupId>
@@ -148,11 +128,18 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>LICENSE_${license}.md</include>
-                    <include>com/</include>
+                    <include>ee/</include>
                 </includes>
             </resource>
         </resources>
         <plugins>
+            <!-- do not publish this artifact to Maven repositories -->
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <configuration>
@@ -226,9 +213,9 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.netbeans.tools</groupId>
+                        <groupId>jakarta.tck</groupId>
                         <artifactId>sigtest-maven-plugin</artifactId>
-                        <version>1.4</version>
+                        <version>2.2</version>
                         <configuration>
                             <FileName>${project.build.directory}/jakarta.servlet.jsp.sig_${project.version}</FileName>
                             <packages>jakarta.servlet.jsp,jakarta.servlet.jsp.el,jakarta.servlet.jsp.tagext</packages>

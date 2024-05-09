@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,7 +28,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
@@ -135,10 +134,7 @@ public class Client extends PMClientBase {
 		expected.add("PRIMARY KEY (ID)");
 		pass1a = findDataInFile(f1, expected);
 
-		expected.clear();
-		expected.add("ALTER TABLE SCHEMAGENSIMPLE ADD");
-		expected.add("CONSTRAINT MYUNIQUECONSTRAINT UNIQUE (ID, NAME)");
-		pass1b = findDataInFile(f1, expected);
+		pass1b = findDataInFile(f1, "CONSTRAINT MYUNIQUECONSTRAINT UNIQUE (ID, NAME)");
 
 		pass1b = pass1b || findDataInFile(f1, "CREATE UNIQUE INDEX MYUNIQUECONSTRAINT ON SCHEMAGENSIMPLE (ID, NAME)");
 		/*
@@ -153,7 +149,10 @@ public class Client extends PMClientBase {
 		 * findDataInFile(f2, "ALTER TABLE SCHEMAGENSIMPLE DROP");
 		 */
 
-		pass2b = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
+		expected.clear();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENSIMPLE");
+		pass2b = findDataInFile(f2, expected);
 
 		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();

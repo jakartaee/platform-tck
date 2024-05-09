@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
+
 import ee.jakarta.tck.persistence.common.schema30.Address_;
 import ee.jakarta.tck.persistence.common.schema30.CreditCard;
 import ee.jakarta.tck.persistence.common.schema30.CreditCard_;
@@ -39,7 +40,6 @@ import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.Order_;
 import ee.jakarta.tck.persistence.common.schema30.Product_;
 import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
-
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.AbstractQuery;

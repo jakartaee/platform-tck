@@ -27,16 +27,73 @@
     </parent>
     <artifactId>persistence-tck-dist</artifactId>
     <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>persistence-tck</artifactId>
+            <version>${version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>persistence-tck-common</artifactId>
+            <version>${version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>persistence-tck-spec-tests</artifactId>
+            <version>${version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dbprocedures</artifactId>
+            <version>${version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>persistence-tck-common</artifactId>
+            <version>${version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>persistence-tck-spec-tests</artifactId>
+            <version>${version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dbprocedures</artifactId>
+            <version>${version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>persistence-tck-common</artifactId>
+            <version>${version}</version>
+            <classifier>sources</classifier>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>persistence-tck-spec-tests</artifactId>
+            <version>${version}</version>
+            <classifier>sources</classifier>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dbprocedures</artifactId>
+            <version>${version}</version>
+            <classifier>sources</classifier>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
     <build>
         <finalName>${bundle-name}-${project.version}</finalName>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>LICENSE_${license}.md</include>
-                </includes>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -71,13 +128,6 @@
             <properties>
                 <bundle-name>jakarta-persistence-tck</bundle-name>
                 <license>EFTL</license>
-            </properties>
-        </profile>
-        <profile>
-            <id>EPL</id>
-            <properties>
-                <bundle-name>persistence-tck</bundle-name>
-                <license>EPL</license>
             </properties>
         </profile>
     </profiles>

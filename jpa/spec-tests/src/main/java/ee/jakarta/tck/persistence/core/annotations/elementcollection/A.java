@@ -21,7 +21,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor;
-
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

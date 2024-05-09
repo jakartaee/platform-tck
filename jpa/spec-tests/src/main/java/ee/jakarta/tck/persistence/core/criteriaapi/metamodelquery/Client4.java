@@ -26,11 +26,11 @@ import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
+
 import ee.jakarta.tck.persistence.common.schema30.Product;
 import ee.jakarta.tck.persistence.common.schema30.Product_;
 import ee.jakarta.tck.persistence.common.schema30.ShelfLife_;
 import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
-
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;

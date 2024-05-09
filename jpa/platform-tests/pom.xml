@@ -23,7 +23,6 @@
         <groupId>jakarta.tck</groupId>
         <artifactId>persistence-tck</artifactId>
         <version>3.2.0</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>persistence-tck-platform-tests</artifactId>
     <packaging>jar</packaging>
@@ -31,6 +30,7 @@
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

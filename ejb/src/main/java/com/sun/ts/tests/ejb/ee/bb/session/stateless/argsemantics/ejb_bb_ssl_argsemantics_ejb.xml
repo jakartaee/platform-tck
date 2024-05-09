@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,25 +28,11 @@
       <session-type>Stateless</session-type>
       <transaction-type>Container</transaction-type>
       <ejb-ref>
-        <ejb-ref-name>ejb/CMP20CalleeBothRemote</ejb-ref-name>
-        <ejb-ref-type>Entity</ejb-ref-type>
-        <home>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeHome</home>
-        <remote>com.sun.ts.tests.common.ejb.calleebeans.CMP20Callee</remote>
-        <ejb-link>CMP20CalleeBoth</ejb-link>
-      </ejb-ref>
-      <ejb-ref>
         <ejb-ref-name>ejb/StatefulCalleeBothRemote</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
         <home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeHome</home>
         <remote>com.sun.ts.tests.common.ejb.calleebeans.StatefulCallee</remote>
         <ejb-link>StatefulCalleeBoth</ejb-link>
-      </ejb-ref>
-      <ejb-ref>
-        <ejb-ref-name>ejb/CMP20CalleeRemote</ejb-ref-name>
-        <ejb-ref-type>Entity</ejb-ref-type>
-        <home>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeHome</home>
-        <remote>com.sun.ts.tests.common.ejb.calleebeans.CMP20Callee</remote>
-        <ejb-link>CMP20CalleeRemote</ejb-link>
       </ejb-ref>
       <ejb-ref>
         <ejb-ref-name>ejb/StatefulCalleeRemote</ejb-ref-name>
@@ -69,74 +55,10 @@
         <local>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeLocal</local>
         <ejb-link>StatefulCalleeBoth</ejb-link>
       </ejb-local-ref>
-      <ejb-local-ref>
-        <ejb-ref-name>ejb/CMP20CalleeLocal</ejb-ref-name>
-        <ejb-ref-type>Entity</ejb-ref-type>
-        <local-home>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocalHome</local-home>
-        <local>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocal</local>
-        <ejb-link>CMP20CalleeLocal</ejb-link>
-      </ejb-local-ref>
-      <ejb-local-ref>
-        <ejb-ref-name>ejb/CMP20CalleeBothLocal</ejb-ref-name>
-        <ejb-ref-type>Entity</ejb-ref-type>
-        <local-home>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocalHome</local-home>
-        <local>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocal</local>
-        <ejb-link>CMP20CalleeBoth</ejb-link>
-      </ejb-local-ref>
       <security-identity>
         <use-caller-identity/>
       </security-identity>
     </session>
-    <entity>
-      <ejb-name>CMP20CalleeRemote</ejb-name>
-      <home>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeHome</home>
-      <remote>com.sun.ts.tests.common.ejb.calleebeans.CMP20Callee</remote>
-      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeEJB</ejb-class>
-      <persistence-type>Container</persistence-type>
-      <prim-key-class>java.lang.Integer</prim-key-class>
-      <reentrant>false</reentrant>
-      <cmp-version>2.x</cmp-version>
-      <abstract-schema-name>CMP20CalleeRemote</abstract-schema-name>
-      <cmp-field>
-        <field-name>id</field-name>
-      </cmp-field>
-      <cmp-field>
-        <field-name>price</field-name>
-      </cmp-field>
-      <cmp-field>
-        <field-name>brandName</field-name>
-      </cmp-field>
-      <primkey-field>id</primkey-field>
-      <security-identity>
-        <use-caller-identity/>
-      </security-identity>
-    </entity>
-    <entity>
-      <ejb-name>CMP20CalleeBoth</ejb-name>
-      <home>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeHome</home>
-      <remote>com.sun.ts.tests.common.ejb.calleebeans.CMP20Callee</remote>
-      <local-home>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocalHome</local-home>
-      <local>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocal</local>
-      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeEJB</ejb-class>
-      <persistence-type>Container</persistence-type>
-      <prim-key-class>java.lang.Integer</prim-key-class>
-      <reentrant>false</reentrant>
-      <cmp-version>2.x</cmp-version>
-      <abstract-schema-name>CMP20CalleeBoth</abstract-schema-name>
-      <cmp-field>
-        <field-name>id</field-name>
-      </cmp-field>
-      <cmp-field>
-        <field-name>price</field-name>
-      </cmp-field>
-      <cmp-field>
-        <field-name>brandName</field-name>
-      </cmp-field>
-      <primkey-field>id</primkey-field>
-      <security-identity>
-        <use-caller-identity/>
-      </security-identity>
-    </entity>
     <session>
       <ejb-name>StatefulCalleeBoth</ejb-name>
       <home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeHome</home>
@@ -161,30 +83,6 @@
         <use-caller-identity/>
       </security-identity>
     </session>
-    <entity>
-      <ejb-name>CMP20CalleeLocal</ejb-name>
-      <local-home>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocalHome</local-home>
-      <local>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeLocal</local>
-      <ejb-class>com.sun.ts.tests.common.ejb.calleebeans.CMP20CalleeEJB</ejb-class>
-      <persistence-type>Container</persistence-type>
-      <prim-key-class>java.lang.Integer</prim-key-class>
-      <reentrant>false</reentrant>
-      <cmp-version>2.x</cmp-version>
-      <abstract-schema-name>CMP20CalleeLocal</abstract-schema-name>
-      <cmp-field>
-        <field-name>id</field-name>
-      </cmp-field>
-      <cmp-field>
-        <field-name>price</field-name>
-      </cmp-field>
-      <cmp-field>
-        <field-name>brandName</field-name>
-      </cmp-field>
-      <primkey-field>id</primkey-field>
-      <security-identity>
-        <use-caller-identity/>
-      </security-identity>
-    </entity>
     <session>
       <ejb-name>StatefulCalleeRemote</ejb-name>
       <home>com.sun.ts.tests.common.ejb.calleebeans.StatefulCalleeHome</home>
@@ -198,39 +96,6 @@
     </session>
   </enterprise-beans>
   <assembly-descriptor>
-    <container-transaction>
-      <method>
-        <ejb-name>CallerBean</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>testCMP20Remote</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>Required</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CallerBean</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>testCMP20Both</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>Required</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CallerBean</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>testCMP20Local</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>Required</trans-attribute>
-    </container-transaction>
     <container-transaction>
       <method>
         <ejb-name>CallerBean</ejb-name>
@@ -263,241 +128,6 @@
         </method-params>
       </method>
       <trans-attribute>Required</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeRemote</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>create</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>int</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>float</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeRemote</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>remove</method-name>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeRemote</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>jakarta.ejb.Handle</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeRemote</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>call</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeRemote</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>create</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>int</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>float</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeRemote</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeRemote</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>findByPrimaryKey</method-name>
-        <method-params>
-          <method-param>java.lang.Integer</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>remove</method-name>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Local</method-intf>
-        <method-name>remove</method-name>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>LocalHome</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>create</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>int</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>float</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>LocalHome</method-intf>
-        <method-name>create</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>int</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>float</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>LocalHome</method-intf>
-        <method-name>findByPrimaryKey</method-name>
-        <method-params>
-          <method-param>java.lang.Integer</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>findByPrimaryKey</method-name>
-        <method-params>
-          <method-param>java.lang.Integer</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>LocalHome</method-intf>
-        <method-name>create</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>int</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>float</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>create</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>int</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>float</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>jakarta.ejb.Handle</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Remote</method-intf>
-        <method-name>call</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeBoth</ejb-name>
-        <method-intf>Local</method-intf>
-        <method-name>call</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
     </container-transaction>
     <container-transaction>
       <method>
@@ -534,77 +164,6 @@
         </method-params>
       </method>
       <trans-attribute>Supports</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeLocal</ejb-name>
-        <method-intf>LocalHome</method-intf>
-        <method-name>create</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>int</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>float</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeLocal</ejb-name>
-        <method-intf>Local</method-intf>
-        <method-name>remove</method-name>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeLocal</ejb-name>
-        <method-intf>Local</method-intf>
-        <method-name>call</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeLocal</ejb-name>
-        <method-intf>LocalHome</method-intf>
-        <method-name>create</method-name>
-        <method-params>
-          <method-param>java.util.Properties</method-param>
-          <method-param>int</method-param>
-          <method-param>java.lang.String</method-param>
-          <method-param>float</method-param>
-          <method-param>com.sun.ts.tests.common.ejb.calleebeans.SimpleArgument</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeLocal</ejb-name>
-        <method-intf>LocalHome</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
-    </container-transaction>
-    <container-transaction>
-      <method>
-        <ejb-name>CMP20CalleeLocal</ejb-name>
-        <method-intf>LocalHome</method-intf>
-        <method-name>findByPrimaryKey</method-name>
-        <method-params>
-          <method-param>java.lang.Integer</method-param>
-        </method-params>
-      </method>
-      <trans-attribute>RequiresNew</trans-attribute>
     </container-transaction>
     <container-transaction>
       <method>
