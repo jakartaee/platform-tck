@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -40,11 +40,7 @@ com/sun/ts/tests/ejb30/common/sessioncontext/TestIF.class,
 com/sun/ts/tests/ejb30/common/sessioncontext/Three1IF.class,
 com/sun/ts/tests/ejb30/common/sessioncontext/Three2IF.class,
 com/sun/ts/tests/ejb30/common/sessioncontext/ThreeLocal1IF.class,
-com/sun/ts/tests/ejb30/common/sessioncontext/ThreeLocal2IF.class,
-com/sun/ts/tests/ejb30/common/sessioncontext/TwoLocalHome.class,
-com/sun/ts/tests/ejb30/common/sessioncontext/TwoLocalIF.class,
-com/sun/ts/tests/ejb30/common/sessioncontext/TwoRemoteHome.class,
-com/sun/ts/tests/ejb30/common/sessioncontext/TwoRemoteIF.class
+com/sun/ts/tests/ejb30/common/sessioncontext/ThreeLocal2IF.class
             "/>
   
   <property name="appclient.jar.classes" 
@@ -63,9 +59,7 @@ com/sun/ts/tests/ejb30/common/sessioncontext/TestIF.class,
 com/sun/ts/tests/ejb30/common/sessioncontext/Three1IF.class,
 com/sun/ts/tests/ejb30/common/sessioncontext/Three2IF.class,
 com/sun/ts/tests/ejb30/common/sessioncontext/ThreeLocal1IF.class,
-com/sun/ts/tests/ejb30/common/sessioncontext/ThreeLocal2IF.class,
-com/sun/ts/tests/ejb30/common/sessioncontext/TwoRemoteHome.class,
-com/sun/ts/tests/ejb30/common/sessioncontext/TwoRemoteIF.class
+com/sun/ts/tests/ejb30/common/sessioncontext/ThreeLocal2IF.class
             "/>
   
   <import file="../../../../../../../../../../../src/com/sun/ts/tests/ejb30/common/import.xml"/>  

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,6 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestBeanBase;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.SessionContext;
@@ -49,9 +48,6 @@ public class StatelessTestBean extends TestBeanBase implements TestIF {
   @EJB(name = "removeBean2Remote")
   private Remove2IF removeBean2Remote;
 
-  @EJB(name = "twoLocalHome")
-  private TwoLocalHome twoLocalHome;
-
   public void remove() {
   }
 
@@ -63,10 +59,6 @@ public class StatelessTestBean extends TestBeanBase implements TestIF {
   protected RemoveLocal2IF getRemoveLocalBean2() {
     // return removeBean2;
     return (RemoveLocal2IF) (sessionContext.lookup("removeBean2"));
-  }
-
-  protected TwoLocalHome getTwoLocalHome() {
-    return (TwoLocalHome) (sessionContext.lookup("twoLocalHome"));
   }
 
   protected void setRemoveLocalBean(RemoveLocalIF b) {

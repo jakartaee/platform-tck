@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,9 +26,6 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
-
-import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   // @EJB(name="removeBean")
@@ -42,9 +39,6 @@ public class Client extends ClientBase {
 
   // @EJB(name="testBean")
   private static TestIF testBean;
-
-  @EJB(name = "twoRemoteHome", lookup = "java:global/stateful_remove_complement/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome")
-  private static TwoRemoteHome twoRemoteHome;
 
   public static void main(String[] args) {
     Client theTests = new Client();
@@ -70,11 +64,6 @@ public class Client extends ClientBase {
   @Override
   protected RemoveNotRetainIF getRemoveNotRetainBean() {
     return removeNotRetainBean;
-  }
-
-  @Override
-  protected TwoRemoteHome getTwoRemoteHome() {
-    return twoRemoteHome;
   }
 
   /*
@@ -121,22 +110,6 @@ public class Client extends ClientBase {
    */
   /*
    * @testName: removeNotRetainBean2
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeTwoRemoteHome
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeTwoRemoteHomeHandle
    * 
    * @assertion_ids:
    * 

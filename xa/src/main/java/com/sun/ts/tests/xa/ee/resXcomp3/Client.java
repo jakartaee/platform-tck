@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -40,8 +40,6 @@ public class Client extends ServiceEETest implements Serializable {
 
   private static final String txRef = "java:comp/env/ejb/MyEjbReference";
 
-  private Ejb1TestHome beanHome = null;
-
   private Ejb1Test beanRef = null;
 
   private UserTransaction ut = null;
@@ -75,7 +73,7 @@ public class Client extends ServiceEETest implements Serializable {
       nctx = new TSNamingContext();
 
       TestUtil.logMsg("Lookup Ejb1Test: " + txRef);
-      beanHome = (Ejb1TestHome) nctx.lookup(txRef, Ejb1TestHome.class);
+      beanRef = (Ejb1Test) nctx.lookup(txRef, Ejb1Test.class);
 
       TestUtil.logMsg("Lookup java:comp/UserTransaction");
       ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
@@ -86,8 +84,8 @@ public class Client extends ServiceEETest implements Serializable {
           .getTableName(TestUtil.getProperty("Xa_Tab1_Delete"));
       TestUtil.logTrace("tName1: " + this.tName1);
 
-      TestUtil.logMsg("Create EJB instance of " + txRef);
-      beanRef = (Ejb1Test) beanHome.create(testProps);
+      TestUtil.logMsg("Initialize " + txRef);
+      beanRef.initialize(testProps);
 
       TestUtil.logMsg("Initialize logging data from server in Client");
       beanRef.initLogging(p);
@@ -167,7 +165,6 @@ public class Client extends ServiceEETest implements Serializable {
       // cleanup the bean
       try {
         beanRef.destroyData(tName1);
-        beanRef.remove();
       } catch (Exception e) {
       }
       ;
@@ -237,7 +234,6 @@ public class Client extends ServiceEETest implements Serializable {
       // cleanup the bean
       try {
         beanRef.destroyData(tName1);
-        beanRef.remove();
       } catch (Exception e) {
       }
       ;
@@ -301,7 +297,6 @@ public class Client extends ServiceEETest implements Serializable {
       // cleanup the bean
       try {
         beanRef.destroyData("EIS");
-        beanRef.remove();
       } catch (Exception e) {
       }
       ;
@@ -365,7 +360,6 @@ public class Client extends ServiceEETest implements Serializable {
       // cleanup the bean
       try {
         beanRef.destroyData("EIS");
-        beanRef.remove();
       } catch (Exception e) {
       }
       ;
@@ -435,7 +429,6 @@ public class Client extends ServiceEETest implements Serializable {
       // cleanup the bean
       try {
         beanRef.destroyData("EIS");
-        beanRef.remove();
       } catch (Exception e) {
       }
       ;

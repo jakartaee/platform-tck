@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,19 +19,14 @@
  */
 package com.sun.ts.tests.samples.ejb.ee.twobean;
 
-import java.rmi.RemoteException;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
+import jakarta.ejb.EJBException;
 
-public class TestBean1EJB implements SessionBean {
-  private SessionContext sctx = null;
-
+public class TestBean1EJB {
   private Properties props = null;
 
   private Properties testProps = null;
@@ -39,40 +34,17 @@ public class TestBean1EJB implements SessionBean {
   // testBean2 JNDI name
   private static final String testBean2 = "java:comp/env/ejb/TestBean2";
 
-  private TestBean2Home home = null;
-
   private TestBean2 ref = null;
 
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
+  public void initialize(Properties p) {
+    TestUtil.logTrace("initialize");
     testProps = p;
     try {
       TestUtil.init(p);
     } catch (Exception e) {
       TestUtil.logErr("init failed", e);
-      throw new CreateException("ejbcreate failed" + e.getMessage());
+      throw new EJBException("initialize failed" + e.getMessage());
     }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
   }
 
   // ===========================================================
@@ -86,19 +58,15 @@ public class TestBean1EJB implements SessionBean {
     TestUtil.logMsg("call business method in another bean");
 
     try {
-      // lookup EJB home
+      // lookup EJB
       jc = new TSNamingContext();
-      home = (TestBean2Home) jc.lookup(testBean2, TestBean2Home.class);
-      TestUtil.logMsg("TestBean2Home=" + home);
-      // create EJB instance
-      TestUtil.logMsg("Create 2nd Bean instance");
-      ref = (TestBean2) home.create();
-      TestUtil.logTrace("TestBean2Ref=" + ref);
+      ref = (TestBean2) jc.lookup(testBean2, TestBean2.class);
+      TestUtil.logMsg("TestBean2Ref=" + ref);
       // call initLogging
       ref.initLogging(testProps);
       ref.bean2Test();
       pass = true;
-    } catch (RemoteException ex) {
+    } catch (EJBException ex) {
       TestUtil.logErr("call to Bean2 failed", ex);
       pass = false;
     } catch (Exception e) {

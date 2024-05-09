@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,9 +28,7 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainI
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
 
-import jakarta.ejb.EJB;
 import jakarta.ejb.NoSuchEJBException;
 
 public class Client extends ClientBase {
@@ -45,9 +43,6 @@ public class Client extends ClientBase {
 
   // @EJB(name="testBean")
   private static TestIF testBean;
-
-  @EJB(name = "twoRemoteHome")
-  private static TwoRemoteHome twoRemoteHome;
 
   public static void main(String[] args) {
     Client theTests = new Client();
@@ -69,10 +64,6 @@ public class Client extends ClientBase {
 
   protected RemoveNotRetainIF getRemoveNotRetainBean() {
     return removeNotRetainBean;
-  }
-
-  protected TwoRemoteHome getTwoRemoteHome() {
-    return twoRemoteHome;
   }
 
   /*
@@ -165,31 +156,6 @@ public class Client extends ClientBase {
    * 
    * @test_Strategy: a bean must always be removed after a system exception,
    * even though the remove method is retainIfException true.
-   *
-   */
-
-  /*
-   * @testName: removeTwoRemoteHome
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: removeTwoRemoteHomeHandle
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: testBeanRemoveTwoLocal
-   * 
-   * @assertion_ids:
-   * 
-   * @test_Strategy:
    *
    */
 

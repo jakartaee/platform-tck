@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,15 +33,13 @@ public class AccessJSPBean {
 
   private static final String ejbRef = "java:comp/env/ejb/TellerBean";
 
-  private TellerHome beanHome = null;
-
   private Teller beanRef = null;
 
   private TSNamingContext nctx = null;
 
   public AccessJSPBean() throws Exception {
     nctx = new TSNamingContext();
-    beanHome = (TellerHome) nctx.lookup(ejbRef, TellerHome.class);
+    beanRef = (Teller) nctx.lookup(ejbRef, Teller.class);
   }
 
   public void setup(Properties p) {
@@ -49,7 +47,7 @@ public class AccessJSPBean {
     try {
       if (p != null)
         TestUtil.init(p);
-      beanRef = beanHome.create(TELLERNAME, p);
+      beanRef.initialize(TELLERNAME, p);
     } catch (Exception e) {
       TestUtil.logErr("AccessJSPBean: Exception occurred - " + e, e);
     }

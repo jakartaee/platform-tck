@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +22,7 @@
   <enterprise-beans>
     <session>
       <ejb-name>xa_xresXcomp1_ejb_TxRequired_Ejb1TestEJB3</ejb-name>
-      <home>com.sun.ts.tests.xa.ee.xresXcomp1.Ejb1TestHome</home>
-      <remote>com.sun.ts.tests.xa.ee.xresXcomp1.Ejb1Test</remote>
+      <business-remote>com.sun.ts.tests.xa.ee.xresXcomp1.Ejb1Test</business-remote>
       <ejb-class>com.sun.ts.tests.xa.ee.xresXcomp1.Ejb1TestEJB</ejb-class>
       <session-type>Stateful</session-type>
       <transaction-type>Container</transaction-type>

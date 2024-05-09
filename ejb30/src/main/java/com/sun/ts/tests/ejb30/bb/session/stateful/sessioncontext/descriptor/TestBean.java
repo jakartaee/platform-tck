@@ -25,11 +25,7 @@ import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptLocalIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TestBeanBase;
 import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal1IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.ThreeLocal2IF;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoLocalIF;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJB;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.TransactionManagement;
@@ -52,19 +48,6 @@ public class TestBean extends TestBeanBase {
 
   // @EJB(name="acceptLocal")
   private AcceptLocalIF acceptLocal;
-
-  @EJB(name = "twoSessionContextBeanHome")
-  private TwoLocalHome twoSessionContextBeanLocalHome;
-
-  protected TwoLocalIF getTwoLocal() throws TestFailedException {
-    Object obj = null;
-    try {
-      obj = twoSessionContextBeanLocalHome.create();
-    } catch (CreateException e) {
-      throw new TestFailedException(e);
-    }
-    return (TwoLocalIF) obj;
-  }
 
   protected SessionContext getSessionContext() {
     return sessionContext;

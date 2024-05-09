@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,8 +50,6 @@ public class HelloClient extends EETest {
   // Harness requirements
   private Hello hr = null;
 
-  private HelloHome home = null;
-
   private StringBuffer logData = null;
 
   private Properties props = null;
@@ -72,8 +70,8 @@ public class HelloClient extends EETest {
     props = p;
     try {
       jc = new TSNamingContext();
-      logMsg("Looked up home!!");
-      home = (HelloHome) jc.lookup("java:comp/env/ejb/Hello", HelloHome.class);
+      logMsg("Looked up EJB!!");
+      hr = (Hello) jc.lookup("java:comp/env/ejb/Hello", Hello.class);
       logMsg("Setup ok;");
     } catch (Exception e) {
       throw new Exception("Setup Failed!", e);
@@ -96,7 +94,7 @@ public class HelloClient extends EETest {
   @CleanupMethod(name = "helloTestCleanup")
   public void helloTest1() throws Exception {
     try {
-      hr = home.create(helloStr, props);
+      hr.initialize(helloStr, props);
       // invoke method on the EJB
       logMsg(hr.sayHello());
       logMsg("Test passed;");

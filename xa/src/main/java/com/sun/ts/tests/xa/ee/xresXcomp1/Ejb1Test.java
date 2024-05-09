@@ -24,35 +24,33 @@
 
 package com.sun.ts.tests.xa.ee.xresXcomp1;
 
-import java.rmi.RemoteException;
 import java.util.Properties;
 import java.util.Vector;
 
-import jakarta.ejb.EJBObject;
+public interface Ejb1Test {
+  public void initialize(Properties p);
 
-public interface Ejb1Test extends EJBObject {
-  public void dbConnect(String tName) throws RemoteException;
+  public void dbConnect(String tName);
 
-  public void txDbConnect(String tName) throws RemoteException;
+  public void txDbConnect(String tName);
 
-  public void createData(String tName) throws RemoteException;
+  public void createData(String tName);
 
-  public void insertDup(String tName, String tSize) throws RemoteException;
+  public void insertDup(String tName, String tSize);
 
-  public boolean insert(String tName, int key) throws RemoteException;
+  public boolean insert(String tName, int key);
 
-  public void delete(String tName, int fromKey, int toKey)
-      throws RemoteException;
+  public void delete(String tName, int fromKey, int toKey);
 
-  public Vector getResults(String tName) throws RemoteException;
+  public Vector getResults(String tName);
 
-  public void destroyData(String tName) throws RemoteException;
+  public void destroyData(String tName);
 
-  public void dbUnConnect(String tName) throws RemoteException;
+  public void dbUnConnect(String tName);
 
-  public void txDbUnConnect(String tName) throws RemoteException;
+  public void txDbUnConnect(String tName);
 
-  public void initLogging(Properties p) throws RemoteException;
+  public void initLogging(Properties p);
 
-  public void throwEJBException() throws RemoteException;
+  public void throwEJBException();
 }

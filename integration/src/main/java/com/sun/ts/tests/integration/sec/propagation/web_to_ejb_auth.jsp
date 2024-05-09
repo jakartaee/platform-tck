@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2006, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -38,7 +38,6 @@
 
     String testLookup1 = "java:comp/env/ejb/Bean1";
 
-    Bean1Home   bean1Home = null;
     Bean1       bean1Ref  = null;
 
     String web1 = null;
@@ -52,10 +51,8 @@
     try {
         nctx = new TSNamingContext();
 
-	bean1Home = (Bean1Home)nctx.lookup( testLookup1, Bean1Home.class );
-	bean1Ref = bean1Home.create();
+	bean1Ref = (Bean1)nctx.lookup( testLookup1, Bean1.class );
 	ejb = bean1Ref.getCallerPrincipalName();
-	bean1Ref.remove();
 
 	if( request.getUserPrincipal() != null ) {
 	    web2 = request.getUserPrincipal().getName();

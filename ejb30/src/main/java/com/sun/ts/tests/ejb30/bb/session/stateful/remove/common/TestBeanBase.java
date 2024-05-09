@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,12 +25,8 @@ import java.rmi.RemoteException;
 import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalIF;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.NoSuchEJBException;
-import jakarta.ejb.NoSuchObjectLocalException;
 import jakarta.ejb.RemoveException;
 
 abstract public class TestBeanBase implements TestIF {
@@ -42,8 +38,6 @@ abstract public class TestBeanBase implements TestIF {
   abstract protected RemoveIF getRemoveRemoteBean();
 
   abstract protected Remove2IF getRemoveRemoteBean2();
-
-  abstract protected TwoLocalHome getTwoLocalHome();
 
   abstract protected void setRemoveLocalBean(RemoveLocalIF b);
 
@@ -244,36 +238,4 @@ abstract public class TestBeanBase implements TestIF {
     }
   }
 
-  //////////////////////////////////////////////////////////////////////
-
-  public void removeTwoLocal() throws TestFailedException {
-    TwoLocalHome beanHome = getTwoLocalHome();
-    TwoLocalIF bean = null;
-    try {
-      bean = beanHome.create();
-      beanHome.remove(bean);
-      throw new TestFailedException(
-          "Expecting jakarta.ejb.RemoveException, but got none");
-    } catch (RemoveException e) {
-      // TLogger.log("Got expected exception " + e.toString());
-    } catch (CreateException e) {
-      throw new TestFailedException(
-          "Expecting jakarta.ejb.RemoveException, but got", e);
-    }
-    try {
-      bean.remove();
-    } catch (RemoveException e) {
-      throw new TestFailedException("Expecting no exception, but got", e);
-    }
-    try {
-      bean.remove();
-      throw new TestFailedException(
-          "Expecting jakarta.ejb.NoSuchObjectLocalException, " + "but got none.");
-    } catch (NoSuchObjectLocalException e) {
-      // TLogger.log("Got expected exception: " + e.toString());
-    } catch (RemoveException e) {
-      throw new TestFailedException(
-          "Expecting jakarta.ejb.NoSuchObjectLocalException, but got", e);
-    }
-  }
 }

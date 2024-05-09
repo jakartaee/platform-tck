@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,11 +25,7 @@ import java.util.Properties;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
-
-public class TestBeanEJB implements SessionBean {
+public class TestBeanEJB {
 
   // testProps represent the test specific properties passed in
   // from the test harness.
@@ -38,51 +34,24 @@ public class TestBeanEJB implements SessionBean {
   // The TSNamingContext abstracts away the underlying distribution protocol.
   private TSNamingContext jctx = null;
 
-  private SessionContext sctx = null;
-
   // BeanA variables
   private static final String txBeanARequired = "java:comp/env/ejb/TxBeanARequired";
 
-  private BeanAHome beanAHome = null;
-
   private BeanA beanARef = null;
 
-  // The requiredEJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
+  public void initialize() {
+    TestUtil.logTrace("initialize");
     try {
       TestUtil.logMsg("Getting Naming Context");
       jctx = new TSNamingContext();
 
-      TestUtil
-          .logMsg("Looking up the BeanA Home interface of " + txBeanARequired);
-      beanAHome = (BeanAHome) jctx.lookup(txBeanARequired, BeanAHome.class);
-
+      TestUtil.logMsg("Looking up BeanA " + txBeanARequired);
+      beanARef = (BeanA) jctx.lookup(txBeanARequired, BeanA.class);
+      beanARef.initialize();
     } catch (Exception e) {
       TestUtil.logErr("Create exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
     }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbDestroy() {
-    TestUtil.logTrace("ejbDestroy");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
   }
 
   // ===========================================================
@@ -94,9 +63,6 @@ public class TestBeanEJB implements SessionBean {
     boolean testResult = false;
 
     try {
-      TestUtil.logTrace("Creating EJB instance of " + txBeanARequired);
-      beanARef = (BeanA) beanAHome.create();
-
       TestUtil.logTrace("Logging data from server");
 
       TestUtil.logTrace("Calling Bean A");
@@ -106,7 +72,6 @@ public class TestBeanEJB implements SessionBean {
       TestUtil.logTrace("Bean A call completed.");
 
       testResult = true;
-
     } catch (Exception e) {
       TestUtil.logErr("Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
@@ -116,7 +81,6 @@ public class TestBeanEJB implements SessionBean {
         beanARef.dbConnectsecond();
         beanARef.destroyData();
         beanARef.dbUnConnect();
-        beanARef.remove();
       } catch (Exception e) {
         TestUtil.printStackTrace(e);
       }

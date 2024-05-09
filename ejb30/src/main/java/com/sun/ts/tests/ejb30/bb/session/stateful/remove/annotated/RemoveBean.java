@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,17 +26,12 @@ import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocal2IF;
 import com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveLocalIF;
 import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoLocalHome;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
 
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
-import jakarta.ejb.CreateException;
 import jakarta.ejb.Init;
 import jakarta.ejb.Local;
-import jakarta.ejb.LocalHome;
 import jakarta.ejb.Remote;
-import jakarta.ejb.RemoteHome;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
@@ -44,18 +39,12 @@ import jakarta.ejb.Stateful;
 @Stateful(name = "RemoveBean")
 @Remote({ RemoveIF.class, Remove2IF.class })
 @Local({ RemoveLocalIF.class, RemoveLocal2IF.class })
-@RemoteHome(TwoRemoteHome.class)
-@LocalHome(TwoLocalHome.class)
 public class RemoveBean
     implements RemoveIF, Remove2IF, RemoveLocal2IF, RemoveLocalIF {
   @Resource(name = "sessionContext")
   private SessionContext sessionContext;
 
   public RemoveBean() {
-  }
-
-  public void ejbCreate() throws CreateException {
-
   }
 
   @Init

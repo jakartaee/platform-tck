@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,15 +22,13 @@
   <enterprise-beans>
     <session>
       <ejb-name>Hello</ejb-name>
-      <home>com.sun.ts.tests.samples.ejb.ee.simpleHello.HelloHome</home>
-      <remote>com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello</remote>
+      <business-remote>com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello</business-remote>
       <ejb-class>com.sun.ts.tests.samples.ejb.ee.simpleHello.HelloEJB</ejb-class>
       <session-type>Stateful</session-type>
       <transaction-type>Container</transaction-type>
       <ejb-ref>
         <ejb-ref-name>ejb/Hello</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <home>com.sun.ts.tests.samples.ejb.ee.simpleHello.HelloHome</home>
         <remote>com.sun.ts.tests.samples.ejb.ee.simpleHello.Hello</remote>
         <ejb-link>Hello</ejb-link>
       </ejb-ref>

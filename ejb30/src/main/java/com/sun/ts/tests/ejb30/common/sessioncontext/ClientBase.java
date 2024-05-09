@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.ejb30.common.sessioncontext;
 
-import java.rmi.RemoteException;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.EETest;
@@ -33,9 +32,6 @@ abstract public class ClientBase extends EETest {
   abstract protected Three1IF getSessionContextBean();
 
   abstract protected Three2IF getSessionContextBean2();
-
-  abstract protected TwoRemoteIF getTwoSessionContextBean()
-      throws TestFailedException;
 
   abstract protected TestIF getTestBean();
 
@@ -321,37 +317,6 @@ abstract public class ClientBase extends EETest {
   public void getInvokedBusinessInterfaceLocal2() throws Exception {
     try {
       testBean.getInvokedBusinessInterfaceLocal2();
-    } catch (TestFailedException e) {
-      throw new Exception(e);
-    }
-  }
-
-  /*
-   * testName: getInvokedBusinessInterfaceRemoteIllegal
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void getInvokedBusinessInterfaceRemoteIllegal() throws Exception {
-    try {
-      TwoRemoteIF twoSessionContextBean = getTwoSessionContextBean();
-      twoSessionContextBean.getInvokedBusinessInterfaceRemoteIllegal();
-    } catch (TestFailedException e) {
-      throw new Exception(e);
-    } catch (RemoteException e) {
-      throw new Exception(e);
-    }
-  }
-
-  /*
-   * testName: getInvokedBusinessInterfaceLocalIllegal
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void getInvokedBusinessInterfaceLocalIllegal() throws Exception {
-    try {
-      testBean.getInvokedBusinessInterfaceLocalIllegal();
     } catch (TestFailedException e) {
       throw new Exception(e);
     }

@@ -16,17 +16,14 @@
 
 package com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest;
 
-import jakarta.ejb.EJBObject;
-import java.rmi.RemoteException;
+public interface TxRemote {
+  public String txRequired(String str);
 
-public interface TxRemote extends EJBObject {
-  public String txRequired(String str) throws RemoteException;
+  public String txRequiresNew(String str);
 
-  public String txRequiresNew(String str) throws RemoteException;
+  public String txSupports(String str);
 
-  public String txSupports(String str) throws RemoteException;
+  public String txNotSupported(String str);
 
-  public String txNotSupported(String str) throws RemoteException;
-
-  public String txNever(String str) throws RemoteException;
+  public String txNever(String str);
 }

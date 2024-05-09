@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,7 +23,6 @@ package com.sun.ts.tests.ejb30.common.sessioncontext;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
-import jakarta.ejb.EJBException;
 import jakarta.ejb.SessionContext;
 
 abstract public class TestBeanBase implements TestIF {
@@ -32,8 +31,6 @@ abstract public class TestBeanBase implements TestIF {
   abstract protected ThreeLocal1IF getLocal1();
 
   abstract protected ThreeLocal2IF getLocal2();
-
-  abstract protected TwoLocalIF getTwoLocal() throws TestFailedException;
 
   abstract protected AcceptLocalIF getAcceptLocalBean();
 
@@ -191,16 +188,6 @@ abstract public class TestBeanBase implements TestIF {
     } catch (IllegalArgumentException e) {
       TLogger.log("Got expected IllegalArgumentException when looking up "
           + "a non-existent name: " + lookupName);
-    }
-  }
-
-  public void getInvokedBusinessInterfaceLocalIllegal()
-      throws TestFailedException {
-    TwoLocalIF twoSessionContextBean = getTwoLocal();
-    try {
-      twoSessionContextBean.getInvokedBusinessInterfaceLocalIllegal();
-    } catch (EJBException e) {
-      throw new TestFailedException(e);
     }
   }
 }

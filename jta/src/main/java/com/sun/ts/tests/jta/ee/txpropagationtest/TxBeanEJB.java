@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,17 +34,12 @@ import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
 
-public class TxBeanEJB implements SessionBean {
+public class TxBeanEJB {
   // testProps represent the test specific properties passed in
   // from the test harness.
   private Properties testProps = null;
-
-  private SessionContext sctx = null;
 
   // con1 will be used for the dbTable1 connection
   // con2 will be used for the dbTable2 connection
@@ -72,9 +67,8 @@ public class TxBeanEJB implements SessionBean {
 
   private TSNamingContext context = null;
 
-  // Required EJB methods
-  public void ejbCreate(Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
+  public void initialize(Properties p) {
+    TestUtil.logTrace("initialize");
     testProps = p;
     try {
       TestUtil.init(p);
@@ -95,25 +89,8 @@ public class TxBeanEJB implements SessionBean {
 
     } catch (Exception e) {
       TestUtil.logErr("Unexpected exception getting the DB DataSource", e);
-      throw new CreateException(e.getMessage());
+      throw new EJBException(e.getMessage());
     }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
   }
 
   // ===========================================================

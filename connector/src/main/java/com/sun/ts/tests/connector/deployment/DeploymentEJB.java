@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,11 +28,7 @@ import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.connector.util.DBSupport;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
-
-public class DeploymentEJB implements SessionBean {
+public class DeploymentEJB {
   private TSNamingContext context = null;
 
   private Properties p = null;
@@ -56,15 +52,15 @@ public class DeploymentEJB implements SessionBean {
   public DeploymentEJB() {
   }
 
-  public void ejbCreate(Properties props) throws CreateException {
+  public void initialize(Properties props) {
     p = props;
     try {
       this.context = new TSNamingContext();
 
-      TestUtil.logTrace("ejbCreate");
+      TestUtil.logTrace("initialize");
       TestUtil.init(props);
 
-      System.out.println("Inside ejbCreate of DeploymentEJB!");
+      System.out.println("Inside initialize of DeploymentEJB!");
 
       whitebox_tx = p.getProperty("whitebox-embed");
 
@@ -129,20 +125,8 @@ public class DeploymentEJB implements SessionBean {
     return result;
   }
 
-  public void setSessionContext(SessionContext sc) {
-
-    try {
-      TestUtil.logTrace("setSessionContext");
-      // this.context = new TSNamingContext();
-    } catch (Exception sqle) {
-      TestUtil.printStackTrace(sqle);
-      sqle.getMessage();
-    }
-
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
+  public void cleanup() {
+    TestUtil.logTrace("cleanup");
     try {
       if (con != null) {
         con.close();
@@ -150,12 +134,6 @@ public class DeploymentEJB implements SessionBean {
     } catch (Exception ex) {
       ex.printStackTrace();
     }
-  }
-
-  public void ejbActivate() {
-  }
-
-  public void ejbPassivate() {
   }
 
 }

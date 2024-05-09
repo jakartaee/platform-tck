@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@
         <fileset dir="${class.dir}" includes="com/sun/ts/tests/ejb/ee/bb/entity/util/DBSupport.class"/>
       </ts.ejbjar>
       <ts.war descriptor="integration_sec_propagation_web.xml" archivename="integration_sec_propagation"
-              excludedfiles="com/sun/ts/tests/integration/sec/propagation/Bean1EJB.class, com/sun/ts/tests/integration/sec/propagation/Bean2.class, com/sun/ts/tests/integration/sec/propagation/Bean2EJB.class, com/sun/ts/tests/integration/sec/propagation/Bean2Home.class">
+              excludedfiles="com/sun/ts/tests/integration/sec/propagation/Bean1EJB.class, com/sun/ts/tests/integration/sec/propagation/Bean2.class, com/sun/ts/tests/integration/sec/propagation/Bean2EJB.class">
         <zipfileset dir="${class.dir}" includes="com/sun/ts/tests/ejb/ee/bb/entity/util/DBSupport.class"
                     prefix="WEB-INF/classes"/>
         <zipfileset dir="." includes="*.jsp, *.html"/>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,26 +23,22 @@ package com.sun.ts.tests.samples.ejb.ee.simpleHello;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
 
-public class HelloEJB implements SessionBean {
-  private SessionContext context;
+import java.util.Properties;
 
+public class HelloEJB {
   private String str;
 
-  private java.util.Properties p = null;
+  private Properties p = null;
 
   public HelloEJB() {
   }
 
-  public void ejbCreate(String str, java.util.Properties props)
-      throws CreateException {
+  public void initialize(String str, Properties props) {
     p = props;
     try {
-      TestUtil.logTrace("ejbCreate");
+      TestUtil.logTrace("initialize");
       TestUtil.init(props);
       this.str = str;
     } catch (Exception e) {
@@ -57,9 +53,8 @@ public class HelloEJB implements SessionBean {
     Hello hr = null;
     try {
       TSNamingContext ic = new TSNamingContext();
-      HelloHome home = (HelloHome) ic.lookup("java:comp/env/ejb/Hello",
-          HelloHome.class);
-      hr = home.create("Hello Again!!", p);
+      hr = (Hello) ic.lookup("java:comp/env/ejb/Hello", Hello.class);
+      hr.initialize("Hello Again!!", p);
       TestUtil.logMsg("Got the EJB!!");
     } catch (Exception ex) {
       TestUtil.logErr("got exception", ex);
@@ -84,21 +79,6 @@ public class HelloEJB implements SessionBean {
     TestUtil.logMsg(
         "Hello EJB - in sayHelloAgain(), thread is " + Thread.currentThread());
     return str;
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    context = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-  }
-
-  public void ejbPassivate() {
   }
 
 }
