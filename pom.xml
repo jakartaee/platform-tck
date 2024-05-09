@@ -88,7 +88,6 @@
     <properties>
         <ant.version>1.10.11</ant.version>
         <arquillian.version>1.8.0.Final</arquillian.version>
-        <version.org.jboss.arquillian.core>1.7.2.Final</version.org.jboss.arquillian.core>
 
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
@@ -143,6 +142,7 @@
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
         <version.openrewrite>8.24.0</version.openrewrite>
+        <version.org.jboss.arquillian.core>1.7.2.Final</version.org.jboss.arquillian.core>
         <webservices-api-osgi.version>3.0.0</webservices-api-osgi.version>
         <webservices-api.version>3.0.0</webservices-api.version>
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
