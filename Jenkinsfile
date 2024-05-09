@@ -168,6 +168,9 @@ spec:
     string(name: 'GF_VERSION_URL', 
            defaultValue: '', 
            description: 'URL required for downloading GlassFish version details' )
+    string(name: 'GF_TOPLEVEL_DIR',
+           defaultValue: 'glassfish7', 
+           description: 'top level director of glassfish installation' )
     string(name: 'OLD_GF_BUNDLE_URL',
            defaultValue: '', 
            description: 'URL required for downloading Old GlassFish Full/Web profile bundle' )
@@ -182,8 +185,8 @@ spec:
            description: 'List of standalone TCK bundle file names to be appended to the base url' )
     choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
-    choice(name: 'JDK', choices: 'JDK11\nJDK17',
-           description: 'Java SE Version to be used for running TCK either JDK11/JDK17' )
+    choice(name: 'JDK', choices: 'JDK11\nJDK17\nJDK21',
+           description: 'Java SE Version to be used for running TCK either JDK11/JDK17/JDK21' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
            description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
     choice(name: 'AS_TRACE', choices: 'false\ntrue',
