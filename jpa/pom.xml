@@ -20,9 +20,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
+        <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>11.0.0-SNAPSHOT</version>
     </parent>
     <groupId>jakarta.tck</groupId>
     <artifactId>persistence-tck</artifactId>
@@ -40,11 +40,11 @@
     </modules>
     <properties>
         <arquillian.version>1.8.0.Final</arquillian.version>
-        <version.org.jboss.arquillian.core>1.7.2.Final</version.org.jboss.arquillian.core>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <tck.version>${project.version}</tck.version>
         <jakarta.ee.version>11.0.0-M1</jakarta.ee.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <maven.compiler.release>17</maven.compiler.release>
+        <tck.version>${project.version}</tck.version>
+        <version.org.jboss.arquillian.core>1.7.2.Final</version.org.jboss.arquillian.core>
     </properties>
     <dependencies>
         <dependency>
