@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -86,8 +86,6 @@ public class Client extends EETest {
    *                 the EJB references were resolved correctly).
    */
   public void testCaseSensitivity() throws Exception {
-    CaseBeanHome home1 = null;
-    CaseBeanHome home2 = null;
     CaseBean bean1 = null;
     CaseBean bean2 = null;
     String bean1Name;
@@ -96,20 +94,18 @@ public class Client extends EETest {
 
     try {
       TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
-      home1 = (CaseBeanHome) nctx.lookup(bean1Lookup, CaseBeanHome.class);
-      bean1 = home1.create();
+      bean1 = (CaseBean) nctx.lookup(bean1Lookup, CaseBean.class);
+      bean1.createNamingContext();
       bean1.initLogging(props);
       bean1Name = bean1.whoAreYou();
       TestUtil.logTrace(bean1Lookup + "name is '" + bean1Name + "'");
-      bean1.remove();
 
       TestUtil.logTrace("[Client] Looking up '" + bean2Lookup + "'...");
-      home2 = (CaseBeanHome) nctx.lookup(bean2Lookup, CaseBeanHome.class);
-      bean2 = home2.create();
+      bean2 = (CaseBean) nctx.lookup(bean2Lookup, CaseBean.class);
+      bean2.createNamingContext();
       bean2.initLogging(props);
       bean2Name = bean2.whoAreYou();
       TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
-      bean2.remove();
 
       pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
 

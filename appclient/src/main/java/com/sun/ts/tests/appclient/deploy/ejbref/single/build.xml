@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +27,8 @@
     <ts.ejbjar descriptor="appclient_dep_ejbref_single_ejb.xml" 
                archivename="appclient_dep_ejbref_single">
         <fileset dir="${class.dir}" 
-                 includes="${ts.wrappers.classes.all.ejb},
+                 includes="${ts.wrappers.classes.stateless.ejb.3x},
+                 ${ts.wrappers.classes.stateful.ejb.3x},
                  com/sun/ts/tests/assembly/util/refbean/*External*.class"/>        
     </ts.ejbjar>
   
@@ -36,10 +37,8 @@
                   mainclass="com.sun.ts.tests.appclient.deploy.ejbref.single.Client">
         <fileset dir="${class.dir}" 
                  includes="com/sun/ts/tests/assembly/util/shared/ejbref/single/TestCode.class,  
-                  com/sun/ts/tests/assembly/util/refbean/*Internal.class, 
-                  com/sun/ts/tests/assembly/util/refbean/*InternalHome.class, 
-                  com/sun/ts/tests/assembly/util/refbean/*External.class, 
-                  com/sun/ts/tests/assembly/util/refbean/*ExternalHome.class"/>
+                 com/sun/ts/tests/assembly/util/refbean/*Internal.class, 
+                 com/sun/ts/tests/assembly/util/refbean/*External.class"/>
     </ts.clientjar>
     
     <ts.ear archivename="appclient_dep_ejbref_single"/>
@@ -48,8 +47,7 @@
   <target name="compile">
       <ts.javac includes="${pkg.dir}/**/*.java,
                  com/sun/ts/tests/assembly/util/refbean/*.java, 
-                 com/sun/ts/tests/common/ejb/wrappers/*.java,
-                 com/sun/ts/tests/jms/common*/*.java"/>
+                 com/sun/ts/tests/common/ejb/wrappers/*.java"/>
   </target>
   
   <target name="clean">
@@ -57,8 +55,7 @@
             <fileset dir="${class.dir}"
                      includes="${pkg.dir}/**/*.class,
                  com/sun/ts/tests/assembly/util/refbean/**/*.class, 
-                 com/sun/ts/tests/common/ejb/wrappers/**/*.class,
-                 com/sun/ts/tests/jms/common*/**/*.class"/>
+                 com/sun/ts/tests/common/ejb/wrappers/**/*.class"/>
         </ts.clean>
   </target>
     

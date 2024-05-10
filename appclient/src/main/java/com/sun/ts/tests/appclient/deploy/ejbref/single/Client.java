@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -83,10 +83,10 @@ public class Client extends EETest {
     try {
       pass = TestCode.testStatelessExternal(nctx, props);
       if (!pass) {
-        throw new Exception("ejb-link test failed!");
+        throw new Exception("ejb-ref test failed!");
       }
     } catch (Exception e) {
-      throw new Exception("ejb-link test failed: " + e, e);
+      throw new Exception("ejb-ref test failed: " + e, e);
     }
   }
 
@@ -108,16 +108,10 @@ public class Client extends EETest {
     try {
       pass = TestCode.testStatefulExternal(nctx, props);
       if (!pass) {
-        throw new Exception("ejb-link test failed!");
+        throw new Exception("ejb-ref test failed!");
       }
     } catch (Exception e) {
-      throw new Exception("ejb-link test failed: " + e, e);
-    } finally {
-      try {
-        TestCode.cleanUpStatefulBean();
-      } catch (Exception e) {
-        TestUtil.logTrace("Exception caught removing Stateful Session Bean");
-      }
+      throw new Exception("ejb-ref test failed: " + e, e);
     }
   }
 

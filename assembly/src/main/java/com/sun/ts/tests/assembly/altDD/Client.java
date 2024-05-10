@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -97,8 +97,6 @@ public class Client extends EETest {
    *                 at deployment time.
    */
   public void testAppClient() throws Fault {
-    PainterBeanHome home = null;
-    PainterBean bean = null;
     String entryValue;
     boolean pass = false;
 
@@ -166,15 +164,14 @@ public class Client extends EETest {
    *                 DD3 at deployment time.
    */
   public void testEJB() throws Fault {
-    PainterBeanHome home = null;
     PainterBean bean = null;
     String nameValue;
     boolean pass = false;
 
     try {
       logTrace("[Client] Looking up " + beanLookup);
-      home = (PainterBeanHome) nctx.lookup(beanLookup, PainterBeanHome.class);
-      bean = home.create();
+      bean = (PainterBean) nctx.lookup(beanLookup, PainterBean.class);
+      bean.createNamingContext();
       bean.initLogging(props);
 
       logTrace("[Client] Checking referenced EJB...");
@@ -190,16 +187,6 @@ public class Client extends EETest {
     } catch (Exception e) {
       logErr("[Client] Caught exception: " + e);
       throw new Fault("Alternative DD test failed!" + e, e);
-    } finally {
-      try {
-        if (null != bean) {
-          TestUtil.logTrace("[Client] Removing bean...");
-          bean.remove();
-        }
-      } catch (Exception e) {
-        TestUtil
-            .logTrace("[Client] Ignoring exception on " + " bean remove: " + e);
-      }
     }
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,9 +22,9 @@ package com.sun.ts.tests.assembly.classpath.ejb;
 
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.classpath.util.ClassPathUtil;
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+import com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper;
 
-public class TestBeanEJB extends StatelessWrapper {
+public class TestBeanEJB extends Stateless3xWrapper {
 
   public boolean testDirectLibrary() {
     ClassPathUtil util = null;

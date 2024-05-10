@@ -27,7 +27,7 @@
         <ts.ejbjar descriptor="appclient_dep_ejbref_scope_ejb.xml" 
                    archivename="appclient_dep_ejbref_scope">
             <fileset dir="${class.dir}" 
-                     includes="${ts.wrappers.classes.stateless.ejb},
+                     includes="${ts.wrappers.classes.stateless.ejb.3x},
                      com/sun/ts/tests/assembly/util/shared/ejbref/common/ReferencedBeanCode.class"/>        
         </ts.ejbjar>
   

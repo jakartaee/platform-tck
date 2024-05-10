@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,13 +25,9 @@ import java.util.Properties;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.util.refbean.StatefulExternal;
-import com.sun.ts.tests.assembly.util.refbean.StatefulExternalHome;
 import com.sun.ts.tests.assembly.util.refbean.StatefulInternal;
-import com.sun.ts.tests.assembly.util.refbean.StatefulInternalHome;
 import com.sun.ts.tests.assembly.util.refbean.StatelessExternal;
-import com.sun.ts.tests.assembly.util.refbean.StatelessExternalHome;
 import com.sun.ts.tests.assembly.util.refbean.StatelessInternal;
-import com.sun.ts.tests.assembly.util.refbean.StatelessInternalHome;
 
 public class TestCode {
 
@@ -56,14 +52,12 @@ public class TestCode {
   public static boolean testStatelessInternal(TSNamingContext nctx,
       Properties props) {
 
-    StatelessInternalHome home = null;
     StatelessInternal bean = null;
     boolean pass;
 
     try {
-      home = (StatelessInternalHome) nctx.lookup(statelessInternalName,
-          StatelessInternalHome.class);
-      bean = home.create();
+      bean = (StatelessInternal) nctx.lookup(statelessInternalName,
+          StatelessInternal.class);
       bean.initLogging(props);
 
       pass = bean.isTestStatelessInternal();
@@ -78,14 +72,12 @@ public class TestCode {
   public static boolean testStatelessExternal(TSNamingContext nctx,
       Properties props) {
 
-    StatelessExternalHome home = null;
     StatelessExternal bean = null;
     boolean pass;
 
     try {
-      home = (StatelessExternalHome) nctx.lookup(statelessExternalName,
-          StatelessExternalHome.class);
-      bean = home.create();
+      bean = (StatelessExternal) nctx.lookup(statelessExternalName,
+          StatelessExternal.class);
       bean.initLogging(props);
       pass = bean.isTestStatelessExternal();
 
@@ -101,13 +93,11 @@ public class TestCode {
   public static boolean testStatefulInternal(TSNamingContext nctx,
       Properties props) {
 
-    StatefulInternalHome home = null;
     boolean pass;
 
     try {
-      home = (StatefulInternalHome) nctx.lookup(statefulInternalName,
-          StatefulInternalHome.class);
-      ssfInternalBeanRef1 = home.create(props);
+      ssfInternalBeanRef1 = (StatefulInternal) nctx.lookup(statefulInternalName,
+          StatefulInternal.class);
       pass = ssfInternalBeanRef1.isTestStatefulInternal();
 
     } catch (Exception e) {
@@ -121,13 +111,11 @@ public class TestCode {
   public static boolean testStatefulExternal(TSNamingContext nctx,
       Properties props) {
 
-    StatefulExternalHome home = null;
     boolean pass;
 
     try {
-      home = (StatefulExternalHome) nctx.lookup(statefulExternalName,
-          StatefulExternalHome.class);
-      ssfExternalBeanRef1 = home.create(props);
+      ssfExternalBeanRef1 = (StatefulExternal) nctx.lookup(statefulExternalName,
+          StatefulExternal.class);
       pass = ssfExternalBeanRef1.isTestStatefulExternal();
     } catch (Exception e) {
       TestUtil.logErr("TestBean: Got exception: " + e, e);
@@ -135,25 +123,6 @@ public class TestCode {
     }
 
     return pass;
-  }
-
-  public static void cleanUpStatefulBean() {
-    TestUtil.logTrace("cleanUpStatefulBean");
-    try {
-      if (ssfInternalBeanRef1 != null) {
-        TestUtil.logTrace("cleanUp Session StatefulInternal Bean");
-        ssfInternalBeanRef1.remove();
-        ssfInternalBeanRef1 = null;
-      }
-      if (ssfExternalBeanRef1 != null) {
-        TestUtil.logTrace("cleanUp Session StatefulExternal Bean");
-        ssfExternalBeanRef1.remove();
-        ssfExternalBeanRef1 = null;
-      }
-    } catch (Exception e) {
-      TestUtil.logErr(
-          "Exception caught trying to remove Stateful Session beans", e);
-    }
   }
 
 }
