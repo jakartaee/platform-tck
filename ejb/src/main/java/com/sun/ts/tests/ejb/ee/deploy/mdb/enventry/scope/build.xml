@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,21 +31,21 @@
                  archivename="ejb_depMdbQ_enventry_scope_jar3">
         <fileset dir="${class.dir}"
                  includes="${ts.wrappers.classes.mdb.ejb},
-                           com/sun/ts/tests/assembly/util/shared/enventry/scope/TestCode.class"/>
+                           com/sun/ts/tests/ejb/ee/deploy/util/shared/enventry/scope/TestCode.class"/>
       </ts.ejbjar>
 
       <ts.ejbjar descriptor="ejb_depMdbQ_enventry_scope_jar1_ejb.xml"
                  archivename="ejb_depMdbQ_enventry_scope_jar1">
         <fileset dir="${class.dir}"
                  includes="${ts.wrappers.classes.mdb.ejb},
-                           com/sun/ts/tests/assembly/util/shared/enventry/scope/TestCode.class"/>
+                           com/sun/ts/tests/ejb/ee/deploy/util/shared/enventry/scope/TestCode.class"/>
       </ts.ejbjar>
 
       <ts.ejbjar descriptor="ejb_depMdbQ_enventry_scope_jar2_ejb.xml"
                  archivename="ejb_depMdbQ_enventry_scope_jar2">
         <fileset dir="${class.dir}"
                  includes="${ts.wrappers.classes.mdb.ejb},
-                           com/sun/ts/tests/assembly/util/shared/enventry/scope/TestCode.class"/>
+                           com/sun/ts/tests/ejb/ee/deploy/util/shared/enventry/scope/TestCode.class"/>
       </ts.ejbjar>
 
       <ts.clientjar descriptor="ejb_depMdbQ_enventry_scope_client.xml"

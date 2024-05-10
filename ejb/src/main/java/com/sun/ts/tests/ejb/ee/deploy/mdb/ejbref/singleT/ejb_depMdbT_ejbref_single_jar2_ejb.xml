@@ -22,9 +22,9 @@
   <enterprise-beans>
     <session>
       <ejb-name>ejb_ee_deploy_mdb_ejbref_singleT_StatefulExternal</ejb-name>
-      <home>com.sun.ts.tests.assembly.util.refbean.StatefulExternalHome</home>
-      <remote>com.sun.ts.tests.assembly.util.refbean.StatefulExternal</remote>
-      <ejb-class>com.sun.ts.tests.assembly.util.refbean.StatefulExternalEJB</ejb-class>
+      <home>com.sun.ts.tests.ejb.ee.deploy.util.refbean.StatefulExternalHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.deploy.util.refbean.StatefulExternal</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.deploy.util.refbean.StatefulExternalEJB</ejb-class>
       <session-type>Stateful</session-type>
       <transaction-type>Container</transaction-type>
       <security-identity>
@@ -33,9 +33,9 @@
     </session>
     <session>
       <ejb-name>ejb_ee_deploy_mdb_ejbref_singleT_StatelessExternal</ejb-name>
-      <home>com.sun.ts.tests.assembly.util.refbean.StatelessExternalHome</home>
-      <remote>com.sun.ts.tests.assembly.util.refbean.StatelessExternal</remote>
-      <ejb-class>com.sun.ts.tests.assembly.util.refbean.StatelessExternalEJB</ejb-class>
+      <home>com.sun.ts.tests.ejb.ee.deploy.util.refbean.StatelessExternalHome</home>
+      <remote>com.sun.ts.tests.ejb.ee.deploy.util.refbean.StatelessExternal</remote>
+      <ejb-class>com.sun.ts.tests.ejb.ee.deploy.util.refbean.StatelessExternalEJB</ejb-class>
       <session-type>Stateless</session-type>
       <transaction-type>Container</transaction-type>
       <security-identity>

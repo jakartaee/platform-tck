@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejblink.single;
 
-import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
+import com.sun.ts.tests.ejb.ee.deploy.util.shared.ejbref.single.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
 
 public class TestBeanEJB extends StatefulWrapper {
