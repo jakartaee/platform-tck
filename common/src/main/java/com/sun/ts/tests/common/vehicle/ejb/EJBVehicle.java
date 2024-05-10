@@ -27,6 +27,8 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.util.TestUtil;
 
+import jakarta.ejb.EJBException;
+
 public class EJBVehicle {
   private EETest testObj;
 
