@@ -20,29 +20,37 @@
 
 package com.sun.ts.tests.jstl.common.client;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Enumeration;
 import java.util.Properties;
 
-import com.sun.ts.tests.common.webclient.BaseUrlClient;
+import org.junit.jupiter.api.BeforeEach;
+
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 import com.sun.ts.tests.jstl.common.JstlTckConstants;
 
-public class CompatAbstractUrlClient extends BaseUrlClient
+public class CompatAbstractUrlClient extends AbstractUrlClient
     implements JstlTckConstants {
 
   protected Properties dbArgs = new Properties();
 
   protected static final String STANDARD_COMPAT = "standardCompat";
 
-  public void setup(String[] args, Properties p) throws Exception {
+  @BeforeEach
+  @Override
+  public void setup() throws Exception {
     for (int i = 0; i < JSTL_DB_PROPS.length; i++) {
-      String s = p.getProperty(JSTL_DB_PROPS[i]);
+      String s = System.getProperty(JSTL_DB_PROPS[i]);
+      assertTrue(!isNullOrEmpty(s),
+        "[CompatAbstractUrlClient] '"+JSTL_DB_PROPS[i]+"' was not set.");
       if (s != null) {
         dbArgs.setProperty(JSTL_DB_PROPS[i], s.trim());
       }
     }
-    super.setup(args, p);
+    super.setup();
+
   }
 
   /**
@@ -51,6 +59,7 @@ public class CompatAbstractUrlClient extends BaseUrlClient
    * @param testCase
    *          - the current test case
    */
+  @Override
   protected void setTestProperties(WebTestCase testCase) {
     setStandardProperties(TEST_PROPS.getProperty(STANDARD_COMPAT), testCase);
     if (testCase.getRequest() == null) {
@@ -72,16 +81,6 @@ public class CompatAbstractUrlClient extends BaseUrlClient
       String value = dbArgs.getProperty(name);
       httpReq.addRequestHeader(name, value);
     }
-  }
-
-  /**
-   * Sets the goldenfile directory
-   * 
-   * @param goldenDir
-   *          goldenfile directory based off test directory
-   */
-  public void setGoldenFileDir(String goldenDir) {
-    GOLDENFILEDIR = goldenDir;
   }
 
   /**
@@ -116,12 +115,6 @@ public class CompatAbstractUrlClient extends BaseUrlClient
     HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
 
-    // set the goldenfile
-    sb = new StringBuffer(50);
-    sb.append(_tsHome).append(GOLDENFILEDIR);
-    sb.append(_generalURI).append(SL);
-    sb.append(testValue).append(GF_SUFFIX);
-    testCase.setGoldenFilePath(sb.toString());
   }
 
 }
