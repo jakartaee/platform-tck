@@ -25,8 +25,8 @@ import java.util.Hashtable;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.spec.Book;
+import com.sun.ts.tests.el.common.util.ELTestUtil;
+import com.sun.ts.tests.el.common.spec.Book;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.ResolverType;
 
@@ -172,7 +172,7 @@ public class ELClientIT {
         logger.log(Logger.Level.ERROR, "Test FAILED. " + expr[i] + " caused ");
         logger.log(Logger.Level.ERROR, "an exception, but it was not an ");
         logger.log(Logger.Level.ERROR, "ELException.");
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
     }
 
@@ -213,7 +213,7 @@ public class ELClientIT {
         logger.log(Logger.Level.ERROR, "Test FAILED. " + expr[i] + " caused ");
         logger.log(Logger.Level.ERROR, "an exception, but it was not an ");
         logger.log(Logger.Level.ERROR, "ELException.");
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
 
       if (!pass)
@@ -421,7 +421,7 @@ public class ELClientIT {
           && ExprEval.compareValue(expr, true));
 
     } catch (Exception e) {
-      TestUtil.printStackTrace(e);
+      ELTestUtil.printStackTrace(e);
       throw new Exception(e);
     }
 

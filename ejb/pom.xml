@@ -21,9 +21,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>jakartatck</groupId>
+        <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>10.0.0-SNAPSHOT</version>
+        <version>11.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>ejb</artifactId>
@@ -48,6 +48,8 @@
         <dependency>
             <groupId>javatest</groupId>
             <artifactId>javatest</artifactId>
+            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>jakarta.ejb</groupId>
@@ -58,5 +60,15 @@
             <artifactId>jakarta.jms-api</artifactId>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <!-- do not publish this artifact to Maven repositories -->
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

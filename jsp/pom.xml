@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-{
-    Copyright (c) 2021  Contributors to the Eclipse Foundation
+
+    Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation
     All rights reserved.
 
     This program and the accompanying materials are made available under the
@@ -21,25 +21,54 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>jakartatck</groupId>
+        <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>10.0.0-SNAPSHOT</version>
+        <version>11.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jsp</artifactId>
+    <artifactId>jakarta-pages-tck</artifactId>
+    <version>4.0.0</version>
     <packaging>jar</packaging>
 
-    <name>JSP</name>
-    <description>JSP</description>
+    <name>pages-tck</name>
+    <description>JSP TCK</description>
+
+    <properties>
+        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
+        <jakarta.annotation-api.version>3.0.0-M1</jakarta.annotation-api.version>
+        <jakarta.el-api.version>6.0.0-RC1</jakarta.el-api.version>
+        <jakarta.mail-api.version>2.1.2</jakarta.mail-api.version>
+        <jakarta.servlet-api.version>6.1.0-M2</jakarta.servlet-api.version>
+        <jms-api.version>3.1.0</jms-api.version>
+        <jsp-api.version>4.0.0-M2</jsp-api.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
+            <version>11.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>servlet</artifactId>
+            <artifactId>runtime</artifactId>
+            <version>11.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>libutil</artifactId>
+            <version>11.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>signaturetest</artifactId>
+            <version>11.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>2.2</version>
         </dependency>
         <dependency>
             <groupId>javatest</groupId>
@@ -48,54 +77,160 @@
         <dependency>
             <groupId>jakarta.servlet.jsp</groupId>
             <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>${jsp-api.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
+            <version>${jakarta.servlet-api.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
+            <version>${jakarta.annotation-api.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.jms</groupId>
             <artifactId>jakarta.jms-api</artifactId>
+            <version>${jms-api.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
+            <version>${jakarta.el-api.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.mail</groupId>
             <artifactId>jakarta.mail-api</artifactId>
+            <version>${jakarta.mail-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
+            <version>${arquillian.junit}</version>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>${bundle-name}-${project.version}</finalName>
         <resources>
             <resource>
-                <directory>src/main/java</directory>
+                <directory>src/main/resources</directory>
                 <includes>
-                    <include>**/**.xml</include>
-                    <include>**/*.tld</include>
+                    <include>LICENSE_${license}.md</include>
+                    <include>ee/</include>
                 </includes>
             </resource>
         </resources>
         <plugins>
+            <!-- do not publish this artifact to Maven repositories -->
             <plugin>
-                <groupId>org.mortbay.jetty</groupId>
-                <artifactId>tck-extract-tests-maven-plugin</artifactId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>generate-tck-tests-list</id>
+                        <id>attach-sources</id>
                         <goals>
-                            <goal>extract-tck-tests</goal>
+                            <goal>jar-no-fork</goal>
                         </goals>
-                        <phase>process-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>distribution</id>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                            <escapeString>\</escapeString>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${bundle-name}-${project.version}</finalName>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>EFTL</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <bundle-name>jakarta-pages-tck</bundle-name>
+                <license>EFTL</license>
+            </properties>
+        </profile>
+        <profile>
+            <id>EPL</id>
+            <properties>
+                <bundle-name>pages-tck</bundle-name>
+                <license>EPL</license>
+            </properties>
+        </profile>
+        <profile>
+            <id>record-signature</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <bundle-name>jakarta-pages-tck</bundle-name>
+                <license>EFTL</license>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>jakarta.tck</groupId>
+                        <artifactId>sigtest-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <FileName>${project.build.directory}/jakarta.servlet.jsp.sig_${project.version}</FileName>
+                            <packages>jakarta.servlet.jsp,jakarta.servlet.jsp.el,jakarta.servlet.jsp.tagext</packages>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

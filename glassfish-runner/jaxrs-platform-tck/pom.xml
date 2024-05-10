@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2023 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2023, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,7 +19,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <groupId>jakarta</groupId>
   <artifactId>glassfish-restful-tests</artifactId>
-  <version>10.0.0-SNAPSHOT</version>
+  <version>11.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
   <modelVersion>4.0.0</modelVersion>
   <name>Jakarta restful webservices platform tests run on Glassfish</name>
@@ -30,7 +30,7 @@
   <parent>
     <groupId>org.glassfish</groupId>
     <artifactId>standalone-tck</artifactId>
-    <version>10.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
   </parent>
 
   <properties>
@@ -42,17 +42,17 @@
 
   <dependencies>
     <dependency>
-      <groupId>jakartatck</groupId>
+      <groupId>jakarta.tck</groupId>
       <artifactId>common</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>jakartatck</groupId>
+      <groupId>jakarta.tck</groupId>
       <artifactId>libutil</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>jakartatck</groupId>
+      <groupId>jakarta.tck</groupId>
       <artifactId>runtime</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -85,7 +85,7 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>jakartatck</groupId>
+      <groupId>jakarta.tck</groupId>
       <artifactId>${tck.artifactId}</artifactId>
       <version>${tck.version}</version>
       <scope>test</scope>
@@ -385,7 +385,7 @@
                   ${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/angus-activation.jar
                 </additionalClasspathElement>
               </additionalClasspathElements>
-              <dependenciesToScan>jakartatck:${tck.artifactId}</dependenciesToScan>
+              <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
               <systemPropertyVariables>
                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                 <servlet_adaptor>org.glassfish.jersey.servlet.ServletContainer</servlet_adaptor>

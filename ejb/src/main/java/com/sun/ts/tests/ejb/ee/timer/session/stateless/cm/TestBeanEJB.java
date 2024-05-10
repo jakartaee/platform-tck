@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,8 +27,6 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 import com.sun.ts.tests.ejb.ee.timer.common.TimerImpl;
 import com.sun.ts.tests.ejb.ee.timer.common.TimerInfo;
-import com.sun.ts.tests.ejb.ee.timer.helper.FlagStore;
-import com.sun.ts.tests.ejb.ee.timer.helper.FlagStoreHome;
 
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.Timer;
@@ -90,10 +88,6 @@ public class TestBeanEJB extends StatelessWrapper implements TimedObject {
       false // Timer Service methods
   };
 
-  private FlagStoreHome flagStoreHome;
-
-  private FlagStore flagStoreRef;
-
   public TestBeanEJB() {
     TestUtil.logTrace("TestBeanEJB no arg constructor");
   }
@@ -149,88 +143,6 @@ public class TestBeanEJB extends StatelessWrapper implements TimedObject {
         msg = TimerImpl.CHKMETH_FAIL;
       TestUtil.logTrace("EJB_TIMEOUT: Sending results of attempt "
           + "to access checked method...");
-      break;
-
-    case TimerImpl.RETRY:
-      try {
-        TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
-        flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN,
-            FlagStoreHome.class);
-        flagStoreRef = (FlagStore) flagStoreHome
-            .findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
-
-        TestUtil.logTrace("EJB_TIMEOUT: checking flag in flag store bean");
-        if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
-          TestUtil.logTrace("EJB_TIMEOUT: flag is false - set it and rollback");
-          flagStoreRef.setRequiresNewAccessFlag(true);
-          sctx.setRollbackOnly();
-          return;
-        }
-
-        TestUtil.logTrace("EJB_TIMEOUT: flag is true - send a message");
-        if (flagStoreRef != null)
-          flagStoreRef.remove();
-        msg = TimerImpl.RETRY_OK;
-      } catch (Exception e) {
-        TimerImpl.handleException("ejbTimeout retry", e);
-        TestUtil.logTrace("removing flag store bean");
-        if (flagStoreRef != null)
-          try {
-            flagStoreRef.remove();
-          } catch (Exception re) {
-            TimerImpl.handleException("exception removing FlagStore bean", e);
-          }
-        msg = TimerImpl.RETRY_FAIL;
-      }
-      break;
-
-    case TimerImpl.ROLLBACK:
-      try {
-        TestUtil.logTrace("EJB_TIMEOUT: finding flag store bean");
-        flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN,
-            FlagStoreHome.class);
-        flagStoreRef = (FlagStore) flagStoreHome
-            .findByPrimaryKey(new Integer(TimerImpl.FLAGSTORE_KEY));
-
-        TestUtil.logTrace("EJB_TIMEOUT: checking flags in flag store bean");
-        if ((flagStoreRef.getRequiresNewAccessFlag()) == false) {
-          if ((flagStoreRef.getRequiredAccessFlag()) == true) {
-            TestUtil.logErr("EJB_TIMEOUT: Unexpected value of Required "
-                + "flag: true when RequiresNew flag is false");
-            msg = TimerImpl.ROLLBACK_FAIL;
-            break;
-          }
-          TestUtil.logTrace(
-              "EJB_TIMEOUT: both flags unset, " + "set them and rollback");
-          flagStoreRef.setRequiresNewAccessFlag(true);
-          flagStoreRef.setRequiredAccessFlag(true);
-          sctx.setRollbackOnly();
-          return;
-        }
-
-        TestUtil.logTrace("EJB_TIMEOUT: RequiresNew flag is true - "
-            + "checking the Required flag");
-        if ((flagStoreRef.getRequiredAccessFlag()) == true) {
-          TestUtil.logErr("EJB_TIMEOUT: Unexpected value of Required "
-              + "flag: true when RequiresNew flag is true");
-          msg = TimerImpl.ROLLBACK_FAIL;
-          break;
-        }
-
-        if (flagStoreRef != null)
-          flagStoreRef.remove();
-        msg = TimerImpl.ROLLBACK_OK;
-      } catch (Exception e) {
-        TimerImpl.handleException("ejbTimeout rollback", e);
-        TestUtil.logTrace("removing flag store bean");
-        if (flagStoreRef != null)
-          try {
-            flagStoreRef.remove();
-          } catch (Exception re) {
-            TimerImpl.handleException("exception removing FlagStore bean", e);
-          }
-        msg = TimerImpl.ROLLBACK_FAIL;
-      }
       break;
 
     case TimerImpl.SERIALIZE:
@@ -444,29 +356,6 @@ public class TestBeanEJB extends StatelessWrapper implements TimedObject {
       return TimerImpl.isSerializable(handle);
     } catch (Exception e) {
       TimerImpl.handleException("isSerializable", e);
-    }
-    return false;
-  }
-
-  public boolean createFlagStoreAndTimer(int timerType, int timerAction) {
-
-    try {
-      TestUtil.logTrace("creating flag store bean");
-      flagStoreHome = (FlagStoreHome) nctx.lookup(TimerImpl.FLAGSTORE_BEAN,
-          FlagStoreHome.class);
-      flagStoreRef = (FlagStore) flagStoreHome.create(TestUtil.getProperties(),
-          TimerImpl.FLAGSTORE_KEY, "expresso", 10.5f, false, false);
-
-      return initializeTimer(timerType, timerAction);
-    } catch (Exception e) {
-      TimerImpl.handleException("setupEjbTimeoutRetry", e);
-      if (flagStoreRef != null)
-        try {
-          flagStoreRef.remove();
-        } catch (Exception e1) {
-
-          TimerImpl.handleException("Exception while removing bean", e);
-        }
     }
     return false;
   }

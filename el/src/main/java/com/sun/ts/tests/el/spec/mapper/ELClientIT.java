@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.spec.mapper;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
 import com.sun.ts.tests.el.common.elcontext.VarMapperELContext;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
@@ -126,14 +126,14 @@ public class ELClientIT {
       if (!(t instanceof ELException)) {
         logger.log(Logger.Level.ERROR, "Expected ELException to be thrown");
         logger.log(Logger.Level.ERROR, "instead threw " + t.toString());
-        TestUtil.printStackTrace(t);
+        ELTestUtil.printStackTrace(t);
         throw new Exception("ELException not thrown");
       }
       Throwable cause = t.getCause();
       if (!(cause instanceof NumberFormatException)) {
         logger.log(Logger.Level.ERROR, "Expected cause to be NumberFormatException");
         logger.log(Logger.Level.ERROR, "instead cause is " + cause.toString());
-        TestUtil.printStackTrace(cause);
+        ELTestUtil.printStackTrace(cause);
         throw new Exception("NumberFormatException not cause");
       }
     }

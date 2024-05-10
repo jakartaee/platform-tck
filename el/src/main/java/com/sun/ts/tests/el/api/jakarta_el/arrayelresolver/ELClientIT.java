@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2020 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -21,10 +21,8 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.arrayelresolver;
 
-import java.util.Properties;
 
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 
@@ -258,11 +256,11 @@ public class ELClientIT {
     ELContext context = barebonesContext.getELContext();
 
     try {
-      Object value = resolver.getValue(context, names, 5);
+      Object value = resolver.getValue(context, names, Integer.valueOf(5));
 
       if (value != null) {
         pass = false;
-        buf.append("Expected Value: 'null'").append(TestUtil.NEW_LINE)
+        buf.append("Expected Value: 'null'").append(ELTestUtil.NL)
             .append("Received Value: ").append(value.toString());
       }
 
@@ -309,5 +307,35 @@ public class ELClientIT {
     if (!pass) {
       throw new Exception("Failed: No exception thrown.");
     }
+  }
+
+
+  /*
+   * @testName: arrayELResolverLengthTest
+   * 
+   * @test_Strategy: Verify that the length of an array is available as a read-only property.
+   */
+  @Test
+  public void arrayELResolverLengthTest() throws Exception {
+
+    boolean pass;
+    StringBuffer buf = new StringBuffer();
+    String[] colors = { "red", "blue", "green" };
+
+    try {
+      ArrayELResolver arrayResolver = new ArrayELResolver();
+      BareBonesELContext barebonesContext = new BareBonesELContext();
+      ELContext context = barebonesContext.getELContext();
+
+      pass = ResolverTest.testELResolver(context, arrayResolver, colors,
+          "length", "3", buf, true);
+    } catch (Exception ex) {
+      throw new Exception(ex);
+    }
+
+    if (!pass) {
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    }
+    logger.log(Logger.Level.TRACE, buf.toString());
   }
 }

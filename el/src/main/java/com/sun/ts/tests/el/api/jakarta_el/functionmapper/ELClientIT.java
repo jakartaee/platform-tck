@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 import java.util.Properties;
 
 
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
 
 import jakarta.el.FunctionMapper;
@@ -78,10 +78,10 @@ public class ELClientIT {
 
     if (funcMapper.resolveFunction("foo", "bar") != null) {
       logger.log(Logger.Level.ERROR, "Expected call to resolveFunction() to unassigned "
-          + "function to return null" + TestUtil.NEW_LINE
+          + "function to return null" + ELTestUtil.NL
           + "Instead call returned: "
           + funcMapper.resolveFunction("foo", "bar").getName()
-          + TestUtil.NEW_LINE);
+          + ELTestUtil.NL);
 
       throw new Exception("Resolved unassigned function");
     }
@@ -89,15 +89,15 @@ public class ELClientIT {
     Method method = funcMapper.resolveFunction("Int", "val");
     if (method == null) {
       logger.log(Logger.Level.ERROR, "Expected call to resolveFunction() to resolvable "
-          + "function to return a non-null value" + TestUtil.NEW_LINE);
+          + "function to return a non-null value" + ELTestUtil.NL);
 
       throw new Exception("Incorrect resolution: null method");
     } else {
       String methodSignature = method.toString();
       if (!methodSignature.equals(expected)) {
         logger.log(Logger.Level.ERROR, "Method Signature of resolved function is " + "invalid"
-            + TestUtil.NEW_LINE + "Expected value:" + expected
-            + TestUtil.NEW_LINE);
+            + ELTestUtil.NL + "Expected value:" + expected
+            + ELTestUtil.NL);
 
         throw new Exception("Incorrect resolution: wrong method Signature");
       }

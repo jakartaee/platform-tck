@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -31,9 +31,9 @@ import java.util.Properties;
 import java.util.function.Predicate;
 
 
-import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.util.ExprEval;
 import com.sun.ts.tests.el.common.util.NameValuePair;
+import com.sun.ts.tests.el.common.util.ELTestUtil;
 
 import jakarta.el.ELException;
 import jakarta.el.ELProcessor;
@@ -682,7 +682,7 @@ public class ELClientIT {
     } catch (RuntimeException re) {
       throw new Exception(re);
     } catch (Exception e) {
-      TestUtil.printStackTrace(e);
+      ELTestUtil.printStackTrace(e);
       throw new Exception(e);
     }
 
@@ -749,7 +749,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
-      TestUtil.printStackTrace(e);
+      ELTestUtil.printStackTrace(e);
     }
 
     if (!pass)
@@ -790,7 +790,7 @@ public class ELClientIT {
 
       } catch (Exception e) {
         logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
 
       if (!pass)
@@ -807,7 +807,7 @@ public class ELClientIT {
 
       } catch (Exception e) {
         logger.log(Logger.Level.ERROR, "Exception thrown, but it was not an ELException");
-        TestUtil.printStackTrace(e);
+        ELTestUtil.printStackTrace(e);
       }
 
       if (!pass)
@@ -1744,7 +1744,7 @@ public class ELClientIT {
 
     } catch (Exception e) {
       logger.log(Logger.Level.ERROR, "Testing coercion to arrays " +
-          "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+          "threw an Exception!" + ELTestUtil.NL + "Received: " + e.toString() + ELTestUtil.NL);
 
       throw new Exception(e);
     } finally {
@@ -1784,7 +1784,7 @@ public class ELClientIT {
   public void elCoerceLambdaExpressionToFunctionalInterfaceTest() throws Exception {
 
     boolean fail = false;
-    boolean[] pass = { false, false, false, false, false };
+    boolean[] pass = { false, false, false, false, false, false };
     Object result = null;
 
     try {
@@ -1792,44 +1792,63 @@ public class ELClientIT {
       ELProcessor elp0 = new ELProcessor();
       elp0.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClientIT", "testPredicateString");
       result = elp0.eval("testPredicateString(x -> x.equals('data'))");
-      pass[0] = ExprEval.compareClass(result, String.class)
-          && ExprEval.compareValue(result, "PASS");
+      pass[0] = ExprEval.compareClass(result, String.class) && ExprEval.compareValue(result, "PASS");
       
       // Coercible lambda expression where filter does not match
       ELProcessor elp1 = new ELProcessor();
       elp1.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClientIT", "testPredicateString");
       result = elp1.eval("testPredicateString(x -> x.equals('other'))");
-      pass[1] = ExprEval.compareClass(result, String.class)
-          && ExprEval.compareValue(result, "BLOCK");
+      pass[1] = ExprEval.compareClass(result, String.class) && ExprEval.compareValue(result, "BLOCK");
 
       // Not a lambda expression
       ELProcessor elp2 = new ELProcessor();
       elp2.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClientIT", "testPredicateString");
       try {
-        result = elp2.eval("testPredicateString('notLambdaExpression)");
+        result = elp2.eval("testPredicateString('notLambdaExpression')");
       } catch (ELException e) {
         pass[2] = true;
       }
 
+      /*
+       * Note: The following tests use compareTo(). When the target object (Long or String) is examined by reflection
+       * both compareTo(Object) and compareTo(Long)/compareTo(String) methods will be found as potential matches. The
+       * method matching rules (see section 1.2.1.2 of the specification) require that overload resolution has a higher
+       * precedence than coercion resolution so it is always the compareTo(Object) method that will be used for the
+       * following tests resulting in a ClassCastException (which is wrapped in an ELException).
+       */
+
       // Coercible lambda expression with wrong type
-      ELProcessor elp3 = new ELProcessor();
-      elp3.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClientIT", "testPredicateString");
+      ELProcessor elp3 = new ELProcessor();      
+      elp3.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClientIT", "testPredicateLong");
       try {
-        result = elp3.eval("testPredicateLong(x -> x.equals('data'))");
+        result = elp3.eval("testPredicateLong(x -> x.compareTo('data') == 0)");
       } catch (ELException e) {
+        // String 'data' cannot be cast to Long
         pass[3] = true;
       }
-      
+
       // Coercible lambda expression where filter does not match and parameter needs to be coerced
       ELProcessor elp4 = new ELProcessor();
       elp4.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClientIT", "testPredicateString");
-      result = elp4.eval("testPredicateString(x -> x.equals(1234))");
-      pass[4] = ExprEval.compareClass(result, String.class)
-          && ExprEval.compareValue(result, "BLOCK");
+      try {
+        result = elp4.eval("testPredicateString(x -> x.compareTo(1234) == 0)");
+      } catch (ELException e) {
+        // Long 1234 cannot be cast to String. It is coercible but that should not used here.
+        pass[4] = true;
+      }
 
+      // Coercible lambda expression with coercible type but coercion rules mean this test fails
+      ELProcessor elp5 = new ELProcessor();
+      elp5.defineFunction("", "", "com.sun.ts.tests.el.spec.coercion.ELClientIT", "testPredicateLong");
+      try {
+        result = elp5.eval("testPredicateLong(x -> x.compareTo('1234') == 0)");
+      } catch (ELException e) {
+        // String '1234' cannot be cast to String. It is coercible but that should not used here.
+        pass[5] = true;
+      }
     } catch (Exception e) {
       logger.log(Logger.Level.ERROR, "Testing coercion of lambda expressions to functional interfaces " +
-          "threw an Exception!" + TestUtil.NEW_LINE + "Received: " + e.toString() + TestUtil.NEW_LINE);
+          "threw an Exception!" + ELTestUtil.NL + "Received: " + e.toString() + ELTestUtil.NL);
 
       throw new Exception(e);
     } finally {

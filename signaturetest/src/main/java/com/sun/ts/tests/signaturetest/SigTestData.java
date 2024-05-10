@@ -31,8 +31,8 @@ public class SigTestData {
 
   private Properties props;
 
-  public SigTestData(Properties props) {
-    this.props = props;
+  public SigTestData() {
+    this.props = System.getProperties();
   }
 
   public String getVehicle() {

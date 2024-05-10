@@ -23,13 +23,16 @@ package com.sun.ts.tests.signaturetest;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 /**
  * This class should be extended by TCK developers that wish to create a set of
@@ -37,7 +40,9 @@ import com.sun.ts.lib.util.TestUtil;
  * implement the getPackages method to specify which packages are to be tested
  * by the signature test framework.
  */
-public abstract class SigTest extends EETest {
+public abstract class SigTest {
+
+  private static final Logger logger = System.getLogger(SigTest.class.getName());
 
   protected SignatureTestDriver driver;
 
@@ -173,18 +178,14 @@ public abstract class SigTest extends EETest {
    * @param p
    *          Properties specified by the test user and passed to this test via
    *          the test framework.
-   * @throws Exception
-   *           When an error occurs reading or saving the state information
-   *           processed by this method.
    */
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() {
     try {
-      TestUtil.logTrace("$$$ SigTest.setup() called");
-      this.testInfo = new SigTestData(p);
+      logger.log(Logger.Level.TRACE, "$$$ SigTest.setup() called");
+      this.testInfo = new SigTestData();
       TestUtil.logTrace("$$$ SigTest.setup() complete");
     } catch (Exception e) {
-      logErr("Unexpected exception " + e.getMessage());
-      throw new Exception("setup failed!", e);
+      logger.log(Logger.Level.ERROR, "Unexpected exception " + e.getMessage());
     }
   }
 
@@ -197,15 +198,13 @@ public abstract class SigTest extends EETest {
    * @throws Exception
    *           When an error occurs executing the signature tests.
    */
-  public void signatureTest() throws Exception {
-    TestUtil.logTrace("$$$ SigTest.test1() called");
+  public void signatureTest(String mapFile, String packageFile, Properties mapFileAsProps, String[] packages)
+   throws Exception {
+
     SigTestResult results = null;
-    String mapFile = getMapFile();
-    String repositoryDir = getRepositoryDir();
-    String[] packages = getPackages();
+    String repositoryDir = System.getProperty("java.io.tmpdir");
     String[] classes = getClasses();
-    String packageFile = getPackageFile();
-    String testClasspath = testInfo.getTestClasspath();
+    String testClasspath = testInfo.getTestClasspath(); // System.getProperty("signature.sigTestClasspath");
     String optionalPkgToIgnore = testInfo.getOptionalTechPackagesToIgnore();
 
     // unlisted optional technology packages are packages for optional
@@ -216,35 +215,35 @@ public abstract class SigTest extends EETest {
 
     // If testing with Java 9+, extract the JDK's modules so they can be used
     // on the testcase's classpath.
-    Properties sysProps = System.getProperties();
-    String version = (String) sysProps.get("java.version");
-    if (!version.startsWith("1.")) {
-      String jimageDir = testInfo.getJImageDir();
-      File f = new File(jimageDir);
-      f.mkdirs();
 
-      String javaHome = (String) sysProps.get("java.home");
-      TestUtil.logMsg("Executing JImage");
+    String version = System.getProperty("java.version");
 
-      try {
-        ProcessBuilder pb = new ProcessBuilder(javaHome + "/bin/jimage", "extract", "--dir=" + jimageDir, javaHome + "/lib/modules");
-        TestUtil.logMsg(javaHome + "/bin/jimage extract --dir=" + jimageDir + " " + javaHome + "/lib/modules");
-        pb.redirectErrorStream(true);
-        Process proc = pb.start();
-        BufferedReader out = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-        String line = null;
-        while ((line = out.readLine()) != null) {
-          TestUtil.logMsg(line);
-        }
+    String jimageDir = testInfo.getJImageDir();
+    File f = new File(jimageDir);
+    f.mkdirs();
 
-        int rc = proc.waitFor();
-        TestUtil.logMsg("JImage RC = " + rc);
-        out.close();
-      } catch (Exception e) {
-        TestUtil.logMsg("Exception while executing JImage!  Some tests may fail.");
-        e.printStackTrace();
+    String javaHome = System.getProperty("java.home");
+    logger.log(Logger.Level.INFO, "Executing JImage");
+
+    try {
+      ProcessBuilder pb = new ProcessBuilder(javaHome + "/bin/jimage", "extract", "--dir=" + jimageDir, javaHome + "/lib/modules");
+      logger.log(Logger.Level.INFO, javaHome + "/bin/jimage extract --dir=" + jimageDir + " " + javaHome + "/lib/modules");
+      pb.redirectErrorStream(true);
+      Process proc = pb.start();
+      BufferedReader out = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+      String line = null;
+      while ((line = out.readLine()) != null) {
+        TestUtil.logMsg(line);
       }
+
+      int rc = proc.waitFor();
+      TestUtil.logMsg("JImage RC = " + rc);
+      out.close();
+    } catch (Exception e) {
+      TestUtil.logMsg("Exception while executing JImage!  Some tests may fail.");
+      e.printStackTrace();
     }
+    
 
     try {
       results = getSigTestDriver().executeSigTest(packageFile, mapFile,
@@ -261,8 +260,62 @@ public abstract class SigTest extends EETest {
         throw new Exception("SigTest.test1() failed!, diffs found");
       } else {
         TestUtil.logErr("Unexpected exception " + e.getMessage());
-        throw new Exception("test1 failed with an unexpected exception", e);
+        throw new Exception("test failed with an unexpected exception", e);
       }
+    }
+  }
+
+  public File writeStreamToTempFile(InputStream inputStream, String tempFilePrefix, String tempFileSuffix) throws IOException {
+    FileOutputStream outputStream = null;
+    try {
+        File file = File.createTempFile(tempFilePrefix, tempFileSuffix);
+        file.deleteOnExit();
+        outputStream = new FileOutputStream(file);
+        byte[] buffer = new byte[1024];
+        while (true) {
+            int bytesRead = inputStream.read(buffer);
+            if (bytesRead == -1) {
+                break;
+            }
+            outputStream.write(buffer, 0, bytesRead);
+        }
+        return file;
+    }
+    finally {
+        if (outputStream != null) {
+            outputStream.close();
+        }
+    }
+  }
+
+  public File writeStreamToSigFile(InputStream inputStream, String apiPackage, String packageVersion) throws IOException {
+    FileOutputStream outputStream = null;
+    String tmpdir = System.getProperty("java.io.tmpdir");
+    try {
+        File sigfile = new File(tmpdir+ File.separator + apiPackage + ".sig_"+packageVersion);
+        if(sigfile.exists()){
+          sigfile.delete();
+          TestUtil.logMsg("Existing signature file deleted to create new one");
+        }
+        if(!sigfile.createNewFile()){
+          TestUtil.logErr("signature file is not created");
+        }
+        outputStream = new FileOutputStream(sigfile);
+        byte[] buffer = new byte[1024];
+        while (true) {
+            int bytesRead = inputStream.read(buffer);
+            if (bytesRead == -1) {
+                break;
+            }
+            outputStream.write(buffer, 0, bytesRead);
+        }
+        return sigfile;
+    }
+
+    finally {
+        if (outputStream != null) {
+            outputStream.close();
+        }
     }
   }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates and others.
  * All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -15,17 +15,10 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-/*
- * $Id$
- */
-
 package com.sun.ts.tests.el.api.jakarta_el.beanelresolver;
 
-import java.util.Properties;
 
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.SimpleBean;
@@ -39,6 +32,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
 import java.lang.System.Logger;
+import java.util.TimeZone;
 
 public class ELClientIT {
 
@@ -124,8 +118,8 @@ public class ELClientIT {
     } catch (Exception ex) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Test of a valid expression using a Bean with a read-only " +
-          "property implemented via default methods threw an Exception!" + TestUtil.NEW_LINE +
-          "Received: " + ex.toString() + TestUtil.NEW_LINE);
+          "property implemented via default methods threw an Exception!" + ELTestUtil.NL +
+          "Received: " + ex.toString() + ELTestUtil.NL);
 
       ex.printStackTrace();
     }
@@ -162,8 +156,8 @@ public class ELClientIT {
     } catch (Exception ex) {
       pass = false;
       logger.log(Logger.Level.ERROR, "Test of a valid expression using a Bean with a read-write " +
-          "property implemented via default methods threw an Exception!" + TestUtil.NEW_LINE +
-          "Received: " + ex.toString() + TestUtil.NEW_LINE);
+          "property implemented via default methods threw an Exception!" + ELTestUtil.NL +
+          "Received: " + ex.toString() + ELTestUtil.NL);
 
       ex.printStackTrace();
     }
@@ -195,8 +189,7 @@ public class ELClientIT {
       Class<?>[] types = { String.class, String.class };
       String[] values = { "Doug", "Donahue" };
 
-      pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb,
-          "isName", types, values, false, buf);
+      pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb, "isName", types, values, Boolean.FALSE, buf);
     } catch (Exception ex) {
       throw new Exception(ex);
     }
@@ -234,12 +227,12 @@ public class ELClientIT {
 
       if (null == result) {
         // validate the new values.
-        pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb,
-            "isName", types, values, false, buf);
+        pass = ResolverTest.testELResolverInvoke(
+            context, beanResolver, sb, "isName", types, values, Boolean.FALSE, buf);
       } else {
         pass = false;
-        buf.append("Unexpected Value returned!" + TestUtil.NEW_LINE
-            + "Expected: null" + TestUtil.NEW_LINE + "Recieved: "
+        buf.append("Unexpected Value returned!" + ELTestUtil.NL
+            + "Expected: null" + ELTestUtil.NL + "Recieved: "
             + result.getClass().getName());
       }
 
@@ -275,8 +268,8 @@ public class ELClientIT {
       Class<?>[] types = { String.class, String.class };
       String[] values = { "Doug", "Donahue" };
 
-      pass = ResolverTest.testELResolverInvoke(context, beanResolver, sb,
-          "bogus_Method", types, values, true, buf);
+      pass = ResolverTest.testELResolverInvoke(
+          context, beanResolver, sb, "bogus_Method", types, values, Boolean.TRUE, buf);
 
     } catch (Exception ex) {
       throw new Exception(ex);
@@ -387,6 +380,37 @@ public class ELClientIT {
     try {
       pass = ResolverTest.testELResolverPNWE(context, resolver, sb, "intention",
           "billy", buf);
+    } catch (Exception ex) {
+      throw new Exception(ex);
+    }
+
+    if (!pass) {
+      throw new Exception(ELTestUtil.FAIL + buf.toString());
+    }
+    logger.log(Logger.Level.TRACE, buf.toString());
+  }
+  
+  /**
+   * @testName: beanELResolverMethodVisibilityTest
+   * 
+   * @test_Strategy: Verify that API calls work as expected for a property that is not visible via the implementing
+   *                 class (it is in an internal, non-exported class) but is visible via an interface method:
+   *                 beanELResolver() getValue() getType() setValue() isReadOnly() getCommonPropertyType()
+   *                 getFeatureDescriptors()
+   */
+  @Test
+  public void beanELResolverMethodVisibilityTest() throws Exception {
+
+    boolean pass = false;
+    StringBuffer buf = new StringBuffer();
+    TimeZone tz = TimeZone.getDefault();
+    
+    try {
+      BeanELResolver beanResolver = new BeanELResolver();
+      BareBonesELContext barebonesContext = new BareBonesELContext();
+      ELContext context = barebonesContext.getELContext();
+
+      pass = ResolverTest.testELResolver(context, beanResolver, tz, "rawOffset", Integer.valueOf(0), buf, false);
     } catch (Exception ex) {
       throw new Exception(ex);
     }

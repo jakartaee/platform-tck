@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.api.jakarta_el.methodinfo;
 import java.util.Properties;
 
 
-import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
+import com.sun.ts.tests.el.common.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.ResolverType;

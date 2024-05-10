@@ -59,26 +59,6 @@ public class Client extends SigTest {
 
   /***** Boilerplate Code *****/
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, new PrintWriter(System.out),
-        new PrintWriter(System.err));
-    s.exit();
-  }
-
-  /**
-   * Entry point for same-VM execution. In different-VM execution, the main
-   * method delegates to this method.
-   */
-  public Status run(String args[], PrintWriter out, PrintWriter err) {
-
-    return super.run(args, out, err);
-  }
 
   /*
    * The following comments are specified in the base class that defines the
@@ -98,8 +78,8 @@ public class Client extends SigTest {
   /*
    * @class.setup_props: ts_home;
    */
-  public void setup(String[] args, Properties p) throws Exception {
-    super.setup(args, p);
+  public void setup() {
+    super.setup();
   }
 
   /*

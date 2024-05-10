@@ -24,7 +24,7 @@ package com.sun.ts.tests.el.api.jakarta_el.beannameelresolver;
 import java.util.Properties;
 
 
-import com.sun.ts.tests.common.el.api.resolver.ResolverTest;
+import com.sun.ts.tests.el.common.api.resolver.ResolverTest;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
 import com.sun.ts.tests.el.common.util.SimpleBean;
 

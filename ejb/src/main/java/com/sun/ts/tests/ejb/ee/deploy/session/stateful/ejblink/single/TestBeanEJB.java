@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -39,30 +39,6 @@ public class TestBeanEJB extends StatefulWrapper {
 
   public boolean testStatefulExternal() {
     return TestCode.testStatefulExternal(nctx, props);
-  }
-
-  public boolean testBMPInternal() {
-    return TestCode.testBMPInternal(nctx, props);
-  }
-
-  public boolean testBMPExternal() {
-    return TestCode.testBMPExternal(nctx, props);
-  }
-
-  public boolean testCMP11Internal() {
-    return TestCode.testCMP11Internal(nctx, props);
-  }
-
-  public boolean testCMP11External() {
-    return TestCode.testCMP11External(nctx, props);
-  }
-
-  public boolean testCMP20Internal() {
-    return TestCode.testCMP20Internal(nctx, props);
-  }
-
-  public boolean testCMP20External() {
-    return TestCode.testCMP20External(nctx, props);
   }
 
   public void cleanUpBean() {

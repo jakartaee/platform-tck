@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018,2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -31,10 +31,8 @@
         <fileset dir="${class.dir}"
                  includes="com/sun/ts/tests/common/testlogic/ejb/bb/argsemantics/TestLogic.class,
                            com/sun/ts/tests/common/ejb/calleebeans/SimpleArgument.class,
-                           com/sun/ts/tests/common/ejb/wrappers/CMP20Wrapper.class,
                            com/sun/ts/tests/common/ejb/wrappers/StatefulWrapper.class,
                            com/sun/ts/tests/common/ejb/wrappers/StatelessWrapper.class,
-                           com/sun/ts/tests/common/ejb/calleebeans/CMP20Callee*.class,
                            com/sun/ts/tests/common/ejb/calleebeans/StatefulCallee*.class"/>
       </ts.ejbjar>
 

@@ -99,8 +99,8 @@ public class JAXWSSigTest extends SigTestEE {
   /*
    * @class.setup_props: sigTestClasspath, Location of JAXWS jar files; ts_home;
    */
-  public void setup(String[] args, Properties p) throws Exception {
-    super.setup(args, p);
+  public void setup() throws Exception {
+    super.setup();
   }
 
   /*
