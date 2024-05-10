@@ -125,4 +125,21 @@ public class TestCode {
     return pass;
   }
 
+  public static void cleanUpStatefulBean() {
+    TestUtil.logTrace("cleanUpStatefulBean");
+    try {
+      if (ssfInternalBeanRef1 != null) {
+        TestUtil.logTrace("cleanUp Session StatefulInternal Bean");
+        ssfInternalBeanRef1 = null;
+      }
+      if (ssfExternalBeanRef1 != null) {
+        TestUtil.logTrace("cleanUp Session StatefulExternal Bean");
+        ssfExternalBeanRef1 = null;
+      }
+    } catch (Exception e) {
+      TestUtil.logErr(
+          "Exception caught trying to remove Stateful Session beans", e);
+    }
+  }
+
 }
