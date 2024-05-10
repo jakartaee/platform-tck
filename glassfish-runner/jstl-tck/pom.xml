@@ -31,7 +31,10 @@
         <db.delimiter>;</db.delimiter>
         <db.name>derby</db.name>
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
-        <jakarta.platform.version>10.0.0</jakarta.platform.version>
+        <!-- <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version> -->
+        <glassfish.container.version>8.0.0-M5</glassfish.container.version>
+        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
+        <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
         <jdbc.db>derby</jdbc.db>
         <jstl.db.driver>org.apache.derby.jdbc.ClientDriver</jstl.db.driver>
@@ -43,7 +46,7 @@
         <jstl.db.user>cts1</jstl.db.user>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>jstl-tck</tck.artifactId>
-        <tck.version>5.0.0</tck.version>
+        <tck.version>4.0.0</tck.version>
     </properties>
 
     <dependencies>
@@ -53,9 +56,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>jstl-tck</artifactId>
-            <version>10.0.0-SNAPSHOT</version>
+            <version>11.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.main.common</groupId>
@@ -104,7 +107,7 @@
                 <version>3.2.0</version>
                 <executions>
                     <execution>
-                        <id>unpack</id>
+                        <id>download-gf</id>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
@@ -124,6 +127,26 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <!-- <echo message="unzipping file"></echo> -->
+                                <!-- <unzip dest="target/" src="target/glassfish.zip"></unzip> -->
+                                <chmod dir="target/glassfish8/glassfish/bin/asadmin" perm="777"></chmod>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
