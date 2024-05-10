@@ -171,7 +171,7 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
         sb.append("</strong> was thrown!");
 
         if (t instanceof JspException && _checkRootCause) {
-          Throwable rt = ((JspException) t).getRootCause();
+          Throwable rt = ((JspException) t).getCause();
           if (rt != null) {
             if (_rootException == null) {
               sb.append("<br>\nThe root cause of Exception defined");
