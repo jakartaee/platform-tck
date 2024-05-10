@@ -19,12 +19,12 @@
     <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
-        <version>10.0.0-SNAPSHOT</version>
+        <version>11.0.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jstl-tck</artifactId>
-    <version>10.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -45,7 +45,7 @@
         <jstl.db.url>jdbc:derby://${jstl.db.server}:${jstl.db.port}/${jstl.db.name};create=true</jstl.db.url>
         <jstl.db.user>cts1</jstl.db.user>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <tck.artifactId>jstl-tck</tck.artifactId>
+        <tck.artifactId>jakarta-tags-tck</tck.artifactId>
         <tck.version>4.0.0</tck.version>
     </properties>
 
@@ -57,8 +57,8 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>jstl-tck</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
+            <artifactId>${tck.artifactId}</artifactId>
+            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.main.common</groupId>
@@ -422,7 +422,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp-api.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.servlet.jsp.jstl-api.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <dependenciesToScan>jakartatck:jstl-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
