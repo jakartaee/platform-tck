@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.connector.localTx.transaction.conSharing2;
 
-import java.rmi.RemoteException;
 import java.util.Vector;
 
-import jakarta.ejb.EJBObject;
+public interface BeanA {
+  public void initialize();
 
-public interface BeanA extends EJBObject {
   // Database methods
   /**
    * Make a JDBC <code>Connection</code> to the specified database. DataSource
@@ -34,12 +33,12 @@ public interface BeanA extends EJBObject {
    * @param tName
    *          the name of the table
    * @return void
-   * @exception RemoteException
+   * @exception EJBException
    *              If the JDBC <code>Connection</code> could not be made.
    */
-  public void dbConnectfirst() throws RemoteException;
+  public void dbConnectfirst();
 
-  public void dbConnectsecond() throws RemoteException;
+  public void dbConnectsecond();
 
   /**
    * Creates the specified table.
@@ -47,10 +46,10 @@ public interface BeanA extends EJBObject {
    * @param tName
    *          the name of the table
    * @return void
-   * @exception RemoteException
+   * @exception EJBException
    *              If the specified table could not be created.
    */
-  public void createData() throws RemoteException;
+  public void createData();
 
   /**
    * Add a new row to the specified table, where key is unique.
@@ -60,10 +59,10 @@ public interface BeanA extends EJBObject {
    * @param key
    *          the unique key id of the new row
    * @return boolean <code>true</code> if row was inserted; false otherwise
-   * @exception RemoteException
+   * @exception EJBException
    *              If the new row could not be added.
    */
-  public boolean insert(String str) throws RemoteException;
+  public boolean insert(String str);
 
   /**
    * Delete a range of rows from the specified table.
@@ -75,10 +74,10 @@ public interface BeanA extends EJBObject {
    * @param toKey
    *          the end of the range of row
    * @return void
-   * @exception RemoteException
+   * @exception EJBException
    *              If the range of rows could not be deleted.
    */
-  public void delete(String str) throws RemoteException;
+  public void delete(String str);
 
   /**
    * Drop the specified table.
@@ -86,10 +85,10 @@ public interface BeanA extends EJBObject {
    * @param tName
    *          the name of the table
    * @return void
-   * @exception RemoteException
+   * @exception EJBException
    *              If the table could not be dropped.
    */
-  public void destroyData() throws RemoteException;
+  public void destroyData();
 
   /**
    * Closes the JDBC <code>Connection</code> to the RDBMS.
@@ -97,10 +96,10 @@ public interface BeanA extends EJBObject {
    * @param tName
    *          the name of the table
    * @return void
-   * @exception RemoteException
+   * @exception EJBException
    *              If the <code>Connection</code> could not be closed.
    */
-  public void dbUnConnect() throws RemoteException;
+  public void dbUnConnect();
 
   /**
    * Get the results of a row in the specified table.
@@ -111,10 +110,10 @@ public interface BeanA extends EJBObject {
    *          the unique key identifer for the row
    * @return Vector the Vector contains the row of the specified table in a
    *         prescribed format.
-   * @exception RemoteException
+   * @exception EJBException
    *              If the table row result could not be obtained.
    */
-  public Vector getResults() throws RemoteException;
+  public Vector getResults();
 
   /**
    * Required method of the TS test infrastructure. Allows server side logging
@@ -123,7 +122,7 @@ public interface BeanA extends EJBObject {
    * @param p
    *          the TS environment specific properties
    * @return void
-   * @exception RemoteException
+   * @exception EJBException
    *              If the client/server logging relationship could not be
    *              established.
    */

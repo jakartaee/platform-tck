@@ -25,20 +25,13 @@ import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.Init;
 import jakarta.ejb.Remove;
 
 //@Stateful(name="RemoveNotRetainBean")
 //@Remote({RemoveNotRetainIF.class})
-//@Local({RemoveLocalIF.class, RemoveLocal2IF.class})
-//@RemoteHome(TwoRemoteHome.class)
-//@LocalHome(TwoLocalHome.class)
 public class RemoveNotRetainBean implements RemoveNotRetainIF {
   public RemoveNotRetainBean() {
-  }
-
-  public void ejbCreate() throws CreateException {
   }
 
   @Init

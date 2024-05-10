@@ -29,13 +29,11 @@
       <ejb-ref>
         <ejb-ref-name>ejb/MyEjbReference</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <home>com.sun.ts.tests.xa.ee.resXcomp3.Ejb1TestHome</home>
         <remote>com.sun.ts.tests.xa.ee.resXcomp3.Ejb1Test</remote>
       </ejb-ref>
       <ejb-ref>
         <ejb-ref-name>ejb/Ejb2Test</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <home>com.sun.ts.tests.xa.ee.resXcomp3.Ejb2TestHome</home>
         <remote>com.sun.ts.tests.xa.ee.resXcomp3.Ejb2Test</remote>
       </ejb-ref>
       <resource-ref>

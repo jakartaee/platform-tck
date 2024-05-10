@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,20 +20,20 @@
 
 package com.sun.ts.tests.integration.session.jspejbjdbc;
 
-import java.rmi.RemoteException;
+import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
+public interface Teller {
+  public void initialize(String name, Properties props);
 
-public interface Teller extends EJBObject {
-  public void transfer(int from, int to, double amt) throws RemoteException;
+  public void transfer(int from, int to, double amt);
 
-  public double balance(int acct) throws RemoteException;
+  public double balance(int acct);
 
-  public double withdraw(int acct, double amt) throws RemoteException;
+  public double withdraw(int acct, double amt);
 
-  public double deposit(int acct, double amt) throws RemoteException;
+  public double deposit(int acct, double amt);
 
-  public String getAllAccounts() throws RemoteException;
+  public String getAllAccounts();
 
-  public String sayHello() throws RemoteException;
+  public String sayHello();
 }

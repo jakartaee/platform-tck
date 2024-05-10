@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,35 +23,8 @@ import java.util.Properties;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
-
-public class TestBean2EJB implements SessionBean {
-  private SessionContext sctx = null;
-
+public class TestBean2EJB {
   private Properties props = null;
-
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
-  }
 
   // Logging method for TS
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,42 +22,18 @@ package com.sun.ts.tests.integration.sec.propagation;
 
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.SessionBean;
+import jakarta.annotation.Resource;
 import jakarta.ejb.SessionContext;
 
-public class Bean2EJB implements SessionBean {
+public class Bean2EJB {
 
-  private SessionContext sessionContext = null;
-
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate OK");
-  }
+  @Resource
+  private SessionContext sessionContext;
 
   /**
    * Returns the name of the caller principal
    */
   public String getCallerPrincipalName() {
     return sessionContext.getCallerPrincipal().getName();
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    sessionContext = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbDestroy() {
-    TestUtil.logTrace("ejbDestroy");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
   }
 }

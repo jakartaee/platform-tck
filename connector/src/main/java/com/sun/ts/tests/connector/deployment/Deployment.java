@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,10 +20,12 @@
 
 package com.sun.ts.tests.connector.deployment;
 
-import java.rmi.RemoteException;
+import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
+public interface Deployment {
+  public void initialize(Properties props);
 
-public interface Deployment extends EJBObject {
-  boolean testRarInEar() throws RemoteException;
+  public boolean testRarInEar();
+
+  public void cleanup();
 }

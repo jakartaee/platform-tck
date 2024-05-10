@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,25 +16,7 @@
 
 package com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest;
 
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
-
-public class ChokeBean implements SessionBean {
-  public void ejbCreate() {
-  }
-
-  public void ejbActivate() {
-  }
-
-  public void ejbRemove() {
-  }
-
-  public void ejbPassivate() {
-  }
-
-  public void setSessionContext(SessionContext sc) {
-  }
-
+public class ChokeBean {
   public void chokeMandatory() {
   }
 

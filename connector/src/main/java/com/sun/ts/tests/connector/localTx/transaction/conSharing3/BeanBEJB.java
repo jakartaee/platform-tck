@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -28,18 +28,13 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
 
-public class BeanBEJB implements SessionBean {
+public class BeanBEJB {
 
   // testProps represent the test specific properties passed in
   // from the test harness.
   private static final Properties testProps = null;
-
-  private SessionContext sctx = null;
 
   private TSNamingContext context = null;
 
@@ -49,50 +44,19 @@ public class BeanBEJB implements SessionBean {
   // TSDataSources
   private TSDataSource ds;
 
-  // Required EJB methods
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate");
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
+  public void initialize() {
+    TestUtil.logTrace("initialize");
     try {
-      this.sctx = sc;
       this.context = new TSNamingContext();
 
       // Get the TSDataSource
       ds = (TSDataSource) context.lookup("java:comp/env/eis/whitebox-tx");
       TestUtil.logTrace("ds: " + ds);
       TestUtil.logTrace("TSDataSource lookup OK!");
-
     } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception setting EJB context/DataSources",
-          e);
+      TestUtil.logErr("Unexpected Exception setting DataSource", e);
       throw new EJBException(e.getMessage());
     }
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbDestroy() {
-    TestUtil.logTrace("ejbDestroy");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-    try {
-      con = ds.getConnection();
-    } catch (Exception e) {
-      TestUtil.logErr("Exception connecting to DB", e);
-      throw new EJBException(e.getMessage());
-    }
-  }
-
-  public void ejbPassivate() {
-    dbUnConnect();
-    TestUtil.logTrace("ejbPassivate");
   }
 
   // ===========================================================

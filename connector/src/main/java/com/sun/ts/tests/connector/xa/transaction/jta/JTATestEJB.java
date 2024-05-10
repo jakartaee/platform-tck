@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,11 +29,7 @@ import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSDataSource;
 import com.sun.ts.tests.connector.util.DBSupport;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
-
-public class JTATestEJB implements SessionBean {
+public class JTATestEJB {
   private TSNamingContext context;
 
   private String str;
@@ -57,11 +53,12 @@ public class JTATestEJB implements SessionBean {
   public JTATestEJB() {
   }
 
-  public void ejbCreate(Properties props) throws CreateException {
+  public void initialize(Properties props) {
     p = props;
+
     try {
-      TestUtil.logTrace("ejbCreate");
-      System.out.println("ejbCreate done");
+      TestUtil.logTrace("initialize");
+      context = new TSNamingContext();
       TestUtil.init(props);
       whitebox_xa = p.getProperty("whitebox-xa");
       System.out.println("got props");
@@ -87,12 +84,8 @@ public class JTATestEJB implements SessionBean {
     boolean results = true;
 
     try {
-      // create EJB
-      JTATest hr = null;
       try {
         ds1.clearLog();
-        TSNamingContext ic = new TSNamingContext();
-        TestUtil.logMsg("Got the EJB!!");
         TestUtil.logMsg("Got RA log.");
         ds1.setLogFlag(true);
         con = ds1.getConnection();
@@ -225,35 +218,6 @@ public class JTATestEJB implements SessionBean {
       }
     }
     return results;
-  }
-
-  public void setSessionContext(SessionContext sc) {
-
-    try {
-      TestUtil.logTrace("setSessionContext");
-      this.context = new TSNamingContext();
-    } catch (Exception sqle) {
-      TestUtil.printStackTrace(sqle);
-      sqle.getMessage();
-    }
-
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-    try {
-      if (con != null) {
-        con.close();
-      }
-    } catch (Exception ex) {
-      ex.printStackTrace();
-    }
-  }
-
-  public void ejbActivate() {
-  }
-
-  public void ejbPassivate() {
   }
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,18 +24,14 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.ejb.CreateException;
+import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
 import jakarta.ejb.SessionContext;
 
-public class Bean1EJB implements SessionBean {
+public class Bean1EJB {
 
-  private SessionContext sessionContext = null;
-
-  public void ejbCreate() throws CreateException {
-    TestUtil.logTrace("ejbCreate OK");
-  }
+  @Resource
+  private SessionContext sessionContext;
 
   /**
    * Returns the name of the caller principal
@@ -55,16 +51,12 @@ public class Bean1EJB implements SessionBean {
       TSNamingContextInterface nctx = null;
       String testLookup = "java:comp/env/ejb/Bean2";
 
-      Bean2Home bean2Home = null;
       Bean2 bean2Ref = null;
 
       nctx = new TSNamingContext();
-      bean2Home = (Bean2Home) nctx.lookup(testLookup, Bean2Home.class);
-      bean2Ref = bean2Home.create();
+      bean2Ref = (Bean2) nctx.lookup(testLookup, Bean2.class);
 
       result = bean2Ref.getCallerPrincipalName();
-
-      bean2Ref.remove();
     } catch (Exception e) {
       TestUtil.printStackTrace(e);
       throw new EJBException("Exception: " + e.getMessage());
@@ -75,25 +67,5 @@ public class Bean1EJB implements SessionBean {
 
   public String Test() {
     return "true";
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    sessionContext = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbDestroy() {
-    TestUtil.logTrace("ejbDestroy");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
   }
 }

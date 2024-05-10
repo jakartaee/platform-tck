@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018, 2022 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -18,56 +18,48 @@
 -->
 
 <application-client xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" metadata-complete="false" version="10" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd">
-<ejb-ref>
-<ejb-ref-name>removeBean</ejb-ref-name>
-<ejb-ref-type>Session</ejb-ref-type>
-<remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF</remote>
-<injection-target>
-<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
-<injection-target-name>removeBean</injection-target-name>
-</injection-target>
-<lookup-name>
-java:app/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF
-</lookup-name>
-</ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>removeBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF</remote>
+    <injection-target>
+      <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
+      <injection-target-name>removeBean</injection-target-name>
+    </injection-target>
+    <lookup-name>java:app/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveIF</lookup-name>
+  </ejb-ref>
 
-<ejb-ref>
-<ejb-ref-name>removeBean2</ejb-ref-name>
-<ejb-ref-type>Session</ejb-ref-type>
-<remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF</remote>
-<injection-target>
-<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
-<injection-target-name>removeBean2</injection-target-name>
-</injection-target>
-<lookup-name>
-java:app/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF
-</lookup-name>
-</ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>removeBean2</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF</remote>
+    <injection-target>
+      <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
+      <injection-target-name>removeBean2</injection-target-name>
+    </injection-target>
+    <lookup-name>java:app/stateful_remove_complement_ejb/RemoveBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.Remove2IF</lookup-name>
+  </ejb-ref>
 
-<ejb-ref>
-<ejb-ref-name>removeNotRetainBean</ejb-ref-name>
-<ejb-ref-type>Session</ejb-ref-type>
-<remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF</remote>
-<injection-target>
-<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
-<injection-target-name>removeNotRetainBean</injection-target-name>
-</injection-target>
-<lookup-name>
-java:app/stateful_remove_complement_ejb/RemoveNotRetainBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF
-</lookup-name>
-</ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>removeNotRetainBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF</remote>
+    <injection-target>
+      <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
+      <injection-target-name>removeNotRetainBean</injection-target-name>
+    </injection-target>
+    <lookup-name>java:app/stateful_remove_complement_ejb/RemoveNotRetainBean!com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.RemoveNotRetainIF</lookup-name>
+  </ejb-ref>
 
-<ejb-ref>
-<ejb-ref-name>testBean</ejb-ref-name>
-<ejb-ref-type>Session</ejb-ref-type>
-<remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF</remote>
-<injection-target>
-<injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
-<injection-target-name>testBean</injection-target-name>
-</injection-target>
-<lookup-name>
-java:global/stateful_remove_complement/stateful_remove_complement_ejb/StatelessTestBean
-</lookup-name>
-</ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>testBean</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <remote>com.sun.ts.tests.ejb30.bb.session.stateful.remove.common.TestIF</remote>
+    <injection-target>
+      <injection-target-class>com.sun.ts.tests.ejb30.bb.session.stateful.remove.complement.Client</injection-target-class>
+      <injection-target-name>testBean</injection-target-name>
+    </injection-target>
+    <lookup-name>java:global/stateful_remove_complement/stateful_remove_complement_ejb/StatelessTestBean</lookup-name>
+  </ejb-ref>
 
 </application-client>

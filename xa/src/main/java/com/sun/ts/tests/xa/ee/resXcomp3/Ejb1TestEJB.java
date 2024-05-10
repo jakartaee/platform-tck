@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,6 +23,7 @@
  */
 package com.sun.ts.tests.xa.ee.resXcomp3;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -38,23 +39,16 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSEISDataSource;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
 
-public class Ejb1TestEJB implements SessionBean {
+public class Ejb1TestEJB {
   // testProps represent the test specific properties passed in
   // from the test harness.
-  private java.util.Properties p = null;
-
-  private SessionContext sctx = null;
+  private Properties p = null;
 
   private Properties testProps = null;
 
   private Ejb2Test ref = null;
-
-  private Ejb2TestHome home = null;
 
   private TSNamingContext context = null;
 
@@ -65,9 +59,9 @@ public class Ejb1TestEJB implements SessionBean {
 
   private String dbTable1 = null;
 
-  private transient java.sql.Connection con1 = null;
+  private transient Connection con1 = null;
 
-  private transient java.sql.Connection con4 = null;
+  private transient Connection con4 = null;
 
   // TSEIS
   private TSEISDataSource ds2, ds3;
@@ -81,7 +75,7 @@ public class Ejb1TestEJB implements SessionBean {
   public Ejb1TestEJB() {
   }
 
-  public void ejbCreate(java.util.Properties props) throws CreateException {
+  public void initialize(Properties props) {
     this.testProps = props;
     String eMsg = "";
     try {
@@ -90,9 +84,8 @@ public class Ejb1TestEJB implements SessionBean {
 
       // get reference to ejb
       eMsg = "Exception doing a lookup for Ejb2Test ";
-      home = (Ejb2TestHome) context.lookup("java:comp/env/ejb/Ejb2Test",
-          Ejb2TestHome.class);
-      ref = home.create(props);
+      ref = (Ejb2Test) context.lookup("java:comp/env/ejb/Ejb2Test", Ejb2Test.class);
+      ref.initialize(props);
 
       TestUtil.logMsg("Initialize logging data from server in Ejb1");
       eMsg = "Exception doing a initLogging for Ejb2Test ";
@@ -117,32 +110,9 @@ public class Ejb1TestEJB implements SessionBean {
 
     } catch (Exception e) {
       TestUtil.logMsg(eMsg);
-      TestUtil.logErr("Ejb1: ejbCreate failed", e);
-      throw new CreateException(e.getMessage());
-    }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    try {
-      TestUtil.logTrace("Ejb1 @setSessionContext");
-      this.sctx = sc;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception setting EJB context/DataSources",
-          e);
+      TestUtil.logErr("Ejb1: initialize failed", e);
       throw new EJBException(e.getMessage());
     }
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("@ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("@ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("@ejbPassivate");
   }
 
   // ===========================================================

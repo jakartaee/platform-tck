@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,8 +22,7 @@
   <enterprise-beans>
     <session>
       <ejb-name>Bean2</ejb-name>
-      <home>com.sun.ts.tests.integration.sec.propagation.Bean2Home</home>
-      <remote>com.sun.ts.tests.integration.sec.propagation.Bean2</remote>
+      <business-remote>com.sun.ts.tests.integration.sec.propagation.Bean2</business-remote>
       <ejb-class>com.sun.ts.tests.integration.sec.propagation.Bean2EJB</ejb-class>
       <session-type>Stateless</session-type>
       <transaction-type>Container</transaction-type>
@@ -49,15 +48,13 @@
     </session>
     <session>
       <ejb-name>Bean1</ejb-name>
-      <home>com.sun.ts.tests.integration.sec.propagation.Bean1Home</home>
-      <remote>com.sun.ts.tests.integration.sec.propagation.Bean1</remote>
+      <business-remote>com.sun.ts.tests.integration.sec.propagation.Bean1</business-remote>
       <ejb-class>com.sun.ts.tests.integration.sec.propagation.Bean1EJB</ejb-class>
       <session-type>Stateless</session-type>
       <transaction-type>Container</transaction-type>
       <ejb-ref>
         <ejb-ref-name>ejb/Bean2</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <home>com.sun.ts.tests.integration.sec.propagation.Bean2Home</home>
         <remote>com.sun.ts.tests.integration.sec.propagation.Bean2</remote>
       </ejb-ref>
       <security-role-ref>
@@ -95,88 +92,7 @@
       <role-name>VP</role-name>
     </security-role>
     <method-permission>
-      <role-name>Administrator</role-name>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>jakarta.ejb.Handle</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-    </method-permission>
-    <method-permission>
-      <role-name>Manager</role-name>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>jakarta.ejb.Handle</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-    </method-permission>
-    <method-permission>
-      <role-name>VP</role-name>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>jakarta.ejb.Handle</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-    </method-permission>
-    <method-permission>
       <role-name>Employee</role-name>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>jakarta.ejb.Handle</method-param>
-        </method-params>
-      </method>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>remove</method-name>
-        <method-params>
-          <method-param>java.lang.Object</method-param>
-        </method-params>
-      </method>
-    </method-permission>
-    <method-permission>
-      <role-name>Employee</role-name>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>create</method-name>
-      </method>
       <method>
         <ejb-name>Bean2</ejb-name>
         <method-intf>Remote</method-intf>
@@ -187,11 +103,6 @@
       <role-name>Administrator</role-name>
       <method>
         <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>create</method-name>
-      </method>
-      <method>
-        <ejb-name>Bean2</ejb-name>
         <method-intf>Remote</method-intf>
         <method-name>getCallerPrincipalName</method-name>
       </method>
@@ -200,22 +111,12 @@
       <role-name>Manager</role-name>
       <method>
         <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>create</method-name>
-      </method>
-      <method>
-        <ejb-name>Bean2</ejb-name>
         <method-intf>Remote</method-intf>
         <method-name>getCallerPrincipalName</method-name>
       </method>
     </method-permission>
     <method-permission>
       <role-name>VP</role-name>
-      <method>
-        <ejb-name>Bean2</ejb-name>
-        <method-intf>Home</method-intf>
-        <method-name>create</method-name>
-      </method>
       <method>
         <ejb-name>Bean2</ejb-name>
         <method-intf>Remote</method-intf>

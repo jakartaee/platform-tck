@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -23,29 +23,23 @@
  */
 package com.sun.ts.tests.xa.ee.resXcomp2;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
 import javax.sql.DataSource;
 
-//import jakarta.jms.*;
-//import java.rmi.*; 
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSEISDataSource;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
 
-public class Ejb2TestEJB implements SessionBean {
+public class Ejb2TestEJB {
   // testProps represent the test specific properties passed in
   // from the test harness.
-  private SessionContext sctx = null;
-
   private TSNamingContext context = null;
 
   private Properties testProps = null;
@@ -57,7 +51,7 @@ public class Ejb2TestEJB implements SessionBean {
 
   private String dbTable1 = null;
 
-  private transient java.sql.Connection con1 = null;
+  private transient Connection con1 = null;
 
   private transient Statement stmt;
 
@@ -69,7 +63,7 @@ public class Ejb2TestEJB implements SessionBean {
   public Ejb2TestEJB() {
   }
 
-  public void ejbCreate(Properties props) throws CreateException {
+  public void initialize(Properties props) {
     this.testProps = props;
     String eMsg = "";
     try {
@@ -89,32 +83,9 @@ public class Ejb2TestEJB implements SessionBean {
 
     } catch (Exception e) {
       TestUtil.logTrace(eMsg);
-      TestUtil.logErr("EJB2: ejbCreate failed", e);
-      throw new CreateException(e.getMessage());
-    }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("EJB2 @setSessionContext");
-    try {
-      this.sctx = sc;
-    } catch (Exception e) {
-      TestUtil.logErr("Unexpected Exception setting EJB context/DataSources",
-          e);
+      TestUtil.logErr("EJB2: initialize failed", e);
       throw new EJBException(e.getMessage());
     }
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("@ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("@ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("@ejbPassivate");
   }
 
   // ===========================================================

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -50,8 +50,6 @@ public class TwoBeanClient extends EETest {
 
   private TestBean1 ref = null;
 
-  private TestBean1Home home = null;
-
   private StringBuffer logData = null;
 
   /* Run test in standalone mode */
@@ -72,8 +70,9 @@ public class TwoBeanClient extends EETest {
     this.props = p;
     try {
       jc = new TSNamingContext();
-      logMsg("Looked up home!!");
-      home = (TestBean1Home) jc.lookup(testBean1, TestBean1Home.class);
+      logMsg("Looked up EJB!!");
+      ref = (TestBean1) jc.lookup(testBean1, TestBean1.class);
+      ref.initialize(props);
       logMsg("Setup ok;");
     } catch (Exception e) {
       throw new Exception("Setup Failed!", e);
@@ -97,7 +96,6 @@ public class TwoBeanClient extends EETest {
   public void twobeanTest1() throws Exception {
     boolean result = false;
     try {
-      ref = home.create(props);
       // invoke method on the EJB
       result = ref.simpleTest1();
       // logData = ref.getServerLogData();
@@ -125,7 +123,6 @@ public class TwoBeanClient extends EETest {
   public void twobeanTest2() throws Exception {
     boolean result = false;
     try {
-      ref = home.create(props);
       // invoke method on the EJB
       result = ref.simpleTest2(100);
       // logData = ref.getServerLogData();

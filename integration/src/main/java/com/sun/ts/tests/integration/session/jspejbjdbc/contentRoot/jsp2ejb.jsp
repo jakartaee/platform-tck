@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2006, 2020 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2006, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -43,17 +43,15 @@
     Properties transactionProps = new Properties();
     double balance;
     try {
-            TSNamingContext nctx = new TSNamingContext();
-            TellerHome  beanHome =
-		(TellerHome)nctx.lookup("java:comp/env/ejb/TellerBean",
-                                 	 TellerHome.class);
-            Teller beanRef = beanHome.create(TELLERNAME, harnessProps);
-	    balance = beanRef.balance(ACCOUNT);
-	    transactionProps.setProperty("Balance", "" + balance);
-	    balance = beanRef.deposit(ACCOUNT, 100.0);
-	    transactionProps.setProperty("Deposit", "" + balance);
-	    balance = beanRef.withdraw(ACCOUNT, 50.0);
-	    transactionProps.setProperty("Withdraw", "" + balance);
+        TSNamingContext nctx = new TSNamingContext();
+        Teller beanRef = (Teller)nctx.lookup("java:comp/env/ejb/TellerBean", Teller.class);
+        beanRef.initialize(TELLERNAME, harnessProps);
+        balance = beanRef.balance(ACCOUNT);
+        transactionProps.setProperty("Balance", "" + balance);
+        balance = beanRef.deposit(ACCOUNT, 100.0);
+        transactionProps.setProperty("Deposit", "" + balance);
+        balance = beanRef.withdraw(ACCOUNT, 50.0);
+        transactionProps.setProperty("Withdraw", "" + balance);
     } catch(Exception e) {
         e.printStackTrace();
         out.println(e.toString());
