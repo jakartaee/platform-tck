@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejbref.single;
 
 import java.util.Properties;
 
-import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
+import com.sun.ts.tests.ejb.ee.deploy.util.shared.ejbref.single.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {

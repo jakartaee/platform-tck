@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,8 +26,8 @@
                  archivename="ejb_depSsf_resref_single">
         <fileset dir="${class.dir}"
                  includes="${ts.wrappers.classes.stateful.ejb},
-                           com/sun/ts/tests/assembly/util/shared/resref/single/ByteArrayDataSource.class,
-                           com/sun/ts/tests/assembly/util/shared/resref/single/TestCode.class"/>
+                           com/sun/ts/tests/ejb/ee/deploy/util/shared/resref/single/ByteArrayDataSource.class,
+                           com/sun/ts/tests/ejb/ee/deploy/util/shared/resref/single/TestCode.class"/>
       </ts.ejbjar>
 
       <ts.war descriptor="ejb_depSsf_resref_single_jsp_web.xml"

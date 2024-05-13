@@ -64,7 +64,7 @@ public class MDBClient extends Client {
       bmtQ = (Queue) context.lookup("java:comp/env/jms/EJB_SEC_MDB_QUEUE_BMT");
 
     } catch (Exception e) {
-      throw new Fault("Setup Failed!", e);
+      throw new Exception("Setup Failed!", e);
     }
   }
   /* Run tests */
