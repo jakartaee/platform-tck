@@ -107,11 +107,11 @@
                 <version>3.2.0</version>
                 <executions>
                     <execution>
-                        <id>download-gf</id>
+                        <id>1-download-gf</id>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
-                        <phase>pre-integration-test</phase>
+                        <phase>generate-resources</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
@@ -132,10 +132,11 @@
                 <version>3.0.0</version>
                 <executions>
                     <execution>
+                        <id>2-asadmin-permission</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
-                        <phase>pre-integration-test</phase>
+                        <phase>generate-resources</phase>
                         <configuration>
                             <target>
                                 <!-- <echo message="unzipping file"></echo> -->
@@ -152,7 +153,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>1-StopDomain</id>
+                        <id>001-StopDomain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -165,7 +166,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>2-StartDomain</id>
+                        <id>002-StartDomain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -178,7 +179,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>3-create-jvm-options</id>
+                        <id>003-create-jvm-options</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -192,7 +193,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>4-create-jvm-options</id>
+                        <id>004-create-jvm-options</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -206,7 +207,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>5-create-jvm-options</id>
+                        <id>005-create-jvm-options</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -224,7 +225,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>6-EnableTraceRequests</id>
+                        <id>006-EnableTraceRequests</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -238,7 +239,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>7-DeleteUser-j2ee</id>
+                        <id>007-DeleteUser-j2ee</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -258,7 +259,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>8-AddUser-j2ee</id>
+                        <id>008-AddUser-j2ee</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -276,7 +277,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>9-DeleteUser-javajoe</id>
+                        <id>009-DeleteUser-javajoe</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -296,7 +297,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>A-AddUser-javajoe</id>
+                        <id>010-AddUser-javajoe</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -314,7 +315,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>B-list-users</id>
+                        <id>011-list-users</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -327,7 +328,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>C-StopDomain</id>
+                        <id>012-StopDomain</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -339,14 +340,8 @@
                             </arguments>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
                     <execution>
-                        <id>stop-database</id>
+                        <id>013-stop-database</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -362,14 +357,8 @@
                             </successCodes>
                         </configuration>
                     </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
                     <execution>
-                        <id>start-database</id>
+                        <id>014-start-database</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -389,11 +378,11 @@
                 <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>initdb</id>
+                        <id>015-initdb</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
-                        <phase>pre-integration-test</phase>
+                        <phase>integration-test</phase>
                         <configuration>
                             <target>
                                 <sql autocommit="true" classpath="${jdbc.classpath}" delimiter="${db.delimiter}" driver="${jstl.db.driver}" onerror="continue" password="${jstl.db.password}" url="${jstl.db.url}" userid="${jstl.db.user}">
