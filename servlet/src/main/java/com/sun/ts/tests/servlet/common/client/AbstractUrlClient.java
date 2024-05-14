@@ -23,8 +23,6 @@ package com.sun.ts.tests.servlet.common.client;
 import com.sun.ts.tests.servlet.common.request.HttpRequest;
 import com.sun.ts.tests.servlet.common.request.WebTestCase;
 import com.sun.ts.tests.servlet.common.util.Data;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -38,8 +36,6 @@ import java.net.UnknownHostException;
  */
 
 public abstract class AbstractUrlClient extends BaseUrlClient {
-
-  protected final Logger logger = LoggerFactory.getLogger(getClass());
 
   protected static final String APITEST = "apitest";
 
