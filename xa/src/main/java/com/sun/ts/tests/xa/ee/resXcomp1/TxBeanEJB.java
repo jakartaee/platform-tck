@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -40,17 +40,12 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.TSConnection;
 import com.sun.ts.tests.common.connector.whitebox.TSEISDataSource;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
 
-public class TxBeanEJB implements SessionBean {
+public class TxBeanEJB {
   // testProps represent the test specific properties passed in
   // from the test harness.
   private Properties testProps = null;
-
-  private SessionContext sctx = null;
 
   // con1 will be used for the dbTable1 connection
   private transient Connection con1;
@@ -76,10 +71,9 @@ public class TxBeanEJB implements SessionBean {
 
   private transient TSConnection con2;
 
-  // Required EJB methods
-  public void ejbCreate() throws CreateException {
+  public void initialize() {
     String eMsg = "";
-    TestUtil.logTrace("ejbCreate");
+    TestUtil.logTrace("initialize");
     try {
 
       context = new TSNamingContext();
@@ -95,29 +89,8 @@ public class TxBeanEJB implements SessionBean {
     } catch (Exception e) {
       TestUtil.logTrace(eMsg);
       TestUtil.logErr("Unexpected exception getting the DB DataSource", e);
-      throw new CreateException(e.getMessage());
+      throw new EJBException(e.getMessage());
     }
-  }
-
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbDestroy() {
-    TestUtil.logTrace("ejbDestroy");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
   }
 
   // ===========================================================

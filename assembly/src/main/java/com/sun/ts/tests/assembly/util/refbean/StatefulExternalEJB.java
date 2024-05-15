@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,13 +21,16 @@
 package com.sun.ts.tests.assembly.util.refbean;
 
 import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.common.ejb.wrappers.StatefulWrapper;
+import com.sun.ts.tests.common.ejb.wrappers.Stateful3xWrapper;
 
-public class StatefulExternalEJB extends StatefulWrapper {
+import jakarta.ejb.Remove;
+
+public class StatefulExternalEJB extends Stateful3xWrapper {
 
   /**
    * Method used to identify this bean (only available for this bean).
    */
+  @Remove
   public boolean isTestStatefulExternal() {
     TestUtil.logTrace("StatefulExternal: isTestStatefulExternal()");
     return true;

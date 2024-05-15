@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,24 +26,17 @@ import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 
 import jakarta.annotation.Resource;
-import jakarta.ejb.CreateException;
 import jakarta.ejb.Init;
 import jakarta.ejb.Remove;
 import jakarta.ejb.SessionContext;
 
 //@Stateful(name="RemoveNotRetainBean")
 //@Remote({RemoveNotRetainIF.class})
-//@Local({RemoveLocalIF.class, RemoveLocal2IF.class})
-//@RemoteHome(TwoRemoteHome.class)
-//@LocalHome(TwoLocalHome.class)
 public class RemoveNotRetainBean implements RemoveNotRetainIF {
   @Resource(name = "sessionContext")
   private SessionContext sessionContext;
 
   public RemoveNotRetainBean() {
-  }
-
-  public void ejbCreate() throws CreateException {
   }
 
   @Init

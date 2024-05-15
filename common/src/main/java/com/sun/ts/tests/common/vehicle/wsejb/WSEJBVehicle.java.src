@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,6 @@ package com.sun.ts.tests.common.vehicle.wsejb;
 
 import java.io.*;
 import java.net.*;
-import java.rmi.Remote;
 import jakarta.ejb.*;
 import java.util.*;
 import jakarta.xml.ws.WebServiceRef;
@@ -34,8 +33,7 @@ import com.sun.javatest.Status;
 
 @WSREFSEJBCLIENT@
 
-public class WSEJBVehicle implements SessionBean
-{
+public class WSEJBVehicle {
 	private EETest testObj;
 	private Properties properties;
 	private String[] arguments; 
@@ -44,81 +42,54 @@ public class WSEJBVehicle implements SessionBean
         @WSRAnn@
         @SERVICE@ service = null;
 	
-	public void ejbCreate(String[] args, Properties p) throws CreateException
-	{
-		//Initialize TestUtil Reporting
-		System.out.println("WSDEBUG: in WSEJBVehicle.ejbCreate(): service="+service);
-		try 
-		{	
+	public void initialize(String[] args, Properties p) {
+		// Initialize TestUtil Reporting
+		System.out.println("WSDEBUG: in WSEJBVehicle.initialize(): service="+service);
+		try {	
 		    TestUtil.init(p);
-		}
-		catch (Exception e) 
-		{
+		} catch (Exception e) {
 		    TestUtil.logErr("initLogging failed in wsejb vehicle.", e);
 		    throw new EJBException();
 		}
 
-		try 
-		{
-		    arguments = args;
-		    properties = p;
+	    arguments = args;
+	    properties = p;
 		
-                    //create an instance of the test client and run here
-                    Class c = Class.forName(p.getProperty("test_classname"));
-                    testObj = (EETest) c.newInstance();
-		}
-		catch(Exception e)
-		{	
-                    TestUtil.logErr("Failed to create the EETest instance in the wsejb vehicle", e);
-                    throw new EJBException();
-                }
+        // create an instance of the test client and run here
+        try {
+            Class c = Class.forName(p.getProperty("test_classname"));
+            testObj = (EETest) c.newInstance();
+		} catch (Exception e) {	
+            TestUtil.logErr("Failed to create the EETest instance in the wsejb vehicle", e);
+            throw new EJBException();
+        }
 
-	    TestUtil.logTrace( "ejbcreate");
+	    TestUtil.logTrace("initialize");
 	}
 	
-	//the run method that we call here will either throw
-	//an exception (failed), or return void (pass)
-	public RemoteStatus runTest() 
-    {
+	// the run method that we call here will either throw
+	// an exception (failed), or return void (pass)
+	public RemoteStatus runTest() {
 		RemoteStatus sTestStatus = new RemoteStatus(Status.passed(""));
 
 	    TestUtil.logTrace("in runTest()" );
 
-		try
-		{
-              //call EETest impl's run method
+		try {
+            //call EETest impl's run method
 
-              ((ServiceEETest)(testObj)).setSharedObject(service);
+            ((ServiceEETest)(testObj)).setSharedObject(service);
 
-              sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
+            sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
 			
-		       if(sTestStatus.getType() == Status.PASSED)
-			       TestUtil.logMsg("Test running in wsejb vehicle passed");
-		       else
-			       TestUtil.logMsg("Test running in wsejb vehicle failed");
-		}
-		catch(Throwable e)
-		{	
+		    if (sTestStatus.getType() == Status.PASSED)
+			    TestUtil.logMsg("Test running in wsejb vehicle passed");
+		    else
+			    TestUtil.logMsg("Test running in wsejb vehicle failed");
+		} catch (Throwable e) {	
 			e.printStackTrace();
 			TestUtil.logErr("Test running in wsejb vehicle failed", e);
-			sTestStatus = new RemoteStatus(Status.failed("Test running in wsejb vehicle failed")); 
+			sTestStatus = new RemoteStatus(Status.failed("Test running in wsejb vehicle failed"));
 		}
 		return sTestStatus;
-	}
-	
-	public void setSessionContext(SessionContext sc) 
-	{
-	}
-	
-	public void ejbRemove() 
-	{
-	}
-	
-	public void ejbActivate() 
-	{
-	}
-	
-	public void ejbPassivate() 
-	{
 	}
 }

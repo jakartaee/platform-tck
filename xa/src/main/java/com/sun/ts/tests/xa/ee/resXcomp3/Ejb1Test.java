@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,26 +24,24 @@
 
 package com.sun.ts.tests.xa.ee.resXcomp3;
 
-import java.rmi.RemoteException;
 import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
+public interface Ejb1Test {
+  public void initialize(Properties p);
 
-public interface Ejb1Test extends EJBObject {
-  public void dbConnect(String tName) throws RemoteException;
+  public void dbConnect(String tName);
 
-  public void insert(String tName) throws RemoteException;
+  public void insert(String tName);
 
-  public void insertDup(String tName) throws RemoteException;
+  public void insertDup(String tName);
 
-  public void destroyData(String tName) throws RemoteException;
+  public void destroyData(String tName);
 
-  public void dbUnConnect(String tName) throws RemoteException;
+  public void dbUnConnect(String tName);
 
-  public void initLogging(Properties p) throws RemoteException;
+  public void initLogging(Properties p);
 
-  public void throwEJBException() throws RemoteException;
+  public void throwEJBException();
 
-  public boolean verifyData(String operation, String tName, int[] expResults)
-      throws RemoteException;
+  public boolean verifyData(String operation, String tName, int[] expResults);
 }

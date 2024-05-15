@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,58 +16,34 @@
 
 package com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest;
 
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
 import jakarta.jws.WebService;
 
+import javax.naming.InitialContext;
+
 @WebService(portName = "JunkJunkJunkPortName", serviceName = "JunkJunkJunkServiceName", targetNamespace = "http://Tx.org", wsdlLocation = "META-INF/wsdl/TxService.wsdl", endpointInterface = "com.sun.ts.tests.webservices12.ejb.descriptors.WSEjbOverrideWSRefWithDDsTest.Tx")
 @Stateless(name = "WsFrontEjb")
-public class TxBean implements SessionBean {
+public class TxBean {
 
-  private ChokeRemote choke;
-
-  private ChokeHome home;
+  private ChokeRemote choke = null;
 
   private Object o;
 
-  public void ejbCreate() {
+  private void lookupChoke() {
     try {
-      javax.naming.InitialContext ctx = new javax.naming.InitialContext();
-      o = ctx.lookup("java:comp/env/ejb/wschokebean");
-      home = (ChokeHome) javax.rmi.PortableRemoteObject.narrow(o,
-          ChokeHome.class);
-      choke = home.create();
+      if (choke == null) {
+        InitialContext ctx = new InitialContext();
+        choke = (ChokeRemote) ctx.lookup("java:comp/env/ejb/wschokebean");
+      }
     } catch (Exception e) {
-      System.out.println("*** TxBean.ejbCreate: failed to find choke");
+      System.out.println("*** TxBean.lookupChoke: failed to find choke");
       e.printStackTrace();
     }
-  }
-
-  public void ejbActivate() {
-    try {
-      javax.naming.InitialContext ctx = new javax.naming.InitialContext();
-      o = ctx.lookup("java:comp/env/ejb/wschokebean");
-      home = (ChokeHome) javax.rmi.PortableRemoteObject.narrow(o,
-          ChokeHome.class);
-      choke = home.create();
-    } catch (Exception e) {
-      System.out.println("*** TxBean.ejbActivate: failed to find choke");
-      e.printStackTrace();
-    }
-  }
-
-  public void ejbRemove() {
-  }
-
-  public void ejbPassivate() {
-  }
-
-  public void setSessionContext(SessionContext sc) {
   }
 
   public String txRequired(String s) {
     try {
+      lookupChoke();
       choke.chokeMandatory();
       return s;
     } catch (Exception e) {
@@ -78,6 +54,7 @@ public class TxBean implements SessionBean {
 
   public String txRequiresNew(String s) {
     try {
+      lookupChoke();
       choke.chokeMandatory();
       return s;
     } catch (Exception e) {
@@ -88,6 +65,7 @@ public class TxBean implements SessionBean {
 
   public String txSupports(String s) {
     try {
+      lookupChoke();
       choke.chokeNever();
       return s;
     } catch (Exception e) {
@@ -98,6 +76,7 @@ public class TxBean implements SessionBean {
 
   public String txNotSupported(String s) {
     try {
+      lookupChoke();
       choke.chokeNever();
       return s;
     } catch (Exception e) {
@@ -108,6 +87,7 @@ public class TxBean implements SessionBean {
 
   public String txNever(String s) {
     try {
+      lookupChoke();
       choke.chokeNever();
       return s;
     } catch (Exception e) {

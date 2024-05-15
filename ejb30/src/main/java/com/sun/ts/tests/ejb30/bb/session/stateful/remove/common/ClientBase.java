@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,11 +29,7 @@ import com.sun.ts.tests.ejb30.common.appexception.AtUncheckedAppException;
 import com.sun.ts.tests.ejb30.common.appexception.UncheckedAppException;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteHome;
-import com.sun.ts.tests.ejb30.common.migration.twothree.TwoRemoteIF;
 
-import jakarta.ejb.CreateException;
-import jakarta.ejb.Handle;
 import jakarta.ejb.NoSuchEJBException;
 import jakarta.ejb.RemoveException;
 
@@ -55,8 +51,6 @@ abstract public class ClientBase extends EETest {
   abstract protected RemoveNotRetainIF getRemoveNotRetainBean();
 
   abstract protected TestIF getTestBean();
-
-  abstract protected TwoRemoteHome getTwoRemoteHome();
 
   public void setup(String[] args, Properties p) throws Exception {
     props = p;
@@ -434,95 +428,6 @@ abstract public class ClientBase extends EETest {
       TLogger.log("Got expected exception: " + e.toString());
     } finally {
       removeNotRetainBean = null;
-    }
-  }
-
-  /*
-   * testName: removeTwoRemoteHome
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void removeTwoRemoteHome() throws Exception {
-    TwoRemoteHome beanHome = getTwoRemoteHome();
-    TwoRemoteIF bean = null;
-    try {
-      bean = beanHome.create();
-      bean.remove();
-    } catch (RemoveException e) {
-      throw new Exception(e);
-    } catch (CreateException e) {
-      throw new Exception(e);
-    } catch (RemoteException e) {
-      throw new Exception(e);
-    }
-    try {
-      bean.remove();
-      throw new Exception(
-          "Expecting java.rmi.NoSuchObjectException, but got none.");
-    } catch (NoSuchObjectException e) {
-      TLogger.log("Got expected exception: " + e.toString());
-    } catch (RemoveException e) {
-      throw new Exception(e);
-    } catch (RemoteException e) {
-      throw new Exception(e);
-    }
-  }
-
-  /*
-   * testName: removeTwoRemoteHomeHandle
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void removeTwoRemoteHomeHandle() throws Exception {
-    TwoRemoteHome beanHome = getTwoRemoteHome();
-    TwoRemoteIF bean = null;
-    try {
-      bean = beanHome.create();
-      beanHome.remove(bean);
-    } catch (RemoveException e) {
-      TLogger.log("Got expected exception " + e.toString());
-    } catch (CreateException e) {
-      throw new Exception(e);
-    } catch (RemoteException e) {
-      throw new Exception(e);
-    }
-
-    try {
-      Handle handle = bean.getHandle();
-      beanHome.remove(handle);
-      TLogger.log("Successfully removed bean handler " + handle);
-    } catch (RemoveException e) {
-      throw new Exception(e);
-    } catch (RemoteException e) {
-      throw new Exception(e);
-    }
-
-    try {
-      bean.remove();
-      throw new Exception(
-          "Expecting java.rmi.NoSuchObjectException, but got none.");
-    } catch (NoSuchObjectException e) {
-      TLogger.log("Got expected exception: " + e.toString());
-    } catch (RemoveException e) {
-      throw new Exception(e);
-    } catch (RemoteException e) {
-      throw new Exception(e);
-    }
-  }
-
-  /*
-   * testName: testBeanRemoveTwoLocal
-   * 
-   * @test_Strategy:
-   *
-   */
-  public void testBeanRemoveTwoLocal() throws Exception {
-    try {
-      testBean.removeTwoLocal();
-    } catch (TestFailedException e) {
-      throw new Exception(e);
     }
   }
 

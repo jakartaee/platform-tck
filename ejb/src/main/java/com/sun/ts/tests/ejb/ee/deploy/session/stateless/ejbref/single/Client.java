@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,6 @@ import java.util.Properties;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
-import com.sun.ts.tests.common.dao.DAOFactory;
 
 public class Client extends EETest {
 
@@ -55,8 +54,6 @@ public class Client extends EETest {
 
     this.props = props;
     try {
-      logMsg("Client: Initializing DB table...");
-      DAOFactory.getInstance().getCoffeeDAO().cleanup();
 
       logMsg("Client: Getting TS Naming Context...");
       nctx = new TSNamingContext();
@@ -216,228 +213,6 @@ public class Client extends EETest {
     } catch (Exception e) {
       logErr("Client: Caught exception: ", e);
       throw new Fault("Stateful external EJB ref test failed!" + e, e);
-    }
-  }
-
-  /**
-   * @testName: testBMPInternal
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-   *                 BMP Entity bean (BMPInternal) which is part of the same JAR
-   *                 file. The EJB reference is declared without using the
-   *                 optional ejb-link element in the DD.
-   *
-   *                 Check at runtime that TestBean can do a lookup for the EJB
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in BMPInternal
-   *                 beans (to check that the EJB reference was resolved
-   *                 consistently with the DD).
-   */
-  public void testBMPInternal() throws Fault {
-    boolean pass;
-
-    try {
-      logTrace("Client: Creating TestBean...");
-      bean = home.create();
-      bean.initLogging(props);
-
-      logTrace("Client: Checking BMP internal references...");
-      pass = bean.testBMPInternal(props);
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("BMP internal EJB ref test failed!");
-      }
-    } catch (Exception e) {
-      logErr("Client: Caught exception: ", e);
-      throw new Fault("BMP internal EJB ref test failed!" + e, e);
-    }
-  }
-
-  /**
-   * @testName: testBMPExternal
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-   *                 BMP Entity bean (BMPExternal) which is part of another JAR
-   *                 file. The EJB reference is declared without using the
-   *                 optional ejb-link element in the DD.
-   *
-   *                 Check at runtime that TestBean can do a lookup for the EJB
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in BMPExternal
-   *                 beans (to check that the EJB reference was resolved
-   *                 consistently with the DD).
-   */
-  public void testBMPExternal() throws Fault {
-    boolean pass;
-
-    try {
-      logTrace("Client: Creating TestBean...");
-      bean = home.create();
-      bean.initLogging(props);
-
-      logTrace("Client: Checking BMP external references...");
-      pass = bean.testBMPExternal(props);
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("BMP external EJB ref test failed!");
-      }
-    } catch (Exception e) {
-      logErr("Client: Caught exception: ", e);
-      throw new Fault("BMP external EJB ref test failed!" + e, e);
-    }
-  }
-
-  /**
-   * @testName: testCMP11Internal
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-   *                 CMP 1.1 Entity bean (CMP11Internal) which is part of the
-   *                 same JAR file. The EJB reference is declared without using
-   *                 the optional ejb-link element in the DD.
-   *
-   *                 Check at runtime that TestBean can do a lookup for the EJB
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in
-   *                 CMP11Internal beans (to check that the EJB reference was
-   *                 resolved consistently with the DD).
-   */
-  public void testCMP11Internal() throws Fault {
-    boolean pass = false;
-
-    try {
-      logTrace("Client: Creating TestBean...");
-      bean = home.create();
-      bean.initLogging(props);
-
-      logTrace("Client: Checking CMP11 internal references...");
-      pass = bean.testCMP11Internal(props);
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("CMP11 internal EJB ref test failed!");
-      }
-    } catch (Exception e) {
-      logErr("Client: Caught exception: ", e);
-      throw new Fault("CMP11 internal EJB ref test failed!" + e, e);
-    }
-  }
-
-  /**
-   * @testName: testCMP11External
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-   *                 CMP 1.1 Entity bean (CMP11External) part of another JAR
-   *                 file. The EJB reference is declared without using the
-   *                 optional ejb-link element in the DD.
-   *
-   *                 Check at runtime that TestBean can do a lookup for the EJB
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in
-   *                 CMP11External beans (to check that the EJB reference was
-   *                 resolved consistently with the DD).
-   */
-  public void testCMP11External() throws Fault {
-    boolean pass = false;
-
-    try {
-      logTrace("Client: Creating TestBean...");
-      bean = home.create();
-      bean.initLogging(props);
-
-      logTrace("Client: Checking CMP11 external references...");
-      pass = bean.testCMP11External(props);
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("CMP11 external EJB ref test failed!");
-      }
-    } catch (Exception e) {
-      logErr("Client: Caught exception: ", e);
-      throw new Fault("CMP11 external EJB ref test failed!" + e, e);
-    }
-  }
-
-  /**
-   * @testName: testCMP20Internal
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-   *                 CMP 2.0 Entity bean (CMP20Internal) which is part of the
-   *                 same JAR file. The EJB reference is declared without using
-   *                 the optional ejb-link element in the DD.
-   *
-   *                 Check at runtime that TestBean can do a lookup for the EJB
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in
-   *                 CMP20Internal beans (to check that the EJB reference was
-   *                 resolved consistently with the DD).
-   */
-  public void testCMP20Internal() throws Fault {
-    boolean pass = false;
-
-    try {
-      logTrace("Client: Creating TestBean...");
-      bean = home.create();
-      bean.initLogging(props);
-
-      logTrace("Client: Checking CMP 2.0 internal references...");
-      pass = bean.testCMP20Internal(props);
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("CMP2.0 internal EJB ref test failed!");
-      }
-    } catch (Exception e) {
-      logErr("Client: Caught exception: ", e);
-      throw new Fault("CMP2.0 internal EJB ref test failed!" + e, e);
-    }
-  }
-
-  /**
-   * @testName: testCMP20External
-   *
-   * @assertion_ids: EJB:SPEC:765
-   *
-   * @test_Strategy: Deploy a Stateless Session bean (TestBean) referencing a
-   *                 CMP 2.0 Entity bean (CMP20External) which is part of
-   *                 another JAR file. The EJB reference is declared without
-   *                 using the optional ejb-link element in the DD.
-   *
-   *                 Check at runtime that TestBean can do a lookup for the EJB
-   *                 reference and use it to create a bean. Then invoke on that
-   *                 instance a business method to be found only in
-   *                 CMP20External beans (to check that the EJB reference was
-   *                 resolved consistently with the DD).
-   */
-  public void testCMP20External() throws Fault {
-    boolean pass = false;
-
-    try {
-      logTrace("Client: Creating TestBean...");
-      bean = home.create();
-      bean.initLogging(props);
-
-      logTrace("Client: Checking CMP 2.0 external references...");
-      pass = bean.testCMP20External(props);
-      bean.remove();
-
-      if (!pass) {
-        throw new Fault("CMP2.0 external EJB ref test failed!");
-      }
-    } catch (Exception e) {
-      logErr("Client: Caught exception: ", e);
-      throw new Fault("CMP2.0 external EJB ref test failed!" + e, e);
     }
   }
 

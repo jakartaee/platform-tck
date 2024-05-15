@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -88,8 +88,6 @@ public class Client extends EETest {
    *                 ones specified in the DD.
    */
   public void testScope() throws Exception {
-    ReferencedBeanHome home1 = null;
-    ReferencedBean2Home home2 = null;
     ReferencedBean bean1 = null;
     ReferencedBean2 bean2 = null;
     String bean1Name;
@@ -98,21 +96,19 @@ public class Client extends EETest {
 
     try {
       TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
-      home1 = (ReferencedBeanHome) nctx.lookup(bean1Lookup,
-          ReferencedBeanHome.class);
-      bean1 = home1.create();
+      bean1 = (ReferencedBean) nctx.lookup(bean1Lookup,
+          ReferencedBean.class);
+      bean1.createNamingContext();
       bean1.initLogging(props);
       bean1Name = bean1.whoAreYou();
       TestUtil.logTrace(bean1Lookup + " name is '" + bean1Name + "'");
-      bean1.remove();
 
-      home2 = (ReferencedBean2Home) nctx.lookup(bean2Lookup,
-          ReferencedBean2Home.class);
-      bean2 = home2.create();
+      bean2 = (ReferencedBean2) nctx.lookup(bean2Lookup,
+          ReferencedBean2.class);
+      bean2.createNamingContext();
       bean2.initLogging(props);
       bean2Name = bean2.whoAreYou();
       TestUtil.logTrace(bean2Lookup + " name is '" + bean2Name + "'");
-      bean2.remove();
 
       pass = bean1Name.equals(bean1RefName) && bean2Name.equals(bean2RefName);
       if (!pass) {
@@ -122,10 +118,10 @@ public class Client extends EETest {
         TestUtil.logErr("[Client] " + bean2Lookup + "name is '" + bean2Name
             + "' expected '" + bean2RefName + "'");
 
-        throw new Exception("ejb-ref scope test failed!");
+        throw new Exception("ejb-link path test failed!");
       }
     } catch (Exception e) {
-      throw new Exception("ejb-ref scope test failed: " + e, e);
+      throw new Exception("ejb-link path test failed: " + e, e);
     }
   }
 

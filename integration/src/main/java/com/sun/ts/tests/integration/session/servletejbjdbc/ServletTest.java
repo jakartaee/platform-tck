@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -44,8 +44,6 @@ public class ServletTest extends HttpServlet {
 
   private static TSNamingContext nctx = null;
 
-  private static TellerHome beanHome = null;
-
   private static Teller beanRef = null;
 
   private Properties harnessProps = null;
@@ -72,8 +70,8 @@ public class ServletTest extends HttpServlet {
     PrintWriter out = res.getWriter();
 
     try {
-      TestUtil.logTrace("Create bean");
-      beanRef = beanHome.create(TELLERNAME, harnessProps);
+      TestUtil.logTrace("Initialize bean");
+      beanRef.initialize(TELLERNAME, harnessProps);
       TestUtil.logTrace("List all accounts in database");
       System.out.println("List all accounts in database");
       TestUtil.logTrace("ACCOUNTS Database");
@@ -148,13 +146,13 @@ public class ServletTest extends HttpServlet {
     }
 
     try {
-      if (nctx == null || beanHome == null) {
+      if (nctx == null || beanRef == null) {
         TestUtil.logTrace("Obtain naming context");
         System.out.println("Obtain naming context");
         nctx = new TSNamingContext();
         TestUtil.logTrace("Lookup bean: " + ejbRef);
         System.out.println("Lookup bean: " + ejbRef);
-        beanHome = (TellerHome) nctx.lookup(ejbRef, TellerHome.class);
+        beanRef = (Teller) nctx.lookup(ejbRef, Teller.class);
       }
     } catch (Exception e) {
       TestUtil.logErr("Exception: " + e);

@@ -83,8 +83,9 @@
             <fileMode>755</fileMode>
             <includes>
                 <include>*.sh</include>
+                <include>*.bat</include>
             </includes>
-        </fileSet>      
+        </fileSet>
     </fileSets>
     <dependencySets>
         <dependencySet>

@@ -23,15 +23,13 @@
     <session>
       <display-name>JTATest</display-name>
       <ejb-name>JTATest</ejb-name>
-      <home>com.sun.ts.tests.connector.xa.transaction.jta.JTATestHome</home>
-      <remote>com.sun.ts.tests.connector.xa.transaction.jta.JTATest</remote>
+      <business-remote>com.sun.ts.tests.connector.xa.transaction.jta.JTATest</business-remote>
       <ejb-class>com.sun.ts.tests.connector.xa.transaction.jta.JTATestEJB</ejb-class>
       <session-type>Stateful</session-type>
       <transaction-type>Container</transaction-type>
       <ejb-ref>
         <ejb-ref-name>ejb/JTATest</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <home>com.sun.ts.tests.connector.xa.transaction.jta.JTATestHome</home>
         <remote>com.sun.ts.tests.connector.xa.transaction.jta.JTATest</remote>
         <ejb-link>JTATest</ejb-link>
       </ejb-ref>

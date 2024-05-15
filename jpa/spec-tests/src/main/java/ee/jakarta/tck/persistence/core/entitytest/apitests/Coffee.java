@@ -29,9 +29,9 @@ import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
 
 @NamedNativeQueries({
-		@NamedNativeQuery(name = "findAllSQLCoffees2", query = "select \"ID\", \"BRANDNAME\", \"PRICE\" from \"COFFEE\"", resultClass = ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee.class),
-		@NamedNativeQuery(name = "findAllSQLCoffees", query = "select \"ID\", \"BRANDNAME\", \"PRICE\" from \"COFFEE\"", resultSetMapping = "CoffeeResult"),
-		@NamedNativeQuery(name = "xmlOverridesNamedNativeQuery", query = "select \"ID\", \"BRANDNAME\", \"PRICE\" from \"COFFEE\"", resultClass = ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee.class) })
+		@NamedNativeQuery(name = "findAllSQLCoffees2", query = "select ID, BRANDNAME, PRICE from COFFEE c", resultClass = ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee.class),
+		@NamedNativeQuery(name = "findAllSQLCoffees", query = "select ID, BRANDNAME, PRICE from COFFEE c", resultSetMapping = "CoffeeResult"),
+		@NamedNativeQuery(name = "xmlOverridesNamedNativeQuery", query = "select ID, BRANDNAME, PRICE from COFFEE c", resultClass = ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee.class) })
 @SqlResultSetMapping(name = "CoffeeResult", entities = @EntityResult(entityClass = ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee.class))
 @NamedQueries({
 		@NamedQuery(name = "findAllCoffees", query = "Select c from Coffee c", lockMode = LockModeType.PESSIMISTIC_READ),

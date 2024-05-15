@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -157,7 +157,8 @@ public class Client extends PMClientBase {
 		 * INDEX SCHEMAGENSIMPLE_SVALUE3 ON SCHEMAGENSIMPLE (SVALUE3)
 		 */
 		expected.clear();
-		expected.add("ALTER TABLE SCHEMAGENSIMPLE");
+		expected.add("ALTER TABLE");
+		expected.add("SCHEMAGENSIMPLE");
 		expected.add("ADD");
 		expected.add("INDEX SCHEMAGENSIMPLE_SVALUE_ASC");
 
@@ -165,7 +166,8 @@ public class Client extends PMClientBase {
 		pass1b = pass1b || findDataInFile(f1, expected);
 
 		expected.clear();
-		expected.add("ALTER TABLE SCHEMAGENSIMPLE");
+		expected.add("ALTER TABLE");
+		expected.add("SCHEMAGENSIMPLE");
 		expected.add("ADD");
 		expected.add("INDEX SCHEMAGENSIMPLE_SVALUE2_DESC");
 
@@ -173,7 +175,8 @@ public class Client extends PMClientBase {
 		pass1c = pass1c || findDataInFile(f1, expected);
 
 		expected.clear();
-		expected.add("ALTER TABLE SCHEMAGENSIMPLE");
+		expected.add("ALTER TABLE");
+		expected.add("SCHEMAGENSIMPLE");
 		expected.add("ADD");
 		expected.add("UNIQUE");
 		expected.add("INDEX SCHEMAGENSIMPLE_SVALUE3");
@@ -182,15 +185,20 @@ public class Client extends PMClientBase {
 		pass1d = pass1d || findDataInFile(f1, expected);
 
 		expected.clear();
-		expected.add("ALTER TABLE SCHEMAGENSIMPLE");
+		expected.add("ALTER TABLE");
+		expected.add("SCHEMAGENSIMPLE");
 		expected.add("ADD");
 		expected.add("CONSTRAINT");
 		expected.add("SCHEMAGENSIMPLE_SVALUE3");
 		expected.add("UNIQUE");
 
+		pass1d = pass1d || findDataInFile(f1, "CONSTRAINT SCHEMAGENSIMPLE_SVALUE3 UNIQUE (SVALUE3)");
 		pass1d = pass1d || findDataInFile(f1, expected);
 
-		pass2a = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
+		expected.clear();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENSIMPLE");
+		pass2a = findDataInFile(f2, expected);
 		/*
 		 * Index can be dropped using ALTER TABLE AS WELL Bug 27422087: Some databases
 		 * do drop things such as indexes and constraints associated with a table when

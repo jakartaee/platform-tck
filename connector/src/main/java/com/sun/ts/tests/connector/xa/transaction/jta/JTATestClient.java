@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -34,8 +34,6 @@ public class JTATestClient extends EETest {
   // Harness requirements
   private JTATest hr = null;
 
-  private JTATestHome home = null;
-
   private StringBuffer logData = null;
 
   private Properties props = null;
@@ -67,9 +65,7 @@ public class JTATestClient extends EETest {
 
     try {
       jc = new TSNamingContext();
-      logMsg("Looked up home!!");
-      home = (JTATestHome) jc.lookup("java:comp/env/ejb/JTATest",
-          JTATestHome.class);
+      hr = (JTATest) jc.lookup("java:comp/env/ejb/JTATest", JTATest.class);
       logMsg("Setup ok;");
     } catch (Exception e) {
       throw new Exception("Setup Failed!", e);
@@ -97,7 +93,7 @@ public class JTATestClient extends EETest {
   public void testXAResource1() throws Exception {
     try {
 
-      hr = home.create(props);
+      hr.initialize(props);
 
       boolean result = hr.testXAResource1();
 
@@ -130,7 +126,7 @@ public class JTATestClient extends EETest {
   public void testXAResource2() throws Exception {
     try {
 
-      hr = home.create(props);
+      hr.initialize(props);
 
       boolean result = hr.testXAResource2();
 

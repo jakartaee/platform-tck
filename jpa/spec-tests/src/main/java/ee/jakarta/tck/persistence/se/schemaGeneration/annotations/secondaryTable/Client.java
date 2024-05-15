@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -142,7 +142,8 @@ public class Client extends PMClientBase {
 		pass1b = findDataInFile(f1, expected);
 
 		expected.clear();
-		expected.add("ALTER TABLE SCHEMAGENSIMPLE_SECOND ADD");
+		expected.add("ALTER TABLE");
+		expected.add("SCHEMAGENSIMPLE_SECOND ADD");
 		expected.add("CONSTRAINT MYCONSTRAINT FOREIGN KEY (SECONDARY_ID) REFERENCES SCHEMAGENSIMPLE (SIMPLEID)");
 		pass1c = findDataInFile(f1, expected);
 
@@ -154,9 +155,19 @@ public class Client extends PMClientBase {
 		 * REFERENCES SCHEMAGENSIMPLE (SIMPLEID)
 		 */
 
-		pass2a = findDataInFile(f2, "ALTER TABLE SCHEMAGENSIMPLE_SECOND DROP");
-		pass2b = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
-		pass2c = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE_SECOND");
+		expected.clear();
+		expected.add("ALTER TABLE");
+		expected.add("SCHEMAGENSIMPLE_SECOND DROP");
+		pass2a = findDataInFile(f2, expected);
+		pass2a = pass2a || findDataInFile(f2, List.of("DROP TABLE", "SCHEMAGENSIMPLE_SECOND", "CASCADE CONSTRAINTS"));
+		expected.clear();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENSIMPLE");
+		pass2b = findDataInFile(f2, expected);
+		expected.clear();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENSIMPLE_SECOND");
+		pass2c = findDataInFile(f2, expected);
 
 		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();

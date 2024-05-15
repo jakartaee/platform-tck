@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,8 +20,6 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.sessioncontext.descriptor;
 
-import java.rmi.RemoteException;
-
 import com.sun.javatest.Status;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF;
@@ -29,11 +27,6 @@ import com.sun.ts.tests.ejb30.common.sessioncontext.ClientBase;
 import com.sun.ts.tests.ejb30.common.sessioncontext.TestIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.Three1IF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.Three2IF;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteHome;
-import com.sun.ts.tests.ejb30.common.sessioncontext.TwoRemoteIF;
-
-import jakarta.ejb.CreateException;
-import jakarta.ejb.EJB;
 
 public class Client extends ClientBase {
   // @EJB(name="sessionContextBean")
@@ -47,21 +40,6 @@ public class Client extends ClientBase {
 
   // @EJB(name="acceptBean")
   private static AcceptIF acceptBean;
-
-  @EJB(name = "twoSessionContextBeanHome")
-  private static TwoRemoteHome twoSessionContextBeanHome;
-
-  protected TwoRemoteIF getTwoSessionContextBean() throws TestFailedException {
-    Object obj = null;
-    try {
-      obj = twoSessionContextBeanHome.create();
-    } catch (RemoteException e) {
-      throw new TestFailedException(e);
-    } catch (CreateException e) {
-      throw new TestFailedException(e);
-    }
-    return (TwoRemoteIF) obj;
-  }
 
   protected Three1IF getSessionContextBean() {
     return sessionContextBean;
@@ -213,23 +191,6 @@ public class Client extends ClientBase {
    * @testName: getInvokedBusinessInterfaceLocal2
    * 
    * @assertion_ids: EJB:JAVADOC:170
-   * 
-   * @test_Strategy:
-   *
-   */
-
-  /*
-   * @testName: getInvokedBusinessInterfaceRemoteIllegal
-   * 
-   * @assertion_ids: EJB:JAVADOC:10; EJB:JAVADOC:11; EJB:JAVADOC:171
-   * 
-   * @test_Strategy:
-   *
-   */
-  /*
-   * @testName: getInvokedBusinessInterfaceLocalIllegal
-   * 
-   * @assertion_ids: EJB:JAVADOC:171
    * 
    * @test_Strategy:
    *

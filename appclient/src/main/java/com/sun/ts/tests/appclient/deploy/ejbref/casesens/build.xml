@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +26,7 @@
         <ts.ejbjar descriptor="appclient_dep_ejbref_casesens_ejb.xml" 
                    archivename="appclient_dep_ejbref_casesens">
             <fileset dir="${ts.home}/classes" 
-                     includes="${ts.wrappers.classes.stateless.ejb},
+                     includes="${ts.wrappers.classes.stateless.ejb.3x},
                      com/sun/ts/tests/assembly/util/shared/ejbref/common/ReferencedBeanCode.class"/>        
         </ts.ejbjar>
   

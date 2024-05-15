@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,8 +35,6 @@ public class Client extends EETest {
 
   private Properties props = null;
 
-  private TestBeanHome home;
-
   public static void main(String[] args) {
     Client theTests = new Client();
     Status s = theTests.run(args, System.out, System.err);
@@ -53,9 +51,6 @@ public class Client extends EETest {
     try {
       logMsg("[Client] setup(): getting Naming Context...");
       nctx = new TSNamingContext();
-
-      logTrace("[Client] Looking up bean Home...");
-      home = (TestBeanHome) nctx.lookup(lookupName, TestBeanHome.class);
 
       logMsg("[Client] Setup OK!");
     } catch (Exception e) {
@@ -94,8 +89,8 @@ public class Client extends EETest {
     boolean pass;
 
     try {
-      logTrace("[Client] Creating bean instance...");
-      bean = home.create();
+      logTrace("[Client] Looking up bean...");
+      bean = (TestBean) nctx.lookup(lookupName, TestBean.class);
       bean.initLogging(props);
 
       logTrace("[Client] Calling bean...");
@@ -155,8 +150,8 @@ public class Client extends EETest {
     boolean pass;
 
     try {
-      logTrace("[Client] Creating bean instance...");
-      bean = home.create();
+      logTrace("[Client] Looking up bean...");
+      bean = (TestBean) nctx.lookup(lookupName, TestBean.class);
       bean.initLogging(props);
 
       logTrace("[Client] Calling bean...");

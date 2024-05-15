@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,12 +19,12 @@
  */
 package com.sun.ts.tests.samples.ejb.ee.twobean;
 
-import java.rmi.RemoteException;
+import java.util.Properties;
 
-import jakarta.ejb.EJBObject;
+public interface TestBean1 {
+  public void initialize(Properties props);
 
-public interface TestBean1 extends EJBObject {
-  public boolean simpleTest1() throws RemoteException;
+  public boolean simpleTest1();
 
-  public boolean simpleTest2(int n) throws RemoteException;
+  public boolean simpleTest2(int n);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,8 +33,6 @@ public class Client extends EETest {
 
   private TSNamingContext nctx = null;
 
-  private TestBeanHome home;
-
   private Properties props = null;
 
   public static void main(String[] args) {
@@ -53,9 +51,6 @@ public class Client extends EETest {
     try {
       logMsg("[Client] setup(): getting Naming Context...");
       nctx = new TSNamingContext();
-
-      logTrace("[Client] Looking up bean Home...");
-      home = (TestBeanHome) nctx.lookup(lookupName, TestBeanHome.class);
 
       logMsg("[Client] Setup OK!");
     } catch (Exception e) {
@@ -85,8 +80,8 @@ public class Client extends EETest {
     boolean pass = false;
 
     try {
-      logTrace("[Client] Creating bean instance...");
-      bean = home.create();
+      logTrace("[Client] Looking up bean...");
+      bean = (TestBean) nctx.lookup(lookupName, TestBean.class);
       bean.initLogging(props);
 
       logTrace("[Client] Calling bean...");

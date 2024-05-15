@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -33,8 +33,6 @@ public class DeploymentClient extends EETest {
   // Harness requirements
   private Deployment hr = null;
 
-  private DeploymentHome home = null;
-
   private StringBuffer logData = null;
 
   private Properties props = null;
@@ -66,9 +64,7 @@ public class DeploymentClient extends EETest {
 
     try {
       jc = new TSNamingContext();
-      logMsg("Looked up home!!");
-      home = (DeploymentHome) jc.lookup("java:comp/env/ejb/Deployment",
-          DeploymentHome.class);
+      hr = (Deployment) jc.lookup("java:comp/env/ejb/Deployment", Deployment.class);
       logMsg("Setup ok;");
     } catch (Exception e) {
       throw new Exception("Setup Failed!", e);
@@ -90,9 +86,9 @@ public class DeploymentClient extends EETest {
    */
   public void testRarInEar() throws Exception {
     try {
+      hr.initialize(props);
 
-      hr = home.create(props);
-
+      // invoke method on the EJB
       boolean result = hr.testRarInEar();
 
       if (result) {
@@ -101,15 +97,14 @@ public class DeploymentClient extends EETest {
         throw new Exception("Embedded resource adapter test failed");
       }
 
-      // invoke method on the EJB
       logMsg("Test passed;");
     } catch (Exception e) {
       throw new Exception("Test Failed!", e);
     }
   }
 
-  /* cleanup -- none in this case */
   public void cleanup() throws Exception {
+    hr.cleanup();
     logMsg("Cleanup ok;");
   }
 }

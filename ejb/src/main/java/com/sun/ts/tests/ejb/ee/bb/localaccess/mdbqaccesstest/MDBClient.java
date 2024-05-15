@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -73,30 +73,6 @@ public class MDBClient extends Client {
   /* Run test */
 
   /*
-   * @testName: test1
-   * 
-   * @assertion_ids: EJB:SPEC:2.3
-   * 
-   * @test_Strategy: Create a Message-Driven Bean for a Queue that accesses a
-   * Local Entity Bean within the same EAR. Deploy the EAR on the J2EE server.
-   * Verify local access from Message-Driven Bean to a local Entity Bean.(CMP)
-   */
-
-  public void test1() throws Fault {
-    String TestCase = "local_access_from_mdb_queue_to_entity_bean_test1";
-    logTrace("local_access_from_mdb_queue_to_entity_bean_test1");
-    boolean pass = false;
-    int TestNum = 1;
-    try {
-      pass = doTest(TestNum, TestCase);
-    } catch (Exception e) {
-      throw new Fault("test1 failed", e);
-    }
-    if (!pass)
-      throw new Fault("test1 failed");
-  }
-
-  /*
    * @testName: test2
    * 
    * @assertion_ids: EJB:SPEC:2.3
@@ -125,29 +101,6 @@ public class MDBClient extends Client {
 
     if (!pass)
       throw new Fault("test2 failed");
-  }
-
-  /*
-   * @testName: test3
-   * 
-   * @assertion_ids: EJB:SPEC:2.2
-   * 
-   * @test_Strategy: Create a Message-Driven Bean for a Queue that accesses a
-   * Local Session Bean within the same EAR. Deploy the EAR on the J2EE server.
-   * Verify local access from Message-Driven Bean to a local Entity Bean (BMP).
-   */
-
-  public void test3() throws Fault {
-    String TestCase = "local_access_from_mdb_queue_to_session_bean_test3";
-    boolean pass = false;
-    int TestNum = 3;
-    try {
-      pass = doTest(TestNum, TestCase);
-    } catch (Exception e) {
-      throw new Fault("test3 failed", e);
-    }
-    if (!pass)
-      throw new Fault("test3 failed");
   }
 
   /*

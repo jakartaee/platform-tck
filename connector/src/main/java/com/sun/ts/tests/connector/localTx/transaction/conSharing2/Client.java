@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,8 +37,6 @@ public class Client extends EETest {
 
   private static final String testDir = System.getProperty("user.dir");
 
-  private TestBeanHome beanHome = null;
-
   private TestBean beanRef = null;
 
   private Properties testProps = new Properties();
@@ -66,8 +64,9 @@ public class Client extends EETest {
       logMsg("Get the naming context");
       jctx = new TSNamingContext();
 
-      logMsg("Getting the EJB Home interface for " + testLookup);
-      beanHome = (TestBeanHome) jctx.lookup(testLookup, TestBeanHome.class);
+      logMsg("Getting the EJB " + testLookup);
+      beanRef = (TestBean) jctx.lookup(testLookup, TestBean.class);
+      beanRef.initialize();
 
       logMsg("Setup ok");
     } catch (Exception e) {
@@ -93,9 +92,6 @@ public class Client extends EETest {
    */
   public void testMultiComponentLocalTx() throws Exception {
     try {
-      logMsg("Creating EJB TestBean instance");
-      beanRef = (TestBean) beanHome.create();
-
       logMsg("Logging data from server");
 
       boolean testResult = false;
@@ -109,12 +105,6 @@ public class Client extends EETest {
         logMsg("test1 passed");
     } catch (Exception e) {
       throw new Exception("test1 failed", e);
-    } finally {
-      try {
-        beanRef.remove();
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-      }
     }
   }
 

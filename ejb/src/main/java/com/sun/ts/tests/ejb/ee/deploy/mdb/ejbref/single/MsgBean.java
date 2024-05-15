@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.single;
 
 import java.util.Properties;
 
-import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
+import com.sun.ts.tests.ejb.ee.deploy.util.shared.ejbref.single.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.MDBWrapper;
 
 public class MsgBean extends MDBWrapper {
@@ -46,36 +46,6 @@ public class MsgBean extends MDBWrapper {
 
   public Boolean testStatefulExternal(Properties props) {
     pass = TestCode.testStatefulExternal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testBMPInternal(Properties props) {
-    pass = TestCode.testBMPInternal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testBMPExternal(Properties props) {
-    pass = TestCode.testBMPExternal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testCMP11Internal(Properties props) {
-    pass = TestCode.testCMP11Internal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testCMP11External(Properties props) {
-    pass = TestCode.testCMP11External(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testCMP20Internal(Properties props) {
-    pass = TestCode.testCMP20Internal(nctx, props);
-    return new Boolean(pass);
-  }
-
-  public Boolean testCMP20External(Properties props) {
-    pass = TestCode.testCMP20External(nctx, props);
     return new Boolean(pass);
   }
 

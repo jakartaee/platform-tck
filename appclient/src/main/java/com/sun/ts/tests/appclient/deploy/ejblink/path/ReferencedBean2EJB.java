@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,13 +20,11 @@
 package com.sun.ts.tests.appclient.deploy.ejblink.path;
 
 import com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode;
-import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
+import com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper;
 
-import jakarta.ejb.EJBException;
+public class ReferencedBean2EJB extends Stateless3xWrapper {
 
-public class ReferencedBean2EJB extends StatelessWrapper {
-
-  public String whoAreYou() throws EJBException {
+  public String whoAreYou() {
     return ReferencedBeanCode.whoAreYou(nctx);
   }
 

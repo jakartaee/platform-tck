@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -134,7 +134,10 @@ public class Client extends PMClientBase {
 		// CREATE TABLE SCHEMAGENSIMPLE (ID INTEGER NOT NULL, UTILDATE DATE, PRIMARY
 		// KEY (ID))
 
-		pass2 = findDataInFile(f2, "DROP TABLE SCHEMAGENSIMPLE");
+		expected.clear();
+		expected.add("DROP TABLE");
+		expected.add("SCHEMAGENSIMPLE");
+		pass2 = findDataInFile(f2, expected);
 
 		logger.log(Logger.Level.TRACE, "Execute the create script");
 		props = getPersistenceUnitProperties();

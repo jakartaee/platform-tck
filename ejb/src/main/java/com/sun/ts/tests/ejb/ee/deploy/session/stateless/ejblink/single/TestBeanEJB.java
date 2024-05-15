@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb.ee.deploy.session.stateless.ejblink.single;
 
 import java.util.Properties;
 
-import com.sun.ts.tests.assembly.util.shared.ejbref.single.TestCode;
+import com.sun.ts.tests.ejb.ee.deploy.util.shared.ejbref.single.TestCode;
 import com.sun.ts.tests.common.ejb.wrappers.StatelessWrapper;
 
 public class TestBeanEJB extends StatelessWrapper {
@@ -41,30 +41,6 @@ public class TestBeanEJB extends StatelessWrapper {
 
   public boolean testStatefulExternal(Properties props) {
     return TestCode.testStatefulExternal(nctx, props);
-  }
-
-  public boolean testBMPInternal(Properties props) {
-    return TestCode.testBMPInternal(nctx, props);
-  }
-
-  public boolean testBMPExternal(Properties props) {
-    return TestCode.testBMPExternal(nctx, props);
-  }
-
-  public boolean testCMP11Internal(Properties props) {
-    return TestCode.testCMP11Internal(nctx, props);
-  }
-
-  public boolean testCMP11External(Properties props) {
-    return TestCode.testCMP11External(nctx, props);
-  }
-
-  public boolean testCMP20Internal(Properties props) {
-    return TestCode.testCMP20Internal(nctx, props);
-  }
-
-  public boolean testCMP20External(Properties props) {
-    return TestCode.testCMP20External(nctx, props);
   }
 
   public void cleanUpBean() {

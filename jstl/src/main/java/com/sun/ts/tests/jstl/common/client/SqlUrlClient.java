@@ -20,8 +20,12 @@
 
 package com.sun.ts.tests.jstl.common.client;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.Enumeration;
 import java.util.Properties;
+
+import org.junit.jupiter.api.BeforeEach;
 
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
@@ -31,15 +35,18 @@ public class SqlUrlClient extends AbstractUrlClient
     implements JstlTckConstants {
   protected Properties dbArgs = new Properties();
 
+  @BeforeEach
   @Override
-  public void setup(String[] args, Properties p) throws Exception {
+  public void setup() throws Exception {
     for (int i = 0; i < JSTL_DB_PROPS.length; i++) {
-      String s = p.getProperty(JSTL_DB_PROPS[i]);
+      String s = System.getProperty(JSTL_DB_PROPS[i]);
+      assertTrue(!isNullOrEmpty(s),
+        "[SqlUrlClient] '"+JSTL_DB_PROPS[i]+"' was not set.");
       if (s != null) {
         dbArgs.setProperty(JSTL_DB_PROPS[i], s.trim());
       }
     }
-    super.setup(args, p);
+    super.setup();
   }
 
   @Override

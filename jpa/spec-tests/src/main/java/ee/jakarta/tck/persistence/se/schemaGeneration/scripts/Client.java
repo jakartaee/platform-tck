@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -29,6 +29,8 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.lang.System.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -131,7 +133,10 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
-		pass2 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass2 = findDataInFile(f2, expected);
 		if (!pass1 || !pass2) {
 			throw new Exception("scriptsURLTest failed");
 		}
@@ -200,7 +205,10 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
-		pass2 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass2 = findDataInFile(f2, expected);
 		if (!pass1 || !pass2) {
 			throw new Exception("scriptsPrintWriterTest failed");
 		}
@@ -248,7 +256,10 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
-		pass2 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass2 = findDataInFile(f2, expected);
 		if (!pass1 || !pass2) {
 			throw new Exception("scriptsURL2Test failed");
 		}
@@ -317,7 +328,10 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass1 = findDataInFile(f1, "create table schemaGenSimple");
-		pass2 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass2 = findDataInFile(f2, expected);
 		if (!pass1 || !pass2) {
 			throw new Exception("scriptsPrintWriter2Test failed");
 		}
@@ -366,7 +380,10 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass2 = findDataInFile(f1, "create table schemaGenSimple");
-		pass3 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass3 = findDataInFile(f2, expected);
 		clearEMAndEMF();
 
 		try {
@@ -455,7 +472,10 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass2 = findDataInFile(f1, "create table schemaGenSimple");
-		pass3 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass3 = findDataInFile(f2, expected);
 		clearEMAndEMF();
 
 		try {
@@ -632,7 +652,10 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
 		pass2 = findDataInFile(f1, "create table schemaGenSimple");
-		pass3 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass3 = findDataInFile(f2, expected);
 		if (!pass1 || !pass2 || !pass3) {
 			throw new Exception("databaseAndScriptsPrintWriter2Test failed");
 		}
@@ -837,6 +860,8 @@ public class Client extends PMClientBase {
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		if (pw1 != null)
 			pw1.close();
+		if (reader != null)
+			reader.close();
 
 		clearEMAndEMF();
 
@@ -903,7 +928,10 @@ public class Client extends PMClientBase {
 
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
-		pass1 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass1 = findDataInFile(f2, expected);
 
 		logger.log(Logger.Level.TRACE, "Generate schema");
 		props = getPersistenceUnitProperties();
@@ -1013,7 +1041,10 @@ public class Client extends PMClientBase {
 
 		logger.log(Logger.Level.INFO, "Check script(s) content");
 
-		pass1 = findDataInFile(f2, "drop table schemaGenSimple");
+		List<String> expected = new ArrayList<String>();
+		expected.add("drop table");
+		expected.add("schemaGenSimple");
+		pass1 = findDataInFile(f2, expected);
 
 		logger.log(Logger.Level.TRACE, "Generate schema");
 		props = getPersistenceUnitProperties();
@@ -1065,6 +1096,9 @@ public class Client extends PMClientBase {
 		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		clearEMAndEMF();
+
+		if (reader != null)
+			reader.close();
 
 		logger.log(Logger.Level.INFO, "Try to persist an entity, it should fail because table should not exist");
 		try {

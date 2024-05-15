@@ -29,10 +29,10 @@
         <query>Select c from Coffee c where c.brandName='decaf'</query>
     </named-query>
     <named-native-query name="xmlNamedNativeQuery" result-class="ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee">
-        <query>select c."ID", c."BRANDNAME", c."PRICE" from "COFFEE" c WHERE c."BRANDNAME" = 'decaf'</query>
+        <query>select c.ID, c.BRANDNAME, c.PRICE from COFFEE c WHERE c.BRANDNAME = 'decaf'</query>
     </named-native-query>
     <named-native-query name="xmlOverridesNamedNativeQuery"
                         result-class="ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee">
-        <query>select c."ID", c."BRANDNAME", c."PRICE" from "COFFEE" c WHERE c."BRANDNAME" = 'decaf'</query>
+        <query>select c.ID, c.BRANDNAME, c.PRICE from COFFEE c WHERE c.BRANDNAME = 'decaf'</query>
     </named-native-query>
 </entity-mappings>

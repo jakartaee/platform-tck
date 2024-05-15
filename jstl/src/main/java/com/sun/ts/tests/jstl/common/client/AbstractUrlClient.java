@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,13 +20,112 @@
 
 package com.sun.ts.tests.jstl.common.client;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import java.io.InputStream;
+import java.lang.System.Logger;
+import java.net.URL;
+
+import com.sun.ts.tests.jstl.common.tags.TestTag;
+import com.sun.ts.tests.jstl.common.resources.Resources_en;
+
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
 public class AbstractUrlClient extends BaseUrlClient {
 
+  private static final Logger logger = System.getLogger(AbstractUrlClient.class.getName());
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : "+testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : "+testInfo.getDisplayName());
+  }
+
+  @ArquillianResource
+  @OperateOnDeployment("_DEFAULT_")
+  public URL url;
+
+
+  protected InputStream goldenFileStream = null;
+
+  public InputStream getGoldenFileStream() {
+    return goldenFileStream;
+  }
+
+  public void setGoldenFileStream(InputStream gfStream) {
+    goldenFileStream = gfStream;
+  }
+
   protected static final String STANDARD_COMPAT = "standardCompat";
+
+
+  private void setGoldenFileStreamProperty(WebTestCase testCase, InputStream gfStream) {
+    testCase.setGoldenFileStream(gfStream);
+  }
+
+  protected boolean isNullOrEmpty(String val) {
+    if (val == null || val.equals("")) {
+      return true;
+    }
+    return false;
+  }
+
+  protected static JavaArchive getCommonJarArchive() {
+    String packagePathTags = TestTag.class.getPackageName().replace(".", "/");
+    String packagePathResources = Resources_en.class.getPackageName().replace(".", "/");
+
+    JavaArchive jstlTCKCommonJar = ShrinkWrap.create(JavaArchive.class, "jstltck-common.jar");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/jstltck-util.tld")), "META-INF/jstltck-util.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/permitted.tld")), "META-INF/permitted.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_nodecl.tld")), "META-INF/scrfree_nodecl.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_noexpr.tld")), "META-INF/scrfree_noexpr.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_nortexpr.tld")), "META-INF/scrfree_nortexpr.tld");
+    jstlTCKCommonJar.addAsResource(new UrlAsset(TestTag.class.getClassLoader().getResource(packagePathTags+"/tlds/scrfree_noscr.tld")), "META-INF/scrfree_noscr.tld");
+        
+    jstlTCKCommonJar.addPackages(true,"com.sun.ts.tests.jstl.common");
+
+    jstlTCKCommonJar.add(new UrlAsset(Resources_en.class.getClassLoader().getResource(packagePathResources+"/AlgoResources_en_IE_EURO.properties")), packagePathResources+"/AlgoResources_en_IE_EURO.properties");
+    jstlTCKCommonJar.add(new UrlAsset(Resources_en.class.getClassLoader().getResource(packagePathResources+"/AlgoResources.properties")), packagePathResources+"/AlgoResources.properties");
+
+    return jstlTCKCommonJar;
+  }
+
+  @BeforeEach
+  public void setup() throws Exception {
+
+    logger.log(Logger.Level.INFO, "setup method AbstractUrlClient");
+
+    if (url == null){
+      throw new Exception(
+          "[AbstractUrlClient] The url was not injected");
+    }
+
+		String hostname = url.getHost();
+		String portnum = Integer.toString(url.getPort());
+
+		assertFalse(isNullOrEmpty(hostname), "[AbstractUrlClient] 'webServerHost' was not set in the properties.");
+		_hostname = hostname.trim();
+		assertFalse(isNullOrEmpty(portnum), "[AbstractUrlClient] 'webServerPort' was not set in the properties.");
+		_port = Integer.parseInt(portnum.trim());
+
+    logger.log(Logger.Level.INFO, "[AbstractUrlClient] Test setup OK");
+  }
+
 
   /**
    * Sets the test properties for this testCase.
@@ -47,14 +146,8 @@ public class AbstractUrlClient extends BaseUrlClient {
         HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
         testCase.setRequest(req);
       }
-      String gf = TEST_PROPS.getProperty(GOLDENFILE);
-      if (gf != null) {
-        StringBuffer sb = new StringBuffer(25);
-        sb.append(_tsHome).append("/src/web").append(GOLDENFILEDIR);
-        sb.append(SL).append(gf);
-        testCase.setGoldenFilePath(sb.toString());
-        TEST_PROPS.remove(GOLDENFILE);
-      }
+
+      setGoldenFileStreamProperty(testCase, goldenFileStream);
     }
 
     super.setTestProperties(testCase);
@@ -102,12 +195,6 @@ public class AbstractUrlClient extends BaseUrlClient {
     HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
 
-    // set the goldenfile
-    sb = new StringBuffer(50);
-    sb.append(_tsHome).append("/src/web").append(GOLDENFILEDIR);
-    sb.append(SL);
-    sb.append(testValue).append(GF_SUFFIX);
-    testCase.setGoldenFilePath(sb.toString());
   }
 
   /**
@@ -143,11 +230,5 @@ public class AbstractUrlClient extends BaseUrlClient {
     HttpRequest req = new HttpRequest(sb.toString(), _hostname, _port);
     testCase.setRequest(req);
 
-    // set the goldenfile
-    sb = new StringBuffer(50);
-    sb.append(_tsHome).append(GOLDENFILEDIR);
-    sb.append(_generalURI).append(SL);
-    sb.append(testValue).append(GF_SUFFIX);
-    testCase.setGoldenFilePath(sb.toString());
   }
 }

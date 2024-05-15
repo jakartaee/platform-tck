@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,7 +25,7 @@
   <target name="compile">
       <ts.javac includes="${pkg.dir}/**/*.java,
                           com/sun/ts/tests/common/ejb/**/*.java,
-                          com/sun/ts/tests/assembly/util/refbean/**/*.java,
+                          com/sun/ts/tests/ejb/ee/deploy/util/refbean/**/*.java,
                           com/sun/ts/tests/jms/common*/**/*.java"/>
   </target>
 
@@ -34,19 +34,19 @@
       <ts.ejbjar descriptor="${my.app}_jar1_ejb.xml" archivename="${my.app}_jar1">
         <fileset dir="${class.dir}"
                  includes="${ts.wrappers.classes.all.ejb},
-                           com/sun/ts/tests/assembly/util/shared/ejbref/single/TestCode.class,
-                           com/sun/ts/tests/assembly/util/refbean/*.class,
+                           com/sun/ts/tests/ejb/ee/deploy/util/shared/ejbref/single/TestCode.class,
+                           com/sun/ts/tests/ejb/ee/deploy/util/refbean/*.class,
                            com/sun/ts/tests/common/ejb/wrappers/*.class,
                            com/sun/ts/tests/jms/common/JmsUtil.class,
                            com/sun/ts/tests/jms/commonee/ParentMsgBean.class"
-                excludes="com/sun/ts/tests/assembly/util/refbean/*ExternalEJB.class"/>
+                excludes="com/sun/ts/tests/ejb/ee/deploy/util/refbean/*ExternalEJB.class"/>
       </ts.ejbjar>
 
       <ts.ejbjar descriptor="${my.app}_jar2_ejb.xml" archivename="${my.app}_jar2" 
                  excludedfiles="com/sun/ts/tests/ejb/ee/deploy/session/stateful/ejbref/single/TestBean*.class">
         <fileset dir="${class.dir}"
                  includes="${ts.wrappers.classes.all.ejb},
-                           com/sun/ts/tests/assembly/util/refbean/*External*.class,
+                           com/sun/ts/tests/ejb/ee/deploy/util/refbean/*External*.class,
                            com/sun/ts/tests/common/ejb/wrappers/*.class,
                            com/sun/ts/tests/jms/common/JmsUtil.class,
                            com/sun/ts/tests/jms/commonee/ParentMsgBean.class"/>
@@ -56,8 +56,6 @@
                     archivename="${my.app}"
                     mainclass="com.sun.ts.tests.ejb.ee.deploy.session.stateful.ejbref.single.Client"
                     excludedfiles="com/sun/ts/tests/ejb/ee/deploy/session/stateful/ejbref/single/TestBeanEJB.class">
-        <fileset dir="${class.dir}"
-                 includes="${ts.dao.classes.coffee.standard}"/>
       </ts.clientjar>
 
       <ts.ear archivename="${my.app}"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2018,2024 Oracle and/or its affiliates. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,24 +24,16 @@
 
       <ts.ejbjar descriptor="bb_localaccess_webaccesstest_ejb.xml"
                   archivename="bb_localaccess_webaccesstest">
-        <fileset dir="${class.dir}"
-                 includes="com/sun/ts/tests/ejb/ee/bb/entity/util/DBSupport.class"/>
       </ts.ejbjar>
 
       <ts.war descriptor="bb_localaccess_webaccesstest_web.xml"
               archivename="bb_localaccess_webaccesstest"
-              excludedfiles="com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/AEJB.class,
-                             com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/BEJB.class,
-                             com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/CEJB.class,
+              excludedfiles="com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/BEJB.class,
                              com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/DEJB.class">
         <fileset dir="contentRoot" includes="*"/>
         <zipfileset dir="${class.dir}"
-                    includes="com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/ALocalHome.class,
-                              com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/ALocal.class,
-                              com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/BLocalHome.class,
+                    includes="com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/BLocalHome.class,
                               com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/BLocal.class,
-                              com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/CLocalHome.class,
-                              com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/CLocal.class,
                               com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/DLocalHome.class,
                               com/sun/ts/tests/ejb/ee/bb/localaccess/webaccesstest/DLocal.class"
                     prefix="WEB-INF/classes"/>

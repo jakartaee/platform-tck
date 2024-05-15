@@ -25,22 +25,20 @@
                    archivename="appclient_dep_ejblink_path_jar1"
                    includedefaultfiles="false">
         <fileset dir="${class.dir}" 
-                 includes="${ts.wrappers.classes.stateless.ejb},
+                 includes="${ts.wrappers.classes.stateless.ejb.3x},
                  com/sun/ts/tests/assembly/util/shared/ejbref/common/ReferencedBeanCode.class,
                  com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean.class,
-                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBeanEJB.class,
-                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBeanHome.class"/>        
+                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBeanEJB.class"/>
         </ts.ejbjar>
 
         <ts.ejbjar descriptor="appclient_dep_ejblink_path_jar2_ejb.xml" 
                    archivename="appclient_dep_ejblink_path_jar2"
                    includedefaultfiles="false">
         <fileset dir="${class.dir}" 
-                 includes="${ts.wrappers.classes.stateless.ejb},
+                 includes="${ts.wrappers.classes.stateless.ejb.3x},
                  com/sun/ts/tests/assembly/util/shared/ejbref/common/ReferencedBeanCode.class
                  com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean2.class,
-                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean2EJB.class,
-                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean2Home.class"/>        
+                 com/sun/ts/tests/appclient/deploy/ejblink/path/ReferencedBean2EJB.class"/>
         </ts.ejbjar>
         
         <ts.clientjar descriptor="appclient_dep_ejblink_path_client.xml" 

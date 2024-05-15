@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -32,8 +32,6 @@ import jakarta.ejb.TransactionManagementType;
 //@Stateful(name="SessionContextBean")
 //@Remote({Three1IF.class, Three2IF.class})
 //@Local({ThreeLocal1IF.class, ThreeLocal2IF.class})
-//@RemoteHome(TwoRemoteHome.class)
-//@LocalHome(TwoLocalHome.class)
 //use bmt so that it can be safely removed from the calling bean (TestBean)
 //assembler not permitted to override transaction management type.
 @TransactionManagement(TransactionManagementType.BEAN)
@@ -54,14 +52,6 @@ public class SessionContextBean extends SessionContextBeanBase
 
   @Remove(retainIfException = false)
   public void remove() {
-  }
-
-  //////////////////////////////////////////////////////////////////////
-  // optional ejbCreate() method because this bean has RemoteHome
-  // it may throw any application exception, and possibly CreateException
-  //////////////////////////////////////////////////////////////////////
-  public void ejbCreate() throws TestFailedException {
-
   }
 
   @Init

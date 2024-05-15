@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,14 +26,9 @@ import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.integration.util.DBSupport;
 
-import jakarta.ejb.CreateException;
 import jakarta.ejb.EJBException;
-import jakarta.ejb.SessionBean;
-import jakarta.ejb.SessionContext;
 
-public class TellerBean implements SessionBean {
-
-  private SessionContext sctx = null;
+public class TellerBean {
 
   // Database Support Access Object
   private DBSupport DB;
@@ -41,28 +36,10 @@ public class TellerBean implements SessionBean {
   // state managed variables
   public String tellerName;
 
-  public void ejbCreate(String name, Properties p) throws CreateException {
-    TestUtil.logTrace("ejbCreate");
+  public void initialize(String name, Properties p) {
+    TestUtil.logTrace("initialize");
     this.tellerName = name;
-    if (p != null) {
-      try {
-        TestUtil.logTrace("initialize remote logging");
-        TestUtil.init(p);
-        DB.initDB(true, true);
-      } catch (RemoteLoggingInitException e) {
-        TestUtil.printStackTrace(e);
-        throw new CreateException(e.getMessage());
-      } catch (Exception e) {
-        TestUtil.printStackTrace(e);
-        throw new CreateException("unable to initialize DB table " + e);
-      }
-    }
-  }
 
-  public void setSessionContext(SessionContext sc) {
-    TestUtil.logTrace("setSessionContext");
-    this.sctx = sc;
-    // Initialize DB Support Access Object
     try {
       TestUtil.logTrace("initialize database support access object");
       DB = new DBSupport();
@@ -70,18 +47,20 @@ public class TellerBean implements SessionBean {
       TestUtil.printStackTrace(e);
       throw new EJBException("Unable to initialize DB. Exception: " + e);
     }
-  }
 
-  public void ejbRemove() {
-    TestUtil.logTrace("ejbRemove");
-  }
-
-  public void ejbActivate() {
-    TestUtil.logTrace("ejbActivate");
-  }
-
-  public void ejbPassivate() {
-    TestUtil.logTrace("ejbPassivate");
+    if (p != null) {
+      try {
+        TestUtil.logTrace("initialize remote logging");
+        TestUtil.init(p);
+        DB.initDB(true, true);
+      } catch (RemoteLoggingInitException e) {
+        TestUtil.printStackTrace(e);
+        throw new EJBException(e.getMessage());
+      } catch (Exception e) {
+        TestUtil.printStackTrace(e);
+        throw new EJBException("unable to initialize DB table " + e);
+      }
+    }
   }
 
   // ===========================================================
