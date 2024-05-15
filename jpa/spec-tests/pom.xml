@@ -32,11 +32,6 @@
             <artifactId>persistence-tck-common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-api</artifactId>
-            <version>1.8.0.Final</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
