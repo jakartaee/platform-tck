@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,450 +20,415 @@
 
 package com.sun.ts.tests.saaj.ee.RestrictionsAllowables;
 
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.IOException;
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.porting.TSURL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-public class URLClient extends EETest {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
 
-  private static final String HOSTNAME = "localhost";
+	private static final String SERVLET = "/RestrictionsAllowables_web/RestrictionsAllowablesServlet";
 
-  private static final int PORTNUM = 8000;
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final String SERVLET = "/RestrictionsAllowables_web/RestrictionsAllowablesServlet";
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "RestrictionsAllowables_web.war");
+		archive.addPackages(false, Filters.exclude(URLClient.class),
+				"com.sun.ts.tests.saaj.ee.RestrictionsAllowabless");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
 
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
+	/*
+	 * @testName: encodingStyleAttrSOAP11Test1
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify encodingStyle attribute can be set on
+	 * Envelope. This is allowed for SOAP1.1 protocol.
+	 *
+	 */
+	@Test
+	public void encodingStyleAttrSOAP11Test1() throws Exception {
+		try {
+			boolean pass = true;
 
-  private static final String WEBSERVERPORTPROP = "webServerPort";
+			logger.log(Logger.Level.INFO, "encodingStyleAttrSOAP11Test1");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			props.setProperty("TESTNAME", "encodingStyleAttrSOAP11Test1");
+			props.setProperty("SOAPVERSION", "soap11");
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
 
-  private TSURL tsurl = new TSURL();
+			if (!pass)
+				throw new Exception("encodingStyleAttrSOAP11Test1 failed");
 
-  private URL url = null;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("encodingStyleAttrSOAP11Test1 failed", e);
+		}
+	}
 
-  private URLConnection urlConn = null;
+	/*
+	 * @testName: encodingStyleAttrSOAP11Test2
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify encodingStyle attribute can be set on
+	 * Envelope. This is allowed for SOAP1.1 protocol.
+	 *
+	 */
+	@Test
+	public void encodingStyleAttrSOAP11Test2() throws Exception {
+		try {
+			boolean pass = true;
 
-  private Properties props = null;
+			logger.log(Logger.Level.INFO, "encodingStyleAttrSOAP11Test2");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			props.setProperty("TESTNAME", "encodingStyleAttrSOAP11Test2");
+			props.setProperty("SOAPVERSION", "soap11");
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
 
-  private String hostname = HOSTNAME;
+			if (!pass)
+				throw new Exception("encodingStyleAttrSOAP11Test2 failed");
 
-  private int portnum = PORTNUM;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("encodingStyleAttrSOAP11Test2 failed", e);
+		}
+	}
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+	/*
+	 * @testName: noTrailingBlockBodySOAP11Test
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify trailing blocks are allowed after Body. This
+	 * is allowed for SOAP1.1 protocol.
+	 *
+	 */
+	@Test
+	public void noTrailingBlockBodySOAP11Test() throws Exception {
+		try {
+			boolean pass = true;
 
-  /* Test setup */
+			logger.log(Logger.Level.INFO, "noTrailingBlockBodySOAP11Test");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			props.setProperty("TESTNAME", "noTrailingBlockBodySOAP11Test");
+			props.setProperty("SOAPVERSION", "soap11");
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
+			if (!pass)
+				throw new Exception("noTrailingBlockBodySOAP11Test failed");
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    boolean pass = true;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("noTrailingBlockBodySOAP11Test failed", e);
+		}
+	}
 
-    try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed: ", e);
-    }
-    if (!pass) {
-      TestUtil.logErr(
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed");
-    }
-    logMsg("setup ok");
-  }
+	/*
+	 * @testName: enforcedQNameBodyElemSOAP11Test
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify non qualified QNames are not enforced on
+	 * BodyElements. This is allowed for SOAP1.1 protocol.
+	 *
+	 */
+	@Test
+	public void enforcedQNameBodyElemSOAP11Test() throws Exception {
+		try {
+			boolean pass = true;
 
-  /*
-   * @testName: encodingStyleAttrSOAP11Test1
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify encodingStyle attribute can be set on
-   * Envelope. This is allowed for SOAP1.1 protocol.
-   *
-   */
-  public void encodingStyleAttrSOAP11Test1() throws Exception {
-    try {
-      boolean pass = true;
+			logger.log(Logger.Level.INFO, "enforcedQNameBodyElemSOAP11Test");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			props.setProperty("TESTNAME", "enforcedQNameBodyElemSOAP11Test");
+			props.setProperty("SOAPVERSION", "soap11");
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
 
-      TestUtil.logMsg("encodingStyleAttrSOAP11Test1");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      props.setProperty("TESTNAME", "encodingStyleAttrSOAP11Test1");
-      props.setProperty("SOAPVERSION", "soap11");
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
+			if (!pass)
+				throw new Exception("enforcedQNameBodyElemSOAP11Test failed");
 
-      if (!pass)
-        throw new Exception("encodingStyleAttrSOAP11Test1 failed");
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("enforcedQNameBodyElemSOAP11Test failed", e);
+		}
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("encodingStyleAttrSOAP11Test1 failed", e);
-    }
-  }
+	/*
+	 * @testName: encodingStyleAttrSOAP12Test1
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify encodingStyle attribute cannot be set on
+	 * Envelope. This is restricted for SOAP1.2 protocol.
+	 *
+	 */
+	@Test
+	public void encodingStyleAttrSOAP12Test1() throws Exception {
+		try {
+			boolean pass = true;
 
-  /*
-   * @testName: encodingStyleAttrSOAP11Test2
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify encodingStyle attribute can be set on
-   * Envelope. This is allowed for SOAP1.1 protocol.
-   *
-   */
-  public void encodingStyleAttrSOAP11Test2() throws Exception {
-    try {
-      boolean pass = true;
+			logger.log(Logger.Level.INFO, "encodingStyleAttrSOAP12Test1");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			props.setProperty("TESTNAME", "encodingStyleAttrSOAP12Test1");
+			props.setProperty("SOAPVERSION", "soap12");
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
 
-      TestUtil.logMsg("encodingStyleAttrSOAP11Test2");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      props.setProperty("TESTNAME", "encodingStyleAttrSOAP11Test2");
-      props.setProperty("SOAPVERSION", "soap11");
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
+			if (!pass)
+				throw new Exception("encodingStyleAttrSOAP12Test1 failed");
 
-      if (!pass)
-        throw new Exception("encodingStyleAttrSOAP11Test2 failed");
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("encodingStyleAttrSOAP12Test1 failed", e);
+		}
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("encodingStyleAttrSOAP11Test2 failed", e);
-    }
-  }
+	/*
+	 * @testName: encodingStyleAttrSOAP12Test2
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify encodingStyle attribute cannot be set on
+	 * Envelope. This is restricted for SOAP1.2 protocol.
+	 *
+	 */
+	@Test
+	public void encodingStyleAttrSOAP12Test2() throws Exception {
+		try {
+			boolean pass = true;
 
-  /*
-   * @testName: noTrailingBlockBodySOAP11Test
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify trailing blocks are allowed after Body. This
-   * is allowed for SOAP1.1 protocol.
-   *
-   */
-  public void noTrailingBlockBodySOAP11Test() throws Exception {
-    try {
-      boolean pass = true;
+			logger.log(Logger.Level.INFO, "encodingStyleAttrSOAP12Test2");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			props.setProperty("TESTNAME", "encodingStyleAttrSOAP12Test2");
+			props.setProperty("SOAPVERSION", "soap12");
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
 
-      TestUtil.logMsg("noTrailingBlockBodySOAP11Test");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      props.setProperty("TESTNAME", "noTrailingBlockBodySOAP11Test");
-      props.setProperty("SOAPVERSION", "soap11");
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
+			if (!pass)
+				throw new Exception("encodingStyleAttrSOAP12Test2 failed");
 
-      if (!pass)
-        throw new Exception("noTrailingBlockBodySOAP11Test failed");
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("encodingStyleAttrSOAP12Test2 failed", e);
+		}
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("noTrailingBlockBodySOAP11Test failed", e);
-    }
-  }
+	/*
+	 * @testName: noTrailingBlockBodySOAP12Test
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify no trailing blocks allowed after Body. This is
+	 * restricted for SOAP1.2 protocol.
+	 *
+	 */
+	@Test
+	public void noTrailingBlockBodySOAP12Test() throws Exception {
+		try {
+			boolean pass = true;
 
-  /*
-   * @testName: enforcedQNameBodyElemSOAP11Test
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify non qualified QNames are not enforced on
-   * BodyElements. This is allowed for SOAP1.1 protocol.
-   *
-   */
-  public void enforcedQNameBodyElemSOAP11Test() throws Exception {
-    try {
-      boolean pass = true;
+			logger.log(Logger.Level.INFO, "noTrailingBlockBodySOAP12Test");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			props.setProperty("TESTNAME", "noTrailingBlockBodySOAP12Test");
+			props.setProperty("SOAPVERSION", "soap12");
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
 
-      TestUtil.logMsg("enforcedQNameBodyElemSOAP11Test");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      props.setProperty("TESTNAME", "enforcedQNameBodyElemSOAP11Test");
-      props.setProperty("SOAPVERSION", "soap11");
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
+			if (!pass)
+				throw new Exception("noTrailingBlockBodySOAP12Test failed");
 
-      if (!pass)
-        throw new Exception("enforcedQNameBodyElemSOAP11Test failed");
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("noTrailingBlockBodySOAP12Test failed", e);
+		}
+	}
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("enforcedQNameBodyElemSOAP11Test failed", e);
-    }
-  }
+	/*
+	 * @testName: enforcedQNameHdrElemTest1
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify that unqualified QNames are enforced on
+	 * HeaderElements. This is restricted for for both SOAP1.1 and SOAP1.2 protocol.
+	 *
+	 */
+	@Test
+	public void enforcedQNameHdrElemTest1() throws Exception {
+		try {
+			boolean pass = true;
 
-  /*
-   * @testName: encodingStyleAttrSOAP12Test1
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify encodingStyle attribute cannot be set on
-   * Envelope. This is restricted for SOAP1.2 protocol.
-   *
-   */
-  public void encodingStyleAttrSOAP12Test1() throws Exception {
-    try {
-      boolean pass = true;
+			logger.log(Logger.Level.INFO, "enforcedQNameHdrElemTest1");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "enforcedQNameHdrElemTest1");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
+			if (!pass)
+				throw new Exception("enforcedQNameHdrElemTest1 failed");
 
-      TestUtil.logMsg("encodingStyleAttrSOAP12Test1");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      props.setProperty("TESTNAME", "encodingStyleAttrSOAP12Test1");
-      props.setProperty("SOAPVERSION", "soap12");
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("enforcedQNameHdrElemTest1 failed", e);
+		}
+	}
 
-      if (!pass)
-        throw new Exception("encodingStyleAttrSOAP12Test1 failed");
+	/*
+	 * @testName: enforcedQNameHdrElemTest2
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify that unqualified QNames are enforced on
+	 * ChildElements of Headers. This is restricted for both SOAP1.1 and SOAP1.2
+	 * protocol.
+	 */
+	@Test
+	public void enforcedQNameHdrElemTest2() throws Exception {
+		try {
+			boolean pass = true;
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("encodingStyleAttrSOAP12Test1 failed", e);
-    }
-  }
+			logger.log(Logger.Level.INFO, "enforcedQNameHdrElemTest2");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			for (int i = 0; i < 2; i++) {
+				logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+				props.setProperty("TESTNAME", "enforcedQNameHdrElemTest2");
+				if (i == 0)
+					props.setProperty("SOAPVERSION", "soap11");
+				else
+					props.setProperty("SOAPVERSION", "soap12");
+				urlConn = TestUtil.sendPostData(props, url);
+				logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+				Properties resProps = TestUtil.getResponseProperties(urlConn);
+				if (!resProps.getProperty("TESTRESULT").equals("pass"))
+					pass = false;
+			}
 
-  /*
-   * @testName: encodingStyleAttrSOAP12Test2
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify encodingStyle attribute cannot be set on
-   * Envelope. This is restricted for SOAP1.2 protocol.
-   *
-   */
-  public void encodingStyleAttrSOAP12Test2() throws Exception {
-    try {
-      boolean pass = true;
+			if (!pass)
+				throw new Exception("enforcedQNameHdrElemTest2 failed");
 
-      TestUtil.logMsg("encodingStyleAttrSOAP12Test2");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      props.setProperty("TESTNAME", "encodingStyleAttrSOAP12Test2");
-      props.setProperty("SOAPVERSION", "soap12");
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("enforcedQNameHdrElemTest2 failed", e);
+		}
+	}
 
-      if (!pass)
-        throw new Exception("encodingStyleAttrSOAP12Test2 failed");
+	/*
+	 * @testName: enforcedQNameBodyElemSOAP12Test
+	 *
+	 * @assertion_ids: SAAJ:SPEC:22;
+	 *
+	 * @test_Strategy: Test to verify non qualified QNames are not enforced on
+	 * BodyElements. This is restricted for SOAP1.2 protocol.
+	 *
+	 */
+	@Test
+	public void enforcedQNameBodyElemSOAP12Test() throws Exception {
+		try {
+			boolean pass = true;
 
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("encodingStyleAttrSOAP12Test2 failed", e);
-    }
-  }
+			logger.log(Logger.Level.INFO, "enforcedQNameBodyElemSOAP12Test");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			props.setProperty("TESTNAME", "enforcedQNameBodyElemSOAP12Test");
+			props.setProperty("SOAPVERSION", "soap12");
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
 
-  /*
-   * @testName: noTrailingBlockBodySOAP12Test
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify no trailing blocks allowed after Body. This
-   * is restricted for SOAP1.2 protocol.
-   *
-   */
-  public void noTrailingBlockBodySOAP12Test() throws Exception {
-    try {
-      boolean pass = true;
+			if (!pass)
+				throw new Exception("enforcedQNameBodyElemSOAP12Test failed");
 
-      TestUtil.logMsg("noTrailingBlockBodySOAP12Test");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      props.setProperty("TESTNAME", "noTrailingBlockBodySOAP12Test");
-      props.setProperty("SOAPVERSION", "soap12");
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("enforcedQNameBodyElemSOAP12Test failed", e);
+		}
+	}
 
-      if (!pass)
-        throw new Exception("noTrailingBlockBodySOAP12Test failed");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("noTrailingBlockBodySOAP12Test failed", e);
-    }
-  }
-
-  /*
-   * @testName: enforcedQNameHdrElemTest1
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify that unqualified QNames are enforced on
-   * HeaderElements. This is restricted for for both SOAP1.1 and SOAP1.2
-   * protocol.
-   *
-   */
-  public void enforcedQNameHdrElemTest1() throws Exception {
-    try {
-      boolean pass = true;
-
-      TestUtil.logMsg("enforcedQNameHdrElemTest1");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "enforcedQNameHdrElemTest1");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-      if (!pass)
-        throw new Exception("enforcedQNameHdrElemTest1 failed");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("enforcedQNameHdrElemTest1 failed", e);
-    }
-  }
-
-  /*
-   * @testName: enforcedQNameHdrElemTest2
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify that unqualified QNames are enforced on
-   * ChildElements of Headers. This is restricted for both SOAP1.1 and SOAP1.2
-   * protocol.
-   */
-  public void enforcedQNameHdrElemTest2() throws Exception {
-    try {
-      boolean pass = true;
-
-      TestUtil.logMsg("enforcedQNameHdrElemTest2");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      for (int i = 0; i < 2; i++) {
-        TestUtil.logMsg("Sending post request to test servlet.....");
-        props.setProperty("TESTNAME", "enforcedQNameHdrElemTest2");
-        if (i == 0)
-          props.setProperty("SOAPVERSION", "soap11");
-        else
-          props.setProperty("SOAPVERSION", "soap12");
-        urlConn = TestUtil.sendPostData(props, url);
-        TestUtil.logMsg("Getting response from test servlet.....");
-        Properties resProps = TestUtil.getResponseProperties(urlConn);
-        if (!resProps.getProperty("TESTRESULT").equals("pass"))
-          pass = false;
-      }
-
-      if (!pass)
-        throw new Exception("enforcedQNameHdrElemTest2 failed");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("enforcedQNameHdrElemTest2 failed", e);
-    }
-  }
-
-  /*
-   * @testName: enforcedQNameBodyElemSOAP12Test
-   *
-   * @assertion_ids: SAAJ:SPEC:22;
-   *
-   * @test_Strategy: Test to verify non qualified QNames are not enforced on
-   * BodyElements. This is restricted for SOAP1.2 protocol.
-   *
-   */
-  public void enforcedQNameBodyElemSOAP12Test() throws Exception {
-    try {
-      boolean pass = true;
-
-      TestUtil.logMsg("enforcedQNameBodyElemSOAP12Test");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum, SERVLET);
-      TestUtil.logMsg(url.toString());
-      props.setProperty("TESTNAME", "enforcedQNameBodyElemSOAP12Test");
-      props.setProperty("SOAPVERSION", "soap12");
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-
-      if (!pass)
-        throw new Exception("enforcedQNameBodyElemSOAP12Test failed");
-
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("enforcedQNameBodyElemSOAP12Test failed", e);
-    }
-  }
-
-  public void cleanup() throws Exception {
-    logMsg("cleanup ok");
-  }
+	public void cleanup() throws Exception {
+		logger.log(Logger.Level.INFO, "cleanup ok");
+	}
 }

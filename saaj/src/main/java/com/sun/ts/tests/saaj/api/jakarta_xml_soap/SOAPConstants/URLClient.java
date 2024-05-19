@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,117 +20,68 @@
 
 package com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConstants;
 
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.IOException;
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.porting.TSURL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-public class URLClient extends EETest {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
 
-  private static final String HOSTNAME = "localhost";
+	private static final String SOAPCONSTANTS_TESTSERVLET = "/SOAPConstants_web/SOAPConstantsTestServlet";
 
-  private static final int PORTNUM = 8000;
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final String SOAPCONSTANTS_TESTSERVLET = "/SOAPConstants_web/SOAPConstantsTestServlet";
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "SOAPConstants_web.war");
+		archive.addPackages(false, Filters.exclude(URLClient.class),
+				"com.sun.ts.tests.saaj.api.jakarta_xml_soap.SOAPConstants");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
 
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
+	/*
+	 * @testName: SOAPConstantsTest
+	 *
+	 * @assertion_ids: SAAJ:JAVADOC:0;
+	 *
+	 * @test_Strategy: Verify the SOAP1.1 and SOAP1.2 protocol constants
+	 *
+	 * Description: Verify the SOAP1.1 and SOAP1.2 protocol constants
+	 *
+	 */
+	@Test
+	public void SOAPConstantsTest() throws Exception {
+		boolean pass = true;
+		try {
 
-  private static final String WEBSERVERPORTPROP = "webServerPort";
+			logger.log(Logger.Level.INFO, "SOAPConstantsTest: verify SOAP1.1 and SOAP1.2 protocol constants");
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, SOAPCONSTANTS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "SOAPConstantsTest");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("SOAPConstantsTest failed", e);
+		}
 
-  private TSURL tsurl = new TSURL();
-
-  private URL url = null;
-
-  private URLConnection urlConn = null;
-
-  private Properties props = null;
-
-  private String hostname = HOSTNAME;
-
-  private int portnum = PORTNUM;
-
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup */
-
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
-
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    boolean pass = true;
-
-    try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      TestUtil.logErr(
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-    logMsg("setup ok");
-  }
-
-  public void cleanup() throws Exception {
-    logMsg("cleanup ok");
-  }
-
-  /*
-   * @testName: SOAPConstantsTest
-   *
-   * @assertion_ids: SAAJ:JAVADOC:0;
-   *
-   * @test_Strategy: Verify the SOAP1.1 and SOAP1.2 protocol constants
-   *
-   * Description: Verify the SOAP1.1 and SOAP1.2 protocol constants
-   *
-   */
-  public void SOAPConstantsTest() throws Exception {
-    boolean pass = true;
-    try {
-
-      TestUtil.logMsg(
-          "SOAPConstantsTest: verify SOAP1.1 and SOAP1.2 protocol constants");
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          SOAPCONSTANTS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "SOAPConstantsTest");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("SOAPConstantsTest failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("SOAPConstantsTest failed");
-  }
+		if (!pass)
+			throw new Exception("SOAPConstantsTest failed");
+	}
 }
