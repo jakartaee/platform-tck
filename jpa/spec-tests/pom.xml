@@ -216,5 +216,22 @@
                 </dependency>
             </dependencies>
         </profile>
+        <profile>
+            <id>sybase</id>
+            <properties>
+                <sybase.jdbc.version>1.0.0</sybase.jdbc.version>
+            </properties>
+            <!--
+                Install with:
+                mvn org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=jconn42.jar -DgroupId=com.sybase -DartifactId=jdbc42 -Dversion=1.0.0 -Dpackaging=jar
+            -->
+            <dependencies>
+                <dependency>
+                    <groupId>com.sybase</groupId>
+                    <artifactId>jdbc42</artifactId>
+                    <version>${sybase.jdbc.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
     </profiles>
 </project>

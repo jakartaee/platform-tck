@@ -175,7 +175,10 @@ public class Client4 extends Client {
 
 		try {
 			getEntityTransaction().begin();
-			Timestamp currentTime = new Timestamp(new Date().getTime());
+			long time = new Date().getTime();
+			// Remove the milliseconds, since the table column type has no fractional seconds,
+			// otherwise an optimistic lock exception might be thrown
+			Timestamp currentTime = new Timestamp(time - (time % 1000));
 			getEntityManager().persist(new Timestamp_Field("1", currentTime));
 			getEntityManager().persist(new Timestamp_Property("2", currentTime));
 			getEntityTransaction().commit();

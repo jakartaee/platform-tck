@@ -175,13 +175,17 @@ public class Client extends PMClientBase {
 		pass1c = pass1c || findDataInFile(f1, expected);
 
 		expected.clear();
+		expected.add("CREATE UNIQUE");
+		expected.add("INDEX SCHEMAGENSIMPLE_SVALUE3 ON SCHEMAGENSIMPLE (SVALUE3)");
+
+		pass1d = findDataInFile(f1, expected);
+
+		expected.clear();
 		expected.add("ALTER TABLE");
 		expected.add("SCHEMAGENSIMPLE");
 		expected.add("ADD");
 		expected.add("UNIQUE");
 		expected.add("INDEX SCHEMAGENSIMPLE_SVALUE3");
-
-		pass1d = findDataInFile(f1, "CREATE UNIQUE INDEX SCHEMAGENSIMPLE_SVALUE3 ON SCHEMAGENSIMPLE (SVALUE3)");
 		pass1d = pass1d || findDataInFile(f1, expected);
 
 		expected.clear();

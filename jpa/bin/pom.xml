@@ -771,6 +771,7 @@
                 <jdbc.db>mysql</jdbc.db>
                 <jakarta.persistence.jdbc.driver>com.mysql.cj.jdbc.Driver</jakarta.persistence.jdbc.driver>
                 <db.delimiter>!</db.delimiter>
+                <db.supports.sequence>false</db.supports.sequence>
             </properties>
             <dependencies>
                 <dependency>
@@ -816,8 +817,9 @@
             <properties>
                 <sybase.jdbc.version>1.0.0</sybase.jdbc.version>
                 <jdbc.db>sybase</jdbc.db>
-                <jakarta.persistence.jdbc.driver>com.sybase.jdbc4.jdbc.SybDriver</jakarta.persistence.jdbc.driver>
+                <jakarta.persistence.jdbc.driver>com.sybase.jdbc42.jdbc.SybDriver</jakarta.persistence.jdbc.driver>
                 <db.delimiter>!</db.delimiter>
+                <db.supports.sequence>false</db.supports.sequence>
             </properties>
             <!--
                 Install with:
