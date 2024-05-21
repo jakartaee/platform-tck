@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -95,11 +95,11 @@ public class Client extends PMClientBase {
 			final DID1bDependent dep2 = new DID1bDependent(new DID1bDependentId("Michelle", 1L), employee1);
 			final DID1bDependent dep3 = new DID1bDependent(new DID1bDependentId("John", 2L), employee2);
 
+			em.persist(employee1);
+			em.persist(employee2);
 			em.persist(dep1);
 			em.persist(dep2);
 			em.persist(dep3);
-			em.persist(employee1);
-			em.persist(employee2);
 
 			logger.log(Logger.Level.TRACE, "persisted Employees and Dependents");
 			em.flush();
