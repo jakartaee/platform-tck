@@ -14,8 +14,8 @@
              as any other style has no impact on the result). -->
     
     
-    Nov 21, 2000, 5:45 AM<br>
-    Nov 21, 2000, 5:45 AM<br>
+    Nov 21, 2000, 5:45 AM<br>
+    Nov 21, 2000, 5:45 AM<br>
 
 </body>
 </html>

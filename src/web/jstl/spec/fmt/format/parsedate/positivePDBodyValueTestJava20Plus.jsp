@@ -1,6 +1,7 @@
 <%--
 
     Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,22 +17,19 @@
 
 --%>
 
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
-<tck:test testName="positivePDTimeZoneNullEmptyTest">
-    <c:set var="dt" value="Nov 21, 2000, 3:45 AM"/> 
+<tck:test testName="positivePDBodyValueTest">
     <fmt:setLocale value="en_US"/>
-    <fmt:setTimeZone value="MST"/>
+    <fmt:setTimeZone value="EST"/>
 
-    <!-- If timeZone is null or empty, it will be treated as
-             if it was not present (only type short times is specified
-             as any other style has no impact on the result). -->
-    <fmt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>'
-                       timeZone='<%= null %>' type="both" timeStyle="short" var="rn1"/>
-    <fmt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>'
-                       timeZone="" type="both" timeStyle="short" var="re1"/>
-    <fmt:formatDate value="${rn1}" timeZone="EST" type="both" timeStyle="short"/><br>
-    <fmt:formatDate value="${re1}" timeZone="EST" type="both" timeStyle="short"/><br>
+    <!-- The date to be parsed can be provided as body content to the
+              action. -->
+    <fmt:parseDate type="both" var="e2">
+        Nov 21, 2000, 3:45:02 AM
+    </fmt:parseDate>
+    <fmt:formatDate value="${e2}" type="both" timeZone="EST"/>
+
 </tck:test>
