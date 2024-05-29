@@ -34,6 +34,7 @@
         <module>jsonb-tck</module>
         <module>jsonp-tck</module>
         <module>servlet-tck</module>
+        <module>persistence-tck</module>
     </modules>
 
     <properties>
