@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.net.URL;
+import java.net.URLClassLoader;
 
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.spi.JsonbProvider;
@@ -44,6 +45,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -68,7 +70,13 @@ public class ClientIT { //extends ServiceEETest {
     private static final Logger logger = System.getLogger(ClientIT.class.getName());
 
     private static String packagePath = ClientIT.class.getPackageName().replace(".", "/");
+
+    private static final String providerPackagePath = MyJsonbProvider.class.getPackageName().replace(".", "/");
     
+    private boolean providerJarDeployed = false;
+    
+    public static final String TEMP_DIR = System.getProperty("java.io.tmpdir", "/tmp");
+
     @BeforeEach
     void logStartTest(TestInfo testInfo) {
         logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
@@ -82,44 +90,52 @@ public class ClientIT { //extends ServiceEETest {
     @Deployment(testable = false)
     public static WebArchive createServletDeployment() throws IOException {
     
-    //   EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_servlet_vehicle.ear");
-      WebArchive war = ShrinkWrap.create(WebArchive.class, "jsonbprovidertests_servlet_vehicle_web.war");
-      war.addClass(ClientIT.class);
-      war.addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class);
-      war.addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class);
-      war.addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class);
-      war.addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class);
+      WebArchive warArchive = ShrinkWrap.create(WebArchive.class, "jsonbprovidertests_servlet_vehicle_web.war");
+      warArchive.addClass(ClientIT.class)
+        .addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class)
+        .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
+        .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
+        .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
+        .setWebXML(ClientIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
 
-    //   InputStream inStream = ClientIT.class.getClassLoader().getResourceAsStream(packagePath + "/servlet_vehicle_web.xml");
-    //   String webXml = editWebXmlString(inStream, "jsonbprovidertests_servlet_vehicle");
-    //   war.setWebXML(new StringAsset(webXml));
-      war.setWebXML(ClientIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
+      JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
+        .addClass(MyJsonbBuilder.class)
+        .addClass(MyJsonbProvider.class)
+        .addAsResource(new UrlAsset(MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
 
-    //   war.addAsServiceProvider(JsonbProvider.class, com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class);
-    //   war.addAsResource(new UrlAsset(ClientIT.class.getClassLoader().getResource(packagePath+"/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
-      JavaArchive jar = prepackage();
-      war.addAsLibrary(jar);
+        warArchive.addAsLibrary(jarArchive);
 
-    //   ear.addAsModule(war);
-    //   ear.addAsLibrary(jar);
-      return war;
+      return warArchive;
 
     }
-  
-    public static JavaArchive prepackage() throws IOException {
+
+    public void removeProviderJarFromCP() throws Exception {
+		if (providerJarDeployed) {
+			URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
+			Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
+			currentThreadClassLoader.close();
+			providerJarDeployed = false;
+		}
+	}
+
+	public void createProviderJar() throws Exception {
+        
         JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
             .addClass(MyJsonbBuilder.class)
             .addClass(MyJsonbProvider.class)
-            .addAsResource(new UrlAsset(ClientIT.class.getClassLoader().getResource(packagePath+"/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
-  
-        return jarArchive;
-    }
+            .addAsResource(new UrlAsset(MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
 
-    public static String toString(InputStream inStream) throws IOException{
-        try (BufferedReader bufReader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8))) {
-          return bufReader.lines().collect(Collectors.joining(System.lineSeparator()));
-        }
-    }
+        jarArchive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonb_alternate_provider.jar"), true);
+
+		ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
+		URLClassLoader urlClassLoader = new URLClassLoader(
+				new URL[] { new File(TEMP_DIR + File.separator + "jsonb_alternate_provider.jar").toURL() },
+				currentThreadClassLoader);
+		Thread.currentThread().setContextClassLoader(urlClassLoader);
+
+		providerJarDeployed = true;
+
+	}
     
     private static final String MY_JSONBROVIDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbProvider";
     private static final String MY_JSONBBUILDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbBuilder";
@@ -136,11 +152,15 @@ public class ClientIT { //extends ServiceEETest {
     /*
      * @class.setup_props:
      */
-    public void setup(String[] args, Properties p) throws Exception {
+    @BeforeEach
+    public void setup() throws Exception {
+        createProviderJar();
         logger.log(Logger.Level.INFO, "setup ok");
     }
 
+    @AfterEach
     public void cleanup() throws Exception {
+        removeProviderJarFromCP();
         logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
