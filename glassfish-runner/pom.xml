@@ -33,6 +33,7 @@
         <module>concurrency-tck</module>
         <module>jsonb-tck</module>
         <module>jsonp-tck</module>
+        <module>persistence-tck</module>
         <module>servlet-tck</module>
     </modules>
 
