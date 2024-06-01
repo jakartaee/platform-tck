@@ -101,8 +101,8 @@ public class MavenTestDependenciesDeploymentPackager implements DeploymentScenar
 
     @Override
     public List<DeploymentDescription> generate(TestClass testClass) {
-        final DeploymentDescription defaultDeployment = new DeploymentDescription("persistence-test-package-all",
-                generateDeployment());
+        final DeploymentDescription defaultDeployment = new DeploymentDescription("persistence-"
+                + testClass.getName(),generateDeployment());
         return Collections.singletonList(defaultDeployment);
     }
 

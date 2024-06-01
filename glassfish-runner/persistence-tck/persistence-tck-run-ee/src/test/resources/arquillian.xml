@@ -17,9 +17,9 @@ SPDX-License-Identifier: Apache-2.0 -->
 
     <!-- Uncomment to have test archives exported to the file system for inspection -->
     
-    <engine>
+<!--    <engine>
         <property name="deploymentExportPath">target/</property>
-    </engine>
+    </engine>-->
     
 
     <container qualifier="glassfish">

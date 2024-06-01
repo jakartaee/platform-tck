@@ -22,7 +22,7 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.Node;
 
 /**
- *
+ * We need to remove the test class and related classes added by Arquillian automatically. They were causing issues with Shrinkwrap used in the TCK tests. Those classes are already in a JAR in WEB-INF/lib.
  * @author Ondro Mihalyi
  */
 public class CleanupArchiveProcessor implements ProtocolArchiveProcessor {
@@ -32,7 +32,6 @@ public class CleanupArchiveProcessor implements ProtocolArchiveProcessor {
         if (toDelete != null) {
             deleteChildren(toDelete, archive);
         }
-        System.out.println("Cleanup");
     }
 
     private void deleteChildren(Node node, Archive<?> archive) {

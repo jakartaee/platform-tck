@@ -90,7 +90,7 @@ public enum DeploymentPackageType {
 
         public WarPackageBuilder(Archive<?> archive) {
             if (archive == null) {
-                this.archive = ShrinkWrap.create(WebArchive.class, "test-package-all.war").as(WebArchive.class);
+                this.archive = ShrinkWrap.create(WebArchive.class, "package.war").as(WebArchive.class);
             } else {
                 this.archive = archive.as(WebArchive.class);
             }
