@@ -32,5 +32,7 @@
     <modules>
         <module>persistence-tck-install</module>
         <module>persistence-tck-run-se</module>
+        <module>persistence-tck-arquillian-extension</module>
+        <module>persistence-tck-run-ee</module>
     </modules>
 </project>
