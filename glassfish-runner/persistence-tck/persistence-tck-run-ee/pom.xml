@@ -409,7 +409,7 @@
 
                                 <glassfish.postBootCommands>
                                     delete-jvm-options '-Xmx512m'
-                                    create-jvm-options '-Xmx2048m'
+                                    create-jvm-options '-Xmx4096m'
                                     restart-domain
                                 </glassfish.postBootCommands>
 
