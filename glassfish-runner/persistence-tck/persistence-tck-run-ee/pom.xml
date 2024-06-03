@@ -378,6 +378,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
+                            <argLine>-Xmx2048m</argLine>
                             <dependenciesToScan>${project.groupId}:persistence-tck-spec-tests</dependenciesToScan>
                             <includes>
                                 <include>**/*Client*.*</include>
