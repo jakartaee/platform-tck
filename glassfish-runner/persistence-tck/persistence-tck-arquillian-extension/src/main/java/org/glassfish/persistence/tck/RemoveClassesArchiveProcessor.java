@@ -15,6 +15,8 @@
  */
 package org.glassfish.persistence.tck;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import org.jboss.arquillian.container.test.spi.TestDeployment;
 import org.jboss.arquillian.container.test.spi.client.deployment.ProtocolArchiveProcessor;
@@ -25,7 +27,7 @@ import org.jboss.shrinkwrap.api.Node;
  * We need to remove the test class and related classes added by Arquillian automatically. They were causing issues with Shrinkwrap used in the TCK tests. Those classes are already in a JAR in WEB-INF/lib.
  * @author Ondro Mihalyi
  */
-public class CleanupArchiveProcessor implements ProtocolArchiveProcessor {
+public class RemoveClassesArchiveProcessor implements ProtocolArchiveProcessor {
 
     public void process(TestDeployment td, Archive<?> archive) {
         final Node toDelete = archive.get("/WEB-INF/classes/ee");
@@ -37,7 +39,8 @@ public class CleanupArchiveProcessor implements ProtocolArchiveProcessor {
     private void deleteChildren(Node node, Archive<?> archive) {
         final Set<Node> children = node.getChildren();
         if (!children.isEmpty()) {
-            children.forEach(childNode -> {
+            List<Node> nodesToDelete = new ArrayList<>(children);
+            nodesToDelete.forEach(childNode -> {
                 deleteChildren(childNode, archive);
             });
         }

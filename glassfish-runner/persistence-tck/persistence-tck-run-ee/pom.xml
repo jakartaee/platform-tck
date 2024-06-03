@@ -369,6 +369,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.2.5</version>
                 <executions>
                     <execution>
                         <id>persistence-tests-1</id>
@@ -382,12 +383,10 @@
                                 <include>**/*Client*.*</include>
                                 <include>**/*JPASigTest*.*</include>
                             </includes>
-                            <test>!**/ee/jakarta/tck/persistence/se/entityManagerFactory/Client2#createEntityManagerFactoryNoBeanValidatorTest</test>
-                            
                             <systemPropertyVariables>
                                 <junit.jupiter.extensions.autodetection.enabled>true</junit.jupiter.extensions.autodetection.enabled>
                                 <arquillian.launch>glassfish</arquillian.launch>
-                                <arquillian.extension.coordinatePrefixesToIgnore>!org.jboss.shrinkwrap,org.glassfish,org.apache.derby,org.eclipse.persistence,org.netbeans,jakarta,!jakarta.tck,org.javassis,aopalliance,eu.maveniverse,javax,org.eclipse.sisu,org.apache.ant</arquillian.extension.coordinatePrefixesToIgnore>
+                                <arquillian.extension.coordinatePrefixesToIgnore>!org.jboss.shrinkwrap,org.glassfish,org.apache.derby,org.eclipse.persistence,jakarta,!jakarta.tck,org.javassis,aopalliance,eu.maveniverse,javax,org.eclipse.sisu,org.apache.ant</arquillian.extension.coordinatePrefixesToIgnore>
                                 <platform.mode>standalone</platform.mode>
                                 <vehicle>standalone</vehicle>
                                 <persistence.unit.name>JPATCK</persistence.unit.name>
@@ -408,6 +407,8 @@
                                 <Select_Jpa_Purchase_Order>SELECT ID, TOTAL FROM PURCHASE_ORDER WHERE ID=?</Select_Jpa_Purchase_Order>
 
                                 <jdbc.db>${jdbc.db}</jdbc.db>
+                                <sigTestClasspath>${glassfish.module.dir}/jakarta.persistence-api.jar:${glassfish.module.dir}/org.eclipse.persistence.jpa.jar:${glassfish.module.dir}/jakarta.servlet-api.jar:${glassfish.module.dir}/jakarta.transaction-api.jar:${glassfish.module.dir}/jakarta.ejb-api.jar:${glassfish.module.dir}/org.eclipse.persistence.antlr.jar:${glassfish.module.dir}/org.eclipse.persistence.asm.jar:${glassfish.module.dir}/org.eclipse.persistence.core.jar:${glassfish.module.dir}/org.eclipse.persistence.dbws.jar:${glassfish.module.dir}/org.eclipse.persistence.jpa.jpql.jar:${glassfish.module.dir}/org.eclipse.persistence.jpa.modelgen.processor.jar:${glassfish.module.dir}/org.eclipse.persistence.moxy.jar:${glassfish.module.dir}/org.eclipse.persistence.oracle.jar:${glassfish.module.dir}/jboss-logging.jar:${glassfish.module.dir}/jakarta.el-api.jar:${glassfish.module.dir}/expressly.jar:${glassfish.module.dir}/classmate.jar:${glassfish.module.dir}/jakarta.validation-api.jar</sigTestClasspath>
+                                <exclude.plugin>org.glassfish.persistence.tck.SigTestArgumentsModifier</exclude.plugin>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -419,6 +420,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
+                            <skip>true</skip>
                             <dependenciesToScan>${project.groupId}:persistence-tck-spec-tests</dependenciesToScan>
                             <test>**/ee/jakarta/tck/persistence/se/entityManagerFactory/Client2#createEntityManagerFactoryNoBeanValidatorTest</test>
                             <additionalClasspathElements>
@@ -429,7 +431,7 @@
                             <systemPropertyVariables>
                                 <platform.mode>standalone</platform.mode>
                                 <vehicle>standalone</vehicle>
-                                
+
                                 <persistence.unit.name>JPATCK</persistence.unit.name>
                                 <persistence.unit.name.2>JPATCK2</persistence.unit.name.2>
                                 <jakarta.persistence.provider>${jakarta.persistence.provider}</jakarta.persistence.provider>

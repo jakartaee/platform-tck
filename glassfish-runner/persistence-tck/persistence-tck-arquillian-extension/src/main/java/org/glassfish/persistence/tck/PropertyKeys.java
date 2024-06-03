@@ -32,6 +32,8 @@ public interface PropertyKeys {
 
     final String ACTIVE_MAVEN_PROFILES = ArquillianExtension.PROPERTY_PREFIX + "activeMavenProfiles";
 
+    final String IN_CONTAINER = ArquillianExtension.PROPERTY_PREFIX + "inContainer";
+
     // Artifacts with a group matching one of these prefixes will not be added to the package.
     // Expects a comma-separated list of prefixes.
     final String GROUP_PREFIXES_TO_IGNORE = ArquillianExtension.PROPERTY_PREFIX + "coordinatePrefixesToIgnore";

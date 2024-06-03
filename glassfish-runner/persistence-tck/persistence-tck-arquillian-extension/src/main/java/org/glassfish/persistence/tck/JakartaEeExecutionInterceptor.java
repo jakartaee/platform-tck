@@ -129,4 +129,5 @@ public class JakartaEeExecutionInterceptor implements InvocationInterceptor {
     private EntityManagerFactory getEMF(String unitName) {
         return Persistence.createEntityManagerFactory(unitName);
     }
+
 }

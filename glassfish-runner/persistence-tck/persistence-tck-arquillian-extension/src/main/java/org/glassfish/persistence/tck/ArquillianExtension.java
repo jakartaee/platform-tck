@@ -32,6 +32,6 @@ public class ArquillianExtension implements LoadableExtension {
     public void register(ExtensionBuilder builder) {
         builder.service(DeploymentScenarioGenerator.class, MavenTestDependenciesDeploymentPackager.class);
         builder.service(ApplicationArchiveProcessor.class, SystemPropertiesArchiveProcessor.class);
-        builder.service(ProtocolArchiveProcessor.class, CleanupArchiveProcessor.class);
+        builder.service(ProtocolArchiveProcessor.class, RemoveClassesArchiveProcessor.class);
     }
 }

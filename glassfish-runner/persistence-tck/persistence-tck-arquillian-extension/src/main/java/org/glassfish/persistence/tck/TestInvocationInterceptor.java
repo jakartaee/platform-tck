@@ -18,8 +18,10 @@
  */
 package org.glassfish.persistence.tck;
 
+import com.sun.ts.lib.util.TestUtil;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -44,19 +46,24 @@ public class TestInvocationInterceptor implements InvocationInterceptor {
 
     private final Properties props;
 
-    private final InvocationInterceptor vehicleInterceptor;
+    private final InvocationInterceptor testInterceptor;
 
     public TestInvocationInterceptor() {
         this.props = loadProperties();
-        vehicleInterceptor = createInterceptor();
+        testInterceptor = createInterceptor();
+    }
+
+    public static boolean isInContainer(Properties properties) {
+        return Boolean.parseBoolean(properties.getProperty(PropertyKeys.IN_CONTAINER));
     }
 
     public void interceptBeforeEachMethod(Invocation<Void> invocation, ReflectiveInvocationContext<Method> invocationContext, ExtensionContext extensionContext) throws Throwable {
+        initTestUtil(invocationContext);
         final Properties oldSysProps = new Properties();
         oldSysProps.putAll(System.getProperties());
         System.getProperties().putAll(props);
         try {
-            vehicleInterceptor.interceptBeforeEachMethod(invocation, invocationContext, extensionContext);
+            testInterceptor.interceptBeforeEachMethod(invocation, invocationContext, extensionContext);
         } catch (Throwable ex) {
             System.setProperties(oldSysProps);
             throw new RuntimeException(ex);
@@ -67,11 +74,12 @@ public class TestInvocationInterceptor implements InvocationInterceptor {
     public void interceptTestTemplateMethod(Invocation<Void> invocation,
             ReflectiveInvocationContext<Method> invocationContext,
             ExtensionContext extensionContext) throws Throwable {
+        initTestUtil(invocationContext);
         final Properties oldSysProps = new Properties();
         oldSysProps.putAll(System.getProperties());
         System.getProperties().putAll(props);
         try {
-            vehicleInterceptor.interceptTestTemplateMethod(invocation, invocationContext, extensionContext);
+            testInterceptor.interceptTestTemplateMethod(invocation, invocationContext, extensionContext);
         } catch (Throwable ex) {
             System.setProperties(oldSysProps);
             throw new RuntimeException(ex);
@@ -82,15 +90,23 @@ public class TestInvocationInterceptor implements InvocationInterceptor {
     public void interceptTestMethod(Invocation<Void> invocation,
             ReflectiveInvocationContext<Method> invocationContext,
             ExtensionContext extensionContext) throws Throwable {
+        initTestUtil(invocationContext);
         final Properties oldSysProps = new Properties();
         oldSysProps.putAll(System.getProperties());
         System.getProperties().putAll(props);
         try {
-            vehicleInterceptor.interceptTestMethod(invocation, invocationContext, extensionContext);
+            testInterceptor.interceptTestMethod(invocation, invocationContext, extensionContext);
         } catch (Throwable ex) {
             System.setProperties(oldSysProps);
             throw new RuntimeException(ex);
         }
+    }
+
+    private void initTestUtil(ReflectiveInvocationContext<Method> invocationContext) {
+        TestUtil.initNoLogging(System.getProperties());
+        final String testName = invocationContext.getTargetClass() + "#" + invocationContext.getExecutable().getName();
+        final PrintWriter toReporterPrintWriter = new PrintWriter(new WriterToReporterBridge(), false);
+        TestUtil.setCurrentTest(testName, toReporterPrintWriter, toReporterPrintWriter);
     }
 
     private Properties loadProperties() {
@@ -99,6 +115,7 @@ public class TestInvocationInterceptor implements InvocationInterceptor {
                 .getResourceAsStream(PropertyKeys.SYSTEM_PROPERTIES_FILE_NAME)) {
             if (propertiesInputStream != null) {
                 props.load(propertiesInputStream);
+                props.setProperty(PropertyKeys.IN_CONTAINER, Boolean.TRUE.toString());
             }
         } catch (IOException ex) {
             Logger.getLogger(this.getClass().getName()).log(Level.WARNING, ex,
@@ -109,10 +126,12 @@ public class TestInvocationInterceptor implements InvocationInterceptor {
     }
 
     private InvocationInterceptor createInterceptor() {
-        String platformMode = props.getProperty(PropertyKeys.PLATFORM_MODE, "");
+        if (isInContainer(props)) {
+            String platformMode = props.getProperty(PropertyKeys.PLATFORM_MODE, "");
 
-        if (platformMode.equals(PropertyKeys.PLATFORM_MODE_JAKARTAEE)) {
-            return new JakartaEeExecutionInterceptor(props);
+            if (platformMode.equals(PropertyKeys.PLATFORM_MODE_JAKARTAEE)) {
+                return new JakartaEeExecutionInterceptor(props);
+            }
         }
         return new InvocationInterceptor() {
         };
