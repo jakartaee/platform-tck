@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Contributors to the Eclipse Foundation
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -24,7 +24,7 @@ import org.junit.jupiter.api.TestReporter;
 public class Reporter {
 
     public static ThreadLocal<TestReporter> reporterRef = new ThreadLocal<>();
-    
+
     public static void log(String message) {
         TestReporter reporter = reporterRef.get();
         if (reporter != null) {
@@ -38,5 +38,5 @@ public class Reporter {
         // TODO: log using the TRACE log level. Now we log using the default INFO level with the TRACE: prefix
         log("TRACE: " + message);
     }
-    
+
 }
