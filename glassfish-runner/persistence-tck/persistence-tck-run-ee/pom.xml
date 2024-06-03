@@ -378,7 +378,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <argLine>-Xmx4096m</argLine>
+                            <argLine>-Xmx8192m</argLine>
                             <dependenciesToScan>${project.groupId}:persistence-tck-spec-tests</dependenciesToScan>
                             <includes>
                                 <include>**/*Client*.*</include>
@@ -409,7 +409,7 @@
 
                                 <glassfish.postBootCommands>
                                     delete-jvm-options '-Xmx512m'
-                                    create-jvm-options '-Xmx5120m'
+                                    create-jvm-options '-Xmx1024m'
                                     restart-domain
                                 </glassfish.postBootCommands>
 
@@ -427,7 +427,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <argLine>-Xmx2048m</argLine>
+                            <argLine>-Xmx8192m</argLine>
                             <skip>true</skip>
                             <dependenciesToScan>${project.groupId}:persistence-tck-spec-tests</dependenciesToScan>
                             <test>**/ee/jakarta/tck/persistence/se/entityManagerFactory/Client2#createEntityManagerFactoryNoBeanValidatorTest</test>
