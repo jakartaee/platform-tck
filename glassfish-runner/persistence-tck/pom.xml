@@ -30,9 +30,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>persistence-tck-install</module>
-        <module>persistence-tck-run-se</module>
         <module>persistence-tck-arquillian-extension</module>
+        <module>persistence-tck-install</module>
         <module>persistence-tck-run-ee</module>
+        <module>persistence-tck-run-se</module>
     </modules>
 </project>
