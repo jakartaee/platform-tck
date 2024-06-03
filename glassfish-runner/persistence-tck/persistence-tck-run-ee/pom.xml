@@ -407,6 +407,12 @@
                                 <Insert_Jpa_Purchase_Order>INSERT INTO PURCHASE_ORDER(ID, TOTAL, DESCRIPTION) VALUES(?, ?, null)</Insert_Jpa_Purchase_Order>
                                 <Select_Jpa_Purchase_Order>SELECT ID, TOTAL FROM PURCHASE_ORDER WHERE ID=?</Select_Jpa_Purchase_Order>
 
+                                <glassfish.postBootCommands>
+                                    delete-jvm-options '-Xmx512m'
+                                    create-jvm-options '-Xmx2048m'
+                                    restart-domain
+                                </glassfish.postBootCommands>
+
                                 <jdbc.db>${jdbc.db}</jdbc.db>
                                 <sigTestClasspath>${glassfish.module.dir}/jakarta.persistence-api.jar:${glassfish.module.dir}/org.eclipse.persistence.jpa.jar:${glassfish.module.dir}/jakarta.servlet-api.jar:${glassfish.module.dir}/jakarta.transaction-api.jar:${glassfish.module.dir}/jakarta.ejb-api.jar:${glassfish.module.dir}/org.eclipse.persistence.antlr.jar:${glassfish.module.dir}/org.eclipse.persistence.asm.jar:${glassfish.module.dir}/org.eclipse.persistence.core.jar:${glassfish.module.dir}/org.eclipse.persistence.dbws.jar:${glassfish.module.dir}/org.eclipse.persistence.jpa.jpql.jar:${glassfish.module.dir}/org.eclipse.persistence.jpa.modelgen.processor.jar:${glassfish.module.dir}/org.eclipse.persistence.moxy.jar:${glassfish.module.dir}/org.eclipse.persistence.oracle.jar:${glassfish.module.dir}/jboss-logging.jar:${glassfish.module.dir}/jakarta.el-api.jar:${glassfish.module.dir}/expressly.jar:${glassfish.module.dir}/classmate.jar:${glassfish.module.dir}/jakarta.validation-api.jar</sigTestClasspath>
                                 <exclude.plugin>org.glassfish.persistence.tck.SigTestArgumentsModifier</exclude.plugin>
