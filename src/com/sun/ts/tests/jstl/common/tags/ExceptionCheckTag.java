@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -171,7 +172,7 @@ public class ExceptionCheckTag extends TagSupport implements TryCatchFinally {
         sb.append("</strong> was thrown!");
 
         if (t instanceof JspException && _checkRootCause) {
-          Throwable rt = ((JspException) t).getRootCause();
+          Throwable rt = ((JspException) t).getCause();
           if (rt != null) {
             if (_rootException == null) {
               sb.append("<br>\nThe root cause of Exception defined");
