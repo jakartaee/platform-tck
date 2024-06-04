@@ -1,6 +1,7 @@
 <%--
 
     Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -16,6 +17,7 @@
 
 --%>
 
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="fmt_rt" uri="http://java.sun.com/jstl/fmt_rt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>

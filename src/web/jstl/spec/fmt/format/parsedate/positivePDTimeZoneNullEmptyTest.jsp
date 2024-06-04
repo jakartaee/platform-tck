@@ -20,7 +20,7 @@
 
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
-<tck:test testName="positivePDTimeZoneNullEmpytTest">
+<tck:test testName="positivePDTimeZoneNullEmptyTest">
     <c:set var="dt" value="Nov 21, 2000, 3:45 AM"/> 
     <fmt:setLocale value="en_US"/>
     <fmt:setTimeZone value="MST"/>

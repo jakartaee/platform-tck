@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -89,7 +90,17 @@ public class JSTLClient extends AbstractUrlClient {
    * using time, date, or both.
    */
   public void positiveFDTypeTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveFDTypeTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positiveFDTypeTest");
+    TEST_PROPS.setProperty(REQUEST, "positiveFDTypeTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTypeTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTypeTest.gf");
+    }
+
     invoke();
   }
 
@@ -104,7 +115,17 @@ public class JSTLClient extends AbstractUrlClient {
    * applied when type is not specified, or is set to date or both.
    */
   public void positiveFDDateStyleTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveFDDateStyleTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positiveFDDateStyleTest");
+    TEST_PROPS.setProperty(REQUEST, "positiveFDDateStyleTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDDateStyleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDDateStyleTest.gf");
+    }
+
     invoke();
   }
 
@@ -119,7 +140,17 @@ public class JSTLClient extends AbstractUrlClient {
    * type is set to time or both.
    */
   public void positiveFDTimeStyleTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveFDTimeStyleTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positiveFDTimeStyleTest");
+    TEST_PROPS.setProperty(REQUEST, "positiveFDTimeStyleTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTimeStyleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTimeStyleTest.gf");
+    }
+
     invoke();
   }
 
@@ -146,7 +177,17 @@ public class JSTLClient extends AbstractUrlClient {
    * objects.
    */
   public void positiveFDTimeZoneTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZoneTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positiveFDTimeZoneTest");
+    TEST_PROPS.setProperty(REQUEST, "positiveFDTimeZoneTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTimeZoneTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTimeZoneTest.gf");
+    }
+
     invoke();
   }
 
@@ -203,7 +244,17 @@ public class JSTLClient extends AbstractUrlClient {
    * using the page's time zone of EST.
    */
   public void positiveFDTimeZoneNullEmptyTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZoneNullEmptyTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positiveFDTimeZoneNullEmptyTest");
+    TEST_PROPS.setProperty(REQUEST, "positiveFDTimeZoneNullEmptyTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTimeZoneNullEmptyTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTimeZoneNullEmptyTest.gf");
+    }
+
     invoke();
   }
 
@@ -220,7 +271,17 @@ public class JSTLClient extends AbstractUrlClient {
    * value of the scoped attribute jakarta.servlet.jsp.jstl.fmt.timeZone
    */
   public void positiveFDTimeZonePrecedenceTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveFDTimeZonePrecedenceTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positiveFDTimeZonePrecedenceTest");
+    TEST_PROPS.setProperty(REQUEST, "positiveFDTimeZonePrecedenceTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTimeZonePrecedenceTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDTimeZonePrecedenceTest.gf");
+    }
+
     invoke();
   }
 
@@ -236,7 +297,15 @@ public class JSTLClient extends AbstractUrlClient {
   public void positiveFDLocalizationContextTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positiveFDLocalizationContextTest");
     TEST_PROPS.setProperty(REQUEST, "positiveFDLocalizationContextTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveFDLocalizationContextTest.gf");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDLocalizationContextTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDLocalizationContextTest.gf");
+    }
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -252,7 +321,15 @@ public class JSTLClient extends AbstractUrlClient {
   public void positiveFDFallbackLocaleTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positiveFDFallbackLocaleTest");
     TEST_PROPS.setProperty(REQUEST, "positiveFDFallbackLocaleTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positiveFDFallbackLocaleTest.gf");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDFallbackLocaleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFDFallbackLocaleTest.gf");
+    }
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: xx-XX");
     invoke();
   }
@@ -270,5 +347,20 @@ public class JSTLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(REQUEST, "negativeFDScopeNoVarTest.jsp");
     TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     invoke();
+  }
+
+  private boolean isJavaVersion20OrGreater() {
+      boolean isJavaVersion20OrGreater = false;
+
+      String version = System.getProperty("java.version");
+      int majorVersionDot = version.indexOf(".");
+
+      version = version.substring(0, majorVersionDot);
+
+      if (Integer.parseInt(version) >= 20) {
+          isJavaVersion20OrGreater = true;
+      }
+
+      return isJavaVersion20OrGreater;
   }
 }
