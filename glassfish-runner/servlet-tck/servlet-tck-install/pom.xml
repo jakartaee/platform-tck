@@ -31,7 +31,7 @@
 
     <properties>
         <tck.test.servlet.file>jakarta-servlet-tck-${tck.test.servlet.version}.zip</tck.test.servlet.file>
-        <tck.test.servlet.url>https://download.eclipse.org/ee4j/servlet/jakartaee11/staged/eftl/${tck.test.servlet.file}</tck.test.servlet.url>
+        <tck.test.servlet.url>https://download.eclipse.org/jakartaee/servlet/6.1/${tck.test.servlet.file}</tck.test.servlet.url>
         <tck.test.servlet.version>6.1.0</tck.test.servlet.version>
     </properties>
 
