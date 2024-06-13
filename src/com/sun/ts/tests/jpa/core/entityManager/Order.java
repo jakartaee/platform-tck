@@ -69,17 +69,17 @@ public class Order implements java.io.Serializable {
     this.total = total;
   }
 
-  public String getdescription() {
+  public String getDescription() {
     return description;
   }
 
-  public void setdescription(String description) {
+  public void setDescription(String description) {
     this.description = description;
   }
 
   public String toString() {
     return "Order id=" + getId() + ", total=" + getTotal() + ", desc="
-        + getdescription();
+        + getDescription();
   }
 
   @Override
@@ -95,7 +95,7 @@ public class Order implements java.io.Serializable {
     boolean result = false;
 
     if (this.getId() == o1.getId()
-        && this.getdescription().equals(o1.getdescription())
+        && this.getDescription().equals(o1.getDescription())
         && this.getTotal() == o1.getTotal()) {
       result = true;
     }
