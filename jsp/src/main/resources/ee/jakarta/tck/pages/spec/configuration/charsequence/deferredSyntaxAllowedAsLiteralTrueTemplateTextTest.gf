@@ -1,1 +1,0 @@
-From template text: #{foo}
