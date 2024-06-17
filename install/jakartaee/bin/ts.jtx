@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2009, 2021 Oracle and/or its affiliates. All rights reserved.
+# Copyright (c) 2009, 2024 Oracle and/or its affiliates. All rights reserved.
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -94,3 +94,81 @@ com/sun/ts/tests/servlet/api/jakarta_servlet_http/cookie/URLClient.java#setMaxAg
 
 # https://github.com/jakartaee/servlet/issues/472 TCK Challenge: doHeadTest shouldn't validate optional payload header fields
 com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest/URLClient.java#doHeadTest
+
+
+################
+# JSTL
+################
+
+#https://github.com/jakartaee/platform-tck/issues/1313
+#
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#negativeScriptFreeTlvNoDeclTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveBundleLocalizationScopeTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveCatchVarTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveCWOTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveDateParamQueryTimestampTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveDefaultEncodingTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveFDValueTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveFNScopeTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveFormatLocalizationContextI18NTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveForTokensTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveIfScopeTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveImportAbsUrlTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveItemsObjArrayTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveJSTLURITest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveMessageKeyTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveOutEscXmlTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveParamNameValueTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveParamValueTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveParseVarTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positivePDValueTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positivePermittedTlvTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positivePNValueTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveQueryScopeAttributeTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveRedirectTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveRemoveScopeVarTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveResultGetRowsCountTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveSetBundleScopeVarTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveSetDataSourceScopeAttributeTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveSetLocaleValueTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveSetScopeTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveSetSelectVarTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveSetTimezoneValueTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveTimezoneValueTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveTransformVarTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveTxQueryCommitTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveUpdateBodyContentTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveUrlScopeTest
+com/sun/ts/tests/jstl/compat/onedotzero/JSTLClient.java#positiveXParamNameTest
+
+
+################
+# JSP
+################
+
+#https://github.com/jakartaee/platform-tck/issues/1313
+#
+com/sun/ts/tests/jsp/spec/configuration/elevaluation/URLClient.java#elEvaluation23WebApplicationTest
+
+
+
+################
+# Assembly
+################
+
+#https://github.com/jakartaee/platform-tck/issues/1313
+#
+com/sun/ts/tests/assembly/compat/standalone/war/compat12_13/Client.java#testStandaloneWar
+com/sun/ts/tests/assembly/compat/standalone/war/compat12_14/Client.java#testStandaloneWar
+com/sun/ts/tests/assembly/compat/standalone/war/compat12_50/Client.java#testStandaloneWar
+com/sun/ts/tests/assembly/compat/standalone/war/compat13_14/Client.java#testStandaloneWar
+
+
+################
+# Servlet
+################
+
+# https://github.com/jakartaee/platform-tck/issues/1313
+com/sun/ts/tests/servlet/compat/LeadingSlash/WithLeadingSlash/URLClient.java#WithLeadingSlashTest
+com/sun/ts/tests/servlet/compat/LeadingSlash/WithoutLeadingSlash/URLClient.java#WithoutLeadingSla
+
