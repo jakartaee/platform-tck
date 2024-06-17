@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
     Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
@@ -21,19 +21,15 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
-<%@ page import="java.util.Date" %>
-<tck:test testName="positiveTimezoneValueNullEmptyTest">
-    <%
-        Date date = new Date(883192294202L);
-        pageContext.setAttribute("dte", date);
-    %>
+<tck:test testName="positivePDBodyValueTest">
+    <fmt:setLocale value="en_US"/>
+    <fmt:setTimeZone value="EST"/>
 
-    <!-- If value is null or empty, the default TZ of GMT
-             is used -->
-    <fmt:setTimeZone value='<%= null %>'/>
-    <fmt:formatDate type="both" dateStyle="full" timeStyle="full" value="${dte}"/>
+    <!-- The date to be parsed can be provided as body content to the
+              action. -->
+    <fmt:parseDate type="both" var="e2">
+        Nov 21, 2000, 3:45:02 AM
+    </fmt:parseDate>
+    <fmt:formatDate value="${e2}" type="both" timeZone="EST"/>
 
-    <fmt:setTimeZone value=""/>
-    <fmt:formatDate type="both" dateStyle="full" timeStyle="full" value="${dte}"/>
-   
 </tck:test>

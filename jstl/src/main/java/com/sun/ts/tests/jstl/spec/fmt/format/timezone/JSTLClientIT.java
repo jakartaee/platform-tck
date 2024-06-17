@@ -66,10 +66,16 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positiveTimezoneValueTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTest.gf");
-    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTimezoneValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
+    InputStream gfStream;
+    if (isJavaVersion20OrGreater()) {
+       gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTestJava20Plus.gf");
+    } else {
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTest.gf");
+
+    }
+    setGoldenFileStream(gfStream);
     invoke();
   }
 
@@ -83,10 +89,16 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positiveTimezoneValueNullEmptyTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueNullEmptyTest.gf");
-    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STANDARD, "positiveTimezoneValueNullEmptyTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
+    InputStream gfStream;
+    if (isJavaVersion20OrGreater()) {
+       gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueNullEmptyTestJava20Plus.gf");
+    } else {
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueNullEmptyTest.gf");
+    }
+    setGoldenFileStream(gfStream);
     invoke();
   }
+
 }
