@@ -112,6 +112,12 @@
             <artifactId>shrinkwrap-resolver-impl-maven-archive</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.16.1</version>
+        </dependency>
+
         <!-- Junit 5 -->
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
