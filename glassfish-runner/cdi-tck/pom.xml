@@ -34,7 +34,7 @@
 
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        
+
         <!-- Note M6 still has some failures, future M7 passes all -->
         <glassfish.version>8.0.0-M6</glassfish.version>
 
