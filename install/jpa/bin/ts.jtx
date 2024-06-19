@@ -41,3 +41,12 @@ com/sun/ts/tests/jpa/se/entityManager/Client.java#typedQueryMethodsAfterClose16T
 
 # https://github.com/jakartaee/persistence/issues/591 Multiple fetch joins for same attribute
 com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_standalone
+
+# https://github.com/jakartaee/persistence/issues/632 Derived identity TCK tests rely on unspecified cascading behavior
+com/sun/ts/tests/jpa/core/derivedid/ex1a/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/derivedid/ex1b/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/derivedid/ex2b/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/derivedid/ex3a/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/derivedid/ex3b/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/mapsid/Client.java#persistMX1Test1_from_standalone
+

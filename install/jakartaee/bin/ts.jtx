@@ -86,6 +86,44 @@ com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_
 com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_stateful3
 com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_stateless3
 
+# https://github.com/jakartaee/persistence/issues/632 Derived identity TCK tests rely on unspecified cascading behavior
+com/sun/ts/tests/jpa/core/derivedid/ex1a/Client.java#DIDTest_from_appmanaged
+com/sun/ts/tests/jpa/core/derivedid/ex1a/Client.java#DIDTest_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/derivedid/ex1a/Client.java#DIDTest_from_pmservlet
+com/sun/ts/tests/jpa/core/derivedid/ex1a/Client.java#DIDTest_from_puservlet
+com/sun/ts/tests/jpa/core/derivedid/ex1a/Client.java#DIDTest_from_stateful3
+com/sun/ts/tests/jpa/core/derivedid/ex1a/Client.java#DIDTest_from_stateless3
+com/sun/ts/tests/jpa/core/derivedid/ex1b/Client.java#DIDTest_from_appmanaged
+com/sun/ts/tests/jpa/core/derivedid/ex1b/Client.java#DIDTest_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/derivedid/ex1b/Client.java#DIDTest_from_pmservlet
+com/sun/ts/tests/jpa/core/derivedid/ex1b/Client.java#DIDTest_from_puservlet
+com/sun/ts/tests/jpa/core/derivedid/ex1b/Client.java#DIDTest_from_stateful3
+com/sun/ts/tests/jpa/core/derivedid/ex1b/Client.java#DIDTest_from_stateless3
+com/sun/ts/tests/jpa/core/derivedid/ex2b/Client.java#DIDTest_from_appmanaged
+com/sun/ts/tests/jpa/core/derivedid/ex2b/Client.java#DIDTest_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/derivedid/ex2b/Client.java#DIDTest_from_pmservlet
+com/sun/ts/tests/jpa/core/derivedid/ex2b/Client.java#DIDTest_from_puservlet
+com/sun/ts/tests/jpa/core/derivedid/ex2b/Client.java#DIDTest_from_stateful3
+com/sun/ts/tests/jpa/core/derivedid/ex2b/Client.java#DIDTest_from_stateless3
+com/sun/ts/tests/jpa/core/derivedid/ex3a/Client.java#DIDTest_from_appmanaged
+com/sun/ts/tests/jpa/core/derivedid/ex3a/Client.java#DIDTest_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/derivedid/ex3a/Client.java#DIDTest_from_pmservlet
+com/sun/ts/tests/jpa/core/derivedid/ex3a/Client.java#DIDTest_from_puservlet
+com/sun/ts/tests/jpa/core/derivedid/ex3a/Client.java#DIDTest_from_stateful3
+com/sun/ts/tests/jpa/core/derivedid/ex3a/Client.java#DIDTest_from_stateless3
+com/sun/ts/tests/jpa/core/derivedid/ex3b/Client.java#DIDTest_from_appmanaged
+com/sun/ts/tests/jpa/core/derivedid/ex3b/Client.java#DIDTest_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/derivedid/ex3b/Client.java#DIDTest_from_pmservlet
+com/sun/ts/tests/jpa/core/derivedid/ex3b/Client.java#DIDTest_from_puservlet
+com/sun/ts/tests/jpa/core/derivedid/ex3b/Client.java#DIDTest_from_stateful3
+com/sun/ts/tests/jpa/core/derivedid/ex3b/Client.java#DIDTest_from_stateless3
+com/sun/ts/tests/jpa/core/annotations/mapsid/Client.java#persistMX1Test1_from_appmanaged
+com/sun/ts/tests/jpa/core/annotations/mapsid/Client.java#persistMX1Test1_from_appmanagedNoTx
+com/sun/ts/tests/jpa/core/annotations/mapsid/Client.java#persistMX1Test1_from_pmservlet
+com/sun/ts/tests/jpa/core/annotations/mapsid/Client.java#persistMX1Test1_from_puservlet
+com/sun/ts/tests/jpa/core/annotations/mapsid/Client.java#persistMX1Test1_from_stateful3
+com/sun/ts/tests/jpa/core/annotations/mapsid/Client.java#persistMX1Test1_from_stateless3
+
 ################
 # Security API
 ################
