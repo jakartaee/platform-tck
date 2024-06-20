@@ -876,7 +876,7 @@
                 <version>5.32.1</version>
                 <configuration>
                     <activeRecipes>
-                        <recipe>tck.jakarta.platform.rewrite.AddArquillianDeployMethodRecipe</recipe>
+                        <recipe>tck.jakarta.platform.rewrite.GenerateNewTestClassRecipe</recipe>
                     </activeRecipes>
                 </configuration>
                 <dependencies>
