@@ -87,9 +87,9 @@
 
     <properties>
         <ant.version>1.10.11</ant.version>
-        <arquillian.version>1.8.0.Final</arquillian.version>
+        <arquillian.version>1.7.0.Alpha10</arquillian.version>
         <!-- CDI -->
-        <cdi-api.version>4.1.0</cdi-api.version>
+        <cdi-api.version>4.0.0</cdi-api.version>
         <!-- Jakarta Concurrency -->
         <concurrent-api.version>2.0.0</concurrent-api.version>
         <!-- Jakarta Persistence -->
