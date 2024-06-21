@@ -105,6 +105,17 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <excludes>
+                    <exclude>**/build.xml</exclude>
+                </excludes>
+            </resource>
+        </resources>
         <plugins>
             <!-- do not publish this artifact to Maven repositories -->
             <plugin>
@@ -112,6 +123,11 @@
                 <configuration>
                     <skip>true</skip>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
             </plugin>
             <plugin>
                 <groupId>com.sun.xml.ws</groupId>
