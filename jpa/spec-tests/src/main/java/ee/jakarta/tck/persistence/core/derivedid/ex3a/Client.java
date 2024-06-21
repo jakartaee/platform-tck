@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2009, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2009, 2024 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -86,12 +86,11 @@ public class Client extends PMClientBase {
 			final DID3Dependent dep2 = new DID3Dependent(depId2, employee1);
 			final DID3Dependent dep3 = new DID3Dependent(depId3, employee2);
 
+			getEntityManager().persist(employee1);
+			getEntityManager().persist(employee2);
 			getEntityManager().persist(dep1);
 			getEntityManager().persist(dep2);
 			getEntityManager().persist(dep3);
-
-			getEntityManager().persist(employee1);
-			getEntityManager().persist(employee2);
 
 			getEntityManager().flush();
 			logger.log(Logger.Level.TRACE, "persisted Employees and Dependents");

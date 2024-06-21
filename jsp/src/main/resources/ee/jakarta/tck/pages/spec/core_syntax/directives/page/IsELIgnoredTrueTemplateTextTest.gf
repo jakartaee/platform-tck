@@ -1,4 +1,0 @@
-begin
-    ${dval}
-    #{pval}
-end

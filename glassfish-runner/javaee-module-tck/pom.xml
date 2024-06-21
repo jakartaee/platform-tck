@@ -28,7 +28,11 @@
     <packaging>jar</packaging>
 
     <properties>
-        <glassfish.container.version>7.0.9</glassfish.container.version>
+        <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
+        <!-- <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version> -->
+        <!-- Use JDK21 to run with GF 8.0.0-M5 -->
+        <glassfish.container.version>8.0.0-M5</glassfish.container.version>
+        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>javaee-tck</tck.artifactId>
@@ -42,8 +46,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
-            <artifactId>javaee-tck</artifactId>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>${tck.artifactId}</artifactId>
             <version>${tck.version}</version>
         </dependency>
         <dependency>
@@ -173,7 +177,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <dependenciesToScan>jakartatck:javaee-tck</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>

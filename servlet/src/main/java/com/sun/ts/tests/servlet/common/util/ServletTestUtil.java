@@ -22,10 +22,6 @@ package com.sun.ts.tests.servlet.common.util;
 
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.Cookie;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,14 +33,14 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.lang.System.Logger;
 
 /**
  * A set of useful utility methods to help perform test functions.
  */
 public class ServletTestUtil {
 
-  private static Logger LOGGER = LoggerFactory.getLogger(ServletTestUtil.class);
-
+  private static final Logger LOGGER = System.getLogger(ServletTestUtil.class.getName());
   /**
    * Private as this class contains only public static methods.
    */
@@ -124,7 +120,7 @@ public class ServletTestUtil {
         count++;
         if (!allowDuplicates) {
           if (foundValues.contains(val)) {
-            LOGGER.debug("[ServletTestUtil] Duplicate values found in "
+            LOGGER.log(Logger.Level.DEBUG, "[ServletTestUtil] Duplicate values found in "
                 + "Enumeration when duplicates are not allowed."
                 + "Values found in the Enumeration: {}", getAsString(e));
             valuesFound = false;
@@ -134,14 +130,14 @@ public class ServletTestUtil {
         }
 
       } catch (NoSuchElementException nsee) {
-        LOGGER.info("[ServletTestUtil] There were less elements in the "
+        LOGGER.log(Logger.Level.INFO, "[ServletTestUtil] There were less elements in the "
             + "Enumeration than expected");
         valuesFound = false;
         break;
       }
-      LOGGER.debug("[ServletTestUtil] Looking for '{}' in values: {}", val, getAsString(values));
+      LOGGER.log(Logger.Level.DEBUG, "[ServletTestUtil] Looking for '{"+val+"}' in values: {"+getAsString(values)+"}");
       if ((Arrays.binarySearch(values, val) < 0) && (enforceSizes)) {
-        LOGGER.info("[ServletTestUtil] Value '{}' not found.", val);
+        LOGGER.log(Logger.Level.INFO, "[ServletTestUtil] Value '{"+val+"}' not found.");
         valuesFound = false;
         continue;
       }
@@ -150,11 +146,11 @@ public class ServletTestUtil {
     if (enforceSizes) {
       if (e.hasMoreElements()) {
         // more elements than should have been.
-        LOGGER.info("[ServletTestUtil] There were more elements in the Enumeration than expected.");
+        LOGGER.log(Logger.Level.INFO, "[ServletTestUtil] There were more elements in the Enumeration than expected.");
         valuesFound = false;
       }
       if (count != values.length) {
-        LOGGER.info("[ServletTestUtil] There number of elements in the Enumeration did not match number of expected values."
+        LOGGER.log(Logger.Level.INFO, "[ServletTestUtil] There number of elements in the Enumeration did not match number of expected values."
             + "Expected number of Values= {}, Actual number of Enumeration elements= {}", values.length, count);
 
         valuesFound = false;
@@ -182,19 +178,19 @@ public class ServletTestUtil {
     for (int i = 0; i < len; i++) {
       Object val = null;
       val = (String) al.get(i);
-      LOGGER.debug("[ServletTestUtil] val= {}", val);
+      LOGGER.log(Logger.Level.DEBUG, "[ServletTestUtil] val= {}", val);
       if (!allowDuplicates) {
         if (foundValues.contains(val)) {
-          LOGGER.info("[ServletTestUtil] Duplicate values found in ArrayList when duplicates are not allowed."
+          LOGGER.log(Logger.Level.INFO, "[ServletTestUtil] Duplicate values found in ArrayList when duplicates are not allowed."
               + "Values found in the ArrayList: {}", getAsString(al));
           valuesFound = false;
           break;
         }
         foundValues.add(val);
       }
-      LOGGER.debug("[ServletTestUtil] Looking for '{}' in values: {}", val, getAsString(values));
+      LOGGER.log(Logger.Level.DEBUG, "[ServletTestUtil] Looking for '{}' in values: {}" + val + getAsString(values));
       if ((Arrays.binarySearch(values, val) < 0) && (enforceSizes)) {
-        LOGGER.info("[ServletTestUtil] Value '{}' not found.", val);
+        LOGGER.log(Logger.Level.INFO, "[ServletTestUtil] Value '{}' not found."+ val);
         valuesFound = false;
         continue;
       }
@@ -202,9 +198,9 @@ public class ServletTestUtil {
 
     if (enforceSizes) {
       if (len != values.length) {
-        LOGGER.info("[ServletTestUtil] There number of elements in the ArrayList "
+        LOGGER.log(Logger.Level.INFO, "[ServletTestUtil] There number of elements in the ArrayList "
             + "did not match number of expected values."
-            + "Expected number of Values= {}, Actual number of ArrayList elements= {}", values.length, len);
+            + "Expected number of Values= {"+values.length+"}, Actual number of ArrayList elements= {"+len+"}");
 
         valuesFound = false;
       }
@@ -226,8 +222,7 @@ public class ServletTestUtil {
       int searchIdx = actual.toLowerCase().indexOf(search.toLowerCase(),
           startIdx);
 
-      LOGGER.debug("[ServletTestUtil] Scanning response for search string: '{}' starting at index " + "location: {}",
-              search , startIdx);
+      LOGGER.log(Logger.Level.DEBUG, "[ServletTestUtil] Scanning response for search string: '{"+search+"}' starting at index " + "location: {"+startIdx+"}");
       if (searchIdx < 0) {
         found = false;
         StringBuffer sb = new StringBuffer(255);
@@ -238,12 +233,11 @@ public class ServletTestUtil {
           .append("-------------------------------------------\n")
           .append(actual)
           .append("\n-------------------------------------------\n");
-        LOGGER.debug(sb.toString());
+          LOGGER.log(Logger.Level.DEBUG, sb.toString());
         break;
       }
 
-      LOGGER.debug("[ServletTestUtil] Found search string: '{}' at index '{}' in the server's response",
-              search, searchIdx);
+      LOGGER.log(Logger.Level.DEBUG, "[ServletTestUtil] Found search string: '{"+search+"}' at index '{"+searchIdx+"}' in the server's response");
       // the new searchIdx is the old index plus the lenght of the
       // search string.
       startIdx = searchIdx + search.length();

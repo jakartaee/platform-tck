@@ -64,11 +64,11 @@ Longvarbinary_Tab_Delete=delete from Longvarbinary_Tab
 # SQL Statements for inserting values into the tables 
 #****************************************************
 
-#Numeric_Tab_Insert=insert into Numeric_Tab values(999999999999999,0.000000000000001, null)
+#Numeric_Tab_Insert=insert into Numeric_Tab values(9999999999,0.000000000000001, null)
 
 Numeric_Tab_Insert=insert into Numeric_Tab values(9999999999,0.0000000001, null)
 
-#Decimal_Tab_Insert= insert into Decimal_Tab values(999999999999999,0.000000000000001, null)
+#Decimal_Tab_Insert= insert into Decimal_Tab values(9999999999,0.000000000000001, null)
 
 Decimal_Tab_Insert= insert into Decimal_Tab values(9999999999,0.0000000001, null)
 

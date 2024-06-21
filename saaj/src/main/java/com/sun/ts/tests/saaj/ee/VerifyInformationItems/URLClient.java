@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -20,556 +20,507 @@
 
 package com.sun.ts.tests.saaj.ee.VerifyInformationItems;
 
-import java.net.URL;
-import java.net.URLConnection;
+import java.io.IOException;
+import java.lang.System.Logger;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.porting.TSURL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Test;
+
 import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.saaj.common.Client;
 
-public class URLClient extends EETest {
-  private static final String PROTOCOL = "http";
+public class URLClient extends Client {
 
-  private static final String HOSTNAME = "localhost";
+	private static final String VERIFYINFORMATIONITEMS_TESTSERVLET = "/VerifyInformationItems_web/VerifyInformationItemsTestServlet";
 
-  private static final int PORTNUM = 8000;
+	private static final Logger logger = (Logger) System.getLogger(URLClient.class.getName());
 
-  private static final String VERIFYINFORMATIONITEMS_TESTSERVLET = "/VerifyInformationItems_web/VerifyInformationItemsTestServlet";
+	@Deployment(testable = false)
+	public static WebArchive createDeployment() throws IOException {
+		WebArchive archive = ShrinkWrap.create(WebArchive.class, "VerifyInformationItems_web.war");
+		archive.addPackages(false, Filters.exclude(URLClient.class), "com.sun.ts.tests.saaj.ee.VerifyInformationItems");
+		archive.addPackages(false, "com.sun.ts.tests.saaj.common");
+		archive.addAsWebInfResource(URLClient.class.getPackage(), "standalone.web.xml", "web.xml");
+		return archive;
+	};
 
-  private static final String WEBSERVERHOSTPROP = "webServerHost";
+	/*
+	 * @testName: VerifyEncodingStyleAttributeInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP encodingStyle attribute information item.
+	 *
+	 */
+	@Test
+	public void VerifyEncodingStyleAttributeInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-  private static final String WEBSERVERPORTPROP = "webServerPort";
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyEncodingStyleAttributeInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyEncodingStyleAttributeInfoItem failed", e);
+		}
 
-  private TSURL tsurl = new TSURL();
+		if (!pass)
+			throw new Exception("VerifyEncodingStyleAttributeInfoItem failed");
+	}
 
-  private URL url = null;
+	/*
+	 * @testName: VerifyRoleAttributeInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP Role attribute information item.
+	 *
+	 */
+	@Test
+	public void VerifyRoleAttributeInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-  private URLConnection urlConn = null;
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyRoleAttributeInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyRoleAttributeInfoItem failed", e);
+		}
 
-  private Properties props = null;
+		if (!pass)
+			throw new Exception("VerifyRoleAttributeInfoItem failed");
+	}
 
-  private String hostname = HOSTNAME;
+	/*
+	 * @testName: VerifyRelayAttributeInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP Relay attribute information item.
+	 *
+	 */
+	@Test
+	public void VerifyRelayAttributeInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-  private int portnum = PORTNUM;
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyRelayAttributeInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyRelayAttributeInfoItem failed", e);
+		}
 
-  public static void main(String[] args) {
-    URLClient theTests = new URLClient();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+		if (!pass)
+			throw new Exception("VerifyRelayAttributeInfoItem failed");
+	}
 
-  /* Test setup */
+	/*
+	 * @testName: VerifyMustUnderstandAttributeInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP mustUnderstand attribute information item.
+	 *
+	 */
+	@Test
+	public void VerifyMustUnderstandAttributeInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-  /*
-   * @class.setup_props: webServerHost; webServerPort;
-   */
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyMustUnderstandAttributeInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyMustUnderstandAttributeInfoItem failed", e);
+		}
 
-  public void setup(String[] args, Properties p) throws Exception {
-    props = p;
-    boolean pass = true;
+		if (!pass)
+			throw new Exception("VerifyMustUnderstandAttributeInfoItem failed");
+	}
 
-    try {
-      hostname = p.getProperty(WEBSERVERHOSTPROP);
-      if (hostname == null)
-        pass = false;
-      else if (hostname.equals(""))
-        pass = false;
-      try {
-        portnum = Integer.parseInt(p.getProperty(WEBSERVERPORTPROP));
-      } catch (Exception e) {
-        pass = false;
-      }
-    } catch (Exception e) {
-      throw new Exception("setup failed:", e);
-    }
-    if (!pass) {
-      TestUtil.logErr(
-          "Please specify host & port of web server " + "in config properties: "
-              + WEBSERVERHOSTPROP + ", " + WEBSERVERPORTPROP);
-      throw new Exception("setup failed:");
-    }
-    logMsg("setup ok");
-  }
+	/*
+	 * @testName: VerifyEnvelopeElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP Envelope element information item.
+	 *
+	 */
+	@Test
+	public void VerifyEnvelopeElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-  public void cleanup() throws Exception {
-    logMsg("cleanup ok");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyEnvelopeElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyEnvelopeElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyEncodingStyleAttributeInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP encodingStyle attribute information item.
-   *
-   */
-  public void VerifyEncodingStyleAttributeInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifyEnvelopeElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyEncodingStyleAttributeInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyEncodingStyleAttributeInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifyHeaderElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP Header element information item.
+	 *
+	 */
+	@Test
+	public void VerifyHeaderElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyEncodingStyleAttributeInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyHeaderElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyHeaderElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyRoleAttributeInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP Role attribute information item.
-   *
-   */
-  public void VerifyRoleAttributeInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifyHeaderElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyRoleAttributeInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyRoleAttributeInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifyBodyElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP Body element information item.
+	 *
+	 */
+	@Test
+	public void VerifyBodyElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyRoleAttributeInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyBodyElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyBodyElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyRelayAttributeInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP Relay attribute information item.
-   *
-   */
-  public void VerifyRelayAttributeInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifyBodyElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyRelayAttributeInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyRelayAttributeInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifyBodyChildElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP Body Child element information item.
+	 *
+	 */
+	@Test
+	public void VerifyBodyChildElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyRelayAttributeInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyBodyChildElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyBodyChildElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyMustUnderstandAttributeInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP mustUnderstand attribute information item.
-   *
-   */
-  public void VerifyMustUnderstandAttributeInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifyBodyChildElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyMustUnderstandAttributeInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyMustUnderstandAttributeInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifyFaultElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the SOAP Fault element information item.
+	 *
+	 */
+	@Test
+	public void VerifyFaultElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyMustUnderstandAttributeInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyFaultElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyFaultElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyEnvelopeElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP Envelope element information item.
-   *
-   */
-  public void VerifyEnvelopeElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifyFaultElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyEnvelopeElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyEnvelopeElementInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifyCodeElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the Fault Code element information item.
+	 *
+	 */
+	@Test
+	public void VerifyCodeElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyEnvelopeElementInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyCodeElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyCodeElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyHeaderElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP Header element information item.
-   *
-   */
-  public void VerifyHeaderElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifyCodeElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyHeaderElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyHeaderElementInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifySubcodeElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the Fault Subcode element information item.
+	 *
+	 */
+	@Test
+	public void VerifySubcodeElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyHeaderElementInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifySubcodeElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifySubcodeElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyBodyElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP Body element information item.
-   *
-   */
-  public void VerifyBodyElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifySubcodeElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyBodyElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyBodyElementInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifyDetailElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the Detail element information item.
+	 *
+	 */
+	@Test
+	public void VerifyDetailElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyBodyElementInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyDetailElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyDetailElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyBodyChildElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP Body Child element information item.
-   *
-   */
-  public void VerifyBodyChildElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifyDetailElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyBodyChildElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyBodyChildElementInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifyUpgradeElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the Upgrade element information item.
+	 *
+	 */
+	@Test
+	public void VerifyUpgradeElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyBodyChildElementInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyUpgradeElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyUpgradeElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyFaultElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the SOAP Fault element information item.
-   *
-   */
-  public void VerifyFaultElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
+		if (!pass)
+			throw new Exception("VerifyUpgradeElementInfoItem failed");
+	}
 
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyFaultElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyFaultElementInfoItem failed", e);
-    }
+	/*
+	 * @testName: VerifyNotUnderstoodElementInfoItem
+	 *
+	 * @assertion_ids: SAAJ:SPEC:21;
+	 *
+	 * @test_Strategy: Verify the NotUnderstood element information item.
+	 *
+	 */
+	@Test
+	public void VerifyNotUnderstoodElementInfoItem() throws Exception {
+		boolean pass = true;
+		try {
 
-    if (!pass)
-      throw new Exception("VerifyFaultElementInfoItem failed");
-  }
+			logger.log(Logger.Level.INFO, "Creating url to test servlet.....");
+			url = tsurl.getURL(PROTOCOL, hostname, portnum, VERIFYINFORMATIONITEMS_TESTSERVLET);
+			logger.log(Logger.Level.INFO, url.toString());
+			logger.log(Logger.Level.INFO, "Sending post request to test servlet.....");
+			props.setProperty("TESTNAME", "VerifyNotUnderstoodElementInfoItem");
+			props.setProperty("SOAPVERSION", "soap12");
+			urlConn = TestUtil.sendPostData(props, url);
+			logger.log(Logger.Level.INFO, "Getting response from test servlet.....");
+			Properties resProps = TestUtil.getResponseProperties(urlConn);
+			if (!resProps.getProperty("TESTRESULT").equals("pass"))
+				pass = false;
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught exception: " + e.getMessage());
+			e.printStackTrace();
+			throw new Exception("VerifyNotUnderstoodElementInfoItem failed", e);
+		}
 
-  /*
-   * @testName: VerifyCodeElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the Fault Code element information item.
-   *
-   */
-  public void VerifyCodeElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
-
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyCodeElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyCodeElementInfoItem failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("VerifyCodeElementInfoItem failed");
-  }
-
-  /*
-   * @testName: VerifySubcodeElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the Fault Subcode element information item.
-   *
-   */
-  public void VerifySubcodeElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
-
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifySubcodeElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifySubcodeElementInfoItem failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("VerifySubcodeElementInfoItem failed");
-  }
-
-  /*
-   * @testName: VerifyDetailElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the Detail element information item.
-   *
-   */
-  public void VerifyDetailElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
-
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyDetailElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyDetailElementInfoItem failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("VerifyDetailElementInfoItem failed");
-  }
-
-  /*
-   * @testName: VerifyUpgradeElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the Upgrade element information item.
-   *
-   */
-  public void VerifyUpgradeElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
-
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyUpgradeElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyUpgradeElementInfoItem failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("VerifyUpgradeElementInfoItem failed");
-  }
-
-  /*
-   * @testName: VerifyNotUnderstoodElementInfoItem
-   *
-   * @assertion_ids: SAAJ:SPEC:21;
-   *
-   * @test_Strategy: Verify the NotUnderstood element information item.
-   *
-   */
-  public void VerifyNotUnderstoodElementInfoItem() throws Exception {
-    boolean pass = true;
-    try {
-
-      TestUtil.logMsg("Creating url to test servlet.....");
-      url = tsurl.getURL(PROTOCOL, hostname, portnum,
-          VERIFYINFORMATIONITEMS_TESTSERVLET);
-      TestUtil.logMsg(url.toString());
-      TestUtil.logMsg("Sending post request to test servlet.....");
-      props.setProperty("TESTNAME", "VerifyNotUnderstoodElementInfoItem");
-      props.setProperty("SOAPVERSION", "soap12");
-      urlConn = TestUtil.sendPostData(props, url);
-      TestUtil.logMsg("Getting response from test servlet.....");
-      Properties resProps = TestUtil.getResponseProperties(urlConn);
-      if (!resProps.getProperty("TESTRESULT").equals("pass"))
-        pass = false;
-    } catch (Exception e) {
-      TestUtil.logErr("Caught exception: " + e.getMessage());
-      e.printStackTrace();
-      throw new Exception("VerifyNotUnderstoodElementInfoItem failed", e);
-    }
-
-    if (!pass)
-      throw new Exception("VerifyNotUnderstoodElementInfoItem failed");
-  }
+		if (!pass)
+			throw new Exception("VerifyNotUnderstoodElementInfoItem failed");
+	}
 }
