@@ -41,3 +41,28 @@ com/sun/ts/tests/jpa/se/entityManager/Client.java#typedQueryMethodsAfterClose16T
 
 # https://github.com/jakartaee/persistence/issues/591 Multiple fetch joins for same attribute
 com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_standalone
+
+# https://github.com/jakartaee/persistence/issues/632 Derived identity TCK tests rely on unspecified cascading behavior
+com/sun/ts/tests/jpa/core/derivedid/ex1a/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/derivedid/ex1b/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/derivedid/ex2b/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/derivedid/ex3a/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/derivedid/ex3b/Client.java#DIDTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/mapsid/Client.java#persistMX1Test1_from_standalone
+
+# https://github.com/jakartaee/persistence/issues/637 TCK should not set version on entity manually
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#intFieldTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#intPropertyTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#integerFieldTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#integerPropertyTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#longClassFieldTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#longClassPropertyTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#longFieldTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#longPropertyTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#shortClassFieldTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#shortClassPropertyTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#shortFieldTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#shortPropertyTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#timestampFieldTest_from_standalone
+com/sun/ts/tests/jpa/core/annotations/version/Client.java#timestampPropertyTest_from_standalone
+
