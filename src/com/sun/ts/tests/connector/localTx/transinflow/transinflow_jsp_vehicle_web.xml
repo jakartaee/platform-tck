@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN' 'http://java.sun.com/dtd/web-app_2_3.dtd'>
 <!--
 
     Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
@@ -18,11 +17,12 @@
 
 -->
 
-<web-app>
-  <display-name>transinflow_jsp_vehicle</display-name>
+<web-app version="5.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
   <servlet>
     <servlet-name>jsp_vehicle</servlet-name>
-    <display-name>transinflow_jsp_vehicle</display-name>
     <jsp-file>/jsp_vehicle.jsp</jsp-file>
     <load-on-startup>0</load-on-startup>
   </servlet>
