@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN' 'http://java.sun.com/j2ee/dtds/web-app_2_2.dtd'>
 <!--
 
     Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
@@ -18,12 +17,13 @@
 
 -->
 
-<web-app>
-  <display-name>SerCompatLeadingSlashWith</display-name>
+<web-app version="5.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
   <description>no description</description>
   <servlet>
     <servlet-name>WithLeadingSlashTestLogicalName</servlet-name>
-    <display-name>WithLeadingSlashTest</display-name>
     <description>no description</description>
     <servlet-class>com.sun.ts.tests.servlet.compat.LeadingSlash.WithLeadingSlash.WithLeadingSlashTestServlet</servlet-class>
     <load-on-startup>0</load-on-startup>
