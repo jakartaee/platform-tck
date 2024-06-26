@@ -21,14 +21,9 @@
 <import file="../../../../../../../../bin/xml/ts.import.xml"/> 
 
   <target name="package">
-      <ant dir="${ts.home}/src/com/sun/ts/tests/ejb/ee/bb/entity/util" target="build"/>
-      <ts.ejbjar descriptor="integration_sec_propagation_ejb.xml" archivename="integration_sec_propagation">
-        <fileset dir="${class.dir}" includes="com/sun/ts/tests/ejb/ee/bb/entity/util/DBSupport.class"/>
-      </ts.ejbjar>
+      <ts.ejbjar descriptor="integration_sec_propagation_ejb.xml" archivename="integration_sec_propagation"/>
       <ts.war descriptor="integration_sec_propagation_web.xml" archivename="integration_sec_propagation"
               excludedfiles="com/sun/ts/tests/integration/sec/propagation/Bean1EJB.class, com/sun/ts/tests/integration/sec/propagation/Bean2.class, com/sun/ts/tests/integration/sec/propagation/Bean2EJB.class">
-        <zipfileset dir="${class.dir}" includes="com/sun/ts/tests/ejb/ee/bb/entity/util/DBSupport.class"
-                    prefix="WEB-INF/classes"/>
         <zipfileset dir="." includes="*.jsp, *.html"/>
       </ts.war>
 
