@@ -21,13 +21,12 @@ import java.util.Properties;
 import com.sun.javatest.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.tests.jsonp.api.patchtests.PatchTests;
 
 // $Id$
 /**
  * Common JSON-P test.
  */
-public class JsonPTest extends ServiceEETest {
+public class JsonPTest { //extends ServiceEETest {
 
   /**
    * Java VM code execution entry point.
@@ -35,11 +34,6 @@ public class JsonPTest extends ServiceEETest {
    * @param args
    *          Command line arguments.
    */
-  public static void main(String[] args) {
-    PatchTests theTests = new PatchTests();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /**
    * Test setup.
