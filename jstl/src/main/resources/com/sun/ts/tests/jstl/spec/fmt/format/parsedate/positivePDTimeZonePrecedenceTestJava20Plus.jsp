@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003 Contributors to the Eclipse Foundation
+    Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,13 +19,11 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <%@ page import="java.util.Date" %>
-<tck:test testName="positiveFDTimeZonePrecedenceTest">
-    <%  
-        Date date = new Date(883192294202L);
-        pageContext.setAttribute("dte", date);
-    %>
+<tck:test testName="positivePDTimeZonePrecedenceTest">
+    <c:set var="dte" value="Nov 21, 2000, 3:45 AM"/>
     <fmt:setTimeZone value="EST"/>
     <fmt:setLocale value="en_US"/>
 
@@ -37,21 +35,25 @@
               - Use the value of the scoped attribute
                 jakarta.servlet.jsp.jstl.fmt.timeZone. -->
     <br>TimeZone attribute specified with a value of PST:<br>
-      Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be 7:11:34 PM:<br>
+      Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be offset by 3 hours:<br>
       <fmt:timeZone value="MST">
-        <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>' timeZone="PST" type="both"/><br>
+        <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' timeZone="PST" type="both" timeStyle="short" var="rd1"/>
       </fmt:timeZone>
+      <fmt:formatDate value="${rd1}" timeZone="EST" type="both" timeStyle="short"/><br>
 
-      Not wrapped.  Page has a time zone of EST.  Time should be 7:11:34 PM<br>
-      <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>' timeZone="PST" type="both"/><br>
+      Not wrapped.  Page has a time zone of EST, timeZone attribute specified.  Time should be offset by 3 hours:<br>
+      <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' timeZone="PST" type="both" timeStyle="short" var="rd2"/><br>
+      <fmt:formatDate value="${rd2}" timeZone="EST" type="both" timeStyle="short"/><br>
 
     <br>No TimeZone attribute specified:<br>
-      Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be 8:11:34 PM:<br>
+      Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be offset by 2 hours:<br>
       <fmt:timeZone value="MST">
-        <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>' type="both"/><br>
+        <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' type="both" timeStyle="short" var="rd3"/><br>
       </fmt:timeZone>
+      <fmt:formatDate value="${rd3}" timeZone="EST" type="both" timeStyle="short"/><br>
 
-      Not wrapped.  Page has a time zone of EST.  Time should be 10:11:34 PM<br>
-      <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>' type="both"/><br>
+      Not wrapped.  Page has a time zone of EST.  Time should not be offset:<br>
+      <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' type="both" timeStyle="short" var="rd4"/><br>
+      <fmt:formatDate value="${rd4}" timeZone="EST" type="both" timeStyle="short"/><br>
     <br>
 </tck:test>

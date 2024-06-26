@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003 Contributors to the Eclipse Foundation
+    Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,20 +19,22 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <%@ page import="java.util.Date" %>
-<tck:test testName="positiveTimezoneValueNullEmptyTest">
+<tck:test testName="positiveFormatLocalizationContextBrowserLocaleTest">
     <%  
         Date date = new Date(883192294202L);
         pageContext.setAttribute("dte", date);
     %>
+    <fmt:setTimeZone value="EST"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
 
-    <!-- If value is null or empty, the default TZ of GMT
-             is used -->
-    <fmt:timeZone value='<%= null %>'>
-        <fmt:formatDate type="both" dateStyle="full" timeStyle="full" value="${dte}"/>
-    </fmt:timeZone>
-    <fmt:timeZone value="">
-        <fmt:formatDate type="both" dateStyle="full" timeStyle="full" value="${dte}"/>
-    </fmt:timeZone>
+    <!-- If the action is not wrapped in a fmt:bundle action,
+             or the basename or locale scoped attributes don't exist,
+             the browser's preferred locales are used. -->
+    <fmt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>' type="both" var="p2"/>
+    <fmt:formatDate value='<%= (Date) pageContext.getAttribute("p2") %>' type="both"/>
+    <fmt:parseNumber value="1,234"/>
+    <fmt:formatNumber value="1234"/>
 </tck:test>
