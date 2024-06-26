@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -48,10 +48,13 @@ public class JSTLClientIT extends AbstractUrlClient {
     archive.setWebXML(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/jstl_fmt_locctx_web.xml"));
 
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextBrowserLocaleTest.jsp")), "positiveFormatLocalizationContextBrowserLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextBrowserLocaleTestJava20Plus.jsp")), "positiveFormatLocalizationContextBrowserLocaleTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextBundleTest.jsp")), "positiveFormatLocalizationContextBundleTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextBundleTestJava20Plus.jsp")), "positiveFormatLocalizationContextBundleTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextI18NTest.jsp")), "positiveFormatLocalizationContextI18NTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextI18NTestJava20Plus.jsp")), "positiveFormatLocalizationContextI18NTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextLocaleTest.jsp")), "positiveFormatLocalizationContextLocaleTest.jsp");
-
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextLocaleTestJava20Plus.jsp")), "positiveFormatLocalizationContextLocaleTestJava20Plus.jsp");
     archive.addAsLibrary(getCommonJarArchive());
 
     return archive;
@@ -73,14 +76,19 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positiveFormatLocalizationContextBundleTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextBundleTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(TEST_NAME,
         "positiveFormatLocalizationContextBundleTest");
-    TEST_PROPS.setProperty(REQUEST,
-        "positiveFormatLocalizationContextBundleTest.jsp");
-    // TEST_PROPS.setProperty(GOLDENFILE,
-    //     "positiveFormatLocalizationContextBundleTest.gf");
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positiveFormatLocalizationContextBundleTestJava20Plus.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextBundleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positiveFormatLocalizationContextBundleTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextBundleTest.gf");    
+    }
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -101,12 +109,20 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positiveFormatLocalizationContextI18NTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(TEST_NAME,
         "positiveFormatLocalizationContextI18NTest");
-    TEST_PROPS.setProperty(REQUEST,
-        "positiveFormatLocalizationContextI18NTest.jsp");
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positiveFormatLocalizationContextI18NTestJava20Plus.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positiveFormatLocalizationContextI18NTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTest.gf");
+    }
+      setGoldenFileStream(gfStream);
+  
     // TEST_PROPS.setProperty(GOLDENFILE,
     //     "positiveFormatLocalizationContextI18NTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
@@ -127,14 +143,19 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positiveFormatLocalizationContextLocaleTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextLocaleTest.gf");
+    InputStream gfStream;
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positiveFormatLocalizationContextLocaleTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextLocaleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positiveFormatLocalizationContextLocaleTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextLocaleTest.gf");
+    }
     setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(TEST_NAME,
         "positiveFormatLocalizationContextLocaleTest");
-    TEST_PROPS.setProperty(REQUEST,
-        "positiveFormatLocalizationContextLocaleTest.jsp");
-    // TEST_PROPS.setProperty(GOLDENFILE,
-    //     "positiveFormatLocalizationContextLocaleTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: de-DE");
     invoke();
   }
@@ -153,15 +174,24 @@ public class JSTLClientIT extends AbstractUrlClient {
   @Test
   public void positiveFormatLocalizationContextBrowserLocaleTest()
       throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextBrowserLocaleTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream ;
     TEST_PROPS.setProperty(TEST_NAME,
         "positiveFormatLocalizationContextBrowserLocaleTest");
-    TEST_PROPS.setProperty(REQUEST,
-        "positiveFormatLocalizationContextBrowserLocaleTest.jsp");
     // TEST_PROPS.setProperty(GOLDENFILE,
     //     "positiveFormatLocalizationContextBrowserLocaleTest.gf");
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positiveFormatLocalizationContextBrowserLocaleTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextBrowserLocaleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positiveFormatLocalizationContextBrowserLocaleTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextBrowserLocaleTest.gf");
+    }
+    setGoldenFileStream(gfStream);
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
+
 }

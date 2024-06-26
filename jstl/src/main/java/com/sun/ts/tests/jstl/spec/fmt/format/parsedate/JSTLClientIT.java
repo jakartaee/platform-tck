@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -52,18 +52,28 @@ public class JSTLClientIT extends AbstractUrlClient {
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativePDScopeNoVarTest.jsp")), "negativePDScopeNoVarTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/negativePDUnableToParseValueTest.jsp")), "negativePDUnableToParseValueTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDBodyValueTest.jsp")), "positivePDBodyValueTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDBodyValueTestJava20Plus.jsp")), "positivePDBodyValueTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDDateStyleTest.jsp")), "positivePDDateStyleTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDDateStyleTestJava20Plus.jsp")), "positivePDDateStyleTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDFallbackLocaleTest.jsp")), "positivePDFallbackLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDFallbackLocaleTestJava20Plus.jsp")), "positivePDFallbackLocaleTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDLocalizationContextTest.jsp")), "positivePDLocalizationContextTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDLocalizationContextTestJava20Plus.jsp")), "positivePDLocalizationContextTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDParseLocaleNullEmptyTest.jsp")), "positivePDParseLocaleNullEmptyTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDParseLocaleTest.jsp")), "positivePDParseLocaleTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDParseLocaleTestJava20Plus.jsp")), "positivePDParseLocaleTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDPatternTest.jsp")), "positivePDPatternTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDScopeTest.jsp")), "positivePDScopeTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTimeStyleTest.jsp")), "positivePDTimeStyleTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTimeStyleTestJava20Plus.jsp")), "positivePDTimeStyleTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTimeZoneNullEmptyTest.jsp")), "positivePDTimeZoneNullEmptyTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTimeZoneNullEmptyTestJava20Plus.jsp")), "positivePDTimeZoneNullEmptyTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTimeZonePrecedenceTest.jsp")), "positivePDTimeZonePrecedenceTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTimeZonePrecedenceTestJava20Plus.jsp")), "positivePDTimeZonePrecedenceTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTimeZoneTest.jsp")), "positivePDTimeZoneTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTimeZoneTestJava20Plus.jsp")), "positivePDTimeZoneTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTypeTest.jsp")), "positivePDTypeTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDTypeTestJava20Plus.jsp")), "positivePDTypeTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDValueNullEmptyTest.jsp")), "positivePDValueNullEmptyTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDValueTest.jsp")), "positivePDValueTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positivePDVarTest.jsp")), "positivePDVarTest.jsp");
@@ -104,9 +114,19 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDTypeTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTypeTest.gf");
+    InputStream gfStream;
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDTypeTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTypeTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTypeTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTypeTest.gf");
+    }
     setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positivePDTypeTest");
+    // TEST_PROPS.setProperty(STANDARD, "positivePDTypeTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDTypeTest");
     invoke();
   }
 
@@ -125,10 +145,18 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDDateStyleTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDDateStyleTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(TEST_NAME, "positivePDDateStyleTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDDateStyleTest.jsp");
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDDateStyleTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDDateStyleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDDateStyleTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDDateStyleTest.gf");
+    }
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STATUS_CODE, OK);
     invoke();
   }
@@ -147,10 +175,20 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDTimeStyleTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeStyleTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeStyleTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDTimeStyleTest.jsp");
+    
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDTimeStyleTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeStyleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeStyleTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeStyleTest.gf");
+    }
+    setGoldenFileStream(gfStream);
+
     TEST_PROPS.setProperty(STATUS_CODE, OK);
     invoke();
   }
@@ -167,10 +205,18 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDParseLocaleTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDParseLocaleTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(TEST_NAME, "positivePDParseLocaleTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDParseLocaleTest.jsp");
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDParseLocaleTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDParseLocaleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDParseLocaleTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDParseLocaleTest.gf");
+    }
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(STATUS_CODE, OK);
     invoke();
   }
@@ -258,9 +304,19 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDBodyValueTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDBodyValueTest.gf");
+    InputStream gfStream;
+    // TEST_PROPS.setProperty(STANDARD, "positivePDBodyValueTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDBodyValueTest");
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDBodyValueTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDBodyValueTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDBodyValueTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDBodyValueTest.gf");
+    }
     setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positivePDBodyValueTest");
     invoke();
   }
 
@@ -295,10 +351,18 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDLocalizationContextTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDLocalizationContextTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(TEST_NAME, "positivePDLocalizationContextTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDLocalizationContextTest.jsp");
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDLocalizationContextTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDLocalizationContextTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDLocalizationContextTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDLocalizationContextTest.gf");
+    }
+    setGoldenFileStream(gfStream);
     // TEST_PROPS.setProperty(GOLDENFILE, "positivePDLocalizationContextTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
@@ -315,10 +379,19 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDFallbackLocaleTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDFallbackLocaleTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(TEST_NAME, "positivePDFallbackLocaleTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDFallbackLocaleTest.jsp");
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDFallbackLocaleTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDFallbackLocaleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDFallbackLocaleTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDFallbackLocaleTest.gf");
+    }
+
+    setGoldenFileStream(gfStream);
     // TEST_PROPS.setProperty(GOLDENFILE, "positivePDFallbackLocaleTest.gf");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: xx-XX");
     invoke();
@@ -355,9 +428,21 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDTimeZoneTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZoneTest.gf");
+    InputStream gfStream;
+    // TEST_PROPS.setProperty(STANDARD, "positivePDTimeZoneTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeZoneTest");
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDTimeZoneTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZoneTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZoneTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZoneTest.gf");
+
+    }
     setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positivePDTimeZoneTest");
+
     invoke();
   }
 
@@ -373,9 +458,20 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDTimeZoneNullEmptyTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZoneNullEmptyTest.gf");
+    InputStream gfStream;
+    // TEST_PROPS.setProperty(STANDARD, "positivePDTimeZoneNullEmptyTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeZoneNullEmptyTest");
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZoneNullEmptyTestJava20Plus.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZoneNullEmptyTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZoneNullEmptyTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZoneNullEmptyTest.gf");
+    }
     setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positivePDTimeZoneNullEmptyTest");
+
     invoke();
   }
 
@@ -395,9 +491,19 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positivePDTimeZonePrecedenceTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZonePrecedenceTest.gf");
+    InputStream gfStream;
+    // TEST_PROPS.setProperty(STANDARD, "positivePDTimeZonePrecedenceTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeZonePrecedenceTest");
+    if (isJavaVersion20OrGreater()) {
+      TEST_PROPS.setProperty(REQUEST,
+          "positivePDTimeZonePrecedenceTestJava20Plus.jsp");
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZonePrecedenceTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZonePrecedenceTest.jsp");
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positivePDTimeZonePrecedenceTest.gf");
+    }
     setGoldenFileStream(gfStream);
-    TEST_PROPS.setProperty(STANDARD, "positivePDTimeZonePrecedenceTest");
     invoke();
   }
 
@@ -416,4 +522,5 @@ public class JSTLClientIT extends AbstractUrlClient {
     TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     invoke();
   }
+
 }

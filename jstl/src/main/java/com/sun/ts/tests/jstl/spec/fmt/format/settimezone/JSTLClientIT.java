@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -74,10 +74,15 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positiveSetTimezoneValueTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
+    if (isJavaVersion20OrGreater()) {
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTestJava20Plus.gf");
+    } else {
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
+    }
+    setGoldenFileStream(gfStream);
     invoke();
   }
 
@@ -126,10 +131,15 @@ public class JSTLClientIT extends AbstractUrlClient {
    */
   @Test
   public void positiveSetTimezoneValueNullEmptyTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueNullEmptyTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueNullEmptyTest");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
+    if (isJavaVersion20OrGreater()) {
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueNullEmptyTestJava20Plus.gf");
+    } else {
+        gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueNullEmptyTest.gf");
+    }
+    setGoldenFileStream(gfStream);
     invoke();
   }
 

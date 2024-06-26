@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003 Contributors to the Eclipse Foundation
+    Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,20 +19,23 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
-<%@ page import="java.util.Date" %>
-<tck:test testName="positiveFDLocalizationContextTest">
-    <%  
-        Date date = new Date(883192294202L);
-        pageContext.setAttribute("dte", date);
-    %>
+<tck:test testName="positivePDLocalizationContextTest">
     <fmt:setTimeZone value="EST"/>
+    <c:set var="dte" value="Nov 21, 2000"/>
+    <c:set var="dtim" value="3:45:02 AM"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/> 
     <fmt:setBundle basename="com.sun.ts.tests.jstl.common.resources.Resources"/>
 
     <!-- Validate that the action is able to dermine the
              formatting locale based on the localizationContext configuration
              variable. -->
-    <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>'/>
-    <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>' type="time"/>
-    <fmt:formatDate value='<%= (Date) pageContext.getAttribute("dte") %>' type="both"/>
+    <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' var="r1"/>
+    <fmt:parseDate value='<%= (String) pageContext.getAttribute("dtim") %>' type="time" var="r2"/>
+    <fmt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>' type="both" var="r3"/>
+    <fmt:formatDate value="${r1}" timeZone="EST"/><br>
+    <fmt:formatDate value="${r2}" timeZone="EST" type="time"/><br>
+    <fmt:formatDate value="${r3}" timeZone="EST" type="both"/><br>
+
 </tck:test>

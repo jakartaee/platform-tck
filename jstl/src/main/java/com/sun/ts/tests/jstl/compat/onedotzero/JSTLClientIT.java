@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2007 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -58,6 +58,7 @@ public class JSTLClientIT extends CompatAbstractUrlClient {
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFDValueTest.jsp")), "positiveFDValueTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFNScopeTest.jsp")), "positiveFNScopeTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextI18NTest.jsp")), "positiveFormatLocalizationContextI18NTest.jsp");
+    archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveFormatLocalizationContextI18NTestJava20Plus.jsp")), "positiveFormatLocalizationContextI18NTestJava20Plus.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveForTokensTest.jsp")), "positiveForTokensTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveIfScopeTest.jsp")), "positiveIfScopeTest.jsp");
     archive.add(new UrlAsset(JSTLClientIT.class.getClassLoader().getResource(packagePath+"/positiveImportAbsUrlTest.jsp")), "positiveImportAbsUrlTest.jsp");
@@ -246,14 +247,19 @@ public class JSTLClientIT extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveFormatLocalizationContextI18NTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(TEST_NAME,
         "positiveFormatLocalizationContextI18NTest");
-    TEST_PROPS.setProperty(REQUEST,
-        "positiveFormatLocalizationContextI18NTest.jsp");
-    // TEST_PROPS.setProperty(GOLDENFILE,
-    //     "positiveFormatLocalizationContextI18NTest.gf");
+    if (isJavaVersion20OrGreater()) {
+          TEST_PROPS.setProperty(REQUEST,
+              "positiveFormatLocalizationContextI18NTestJava20Plus.jsp");
+          gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTestJava20Plus.gf");
+    } else {
+          TEST_PROPS.setProperty(REQUEST,
+              "positiveFormatLocalizationContextI18NTest.jsp");
+          gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveFormatLocalizationContextI18NTest.gf");
+    }
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -760,9 +766,14 @@ public class JSTLClientIT extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveSetTimezoneValueTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetTimezoneValueTest");
+    if (isJavaVersion20OrGreater()) {
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTestJava20Plus.gf");
+    } else {
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveSetTimezoneValueTest.gf");
+    }
+    setGoldenFileStream(gfStream);
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
@@ -779,9 +790,15 @@ public class JSTLClientIT extends CompatAbstractUrlClient {
    */
   @Test
   public void positiveTimezoneValueTest() throws Exception {
-    InputStream gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTest.gf");
-    setGoldenFileStream(gfStream);
+    InputStream gfStream;
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveTimezoneValueTest");
+    if (isJavaVersion20OrGreater()) {
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTestJava20Plus.gf");
+    } else {
+      gfStream = JSTLClientIT.class.getClassLoader().getResourceAsStream(packagePath+"/positiveTimezoneValueTest.gf");
+    }
+    setGoldenFileStream(gfStream);
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
