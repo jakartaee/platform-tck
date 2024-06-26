@@ -105,6 +105,7 @@
     </dependencies>
 
     <build>
+        <!-- Include the container descriptors in the output artifact -->
         <resources>
             <resource>
                 <directory>src/main/java</directory>
@@ -123,11 +124,6 @@
                 <configuration>
                     <skip>true</skip>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
             </plugin>
             <plugin>
                 <groupId>com.sun.xml.ws</groupId>
