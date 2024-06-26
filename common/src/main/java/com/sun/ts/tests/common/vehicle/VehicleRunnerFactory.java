@@ -20,12 +20,11 @@
 
 package com.sun.ts.tests.common.vehicle;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.lang.System.Logger;
 
 public final class VehicleRunnerFactory {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(VehicleRunnerFactory.class);
+  private static final Logger logger = System.getLogger(VehicleRunnerFactory.class.getName());
 
   private static VehicleRunnable ejbRunner;
 
@@ -363,7 +362,8 @@ public final class VehicleRunnerFactory {
       if (!vtype.equalsIgnoreCase("appclient")
           && !vtype.equalsIgnoreCase("wsappclient")
           && !vtype.equalsIgnoreCase("standalone")) {
-        LOGGER.warn("Invalid vehicle {}}. Will run test directly.", vtype);
+        logger.log(Logger.Level.WARNING,"Invalid vehicle {"+vtype+"}. Will run test directly.");
+
       }
       return getEmptyRunner();
     }

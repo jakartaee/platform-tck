@@ -33,8 +33,10 @@ import jakarta.json.stream.JsonParser;
 
 public class AnimalListDeserializerInjected
     implements JsonbDeserializer<List<Animal>> {
-  @Inject
-  private AnimalDeserializer animalDeserializer;
+  // @Inject
+  // TODO: Check why Inject is not working. 
+  // creating object instead of Inject for now.
+  private AnimalDeserializer animalDeserializer = new AnimalDeserializer();
 
   public List<Animal> deserialize(JsonParser jsonParser,
       DeserializationContext deserializationContext, Type type) {
