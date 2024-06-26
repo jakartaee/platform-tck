@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -192,10 +193,19 @@ public class JSTLClient extends CompatAbstractUrlClient {
   public void positiveFormatLocalizationContextI18NTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME,
         "positiveFormatLocalizationContextI18NTest");
-    TEST_PROPS.setProperty(REQUEST,
-        "positiveFormatLocalizationContextI18NTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE,
-        "positiveFormatLocalizationContextI18NTest.gf");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positiveFormatLocalizationContextI18NTestJava20Plus.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFormatLocalizationContextI18NTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positiveFormatLocalizationContextI18NTest.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveFormatLocalizationContextI18NTest.gf");
+    }
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -641,6 +651,15 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   public void positiveSetTimezoneValueTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveSetTimezoneValueTest");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveSetTimezoneValueTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveSetTimezoneValueTest.gf");
+    }
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
@@ -657,6 +676,15 @@ public class JSTLClient extends CompatAbstractUrlClient {
    */
   public void positiveTimezoneValueTest() throws Fault {
     TEST_PROPS.setProperty(STANDARD_COMPAT, "positiveTimezoneValueTest");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveTimezoneValueTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveTimezoneValueTest.gf");
+    }
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
     invoke();
   }
@@ -732,5 +760,20 @@ public class JSTLClient extends CompatAbstractUrlClient {
         "10pt|Param properly used|10pt|Param properly used");
     TEST_PROPS.setProperty(UNEXPECTED_RESPONSE_MATCH, "REPLACE");
     invoke();
+  }
+  
+  private boolean isJavaVersion20OrGreater() {
+      boolean isJavaVersion20OrGreater = false;
+
+      String version = System.getProperty("java.version");
+      int majorVersionDot = version.indexOf(".");
+
+      version = version.substring(0, majorVersionDot);
+
+      if (Integer.parseInt(version) >= 20) {
+          isJavaVersion20OrGreater = true;
+      }
+
+      return isJavaVersion20OrGreater;
   }
 }

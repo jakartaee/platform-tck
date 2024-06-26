@@ -1,6 +1,6 @@
 <%--
 
-    Copyright (c) 2003, 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
     Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
@@ -20,20 +20,23 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="tck" uri="http://java.sun.com/jstltck/jstltck-util" %>
 <%@ page import="java.util.Date" %>
-<tck:test testName="positiveTimezoneValueNullEmptyTest">
-    <%
+<tck:test testName="positiveFormatLocalizationContextLocaleTest">
+    <%  
         Date date = new Date(883192294202L);
         pageContext.setAttribute("dte", date);
     %>
+    <fmt:setTimeZone value="EST"/>
+    <fmt:setLocale value="en_US"/>
+    <c:set var="dt" value="Nov 21, 2000, 3:45:02 AM"/>
 
-    <!-- If value is null or empty, the default TZ of GMT
-             is used -->
-    <fmt:setTimeZone value='<%= null %>'/>
-    <fmt:formatDate type="both" dateStyle="full" timeStyle="full" value="${dte}"/>
-
-    <fmt:setTimeZone value=""/>
-    <fmt:formatDate type="both" dateStyle="full" timeStyle="full" value="${dte}"/>
-   
+    <!-- If the jakarta.servlet.jsp.jstl.fmt.locale attribute
+             is present, it will take precedence over the browser
+             supplied preferred locales. --> 
+    <fmt:parseDate value='<%= (String) pageContext.getAttribute("dt") %>' type="both" var="p2"/>
+    <fmt:formatDate value='<%= (Date) pageContext.getAttribute("p2") %>' type="both"/>
+    <fmt:parseNumber value="1,234"/>
+    <fmt:formatNumber value="1234"/>
 </tck:test>
