@@ -87,12 +87,5 @@
                 <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
         </profile>
-        <!-- FIXME in a profile as it contains some non existing artifact references -->
-        <profile>
-            <id>jaxrs-tck</id>
-            <modules>
-                <module>jaxrs-tck</module>
-            </modules>
-        </profile>
     </profiles>
 </project>
