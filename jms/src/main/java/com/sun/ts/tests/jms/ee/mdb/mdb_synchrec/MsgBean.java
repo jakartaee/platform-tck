@@ -20,6 +20,7 @@
 
 package com.sun.ts.tests.jms.ee.mdb.mdb_synchrec;
 
+import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.TSNamingContext;
@@ -41,115 +42,113 @@ import jakarta.jms.TextMessage;
 
 public class MsgBean implements MessageDrivenBean, MessageListener {
 
-  // properties object needed for logging,
-  // get this from the message object passed into
-  // the onMessage method.
-  private java.util.Properties p = null;
+	// properties object needed for logging,
+	// get this from the message object passed into
+	// the onMessage method.
+	private java.util.Properties p = null;
 
-  // Contexts
-  private TSNamingContext context = null;
+	// Contexts
+	private TSNamingContext context = null;
 
-  protected MessageDrivenContext mdc = null;
+	protected MessageDrivenContext mdc = null;
 
-  // JMS PTP
-  private QueueConnectionFactory qFactory;
+	// JMS PTP
+	private QueueConnectionFactory qFactory;
 
-  private QueueConnection qConnection = null;
+	private QueueConnection qConnection = null;
 
-  private Queue queueR = null;
+	private Queue queueR = null;
 
-  private Queue queueS = null;
+	private Queue queueS = null;
 
-  private QueueSender mSender = null;
+	private QueueSender mSender = null;
 
-  private boolean result = false;
+	private boolean result = false;
 
-  public MsgBean() {
-    TestUtil.logTrace("@MsgBean()!");
-  };
+	private static final Logger logger = (Logger) System.getLogger(MsgBean.class.getName());
 
-  public void ejbCreate() {
-    TestUtil.logTrace(
-        "In Message Bean ======================================EJBCreate");
-    try {
+	public MsgBean() {
+		logger.log(Logger.Level.TRACE, "@MsgBean()!");
+	};
 
-      context = new TSNamingContext();
-      qFactory = (QueueConnectionFactory) context
-          .lookup("java:comp/env/jms/MyQueueConnectionFactory");
-      queueR = (Queue) context.lookup("java:comp/env/jms/MY_QUEUE");
-      queueS = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
-      p = new Properties();
+	public void ejbCreate() {
+		logger.log(Logger.Level.TRACE, "In Message Bean ======================================EJBCreate");
+		try {
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("MDB ejbCreate Error", e);
-    }
-  }
+			context = new TSNamingContext();
+			qFactory = (QueueConnectionFactory) context.lookup("java:comp/env/jms/MyQueueConnectionFactory");
+			queueR = (Queue) context.lookup("java:comp/env/jms/MY_QUEUE");
+			queueS = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
+			p = new Properties();
 
-  public void onMessage(Message msg) {
-    long timeout = 10000;
-    QueueSession qSession = null;
-    TextMessage messageSent = null;
-    TextMessage msgRec = null;
-    String mdbMessage = "my mdb message";
-    String testName = null;
-    QueueSender qSender = null;
-    QueueReceiver rcvr = null;
-    boolean result = false;
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("MDB ejbCreate Error", e);
+		}
+	}
 
-    JmsUtil.initHarnessProps(msg, p);
-    TestUtil.logTrace(
-        "In Message Bean ======================================onMessage");
-    try {
-      testName = "mdbResponse";
-      qConnection = qFactory.createQueueConnection();
-      if (qConnection == null)
-        throw new EJBException("MDB connection Error!");
+	public void onMessage(Message msg) {
+		long timeout = 10000;
+		QueueSession qSession = null;
+		TextMessage messageSent = null;
+		TextMessage msgRec = null;
+		String mdbMessage = "my mdb message";
+		String testName = null;
+		QueueSender qSender = null;
+		QueueReceiver rcvr = null;
+		boolean result = false;
 
-      qConnection.start();
+		JmsUtil.initHarnessProps(msg, p);
+		logger.log(Logger.Level.TRACE, "In Message Bean ======================================onMessage");
+		try {
+			testName = "mdbResponse";
+			qConnection = qFactory.createQueueConnection();
+			if (qConnection == null)
+				throw new EJBException("MDB connection Error!");
 
-      qSession = qConnection.createQueueSession(true, 0);
-      TestUtil.logTrace("will run TestCase: " + testName);
+			qConnection.start();
 
-      rcvr = qSession.createReceiver(queueR);
+			qSession = qConnection.createQueueSession(true, 0);
+			logger.log(Logger.Level.TRACE, "will run TestCase: " + testName);
 
-      TestUtil.logTrace("Verify the synchronous receive");
-      TestUtil.logTrace(
-          "HHHHHHHHHHHHH+++++++++  Trying to receive message from the Queue: ");
-      msgRec = (TextMessage) rcvr.receive(timeout);
+			rcvr = qSession.createReceiver(queueR);
 
-      if (msgRec != null) {
-        //
-        TestUtil.logTrace("mdb received a msg from MY_QUEUE");
-        if (msgRec.getStringProperty("TestCase").equals(mdbMessage)) {
-          TestUtil.logTrace("Success: Correct msg recvd from MY_QUEUE");
-          result = true;
-        }
-      }
-      // send results to QUEUE_REPLY
+			logger.log(Logger.Level.TRACE, "Verify the synchronous receive");
+			logger.log(Logger.Level.TRACE, "HHHHHHHHHHHHH+++++++++  Trying to receive message from the Queue: ");
+			msgRec = (TextMessage) rcvr.receive(timeout);
 
-      JmsUtil.sendTestResults(testName, result, qSession, queueS);
-      TestUtil.logTrace("Mdb test results send to queue reply");
+			if (msgRec != null) {
+				//
+				logger.log(Logger.Level.TRACE, "mdb received a msg from MY_QUEUE");
+				if (msgRec.getStringProperty("TestCase").equals(mdbMessage)) {
+					logger.log(Logger.Level.TRACE, "Success: Correct msg recvd from MY_QUEUE");
+					result = true;
+				}
+			}
+			// send results to QUEUE_REPLY
 
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-    } finally {
-      if (qConnection != null) {
-        try {
-          qConnection.close();
-        } catch (Exception e) {
-          TestUtil.printStackTrace(e);
-        }
-      }
-    }
-  }
+			JmsUtil.sendTestResults(testName, result, qSession, queueS);
+			logger.log(Logger.Level.TRACE, "Mdb test results send to queue reply");
 
-  public void setMessageDrivenContext(MessageDrivenContext mdc) {
-    TestUtil.logTrace("@MsgBean:setMessageDrivenContext()!");
-    this.mdc = mdc;
-  }
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+		} finally {
+			if (qConnection != null) {
+				try {
+					qConnection.close();
+				} catch (Exception e) {
+					TestUtil.printStackTrace(e);
+				}
+			}
+		}
+	}
 
-  public void ejbRemove() {
-    TestUtil.logTrace("@ejbRemove()");
-  }
+	public void setMessageDrivenContext(MessageDrivenContext mdc) {
+		logger.log(Logger.Level.TRACE, "@MsgBean:setMessageDrivenContext()!");
+		this.mdc = mdc;
+	}
+
+	public void ejbRemove() {
+		logger.log(Logger.Level.TRACE, "@ejbRemove()");
+	}
 }

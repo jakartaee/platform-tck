@@ -17,15 +17,15 @@
 package com.sun.ts.tests.jms.ee20.cditests.usecases;
 
 public interface CMBean2IF {
-  public void init(java.util.Properties p);
+	public void init(java.util.Properties p);
 
-  public void method2a();
+	public void method2a();
 
-  public void method2b();
+	public void method2b();
 
-  public void method3();
+	public void method3();
 
-  public void method5();
+	public void method5();
 
-  public void method6();
+	public void method6();
 }

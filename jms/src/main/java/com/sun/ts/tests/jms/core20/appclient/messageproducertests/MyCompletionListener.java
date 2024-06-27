@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,9 +19,8 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.messageproducertests;
 
+import java.lang.System.Logger;
 import java.util.ArrayList;
-
-import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.jms.CompletionListener;
 import jakarta.jms.Message;
@@ -30,133 +29,133 @@ import jakarta.jms.TextMessage;
 
 public class MyCompletionListener implements CompletionListener {
 
-  private String name = null;
+	private String name = null;
 
-  private Message message = null;
+	private Message message = null;
 
-  private MessageProducer producer = null;
+	private MessageProducer producer = null;
 
-  private ArrayList<Message> messages = new ArrayList<Message>();
+	private ArrayList<Message> messages = new ArrayList<Message>();
 
-  private Exception exception = null;
+	private Exception exception = null;
 
-  private int numMessages = 1;
+	private int numMessages = 1;
 
-  boolean complete = false;
+	boolean complete = false;
 
-  boolean gotCorrectException = false;
+	boolean gotCorrectException = false;
 
-  boolean gotException = false;
+	boolean gotException = false;
 
-  public MyCompletionListener() {
-    this("MyCompletionListener");
-  }
+	private static final Logger logger = (Logger) System.getLogger(MyCompletionListener.class.getName());
 
-  public MyCompletionListener(String name) {
-    this.name = name;
-  }
+	public MyCompletionListener() {
+		this("MyCompletionListener");
+	}
 
-  public MyCompletionListener(int numMessages) {
-    this.numMessages = numMessages;
-    messages.clear();
-  }
+	public MyCompletionListener(String name) {
+		this.name = name;
+	}
 
-  public MyCompletionListener(MessageProducer producer) {
-    this.producer = producer;
-  }
+	public MyCompletionListener(int numMessages) {
+		this.numMessages = numMessages;
+		messages.clear();
+	}
 
-  // getters/setters
-  public String getName() {
-    return name;
-  }
+	public MyCompletionListener(MessageProducer producer) {
+		this.producer = producer;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	// getters/setters
+	public String getName() {
+		return name;
+	}
 
-  public Message getMessage() {
-    return message;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Message getMessage(int index) {
-    return messages.get(index);
-  }
+	public Message getMessage() {
+		return message;
+	}
 
-  public void setMessage(Message message) {
-    this.message = message;
-  }
+	public Message getMessage(int index) {
+		return messages.get(index);
+	}
 
-  public Exception getException() {
-    return exception;
-  }
+	public void setMessage(Message message) {
+		this.message = message;
+	}
 
-  public void setException(Exception exception) {
-    this.exception = exception;
-  }
+	public Exception getException() {
+		return exception;
+	}
 
-  public boolean isComplete() {
-    return complete;
-  }
+	public void setException(Exception exception) {
+		this.exception = exception;
+	}
 
-  public boolean gotCorrectException() {
-    return gotCorrectException;
-  }
+	public boolean isComplete() {
+		return complete;
+	}
 
-  public boolean gotException() {
-    return gotException;
-  }
+	public boolean gotCorrectException() {
+		return gotCorrectException;
+	}
 
-  public boolean gotAllMsgs() {
-    return (messages.size() == numMessages) ? true : false;
-  }
+	public boolean gotException() {
+		return gotException;
+	}
 
-  public boolean haveMsg(int i) {
-    return (messages.size() > i) ? true : false;
-  }
+	public boolean gotAllMsgs() {
+		return (messages.size() == numMessages) ? true : false;
+	}
 
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
+	public boolean haveMsg(int i) {
+		return (messages.size() > i) ? true : false;
+	}
 
-  public void onCompletion(Message message) {
-    try {
-      TestUtil.logMsg(
-          "OnCompletion(): Got Message: " + ((TextMessage) message).getText());
-    } catch (Exception e) {
-      TestUtil.logErr("Caught unexpected exception: " + e);
-    }
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
 
-    this.message = message;
-    messages.add(message);
-    if (message instanceof TextMessage) {
-      TextMessage tMsg = (TextMessage) message;
-      try {
-        if (tMsg.getText().equals("Call close method")) {
-          TestUtil.logMsg(
-              "Calling MessageProducer.close() MUST throw IllegalStateException");
-          if (producer != null)
-            producer.close();
-        }
-      } catch (jakarta.jms.IllegalStateException e) {
-        TestUtil.logMsg("Caught expected IllegalStateException");
-        gotCorrectException = true;
-        gotException = true;
-      } catch (Exception e) {
-        TestUtil.logErr("Caught unexpected exception: " + e);
-        gotCorrectException = false;
-        gotException = true;
-        exception = e;
-      }
-    }
-    complete = true;
-  }
+	public void onCompletion(Message message) {
+		try {
+			logger.log(Logger.Level.INFO, "OnCompletion(): Got Message: " + ((TextMessage) message).getText());
+		} catch (Exception e) {
+			logger.log(Logger.Level.ERROR, "Caught unexpected exception: " + e);
+		}
 
-  public void onException(Message message, Exception exception) {
-    TestUtil.logMsg("Got Exception: " + exception);
-    TestUtil.logMsg("With Message: " + message);
-    this.exception = exception;
-    this.message = message;
-    complete = true;
-  }
+		this.message = message;
+		messages.add(message);
+		if (message instanceof TextMessage) {
+			TextMessage tMsg = (TextMessage) message;
+			try {
+				if (tMsg.getText().equals("Call close method")) {
+					logger.log(Logger.Level.INFO, "Calling MessageProducer.close() MUST throw IllegalStateException");
+					if (producer != null)
+						producer.close();
+				}
+			} catch (jakarta.jms.IllegalStateException e) {
+				logger.log(Logger.Level.INFO, "Caught expected IllegalStateException");
+				gotCorrectException = true;
+				gotException = true;
+			} catch (Exception e) {
+				logger.log(Logger.Level.ERROR, "Caught unexpected exception: " + e);
+				gotCorrectException = false;
+				gotException = true;
+				exception = e;
+			}
+		}
+		complete = true;
+	}
+
+	public void onException(Message message, Exception exception) {
+		logger.log(Logger.Level.INFO, "Got Exception: " + exception);
+		logger.log(Logger.Level.INFO, "With Message: " + message);
+		this.exception = exception;
+		this.message = message;
+		complete = true;
+	}
 
 }
