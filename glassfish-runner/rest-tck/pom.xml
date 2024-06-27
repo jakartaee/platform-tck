@@ -16,7 +16,6 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
 <!--
 
 Usage:
@@ -45,32 +44,55 @@ Run a specified group:
 
 mvn clean install -Dgroups=security
 -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-   <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-   <parent>
+    <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-   </parent>
+    </parent>
 
-   <artifactId>rest-tck</artifactId>
+    <artifactId>rest-tck</artifactId>
 
-   <name>Jakarta REST TCK run on glassfish</name>
-   <description>This verifies the compliance of Eclipse Glassfish using the Jakarta REST standalone TCK</description>
+    <name>Jakarta REST TCK run on glassfish</name>
+    <description>This verifies the compliance of Eclipse Glassfish using the Jakarta REST standalone TCK</description>
 
-   <properties>
+    <properties>
+        <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
+        <glassfish.root>${project.build.directory}</glassfish.root>
+
+        <glassfish.version>8.0.0-M6</glassfish.version>
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <tck.version>4.0.0</tck.version>
-
-        <glassfish.version>8.0.0-M6</glassfish.version>
-        <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.8.0.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.10.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.ws.rs</groupId>
+                <artifactId>jakarta.ws.rs-api</artifactId>
+                <version>4.0.0</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -84,13 +106,12 @@ mvn clean install -Dgroups=security
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.5</version>
+            <version>1.6</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>1.8.0.Final</version>
             <scope>test</scope>
         </dependency>
 
@@ -98,14 +119,7 @@ mvn clean install -Dgroups=security
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>glassfish-client-ee10</artifactId>
-            <version>1.5</version>
-            <scope>test</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-multipart</artifactId>
-            <version>3.1.1</version>
+            <version>1.6</version>
             <scope>test</scope>
         </dependency>
 
@@ -117,10 +131,9 @@ mvn clean install -Dgroups=security
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.10.2</version>
-            <scope>test</scope>
+            <artifactId>junit-jupiter</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
@@ -135,7 +148,7 @@ mvn clean install -Dgroups=security
         </dependency>
     </dependencies>
 
-   <build>
+    <build>
         <plugins>
             <!-- Download and installation of the GlassFish server used for testing  -->
             <plugin>
@@ -143,10 +156,10 @@ mvn clean install -Dgroups=security
                 <executions>
                     <execution>
                         <id>unpack</id>
-                        <phase>pre-integration-test</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
@@ -186,11 +199,9 @@ mvn clean install -Dgroups=security
                                 <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
                                 <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
 
-                                <glassfish.postBootCommands>
-                                    create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/test-classes/j2ee.pass j2ee
+                                <glassfish.postBootCommands>create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/test-classes/j2ee.pass j2ee
                                     create-file-user --groups guest:OTHERROLE --passwordfile ${project.build.directory}/test-classes/javajoe.pass javajoe
-                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                </glassfish.postBootCommands>
+                                    set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</glassfish.postBootCommands>
 
                                 <!--
                                     Strangely, this TCK allows (even requires) the expected user names and passwords that are defined above
@@ -202,11 +213,9 @@ mvn clean install -Dgroups=security
                                 <authuser>javajoe</authuser>
                                 <authpassword>javajoe</authpassword>
 
-
                                 <!-- Remnants from ancient TCK -->
                                 <webServerHost>localhost</webServerHost>
                                 <webServerPort>8080</webServerPort>
-
 
                                 <servlet_adaptor>org.glassfish.jersey.servlet.ServletContainer</servlet_adaptor>
                                 <porting.ts.url.class.1>ee.jakarta.tck.ws.rs.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
