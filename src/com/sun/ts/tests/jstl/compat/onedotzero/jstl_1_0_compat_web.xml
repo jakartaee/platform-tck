@@ -37,6 +37,12 @@
         <filter-name>JstlDbFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <el-ignored>true</el-ignored>
+        </jsp-property-group>
+    </jsp-config>
     <listener>
         <listener-class>com.sun.ts.tests.jstl.common.listeners.SQLContextListener</listener-class>
     </listener>
