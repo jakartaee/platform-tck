@@ -118,9 +118,8 @@ mvn clean install -Dgroups=security
         <!-- Client libs for doing HTTP requests, specifically done via the REST Client -->
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
-            <artifactId>glassfish-client-ee10</artifactId>
-            <version>1.6</version>
-            <scope>test</scope>
+            <artifactId>glassfish-client-ee11</artifactId>
+            <version>1.6.1</version>
         </dependency>
 
         <dependency>
