@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,76 +19,78 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.jmscontextqueuetests;
 
-import com.sun.ts.lib.util.TestUtil;
+import java.lang.System.Logger;
 
 import jakarta.jms.CompletionListener;
 import jakarta.jms.Message;
 
 public class MyCompletionListener2 implements CompletionListener {
 
-  private String name = null;
+	private String name = null;
 
-  private Message message = null;
+	private Message message = null;
 
-  private Exception exception = null;
+	private Exception exception = null;
 
-  private int numMessages = 1;
+	private int numMessages = 1;
 
-  boolean complete = false;
+	boolean complete = false;
 
-  public MyCompletionListener2() {
-    this("MyCompletionListener2");
-  }
+	private static final Logger logger = (Logger) System.getLogger(MyCompletionListener2.class.getName());
 
-  public MyCompletionListener2(String name) {
-    this.name = name;
-  }
+	public MyCompletionListener2() {
+		this("MyCompletionListener2");
+	}
 
-  // getters/setters
-  public String getName() {
-    return name;
-  }
+	public MyCompletionListener2(String name) {
+		this.name = name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	// getters/setters
+	public String getName() {
+		return name;
+	}
 
-  public Message getMessage() {
-    return message;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setMessage(Message message) {
-    this.message = message;
-  }
+	public Message getMessage() {
+		return message;
+	}
 
-  public Exception getException() {
-    return exception;
-  }
+	public void setMessage(Message message) {
+		this.message = message;
+	}
 
-  public void setException(Exception exception) {
-    this.exception = exception;
-  }
+	public Exception getException() {
+		return exception;
+	}
 
-  public boolean isComplete() {
-    return complete;
-  }
+	public void setException(Exception exception) {
+		this.exception = exception;
+	}
 
-  public void setComplete(boolean complete) {
-    this.complete = complete;
-  }
+	public boolean isComplete() {
+		return complete;
+	}
 
-  public void onCompletion(Message message) {
-    TestUtil.logMsg("onCompletion(): Got Message: " + message);
-    this.message = message;
-    complete = true;
-  }
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
 
-  public void onException(Message message, Exception exception) {
-    TestUtil.logMsg("OnException(): Got Exception: " + exception);
-    TestUtil.logMsg("With Message: " + message);
-    this.exception = exception;
-    this.message = message;
-    complete = true;
-  }
+	public void onCompletion(Message message) {
+		logger.log(Logger.Level.INFO, "onCompletion(): Got Message: " + message);
+		this.message = message;
+		complete = true;
+	}
+
+	public void onException(Message message, Exception exception) {
+		logger.log(Logger.Level.INFO, "OnException(): Got Exception: " + exception);
+		logger.log(Logger.Level.INFO, "With Message: " + message);
+		this.exception = exception;
+		this.message = message;
+		complete = true;
+	}
 
 }
