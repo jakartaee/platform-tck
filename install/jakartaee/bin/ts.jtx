@@ -95,6 +95,10 @@ com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/Client.java#fetchTest_from_
 com/sun/ts/tests/securityapi/idstore/noidstore/Client.java#testIdentityStoreValidate_noIDStore
 com/sun/ts/tests/securityapi/ham/sam/delegation/Client.java#testSAMDelegatesHAM
 
+################
+# Servlet
+################
+
 #
 # https://github.com/jakartaee/servlet/issues/471 TCK Challenge: Cookie setMaxAgePositiveTest using incorrect CookiePolicy for Date parsing
 com/sun/ts/tests/servlet/pluggability/api/jakarta_servlet_http/cookie/URLClient.java#setMaxAgePositiveTest
@@ -102,3 +106,7 @@ com/sun/ts/tests/servlet/api/jakarta_servlet_http/cookie/URLClient.java#setMaxAg
 
 # https://github.com/jakartaee/servlet/issues/472 TCK Challenge: doHeadTest shouldn't validate optional payload header fields
 com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest/URLClient.java#doHeadTest
+
+# https://github.com/jakartaee/platform-tck/issues/1313
+com/sun/ts/tests/servlet/compat/LeadingSlash/WithoutLeadingSlash/URLClient.java#WithoutLeadingSlashTest
+
