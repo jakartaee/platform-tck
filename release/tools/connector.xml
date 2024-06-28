@@ -22,7 +22,7 @@
     <import file="../../bin/xml/ts.common.props.xml"/>
     
     <property name="deliverable.version" value="2.1"/>
-    <property name="deliverable.tck.version" value="2.1.1"/>
+    <property name="deliverable.tck.version" value="2.1.2"/>
 
     <ts.taskdef name="getportingclasses" 
                 classname="com.sun.ant.taskdefs.common.GetPortingClasses"/>
