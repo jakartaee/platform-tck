@@ -22,7 +22,7 @@
 	<import file="../../bin/xml/ts.common.props.xml" />
 
 	<property name="deliverable.version" value="3.0" />
-        <property name="deliverable.tck.version" value="3.0.0" />
+        <property name="deliverable.tck.version" value="3.0.1" />
 
 
 	<target name="init">
