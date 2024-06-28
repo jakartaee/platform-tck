@@ -1,5 +1,6 @@
 <%--
 
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
     Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
@@ -51,7 +52,7 @@
         <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' type="both" timeStyle="short" var="rd3"/><br>
       </fmt:timeZone>
       <fmt:formatDate value="${rd3}" timeZone="EST" type="both" timeStyle="short"/><br>
-
+      
       Not wrapped.  Page has a time zone of EST.  Time should not be offset:<br>
       <fmt:parseDate value='<%= (String) pageContext.getAttribute("dte") %>' type="both" timeStyle="short" var="rd4"/><br>
       <fmt:formatDate value="${rd4}" timeZone="EST" type="both" timeStyle="short"/><br>
