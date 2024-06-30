@@ -131,7 +131,7 @@ spec:
       limits:
         memory: "3Gi"
   - name: jakartaeetck-ci
-    image: jakartaee/cts-base:0.4
+    image: dmatej/cts-base:0.5
     command:
     - cat
     tty: true
@@ -163,7 +163,7 @@ spec:
   }
   parameters {
     string(name: 'GF_BUNDLE_URL', 
-           defaultValue: 'https://download.eclipse.org/ee4j/glassfish/glassfish-7.0.0-SNAPSHOT-nightly.zip', 
+           defaultValue: 'https://ci.eclipse.org/glassfish/job/glassfish_build-and-test-using-jenkinsfile/job/8.0.0-M4-BRANCH/1/artifact/bundles/glassfish.zip', 
            description: 'URL required for downloading GlassFish Full/Web profile bundle' )
     string(name: 'GF_VERSION_URL', 
            defaultValue: '', 
@@ -182,8 +182,8 @@ spec:
            description: 'List of standalone TCK bundle file names to be appended to the base url' )
     choice(name: 'PROFILE', choices: 'FULL\nWEB', 
            description: 'Profile to be used for running CTS either web/full' )
-    choice(name: 'JDK', choices: 'JDK11\nJDK17',
-           description: 'Java SE Version to be used for running TCK either JDK11/JDK17' )
+    choice(name: 'JDK', choices: 'JDK11\nJDK17\nJDK21',
+           description: 'Java SE Version to be used for running TCK' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
            description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
     choice(name: 'AS_TRACE', choices: 'false\ntrue',
@@ -206,7 +206,7 @@ spec:
     MAIL_USER="user01@james.local"
     MAIL_HOST="localhost"
     LANG="en_US.UTF-8"
-    DEFAULT_GF_BUNDLE_URL="https://download.eclipse.org/ee4j/glassfish/glassfish-7.0.0-SNAPSHOT-nightly.zip"
+    DEFAULT_GF_BUNDLE_URL="https://ci.eclipse.org/glassfish/job/glassfish_build-and-test-using-jenkinsfile/job/8.0.0-M4-BRANCH/1/artifact/bundles/glassfish.zip"
     JAVA_TOOL_OPTIONS="-Djava.awt.headless=true"
   }
   stages {
