@@ -1,3 +1,0 @@
-name=Java Persistence API Technology Compatibility Kit Version 1.0
-classpath=$TS_HOME/lib/tsharness.jar
-testsuite=com.sun.ts.lib.harness.TS

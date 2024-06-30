@@ -148,9 +148,9 @@ javatest.timeout.factor=1
 #		      technologies.  
 #                     Known optional technologies for Web Profile include:
 #                            "jaxr", "connector", "jaxb", 
-#                            "jms", "javamail", "jacc", "jaspic", "wsmd" 
-#		      ex 1/   javaee.level=web connector jms jacc 
-#		      ex 2/   javaee.level=web jaspic
+#                            "jms", "javamail", "wsmd" 
+#		      ex 1/   javaee.level=web connector jms
+#		      ex 2/   javaee.level=web
 #		      ex 3/   javaee.level=web jms connector
 #		      ex 4/   etc...
 #
@@ -184,7 +184,7 @@ javatest.timeout.factor=1
 #                      (see comments for optional.tech.packages.to.ignore below)
 #
 ###############################################################################
-#javaee.level=web connector jaxws jaxb javamail jacc jaspic wsmd
+#javaee.level=web connector jaxws jaxb javamail wsmd
 javaee.level=full
 
 
@@ -2160,22 +2160,6 @@ jaxrs_impl_name=jersey
 # This section contains all properties that are specific to JSR-196 Tests.
 # All default values are specific to GlassFish.
 #
-# @servlet.is.jsr115.compatible  This property is used by JASPIC tests
-#   to determine if the servlet container is a jsr 115 compatible
-#   container.  (true = compatible to JSR 115, false = not compatible.)
-#
-# @soap.is.jsr115.compatible  This may used by JASPIC tests to
-#   determin if the SOAP container is  JSR 115 compatible.  This is 
-#   only used when running SOAP profile tests.
-#
-# @provider.configuration.file
-#             This property is used by JASPIC tests to configure TestSuite's
-#             AuthConfig Provider and points at an xml file which is used
-#             to register the JASPIC test providers into the current
-#             ACF.  This file contaiins known/expected test provider info.
-#             Only app-context-id element can be edited to suit the 
-#             impl under test.
-#
 # @schema.file.location
 #              This points to the directory that the provider-configuration.xsd 
 #              file will live.  The provider-configuration.xsd is used to
@@ -2206,25 +2190,11 @@ jaxrs_impl_name=jersey
 #              using this property we enable the appclient container's
 #              logging level to INFO
 #
-# @vendor.authconfig.factory
-#             This property specifies vendor's authconfig factory class
-#             this will be used by JASPIC tests to register TestSuite's
-#             provider in Vendor's AuthConfig Factory.
-#
-#              For example for SJSAS RI this value is
-#
-#               vendor.authconfig.factory=
-#                   com.sun.enterprise.security.jmac.config.GFAuthConfigFactory
-#
 ##########################################################################
-servlet.is.jsr115.compatible=true
-soap.is.jsr115.compatible=false
-provider.configuration.file=${javaee.home}/domains/domain1/config/ProviderConfiguration.xml
 schema.file.location=${javaee.home}/lib/schemas
 logical.hostname.servlet=server
 logical.hostname.soap=localhost
 appclient.log.output=true
-vendor.authconfig.factory=com.sun.enterprise.security.jmac.config.GFAuthConfigFactory
 
 ##########################################################################
 # @servlet_waittime:   Time in seconds to wait after HttpSession expires 

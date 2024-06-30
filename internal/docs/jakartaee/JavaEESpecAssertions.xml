@@ -282,9 +282,6 @@
                     <section id = "19" name = "Java API for XML Registries (JAXR) 1.0 Requirements (Optional)"/>
                     <section id = "20" name = "Java Platform, Enterprise Edition Management API 1.1 Requirements"/>
                     <section id = "21" name = "Java Platform, Enterprise Edition Deployment API 1.2 Requirements (Optional)"/>
-                    <section id = "22" name = "Java Authorization Contract for Containers (JACC) 1.5 Requirements"/>
-                    <section id = "23" name = "Java Authentication Service Provider Interface for Containers (JASPIC) 1.1 Requirements"/>
-                    <section id = "24" name = "Java EE Security API 1.0 Requirements"/>
                     <section id = "25" name = "Debugging Support for Other Languages (JSR-45) Requirements"/>
                     <section id = "26" name = "Standard Tag Library for JavaServer Pages (JSTL) 1.2 Requirements"/>
                     <section id = "27" name = "Web Services Metadata for the Java Platform 2.1 Requirements"/>

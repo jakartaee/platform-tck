@@ -96,21 +96,6 @@
    </target>
 
 
-
-    <!-- Configure PE for the JASPIC(JSR-196) tests -->
-    <target name="config.jaspic" if="testingAgainstDAS" depends="checkCTSConfiguration, update.jaspic.jar, copy.cts.ext.jars">
-        <echo message="****Configuring for JASPIC (JSR-196) tests *****" />
-        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="config.jaspic"/>
-    </target>
-
-    <!-- convenience method to support un-configuration of jaspic -->
-    <target name="unconfig.jaspic">
-        <ant antfile="s1as.xml" dir="${common.bin.dir}/xml/impl/glassfish" target="unconfig.jaspic"/>
-    </target>
-
-    <target name="update.jaspic.jar" depends="check.for.cts.internal.jar, update.jar"/>
-
-
    <!--
         Configure PE or the DAS(SE/EE) for CTS
    -->

@@ -2,7 +2,7 @@ type=page
 status=published
 title=Configuring Your Backend Database
 next=ejbql-schema.html
-prev=jaspic-files.html
+prev=commonappdeploy.html
 ~~~~~~
 Configuring Your Backend Database
 =================================

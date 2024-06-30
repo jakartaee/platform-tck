@@ -103,8 +103,6 @@ export SIGFILEPATH=$TS_HOME/src/com/sun/ts/tests/signaturetest/signature-reposit
 
 # jakarta.annotation
 java $jdk9options $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 2.1 -package jakarta.annotation -FileName ${SIGFILEPATH}/jakarta.annotation.sig
-# jakarta.security.jacc
-java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 1.6  -package jakarta.security.jacc -FileName ${SIGFILEPATH}/jakarta.security.jacc.sig
 # jakarta.batch
 java $CLASSNAME Setup ${OPTIONS} -classpath ${sigTestClasspath} -apiVersion 2.1  -package jakarta.batch -FileName ${SIGFILEPATH}/jakarta.batch.sig
 # jakarta.decorator

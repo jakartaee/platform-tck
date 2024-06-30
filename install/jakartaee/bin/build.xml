@@ -53,24 +53,8 @@
                   com/sun/ts/tests/jaxws/wsi/constants,
                   com/sun/ts/tests/webservices12,
                   com/sun/ts/tests/webservices13,
-                  com/sun/ts/tests/websocket,
-                  com/sun/ts/tests/securityapi"/>
+                  com/sun/ts/tests/websocket"/>
 
-	<!--
-          These jaspic dirs involve tests that are not required for Java EE 6.
-          They are not bundled as part of the shipped TCK.  But the JASPIC
-          standalone TCK comes out of this workspace so these dirs need to exist
-          within the workspace.  Since we do not want these dirs building for EE6,
-          we are going to keep them listed in the temp.test.exclude.dirs as a 
-          developer convenience for folks who work and build within the full
-          cts development workspace.
-
-      -->
-	<!--property name="temp.test.exclude.dirs" 
- 	      value="
-             com/sun/ts/tests/jaspic/spi/authstatus,
-             com/sun/ts/tests/jaspic/spi/soap"
-        /-->
 
 	<target name="generate.coverage.numbers">
 		<ant antfile="coverage-build.xml" dir="${bin.dir}" target="all" />
@@ -660,26 +644,6 @@
 	</target>
 
 
-	<!-- Enable the use of jacc for the app server under test -->
-	<target name="enable.jacc">
-		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="enable.jacc"/>
-	</target>
-
-	<!-- Disable the use of jacc for the app server under test -->
-	<target name="disable.jacc">
-		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="disable.jacc"/>
-	</target>
-
-	<!-- Enable the wss providers for the app server under test (jaspic tests) -->
-	<target name="enable.wss.providers">
-		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="enable.wss.providers"/>
-	</target>
-
-	<!-- Disable the wss providers for the app server under test (jaspic tests) -->
-	<target name="disable.wss.providers">
-		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="disable.wss.providers"/>
-	</target>
-
 	<!-- Disable the TX interoperability on the Java EE RI -->
 	<target name="disable.ri.tx.interop">
 		<ant antfile="javaee_ri.xml" dir="${bin.dir}/xml/impl/${impl.ri}" target="disable.tx.interop"/>
@@ -731,9 +695,6 @@
 	<property name="provider.dir" value = "com/sun/ts/tests/jacc/provider"/>
 	<property name="provider.jar.name" value = "tsprovider.jar"/>
 	<property name="provider.jar" value = "${ts.home}/lib/${provider.jar.name}"/>
-	<!--property name="jaspic.tssv.dir" value = "com/sun/ts/tests/jaspic/tssv"/>
-	<property name="jaspic.tssv.jar.name" value = "tssv.jar"/>
-	<property name="jaspic.tssv.jar" value = "${ts.home}/lib/${jaspic.tssv.jar.name}"/-->
 	<property name="dbprocedures.jar" value = "${ts.home}/lib/dbprocedures.jar"/>
 	<property name="install.lib.dir" value = "${ts.home}/install/jakartaee/lib"/>
 
@@ -779,28 +740,6 @@
 		<rmic classname="com.sun.ts.lib.implementation.sun.javaee.glassfish.AutoDeploymentServer" base="${class.dir}"/>
 	</target>
 
-	<!--target name="jaspic.lib.clean" depends="translatepath">
-		<delete failonerror="false">
-			<fileset dir="${class.dir}">
-				<include name="com/sun/ts/tests/jaspic"/>
-
-			</fileset>
-		</delete>
-		<delete failonerror="false" file="${jaspic.tssv.jar}"/>
-	</target-->
-
-
-	<!--target name="jaspic.lib.compile" depends="jaspic.lib.clean, bind.dtds">
-		<ts.javac includes="${jaspic.tssv.dir}/config/**/*.java,
-                            ${jaspic.tssv.dir}/module/**/*.java,
-                            ${jaspic.tssv.dir}/util/**/*.java">
-			<classpath>
-				<pathelement path="${ts.lib.classpath}" />
-			</classpath>
-		</ts.javac>
-	</target-->
-
-
 	<target name="tslib" depends="tslib.compile">
 		<tstamp/>
 		<delete failonerror="true" file="${lib.dir}/${tslib.name}.jar"/>
@@ -819,7 +758,6 @@
 		</jar>
 
 		<antcall target="build.tsprovider.jar"/>
-		<!--antcall target="build.jaspic.jars"/-->
 
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="build.porting.impl.jar"/>
 
@@ -828,77 +766,6 @@
 	<!-- build porting impl jar for the impl under test -->
 	<target name="build.porting.impl.jar" description="Builds the porting impl classes for the impl under test">
 		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="build.porting.impl.jar"/>
-	</target>
-
-	<!-- build jaspic jars -->
-	<!--target name="build.jaspic.jars">
-		<antcall target="build.tssv.jar"/>
-	</target-->
-
-
-	<!-- build jacc tsprovider jar -->
-	<target name="build.tsprovider.jar">
-		<delete failonerror="true" file="${provider.jar}"/>
-		<jar jarfile = "${provider.jar}" basedir = "${class.dir}">
-			<include name= 
-		     "${provider.dir}/TSPolicyConfigurationFactoryImpl.class"/>
-			<include name= 
-		      "${provider.dir}/TSPolicyConfigurationImpl.class"/>
-			<include name="${provider.dir}/TSLogger.class"/>
-			<include name="${provider.dir}/TSLogRecord.class"/>
-			<include name="${provider.dir}/TSXMLFormatter.class"/>
-			<include name="${provider.dir}/TSPolicy.class"/>
-			<manifest>
-				<attribute name="Extension-Name"         value="tsprovider"/>
-				<attribute name="Specification-Title"    value="TS Provider"/>
-				<attribute name="Specification-Version"  value="1.5"/>
-				<attribute name="Implementation-Version" value="1.5"/>
-				<attribute name="Specification-Vendor"   value="Sun Microsystems"/>
-			</manifest>
-		</jar>
-	</target>
-
-
-	<!-- build jaspics tssv.jar -->
-	<!-- build the JASPIC (JSR-196) provider jar file -->
-
-	<!--target name="build.tssv.jar">
-		<delete failonerror="true" file="${jaspic.tssv.jar}"/>
-		<antcall target="jaspic.lib.compile"/>
-		<jar jarfile="${jaspic.tssv.jar}"
-             basedir="${class.dir}">
-			<include name="${jaspic.tssv.dir}/config/**"/>
-			<include name="${jaspic.tssv.dir}/module/**"/>
-			<include name="${jaspic.tssv.dir}/util/**"/>
-			<manifest>
-				<attribute name="Extension-Name"         value="TSSV"/>
-				<attribute name="Specification-Title"    value="TestSuite SPI Verifier"/>
-				<attribute name="Specification-Version"  value="1.1"/>
-				<attribute name="Implementation-Version" value="1.1"/>
-				<attribute name="Specification-Vendor"   value="Sun Microsystems"/>
-			</manifest>
-		</jar>
-
-		<antcall target="update.tssv.jar"/>
-	</target-->
-
-
-
-	<!-- used to add the "ProviderConfiguration.xml" to the tssv.jar file -->
-	<target name="update.tssv.jar">
-		<jar destfile="${jaspic.tssv.jar}" basedir="${src.dir}" update="true"
-               includes="${jaspic.tssv.dir}/config/*.txt"/>
-	</target>
-
-	<!-- convenience method to support configuration of jaspic -->
-	<target name="enable.jaspic">
-		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="config.jaspic"/>
-	</target>
-
-
-	<!-- convenience method to support un-configuration of jaspic -->
-	<target name="disable.jaspic">
-		<ant antfile="javaee_vi.xml" dir="${bin.dir}/xml/impl/${impl.vi}" target="unconfig.jaspic"/>
 	</target>
 
 	<!-- To update JAX-RS war with implementation specific servlet info before deployment -->
