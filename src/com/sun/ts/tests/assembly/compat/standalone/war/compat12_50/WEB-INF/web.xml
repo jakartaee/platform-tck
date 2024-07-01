@@ -24,7 +24,6 @@
   <description>no description</description>
   <servlet>
     <servlet-name>test</servlet-name>
-    <description>no description</description>
     <jsp-file>test.jsp</jsp-file>
     <load-on-startup>0</load-on-startup>
   </servlet>
