@@ -130,11 +130,11 @@ The `config.vi` Ant task performs several actions, including:
 -Djakarta.security.jacc.policy.provider=
         com.sun.ts.tests.jacc.provider.TSPolicy
 -Dvendor.jakarta.security.jacc.policy.provider=
-        com.sun.enterprise.security.jacc.provider.SimplePolicyProvider
+        org.glassfish.exousia.modules.locked.SimplePolicyProvider
 -Djakarta.security.jacc.PolicyConfigurationFactory.provider=
         com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl
 -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=
-        com.sun.enterprise.security.jacc.provider.SimplePolicyConfigurationFactory
+        org.glassfish.exousia.modules.locked.SimplePolicyConfigurationFactory
 -Dlog.file.location=${log.file.location}
 ----
 Note that the `log.file.location` comes from the property of the same
