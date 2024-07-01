@@ -1,0 +1,494 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="GlassFish/CTS Configuration for Generic JMS Resource Adapter" default="help">
+
+    <!-- IMPORTS -->
+    <import file="./common.xml" optional="true"/>
+    <import file="../../../../../../bin/xml/impl/glassfish/common.xml" optional="true"/>
+    <import file="./deploy.xml" optional="true"/>
+    <import file="../../../../../../bin/xml/impl/glassfish/deploy.xml" optional="true"/>
+
+    <property name="jmseemdb.srcpath" 
+		value="${ts.home}/src/com/sun/ts/tests/jms/ee/mdb"/>
+
+    <property name="jmseemdb.distpath" 
+		value="${ts.home}/dist/com/sun/ts/tests/jms/ee/mdb"/>
+
+    <property name="jmsee20ra.srcpath" 
+		value="${ts.home}/src/com/sun/ts/tests/jms/ee20/ra/activationconfig"/>
+
+    <property name="jmsee20ra.distpath" 
+		value="${ts.home}/dist/com/sun/ts/tests/jms/ee20/ra/activationconfig"/>
+
+    <property name="genericra.descriptors.path" 
+		value="${ts.home}/src/com/sun/ts/tests/jms/commonee/xml/descriptors/genericra"/>
+
+    <property name="createJMSRAtemplate.file" 
+		value="${bin.dir}/xml/impl/glassfish/templates/create.jmsra.template"/>
+
+    <property name="createJMSRAtemplate.txt" 
+		value="${bin.dir}/xml/impl/glassfish/templates/create.jmsra.template.txt"/>
+
+    <target name="configPlatform" depends="checkPlatform, configUnix, configWindows"/>
+
+     <!--
+       Configure GlassFish for the Generic JMS Resource Adapter (GenericJMSRA)
+     -->
+    <target name="doJMSRAConfig" depends="configPlatform">
+	<if>
+          <not>
+            <equals arg1="${jmsra.rarfile}" arg2=""/>
+          </not>
+        <then>
+	<antcall target="copy.jmsra.jarfile"/>
+	<antcall target="copy.mq.jars"/>
+	<antcall target="create-resource-adapter-config">
+          <param name="propName" value="SupportsXA=true:ProviderIntegrationMode=javabean:ConnectionFactoryClassName=com.sun.messaging.ConnectionFactory:CommonSetterMethodName=setProperty:UserName=guest:Password=guest:QueueConnectionFactoryClassName=com.sun.messaging.QueueConnectionFactory:TopicConnectionFactoryClassName=com.sun.messaging.TopicConnectionFactory:QueueClassName=com.sun.messaging.Queue:TopicClassName=com.sun.messaging.Topic:LogLevel=info:UserName=guest:Password=guest:XAQueueConnectionFactoryClassName=com.sun.messaging.XAQueueConnectionFactory:XATopicConnectionFactoryClassName=com.sun.messaging.XATopicConnectionFactory:XAConnectionFactoryClassName=com.sun.messaging.XAConnectionFactory"/>
+	  <param name="raName" value="${jmsra.name}"/>
+	</antcall>
+	<antcall target="deploy-archive">
+	  <param name="archiveName" value="${jmsra.rarfile}"/>
+	</antcall>
+	</then>
+	</if>
+        <copy file="${createJMSRAtemplate.file}" tofile="${createJMSRAtemplate.txt}" overwrite="true">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+        </copy>
+        <exec executable="${exec.asadmin}">
+            <arg line="${exec.asadmin.part2}"/>
+            <arg line=" --user ${s1as.admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${s1as.admin.host}"/>
+            <arg line=" --port ${s1as.admin.port}"/>
+            <arg line=" --echo=true"/>
+            <arg line=" multimode"/>
+            <arg line=" --file ${createJMSRAtemplate.txt}"/>
+        </exec>
+        <delete file="${createJMSRAtemplate.txt}" quiet="true"/>
+    </target>
+
+     <!--
+       Unconfigure GlassFish for the Generic JMS Resource Adapter (GenericJMSRA)
+     -->
+    <target name="doJMSRAUnconfig" depends="configPlatform">
+        <exec executable="${exec.asadmin}">
+            <arg line="${exec.asadmin.part2}"/>
+            <arg line=" --user ${s1as.admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${s1as.admin.host}"/>
+            <arg line=" --port ${s1as.admin.port}"/>
+            <arg line=" --echo=true"/>
+            <arg line=" multimode"/>
+            <arg line=" --file ${bin.dir}/xml/impl/glassfish/templates/delete.jmsra.template"/>
+        </exec>
+	<if>
+          <not>
+            <equals arg1="${jmsra.rarfile}" arg2=""/>
+          </not>
+        <then>
+	<antcall target="delete-resource-adapter-config">
+	  <param name="raName" value="${jmsra.name}"/>
+	</antcall>
+	<antcall target="undeploy-archive">
+	  <param name="name" value="${jmsra.name}"/>
+	</antcall>
+   	<antcall target="delete.jmsra.jarfile"/>
+	<antcall target="delete.mq.jars"/>
+	</then>
+	</if>
+    </target>
+
+     <!--
+       Copy Generic JMS Resource Adapter jar file to App Server lib directory
+     -->
+    <target name="copy.jmsra.jarfile">
+	<if>
+          <not>
+            <equals arg1="${jmsra.jarfile}" arg2=""/>
+          </not>
+        <then>
+        <copy file="${jmsra.jarfile}" todir="${s1as.lib}" overwrite="yes"/>
+	</then>
+	</if>
+    </target>
+
+     <!--
+       Delete Generic JMS Resource Adapter jar file from App Server lib directory
+     -->
+    <target name="delete.jmsra.jarfile">
+	<if>
+          <not>
+            <equals arg1="${jmsra.jarfile}" arg2=""/>
+          </not>
+        <then>
+	<basename property="jar.filename" file="${jmsra.jarfile}"/>
+        <delete file="${s1as.lib}/${jar.filename}" quiet="true"/>
+        </then>
+        </if>
+    </target>
+
+     <!--
+       Copy MQ jar files to App Server lib directory
+     -->
+    <target name="copy.mq.jars">
+        <copy file="${s1as.imq.share.lib}/imq.jar" todir="${s1as.lib}" overwrite="yes"/>
+        <copy file="${s1as.imq.share.lib}/imqutil.jar" todir="${s1as.lib}" overwrite="yes"/>
+        <copy file="${s1as.imq.share.lib}/imqjmx.jar" todir="${s1as.lib}" overwrite="yes"/>
+        <copy file="${s1as.imq.share.lib}/imqbroker.jar" todir="${s1as.lib}" overwrite="yes"/>
+    </target>
+
+     <!--
+       Delete MQ jar files from App Server lib directory
+     -->
+    <target name="delete.mq.jars">
+        <delete file="${s1as.lib}/imq.jar" quiet="true"/>
+        <delete file="${s1as.lib}/imqutil.jar" quiet="true"/>
+        <delete file="${s1as.lib}/imqjmx.jar" quiet="true"/>
+        <delete file="${s1as.lib}/imqbroker.jar" quiet="true"/>
+    </target>
+
+     <!--
+       Create a Resource Adapter Config
+     -->
+     <target name="create-resource-adapter-config">
+       <exec executable="${exec.asadmin}">
+            <arg line="${exec.asadmin.part2}"/>
+            <arg line=" --user ${s1as.admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${s1as.admin.host}"/>
+            <arg line=" --port ${s1as.admin.port}"/>
+            <arg line=" create-resource-adapter-config"/>
+            <arg line=" --property ${propName}"/>
+            <arg line=" ${raName}"/>
+        </exec>
+     </target>
+
+     <!--
+       Delete a Resource Adapter Config
+     -->
+     <target name="delete-resource-adapter-config">
+       <exec executable="${exec.asadmin}">
+            <arg line="${exec.asadmin.part2}"/>
+            <arg line=" --user ${s1as.admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${s1as.admin.host}"/>
+            <arg line=" --port ${s1as.admin.port}"/>
+            <arg line=" delete-resource-adapter-config"/>
+            <arg line=" ${raName}"/>
+        </exec>
+     </target>
+
+     <!--
+       Deploy an archive
+     -->
+     <target name="deploy-archive">
+       <exec executable="${exec.asadmin}">
+            <arg line="${exec.asadmin.part2}"/>
+            <arg line=" --user ${s1as.admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${s1as.admin.host}"/>
+            <arg line=" --port ${s1as.admin.port}"/>
+            <arg line=" deploy"/>
+            <arg line=" ${archiveName}"/>
+        </exec>
+     </target>
+
+     <!--
+       Undeploy an archive
+     -->
+     <target name="undeploy-archive">
+       <exec executable="${exec.asadmin}">
+            <arg line="${exec.asadmin.part2}"/>
+            <arg line=" --user ${s1as.admin.user}"/>
+            <arg line=" --passwordfile ${password.file}"/>
+            <arg line=" --host ${s1as.admin.host}"/>
+            <arg line=" --port ${s1as.admin.port}"/>
+            <arg line=" undeploy"/>
+            <arg line=" --cascade=true"/>
+            <arg line=" ${name}"/>
+        </exec>
+     </target>
+
+     <!--
+       Modify all the sun-ejb-jar xml files under the CTS jms/ee/mdb and jms/ee20/ra test 
+       directories by adding the <mdb-resource-adapter> info for the Generic JMS Resource 
+       Adapter. We just modify the sun-ejb-jar xml files in the dist directory.
+     -->
+
+     <target name="modify-jmsmdbejbxml">
+	<echo message="***************************************************************************"/>
+	<echo message="Modify jms/ee/mdb and jms/ee20/ra sun-ejb-jar xml files for (GenericJMSRA)."/>
+	<echo message="This modifies all the MDB sun-ejb-jar xml files in the dist directory for"/>
+	<echo message="these test directories."/>
+	<echo message="***************************************************************************"/>
+        <copy file="${genericra.descriptors.path}/mdb_exceptQ_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_exceptQ/mdb_exceptQ_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_exceptT_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_exceptT/mdb_exceptT_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgHdrQ_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgHdrQ/mdb_msgHdrQ_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgHdrT_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgHdrT/mdb_msgHdrT_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgPropsQ_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgPropsQ/mdb_msgPropsQ_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgPropsT_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgPropsT/mdb_msgPropsT_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgTypesQ1_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgTypesQ1/mdb_msgTypesQ1_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgTypesQ2_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgTypesQ2/mdb_msgTypesQ2_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgTypesQ3_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgTypesQ3/mdb_msgTypesQ3_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgTypesT1_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgTypesT1/mdb_msgTypesT1_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msgTypesT2_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgTypesT2/mdb_msgTypesT2_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+
+        <copy file="${genericra.descriptors.path}/mdb_msgTypesT3_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_msgTypesT3/mdb_msgTypesT3_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_asynch_receives_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_rec/mdb_asynch_receives_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_sndQ_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_sndQ/mdb_sndQ_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_sndToQueue_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_sndToQueue/mdb_sndToQueue_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_sndToTopic_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_sndToTopic/mdb_sndToTopic_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_synchrec_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/mdb_synchrec/mdb_synchrec_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/mdb_msg_xa_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmseemdb.distpath}/xa/mdb_msg_xa_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/queue_selectorauto_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/queue/selectorauto/annotated/queue_selectorauto_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/queue_selectorauto_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/queue/selectorauto/descriptor/queue_selectorauto_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/queue_selectordups_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/queue/selectordups/annotated/queue_selectordups_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/queue_selectordups_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/queue/selectordups/descriptor/queue_selectordups_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/topic_noselnocidautodurable_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/noselnocidautodurable/annotated/topic_noselnocidautodurable_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/topic_noselnocidautodurable_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/noselnocidautodurable/descriptor/topic_noselnocidautodurable_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/topic_selectorautociddurable_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/selectorautociddurable/annotated/topic_selectorautociddurable_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/topic_selectorautociddurable_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/selectorautociddurable/descriptor/topic_selectorautociddurable_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/topic_selectordupsnondurable_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/selectordupsnondurable/annotated/topic_selectordupsnondurable_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/topic_selectordupsnondurable_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/selectordupsnondurable/descriptor/topic_selectordupsnondurable_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes">
+          <filterset>
+            <filter token="raname" value="${jmsra.name}"/>
+          </filterset>
+	</copy>
+        <copy file="${genericra.descriptors.path}/cditestsmdb_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${ts.home}/dist/com/sun/ts/tests/jms/ee20/cditests/mdb/cditestsmdb_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+     </target>
+
+     <!--
+       Restore all the sun-ejb-jar xml files under the CTS jms/ee/mdb and jms/ee20/ra test
+       directories by removing the <mdb-resource-adapter> info for the Generic JMS Resource 
+       Adapter. We just restore the sun-ejb-jar xml files in the dist directory.
+     -->
+     <target name="restore-jmsmdbejbxml">
+	<echo message="**************************************************************************"/>
+	<echo message="Restore jms/ee/mdb and jms/ee20/ra sun-ejb-jar xml files back to original."/>
+	<echo message="This restores all the MDB sun-ejb-jar xml files in the dist directory for"/>
+	<echo message="these test directories."/>
+	<echo message="**************************************************************************"/>
+        <copy file="${jmseemdb.srcpath}/mdb_exceptQ/mdb_exceptQ_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_exceptQ" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_exceptT/mdb_exceptT_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_exceptT" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgHdrQ/mdb_msgHdrQ_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgHdrQ" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgHdrT/mdb_msgHdrT_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgHdrT" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgPropsQ/mdb_msgPropsQ_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgPropsQ" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgPropsT/mdb_msgPropsT_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgPropsT" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgTypesQ1/mdb_msgTypesQ1_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgTypesQ1" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgTypesQ2/mdb_msgTypesQ2_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgTypesQ2" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgTypesQ3/mdb_msgTypesQ3_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgTypesQ3" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgTypesT1/mdb_msgTypesT1_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgTypesT1" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgTypesT2/mdb_msgTypesT2_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgTypesT2" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_msgTypesT3/mdb_msgTypesT3_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_msgTypesT3" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_rec/mdb_asynch_receives_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_rec" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_sndQ/mdb_sndQ_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_sndQ" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_sndToQueue/mdb_sndToQueue_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_sndToQueue" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_sndToTopic/mdb_sndToTopic_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_sndToTopic" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/mdb_synchrec/mdb_synchrec_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/mdb_synchrec" overwrite="yes"/>
+        <copy file="${jmseemdb.srcpath}/xa/mdb_msg_xa_ejb.jar.sun-ejb-jar.xml" 
+		todir="${jmseemdb.distpath}/xa" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/queue/selectorauto/annotated/queue_selectorauto_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/queue/selectorauto/annotated/queue_selectorauto_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/queue/selectorauto/descriptor/queue_selectorauto_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/queue/selectorauto/descriptor/queue_selectorauto_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/queue/selectordups/annotated/queue_selectordups_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/queue/selectordups/annotated/queue_selectordups_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/queue/selectordups/descriptor/queue_selectordups_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/queue/selectordups/descriptor/queue_selectordups_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/topic/noselnocidautodurable/annotated/topic_noselnocidautodurable_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/noselnocidautodurable/annotated/topic_noselnocidautodurable_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/topic/noselnocidautodurable/descriptor/topic_noselnocidautodurable_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/noselnocidautodurable/descriptor/topic_noselnocidautodurable_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/topic/selectorautociddurable/annotated/topic_selectorautociddurable_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/selectorautociddurable/annotated/topic_selectorautociddurable_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/topic/selectorautociddurable/descriptor/topic_selectorautociddurable_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/selectorautociddurable/descriptor/topic_selectorautociddurable_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/topic/selectordupsnondurable/annotated/topic_selectordupsnondurable_annotated_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/selectordupsnondurable/annotated/topic_selectordupsnondurable_annotated_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${jmsee20ra.srcpath}/topic/selectordupsnondurable/descriptor/topic_selectordupsnondurable_descriptor_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${jmsee20ra.distpath}/topic/selectordupsnondurable/descriptor/topic_selectordupsnondurable_descriptor_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+        <copy file="${ts.home}/src/com/sun/ts/tests/jms/ee20/cditests/mdb/cditestsmdb_ejb.jar.sun-ejb-jar.xml" 
+	    tofile="${ts.home}/dist/com/sun/ts/tests/jms/ee20/cditests/mdb/cditestsmdb_ejb.jar.sun-ejb-jar.xml" overwrite="yes"/>
+     </target>
+
+     <target name="help">
+       <echo message="ant doJMSRAConfig          configure GlassFish/CTS for Generic JMS Resource Adapter"/>
+       <echo message="ant doJMSRAUnconfig        unconfigure CTS/GlassFish for Generic JMS Resource Adapter"/>
+       <echo message="ant modify-jmsmdbejbxml    modify sun-ejb-xml files with mdb-resource-adapter info"/>
+       <echo message="ant restore-jmsmdbejbxml   restore sun-ejb-xml files without mdb-resource-adapter info"/>
+     </target>
+
+</project>

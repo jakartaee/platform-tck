@@ -14,14 +14,23 @@
 #
 # SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
+
+
 if [ -z "$WORKSPACE" ]; then
   export WORKSPACE=`pwd`
 fi
+
 
 export BASEDIR=${WORKSPACE}
 if [ -z "${GF_HOME}" ]; then
   export GF_HOME=${WORKSPACE}
 fi
+
+export TCK_NAME="$@"
+if [ "ejblite" == "$TCK_NAME" ];then
+  sh ${BASEDIR}/docker/build_ejblitetck.sh
+fi
+
 
 if [ -z "$JAKARTA_JARS" ]; then
   export JAKARTA_JARS=$BASEDIR
@@ -60,7 +69,6 @@ export ANT_OPTS="-Xmx2G -Djavax.xml.accessExternalStylesheet=all \
 -DenableExternalEntityProcessing=true \
 -Djavax.xml.accessExternalDTD=file,http,https"
 
-export TCK_NAME="$@"
 if [ -z "$TCK_NAME" ]; then
   echo "ERROR: Please provide atleast one TCK name or 'All' as argument to the script"
   exit 1

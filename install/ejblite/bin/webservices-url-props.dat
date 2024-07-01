@@ -1,0 +1,113 @@
+#
+# Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+#
+# This program and the accompanying materials are made available under the
+# terms of the Eclipse Public License v. 2.0, which is available at
+# http://www.eclipse.org/legal/epl-2.0.
+#
+# This Source Code may also be made available under the following Secondary
+# Licenses when the conditions for such availability set forth in the
+# Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+# version 2 with the GNU Classpath Exception, which is available at
+# https://www.gnu.org/software/classpath/license.html.
+#
+# SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+#
+
+###############################################################################
+# $Id$
+#
+# Data file containing URLs for webservice endpoints and wsdl locations
+#
+# URL format for endpoints is as follows:
+#
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE
+#
+# URL format for wsdl locations of given endpoints is as follows:
+#
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE?WSDL
+#			or
+# o http://HOST:PORT/CONTEXT_ROOT/URL_ALIAS/PORT_TYPE?wsdl
+#
+# All URL's given below start from CONTEXT_ROOT. The
+# http://HOST:PORT (HOST and PORT are defined and
+# configured in ts.jte file) is prepended to each URL.
+#
+# Example)
+#
+# For a webservice with a PORT_TYPE of Hello the URL endpoint for
+# the JAX-WS RI is:
+#
+# o http://localhost:8080/HelloService/jaxws/Hello
+#
+# For the final published WSDL URL for the above endpoint in
+# the JAX-WS RI is:
+#
+# o http://localhost:8080/HelloService/jaxws/Hello?WSDL
+#			or
+# o http://localhost:8080/HelloService/jaxws/Hello?wsdl
+###############################################################################
+# ------------------------------------------------------------------------------
+# webservices12 tree URL's
+# ------------------------------------------------------------------------------
+# webservices12/specialcases/clients/j2w/doclit/defaultserviceref URL's
+specialcases.defaultserviceref.endpoint=/WSJ2WDLSCNONAME_web/jaxws
+specialcases.defaultserviceref.wsdlloc=/WSJ2WDLSCNONAME_web/jaxws?WSDL
+specialcases.defaultserviceref.servicename=EchoService
+specialcases.defaultserviceref.portname=Echo
+
+# webservices12/specialcases/clients/j2w/doclit/nameattrserviceref URL's
+specialcases.nameattrserviceref.endpoint=/WSJ2WDLSCNONAME2_web/jaxws
+specialcases.nameattrserviceref.wsdlloc=/WSJ2WDLSCNONAME2_web/jaxws?WSDL
+specialcases.nameattrserviceref.servicename=MyEchoWebService
+specialcases.nameattrserviceref.portname=EchoTest
+
+# webservices12/specialcases/clients/j2w/doclit/providerserviceref URL's
+specialcases.providerserviceref.endpoint=/WSW2JDLSCProvider_web/jaxws/Hello
+specialcases.providerserviceref.wsdlloc=/WSW2JDLSCProvider_web/jaxws/Hello?WSDL
+
+# webservices12/ejb/annotations/WSEjbWebServiceRefWithNoDDsTest URL's
+wsejbwebservicerefwithnoddstest.endpoint=/WSEjbWSRefWithNoDDsTestHelloEJBService/WSEjbWSRefWithNoDDsTestHelloEJB
+wsejbwebservicerefwithnoddstest.wsdlloc=/WSEjbWSRefWithNoDDsTestHelloEJBService/WSEjbWSRefWithNoDDsTestHelloEJB?WSDL
+
+# webservices12/ejb/annotations/WSEjbWebServiceRefTest1 URL's
+wsejbwebservicereftest1.endpoint=/WSEjbWebServiceRefTest1HelloService/HelloBean
+wsejbwebservicereftest1.wsdlloc=/WSEjbWebServiceRefTest1HelloService/HelloBean?WSDL
+
+# webservices12/servlet/WSMTOMSBFullDDsTest URL's
+wsservletmtomsoapbindingwithfullddstest.cntxroot.1=/WSMTOMSBFullDDsTest_web
+wsservletmtomsoapbindingwithfullddstest.endpoint.1=/WSMTOMSBFullDDsTest_web/jaxws/MTOMTest
+wsservletmtomsoapbindingwithfullddstest.wsdlloc.1=/WSMTOMSBFullDDsTest_web/jaxws/MTOMTest?WSDL
+wsservletmtomsoapbindingwithfullddstest.cntxroot.2=/WSMTOMSBFullDDsTest_web
+wsservletmtomsoapbindingwithfullddstest.endpoint.2=/WSMTOMSBFullDDsTest_web/jaxws/MTOMTestTwo
+wsservletmtomsoapbindingwithfullddstest.wsdlloc.2=/WSMTOMSBFullDDsTest_web/jaxws/MTOMTestTwo?WSDL
+
+# webservices12/servlet/WSMTOMSBAnnotationsTest URL's
+wsservletmtomsoapbindingwithannotationstest.cntxroot.1=/WSMTOMSBAnnotationsTest_web
+wsservletmtomsoapbindingwithannotationstest.endpoint.1=/WSMTOMSBAnnotationsTest_web/jaxws/MTOMTest
+wsservletmtomsoapbindingwithannotationstest.wsdlloc.1=/WSMTOMSBAnnotationsTest_web/jaxws/MTOMTest?WSDL
+wsservletmtomsoapbindingwithannotationstest.cntxroot.2=/WSMTOMSBAnnotationsTest_web
+wsservletmtomsoapbindingwithannotationstest.endpoint.2=/WSMTOMSBAnnotationsTest_web/jaxws/MTOMTestTwo
+wsservletmtomsoapbindingwithannotationstest.wsdlloc.2=/WSMTOMSBAnnotationsTest_web/jaxws/MTOMTestTwo?WSDL
+
+# webservices12/servlet/WSRefAndMTOMCombinedTest URL's
+wsrefandmtomcombinedtest.ctxroot.1=/WSRefAndMTOMCombinedTest_web
+wsrefandmtomcombinedtest.endpoint.1=/WSRefAndMTOMCombinedTest_web/jaxws/MTOMTest1
+wsrefandmtomcombinedtest.wsdlloc.1=/WSRefAndMTOMCombinedTest_web/jaxws/MTOMTest1?WSDL
+wsrefandmtomcombinedtest.ctxroot.2=/WSRefAndMTOMCombinedTest_web
+wsrefandmtomcombinedtest.endpoint.2=/WSRefAndMTOMCombinedTest_web/jaxws/MTOMTest2
+wsrefandmtomcombinedtest.wsdlloc.2=/WSRefAndMTOMCombinedTest_web/jaxws/MTOMTest2?WSDL
+wsrefandmtomcombinedtest.endpoint.3=/WSRefAndMTOMCombinedTest_web/jaxws/MTOMTest3
+wsrefandmtomcombinedtest.wsdlloc.3=/WSRefAndMTOMCombinedTest_web/jaxws/MTOMTest3?WSDL
+wsrefandmtomcombinedtest.endpoint.4=/WSRefAndMTOMCombinedTest_web/jaxws/MTOMTest4
+wsrefandmtomcombinedtest.wsdlloc.4=/WSRefAndMTOMCombinedTest_web/jaxws/MTOMTest4?WSDL
+
+# webservices13/servlet/WSWebServiceRefLookup URL's
+wswsreflookup.ctxroot.1=/WSWSRefLookup_web
+wswsreflookup.endpoint.1=/WSWSRefLookup_web/jaxws/Echo
+wswsreflookup.wsdlloc.1=/WSWSRefLookup_web/jaxws/Echo?WSDL
+
+# webservices13/servlet/WSWebServiceRefLookupDDs URL's
+wswsreflookupdds.ctxroot.1=/WSWSRefLookupDDs_web
+wswsreflookupdds.endpoint.1=/WSWSRefLookupDDs_web/jaxws/Echo
+wswsreflookupdds.wsdlloc.1=/WSWSRefLookupDDs_web/jaxws/Echo?WSDL

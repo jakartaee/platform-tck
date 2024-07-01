@@ -1,0 +1,207 @@
+dn: dc=net
+objectclass: top
+objectclass: dcObject
+objectclass: organization
+dc: net
+o: net
+
+dn: dc=securityapi,dc=net
+objectclass: top
+objectclass: dcObject
+objectclass: organization
+dc: securityapi
+o: securityapi
+
+dn: ou=caller,dc=securityapi,dc=net
+objectclass: top
+objectclass: organizationalUnit
+ou: caller
+
+dn: uid=tom,ou=caller,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: tom
+cn: Tom Rahman
+sn: Tom
+userPassword: secret1
+
+dn: uid=emma,ou=caller,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: emma
+cn: Emma Kosowski
+sn: Emma
+userPassword: secret2
+
+dn: uid=bob,ou=caller,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: bob
+cn: Bob
+sn: Bob
+userPassword: secret3
+
+dn: ou=subcaller,ou=caller,dc=securityapi,dc=net
+objectclass: top
+objectclass: organizationalUnit
+ou: subcaller
+
+dn: uid=subtom,ou=subcaller,ou=caller,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: subtom
+cn: SubTom Rahman
+sn: SubTom
+userPassword: secret1
+
+dn: uid=subemma,ou=subcaller,ou=caller,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: subemma
+cn: SubEmma Kosowski
+sn: SubEmma
+userPassword: secret2
+
+dn: uid=subbob,ou=subcaller,ou=caller,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: subbob
+cn: SubBob
+sn: SubBob
+userPassword: secret3
+
+dn: ou=group,dc=securityapi,dc=net
+objectclass: top
+objectclass: organizationalUnit
+ou: group
+
+
+dn: cn=Administrator,ou=group,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: Administrator
+member: uid=tom,ou=caller,dc=securityapi,dc=net
+member: uid=emma,ou=caller,dc=securityapi,dc=net
+member: uid=bob,ou=caller,dc=securityapi,dc=net
+
+dn: cn=Manager,ou=group,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: Manager
+member: uid=tom,ou=caller,dc=securityapi,dc=net
+
+dn: cn=Employee,ou=group,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: Employee
+member: uid=emma,ou=caller,dc=securityapi,dc=net
+
+dn: ou=subgroup,ou=group,dc=securityapi,dc=net
+objectclass: top
+objectclass: organizationalUnit
+ou: subgroup
+
+dn: cn=SubAdministrator,ou=subgroup,ou=group,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: SubAdministrator
+member: uid=subtom,ou=subcaller,ou=caller,dc=securityapi,dc=net
+member: uid=subemma,ou=subcaller,ou=caller,dc=securityapi,dc=net
+member: uid=subbob,ou=subcaller,ou=caller,dc=securityapi,dc=net
+member: uid=tom,ou=caller,dc=securityapi,dc=net
+member: uid=emma,ou=caller,dc=securityapi,dc=net
+member: uid=bob,ou=caller,dc=securityapi,dc=net
+
+dn: cn=SubManager,ou=subgroup,ou=group,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: SubManager
+member: uid=subtom,ou=subcaller,ou=caller,dc=securityapi,dc=net
+member: uid=tom,ou=caller,dc=securityapi,dc=net
+
+dn: cn=SubEmployee,ou=subgroup,ou=group,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: SubEmployee
+member: uid=subemma,ou=subcaller,ou=caller,dc=securityapi,dc=net
+
+dn: ou=apps,dc=securityapi,dc=net
+objectclass: top
+objectclass: organizationalUnit
+ou: apps
+
+dn: uid=ldap,ou=apps,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: ldap
+cn: LDAP app user
+sn: ldap
+userPassword: changeOnInstall
+
+dn: ou=callerx,dc=securityapi,dc=net
+objectclass: top
+objectclass: organizationalUnit
+ou: callerx
+
+dn: uid=tomx,ou=callerx,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: tomx
+cn: Tomx Rahman
+sn: Tomx
+userPassword: secret1
+
+dn: uid=emmax,ou=callerx,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: emmax
+cn: Emmax Kosowski
+sn: Emmax
+seeAlso: cn=Administratorx,ou=groupx,dc=securityapi,dc=net
+seeAlso: cn=Employeex,ou=groupx,dc=securityapi,dc=net
+userPassword: secret2
+
+dn: uid=bobx,ou=callerx,dc=securityapi,dc=net
+objectclass: top
+objectclass: uidObject
+objectclass: person
+uid: bobx
+cn: Bobx
+sn: Bobx
+userPassword: secret3
+
+
+dn: ou=groupx,dc=securityapi,dc=net
+objectclass: top
+objectclass: organizationalUnit
+ou: groupx
+
+dn: cn=Administratorx,ou=groupx,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: Administratorx
+member: uid=tomx,ou=callerx,dc=securityapi,dc=net
+member: uid=emmax,ou=callerx,dc=securityapi,dc=net
+member: uid=bobx,ou=callerx,dc=securityapi,dc=net
+
+dn: cn=Managerx,ou=groupx,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: Managerx
+member: uid=tomx,ou=callerx,dc=securityapi,dc=net
+
+dn: cn=Employeex,ou=groupx,dc=securityapi,dc=net
+objectclass: top
+objectclass: groupOfNames
+cn: Employeex
+member: uid=emmax,ou=callerx,dc=securityapi,dc=net
+

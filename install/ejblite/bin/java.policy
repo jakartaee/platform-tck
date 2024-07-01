@@ -1,0 +1,80 @@
+// Standard extensions get all permissions by default
+
+grant codeBase "file:${java.home}/lib/ext/-" {
+    permission java.security.AllPermission;
+};
+
+grant codeBase "file:${java.home}/../lib/tools.jar" {
+        permission java.security.AllPermission;
+};
+
+//Application Client Container requirement by SUN's RI
+
+grant codeBase "file:${com.sun.enterprise.home}/lib/classes/" {
+    permission java.security.AllPermission;
+};
+
+grant codeBase "file:${jms.home}/classes/" {
+    permission java.security.AllPermission;
+};
+
+// Drivers and other system classes should be stored in this
+// code base.
+grant codeBase "file:${com.sun.enterprise.home}/lib/system/-" {
+    permission java.security.AllPermission;
+};
+
+grant codeBase "file:${com.sun.enterprise.home}/lib/javaee.jar" {
+    permission java.security.AllPermission;
+};
+
+
+// default permissions granted to all domains
+
+grant {
+    // Java EE security permission set from Java EE platform specification Table 6-2
+    permission java.lang.RuntimePermission "loadLibrary.*";
+    permission java.lang.RuntimePermission "accessClassInPackage.*";
+    permission java.lang.RuntimePermission "exitVM";
+    permission java.lang.RuntimePermission "queuePrintJob";
+
+    permission java.awt.AWTPermission "accessClipboard";
+    permission java.awt.AWTPermission "accessEventQueue";
+    permission java.awt.AWTPermission "showWindowWithoutWarningBanner";
+
+    permission java.io.FilePermission "<<ALL FILES>>", "read,write";
+
+    permission java.net.SocketPermission "*", "connect,accept,resolve";
+    permission java.net.SocketPermission "localhost:1024-", "accept,listen";
+
+    // "standard" properies that can be read by anyone
+    permission java.util.PropertyPermission "*", "read";
+
+    //Required by JAXP tests 
+    //jaxp/extension/com/saxhelpers/ParserFactoryTest.java#negative*
+    permission java.util.PropertyPermission "org.xml.sax.parser", "write";
+
+    // Required by TS harness and tests to write and delete files
+    permission java.io.FilePermission "${cts.tmp}${file.separator}-", "delete";
+    permission java.io.FilePermission "${user.home}${file.separator}tmp${file.separator}-", "delete";
+
+    //Required by SUN RI
+    permission java.lang.RuntimePermission "modifyThreadGroup";
+
+    // setting the JSSE provider for lazy authentication of app. clients.
+    // Please do not change it.
+    permission java.security.SecurityPermission "putProviderProperty.SunJSSE";
+    permission java.security.SecurityPermission "insertProvider.SunJSSE";
+
+// TS harness requirement
+    permission java.lang.RuntimePermission "setFactory";
+
+   // For executing tests in SameJVM mode:
+   permission java.net.SocketPermission "localhost", "connect, resolve";
+
+   //Needed by TS Signature tests
+   permission java.lang.RuntimePermission "accessDeclaredMembers";
+   permission java.lang.RuntimePermission "createClassLoader";
+   permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
+
+};
