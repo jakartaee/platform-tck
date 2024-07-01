@@ -68,12 +68,3 @@ com/sun/ts/tests/jpa/core/annotations/mapkeyenumerated/Client.java#elementCollec
 com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollectionTest_from_pmservlet
 com/sun/ts/tests/jpa/core/annotations/mapkeytemporal/Client.java#elementCollectionTest_from_stateless3
 
-
-################
-# Security API
-################
-
-#
-#
-com/sun/ts/tests/securityapi/idstore/noidstore/Client.java#testIdentityStoreValidate_noIDStore
-com/sun/ts/tests/securityapi/ham/sam/delegation/Client.java#testSAMDelegatesHAM

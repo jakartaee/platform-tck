@@ -152,7 +152,7 @@ public class WebSocketSigTestIT extends SigTest {
 	 * Returns a list of strings where each string represents a package name. Each
 	 * package name will have it's signature tested by the signature test framework.
 	 * 
-	 * @param vehicleName The name of the Jaspic container where the signature tests
+	 * @param vehicleName The name of the container where the signature tests
 	 *                    should be conducted.
 	 * @return String[] The names of the packages whose signatures should be
 	 *         verified.

@@ -85,10 +85,8 @@
         <echo message="deliverables:"/>
         <echo message=" caj           [overrides]"/>
         <echo message=" connector     [overrides]"/>
-        <echo message=" jacc          [overrides]"/>
         <echo message=" jspservlet    [overrides]"/>
         <echo message=" jsp           [overrides]"/>
-        <echo message=" jaspic        [overrides]"/>
         <echo message=" jsf           [overrides]"/>
         <echo message=" jstl          [overrides]"/>
         <echo message=" el            [overrides]"/>
@@ -443,18 +441,6 @@
         <antcall target="${the.target}"/>
     </target>
     
-    <target name="jaspic" depends="has.override, no.override" >
-        <property name="deliverable.name" value="JASPIC"/>
-        <property name="deliverable.tck.dir" value="authentication"/>
-        <antcall target="${the.target}"/>
-    </target>
-
-    <target name="securityapi" depends="has.override, no.override" >
-        <property name="deliverable.name" value="SECURITYAPI"/>
-        <property name="deliverable.tck.dir" value="security"/>
-        <antcall target="${the.target}"/>
-    </target>
-    
     <target name="jstl" depends="has.override, no.override" >
         <property name="deliverable.name" value="JSTL"/>
         <property name="deliverable.tck.dir" value="tags"/>
@@ -580,18 +566,6 @@
     <!-- The targets listed below create bundles that contain specific subsets of the CTS test  -->
     <!-- areas.  Users can modify the test.areas property if they wish to include multiple      -->
     <!-- test areas.  See the jakartaee-ejb target for an example that includes multiple test areas. -->
-
-    <target name="jakartaee-jacc" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-JACC"/>
-        <property name="test.areas" value="jacc, ejb30/common, jms/common, servlet/common/servlets, servlet/common/util, signaturetest, jaxws/common"/>
-        <antcall target="${the.target}"/>
-    </target>
-
-    <target name="jakartaee-jaspic" depends="has.override, no.override">
-        <var name="deliverable.name" value="JAKARTAEE-JASPIC"/>
-        <property name="test.areas" value="jaspic, signaturetest, jaxws/common"/>
-        <antcall target="${the.target}"/>
-    </target>
 
     <target name="jakartaee-appclient" depends="has.override, no.override">
         <var name="deliverable.name" value="JAKARTAEE-APPCLIENT"/>

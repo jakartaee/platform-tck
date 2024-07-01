@@ -26,7 +26,7 @@ if [[ "$result" != "jakartaee-tck" ]]; then
   exit 1
 fi   
 
-modules=(appclient assembly common concurrency connector ejb ejb30 ejb32 el integration internal jacc jaspic javaee javamail jaxrs jaxws jdbc jms jpa jsf jsonb jsonp jsp jstl jta jws saaj samples securityapi servlet signaturetest webservices12 webservices13 websocket xa)
+modules=(appclient assembly common concurrency connector ejb ejb30 ejb32 el integration internal javaee javamail jaxrs jaxws jdbc jms jpa jsf jsonb jsonp jsp jstl jta jws saaj samples securityapi servlet signaturetest webservices12 webservices13 websocket xa)
 
 for module in ${modules[*]}; do
   echo "=== Module $module ==="
@@ -68,7 +68,7 @@ for module in ${modules[*]}; do
 done  
 
 # fixup packages
-modules=(appclient assembly common concurrency connector ejb ejb30 ejb32 el integration internal jacc jaspic javaee javamail jaxrs jaxws jdbc jms jpa jsf jsonb jsonp jsp jstl jta jws saaj samples securityapi servlet signaturetest webservices12 webservices13 websocket xa)
+modules=(appclient assembly common concurrency connector ejb ejb30 ejb32 el integration internal javaee javamail jaxrs jaxws jdbc jms jpa jsf jsonb jsonp jsp jstl jta jws saaj samples securityapi servlet signaturetest webservices12 webservices13 websocket xa)
 
 for module in ${modules[*]}; do
   rm -rf $module/src/test/java/com/sun/ts/tests/

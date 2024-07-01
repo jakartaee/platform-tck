@@ -58,8 +58,6 @@ public final class VehicleRunnerFactory {
 
   private static VehicleRunnable connectorServletRunner;
 
-  private static VehicleRunnable jaspicServletRunner;
-
   private static VehicleRunnable customVehicleRunner;
 
   private static VehicleRunnable webRunner;
@@ -288,19 +286,6 @@ public final class VehicleRunnerFactory {
     return connectorServletRunner;
   }
 
-  private static VehicleRunnable getJaspicServletRunner() {
-    if (jaspicServletRunner == null) {
-      try {
-        Class c = Class.forName(
-            "com.sun.ts.tests.common.vehicle.jaspicservlet.JaspicServletVehicleRunner");
-        jaspicServletRunner = (VehicleRunnable) c.newInstance();
-      } catch (Exception ex) {
-        ex.printStackTrace();
-      }
-    }
-    return jaspicServletRunner;
-  }
-
   // this supports the rare case of a user defined custome vehicle
   private static VehicleRunnable getCustomVehicleRunner() {
     if (customVehicleRunner == null) {
@@ -345,8 +330,6 @@ public final class VehicleRunnerFactory {
       return getPUServletRunner();
     } else if (vtype.equalsIgnoreCase("connectorservlet")) {
       return getConnectorServletRunner();
-    } else if (vtype.equalsIgnoreCase("jaspicservlet")) {
-      return getJaspicServletRunner();
     } else if (vtype.equalsIgnoreCase("customvehicle")) {
       return getCustomVehicleRunner();
     } else if (vtype.equalsIgnoreCase("ejblitejsf")) {

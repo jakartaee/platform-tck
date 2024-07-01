@@ -47,9 +47,6 @@
         <module>ejb32</module>
         <module>el</module>
         <module>integration</module>
-        <!-- some proprietary code ? -->
-        <!--        <module>internal</module>-->
-        <module>jacc</module>
         <module>javaee</module>
         <module>javamail</module>
         <module>jaxrs</module>
@@ -229,18 +226,6 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>jacc</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jaspic</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>javaee</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -350,12 +335,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>samples</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>securityapi</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

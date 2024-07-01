@@ -1,7 +1,7 @@
 type=page
 status=published
 title=Common Applications Deployment
-next=jaspic-files.html
+next=database-config.html
 prev=portingpackage.html
 ~~~~~~
 Common Applications Deployment

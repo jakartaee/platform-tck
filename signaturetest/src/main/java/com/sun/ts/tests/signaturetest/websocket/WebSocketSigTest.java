@@ -150,7 +150,7 @@ public class WebSocketSigTest extends SigTestEE {
    * framework.
    * 
    * @param vehicleName
-   *          The name of the Jaspic container where the signature tests should
+   *          The name of the container where the signature tests should
    *          be conducted.
    * @return String[] The names of the packages whose signatures should be
    *         verified.

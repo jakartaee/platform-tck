@@ -295,7 +295,7 @@ fi
 "${CTS_HOME}/vi/$GF_VI_TOPLEVEL_DIR/glassfish/bin/asadmin" --user admin --passwordfile ${ADMIN_PASSWORD_FILE} stop-domain
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]];then
-  KEYWORDS="javaee_web_profile|jacc_web_profile|jaspic_web_profile|javamail_web_profile|connector_web_profile"
+  KEYWORDS="javaee_web_profile|javamail_web_profile|connector_web_profile"
 fi
 
 if [ -z "${vehicle}" ];then
@@ -359,7 +359,7 @@ sed -i.bak "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classn
 sed -i.bak "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
-  sed -i.bak "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeedeploy jacc jaspic wsmd/g" ts.jte
+  sed -i.bak "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeedeploy wsmd/g" ts.jte
 fi
 
 sed -i.bak 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte
@@ -424,12 +424,6 @@ fi
 cd  "${TS_HOME}/bin"
 ant config.ri
 ##### configRI.sh ends here #####
-
-if [[ "securityapi" == ${test_suite} ]]; then
-  cd "$TS_HOME/bin";
-  ant init.ldap
-  echo "LDAP initilized for securityapi"
-fi
 
 ### ctsStartStandardDeploymentServer.sh starts here #####
 cd "$TS_HOME/bin";

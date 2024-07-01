@@ -1315,20 +1315,6 @@
      <copy file="${javaee.home}/lib/appclient/wss-client-config.xml" 
              tofile="${javaee.home}/lib/appclient/wss-client-config.xml.orig" overwrite="yes">
      </copy>
-     
-     <copy file="${ts.home}/src/com/sun/ts/tests/jaspic/ejb/xms/wss-client-config.xml" 
-             tofile="${javaee.home}/lib/appclient/wss-client-config.xml" overwrite="yes">
-     </copy>
-
-     <copy file="${ts.home}/src/com/sun/ts/tests/jaspic/ejb/xms/${sun-acc.xml.template}" 
-             tofile="${javaee.home}/lib/install/templates/${sun-acc.xml.template}" overwrite="yes">
-        <filterset begintoken="%%%" endtoken="%%%">
-        <filter token="INSTALL_ROOT" value="${javaee.home}" />
-        <filter token="SERVER_NAME" value="${s1as.admin.host}" />
-        <filter token="ORB_LISTENER_PORT" value="${orb.port.ri}" />
-     </filterset>
-     </copy>
-
   </target>
 
    <target name="enable.server.provider" >
@@ -1387,12 +1373,6 @@
         <antcall target="restart.server" />
    </target>
 
-    <!--
-       Enable the configuration required by jacc   
-    -->
-    <target name="enable.jacc" depends="configPlatform" >
-        <antcall target="create.jacc.vm.options"/>
-    </target>
 
     <!--
         config the required jvm options for the JPA tests
@@ -1408,71 +1388,6 @@
           <param name="jvm.options" value=" -Dlog.file.location=${log.file.location}"/>
          </antcall>
    </target>
-
-    <!--
-       This target was created because we have tools, namely the runcts ant task,
-       that would like to be able to add the JVM options for Jakarta Authorization but not call
-       server restart.  This was due to techical glitches when restarting the server
-       from a spawned process in the task.
-    -->
-    <target name="create.jacc.vm.options" depends="configPlatform">
-         <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Djakarta.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
-         </antcall>
-
-         <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyProvider"/>
-         </antcall>
-
-         <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
-         </antcall>
-
-         <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyConfigurationFactory "/>
-         </antcall>
-
-         <antcall target="create-one-jvm-option" >
-          <param name="jvm.options" value=" -Dlog.file.location=${log.file.location}"/>
-         </antcall>
-    </target>
-
-    <!--
-       Disable jacc configuration 
-    -->
-    <target name="disable.jacc" depends="configPlatform" >
-         <antcall target="delete.jacc.vm.options"/>
-         <antcall target="restart.server"/>
-    </target>
-
-
-    <!--
-       This target was created because we have tools, namely the runcts ant task,
-       that would like to be able to remove the JVM options for Jakarta Authorization but not call
-       server restart.  This was due to techical glitches when restarting the server
-       from a spawned process in the task.
-    -->
-    <target name="delete.jacc.vm.options" depends="configPlatform">
-         <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Djakarta.security.jacc.policy.provider=com.sun.ts.tests.jacc.provider.TSPolicy"/>
-         </antcall>
-        
-         <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.policy.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyProvider"/>
-         </antcall>
-
-         <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Djakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.ts.tests.jacc.provider.TSPolicyConfigurationFactoryImpl"/>
-         </antcall>
-
-         <antcall target="delete-jvm-options" >
-          <param name="jvm.options" value=" -Dvendor.jakarta.security.jacc.PolicyConfigurationFactory.provider=com.sun.enterprise.security.jacc.provider.SimplePolicyConfigurationFactory "/>
-         </antcall>
-
-         <antcall target="delete-one-jvm-option" >
-          <param name="jvm.options" value=" -Dlog.file.location=${log.file.location}"/>
-         </antcall>
-     </target>
 
 
      <!--

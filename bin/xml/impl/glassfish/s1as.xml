@@ -196,8 +196,6 @@
         <echo message="enable.tx.interop" />
         <echo message="disable.tx.interop" />
         <echo message="delete.tx.interop" />
-        <echo message="enable.jacc" />
-        <echo message="disable.jacc" />
         <echo message="enable.wss.providers" />
         <echo message="disable.wss.providers" />
     </target>
@@ -1033,7 +1031,7 @@
     <property name="run.client.args" value=""/>
     <property name="buffering.enabled" value="false"/>
     <property name="test.areas" value="appclient, connector, jaxws, jstl,
-                                       samples, webservices12, assembly, ejb, jacc,
+                                       samples, webservices12, assembly, ejb,
                                        jdbc, jta, servlet, ejb30, javamail, jms,
                                        jws, signaturetest, xa, integration,
                                        jsf, 
@@ -1247,151 +1245,6 @@
          <antcall target="delete.jpa.vm.options"/>
      </target>
 
-
-     <target name="config.jaspic" >
-         <antcall target="enable.tssv"/>
-     </target>
-
-
-     <target name="unconfig.jaspic" >
-         <antcall target="disable.tssv"/>
-     </target>
-
-
-    <!-- Enable configuration required by JASPIC TSSV (Test Suite SPI Verifier) -->
-    <target name="enable.tssv" depends="configPlatform">
-
-        <antcall target="copy.tssv.jar"/>
-        <antcall target="copy.tssv.config.files"/>
-
-        <antcall target="create.tssv.vm.options"/>
-
-        <!-- Restart server -->
-        <antcall target="restart.server" />
-
-        <!-- we need to deploy our jaspic log file processor -->
-        <fileset  id="jaspic_util"
-                  dir="${ts.home}/dist/"
-                  includes="com/sun/ts/tests/jaspic/util/jaspic_util_web.war"/>
-        <ts.glassfish.deploy>
-            <fileset refid="jaspic_util"/>
-        </ts.glassfish.deploy>
-    </target>
-
-
-    <!-- copy jaspic's tssv.jar (Test Suite SPI Verifier) to the instance lib dir  -->
-    <target name="copy.tssv.jar">
-        <copy file="${ts.home}/lib/tssv.jar" 
-              tofile="${javaee.home}/lib/tssv.jar" overwrite="yes" />
-    </target>
-
-
-    <!-- copy jaspic's tssv.config.files to the instance lib dir  -->
-    <target name="copy.tssv.config.files">
-       <translatepath propname="s1as.lib" />
-
-        <!-- copy ProviderConfiguration.xml file -->
-        <copy file="${ts.home}/src/com/sun/ts/tests/jaspic/tssv/config/ProviderConfiguration.xml" 
-              tofile="${provider.configuration.file}" overwrite="yes" />
-
-        <!-- copy provider-configuration.xsd file -->
-        <copy file="${ts.home}/src/com/sun/ts/tests/jaspic/tssv/config/provider-configuration.xsd" 
-              tofile="${schema.file.location}/provider-configuration.xsd" overwrite="yes" />
-
-    </target>
-
-
-    <target name="delete.tssv.jar">
-       <delete file="${javaee.home}/lib/tssv.jar" quiet="true"/>
-    </target>
-
-
-    <target name="delete.tssv.config.files">
-       <delete file="${javaee.home}/lib/tssv.jar" quiet="true"/>
-       <delete file="${provider.configuration.file}"   quiet="true"/>
-       <delete file="${schema.file.location}/provider-configuration.xsd"  quiet="true"/>
-    </target>
- 
-   
-    <!-- this creates jvm props that are needed to successfully run jaspic tests -->
-    <target name="create.tssv.vm.options" depends="configPlatform">
-
-         <!-- copy our security propertys that will get appended to system security props 
-              (eg java.security props) by use of: "java -Djava.security.properties=..." -->
-         <echo message="Copying jaspic security property file to ${s1as.domain}/${server.config.dir}/ts.java.security" />
-         <copy file="${bin.dir}/ts.java.security" 
-               tofile="${s1as.domain}/${server.config.dir}/ts.java.security" overwrite="yes" />
-
-         <antcall target="create-one-jvm-option" >
-             <param name="jvm.options" value=" -Djava.security.properties=${server.domain}/${server.config.dir}/ts.java.security"/>
-         </antcall>
-
-         <antcall target="create-one-jvm-option" >
-             <param name="jvm.options" value=" -Dschema.file.location=${schema.file.location}"/>
-         </antcall>
-
-         <antcall target="create-one-jvm-option" >
-             <param name="jvm.options" value=" -Dlog.file.location=${log.file.location}"/>
-         </antcall>
-
-         <antcall target="create-one-jvm-option" >
-          <param name="jvm.options" value=" -Dprovider.configuration.file=${provider.configuration.file}"/>
-         </antcall>
-
-         <antcall target="create-jvm-options" >
-          <param name="jvm.options" value=" -Djava.security.manager"/>
-         </antcall>
-
-    </target>
-
-
-    <!--
-       Disable the configuration required by TSSV (Test Suite SPI Verifier)
-    -->
-    <target name="disable.tssv" depends="configPlatform">
-        <!-- we need to deploy our jaspic log file processor -->
-        <fileset  id="jaspic_util"
-                  dir="${ts.home}/dist/"
-                  includes="com/sun/ts/tests/jaspic/util/jaspic_util_web.war"/>
-
-        <ts.glassfish.undeploy>
-            <fileset refid="jaspic_util"/>
-        </ts.glassfish.undeploy>
-
-        <antcall target="delete.tssv.vm.options"/>
-        <!-- Restart server -->
-        <antcall target="restart.server" />
-    </target>
-
-
-    <target name="delete.tssv.vm.options" depends="configPlatform">
-
-         <echo message="Removing jaspic security property file: ${s1as.domain}/${server.config.dir}/ts.java.security" />
-        <delete file="${s1as.domain}/${server.config.dir}/ts.java.security" quiet="true"/>
-
-        <antcall target="delete-one-jvm-option" >
-            <param name="jvm.options" value=" -Djava.security.properties=${s1as.asenv.loc}/ts.java.security"/>
-        </antcall>
-
-        <antcall target="delete-one-jvm-option" >
-            <param name="jvm.options" value=" -Dlog.file.location=${log.file.location}"/>
-        </antcall>
-
-        <antcall target="delete-one-jvm-option" >
-            <param name="jvm.options" value=" -Dprovider.configuration.file=${provider.configuration.file}"/>
-        </antcall>
-    </target>
-
-    <target name="enable.security.manager" depends="configPlatform">
-	  <antcall target="create-jvm-options" >
-        	<param name="jvm.options" value=" -Djava.security.manager"/>
-          </antcall>
-    </target>
-    <target name="disable.security.manager" depends="configPlatform">
-           <antcall target="delete-jvm-options" >
-                <param name="jvm.options" value=" -Djava.security.manager"/>
-           </antcall>
-    </target>
 
     <target name="start.javadb.asadmin"  depends="configPlatform">
         <exec executable="${exec.asadmin}" failifexecutionfails="false">

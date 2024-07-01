@@ -33,7 +33,6 @@
 
     <modules>
         <module>connector</module>
-        <module>jacc</module>
         <module>jaxws</module>
         <module>jms</module>
         <module>jsp</module>

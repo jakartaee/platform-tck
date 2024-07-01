@@ -77,10 +77,10 @@
   <property name="spec.stylesheet"           value="${ts.tools.home}/docs/xsl/assertions/spec_assertions.xsl"/>
   <property name="api.html.assertion.file"   value="api-assertions.html"/>
   <property name="spec.html.assertion.file"  value="spec-assertions.html"/>
-  <property name="srcdirs"  value="appclient,ejb,integration,jacc,jsf,jstl,assembly,
-                              ejb30,internal,jaspic,jdbc,jsonb,jta,saaj,concurrency,ejb32,
+  <property name="srcdirs"  value="appclient,ejb,integration,jsf,jstl,assembly,
+                              ejb30,internal,jdbc,jsonb,jta,saaj,concurrency,ejb32,
                               javaee,jaxrs,jms,jsonp,jws,samples,common,connector,el,javamail,servlet,
-                              webservices13,websocket,xa,jaxws,jpa,jsp,securityapi,webservices12"/>
+                              webservices13,websocket,xa,jaxws,jpa,jsp,webservices12"/>
  
   <taskdef resource="net/sf/antcontrib/antlib.xml"
              classpath="${ts.home}/lib/ant-contrib-1.0b3.jar"/>
@@ -311,10 +311,10 @@
   <!-- Removed Jakarta Deployment, jaxws, saaj and jws from the code coverage as the corresponding  -->
   <!-- tests are no more part of Java EE 8 CTS                                  -->
   <target name="all" depends="start.log,
-	                              jta,jdbc,ejb,connector,jaspic,
-	                              jsp,el,servlet,jms,jacc,javaee,jstl,jpa,
+	                              jta,jdbc,ejb,connector,
+	                              jsp,el,servlet,jms,javaee,jstl,jpa,
 	                              jaxrs,webservices,jsf,
-                                concurrency,websocket,securityapi">
+                                concurrency,websocket">
     <antcall target="generate.exec.summary"/>
     <antcall target="generate.index.page"/>
     <antcall target="set.permissions"/>
@@ -349,16 +349,6 @@
   <!--  Targets to create the assertion coverage numbers for each technology area   -->
   <!-- ############################################################################ -->
 
-  <target name="securityapi">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/securityapi_1_0/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/securityapi_1_0/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/securityapi/SecurityAPIJavadocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/securityapi/SecurityAPISpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/securityapi"/>
-    </antcall>
-  </target>
-
   <target name="javaee">
     <for param="srcdir" list="${srcdirs}"
                           trim="true" delimiter=",">
@@ -392,17 +382,6 @@
       <param name="api.assertions"    value="${ts.docs.dir}/connector/StandaloneConnectorAPIAssertions-nums.xml"/>
       <param name="test.src.dir"      value="/connector"/>
       <param name="filter.string"     value="Connector"/>
-    </antcall>
-  </target>
-
-  <target name="jaspic">
-    <antcall target="calculate.coverage">   
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/jaspic_1_1/spec"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/jaspic/JASPICSpecAssertions.xml"/>
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jaspic_1_1/api"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jaspic/JASPICJavadocAssertions.xml"/>
-      <param name="test.src.dir"      value="/jaspic"/>
-      <param name="filter.string"     value="JASPIC"/>
     </antcall>
   </target>
 
@@ -507,16 +486,6 @@
       <param name="api.assertions"    value="${ts.docs.dir}/servlet/ServletJavadocAssertions.xml"/>
       <param name="spec.assertions"   value="${ts.docs.dir}/servlet/ServletSpecAssertions.xml"/>
       <param name="test.src.dir"      value="/servlet"/>
-    </antcall>
-  </target>
-
-  <target name="jacc">
-    <antcall target="calculate.coverage">
-      <param name="api.coverage.dir"  value="${coverage.base.dir}/jacc_1_5/api"/>
-      <param name="spec.coverage.dir" value="${coverage.base.dir}/jacc_1_5/spec"/>
-      <param name="api.assertions"    value="${ts.docs.dir}/jacc/JACCJavaDocAssertions.xml"/>
-      <param name="spec.assertions"   value="${ts.docs.dir}/jacc/JACCSpecAssertions.xml"/>
-      <param name="test.src.dir"      value="/jacc"/>
     </antcall>
   </target>
 

@@ -42,8 +42,6 @@
 	     com/sun/ts/lib/deliverable/mgmt/**,
 	     com/sun/ts/lib/deliverable/jdbc/**,
 	     com/sun/ts/lib/deliverable/jaxws/**,
-	     com/sun/ts/tests/jaspic/spi/soap/**,
-	     com/sun/ts/tests/jaspic/spi/authstatus/**,
 	     com/sun/ts/tests/jaxws/build.xml,
 	     com/sun/ts/tests/jaxws/api/**,
 	     com/sun/ts/tests/jaxws/ee/**,
