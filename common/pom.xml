@@ -88,4 +88,19 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <!-- Include the container descriptors in the output artifact -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+                <excludes>
+                    <exclude>**/build.xml</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
 </project>
