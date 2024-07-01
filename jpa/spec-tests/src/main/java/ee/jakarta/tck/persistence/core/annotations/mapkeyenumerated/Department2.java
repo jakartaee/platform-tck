@@ -20,6 +20,7 @@ import java.util.Map;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.MapKeyEnumerated;
@@ -72,7 +73,7 @@ public class Department2 implements java.io.Serializable {
 
 	@OneToMany(mappedBy = "department")
 	@MapKeyColumn(name = "OFFICE_ID")
-	@MapKeyEnumerated()
+	@MapKeyEnumerated(EnumType.STRING)
 	public Map<Offices, Employee2> getLastNameEmployees() {
 		return lastNameEmployees;
 	}
