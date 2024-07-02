@@ -1,5 +1,6 @@
 <%--
 
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
     Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the

@@ -1,4 +1,6 @@
 <%--
+
+    Copyright (c) 2003, 2021 Oracle and/or its affiliates. All rights reserved.
     Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
@@ -10,8 +12,9 @@
     Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
     version 2 with the GNU Classpath Exception, which is available at
     https://www.gnu.org/software/classpath/license.html.
-    
+
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
 --%>
 
 <%@ page pageEncoding="UTF-8"%>
