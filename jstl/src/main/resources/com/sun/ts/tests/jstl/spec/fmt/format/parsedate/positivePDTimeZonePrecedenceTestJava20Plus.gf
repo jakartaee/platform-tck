@@ -21,24 +21,25 @@
       
         
       
-      Nov 21, 2000, 6:45 AM<br>
+      Nov 21, 2000, 6:45 AM<br>
 
       Not wrapped.  Page has a time zone of EST, timeZone attribute specified.  Time should be offset by 3 hours:<br>
       <br>
-      Nov 21, 2000, 6:45 AM<br>
+      Nov 21, 2000, 6:45 AM<br>
 
     <br>No TimeZone attribute specified:<br>
       Wrapped by &lt;fmt:timeZone&gt; action with MST.  Time should be offset by 2 hours:<br>
       
         <br>
       
-      Nov 21, 2000, 5:45 AM<br>
+      Nov 21, 2000, 5:45 AM<br>
       
       Not wrapped.  Page has a time zone of EST.  Time should not be offset:<br>
       <br>
-      Nov 21, 2000, 3:45 AM<br>
+      Nov 21, 2000, 3:45 AM<br>
     <br>
 
 </body>
 </html>
+
 
