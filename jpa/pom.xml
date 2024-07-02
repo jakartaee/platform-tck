@@ -20,13 +20,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
+        <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.9</version>
+        <version>11.0.0-SNAPSHOT</version>
     </parent>
     <groupId>jakarta.tck</groupId>
     <artifactId>persistence-tck</artifactId>
-    <version>3.2.0</version>
+    <version>3.2.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>persistence</name>
     <description>persistence tck tests</description>
@@ -39,11 +39,10 @@
         <module>tck-dist</module>
     </modules>
     <properties>
-        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <tck.version>${project.version}</tck.version>
         <jakarta.ee.version>11.0.0-M1</jakarta.ee.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <maven.compiler.release>17</maven.compiler.release>
+        <tck.version>${project.version}</tck.version>
     </properties>
     <dependencies>
         <dependency>
@@ -69,7 +68,7 @@
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <version>${project.version}</version>
+            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.annotation</groupId>
@@ -90,6 +89,19 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-api</artifactId>
+            <version>1.8.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-spi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.shrinkwrap</groupId>
