@@ -35,6 +35,7 @@
         <module>cdi-model-tck</module>
         <module>cdi-tck</module>
         <module>concurrency-tck</module>
+        <module>expression-language-tck</module>
         <module>jsonb-tck</module>
         <module>jsonp-tck</module>
         <module>pages-tck</module>
