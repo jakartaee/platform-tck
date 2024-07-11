@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -91,7 +92,20 @@ public class JSTLClient extends AbstractUrlClient {
    * difference).
    */
   public void positivePDTypeTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positivePDTypeTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDTypeTest");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTypeTestJava20Plus.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDTypeTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTypeTest.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDTypeTest.gf");
+    }
+
     invoke();
   }
 
@@ -110,7 +124,15 @@ public class JSTLClient extends AbstractUrlClient {
    */
   public void positivePDDateStyleTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positivePDDateStyleTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDDateStyleTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDDateStyleTestJava20Plus.jsp");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDDateStyleTest.jsp");
+    }
+
     TEST_PROPS.setProperty(STATUS_CODE, OK);
     invoke();
   }
@@ -129,7 +151,15 @@ public class JSTLClient extends AbstractUrlClient {
    */
   public void positivePDTimeStyleTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeStyleTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDTimeStyleTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeStyleTestJava20Plus.jsp");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeStyleTest.jsp");
+    }
+
     TEST_PROPS.setProperty(STATUS_CODE, OK);
     invoke();
   }
@@ -146,7 +176,15 @@ public class JSTLClient extends AbstractUrlClient {
    */
   public void positivePDParseLocaleTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positivePDParseLocaleTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDParseLocaleTest.jsp");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDParseLocaleTestJava20Plus.jsp");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDParseLocaleTest.jsp");
+    }
+
     TEST_PROPS.setProperty(STATUS_CODE, OK);
     invoke();
   }
@@ -221,7 +259,20 @@ public class JSTLClient extends AbstractUrlClient {
    * provided as body content to the action.
    */
   public void positivePDBodyValueTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positivePDBodyValueTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDBodyValueTest");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDBodyValueTestJava20Plus.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDBodyValueTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDBodyValueTest.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDBodyValueTest.gf");
+    }
+
     invoke();
   }
 
@@ -253,8 +304,19 @@ public class JSTLClient extends AbstractUrlClient {
    */
   public void positivePDLocalizationContextTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positivePDLocalizationContextTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDLocalizationContextTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positivePDLocalizationContextTest.gf");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDLocalizationContextTestJava20Plus.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDLocalizationContextTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDLocalizationContextTest.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDLocalizationContextTest.gf");
+    }
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en-US");
     invoke();
   }
@@ -270,8 +332,19 @@ public class JSTLClient extends AbstractUrlClient {
    */
   public void positivePDFallbackLocaleTest() throws Fault {
     TEST_PROPS.setProperty(TEST_NAME, "positivePDFallbackLocaleTest");
-    TEST_PROPS.setProperty(REQUEST, "positivePDFallbackLocaleTest.jsp");
-    TEST_PROPS.setProperty(GOLDENFILE, "positivePDFallbackLocaleTest.gf");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDFallbackLocaleTestJava20Plus.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDFallbackLocaleTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDFallbackLocaleTest.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDFallbackLocaleTest.gf");
+    }
+
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: xx-XX");
     invoke();
   }
@@ -303,7 +376,20 @@ public class JSTLClient extends AbstractUrlClient {
    * timezone difference).
    */
   public void positivePDTimeZoneTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positivePDTimeZoneTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeZoneTest");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZoneTestJava20Plus.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDTimeZoneTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZoneTest.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDTimeZoneTest.gf");
+    }
+
     invoke();
   }
 
@@ -318,7 +404,20 @@ public class JSTLClient extends AbstractUrlClient {
    * display (due to possible timezone difference).
    */
   public void positivePDTimeZoneNullEmptyTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positivePDTimeZoneNullEmptyTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeZoneNullEmptyTest");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZoneNullEmptyTestJava20Plus.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDTimeZoneNullEmptyTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZoneNullEmptyTest.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDTimeZoneNullEmptyTest.gf");
+    }
+
     invoke();
   }
 
@@ -337,7 +436,20 @@ public class JSTLClient extends AbstractUrlClient {
    * difference).
    */
   public void positivePDTimeZonePrecedenceTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positivePDTimeZonePrecedenceTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positivePDTimeZonePrecedenceTest");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZonePrecedenceTestJava20Plus.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDTimeZonePrecedenceTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(REQUEST,
+            "positivePDTimeZonePrecedenceTest.jsp");
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positivePDTimeZonePrecedenceTest.gf");
+    }
+
     invoke();
   }
 
@@ -354,5 +466,20 @@ public class JSTLClient extends AbstractUrlClient {
     TEST_PROPS.setProperty(REQUEST, "negativePDScopeNoVarTest.jsp");
     TEST_PROPS.setProperty(STATUS_CODE, INTERNAL_SERVER_ERROR);
     invoke();
+  }
+
+  private boolean isJavaVersion20OrGreater() {
+      boolean isJavaVersion20OrGreater = false;
+
+      String version = System.getProperty("java.version");
+      int majorVersionDot = version.indexOf(".");
+
+      version = version.substring(0, majorVersionDot);
+
+      if (Integer.parseInt(version) >= 20) {
+          isJavaVersion20OrGreater = true;
+      }
+
+      return isJavaVersion20OrGreater;
   }
 }

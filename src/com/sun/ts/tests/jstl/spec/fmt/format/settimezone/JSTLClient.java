@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -76,8 +77,18 @@ public class JSTLClient extends AbstractUrlClient {
    * America/Los_Angeles).
    */
   public void positiveSetTimezoneValueTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positiveSetTimezoneValueTest");
+    TEST_PROPS.setProperty(REQUEST, "positiveSetTimezoneValueTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveSetTimezoneValueTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveSetTimezoneValueTest.gf");
+    }
+
     invoke();
   }
 
@@ -119,8 +130,18 @@ public class JSTLClient extends AbstractUrlClient {
    * GMT+0 timezone is used by the formatting actions that rely on timezone.
    */
   public void positiveSetTimezoneValueNullEmptyTest() throws Fault {
-    TEST_PROPS.setProperty(STANDARD, "positiveSetTimezoneValueNullEmptyTest");
+    TEST_PROPS.setProperty(TEST_NAME, "positiveSetTimezoneValueNullEmptyTest");
+    TEST_PROPS.setProperty(REQUEST, "positiveSetTimezoneValueNullEmptyTest.jsp");
     TEST_PROPS.setProperty(REQUEST_HEADERS, "Accept-Language: en");
+
+    if (isJavaVersion20OrGreater()) {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveSetTimezoneValueNullEmptyTestJava20Plus.gf");
+    } else {
+        TEST_PROPS.setProperty(GOLDENFILE,
+            "positiveSetTimezoneValueNullEmptyTest.gf");
+    }
+
     invoke();
   }
 
@@ -152,4 +173,18 @@ public class JSTLClient extends AbstractUrlClient {
     invoke();
   }
 
+  private boolean isJavaVersion20OrGreater() {
+      boolean isJavaVersion20OrGreater = false;
+
+      String version = System.getProperty("java.version");
+      int majorVersionDot = version.indexOf(".");
+
+      version = version.substring(0, majorVersionDot);
+
+      if (Integer.parseInt(version) >= 20) {
+          isJavaVersion20OrGreater = true;
+      }
+
+      return isJavaVersion20OrGreater;
+  }
 }
