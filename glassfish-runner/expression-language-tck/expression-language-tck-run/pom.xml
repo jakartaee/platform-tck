@@ -20,14 +20,12 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.glassfish</groupId>
-        <artifactId>expression-language-tck</artifactId>
-        <version>6.0.0-SNAPSHOT</version>
-    </parent>
+    <!-- Don't use a parent. This test is very sensitive to what's on the classpath -->
 
+    <groupId>org.glassfish</groupId>
     <artifactId>expression-language-tck-run</artifactId>
     <packaging>jar</packaging>
+    <version>6.0.0</version>
 
     <name>expression-language-tck</name>
     <description>Aggregates dependencies and runs the Expression Language TCK using jars from GlassFish</description>
@@ -61,11 +59,28 @@
             <groupId>jakarta.tck</groupId>
             <artifactId>expression-language-tck</artifactId>
             <version>6.0.0</version>
+            <!-- Specially exclude el-api. Otherwise the test will test that one instead of the GF provided one.  -->
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+            <scope>test</scope>   
         </dependency>
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- Dependency for the API signature test -->
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
