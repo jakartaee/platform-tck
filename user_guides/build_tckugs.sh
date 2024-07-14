@@ -27,7 +27,7 @@ export PATH=$JAVA_HOME/bin:$M2_HOME/bin:$PATH
 cd ${WORKSPACE}
 export BASEDIR=`pwd`
 export USERGUIDEDIR=$BASEDIR/user_guides
-alltcks="caj el jacc jaspic jaxws jca jms jpa jsp jstl jta saaj servlet websocket"
+alltcks="caj el jaxws jca jms jpa jsp jstl jta saaj servlet websocket"
 
 cd $USERGUIDEDIR
 rm -rf $USERGUIDEDIR/tmp
