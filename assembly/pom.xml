@@ -63,6 +63,7 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                    <include>**/test.jsp</include>
                 </includes>
                 <excludes>
                     <exclude>**/build.xml</exclude>
