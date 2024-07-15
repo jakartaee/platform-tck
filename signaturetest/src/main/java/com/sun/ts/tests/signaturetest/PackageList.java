@@ -62,7 +62,7 @@ import java.util.TreeSet;
  * and returning any package name that starts with the parent package name and a
  * trailing period character.
  */
-class PackageList {
+public class PackageList {
 
   // Any line in the packageFile starting with this character is a comment
   private static final char COMMENT_CHAR = '#';

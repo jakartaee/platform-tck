@@ -96,7 +96,7 @@ public class JavaEESigTest extends SigTestEE {
           "jaxws", "jaxb", "jms", "javamail", "jacc", "jaspic",
           "wsmd"));
 
-  enum Containers {
+  public enum Containers {
     ejb, servlet, jsp, appclient 
   };
 

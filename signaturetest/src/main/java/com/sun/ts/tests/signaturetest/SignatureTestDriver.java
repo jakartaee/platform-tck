@@ -640,7 +640,7 @@ public abstract class SignatureTestDriver {
    * A simple data structure containing the fully qualified path to the
    * signature file as well as the version being tested.
    */
-  protected static class SignatureFileInfo {
+  public static class SignatureFileInfo {
 
     private String file;
 
