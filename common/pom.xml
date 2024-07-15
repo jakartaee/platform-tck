@@ -96,6 +96,8 @@
                 <includes>
                     <include>**/*.xml</include>
                     <include>**/*.properties</include>
+                    <include>**/*.jsp</include>
+                    <include>**/client.html</include>
                 </includes>
                 <excludes>
                     <exclude>**/build.xml</exclude>

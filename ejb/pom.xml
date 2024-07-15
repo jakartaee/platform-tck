@@ -67,6 +67,8 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                    <include>**/*.jsp</include>
+                    <include>**/client.html</include>
                 </includes>
                 <excludes>
                     <exclude>**/build.xml</exclude>
