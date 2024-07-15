@@ -203,15 +203,23 @@ public abstract class SigTestEE extends ServiceEETest {
    *           When an error occurs reading or saving the state information
    *           processed by this method.
    */
-  public void setup() throws Exception {
+  public void setup(String[] args, Properties p) throws Exception {
     try {
       TestUtil.logMsg("$$$ SigTestEE.setup() called");
-      this.testInfo = new SigTestData();
+      this.testInfo = new SigTestData(p);
       TestUtil.logMsg("$$$ SigTestEE.setup() complete");
     } catch (Exception e) {
       logErr("Unexpected exception " + e.getMessage());
       throw new Exception("setup failed!", e);
     }
+  }
+
+  /**
+   * calls {@link #setup(String[], Properties)} with null and System.getProperties()
+   * @throws Exception
+   */
+  public void setup() throws Exception {
+    setup(null, System.getProperties());
   }
 
   /**
