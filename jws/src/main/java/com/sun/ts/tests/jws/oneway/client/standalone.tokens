@@ -1,6 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwsonewaywebservice")
-SERVICE=com.sun.ts.tests.jws.oneway.client.OnewayWebServiceService
-URLALIAS=/jws/OnewayWebService
-SERVICEREFNAMEWSSERVLET=service/wsjwsonewaywebservice
-SERVICEREFNAMEWSEJB=service/wsjwsonewaywebservice
-SERVICEREFNAMEWSAPPCLIENT=service/wsjwsonewaywebservice
