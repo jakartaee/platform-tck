@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/WSW2JRLR1141TestService")
+SERVICE=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1141.W2JRLR1141TestService
+IMPL=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1141.HelloImpl
+SEI=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1141.Hello
+NAMESPACEURI=http://w2jrlr1141testservice.org/wsdl
+PORT=HelloPort
+URLALIAS=/jaxws/Hello
+SERVLETNAME=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R1141.HelloImpl
+WEBSERVICEDESCRIPTION=W2JRLR1141TestService
+SERVICEREFNAMEWSSERVLET=service/WSW2JRLR1141TestService
+SERVICEREFNAMEWSEJB=service/WSW2JRLR1141TestService
+SERVICEREFNAMEWSAPPCLIENT=service/WSW2JRLR1141TestService

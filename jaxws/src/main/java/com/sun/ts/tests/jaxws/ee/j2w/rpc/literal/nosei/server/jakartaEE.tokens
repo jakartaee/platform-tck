@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsj2wrlechoservice")
+SERVICE=com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.nosei.server.EchoService
+IMPL=com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.nosei.server.EchoImpl
+SEI=com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.nosei.server.Echo
+NAMESPACEURI=http://echo.org/wsdl
+PORT=EchoPort
+URLALIAS=/jaxws/Echo
+SERVLETNAME=com.sun.ts.tests.jaxws.ee.j2w.rpc.literal.nosei.server.EchoImpl
+WEBSERVICEDESCRIPTION=EchoService
+SERVICEREFNAMEWSSERVLET=service/wsj2wrlechoservice
+SERVICEREFNAMEWSEJB=service/wsj2wrlechoservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsj2wrlechoservice

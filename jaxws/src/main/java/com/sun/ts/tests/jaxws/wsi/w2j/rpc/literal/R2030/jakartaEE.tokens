@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/WSW2JRLR2030TestService")
+SERVICE=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2030.W2JRLR2030TestService
+IMPL=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2030.W2JRLR2030TestImpl
+SEI=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2030.W2JRLR2030Test
+NAMESPACEURI=http://w2jrlr2030testservice.org/W2JRLR2030TestService.wsdl
+PORT=W2JRLR2030TestPort
+URLALIAS=/jaxws/W2JRLR2030Test
+SERVLETNAME=com.sun.ts.tests.jaxws.wsi.w2j.rpc.literal.R2030.W2JRLR2030TestImpl
+WEBSERVICEDESCRIPTION=W2JRLR2030TestService
+SERVICEREFNAMEWSSERVLET=service/WSW2JRLR2030TestService
+SERVICEREFNAMEWSEJB=service/WSW2JRLR2030TestService
+SERVICEREFNAMEWSAPPCLIENT=service/WSW2JRLR2030TestService

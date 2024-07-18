@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+    name="MTOMTestService"
+    targetNamespace="http://mtomservice.org/wsdl"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:tns="http://mtomservice.org/wsdl"
+    xmlns:s="http://mtomservice.org/xsd"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+    <types>
+          <schema xmlns="http://www.w3.org/2001/XMLSchema"
+               targetNamespace="http://mtomservice.org/xsd"
+               xmlns:xmime="http://www.w3.org/2005/05/xmlmime" 
+               elementFormDefault="qualified">
+                 <complexType name="DataType">
+                     <sequence>
+                         <element name="docName" type="string"/>
+                         <element name="docUrl" type="string"/>
+                         <element name="doc" type="base64Binary" xmime:expectedContentTypes="text/xml"/>
+                         <element name="doc2" type="base64Binary" xmime:expectedContentTypes="image/jpeg"/>
+                     </sequence>
+                 </complexType>
+                 <element name="MTOMIn" type="s:DataType"/>
+                 <element name="MTOMInResponse" type="xsd:string"/>
+          </schema>
+    </types>
+    <message name="MTOMInRequest">
+        <part name="data" element="s:MTOMIn"/>
+    </message>
+    <message name="MTOMInResponse">
+        <part name="result" element="s:MTOMInResponse"/>
+    </message>
+    <message name="MTOMIn2000Request">
+        <part name="data" element="s:MTOMIn"/>
+    </message>
+    <message name="MTOMIn2000Response">
+        <part name="data" element="s:MTOMInResponse"/>
+    </message>
+
+     <!-- mtom is enabled in endpoint -->
+     <portType name="MTOMTest1">
+          <operation name="MTOMIn">
+               <input message="tns:MTOMInRequest" />
+               <output message="tns:MTOMInResponse" />
+          </operation>
+     </portType>
+
+     <!-- mtom is disabled in endpoint -->
+     <portType name="MTOMTest2">
+          <operation name="MTOMIn">
+               <input message="tns:MTOMInRequest" />
+               <output message="tns:MTOMInResponse" />
+          </operation>
+     </portType>
+
+     <!-- mtom is enabled in endpoint, threshold set to 2000 -->
+     <portType name="MTOMTest3">
+          <operation name="MTOMIn2000">
+               <input message="tns:MTOMIn2000Request" />
+               <output message="tns:MTOMIn2000Response" />
+          </operation>
+     </portType>
+
+     <!-- mtom is disabled in endpoint, threshold set to 2000 -->
+     <portType name="MTOMTest4">
+          <operation name="MTOMIn2000">
+               <input message="tns:MTOMIn2000Request" />
+               <output message="tns:MTOMIn2000Response" />
+          </operation>
+     </portType>
+
+     <binding name="MTOMBinding1" type="tns:MTOMTest1">
+          <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+          <operation name="MTOMIn">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+     </binding>
+
+     <binding name="MTOMBinding2" type="tns:MTOMTest2">
+          <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+          <operation name="MTOMIn">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+     </binding>
+
+     <binding name="MTOMBinding3" type="tns:MTOMTest3">
+          <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+          <operation name="MTOMIn2000">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+     </binding>
+
+     <binding name="MTOMBinding4" type="tns:MTOMTest4">
+          <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+          <operation name="MTOMIn2000">
+               <soap:operation soapAction=""/>
+               <input>
+                    <soap:body use="literal"/>
+               </input>
+               <output>
+                    <soap:body use="literal"/>
+               </output>
+          </operation>
+     </binding>
+
+  <service name="MTOMTestService">
+    <port name="MTOMTest1Port" binding="tns:MTOMBinding1">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+    <port name="MTOMTest2Port" binding="tns:MTOMBinding2">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+    <port name="MTOMTest3Port" binding="tns:MTOMBinding3">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+    <port name="MTOMTest4Port" binding="tns:MTOMBinding4">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+  </service>
+</definitions>

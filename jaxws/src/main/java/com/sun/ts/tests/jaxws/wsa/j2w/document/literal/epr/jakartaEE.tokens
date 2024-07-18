@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsaj2wdleprtest")
+SERVICE=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr.AddNumbersService
+IMPL=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr.AddNumbersImpl
+SEI=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr.AddNumbers
+NAMESPACEURI=http://foobar.org/
+PORT=AddNumbersPort
+URLALIAS=/jaxws/AddNumbers
+SERVLETNAME=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.epr.AddNumbersImpl
+WEBSERVICEDESCRIPTION=AddNumbersService
+SERVICEREFNAMEWSSERVLET=service/wsaj2wdleprtest
+SERVICEREFNAMEWSEJB=service/wsaj2wdleprtest
+SERVICEREFNAMEWSAPPCLIENT=service/wsaj2wdleprtest

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="WSEjbPkgInWarUnderWebInfTest" basedir="." default="usage">
+  <property name="app.name" value="WSEjbPkgInWarUnderWebInfTest"/>
+  <property name="client.app.name" value="WSEjbPkgInWarUnderWebInfTestClnt"/>
+  <property name="wsdl.filename" value="HelloService.wsdl"/>
+
+  <import file="../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+  <property name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+
+  <target name="-precompile">
+    <antcall  target="do_wsdl2java_generate_server"/>
+  </target>
+
+  <target name="package" >
+      <ts.war archivename="${app.name}" excludedfiles="${pkg.dir}/HelloService.class, ${pkg.dir}/Client.class">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}"  prefix="WEB-INF/wsdl" />
+	<zipfileset dir="${class.dir}" includes="
+	    ${pkg.dir}/Hello.class,
+	    ${pkg.dir}/HelloIF.class,
+	    ${pkg.dir}/HelloBean.class,
+            com/sun/ts/tests/jaxws/common/JAXWS_Util.class,
+            com/sun/ts/tests/jaxws/common/JAXWS_Data.class" prefix="WEB-INF/classes"/>
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="ejb-jar.xml"  prefix="WEB-INF" />
+      </ts.war>
+      <ts.ear archivename="${app.name}" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war"/>
+      </ts.ear>
+
+      <ts.clientjar archivename="${client.app.name}" mainclass="com.sun.ts.tests.webservices13.ejb.annotations.WSEjbPkgInWarUnderWebInfTest.Client" excludedfiles="${pkg.dir}/HelloBean.class">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}"  prefix="META-INF/wsdl" />
+	<zipfileset dir="${class.dir}" includes="
+	    ${pkg.dir}/Hello.class,
+	    ${pkg.dir}/HelloIF.class,
+	    ${pkg.dir}/HelloService.class,
+            com/sun/ts/tests/jaxws/common/JAXWS_Util.class,
+            com/sun/ts/tests/jaxws/common/JAXWS_Data.class" />
+      </ts.clientjar>
+      <ts.ear archivename="${client.app.name}" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar"/>
+      </ts.ear>
+      <delete file="application.xml" />
+  </target>
+
+</project>

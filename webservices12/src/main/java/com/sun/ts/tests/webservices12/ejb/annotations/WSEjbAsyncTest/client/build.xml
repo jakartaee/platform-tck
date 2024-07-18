@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="webservices12_ejb_annotatons_WSEjbAsyncTest_client" basedir="." default="usage">
+  <property name="app.name" value="WSEjbAsyncTest"/>
+  <property name="client.app.name" value="WSEjbAsyncTestClnt"/>
+  <property name="wsdl.filename" value="HelloService.wsdl"/>
+  <property name="service.names" value="HelloService"/>
+  <property name="sei.names" value="Hello"/>
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+
+  <property name="client.class" value="com.sun.ts.tests.webservices12.ejb.annotations.WSEjbAsyncTest.client.Client"/>
+  <property name="common.classes" value="${jaxws.common.classes}"/>
+  <property name="dependency.dir" value="${src.dir}/com/sun/ts/tests/webservices12/ejb/annotations/WSEjbAsyncTest/server"/>
+
+     <target name="-precompile">
+         <echo message="Building dependency dir: ${dependency.dir}"/>
+         <ant dir="${dependency.dir}" target="build" inheritAll="false"/>
+         <copy_wsdl_xsd_from_dependency_dir/>
+         <antcall  target="do_wsdl2java_generate_client">
+           <param name="customization.binding.files" value="customfile-client.xml"/>
+         </antcall>
+     </target>
+
+
+  <target name="package" >
+      <ts.clientjar archivename="${client.app.name}" mainclass="com.sun.ts.tests.webservices12.ejb.annotations.WSEjbAsyncTest.client.Client">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}"  prefix="META-INF/wsdl" />
+	<zipfileset dir="${class.dir}" includes="
+	    ${pkg.dir}/*.class,
+            com/sun/ts/tests/jaxws/common/JAXWS_Util.class,
+            com/sun/ts/tests/jaxws/common/JAXWS_Data.class" />
+      </ts.clientjar>
+      <ts.ear archivename="${client.app.name}">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar"/>
+      </ts.ear>
+  </target>
+
+</project>

@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jdleprinwsdltest")
+SERVICE=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.eprinwsdl.EPRInWsdlTestService
+SEI=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.eprinwsdl.Test1
+IMPL=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.eprinwsdl.TestImpl1
+SERVLETNAME=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.eprinwsdl.TestImpl1
+URLALIAS=/jaxws/Test1
+NAMESPACEURI=http://eprinwsdltestservice.org/wsdl
+PORT=Test1Port
+WEBSERVICEDESCRIPTION=WSAEPRInWsdlTestService
+SERVICEREFNAMEWSSERVLET=service/wsw2jdleprinwsdltest
+SERVICEREFNAMEWSEJB=service/wsw2jdleprinwsdltest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jdleprinwsdltest

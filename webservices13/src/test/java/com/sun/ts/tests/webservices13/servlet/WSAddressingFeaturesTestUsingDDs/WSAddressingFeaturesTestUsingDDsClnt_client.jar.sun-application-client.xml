@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-application-client PUBLIC "-//Sun Microsystems, Inc.//DTD GlassFish Application Server 3.0 Application Client 6.0//EN" "http://www.sun.com/software/appserver/dtds/sun-application-client_6_0-0.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<sun-application-client>
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsdefaultechoport</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>EchoPort</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsenabledechoport</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>EchoPort</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsrequiredechoport</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>EchoPort</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsdisabledechoport</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>EchoPort</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsdefaultecho2port</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo2</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>Echo2Port</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsenabledecho2port</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo2</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>Echo2Port</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsrequiredecho2port</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo2</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>Echo2Port</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsdisabledecho2port</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo2</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>Echo2Port</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsanonymousecho3port</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo3</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>Echo3Port</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+
+  <service-ref>
+    <service-ref-name>service/wsaddrfeaturestestusingddsnonanonymousecho4port</service-ref-name>
+    <port-info>
+      <service-endpoint-interface>com.sun.ts.tests.webservices13.servlet.WSAddressingFeaturesTestUsingDDs.Echo4</service-endpoint-interface>
+      <wsdl-port>
+        <namespaceURI>http://Echo.org</namespaceURI>
+        <localpart>Echo4Port</localpart>
+      </wsdl-port>
+    </port-info>
+    <wsdl-override>http://webServerHost.1:webServerPort.1/WSAddressingFeaturesTestUsingDDs_web/jaxws/Echo?WSDL</wsdl-override>
+  </service-ref>
+</sun-application-client>

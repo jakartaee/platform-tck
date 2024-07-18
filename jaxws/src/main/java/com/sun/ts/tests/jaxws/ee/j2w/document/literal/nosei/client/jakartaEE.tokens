@@ -1,0 +1,6 @@
+WSRAnn=@WebServiceRef(name="service/wsj2wdlechoservice")
+SERVICE=com.sun.ts.tests.jaxws.ee.j2w.document.literal.nosei.client.EchoService
+URLALIAS=/jaxws/Echo
+SERVICEREFNAMEWSSERVLET=service/wsj2wdlechoservice
+SERVICEREFNAMEWSEJB=service/wsj2wdlechoservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsj2wdlechoservice

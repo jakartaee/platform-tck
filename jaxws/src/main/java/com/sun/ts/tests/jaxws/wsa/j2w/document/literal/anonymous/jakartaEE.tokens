@@ -1,0 +1,19 @@
+WSREFSEJBCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSAJ2WDLAnonymousTest3", type=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersService3.class, wsdlLocation="META-INF/wsdl/AddNumbersService3.wsdl"), @WebServiceRef(name="service/WSAJ2WDLAnonymousTest4", type=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersService4.class, wsdlLocation="META-INF/wsdl/AddNumbersService4.wsdl")})
+
+WSREFSAPPCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSAJ2WDLAnonymousTest3", type=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersService3.class, wsdlLocation="META-INF/wsdl/AddNumbersService3.wsdl"), @WebServiceRef(name="service/WSAJ2WDLAnonymousTest4", type=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersService4.class, wsdlLocation="META-INF/wsdl/AddNumbersService4.wsdl")})
+
+WSREFSWEBCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSAJ2WDLAnonymousTest3", type=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersService3.class, wsdlLocation="WEB-INF/wsdl/AddNumbersService3.wsdl"), @WebServiceRef(name="service/WSAJ2WDLAnonymousTest4", type=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersService4.class, wsdlLocation="WEB-INF/wsdl/AddNumbersService4.wsdl")})
+
+SERVICE=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersService3
+SERVICE2=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersService4
+SEI=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersPortType3
+SEI2=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersPortType4
+IMPL=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl3
+IMPL2=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl4
+URLALIAS=/jaxws/AddNumbers3
+URLALIAS2=/jaxws/AddNumbers4
+SERVLETNAME=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl3
+SERVLETNAME2=com.sun.ts.tests.jaxws.wsa.j2w.document.literal.anonymous.AddNumbersImpl4
+NAMESPACEURI=http://example.com/
+PORT=AddNumbersPort3
+PORT2=AddNumbersPort4

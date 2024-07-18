@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jrlhttpservletmsgctxpropstest")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTestService
+SEI=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTest
+IMPL=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTestImpl
+NAMESPACEURI=http://httptestservice.org/wsdl
+PORT=HttpTestPort
+URLALIAS=/jaxws/HttpTest
+SERVLETNAME=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httpservletmsgctxpropstest.HttpTestImpl
+WEBSERVICEDESCRIPTION=HttpTestService
+SERVICEREFNAMEWSSERVLET=service/wsw2jrlhttpservletmsgctxpropstest
+SERVICEREFNAMEWSEJB=service/wsw2jrlhttpservletmsgctxpropstest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jrlhttpservletmsgctxpropstest

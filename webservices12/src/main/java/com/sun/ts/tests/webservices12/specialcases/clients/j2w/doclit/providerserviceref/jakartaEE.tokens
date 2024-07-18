@@ -1,0 +1,10 @@
+WSRAnn=@WebServiceRef(name="service/MyProviderService")
+SERVICE=endpoint.jaxws.HelloService
+SEI=endpoint.jaxws.Hello
+NAMESPACEURI=http://endpoint/jaxws
+PORT=HelloPort
+URLALIAS=/jaxws/Hello
+WEBSERVICEDESCRIPTION=HelloService
+SERVICEREFNAMEWSSERVLET=service/MyProviderService
+SERVICEREFNAMEWSEJB=service/MyProviderService
+SERVICEREFNAMEWSAPPCLIENT=service/MyProviderService

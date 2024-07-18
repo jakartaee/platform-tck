@@ -1,0 +1,15 @@
+WSRAnn=@WebServiceRef(name="service/WSW2JDLR2709TestService")
+SERVICE=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709TestService
+IMPL=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709TestImpl
+SEI=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709Test
+SEI2=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709TestZero
+SEI3=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709TestOne
+SEI4=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709TestTwo
+NAMESPACEURI=http://w2jdlr2709testservice.org/W2JDLR2709TestService.wsdl
+PORT=W2JDLR2709TestPort
+URLALIAS=/jaxws/W2JDLR2709Test
+SERVLETNAME=com.sun.ts.tests.jaxws.wsi.w2j.document.literal.R2709.W2JDLR2709TestImpl
+WEBSERVICEDESCRIPTION=W2JDLR2709TestService
+SERVICEREFNAMEWSSERVLET=service/WSW2JDLR2709TestService
+SERVICEREFNAMEWSEJB=service/WSW2JDLR2709TestService
+SERVICEREFNAMEWSAPPCLIENT=service/WSW2JDLR2709TestService

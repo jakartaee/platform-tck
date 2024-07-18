@@ -1,0 +1,151 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+  name="HelloTest"
+  targetNamespace="http://helloservice.org/wsdl"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:types="http://helloservice.org/types"
+  xmlns:tns="http://helloservice.org/wsdl">
+  
+  <types>
+    <xsd:schema
+        targetNamespace="http://helloservice.org/types"
+        attributeFormDefault="qualified"
+        elementFormDefault="qualified">
+
+      <xsd:element name="HelloRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="HelloResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="HelloOneWayRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:schema>
+  </types>
+
+  <message name="HelloRequest">
+    <part name="parameters" element="types:HelloRequest"/>
+  </message>
+  
+  <message name="HelloResponse">
+    <part name="parameters" element="types:HelloResponse"/>
+  </message>  
+
+  <message name="HelloOneWayRequest">
+    <part name="parameters" element="types:HelloOneWayRequest"/>
+  </message>
+
+  <portType name="Hello">
+    <operation name="hello">
+      <input message="tns:HelloRequest"/>
+      <output message="tns:HelloResponse"/>
+    </operation>  
+    <operation name="helloOneWay">
+      <input message="tns:HelloOneWayRequest"/>
+    </operation>  
+  </portType>
+  <portType name="Hello2">
+    <operation name="hello">
+      <input message="tns:HelloRequest"/>
+      <output message="tns:HelloResponse"/>
+    </operation>  
+  </portType>
+  <portType name="Hello3">
+    <operation name="hello">
+      <input message="tns:HelloRequest"/>
+      <output message="tns:HelloResponse"/>
+    </operation>  
+  </portType>
+  
+  <binding name="HelloBinding" type="tns:Hello">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="hello">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+    <operation name="helloOneWay">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+    </operation>      
+  </binding>
+    
+  <binding name="Hello2Binding" type="tns:Hello2">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="hello">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+  </binding>
+    
+  <binding name="Hello3Binding" type="tns:Hello3">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="hello">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>      
+  </binding>
+  <service name="HelloService">
+    <port name="HelloPort" binding="tns:HelloBinding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+    <port name="Hello2Port" binding="tns:Hello2Binding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+    <port name="Hello3Port" binding="tns:Hello3Binding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+  </service>
+  
+</definitions>

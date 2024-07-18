@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+ xmlns="http://schemas.xmlsoap.org/wsdl/"
+ xmlns:tns="http://holdertest.org/wsdl"
+ xmlns:txs="http://holdertest.org/xsd"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ name="HolderTestService"
+ targetNamespace="http://holdertest.org/wsdl">
+
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://holdertest.org/xsd">
+      <xsd:element name="ArrayOfString">
+        <complexType>
+          <sequence>
+            <element name="arrayOfString" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfInteger">
+        <complexType>
+          <sequence>
+            <element name="arrayOfInteger" type="xsd:integer" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfInt">
+        <complexType>
+          <sequence>
+            <element name="arrayOfInt" type="xsd:int" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfLong">
+        <complexType>
+          <sequence>
+            <element name="arrayOfLong" type="xsd:long" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfShort">
+        <complexType>
+          <sequence>
+            <element name="arrayOfShort" type="xsd:short" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfDecimal">
+        <complexType>
+          <sequence>
+            <element name="arrayOfDecimal" type="xsd:decimal" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfFloat">
+        <complexType>
+          <sequence>
+            <element name="arrayOfFloat" type="xsd:float" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfDouble">
+        <complexType>
+          <sequence>
+            <element name="arrayOfDouble" type="xsd:double" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfBoolean">
+        <complexType>
+          <sequence>
+            <element name="arrayOfBoolean" type="xsd:boolean" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfByte">
+        <complexType>
+          <sequence>
+            <element name="arrayOfByte" type="xsd:byte" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfQName">
+        <complexType>
+          <sequence>
+            <element name="arrayOfQName" type="xsd:QName" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ArrayOfDateTime">
+        <complexType>
+          <sequence>
+            <element name="arrayOfDateTime" type="xsd:dateTime" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="Book">
+        <complexType>
+          <sequence>
+            <element name="author" type="string" />
+            <element name="title" type="string" />
+            <element name="isbn" type="int" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      
+      <xsd:element name="ArrayOfBook">
+        <complexType>
+          <sequence>
+            <element ref="txs:Book" minOccurs="0" maxOccurs="unbounded" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="StringElement">
+        <complexType>
+          <sequence>
+            <element name="string" type="xsd:string" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="IntegerElement">
+        <complexType>
+          <sequence>
+            <element name="integer" type="xsd:integer" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="IntElement">
+        <complexType>
+          <sequence>
+            <element name="int" type="xsd:int" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="LongElement">
+        <complexType>
+          <sequence>
+            <element name="long" type="xsd:long" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ShortElement">
+        <complexType>
+          <sequence>
+            <element name="short" type="xsd:short" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="DecimalElement">
+        <complexType>
+          <sequence>
+            <element name="decimal" type="xsd:decimal" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="FloatElement">
+        <complexType>
+          <sequence>
+            <element name="float" type="xsd:float" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="DoubleElement">
+        <complexType>
+          <sequence>
+            <element name="double" type="xsd:double" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="BooleanElement">
+        <complexType>
+          <sequence>
+            <element name="boolean" type="xsd:boolean" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="ByteElement">
+        <complexType>
+          <sequence>
+            <element name="byte" type="xsd:byte" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="QNameElement">
+        <complexType>
+          <sequence>
+            <element name="QName" type="xsd:QName" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+      <xsd:element name="DateTimeElement">
+        <complexType>
+          <sequence>
+            <element name="dateTime" type="xsd:dateTime" />
+          </sequence>
+        </complexType>
+      </xsd:element>
+    </schema>
+  </types>
+  <!-- ############################################################################### -->
+  <!-- These are used in conjuction with the Holder tests               			-->
+  <!-- ############################################################################### -->
+  <!-- IN/OUT parameter -->
+  <message name="inoutStringTypesRequest">
+    <part name="varString" element="txs:StringElement" />
+  </message>
+  <message name="inoutIntegerTypesRequest">
+    <part name="varInteger" element="txs:IntegerElement" />
+  </message>
+  <message name="inoutIntTypesRequest">
+    <part name="varInt" element="txs:IntElement" />
+  </message>
+  <message name="inoutLongTypesRequest">
+    <part name="varLong" element="txs:LongElement" />
+  </message>
+  <message name="inoutShortTypesRequest">
+    <part name="varShort" element="txs:ShortElement" />
+  </message>
+  <message name="inoutDecimalTypesRequest">
+    <part name="varDecimal" element="txs:DecimalElement" />
+  </message>
+  <message name="inoutFloatTypesRequest">
+    <part name="varFloat" element="txs:FloatElement" />
+  </message>
+  <message name="inoutDoubleTypesRequest">
+    <part name="varDouble" element="txs:DoubleElement" />
+  </message>
+  <message name="inoutBooleanTypesRequest">
+    <part name="varBoolean" element="txs:BooleanElement" />
+  </message>
+  <message name="inoutByteTypesRequest">
+    <part name="varByte" element="txs:ByteElement" />
+  </message>
+  <message name="inoutQNameTypesRequest">
+    <part name="varQName" element="txs:QNameElement" />
+  </message>
+  <message name="inoutDateTimeTypesRequest">
+    <part name="varDateTime" element="txs:DateTimeElement" />
+  </message>
+  <message name="inoutStringTypesResponse">
+    <part name="varString" element="txs:StringElement" />
+  </message>
+  <message name="inoutIntegerTypesResponse">
+    <part name="varInteger" element="txs:IntegerElement" />
+  </message>
+  <message name="inoutIntTypesResponse">
+    <part name="varInt" element="txs:IntElement" />
+  </message>
+  <message name="inoutLongTypesResponse">
+    <part name="varLong" element="txs:LongElement" />
+  </message>
+  <message name="inoutShortTypesResponse">
+    <part name="varShort" element="txs:ShortElement" />
+  </message>
+  <message name="inoutDecimalTypesResponse">
+    <part name="varDecimal" element="txs:DecimalElement" />
+  </message>
+  <message name="inoutFloatTypesResponse">
+    <part name="varFloat" element="txs:FloatElement" />
+  </message>
+  <message name="inoutDoubleTypesResponse">
+    <part name="varDouble" element="txs:DoubleElement" />
+  </message>
+  <message name="inoutBooleanTypesResponse">
+    <part name="varBoolean" element="txs:BooleanElement" />
+  </message>
+  <message name="inoutByteTypesResponse">
+    <part name="varByte" element="txs:ByteElement" />
+  </message>
+  <message name="inoutQNameTypesResponse">
+    <part name="varQName" element="txs:QNameElement" />
+  </message>
+  <message name="inoutDateTimeTypesResponse">
+    <part name="varDateTime" element="txs:DateTimeElement" />
+  </message>
+
+  <message name="inoutArrayStringTypesRequest">
+    <part name="varString" element="txs:ArrayOfString" />
+  </message>
+  <message name="inoutArrayIntegerTypesRequest">
+    <part name="varInteger" element="txs:ArrayOfInteger" />
+  </message>
+  <message name="inoutArrayIntTypesRequest">
+    <part name="varInt" element="txs:ArrayOfInt" />
+  </message>
+  <message name="inoutArrayLongTypesRequest">
+    <part name="varLong" element="txs:ArrayOfLong" />
+  </message>
+  <message name="inoutArrayShortTypesRequest">
+    <part name="varShort" element="txs:ArrayOfShort" />
+  </message>
+  <message name="inoutArrayDecimalTypesRequest">
+    <part name="varDecimal" element="txs:ArrayOfDecimal" />
+  </message>
+  <message name="inoutArrayFloatTypesRequest">
+    <part name="varFloat" element="txs:ArrayOfFloat" />
+  </message>
+  <message name="inoutArrayDoubleTypesRequest">
+    <part name="varDouble" element="txs:ArrayOfDouble" />
+  </message>
+  <message name="inoutArrayBooleanTypesRequest">
+    <part name="varBoolean" element="txs:ArrayOfBoolean" />
+  </message>
+  <message name="inoutArrayByteTypesRequest">
+    <part name="varByte" element="txs:ArrayOfByte" />
+  </message>
+  <message name="inoutArrayQNameTypesRequest">
+    <part name="varQName" element="txs:ArrayOfQName" />
+  </message>
+  <message name="inoutArrayDateTimeTypesRequest">
+    <part name="varDateTime" element="txs:ArrayOfDateTime" />
+  </message>
+
+  <message name="inoutArrayStringTypesResponse">
+    <part name="varString" element="txs:ArrayOfString" />
+  </message>
+  <message name="inoutArrayIntegerTypesResponse">
+    <part name="varInteger" element="txs:ArrayOfInteger" />
+  </message>
+  <message name="inoutArrayIntTypesResponse">
+    <part name="varInt" element="txs:ArrayOfInt" />
+  </message>
+  <message name="inoutArrayLongTypesResponse">
+    <part name="varLong" element="txs:ArrayOfLong" />
+  </message>
+  <message name="inoutArrayShortTypesResponse">
+    <part name="varShort" element="txs:ArrayOfShort" />
+  </message>
+  <message name="inoutArrayDecimalTypesResponse">
+    <part name="varDecimal" element="txs:ArrayOfDecimal" />
+  </message>
+  <message name="inoutArrayFloatTypesResponse">
+    <part name="varFloat" element="txs:ArrayOfFloat" />
+  </message>
+  <message name="inoutArrayDoubleTypesResponse">
+    <part name="varDouble" element="txs:ArrayOfDouble" />
+  </message>
+  <message name="inoutArrayBooleanTypesResponse">
+    <part name="varBoolean" element="txs:ArrayOfBoolean" />
+  </message>
+  <message name="inoutArrayByteTypesResponse">
+    <part name="varByte" element="txs:ArrayOfByte" />
+  </message>
+  <message name="inoutArrayQNameTypesResponse">
+    <part name="varQName" element="txs:ArrayOfQName" />
+  </message>
+  <message name="inoutArrayDateTimeTypesResponse">
+    <part name="varDateTime" element="txs:ArrayOfDateTime" />
+  </message>
+
+
+
+  <message name="inoutBookRequest">
+    <part name="varBook" element="txs:Book" />
+  </message>
+  <message name="inoutBookResponse">
+    <part name="varBook" element="txs:Book" />
+  </message>
+  <message name="inoutBookArrayRequest">
+    <part name="varBook" element="txs:ArrayOfBook" />
+  </message>
+  <message name="inoutBookArrayResponse">
+    <part name="varBook" element="txs:ArrayOfBook" />
+  </message>
+  <portType name="HolderTest">
+    <operation name="echoInOutStringTypes" parameterOrder="varString">
+      <input message="tns:inoutStringTypesRequest"/>
+      <output message="tns:inoutStringTypesResponse"/>
+    </operation>
+    <operation name="echoInOutIntegerTypes" parameterOrder="varInteger">
+      <input message="tns:inoutIntegerTypesRequest"/>
+      <output message="tns:inoutIntegerTypesResponse"/>
+    </operation>
+    <operation name="echoInOutIntTypes" parameterOrder="varInt">
+      <input message="tns:inoutIntTypesRequest"/>
+      <output message="tns:inoutIntTypesResponse"/>
+    </operation>
+    <operation name="echoInOutLongTypes" parameterOrder="varLong">
+      <input message="tns:inoutLongTypesRequest"/>
+      <output message="tns:inoutLongTypesResponse"/>
+    </operation>
+    <operation name="echoInOutShortTypes" parameterOrder="varShort">
+      <input message="tns:inoutShortTypesRequest"/>
+      <output message="tns:inoutShortTypesResponse"/>
+    </operation>
+    <operation name="echoInOutDecimalTypes" parameterOrder="varDecimal">
+      <input message="tns:inoutDecimalTypesRequest"/>
+      <output message="tns:inoutDecimalTypesResponse"/>
+    </operation>
+    <operation name="echoInOutFloatTypes" parameterOrder="varFloat">
+      <input message="tns:inoutFloatTypesRequest"/>
+      <output message="tns:inoutFloatTypesResponse"/>
+    </operation>
+    <operation name="echoInOutDoubleTypes" parameterOrder="varDouble">
+      <input message="tns:inoutDoubleTypesRequest"/>
+      <output message="tns:inoutDoubleTypesResponse"/>
+    </operation>
+    <operation name="echoInOutBooleanTypes" parameterOrder="varBoolean">
+      <input message="tns:inoutBooleanTypesRequest"/>
+      <output message="tns:inoutBooleanTypesResponse"/>
+    </operation>
+    <operation name="echoInOutByteTypes" parameterOrder="varByte">
+      <input message="tns:inoutByteTypesRequest"/>
+      <output message="tns:inoutByteTypesResponse"/>
+    </operation>
+    <operation name="echoInOutQNameTypes" parameterOrder="varQName">
+      <input message="tns:inoutQNameTypesRequest"/>
+      <output message="tns:inoutQNameTypesResponse"/>
+    </operation>
+    <operation name="echoInOutDateTimeTypes" parameterOrder="varDateTime">
+      <input message="tns:inoutDateTimeTypesRequest"/>
+      <output message="tns:inoutDateTimeTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayStringTypes" parameterOrder="varString">
+      <input message="tns:inoutArrayStringTypesRequest"/>
+      <output message="tns:inoutArrayStringTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayIntegerTypes" parameterOrder="varInteger">
+      <input message="tns:inoutArrayIntegerTypesRequest"/>
+      <output message="tns:inoutArrayIntegerTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayIntTypes" parameterOrder="varInt">
+      <input message="tns:inoutArrayIntTypesRequest"/>
+      <output message="tns:inoutArrayIntTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayShortTypes" parameterOrder="varShort">
+      <input message="tns:inoutArrayShortTypesRequest"/>
+      <output message="tns:inoutArrayShortTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayLongTypes" parameterOrder="varLong">
+      <input message="tns:inoutArrayLongTypesRequest"/>
+      <output message="tns:inoutArrayLongTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayDecimalTypes" parameterOrder="varDecimal">
+      <input message="tns:inoutArrayDecimalTypesRequest"/>
+      <output message="tns:inoutArrayDecimalTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayFloatTypes" parameterOrder="varFloat">
+      <input message="tns:inoutArrayFloatTypesRequest"/>
+      <output message="tns:inoutArrayFloatTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayDoubleTypes" parameterOrder="varDouble">
+      <input message="tns:inoutArrayDoubleTypesRequest"/>
+      <output message="tns:inoutArrayDoubleTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayBooleanTypes" parameterOrder="varBoolean">
+      <input message="tns:inoutArrayBooleanTypesRequest"/>
+      <output message="tns:inoutArrayBooleanTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayByteTypes" parameterOrder="varByte">
+      <input message="tns:inoutArrayByteTypesRequest"/>
+      <output message="tns:inoutArrayByteTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayQNameTypes" parameterOrder="varQName">
+      <input message="tns:inoutArrayQNameTypesRequest"/>
+      <output message="tns:inoutArrayQNameTypesResponse"/>
+    </operation>
+    <operation name="echoInOutArrayDateTimeTypes" parameterOrder="varDateTime">
+      <input message="tns:inoutArrayDateTimeTypesRequest"/>
+      <output message="tns:inoutArrayDateTimeTypesResponse"/>
+    </operation>
+
+    <operation name="echoInOutBook" parameterOrder="varBook">
+      <input message="tns:inoutBookRequest" />
+      <output message="tns:inoutBookResponse" />
+    </operation>
+    <operation name="echoInOutBookArray" parameterOrder="varBook">
+      <input message="tns:inoutBookArrayRequest" />
+      <output message="tns:inoutBookArrayResponse" />
+    </operation>
+  </portType>
+  <binding name="HolderTestBinding" type="tns:HolderTest">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="echoInOutStringTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="echoInOutIntegerTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutIntTypes"> 
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutLongTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutShortTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutDecimalTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutFloatTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutDoubleTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutBooleanTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutByteTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutQNameTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutDateTimeTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+
+    <operation name="echoInOutArrayStringTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="echoInOutArrayIntegerTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayIntTypes"> 
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayLongTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayShortTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayDecimalTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayFloatTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayDoubleTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayBooleanTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayByteTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayQNameTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+
+    <operation name="echoInOutArrayDateTimeTypes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="echoInOutBook">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="echoInOutBookArray">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="HolderTestService">
+    <port name="HolderTestPort" binding="tns:HolderTestBinding">
+      <soap:address location="http://foo:9999/bar" />
+    </port>
+  </service>
+</definitions>
+

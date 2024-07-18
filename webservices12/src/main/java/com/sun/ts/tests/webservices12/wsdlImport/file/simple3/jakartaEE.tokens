@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/WSSimple3File")
+SERVICE=com.sun.ts.tests.webservices12.wsdlImport.file.simple3.Simple3FileSvc
+SEI=com.sun.ts.tests.webservices12.wsdlImport.file.simple3.Tests
+IMPL=com.sun.ts.tests.webservices12.wsdlImport.file.simple3.TestsImpl
+NAMESPACEURI=http://Simple3FileSvc.org/wsdl
+PORT=TestsPort
+URLALIAS=/jaxws/Tests
+SERVLETNAME=com.sun.ts.tests.webservices12.wsdlImport.file.simple3.TestsImpl
+WEBSERVICEDESCRIPTION=Simple3FileSvc
+SERVICEREFNAMEWSSERVLET=service/WSSimple3File
+SERVICEREFNAMEWSEJB=service/WSSimple3File
+SERVICEREFNAMEWSAPPCLIENT=service/WSSimple3File

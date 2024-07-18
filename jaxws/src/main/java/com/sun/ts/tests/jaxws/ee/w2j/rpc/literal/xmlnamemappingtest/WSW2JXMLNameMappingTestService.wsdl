@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions
+ xmlns="http://schemas.xmlsoap.org/wsdl/"
+ xmlns:tns="http://XMLNameMappingTest.org/wsdl"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns:xsd1="http://XMLNameMappingTest.org/xsd"
+ xmlns:xsd2="http://XMLNameMappingTest.org/xsd2"
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ name="WSW2JXMLNameMappingTestService"
+ targetNamespace="http://XMLNameMappingTest.org/wsdl">
+  <types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://XMLNameMappingTest.org/xsd" xmlns:soap11-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://XMLNameMappingTest.org/xsd">
+
+    <!-- ########################################## -->
+    <!-- Beginning lowercase complex types must be  -->
+    <!-- mapped to a java class beginning with an   -->
+    <!-- uppercase class name.                      -->
+    <!-- ########################################## -->
+
+      <!-- Non-exception Java class with name class resolution must append suffix _Type -->
+      <complexType name="xMLNameMappingTest">
+        <all>
+          <element name="varString" type="string" nillable="true" />
+          <element name="varInt" type="int" />
+          <element name="varFloat" type="float" />
+        </all>
+      </complexType>
+
+      <element name="xMLNameMappingTestFaultReason" type="tns:xMLNameMappingTestFaultReason"/>
+      <complexType name="xMLNameMappingTestFaultReason">
+        <sequence>
+            <element name="message" type="string"/>
+        </sequence>
+      </complexType>
+
+      <element name="eyeColor" type="xsd1:eyeColor"/>
+      <complexType name="eyeColor">
+	  <sequence>
+              <element name="color" type="string" nillable="false" />
+          </sequence>
+      </complexType>
+
+    </schema>
+  </types>
+
+  <message name="EchoXMLNameMappingRequest">
+    <part name="echoXMLNameMappingRequest" type="xsd1:xMLNameMappingTest" />
+  </message>
+
+  <message name="EchoXMLNameMappingResponse">
+    <part name="echoXMLNameMappingResponse" type="xsd1:xMLNameMappingTest" />
+  </message>
+
+  <!-- Exception Java class with name class resolution must append suffix _Exception -->
+  <message name="xMLNameMappingTest">
+    <part name="Reason" element="xsd1:xMLNameMappingTestFaultReason"/>
+  </message>
+
+  <message name="EchoEyeColorRequest">
+	<part name="echoEyeColorRequest" type="xsd1:eyeColor"/>
+  </message>
+
+  <message name="EchoEyeColorResponse">
+	<part name="echoEyeColorResponse" type="xsd1:eyeColor"/>
+  </message>
+
+  <message name="XMLNameMappingTest_abstract" />
+  <message name="XMLNameMappingTest_abstractResponse" />
+  <message name="XMLNameMappingTest_boolean" />
+  <message name="XMLNameMappingTest_booleanResponse" />
+  <message name="XMLNameMappingTest_break" />
+  <message name="XMLNameMappingTest_breakResponse" />
+  <message name="XMLNameMappingTest_byte" />
+  <message name="XMLNameMappingTest_byteResponse" />
+  <message name="XMLNameMappingTest_case" />
+  <message name="XMLNameMappingTest_caseResponse" />
+  <message name="XMLNameMappingTest_catch" />
+  <message name="XMLNameMappingTest_catchResponse" />
+  <message name="XMLNameMappingTest_char" />
+  <message name="XMLNameMappingTest_charResponse" />
+  <message name="XMLNameMappingTest_class" />
+  <message name="XMLNameMappingTest_classResponse" />
+  <message name="XMLNameMappingTest_const" />
+  <message name="XMLNameMappingTest_constResponse" />
+  <message name="XMLNameMappingTest_continue" />
+  <message name="XMLNameMappingTest_continueResponse" />
+  <message name="XMLNameMappingTest_default" />
+  <message name="XMLNameMappingTest_defaultResponse" />
+  <message name="XMLNameMappingTest_do" />
+  <message name="XMLNameMappingTest_doResponse" />
+  <message name="XMLNameMappingTest_double" />
+  <message name="XMLNameMappingTest_doubleResponse" />
+  <message name="XMLNameMappingTest_else" />
+  <message name="XMLNameMappingTest_elseResponse" />
+  <message name="XMLNameMappingTest_extends" />
+  <message name="XMLNameMappingTest_extendsResponse" />
+  <message name="XMLNameMappingTest_false" />
+  <message name="XMLNameMappingTest_falseResponse" />
+  <message name="XMLNameMappingTest_final" />
+  <message name="XMLNameMappingTest_finalResponse" />
+  <message name="XMLNameMappingTest_finally" />
+  <message name="XMLNameMappingTest_finallyResponse" />
+  <message name="XMLNameMappingTest_float" />
+  <message name="XMLNameMappingTest_floatResponse" />
+  <message name="XMLNameMappingTest_for" />
+  <message name="XMLNameMappingTest_forResponse" />
+  <message name="XMLNameMappingTest_goto" />
+  <message name="XMLNameMappingTest_gotoResponse" />
+  <message name="XMLNameMappingTest_if" />
+  <message name="XMLNameMappingTest_ifResponse" />
+  <message name="XMLNameMappingTest_implements" />
+  <message name="XMLNameMappingTest_implementsResponse" />
+  <message name="XMLNameMappingTest_import" />
+  <message name="XMLNameMappingTest_importResponse" />
+  <message name="XMLNameMappingTest_instanceof" />
+  <message name="XMLNameMappingTest_instanceofResponse" />
+  <message name="XMLNameMappingTest_int" />
+  <message name="XMLNameMappingTest_intResponse" />
+  <message name="XMLNameMappingTest_interface" />
+  <message name="XMLNameMappingTest_interfaceResponse" />
+  <message name="XMLNameMappingTest_long" />
+  <message name="XMLNameMappingTest_longResponse" />
+  <message name="XMLNameMappingTest_native" />
+  <message name="XMLNameMappingTest_nativeResponse" />
+  <message name="XMLNameMappingTest_new" />
+  <message name="XMLNameMappingTest_newResponse" />
+  <message name="XMLNameMappingTest_null" />
+  <message name="XMLNameMappingTest_nullResponse" />
+  <message name="XMLNameMappingTest_package" />
+  <message name="XMLNameMappingTest_packageResponse" />
+  <message name="XMLNameMappingTest_private" />
+  <message name="XMLNameMappingTest_privateResponse" />
+  <message name="XMLNameMappingTest_protected" />
+  <message name="XMLNameMappingTest_protectedResponse" />
+  <message name="XMLNameMappingTest_public" />
+  <message name="XMLNameMappingTest_publicResponse" />
+  <message name="XMLNameMappingTest_return" />
+  <message name="XMLNameMappingTest_returnResponse" />
+  <message name="XMLNameMappingTest_short" />
+  <message name="XMLNameMappingTest_shortResponse" />
+  <message name="XMLNameMappingTest_static" />
+  <message name="XMLNameMappingTest_staticResponse" />
+  <message name="XMLNameMappingTest_super" />
+  <message name="XMLNameMappingTest_superResponse" />
+  <message name="XMLNameMappingTest_switch" />
+  <message name="XMLNameMappingTest_switchResponse" />
+  <message name="XMLNameMappingTest_synchronized" />
+  <message name="XMLNameMappingTest_synchronizedResponse" />
+  <message name="XMLNameMappingTest_this" />
+  <message name="XMLNameMappingTest_thisResponse" />
+  <message name="XMLNameMappingTest_throw" />
+  <message name="XMLNameMappingTest_throwResponse" />
+  <message name="XMLNameMappingTest_throws" />
+  <message name="XMLNameMappingTest_throwsResponse" />
+  <message name="XMLNameMappingTest_transient" />
+  <message name="XMLNameMappingTest_transientResponse" />
+  <message name="XMLNameMappingTest_true" />
+  <message name="XMLNameMappingTest_trueResponse" />
+  <message name="XMLNameMappingTest_try" />
+  <message name="XMLNameMappingTest_tryResponse" />
+  <message name="XMLNameMappingTest_void" />
+  <message name="XMLNameMappingTest_voidResponse" />
+  <message name="XMLNameMappingTest_volatile" />
+  <message name="XMLNameMappingTest_volatileResponse" />
+  <message name="XMLNameMappingTest_while" />
+  <message name="XMLNameMappingTest_whileResponse" />
+  <message name="XMLNameMappingTest_nameWithcolon" />
+  <message name="XMLNameMappingTest_nameWithcolonResponse" />
+  <message name="XMLNameMappingTest_nameWithdash" />
+  <message name="XMLNameMappingTest_nameWithdashResponse" />
+  <message name="XMLNameMappingTest_nameWithdot" />
+  <message name="XMLNameMappingTest_nameWithdotResponse" />
+  <message name="XMLNameMappingTest_name_withunderscore" />
+  <message name="XMLNameMappingTest_name_withunderscoreResponse" />
+
+  <!-- Service Endpoint Interface class with name class resolution has highest precendence -->
+  <portType name="xMLNameMappingTest">
+
+	<!-- ########################################### -->
+	<!-- Beginning uppercase operation names must be -->
+	<!-- mapped to a java method beginning with a    -->
+	<!-- lowercase method name                       -->
+	<!-- ########################################### -->
+
+    <operation name="EchoEyeColor" parameterOrder="echoEyeColorRequest">
+        <input message="tns:EchoEyeColorRequest"/>
+        <output message="tns:EchoEyeColorResponse"/>
+    </operation>
+
+    <operation name="EchoXMLNameMapping" parameterOrder="echoXMLNameMappingRequest">
+        <input message="tns:EchoXMLNameMappingRequest"/>
+        <output message="tns:EchoXMLNameMappingResponse"/>
+	<fault name="xMLNameMappingTest" message="tns:xMLNameMappingTest"/>
+
+    </operation>
+
+
+    <!-- ########################################### -->
+    <!-- Names with invalid characters for java      -->
+    <!-- identifiers should be stripped out          -->
+    <!-- ########################################### -->
+
+    <operation name="name:withcolon">
+      <input message="tns:XMLNameMappingTest_nameWithcolon" />
+      <output message="tns:XMLNameMappingTest_nameWithcolonResponse" />
+    </operation>
+    <operation name="name-withdash">
+      <input message="tns:XMLNameMappingTest_nameWithdash" />
+      <output message="tns:XMLNameMappingTest_nameWithdashResponse" />
+    </operation>
+    <operation name="name.withdot">
+      <input message="tns:XMLNameMappingTest_nameWithdot" />
+      <output message="tns:XMLNameMappingTest_nameWithdotResponse" />
+    </operation>
+    <operation name="name_withunderscore">
+      <input message="tns:XMLNameMappingTest_name_withunderscore" />
+      <output message="tns:XMLNameMappingTest_name_withunderscoreResponse" />
+    </operation>
+
+    <!-- ########################################## -->
+    <!-- Java Language Keywords must be mapped to a -->
+    <!-- java name prepending an underscore "_"     -->
+    <!-- ########################################## -->
+
+    <operation name="abstract">
+      <input message="tns:XMLNameMappingTest_abstract" />
+      <output message="tns:XMLNameMappingTest_abstractResponse" />
+    </operation>
+    <operation name="boolean">
+      <input message="tns:XMLNameMappingTest_boolean" />
+      <output message="tns:XMLNameMappingTest_booleanResponse" />
+    </operation>
+    <operation name="break">
+      <input message="tns:XMLNameMappingTest_break" />
+      <output message="tns:XMLNameMappingTest_breakResponse" />
+    </operation>
+    <operation name="byte">
+      <input message="tns:XMLNameMappingTest_byte" />
+      <output message="tns:XMLNameMappingTest_byteResponse" />
+    </operation>
+    <operation name="case">
+      <input message="tns:XMLNameMappingTest_case" />
+      <output message="tns:XMLNameMappingTest_caseResponse" />
+    </operation>
+    <operation name="catch">
+      <input message="tns:XMLNameMappingTest_catch" />
+      <output message="tns:XMLNameMappingTest_catchResponse" />
+    </operation>
+    <operation name="char">
+      <input message="tns:XMLNameMappingTest_char" />
+      <output message="tns:XMLNameMappingTest_charResponse" />
+    </operation>
+    <operation name="class">
+      <input message="tns:XMLNameMappingTest_class" />
+      <output message="tns:XMLNameMappingTest_classResponse" />
+    </operation>
+    <operation name="const">
+      <input message="tns:XMLNameMappingTest_const" />
+      <output message="tns:XMLNameMappingTest_constResponse" />
+    </operation>
+    <operation name="continue">
+      <input message="tns:XMLNameMappingTest_continue" />
+      <output message="tns:XMLNameMappingTest_continueResponse" />
+    </operation>
+    <operation name="default">
+      <input message="tns:XMLNameMappingTest_default" />
+      <output message="tns:XMLNameMappingTest_defaultResponse" />
+    </operation>
+    <operation name="do">
+      <input message="tns:XMLNameMappingTest_do" />
+      <output message="tns:XMLNameMappingTest_doResponse" />
+    </operation>
+    <operation name="double">
+      <input message="tns:XMLNameMappingTest_double" />
+      <output message="tns:XMLNameMappingTest_doubleResponse" />
+    </operation>
+    <operation name="else">
+      <input message="tns:XMLNameMappingTest_else" />
+      <output message="tns:XMLNameMappingTest_elseResponse" />
+    </operation>
+    <operation name="extends">
+      <input message="tns:XMLNameMappingTest_extends" />
+      <output message="tns:XMLNameMappingTest_extendsResponse" />
+    </operation>
+    <operation name="false">
+      <input message="tns:XMLNameMappingTest_false" />
+      <output message="tns:XMLNameMappingTest_falseResponse" />
+    </operation>
+    <operation name="final">
+      <input message="tns:XMLNameMappingTest_final" />
+      <output message="tns:XMLNameMappingTest_finalResponse" />
+    </operation>
+    <operation name="finally">
+      <input message="tns:XMLNameMappingTest_finally" />
+      <output message="tns:XMLNameMappingTest_finallyResponse" />
+    </operation>
+    <operation name="float">
+      <input message="tns:XMLNameMappingTest_float" />
+      <output message="tns:XMLNameMappingTest_floatResponse" />
+    </operation>
+    <operation name="for">
+      <input message="tns:XMLNameMappingTest_for" />
+      <output message="tns:XMLNameMappingTest_forResponse" />
+    </operation>
+    <operation name="goto">
+      <input message="tns:XMLNameMappingTest_goto" />
+      <output message="tns:XMLNameMappingTest_gotoResponse" />
+    </operation>
+    <operation name="if">
+      <input message="tns:XMLNameMappingTest_if" />
+      <output message="tns:XMLNameMappingTest_ifResponse" />
+    </operation>
+    <operation name="implements">
+      <input message="tns:XMLNameMappingTest_implements" />
+      <output message="tns:XMLNameMappingTest_implementsResponse" />
+    </operation>
+    <operation name="import">
+      <input message="tns:XMLNameMappingTest_import" />
+      <output message="tns:XMLNameMappingTest_importResponse" />
+    </operation>
+    <operation name="instanceof">
+      <input message="tns:XMLNameMappingTest_instanceof" />
+      <output message="tns:XMLNameMappingTest_instanceofResponse" />
+    </operation>
+    <operation name="int">
+      <input message="tns:XMLNameMappingTest_int" />
+      <output message="tns:XMLNameMappingTest_intResponse" />
+    </operation>
+    <operation name="interface">
+      <input message="tns:XMLNameMappingTest_interface" />
+      <output message="tns:XMLNameMappingTest_interfaceResponse" />
+    </operation>
+    <operation name="long">
+      <input message="tns:XMLNameMappingTest_long" />
+      <output message="tns:XMLNameMappingTest_longResponse" />
+    </operation>
+    <operation name="native">
+      <input message="tns:XMLNameMappingTest_native" />
+      <output message="tns:XMLNameMappingTest_nativeResponse" />
+    </operation>
+    <operation name="new">
+      <input message="tns:XMLNameMappingTest_new" />
+      <output message="tns:XMLNameMappingTest_newResponse" />
+    </operation>
+    <operation name="null">
+      <input message="tns:XMLNameMappingTest_null" />
+      <output message="tns:XMLNameMappingTest_nullResponse" />
+    </operation>
+    <operation name="package">
+      <input message="tns:XMLNameMappingTest_package" />
+      <output message="tns:XMLNameMappingTest_packageResponse" />
+    </operation>
+    <operation name="private">
+      <input message="tns:XMLNameMappingTest_private" />
+      <output message="tns:XMLNameMappingTest_privateResponse" />
+    </operation>
+    <operation name="protected">
+      <input message="tns:XMLNameMappingTest_protected" />
+      <output message="tns:XMLNameMappingTest_protectedResponse" />
+    </operation>
+    <operation name="public">
+      <input message="tns:XMLNameMappingTest_public" />
+      <output message="tns:XMLNameMappingTest_publicResponse" />
+    </operation>
+    <operation name="return">
+      <input message="tns:XMLNameMappingTest_return" />
+      <output message="tns:XMLNameMappingTest_returnResponse" />
+    </operation>
+    <operation name="short">
+      <input message="tns:XMLNameMappingTest_short" />
+      <output message="tns:XMLNameMappingTest_shortResponse" />
+    </operation>
+    <operation name="static">
+      <input message="tns:XMLNameMappingTest_static" />
+      <output message="tns:XMLNameMappingTest_staticResponse" />
+    </operation>
+    <operation name="super">
+      <input message="tns:XMLNameMappingTest_super" />
+      <output message="tns:XMLNameMappingTest_superResponse" />
+    </operation>
+    <operation name="switch">
+      <input message="tns:XMLNameMappingTest_switch" />
+      <output message="tns:XMLNameMappingTest_switchResponse" />
+    </operation>
+    <operation name="synchronized">
+      <input message="tns:XMLNameMappingTest_synchronized" />
+      <output message="tns:XMLNameMappingTest_synchronizedResponse" />
+    </operation>
+    <operation name="this">
+      <input message="tns:XMLNameMappingTest_this" />
+      <output message="tns:XMLNameMappingTest_thisResponse" />
+    </operation>
+    <operation name="throw">
+      <input message="tns:XMLNameMappingTest_throw" />
+      <output message="tns:XMLNameMappingTest_throwResponse" />
+    </operation>
+    <operation name="throws">
+      <input message="tns:XMLNameMappingTest_throws" />
+      <output message="tns:XMLNameMappingTest_throwsResponse" />
+    </operation>
+    <operation name="transient">
+      <input message="tns:XMLNameMappingTest_transient" />
+      <output message="tns:XMLNameMappingTest_transientResponse" />
+    </operation>
+    <operation name="true">
+      <input message="tns:XMLNameMappingTest_true" />
+      <output message="tns:XMLNameMappingTest_trueResponse" />
+    </operation>
+    <operation name="try">
+      <input message="tns:XMLNameMappingTest_try" />
+      <output message="tns:XMLNameMappingTest_tryResponse" />
+    </operation>
+    <operation name="void">
+      <input message="tns:XMLNameMappingTest_void" />
+      <output message="tns:XMLNameMappingTest_voidResponse" />
+    </operation>
+    <operation name="volatile">
+      <input message="tns:XMLNameMappingTest_volatile" />
+      <output message="tns:XMLNameMappingTest_volatileResponse" />
+    </operation>
+    <operation name="while">
+      <input message="tns:XMLNameMappingTest_while" />
+      <output message="tns:XMLNameMappingTest_whileResponse" />
+    </operation>
+  </portType>
+  <binding name="XMLNameMappingTestBinding" type="tns:xMLNameMappingTest">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="abstract">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="boolean">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="break">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="byte">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="case">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="catch">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="char">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="class">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="const">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="continue">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="default">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="do">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="double">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="else">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="extends">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="false">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="final">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="finally">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="float">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="for">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="goto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="if">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="implements">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="import">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="instanceof">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="int">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="interface">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="long">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="native">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="new">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="null">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="package">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="private">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="protected">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="public">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="return">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="short">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="static">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="super">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="switch">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="synchronized">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="this">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="throw">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="throws">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="transient">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="true">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="try">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="void">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="volatile">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="while">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="EchoEyeColor">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="EchoXMLNameMapping">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+      <fault name="xMLNameMappingTest">
+	<soap:fault name="xMLNameMappingTest" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="name:withcolon">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="name-withdash">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="name.withdot">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+    <operation name="name_withunderscore">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://XMLNameMappingTest.org/wsdl" />
+      </output>
+    </operation>
+  </binding>
+  <!-- Service class with name class resolution must append suffix _Service -->
+  <service name="xMLNameMappingTest">
+    <port name="XMLNameMappingTestPort" binding="tns:XMLNameMappingTestBinding">
+      <soap:address location="http://foo:9999/bar" />
+    </port>
+  </service>
+</definitions>
+

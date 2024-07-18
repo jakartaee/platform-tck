@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<definitions name="W2JDLAnnotations"
+    targetNamespace="http://w2jdlannotations.org/wsdl"
+    xmlns:tns="http://w2jdlannotations.org/wsdl"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:types="http://w2jdlannotations.org/types"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+
+  <types>
+    <xsd:schema targetNamespace="http://w2jdlannotations.org/types" attributeFormDefault="qualified" elementFormDefault="qualified">
+      <xsd:element name="HelloStringElement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="OneWayStringElement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="Mode1StringElement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="Mode2StringElement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="Mode3StringElement">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="MyFault">
+           <xsd:complexType>
+             <xsd:sequence>
+               <xsd:element name="message" type="xsd:string"/>
+             </xsd:sequence>
+           </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="MyHeader">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+              <xsd:element name="mustUnderstand" type="xsd:boolean"/>
+              <xsd:element name="testName" type="xsd:string" minOccurs="0"/>
+            </xsd:sequence>
+          </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="WrapperElement1">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="WrapperElement11">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="argument2" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:schema>
+  </types>
+
+  <message name="hello">
+    <part name="parameter" element="types:HelloStringElement"/>
+  </message>
+  <message name="helloResponse">
+    <part name="result" element="types:HelloStringElement"/>
+  </message>
+  <message name="oneway">
+    <part name="varString" element="types:OneWayStringElement"/>
+  </message>
+
+  <message name="mode1">
+    <part name="varString" element="types:Mode1StringElement" />
+  </message>
+  <message name="mode1Response"/>
+
+  <message name="mode2">
+    <part name="varString" element="types:Mode2StringElement" />
+  </message>
+  <message name="mode2Response">
+    <part name="varString" element="types:Mode2StringElement" />
+  </message>
+
+  <message name="mode3"/>
+  <message name="mode3Response">
+    <part name="varString" element="types:Mode3StringElement" />
+  </message>
+
+  <message name="MyFault">
+    <part name="MyFault" element="types:MyFault"/>
+  </message>
+  <message name="MyHeader">
+    <part name="MyHeader" element="types:MyHeader"/>
+  </message>
+
+  <message name="WrapperElement1">
+    <part name="parameter" element="types:WrapperElement1"/>
+  </message>
+  <message name="WrapperElement1Response">
+    <part name="result" element="types:WrapperElement11"/>
+  </message>
+
+  <portType name="W2JDLAnnotationsEndpoint">
+    <operation name="helloOperation">
+      <input message="tns:hello"/>
+      <output message="tns:helloResponse"/>
+      <fault name="MyFault" message="tns:MyFault"/>
+    </operation>
+    <operation name="onewayOperation">
+      <input message="tns:oneway"/>
+    </operation>
+    <operation name="mode1Operation" parameterOrder="varString">
+      <input message="tns:mode1"/>
+      <output message="tns:mode1Response"/>
+    </operation>
+    <operation name="mode2Operation" parameterOrder="varString">
+      <input message="tns:mode2"/>
+      <output message="tns:mode2Response"/>
+    </operation>
+    <operation name="mode3Operation" parameterOrder="varString">
+      <input message="tns:mode3"/>
+      <output message="tns:mode3Response"/>
+    </operation>
+    <operation name="WrapperElement1" >
+<!--
+      <jaxws:bindings xmlns:jaxws="http://java.sun.com/xml/ns/jaxws">
+          <jaxws:enableWrapperStyle>true</jaxws:enableWrapperStyle>
+      </jaxws:bindings>
+-->
+      <input message="tns:WrapperElement1"/>
+      <output message="tns:WrapperElement1Response"/>
+    </operation>
+  </portType>
+  <binding name="W2JDLAnnotationsEndpointBinding" type="tns:W2JDLAnnotationsEndpoint">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="helloOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+        <soap:header message="tns:MyHeader" part="MyHeader" use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="MyFault">
+        <soap:fault name="MyFault" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="onewayOperation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+    </operation>
+    <operation name="mode1Operation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" parts="varString"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="mode2Operation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal" parts="varString"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="varString"/>
+      </output>
+    </operation>
+    <operation name="mode3Operation">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal" parts="varString"/>
+      </output>
+    </operation>
+    <operation name="WrapperElement1">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="W2JDLAnnotations">
+    <port name="W2JDLAnnotationsEndpointPort" binding="tns:W2JDLAnnotationsEndpointBinding">
+      <soap:address location="http://foo:9999/bar"/>
+    </port>
+  </service>
+</definitions>

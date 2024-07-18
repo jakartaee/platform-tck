@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/WSNested1File")
+SERVICE=com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Nested1FileSvc
+SEI=com.sun.ts.tests.webservices12.wsdlImport.file.nested1.Tests
+IMPL=com.sun.ts.tests.webservices12.wsdlImport.file.nested1.TestsImpl
+NAMESPACEURI=http://Nested1FileSvc.org/wsdl
+PORT=TestsPort
+URLALIAS=/jaxws/Tests
+SERVLETNAME=com.sun.ts.tests.webservices12.wsdlImport.file.nested1.TestsImpl
+WEBSERVICEDESCRIPTION=Nested1FileSvc
+SERVICEREFNAMEWSSERVLET=service/WSNested1File
+SERVICEREFNAMEWSEJB=service/WSNested1File
+SERVICEREFNAMEWSAPPCLIENT=service/WSNested1File

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jarDeploy" basedir="." default="usage">
+
+  <property name="jar.app.name" value="WSJarDeployApp"/>
+  <property name="client.app.name" value="WSJarDeployClient"/>
+  <property name="client.class" value="com.sun.ts.tests.webservices12.deploy.jarDeploy.Client" />
+  <property name="service.names" value="HelloWsService"/>
+  <property name="sei.names" value="HelloWs"/>
+  <property name="wsdl.filename" value="JarDeploy.wsdl"/>
+
+  <import file="../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+  <property name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+
+  <target name="-precompile">
+    <antcall  target="do_wsdl2java_generate_server"/>
+  </target>
+
+  <target name="package" >
+      <ts.clientjar archiveName="${client.app.name}"
+		    mainclass="${client.class}" excludedfiles="${pkg.dir}/*Bean.class">
+        <zipfileset dir="${class.dir}" 
+	    includes="${pkg.dir}/*.class, ${jaxws.common.classes}"
+	    excludes="${pkg.dir}/*Bean.class"/>
+        <zipfileset dir="${src.dir}/${pkg.dir}"
+            includes="${wsdl.filename}"
+            prefix="META-INF/wsdl"/>
+      </ts.clientjar>
+
+      <ts.ear archivename="${client.app.name}" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar"/>
+      </ts.ear>
+
+      <ts.ejbjar archiveName="${jar.app.name}">
+        <zipfileset dir="${class.dir}"
+            includes="${pkg.dir}/*.class"
+	    excludes="${pkg.dir}/Client.class"/>
+        <zipfileset dir="${src.dir}/${pkg.dir}"
+            includes="${wsdl.filename}"
+            prefix="META-INF/wsdl"/>
+      </ts.ejbjar>
+
+      <copy file="WSJarDeployApp_component.jar.sun-ejb-jar.xml" todir="${dist.dir}/${pkg.dir}"/>
+      <move file="${dist.dir}/${pkg.dir}/WSJarDeployApp_ejb.jar" tofile="${dist.dir}/${pkg.dir}/WSJarDeployApp_component.jar"/>
+
+ </target>
+
+</project>

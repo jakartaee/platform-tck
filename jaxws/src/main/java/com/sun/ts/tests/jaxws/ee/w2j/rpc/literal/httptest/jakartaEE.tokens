@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jrlhttptest")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest.HttpTestService
+SEI=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest.Hello
+IMPL=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.httptest.HelloImpl
+NAMESPACEURI=http://httptestservice.org/wsdl
+PORT=HelloPort
+URLALIAS=/jaxws/Hello
+SERVLETNAME=HelloImpl
+WEBSERVICEDESCRIPTION=HttpTestService
+SERVICEREFNAMEWSSERVLET=service/wsw2jrlhttptest
+SERVICEREFNAMEWSEJB=service/wsw2jrlhttptest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jrlhttptest

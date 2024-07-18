@@ -1,0 +1,14 @@
+WSREFSEJBCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSShared1Http1", type=com.sun.ts.tests.webservices12.wsdlImport.http.shared1.client.Shared1HttpSvc1.class, wsdlLocation="META-INF/wsdl/Shared1HttpSvc1.wsdl"), @WebServiceRef(name="service/WSShared1Http2", type=com.sun.ts.tests.webservices12.wsdlImport.http.shared1.client.Shared1HttpSvc2.class, wsdlLocation="META-INF/wsdl/Shared1HttpSvc2.wsdl") })
+WSREFSAPPCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSShared1Http1", type=com.sun.ts.tests.webservices12.wsdlImport.http.shared1.client.Shared1HttpSvc1.class, wsdlLocation="META-INF/wsdl/Shared1HttpSvc1.wsdl"), @WebServiceRef(name="service/WSShared1Http2", type=com.sun.ts.tests.webservices12.wsdlImport.http.shared1.client.Shared1HttpSvc2.class, wsdlLocation="META-INF/wsdl/Shared1HttpSvc2.wsdl") })
+WSREFSWEBCLIENT=@WebServiceRefs({@WebServiceRef(name="service/WSShared1Http1", type=com.sun.ts.tests.webservices12.wsdlImport.http.shared1.client.Shared1HttpSvc1.class, wsdlLocation="WEB-INF/wsdl/Shared1HttpSvc1.wsdl"), @WebServiceRef(name="service/WSShared1Http2", type=com.sun.ts.tests.webservices12.wsdlImport.http.shared1.client.Shared1HttpSvc2.class, wsdlLocation="WEB-INF/wsdl/Shared1HttpSvc2.wsdl") })
+URLALIAS=/jaxws/Tests1
+URLALIAS2=/jaxws/Tests2
+WEBSERVICEDESCRIPTION=Shared1HttpSvc1
+WEBSERVICEDESCRIPTION2=Shared1HttpSvc2
+SERVICEREFNAMEWSSERVLET=service/WSShared1Http1
+SERVICEREFNAMEWSSERVLET2=service/WSShared1Http2
+SERVICEREFNAMEWSEJB=service/WSShared1Http1
+SERVICEREFNAMEWSEJB2=service/WSShared1Http2
+SERVICEREFNAMEWSAPPCLIENT=service/WSShared1Http1
+SERVICEREFNAMEWSAPPCLIENT2=service/WSShared1Http2
+

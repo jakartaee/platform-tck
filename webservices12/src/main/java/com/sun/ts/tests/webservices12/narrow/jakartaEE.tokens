@@ -1,0 +1,17 @@
+WSRAnn=@WebServiceRef(name="service/wsinterfacetest")
+SERVICE=com.sun.ts.tests.webservices12.narrow.InterfaceTestService
+IMPL=com.sun.ts.tests.webservices12.narrow.InterfaceTest1Impl
+IMPL2=com.sun.ts.tests.webservices12.narrow.InterfaceTest2Impl
+SEI=com.sun.ts.tests.webservices12.narrow.InterfaceTest1
+SEI2=com.sun.ts.tests.webservices12.narrow.InterfaceTest2
+URLALIAS=/jaxws/InterfaceTest1
+URLALIAS2=/jaxws/InterfaceTest2
+SERVLETNAME=InterfaceTest1Impl
+SERVLETNAME2=InterfaceTest2Impl
+NAMESPACEURI=http://interfacetestservice.org/wsdl
+PORT=InterfaceTest1Port
+PORT2=InterfaceTest2Port
+WEBSERVICEDESCRIPTION=InterfaceTestService
+SERVICEREFNAMEWSSERVLET=service/wsinterfacetest
+SERVICEREFNAMEWSEJB=service/wsinterfacetest
+SERVICEREFNAMEWSAPPCLIENT=service/wsinterfacetest

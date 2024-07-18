@@ -1,0 +1,36 @@
+WSREFSEJBCLIENT=@WebServiceRefs({@WebServiceRef(name="service/unprotected", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectednoid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedvalidid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedinvalidid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedunauthid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/guest", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl") })
+WSREFSAPPCLIENT=@WebServiceRefs({@WebServiceRef(name="service/unprotected", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectednoid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedvalidid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedinvalidid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedunauthid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/guest", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="META-INF/wsdl/BasicAuthServiceTestService.wsdl") })
+WSREFSWEBCLIENT=@WebServiceRefs({@WebServiceRef(name="service/unprotected", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="WEB-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectednoid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="WEB-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedvalidid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="WEB-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedinvalidid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="WEB-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/protectedunauthid", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="WEB-INF/wsdl/BasicAuthServiceTestService.wsdl"), @WebServiceRef(name="service/guest", type=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.BasicAuthServiceTestService.class, wsdlLocation="WEB-INF/wsdl/BasicAuthServiceTestService.wsdl") })
+SEI=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloUnprotected
+SEI2=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected
+SEI3=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloGuest
+SEI4=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected1
+SEI5=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected2
+SEI6=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtected3
+IMPL=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloUnprotectedImpl
+IMPL2=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtectedImpl
+IMPL3=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloGuestImpl
+IMPL4=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtectedImpl1
+IMPL5=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtectedImpl2
+IMPL6=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.sec.secbasic.HelloProtectedImpl3
+NAMESPACEURI=http://BasicAuthServiceTestService.org/wsdl
+PORT=HelloUnprotectedPort
+PORT2=HelloProtectedPort
+PORT3=HelloGuestPort
+PORT4=HelloProtectedPort1
+PORT5=HelloProtectedPort2
+PORT6=HelloProtectedPort3
+URLALIAS=/jaxws1/HelloUnprotected
+URLALIAS2=/jaxws2/HelloProtected
+URLALIAS3=/jaxws3/HelloGuest
+URLALIAS4=/jaxws2/HelloProtected1
+URLALIAS5=/jaxws2/HelloProtected2
+URLALIAS6=/jaxws2/HelloProtected3
+SERVLETNAME=HelloUnprotectedPort
+SERVLETNAME2=HelloProtectedPort
+SERVLETNAME3=HelloGuestPort
+SERVLETNAME4=HelloProtectedPort1
+SERVLETNAME5=HelloProtectedPort2
+SERVLETNAME6=HelloProtectedPort3
+WEBSERVICEDESCRIPTION=BasicAuthServiceTestService
+WEBSERVICECNTXROOT=WSW2JBAT

@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jrlxmlnamemappingtest")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest.XMLNameMappingTest_Service
+SEI=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest.XMLNameMappingTest
+IMPL=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest.XMLNameMappingTestImpl
+NAMESPACEURI=http://XMLNameMappingTest.org/wsdl
+PORT=XMLNameMappingTestPort
+URLALIAS=/jaxws/XMLNameMappingTest
+SERVLETNAME=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.xmlnamemappingtest.XMLNameMappingTestImpl
+WEBSERVICEDESCRIPTION=XMLNameMappingTestService
+SERVICEREFNAMEWSSERVLET=service/wsw2jrlxmlnamemappingtest
+SERVICEREFNAMEWSEJB=service/wsw2jrlxmlnamemappingtest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jrlxmlnamemappingtest

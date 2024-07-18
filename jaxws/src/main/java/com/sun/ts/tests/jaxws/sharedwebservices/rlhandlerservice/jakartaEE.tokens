@@ -1,0 +1,17 @@
+WSRAnn=@WebServiceRef(name="service/wsrlhandlerservice")
+SERVICE=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.RLHandlerService
+SEI=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.Hello
+SEI2=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.GetTrackerData
+IMPL=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.HelloImpl
+IMPL2=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.GetTrackerDataImpl
+NAMESPACEURI=http://rlhandlerservice.org/wsdl
+PORT=HelloPort
+PORT2=GetTrackerDataPort
+SERVLET=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.HelloImpl
+SERVLET2=com.sun.ts.tests.jaxws.sharedwebservices.rlhandlerservice.GetTrackerDataImpl
+URLALIAS=/jaxws/Hello
+URLALIAS2=/jaxws/GetTrackerData
+WEBSERVICEDESCRIPTION=RLHandlerService
+SERVICEREFNAMEWSSERVLET=service/wsrlhandlerservice
+SERVICEREFNAMEWSEJB=service/wsrlhandlerservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsrlhandlerservice

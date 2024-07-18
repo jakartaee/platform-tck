@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="webservices13_servlet_wswebservicereflookup_client" basedir="." default="usage">
+  <property name="app.name" value="WSWSRefLookup"/>
+  <property name="client.app.name" value="WSWSRefLookupClnt"/>
+  <property name="client.app.name2" value="WSWSRefLookupClnt2"/>
+  <property name="wsdl.filename" value="EchoService.wsdl"/>
+  <property name="service.names" value="EchoService"/>
+  <property name="sei.names" value="Echo"/>
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+  <property name="client.class" value="com.sun.ts.tests.webservices13.servlet.WSWebServiceRefLookup.client.Client"/>
+  <property name="common.classes" value="${jaxws.common.classes}"/>
+
+  <property name="dependency.dir" value="${src.dir}/com/sun/ts/tests/webservices13/servlet/WSWebServiceRefLookup/server"/>
+
+  <target name="generate_client_for_ejb_appclient_container">
+      <ts.clean.classes/>
+      <antcall  target="do_wsdl2java_generate_client">
+  	<param name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+        <param name="customization.binding.files" value="customfile.xml customfile2.xml"/>
+      </antcall>
+      <ts.javac includes="${pkg.dir}/Client.java, ${pkg.dir}/EjbClientIF.java, ${pkg.dir}/EjbClient.java"/>
+  </target>
+
+  <target name="generate_client_for_web_container">
+      <ts.clean.classes/>
+      <antcall  target="do_wsdl2java_generate_client">
+  	<param name="wsdl.location" value="WEB-INF/wsdl/${wsdl.filename}"/>
+        <param name="customization.binding.files" value="customfile.xml customfile2.xml"/>
+      </antcall>
+      <ts.javac includes="${pkg.dir}/ServletClient.java"/>
+  </target>
+
+  <target name="-precompile">
+     <echo message="Building dependency dir: ${dependency.dir}"/>
+     <ant dir="${dependency.dir}" target="build" inheritAll="false"/>
+     <copy_wsdl_xsd_from_dependency_dir/>
+  </target>
+
+  <target name="compile"/>
+
+  <target name="package" >
+      <antcall target="generate_client_for_ejb_appclient_container"/>
+      <ts.clientjar archivename="${client.app.name}" mainclass="com.sun.ts.tests.webservices13.servlet.WSWebServiceRefLookup.client.Client" excludedfiles="${pkg.dir}/EjbClient.class, ${pkg.dir}/ServletClient.class">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}, *.xsd"  prefix="META-INF/wsdl"/>
+	<zipfileset dir="${class.dir}"
+		includes="${jaxws.common.classes}"/>
+      </ts.clientjar>
+      <ts.ejbjar archivename="${client.app.name}" includedefaultfiles="false">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}, *.xsd"  prefix="META-INF/wsdl"/>
+	<zipfileset dir="${class.dir}"
+	    includes="${jaxws.common.classes}, ${pkg.dir}/*.class"
+	    excludes="${pkg.dir}/Client.class, ${pkg.dir}/ServletClient.class"/>
+      </ts.ejbjar>
+      <antcall target="generate_client_for_web_container"/>
+      <ts.war archivename="${client.app.name2}" includedefaultfiles="false">
+	<zipfileset dir="${src.dir}/${pkg.dir}" includes="${wsdl.filename}, *.xsd"  prefix="WEB-INF/wsdl"/>
+	<zipfileset dir="${class.dir}"
+	    includes="${jaxws.common.classes}, ${pkg.dir}/*.class"
+	    excludes="${pkg.dir}/Client.class, ${pkg.dir}/EjbClient*.class" prefix="WEB-INF/classes"/>
+      </ts.war>
+      <ts.ear archivename="${client.app.name}" descriptordir="." descriptor="application.xml.clientear" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar"/>
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_ejb.jar"/>
+      </ts.ear>
+      <ts.ear archivename="${client.app.name2}" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name2}_web.war"/>
+      </ts.ear>
+  </target>
+
+</project>

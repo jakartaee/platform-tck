@@ -1,0 +1,8 @@
+SERVICE=com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.server2.WSHello2Service
+SEI=com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.server2.WSHello2
+IMPL=com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.server2.WSHello2Servlet
+NAMESPACEURI=http://helloservlet.org/wsdl
+PORT=WSHello2Port
+SERVLETNAME=com.sun.ts.tests.webservices12.servlet.WebServiceRefsTest.server2.WSHello2Servlet
+URLALIAS=/jaxws/WSHello2
+WEBSERVICEDESCRIPTION=WebServiceRefsTestService2

@@ -1,0 +1,8 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jdlhelloproviderservice")
+SERVICE=com.sun.ts.tests.jaxws.sharedclients.dlhelloproviderclient.HelloService
+URLALIAS=/jaxws/Hello
+WEBSERVICEDESCRIPTION=HelloService
+SERVICEREFNAMEWSSERVLET=service/wsw2jdlhelloproviderservice
+SERVICEREFNAMEWSEJB=service/wsw2jdlhelloproviderservice
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jdlhelloproviderservice
+

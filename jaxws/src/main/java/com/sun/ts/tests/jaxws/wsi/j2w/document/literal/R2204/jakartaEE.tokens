@@ -1,0 +1,7 @@
+WSRAnn=@WebServiceRef(name="service/wsj2wdlshared")
+SERVICE=com.sun.ts.tests.jaxws.sharedclients.doclitclient.J2WDLShared
+URLALIAS=/jaxws/J2WDLShared
+WEBSERVICEDESCRIPTION=J2WDLShared
+SERVICEREFNAMEWSSERVLET=service/wsj2wdlshared
+SERVICEREFNAMEWSEJB=service/wsj2wdlshared
+SERVICEREFNAMEWSAPPCLIENT=service/wsj2wdlshared

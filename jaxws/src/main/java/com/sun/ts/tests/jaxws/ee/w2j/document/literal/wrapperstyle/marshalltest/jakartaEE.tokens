@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jdlwmarshalltest")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.document.literal.wrapperstyle.marshalltest.MarshallTestService
+IMPL=com.sun.ts.tests.jaxws.ee.w2j.document.literal.wrapperstyle.marshalltest.MarshallTestImpl
+SEI=com.sun.ts.tests.jaxws.ee.w2j.document.literal.wrapperstyle.marshalltest.MarshallTest
+NAMESPACEURI=http://MarshallTest.org/
+PORT=MarshallTestPort
+URLALIAS=/jaxws/MarshallTest
+SERVLETNAME=com.sun.ts.tests.jaxws.ee.w2j.document.literal.wrapperstyle.marshalltest.MarshallTestImpl
+WEBSERVICEDESCRIPTION=MarshallTestService
+SERVICEREFNAMEWSSERVLET=service/wsw2jdlwmarshalltest
+SERVICEREFNAMEWSEJB=service/wsw2jdlwmarshalltest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jdlwmarshalltest

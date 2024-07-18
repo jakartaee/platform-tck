@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsaprovidertest")
+SERVICE=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ProviderTestService
+IMPL=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ProviderTestImpl
+SEI=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ProviderTest
+NAMESPACEURI=http://providertestservice.org/wsdl
+PORT=ProviderTestPort
+URLALIAS=/jaxws/ProviderTest
+SERVLETNAME=com.sun.ts.tests.jaxws.wsa.w2j.document.literal.providertest.ProviderTestImpl
+WEBSERVICEDESCRIPTION=ProviderTest
+SERVICEREFNAMEWSSERVLET=service/wsaprovidertest
+SERVICEREFNAMEWSEJB=service/wsaprovidertest
+SERVICEREFNAMEWSAPPCLIENT=service/wsaprovidertest

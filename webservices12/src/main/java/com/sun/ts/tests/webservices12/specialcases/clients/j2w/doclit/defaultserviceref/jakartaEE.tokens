@@ -1,0 +1,10 @@
+WSRAnn=@WebServiceRef
+SERVICE=com.sun.ts.tests.webservices12.specialcases.services.j2w.doclit.noname.EchoService
+SEI=com.sun.ts.tests.webservices12.specialcases.services.j2w.doclit.noname.Echo
+NAMESPACEURI=http://noname.doclit.j2w.services.specialcases.webservices12.tests.ts.sun.com/
+PORT=Echo
+URLALIAS=/jaxws
+WEBSERVICEDESCRIPTION=EchoService
+SERVICEREFNAMEWSSERVLET=com.sun.ts.tests.common.vehicle.wsservlet.WSServletVehicle/service
+SERVICEREFNAMEWSEJB=com.sun.ts.tests.common.vehicle.wsejb.WSEJBVehicle/service
+SERVICEREFNAMEWSAPPCLIENT=com.sun.ts.tests.common.vehicle.wsappclient.WSAppclient/service

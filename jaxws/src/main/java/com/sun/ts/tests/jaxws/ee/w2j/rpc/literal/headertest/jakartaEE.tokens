@@ -1,0 +1,12 @@
+WSRAnn=@WebServiceRef(name="service/wsw2jrlheadertest")
+SERVICE=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.headertest.HeaderTestService
+SEI=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.headertest.HeaderTest
+IMPL=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.headertest.HeaderTestImpl
+NAMESPACEURI=http://headertestservice.org/HeaderTestService.wsdl
+PORT=HeaderTestPort
+URLALIAS=/jaxws/HeaderTest
+SERVLETNAME=com.sun.ts.tests.jaxws.ee.w2j.rpc.literal.headertest.HeaderTestImpl
+WEBSERVICEDESCRIPTION=HeaderTestService
+SERVICEREFNAMEWSSERVLET=service/wsw2jrlheadertest
+SERVICEREFNAMEWSEJB=service/wsw2jrlheadertest
+SERVICEREFNAMEWSAPPCLIENT=service/wsw2jrlheadertest

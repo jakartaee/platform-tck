@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="webservices12_specialcases_services_w2j_doclit_provider" basedir="." default="usage">
+  <property name="app.name" value="WSW2JDLSCProvider"/>
+  <property name="service.names" value="HelloService"/>
+  <property name="sei.names" value="Hello"/>
+  <property name="port.name" value="HelloPort"/>
+  <property name="dd.files.already.exist" value="true"/>
+  <property name="impl.class" value="com.sun.ts.tests.webservices12.specialcases.services.w2j.doclit.provider.HelloImpl"/>
+  <property name="wsdl.filename" value="HelloService.wsdl"/>
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+
+  <property name="impl.classes" value="${pkg.dir}/HelloImpl.class"/>
+  <property name="common.classes" value="${jaxws.common.classes}"/>
+
+
+  <target name="-precompile">
+    <antcall  target="do_wsdl2java_generate_server">
+       <param name="customization.binding.files" value="customfile.xml customfile2.xml"/>
+    </antcall>
+  </target>
+
+  <target name="package" depends="webservice_import_package"/>
+
+  <target name="-preclean">
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${class.dir}/endpoint"/>
+    </delete>
+  </target>
+
+</project>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="webservices12_specialcases_services_j2w_doclit_noname" basedir="." default="usage">
+  <property name="app.name" value="WSJ2WDLSCNONAME"/>
+  <property name="service.names" value="EchoService"/>
+  <property name="sei.names" value="Echo"/>
+  <property name="port.name" value="EchoPort"/>
+  <property name="impl.class" value="com.sun.ts.tests.webservices12.specialcases.services.j2w.doclit.noname.Echo"/>
+  <property name="dd.files.already.exist" value="true"/>
+  <property name="wsdl.file" value="EchoService.wsdl"/>
+
+  <!-- Import common classes properties and specific packaging file -->
+  <import file="../../../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="impl.classes" value="${pkg.dir}/Echo.class"/>
+  <property name="common.classes" value="${jaxws.common.classes}"/>
+
+  <target name="-postcompile" >
+    <antcall  target="do_java2wsdl_generate_server"/>
+  </target>
+
+  <target name="package" depends="j2w_webservice_import_package"/>
+
+  <target name="-preclean">
+    <remove_wsdl_xsd/>
+  </target>
+
+</project>

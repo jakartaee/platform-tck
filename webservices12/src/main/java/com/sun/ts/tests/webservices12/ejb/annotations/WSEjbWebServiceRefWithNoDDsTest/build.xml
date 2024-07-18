@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="WSEjbWebServiceRefWithNoDDsTest" basedir="." default="usage">
+  <property name="app.name" value="WSEjbWebServiceRefWithNoDDsTest"/>
+  <property name="client.app.name" value="WSEjbWebServiceRefWithNoDDsTestClnt"/>
+  <property name="wsdl.filename" value="WSEjbWSRefWithNoDDsTestHelloEJBService.wsdl"/>
+  <property name="impl.class" value="com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceRefWithNoDDsTest.WSEjbWSRefWithNoDDsTestHelloEJB"/>
+
+  <import file="../../../../../../../../../src/com/sun/ts/tests/jaxws/common/xml/common.xml"/>
+
+  <property name="wsdl.file" value="${src.dir}/${pkg.dir}/${wsdl.filename}"/>
+  <property name="wsdl.location" value="META-INF/wsdl/${wsdl.filename}"/>
+
+  <target name="build" depends="packageendpoint, packageclient"/>
+
+  <target name="generate_server">
+    <ts.javac includes="${pkg.dir}/WSEjbWSRefWithNoDDsTestHelloEJB.java"/>
+    <antcall target="do_java2wsdl_generate_server"/>
+  </target>
+
+  <target name="generate_client">
+     <ts.clean.classes/>
+     <antcall target="do_wsdl2java_generate_client"/>
+     <ts.javac/>
+  </target>
+
+  <target name="packageendpoint" depends="generate_server">
+    <ts.ejbjar archivename="${app.name}">
+      <zipfileset dir="${class.dir}" includes="
+	     ${pkg.dir}/WSEjbWSRefWithNoDDsTestHelloEJB.class,
+             com/sun/ts/tests/jaxws/common/JAXWS_Util.class,
+             com/sun/ts/tests/jaxws/common/JAXWS_Data.class"
+	     excludes="${pkg.dir}/Client.class"/>
+    </ts.ejbjar>
+    <ts.ear archivename="${app.name}"
+            includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar" />
+    </ts.ear>
+  </target>
+
+  <target name="packageclient" depends="generate_client">
+    <ts.clientjar archivename="${client.app.name}" excludedfiles="${pkg.dir}/*.class"
+		mainclass="com.sun.ts.tests.webservices12.ejb.annotations.WSEjbWebServiceRefWithNoDDsTest.Client">
+      <zipfileset dir="${src.dir}/${pkg.dir}" includes="*.wsdl,*.xsd"  prefix="META-INF/wsdl" />
+      <zipfileset dir="${class.dir}" includes="
+	     ${pkg.dir}/WSEjbWSRefWithNoDDsTestHelloEJBService.class,
+	     ${pkg.dir}/WSEjbWSRefWithNoDDsTestHelloEJB.class,
+	     ${pkg.dir}/Client.class,
+             com/sun/ts/tests/jaxws/common/JAXWS_Util.class,
+             com/sun/ts/tests/jaxws/common/JAXWS_Data.class"/>
+    </ts.clientjar>
+    <ts.ear archivename="${client.app.name}"
+            includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${client.app.name}_client.jar" />
+    </ts.ear>
+  </target>
+
+  <target name="clean">
+    <remove_wsdl_xsd/>
+    <ts.clean/>
+  </target>
+
+</project>
