@@ -1,9 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwswebresult1")
-SERVICE=com.sun.ts.tests.jws.webresult.webresult1.server.webResultWebServiceService
-IMPL=com.sun.ts.tests.jws.webresult.webresult1.server.webResultWebService
-SEI=com.sun.ts.tests.jws.webresult.webresult1.server.webResultWebService
-NAMESPACEURI=http://server.webresult1.webresult.jws.tests.ts.sun.com
-PORT=webResultWebServicePort
-URLALIAS=/jws/webResultWebService
-SERVLETNAME=com.sun.ts.tests.jws.webresult.webresult1.server.webResultWebService
-WEBSERVICEDESCRIPTION=WebResultWebServiceApp

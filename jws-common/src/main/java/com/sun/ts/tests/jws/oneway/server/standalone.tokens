@@ -1,9 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwsonewaywebservice")
-SERVICE=com.sun.ts.tests.jws.oneway.server.OnewayWebServiceService
-IMPL=com.sun.ts.tests.jws.oneway.server.OnewayWebService
-SEI=com.sun.ts.tests.jws.oneway.server.OnewayWebServiceInterface
-NAMESPACEURI=http://server.oneway.jws.tests.ts.sun.com
-PORT=OnewayWebService
-URLALIAS=/jws/OnewayWebService
-SERVLETNAME=com.sun.ts.tests.jws.oneway.server.OnewayWebService
-WEBSERVICEDESCRIPTION=OnewayWebServiceApp
