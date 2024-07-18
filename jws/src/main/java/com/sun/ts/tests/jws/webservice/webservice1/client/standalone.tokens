@@ -1,6 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwsdefaultwebservice")
-SERVICE=com.sun.ts.tests.jws.webservice.webservice1.client.DefaultWebServiceService
-URLALIAS=/jws/defaultWebService
-SERVICEREFNAMEWSSERVLET=service/wsjwsdefaultwebservice
-SERVICEREFNAMEWSEJB=service/wsjwsdefaultwebservice
-SERVICEREFNAMEWSAPPCLIENT=service/wsjwsdefaultwebservice
