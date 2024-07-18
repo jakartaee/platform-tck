@@ -1,4 +1,0 @@
-IMPL=com.sun.ts.tests.jaxws.ee.j2w.document.literal.restful.server.TokensImpl
-URLALIAS=/jaxws/tokens/*
-SERVLETNAME=com.sun.ts.tests.jaxws.ee.j2w.document.literal.restful.server.TokensImpl
-WEBSERVICEDESCRIPTION=TokensDesc

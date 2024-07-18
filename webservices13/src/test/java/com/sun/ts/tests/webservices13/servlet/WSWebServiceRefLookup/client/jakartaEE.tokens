@@ -1,3 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wswsreflookupservice")
-SERVICE=com.sun.ts.tests.webservices13.servlet.WSWebServiceRefLookup.client.EchoService
-URLALIAS=/jaxws/Echo
