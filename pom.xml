@@ -43,6 +43,8 @@
         <module>core-profile-tck</module>
         <module>ejb</module>
         <module>ejb30</module>
+        <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
+        <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
         <module>ejb30-ws</module>
         <module>ejb32</module>
         <module>el</module>
@@ -50,8 +52,6 @@
         <module>javaee</module>
         <module>javamail</module>
         <module>jaxrs</module>
-        <module>jaxws</module>
-        <module>jaxws-common</module>
         <module>jdbc</module>
         <module>jms</module>
         <module>jpa</module>
@@ -74,9 +74,6 @@
         <module>webartifacts/jsp</module>
         <module>webartifacts/jstl</module>
         <module>webartifacts/servlet</module>
-        <!-- TODO: implement or remove optional webservices12/webservices13 tests -->
-        <!--        <module>webservices12</module>-->
-        <!--        <module>webservices13</module>-->
         <module>websocket</module>
         <module>xa</module>
 
@@ -244,18 +241,6 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>jaxws</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jaxws-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>jdbc</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -352,21 +337,10 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>webservices12</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>webservices13</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>websocket</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>xa</artifactId>
@@ -683,11 +657,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>3.0.0</version>
-                </plugin>
-                <plugin>
-                    <groupId>com.sun.xml.ws</groupId>
-                    <artifactId>jaxws-maven-plugin</artifactId>
-                    <version>4.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
