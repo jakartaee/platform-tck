@@ -1,6 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwsendpointinterfacewebservice")
-SERVICE=com.sun.ts.tests.jws.webservice.webservice2.client.EndpointInterfaceWebServiceService
-URLALIAS=/jws/endpointInterfaceWebService
-SERVICEREFNAMEWSSERVLET=service/wsjwsendpointinterfacewebservice
-SERVICEREFNAMEWSEJB=service/wsjwsendpointinterfacewebservice
-SERVICEREFNAMEWSAPPCLIENT=service/wsjwsendpointinterfacewebservice

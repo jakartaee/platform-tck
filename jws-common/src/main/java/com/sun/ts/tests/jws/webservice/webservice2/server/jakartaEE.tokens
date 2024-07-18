@@ -1,9 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwsendpointinterfacewebservice")
-SERVICE=com.sun.ts.tests.jws.webservice.webservice2.server.endpointInterfaceWebServiceService
-IMPL=com.sun.ts.tests.jws.webservice.webservice2.server.endpointInterfaceWebService
-SEI=com.sun.ts.tests.jws.webservice.webservice2.server.endpointInterfaceWebServiceEI
-NAMESPACEURI=http://server.webservice2.webservice.jws.tests.ts.sun.com
-PORT=endpointInterfaceWebServicePort
-URLALIAS=/jws/endpointInterfaceWebService
-SERVLETNAME=com.sun.ts.tests.jws.webservice.webservice2.server.endpointInterfaceWebService
-WEBSERVICEDESCRIPTION=EndpointInterfaceWebServiceApp

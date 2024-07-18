@@ -1,6 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwswebparam3")
-SERVICE=com.sun.ts.tests.jws.webparam.webparam3.client.WebParam3WebServiceService
-URLALIAS=/jws/webParam3WebService
-SERVICEREFNAMEWSSERVLET=service/wsjwswebparam3
-SERVICEREFNAMEWSEJB=service/wsjwswebparam3
-SERVICEREFNAMEWSAPPCLIENT=service/wsjwswebparam3
