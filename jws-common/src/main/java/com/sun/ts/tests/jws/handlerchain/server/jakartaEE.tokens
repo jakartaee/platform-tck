@@ -1,9 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwshandlerchainwebservice")
-SERVICE=com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebServiceService
-IMPL=com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebService
-SEI=com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebServiceInterface
-NAMESPACEURI=http://server.handlerchain.jws.tests.ts.sun.com
-PORT=HandlerChainWebService
-URLALIAS=/jws/HandlerChainWebService
-SERVLETNAME=com.sun.ts.tests.jws.handlerchain.server.HandlerChainWebService
-WEBSERVICEDESCRIPTION=HandlerChainWebServiceApp

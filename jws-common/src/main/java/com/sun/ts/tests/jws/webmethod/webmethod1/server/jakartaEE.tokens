@@ -1,9 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwsdefaultwebmethodwebservice")
-SERVICE=com.sun.ts.tests.jws.webmethod.webmethod1.server.defaultWebMethodWebServiceService
-IMPL=com.sun.ts.tests.jws.webmethod.webmethod1.server.defaultWebMethodWebService
-SEI=com.sun.ts.tests.jws.webmethod.webmethod1.server.defaultWebMethodWebService
-NAMESPACEURI=http://server.webmethod1.webmethod.jws.tests.ts.sun.com
-PORT=defaultWebMethodWebServicePort
-URLALIAS=/jws/defaultWebMethodWebService
-SERVLETNAME=com.sun.ts.tests.jws.webmethod.webmethod1.server.defaultWebMethodWebService
-WEBSERVICEDESCRIPTION=DefaultWebMethodWebServiceApp

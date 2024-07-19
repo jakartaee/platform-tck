@@ -60,8 +60,6 @@
         <module>jsp</module>
         <module>jstl</module>
         <module>jta</module>
-        <module>jws</module>
-        <module>jws-common</module>
         <module>libutil</module>
         <!--        <module>glassfishtck</module>-->
         <module>runtime</module>
