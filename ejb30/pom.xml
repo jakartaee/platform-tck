@@ -190,6 +190,62 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <plugin>
+                <!--  Run with: mvn -Drewrite.exclusions="$PWD/annotations,$PWD/appclient,$PWD/assembly,$PWD/bin,$PWD/common,$PWD/connector,$PWD/core-profile-tck,$PWD/docker,$PWD/docker-images,$PWD/ejb,$PWD/ejb30,$PWD/ejb30-ws,$PWD/ejb32,$PWD/el,$PWD/glassfish-runner,$PWD/glassfishtck,$PWD/install,$PWD/integration,$PWD/internal,$PWD/jacc,$PWD/javaee,$PWD/javamail,$PWD/jaxrs,$PWD/jaxws,$PWD/jaxws-common,$PWD/jdbc,$PWD/jdbc_extras,$PWD/jms,$PWD/jsonb,$PWD/jsonp,$PWD/jsp,$PWD/jstl,$PWD/jta,$PWD/jws,$PWD/jws,$PWD/common,$PWD/lib,$PWD/libutil,$PWD/notes,$PWD/release,$PWD/runtime,$PWD/saaj,$PWD/samples,$PWD/servlet,$PWD/signaturetest,$PWD/sql,$PWD/src,$PWD/user_guides,$PWD/webartifacts,$PWD/webservices12,$PWD/webservices13,$PWD/websocket,$PWD/xa" org.openrewrite.maven:rewrite-maven-plugin:runNoFork  2>&1 | tee /tmp/tck.log
+                -->
+                <groupId>org.openrewrite.maven</groupId>
+                <artifactId>rewrite-maven-plugin</artifactId>
+                <version>5.32.1</version>
+                <configuration>
+                    <activeRecipes>
+                        <recipe>tck.jakarta.platform.rewrite.GenerateNewTestClassRecipe</recipe>
+                    </activeRecipes>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>tck.jakarta.platform</groupId>
+                        <artifactId>tck-rewrite-tools</artifactId>
+                        <version>11.0.0-SNAPSHOT</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openrewrite</groupId>
+                        <artifactId>rewrite-core</artifactId>
+                        <version>8.24.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>jakarta.xml.bind</groupId>
+                        <artifactId>jakarta.xml.bind-api</artifactId>
+                        <version>2.3.2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-testing-frameworks</artifactId>
+                        <version>2.6.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openrewrite.recipe</groupId>
+                        <artifactId>rewrite-github-actions</artifactId>
+                        <version>2.1.7</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openrewrite</groupId>
+                        <artifactId>rewrite-java-17</artifactId>
+                        <version>${version.openrewrite}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openrewrite</groupId>
+                        <artifactId>rewrite-test</artifactId>
+                        <version>${version.openrewrite}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openrewrite</groupId>
+                        <artifactId>rewrite-java-test</artifactId>
+                        <version>${version.openrewrite}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
         </plugins>
     </build>
 
