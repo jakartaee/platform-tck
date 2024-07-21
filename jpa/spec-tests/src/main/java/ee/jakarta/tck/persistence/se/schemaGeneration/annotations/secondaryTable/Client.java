@@ -39,6 +39,8 @@ public class Client extends PMClientBase {
 
 	String schemaGenerationDir = null;
 
+	String dataBaseName = null;
+
 	String sTestCase = "jpa_se_schemaGeneration_annotations_secondaryTable";
 
 	public JavaArchive createDeployment() throws Exception {
@@ -77,6 +79,7 @@ public class Client extends PMClientBase {
 				throw new Exception(msg);
 			}
 			removeTestData();
+			dataBaseName = System.getProperty("jdbc.db");
 
 		} catch (Exception e) {
 			logger.log(Logger.Level.ERROR, "Exception: ", e);
@@ -158,7 +161,9 @@ public class Client extends PMClientBase {
 		expected.clear();
 		expected.add("ALTER TABLE");
 		expected.add("SCHEMAGENSIMPLE_SECOND DROP");
-		pass2a = findDataInFile(f2, expected);
+		// DB2 cascades constraints automatically on a drop table statement
+		pass2a = dataBaseName.equals("db2");
+		pass2a = pass2a || findDataInFile(f2, expected);
 		pass2a = pass2a || findDataInFile(f2, List.of("DROP TABLE", "SCHEMAGENSIMPLE_SECOND", "CASCADE CONSTRAINTS"));
 		expected.clear();
 		expected.add("DROP TABLE");
