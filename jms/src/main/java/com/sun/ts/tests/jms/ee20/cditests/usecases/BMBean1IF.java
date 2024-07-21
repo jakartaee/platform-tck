@@ -17,15 +17,15 @@
 package com.sun.ts.tests.jms.ee20.cditests.usecases;
 
 public interface BMBean1IF {
-	public void init(java.util.Properties p);
+  public void init(java.util.Properties p);
 
-	public boolean cleanupQueue(int numOfMsgs);
+  public boolean cleanupQueue(int numOfMsgs);
 
-	public void method1();
+  public void method1();
 
-	public void method2();
+  public void method2();
 
-	public void method3();
+  public void method3();
 
-	public void method4();
+  public void method4();
 }

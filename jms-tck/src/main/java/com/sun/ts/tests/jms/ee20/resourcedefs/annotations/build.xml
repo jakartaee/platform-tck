@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jms_ee20_resourcedefs_annotations" basedir="." default="usage">
+<import file="../../../../../../../../../bin/xml/ts.import.xml"/>
+
+  <property name="current.dir" value="${basedir}"/>
+  <property name="app.name" value="resourcedefs_annotations"/>
+  <property name="dd.files.already.exist" value="true"/>
+
+  <target name="package" >
+      <ts.clientjar archivename="${app.name}" mainclass="com.sun.ts.tests.jms.ee20.resourcedefs.annotations.Client" excludedfiles="${pkg.dir}/ServletClient.class, ${pkg.dir}/EjbClient.class, ${pkg.dir}/MyBean.class">
+	<zipfileset dir="${class.dir}" includes="${pkg.dir}/Client.class, ${pkg.dir}/EjbClientIf.class"/>
+      </ts.clientjar>
+      <ts.ejbjar archivename="${app.name}" descriptor="${app.name}_ejb.xml" excludedfiles="${pkg.dir}/Client.class, ${pkg.dir}/ServletClient.class, ${pkg.dir}/MyBean.class">
+	<zipfileset dir="${class.dir}" includes="${pkg.dir}/EjbClientIF.class, ${pkg.dir}/EjbClient.class"/>
+      </ts.ejbjar>
+      <ts.war archivename="${app.name}" descriptor="${app.name}_web.xml" excludedfiles="${pkg.dir}/Client.class, ${pkg.dir}/EjbClient*.class">
+	<zipfileset dir="${class.dir}" includes="${pkg.dir}/ServletClient.class" prefix="WEB-INF/classes"/>
+	<zipfileset dir="." includes="JspClient.jsp, index.html"/>
+      </ts.war>
+      <copy file="application.xml.clientear" tofile="application.xml"/>
+      <ts.ear archivename="${app.name}" descriptordir="." descriptor="application.xml" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_client.jar"/>
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_web.war"/>
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar"/>
+      </ts.ear>
+      <delete file="application.xml" />
+  </target>
+
+  <target name="do.token.substitution.of.java.src.files">
+    <copy failonerror="false" overwrite="true" 
+      file="${ts.home}/src/${pkg.dir}/files/Client.java.src"
+      tofile="${ts.home}/src/${pkg.dir}/Client.java">
+        <filterset>
+	  <filter token="raname" value="${jmsra.name}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+    <copy failonerror="false" overwrite="true" 
+      file="${ts.home}/src/${pkg.dir}/files/EjbClient.java.src"
+      tofile="${ts.home}/src/${pkg.dir}/EjbClient.java">
+        <filterset>
+	  <filter token="raname" value="${jmsra.name}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+    <copy failonerror="false" overwrite="true" 
+      file="${ts.home}/src/${pkg.dir}/files/ServletClient.java.src"
+      tofile="${ts.home}/src/${pkg.dir}/ServletClient.java">
+        <filterset>
+	  <filter token="raname" value="${jmsra.name}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+    <copy failonerror="false" overwrite="true" 
+      file="${ts.home}/src/${pkg.dir}/files/MyBean.java.src"
+      tofile="${ts.home}/src/${pkg.dir}/MyBean.java">
+        <filterset>
+	  <filter token="raname" value="${jmsra.name}"/>
+	  <filter token="user" value="${user}"/>
+	  <filter token="password" value="${password}"/>
+        </filterset>
+    </copy>
+  </target>
+
+  <target name="-precompile" depends="clean, do.token.substitution.of.java.src.files"/>
+
+</project>

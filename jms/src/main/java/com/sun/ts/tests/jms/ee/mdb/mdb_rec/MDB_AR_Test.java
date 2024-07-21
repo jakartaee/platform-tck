@@ -26,35 +26,35 @@ import jakarta.ejb.Remote;
 
 @Remote
 public interface MDB_AR_Test {
-	boolean isThereSomethingInTheQueue();
+  boolean isThereSomethingInTheQueue();
 
-	void sendTextMessageToQ(String property);
+  void sendTextMessageToQ(String property);
 
-	void sendBytesMessageToQ(String property);
+  void sendBytesMessageToQ(String property);
 
-	void sendMapMessageToQ(String property);
+  void sendMapMessageToQ(String property);
 
-	void sendStreamMessageToQ(String property);
+  void sendStreamMessageToQ(String property);
 
-	void sendObjectMessageToQ(String property);
+  void sendObjectMessageToQ(String property);
 
-	void sendTextMessageToTopic(String s);
+  void sendTextMessageToTopic(String s);
 
-	void sendBytesMessageToTopic(String s);
+  void sendBytesMessageToTopic(String s);
 
-	void sendMapMessageToTopic(String s);
+  void sendMapMessageToTopic(String s);
 
-	void sendStreamMessageToTopic(String s);
+  void sendStreamMessageToTopic(String s);
 
-	void sendObjectMessageToTopic(String s);
+  void sendObjectMessageToTopic(String s);
 
-	boolean checkOnResponse(String property);
+  boolean checkOnResponse(String property);
 
-	void cleanTheQueue();
+  void cleanTheQueue();
 
-	void cleanup();
+  void cleanup();
 
-	void remove();
+  void remove();
 
-	void setup(Properties p);
+  void setup(Properties p);
 }

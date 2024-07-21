@@ -18,7 +18,7 @@ package com.sun.ts.tests.jms.ee20.resourcedefs.annotations;
 
 public interface EjbClientIF {
 
-	public void init(java.util.Properties p);
+  public void init(java.util.Properties p);
 
-	public boolean echo(String testName);
+  public boolean echo(String testName);
 }
