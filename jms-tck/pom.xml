@@ -29,8 +29,8 @@
     <artifactId>jms-tck</artifactId>
     <packaging>jar</packaging>
 
-    <name>JMS</name>
-    <description>JMS TCK tests</description>
+    <name>JMS Standalone</name>
+    <description>JMS Standalone TCK tests</description>
 
     <properties>
         <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
