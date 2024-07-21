@@ -65,8 +65,11 @@ jobs:
       - name: Install legacy javatest jar
         run: ./mvnw -e -ntp install:install-file -Dfile=./lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
 
-      - name: Build & Run TCK Servlet TCK
-        run: ./mvnw -e -V -B -U clean install -Pglassfish-runner -Pjaxrs-tck -Dmaven.test.failure.ignore=true -Pstaging
+      - name: Build TCK
+        run: ./mvnw -e -B -U clean install -Dmaven.test.failure.ignore=true -Pstaging
+
+      - name: Run Glassfish Runner
+        run: ./mvnw -e -V -B -U test -Pglassfish-runner -Pjaxrs-tck -Dmaven.test.failure.ignore=true -Pstaging
 
 #      - name: Publish Test Report
 #        uses: ScaCap/action-surefire-report@v1.7.0
