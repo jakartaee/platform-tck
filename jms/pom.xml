@@ -29,8 +29,8 @@
     <artifactId>jms</artifactId>
     <packaging>jar</packaging>
 
-    <name>JMS</name>
-    <description>JMS</description>
+    <name>JMS EE</name>
+    <description>JMS EE Integration Tests</description>
 
     <dependencies>
         <dependency>
