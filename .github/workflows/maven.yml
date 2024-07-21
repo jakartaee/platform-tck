@@ -69,7 +69,7 @@ jobs:
         run: ./mvnw -e -B -U clean install -Dmaven.test.failure.ignore=true -Pstaging
 
       - name: Run Glassfish Runner
-        run: ./mvnw -e -V -B -U test -Pglassfish-runner -Pjaxrs-tck -Dmaven.test.failure.ignore=true -Pstaging
+        run: cd glassfish-runner; ../mvnw -e -B -U test -Pglassfish-runner -Pstaging
 
 #      - name: Publish Test Report
 #        uses: ScaCap/action-surefire-report@v1.7.0
