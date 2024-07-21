@@ -35,19 +35,20 @@ import jakarta.jms.MessageListener;
 
 //assembler not permitted to override transaction management type.
 @TransactionManagement(TransactionManagementType.BEAN)
-public class ActivationConfigBean extends ActivationConfigBeanBase implements MessageListener {
+public class ActivationConfigBean extends ActivationConfigBeanBase
+    implements MessageListener {
 
-	@Resource(name = "mdc")
-	private MessageDrivenContext mdc;
+  @Resource(name = "mdc")
+  private MessageDrivenContext mdc;
 
-	public ActivationConfigBean() {
-		super();
-	}
+  public ActivationConfigBean() {
+    super();
+  }
 
-	public EJBContext getEJBContext() {
-		return this.mdc;
-	}
+  public EJBContext getEJBContext() {
+    return this.mdc;
+  }
 
-	// ================== business methods ====================================
+  // ================== business methods ====================================
 
 }

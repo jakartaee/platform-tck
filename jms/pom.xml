@@ -26,19 +26,11 @@
         <version>11.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jms-tck</artifactId>
+    <artifactId>jms</artifactId>
     <packaging>jar</packaging>
 
     <name>JMS</name>
-    <description>JMS TCK tests</description>
-
-    <properties>
-        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <tck.version>${project.version}</tck.version>
-    </properties>
+    <description>JMS</description>
 
     <dependencies>
         <dependency>
@@ -69,36 +61,8 @@
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.junit}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-core</artifactId>
-            <version>${arquillian.junit}</version>
-        </dependency>
     </dependencies>
     <build>
-        <!-- Include the container descriptors in the output artifact -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <excludes>
-                    <exclude>**/build.xml</exclude>
-                </excludes>
-            </resource>
-        </resources>
-
         <plugins>
             <!-- do not publish this artifact to Maven repositories -->
             <plugin>

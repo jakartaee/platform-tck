@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD GlassFish Application Server 3.0 EJB 3.1//EN" "http://www.sun.com/software/appserver/dtds/sun-ejb-jar_3_1-0.dtd">
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<sun-ejb-jar>
+  <disable-nonportable-jndi-names>true</disable-nonportable-jndi-names>
+  <enterprise-beans>
+    <unique-id>0</unique-id>
+    <ejb>
+      <ejb-name>MDB_DURABLETXNS_CMT</ejb-name>
+      <jndi-name>jms_ee_mdb_mdb_exceptT_MDB_DURABLETXNS_CMT</jndi-name>
+      <resource-ref>
+        <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
+        <jndi-name>jms/QueueConnectionFactory</jndi-name>
+        <default-resource-principal>
+          <name>j2ee</name>
+          <password>j2ee</password>
+        </default-resource-principal>
+      </resource-ref>
+      <resource-env-ref>
+        <resource-env-ref-name>jms/MDB_QUEUE_REPLY</resource-env-ref-name>
+        <jndi-name>MDB_QUEUE_REPLY</jndi-name>
+      </resource-env-ref>
+      <pass-by-reference>false</pass-by-reference>
+      <mdb-connection-factory>
+        <jndi-name>jms/DURABLE_CMT_TXNS_XCONNECTION_FACTORY</jndi-name>
+      </mdb-connection-factory>
+      <jms-durable-subscription-name>cts6</jms-durable-subscription-name>
+      <jms-max-messages-load>1</jms-max-messages-load>
+      <ior-security-config>
+        <transport-config>
+          <integrity>supported</integrity>
+          <confidentiality>supported</confidentiality>
+          <establish-trust-in-target>supported</establish-trust-in-target>
+          <establish-trust-in-client>supported</establish-trust-in-client>
+        </transport-config>
+        <as-context>
+          <auth-method>username_password</auth-method>
+          <realm>default</realm>
+          <required>false</required>
+        </as-context>
+        <sas-context>
+          <caller-propagation>supported</caller-propagation>
+        </sas-context>
+      </ior-security-config>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+    </ejb>
+    <ejb>
+      <ejb-name>MDB_DURABLE_CMT</ejb-name>
+      <jndi-name>jms_ee_mdb_mdb_exceptT_MDB_DURABLE_CMT</jndi-name>
+      <resource-ref>
+        <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
+        <jndi-name>jms/QueueConnectionFactory</jndi-name>
+        <default-resource-principal>
+          <name>j2ee</name>
+          <password>j2ee</password>
+        </default-resource-principal>
+      </resource-ref>
+      <resource-env-ref>
+        <resource-env-ref-name>jms/MDB_QUEUE_REPLY</resource-env-ref-name>
+        <jndi-name>MDB_QUEUE_REPLY</jndi-name>
+      </resource-env-ref>
+      <pass-by-reference>false</pass-by-reference>
+      <mdb-connection-factory>
+        <jndi-name>jms/DURABLE_CMT_XCONNECTION_FACTORY</jndi-name>
+      </mdb-connection-factory>
+      <jms-durable-subscription-name>cts5</jms-durable-subscription-name>
+      <jms-max-messages-load>1</jms-max-messages-load>
+      <ior-security-config>
+        <transport-config>
+          <integrity>supported</integrity>
+          <confidentiality>supported</confidentiality>
+          <establish-trust-in-target>supported</establish-trust-in-target>
+          <establish-trust-in-client>supported</establish-trust-in-client>
+        </transport-config>
+        <as-context>
+          <auth-method>username_password</auth-method>
+          <realm>default</realm>
+          <required>false</required>
+        </as-context>
+        <sas-context>
+          <caller-propagation>supported</caller-propagation>
+        </sas-context>
+      </ior-security-config>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+    </ejb>
+    <ejb>
+      <ejb-name>MDB_DURABLE_BMT</ejb-name>
+      <jndi-name>jms_ee_mdb_mdb_exceptT_MDB_DURABLE_BMT</jndi-name>
+      <resource-ref>
+        <res-ref-name>jms/MyQueueConnectionFactory</res-ref-name>
+        <jndi-name>jms/QueueConnectionFactory</jndi-name>
+        <default-resource-principal>
+          <name>j2ee</name>
+          <password>j2ee</password>
+        </default-resource-principal>
+      </resource-ref>
+      <resource-env-ref>
+        <resource-env-ref-name>jms/MDB_QUEUE_REPLY</resource-env-ref-name>
+        <jndi-name>MDB_QUEUE_REPLY</jndi-name>
+      </resource-env-ref>
+      <pass-by-reference>false</pass-by-reference>
+      <mdb-connection-factory>
+        <jndi-name>jms/DURABLE_BMT_XCONNECTION_FACTORY</jndi-name>
+      </mdb-connection-factory>
+      <jms-durable-subscription-name>cts4</jms-durable-subscription-name>
+      <jms-max-messages-load>1</jms-max-messages-load>
+      <ior-security-config>
+        <transport-config>
+          <integrity>supported</integrity>
+          <confidentiality>supported</confidentiality>
+          <establish-trust-in-target>supported</establish-trust-in-target>
+          <establish-trust-in-client>supported</establish-trust-in-client>
+        </transport-config>
+        <as-context>
+          <auth-method>username_password</auth-method>
+          <realm>default</realm>
+          <required>false</required>
+        </as-context>
+        <sas-context>
+          <caller-propagation>supported</caller-propagation>
+        </sas-context>
+      </ior-security-config>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>-1</refresh-period-in-seconds>
+      <gen-classes/>
+    </ejb>
+  </enterprise-beans>
+</sun-ejb-jar>

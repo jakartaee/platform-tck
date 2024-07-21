@@ -16,7 +16,6 @@
 
 package com.sun.ts.tests.jms.ee20.cditests.usecases;
 
-import java.lang.System.Logger;
 import java.util.Properties;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
@@ -45,154 +44,154 @@ import jakarta.transaction.UserTransaction;
 @Remote({ BMBean1IF.class })
 public class BMBean1 implements BMBean1IF {
 
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	long timeout;
+  long timeout;
 
-	private static final Logger logger = (Logger) System.getLogger(BMBean1.class.getName());
+  // JMSContext CDI injection specifying ConnectionFactory
+  @Inject
+  @JMSConnectionFactory("jms/ConnectionFactory")
+  JMSContext context;
 
-	// JMSContext CDI injection specifying ConnectionFactory
-	@Inject
-	@JMSConnectionFactory("jms/ConnectionFactory")
-	JMSContext context;
+  @Resource(name = "jms/MyConnectionFactory")
+  ConnectionFactory cfactory;
 
-	@Resource(name = "jms/MyConnectionFactory")
-	ConnectionFactory cfactory;
+  @Resource(name = "jms/MY_QUEUE")
+  Queue queue;
 
-	@Resource(name = "jms/MY_QUEUE")
-	Queue queue;
+  @Resource(name = "jms/MY_TOPIC")
+  Topic topic;
 
-	@Resource(name = "jms/MY_TOPIC")
-	Topic topic;
+  @EJB(name = "ejb/CDIUseCasesBMBEAN2")
+  BMBean2IF bmbean2;
 
-	@EJB(name = "ejb/CDIUseCasesBMBEAN2")
-	BMBean2IF bmbean2;
+  @Inject
+  UserTransaction ut;
 
-	@Inject
-	UserTransaction ut;
+  @PostConstruct
+  public void postConstruct() {
+    System.out.println("BMBean1:postConstruct()");
+    System.out.println("queue=" + queue);
+    System.out.println("topic=" + topic);
+    System.out.println("cfactory=" + cfactory);
+    System.out.println("bmbean2=" + bmbean2);
+    System.out.println("ut=" + ut);
+    if (queue == null || topic == null || context == null || cfactory == null
+        || bmbean2 == null || ut == null) {
+      throw new EJBException("postConstruct failed: injection failure");
+    }
+  }
 
-	@PostConstruct
-	public void postConstruct() {
-		System.out.println("BMBean1:postConstruct()");
-		System.out.println("queue=" + queue);
-		System.out.println("topic=" + topic);
-		System.out.println("cfactory=" + cfactory);
-		System.out.println("bmbean2=" + bmbean2);
-		System.out.println("ut=" + ut);
-		if (queue == null || topic == null || context == null || cfactory == null || bmbean2 == null || ut == null) {
-			throw new EJBException("postConstruct failed: injection failure");
-		}
-	}
+  public void init(Properties p) {
+    TestUtil.logMsg("BMBean1.init()");
+    try {
+      TestUtil.init(p);
+      timeout = Long.parseLong(p.getProperty("jms_timeout"));
+    } catch (RemoteLoggingInitException e) {
+      TestUtil.printStackTrace(e);
+      throw new EJBException("BMBean1.init: failed");
+    } catch (Exception e) {
+      TestUtil.printStackTrace(e);
+      throw new EJBException("BMBean1.init: failed");
+    }
+  }
 
-	public void init(Properties p) {
-		logger.log(Logger.Level.INFO, "BMBean1.init()");
-		try {
-			TestUtil.init(p);
-			timeout = Long.parseLong(System.getProperty("jms_timeout"));
-		} catch (RemoteLoggingInitException e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException("BMBean1.init: failed");
-		} catch (Exception e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException("BMBean1.init: failed");
-		}
-	}
+  public boolean cleanupQueue(int numOfMsgs) {
+    int count = 0;
+    String message = null;
+    TestUtil.logMsg("BMBean1.cleanupQueue()");
+    try {
+      JMSConsumer consumer = context.createConsumer(queue);
+      for (int i = 0; i < numOfMsgs; i++) {
+        message = consumer.receiveBody(String.class, timeout);
+        if (message != null) {
+          TestUtil.logMsg("Cleanup message: [" + message + "]");
+          count++;
+        }
+      }
+      while ((message = consumer.receiveBody(String.class, timeout)) != null) {
+        TestUtil.logMsg("Cleanup message: [" + message + "]");
+        count++;
+      }
+      consumer.close();
+      TestUtil.logMsg("Cleaned up " + count + " messages from Queue (numOfMsgs="
+          + numOfMsgs + ")");
+      if (count == numOfMsgs)
+        return true;
+      else
+        return false;
+    } catch (Exception e) {
+      TestUtil.printStackTrace(e);
+      throw new EJBException("CMBean1.cleanupQueue: failed");
+    }
+  }
 
-	public boolean cleanupQueue(int numOfMsgs) {
-		int count = 0;
-		String message = null;
-		logger.log(Logger.Level.INFO, "BMBean1.cleanupQueue()");
-		try {
-			JMSConsumer consumer = context.createConsumer(queue);
-			for (int i = 0; i < numOfMsgs; i++) {
-				message = consumer.receiveBody(String.class, timeout);
-				if (message != null) {
-					logger.log(Logger.Level.INFO, "Cleanup message: [" + message + "]");
-					count++;
-				}
-			}
-			while ((message = consumer.receiveBody(String.class, timeout)) != null) {
-				logger.log(Logger.Level.INFO, "Cleanup message: [" + message + "]");
-				count++;
-			}
-			consumer.close();
-			logger.log(Logger.Level.INFO, "Cleaned up " + count + " messages from Queue (numOfMsgs=" + numOfMsgs + ")");
-			if (count == numOfMsgs)
-				return true;
-			else
-				return false;
-		} catch (Exception e) {
-			TestUtil.printStackTrace(e);
-			throw new EJBException("CMBean1.cleanupQueue: failed");
-		}
-	}
+  public void method1() {
+    TestUtil.logMsg("BMBean1.method1(): JMSContext context=" + context);
+    JMSProducer producer = context.createProducer();
+    TestUtil.logMsg("Sending message [Message 1]");
+    producer.send(queue, "Message 1");
+    TestUtil.logMsg("Sending message [Message 2]");
+    producer.send(queue, "Message 2");
+  }
 
-	public void method1() {
-		logger.log(Logger.Level.INFO, "BMBean1.method1(): JMSContext context=" + context);
-		JMSProducer producer = context.createProducer();
-		logger.log(Logger.Level.INFO, "Sending message [Message 1]");
-		producer.send(queue, "Message 1");
-		logger.log(Logger.Level.INFO, "Sending message [Message 2]");
-		producer.send(queue, "Message 2");
-	}
+  public void method2() {
+    TestUtil.logMsg("BMBean1.method2(): JMSContext context=" + context);
+    TestUtil.logMsg("Sending message [Message 1]");
+    context.createProducer().send(queue, "Message 1");
+    TestUtil.logMsg("Calling BMBean2.method2()");
+    bmbean2.method2();
+  }
 
-	public void method2() {
-		logger.log(Logger.Level.INFO, "BMBean1.method2(): JMSContext context=" + context);
-		logger.log(Logger.Level.INFO, "Sending message [Message 1]");
-		context.createProducer().send(queue, "Message 1");
-		logger.log(Logger.Level.INFO, "Calling BMBean2.method2()");
-		bmbean2.method2();
-	}
+  public void method3() {
+    try {
+      TestUtil.logMsg("BMBean1.method3()");
+      TestUtil.logMsg("Begin First User Transaction");
+      ut.begin();
+      TestUtil.logMsg("JMSContext context=" + context);
+      JMSProducer producer = context.createProducer();
+      TestUtil.logMsg("Sending message [Message 1]");
+      producer.send(queue, "Message 1");
+      TestUtil.logMsg("Sending message [Message 2]");
+      producer.send(queue, "Message 2");
+      TestUtil.logMsg("Commit First User Transaction");
+      ut.commit();
+      TestUtil.logMsg("Begin Second User Transaction");
+      ut.begin();
+      producer = context.createProducer();
+      TestUtil.logMsg("Sending message [Message 3]");
+      producer.send(queue, "Message 3");
+      TestUtil.logMsg("Sending message [Message 4]");
+      producer.send(queue, "Message 4");
+      TestUtil.logMsg("Commit Second User Transaction");
+      ut.commit();
+    } catch (Exception e) {
+      throw new EJBException(e);
+    }
+  }
 
-	public void method3() {
-		try {
-			logger.log(Logger.Level.INFO, "BMBean1.method3()");
-			logger.log(Logger.Level.INFO, "Begin First User Transaction");
-			ut.begin();
-			logger.log(Logger.Level.INFO, "JMSContext context=" + context);
-			JMSProducer producer = context.createProducer();
-			logger.log(Logger.Level.INFO, "Sending message [Message 1]");
-			producer.send(queue, "Message 1");
-			logger.log(Logger.Level.INFO, "Sending message [Message 2]");
-			producer.send(queue, "Message 2");
-			logger.log(Logger.Level.INFO, "Commit First User Transaction");
-			ut.commit();
-			logger.log(Logger.Level.INFO, "Begin Second User Transaction");
-			ut.begin();
-			producer = context.createProducer();
-			logger.log(Logger.Level.INFO, "Sending message [Message 3]");
-			producer.send(queue, "Message 3");
-			logger.log(Logger.Level.INFO, "Sending message [Message 4]");
-			producer.send(queue, "Message 4");
-			logger.log(Logger.Level.INFO, "Commit Second User Transaction");
-			ut.commit();
-		} catch (Exception e) {
-			throw new EJBException(e);
-		}
-	}
-
-	public void method4() {
-		logger.log(Logger.Level.INFO, "BMBean1.method4(): JMSContext context=" + context);
-		try {
-			JMSProducer producer = context.createProducer();
-			logger.log(Logger.Level.INFO, "Sending message [Message 1]");
-			producer.send(queue, "Message 1");
-			logger.log(Logger.Level.INFO, "Sending message [Message 2]");
-			producer.send(queue, "Message 2");
-			logger.log(Logger.Level.INFO, "Begin User Transaction");
-			ut.begin();
-			producer = context.createProducer();
-			logger.log(Logger.Level.INFO, "Sending message [Message 3]");
-			producer.send(queue, "Message 3");
-			logger.log(Logger.Level.INFO, "Commit User Transaction");
-			ut.commit();
-			producer = context.createProducer();
-			logger.log(Logger.Level.INFO, "Sending message [Message 4]");
-			producer.send(queue, "Message 4");
-			logger.log(Logger.Level.INFO, "Sending message [Message 5]");
-			producer.send(queue, "Message 5");
-		} catch (Exception e) {
-			throw new EJBException(e);
-		}
-	}
+  public void method4() {
+    TestUtil.logMsg("BMBean1.method4(): JMSContext context=" + context);
+    try {
+      JMSProducer producer = context.createProducer();
+      TestUtil.logMsg("Sending message [Message 1]");
+      producer.send(queue, "Message 1");
+      TestUtil.logMsg("Sending message [Message 2]");
+      producer.send(queue, "Message 2");
+      TestUtil.logMsg("Begin User Transaction");
+      ut.begin();
+      producer = context.createProducer();
+      TestUtil.logMsg("Sending message [Message 3]");
+      producer.send(queue, "Message 3");
+      TestUtil.logMsg("Commit User Transaction");
+      ut.commit();
+      producer = context.createProducer();
+      TestUtil.logMsg("Sending message [Message 4]");
+      producer.send(queue, "Message 4");
+      TestUtil.logMsg("Sending message [Message 5]");
+      producer.send(queue, "Message 5");
+    } catch (Exception e) {
+      throw new EJBException(e);
+    }
+  }
 }

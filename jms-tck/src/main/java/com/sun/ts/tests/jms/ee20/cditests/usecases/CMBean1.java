@@ -1,0 +1,188 @@
+/*
+ * Copyright (c) 2013, 2018, 2020 Oracle and/or its affiliates. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0, which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the
+ * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+ * version 2 with the GNU Classpath Exception, which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+package com.sun.ts.tests.jms.ee20.cditests.usecases;
+
+import java.lang.System.Logger;
+import java.util.Properties;
+
+import com.sun.ts.lib.util.RemoteLoggingInitException;
+import com.sun.ts.lib.util.TestUtil;
+
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
+import jakarta.ejb.EJB;
+import jakarta.ejb.EJBException;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionAttribute;
+import jakarta.ejb.TransactionAttributeType;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.inject.Inject;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSConnectionFactory;
+import jakarta.jms.JMSConsumer;
+import jakarta.jms.JMSContext;
+import jakarta.jms.JMSProducer;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
+
+@TransactionManagement(TransactionManagementType.CONTAINER)
+@Stateless(name = "CDIUseCasesCMBEAN1")
+@Remote({ CMBean1IF.class })
+public class CMBean1 implements CMBean1IF {
+
+	private static final long serialVersionUID = 1L;
+
+	long timeout;
+
+	// JMSContext CDI injection specifying ConnectionFactory
+	@Inject
+	@JMSConnectionFactory("jms/ConnectionFactory")
+	JMSContext context;
+
+	@Resource(name = "jms/MyConnectionFactory")
+	ConnectionFactory cfactory;
+
+	@Resource(name = "jms/MY_QUEUE")
+	Queue queue;
+
+	@Resource(name = "jms/MY_TOPIC")
+	Topic topic;
+
+	@EJB(name = "ejb/CDIUseCasesCMBEAN2")
+	CMBean2IF cmbean2;
+
+	private static final Logger logger = (Logger) System.getLogger(CMBean1.class.getName());
+
+	@PostConstruct
+	public void postConstruct() {
+		System.out.println("CMBean1:postConstruct()");
+		System.out.println("queue=" + queue);
+		System.out.println("topic=" + topic);
+		System.out.println("cfactory=" + cfactory);
+		System.out.println("cmbean2=" + cmbean2);
+		if (queue == null || topic == null || context == null || cfactory == null || cmbean2 == null) {
+			throw new EJBException("postConstruct failed: injection failure");
+		}
+	}
+
+	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
+	public void init(Properties p) {
+		logger.log(Logger.Level.INFO, "CMBean1.init()");
+		try {
+			TestUtil.init(p);
+			timeout = Long.parseLong(System.getProperty("jms_timeout"));
+		} catch (RemoteLoggingInitException e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("CMBean1.init: failed");
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("CMBean1.init: failed");
+		}
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public boolean cleanupQueue(int numOfMsgs) {
+		int count = 0;
+		String message = null;
+		logger.log(Logger.Level.INFO, "CMBean1.cleanupQueue()");
+		try {
+			JMSConsumer consumer = context.createConsumer(queue);
+			for (int i = 0; i < numOfMsgs; i++) {
+				message = consumer.receiveBody(String.class, timeout);
+				if (message != null) {
+					logger.log(Logger.Level.INFO, "Cleanup message: [" + message + "]");
+					count++;
+				}
+			}
+			while ((message = consumer.receiveBody(String.class, timeout)) != null) {
+				logger.log(Logger.Level.INFO, "Cleanup message: [" + message + "]");
+				count++;
+			}
+			consumer.close();
+			logger.log(Logger.Level.INFO, "Cleaned up " + count + " messages from Queue (numOfMsgs=" + numOfMsgs + ")");
+			if (count == numOfMsgs)
+				return true;
+			else
+				return false;
+		} catch (Exception e) {
+			TestUtil.printStackTrace(e);
+			throw new EJBException("CMBean1.cleanupQueue: failed");
+		}
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void method1a() {
+		logger.log(Logger.Level.INFO, "CMBean1.method1a(): JMSContext context=" + context);
+		logger.log(Logger.Level.INFO, "Sending message [Message 1]");
+		context.createProducer().send(queue, "Message 1");
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void method1b() {
+		logger.log(Logger.Level.INFO, "CMBean1.method1b(): JMSContext context=" + context);
+		logger.log(Logger.Level.INFO, "Sending message [Message 2]");
+		context.createProducer().send(queue, "Message 2");
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void method2() {
+		logger.log(Logger.Level.INFO, "CMBean1.method2(): JMSContext context=" + context);
+		logger.log(Logger.Level.INFO, "Calling CMBean2.method2a() followed by Bean2.method2b()");
+		cmbean2.method2a();
+		cmbean2.method2b();
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void method3() {
+		logger.log(Logger.Level.INFO, "CMBean1.method3(): JMSContext context=" + context);
+		logger.log(Logger.Level.INFO, "Sending message [Message 1]");
+		context.createProducer().send(queue, "Message 1");
+		logger.log(Logger.Level.INFO, "Calling CMBean2.method3()");
+		cmbean2.method3();
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void method4() {
+		logger.log(Logger.Level.INFO, "CMBean1.method4(): JMSContext context=" + context);
+		JMSProducer producer = context.createProducer();
+		logger.log(Logger.Level.INFO, "Sending message [Message 1]");
+		producer.send(queue, "Message 1");
+		logger.log(Logger.Level.INFO, "Sending message [Message 2]");
+		producer.send(queue, "Message 2");
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void method5() {
+		logger.log(Logger.Level.INFO, "CMBean1.method5(): JMSContext context=" + context);
+		JMSProducer producer = context.createProducer();
+		logger.log(Logger.Level.INFO, "Sending message [Message 1]");
+		producer.send(queue, "Message 1");
+		cmbean2.method5();
+		logger.log(Logger.Level.INFO, "Sending message [Message 3]");
+		producer.send(queue, "Message 3");
+	}
+
+	@TransactionAttribute(TransactionAttributeType.REQUIRED)
+	public void method6() {
+		logger.log(Logger.Level.INFO, "CMBean1.method6(): JMSContext context=" + context);
+		logger.log(Logger.Level.INFO, "Sending message [Message 1]");
+		context.createProducer().send(queue, "Message 1");
+		cmbean2.method6();
+	}
+}

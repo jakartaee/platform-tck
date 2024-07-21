@@ -54,6 +54,7 @@
         <module>jaxrs</module>
         <module>jdbc</module>
         <module>jms</module>
+        <module>jms-tck</module>
         <module>jpa</module>
         <module>jsonb</module>
         <module>jsonp</module>

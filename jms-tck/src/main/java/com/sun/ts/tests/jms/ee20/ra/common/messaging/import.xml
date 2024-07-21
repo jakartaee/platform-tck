@@ -1,0 +1,118 @@
+<!--
+
+    Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jms_ee20_ra_common_messaging" basedir="." default="usage">
+<!--
+How deployment descriptors are defined and used:
+1. application.xml:
+  if exists ./application.xml, include it in EAR.
+
+3. ejb-jar.xml, application-client.xml, web.xml:
+  ${ejb.jar.xml} set to ${app.name}_ejb.xml
+  ${application.client.xml} set to ${app.name}_client.xml
+  ${web.xml} set to ${app.name}_web.xml
+  
+4. client.jar META-INF/MANIFEST.MF:
+  generated in place
+
+5. sun-application.xml, sun-ejb-jar.xml, sun-application-client.xml, sun-web.xml:
+  ${sun.ejb.jar.xml}: 
+  ${dist.dir}/${pkg.dir}/${ejb3.archive}.sun-ejb-jar.xml
+  
+  ${sun.application.client.xml}: 
+  ${dist.dir}/${pkg.dir}/${appclient.archive}.sun-application-client.xml
+  
+  ${sun.application.xml}: 
+  ${dist.dir}/${pkg.dir}/${application.archive}.sun-application.xml
+
+  ${sun.web.xml}:
+  ${dist.dir}/${pkg.dir}/${ejb3.archive}.sun-web.xml
+  
+6. If the property no.application.client has been set, package.appclient.jar target
+   will NOT be run.
+   
+7. package.war target is noop. If needed, leaf level
+   build.xml should import war-import.xml.  If the test directory only contains
+   ejb-jar and war without any application-client.jar, then leaf-level build.xml
+   should set property no.application.client (see #6).
+-->
+
+  <import file="../../../../../../../../../../bin/xml/ts.import.xml"/>
+
+  <property name="ejb3.archive" value="${app.name}_ejb.jar"/>
+  <property name="appclient.archive" value="${app.name}_client.jar"/>
+  <property name="war.archive" value="${app.name}_web.war"/>
+  
+  <property name="ejb.jar.xml" value="${app.name}_ejb.xml"/>
+  <property name="application.client.xml" value="${app.name}_client.xml"/>
+  <property name="web.xml" value="${app.name}_web.xml"/>
+  
+  <property name="deletecomponentarchives" value="true"/>
+
+  <!-- ==================================================================-->
+  <!-- compile targets -->
+  <target name="compile">
+    <ts.javac includes="${app.common}/**/*.java,
+                        com/sun/ts/tests/jms/common/**/*.java,
+                        com/sun/ts/tests/jms/commonee/**/*.java,
+                        ${pkg.dir}/**/*.java"/>
+  </target>
+  
+  <!-- =============================================================== -->
+  <!-- package targets -->
+  <target name="package" 
+          depends="pre.package, package.ejb.jar, package.appclient.jar, package.war, package.ear">
+  </target>
+
+  <!-- for importing build files to add operations after compile and before package -->
+  <target name="pre.package">
+  </target>
+  
+  <target name="package.ejb.jar" unless="no.ejb.jar">
+    <dirname property="ejb.jar.xml.dir" file="${ejb.jar.xml}"/>
+    <basename property="ejb.jar.xml.base" file="${ejb.jar.xml}"/>
+    <ts.ejbjar descriptor="${ejb.jar.xml.base}" descriptordir="${ejb.jar.xml.dir}"
+               archivename="${app.name}" includedefaultfiles="false">
+      <fileset dir="${class.dir}" includes="${ejb.jar.classes}"/>
+    </ts.ejbjar>
+  </target>
+  
+  <target name="package.appclient.jar" unless="no.application.client">
+    <dirname property="application.client.xml.dir" file="${application.client.xml}"/>
+    <basename property="application.client.xml.base" file="${application.client.xml}"/>
+    <ts.clientjar descriptor="${application.client.xml.base}" 
+                  descriptordir="${application.client.xml.dir}"
+                  archivename="${app.name}" includedefaultfiles="false"
+                  mainclass="${client}">
+      <fileset dir="${class.dir}" includes="${appclient.jar.classes}">
+      </fileset>
+    </ts.clientjar>
+  </target>
+  
+  <target name="package.war">
+    <echo message="noop in import.package.war"/>
+  </target>
+  
+  <target name="package.ear" unless="no.ear">
+    <ts.ear archivename="${app.name}" descriptor="application.xml"
+            excludedfiles="*standalone_component*ar"
+            deletecomponentarchives="${deletecomponentarchives}">
+    </ts.ear>
+  </target>
+
+</project>

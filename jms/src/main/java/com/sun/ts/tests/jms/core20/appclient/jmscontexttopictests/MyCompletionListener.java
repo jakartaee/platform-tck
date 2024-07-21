@@ -19,99 +19,98 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.jmscontexttopictests;
 
-import java.lang.System.Logger;
 import java.util.ArrayList;
+
+import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.jms.CompletionListener;
 import jakarta.jms.Message;
 
 public class MyCompletionListener implements CompletionListener {
 
-	private String name = null;
+  private String name = null;
 
-	private Message message = null;
+  private Message message = null;
 
-	private ArrayList<Message> messages = new ArrayList<Message>();
+  private ArrayList<Message> messages = new ArrayList<Message>();
 
-	private Exception exception = null;
+  private Exception exception = null;
 
-	private int numMessages = 1;
+  private int numMessages = 1;
 
-	boolean complete = false;
+  boolean complete = false;
 
-	private static final Logger logger = (Logger) System.getLogger(MyCompletionListener.class.getName());
+  public MyCompletionListener() {
+    this("MyCompletionListener");
+  }
 
-	public MyCompletionListener() {
-		this("MyCompletionListener");
-	}
+  public MyCompletionListener(String name) {
+    this.name = name;
+  }
 
-	public MyCompletionListener(String name) {
-		this.name = name;
-	}
+  public MyCompletionListener(int numMessages) {
+    this.numMessages = numMessages;
+    messages.clear();
+  }
 
-	public MyCompletionListener(int numMessages) {
-		this.numMessages = numMessages;
-		messages.clear();
-	}
+  // getters/setters
+  public String getName() {
+    return name;
+  }
 
-	// getters/setters
-	public String getName() {
-		return name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public Message getMessage() {
+    return message;
+  }
 
-	public Message getMessage() {
-		return message;
-	}
+  public Message getMessage(int index) {
+    return messages.get(index);
+  }
 
-	public Message getMessage(int index) {
-		return messages.get(index);
-	}
+  public void setMessage(Message message) {
+    this.message = message;
+  }
 
-	public void setMessage(Message message) {
-		this.message = message;
-	}
+  public Exception getException() {
+    return exception;
+  }
 
-	public Exception getException() {
-		return exception;
-	}
+  public void setException(Exception exception) {
+    this.exception = exception;
+  }
 
-	public void setException(Exception exception) {
-		this.exception = exception;
-	}
+  public boolean gotAllMsgs() {
+    return (messages.size() == numMessages) ? true : false;
+  }
 
-	public boolean gotAllMsgs() {
-		return (messages.size() == numMessages) ? true : false;
-	}
+  public boolean haveMsg(int i) {
+    return (messages.size() > i) ? true : false;
+  }
 
-	public boolean haveMsg(int i) {
-		return (messages.size() > i) ? true : false;
-	}
+  public boolean isComplete() {
+    return complete;
+  }
 
-	public boolean isComplete() {
-		return complete;
-	}
+  public void setComplete(boolean complete) {
+    this.complete = complete;
+  }
 
-	public void setComplete(boolean complete) {
-		this.complete = complete;
-	}
+  public void onCompletion(Message message) {
+    TestUtil.logMsg("Got Message: " + message);
+    this.message = message;
+    messages.add(message);
+    complete = true;
+  }
 
-	public void onCompletion(Message message) {
-		logger.log(Logger.Level.INFO, "Got Message: " + message);
-		this.message = message;
-		messages.add(message);
-		complete = true;
-	}
-
-	public void onException(Message message, Exception exception) {
-		logger.log(Logger.Level.INFO, "Got Exception: " + exception);
-		logger.log(Logger.Level.INFO, "With Message: " + message);
-		this.exception = exception;
-		this.message = message;
-		complete = true;
-	}
+  public void onException(Message message, Exception exception) {
+    TestUtil.logMsg("Got Exception: " + exception);
+    TestUtil.logMsg("With Message: " + message);
+    this.exception = exception;
+    this.message = message;
+    complete = true;
+  }
 
 }

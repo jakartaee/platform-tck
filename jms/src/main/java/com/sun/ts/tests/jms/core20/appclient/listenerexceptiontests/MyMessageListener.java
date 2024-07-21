@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2023 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -19,8 +19,9 @@
  */
 package com.sun.ts.tests.jms.core20.appclient.listenerexceptiontests;
 
-import java.lang.System.Logger;
 import java.util.ArrayList;
+
+import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.jms.Connection;
 import jakarta.jms.JMSConsumer;
@@ -32,170 +33,173 @@ import jakarta.jms.TextMessage;
 
 public class MyMessageListener implements MessageListener {
 
-	private String name = null;
+  private String name = null;
 
-	private Message message = null;
+  private Message message = null;
 
-	private Connection connection = null;
+  private Connection connection = null;
 
-	private Session session = null;
+  private Session session = null;
 
-	private JMSConsumer jmsconsumer = null;
+  private JMSConsumer jmsconsumer = null;
 
-	private MessageConsumer msgconsumer = null;
+  private MessageConsumer msgconsumer = null;
 
-	private ArrayList<Message> messages = new ArrayList<Message>();
+  private ArrayList<Message> messages = new ArrayList<Message>();
 
-	private Exception exception = null;
+  private Exception exception = null;
 
-	private int numMessages = 1;
+  private int numMessages = 1;
 
-	boolean complete = false;
+  boolean complete = false;
 
-	boolean gotCorrectException = false;
+  boolean gotCorrectException = false;
 
-	boolean gotException = false;
+  boolean gotException = false;
 
-	private static final Logger logger = (Logger) System.getLogger(MyMessageListener.class.getName());
+  public MyMessageListener() {
+    this("MyMessageListener");
+  }
 
-	public MyMessageListener() {
-		this("MyMessageListener");
-	}
+  public MyMessageListener(String name) {
+    this.name = name;
+  }
 
-	public MyMessageListener(String name) {
-		this.name = name;
-	}
+  public MyMessageListener(int numMessages) {
+    this.numMessages = numMessages;
+    messages.clear();
+  }
 
-	public MyMessageListener(int numMessages) {
-		this.numMessages = numMessages;
-		messages.clear();
-	}
+  public MyMessageListener(Connection connection) {
+    this.connection = connection;
+  }
 
-	public MyMessageListener(Connection connection) {
-		this.connection = connection;
-	}
+  public MyMessageListener(Session session) {
+    this.session = session;
+  }
 
-	public MyMessageListener(Session session) {
-		this.session = session;
-	}
+  public MyMessageListener(JMSConsumer consumer) {
+    this.jmsconsumer = consumer;
+  }
 
-	public MyMessageListener(JMSConsumer consumer) {
-		this.jmsconsumer = consumer;
-	}
+  public MyMessageListener(MessageConsumer consumer) {
+    this.msgconsumer = consumer;
+  }
 
-	public MyMessageListener(MessageConsumer consumer) {
-		this.msgconsumer = consumer;
-	}
+  // getters/setters
+  public String getName() {
+    return name;
+  }
 
-	// getters/setters
-	public String getName() {
-		return name;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public Message getMessage() {
+    return message;
+  }
 
-	public Message getMessage() {
-		return message;
-	}
+  public Message getMessage(int index) {
+    return messages.get(index);
+  }
 
-	public Message getMessage(int index) {
-		return messages.get(index);
-	}
+  public void setMessage(Message message) {
+    this.message = message;
+  }
 
-	public void setMessage(Message message) {
-		this.message = message;
-	}
+  public Exception getException() {
+    return exception;
+  }
 
-	public Exception getException() {
-		return exception;
-	}
+  public void setException(Exception exception) {
+    this.exception = exception;
+  }
 
-	public void setException(Exception exception) {
-		this.exception = exception;
-	}
+  public boolean isComplete() {
+    return complete;
+  }
 
-	public boolean isComplete() {
-		return complete;
-	}
+  public boolean gotCorrectException() {
+    return gotCorrectException;
+  }
 
-	public boolean gotCorrectException() {
-		return gotCorrectException;
-	}
+  public boolean gotException() {
+    return gotException;
+  }
 
-	public boolean gotException() {
-		return gotException;
-	}
+  public boolean gotAllMsgs() {
+    return (messages.size() == numMessages) ? true : false;
+  }
 
-	public boolean gotAllMsgs() {
-		return (messages.size() == numMessages) ? true : false;
-	}
+  public boolean haveMsg(int i) {
+    return (messages.size() > i) ? true : false;
+  }
 
-	public boolean haveMsg(int i) {
-		return (messages.size() > i) ? true : false;
-	}
+  public void setComplete(boolean complete) {
+    this.complete = complete;
+  }
 
-	public void setComplete(boolean complete) {
-		this.complete = complete;
-	}
-
-	public void onMessage(Message message) {
-		try {
-			logger.log(Logger.Level.INFO, "onMessage(): Got Message: " + ((TextMessage) message).getText());
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: " + e);
-		}
-		this.message = message;
-		messages.add(message);
-		if (message instanceof TextMessage) {
-			TextMessage tMsg = (TextMessage) message;
-			try {
-				if (tMsg.getText().equals("Call connection close method")) {
-					logger.log(Logger.Level.INFO, "Calling Connection.close() MUST throw IllegalStateException");
-					if (connection != null)
-						connection.close();
-				} else if (tMsg.getText().equals("Call connection stop method")) {
-					logger.log(Logger.Level.INFO, "Calling Connection.stop() MUST throw IllegalStateException");
-					if (connection != null)
-						connection.stop();
-				} else if (tMsg.getText().equals("Call session close method")) {
-					logger.log(Logger.Level.INFO, "Calling Session.close() MUST throw IllegalStateException");
-					if (session != null)
-						session.close();
-				} else if (tMsg.getText().equals("Call MessageConsumer close method")) {
-					logger.log(Logger.Level.INFO, "Calling MessageConsumer.close() MUST be allowed");
-					if (msgconsumer != null)
-						msgconsumer.close();
-				}
-			} catch (jakarta.jms.IllegalStateException e) {
-				logger.log(Logger.Level.INFO, "onMessage(): Caught expected IllegalStateException");
-				gotCorrectException = true;
-				gotException = true;
-			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "onMessage(): Caught unexpected exception: " + e);
-				gotCorrectException = false;
-				gotException = true;
-				exception = e;
-			}
-			try {
-				if (tMsg.getText().equals("Call JMSConsumer close method")) {
-					logger.log(Logger.Level.INFO, "Calling JMSConsumer.close() MUST be allowed");
-					if (jmsconsumer != null)
-						jmsconsumer.close();
-				}
-			} catch (jakarta.jms.IllegalStateRuntimeException e) {
-				logger.log(Logger.Level.INFO, "onMessage(): Caught expected IllegalStateRuntimeException");
-				gotCorrectException = true;
-				gotException = true;
-			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "onMessage(): Caught unexpected exception: " + e);
-				gotCorrectException = false;
-				gotException = true;
-				exception = e;
-			}
-		}
-		complete = true;
-		logger.log(Logger.Level.INFO, "onMessage(): Leaving");
-	}
+  public void onMessage(Message message) {
+    try {
+      TestUtil.logMsg(
+          "onMessage(): Got Message: " + ((TextMessage) message).getText());
+    } catch (Exception e) {
+      TestUtil.logErr("Caught unexpected exception: " + e);
+    }
+    this.message = message;
+    messages.add(message);
+    if (message instanceof TextMessage) {
+      TextMessage tMsg = (TextMessage) message;
+      try {
+        if (tMsg.getText().equals("Call connection close method")) {
+          TestUtil.logMsg(
+              "Calling Connection.close() MUST throw IllegalStateException");
+          if (connection != null)
+            connection.close();
+        } else if (tMsg.getText().equals("Call connection stop method")) {
+          TestUtil.logMsg(
+              "Calling Connection.stop() MUST throw IllegalStateException");
+          if (connection != null)
+            connection.stop();
+        } else if (tMsg.getText().equals("Call session close method")) {
+          TestUtil.logMsg(
+              "Calling Session.close() MUST throw IllegalStateException");
+          if (session != null)
+            session.close();
+        } else if (tMsg.getText().equals("Call MessageConsumer close method")) {
+          TestUtil.logMsg("Calling MessageConsumer.close() MUST be allowed");
+          if (msgconsumer != null)
+            msgconsumer.close();
+        }
+      } catch (jakarta.jms.IllegalStateException e) {
+        TestUtil.logMsg("onMessage(): Caught expected IllegalStateException");
+        gotCorrectException = true;
+        gotException = true;
+      } catch (Exception e) {
+        TestUtil.logErr("onMessage(): Caught unexpected exception: " + e);
+        gotCorrectException = false;
+        gotException = true;
+        exception = e;
+      }
+      try {
+        if (tMsg.getText().equals("Call JMSConsumer close method")) {
+          TestUtil.logMsg("Calling JMSConsumer.close() MUST be allowed");
+          if (jmsconsumer != null)
+            jmsconsumer.close();
+        }
+      } catch (jakarta.jms.IllegalStateRuntimeException e) {
+        TestUtil.logMsg(
+            "onMessage(): Caught expected IllegalStateRuntimeException");
+        gotCorrectException = true;
+        gotException = true;
+      } catch (Exception e) {
+        TestUtil.logErr("onMessage(): Caught unexpected exception: " + e);
+        gotCorrectException = false;
+        gotException = true;
+        exception = e;
+      }
+    }
+    complete = true;
+    TestUtil.logMsg("onMessage(): Leaving");
+  }
 }
