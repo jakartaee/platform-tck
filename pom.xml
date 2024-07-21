@@ -91,7 +91,7 @@
 
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
         <jakarta.authentication-api.version>2.0.0</jakarta.authentication-api.version>
-        <jakarta.authorization-api.version>2.1.0</jakarta.authorization-api.version>
+        <jakarta.authorization-api.version>3.0.0</jakarta.authorization-api.version>
         <!-- Jakarta Batch -->
         <jakarta.batch-api.version>2.0.0</jakarta.batch-api.version>
         <!-- Jakarta Enterprise beans -->
