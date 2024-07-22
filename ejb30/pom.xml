@@ -247,7 +247,7 @@
                     <dependency>
                         <groupId>tck.jakarta.platform</groupId>
                         <artifactId>tck-rewrite-tools</artifactId>
-                        <version>11.0.0-SNAPSHOT</version>
+                        <version>1.0-SNAPSHOT</version>
                     </dependency>
                     <dependency>
                         <groupId>org.openrewrite</groupId>
