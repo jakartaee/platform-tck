@@ -101,7 +101,6 @@
         <jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
         <!-- Jakarta Interceptors -->
         <jakarta.interceptor-api.version>2.1.0</jakarta.interceptor-api.version>
-        <jakarta.jws-api.version>3.0.0</jakarta.jws-api.version>
         <jakarta.mail-api.version>2.0.0</jakarta.mail-api.version>
         <!-- Jakarta Connectors -->
         <jakarta.resource-api.version>2.0.0</jakarta.resource-api.version>
@@ -133,10 +132,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
-        <webservices-api-osgi.version>3.0.0</webservices-api-osgi.version>
-        <webservices-api.version>3.0.0</webservices-api.version>
-        <webservices-osgi.version>3.0.0</webservices-osgi.version>
-        <webservices-tools.version>3.0.0</webservices-tools.version>
         <!-- Jakarta WebSocket -->
         <websocket-api.version>2.2.0</websocket-api.version>
         <websocket-client-api.version>2.2.0</websocket-client-api.version>
@@ -289,18 +284,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>jta</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jws</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>jws-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -475,12 +458,6 @@
                 <version>${jakarta.inject-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.jws</groupId>
-                <artifactId>jakarta.jws-api</artifactId>
-                <version>${jakarta.jws-api.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>jakarta.interceptor</groupId>
                 <artifactId>jakarta.interceptor-api</artifactId>
                 <version>${jakarta.interceptor-api.version}</version>
@@ -580,27 +557,6 @@
                 <artifactId>jaxb-osgi</artifactId>
                 <version>${jaxb-osgi.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.glassfish.metro</groupId>
-                <artifactId>webservices-api</artifactId>
-                <version>${webservices-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.metro</groupId>
-                <artifactId>webservices-api-osgi</artifactId>
-                <version>${webservices-api-osgi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.metro</groupId>
-                <artifactId>webservices-osgi</artifactId>
-                <version>${webservices-osgi.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.glassfish.metro</groupId>
-                <artifactId>webservices-tools</artifactId>
-                <version>${webservices-tools.version}</version>
-            </dependency>
-
             <dependency>
                 <groupId>org.jboss.spec.javax.rmi</groupId>
                 <artifactId>jboss-rmi-api_1.0_spec</artifactId>

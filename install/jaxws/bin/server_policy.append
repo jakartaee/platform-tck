@@ -1,9 +1,0 @@
-
-grant codeBase "file:${com.sun.aas.instanceRoot}/applications/WSAJ2WDLEPRTest_web/-" { 
-  permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
-};
-
-grant codeBase "file:${com.sun.aas.instanceRoot}/applications/WSHelloSecureService_web/-" { 
-  permission java.lang.reflect.ReflectPermission "suppressAccessChecks";
-};
-
