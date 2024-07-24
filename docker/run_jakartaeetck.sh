@@ -359,7 +359,7 @@ sed -i.bak "s/^wsgen.ant.classname=.*/wsgen.ant.classname=$\{ri.wsgen.ant.classn
 sed -i.bak "s/^wsimport.ant.classname=.*/wsimport.ant.classname=$\{ri.wsimport.ant.classname\}/g" ts.jte
 
 if [[ "$PROFILE" == "web" || "$PROFILE" == "WEB" ]]; then
-  sed -i.bak "s/^javaee.level=.*/javaee.level=web connector jaxws jaxb javamail javaeedeploy wsmd/g" ts.jte
+  sed -i.bak "s/^javaee.level=.*/javaee.level=web connector jaxb javamail javaeedeploy wsmd/g" ts.jte
 fi
 
 sed -i.bak 's/^impl.deploy.timeout.multiplier=.*/impl.deploy.timeout.multiplier=240/g' ts.jte

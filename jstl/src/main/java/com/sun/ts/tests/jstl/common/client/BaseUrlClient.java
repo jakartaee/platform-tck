@@ -18,16 +18,16 @@
  * $Id$
  */
 
-package com.sun.ts.tests.common.webclient;
+package com.sun.ts.tests.jstl.common.client;
 
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.webclient.TestFailureException;
+import com.sun.ts.tests.common.webclient.WebTestCase;
 import org.apache.commons.httpclient.HttpState;
 
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
@@ -41,7 +41,8 @@ import com.sun.ts.tests.common.webclient.http.HttpRequest;
  * that particular technology.
  * </PRE>
  */
-public abstract class BaseUrlClient extends EETest {
+public abstract class BaseUrlClient {
+
   private static final Logger LOGGER = Logger.getLogger(BaseUrlClient.class.getName());
 
   /**
@@ -371,7 +372,7 @@ public abstract class BaseUrlClient extends EETest {
 
   /**
    * Sets the goldenfile directory
-   * 
+   *
    * @param goldenDir
    *          goldenfile directory based off test directory
    */
@@ -397,24 +398,24 @@ public abstract class BaseUrlClient extends EETest {
       _hostname = hostname;
     } else {
       throw new Exception(
-          "[BaseUrlClient] 'webServerHost' was not set in the" + " ts.jte.");
+              "[BaseUrlClient] 'webServerHost' was not set in the" + " ts.jte.");
     }
 
     if (!isNullOrEmpty(portnum)) {
       _port = Integer.parseInt(portnum);
     } else {
       throw new Exception(
-          "[BaseUrlClient] 'webServerPort' was not set in the" + " ts.jte.");
+              "[BaseUrlClient] 'webServerPort' was not set in the" + " ts.jte.");
     }
 
     if (!isNullOrEmpty(tshome)) {
       _tsHome = tshome;
     } else {
       throw new Exception(
-          "[BaseUrlClient] 'tshome' was not set in the " + " ts.jte.");
+              "[BaseUrlClient] 'tshome' was not set in the " + " ts.jte.");
     }
 
-    TestUtil.logMsg("[BaseUrlClient] Test setup OK");
+    LOGGER.log(Level.INFO,"[BaseUrlClient] Test setup OK");
   }
 
   /**
@@ -423,7 +424,7 @@ public abstract class BaseUrlClient extends EETest {
    *
    */
   public void cleanup() throws Exception {
-    TestUtil.logMsg( "[BaseUrlClient] Test cleanup OK");
+    LOGGER.log(Level.INFO, "[BaseUrlClient] Test cleanup OK");
   }
 
   /*
@@ -434,8 +435,8 @@ public abstract class BaseUrlClient extends EETest {
   /**
    * <PRE>
    * Invokes a test based on the properties
-    * stored in TEST_PROPS.  Once the test has completed,
-    * the properties in TEST_PROPS will be cleared.
+   * stored in TEST_PROPS.  Once the test has completed,
+   * the properties in TEST_PROPS will be cleared.
    * </PRE>
    *
    * @throws Exception
@@ -445,29 +446,25 @@ public abstract class BaseUrlClient extends EETest {
     try {
       _testCase = new WebTestCase();
       setTestProperties(_testCase);
-      TestUtil.logTrace("[BaseUrlClient] EXECUTING");
       LOGGER.fine("[BaseUrlClient] EXECUTING");
       if (_useSavedState && _state != null) {
         _testCase.getRequest().setState(_state);
       }
       if (_redirect != false) {
-        TestUtil.logTrace("##########Call setFollowRedirects");
         LOGGER.fine("##########Call setFollowRedirects");
         _testCase.getRequest().setFollowRedirects(_redirect);
       }
       _testCase.execute();
-      TestUtil.logMsg(_testCase.getResponse().getResponseBodyAsString());
       if (_saveState) {
         _state = _testCase.getResponse().getState();
       }
     } catch (TestFailureException tfe) {
       Throwable t = tfe.getRootCause();
       if (t != null) {
-        TestUtil.logErr("Root cause of Failure: " + t.getMessage(), t);
         LOGGER.log(Level.WARNING, "Root cause of Failure: " + t.getMessage(), t);
       }
       throw new Exception("[BaseUrlClient] " + _testName
-          + " failed!  Check output for cause of failure.", tfe);
+              + " failed!  Check output for cause of failure.", tfe);
     } finally {
       _useSavedState = false;
       _saveState = false;
@@ -479,7 +476,7 @@ public abstract class BaseUrlClient extends EETest {
   /**
    * <PRE>
    * Sets the appropriate test properties based
-    * on the values stored in TEST_PROPS
+   * on the values stored in TEST_PROPS
    * </PRE>
    */
   protected void setTestProperties(WebTestCase testCase) {
@@ -492,9 +489,9 @@ public abstract class BaseUrlClient extends EETest {
       String request = TEST_PROPS.getProperty(REQUEST);
 
       if (request.startsWith("GET") || request.startsWith("POST")
-          || request.startsWith("OPTIONS") || request.startsWith("PUT")
-          || request.startsWith("DELETE") || request.startsWith("HEAD")
-          || request.endsWith(HTTP10) || request.endsWith(HTTP11)) {
+              || request.startsWith("OPTIONS") || request.startsWith("PUT")
+              || request.startsWith("DELETE") || request.startsWith("HEAD")
+              || request.endsWith(HTTP10) || request.endsWith(HTTP11)) {
         // user has overriden default request behavior
         req = new HttpRequest(request, _hostname, _port);
         testCase.setRequest(req);
@@ -560,13 +557,13 @@ public abstract class BaseUrlClient extends EETest {
         LOGGER.fine("##########Found redirect Property");
         _redirect = true;
       } else if (key.equals(BASIC_AUTH_USER) || key.equals(BASIC_AUTH_PASSWD)
-          || key.equals(BASIC_AUTH_REALM)) {
+              || key.equals(BASIC_AUTH_REALM)) {
 
         String user = TEST_PROPS.getProperty(BASIC_AUTH_USER);
         String password = TEST_PROPS.getProperty(BASIC_AUTH_PASSWD);
         String realm = TEST_PROPS.getProperty(BASIC_AUTH_REALM);
         req.setAuthenticationCredentials(user, password,
-            HttpRequest.BASIC_AUTHENTICATION, realm);
+                HttpRequest.BASIC_AUTHENTICATION, realm);
       }
     }
   }
