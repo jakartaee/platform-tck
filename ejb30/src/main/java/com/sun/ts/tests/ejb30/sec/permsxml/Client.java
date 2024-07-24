@@ -26,7 +26,7 @@ import java.security.SecurityPermission;
 import java.util.Properties;
 import java.util.PropertyPermission;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSLoginContext;
 

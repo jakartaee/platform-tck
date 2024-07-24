@@ -21,7 +21,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.mail.Authenticator;

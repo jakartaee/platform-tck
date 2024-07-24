@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.busiface;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedBusinessInterface1;
 import com.sun.ts.tests.ejb30.common.busiface.AnnotatedBusinessInterface2;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;

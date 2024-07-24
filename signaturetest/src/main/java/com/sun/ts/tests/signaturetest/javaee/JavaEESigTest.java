@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.signaturetest.SigTestEE;
 

@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.misc.metadataComplete.appclient2ejbjars;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.calc.RemoteCalculator;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;
 

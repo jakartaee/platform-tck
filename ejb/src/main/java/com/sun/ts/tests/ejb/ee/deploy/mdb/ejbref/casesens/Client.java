@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb.ee.deploy.mdb.ejbref.casesens;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.jms.Queue;

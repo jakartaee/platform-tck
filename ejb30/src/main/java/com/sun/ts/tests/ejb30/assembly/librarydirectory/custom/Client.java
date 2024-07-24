@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.assembly.librarydirectory.custom;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.assembly.common.ClientBase;
 import com.sun.ts.tests.ejb30.assembly.common.Util;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;

@@ -28,7 +28,7 @@ import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 
 public final class ApiCheckDriver extends SignatureTestDriver

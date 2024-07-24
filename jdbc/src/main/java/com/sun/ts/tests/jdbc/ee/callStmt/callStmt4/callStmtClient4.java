@@ -30,7 +30,7 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;

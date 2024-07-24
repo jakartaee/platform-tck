@@ -48,7 +48,7 @@ public class Client extends EJBLiteClientBase {
 
   public static void main(String[] args) {
     Client theTests = new Client();
-    com.sun.javatest.Status s = theTests.run(args, System.out, System.err);
+    com.sun.ts.lib.harness.Status s = theTests.run(args, System.out, System.err);
     s.exit();
   }
 

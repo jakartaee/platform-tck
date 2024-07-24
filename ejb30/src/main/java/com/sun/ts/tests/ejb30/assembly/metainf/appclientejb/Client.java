@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.assembly.metainf.appclientejb;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.assembly.common.ClientBase;
 import com.sun.ts.tests.ejb30.assembly.common.ConcurrentLookup;
 import com.sun.ts.tests.ejb30.common.calc.CalculatorException;

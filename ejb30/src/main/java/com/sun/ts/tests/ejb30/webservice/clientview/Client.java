@@ -19,7 +19,7 @@ package com.sun.ts.tests.ejb30.webservice.clientview;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.lib.porting.TSURL;
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 import jakarta.xml.ws.WebServiceRef;
 import jakarta.xml.ws.BindingProvider;

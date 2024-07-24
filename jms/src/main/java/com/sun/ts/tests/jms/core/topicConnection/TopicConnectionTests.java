@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.core.topicConnection;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;

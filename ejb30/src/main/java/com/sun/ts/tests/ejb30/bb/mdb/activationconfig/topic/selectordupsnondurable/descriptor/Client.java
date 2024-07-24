@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.activationconfig.topic.selectordupsnondurable.descriptor;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 public class Client extends
     com.sun.ts.tests.ejb30.bb.mdb.activationconfig.common.TopicClientBase {

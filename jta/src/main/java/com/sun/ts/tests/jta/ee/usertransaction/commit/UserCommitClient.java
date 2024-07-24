@@ -80,7 +80,7 @@ public class UserCommitClient extends ServiceEETest implements Serializable {
 
   public static void main(String args[]) {
     UserCommitClient userCommitClientInst = new UserCommitClient();
-    com.sun.javatest.Status s = userCommitClientInst.run(args, System.out,
+    com.sun.ts.lib.harness.Status s = userCommitClientInst.run(args, System.out,
         System.err);
     s.exit();
 

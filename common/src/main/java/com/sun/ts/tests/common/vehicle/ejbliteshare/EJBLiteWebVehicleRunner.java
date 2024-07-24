@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;

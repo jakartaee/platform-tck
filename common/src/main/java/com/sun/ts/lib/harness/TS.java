@@ -65,6 +65,7 @@ public class TS extends TestSuite {
   public Script createScript(TestDescription td, String[] exclTestCases,
       TestEnvironment scriptEnv, WorkDirectory workDir,
       BackupPolicy backupPolicy) throws Fault {
+    /*
     Script s = new TSScript();
     s.initArgs(TestUtil.EMPTY_STRING_ARRAY);
     s.initTestDescription(td);
@@ -73,6 +74,8 @@ public class TS extends TestSuite {
     s.initWorkDir(workDir);
     s.initBackupPolicy(backupPolicy);
     return s;
+     */
+    return null;
   }
 
   public TestFinder createTestFinder() throws Fault {
@@ -137,7 +140,7 @@ public class TS extends TestSuite {
       TestUtil.logHarness("Failed to create PropertyManager.");
     }
 
-    harness.addObserver(new TSHarnessObserver());
+    //harness.addObserver(new TSHarnessObserver());
     observerAdded = true;
   }
 

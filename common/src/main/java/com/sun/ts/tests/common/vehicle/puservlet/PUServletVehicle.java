@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.common.vehicle.puservlet;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;

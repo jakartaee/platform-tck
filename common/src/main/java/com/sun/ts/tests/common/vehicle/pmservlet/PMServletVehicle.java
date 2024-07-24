@@ -23,7 +23,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;

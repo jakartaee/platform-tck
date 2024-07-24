@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.mdb.dest.topic.jarwar;
 
 import java.net.URL;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 import jakarta.annotation.Resource;
 

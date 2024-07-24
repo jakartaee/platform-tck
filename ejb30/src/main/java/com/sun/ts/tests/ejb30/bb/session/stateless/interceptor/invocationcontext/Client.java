@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.ejb30.bb.session.stateless.interceptor.invocationcontext;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.invocationcontext.ClientBase;
 
 public class Client extends ClientBase {

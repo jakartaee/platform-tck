@@ -16,14 +16,24 @@
 
 package com.sun.ts.lib.harness;
 
-import com.sun.ts.lib.util.*;
-import java.util.*;
-import java.io.*;
-import java.net.*;
-import java.lang.reflect.*;
-import com.sun.javatest.Status;
-import com.sun.javatest.*;
+import com.sun.ts.lib.harness.Status;
+import com.sun.ts.lib.util.TestUtil;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
+import java.util.Properties;
+import java.util.Vector;
 
 /**
  * This abstract class must be extended by all clients of all J2EE-TS tests. All

@@ -23,7 +23,7 @@ import java.util.Properties;
 
 import javax.naming.InitialContext;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 

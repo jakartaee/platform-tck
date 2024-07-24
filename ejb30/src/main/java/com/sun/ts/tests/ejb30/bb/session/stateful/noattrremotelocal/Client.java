@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateful.noattrremotelocal;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF1;
 import com.sun.ts.tests.ejb30.common.busiface.BusinessIF2;
 import com.sun.ts.tests.ejb30.common.busiface.ClientBase;

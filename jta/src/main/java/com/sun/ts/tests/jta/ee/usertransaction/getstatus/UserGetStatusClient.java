@@ -78,7 +78,7 @@ public class UserGetStatusClient extends ServiceEETest implements Serializable {
 
   public static void main(String args[]) {
     UserGetStatusClient userGetStatusClientInst = new UserGetStatusClient();
-    com.sun.javatest.Status s = userGetStatusClientInst.run(args, System.out,
+    com.sun.ts.lib.harness.Status s = userGetStatusClientInst.run(args, System.out,
         System.err);
     s.exit();
 

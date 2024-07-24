@@ -27,7 +27,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSHttpsURLConnection;
 import com.sun.ts.lib.porting.TSLoginContext;

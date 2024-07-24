@@ -22,7 +22,7 @@ package com.sun.ts.tests.common.vehicle;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 public interface VehicleRunnable {
   public Status run(String[] argv, Properties p);
