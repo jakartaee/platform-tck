@@ -22,7 +22,7 @@ package com.sun.ts.tests.signaturetest.jsp;
 
 import java.io.PrintWriter;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.signaturetest.SigTest;
 
 /*

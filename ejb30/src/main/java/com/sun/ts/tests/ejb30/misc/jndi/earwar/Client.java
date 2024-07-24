@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.misc.jndi.earwar;
 
 import java.io.PrintWriter;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 

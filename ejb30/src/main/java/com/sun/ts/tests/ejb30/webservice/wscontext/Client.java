@@ -19,7 +19,7 @@ package com.sun.ts.tests.ejb30.webservice.wscontext;
 import java.util.Map;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;

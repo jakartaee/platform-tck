@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.common.vehicle.jsp;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 

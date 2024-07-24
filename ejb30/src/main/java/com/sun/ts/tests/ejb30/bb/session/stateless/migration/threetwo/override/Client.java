@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.migration.threetwo.override;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.migration.threetwo.ClientBase;
 import com.sun.ts.tests.ejb30.common.migration.threetwo.ThreeTestIF;
 

@@ -21,7 +21,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import com.sun.ts.lib.util.*;
 import java.util.*;
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.common.vehicle.*;
 import com.sun.ts.lib.util.*;
 import com.sun.ts.lib.porting.*;

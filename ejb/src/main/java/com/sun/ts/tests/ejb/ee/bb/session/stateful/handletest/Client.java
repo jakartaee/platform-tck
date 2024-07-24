@@ -31,7 +31,7 @@ import java.util.Properties;
 
 import javax.rmi.PortableRemoteObject;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;

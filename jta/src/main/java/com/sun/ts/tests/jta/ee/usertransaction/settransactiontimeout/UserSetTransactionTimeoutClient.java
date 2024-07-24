@@ -77,7 +77,7 @@ public class UserSetTransactionTimeoutClient extends ServiceEETest
 
   public static void main(String args[]) {
     UserSetTransactionTimeoutClient userSetTransTout = new UserSetTransactionTimeoutClient();
-    com.sun.javatest.Status s = userSetTransTout.run(args, System.out,
+    com.sun.ts.lib.harness.Status s = userSetTransTout.run(args, System.out,
         System.err);
     s.exit();
 

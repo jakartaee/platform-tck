@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.localaccess.mdbclient;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 import jakarta.annotation.Resource;
 import jakarta.jms.Queue;

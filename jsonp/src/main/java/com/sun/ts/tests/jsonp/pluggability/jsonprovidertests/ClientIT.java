@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 import java.nio.charset.StandardCharsets;
 import java.net.URL;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jsonp.common.JSONP_Util;
 import com.sun.ts.tests.jsonp.provider.MyJsonGenerator;

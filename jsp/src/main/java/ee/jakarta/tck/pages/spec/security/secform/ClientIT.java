@@ -20,7 +20,7 @@ package ee.jakarta.tck.pages.spec.security.secform;
 
 import java.util.Properties;
 import java.io.IOException;
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 

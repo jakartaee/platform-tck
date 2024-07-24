@@ -22,7 +22,7 @@ package com.sun.ts.tests.common.vehicle.ejb;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.porting.TSLoginContext;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;

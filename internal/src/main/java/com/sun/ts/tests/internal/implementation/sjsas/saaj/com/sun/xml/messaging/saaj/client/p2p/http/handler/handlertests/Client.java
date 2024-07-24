@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.internal.implementation.sjsas.saaj.com.sun.xml.messaging.saaj.client.p2p.http.handler.handlertests;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 public class Client
     extends com.sun.xml.messaging.saaj.client.p2p.http.handler.AbstractClient {

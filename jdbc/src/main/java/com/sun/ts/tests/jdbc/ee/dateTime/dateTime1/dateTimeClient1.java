@@ -30,7 +30,7 @@ import java.util.Calendar;
 import java.util.Properties;
 import java.util.TimeZone;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;

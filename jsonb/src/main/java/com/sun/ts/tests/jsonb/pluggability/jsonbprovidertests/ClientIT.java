@@ -60,7 +60,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 
 import com.sun.ts.tests.jsonb.provider.MyJsonbBuilder;
 import com.sun.ts.tests.jsonb.provider.MyJsonbProvider;
-// import com.sun.javatest.Status;
+// import com.sun.ts.lib.harness.Status;
 // import com.sun.ts.lib.harness.ServiceEETest;
 import java.lang.System.Logger;
 

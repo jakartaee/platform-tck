@@ -18,7 +18,7 @@ package ee.jakarta.tck.pages.spec.security.secbasic;
 
 import java.util.Properties;
 import java.io.IOException;
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.pages.spec.security.secbasic.SecBasicClient;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 

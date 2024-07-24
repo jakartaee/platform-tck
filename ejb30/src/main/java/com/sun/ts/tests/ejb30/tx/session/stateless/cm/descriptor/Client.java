@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.tx.session.stateless.cm.descriptor;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.tx.common.session.cm.ClientBase;
 

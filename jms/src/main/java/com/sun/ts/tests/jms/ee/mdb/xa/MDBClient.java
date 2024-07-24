@@ -21,7 +21,7 @@ package com.sun.ts.tests.jms.ee.mdb.xa;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsUtil;
 import com.sun.ts.tests.jms.commonee.Client;

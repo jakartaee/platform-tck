@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.mdb.callback.listener.annotated;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.callback.MDBClientBase;
 
 import jakarta.annotation.Resource;
