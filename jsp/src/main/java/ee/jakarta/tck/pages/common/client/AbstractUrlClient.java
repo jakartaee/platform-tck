@@ -16,7 +16,6 @@
 
 package ee.jakarta.tck.pages.common.client;
 
-import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
 
