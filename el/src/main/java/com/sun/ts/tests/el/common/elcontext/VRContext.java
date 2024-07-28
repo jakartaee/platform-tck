@@ -22,7 +22,7 @@ package com.sun.ts.tests.el.common.elcontext;
 
 import java.util.Properties;
 
-
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.api.jakarta_el.valueexpression.Worker;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
@@ -34,11 +34,7 @@ import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
 
-import java.lang.System.Logger;
-
 public class VRContext extends ELContext {
-
-  private static final Logger logger = System.getLogger(VRContext.class.getName());
 
   private final VariableMapper varMapper;
 
@@ -83,11 +79,11 @@ public class VRContext extends ELContext {
       clazz = Class.forName(classname);
       instance = clazz.newInstance();
     } catch (ClassNotFoundException cnfe) {
-      logger.log(Logger.Level.ERROR, "ClassNotFoundException: " + cnfe.getMessage());
+      TestUtil.logErr("ClassNotFoundException: " + cnfe.getMessage());
     } catch (InstantiationException ie) {
-      logger.log(Logger.Level.ERROR, "InstantiationException: " + ie.getMessage());
+      TestUtil.logErr("InstantiationException: " + ie.getMessage());
     } catch (IllegalAccessException iae) {
-      logger.log(Logger.Level.ERROR, "IllegalAccessException: " + iae.getMessage());
+      TestUtil.logErr("IllegalAccessException: " + iae.getMessage());
     }
     return instance;
   }

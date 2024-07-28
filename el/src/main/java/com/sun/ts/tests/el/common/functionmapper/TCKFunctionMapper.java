@@ -24,19 +24,15 @@ package com.sun.ts.tests.el.common.functionmapper;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
-import com.sun.ts.tests.el.common.util.ELTestUtil;
+import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.el.FunctionMapper;
-
-import java.lang.System.Logger;
 
 /* A simple implementation of FunctionMapper that maps only
    a single function to Integer.valueOf(String).
 */
 
 public class TCKFunctionMapper extends FunctionMapper {
-
-  private static final Logger logger = System.getLogger(TCKFunctionMapper.class.getName());
 
   private static final String KEY = "Int:val";
 
@@ -50,8 +46,8 @@ public class TCKFunctionMapper extends FunctionMapper {
     try {
       fMap.put(KEY, clazz.getMethod("valueOf", String.class));
     } catch (NoSuchMethodException nsme) {
-      logger.log(Logger.Level.ERROR, "CONSTRUCTOR: Can't find method!");
-      ELTestUtil.printStackTrace(nsme);
+      TestUtil.logErr("CONSTRUCTOR: Can't find method!");
+      TestUtil.printStackTrace(nsme);
     }
   }
 
@@ -67,8 +63,8 @@ public class TCKFunctionMapper extends FunctionMapper {
     try {
       fMap.put(KEY, clazz.getMethod("toString", int.class));
     } catch (NoSuchMethodException nsme) {
-      logger.log(Logger.Level.ERROR, "UPDATE: Can't find method!");
-      ELTestUtil.printStackTrace(nsme);
+      TestUtil.logErr("UPDATE: Can't find method!");
+      TestUtil.printStackTrace(nsme);
     }
   }
 }

@@ -118,7 +118,7 @@ public class ELClientIT {
   }
 
   /**
-   * @testName: optionalELResolverObjectNullTest
+   * @testName: optionalELResolverObjectNonNullTest
    *
    * @test_Strategy: Verify that API calls work as expected for: getValue() getType() setValue() isReadOnly()
    * getCommonPropertyType() when the base object is an non-empty Optional and the property is non-null
