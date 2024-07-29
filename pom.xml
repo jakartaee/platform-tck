@@ -134,6 +134,7 @@
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
         <version.openrewrite>8.24.0</version.openrewrite>
+        <version.openrewrite.maven-plugin>5.32.1</version.openrewrite.maven-plugin>
         <version.org.jboss.arquillian.core>1.7.2.Final</version.org.jboss.arquillian.core>
         <webservices-api-osgi.version>3.0.0</webservices-api-osgi.version>
         <webservices-api.version>3.0.0</webservices-api.version>

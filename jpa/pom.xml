@@ -147,7 +147,7 @@
                 -->
                 <groupId>org.openrewrite.maven</groupId>
                 <artifactId>rewrite-maven-plugin</artifactId>
-                <version>5.32.1</version>
+                <version>${version.openrewrite.maven-plugin}</version>
                 <configuration>
                     <activeRecipes>
                         <recipe>tck.jakarta.platform.rewrite.GenerateNewTestClassRecipe</recipe>
@@ -162,7 +162,7 @@
                     <dependency>
                         <groupId>org.openrewrite</groupId>
                         <artifactId>rewrite-core</artifactId>
-                        <version>8.24.0</version>
+                        <version>${version.openrewrite}</version>
                     </dependency>
                     <dependency>
                         <groupId>jakarta.xml.bind</groupId>
