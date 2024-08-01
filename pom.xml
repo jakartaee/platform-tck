@@ -48,6 +48,7 @@
         <module>ejb30-ws</module>
         <module>ejb32</module>
         <module>el</module>
+        <module>el-tck</module>
         <module>integration</module>
         <module>javaee</module>
         <module>javamail</module>

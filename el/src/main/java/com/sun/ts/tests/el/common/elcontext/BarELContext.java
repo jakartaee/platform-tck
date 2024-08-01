@@ -21,7 +21,7 @@
 
 package com.sun.ts.tests.el.common.elcontext;
 
-import com.sun.ts.tests.el.common.api.resolver.BarELResolver;
+import com.sun.ts.tests.common.el.api.resolver.BarELResolver;
 
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;

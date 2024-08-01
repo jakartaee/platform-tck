@@ -24,15 +24,12 @@ package com.sun.ts.tests.el.common.util;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import com.sun.ts.lib.harness.EETest.Fault;
+import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.el.ELProcessor;
 
-import java.lang.System.Logger;
-
 public class Validator {
-
-  private static final Logger logger = System.getLogger(Validator.class.getName());
-
   private static Validator instance = null;
 
   protected Validator() {
@@ -58,6 +55,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testBigDecimal(BigDecimal testVal, Object expectedVal,
       String operator) throws Exception {
@@ -65,7 +63,7 @@ public class Validator {
     Class<?> returnType;
 
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO, 
+      TestUtil.logMsg(
           "*** Start " + "\"" + "BigDecimal" + "\"" + " Test Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
@@ -75,13 +73,14 @@ public class Validator {
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are BigDecimal and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil
+            .logMsg("types are BigDecimal and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         /*
          * If operator is "+=" (concatenation) then coerce both operands to
@@ -95,30 +94,30 @@ public class Validator {
         } else if ("%".equals(operator)) {
 
           returnType = Double.class;
-          logger.log(Logger.Level.INFO, "Setting Expected Type: " + returnType.getName());
+          TestUtil.logMsg("Setting Expected Type: " + returnType.getName());
 
           pass = (ExprEval.compareClass(result, returnType)
               && ExprEval.compareValue((Double) result,
                   Double.valueOf(((BigDecimal) expectedVal).doubleValue())));
         } else {
           returnType = BigDecimal.class;
-          logger.log(Logger.Level.INFO, "Setting Expected Type: " + returnType.getName());
+          TestUtil.logMsg("Setting Expected Type: " + returnType.getName());
 
           pass = (ExprEval.compareClass(result, returnType) && ExprEval
               .compareValue((BigDecimal) result, (BigDecimal) expectedVal, 5));
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
 
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO, 
+        TestUtil.logMsg(
             "*** End " + "\"" + "BigDecimal" + "\"" + " Test Sequence ***");
       }
 
@@ -140,6 +139,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testFloat(Float testVal, Object expectedVal,
       String operator) throws Exception {
@@ -149,7 +149,8 @@ public class Validator {
 
     // For each NumberType in this list.
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO, "*** Start " + "\"" + "Float" + "\"" + " Test Sequence ***");
+      TestUtil
+          .logMsg("*** Start " + "\"" + "Float" + "\"" + " Test Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
 
@@ -158,7 +159,7 @@ public class Validator {
 
       // If Test value from numberList is BigDecimal skip it.
       if (testNum instanceof BigDecimal) {
-        logger.log(Logger.Level.INFO, "Skip " + testNum.getClass().getSimpleName()
+        TestUtil.logMsg("Skip " + testNum.getClass().getSimpleName()
             + " for Float tests we already tested for this in the"
             + " BigDecimal tests.");
         continue;
@@ -166,13 +167,13 @@ public class Validator {
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are Float and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil.logMsg("types are Float and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         /*
          * If operator is "+="concatenation then coerce both operands to String
@@ -184,7 +185,7 @@ public class Validator {
           // If the Operator is "%" then the return type is Double.
         } else if ("%".equals(operator)) {
           returnType = Double.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -193,7 +194,7 @@ public class Validator {
         } else {
           if (testNum instanceof BigInteger) {
             returnType = BigDecimal.class;
-            logger.log(Logger.Level.INFO, 
+            TestUtil.logMsg(
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType)
@@ -201,7 +202,7 @@ public class Validator {
                     (Float) expectedVal, 3));
           } else {
             returnType = Double.class;
-            logger.log(Logger.Level.INFO, 
+            TestUtil.logMsg(
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType) && ExprEval
@@ -210,15 +211,16 @@ public class Validator {
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO, "*** End " + "\"" + "Float" + "\"" + " Test Sequence ***");
+        TestUtil
+            .logMsg("*** End " + "\"" + "Float" + "\"" + " Test Sequence ***");
       }
 
       if (!pass)
@@ -239,6 +241,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testDouble(Double testVal, Object expectedVal,
       String operator) throws Exception {
@@ -248,7 +251,7 @@ public class Validator {
 
     // For each NumberType in this list.
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO, 
+      TestUtil.logMsg(
           "*** Start " + "\"" + "Double" + "\"" + "Test " + "Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
@@ -259,20 +262,20 @@ public class Validator {
       // If Test value from numberList is BigDecimal, Float skip it.
       if ((testNum instanceof BigDecimal) || (testNum instanceof Float)) {
         String skipType = testNum.getClass().getSimpleName();
-        logger.log(Logger.Level.INFO, "Skip " + skipType + " Data type already "
+        TestUtil.logMsg("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are Double and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil.logMsg("types are Double and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         /*
          * If operator is "+=" (concatenation) then coerce both operands to
@@ -284,7 +287,7 @@ public class Validator {
           // If the Operator is "%" then the return type is Double.
         } else if ("%".equals(operator)) {
           returnType = Double.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -292,7 +295,7 @@ public class Validator {
         } else {
           if (testNum instanceof BigInteger) {
             returnType = BigDecimal.class;
-            logger.log(Logger.Level.INFO, 
+            TestUtil.logMsg(
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType)
@@ -300,7 +303,7 @@ public class Validator {
                     expectedVal));
           } else {
             returnType = Double.class;
-            logger.log(Logger.Level.INFO, 
+            TestUtil.logMsg(
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType)
@@ -309,16 +312,17 @@ public class Validator {
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
 
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO, "*** End " + "\"" + "Double" + "\"" + " Test Sequence ***");
+        TestUtil
+            .logMsg("*** End " + "\"" + "Double" + "\"" + " Test Sequence ***");
       }
 
       if (!pass)
@@ -340,6 +344,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testNumericString(String testVal, Double expectedVal,
       String operator) throws Exception {
@@ -349,7 +354,7 @@ public class Validator {
 
     // For each NumberType in this list.
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO, "*** Start " + "\"" + "NumericString" + "\"" + "Test "
+      TestUtil.logMsg("*** Start " + "\"" + "NumericString" + "\"" + "Test "
           + "Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
@@ -362,24 +367,24 @@ public class Validator {
       if ((testNum instanceof BigDecimal) || (testNum instanceof Float)
           || (testNum instanceof Double)) {
         String skipType = testNum.getClass().getSimpleName();
-        logger.log(Logger.Level.INFO, "Skip " + skipType + " Data type already "
+        TestUtil.logMsg("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are String and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil.logMsg("types are String and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         if ("%".equals(operator)) {
           returnType = Double.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -387,7 +392,7 @@ public class Validator {
         } else {
           if (testNum instanceof BigInteger) {
             returnType = BigDecimal.class;
-            logger.log(Logger.Level.INFO, 
+            TestUtil.logMsg(
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType)
@@ -395,7 +400,7 @@ public class Validator {
                     expectedVal));
           } else {
             returnType = Double.class;
-            logger.log(Logger.Level.INFO, 
+            TestUtil.logMsg(
                 "Setting Expected Type: " + returnType.getCanonicalName());
 
             pass = (ExprEval.compareClass(result, returnType)
@@ -404,16 +409,16 @@ public class Validator {
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
 
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO, 
+        TestUtil.logMsg(
             "*** End " + "\"" + "NumericString" + "\"" + " Test Sequence ***");
       }
 
@@ -435,6 +440,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testBigInteger(BigInteger testVal, Object expectedVal,
       String operator) throws Exception {
@@ -444,7 +450,7 @@ public class Validator {
 
     // For each NumberType in this list.
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO, 
+      TestUtil.logMsg(
           "*** Start " + "\"" + "BigInteger" + "\"" + " Test Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
@@ -457,20 +463,21 @@ public class Validator {
       if ((testNum instanceof BigDecimal) || (testNum instanceof Float)
           || (testNum instanceof Double) || (testNum instanceof String)) {
         String skipType = testNum.getClass().getSimpleName();
-        logger.log(Logger.Level.INFO, "Skip " + skipType + " Data type already "
+        TestUtil.logMsg("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are BigInteger and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil
+            .logMsg("types are BigInteger and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         /*
          * If operator is "+=" then coerce both operands to String and
@@ -483,7 +490,7 @@ public class Validator {
           // BigDecimal.
         } else if ("/".equals(operator)) {
           returnType = BigDecimal.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -492,7 +499,7 @@ public class Validator {
                   0));
         } else {
           returnType = BigInteger.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType) && ExprEval
@@ -500,16 +507,16 @@ public class Validator {
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
 
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO, 
+        TestUtil.logMsg(
             "*** End " + "\"" + "BigInteger" + "\"" + " Test Sequence ***");
       }
 
@@ -531,6 +538,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testLong(Long testVal, Object expectedVal, String operator)
       throws Exception {
@@ -540,7 +548,8 @@ public class Validator {
 
     // For each NumberType in this list.
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO, "*** Start " + "\"" + "Long" + "\"" + " Test Sequence ***");
+      TestUtil
+          .logMsg("*** Start " + "\"" + "Long" + "\"" + " Test Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
 
@@ -553,20 +562,20 @@ public class Validator {
           || (testNum instanceof Double) || (testNum instanceof String)
           || (testNum instanceof BigInteger)) {
         String skipType = testNum.getClass().getSimpleName();
-        logger.log(Logger.Level.INFO, "Skip " + skipType + " Data type already "
+        TestUtil.logMsg("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are  Long and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil.logMsg("types are  Long and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         /*
          * If operator is "+=" then coerce both operands to String and
@@ -578,7 +587,7 @@ public class Validator {
           // If the Operator is "/" then the return type is Double.
         } else if ("/".equals(operator)) {
           returnType = Double.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -586,7 +595,7 @@ public class Validator {
                   ((Long) expectedVal).doubleValue()));
         } else {
           returnType = Long.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -594,16 +603,17 @@ public class Validator {
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
 
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO, "*** End " + "\"" + "Long" + "\"" + " Test Sequence ***");
+        TestUtil
+            .logMsg("*** End " + "\"" + "Long" + "\"" + " Test Sequence ***");
       }
 
       if (!pass)
@@ -624,6 +634,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testInteger(Integer testVal, Object expectedVal,
       String operator) throws Exception {
@@ -633,7 +644,7 @@ public class Validator {
 
     // For each NumberType in this list.
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO, 
+      TestUtil.logMsg(
           "*** Start " + "\"" + "Integer" + "\"" + " Test Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
@@ -647,20 +658,21 @@ public class Validator {
           || (testNum instanceof Double) || (testNum instanceof String)
           || (testNum instanceof Long) || (testNum instanceof BigInteger)) {
         String skipType = testNum.getClass().getSimpleName();
-        logger.log(Logger.Level.INFO, "Skip " + skipType + " Data type already "
+        TestUtil.logMsg("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are  Integer and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil
+            .logMsg("types are  Integer and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         /*
          * If operator is "+=" then coerce both operands to String and
@@ -672,7 +684,7 @@ public class Validator {
           // If the Operator is "/" then the return type is Double.
         } else if ("/".equals(operator)) {
           returnType = Double.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -680,7 +692,7 @@ public class Validator {
                   ((Integer) expectedVal).doubleValue()));
         } else {
           returnType = Long.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -689,16 +701,16 @@ public class Validator {
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
 
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO, 
+        TestUtil.logMsg(
             "*** End " + "\"" + "Integer" + "\"" + " Test Sequence ***");
       }
 
@@ -720,6 +732,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testShort(Short testVal, Object expectedVal,
       String operator) throws Exception {
@@ -729,7 +742,8 @@ public class Validator {
 
     // For each NumberType in this list.
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO,"*** Start " + "\"" + "Short" + "\"" + " Test Sequence ***");
+      TestUtil
+          .logMsg("*** Start " + "\"" + "Short" + "\"" + " Test Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
 
@@ -740,20 +754,20 @@ public class Validator {
       // Long, BigInteger, Integer skip it.
       if (!(testNum instanceof Short || testNum instanceof Byte)) {
         String skipType = testNum.getClass().getSimpleName();
-        logger.log(Logger.Level.INFO, "Skip " + skipType + " Data type already "
+        TestUtil.logMsg("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are  Short and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil.logMsg("types are  Short and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         /*
          * If operator is "+=" then coerce both operands to String and
@@ -765,7 +779,7 @@ public class Validator {
           // If the Operator is "/" then the return type is Double.
         } else if ("/".equals(operator)) {
           returnType = Double.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -773,7 +787,7 @@ public class Validator {
                   ((Short) expectedVal).doubleValue()));
         } else {
           returnType = Long.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType) && ExprEval
@@ -781,16 +795,17 @@ public class Validator {
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
 
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO, "*** End " + "\"" + "Short" + "\"" + " Test Sequence ***");
+        TestUtil
+            .logMsg("*** End " + "\"" + "Short" + "\"" + " Test Sequence ***");
       }
 
       if (!pass)
@@ -811,6 +826,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testByte(Byte testVal, Object expectedVal, String operator)
       throws Exception {
@@ -820,7 +836,8 @@ public class Validator {
 
     // For each NumberType in this list.
     for (int i = 0; TestNum.getNumberList().size() > i; i++) {
-      logger.log(Logger.Level.INFO, "*** Start " + "\"" + "Byte" + "\"" + " Test Sequence ***");
+      TestUtil
+          .logMsg("*** Start " + "\"" + "Byte" + "\"" + " Test Sequence ***");
 
       Object testNum = TestNum.getNumberList().get(i);
 
@@ -831,20 +848,20 @@ public class Validator {
       // Long, BigInteger, Integer, Short skip it.
       if (!(testNum instanceof Byte)) {
         String skipType = testNum.getClass().getSimpleName();
-        logger.log(Logger.Level.INFO, "Skip " + skipType + " Data type already "
+        TestUtil.logMsg("Skip " + skipType + " Data type already "
             + "tested for this in the " + skipType + " tests.");
         continue;
       }
 
       try {
         String expr = ExprEval.buildElExpr(true, operator);
-        logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-        logger.log(Logger.Level.INFO, "types are  Byte and " + testNum.getClass().getName());
+        TestUtil.logMsg("expression to be evaluated is " + expr);
+        TestUtil.logMsg("types are  Byte and " + testNum.getClass().getName());
 
         Object result = ExprEval.evaluateValueExpression(expr, values,
             Object.class);
 
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
 
         /*
          * If operator is "+=" then coerce both operands to String and
@@ -856,7 +873,7 @@ public class Validator {
           // If the Operator is "/" then the return type is Double.
         } else if ("/".equals(operator)) {
           returnType = Double.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType)
@@ -864,7 +881,7 @@ public class Validator {
                   ((Byte) expectedVal).doubleValue()));
         } else {
           returnType = Long.class;
-          logger.log(Logger.Level.INFO, 
+          TestUtil.logMsg(
               "Setting Expected Type: " + returnType.getCanonicalName());
 
           pass = (ExprEval.compareClass(result, returnType) && ExprEval
@@ -872,16 +889,17 @@ public class Validator {
         }
 
       } catch (RuntimeException re) {
-        ELTestUtil.printStackTrace(re);
+        TestUtil.printStackTrace(re);
         throw new Exception(re);
 
       } catch (Exception e) {
-        ELTestUtil.printStackTrace(e);
+        TestUtil.printStackTrace(e);
         throw new Exception(e);
 
       } finally {
         ExprEval.cleanup();
-        logger.log(Logger.Level.INFO,"*** End " + "\"" + "Byte" + "\"" + " Test Sequence ***");
+        TestUtil
+            .logMsg("*** End " + "\"" + "Byte" + "\"" + " Test Sequence ***");
       }
 
       if (!pass)
@@ -903,6 +921,7 @@ public class Validator {
    * @param operator
    *          - The operator in which the operands are compared. (i.e. "+", "-",
    *          etc...)
+   * @throws com.sun.ts.lib.harness.EETest.Fault
    */
   public static void testBoolean(boolean testValOne, Object testValTwo,
       Object expectedVal, String operator) throws Exception {
@@ -913,11 +932,12 @@ public class Validator {
         testValTwo);
 
     try {
-      logger.log(Logger.Level.INFO, 
+      TestUtil.logMsg(
           "*** Start " + "\"" + "Boolean" + "\"" + " Test Sequence ***");
       String expr = ExprEval.buildElExpr(true, operator);
-      logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
-      logger.log(Logger.Level.INFO, "types are  Boolean and " + testValTwo.getClass().getName());
+      TestUtil.logMsg("expression to be evaluated is " + expr);
+      TestUtil
+          .logMsg("types are  Boolean and " + testValTwo.getClass().getName());
 
       Object result = ExprEval.evaluateValueExpression(expr, values,
           Object.class);
@@ -930,22 +950,23 @@ public class Validator {
         pass = Validator.runConcatenationTest(testValOne, result, testValTwo);
 
       } else {
-        logger.log(Logger.Level.INFO, "result is " + result.toString());
+        TestUtil.logMsg("result is " + result.toString());
         pass = (ExprEval.compareClass(result, Boolean.class)
             && ExprEval.compareValue((Boolean) result, expectedVal));
       }
 
     } catch (RuntimeException re) {
-      ELTestUtil.printStackTrace(re);
+      TestUtil.printStackTrace(re);
       throw new Exception(re);
 
     } catch (Exception e) {
-      ELTestUtil.printStackTrace(e);
+      TestUtil.printStackTrace(e);
       throw new Exception(e);
 
     } finally {
       ExprEval.cleanup();
-      logger.log(Logger.Level.INFO, "*** End " + "\"" + "Boolean" + "\"" + " Test Sequence ***");
+      TestUtil
+          .logMsg("*** End " + "\"" + "Boolean" + "\"" + " Test Sequence ***");
     }
 
     if (!pass)
@@ -958,8 +979,8 @@ public class Validator {
     boolean pass = false;
 
     try {
-      logger.log(Logger.Level.INFO, "*** Start " + testName + " Test Sequence ***");
-      logger.log(Logger.Level.INFO, "expression to be evaluated is " + expr);
+      TestUtil.logMsg("*** Start " + testName + " Test Sequence ***");
+      TestUtil.logMsg("expression to be evaluated is " + expr);
       Object result = elp.eval(expr);
 
       pass = ExprEval.compareClass(result, expected.getClass())
@@ -969,16 +990,16 @@ public class Validator {
         throw new Exception("TEST FAILED: pass = false");
 
     } catch (RuntimeException re) {
-      ELTestUtil.printStackTrace(re);
+      TestUtil.printStackTrace(re);
       throw new Exception(re);
 
     } catch (Exception e) {
-      ELTestUtil.printStackTrace(e);
+      TestUtil.printStackTrace(e);
       throw new Exception(e);
 
     } finally {
       ExprEval.cleanup();
-      logger.log(Logger.Level.INFO, "*** End " + testName + " Test Sequence ***");
+      TestUtil.logMsg("*** End " + testName + " Test Sequence ***");
     }
   }
 
@@ -990,7 +1011,7 @@ public class Validator {
     Class<String> returnType = String.class;
     String expectedResult = testVal.toString() + testNum.toString();
 
-    logger.log(Logger.Level.INFO, "Setting Expected Type: " + returnType.getName());
+    TestUtil.logMsg("Setting Expected Type: " + returnType.getName());
 
     return (ExprEval.compareClass(result, returnType)
         && ExprEval.compareValue(result, expectedResult));

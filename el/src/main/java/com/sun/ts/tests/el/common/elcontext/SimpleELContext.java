@@ -20,7 +20,7 @@
  */
 package com.sun.ts.tests.el.common.elcontext;
 
-
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elresolver.EmployeeELResolver;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.elresolver.VectELResolver;
@@ -32,8 +32,6 @@ import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
 
-import java.lang.System.Logger;
-
 /**
  * A basic ELContext that meets the needs of most EL tests. The no-args
  * constructor builds the ELContext from a VariableELResolver that enables the
@@ -42,8 +40,6 @@ import java.lang.System.Logger;
  * ELContext is "simple" because no VariableMapper or FunctionMapper are used.
  */
 public class SimpleELContext extends ELContext {
-
-  private static final Logger logger = System.getLogger(SimpleELContext.class.getName());
 
   private static final String NLINE = System.getProperty("line.separator");
 
@@ -122,21 +118,21 @@ public class SimpleELContext extends ELContext {
     switch (enumResolver) {
     case EMPLOYEE_ELRESOLVER:
       myResolver = new EmployeeELResolver();
-      logger.log(Logger.Level.TRACE, "Setting ELResolver == EmployeeELResolver");
+      TestUtil.logTrace("Setting ELResolver == EmployeeELResolver");
       break;
 
     case VARIABLE_ELRESOLVER:
       myResolver = new VariableELResolver();
-      logger.log(Logger.Level.TRACE, "Setting ELResolver == VariableELResolver");
+      TestUtil.logTrace("Setting ELResolver == VariableELResolver");
       break;
 
     case VECT_ELRESOLVER:
       myResolver = new VectELResolver();
-      logger.log(Logger.Level.TRACE, "Setting ELResolver == VectELResolver");
+      TestUtil.logTrace("Setting ELResolver == VectELResolver");
       break;
 
     default:
-      logger.log(Logger.Level.TRACE, 
+      TestUtil.logTrace(
           "Unknown ELResolver! " + enumResolver + " trying to use default"
               + NLINE + "Setting" + " ELResolver == VariableELResolver");
       break;
