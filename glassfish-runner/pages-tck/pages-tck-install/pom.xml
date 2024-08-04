@@ -73,6 +73,7 @@
                             <artifactId>javatest</artifactId>
                             <version>5.0</version>
                             <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
                         </configuration>
                     </execution>
                     <execution>
