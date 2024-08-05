@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.eclipse.ee4j</groupId>
+    <artifactId>project</artifactId>
+    <version>1.0.9</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>weld-jboss-runner-tck</artifactId>
+  <version>11.0.0-SNAPSHOT</version>
+  <name>CDI TCK runner (4.1) for Weld (WildFly)</name>
+  <description>Aggregates dependencies and runs the CDI TCK (both standalone and on WildFly)</description>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <distribution>repo</distribution>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+    </license>
+  </licenses>
+  <url>http://weld.cdi-spec.org</url>
+
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <testng.version>7.9.0</testng.version>
+    <jboss.test.audit.version>2.0.0.Final</jboss.test.audit.version>
+    <arquillian.version>1.8.0.Final</arquillian.version>
+    <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
+    <arquillian.weld.version>4.0.0.Final</arquillian.weld.version>
+    <apache.httpclient.version>3.1</apache.httpclient.version>
+    <htmlunit.version>2.50.0</htmlunit.version>
+    <interceptors.version>2.2.0</interceptors.version>
+    <selenium.version>4.7.2</selenium.version>
+    <xmlunit.version>2.9.1</xmlunit.version>
+    <weld.version>6.0.0.Beta1</weld.version>
+    <weld.api.version>6.0.Beta2</weld.api.version>
+    <surefire.version>3.2.5</surefire.version>
+    <log4j.version>1.2.17</log4j.version>
+    <glassfish.el.version>5.0.0-M1</glassfish.el.version>
+    <wildfly.version>32.0.0.Final</wildfly.version>
+    <wildfly.arquillian.version>5.1.0.Beta3</wildfly.arquillian.version>
+    <wildfly.maven.plugin.version>5.0.0.Final</wildfly.maven.plugin.version>
+    <jboss.home>${project.build.directory}/wildfly</jboss.home>
+
+    <!-- CDI API -->
+    <cdi.api.version>4.1.0</cdi.api.version>
+    <cdi.core.tck.version>4.1.0</cdi.core.tck.version>
+    <cdi.ee.tck.version>11.0.0-SNAPSHOT</cdi.ee.tck.version>
+    <!-- Jakarta EE APIs Core -->
+    <annotations.api.version>3.0.0</annotations.api.version>
+    <interceptors.api.version>2.2.0</interceptors.api.version>
+    <atinject.api.version>2.0.1</atinject.api.version>
+    <el.api.version>6.0.0</el.api.version>
+
+    <!-- Jakarta EE APIs in Web Profile -->
+    <!-- Wave0 -->
+    <jpa.api.version>3.2.0</jpa.api.version>
+    <jms.api.version>3.1.0</jms.api.version>
+    <!-- Wave1 -->
+    <servlet.api.version>6.1.0</servlet.api.version>
+    <!-- Wave2 -->
+    <jsp.api.version>4.0.0</jsp.api.version>
+
+    <!-- Wave4 -->
+    <jaxrs.api.version>3.1.0</jaxrs.api.version>
+    <jta.api.version>2.0.1</jta.api.version>
+
+    <!-- Wave5 -->
+    <ejb.api.version>4.0.1</ejb.api.version>
+    <jca.api.version>2.1.0</jca.api.version>
+    <validation.api.version>3.1.0</validation.api.version>
+
+    <!-- Wave6 -->
+    <jsf.api.version>4.1.0-M2</jsf.api.version>
+
+    <!-- This matches the htmlunit version in TCK -->
+    <htmlunit.version>2.50.0</htmlunit.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>jakarta.enterprise.cdi-api</artifactId>
+      <version>${cdi.api.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-core-impl</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>jakarta.el</groupId>
+          <artifactId>jakarta.el-api</artifactId>
+        </exclusion>
+      </exclusions>
+      <version>${weld.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.weld.module</groupId>
+      <artifactId>weld-jsf</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+        </exclusion>
+      </exclusions>
+      <version>${weld.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.weld.module</groupId>
+      <artifactId>weld-ejb</artifactId>
+      <version>${weld.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.weld</groupId>
+      <artifactId>weld-porting-package-tck</artifactId>
+      <version>${weld.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>cdi-tck-api</artifactId>
+      <version>${cdi.core.tck.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>jakarta.el</groupId>
+          <artifactId>jakarta.el-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>cdi-tck-ee-impl</artifactId>
+      <version>${cdi.ee.tck.version}</version>
+      <type>xml</type>
+      <classifier>suite</classifier>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.enterprise</groupId>
+      <artifactId>cdi-tck-ee-impl</artifactId>
+      <version>${cdi.ee.tck.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>jakarta.el</artifactId>
+      <version>${glassfish.el.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.faces</groupId>
+      <artifactId>jakarta.faces-api</artifactId>
+      <version>${jsf.api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.protocol</groupId>
+      <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
+      <version>${arquillian.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.wildfly.arquillian</groupId>
+      <artifactId>wildfly-arquillian-common</artifactId>
+      <version>${wildfly.arquillian.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-weld-dependencies</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <includeGroupIds>org.jboss.weld</includeGroupIds>
+              <includeArtifactIds>weld-porting-package-tck</includeArtifactIds>
+              <stripVersion>true</stripVersion>
+              <overWriteReleases>true</overWriteReleases>
+              <outputDirectory>../target/dependency/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${surefire.version}</version>
+        <configuration>
+          <!-- http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4425695 -->
+          <argLine>-Xmx768m -Dsun.zip.disableMemoryMapping=true</argLine>
+          <forkCount>1</forkCount>
+          <properties>
+            <property>
+              <name>usedefaultlisteners</name>
+              <value>false</value>
+            </property>
+          </properties>
+          <!-- https://issues.apache.org/jira/browse/SUREFIRE-569 -->
+          <dependenciesToScan>
+            <dependency>jakarta.enterprise:cdi-tck-ee-impl</dependency>
+          </dependenciesToScan>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>${surefire.version}</version>
+        <executions>
+          <execution>
+            <id>generate-test-report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report-only</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <outputDirectory>../target/surefire-reports</outputDirectory>
+          <outputName>test-report</outputName>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <!-- Disable annotation processor for test sources -->
+          <testCompilerArgument>-proc:none</testCompilerArgument>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>install-wildfly</id>
+      <build>
+        <plugins>
+        <!-- Download a Wildfly bundle -->
+        <plugin>
+          <groupId>org.wildfly.plugins</groupId>
+          <artifactId>wildfly-maven-plugin</artifactId>
+          <version>${wildfly.maven.plugin.version}</version>
+          <executions>
+            <execution>
+              <id>install-wildfly</id>
+              <phase>initialize</phase>
+              <goals>
+                <goal>provision</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <provisioningDir>${jboss.home}</provisioningDir>
+            <feature-packs>
+              <feature-pack>
+                <groupId>org.wildfly</groupId>
+                <artifactId>wildfly-galleon-pack</artifactId>
+                <version>${wildfly.version}</version>
+              </feature-pack>
+            </feature-packs>
+          </configuration>
+        </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!-- Install wildfly to target/wildfly -->
+    <profile>
+      <id>update-wildfly</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss.weld</groupId>
+          <artifactId>weld-core-impl</artifactId>
+          <version>${weld.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.weld</groupId>
+          <artifactId>weld-lite-extension-translator</artifactId>
+          <version>${weld.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.weld.module</groupId>
+          <artifactId>weld-ejb</artifactId>
+          <version>${weld.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.weld.module</groupId>
+          <artifactId>weld-jsf</artifactId>
+          <version>${weld.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.weld.module</groupId>
+          <artifactId>weld-jta</artifactId>
+          <version>${weld.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.weld.module</groupId>
+          <artifactId>weld-web</artifactId>
+          <version>${weld.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>jakarta.enterprise</groupId>
+          <artifactId>cdi-tck-ext-lib</artifactId>
+          <version>${cdi.core.tck.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>jakarta.enterprise</groupId>
+          <artifactId>jakarta.enterprise.cdi-api</artifactId>
+          <version>${cdi.api.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>jakarta.enterprise</groupId>
+          <artifactId>jakarta.enterprise.cdi-el-api</artifactId>
+          <version>${cdi.api.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>jakarta.enterprise</groupId>
+          <artifactId>jakarta.enterprise.lang-model</artifactId>
+          <version>${cdi.api.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>jakarta.interceptor</groupId>
+          <artifactId>jakarta.interceptor-api</artifactId>
+          <version>${interceptors.version}</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <!-- Update the weld jars -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-dependencies</id>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${project.build.directory}/dependency/lib</outputDirectory>
+                  <overWriteSnapshots>true</overWriteSnapshots>
+                  <includeArtifactIds>jakarta.enterprise.cdi-api,jakarta.enterprise.cdi-el-api,jakarta.enterprise.lang-model,jakarta.interceptor-api,weld-api,weld-core-impl,weld-lite-extension-translator,weld-jsf,weld-ejb,weld-jta,weld-web,weld-spi,cdi-tck-ext-lib</includeArtifactIds>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>update-jboss-as</id>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <property file="${basedir}/local.build.properties" />
+                    <property file="${basedir}/build.properties" />
+
+                    <echo>
+                      =========================================================================
+                      Updating Weld modules
+                      Weld version: ${weld.version}
+                      JBOSS_HOME: ${jboss.home}
+                      =========================================================================
+
+                    </echo>
+
+                    <available file="${jboss.home}/modules/system" property="module.dir" value="${jboss.home}/modules/system/layers/base/org/jboss/weld" />
+                    <!-- The older versions of JBoss AS used
+                    this location for modules -->
+                    <property name="module.dir" value="${jboss.home}/modules/org/jboss/weld" />
+                    <property name="jsf.injection.dir" value="${module.dir}/../as/jsf-injection/main" />
+
+                    <property name="weld.core.file" value="weld-core-impl-${weld.version}.jar" />
+                    <property name="weld.ejb.file" value="weld-ejb-${weld.version}.jar" />
+                    <property name="weld.jsf.file" value="weld-jsf-${weld.version}.jar" />
+                    <property name="weld.jta.file" value="weld-jta-${weld.version}.jar" />
+                    <property name="weld.web.file" value="weld-web-${weld.version}.jar" />
+                    <property name="weld.ejb.file" value="weld-ejb-${weld.version}.jar" />
+                    <property name="weld.lite-extension.file" value="weld-lite-extension-translator-${weld.version}.jar" />
+
+                    <delete>
+                      <fileset dir="${module.dir}/core/main" includes="*.jar" />
+                      <fileset dir="${module.dir}/spi/main" includes="*.jar" />
+                      <fileset dir="${module.dir}/api/main" includes="*.jar" />
+                      <fileset dir="${jsf.injection.dir}" includes="weld-*jsf*.jar" />
+                      <fileset dir="${module.dir}/core/main" includes="*.index" />
+                      <fileset dir="${module.dir}/spi/main" includes="*.index" />
+                      <fileset dir="${module.dir}/api/main" includes="*.index" />
+                      <fileset dir="${jsf.injection.dir}" includes="weld-*jsf*.index" />
+                    </delete>
+
+                    <copy todir="${module.dir}/core/main" overwrite="true" verbose="true" failonerror="true">
+                      <fileset dir="target/dependency/lib">
+                        <include name="${weld.core.file}" />
+                        <include name="${weld.ejb.file}" />
+                        <include name="${weld.jta.file}" />
+                        <include name="${weld.web.file}" />
+                        <include name="${weld.ejb.file}" />
+                        <include name="${weld.lite-extension.file}" />
+                      </fileset>
+                    </copy>
+
+
+                    <replaceregexp file="${module.dir}/core/main/module.xml" match="path=&quot;weld-core-impl.*?&quot;" replace="path=&quot;${weld.core.file}&quot;" byline="true" />
+                    <replaceregexp file="${module.dir}/core/main/module.xml" match="path=&quot;weld-ejb.*?&quot;" replace="path=&quot;${weld.ejb.file}&quot;" byline="true" />
+                    <replaceregexp file="${module.dir}/core/main/module.xml" match="path=&quot;weld-jta.*?&quot;" replace="path=&quot;${weld.jta.file}&quot;" byline="true" />
+                    <replaceregexp file="${module.dir}/core/main/module.xml" match="path=&quot;weld-web.*?&quot;" replace="path=&quot;${weld.web.file}&quot;" byline="true" />
+                    <replaceregexp file="${module.dir}/core/main/module.xml" match="path=&quot;weld-lite-extension-translator.*?&quot;" replace="path=&quot;${weld.lite-extension.file}&quot;" byline="true" />
+
+                    <copy todir="${module.dir}/spi/main" overwrite="true" verbose="true" failonerror="true">
+                      <fileset dir="target/dependency/lib">
+                        <include name="weld-spi-${weld.api.version}.jar" />
+                      </fileset>
+                    </copy>
+
+                    <replaceregexp file="${module.dir}/spi/main/module.xml" match="path=&quot;.*?&quot;" replace="path=&quot;weld-spi-${weld.api.version}.jar&quot;" byline="true" />
+
+                    <copy todir="${module.dir}/api/main" overwrite="true" verbose="true" failonerror="true">
+                      <fileset dir="target/dependency/lib">
+                        <include name="weld-api-${weld.api.version}.jar" />
+                      </fileset>
+                    </copy>
+
+                    <replaceregexp file="${module.dir}/api/main/module.xml" match="path=&quot;.*?&quot;" replace="path=&quot;weld-api-${weld.api.version}.jar&quot;" byline="true" />
+
+                    <copy todir="${jsf.injection.dir}" overwrite="true" verbose="true" failonerror="true">
+                      <fileset dir="target/dependency/lib">
+                        <include name="${weld.jsf.file}" />
+                      </fileset>
+                    </copy>
+
+                    <replaceregexp file="${jsf.injection.dir}/module.xml" match="path=&quot;weld-jsf.*?&quot;" replace="path=&quot;weld-jsf-${weld.version}.jar&quot;" byline="true" />
+                    <replaceregexp file="${jsf.injection.dir}/module.xml" match="path=&quot;weld-core-jsf.*?&quot;" replace="path=&quot;weld-jsf-${weld.version}.jar&quot;" byline="true" />
+                  </target>
+                </configuration>
+              </execution>
+              <execution>
+                <id>update-jakarta-apis</id>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <property file="${basedir}/local.build.properties" />
+                    <property file="${basedir}/build.properties" />
+
+                    <echo>
+                      =========================================================================
+                      Updating CDI module and Interceptors API module
+                      CDI version: ${cdi.api.version}
+                      Interceptors version: ${interceptors.version}
+                      JBOSS_HOME: ${jboss.home}
+                      =========================================================================
+
+                    </echo>
+
+                    <available file="${jboss.home}/modules/system" property="module.dir" value="${jboss.home}/modules/system/layers/base/jakarta/enterprise/api" />
+                    <available file="${jboss.home}/modules/system" property="module.interceptor.dir" value="${jboss.home}/modules/system/layers/base/jakarta/interceptor/api" />
+
+                    <property name="module.dir" value="${jboss.home}/modules//system/layers/base/jakarta/enterprise/api" />
+                    <property name="module.interceptor.dir" value="${jboss.home}/modules//system/layers/base/jakarta/interceptor/api" />
+
+                    <property name="cdi.api.file" value="jakarta.enterprise.cdi-api-${cdi.api.version}.jar" />
+                    <property name="cdi.el.api.file" value="jakarta.enterprise.cdi-el-api-${cdi.api.version}.jar" />
+                    <property name="cdi.lang.model.file" value="jakarta.enterprise.lang-model-${cdi.api.version}.jar" />
+                    <property name="interceptor.api.file" value="jakarta.interceptor-api-${interceptors.version}.jar" />
+
+                    <delete>
+                      <fileset dir="${module.dir}/main" includes="*.jar" />
+                      <fileset dir="${module.interceptor.dir}/main" includes="*.jar" />
+                    </delete>
+
+                    <copy todir="${module.dir}/main" overwrite="true" verbose="true" failonerror="true">
+                      <fileset dir="target/dependency/lib">
+                        <include name="${cdi.api.file}" />
+                        <include name="${cdi.lang.model.file}" />
+                        <include name="${cdi.el.api.file}" />
+                      </fileset>
+                    </copy>
+
+                    <copy todir="${module.interceptor.dir}/main" overwrite="true" verbose="true" failonerror="true">
+                      <fileset dir="target/dependency/lib">
+                        <include name="${interceptor.api.file}" />
+                      </fileset>
+                    </copy>
+
+                    <!-- WFLY doesn't yet have dep. on the EL API part of CDI, this forcibly adds it -->
+                    <replaceregexp file="${module.dir}/main/module.xml" match="path=&quot;jakarta.enterprise.cdi-api.*?&quot;" replace="path=&quot;${cdi.api.file}&quot; /&gt;&lt;resource-root path=&quot;${cdi.el.api.file}&quot;" byline="true" />
+                    <replaceregexp file="${module.dir}/main/module.xml" match="path=&quot;jakarta.enterprise.lang-model.*?&quot;" replace="path=&quot;${cdi.lang.model.file}&quot;" byline="true" />
+                    <replaceregexp file="${module.interceptor.dir}/main/module.xml" match="path=&quot;jakarta.interceptor-api.*?&quot;" replace="path=&quot;${interceptor.api.file}&quot;" byline="true" />
+                  </target>
+                </configuration>
+              </execution>
+              <execution>
+                <id>install-cdi-tck-ext-lib</id>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <copy todir="${jboss.home}/standalone/lib/ext" overwrite="true" verbose="true" failonerror="true">
+                      <fileset dir="target/dependency/lib">
+                        <include name="cdi-tck-ext-lib-${cdi.core.tck.version}.jar" />
+                      </fileset>
+                    </copy>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <!-- Copies the TCK testsuite xml artifacts into the target/suites directory for use by profiles -->
+      <id>copy-test-suites</id>
+      <activation>
+        <property>
+          <name>!skipCopyTestSuites</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-test-suites</id>
+                <phase>process-test-resources</phase>
+                <goals>
+                  <goal>copy</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>jakarta.enterprise</groupId>
+                  <artifactId>cdi-tck-ee-impl</artifactId>
+                  <version>${cdi.ee.tck.version}</version>
+                  <type>xml</type>
+                  <classifier>suite</classifier>
+                  <overWrite>false</overWrite>
+                  <destFileName>tck-web-suite.xml</destFileName>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>target/suites</outputDirectory>
+              <overWriteReleases>false</overWriteReleases>
+              <overWriteSnapshots>true</overWriteSnapshots>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Run the TCK in the managed container (full Java EE platform) -->
+    <profile>
+      <id>incontainer</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>incontainer</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <excluded.groups>se</excluded.groups>
+      </properties>
+      <dependencies>
+        <dependency>
+          <groupId>jakarta.enterprise</groupId>
+          <artifactId>cdi-tck-ee-impl</artifactId>
+          <version>${cdi.ee.tck.version}</version>
+          <type>xml</type>
+          <classifier>suite</classifier>
+          <scope>test</scope>
+        </dependency>
+
+        <dependency>
+          <groupId>jakarta.enterprise</groupId>
+          <artifactId>cdi-tck-ee-impl</artifactId>
+          <version>${cdi.ee.tck.version}</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.wildfly.arquillian</groupId>
+          <artifactId>wildfly-arquillian-container-managed</artifactId>
+          <version>${wildfly.arquillian.version}</version>
+          <scope>test</scope>
+          <exclusions>
+            <exclusion>
+              <groupId>org.jboss.arquillian.core</groupId>
+              <artifactId>arquillian-core-spi</artifactId>
+            </exclusion>
+            <exclusion>
+              <groupId>org.jboss.arquillian.core</groupId>
+              <artifactId>arquillian-core-api</artifactId>
+            </exclusion>
+            <exclusion>
+              <groupId>org.jboss.logmanager</groupId>
+              <artifactId>log4j-jboss-logmanager</artifactId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+        <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>${log4j.version}</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-resources</id>
+                <!-- perform this any time before the tests are executed -->
+                <phase>validate</phase>
+                <goals>
+                  <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                  <outputDirectory>${jboss.home}/standalone/configuration</outputDirectory>
+                  <resources>
+                    <resource>
+                      <directory>${jboss.home}/docs/examples/configs</directory>
+                      <includes>standalone-activemq-embedded.xml</includes>
+                    </resource>
+                  </resources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${surefire.version}</version>
+            <configuration>
+              <excludedGroups>${excluded.groups}</excludedGroups>
+
+              <argLine>
+                --add-exports=java.desktop/sun.awt=ALL-UNNAMED
+                --add-opens=java.base/java.io=ALL-UNNAMED
+                --add-opens=java.base/java.lang=ALL-UNNAMED
+                --add-opens=java.base/java.lang.invoke=ALL-UNNAMED
+                --add-opens=java.base/java.security=ALL-UNNAMED
+                --add-opens=java.base/java.util=ALL-UNNAMED
+                --add-opens=java.management/javax.management=ALL-UNNAMED
+                --add-opens=java.naming/javax.naming=ALL-UNNAMED
+              </argLine>
+              <properties>
+                <property>
+                  <!-- Note a 7.4.0 issue results in NPEs and useless output if you go higher than 1 here -->
+                  <name>surefire.testng.verbose</name>
+                  <value>0</value>
+                </property>
+              </properties>
+              <systemPropertyVariables>
+                <!-- Silencing the broken code in getActiveConfiguration(),
+                    see https://github.com/arquillian/arquillian/blob/master/impl-base/src/main/java/org/jboss/arquillian/impl/client/container/ContainerRegistryCreator.java -->
+                <arquillian.launch>wildfly-32</arquillian.launch>
+                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                <!-- Specified system properties are not
+                    available during in-container test execution -->
+                <org.jboss.cdi.tck.libraryDirectory>target/dependency/lib</org.jboss.cdi.tck.libraryDirectory>
+                <org.jboss.cdi.tck.testDataSource>java:jboss/datasources/ExampleDS</org.jboss.cdi.tck.testDataSource>
+                <jboss.home>${jboss.home}</jboss.home>
+              </systemPropertyVariables>
+              <environmentVariables>
+                <JBOSS_HOME>${jboss.home}</JBOSS_HOME>
+              </environmentVariables>
+              <suiteXmlFiles>
+                <suiteXmlFile>target/test-classes/tck-web-suite.xml</suiteXmlFile>
+                <!--suiteXmlFile>target/suites/tck-web-suite.xml</suiteXmlFile-->
+              </suiteXmlFiles>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+
+    <!-- Run only web profile tests -->
+    <profile>
+      <id>webprofile</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+        <property>
+          <name>webprofile</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <properties>
+        <excluded.groups>javaee-full,se</excluded.groups>
+      </properties>
+    </profile>
+
+  </profiles>
+
+</project>
