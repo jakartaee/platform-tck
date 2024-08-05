@@ -28,7 +28,7 @@ import java.util.ServiceLoader;
 import jakarta.json.bind.JsonbBuilder;
 import jakarta.json.bind.spi.JsonbProvider;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 
 public class Client extends ServiceEETest {

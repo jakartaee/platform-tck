@@ -148,9 +148,9 @@ javatest.timeout.factor=1
 #		      technologies.  
 #                     Known optional technologies for Web Profile include:
 #                            "jaxr", "connector", "jaxb", 
-#                            "jms", "javamail", "jacc", "jaspic", "wsmd" 
-#		      ex 1/   javaee.level=web connector jms jacc 
-#		      ex 2/   javaee.level=web jaspic
+#                            "jms", "javamail", "wsmd" 
+#		      ex 1/   javaee.level=web connector jms
+#		      ex 2/   javaee.level=web
 #		      ex 3/   javaee.level=web jms connector
 #		      ex 4/   etc...
 #
@@ -184,7 +184,7 @@ javatest.timeout.factor=1
 #                      (see comments for optional.tech.packages.to.ignore below)
 #
 ###############################################################################
-#javaee.level=web connector jaxws jaxb javamail jacc jaspic wsmd
+#javaee.level=web connector jaxws jaxb javamail wsmd
 javaee.level=full
 
 
@@ -1975,46 +1975,6 @@ ri.wsimport.verbose=true
 ri.wsimport.debug=false
 ri.wsimport.jvmargs=-Djavax.xml.accessExternalSchema=all
 
-#################################
-## Packaging properties for DAOs
-#################################
-ts.dao.root=com/sun/ts/tests/common/dao
-
-ts.dao.classes.base=\
-    ${ts.dao.root}/InvalidDAOSettingException.class, \
-    ${ts.dao.root}/DAOException.class, \
-    ${ts.dao.root}/DAO.class, \
-    ${ts.dao.root}/DataSourceDAO*.class, \
-    ${ts.dao.root}/DAOFactory.class, \
-    ${ts.dao.root}/TSDAOFactory*.class, \
-    ${ts.dao.root}/coffee/CoffeeBean.class, \
-    ${ts.dao.root}/coffee/CoffeeDAO.class, \
-    ${ts.dao.root}/coffee/TxCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/StringPKCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/LongPKCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/FloatPKCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/CompoundPK.class, \
-    ${ts.dao.root}/coffee/variants/CompoundPKCoffeeDAO.class
-
-ts.dao.classes.impl=\
-    ${ts.dao.root}/coffee/DataSourceCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/StringPKDSCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/LongPKDSCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/FloatPKDSCoffeeDAO.class, \
-    ${ts.dao.root}/coffee/variants/CompoundPKDSCoffeeDAO.class
-
-ts.dao.classes.coffee.standard=\
-    ${ts.dao.classes.base}, \
-    ${ts.dao.classes.impl}
-
-ts.dao.classes.coffee.txaware=\
-    ${ts.dao.classes.base}, \
-    ${ts.dao.classes.impl}
-
-ts.dao.classes.coffee.variants=\
-    ${ts.dao.classes.base}, \
-    ${ts.dao.classes.impl}
-
 #####################################
 ## Packaging properties for Wrappers
 #####################################
@@ -2023,6 +1983,14 @@ ts.wrappers.ejb.root=com/sun/ts/tests/common/ejb/wrappers
 
 ts.wrappers.web.root=com/sun/ts/tests/common/web
 
+## Classes to package in ejb-jar for EJB 3.x Stateless wrapper
+ts.wrappers.classes.stateless.ejb.3x=\
+    ${ts.wrappers.ejb.root}/Stateless3xWrapper.class
+
+## Classes to package in ejb-jar for EJB 3.x Stateful wrapper
+ts.wrappers.classes.stateful.ejb.3x=\
+    ${ts.wrappers.ejb.root}/Stateful3xWrapper.class
+
 ## Classes to package in ejb-jar for EJB Stateless wrapper
 ts.wrappers.classes.stateless.ejb=\
     ${ts.wrappers.ejb.root}/StatelessWrapper.class
@@ -2030,17 +1998,6 @@ ts.wrappers.classes.stateless.ejb=\
 ## Classes to package in ejb-jar for EJB Stateful wrapper
 ts.wrappers.classes.stateful.ejb=\
     ${ts.wrappers.ejb.root}/StatefulWrapper.class
-
-## Classes to package in ejb-jar for EJB BMP wrapper
-ts.wrappers.classes.bmp.ejb=\
-    ${ts.dao.classes.coffee.standard}, \
-    ${ts.wrappers.ejb.root}/BMPWrapper.class
-
-## Classes to package in ejb-jar for EJB CMP 1.1 wrapper
-ts.wrappers.classes.cmp11.ejb=${ts.wrappers.ejb.root}/CMP11Wrapper.class
-
-## Classes to package in ejb-jar for EJB CMP 2.0 wrapper
-ts.wrappers.classes.cmp20.ejb=${ts.wrappers.ejb.root}/CMP20Wrapper.class
 
 ## Classes to package in ejb-jar for EJB MDB wrapper
 ts.wrappers.classes.mdb.ejb=\
@@ -2055,9 +2012,6 @@ ts.wrappers.classes.mdb.client=com/sun/ts/tests/jms/commonee/Client.class
 ts.wrappers.classes.all.ejb=\
     ${ts.wrappers.classes.stateless.ejb}, \
     ${ts.wrappers.classes.stateful.ejb}, \
-    ${ts.wrappers.classes.bmp.ejb}, \
-    ${ts.wrappers.classes.cmp11.ejb}, \
-    ${ts.wrappers.classes.cmp20.ejb}, \
     ${ts.wrappers.classes.mdb.ejb}
 
 ## Classes to package in client module for all WEB wrappers
@@ -2206,22 +2160,6 @@ jaxrs_impl_name=jersey
 # This section contains all properties that are specific to JSR-196 Tests.
 # All default values are specific to GlassFish.
 #
-# @servlet.is.jsr115.compatible  This property is used by JASPIC tests
-#   to determine if the servlet container is a jsr 115 compatible
-#   container.  (true = compatible to JSR 115, false = not compatible.)
-#
-# @soap.is.jsr115.compatible  This may used by JASPIC tests to
-#   determin if the SOAP container is  JSR 115 compatible.  This is 
-#   only used when running SOAP profile tests.
-#
-# @provider.configuration.file
-#             This property is used by JASPIC tests to configure TestSuite's
-#             AuthConfig Provider and points at an xml file which is used
-#             to register the JASPIC test providers into the current
-#             ACF.  This file contaiins known/expected test provider info.
-#             Only app-context-id element can be edited to suit the 
-#             impl under test.
-#
 # @schema.file.location
 #              This points to the directory that the provider-configuration.xsd 
 #              file will live.  The provider-configuration.xsd is used to
@@ -2252,25 +2190,11 @@ jaxrs_impl_name=jersey
 #              using this property we enable the appclient container's
 #              logging level to INFO
 #
-# @vendor.authconfig.factory
-#             This property specifies vendor's authconfig factory class
-#             this will be used by JASPIC tests to register TestSuite's
-#             provider in Vendor's AuthConfig Factory.
-#
-#              For example for SJSAS RI this value is
-#
-#               vendor.authconfig.factory=
-#                   com.sun.enterprise.security.jmac.config.GFAuthConfigFactory
-#
 ##########################################################################
-servlet.is.jsr115.compatible=true
-soap.is.jsr115.compatible=false
-provider.configuration.file=${javaee.home}/domains/domain1/config/ProviderConfiguration.xml
 schema.file.location=${javaee.home}/lib/schemas
 logical.hostname.servlet=server
 logical.hostname.soap=localhost
 appclient.log.output=true
-vendor.authconfig.factory=com.sun.enterprise.security.jmac.config.GFAuthConfigFactory
 
 ##########################################################################
 # @servlet_waittime:   Time in seconds to wait after HttpSession expires 

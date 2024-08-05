@@ -68,7 +68,7 @@ fi
 echo "The option selected to build is $TCK_NAME TCK"
 
 if [ "All" == "$TCK_NAME" ];then
-  TCK_LIST=( websocket el connector jacc caj jms jsp jstl jaxws saaj servlet jpa jta )
+  TCK_LIST=( websocket el connector caj jms jsp jstl saaj servlet jpa jta )
 else 
   TCK_LIST=( ${TCK_NAME} )
 fi
@@ -136,11 +136,6 @@ for tck in ${TCK_LIST[@]}; do
     TCK_SPECIFIC_PROPS="-Dconnector.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
-  elif [ "jacc" == "$tck" ]
-  then
-    TCK_SPECIFIC_PROPS="-Djacc.home=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/ -Djacc.classes=$JAKARTA_JARS/modules/jakarta.jms-api.jar:$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/security.jar:$JAKARTA_JARS/modules/jakarta.servlet-api.jar:$JAKARTA_JARS/modules/jakarta.authorization-api.jar:$JAKARTA_JARS/modules/jakarta.ejb-api.jar:$JAKARTA_JARS/modules/jakarta.persistence-api.jar:$JAKARTA_JARS/modules/jakarta.interceptor-api.jar:$JAKARTA_JARS/modules/jakarta.mail-api.jar:$JAKARTA_JARS/modules/jakarta.transaction-api.jar:$JAKARTA_JARS/modules/jakarta.servlet.jsp-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
-    DOC_SPECIFIC_PROPS=""
-    JAXWS_SPECIFIC_PROPS=""
   elif [ "caj" == "$tck" ]
   then
     TCK_SPECIFIC_PROPS="-Dlocal.classes=$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/jakarta.transaction-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"
@@ -161,11 +156,6 @@ for tck in ${TCK_LIST[@]}; do
     TCK_SPECIFIC_PROPS="-DwebServerHome=$GF_HOME/$GF_TOPLEVEL_DIR/glassfish/"
     DOC_SPECIFIC_PROPS=""
     JAXWS_SPECIFIC_PROPS=""
-  elif [ "jaxws" == "$tck" ]
-  then
-    TCK_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Dwebcontainer.home.ri=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Ddeliverable.version=3.0"
-    JAXWS_SPECIFIC_PROPS="-Dwebcontainer.home=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Dwebcontainer.home.ri=$BASEDIR/$GF_TOPLEVEL_DIR/glassfish -Ddeliverable.version=3.0"
-    DOC_SPECIFIC_PROPS=""
   elif [ "jpa" == "$tck" ]
   then
     TCK_SPECIFIC_PROPS="-Djpa.classes=$JAKARTA_JARS/modules/jakarta.persistence-api.jar:$JAKARTA_JARS/modules/jakarta.annotation-api.jar:$JAKARTA_JARS/modules/jakarta.transaction-api.jar:$JAKARTA_JARS/modules/glassfish-corba-omgapi.jar"

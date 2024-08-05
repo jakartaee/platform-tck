@@ -17,14 +17,13 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
 
   SPDX-License-Identifier: Apache-2.0
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>jakarta.batch</groupId>
         <artifactId>jakarta.batch.arquillian.exec-parent</artifactId>
         <version>2.1.1</version>
+        <relativePath></relativePath>
     </parent>
 
     <groupId>org.glassfish</groupId>
@@ -32,13 +31,17 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
 
     <packaging>pom</packaging>
     <name>Jakarta Batch TCK Runner for Glassfish</name>
-    
+
+    <modules>
+        <module>apitests</module>
+        <module>sigtests</module>
+    </modules>
+
     <properties>
-        <glassfish.container.version>7.0.0-M8</glassfish.container.version>
+        <glassfish.container.version>7.0.0-M10</glassfish.container.version>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
         <jakarta.batch.version>2.1.0</jakarta.batch.version>
     </properties>
-
 
     <repositories>
         <repository>
@@ -47,10 +50,49 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
         </repository>
     </repositories>
 
-    <modules>
-        <module>sigtests</module>
-        <module>apitests</module>
-    </modules>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.diffplug.spotless</groupId>
+                    <artifactId>spotless-maven-plugin</artifactId>
+                    <version>2.36.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <configuration>
+                    <pom>
+                        <includes>
+                            <include>pom.xml</include>
+                        </includes>
+                        <sortPom>
+                            <nrOfIndentSpace>4</nrOfIndentSpace>
+                            <!-- default see https://github.com/Ekryd/sortpom/wiki/PredefinedSortOrderProfiles -->
+                            <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                            <!-- Sort properties -->
+                            <sortProperties>true</sortProperties>
+                            <!-- Sort modules -->
+                            <sortModules>true</sortModules>
+                            <!-- Sort plugin executions -->
+                            <sortExecutions>true</sortExecutions>
+                        </sortPom>
+                    </pom>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>check-spotless-poms</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
-    
 </project>

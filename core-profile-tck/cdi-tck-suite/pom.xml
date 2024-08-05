@@ -9,80 +9,77 @@
   ~ SPDX-License-Identifier: Apache-2.0
   ~
   -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>jakarta.ee.tck.coreprofile</groupId>
-    <artifactId>core-tck-parent</artifactId>
-    <version>10.0.1</version>
-  </parent>
+    <parent>
+        <groupId>jakarta.ee.tck.coreprofile</groupId>
+        <artifactId>core-tck-parent</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
+    </parent>
 
-  <artifactId>cdi-lite-tck-suite</artifactId>
-  <name>CDI Lite suite.xml for Jakarta Core Profile TCK</name>
-  <description>This module contains the TestNG suite.xml file to use to validate the CDI Lite tests from the CDI TCK</description>
+    <artifactId>cdi-lite-tck-suite</artifactId>
+    <name>CDI Lite suite.xml for Jakarta Core Profile TCK</name>
+    <description>This module contains the TestNG suite.xml file to use to validate the CDI Lite tests from the CDI TCK</description>
 
-  <dependencies>
-    <dependency>
-      <groupId>jakarta.enterprise</groupId>
-      <artifactId>cdi-tck-core-impl</artifactId>
-      <version>${cdi.tck.version}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.jboss.test-audit</groupId>
-          <artifactId>jboss-test-audit-api</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.jboss.test-audit</groupId>
-          <artifactId>jboss-test-audit-impl</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>cdi-tck-core-impl</artifactId>
+            <version>${cdi.tck.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.test-audit</groupId>
+                    <artifactId>jboss-test-audit-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.jboss.test-audit</groupId>
+                    <artifactId>jboss-test-audit-impl</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-    </dependency>
-  </dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+        </dependency>
+    </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.0.0</version>
-        <executions>
-          <execution>
-            <id>attach-artifacts</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attach-artifact</goal>
-            </goals>
-            <configuration>
-              <artifacts>
-                <artifact>
-                  <file>src/main/resources/cdi-lite-tck-suite.xml</file>
-                  <type>xml</type>
-                </artifact>
-              </artifacts>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-artifacts</id>
+                        <goals>
+                            <goal>attach-artifact</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <artifacts>
+                                <artifact>
+                                    <file>src/main/resources/cdi-lite-tck-suite.xml</file>
+                                    <type>xml</type>
+                                </artifact>
+                            </artifacts>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
-

@@ -1,3 +1,22 @@
+# Platform TCK refactoring
+
+## One Time JavaTest Jar Install
+The JavaTest jar with GAV coords javatest:javatest:5.0 does not exist in Maven Central,
+so one needs to install the repo lib/javatest.jar into the local maven repo
+in order to build this repo with Maven. To do this, execute:
+```
+mvn install:install-file -Dfile=lib/javatest.jar -DgroupId=javatest -DartifactId=javatest -Dversion=5.0 -Dpackaging=jar
+```
+
+## Build
+
+From the root folder, try:
+```
+mvn clean install -Dmaven.compiler.failOnError=false > /tmp/build.txt
+```
+
+The ^ command will compile all sources that are included as per root pom.xml with many failures that we need to resolve.  
+
 # JakartaEE TCK Jenkins Jobs
 The Jenkins jobs required for certifying Eclipse GlassFish nightly builds using the latest Jakarta EE TCK bundles are hosted in the Eclipse CloudBees Infrastructure and are available under
 https://jenkins.eclipse.org/jakartaee-tck/
@@ -276,19 +295,6 @@ target:
     ant config.vi
     ```
 
-10. Build the special web services clients.
-
-The special webservices tests under the `webservices12/specialcases` directory
-have prebuilt endpoints, but the clients are not prebuilt. The clients will be
-built after the endpoints are first predeployed to the application server under
-test.  During the build, the clients import the WSDLs (by means of the Java EE
-`wsimport` and `wsgen` tools) from the predeployed webservices endpoints. This process
-verifies that importing a WSDL from a predeployed webservice endpoint works
-properly.
-To build the special webservices clients, the following command must be executed:
-    ```
-    ant build.special.webservices.clients
-    ```
 ## Executing tests
 ### Running tests in CLI mode
 
@@ -320,15 +326,3 @@ This runs all tests in the current directory and any subdirectories.
     ant runclient
     ```
 
-9. To run a single test directory in the forward direction, enter the following commands:
-    ```
-    cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api/jakarta_xml_ws/Dispatch
-    ant -Dkeywords=forward runclient
-    ```
-
-10. To run a subset of test directories in the reverse direction, enter the following
-commands:
-    ```
-    cd <TS_HOME>/src/com/sun/ts/tests/jaxws/api
-    ant -Dkeywords=reverse runclient
-    ```

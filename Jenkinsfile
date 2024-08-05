@@ -17,7 +17,7 @@
 env.label = "jakartaee-tck-pod-${UUID.randomUUID().toString()}"
 
 default_suites=[ "samples", "signaturetest/javaee" ] 
-default_tcks=["caj", "connector", "el", "jacc", "jaxws", "jms", "jpa", "jsp", "jstl", "jta", "saaj", "servlet",  "websocket"]
+default_tcks=["caj", "connector", "el", "jms", "jpa", "jsp", "jstl", "jta", "saaj", "servlet",  "websocket"]
 
 def cts_suites = params.test_suites != null ? params.test_suites.split() : default_suites
 def tcks = params.standalone_tcks != null ? params.standalone_tcks.split() : default_tcks
@@ -194,7 +194,7 @@ spec:
            description: 'Run the full EE compliance testsuite or a standalone tck' )
     string(name: 'test_suites', defaultValue: 'connector ejb ejb30/bb ejb30/lite/appexception ejb30/lite/async ejb30/lite/basic ejb30/lite/ejbcontext ejb30/lite/enventry ejb30/lite/interceptor ejb30/lite/lookup ejb30/lite/naming ejb30/lite/nointerface  ejb30/lite/packaging ejb30/lite/singleton ejb30/lite/stateful ejb30/lite/tx ejb30/lite/view ejb30/lite/xmloverride ejb30/assembly ejb30/timer ejb30/webservice ejb30/zombie ejb30/misc ejb30/sec ejb32 el integration jacc javaee javamail jaxrs jdbc_appclient jdbc_ejb jdbc_jsp jdbc_servlet jms_appclient jms_ejb jms_jsp jms_servlet jpa_appmanaged jpa_appmanagedNoTx jpa_pmservlet jpa_puservlet jpa_stateful3 jpa_stateless3 jsonb jsonp jsp jstl jta jws samples servlet signaturetest/javaee webservices12 webservices13 websocket xa',
            description: 'Space separated list of Test suites to run') 
-    string(name: 'standalone_tcks', defaultValue: 'caj connector el jacc jaxws jms jpa jsp jstl jta saaj servlet websocket', 
+    string(name: 'standalone_tcks', defaultValue: 'caj connector el jms jpa jsp jstl jta saaj servlet websocket', 
            description: 'Space separated list of standalone TCKs to build and run') 
     string(name: 'USER_KEYWORDS',
            defaultValue: '',

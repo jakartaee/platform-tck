@@ -1,6 +1,0 @@
-WSRAnn=@WebServiceRef(name="service/wsjwshandlerchainwebservice")
-SERVICE=com.sun.ts.tests.jws.handlerchain.client.HandlerChainWebServiceService
-URLALIAS=/jws/HandlerChainWebService
-SERVICEREFNAMEWSSERVLET=service/wsjwshandlerchainwebservice
-SERVICEREFNAMEWSEJB=service/wsjwshandlerchainwebservice
-SERVICEREFNAMEWSAPPCLIENT=service/wsjwshandlerchainwebservice

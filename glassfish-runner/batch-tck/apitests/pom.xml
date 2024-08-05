@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-Copyright (c) 2022 Contributors to the Eclipse Foundation
+<!--
+Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
 
   See the NOTICE file distributed with this work for additional information
   regarding copyright ownership. Licensed under the Apache License,
@@ -17,9 +17,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
 
   SPDX-License-Identifier: Apache-2.0
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.glassfish</groupId>
@@ -30,27 +28,14 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
     <artifactId>glassfish.batch-tck.apitests</artifactId>
     <packaging>pom</packaging>
     <name>Jakarta Batch API TCK Runner for Glassfish</name>
-    <profiles>
-        <profile>
-            <id>windows</id>
-            <activation>
-                <os>
-                    <family>windows</family>
-                </os>
-            </activation>
-            <properties>
-                <script.ext>.bat</script.ext>
-            </properties>
-        </profile>
-    </profiles>
 
     <properties>
         <derby.basedir>${project.build.directory}/derby</derby.basedir>
-        <script.ext/>
+        <script.ext></script.ext>
     </properties>
 
     <dependencies>
-                
+
         <!-- Common Batch TCK dependencies -->
         <dependency>
             <groupId>jakarta.batch</groupId>
@@ -91,7 +76,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
         </dependency>
 
         <!-- GlassFish Batch TCK dependencies -->
-        
+
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-glassfish-remote-6</artifactId>
@@ -141,7 +126,7 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
             <version>3.0.2</version>
         </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
@@ -150,10 +135,10 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                 <executions>
                     <execution>
                         <id>unpack</id>
-                        <phase>pre-integration-test</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
@@ -175,16 +160,13 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                 <executions>
                     <execution>
                         <id>copy-arquillian-config-to-cp</id>
-                        <phase>generate-test-resources</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
+                        <phase>generate-test-resources</phase>
                         <configuration>
                             <target>
-                                <copy
-                                    file="${project.basedir}/src/test/resources/arquillian.xml"
-                                    todir="${project.build.directory}/test-classes"
-                                    overwrite="true" />
+                                <copy file="${project.basedir}/src/test/resources/arquillian.xml" overwrite="true" todir="${project.build.directory}/test-classes"></copy>
                             </target>
                         </configuration>
                     </execution>
@@ -200,16 +182,16 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
             </plugin>
 
             <plugin>
-                <artifactId>exec-maven-plugin</artifactId>
                 <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>StopDomain1</id>
-                        <phase>pre-integration-test</phase>
+                        <id>Step 01: StopDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
@@ -218,11 +200,11 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StopDatabase</id>
-                        <phase>pre-integration-test</phase>
+                        <id>Step 02: StopDatabase</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
@@ -236,11 +218,11 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StartDomain1</id>
-                        <phase>pre-integration-test</phase>
+                        <id>Step 03: StartDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
@@ -249,11 +231,11 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StartDatabase</id>
-                        <phase>pre-integration-test</phase>
+                        <id>Step 04: StartDatabase</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
@@ -263,11 +245,11 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Execute DDL</id>
-                        <phase>pre-integration-test</phase>
+                        <id>Step 05: Execute DDL</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/javadb/bin/ij${script.ext}</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
@@ -277,11 +259,11 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Create Connection Pool</id>
-                        <phase>pre-integration-test</phase>
+                        <id>Step 06: Create Connection Pool</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
@@ -295,11 +277,11 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>Create Connection Pool Resource</id>
-                        <phase>pre-integration-test</phase>
+                        <id>Step 07: Create Connection Pool Resource</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>pre-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
@@ -310,11 +292,11 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StopDomain1 After Tests</id>
-                        <phase>post-integration-test</phase>
+                        <id>Step 08: StopDomain1 After Tests</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>post-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <arguments>
@@ -323,11 +305,11 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
                         </configuration>
                     </execution>
                     <execution>
-                        <id>StopDatabase After Test</id>
-                        <phase>post-integration-test</phase>
+                        <id>Step 09: StopDatabase After Test</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
+                        <phase>post-integration-test</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin${script.ext}</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
@@ -351,6 +333,18 @@ Copyright (c) 2022 Contributors to the Eclipse Foundation
             </plugin>
         </plugins>
 
-        
     </build>
+    <profiles>
+        <profile>
+            <id>windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <script.ext>.bat</script.ext>
+            </properties>
+        </profile>
+    </profiles>
 </project>

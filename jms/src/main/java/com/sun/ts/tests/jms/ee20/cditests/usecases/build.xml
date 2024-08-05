@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright (c) 2013, 2018 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+
+<project name="jms_ee20_cditests_usecases" basedir="." default="usage">
+<import file="../../../../../../../../../bin/xml/ts.import.xml"/>
+
+  <property name="current.dir" value="${basedir}"/>
+  <property name="app.name" value="cditestsusecases"/>
+  <property name="dd.files.already.exist" value="true"/>
+  <echo message="pkg.dir=${pkg.dir}"/>
+
+  <target name="package" >
+      <ts.clientjar archivename="${app.name}" mainclass="com.sun.ts.tests.jms.ee20.cditests.usecases.Client" 
+	excludedfiles="${pkg.dir}/CMBean1.class, ${pkg.dir}/CMBean2.class, ${pkg.dir}/BMBean1.class, ${pkg.dir}/BMBean2.class">
+	<zipfileset dir="${class.dir}" includes="${other}, ${pkg.dir}/Client.class, ${pkg.dir}/CMBean1IF.class, ${pkg.dir}/CMBean2IF.class, ${pkg.dir}/BMBean1IF.class, ${pkg.dir}/BMBean2IF.class"/>
+      </ts.clientjar>
+      <ts.ejbjar archivename="${app.name}" descriptor="${app.name}_ejb.xml" excludedfiles="${pkg.dir}/Client.class">
+	<zipfileset dir="${src.dir}/${pkg.dir}/../resources" includes="beans.xml"  prefix="META-INF"/>
+	<zipfileset dir="${class.dir}" includes="${other}, ${pkg.dir}/CMBean*.class, ${pkg.dir}/BMBean*.class"/>
+      </ts.ejbjar>
+      <copy file="application.xml.clientear" tofile="application.xml"/>
+      <ts.ear archivename="${app.name}" descriptordir="." descriptor="application.xml" includedefaultfiles="false">
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_client.jar"/>
+         <zipfileset dir="${dist.dir}/${pkg.dir}" includes="${app.name}_ejb.jar"/>
+      </ts.ear>
+      <delete file="application.xml" />
+  </target>
+
+  <target name="compile" >
+      <ts.javac includes="${pkg.dir}/**/*.java"/>
+  </target>
+
+</project>

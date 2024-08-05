@@ -2,29 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>CDI Lite Language Model TCK Runner</name>
+    <parent>
+        <groupId>org.glassfish</groupId>
+        <artifactId>standalone-tck</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
+    </parent>
     <groupId>org.jboss.weld</groupId>
     <artifactId>lang-model-tck-runner</artifactId>
     <version>4.0.5-SNAPSHOT</version>
 
+    <name>CDI Lite Language Model TCK Runner</name>
+
     <properties>
+        <cdi.tck-4-0.version>4.0.5</cdi.tck-4-0.version>
+        <glassfish.home>${glassfish.root}/glassfish7</glassfish.home>
+        <glassfish.root>${project.build.directory}</glassfish.root>
+        <glassfish.version>7.0.0-M10</glassfish.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <cdi.tck-4-0.version>4.0.5</cdi.tck-4-0.version>
         <weld.version>5.0.0.SP2</weld.version>
-        <glassfish.version>7.0.0-M8</glassfish.version>
-        <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.home>${glassfish.root}/glassfish7</glassfish.home>
 
     </properties>
-
-    <repositories>
-        <repository>
-            <id>jakarta-snapshots</id>
-            <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
-        </repository>
-    </repositories>
-
 
     <dependencyManagement>
         <dependencies>
@@ -90,12 +88,11 @@
             <scope>test</scope>
         </dependency>
 
-           <dependency>
+        <dependency>
             <groupId>org.jboss.weld.module</groupId>
             <artifactId>weld-web</artifactId>
             <version>${weld.version}</version>
         </dependency>
-
 
         <dependency>
             <groupId>jakarta.enterprise</groupId>
@@ -109,17 +106,16 @@
             </exclusions>
         </dependency>
 
-
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
             <scope>test</scope>
-        </dependency>     
+        </dependency>
 
         <!--
-            The Arquillian connector that starts GlassFish and deploys archives to it.
-        -->
+        The Arquillian connector that starts GlassFish and deploys archives to it.
+    -->
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
@@ -128,8 +124,14 @@
 
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>jakarta-snapshots</id>
+            <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
+        </repository>
+    </repositories>
 
-       <build>
+    <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -151,7 +153,7 @@
                             <outputDirectory>${project.build.directory}/dependency/lib</outputDirectory>
                             <archive>
                                 <manifest>
-                                  <addClasspath>false</addClasspath>
+                                    <addClasspath>false</addClasspath>
                                 </manifest>
                             </archive>
                         </configuration>
@@ -165,10 +167,10 @@
                 <executions>
                     <execution>
                         <id>unpack-glassfish</id>
-                        <phase>test-compile</phase>
                         <goals>
                             <goal>unpack</goal>
                         </goals>
+                        <phase>test-compile</phase>
                         <configuration>
                             <markersDirectory>${glassfish.root}/dependency-maven-plugin-markers</markersDirectory>
                             <artifactItems>
@@ -182,26 +184,26 @@
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
-                     </execution>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>3.0.0-M7</version>
-                <executions>
-                    <execution>
-                        <id>generate-test-report</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>report-only</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <outputDirectory>${project.build.directory}/surefire-reports</outputDirectory>
                     <outputName>test-report</outputName>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-test-report</id>
+                        <goals>
+                            <goal>report-only</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
