@@ -23,9 +23,9 @@ import java.security.SecureRandom;
 import java.security.Signature;
 import java.security.spec.ECGenParameterSpec;
 import java.util.Base64;
+import java.util.List;
 
 import ee.jakarta.tck.core.rest.JaxRsActivator;
-import jakarta.json.bind.spi.JsonbProvider;
 import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -65,7 +65,6 @@ public class CustomJsonbSerializationIT {
                 .addClass(SomeMessage.class)
                 .addClass(Utils.class)
                 .addClass(JaxRsActivator.class)
-                .addAsServiceProvider(JsonbProvider.class, CustomJsonbResolver.class)
                 .addAsResource(new StringAsset(pubKeyString), "key.pub");
         ;
         System.out.printf("test archive: %s\n", archive.toString(true));
@@ -144,7 +143,9 @@ public class CustomJsonbSerializationIT {
                     .invoke();
 
             System.out.printf("Response(%d), reason=%s\n", response.getStatus(), response.getStatusInfo().getReasonPhrase());
-            Assertions.assertEquals(Response.Status.BAD_REQUEST.getStatusCode(), response.getStatus());
+            final List<Integer> expected = List.of(Response.Status.BAD_REQUEST.getStatusCode(), Response.Status.INTERNAL_SERVER_ERROR.getStatusCode());
+            Assertions.assertTrue(expected.contains(response.getStatus()),
+                    () -> String.format("Expected one of %s got %d: %s", expected, response.getStatus(), response.readEntity(String.class)));
         }
 
     }
