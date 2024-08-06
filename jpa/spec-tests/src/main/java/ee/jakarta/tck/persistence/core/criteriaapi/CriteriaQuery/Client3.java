@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
@@ -55,7 +55,7 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client3 extends UtilCustomerData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -86,12 +86,12 @@ public class Client3 extends UtilCustomerData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			logger.log(Logger.Level.TRACE, "Use Tuple Query");
+			logTrace( "Use Tuple Query");
 
 			cquery.multiselect(customer.get(Customer_.getSingularAttribute("id", String.class)),
 					customer.get(Customer_.getSingularAttribute("name", String.class)));
@@ -101,15 +101,15 @@ public class Client3 extends UtilCustomerData {
 			List result = q.getResultList();
 
 			if (result.size() == expectedResultSize) {
-				logger.log(Logger.Level.TRACE, "Result size =" + result.size());
+				logTrace( "Result size =" + result.size());
 				pass = true;
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Received incorrect result size =" + result.size());
+				logErr( "Received incorrect result size =" + result.size());
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -138,12 +138,12 @@ public class Client3 extends UtilCustomerData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
 			// Get Metamodel from Root
 			EntityType<Customer> Customer_ = customer.getModel();
-			logger.log(Logger.Level.TRACE, "Use Tuple Query");
+			logTrace( "Use Tuple Query");
 
 			List list = new ArrayList();
 			list.add(customer.get(Customer_.getSingularAttribute("id", String.class)));
@@ -156,15 +156,15 @@ public class Client3 extends UtilCustomerData {
 			List result = q.getResultList();
 
 			if (result.size() == expectedResultSize) {
-				logger.log(Logger.Level.TRACE, "Result size =" + result.size());
+				logTrace( "Result size =" + result.size());
 				pass = true;
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Received incorrect result size =" + result.size());
+				logErr( "Received incorrect result size =" + result.size());
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -208,18 +208,18 @@ public class Client3 extends UtilCustomerData {
 
 			if (result != null) {
 				if (result.size() == expectedResultSize) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Mismatch in received results - expected = " + expectedResultSize
+					logErr( "Mismatch in received results - expected = " + expectedResultSize
 							+ " received = " + result.size());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Missing expected result");
+				logErr( "Missing expected result");
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -259,13 +259,13 @@ public class Client3 extends UtilCustomerData {
 
 		Customer actual = getEntityManager().find(Customer.class, "1");
 		if (actual == null) {
-			logger.log(Logger.Level.ERROR, "Received null result from find");
+			logErr( "Received null result from find");
 		} else {
 			if (actual.getName().equals(expected)) {
-				logger.log(Logger.Level.TRACE, "Name was successfully updated");
+				logTrace( "Name was successfully updated");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + expected + ", actual:" + actual.getName());
+				logErr( "Expected:" + expected + ", actual:" + actual.getName());
 			}
 		}
 
@@ -306,9 +306,9 @@ public class Client3 extends UtilCustomerData {
 
 		Customer actual = getEntityManager().find(Customer.class, "1");
 		if (actual != null) {
-			logger.log(Logger.Level.ERROR, "Expected null result from find, actual = " + actual.toString());
+			logErr( "Expected null result from find, actual = " + actual.toString());
 		} else {
-			logger.log(Logger.Level.TRACE, "Customer was successfully deleted");
+			logTrace( "Customer was successfully deleted");
 			pass = true;
 		}
 
@@ -347,20 +347,20 @@ public class Client3 extends UtilCustomerData {
 
 			if (result.size() == 1) {
 				if (!result.get(0).getId().equals("6")) {
-					logger.log(Logger.Level.ERROR, "Expected id:6, actual:" + result.get(0).getId());
+					logErr( "Expected id:6, actual:" + result.get(0).getId());
 				} else {
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get correct number of results, expected:1, actual:" + result.size());
 				for (Customer c : result) {
-					logger.log(Logger.Level.ERROR, "id:" + c.getId());
+					logErr( "id:" + c.getId());
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 		}
 
 		if (!pass) {
@@ -419,15 +419,15 @@ public class Client3 extends UtilCustomerData {
 			int passCount2 = 0;
 			if (result.size() == expected.size()) {
 				for (Tuple actual : result) {
-					logger.log(Logger.Level.TRACE, "code=" + actual.get(0) + ", count=" + actual.get(1));
+					logTrace( "code=" + actual.get(0) + ", count=" + actual.get(1));
 					if (!actual.get(0).equals(expected.get(i).arg1)) {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected: " + expected.get(i).arg1 + ", actual:" + actual.get(0));
 					} else {
 						passCount1++;
 					}
 					if (!actual.get(1).equals(Long.parseLong(expected.get(i).arg2))) {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected: " + expected.get(i).arg2 + ", actual:" + actual.get(1));
 					} else {
 						passCount2++;
@@ -441,13 +441,13 @@ public class Client3 extends UtilCustomerData {
 					pass2 = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected number of entries, expected:" + expected.size()
+				logErr( "Did not get expected number of entries, expected:" + expected.size()
 						+ ", actual:" + result.size());
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception groupBy: ", e);
+			logErr( "Caught exception groupBy: ", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -528,7 +528,7 @@ public class Client3 extends UtilCustomerData {
 			Collection<Tuple> result = tquery.getResultList();
 			if (TestUtil.traceflag) {
 				for (Tuple actual : result) {
-					logger.log(Logger.Level.TRACE, "Actual - code=" + actual.get(0) + ", id=" + actual.get(1));
+					logTrace( "Actual - code=" + actual.get(0) + ", id=" + actual.get(1));
 				}
 			}
 
@@ -536,16 +536,16 @@ public class Client3 extends UtilCustomerData {
 			int passCount1 = 0;
 			int passCount2 = 0;
 			for (Tuple actual : result) {
-				logger.log(Logger.Level.TRACE, "verifying: code=" + actual.get(0) + ", id=" + actual.get(1));
+				logTrace( "verifying: code=" + actual.get(0) + ", id=" + actual.get(1));
 
 				if (!actual.get(0).equals(expected.get(i).getArg1())) {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected getArg1:" + expected.get(i).getArg1() + ", actual.get(0):" + actual.get(0));
 				} else {
 					passCount1++;
 				}
 				if (!actual.get(1).equals(expected.get(i).getArg2())) {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected getArg2:" + expected.get(i).getArg2() + ", actual.get(1):" + actual.get(1));
 				} else {
 					passCount2++;
@@ -562,7 +562,7 @@ public class Client3 extends UtilCustomerData {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception ", e);
+			logErr( "Caught unexpected exception ", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -657,7 +657,7 @@ public class Client3 extends UtilCustomerData {
 
 			if (TestUtil.traceflag) {
 				for (Tuple actual : result) {
-					logger.log(Logger.Level.TRACE, "Actual - code=" + actual.get(0) + ", id=" + actual.get(1));
+					logTrace( "Actual - code=" + actual.get(0) + ", id=" + actual.get(1));
 				}
 			}
 
@@ -665,16 +665,16 @@ public class Client3 extends UtilCustomerData {
 			int passCount1 = 0;
 			int passCount2 = 0;
 			for (Tuple actual : result) {
-				logger.log(Logger.Level.TRACE, "verifying: code=" + actual.get(0) + ", id=" + actual.get(1));
+				logTrace( "verifying: code=" + actual.get(0) + ", id=" + actual.get(1));
 
 				if (!actual.get(0).equals(expected.get(i).getArg1())) {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected getArg1:" + expected.get(i).getArg1() + ", actual.get(0):" + actual.get(0));
 				} else {
 					passCount1++;
 				}
 				if (!actual.get(1).equals(expected.get(i).getArg2())) {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected getArg2:" + expected.get(i).getArg2() + ", actual.get(1):" + actual.get(1));
 				} else {
 					passCount2++;
@@ -691,7 +691,7 @@ public class Client3 extends UtilCustomerData {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception ", e);
+			logErr( "Caught unexpected exception ", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -741,21 +741,21 @@ public class Client3 extends UtilCustomerData {
 			}
 
 			if (numOfExpected == expectedRows) {
-				logger.log(Logger.Level.TRACE, "Expected results received.");
+				logTrace( "Expected results received.");
 				pass = true;
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected 2 Values returned : "
+				logErr( "Did not get expected results.  Expected 2 Values returned : "
 						+ "2 with Country Code GBR and 4 with Country Code CHA. " + "Received: " + result.size());
 				for (Long val : result) {
-					logger.log(Logger.Level.ERROR, "Count of Codes Returned: " + val);
+					logErr( "Count of Codes Returned: " + val);
 				}
 
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass) {
@@ -783,7 +783,7 @@ public class Client3 extends UtilCustomerData {
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
 		getEntityTransaction().begin();
-		logger.log(Logger.Level.INFO, "True test");
+		logMsg( "True test");
 		CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
 		if (cquery != null) {
 			Root<Customer> customer = cquery.from(Customer.class);
@@ -817,30 +817,30 @@ public class Client3 extends UtilCustomerData {
 					pass1 = true;
 					if (TestUtil.traceflag) {
 
-						logger.log(Logger.Level.TRACE, "Received expected results(" + actual.size() + "):");
+						logTrace( "Received expected results(" + actual.size() + "):");
 						for (String s : actual) {
-							logger.log(Logger.Level.TRACE, "code:" + s);
+							logTrace( "code:" + s);
 						}
 					}
 				} else {
-					logger.log(Logger.Level.TRACE, "Expected(" + expected.size() + "):");
+					logTrace( "Expected(" + expected.size() + "):");
 					for (String s : expected) {
-						logger.log(Logger.Level.TRACE, "code:" + s);
+						logTrace( "code:" + s);
 					}
-					logger.log(Logger.Level.TRACE, "Actual(" + actual.size() + "):");
+					logTrace( "Actual(" + actual.size() + "):");
 					for (String s : actual) {
-						logger.log(Logger.Level.TRACE, "code:" + s);
+						logTrace( "code:" + s);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getResultList() returned null result");
+				logErr( "getResultList() returned null result");
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
-		logger.log(Logger.Level.INFO, "False test");
+		logMsg( "False test");
 		cquery = cbuilder.createQuery(String.class);
 		if (cquery != null) {
 			Root<Customer> customer = cquery.from(Customer.class);
@@ -889,29 +889,29 @@ public class Client3 extends UtilCustomerData {
 					pass2 = true;
 					if (TestUtil.traceflag) {
 
-						logger.log(Logger.Level.TRACE, "Received expected results(" + actual.size() + "):");
+						logTrace( "Received expected results(" + actual.size() + "):");
 						for (String s : expected) {
-							logger.log(Logger.Level.TRACE, "code:" + s);
+							logTrace( "code:" + s);
 						}
 					}
 				} else {
-					logger.log(Logger.Level.TRACE, "Expected(" + expected.size() + "):");
+					logTrace( "Expected(" + expected.size() + "):");
 					for (String s : expected) {
-						logger.log(Logger.Level.TRACE, "code:" + s);
+						logTrace( "code:" + s);
 					}
-					logger.log(Logger.Level.TRACE, "Actual(" + actual.size() + "):");
+					logTrace( "Actual(" + actual.size() + "):");
 					for (String s : actual) {
-						logger.log(Logger.Level.TRACE, "code:" + s);
+						logTrace( "code:" + s);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getResultList() returned null result");
+				logErr( "getResultList() returned null result");
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
-		logger.log(Logger.Level.INFO, "Default test");
+		logMsg( "Default test");
 		cquery = cbuilder.createQuery(String.class);
 		if (cquery != null) {
 			Root<Customer> customer = cquery.from(Customer.class);
@@ -958,26 +958,26 @@ public class Client3 extends UtilCustomerData {
 					pass3 = true;
 					if (TestUtil.traceflag) {
 
-						logger.log(Logger.Level.TRACE, "Received expected results(" + actual.size() + "):");
+						logTrace( "Received expected results(" + actual.size() + "):");
 						for (String s : expected) {
-							logger.log(Logger.Level.TRACE, "code:" + s);
+							logTrace( "code:" + s);
 						}
 					}
 				} else {
-					logger.log(Logger.Level.TRACE, "Expected(" + expected.size() + "):");
+					logTrace( "Expected(" + expected.size() + "):");
 					for (String s : expected) {
-						logger.log(Logger.Level.TRACE, "code:" + s);
+						logTrace( "code:" + s);
 					}
-					logger.log(Logger.Level.TRACE, "Actual(" + actual.size() + "):");
+					logTrace( "Actual(" + actual.size() + "):");
 					for (String s : actual) {
-						logger.log(Logger.Level.TRACE, "code:" + s);
+						logTrace( "code:" + s);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getResultList() returned null result");
+				logErr( "getResultList() returned null result");
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 		getEntityTransaction().commit();
 
@@ -1009,7 +1009,7 @@ public class Client3 extends UtilCustomerData {
 				"00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "11345" };
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find work zip codes that are not null");
+			logTrace( "find work zip codes that are not null");
 			CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			cquery.where(cbuilder.isNotNull(customer.get("work").get("zip")))
@@ -1020,31 +1020,31 @@ public class Client3 extends UtilCustomerData {
 			if (lOrder.size() == 1) {
 				jakarta.persistence.criteria.Order o = lOrder.get(0);
 				if (!o.isAscending()) {
-					logger.log(Logger.Level.ERROR, "isAscending() did not return an order of ascending");
+					logErr( "isAscending() did not return an order of ascending");
 				} else {
 					pass1 = true;
 				}
 				if (o.getExpression() != null) {
-					logger.log(Logger.Level.TRACE, "getExpression() returned non-null expression");
+					logTrace( "getExpression() returned non-null expression");
 					pass2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "getExpression() returned null");
+					logErr( "getExpression() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected a size of 1, actual:" + lOrder.size());
+				logErr( "Expected a size of 1, actual:" + lOrder.size());
 			}
 
 			TypedQuery<String> tquery = getEntityManager().createQuery(cquery);
 			List<String> clist = tquery.getResultList();
 
 			String[] result = clist.toArray(new String[clist.size()]);
-			logger.log(Logger.Level.TRACE, "Compare results of work zip codes");
+			logTrace( "Compare results of work zip codes");
 			// if pass = false, don't call next comparison, it could
 			// cause a false positive depending on the result
 			pass3 = Arrays.equals(expectedZips, result);
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception queryTest47: ", e);
+			logErr( "Caught exception queryTest47: ", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3) {
@@ -1072,7 +1072,7 @@ public class Client3 extends UtilCustomerData {
 				"00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252", "00252" };
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find work zip codes that are not null");
+			logTrace( "find work zip codes that are not null");
 			CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			cquery.where(cbuilder.isNotNull(customer.get("work").get("zip")));
@@ -1082,35 +1082,35 @@ public class Client3 extends UtilCustomerData {
 			if (lOrder.size() == 1) {
 				jakarta.persistence.criteria.Order o = lOrder.get(0);
 				if (o.isAscending()) {
-					logger.log(Logger.Level.ERROR, "isAscending() did not return an order of descending");
+					logErr( "isAscending() did not return an order of descending");
 				} else {
 					pass1 = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected a size of 1, actual:" + lOrder.size());
+				logErr( "Expected a size of 1, actual:" + lOrder.size());
 			}
 
 			TypedQuery<String> tquery = getEntityManager().createQuery(cquery);
 			List<String> clist = tquery.getResultList();
 
 			String[] result = clist.toArray(new String[clist.size()]);
-			logger.log(Logger.Level.TRACE, "Compare results of work zip codes");
+			logTrace( "Compare results of work zip codes");
 			// if pass = false, don't call next comparison, it could
 			// cause a false positive depending on the result
 			pass2 = Arrays.equals(expectedZips, result);
 			if (!pass2) {
-				logger.log(Logger.Level.ERROR, "Results are incorrect:");
+				logErr( "Results are incorrect:");
 				for (String s : expectedZips) {
-					logger.log(Logger.Level.ERROR, "Expected:" + s);
+					logErr( "Expected:" + s);
 				}
 				for (String s : result) {
-					logger.log(Logger.Level.ERROR, "actual:" + s);
+					logErr( "actual:" + s);
 				}
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -1135,7 +1135,7 @@ public class Client3 extends UtilCustomerData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find work zip codes that are not null");
+			logTrace( "find work zip codes that are not null");
 			CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			cquery.where(cbuilder.isNotNull(customer.get("work").get("zip")))
@@ -1147,15 +1147,15 @@ public class Client3 extends UtilCustomerData {
 			if (orderedList != null) {
 				if (orderedList.size() == 1) {
 					pass = true;
-					logger.log(Logger.Level.TRACE, "Received expected results");
+					logTrace( "Received expected results");
 				} else {
-					logger.log(Logger.Level.ERROR, "Received Unexpected results");
+					logErr( "Received Unexpected results");
 				}
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception queryTest47: ", e);
+			logErr( "Caught exception queryTest47: ", e);
 		}
 
 		if (!pass) {
@@ -1184,7 +1184,7 @@ public class Client3 extends UtilCustomerData {
 		expected.add(Integer.valueOf(customerRef[3].getId()));
 
 		List<Integer> actual = new ArrayList<Integer>();
-		logger.log(Logger.Level.INFO, "Testing initial query");
+		logMsg( "Testing initial query");
 
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 		getEntityTransaction().begin();
@@ -1206,13 +1206,13 @@ public class Client3 extends UtilCustomerData {
 			Collections.sort(actual);
 
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results for first query. Expected "
+				logErr( "Did not get expected results for first query. Expected "
 						+ expected.size() + " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass1 = true;
 			}
-			logger.log(Logger.Level.INFO, "Testing modified query");
+			logMsg( "Testing modified query");
 
 			expected.clear();
 			expected.add(Integer.valueOf(customerRef[7].getId()));
@@ -1226,20 +1226,20 @@ public class Client3 extends UtilCustomerData {
 				Object o = lResult.get(0);
 				actual.add(Integer.parseInt((String) o));
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected 1 result, actual:" + lResult.size());
+				logErr( "Expected 1 result, actual:" + lResult.size());
 			}
 
 			Collections.sort(actual);
 
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results for second query. Expected "
+				logErr( "Did not get expected results for second query. Expected "
 						+ expected.size() + " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1321,21 +1321,21 @@ public class Client3 extends UtilCustomerData {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", e);
+			logErr( "Unexpected Exception in createTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 
 	}
 
 	private void removeATestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -1344,14 +1344,14 @@ public class Client3 extends UtilCustomerData {
 			getEntityManager().createNativeQuery("DELETE FROM A_BASIC").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

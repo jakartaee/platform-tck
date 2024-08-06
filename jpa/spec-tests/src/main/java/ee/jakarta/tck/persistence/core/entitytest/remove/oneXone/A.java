@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.entitytest.remove.oneXone;
 
-import java.lang.System.Logger;
+
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1X1_BI_BTOB")
 public class A implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+
 
 	// ===========================================================
 	// instance variables
@@ -50,7 +50,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+		logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {
@@ -80,16 +80,16 @@ public class A implements java.io.Serializable {
 	}
 
 	public boolean isB1() {
-		logger.log(Logger.Level.TRACE, "isB");
+		logTrace( "isB");
 		if (getB1() != null)
-			logger.log(Logger.Level.TRACE, "Relationship to B is not null...");
+			logTrace( "Relationship to B is not null...");
 		else
-			logger.log(Logger.Level.TRACE, "Relationship to B is null...");
+			logTrace( "Relationship to B is null...");
 		return getB1() != null;
 	}
 
 	public B getB1Info() {
-		logger.log(Logger.Level.TRACE, "getBInfo");
+		logTrace( "getBInfo");
 		if (isB1()) {
 			B b1 = getB1();
 			return b1;

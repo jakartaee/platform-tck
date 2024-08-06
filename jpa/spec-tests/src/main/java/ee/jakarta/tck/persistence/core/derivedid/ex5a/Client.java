@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.derivedid.ex5a;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -28,7 +28,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
@@ -44,13 +44,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -81,7 +81,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(person);
 			getEntityManager().persist(mHistory);
 
-			logger.log(Logger.Level.TRACE, "persisted Patient and MedicalHistory");
+			logTrace( "persisted Patient and MedicalHistory");
 			getEntityManager().flush();
 
 			// Refresh MedicalHistory and Person
@@ -98,20 +98,20 @@ public class Client extends PMClientBase {
 				if (newMHistory != null) {
 					if (newMHistory.getPatient() == person) {
 						pass = true;
-						logger.log(Logger.Level.TRACE, "Received Expected Patient");
+						logTrace( "Received Expected Patient");
 					} else {
-						logger.log(Logger.Level.ERROR, "Searched Patient not found");
+						logErr( "Searched Patient not found");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "getEntityManager().createQuery returned null entry");
+					logErr( "getEntityManager().createQuery returned null entry");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getEntityManager().createQuery returned null");
+				logErr( "getEntityManager().createQuery returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			getEntityTransaction().rollback();
 		}
 
@@ -123,9 +123,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -133,7 +133,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -143,14 +143,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DID5PERSON").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,7 +36,7 @@ import jakarta.persistence.criteria.Root;
 
 public class Client6 extends UtilProductData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client6.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -86,16 +86,16 @@ public class Client6 extends UtilProductData {
 			Collections.sort(actual);
 
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+				logErr( "Did not get expected results. Expected " + expected.size()
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception queryTest47: ", e);
+			logErr( "Caught exception queryTest47: ", e);
 		}
 
 		if (!pass) {

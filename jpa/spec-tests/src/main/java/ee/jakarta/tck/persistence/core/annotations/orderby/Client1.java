@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.orderby;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -31,7 +31,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client1 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
+
 
 	List<Address> addrRef;
 
@@ -63,7 +63,7 @@ public class Client1 extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
@@ -71,7 +71,7 @@ public class Client1 extends PMClientBase {
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -99,7 +99,7 @@ public class Client1 extends PMClientBase {
 	@Test
 	public void orderByTest1() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin orderByTest1");
+		logTrace( "Begin orderByTest1");
 		boolean pass1 = true;
 		boolean pass2 = false;
 		List resultsList = new ArrayList();
@@ -120,27 +120,27 @@ public class Client1 extends PMClientBase {
 			final List insResult = newIns.getEmployees();
 
 			if (insResult.size() != 4) {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"orderByTest1:  Did not get expected results.  Expected: 4, " + "got: " + insResult.size());
 				pass1 = false;
 			} else if (pass1) {
 				Iterator i1 = insResult.iterator();
-				logger.log(Logger.Level.TRACE, "Check Employee Collection for expected first names");
+				logTrace( "Check Employee Collection for expected first names");
 				while (i1.hasNext()) {
 					Employee e1 = (Employee) i1.next();
 					resultsList.add((String) e1.getFirstName());
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"orderByTest1: got Employee FirstName:" + (String) e1.getFirstName());
 				}
 
-				logger.log(Logger.Level.TRACE, "Compare first names received with expected first names ");
+				logTrace( "Compare first names received with expected first names ");
 				String[] result = (String[]) (resultsList.toArray(new String[resultsList.size()]));
 				pass2 = Arrays.equals(expectedResult, result);
 
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass2 = false;
 		} finally {
 			try {
@@ -148,7 +148,7 @@ public class Client1 extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -180,7 +180,7 @@ public class Client1 extends PMClientBase {
 	@Test
 	public void orderByTest2() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin orderByTest2");
+		logTrace( "Begin orderByTest2");
 		boolean pass1 = true;
 		boolean pass2 = false;
 		List resultsList = new ArrayList();
@@ -201,20 +201,20 @@ public class Client1 extends PMClientBase {
 			final List deptResult = newDept.getEmployees();
 
 			if (deptResult.size() != 4) {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"orderByTest2:  Did not get expected results.  Expected: 4, " + "got: " + deptResult.size());
 				pass1 = false;
 			} else if (pass1) {
 				Iterator i2 = deptResult.iterator();
-				logger.log(Logger.Level.TRACE, "Check Employee Collection for expected first names");
+				logTrace( "Check Employee Collection for expected first names");
 				while (i2.hasNext()) {
 					Employee e2 = (Employee) i2.next();
 					resultsList.add((String) e2.getFirstName());
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"orderByTest2: got Employee FirstName:" + (String) e2.getFirstName());
 				}
 
-				logger.log(Logger.Level.TRACE, "Compare first names received with expected first names ");
+				logTrace( "Compare first names received with expected first names ");
 				String[] result = (String[]) (resultsList.toArray(new String[resultsList.size()]));
 				pass2 = Arrays.equals(expectedResult, result);
 
@@ -222,14 +222,14 @@ public class Client1 extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -255,7 +255,7 @@ public class Client1 extends PMClientBase {
 	 */
 	@Test
 	public void orderByTest3() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin orderByTest3");
+		logTrace( "Begin orderByTest3");
 		boolean pass1 = true;
 		boolean pass2 = false;
 		List insResult;
@@ -279,19 +279,19 @@ public class Client1 extends PMClientBase {
 			insResult = ins.getEmployees();
 
 			if (insResult.size() != 5) {
-				logger.log(Logger.Level.ERROR, "orderByTest3: Expected List Size of 5 " + "got: " + insResult.size());
+				logErr( "orderByTest3: Expected List Size of 5 " + "got: " + insResult.size());
 				pass1 = false;
 			} else if (pass1) {
 				Iterator i3 = insResult.iterator();
-				logger.log(Logger.Level.TRACE, "Check Employee Collection for expected first names");
+				logTrace( "Check Employee Collection for expected first names");
 				while (i3.hasNext()) {
 					Employee e3 = (Employee) i3.next();
 					resultsList.add((String) e3.getFirstName());
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"orderByTest3: got Employee FirstName:" + (String) e3.getFirstName());
 				}
 
-				logger.log(Logger.Level.TRACE, "orderByTest3: Expected size received, check ordering . . .");
+				logTrace( "orderByTest3: Expected size received, check ordering . . .");
 				String[] result = (String[]) (resultsList.toArray(new String[resultsList.size()]));
 				pass2 = Arrays.equals(expectedResult, result);
 
@@ -300,14 +300,14 @@ public class Client1 extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -333,7 +333,7 @@ public class Client1 extends PMClientBase {
 	 */
 	@Test
 	public void orderByTest4() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin orderByTest4");
+		logTrace( "Begin orderByTest4");
 		boolean pass1 = true;
 		boolean pass2 = false;
 		List resultsList = new ArrayList();
@@ -355,20 +355,20 @@ public class Client1 extends PMClientBase {
 			final List deptResult = dept.getEmployees();
 
 			if (deptResult.size() != 5) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"orderByTest4: Expected Collection Size of 5 " + "got: " + deptResult.size());
 				pass1 = false;
 			} else if (pass1) {
 				Iterator i4 = deptResult.iterator();
-				logger.log(Logger.Level.TRACE, "Check Employee Collection for expected first names");
+				logTrace( "Check Employee Collection for expected first names");
 				while (i4.hasNext()) {
 					Employee e4 = (Employee) i4.next();
 					resultsList.add((String) e4.getFirstName());
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"orderByTest4: got Employee FirstName:" + (String) e4.getFirstName());
 				}
 
-				logger.log(Logger.Level.TRACE, "orderByTest4: Expected size received, check ordering . . .");
+				logTrace( "orderByTest4: Expected size received, check ordering . . .");
 				String[] result = (String[]) (resultsList.toArray(new String[resultsList.size()]));
 				pass2 = Arrays.equals(expectedResult, result);
 			}
@@ -376,14 +376,14 @@ public class Client1 extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -393,7 +393,7 @@ public class Client1 extends PMClientBase {
 
 	private void createTestData() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "createTestData");
+			logTrace( "createTestData");
 			getEntityTransaction().begin();
 			final float salary = 10000.00F;
 
@@ -426,19 +426,19 @@ public class Client1 extends PMClientBase {
 			s1.setEmployees(link);
 			getEntityManager().merge(s1);
 
-			logger.log(Logger.Level.TRACE, "persisted Entity Data");
+			logTrace( "persisted Entity Data");
 			getEntityManager().flush();
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
+			logErr( "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
@@ -446,9 +446,9 @@ public class Client1 extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -456,7 +456,7 @@ public class Client1 extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -467,14 +467,14 @@ public class Client1 extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from INSURANCE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

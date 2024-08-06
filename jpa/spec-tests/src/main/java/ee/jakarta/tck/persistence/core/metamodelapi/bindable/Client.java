@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.bindable;
 
-import java.lang.System.Logger;
+
 import java.util.Set;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -31,7 +31,7 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	public Client() {
 	}
@@ -47,13 +47,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -73,17 +73,17 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			Set<EntityType<?>> aSet = metaModel.getEntities();
 			if (aSet != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of EntityType");
+				logTrace( "Obtained Non-null Set of EntityType");
 				for (EntityType eType : aSet) {
-					logger.log(Logger.Level.TRACE, "entity's BindableType is  = " + eType.getBindableType());
+					logTrace( "entity's BindableType is  = " + eType.getBindableType());
 					if (eType.getBindableType().equals(Bindable.BindableType.ENTITY_TYPE)) {
-						logger.log(Logger.Level.TRACE, "as Expected BindableType is ENTITY_TYPE");
+						logTrace( "as Expected BindableType is ENTITY_TYPE");
 						pass = true;
 					} else {
-						logger.log(Logger.Level.TRACE, "bindableType is non ENTITY_TYPE");
+						logTrace( "bindableType is non ENTITY_TYPE");
 					}
 				}
 			}
@@ -111,21 +111,21 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			Set<EntityType<?>> aSet = metaModel.getEntities();
 			if (aSet != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Set of EntityType");
+				logTrace( "Obtained Non-null Set of EntityType");
 				for (EntityType eType : aSet) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"entity's BindableJavaType is  = " + eType.getBindableJavaType().getName());
 					String bindableJavaType = eType.getBindableJavaType().getName();
 
 					if (bindableJavaType != null) {
 						if (bindableJavaType.equals("ee.jakarta.tck.persistence.core.metamodelapi.bindable.A")) {
-							logger.log(Logger.Level.TRACE, "as Expected BindableJavaType for A is " + bindableJavaType);
+							logTrace( "as Expected BindableJavaType for A is " + bindableJavaType);
 							pass = true;
 						} else {
-							logger.log(Logger.Level.TRACE, "bindableJavaType is incorrect");
+							logTrace( "bindableJavaType is incorrect");
 						}
 					}
 				}
@@ -142,9 +142,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -152,7 +152,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

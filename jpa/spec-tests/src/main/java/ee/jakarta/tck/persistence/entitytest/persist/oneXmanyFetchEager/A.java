@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.entitytest.persist.oneXmanyFetchEager;
 
-import java.lang.System.Logger;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,7 +32,7 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+
 
 	// ===========================================================
 	// instance variables
@@ -50,7 +50,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+		logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {
@@ -76,12 +76,12 @@ public class A implements java.io.Serializable {
 	// Business methods for test cases
 
 	public List<B> getBCol() {
-		logger.log(Logger.Level.TRACE, "getBCol");
+		logTrace( "getBCol");
 		return bCol;
 	}
 
 	public void setBCol(List<B> bCol) {
-		logger.log(Logger.Level.TRACE, "setBCol");
+		logTrace( "setBCol");
 		this.bCol = bCol;
 	}
 
@@ -102,7 +102,7 @@ public class A implements java.io.Serializable {
 	}
 
 	public List<B> getBInfoFromA() {
-		logger.log(Logger.Level.TRACE, "getBInfoFromA");
+		logTrace( "getBInfoFromA");
 		List<B> v = new java.util.ArrayList<B>();
 		if (getBCol().size() != 0) {
 			List<B> bcol = getBCol();

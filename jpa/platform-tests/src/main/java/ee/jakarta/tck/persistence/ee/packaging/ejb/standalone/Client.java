@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.standalone;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
 import org.junit.jupiter.api.AfterEach;
@@ -30,7 +30,7 @@ import jakarta.ejb.EJB;
 
 public class Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	@EJB(name = "ejb/Stateful3Bean", beanInterface = Stateful3IF.class)
 	private static Stateful3IF bean;
@@ -81,14 +81,14 @@ public class Client {
 	@Test
 	public void test1() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin test1");
+		logTrace( "Begin test1");
 		boolean pass = false;
 
 		try {
 			pass = bean.test1();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 
 		}
 
@@ -101,9 +101,9 @@ public class Client {
 		try {
 			bean.removeTestData();
 		} catch (Exception re) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in entity cleanup:", re);
+			logErr( "Unexpected Exception in entity cleanup:", re);
 		}
-		logger.log(Logger.Level.TRACE, "cleanup complete");
+		logTrace( "cleanup complete");
 	}
 
 }

@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.inheritance.nonentity;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 
 import jakarta.persistence.Entity;
@@ -34,7 +34,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Project implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(Project.class.getName());
+
 
 	// Instance Variables
 	private long projId;
@@ -46,7 +46,7 @@ public class Project implements java.io.Serializable {
 	private Employee projectLead;
 
 	public Project() {
-		logger.log(Logger.Level.TRACE, "Project no-arg constructor");
+		logTrace( "Project no-arg constructor");
 	}
 
 	public Project(long projId, String name, BigDecimal budget) {

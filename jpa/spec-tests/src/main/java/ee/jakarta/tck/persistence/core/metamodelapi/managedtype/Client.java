@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.managedtype;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
@@ -40,7 +40,7 @@ import jakarta.persistence.metamodel.Type;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	public Client() {
 	}
@@ -58,13 +58,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -85,21 +85,21 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 				if (mTypeOrder != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -126,41 +126,41 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 				if (mTypeOrder != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					Set<Attribute<? super Order, ?>> attribSet = mTypeOrder.getAttributes();
 					if (attribSet != null) {
 						if (attribSet.size() != expected.size()) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Received wrong number of results");
+							logErr( "Received wrong number of results");
 						}
 						for (Attribute attrib : attribSet) {
-							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+							logTrace( "attribute Name = " + attrib.getName());
 							if (expected.contains(attrib.getName())) {
-								logger.log(Logger.Level.TRACE, "Received expected:" + attrib.getName());
+								logTrace( "Received expected:" + attrib.getName());
 							} else {
-								logger.log(Logger.Level.ERROR, "Received unexpected result" + attrib.getName());
+								logErr( "Received unexpected result" + attrib.getName());
 								pass = false;
 							}
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "getAttributes() returned null");
+						logErr( "getAttributes() returned null");
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -187,41 +187,41 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 				if (mTypeOrder != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					Set<Attribute<Order, ?>> attribSet = mTypeOrder.getDeclaredAttributes();
 					if (attribSet != null) {
 						if (attribSet.size() != expected.size()) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Received wrong number of results");
+							logErr( "Received wrong number of results");
 						}
 						for (Attribute attrib : attribSet) {
-							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+							logTrace( "attribute Name = " + attrib.getName());
 							if (expected.contains(attrib.getName())) {
-								logger.log(Logger.Level.TRACE, "Received expected:" + attrib.getName());
+								logTrace( "Received expected:" + attrib.getName());
 							} else {
-								logger.log(Logger.Level.ERROR, "Received unexpected result" + attrib.getName());
+								logErr( "Received unexpected result" + attrib.getName());
 								pass = false;
 							}
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "getAttributes() returned null");
+						logErr( "getAttributes() returned null");
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -245,31 +245,31 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					SingularAttribute<? super B, Address> singAttrib = mTypeB.getSingularAttribute("address",
 							ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address.class);
 					Class addrClass = singAttrib.getType().getJavaType();
 					if (addrClass.getName().equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address")) {
-						logger.log(Logger.Level.TRACE, "address class getName =" + addrClass.getName());
+						logTrace( "address class getName =" + addrClass.getName());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address, actual:"
 										+ addrClass.getName());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getSingularAttributeStringClassTest failed");
@@ -292,48 +292,48 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 
 					try {
 						mTypeB.getSingularAttribute("doesnotexist",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mTypeB.getSingularAttribute("addreess",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.ZipCode.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getSingularAttributeStringClassIllegalArgumentExceptionTest failed");
@@ -356,30 +356,30 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					SingularAttribute<? super B, ?> singAttrib = mTypeB.getSingularAttribute("address");
-					logger.log(Logger.Level.TRACE, "singAttrib Type = " + singAttrib.getType());
-					logger.log(Logger.Level.TRACE, "singAttrib Java Type = " + singAttrib.getJavaType());
+					logTrace( "singAttrib Type = " + singAttrib.getType());
+					logTrace( "singAttrib Java Type = " + singAttrib.getJavaType());
 					if (singAttrib.getJavaType().getName()
 							.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address")) {
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected: address, actual:" + singAttrib.getJavaType().getName());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getSingularAttributeStringTest failed");
@@ -402,30 +402,30 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 
 					try {
 						mTypeB.getSingularAttribute("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getSingularAttributeStringIllegalArgumentExceptionTest failed");
@@ -448,31 +448,31 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 							ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address.class);
 					Class addrClass = singAttrib.getType().getJavaType();
 					if (addrClass.getName().equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address")) {
-						logger.log(Logger.Level.TRACE, "address class getName =" + addrClass.getName());
+						logTrace( "address class getName =" + addrClass.getName());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address, actual:"
 										+ addrClass.getName());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredSingularAttributeStringClassTest failed");
@@ -496,48 +496,48 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mTypeB.getDeclaredSingularAttribute("doesnotexist",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mTypeB.getDeclaredSingularAttribute("address",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.ZipCode.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredSingularAttributeStringClassIllegalArgumentExceptionTest failed");
@@ -560,31 +560,31 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					SingularAttribute<B, ?> singAttrib = mTypeB.getDeclaredSingularAttribute("address");
-					logger.log(Logger.Level.TRACE, "singAttrib Type = " + singAttrib.getType());
-					logger.log(Logger.Level.TRACE, "singAttrib Java Type = " + singAttrib.getJavaType());
+					logTrace( "singAttrib Type = " + singAttrib.getType());
+					logTrace( "singAttrib Java Type = " + singAttrib.getJavaType());
 					if (singAttrib.getJavaType().getName()
 							.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address")) {
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address, actual:"
 										+ singAttrib.getJavaType().getName());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredSingularAttributeStringTest failed");
@@ -607,29 +607,29 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					try {
 						mTypeB.getDeclaredSingularAttribute("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredSingularAttributeStringIllegalArgumentExceptionTest failed");
@@ -657,40 +657,40 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					Set<SingularAttribute<B, ?>> attribSet = mTypeB.getDeclaredSingularAttributes();
 					if (attribSet != null) {
 						if (attribSet.size() != expected.size()) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Received wrong number of results");
+							logErr( "Received wrong number of results");
 						}
 						for (Attribute attrib : attribSet) {
-							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+							logTrace( "attribute Name = " + attrib.getName());
 							if (expected.contains(attrib.getName())) {
-								logger.log(Logger.Level.TRACE, "Received expected:" + attrib.getName());
+								logTrace( "Received expected:" + attrib.getName());
 							} else {
-								logger.log(Logger.Level.ERROR, "Received unexpected result" + attrib.getName());
+								logErr( "Received unexpected result" + attrib.getName());
 								pass = false;
 							}
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "getDeclaredSingularAttributes() returned null");
+						logErr( "getDeclaredSingularAttributes() returned null");
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -718,41 +718,41 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<B> mTypeB = metaModel.managedType(B.class);
 				if (mTypeB != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					Set<SingularAttribute<? super B, ?>> attribSet = mTypeB.getSingularAttributes();
 					if (attribSet != null) {
 						if (attribSet.size() != expected.size()) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Received wrong number of results");
+							logErr( "Received wrong number of results");
 						}
 						for (Attribute attrib : attribSet) {
-							logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+							logTrace( "attribute Name = " + attrib.getName());
 							if (expected.contains(attrib.getName())) {
-								logger.log(Logger.Level.TRACE, "Received expected:" + attrib.getName());
+								logTrace( "Received expected:" + attrib.getName());
 							} else {
-								logger.log(Logger.Level.ERROR, "Received unexpected result" + attrib.getName());
+								logErr( "Received unexpected result" + attrib.getName());
 								pass = false;
 							}
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "getSingularAttributes() returned null");
+						logErr( "getSingularAttributes() returned null");
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -776,37 +776,37 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					CollectionAttribute<? super Uni1XMPerson, ?> colAttrib = mType.getCollection("projects");
 					Type t = colAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject")) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Received expected ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject");
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getCollectionStringTest failed");
@@ -829,30 +829,30 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logTrace( "Obtained Non-null ManagedType");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getCollection("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getCollectionStringIllegalArgumentExceptionTest failed");
@@ -875,37 +875,37 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					CollectionAttribute<? super Uni1XMPerson, Uni1XMProject> colAttrib = mType.getCollection("projects",
 							ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject.class);
 					Type t = colAttrib.getElementType();
 					if (t != null) {
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject")) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Received expected ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject");
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getCollectionStringClassTest failed");
@@ -929,48 +929,48 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logTrace( "Obtained Non-null ManagedType");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getCollection("doesnotexist",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mType.getCollection("projects",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.ZipCode.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getCollectionStringClassIllegalArgumentExceptionTest failed");
@@ -994,36 +994,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<A> mType = metaModel.managedType(A.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
 							ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address.class);
 					Type t = setAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -1047,46 +1047,46 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<A> mType = metaModel.managedType(A.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getSet("doesnotexist", ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mType.getCollection("address",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.ZipCode.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -1110,36 +1110,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<A> mType = metaModel.managedType(A.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					SetAttribute<? super A, ?> setAttrib = mType.getSet("address");
 					Type t = setAttrib.getElementType();
-					logger.log(Logger.Level.TRACE, "element Type  = " + setAttrib.getElementType());
+					logTrace( "element Type  = " + setAttrib.getElementType());
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "java Type  = " + t.getJavaType());
+						logTrace( "java Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getSetStringTest failed");
@@ -1162,29 +1162,29 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<A> mType = metaModel.managedType(A.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getSet("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getSetStringIllegalArgumentExceptionTest failed");
@@ -1207,36 +1207,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getList("biDirMX1Persons",
 							ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person.class);
 					Type t = listAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getListStringClassTest failed");
@@ -1260,48 +1260,48 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 
 					try {
 						mType.getList("doesnotexist",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mType.getCollection("biDirMX1Persons",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.ZipCode.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -1325,35 +1325,35 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<? super BiDirMX1Project, ?> listAttrib = mType.getList("biDirMX1Persons");
 					Type t = listAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getListStringTest failed");
@@ -1377,29 +1377,29 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getList("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getListStringIllegalArgumentExceptionTest failed");
@@ -1423,36 +1423,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Department> mType = metaModel.managedType(Department.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					MapAttribute<? super Department, String, Employee> mapAttrib = mType.getMap("lastNameEmployees",
 							java.lang.String.class, Employee.class);
 					Type t = mapAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Employee")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Employee, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getMapStringClassTest failed");
@@ -1476,46 +1476,46 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Department> mType = metaModel.managedType(Department.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getMap("doesnotexist", java.lang.String.class, Employee.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mType.getMap("lastNameEmployees", String.class,
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Client.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -1540,35 +1540,35 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Department> mType = metaModel.managedType(Department.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					MapAttribute<? super Department, ?, ?> mapAttrib = mType.getMap("lastNameEmployees");
 					Type t = mapAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Employee")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Employee, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getMapStringTest failed");
@@ -1592,29 +1592,29 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Department> mType = metaModel.managedType(Department.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getMap("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getMapStringIllegalArgumentExceptionTest failed");
@@ -1638,36 +1638,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					CollectionAttribute<Uni1XMPerson, Uni1XMProject> colAttrib = mType.getDeclaredCollection("projects",
 							ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject.class);
 					Type t = colAttrib.getElementType();
 					if (t != null) {
 						String type = t.getJavaType().getName();
-						logger.log(Logger.Level.TRACE, "element Type  = " + type);
+						logTrace( "element Type  = " + type);
 						if (type.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject, actual:"
 											+ type);
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredCollectionStringClassTest failed");
@@ -1691,48 +1691,48 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getDeclaredCollection("doesnotexist",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mType.getCollection("projects",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.ZipCode.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -1757,35 +1757,35 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					CollectionAttribute<Uni1XMPerson, ?> colAttrib = mType.getDeclaredCollection("projects");
 					Type t = colAttrib.getElementType();
 					if (t != null) {
 						String type = t.getJavaType().getName();
-						logger.log(Logger.Level.TRACE, "element Type  = " + type);
+						logTrace( "element Type  = " + type);
 						if (type.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Uni1XMProject, actual:"
 											+ type);
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredCollectionStringTest failed");
@@ -1809,30 +1809,30 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getDeclaredCollection("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredCollectionStringIllegalArgumentExceptionTest failed");
@@ -1856,36 +1856,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<A> mType = metaModel.managedType(A.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					SetAttribute<A, Address> setAttrib = mType.getDeclaredSet("address",
 							ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address.class);
 					Type t = setAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredSetStringClassTest failed");
@@ -1909,48 +1909,48 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<A> mType = metaModel.managedType(A.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getDeclaredSet("doesnotexist",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mType.getCollection("address",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.ZipCode.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -1975,36 +1975,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<A> mType = metaModel.managedType(A.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					SetAttribute<A, ?> setAttrib = mType.getDeclaredSet("address");
-					logger.log(Logger.Level.TRACE, "element Type  = " + setAttrib.getElementType());
+					logTrace( "element Type  = " + setAttrib.getElementType());
 					Type t = setAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Address, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredSetStringTest failed");
@@ -2028,29 +2028,29 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<A> mType = metaModel.managedType(A.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getDeclaredSet("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredSetStringIllegalArgumentExceptionTest failed");
@@ -2074,36 +2074,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getDeclaredList("biDirMX1Persons",
 							ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person.class);
 					Type t = listAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredListStringClassTest failed");
@@ -2127,49 +2127,49 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getDeclaredList("doesnotexist",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mType.getCollection("biDirMX1Persons",
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.ZipCode.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -2194,35 +2194,35 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<BiDirMX1Project, ?> listAttrib = mType.getDeclaredList("biDirMX1Persons");
 					Type t = listAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.BiDirMX1Person, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredListStringTest failed");
@@ -2246,30 +2246,30 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logTrace( "Obtained Non-null ManagedType");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getDeclaredList("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredListStringIllegalArgumentExceptionTest failed");
@@ -2293,36 +2293,36 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Department> mType = metaModel.managedType(Department.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					MapAttribute<Department, String, Employee> mapAttrib = mType.getDeclaredMap("lastNameEmployees",
 							java.lang.String.class, Employee.class);
 					Type t = mapAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Employee")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Employee, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredMapStringClassClassTest failed");
@@ -2346,48 +2346,48 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Department> mType = metaModel.managedType(Department.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getDeclaredMap("doesnotexist", java.lang.String.class, Employee.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 
-					logger.log(Logger.Level.INFO, "Testing invalid type");
+					logMsg( "Testing invalid type");
 
 					try {
 						mType.getDeclaredMap("lastNameEmployees", String.class,
 								ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Client.class);
 						pass = false;
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 					} catch (Exception e) {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -2412,35 +2412,35 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Department> mType = metaModel.managedType(Department.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					MapAttribute<Department, ?, ?> mapAttrib = mType.getDeclaredMap("lastNameEmployees");
 					Type t = mapAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						if (t.getJavaType().getName()
 								.equals("ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Employee")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.managedtype.Employee, actual:"
 											+ t.getJavaType().getName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getElementType() returned null");
+						logErr( "getElementType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredMapStringTest failed");
@@ -2464,29 +2464,29 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Department> mType = metaModel.managedType(Department.class);
 				if (mType != null) {
-					logger.log(Logger.Level.INFO, "Testing invalid name");
+					logMsg( "Testing invalid name");
 					try {
 						mType.getDeclaredMap("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredMapStringIllegalArgumentExceptionTest failed");
@@ -2510,40 +2510,40 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					Set<PluralAttribute<? super Uni1XMPerson, ?, ?>> pluralAttribSet = mType.getPluralAttributes();
 					if (pluralAttribSet != null) {
 						if (pluralAttribSet.size() != 1) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected size:1, actual:" + pluralAttribSet.size());
+							logErr( "Expected size:1, actual:" + pluralAttribSet.size());
 						}
 						for (Attribute attrib : pluralAttribSet) {
 							if (attrib.getName().equals("projects")) {
-								logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+								logTrace( "attribute Name = " + attrib.getName());
 							} else {
 								pass = false;
-								logger.log(Logger.Level.ERROR, "Expected: projects, actual:" + attrib.getName());
+								logErr( "Expected: projects, actual:" + attrib.getName());
 							}
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "getPluralAttributes() returned null");
+						logErr( "getPluralAttributes() returned null");
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -2568,40 +2568,40 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Uni1XMPerson> mType = metaModel.managedType(Uni1XMPerson.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					Set<PluralAttribute<Uni1XMPerson, ?, ?>> pluralAttribSet = mType.getDeclaredPluralAttributes();
 					if (pluralAttribSet != null) {
 						if (pluralAttribSet.size() != 1) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected size:1, actual:" + pluralAttribSet.size());
+							logErr( "Expected size:1, actual:" + pluralAttribSet.size());
 						}
 						for (Attribute attrib : pluralAttribSet) {
 							if (attrib.getName().equals("projects")) {
-								logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+								logTrace( "attribute Name = " + attrib.getName());
 							} else {
 								pass = false;
-								logger.log(Logger.Level.ERROR, "Expected: projects, actual:" + attrib.getName());
+								logErr( "Expected: projects, actual:" + attrib.getName());
 							}
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR, "getPluralAttributes() returned null");
+						logErr( "getPluralAttributes() returned null");
 					}
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -2626,37 +2626,37 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 				if (mTypeOrder != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					Attribute<? super Order, ?> attrib = mTypeOrder.getAttribute("total");
 					if (attrib != null) {
 
-						logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
-						logger.log(Logger.Level.TRACE, "attribute Java Type =" + attrib.getJavaType());
+						logTrace( "attribute Name = " + attrib.getName());
+						logTrace( "attribute Java Type =" + attrib.getJavaType());
 						String name = attrib.getName();
 						String type = attrib.getJavaType().getSimpleName();
 						if (name.equals("total") && type.equals("int")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Did not get either:");
-							logger.log(Logger.Level.ERROR, "Expected name:total, actual:" + name);
-							logger.log(Logger.Level.ERROR, "Expected type:int, actual:" + type);
+							logErr( "Did not get either:");
+							logErr( "Expected name:total, actual:" + name);
+							logErr( "Expected type:int, actual:" + type);
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getAttribute return null");
+						logErr( "getAttribute return null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getAttribute failed");
@@ -2679,29 +2679,29 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 				if (mTypeOrder != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					try {
 						mTypeOrder.getAttribute("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getAttributeIllegalArgumentException failed");
@@ -2725,34 +2725,34 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 				if (mTypeOrder != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
 					if (attrib != null) {
 						String name = attrib.getName();
 						String type = attrib.getJavaType().getSimpleName();
-						logger.log(Logger.Level.TRACE, "attribute Name = " + name);
-						logger.log(Logger.Level.TRACE, "attribute Java Type =" + type);
+						logTrace( "attribute Name = " + name);
+						logTrace( "attribute Java Type =" + type);
 						if (name.equals("total") && type.equals("int")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Expected: total/int, actual:" + name + "/" + type);
+							logErr( "Expected: total/int, actual:" + name + "/" + type);
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getDeclaredAttribute() returned null");
+						logErr( "getDeclaredAttribute() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredAttribute failed");
@@ -2777,28 +2777,28 @@ public class Client extends PMClientBase {
 
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 				if (mTypeOrder != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					try {
 						mTypeOrder.getDeclaredAttribute("doesnotexist");
-						logger.log(Logger.Level.TRACE, "Did not receive IllegalArgumentException");
+						logTrace( "Did not receive IllegalArgumentException");
 					} catch (IllegalArgumentException iae) {
-						logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+						logTrace( "Received expected IllegalArgumentException");
 						pass = true;
 					} catch (Exception e) {
-						logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+						logErr( "Received unexpected exception", e);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType() returned null");
+					logErr( "managedType() returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredAttributeIllegalArgumentExceptionTest failed");
@@ -2821,15 +2821,15 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel.managedType(Order.class);
 			if (mTypeOrder != null) {
 				Type.PersistenceType type = mTypeOrder.getPersistenceType();
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				if (type.equals(Type.PersistenceType.ENTITY)) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.TRACE, "Persistence type = " + type.name());
+					logTrace( "Persistence type = " + type.name());
 				}
 			}
 		}
@@ -2844,9 +2844,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -2854,7 +2854,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

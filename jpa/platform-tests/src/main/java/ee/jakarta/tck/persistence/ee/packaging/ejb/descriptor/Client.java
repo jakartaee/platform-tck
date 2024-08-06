@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.descriptor;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
 import org.junit.jupiter.api.AfterEach;
@@ -31,7 +31,7 @@ import com.sun.ts.lib.util.TSNamingContext;
 
 public class Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public static final String StatefulRef = "java:comp/env/ejb/Stateful3Bean";
 
@@ -51,10 +51,10 @@ public class Client {
 	public void setup() throws Exception {
 		try {
 			TSNamingContext nctx = new TSNamingContext();
-			logger.log(Logger.Level.TRACE, "Look up bean: " + StatefulRef);
+			logTrace( "Look up bean: " + StatefulRef);
 			bean = (Stateful3IF) nctx.lookup(StatefulRef);
 
-			logger.log(Logger.Level.TRACE, "Look up bean: " + StatelessRef);
+			logTrace( "Look up bean: " + StatelessRef);
 			bean1 = (Stateless3IF) nctx.lookup(StatelessRef);
 
 			cleanup();
@@ -84,7 +84,7 @@ public class Client {
 	@Test
 	public void test1() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin test1");
+		logTrace( "Begin test1");
 		boolean pass = false;
 
 		try {
@@ -93,7 +93,7 @@ public class Client {
 			pass = bean.test1();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 
 		}
 
@@ -126,7 +126,7 @@ public class Client {
 	@Test
 	public void test2() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin test2");
+		logTrace( "Begin test2");
 		boolean pass = false;
 
 		try {
@@ -135,7 +135,7 @@ public class Client {
 			pass = bean.test2();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 
 		}
 
@@ -163,7 +163,7 @@ public class Client {
 	@Test
 	public void test3() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin test3");
+		logTrace( "Begin test3");
 		boolean pass = false;
 
 		try {
@@ -172,7 +172,7 @@ public class Client {
 			pass = bean.test3();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 
 		}
 
@@ -203,7 +203,7 @@ public class Client {
 	@Test
 	public void test4() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin test4");
+		logTrace( "Begin test4");
 		boolean pass = false;
 
 		try {
@@ -212,7 +212,7 @@ public class Client {
 			pass = bean.test4();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 
 		}
 
@@ -232,7 +232,7 @@ public class Client {
 	@Test
 	public void test5() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin test5");
+		logTrace( "Begin test5");
 		boolean pass = false;
 
 		try {
@@ -241,7 +241,7 @@ public class Client {
 			pass = bean1.test5();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 
 		}
 
@@ -262,7 +262,7 @@ public class Client {
 	@Test
 	public void test6() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin test6");
+		logTrace( "Begin test6");
 		boolean pass = false;
 
 		try {
@@ -271,7 +271,7 @@ public class Client {
 			pass = bean.test6();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 
 		}
 
@@ -285,9 +285,9 @@ public class Client {
 			bean.removeTestData();
 			bean1.removeTestData();
 		} catch (Exception re) {
-			logger.log(Logger.Level.TRACE, "Unexpected Exception in entity cleanup:", re);
+			logTrace( "Unexpected Exception in entity cleanup:", re);
 		}
-		logger.log(Logger.Level.TRACE, "cleanup complete");
+		logTrace( "cleanup complete");
 	}
 
 }

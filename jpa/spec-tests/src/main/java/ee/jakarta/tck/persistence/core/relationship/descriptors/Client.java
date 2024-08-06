@@ -19,7 +19,7 @@
  */
 package ee.jakarta.tck.persistence.core.relationship.descriptors;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
@@ -34,7 +34,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final XAddress aRef[] = new XAddress[5];
 
@@ -66,13 +66,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -99,7 +99,7 @@ public class Client extends PMClientBase {
 	@Test
 	public void descriptorMappingTest1() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin descriptorMappingTest1");
+		logTrace( "Begin descriptorMappingTest1");
 		boolean pass = false;
 
 		try {
@@ -116,21 +116,21 @@ public class Client extends PMClientBase {
 			XPerson newPerson = getEntityManager().find(XPerson.class, 1);
 
 			if (newPerson.getXProject().getXName().equals("Asp")) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -159,7 +159,7 @@ public class Client extends PMClientBase {
 	@Test
 	public void descriptorMappingTest2() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin descriptorMappingTest2");
+		logTrace( "Begin descriptorMappingTest2");
 		boolean pass1 = true;
 		boolean pass2 = false;
 		Vector<XTeam> v1;
@@ -210,7 +210,7 @@ public class Client extends PMClientBase {
 			Collection<XTeam> t2 = c2.getXTeams();
 
 			if ((t1.size() != 3) || (t2.size() != 2)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"descriptorMappingTest2: Did not get expected results."
 								+ "Team1 Collection Expected 3 references, got: " + t1.size()
 								+ ", Team2 Collection Expected 2 references, got: " + t2.size());
@@ -219,12 +219,12 @@ public class Client extends PMClientBase {
 
 				Iterator i1 = t1.iterator();
 				while (i1.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Team 1 Collection for expected Teams");
+					logTrace( "Check Team 1 Collection for expected Teams");
 					XTeam o1 = (XTeam) i1.next();
 
 					for (int l = 0; l < 3; l++) {
 						if (expectedTeam1[l].equals(o1.getXName())) {
-							logger.log(Logger.Level.TRACE, "Found Team 1:" + o1.getXName());
+							logTrace( "Found Team 1:" + o1.getXName());
 							foundTeam1++;
 							break;
 						}
@@ -233,12 +233,12 @@ public class Client extends PMClientBase {
 
 				Iterator i2 = t2.iterator();
 				while (i2.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Team 2 Collection for expected Teams");
+					logTrace( "Check Team 2 Collection for expected Teams");
 					XTeam o2 = (XTeam) i2.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedTeam2[l].equals(o2.getXName())) {
-							logger.log(Logger.Level.TRACE, "Found Team 2:" + o2.getXName());
+							logTrace( "Found Team 2:" + o2.getXName());
 							foundTeam2++;
 							break;
 						}
@@ -247,24 +247,24 @@ public class Client extends PMClientBase {
 			}
 
 			if ((foundTeam1 != 3) || (foundTeam2 != 2)) {
-				logger.log(Logger.Level.ERROR, "descriptorMappingTest2: Did not get expected results");
+				logErr( "descriptorMappingTest2: Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 
 		}
@@ -294,7 +294,7 @@ public class Client extends PMClientBase {
 	@Test
 	public void descriptorMappingTest3() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin descriptorMappingTest3");
+		logTrace( "Begin descriptorMappingTest3");
 		boolean pass = false;
 		Vector v1;
 		Vector v2;
@@ -351,14 +351,14 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -388,7 +388,7 @@ public class Client extends PMClientBase {
 	@Test
 	public void descriptorMappingTest4() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin descriptorMappingTest4");
+		logTrace( "Begin descriptorMappingTest4");
 		boolean pass = false;
 
 		try {
@@ -410,10 +410,10 @@ public class Client extends PMClientBase {
 			XCompany c2 = getEntityManager().find(XCompany.class, 37560L);
 
 			if (c1.getXAddress().getXCity().equals("Burlington") && c2.getXAddress().getXCity().equals("Santa Clara")) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results" + "Expected: Burlington and Santa Clara, got: "
 								+ c1.getXAddress().getXCity() + c2.getXAddress().getXCity());
 			}
@@ -421,14 +421,14 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 
 		}
@@ -457,7 +457,7 @@ public class Client extends PMClientBase {
 	 */
 	@Test
 	public void descriptorMappingTest5() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin descriptorMappingTest5");
+		logTrace( "Begin descriptorMappingTest5");
 		boolean pass = false;
 
 		try {
@@ -490,24 +490,24 @@ public class Client extends PMClientBase {
 					&& (pRef[4].getXTeam() == tRef[3]) && (pRef[9].getXTeam() == tRef[4])
 					&& (pRef[2].getXTeam() == tRef[4])) {
 
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				logErr( "Did not get expected results");
 				pass = false;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 
 		}
@@ -539,7 +539,7 @@ public class Client extends PMClientBase {
 	 */
 	@Test
 	public void descriptorMappingTest6() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin descriptorMappingTest6");
+		logTrace( "Begin descriptorMappingTest6");
 		boolean pass1 = true;
 		boolean pass2 = false;
 		int foundProject1 = 0;
@@ -590,7 +590,7 @@ public class Client extends PMClientBase {
 			Collection<XProject> projCol2 = p2.getXProjects();
 
 			if ((projCol1.size() != 3) || (projCol2.size() != 3)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"descriptorMappingTest6: Did not get expected results."
 								+ "Expected 3 Projects for Karen Tegan (PK 6) , got: " + projCol1.size()
 								+ ", Expected 2 Projects for William Keaton (PK 9), got: " + projCol2.size());
@@ -599,12 +599,12 @@ public class Client extends PMClientBase {
 
 				Iterator i1 = projCol1.iterator();
 				while (i1.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Karen Tegan Projects");
+					logTrace( "Check Collection for Karen Tegan Projects");
 					XProject o1 = (XProject) i1.next();
 
 					for (int l = 0; l < 3; l++) {
 						if (expectedResults1[l].equals(o1.getXProjId())) {
-							logger.log(Logger.Level.TRACE, "Found Project for Karen Tegan: " + o1.getXName());
+							logTrace( "Found Project for Karen Tegan: " + o1.getXName());
 							foundProject1++;
 							break;
 						}
@@ -613,12 +613,12 @@ public class Client extends PMClientBase {
 
 				Iterator i2 = projCol2.iterator();
 				while (i2.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for William Keaton Projects");
+					logTrace( "Check Collection for William Keaton Projects");
 					XProject o2 = (XProject) i2.next();
 
 					for (int l = 0; l < 3; l++) {
 						if (expectedResults2[l].equals(o2.getXProjId())) {
-							logger.log(Logger.Level.TRACE, "Found Project for William Keaton: " + o2.getXName());
+							logTrace( "Found Project for William Keaton: " + o2.getXName());
 							foundProject2++;
 							break;
 						}
@@ -628,10 +628,10 @@ public class Client extends PMClientBase {
 			}
 
 			if ((foundProject1 != 3) || (foundProject2 != 3)) {
-				logger.log(Logger.Level.ERROR, "descriptorMappingTest6: Did not get expected results");
+				logErr( "descriptorMappingTest6: Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
@@ -654,14 +654,14 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -692,7 +692,7 @@ public class Client extends PMClientBase {
 	 */
 	@Test
 	public void descriptorMappingTest7() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin descriptorMappingTest7");
+		logTrace( "Begin descriptorMappingTest7");
 		boolean pass1 = true;
 		boolean pass2 = false;
 
@@ -762,7 +762,7 @@ public class Client extends PMClientBase {
 			Collection<XAnnualReview> col5 = p5.getXAnnualReviews();
 
 			if ((col1.size() != 4) || (col2.size() != 2 || col3.size() != 2 || col4.size() != 2 || col5.size() != 4)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"descriptorMappingTest7: Did not get expected results."
 								+ "Expected 4 reviews for Mary Macy (PK 12) , got: " + col1.size()
 								+ ", Expected 2 reviews for Julie OClaire (PK 14), got: " + col2.size()
@@ -774,12 +774,12 @@ public class Client extends PMClientBase {
 
 				Iterator i1 = col1.iterator();
 				while (i1.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Mary Macy Reviews");
+					logTrace( "Check Collection for Mary Macy Reviews");
 					XAnnualReview o1 = (XAnnualReview) i1.next();
 
 					for (int l = 0; l < 5; l++) {
 						if (expectedCol1[l].equals(o1.getXService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Mary Macy Annual Review for Service Year: " + o1.getXService());
 							foundCol1++;
 							break;
@@ -789,12 +789,12 @@ public class Client extends PMClientBase {
 
 				Iterator i2 = col2.iterator();
 				while (i2.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Julie OClaire Reviews");
+					logTrace( "Check Collection for Julie OClaire Reviews");
 					XAnnualReview o2 = (XAnnualReview) i2.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedCol2[l].equals(o2.getXService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Julie OClaire Annual Review for Service Year: " + o2.getXService());
 							foundCol2++;
 							break;
@@ -804,12 +804,12 @@ public class Client extends PMClientBase {
 
 				Iterator i3 = col3.iterator();
 				while (i3.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Kellie Lee Reviews");
+					logTrace( "Check Collection for Kellie Lee Reviews");
 					XAnnualReview o3 = (XAnnualReview) i3.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedCol3[l].equals(o3.getXService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Kellie Lee Annual Review for Service Year: " + o3.getXService());
 							foundCol3++;
 							break;
@@ -819,12 +819,12 @@ public class Client extends PMClientBase {
 
 				Iterator i4 = col4.iterator();
 				while (i4.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Mark Francis Reviews");
+					logTrace( "Check Collection for Mark Francis Reviews");
 					XAnnualReview o4 = (XAnnualReview) i4.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedCol4[l].equals(o4.getXService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Mark Francis Annual Review for Service Year: " + o4.getXService());
 							foundCol4++;
 							break;
@@ -834,12 +834,12 @@ public class Client extends PMClientBase {
 
 				Iterator i5 = col5.iterator();
 				while (i5.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Katy Hughes Reviews");
+					logTrace( "Check Collection for Katy Hughes Reviews");
 					XAnnualReview o5 = (XAnnualReview) i5.next();
 
 					for (int l = 0; l < 5; l++) {
 						if (expectedCol5[l].equals(o5.getXService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Katy Hughes Annual Review for Service Year: " + o5.getXService());
 							foundCol5++;
 							break;
@@ -851,24 +851,24 @@ public class Client extends PMClientBase {
 
 			if ((foundCol1 != 4) || (foundCol2 != 2) || (foundCol3 != 2) || (foundCol4 != 2) || (foundCol5 != 4)) {
 
-				logger.log(Logger.Level.ERROR, "descriptorMappingTest7: Did not get expected results");
+				logErr( "descriptorMappingTest7: Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -938,7 +938,7 @@ public class Client extends PMClientBase {
 			Collection<XInsurance> insCol3 = p3.getXInsurance();
 
 			if ((insCol1.size() != 2) || (insCol2.size() != 2) || (insCol3.size() != 3)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"descriptorMappingTest8: Did not get expected results."
 								+ "Expected 2 Insurance Carriers for Shelly McGowan (PK 3) , got: " + insCol1.size()
 								+ ", Expected 2 Insurance Carriers for Cheng Fang (PK 13) , got: " + insCol2.size()
@@ -948,12 +948,12 @@ public class Client extends PMClientBase {
 
 				Iterator i1 = insCol1.iterator();
 				while (i1.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Insurance Carriers for Shelly McGowan");
+					logTrace( "Check Insurance Carriers for Shelly McGowan");
 					XInsurance o1 = (XInsurance) i1.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedResults1[l].equals(o1.getXInsId())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Insurance Carrier for Shelly McGowan: " + o1.getXCarrier());
 							foundInsurance1++;
 							break;
@@ -963,12 +963,12 @@ public class Client extends PMClientBase {
 
 				Iterator i2 = insCol2.iterator();
 				while (i2.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Insurance Carriers for Cheng Fang");
+					logTrace( "Check Insurance Carriers for Cheng Fang");
 					XInsurance o2 = (XInsurance) i2.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedResults2[l].equals(o2.getXInsId())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Insurance Carrier for Cheng Fang: " + o2.getXCarrier());
 							foundInsurance2++;
 							break;
@@ -978,12 +978,12 @@ public class Client extends PMClientBase {
 
 				Iterator i3 = insCol3.iterator();
 				while (i3.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Insurance Carriers for Nicole Martin");
+					logTrace( "Check Insurance Carriers for Nicole Martin");
 					XInsurance o3 = (XInsurance) i3.next();
 
 					for (int l = 0; l < 3; l++) {
 						if (expectedResults3[l].equals(o3.getXInsId())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Insurance Carrier for Nicole Martin: " + o3.getXCarrier());
 							foundInsurance3++;
 							break;
@@ -994,24 +994,24 @@ public class Client extends PMClientBase {
 			}
 
 			if ((foundInsurance1 != 2) || (foundInsurance2 != 2) || (foundInsurance3 != 3)) {
-				logger.log(Logger.Level.ERROR, "descriptorMappingTest8: Did not get expected results");
+				logErr( "descriptorMappingTest8: Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -1024,9 +1024,9 @@ public class Client extends PMClientBase {
 	 */
 
 	private void createPeople() throws Exception {
-		logger.log(Logger.Level.TRACE, "CreatePeople");
+		logTrace( "CreatePeople");
 
-		logger.log(Logger.Level.TRACE, "Create 20 People");
+		logTrace( "Create 20 People");
 		pRef[0] = new XPerson(1, "Alan", "Frechette");
 		pRef[1] = new XPerson(2, "Arthur", "Frechette");
 		pRef[2] = new XPerson(3, "Shelly", "McGowan");
@@ -1048,30 +1048,30 @@ public class Client extends PMClientBase {
 		pRef[18] = new XPerson(19, "Will", "Forrest");
 		pRef[19] = new XPerson(20, "Katy", "Hughes");
 
-		logger.log(Logger.Level.TRACE, "Start to persist people ");
+		logTrace( "Start to persist people ");
 		getEntityTransaction().begin();
 		for (XPerson p : pRef) {
 			getEntityManager().persist(p);
-			logger.log(Logger.Level.TRACE, "persisted person " + p);
+			logTrace( "persisted person " + p);
 		}
 		getEntityTransaction().commit();
 	}
 
 	private void createTeams() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Create 5 Teams");
+		logTrace( "Create 5 Teams");
 		tRef[0] = new XTeam(1, "Engineering");
 		tRef[1] = new XTeam(2, "Marketing");
 		tRef[2] = new XTeam(3, "Sales");
 		tRef[3] = new XTeam(4, "Accounting");
 		tRef[4] = new XTeam(5, "Training");
 
-		logger.log(Logger.Level.TRACE, "Start to persist teams ");
+		logTrace( "Start to persist teams ");
 		getEntityTransaction().begin();
 		for (XTeam t : tRef) {
 			if (t != null) {
 				getEntityManager().persist(t);
-				logger.log(Logger.Level.TRACE, "persisted team " + t);
+				logTrace( "persisted team " + t);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1079,18 +1079,18 @@ public class Client extends PMClientBase {
 	}
 
 	private void createInsurance() throws Exception {
-		logger.log(Logger.Level.TRACE, "Create 3 Insurance Carriers");
+		logTrace( "Create 3 Insurance Carriers");
 		insRef[0] = new XInsurance(1, "Prudential");
 		insRef[1] = new XInsurance(2, "Cigna");
 		insRef[2] = new XInsurance(3, "Sentry");
 
-		logger.log(Logger.Level.TRACE, "Start to persist insurance ");
+		logTrace( "Start to persist insurance ");
 		getEntityTransaction().begin();
 		for (XInsurance i : insRef) {
 			if (i != null) {
 
 				getEntityManager().persist(i);
-				logger.log(Logger.Level.TRACE, "persisted insurance " + i);
+				logTrace( "persisted insurance " + i);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1098,20 +1098,20 @@ public class Client extends PMClientBase {
 	}
 
 	private void createProjects() throws Exception {
-		logger.log(Logger.Level.TRACE, "Create 5 Projects");
+		logTrace( "Create 5 Projects");
 		projRef[0] = new XProject(123456789L, "Sidewinder", new BigDecimal("20500.0"));
 		projRef[1] = new XProject(234567890L, "Boa", new BigDecimal("75000.0"));
 		projRef[2] = new XProject(345678901L, "Asp", new BigDecimal("500000.0"));
 		projRef[3] = new XProject(456789012L, "King Cobra", new BigDecimal("250000.0"));
 		projRef[4] = new XProject(567890123L, "Python", new BigDecimal("1000.0"));
 
-		logger.log(Logger.Level.TRACE, "Start to persist projects ");
+		logTrace( "Start to persist projects ");
 		getEntityTransaction().begin();
 		for (XProject p : projRef) {
 			if (p != null) {
 
 				getEntityManager().persist(p);
-				logger.log(Logger.Level.TRACE, "persisted project " + p);
+				logTrace( "persisted project " + p);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1120,18 +1120,18 @@ public class Client extends PMClientBase {
 
 	private void createCompany() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Create 2 Companies");
+		logTrace( "Create 2 Companies");
 		cRef[0] = new XCompany(25501L, "American Gifts");
 		cRef[1] = new XCompany(37560L, "Planet Earth");
 
-		logger.log(Logger.Level.TRACE, "Start to persist companies ");
+		logTrace( "Start to persist companies ");
 		getEntityTransaction().begin();
 
 		for (XCompany c : cRef) {
 			if (c != null) {
 
 				getEntityManager().persist(c);
-				logger.log(Logger.Level.TRACE, "persisted company " + c);
+				logTrace( "persisted company " + c);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1139,16 +1139,16 @@ public class Client extends PMClientBase {
 	}
 
 	private void createAddress() throws Exception {
-		logger.log(Logger.Level.TRACE, "Create 2 Addresses");
+		logTrace( "Create 2 Addresses");
 		aRef[0] = new XAddress("100", "1 Network Drive", "Burlington", "MA", "01803");
 		aRef[1] = new XAddress("200", "4150 Network Drive", "Santa Clara", "CA", "95054");
 
-		logger.log(Logger.Level.TRACE, "Start to persist addresses ");
+		logTrace( "Start to persist addresses ");
 		getEntityTransaction().begin();
 		for (XAddress a : aRef) {
 			if (a != null) {
 				getEntityManager().persist(a);
-				logger.log(Logger.Level.TRACE, "persisted address " + a);
+				logTrace( "persisted address " + a);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1156,7 +1156,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void createReviews() throws Exception {
-		logger.log(Logger.Level.TRACE, "Create 5 Addresses");
+		logTrace( "Create 5 Addresses");
 		rRef[0] = new XAnnualReview(1, 1);
 		rRef[1] = new XAnnualReview(2, 2);
 		rRef[2] = new XAnnualReview(3, 3);
@@ -1166,12 +1166,12 @@ public class Client extends PMClientBase {
 		rRef[6] = new XAnnualReview(7, 7);
 		rRef[7] = new XAnnualReview(8, 8);
 
-		logger.log(Logger.Level.TRACE, "Start to persist annual reviews ");
+		logTrace( "Start to persist annual reviews ");
 		getEntityTransaction().begin();
 		for (XAnnualReview a : rRef) {
 			if (a != null) {
 				getEntityManager().persist(a);
-				logger.log(Logger.Level.TRACE, "persisted annual reviews " + a);
+				logTrace( "persisted annual reviews " + a);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1181,9 +1181,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -1191,7 +1191,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -1209,14 +1209,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PROJECT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

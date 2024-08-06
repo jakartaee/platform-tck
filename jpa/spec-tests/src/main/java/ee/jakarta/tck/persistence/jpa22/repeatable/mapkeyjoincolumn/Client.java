@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn;
 
-import java.lang.System.Logger;
+
 import java.util.Hashtable;
 import java.util.Map;
 import java.util.Set;
@@ -31,7 +31,7 @@ import jakarta.persistence.EntityManager;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final long serialVersionUID = 22L;
 
@@ -52,7 +52,7 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 
 			super.setup();
@@ -60,7 +60,7 @@ public class Client extends PMClientBase {
 			removeTestData();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -94,7 +94,7 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -230,14 +230,14 @@ public class Client extends PMClientBase {
 		entityManager.persist(student6);
 		entityManager.persist(student7);
 		entityManager.persist(student8);
-		logger.log(Logger.Level.TRACE, "persisted 8 students");
+		logTrace( "persisted 8 students");
 
 		// persist 4 semesters
 		entityManager.persist(semester1);
 		entityManager.persist(semester2);
 		entityManager.persist(semester3);
 		entityManager.persist(semester4);
-		logger.log(Logger.Level.TRACE, "persisted 4 semesters");
+		logTrace( "persisted 4 semesters");
 
 		// persist 12 courses
 		entityManager.persist(appliedMath);
@@ -252,16 +252,16 @@ public class Client extends PMClientBase {
 		entityManager.persist(cad);
 		entityManager.persist(compilerDesign);
 		entityManager.persist(ood);
-		logger.log(Logger.Level.TRACE, "persisted 12 Courses");
+		logTrace( "persisted 12 Courses");
 
 	}
 
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -269,7 +269,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
@@ -282,14 +282,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from COURSE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

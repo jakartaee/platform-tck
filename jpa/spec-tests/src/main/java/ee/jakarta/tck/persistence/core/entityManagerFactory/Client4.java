@@ -22,11 +22,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.System.Logger;
+
 
 public class Client4 extends PMClientBase {
 
-    private static final Logger logger = System.getLogger(Client4.class.getName());
 
     public Client4() {
     }
@@ -42,12 +41,12 @@ public class Client4 extends PMClientBase {
 
     @BeforeEach
     public void setupMember() throws Exception {
-        logger.log(Logger.Level.TRACE, "setup");
+        logTrace( "setup");
         try {
             super.setup();
             createDeployment();
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Exception: ", e);
+            logErr( "Exception: ", e);
             throw new Exception("Setup failed:", e);
         }
     }
@@ -76,10 +75,10 @@ public class Client4 extends PMClientBase {
             if (member.equals(foundMember)) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Stored entity data are not same as found");
+                logErr( "Stored entity data are not same as found");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         }
         if (!pass) {
             throw new Exception("callInTransactionTest failed");
@@ -100,10 +99,10 @@ public class Client4 extends PMClientBase {
             if (foundMember != null) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Stored entity data was not found");
+                logErr( "Stored entity data was not found");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         }
         if (!pass) {
             throw new Exception("runInTransactionTest failed");
@@ -119,10 +118,10 @@ public class Client4 extends PMClientBase {
             if (getPersistenceUnitName().equals(puName)) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Persistence unit name |" + puName + "| doesn't match with expected |" + getPersistenceUnitName() + "|");
+                logErr( "Persistence unit name |" + puName + "| doesn't match with expected |" + getPersistenceUnitName() + "|");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         }
         if (!pass) {
             throw new Exception("getNameTest failed");

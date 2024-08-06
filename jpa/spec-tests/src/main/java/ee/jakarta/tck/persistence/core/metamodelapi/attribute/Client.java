@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.attribute;
 
-import java.lang.System.Logger;
+
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
@@ -30,7 +30,7 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
@@ -46,13 +46,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -72,21 +72,21 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order.class);
 			if (mTypeOrder != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
 				if (attrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+					logTrace( "attribute Name = " + attrib.getName());
 					if (attrib.getName() != null) {
 
 						if (attrib.getName().equals("total")) {
-							logger.log(Logger.Level.TRACE, "Received expected result:" + attrib.getName());
+							logTrace( "Received expected result:" + attrib.getName());
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: " + Attribute.PersistentAttributeType.BASIC.toString() + ", actual:"
 											+ attrib.getName());
 						}
@@ -117,21 +117,21 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order.class);
 			if (mTypeOrder != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
 				if (attrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+					logTrace( "attribute Name = " + attrib.getName());
 					Attribute.PersistentAttributeType pAttribType = attrib.getPersistentAttributeType();
 					if (pAttribType == Attribute.PersistentAttributeType.BASIC) {
-						logger.log(Logger.Level.TRACE, "Received expected result:" + pAttribType);
+						logTrace( "Received expected result:" + pAttribType);
 						pass = true;
 
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected: " + Attribute.PersistentAttributeType.BASIC.toString()
+						logErr( "Expected: " + Attribute.PersistentAttributeType.BASIC.toString()
 								+ ", actual:" + pAttribType);
 					}
 				}
@@ -160,22 +160,22 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order.class);
 			if (mTypeOrder != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
 				if (attrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute Name = " + attrib.getName());
+					logTrace( "attribute Name = " + attrib.getName());
 					ManagedType<Order> newTypeOrder = attrib.getDeclaringType();
 					if (newTypeOrder != null) {
 						Class javaType = newTypeOrder.getJavaType();
 						if (javaType.getName().equals("ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order")) {
-							logger.log(Logger.Level.TRACE, "Received expected result:" + javaType.getName());
+							logTrace( "Received expected result:" + javaType.getName());
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order, actual:"
 											+ javaType.getName());
 						}
@@ -206,20 +206,20 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order.class);
 			if (mTypeOrder != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
 				if (attrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute JavaType = " + attrib.getJavaType());
+					logTrace( "attribute JavaType = " + attrib.getJavaType());
 					Class pAttribJavaType = attrib.getJavaType();
 					if (pAttribJavaType.getName().equals("int")) {
-						logger.log(Logger.Level.TRACE, "Received expected result:" + pAttribJavaType);
+						logTrace( "Received expected result:" + pAttribJavaType);
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected: int, actual:" + pAttribJavaType);
+						logErr( "Expected: int, actual:" + pAttribJavaType);
 					}
 				}
 			}
@@ -247,20 +247,20 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order.class);
 			if (mTypeOrder != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
 				if (attrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute JavaMember = " + attrib.getJavaMember().getName());
+					logTrace( "attribute JavaMember = " + attrib.getJavaMember().getName());
 					java.lang.reflect.Member javaMember = attrib.getJavaMember();
 					if (javaMember.getName().equals("getTotal")) {
-						logger.log(Logger.Level.TRACE, "Received expected result:" + javaMember.getName());
+						logTrace( "Received expected result:" + javaMember.getName());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected: getTotal, actual:" + javaMember.getName());
+						logErr( "Expected: getTotal, actual:" + javaMember.getName());
 					}
 				}
 			}
@@ -288,19 +288,19 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order.class);
 			if (mTypeOrder != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
 				if (attrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute IsAssociation = " + attrib.isAssociation());
+					logTrace( "attribute IsAssociation = " + attrib.isAssociation());
 					if (!attrib.isAssociation()) {
-						logger.log(Logger.Level.TRACE, "Received expected result:" + attrib.isAssociation());
+						logTrace( "Received expected result:" + attrib.isAssociation());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Received unexpected result: " + attrib.isAssociation());
+						logErr( "Received unexpected result: " + attrib.isAssociation());
 					}
 				}
 			}
@@ -328,19 +328,19 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<Order> mTypeOrder = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.attribute.Order.class);
 			if (mTypeOrder != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				Attribute<Order, ?> attrib = mTypeOrder.getDeclaredAttribute("total");
 				if (attrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute IsCollection = " + attrib.isCollection());
+					logTrace( "attribute IsCollection = " + attrib.isCollection());
 					if (!attrib.isCollection()) {
-						logger.log(Logger.Level.TRACE, "Received expected result:" + attrib.isCollection());
+						logTrace( "Received expected result:" + attrib.isCollection());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Received unexpected result: " + attrib.isCollection());
+						logErr( "Received unexpected result: " + attrib.isCollection());
 					}
 				}
 			}
@@ -356,9 +356,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -366,7 +366,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local;
 
-import java.lang.System.Logger;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ import jakarta.persistence.spi.PersistenceUnitTransactionType;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private transient EntityManagerImpl emImpl;
 
@@ -61,7 +61,7 @@ public class Client extends PMClientBase {
 	 */
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		super.setup();
 		logProcessor = new LogFileProcessor();
 
@@ -106,10 +106,10 @@ public class Client extends PMClientBase {
 		getClassObjects();
 		String actual = puInfo.getPersistenceProviderClassName();
 		if (actual.equals(expected1)) {
-			logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
+			logTrace( "Received expected result:" + actual);
 			pass1 = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected: " + expected1 + ", actual:" + actual);
+			logErr( "Expected: " + expected1 + ", actual:" + actual);
 		}
 
 		String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceProviderClassName()" };
@@ -139,16 +139,16 @@ public class Client extends PMClientBase {
 		getClassObjects();
 		String actual = puInfo.getPersistenceUnitName();
 		if (expected1.contains(actual)) {
-			logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
+			logTrace( "Received expected result:" + actual);
 			pass1 = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Did not get one of the expected results");
+			logErr( "Did not get one of the expected results");
 
-			logger.log(Logger.Level.ERROR, "Expected:");
+			logErr( "Expected:");
 			for (String s : expected1) {
-				logger.log(Logger.Level.ERROR, s);
+				logErr( s);
 			}
-			logger.log(Logger.Level.ERROR, "actual:" + actual);
+			logErr( "actual:" + actual);
 		}
 
 		String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceUnitName()" };
@@ -179,9 +179,9 @@ public class Client extends PMClientBase {
 		PersistenceUnitTransactionType actual = puInfo.getTransactionType();
 		if (actual.equals(expected1)) {
 			pass1 = true;
-			logger.log(Logger.Level.TRACE, "Received expected result:" + actual.toString());
+			logTrace( "Received expected result:" + actual.toString());
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected: " + expected1.name() + ", actual:" + actual.name());
+			logErr( "Expected: " + expected1.name() + ", actual:" + actual.name());
 		}
 
 		String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getTransactionType()" };
@@ -212,16 +212,16 @@ public class Client extends PMClientBase {
 		if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 
 			pass1 = true;
-			logger.log(Logger.Level.TRACE, "Received expected result:" + actual.get(0));
+			logTrace( "Received expected result:" + actual.get(0));
 		} else {
-			logger.log(Logger.Level.ERROR, "Did not get expected ManagedClassNames");
-			logger.log(Logger.Level.ERROR, "Expected:");
+			logErr( "Did not get expected ManagedClassNames");
+			logErr( "Expected:");
 			for (String s : expected) {
-				logger.log(Logger.Level.ERROR, s);
+				logErr( s);
 			}
-			logger.log(Logger.Level.ERROR, "Actual:");
+			logErr( "Actual:");
 			for (String s : actual) {
-				logger.log(Logger.Level.ERROR, s);
+				logErr( s);
 			}
 		}
 
@@ -253,15 +253,15 @@ public class Client extends PMClientBase {
 			for (URL u : actual) {
 				String sURL = u.toString();
 				if (sURL.contains(expected1)) {
-					logger.log(Logger.Level.TRACE, "actual:" + sURL);
+					logTrace( "actual:" + sURL);
 					pass1 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "getJarFileUrls() did not return a URL that contains:" + expected1);
-					logger.log(Logger.Level.TRACE, "actual:" + sURL);
+					logErr( "getJarFileUrls() did not return a URL that contains:" + expected1);
+					logTrace( "actual:" + sURL);
 				}
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "getJarFileUrls() returned no results");
+			logErr( "getJarFileUrls() returned no results");
 		}
 
 		String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getJarFileUrls()" };
@@ -288,11 +288,11 @@ public class Client extends PMClientBase {
 		getClassObjects();
 		URL actual = puInfo.getPersistenceUnitRootUrl();
 		if (actual.toString().contains(expected1)) {
-			logger.log(Logger.Level.TRACE, "Received expected result:" + actual.toString());
+			logTrace( "Received expected result:" + actual.toString());
 			pass1 = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected the actual to contain:" + expected1);
-			logger.log(Logger.Level.ERROR, "actual: " + actual.toString());
+			logErr( "Expected the actual to contain:" + expected1);
+			logErr( "actual: " + actual.toString());
 		}
 
 		String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceUnitRootUrl()" };
@@ -319,11 +319,11 @@ public class Client extends PMClientBase {
 		getClassObjects();
 		String actual = puInfo.getPersistenceXMLSchemaVersion();
 		if (actual.toString().equals(expected1)) {
-			logger.log(Logger.Level.TRACE, "Received expected result:" + actual.toString());
+			logTrace( "Received expected result:" + actual.toString());
 			pass1 = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "expected: " + expected1);
-			logger.log(Logger.Level.ERROR, "actual: " + actual.toString());
+			logErr( "expected: " + expected1);
+			logErr( "actual: " + actual.toString());
 		}
 
 		String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getPersistenceXMLSchemaVersion()" };
@@ -355,35 +355,35 @@ public class Client extends PMClientBase {
 			for (Map.Entry<Object, Object> e : expected1.entrySet()) {
 				String eKey = (String) e.getKey();
 				String eVal = (String) e.getValue();
-				logger.log(Logger.Level.TRACE, "key:" + eKey + ", value:" + eVal);
+				logTrace( "key:" + eKey + ", value:" + eVal);
 
 				if (actual.containsKey(eKey)) {
 					String aVal = (String) actual.get(eKey);
 					if (aVal.equals(eVal)) {
-						logger.log(Logger.Level.TRACE, "Found expected result:" + eKey + "," + eVal);
+						logTrace( "Found expected result:" + eKey + "," + eVal);
 					} else {
 						pass1 = false;
-						logger.log(Logger.Level.ERROR, "Actual did not contain expected property:" + eKey + "," + eVal);
+						logErr( "Actual did not contain expected property:" + eKey + "," + eVal);
 					}
 				}
 
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "getProperties() returned no properties");
+			logErr( "getProperties() returned no properties");
 
 		}
 		if (!pass1) {
-			logger.log(Logger.Level.ERROR, "Expected:");
+			logErr( "Expected:");
 			for (Map.Entry<Object, Object> e : expected1.entrySet()) {
 				String key = (String) e.getKey();
 				String value = (String) e.getValue();
-				logger.log(Logger.Level.ERROR, "key:" + key + ", value:" + value);
+				logErr( "key:" + key + ", value:" + value);
 			}
-			logger.log(Logger.Level.ERROR, "Actual:");
+			logErr( "Actual:");
 			for (Map.Entry<Object, Object> e : actual.entrySet()) {
 				String key = (String) e.getKey();
 				String value = (String) e.getValue();
-				logger.log(Logger.Level.ERROR, "key:" + key + ", value:" + value);
+				logErr( "key:" + key + ", value:" + value);
 			}
 		}
 
@@ -410,11 +410,11 @@ public class Client extends PMClientBase {
 		getClassObjects();
 		SharedCacheMode actual = puInfo.getSharedCacheMode();
 		if (actual.equals(expected1)) {
-			logger.log(Logger.Level.TRACE, "Received expected result:" + actual.name());
+			logTrace( "Received expected result:" + actual.name());
 			pass1 = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "expected: " + expected1.name());
-			logger.log(Logger.Level.ERROR, "actual: " + actual.name());
+			logErr( "expected: " + expected1.name());
+			logErr( "actual: " + actual.name());
 		}
 
 		String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getSharedCacheMode()" };
@@ -441,11 +441,11 @@ public class Client extends PMClientBase {
 		getClassObjects();
 		ValidationMode actual = puInfo.getValidationMode();
 		if (actual.equals(expected1)) {
-			logger.log(Logger.Level.TRACE, "Received expected result:" + actual.name());
+			logTrace( "Received expected result:" + actual.name());
 			pass1 = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "expected: " + expected1.name());
-			logger.log(Logger.Level.ERROR, "actual: " + actual.name());
+			logErr( "expected: " + expected1.name());
+			logErr( "actual: " + actual.name());
 		}
 		String expected2[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getValidationMode()" };
 		logProcessor.fetchLog();
@@ -470,9 +470,9 @@ public class Client extends PMClientBase {
 		java.lang.ClassLoader actual = puInfo.getClassLoader();
 		if (actual != null) {
 			pass1 = true;
-			logger.log(Logger.Level.TRACE, "Received expected non null ClassLoader:" + actual.toString());
+			logTrace( "Received expected non null ClassLoader:" + actual.toString());
 		} else {
-			logger.log(Logger.Level.ERROR, "Received null ClassLoader");
+			logErr( "Received null ClassLoader");
 		}
 
 		String expected[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getClassLoader()" };
@@ -498,9 +498,9 @@ public class Client extends PMClientBase {
 		java.lang.ClassLoader actual = emfImpl.newTempClassloader;
 		if (actual != null) {
 			pass1 = true;
-			logger.log(Logger.Level.TRACE, "Received expected non null ClassLoader:" + actual.toString());
+			logTrace( "Received expected non null ClassLoader:" + actual.toString());
 		} else {
-			logger.log(Logger.Level.ERROR, "Received null ClassLoader");
+			logErr( "Received null ClassLoader");
 		}
 
 		String expected[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getNewTempClassLoader()" };
@@ -531,19 +531,19 @@ public class Client extends PMClientBase {
 		if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 
 			pass1 = true;
-			logger.log(Logger.Level.TRACE, "Received expected result:");
+			logTrace( "Received expected result:");
 			for (String s : actual) {
-				logger.log(Logger.Level.TRACE, "result:" + s);
+				logTrace( "result:" + s);
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Did not get expected ManagedClassNames");
-			logger.log(Logger.Level.ERROR, "Expected:");
+			logErr( "Did not get expected ManagedClassNames");
+			logErr( "Expected:");
 			for (String s : expected) {
-				logger.log(Logger.Level.ERROR, s);
+				logErr( s);
 			}
-			logger.log(Logger.Level.ERROR, "Actual:");
+			logErr( "Actual:");
 			for (String s : actual) {
-				logger.log(Logger.Level.ERROR, s);
+				logErr( s);
 			}
 		}
 
@@ -569,11 +569,11 @@ public class Client extends PMClientBase {
 		String expected[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.getNonJtaDataSource()" };
 		getClassObjects();
 		if (puInfo.getNonJtaDataSource() != null) {
-			logger.log(Logger.Level.TRACE,
+			logTrace(
 					"getNonJtaDataSource() returned non-null result:" + puInfo.getNonJtaDataSource().toString());
 			pass1 = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "getNonJtaDataSource() returned null result");
+			logErr( "getNonJtaDataSource() returned null result");
 		}
 		logProcessor.fetchLog();
 		boolean pass2 = logProcessor.verifyLogContains(expected, currentSeqNum);
@@ -596,11 +596,11 @@ public class Client extends PMClientBase {
 		String expected[] = { LOGMESSAGE_PREFIX + "Called PersistenceUnitInfoImpl.excludeUnlistedClasses()" };
 		getClassObjects();
 		if (puInfo.excludeUnlistedClasses() == false) {
-			logger.log(Logger.Level.TRACE,
+			logTrace(
 					"excludeUnlistedClasses() returned expected result:" + puInfo.excludeUnlistedClasses());
 			pass1 = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "excludeUnlistedClasses() returned null result");
+			logErr( "excludeUnlistedClasses() returned null result");
 		}
 		logProcessor.fetchLog();
 		// verify log does NOT contain the string
@@ -680,8 +680,8 @@ public class Client extends PMClientBase {
 
 	@AfterEach
 	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup");
-		logger.log(Logger.Level.TRACE, "calling super.cleanup");
+		logTrace( "cleanup");
+		logTrace( "calling super.cleanup");
 		super.cleanup();
 
 	}

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.misc;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -45,7 +45,7 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client3 extends UtilOrderData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
+	
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -93,31 +93,31 @@ public class Client3 extends UtilOrderData {
 					int i = 0;
 					for (Tuple actual : result) {
 						pass1 = true;
-						logger.log(Logger.Level.TRACE, "first=" + actual.get(0) + ", second=" + actual.get(1));
+						logTrace( "first=" + actual.get(0) + ", second=" + actual.get(1));
 						if (!actual.get(0).equals("1")) {
-							logger.log(Logger.Level.ERROR, "Expected: 1, actual:" + actual.get(0));
+							logErr( "Expected: 1, actual:" + actual.get(0));
 							pass2 = false;
 						}
 						if (!actual.get(1).equals("2")) {
-							logger.log(Logger.Level.ERROR, "Expected: 2, actual:" + actual.get(1));
+							logErr( "Expected: 2, actual:" + actual.get(1));
 							pass2 = false;
 						}
 						i++;
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected: 1 tuple, actual:" + result.size());
+					logErr( "Expected: 1 tuple, actual:" + result.size());
 					for (Tuple actual : result) {
-						logger.log(Logger.Level.ERROR, "first=" + actual.get(0) + ", second=" + actual.get(1));
+						logErr( "first=" + actual.get(0) + ", second=" + actual.get(1));
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected: 2 compound selection item, actual:" + lSel.size());
+				logErr( "Expected: 2 compound selection item, actual:" + lSel.size());
 				for (Selection s : lSel) {
-					logger.log(Logger.Level.ERROR, "selection:" + s.toString());
+					logErr( "selection:" + s.toString());
 				}
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected isCompoundSelection() to return: true, actual:" + bActual);
+			logErr( "Expected isCompoundSelection() to return: true, actual:" + bActual);
 		}
 		getEntityTransaction().commit();
 
@@ -162,30 +162,30 @@ public class Client3 extends UtilOrderData {
 				if (result.size() == 1) {
 					for (Tuple actual : result) {
 						pass1 = true;
-						logger.log(Logger.Level.TRACE, "first=" + actual.get(0) + ", second=" + actual.get(1));
+						logTrace( "first=" + actual.get(0) + ", second=" + actual.get(1));
 						if (!actual.get(0).equals("1")) {
-							logger.log(Logger.Level.ERROR, "Expected: 1, actual:" + actual.get(0));
+							logErr( "Expected: 1, actual:" + actual.get(0));
 							pass2 = false;
 						}
 						if (!actual.get(1).equals("2")) {
-							logger.log(Logger.Level.ERROR, "Expected: 2, actual:" + actual.get(1));
+							logErr( "Expected: 2, actual:" + actual.get(1));
 							pass2 = false;
 						}
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected: 1 tuple, actual:" + result.size());
+					logErr( "Expected: 1 tuple, actual:" + result.size());
 					for (Tuple actual : result) {
-						logger.log(Logger.Level.ERROR, "first=" + actual.get(0) + ", second=" + actual.get(1));
+						logErr( "first=" + actual.get(0) + ", second=" + actual.get(1));
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected: 2 compound selection item, actual:" + lSel.size());
+				logErr( "Expected: 2 compound selection item, actual:" + lSel.size());
 				for (Selection s : lSel) {
-					logger.log(Logger.Level.ERROR, "selection:" + s.toString());
+					logErr( "selection:" + s.toString());
 				}
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected isCompoundSelection() to return: true, actual:" + bActual);
+			logErr( "Expected isCompoundSelection() to return: true, actual:" + bActual);
 		}
 
 		if (!pass1 || !pass2) {
@@ -224,15 +224,15 @@ public class Client3 extends UtilOrderData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -276,15 +276,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_like:  Did not get expected "
+				logErr( "test_subquery_like:  Did not get expected "
 						+ " results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception subquery: ", e);
+			logErr( "Caught exception subquery: ", e);
 		}
 
 		if (!pass) {
@@ -323,23 +323,23 @@ public class Client3 extends UtilOrderData {
 			Subquery<String> subquery = cquery.subquery(String.class);
 			List<Expression<?>> gList = subquery.getGroupList();
 			if (gList.size() == 0) {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"Received expected empty list from getGroupList() when there is no groupBy expressions");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not received empty list from getGroupList() when there is no groupBy expressions");
 				for (Expression e : gList) {
-					logger.log(Logger.Level.ERROR, "Item:" + e.toString());
+					logErr( "Item:" + e.toString());
 				}
 			}
 			Expression sel = subquery.getSelection();
 			if (sel == null) {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"Received expected null from getSelection() when there is no selection specified");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not received null from getSelection() when there is no selection specified:"
 								+ sel.toString());
 			}
@@ -348,10 +348,10 @@ public class Client3 extends UtilOrderData {
 			subquery.select(customer.get(Customer_.getSingularAttribute("name", String.class)));
 			sel = subquery.getSelection();
 			if (sel != null) {
-				logger.log(Logger.Level.TRACE, "Received non-result from getSelection()");
+				logTrace( "Received non-result from getSelection()");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Received null from getSelection() when there is a selection specified");
+				logErr( "Received null from getSelection() when there is a selection specified");
 			}
 			subquery.where(
 					qbuilder.like(customer.get(Customer_.getSingularAttribute("name", String.class)), "%Caruso"));
@@ -360,21 +360,21 @@ public class Client3 extends UtilOrderData {
 			subquery.groupBy(exp);
 			gList = subquery.getGroupList();
 			if (gList != null) {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"Received non-null from getGroupList() when there is groupBy expressions");
 				if (gList.size() == 1) {
-					logger.log(Logger.Level.TRACE, "Received one groupBy expression");
+					logTrace( "Received one groupBy expression");
 					pass4 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected one groupBy expression, actual:" + gList.size());
+					logErr( "Expected one groupBy expression, actual:" + gList.size());
 
 					for (Expression e : gList) {
-						logger.log(Logger.Level.ERROR, "Did not get expected result:" + e);
+						logErr( "Did not get expected result:" + e);
 					}
 				}
 			} else {
 
-				logger.log(Logger.Level.ERROR, "Received null from getGroupList() when there is groupBy expressions");
+				logErr( "Received null from getGroupList() when there is groupBy expressions");
 			}
 			cquery.where(order.get(Order_.getSingularAttribute("customer", Customer.class))
 					.get(Customer_.getSingularAttribute("name", String.class)).in(subquery));
@@ -387,15 +387,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected " + " results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass5 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 
 		}
 
@@ -449,15 +449,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected " + " results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception subquery: ", e);
+			logErr( "Caught exception subquery: ", e);
 		}
 
 		if (!pass) {
@@ -511,15 +511,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected " + " results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception subquery: ", e);
+			logErr( "Caught exception subquery: ", e);
 		}
 
 		if (!pass) {

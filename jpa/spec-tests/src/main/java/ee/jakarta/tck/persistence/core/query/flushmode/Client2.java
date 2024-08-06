@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.query.flushmode;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 import java.util.Vector;
 
@@ -36,7 +36,7 @@ import jakarta.persistence.FlushModeType;
 
 public class Client2 extends UtilOrderData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client2.class.getPackageName();
@@ -66,7 +66,7 @@ public class Client2 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest2");
+			logTrace( "Execute Starting flushModeTest2");
 			Order o1 = getEntityManager().find(Order.class, "1");
 			Customer cust2 = getEntityManager().find(Customer.class, "2");
 			o1.setCustomer(cust2);
@@ -79,15 +79,15 @@ public class Client2 extends UtilOrderData {
 			expectedPKs[1] = "2";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
+			logErr( "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -110,7 +110,7 @@ public class Client2 extends UtilOrderData {
 		List o;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest3");
+			logTrace( "Execute Starting flushModeTest3");
 			Customer cust1 = getEntityManager().find(Customer.class, "1");
 			cust1.setName("Michael Bouschen");
 			o = getEntityManager().createQuery("SELECT o FROM Order o WHERE o.customer.name = 'Michael Bouschen'")
@@ -119,18 +119,18 @@ public class Client2 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected 1 reference, got: " + o.size());
+				logErr( "Did not get expected results.  Expected 1 reference, got: " + o.size());
 			} else {
 				Customer newCust = getEntityManager().find(Customer.class, "1");
 				if (newCust.getName().equals("Michael Bouschen")) {
 					pass = true;
 				}
 
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
+			logErr( "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -155,7 +155,7 @@ public class Client2 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest4");
+			logTrace( "Execute Starting flushModeTest4");
 			Customer cust6 = getEntityManager().find(Customer.class, "6");
 			Spouse s4 = getEntityManager().find(Spouse.class, "4");
 			cust6.setSpouse(s4);
@@ -170,16 +170,16 @@ public class Client2 extends UtilOrderData {
 			expectedPKs[0] = "6";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected " + " 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
+			logErr( "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -203,7 +203,7 @@ public class Client2 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Starting flushModeTest5");
+			logTrace( "Starting flushModeTest5");
 			Spouse s4 = getEntityManager().find(Spouse.class, "4");
 			s4.setLastName("Miller");
 			List<Order> result = getEntityManager()
@@ -214,15 +214,15 @@ public class Client2 extends UtilOrderData {
 			expectedPKs[0] = "11";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected " + " 1 reference, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
+			logErr( "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -246,7 +246,7 @@ public class Client2 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Starting flushModeTest6");
+			logTrace( "Starting flushModeTest6");
 			Customer cust4 = getEntityManager().find(Customer.class, "4");
 			Order order4 = getEntityManager().find(Order.class, "4");
 			Order order9 = getEntityManager().find(Order.class, "9");
@@ -265,15 +265,15 @@ public class Client2 extends UtilOrderData {
 			expectedPKs = new String[0];
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected " + " 0 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -298,7 +298,7 @@ public class Client2 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Starting flushModeTest7");
+			logTrace( "Starting flushModeTest7");
 
 			CreditCard c17 = getEntityManager().find(CreditCard.class, "17");
 			c17.setNumber("1111-1111-1111-1111");
@@ -308,16 +308,16 @@ public class Client2 extends UtilOrderData {
 					.setFlushMode(FlushModeType.AUTO).getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected " + expected.length
+				logErr( "Did not get expected results.  Expected " + expected.length
 						+ " references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)

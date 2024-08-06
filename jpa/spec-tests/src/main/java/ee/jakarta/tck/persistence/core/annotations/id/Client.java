@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.id;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -32,7 +32,7 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
@@ -48,7 +48,7 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
@@ -78,7 +78,7 @@ public class Client extends PMClientBase {
 
 			FieldIntegerId expected = new FieldIntegerId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting IntegerId");
+			logTrace( "Persisting IntegerId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -87,19 +87,19 @@ public class Client extends PMClientBase {
 			FieldIntegerId actual = getEntityManager().find(FieldIntegerId.class, id);
 			if (actual != null) {
 				if (actual.getIntegerData().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getIntegerData());
+					logTrace( "Received expected result:" + actual.getIntegerData());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected Integer:" + id + ", actual: " + actual.getIntegerData());
+					logErr( "Expected Integer:" + id + ", actual: " + actual.getIntegerData());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -125,7 +125,7 @@ public class Client extends PMClientBase {
 
 			FieldIntId expected = new FieldIntId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting IntId");
+			logTrace( "Persisting IntId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -134,19 +134,19 @@ public class Client extends PMClientBase {
 			FieldIntId actual = getEntityManager().find(FieldIntId.class, id);
 			if (actual != null) {
 				if (actual.getIntData() == id) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getIntData());
+					logTrace( "Received expected result:" + actual.getIntData());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected int:" + id + ", actual: " + actual.getIntData());
+					logErr( "Expected int:" + id + ", actual: " + actual.getIntData());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -172,7 +172,7 @@ public class Client extends PMClientBase {
 
 			FieldBigIntegerId expected = new FieldBigIntegerId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting BigIntegerId");
+			logTrace( "Persisting BigIntegerId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -181,19 +181,19 @@ public class Client extends PMClientBase {
 			FieldBigIntegerId actual = getEntityManager().find(FieldBigIntegerId.class, id);
 			if (actual != null) {
 				if (actual.getBigInteger().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getBigInteger());
+					logTrace( "Received expected result:" + actual.getBigInteger());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected name:" + id + ", actual: " + actual.getBigInteger());
+					logErr( "Expected name:" + id + ", actual: " + actual.getBigInteger());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -219,7 +219,7 @@ public class Client extends PMClientBase {
 
 			FieldBigDecimalId expected = new FieldBigDecimalId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting BigDecimalId");
+			logTrace( "Persisting BigDecimalId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -228,19 +228,19 @@ public class Client extends PMClientBase {
 			FieldBigDecimalId actual = getEntityManager().find(FieldBigDecimalId.class, id);
 			if (actual != null) {
 				if (actual.getBigDecimal().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getBigDecimal());
+					logTrace( "Received expected result:" + actual.getBigDecimal());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected value:" + id + ", actual: " + actual.getBigDecimal());
+					logErr( "Expected value:" + id + ", actual: " + actual.getBigDecimal());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -266,7 +266,7 @@ public class Client extends PMClientBase {
 
 			FieldStringId expected = new FieldStringId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting StringId");
+			logTrace( "Persisting StringId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -275,19 +275,19 @@ public class Client extends PMClientBase {
 			FieldStringId actual = getEntityManager().find(FieldStringId.class, id);
 			if (actual != null) {
 				if (actual.getName().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getName());
+					logTrace( "Received expected result:" + actual.getName());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected name:" + id + ", actual: " + actual.getName());
+					logErr( "Expected name:" + id + ", actual: " + actual.getName());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -313,7 +313,7 @@ public class Client extends PMClientBase {
 
 			FieldSQLDateId expected = new FieldSQLDateId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting StringId");
+			logTrace( "Persisting StringId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -322,19 +322,19 @@ public class Client extends PMClientBase {
 			FieldSQLDateId actual = getEntityManager().find(FieldSQLDateId.class, id);
 			if (actual != null) {
 				if (actual.getDate().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getDate());
+					logTrace( "Received expected result:" + actual.getDate());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected name:" + id + ", actual: " + actual.getDate());
+					logErr( "Expected name:" + id + ", actual: " + actual.getDate());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -360,7 +360,7 @@ public class Client extends PMClientBase {
 
 			FieldUtilDateId expected = new FieldUtilDateId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting StringId");
+			logTrace( "Persisting StringId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -369,19 +369,19 @@ public class Client extends PMClientBase {
 			FieldUtilDateId actual = getEntityManager().find(FieldUtilDateId.class, id);
 			if (actual != null) {
 				if (actual.getDate().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getDate());
+					logTrace( "Received expected result:" + actual.getDate());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected name:" + id + ", actual: " + actual.getDate());
+					logErr( "Expected name:" + id + ", actual: " + actual.getDate());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -407,7 +407,7 @@ public class Client extends PMClientBase {
 
 			PropertyIntegerId expected = new PropertyIntegerId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting IntegerId");
+			logTrace( "Persisting IntegerId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -416,19 +416,19 @@ public class Client extends PMClientBase {
 			PropertyIntegerId actual = getEntityManager().find(PropertyIntegerId.class, id);
 			if (actual != null) {
 				if (actual.getIntegerData().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getIntegerData());
+					logTrace( "Received expected result:" + actual.getIntegerData());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected Integer:" + id + ", actual: " + actual.getIntegerData());
+					logErr( "Expected Integer:" + id + ", actual: " + actual.getIntegerData());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -454,7 +454,7 @@ public class Client extends PMClientBase {
 
 			PropertyIntId expected = new PropertyIntId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting IntId");
+			logTrace( "Persisting IntId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -463,19 +463,19 @@ public class Client extends PMClientBase {
 			PropertyIntId actual = getEntityManager().find(PropertyIntId.class, id);
 			if (actual != null) {
 				if (actual.getIntData() == id) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getIntData());
+					logTrace( "Received expected result:" + actual.getIntData());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected int:" + id + ", actual: " + actual.getIntData());
+					logErr( "Expected int:" + id + ", actual: " + actual.getIntData());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -501,7 +501,7 @@ public class Client extends PMClientBase {
 
 			PropertyBigIntegerId expected = new PropertyBigIntegerId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting BigIntegerId");
+			logTrace( "Persisting BigIntegerId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -510,19 +510,19 @@ public class Client extends PMClientBase {
 			PropertyBigIntegerId actual = getEntityManager().find(PropertyBigIntegerId.class, id);
 			if (actual != null) {
 				if (actual.getBigInteger().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getBigInteger());
+					logTrace( "Received expected result:" + actual.getBigInteger());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected name:" + id + ", actual: " + actual.getBigInteger());
+					logErr( "Expected name:" + id + ", actual: " + actual.getBigInteger());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -548,7 +548,7 @@ public class Client extends PMClientBase {
 
 			PropertyBigDecimalId expected = new PropertyBigDecimalId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting BigDecimalId");
+			logTrace( "Persisting BigDecimalId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -557,19 +557,19 @@ public class Client extends PMClientBase {
 			PropertyBigDecimalId actual = getEntityManager().find(PropertyBigDecimalId.class, id);
 			if (actual != null) {
 				if (actual.getBigDecimal().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getBigDecimal());
+					logTrace( "Received expected result:" + actual.getBigDecimal());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected value:" + id + ", actual: " + actual.getBigDecimal());
+					logErr( "Expected value:" + id + ", actual: " + actual.getBigDecimal());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -595,7 +595,7 @@ public class Client extends PMClientBase {
 
 			PropertyStringId expected = new PropertyStringId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting StringId");
+			logTrace( "Persisting StringId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -604,19 +604,19 @@ public class Client extends PMClientBase {
 			PropertyStringId actual = getEntityManager().find(PropertyStringId.class, id);
 			if (actual != null) {
 				if (actual.getName().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getName());
+					logTrace( "Received expected result:" + actual.getName());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected name:" + id + ", actual: " + actual.getName());
+					logErr( "Expected name:" + id + ", actual: " + actual.getName());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -642,7 +642,7 @@ public class Client extends PMClientBase {
 
 			PropertySQLDateId expected = new PropertySQLDateId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting StringId");
+			logTrace( "Persisting StringId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -651,19 +651,19 @@ public class Client extends PMClientBase {
 			PropertySQLDateId actual = getEntityManager().find(PropertySQLDateId.class, id);
 			if (actual != null) {
 				if (actual.getDate().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getDate());
+					logTrace( "Received expected result:" + actual.getDate());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected name:" + id + ", actual: " + actual.getDate());
+					logErr( "Expected name:" + id + ", actual: " + actual.getDate());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -689,7 +689,7 @@ public class Client extends PMClientBase {
 
 			PropertyUtilDateId expected = new PropertyUtilDateId(id, id);
 
-			logger.log(Logger.Level.TRACE, "Persisting StringId");
+			logTrace( "Persisting StringId");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -698,19 +698,19 @@ public class Client extends PMClientBase {
 			PropertyUtilDateId actual = getEntityManager().find(PropertyUtilDateId.class, id);
 			if (actual != null) {
 				if (actual.getDate().equals(id)) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual.getDate());
+					logTrace( "Received expected result:" + actual.getDate());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected name:" + id + ", actual: " + actual.getDate());
+					logErr( "Expected name:" + id + ", actual: " + actual.getDate());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -721,9 +721,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -731,7 +731,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -743,14 +743,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DATATYPES3").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

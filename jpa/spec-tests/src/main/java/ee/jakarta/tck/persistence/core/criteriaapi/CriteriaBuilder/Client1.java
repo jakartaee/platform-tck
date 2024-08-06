@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -37,7 +37,7 @@ import jakarta.persistence.criteria.Selection;
 
 public class Client1 extends UtilSetup {
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
+	
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -66,10 +66,10 @@ public class Client1 extends UtilSetup {
 		getEntityTransaction().begin();
 		CriteriaQuery cquery = cbuilder.createQuery();
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			pass = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -97,10 +97,10 @@ public class Client1 extends UtilSetup {
 		getEntityTransaction().begin();
 		CriteriaQuery<Order> cquery = cbuilder.createQuery(Order.class);
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			pass = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -128,10 +128,10 @@ public class Client1 extends UtilSetup {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query Tuple");
+			logTrace( "Obtained Non-null Criteria Query Tuple");
 			pass = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query Tuple");
+			logErr( "Failed to get Non-null Criteria Query Tuple");
 		}
 
 		getEntityTransaction().commit();
@@ -159,40 +159,40 @@ public class Client1 extends UtilSetup {
 			getEntityTransaction().begin();
 			CriteriaQuery<Tuple> cquery = qbuilder.createTupleQuery();
 			if (cquery != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+				logTrace( "Obtained Non-null Criteria Query");
 				Root<Customer> cust = cquery.from(Customer.class);
 
 				Selection[] s = { cust.get("id"), cust.get("name") };
 
-				logger.log(Logger.Level.INFO, "Testing tuple");
+				logMsg( "Testing tuple");
 				try {
 					qbuilder.tuple(qbuilder.tuple(s));
-					logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
+					logErr( "Did not throw IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+					logTrace( "Received expected IllegalArgumentException");
 					pass1 = true;
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+					logErr( "Received unexpected exception", e);
 				}
 
-				logger.log(Logger.Level.INFO, "Testing array");
+				logMsg( "Testing array");
 				try {
 					qbuilder.tuple(qbuilder.array(s));
-					logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
+					logErr( "Did not throw IllegalArgumentException");
 				} catch (IllegalArgumentException iae) {
-					logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+					logTrace( "Received expected IllegalArgumentException");
 					pass2 = true;
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+					logErr( "Received unexpected exception", e);
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("tupleSelectionArrayIllegalArgumentExceptionTest failed");
@@ -213,12 +213,12 @@ public class Client1 extends UtilSetup {
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 			cbuilder.literal(null);
-			logger.log(Logger.Level.ERROR, "Did not throw IllegalArgumentException");
+			logErr( "Did not throw IllegalArgumentException");
 		} catch (IllegalArgumentException iae) {
-			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+			logTrace( "Received expected IllegalArgumentException");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception:", e);
+			logErr( "Received unexpected exception:", e);
 		}
 
 		if (!pass) {
@@ -250,18 +250,18 @@ public class Client1 extends UtilSetup {
 				for (CriteriaBuilder.Trimspec tspec : ts) {
 					pass1 = true;
 					if (expected.contains(tspec)) {
-						logger.log(Logger.Level.INFO, "Testing valueOf:" + tspec);
+						logMsg( "Testing valueOf:" + tspec);
 						CriteriaBuilder.Trimspec.valueOf(tspec.toString());
 					} else {
 						pass2 = false;
-						logger.log(Logger.Level.ERROR, "values() returned incorrect value:" + tspec);
+						logErr( "values() returned incorrect value:" + tspec);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected number of values:3, actual:" + ts.length);
+				logErr( "Expected number of values:3, actual:" + ts.length);
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("trimspecTest failed");
@@ -284,13 +284,13 @@ public class Client1 extends UtilSetup {
 		try {
 			CriteriaDelete<Product> cd = cbuilder.createCriteriaDelete(Product.class);
 			if (cd != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null CriteriaDelete");
+				logTrace( "Obtained Non-null CriteriaDelete");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null CriteriaDelete");
+				logErr( "Failed to get Non-null CriteriaDelete");
 			}
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", ex);
+			logErr( "Received unexpected exception", ex);
 		}
 
 		if (!pass) {
@@ -313,13 +313,13 @@ public class Client1 extends UtilSetup {
 		try {
 			CriteriaUpdate<Product> cd = cbuilder.createCriteriaUpdate(Product.class);
 			if (cd != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null CriteriaUpdate");
+				logTrace( "Obtained Non-null CriteriaUpdate");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null CriteriaUpdate");
+				logErr( "Failed to get Non-null CriteriaUpdate");
 			}
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", ex);
+			logErr( "Received unexpected exception", ex);
 		}
 
 		if (!pass) {
@@ -342,10 +342,10 @@ public class Client1 extends UtilSetup {
 		getEntityTransaction().begin();
 		CriteriaBuilder.Coalesce col = cbuilder.coalesce();
 		if (col != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Coalesce");
+			logTrace( "Obtained Non-null Coalesce");
 			pass = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Coalesce");
+			logErr( "Failed to get Non-null Coalesce");
 
 		}
 

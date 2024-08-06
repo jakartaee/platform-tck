@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.relationship.annotations;
 
-import java.lang.System.Logger;
+
 import java.util.Collection;
 
 import jakarta.persistence.Entity;
@@ -35,7 +35,7 @@ import jakarta.persistence.OneToOne;
 
 @Entity
 public class Company implements java.io.Serializable {
-	private static final Logger logger = (Logger) System.getLogger(Company.class.getName());
+
 
 	private long companyId;
 
@@ -46,7 +46,7 @@ public class Company implements java.io.Serializable {
 	private Collection<Team> teams = new java.util.ArrayList<Team>();
 
 	public Company() {
-		logger.log(Logger.Level.TRACE, "Company no arg constructor");
+		logTrace( "Company no arg constructor");
 	}
 
 	public Company(long companyId, String name) {

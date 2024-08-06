@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.propagation.cm.extended;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
@@ -42,7 +42,7 @@ import jakarta.persistence.PersistenceContextType;
 @Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
-	private static final Logger logger = (Logger) System.getLogger(Stateful3Bean.class.getName());
+
 
 	/*
 	 * If multiple persistence units exist the unitName element must be specified.
@@ -65,7 +65,7 @@ public class Stateful3Bean implements Stateful3IF {
 	}
 
 	public void init(final Properties p) {
-		logger.log(Logger.Level.TRACE, "init");
+		logTrace( "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -77,46 +77,46 @@ public class Stateful3Bean implements Stateful3IF {
 	public void createTestData() {
 		try {
 
-			logger.log(Logger.Level.TRACE, "createTestData");
+			logTrace( "createTestData");
 
-			logger.log(Logger.Level.TRACE, "Create 5 Bees");
+			logTrace( "Create 5 Bees");
 			bRef[0] = new B("1", "customerB1", 1);
 			bRef[1] = new B("2", "customerB2", 2);
 			bRef[2] = new B("3", "customerB3", 3);
 			bRef[3] = new B("4", "customerB4", 4);
 			bRef[4] = new B("5", "customerB5", 5);
 
-			logger.log(Logger.Level.TRACE, "Start to persist Bees ");
+			logTrace( "Start to persist Bees ");
 			for (B b : bRef) {
 				if (b != null) {
 					entityManager.persist(b);
-					logger.log(Logger.Level.TRACE, "persisted B " + b);
+					logTrace( "persisted B " + b);
 				}
 			}
 			entityManager.flush();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:" + e);
+			logErr( "Unexpected while creating test data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		try {
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logger.log(Logger.Level.TRACE, "Clearing cache");
+		logTrace( "Clearing cache");
 		entityManager.getEntityManagerFactory().getCache().evictAll();
 
 	}
 
 	public boolean test1() {
 
-		logger.log(Logger.Level.TRACE, "Begin test1");
+		logTrace( "Begin test1");
 		boolean pass = false;
 
 		try {
@@ -126,12 +126,12 @@ public class Stateful3Bean implements Stateful3IF {
 			B anotherB = entityManager.find(B.class, "3");
 
 			if (anotherB != null) {
-				logger.log(Logger.Level.TRACE, "newB found" + anotherB.getName());
+				logTrace( "newB found" + anotherB.getName());
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 			pass = false;
 		} finally {
 			removeTestData();
@@ -147,16 +147,16 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public boolean test2() {
 
-		logger.log(Logger.Level.TRACE, "Begin test2");
+		logTrace( "Begin test2");
 		boolean pass = false;
 
 		try {
 			entityManager.getTransaction();
 		} catch (IllegalStateException ise) {
 			pass = true;
-			logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected: " + ise);
+			logTrace( "IllegalStateException Caught as Expected: " + ise);
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 		}
 		return pass;
 	}
@@ -167,13 +167,13 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 			beanRef.removeTestData();
-			logger.log(Logger.Level.TRACE, "DEBUG:  createAccountData");
+			logTrace( "DEBUG:  createAccountData");
 			beanRef.createTestData();
 
 			accounts = beanRef.getAllAccounts();
 
 			if (accounts != null) {
-				logger.log(Logger.Level.TRACE, accounts);
+				logTrace( accounts);
 			}
 
 			Account ACCOUNT = entityManager.find(Account.class, 1075);
@@ -182,7 +182,7 @@ public class Stateful3Bean implements Stateful3IF {
 
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+			logErr( "Unexpected Exception:", e);
 		} finally {
 			beanRef.removeTestData();
 		}
@@ -206,15 +206,15 @@ public class Stateful3Bean implements Stateful3IF {
 			balance = beanRef.withdraw(ACCOUNT.id(), 50.0);
 
 			if (EXPECTED_BALANCE.equals(balance)) {
-				logger.log(Logger.Level.TRACE, "Expected balance received.");
+				logTrace( "Expected balance received.");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						" Did not get Expected balance, got:" + balance + "Expected: " + EXPECTED_BALANCE);
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+			logErr( "Unexpected Exception:", e);
 		} finally {
 			beanRef.removeTestData();
 		}
@@ -227,13 +227,13 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "createTestData");
+			logTrace( "createTestData");
 			createTestData();
-			logger.log(Logger.Level.TRACE, "find customerB");
+			logTrace( "find customerB");
 			B customerB = entityManager.find(B.class, "4");
 
 			if (null != customerB) {
-				logger.log(Logger.Level.TRACE, "check customer status");
+				logTrace( "check customer status");
 				pass1 = beanRef.checkCustomerStatus(customerB);
 			}
 
@@ -244,7 +244,7 @@ public class Stateful3Bean implements Stateful3IF {
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+			logErr( "Unexpected Exception:", e);
 		} finally {
 			removeTestData();
 		}
@@ -256,17 +256,17 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 
-			logger.log(Logger.Level.TRACE, "find customerB");
+			logTrace( "find customerB");
 			B customerB = entityManager.find(B.class, "3");
 
 			if (null != customerB) {
-				logger.log(Logger.Level.TRACE, "customer is not null, call rollbackStatus()");
+				logTrace( "customer is not null, call rollbackStatus()");
 				pass = beanRef.rollbackStatus(customerB);
 			}
 
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+			logErr( "Unexpected Exception:", e);
 		}
 		return pass;
 	}
@@ -276,19 +276,19 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 
-			logger.log(Logger.Level.TRACE, "verifyTest6:  find customerB");
+			logTrace( "verifyTest6:  find customerB");
 			B customerB = entityManager.find(B.class, "3");
 
 			if ((customerB.getName().equals("customerB3"))) {
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						" did not get the expected result.  Expected" + " customerB3, got: " + customerB.getName());
 			}
 
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in verifyTest6:", e);
+			logErr( "Unexpected Exception in verifyTest6:", e);
 		} finally {
 			removeTestData();
 
@@ -302,27 +302,27 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "createTestData");
+			logTrace( "createTestData");
 			createTestData();
 			B customerB = entityManager.find(B.class, "5");
 
 			if (null != customerB) {
-				logger.log(Logger.Level.TRACE, "customer is not null, call flushStatus()");
+				logTrace( "customer is not null, call flushStatus()");
 				pass1 = beanRef.flushStatus(customerB);
 
-				logger.log(Logger.Level.TRACE, "refresh customerB entity to be sure to get actual state");
+				logTrace( "refresh customerB entity to be sure to get actual state");
 				entityManager.refresh(customerB);
 
 				if ((pass1) && (customerB.getName().equals("flushB"))) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							" did not get the expected result.  Expected" + " flushB, got: " + customerB.getName());
 				}
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+			logErr( "Unexpected Exception:", e);
 		} finally {
 			removeTestData();
 

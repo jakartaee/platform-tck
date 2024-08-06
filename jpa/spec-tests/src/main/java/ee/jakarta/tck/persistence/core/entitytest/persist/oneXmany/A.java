@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.entitytest.persist.oneXmany;
 
-import java.lang.System.Logger;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
@@ -36,7 +36,7 @@ import jakarta.persistence.Table;
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+
 
 	// ===========================================================
 	// instance variables
@@ -54,7 +54,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+		logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {
@@ -80,12 +80,12 @@ public class A implements java.io.Serializable {
 	// Business methods for test cases
 
 	public Collection getBCol() {
-		logger.log(Logger.Level.TRACE, "getBCol");
+		logTrace( "getBCol");
 		return bCol;
 	}
 
 	public void setBCol(Collection bCol) {
-		logger.log(Logger.Level.TRACE, "setBCol");
+		logTrace( "setBCol");
 		this.bCol = bCol;
 	}
 
@@ -106,7 +106,7 @@ public class A implements java.io.Serializable {
 	}
 
 	public Collection getBInfoFromA() {
-		logger.log(Logger.Level.TRACE, "getBInfoFromA");
+		logTrace( "getBInfoFromA");
 		Vector v = new Vector();
 		if (getBCol().size() != 0) {
 			Collection bcol = getBCol();

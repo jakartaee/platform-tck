@@ -57,6 +57,7 @@
         <module>jms</module>
         <module>jms-tck</module>
         <module>jpa</module>
+        <module>jpa-tck</module>
         <module>jsonb</module>
         <module>jsonp</module>
         <module>jsp</module>

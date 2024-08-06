@@ -23,7 +23,7 @@ package ee.jakarta.tck.persistence.ee.propagation.cm.jta;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.lang.System.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,7 +48,7 @@ import jakarta.transaction.UserTransaction;
 		@PersistenceContext(name = "persistence/cmpropagation2", unitName = "CTS-JTA-UNIT2") })
 public class ServletTest extends HttpTCKServlet {
 
-	private static final Logger logger = (Logger) System.getLogger(ServletTest.class.getName());
+
 
 	private UserTransaction ut;
 
@@ -479,15 +479,15 @@ public class ServletTest extends HttpTCKServlet {
 				entityManager.merge(account);
 
 				desc = testName + ":Did not throw TransactionRequiredException";
-				logger.log(Logger.Level.ERROR, desc);
+				logErr( desc);
 
 			} catch (TransactionRequiredException tre) {
 				desc = testName + ": Received expected TransactionRequiredException";
-				logger.log(Logger.Level.TRACE, desc);
+				logTrace( desc);
 				pass = true;
 			} catch (Exception e) {
 				desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-				logger.log(Logger.Level.ERROR, desc);
+				logErr( desc);
 			}
 
 			if (pass) {
@@ -525,15 +525,15 @@ public class ServletTest extends HttpTCKServlet {
 				entityManager.persist(account);
 
 				desc = testName + ":Did not throw TransactionRequiredException";
-				logger.log(Logger.Level.ERROR, desc);
+				logErr( desc);
 
 			} catch (TransactionRequiredException tre) {
 				desc = testName + ":Received expected TransactionRequiredException";
-				logger.log(Logger.Level.TRACE, desc);
+				logTrace( desc);
 				pass = true;
 			} catch (Exception e) {
 				desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-				logger.log(Logger.Level.ERROR, desc);
+				logErr( desc);
 			}
 
 			if (pass) {
@@ -576,15 +576,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.refresh(account);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logger.log(Logger.Level.TRACE, desc);
+					logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 				}
 
 				if (pass) {
@@ -632,15 +632,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.refresh(account, myMap);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logger.log(Logger.Level.TRACE, desc);
+					logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 				}
 
 				if (pass) {
@@ -686,15 +686,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.refresh(account, LockModeType.OPTIMISTIC);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logger.log(Logger.Level.TRACE, desc);
+					logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 				}
 
 				if (pass) {
@@ -741,15 +741,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.refresh(account, LockModeType.OPTIMISTIC, myMap);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logger.log(Logger.Level.TRACE, desc);
+					logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 				}
 
 				if (pass) {
@@ -794,15 +794,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.remove(account);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logger.log(Logger.Level.TRACE, desc);
+					logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logger.log(Logger.Level.ERROR, desc);
+					logErr( desc);
 				}
 
 				if (pass) {

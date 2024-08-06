@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.descriptor;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
@@ -42,7 +42,7 @@ import jakarta.persistence.EntityManagerFactory;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateless3Bean implements Stateless3IF {
 
-	private static final Logger logger = (Logger) System.getLogger(Stateless3Bean.class.getName());
+
 
 	private EntityManagerFactory emf;
 
@@ -62,45 +62,45 @@ public class Stateless3Bean implements Stateless3IF {
 	@PostConstruct
 	public void prepareEnvironment() {
 		try {
-			logger.log(Logger.Level.TRACE, "In PostContruct");
+			logTrace( "In PostContruct");
 			if (emf == null) {
 				emf = (EntityManagerFactory) sessionContext.lookup("persistence/MyPersistenceUnit");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, " In PostConstruct: Unexpected Exception caught", e);
+			logErr( " In PostConstruct: Unexpected Exception caught", e);
 		}
 	}
 
 	public void createTestData() {
-		logger.log(Logger.Level.TRACE, "createTestData");
+		logTrace( "createTestData");
 		try {
 
-			logger.log(Logger.Level.TRACE, "joinTransaction");
+			logTrace( "joinTransaction");
 			entityManager.joinTransaction();
 
-			logger.log(Logger.Level.TRACE, "Create 2 A Entities");
+			logTrace( "Create 2 A Entities");
 			aRef[0] = new A("3", "herB", 3);
 			aRef[1] = new A("4", "hisB", 4);
 
-			logger.log(Logger.Level.TRACE, "Create 2 B Entities");
+			logTrace( "Create 2 B Entities");
 			bRef[0] = new B("1", "myB", 1, aRef[0]);
 			bRef[1] = new B("2", "yourB", 2, aRef[1]);
 
-			logger.log(Logger.Level.TRACE, "Start to persist Bees ");
+			logTrace( "Start to persist Bees ");
 			for (B b : bRef) {
 				if (b != null) {
 					entityManager.persist(b);
-					logger.log(Logger.Level.TRACE, "persisted B " + b);
+					logTrace( "persisted B " + b);
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:" + e);
+			logErr( "Unexpected while creating test data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		logger.log(Logger.Level.TRACE, "stateless3Bean removeTestData");
+		logTrace( "stateless3Bean removeTestData");
 
 		try {
 			if ((entityManager == null) || (!entityManager.isOpen())) {
@@ -108,7 +108,7 @@ public class Stateless3Bean implements Stateless3IF {
 			}
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception caught while cleaning up:", e);
+			logErr( "Unexpected Exception caught while cleaning up:", e);
 		} finally {
 			if (entityManager.isOpen()) {
 				entityManager.close();
@@ -116,13 +116,13 @@ public class Stateless3Bean implements Stateless3IF {
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logger.log(Logger.Level.TRACE, "Clearing cache");
+		logTrace( "Clearing cache");
 		emf.getCache().evictAll();
-		logger.log(Logger.Level.TRACE, "cleanup complete");
+		logTrace( "cleanup complete");
 	}
 
 	public void init(Properties p) {
-		logger.log(Logger.Level.TRACE, "init");
+		logTrace( "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -133,35 +133,35 @@ public class Stateless3Bean implements Stateless3IF {
 
 	public boolean test5() {
 
-		logger.log(Logger.Level.TRACE, "Begin test5");
+		logTrace( "Begin test5");
 		boolean pass = false;
 
 		try {
 
 			if (emf != null) {
-				logger.log(Logger.Level.TRACE, "DEBUG: EMF IS NOT null");
+				logTrace( "DEBUG: EMF IS NOT null");
 				entityManager = emf.createEntityManager();
 
 				if (null != entityManager) {
-					logger.log(Logger.Level.TRACE, "ENTITYMANAGER IS NOT NULL");
+					logTrace( "ENTITYMANAGER IS NOT NULL");
 
 					createTestData();
 
 					B anotherB = entityManager.find(B.class, "1");
 
 					if (anotherB != null) {
-						logger.log(Logger.Level.TRACE, "anotherB found");
+						logTrace( "anotherB found");
 						pass = true;
 					}
 
 				} else {
-					logger.log(Logger.Level.ERROR, "ENTITYMANAGER IS NULL");
+					logErr( "ENTITYMANAGER IS NULL");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "EMF is null");
+				logErr( "EMF is null");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 		} finally {
 			try {
 				if (entityManager != null) {
@@ -170,7 +170,7 @@ public class Stateless3Bean implements Stateless3IF {
 					}
 				}
 			} catch (IllegalStateException ise) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception :", ise);
+				logErr( "Unexpected Exception :", ise);
 			}
 		}
 

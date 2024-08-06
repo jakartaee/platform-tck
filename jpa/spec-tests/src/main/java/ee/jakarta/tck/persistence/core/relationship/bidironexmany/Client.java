@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.relationship.bidironexmany;
 
-import java.lang.System.Logger;
+
 import java.util.Vector;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -28,7 +28,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
@@ -44,14 +44,14 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -70,7 +70,7 @@ public class Client extends PMClientBase {
 	 */
 	@Test
 	public void biDir1XMTest1() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin BiDir1X1Test1");
+		logTrace( "Begin BiDir1X1Test1");
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -80,21 +80,21 @@ public class Client extends PMClientBase {
 			BiDir1XMPerson person = new BiDir1XMPerson(1L, "Duke");
 
 			// getEntityManager().persist(person);
-			logger.log(Logger.Level.TRACE, "persisted Person Entity");
+			logTrace( "persisted Person Entity");
 
 			Vector<BiDir1XMProject> projects = new Vector<BiDir1XMProject>();
 			projects.add(project1);
 			projects.add(project2);
 
-			logger.log(Logger.Level.TRACE, "set Projects to Person");
+			logTrace( "set Projects to Person");
 			person.setProjects(projects);
 
-			logger.log(Logger.Level.TRACE, "set Person to Projects");
+			logTrace( "set Person to Projects");
 			project1.setBiDir1XMPerson(person);
 			project2.setBiDir1XMPerson(person);
 
 			getEntityManager().persist(person);
-			logger.log(Logger.Level.TRACE, "persisted Person Entity");
+			logTrace( "persisted Person Entity");
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -111,16 +111,16 @@ public class Client extends PMClientBase {
 					BiDir1XMPerson newPerson = newProject1.getBiDir1XMPerson();
 					if (newPerson != null) {
 						if (newPerson.getName().equals("Duke")) {
-							logger.log(Logger.Level.TRACE, "Found Expected Person Entity");
+							logTrace( "Found Expected Person Entity");
 							pass1 = true;
 						}
 					} else {
-						logger.log(Logger.Level.TRACE, "searched Person not Found");
+						logTrace( "searched Person not Found");
 					}
 				}
 
 			} else {
-				logger.log(Logger.Level.TRACE, "searched Project not Found");
+				logTrace( "searched Project not Found");
 			}
 
 			// Lookup Project2
@@ -130,16 +130,16 @@ public class Client extends PMClientBase {
 					BiDir1XMPerson newPerson = newProject2.getBiDir1XMPerson();
 					if (newPerson != null) {
 						if (newPerson.getName().equals("Duke")) {
-							logger.log(Logger.Level.TRACE, "Found Expected Person Entity");
+							logTrace( "Found Expected Person Entity");
 							pass2 = true;
 						}
 					} else {
-						logger.log(Logger.Level.TRACE, "searched Person not Found");
+						logTrace( "searched Person not Found");
 					}
 				}
 
 			} else {
-				logger.log(Logger.Level.TRACE, "searched Project not Found");
+				logTrace( "searched Project not Found");
 			}
 
 			// Alternative Search mechanism
@@ -152,25 +152,25 @@ public class Client extends PMClientBase {
 			 * (BiDir1XMProject prj : newProjects) { if (prj.getName().equals("Identity")) {
 			 * BiDir1XMPerson p = prj.getBiDir1XMPerson(); if (p != null) { if
 			 * (p.getName().equals("Duke")) {
-			 * logger.log(Logger.Level.TRACE,"Found Expected Person Entity"); pass1 = true;
+			 * logTrace("Found Expected Person Entity"); pass1 = true;
 			 * }
 			 * 
-			 * } else { logger.log(Logger.Level.TRACE,"searched Person not Found"); }
+			 * } else { logTrace("searched Person not Found"); }
 			 * 
 			 * } else if (prj.getName().equals("JavaEE")) { BiDir1XMPerson p2 =
 			 * prj.getBiDir1XMPerson(); if (p2 != null) { if (p2.getName().equals("Duke")) {
-			 * logger.log(Logger.Level.TRACE,"Found Expected Person Entity"); pass2 = true;
+			 * logTrace("Found Expected Person Entity"); pass2 = true;
 			 * }
 			 * 
-			 * } else { logger.log(Logger.Level.TRACE,"searched Person not Found"); } } } }
-			 * else { logger.log(Logger.Level.TRACE,"searched Person not Found"); }
+			 * } else { logTrace("searched Person not Found"); } } } }
+			 * else { logTrace("searched Person not Found"); }
 			 */
 
 			if (pass1 && pass2) {
-				logger.log(Logger.Level.TRACE, "biDir1X1Test1: Expected results received");
+				logTrace( "biDir1X1Test1: Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Unexpected results received");
+				logErr( "Unexpected results received");
 				pass = false;
 			}
 
@@ -178,14 +178,14 @@ public class Client extends PMClientBase {
 
 		} catch (Exception e) {
 
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -197,9 +197,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -207,7 +207,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -217,14 +217,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM BIDIR1XMPERSON").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

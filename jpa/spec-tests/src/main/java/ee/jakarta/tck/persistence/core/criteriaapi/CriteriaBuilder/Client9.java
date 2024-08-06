@@ -44,8 +44,6 @@ import jakarta.persistence.criteria.CriteriaQuery;
 
 public class Client9 extends UtilCriteriaEntityData {
 
-    private static final System.Logger logger = System.getLogger(Client9.class.getName());
-
     public JavaArchive createDeployment() throws Exception {
 
         String pkgNameWithoutSuffix = Client9.class.getPackageName();
@@ -73,15 +71,15 @@ public class Client9 extends UtilCriteriaEntityData {
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             List<CriteriaEntity> result = query.getResultList();
             if (criteriaEntity.length == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + criteriaEntity.length + "|, received size= |" + result.size() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -111,15 +109,15 @@ public class Client9 extends UtilCriteriaEntityData {
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -151,22 +149,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("strParam1", "LeftToken");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (3L == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[0].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -198,22 +196,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("strParam1", "LeftToken");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (3L == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[0].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -247,22 +245,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("strParam2", "TokenRight");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (3L == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[0].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -296,23 +294,23 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("strParam2", "right");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             Set<Long> resultSet = result.stream().map(CriteriaEntity::getId).collect(Collectors.toUnmodifiableSet());
             Set<Long> expectedSet = Set.of(1L, 2L);
             if (compareFromSet(expectedSet, resultSet) == null) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result:|" + setToString(resultSet) + "|");
+                logTrace( "Received expected result result:|" + setToString(resultSet) + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + setToString(expectedSet) + "|, received result= |" + setToString((Set) result) + "|");
             }
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -348,22 +346,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("strParam2", "TokenRight");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (3L == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[0].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -401,23 +399,23 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("dateParam", LocalDate.of(1918, 9, 28));
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             Set<Long> resultSet = result.stream().map(CriteriaEntity::getId).collect(Collectors.toUnmodifiableSet());
             Set<Long> expectedSet = Set.of(1L, 2L, 4L, 5L);
             if (compareFromSet(expectedSet, resultSet) == null) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result:|" + setToString(resultSet) + "|");
+                logTrace( "Received expected result result:|" + setToString(resultSet) + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + setToString(expectedSet) + "|, received result= |" + setToString((Set) result) + "|");
             }
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -447,22 +445,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter(strParam1, "Left substring to extract");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[0].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[0].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -492,22 +490,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter(strParam1, "Left substring to extract");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[0].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[0].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -537,22 +535,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter(strParam1, "Extract substring from right");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[1].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[1].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -582,22 +580,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter(strParam1, "Extract substring from right");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[1].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[1].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -628,22 +626,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter(strParam1, "UnknownToken");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[2].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[2].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -674,22 +672,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter(strParam2, "TokenUnknown");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[2].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[2].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -720,22 +718,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter(strParam1, "UnknownToken");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[2].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[2].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -766,22 +764,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter(strParam2, "TokenUnknown");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[2].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[2].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -812,22 +810,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("timeParam", 10);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[3].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[3].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -858,22 +856,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("timeParam", 11);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[3].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[3].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -905,22 +903,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("timeParam", 12d);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[3].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[3].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -951,22 +949,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("dateParam", 1918);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[4].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[4].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -997,22 +995,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("dateParam", 9);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[4].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[4].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -1043,22 +1041,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("dateParam", 28);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[4].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[4].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -1089,22 +1087,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("dateParam", 3);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[4].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[4].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -1137,22 +1135,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("dateParam", 39);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[4].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[4].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -1182,22 +1180,22 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("strParam", "LeftToken");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[2].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[2].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -1226,22 +1224,22 @@ public class Client9 extends UtilCriteriaEntityData {
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             if (criteriaEntity[2].getId() == result.get(0).getId()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
+                logTrace( "Received expected result result.get(0).getId():|" + result.get(0).getId() + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + criteriaEntity[2].getId() + "|, received result= |" + result.get(0).getId() + "|");
             }
 
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -1271,23 +1269,23 @@ public class Client9 extends UtilCriteriaEntityData {
             query.setParameter("strParam", "LeftToken");
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             Set<Long> resultSet = result.stream().map(CriteriaEntity::getId).collect(Collectors.toUnmodifiableSet());
             Set<Long> expectedSet = Set.of(1L, 2L);
             if (compareFromSet(expectedSet, resultSet) == null) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result:|" + setToString(resultSet) + "|");
+                logTrace( "Received expected result result:|" + setToString(resultSet) + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + setToString(expectedSet) + "|, received result= |" + setToString((Set) result) + "|");
             }
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -1316,23 +1314,23 @@ public class Client9 extends UtilCriteriaEntityData {
             TypedQuery<CriteriaEntity> query = getEntityManager().createQuery(cQuery);
             List<CriteriaEntity> result = query.getResultList();
             if (EXPECTED_SIZE == result.size()) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result size:|" + result.size() + "|");
+                logTrace( "Received expected result size:|" + result.size() + "|");
                 pass1 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected size= |" + EXPECTED_SIZE + "|, received size= |" + result.size() + "|");
             }
             Set<Long> resultSet = result.stream().map(CriteriaEntity::getId).collect(Collectors.toUnmodifiableSet());
             Set<Long> expectedSet = Set.of(1L, 2L);
             if (compareFromSet(expectedSet, resultSet) == null) {
-                logger.log(System.Logger.Level.TRACE, "Received expected result result:|" + setToString(resultSet) + "|");
+                logTrace( "Received expected result result:|" + setToString(resultSet) + "|");
                 pass2 = true;
             } else {
-                logger.log(System.Logger.Level.ERROR,
+                logErr(
                         "Mismatch in received results - expected result = |" + setToString(expectedSet) + "|, received result= |" + setToString((Set) result) + "|");
             }
         } else {
-            logger.log(System.Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+            logErr( "Failed to get Non-null Criteria Query");
         }
 
         getEntityTransaction().commit();
@@ -1353,28 +1351,28 @@ public class Client9 extends UtilCriteriaEntityData {
         // Create expression with Integer java type
         Expression<? extends Number> source = cb.parameter(Integer.class, "intParam");
         if (Integer.class == source.getJavaType()) {
-            logger.log(System.Logger.Level.TRACE, "Received result is |Integer.class|.");
+            logTrace( "Received result is |Integer.class|.");
             pass1 = true;
         } else {
-            logger.log(System.Logger.Level.ERROR,
+            logErr(
                     "Mismatch in received results - expected type= |Integer.class|, received type= |" + source.getJavaType().getName() + "|");
         }
 
         // Cast it to Long java type
         Expression<? extends Number> target = source.cast(Long.class);
         if (Long.class == target.getJavaType()) {
-            logger.log(System.Logger.Level.TRACE, "Received result is |Long.class|.");
+            logTrace( "Received result is |Long.class|.");
             pass2 = true;
         } else {
-            logger.log(System.Logger.Level.ERROR,
+            logErr(
                     "Mismatch in received results - expected type= |Long.class|, received type= |" + source.getJavaType().getName() + "|");
         }
         // Cast shall not return the same instance
         if (source != target) {
-            logger.log(System.Logger.Level.TRACE, "Received instances are different.");
+            logTrace( "Received instances are different.");
             pass3 = true;
         } else {
-            logger.log(System.Logger.Level.ERROR,
+            logErr(
                     "Received instances are same.");
         }
 

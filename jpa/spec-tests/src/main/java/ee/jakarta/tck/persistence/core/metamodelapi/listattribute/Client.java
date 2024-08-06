@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.listattribute;
 
-import java.lang.System.Logger;
+
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
@@ -32,7 +32,7 @@ import jakarta.persistence.metamodel.Type;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
@@ -48,12 +48,12 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -73,20 +73,20 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getList("biDirMX1Persons",
 							BiDirMX1Person.class);
 					Type t = listAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						String name = t.getJavaType().getName();
 						if (name.equals("ee.jakarta.tck.persistence.core.metamodelapi.listattribute.BiDirMX1Person")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Expected: BiDirMX1Person, actual:" + name);
+							logErr( "Expected: BiDirMX1Person, actual:" + name);
 						}
 					}
 				}
@@ -94,7 +94,7 @@ public class Client extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getList Test  failed");
@@ -118,34 +118,34 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<? super BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getList("biDirMX1Persons",
 							BiDirMX1Person.class);
 					PluralAttribute.CollectionType t = listAttrib.getCollectionType();
 					if (t != null) {
 						String sType = t.name();
 						if (sType.equals(expected)) {
-							logger.log(Logger.Level.TRACE, "Received expected: " + expected);
+							logTrace( "Received expected: " + expected);
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Expected: " + expected + ", actual:" + sType);
+							logErr( "Expected: " + expected + ", actual:" + sType);
 						}
 					} else {
-						logger.log(Logger.Level.ERROR, "getCollectionType() returned null");
+						logErr( "getCollectionType() returned null");
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "managedType(...) returned null");
+					logErr( "managedType(...) returned null");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+				logErr( "getMetamodel() returned null");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getCollectionType Test failed");
@@ -168,20 +168,20 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<BiDirMX1Project, BiDirMX1Person> listAttrib = mType.getDeclaredList("biDirMX1Persons",
 							BiDirMX1Person.class);
 					Type t = listAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						String name = t.getJavaType().getName();
 						if (name.equals("ee.jakarta.tck.persistence.core.metamodelapi.listattribute.BiDirMX1Person")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Expected: BiDirMX1Person, actual:" + name);
+							logErr( "Expected: BiDirMX1Person, actual:" + name);
 						}
 					}
 				}
@@ -189,7 +189,7 @@ public class Client extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredList Test  failed");
@@ -212,19 +212,19 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<? super BiDirMX1Project, ?> listAttrib = mType.getList("biDirMX1Persons");
 					Type t = listAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						String name = t.getJavaType().getName();
 						if (name.equals("ee.jakarta.tck.persistence.core.metamodelapi.listattribute.BiDirMX1Person")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Expected: BiDirMX1Person, actual:" + name);
+							logErr( "Expected: BiDirMX1Person, actual:" + name);
 						}
 					}
 				}
@@ -232,7 +232,7 @@ public class Client extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getList2 Test  failed");
@@ -255,19 +255,19 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Metamodel metaModel = getEntityManager().getMetamodel();
 			if (metaModel != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+				logTrace( "Obtained Non-null Metamodel from EntityManager");
 				ManagedType<BiDirMX1Project> mType = metaModel.managedType(BiDirMX1Project.class);
 				if (mType != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+					logTrace( "Obtained Non-null ManagedType");
 					ListAttribute<BiDirMX1Project, ?> listAttrib = mType.getDeclaredList("biDirMX1Persons");
 					Type t = listAttrib.getElementType();
 					if (t != null) {
-						logger.log(Logger.Level.TRACE, "element Type  = " + t.getJavaType());
+						logTrace( "element Type  = " + t.getJavaType());
 						String name = t.getJavaType().getName();
 						if (name.equals("ee.jakarta.tck.persistence.core.metamodelapi.listattribute.BiDirMX1Person")) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Expected: BiDirMX1Person, actual:" + name);
+							logErr( "Expected: BiDirMX1Person, actual:" + name);
 						}
 					}
 				}
@@ -275,7 +275,7 @@ public class Client extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("getDeclaredList2 Test  failed");
@@ -285,9 +285,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -295,14 +295,14 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 
 		try {
 			if (getEntityTransaction().isActive()) {
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception re) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+			logErr( "Unexpected Exception in removeTestData:", re);
 		}
 
 	}

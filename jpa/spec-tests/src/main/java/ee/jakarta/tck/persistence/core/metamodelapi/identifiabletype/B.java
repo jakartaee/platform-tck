@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.identifiabletype;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass()
 public abstract class B implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(B.class.getName());
+
 
 	protected String name;
 
@@ -61,42 +61,42 @@ public abstract class B implements java.io.Serializable {
 	}
 
 	public Set<Address> getAddressSet() {
-		logger.log(Logger.Level.TRACE, "getAddressSet");
+		logTrace( "getAddressSet");
 		return sAddress_inherited;
 	}
 
 	public void setAddressSet(Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressSet");
+		logTrace( "setAddressSet");
 		this.sAddress_inherited = addr;
 	}
 
 	public Collection<Address> getAddressCollection() {
-		logger.log(Logger.Level.TRACE, "getAddressCollection");
+		logTrace( "getAddressCollection");
 		return cAddress_inherited;
 	}
 
 	public void setAddressCollection(Collection<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressCollection");
+		logTrace( "setAddressCollection");
 		this.cAddress_inherited = addr;
 	}
 
 	public List<Address> getAddressList() {
-		logger.log(Logger.Level.TRACE, "getAddressList");
+		logTrace( "getAddressList");
 		return lAddress_inherited;
 	}
 
 	public void setAddressList(List<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressList");
+		logTrace( "setAddressList");
 		this.lAddress_inherited = addr;
 	}
 
 	public Map<Address, String> getAddressMap() {
-		logger.log(Logger.Level.TRACE, "getAddressMap");
+		logTrace( "getAddressMap");
 		return mAddress_inherited;
 	}
 
 	public void setAddressMap(Map<Address, String> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressMap");
+		logTrace( "setAddressMap");
 		this.mAddress_inherited = addr;
 	}
 

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.jpa22.query.stream;
 
-import java.lang.System.Logger;
+
 import java.sql.Date;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -34,7 +34,7 @@ import jakarta.persistence.TypedQuery;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final long serialVersionUID = 22L;
 
@@ -58,15 +58,15 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createTestData();
-			logger.log(Logger.Level.TRACE, "Done creating test data");
+			logTrace( "Done creating test data");
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in Setup: ", e);
+			logErr( "Unexpected Exception caught in Setup: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -107,7 +107,7 @@ public class Client extends PMClientBase {
 		s1 = query.getResultStream();
 		s1.forEach(oc::increment);
 		assertTrue(oc.getCounter() == 21, "Unexpected streamed objects found:" + oc.getCounter());
-		logger.log(Logger.Level.TRACE, "Query.getResultStream() returned expected ids");
+		logTrace( "Query.getResultStream() returned expected ids");
 	}
 
 	/*
@@ -138,7 +138,7 @@ public class Client extends PMClientBase {
 		s1 = query.getResultStream();
 		s1.forEach(oc::increment);
 		assertTrue(oc.getCounter() == 21, "Unexpected streamed objects found:" + oc.getCounter());
-		logger.log(Logger.Level.TRACE, "TypedQuery.getResultStream() returned expected ids");
+		logTrace( "TypedQuery.getResultStream() returned expected ids");
 	}
 
 	private <T> void checkPK(T t) {
@@ -155,7 +155,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void createTestData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createTestData");
+		logTrace( "createTestData");
 
 		final Insurance insRef[] = new Insurance[5];
 		final Date d2 = getSQLDate("2001-06-27");
@@ -173,35 +173,35 @@ public class Client extends PMClientBase {
 
 			getEntityTransaction().begin();
 
-			// logger.log(Logger.Level.TRACE,"Create 5 Departments");
+			// logTrace("Create 5 Departments");
 			deptRef[0] = new Department(1, "Engineering");
 			deptRef[1] = new Department(2, "Marketing");
 			deptRef[2] = new Department(3, "Sales");
 			deptRef[3] = new Department(4, "Accounting");
 			deptRef[4] = new Department(5, "Training");
 
-			logger.log(Logger.Level.TRACE, "Start to persist departments ");
+			logTrace( "Start to persist departments ");
 			for (Department d : deptRef) {
 				if (d != null) {
 					getEntityManager().persist(d);
-					logger.log(Logger.Level.TRACE, "persisted department " + d);
+					logTrace( "persisted department " + d);
 				}
 			}
 
-			// logger.log(Logger.Level.TRACE,"Create 3 Insurance Carriers");
+			// logTrace("Create 3 Insurance Carriers");
 			insRef[0] = new Insurance(1, "Prudential");
 			insRef[1] = new Insurance(2, "Cigna");
 			insRef[2] = new Insurance(3, "Sentry");
 
-			logger.log(Logger.Level.TRACE, "Start to persist insurance ");
+			logTrace( "Start to persist insurance ");
 			for (Insurance i : insRef) {
 				if (i != null) {
 					getEntityManager().persist(i);
-					logger.log(Logger.Level.TRACE, "persisted insurance " + i);
+					logTrace( "persisted insurance " + i);
 				}
 			}
 
-			// logger.log(Logger.Level.TRACE,"Create 20 employees");
+			// logTrace("Create 20 employees");
 			empRef[0] = new Employee(1, "Alan", "Frechette", d1, (float) 35000.0);
 			empRef[0].setDepartment(deptRef[0]);
 			empRef[0].setInsurance(insRef[0]);
@@ -286,26 +286,26 @@ public class Client extends PMClientBase {
 			empRef[20].setDepartment(deptRef[0]);
 			empRef[20].setInsurance(insRef[2]);
 
-			// logger.log(Logger.Level.TRACE,"Start to persist employees ");
+			// logTrace("Start to persist employees ");
 			for (Employee e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					logger.log(Logger.Level.TRACE, "persisted employee " + e);
+					logTrace( "persisted employee " + e);
 				}
 			}
 
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.TRACE, "Created TestData");
+			logTrace( "Created TestData");
 
 		} catch (Exception re) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", re);
+			logErr( "Unexpected Exception in createTestData:", re);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData while rolling back TX:", re);
+				logErr( "Unexpected Exception in createTestData while rolling back TX:", re);
 			}
 		}
 
@@ -314,9 +314,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -324,7 +324,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -336,7 +336,7 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DATATYPES2").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 
 		} finally {
 			try {
@@ -344,7 +344,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

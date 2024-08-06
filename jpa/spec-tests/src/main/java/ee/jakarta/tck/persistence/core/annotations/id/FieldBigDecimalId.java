@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.id;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 
 import jakarta.persistence.Column;
@@ -28,7 +28,7 @@ import jakarta.persistence.Table;
 @Table(name = "DATATYPES3")
 public class FieldBigDecimalId implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(FieldBigDecimalId.class.getName());
+	
 
 	// ===========================================================
 	// instance variables
@@ -43,7 +43,7 @@ public class FieldBigDecimalId implements java.io.Serializable {
 	// ===========================================================
 	// constructors
 	public FieldBigDecimalId() {
-		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+		logTrace( "Entity A no arg constructor");
 	}
 
 	public FieldBigDecimalId(BigDecimal id, BigDecimal bigDecimal) {

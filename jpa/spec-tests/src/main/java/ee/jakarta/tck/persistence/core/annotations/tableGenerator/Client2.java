@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
-import java.lang.System.Logger;
+
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +26,7 @@ public class Client2 extends Client {
 
 	private DataTypes2 d2;
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	public Client2() {
 	}
@@ -41,7 +41,7 @@ public class Client2 extends Client {
 
 	@BeforeEach
 	public void setup2() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup2");
+		logTrace( "setup2");
 		try {
 
 			super.setup();
@@ -49,7 +49,7 @@ public class Client2 extends Client {
 			removeTestData();
 			createTestData2();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -70,7 +70,7 @@ public class Client2 extends Client {
 		try {
 			getEntityTransaction().begin();
 			int id = d2.getId();
-			logger.log(Logger.Level.TRACE, "find id: " + id);
+			logTrace( "find id: " + id);
 			DataTypes2 d = getEntityManager().find(DataTypes2.class, id);
 			if (d != null) {
 				if (d.getStringData().equals(d2.getStringData())) {
@@ -79,10 +79,10 @@ public class Client2 extends Client {
 
 				getEntityTransaction().commit();
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -96,14 +96,14 @@ public class Client2 extends Client {
 			getEntityTransaction().begin();
 			d2 = new DataTypes2();
 			d2.setStringData("testData2");
-			logger.log(Logger.Level.TRACE, "DataType2:" + d2.toString());
+			logTrace( "DataType2:" + d2.toString());
 			getEntityManager().persist(d2);
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 	}
 

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.assocoverride;
 
-import java.lang.System.Logger;
+
 import java.sql.Date;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -28,7 +28,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static PartTimeEmployee ptRef[] = new PartTimeEmployee[5];
 
@@ -57,7 +57,7 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 
 			super.setup();
@@ -65,10 +65,10 @@ public class Client extends PMClientBase {
 
 			removeTestData();
 			createTestData();
-			logger.log(Logger.Level.TRACE, "Done creating test data");
+			logTrace( "Done creating test data");
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -91,7 +91,7 @@ public class Client extends PMClientBase {
 	@Test
 	public void associationOverride() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin AssociationOverride");
+		logTrace( "Begin AssociationOverride");
 		boolean pass = false;
 
 		try {
@@ -102,7 +102,7 @@ public class Client extends PMClientBase {
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -136,23 +136,23 @@ public class Client extends PMClientBase {
 			ptRef[3].setAddress(aRef[3]);
 			ptRef[4].setAddress(aRef[4]);
 
-			logger.log(Logger.Level.TRACE, "Persist part time employees ");
+			logTrace( "Persist part time employees ");
 			for (int i = 0; i < 5; i++) {
 				getEntityManager().persist(aRef[i]);
-				logger.log(Logger.Level.TRACE, "persisted Address " + aRef[i]);
+				logTrace( "persisted Address " + aRef[i]);
 				getEntityManager().persist(ptRef[i]);
-				logger.log(Logger.Level.TRACE, "persisted employee " + ptRef[i]);
+				logTrace( "persisted employee " + ptRef[i]);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception re) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", re);
+			logErr( "Unexpected Exception creating test data:", re);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception rolling back TX:", re);
+				logErr( "Unexpected Exception rolling back TX:", re);
 			}
 		}
 	}
@@ -160,9 +160,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -170,7 +170,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -181,14 +181,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from ADDRESS").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

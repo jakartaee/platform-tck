@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaDelete;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -39,7 +39,7 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends UtilProductData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -69,24 +69,24 @@ public class Client extends UtilProductData {
 		CriteriaDelete<Product> cd = cbuilder.createCriteriaDelete(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
+			logTrace( "Obtained Non-null root");
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == productRef.length + softwareRef.length + hardwareRef.length) {
-				logger.log(Logger.Level.TRACE, "Received expected number deleted:" + actual);
+				logTrace( "Received expected number deleted:" + actual);
 				clearCache();
-				logger.log(Logger.Level.INFO, "Make sure items were deleted by looking up the Products id");
+				logMsg( "Make sure items were deleted by looking up the Products id");
 				for (Product p : productRef) {
 					pass1 = true;
 					if (getEntityManager().find(Product.class, p.getId()) != null) {
-						logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have been deleted");
+						logErr( "Expected product:" + p.getId() + " to have been deleted");
 						pass2 = false;
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + productRef.length + ", actual:" + actual);
+				logErr( "Expected:" + productRef.length + ", actual:" + actual);
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -119,24 +119,24 @@ public class Client extends UtilProductData {
 		Root<Product> root = cd.from(Product_);
 
 		if (root != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
+			logTrace( "Obtained Non-null root");
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == productRef.length + softwareRef.length + hardwareRef.length) {
-				logger.log(Logger.Level.TRACE, "Received expected number deleted:" + actual);
+				logTrace( "Received expected number deleted:" + actual);
 				clearCache();
-				logger.log(Logger.Level.INFO, "Make sure items were deleted by looking up the Products id");
+				logMsg( "Make sure items were deleted by looking up the Products id");
 				for (Product p : productRef) {
 					pass1 = true;
 					if (getEntityManager().find(Product.class, p.getId()) != null) {
-						logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have been deleted");
+						logErr( "Expected product:" + p.getId() + " to have been deleted");
 						pass2 = false;
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + productRef.length + ", actual:" + actual);
+				logErr( "Expected:" + productRef.length + ", actual:" + actual);
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -163,16 +163,16 @@ public class Client extends UtilProductData {
 		CriteriaDelete<Product> cd = cbuilder.createCriteriaDelete(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
+			logTrace( "Obtained Non-null root");
 			if (root.getModel().getName().equals(cd.getRoot().getModel().getName())) {
-				logger.log(Logger.Level.TRACE, "Obtained expected root");
+				logTrace( "Obtained expected root");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get expected root");
-				logger.log(Logger.Level.ERROR, "Expected:" + cd.getRoot() + ", actual:" + root);
+				logErr( "Failed to get expected root");
+				logErr( "Expected:" + cd.getRoot() + ", actual:" + root);
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		if (!pass) {
@@ -200,7 +200,7 @@ public class Client extends UtilProductData {
 		CriteriaDelete<Product> cd = cbuilder.createCriteriaDelete(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
+			logTrace( "Obtained Non-null root");
 
 			Expression exp = root.get("id");
 			Collection<String> col = new ArrayList<String>();
@@ -212,51 +212,51 @@ public class Client extends UtilProductData {
 
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == col.size()) {
-				logger.log(Logger.Level.TRACE, "Received expected number deleted:" + actual);
+				logTrace( "Received expected number deleted:" + actual);
 				clearCache();
 				pass2 = true;
 				for (Product p : productRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (p.getId().equals("1") || p.getId().equals("2") || p.getId().equals("3")) {
 						if (pp != null) {
-							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have been deleted");
+							logErr( "Expected product:" + p.getId() + " to have been deleted");
 							pass3 = false;
 						} else {
-							logger.log(Logger.Level.TRACE, "Product:" + p.getId() + " was successfully deleted");
+							logTrace( "Product:" + p.getId() + " was successfully deleted");
 						}
 					} else {
 						if (pp == null) {
-							logger.log(Logger.Level.ERROR, "Product:" + p.getId() + " was incorrectly deleted");
+							logErr( "Product:" + p.getId() + " was incorrectly deleted");
 							pass3 = false;
 						} else {
-							logger.log(Logger.Level.TRACE, "Found Product:" + pp.getId());
+							logTrace( "Found Product:" + pp.getId());
 						}
 					}
 				}
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp == null) {
-						logger.log(Logger.Level.ERROR, "Software Product:" + p.getId() + " was incorrectly deleted");
+						logErr( "Software Product:" + p.getId() + " was incorrectly deleted");
 
 						pass4 = false;
 					} else {
-						logger.log(Logger.Level.TRACE, "Found Software Product:" + pp.getId());
+						logTrace( "Found Software Product:" + pp.getId());
 					}
 				}
 				for (Product p : hardwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp == null) {
-						logger.log(Logger.Level.ERROR, "Harware Product:" + p.getId() + " was incorrectly deleted");
+						logErr( "Harware Product:" + p.getId() + " was incorrectly deleted");
 						pass5 = false;
 					} else {
-						logger.log(Logger.Level.TRACE, "Found Harware Product:" + pp.getId());
+						logTrace( "Found Harware Product:" + pp.getId());
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + col.size() + ", actual:" + actual);
+				logErr( "Expected:" + col.size() + ", actual:" + actual);
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -286,7 +286,7 @@ public class Client extends UtilProductData {
 		CriteriaDelete<Product> cd = cbuilder.createCriteriaDelete(Product.class);
 		Root<Product> root = cd.from(Product.class);
 		if (root != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null root");
+			logTrace( "Obtained Non-null root");
 
 			Predicate[] predArray = { cbuilder.equal(root.get("id"), "2") };
 
@@ -294,10 +294,10 @@ public class Client extends UtilProductData {
 
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == predArray.length) {
-				logger.log(Logger.Level.TRACE, "Received expected number deleted:" + actual);
+				logTrace( "Received expected number deleted:" + actual);
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected deleted:" + predArray.length + ", actual:" + actual);
+				logErr( "Expected deleted:" + predArray.length + ", actual:" + actual);
 			}
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -307,36 +307,36 @@ public class Client extends UtilProductData {
 				Product pp = getEntityManager().find(Product.class, p.getId());
 				if (p.getId().equals("2")) {
 					if (pp != null) {
-						logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have been deleted");
+						logErr( "Expected product:" + p.getId() + " to have been deleted");
 						pass2 = false;
 					} else {
-						logger.log(Logger.Level.TRACE, "Product:" + p.getId() + " was successfully deleted");
+						logTrace( "Product:" + p.getId() + " was successfully deleted");
 					}
 				} else {
 					if (pp == null) {
-						logger.log(Logger.Level.ERROR, "Product:" + p.getId() + " was incorrectly deleted");
+						logErr( "Product:" + p.getId() + " was incorrectly deleted");
 						pass2 = false;
 					} else {
-						logger.log(Logger.Level.TRACE, "Found Product:" + pp.getId());
+						logTrace( "Found Product:" + pp.getId());
 					}
 				}
 			}
 			for (Product p : softwareRef) {
 				Product pp = getEntityManager().find(Product.class, p.getId());
 				if (pp == null) {
-					logger.log(Logger.Level.ERROR, "Software product:" + p.getId() + " should not have been deleted");
+					logErr( "Software product:" + p.getId() + " should not have been deleted");
 					pass3 = false;
 				}
 			}
 			for (Product p : hardwareRef) {
 				Product pp = getEntityManager().find(Product.class, p.getId());
 				if (pp == null) {
-					logger.log(Logger.Level.ERROR, "Hardware product:" + p.getId() + " should not have been deleted");
+					logErr( "Hardware product:" + p.getId() + " should not have been deleted");
 					pass4 = false;
 				}
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -369,7 +369,7 @@ public class Client extends UtilProductData {
 		getEntityTransaction().begin();
 		CriteriaDelete<Product> cd = cbuilder.createCriteriaDelete(Product.class);
 		if (cd != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			Root<Product> product = cd.from(Product.class);
 
 			// Get Metamodel from Root
@@ -388,34 +388,34 @@ public class Client extends UtilProductData {
 
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == 1) {
-				logger.log(Logger.Level.TRACE, "Received expected number deleted:" + actual);
+				logTrace( "Received expected number deleted:" + actual);
 				clearCache();
 				for (Product p : productRef) {
 					pass1 = true;
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (p.getId().equals("1")) {
 						if (pp != null) {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected product:" + p.getId() + " to have been deleted:" + p.toString());
 							pass2 = false;
 						} else {
-							logger.log(Logger.Level.TRACE, "Product:" + p.getId() + " was successfully deleted");
+							logTrace( "Product:" + p.getId() + " was successfully deleted");
 						}
 					} else {
 						if (pp == null) {
-							logger.log(Logger.Level.ERROR, "Product:" + p.getId() + " was incorrectly deleted");
+							logErr( "Product:" + p.getId() + " was incorrectly deleted");
 							pass2 = false;
 						} else {
-							logger.log(Logger.Level.TRACE, "Found product:" + pp.getId());
+							logTrace( "Found product:" + pp.getId());
 						}
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:1, actual:" + actual);
+				logErr( "Expected:1, actual:" + actual);
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -443,7 +443,7 @@ public class Client extends UtilProductData {
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 		getEntityTransaction().begin();
-		logger.log(Logger.Level.INFO, "Testing initial query");
+		logMsg( "Testing initial query");
 		CriteriaDelete<SoftwareProduct> cd = cbuilder.createCriteriaDelete(SoftwareProduct.class);
 		Root<SoftwareProduct> softwareproduct = cd.from(SoftwareProduct.class);
 		if (softwareproduct != null) {
@@ -451,51 +451,51 @@ public class Client extends UtilProductData {
 			cd.where(cbuilder.lt(softwareproduct.get(softwareproduct_.getSingularAttribute("quantity", Integer.class)),
 					35));
 			Query q = getEntityManager().createQuery(cd);
-			logger.log(Logger.Level.INFO, "Modify CriteriaDelete object");
+			logMsg( "Modify CriteriaDelete object");
 			cd.where(cbuilder.lt(softwareproduct.get(softwareproduct_.getSingularAttribute("quantity", Integer.class)),
 					500));
 			int actual = q.executeUpdate();
 			if (actual == 4) {
-				logger.log(Logger.Level.TRACE, "Received expected number of deletes:" + actual);
+				logTrace( "Received expected number of deletes:" + actual);
 				clearCache();
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(SoftwareProduct.class, p.getId());
 					if (p.getId().equals("30") || p.getId().equals("31") || p.getId().equals("36")
 							|| p.getId().equals("37")) {
 						if (pp != null) {
-							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have been deleted");
+							logErr( "Expected product:" + p.getId() + " to have been deleted");
 						} else {
-							logger.log(Logger.Level.TRACE, "id:" + p.getId() + " was successfully deleted");
+							logTrace( "id:" + p.getId() + " was successfully deleted");
 							passDeletedCount1++;
 						}
 					} else {
 						if (pp == null) {
-							logger.log(Logger.Level.ERROR, "id:" + p.getId() + " was incorrectly deleted");
+							logErr( "id:" + p.getId() + " was incorrectly deleted");
 						} else {
-							logger.log(Logger.Level.TRACE, "Found product:" + pp.getId());
+							logTrace( "Found product:" + pp.getId());
 							passUnDeletedCount1++;
 						}
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected: 4 deletes [30,31,36,37], actual:" + actual);
+				logErr( "Expected: 4 deletes [30,31,36,37], actual:" + actual);
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
 					if (pp != null) {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"id:" + p.getId() + ", quantity:" + pp.getQuantity() + " exists");
 					} else {
-						logger.log(Logger.Level.ERROR, "id:" + p.getId() + " was deleted");
+						logErr( "id:" + p.getId() + " was deleted");
 					}
 				}
 			}
-			logger.log(Logger.Level.INFO, "Testing modified CriteriaQuery");
+			logMsg( "Testing modified CriteriaQuery");
 			cd.where(cbuilder.gt(softwareproduct.get(softwareproduct_.getSingularAttribute("quantity", Integer.class)),
 					100));
 
 			actual = getEntityManager().createQuery(cd).executeUpdate();
 			if (actual == 3) {
-				logger.log(Logger.Level.TRACE, "Received expected number of deletes:" + actual);
+				logTrace( "Received expected number of deletes:" + actual);
 				clearCache();
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(SoftwareProduct.class, p.getId());
@@ -503,32 +503,32 @@ public class Client extends UtilProductData {
 							|| p.getId().equals("30") || p.getId().equals("31") || p.getId().equals("36")
 							|| p.getId().equals("37")) {
 						if (pp != null) {
-							logger.log(Logger.Level.ERROR, "Expected product:" + p.getId() + " to have been deleted");
+							logErr( "Expected product:" + p.getId() + " to have been deleted");
 						} else {
-							logger.log(Logger.Level.TRACE, "id:" + p.getId() + " was successfully deleted");
+							logTrace( "id:" + p.getId() + " was successfully deleted");
 							passDeletedCount2++;
 						}
 					} else {
 						if (pp == null) {
-							logger.log(Logger.Level.ERROR, "id:" + p.getId() + " was incorrectly deleted");
+							logErr( "id:" + p.getId() + " was incorrectly deleted");
 						} else {
-							logger.log(Logger.Level.TRACE, "Found id:" + pp.getId());
+							logTrace( "Found id:" + pp.getId());
 							passUnDeletedCount2++;
 						}
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected: 3 additional deletes [29,34,38] total deletes [29,30,31,34,36,37,38], actual:"
 								+ actual);
 				for (Product p : softwareRef) {
 					Product pp = getEntityManager().find(Product.class, p.getId());
-					logger.log(Logger.Level.ERROR, "id:" + p.getId() + ", quantity:" + pp.getQuantity());
+					logErr( "id:" + p.getId() + ", quantity:" + pp.getQuantity());
 				}
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -539,7 +539,7 @@ public class Client extends UtilProductData {
 	}
 
 	public void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -549,14 +549,14 @@ public class Client extends UtilProductData {
 			getEntityManager().createNativeQuery("DELETE FROM PRODUCT_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

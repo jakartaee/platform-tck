@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
@@ -111,12 +111,12 @@ public class A implements java.io.Serializable {
 	@Basic
 	protected Timestamp basicTimestamp;
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+	
 
 	// ===========================================================
 	// constructors
 	public A() {
-		logger.log(Logger.Level.TRACE, "Entity A no arg constructor");
+		logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value, Integer basicInteger, short basicShort, Short basicBigShort,

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.elementcollection;
 
-import java.lang.System.Logger;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,7 +38,7 @@ public class A implements java.io.Serializable {
 
 	protected int value;
 
-	private static final Logger logger = (Logger) System.getLogger(LogFileProcessor.class.getName());
+
 
 	@ElementCollection(fetch = FetchType.EAGER, targetClass = Address.class)
 	// @CollectionTable(name="A_ADDRESS2")
@@ -55,12 +55,12 @@ public class A implements java.io.Serializable {
 
 	// Default to table A_ADDRESS
 	public Set<Address> getAddress() {
-		logger.log(Logger.Level.TRACE, "getAddress");
+		logTrace( "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddress");
+		logTrace( "setAddress");
 		this.address = addr;
 	}
 

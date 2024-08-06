@@ -17,7 +17,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.convert;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
@@ -54,13 +54,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -80,34 +80,34 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			Employee expected = new Employee(1, "Alan", "Smith", "3#5#0#0#0.0");
-			logger.log(Logger.Level.TRACE, "Persisting Employee");
+			logTrace( "Persisting Employee");
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 			clearCache();
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE,
+			logTrace(
 					"find the previously persisted Employees and verify them and their departments");
 			Employee emp = getEntityManager().find(Employee.class, expected.getId());
 			if (emp != null) {
-				logger.log(Logger.Level.TRACE, "Found employee: " + emp.getId());
+				logTrace( "Found employee: " + emp.getId());
 				// Remove the '#' symbols from the expected salary and then do
 				// comparison
 				expected.setSalary(expected.getSalary().replace("#", ""));
 				if (emp.equals(expected)) {
-					logger.log(Logger.Level.TRACE, "Received expected employee:" + emp.toString());
+					logTrace( "Received expected employee:" + emp.toString());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + expected.toString() + ", actual:" + emp.toString());
+					logErr( "Expected:" + expected.toString() + ", actual:" + emp.toString());
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null Employee instead of:" + expected);
+				logErr( "Find returned null Employee instead of:" + expected);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred: ", e);
+			logErr( "Unexpected exception occurred: ", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -129,30 +129,30 @@ public class Client extends PMClientBase {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "isActive():" + getEntityTransaction().isActive());
+			logTrace( "isActive():" + getEntityTransaction().isActive());
 			B b = new B("1", "name1", 1, new Address("500 Oracle Parkway", "Redwood Shores", -1));
 			getEntityManager().persist(b);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "Did not received expected PersistenceException");
+			logErr( "Did not received expected PersistenceException");
 		} catch (PersistenceException pe) {
-			logger.log(Logger.Level.TRACE, "Received expected PersistenceException");
+			logTrace( "Received expected PersistenceException");
 			if (getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			}
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 		if (!pass) {
@@ -174,51 +174,51 @@ public class Client extends PMClientBase {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "isActive():" + getEntityTransaction().isActive());
+			logTrace( "isActive():" + getEntityTransaction().isActive());
 
 			B b = new B("1", "name1", 1, new Address("500 Oracle Parkway", "Redwood Shores", -2));
-			logger.log(Logger.Level.TRACE, "Persisting B");
+			logTrace( "Persisting B");
 			getEntityManager().persist(b);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 			clearCache();
 			getEntityTransaction().begin();
 			try {
-				logger.log(Logger.Level.TRACE, "Finding B");
+				logTrace( "Finding B");
 
 				B b1 = getEntityManager().find(B.class, "1");
-				logger.log(Logger.Level.ERROR, "Did not received expected PersistenceException");
+				logErr( "Did not received expected PersistenceException");
 			} catch (PersistenceException pe) {
-				logger.log(Logger.Level.TRACE, "Received expected PersistenceException");
+				logTrace( "Received expected PersistenceException");
 				if (getEntityTransaction().getRollbackOnly()) {
-					logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+					logTrace( "Transaction was marked for rollback");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+					logErr( "Transaction was not marked for rollback");
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 
-				logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+				logErr( "Unexpected exception received:", ex);
 			} finally {
 				try {
 					if (getEntityTransaction().isActive()) {
 						getEntityTransaction().rollback();
 					}
 				} catch (Exception re) {
-					logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+					logErr( "Unexpected Exception while rolling back TX:", re);
 				}
 			}
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 		if (!pass) {
@@ -253,40 +253,40 @@ public class Client extends PMClientBase {
 			clearCache();
 			getEntityTransaction().begin();
 			B b1 = getEntityManager().find(B.class, "1");
-			logger.log(Logger.Level.TRACE, "B:" + b1.toString());
+			logTrace( "B:" + b1.toString());
 			if (b1.getBValue().equals(1110)) {
-				logger.log(Logger.Level.TRACE, "Received expected value:" + b1.getBValue());
+				logTrace( "Received expected value:" + b1.getBValue());
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Converter was not properly applied, expected value:1002, actual" + b1.getBValue());
 			}
 			Address a = b1.getAddress();
 			if (a.getStreet().equals(street.replace(".", "_"))) {
-				logger.log(Logger.Level.TRACE, "Received expected street:" + a.getStreet());
+				logTrace( "Received expected street:" + a.getStreet());
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Converter was not properly applied, expected street:" + street + ", actual:" + a.getStreet());
 			}
 			if (a.getState() == 1) {
-				logger.log(Logger.Level.TRACE, "Received expected state:" + a.getState());
+				logTrace( "Received expected state:" + a.getState());
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Converter was not properly applied, expected state: 1, actual: " + a.getState());
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 
@@ -311,33 +311,33 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			char[] c = { 'D', 'o', 'e' };
 			FullTimeEmployee expected = new FullTimeEmployee(1, "John", c, "3#5#0#0#0.0");
-			logger.log(Logger.Level.TRACE, "Persisting FullTimeEmployee:" + expected.toString());
+			logTrace( "Persisting FullTimeEmployee:" + expected.toString());
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 			clearCache();
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE,
+			logTrace(
 					"find the previously persisted Employees and verify them and their departments");
 			FullTimeEmployee emp = getEntityManager().find(FullTimeEmployee.class, expected.getId());
 			if (emp != null) {
-				logger.log(Logger.Level.TRACE, "Found FullTimeEmployee: " + emp.getId());
+				logTrace( "Found FullTimeEmployee: " + emp.getId());
 				expected.setSalary(expected.getSalary().replace("#", ""));
 				c = new char[] { 'J', 'a', 'm', 'e', 's' };
 				expected.setLastName(c);
 				if (emp.equals(expected)) {
-					logger.log(Logger.Level.TRACE, "Received expected FullTimeEmployee:" + emp.toString());
+					logTrace( "Received expected FullTimeEmployee:" + emp.toString());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + expected.toString() + ", actual:" + emp.toString());
+					logErr( "Expected:" + expected.toString() + ", actual:" + emp.toString());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null FullTimeEmployee instead of:" + expected);
+				logErr( "Find returned null FullTimeEmployee instead of:" + expected);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred: ", e);
+			logErr( "Unexpected exception occurred: ", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -359,31 +359,31 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			FullTimeEmployee2 expected = new FullTimeEmployee2(1, "J.o.h.n", "Hill", "3500.0");
-			logger.log(Logger.Level.TRACE, "Persisting FullTimeEmployee2:" + expected.toString());
+			logTrace( "Persisting FullTimeEmployee2:" + expected.toString());
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 			clearCache();
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE,
+			logTrace(
 					"find the previously persisted Employees and verify them and their departments");
 			FullTimeEmployee2 emp = getEntityManager().find(FullTimeEmployee2.class, expected.getId());
 			if (emp != null) {
-				logger.log(Logger.Level.TRACE, "Found FullTimeEmployee2: " + emp.getId());
+				logTrace( "Found FullTimeEmployee2: " + emp.getId());
 				expected.setFirstName(expected.getFirstName().replace(".", "#"));
 				if (emp.equals(expected)) {
-					logger.log(Logger.Level.TRACE, "Received expected FullTimeEmployee:" + emp.toString());
+					logTrace( "Received expected FullTimeEmployee:" + emp.toString());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + expected.toString() + ", actual:" + emp.toString());
+					logErr( "Expected:" + expected.toString() + ", actual:" + emp.toString());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null FullTimeEmployee instead of:" + expected);
+				logErr( "Find returned null FullTimeEmployee instead of:" + expected);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred: ", e);
+			logErr( "Unexpected exception occurred: ", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -412,87 +412,87 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 			pass1 = true;
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 		clearCache();
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Testing JPQL");
+			logMsg( "Testing JPQL");
 			List<Employee> o = getEntityManager().createQuery("Select e from Employee e WHERE e.id = 1", Employee.class)
 					.getResultList();
 
 			if (o.size() == 1) {
 				Employee emp = o.get(0);
-				logger.log(Logger.Level.TRACE, "Employee:" + emp.toString());
+				logTrace( "Employee:" + emp.toString());
 				if (emp.getSalary().equals("35000.0")) {
-					logger.log(Logger.Level.TRACE, "Received expected value:" + emp.getSalary());
+					logTrace( "Received expected value:" + emp.getSalary());
 					pass2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Converter was not properly applied, expected value:35000.0, actual" + emp.getSalary());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected 1 entity to be returned, actual:" + o.size());
+				logErr( "Expected 1 entity to be returned, actual:" + o.size());
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 		clearCache();
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.INFO, "Testing Criteria");
+			logMsg( "Testing Criteria");
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 			CriteriaQuery<Employee> cquery = cbuilder.createQuery(Employee.class);
 			if (cquery != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+				logTrace( "Obtained Non-null Criteria Query");
 				Root<Employee> employee = cquery.from(Employee.class);
 				cquery.select(employee).where(cbuilder.equal(employee.get("id"), 1));
 				Employee emp = getEntityManager().createQuery(cquery).getSingleResult();
 				if (emp != null) {
-					logger.log(Logger.Level.TRACE, "Employee:" + emp.toString());
+					logTrace( "Employee:" + emp.toString());
 					if (emp.getSalary().equals("35000.0")) {
-						logger.log(Logger.Level.TRACE, "Received expected value:" + emp.getSalary());
+						logTrace( "Received expected value:" + emp.getSalary());
 						pass3 = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Converter was not properly applied, expected value:35000.0, actual" + emp.getSalary());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Null Employee result was returned");
+					logErr( "Null Employee result was returned");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "createQuery returned null result");
+				logErr( "createQuery returned null result");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 
@@ -523,20 +523,20 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 			pass1 = true;
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 		clearCache();
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Testing JPQL");
+			logMsg( "Testing JPQL");
 			String expected = "54321.0";
 			getEntityManager().createQuery("Update Employee e set e.salary='5#4#3#2#1.0'  WHERE e.id = 1")
 					.executeUpdate();
@@ -546,41 +546,41 @@ public class Client extends PMClientBase {
 			getEntityTransaction().begin();
 			Employee emp = getEntityManager().find(Employee.class, 1);
 			if (emp != null) {
-				logger.log(Logger.Level.TRACE, "Found employee: " + emp.getId());
+				logTrace( "Found employee: " + emp.getId());
 				if (emp.getSalary().equals(expected)) {
-					logger.log(Logger.Level.TRACE, "Received expected value:" + emp.getSalary());
+					logTrace( "Received expected value:" + emp.getSalary());
 					pass2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Converter was not properly applied, expected value:" + expected
+					logErr( "Converter was not properly applied, expected value:" + expected
 							+ ", actual" + emp.getSalary());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null Employee");
+				logErr( "Find returned null Employee");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 		clearCache();
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.INFO, "Testing Criteria");
+			logMsg( "Testing Criteria");
 			String expected = "3500.0";
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
 			CriteriaUpdate<Employee> cd = cbuilder.createCriteriaUpdate(Employee.class);
 			Root<Employee> employee = cd.from(Employee.class);
-			logger.log(Logger.Level.TRACE, "Obtained expected root");
+			logTrace( "Obtained expected root");
 			cd.set("salary", "3#5#0#0.0");
 			cd.where(cbuilder.equal(employee.get("id"), 1));
 			int actual = getEntityManager().createQuery(cd).executeUpdate();
@@ -591,30 +591,30 @@ public class Client extends PMClientBase {
 				getEntityTransaction().begin();
 				Employee emp = getEntityManager().find(Employee.class, 1);
 				if (emp != null) {
-					logger.log(Logger.Level.TRACE, "Found employee: " + emp.getId());
+					logTrace( "Found employee: " + emp.getId());
 					if (emp.getSalary().equals("3500.0")) {
-						logger.log(Logger.Level.TRACE, "Received expected value:" + emp.getSalary());
+						logTrace( "Received expected value:" + emp.getSalary());
 						pass3 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Converter was not properly applied, expected value:" + expected
+						logErr( "Converter was not properly applied, expected value:" + expected
 								+ ", actual" + emp.getSalary());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Find returned null Employee instead of:" + expected);
+					logErr( "Find returned null Employee instead of:" + expected);
 				}
 				getEntityTransaction().commit();
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected 1 update, actual:" + actual);
+				logErr( "Expected 1 update, actual:" + actual);
 			}
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 
@@ -638,30 +638,30 @@ public class Client extends PMClientBase {
 			String name = "john smith";
 			String country = "United States";
 			Customer expected = new Customer("1", name, new Country(country, "USA"));
-			logger.log(Logger.Level.TRACE, "Persisting Customer:" + expected.toString());
+			logTrace( "Persisting Customer:" + expected.toString());
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 			clearCache();
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find the previously persisted Customer and Country and verify them");
+			logTrace( "find the previously persisted Customer and Country and verify them");
 			Customer cust = getEntityManager().find(Customer.class, expected.getId());
 			if (cust != null) {
-				logger.log(Logger.Level.TRACE, "Found Customer: " + cust.toString());
+				logTrace( "Found Customer: " + cust.toString());
 				String tmp = country.replace(" ", "_");
 				if (cust.getCountry().getCountry().equals(tmp)) {
-					logger.log(Logger.Level.TRACE, "Received expected Country:" + cust.getCountry().getCountry());
+					logTrace( "Received expected Country:" + cust.getCountry().getCountry());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + tmp + ", actual:" + cust.getCountry().getCountry());
+					logErr( "Expected:" + tmp + ", actual:" + cust.getCountry().getCountry());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null Customer");
+				logErr( "Find returned null Customer");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred: ", e);
+			logErr( "Unexpected exception occurred: ", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -692,40 +692,40 @@ public class Client extends PMClientBase {
 			}
 
 			expected.setPhones(phones);
-			logger.log(Logger.Level.TRACE, "Persisting Customer:" + expected.toString());
+			logTrace( "Persisting Customer:" + expected.toString());
 			getEntityManager().persist(expected);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 			clearCache();
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find the previously persisted Customer and Country and verify them");
+			logTrace( "find the previously persisted Customer and Country and verify them");
 			Customer cust = getEntityManager().find(Customer.class, expected.getId());
 			if (cust != null) {
-				logger.log(Logger.Level.TRACE, "Found Customer: " + cust.toString());
+				logTrace( "Found Customer: " + cust.toString());
 				if (cust.getPhones().containsAll(expectedphones) && expectedphones.containsAll(cust.getPhones())
 						&& cust.getPhones().size() == expectedphones.size()) {
-					logger.log(Logger.Level.TRACE, "Received expected Phones:");
+					logTrace( "Received expected Phones:");
 					for (String s : cust.getPhones()) {
-						logger.log(Logger.Level.TRACE, "phone:" + s);
+						logTrace( "phone:" + s);
 					}
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Did not get expected results.");
+					logErr( "Did not get expected results.");
 					for (String s : expectedphones) {
-						logger.log(Logger.Level.TRACE, "expected:" + s);
+						logTrace( "expected:" + s);
 					}
-					logger.log(Logger.Level.ERROR, "actual:");
+					logErr( "actual:");
 					for (String s : cust.getPhones()) {
-						logger.log(Logger.Level.TRACE, "actual:" + s);
+						logTrace( "actual:" + s);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null Customer");
+				logErr( "Find returned null Customer");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred: ", e);
+			logErr( "Unexpected exception occurred: ", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -736,9 +736,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -746,7 +746,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -759,7 +759,7 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 
 		} finally {
 			try {
@@ -767,7 +767,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

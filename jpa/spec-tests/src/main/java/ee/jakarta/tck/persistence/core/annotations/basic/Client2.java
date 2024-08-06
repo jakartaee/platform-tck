@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.basic;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
 
 public class Client2 extends Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+	
 
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
@@ -41,7 +41,7 @@ public class Client2 extends Client {
 
 	@BeforeEach
 	public void setupData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupData");
+		logTrace( "setupData");
 		try {
 			super.setup();
 			createDeployment();
@@ -68,131 +68,131 @@ public class Client2 extends Client {
 		Object p;
 
 		try {
-			logger.log(Logger.Level.INFO, "Testing + Double operand:");
+			logMsg( "Testing + Double operand:");
 			getEntityTransaction().begin();
 			double whereValue = 1234.5;
 			p = getEntityManager().createQuery("Select (a.basicBigDouble + 1) From A a where (a.basicBigDouble = ?1)")
 					.setParameter(1, whereValue).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected Double type");
+				logTrace( "Received expected Double type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Double:" + p.getClass().getName());
+				logErr( "Result was not of type Double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - Double operand:");
+			logMsg( "Testing - Double operand:");
 			getEntityTransaction().begin();
 			double whereValue = 1234.0;
 			p = getEntityManager().createQuery("Select (a.basicBigDouble - 1) From A a where (a.basicBigDouble > ?1)")
 					.setParameter(1, whereValue).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected Double type");
+				logTrace( "Received expected Double type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Double:" + p.getClass().getName());
+				logErr( "Result was not of type Double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * Double operand:");
+			logMsg( "Testing * Double operand:");
 			getEntityTransaction().begin();
 			double whereValue = 1235.0;
 			p = getEntityManager().createQuery("Select (a.basicBigDouble * 1) From A a where (a.basicBigDouble < ?1)")
 					.setParameter(1, whereValue).getSingleResult();
 
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected Double type");
+				logTrace( "Received expected Double type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Double:" + p.getClass().getName());
+				logErr( "Result was not of type Double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / Double operand:");
+			logMsg( "Testing / Double operand:");
 			getEntityTransaction().begin();
 			double whereValue = 1235.0;
 			p = getEntityManager().createQuery("Select (a.basicBigDouble / 1) From A a where (a.basicBigDouble <> ?1)")
 					.setParameter(1, whereValue).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected Double type");
+				logTrace( "Received expected Double type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Double:" + p.getClass().getName());
+				logErr( "Result was not of type Double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing + double operand:");
+			logMsg( "Testing + double operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicDouble + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected double type");
+				logTrace( "Received expected double type");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type double:" + p.getClass().getName());
+				logErr( "Result was not of type double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - double operand:");
+			logMsg( "Testing - double operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicDouble - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected double type");
+				logTrace( "Received expected double type");
 				pass6 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type double:" + p.getClass().getName());
+				logErr( "Result was not of type double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * double operand:");
+			logMsg( "Testing * double operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicDouble * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected double type");
+				logTrace( "Received expected double type");
 				pass7 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type double:" + p.getClass().getName());
+				logErr( "Result was not of type double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / double operand:");
+			logMsg( "Testing / double operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicDouble / 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected double type");
+				logTrace( "Received expected double type");
 				pass8 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type double:" + p.getClass().getName());
+				logErr( "Result was not of type double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7 || !pass8)
 			throw new Exception("DoubleOperandResultTypeTests failed");
@@ -212,128 +212,128 @@ public class Client2 extends Client {
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + Float operand:");
+			logMsg( "Testing + Float operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigFloat + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - Float operand:");
+			logMsg( "Testing - Float operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigFloat - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * Float operand:");
+			logMsg( "Testing * Float operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigFloat * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / Float operand:");
+			logMsg( "Testing / Float operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigFloat / 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing + float operand:");
+			logMsg( "Testing + float operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicFloat + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected float type");
+				logTrace( "Received expected float type");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type float:" + p.getClass().getName());
+				logErr( "Result was not of type float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - float operand:");
+			logMsg( "Testing - float operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicFloat - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected float type");
+				logTrace( "Received expected float type");
 				pass6 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type float:" + p.getClass().getName());
+				logErr( "Result was not of type float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * float operand:");
+			logMsg( "Testing * float operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicFloat * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected float type");
+				logTrace( "Received expected float type");
 				pass7 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type float:" + p.getClass().getName());
+				logErr( "Result was not of type float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / float operand:");
+			logMsg( "Testing / float operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigFloat / 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass8 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7 || !pass8)
 			throw new Exception("FloatOperandResultTypeTests failed");
@@ -353,66 +353,66 @@ public class Client2 extends Client {
 		pass1 = pass2 = pass3 = pass4 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + BigDecimal operand:");
+			logMsg( "Testing + BigDecimal operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigDecimal + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof BigDecimal) {
-				logger.log(Logger.Level.TRACE, "Received expected BigDecimal type");
+				logTrace( "Received expected BigDecimal type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigDecimal:" + p.getClass().getName());
+				logErr( "Result was not of type BigDecimal:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - BigDecimal operand:");
+			logMsg( "Testing - BigDecimal operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigDecimal - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof BigDecimal) {
-				logger.log(Logger.Level.TRACE, "Received expected BigDecimal type");
+				logTrace( "Received expected BigDecimal type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigDecimal:" + p.getClass().getName());
+				logErr( "Result was not of type BigDecimal:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * BigDecimal operand:");
+			logMsg( "Testing * BigDecimal operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigDecimal * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof BigDecimal) {
-				logger.log(Logger.Level.TRACE, "Received expected BigDecimal type");
+				logTrace( "Received expected BigDecimal type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigDecimal:" + p.getClass().getName());
+				logErr( "Result was not of type BigDecimal:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / BigDecimal operand:");
+			logMsg( "Testing / BigDecimal operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigDecimal / 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof BigDecimal) {
-				logger.log(Logger.Level.TRACE, "Received expected BigDecimal type");
+				logTrace( "Received expected BigDecimal type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigDecimal:" + p.getClass().getName());
+				logErr( "Result was not of type BigDecimal:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4)
 			throw new Exception("BigDecimalOperandResultTypeTests failed");
@@ -432,50 +432,50 @@ public class Client2 extends Client {
 		pass1 = pass2 = pass3 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + BigInteger operand:");
+			logMsg( "Testing + BigInteger operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigInteger + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof BigInteger) {
-				logger.log(Logger.Level.TRACE, "Received expected BigInteger type");
+				logTrace( "Received expected BigInteger type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigInteger:" + p.getClass().getName());
+				logErr( "Result was not of type BigInteger:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - BigInteger operand:");
+			logMsg( "Testing - BigInteger operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigInteger - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof BigInteger) {
-				logger.log(Logger.Level.TRACE, "Received expected BigInteger type");
+				logTrace( "Received expected BigInteger type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigInteger:" + p.getClass().getName());
+				logErr( "Result was not of type BigInteger:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * BigInteger operand:");
+			logMsg( "Testing * BigInteger operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigInteger * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof BigInteger) {
-				logger.log(Logger.Level.TRACE, "Received expected BigInteger type");
+				logTrace( "Received expected BigInteger type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigInteger:" + p.getClass().getName());
+				logErr( "Result was not of type BigInteger:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3)
@@ -496,97 +496,97 @@ public class Client2 extends Client {
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + Long operand:");
+			logMsg( "Testing + Long operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigLong + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected Long type");
+				logTrace( "Received expected Long type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Long:" + p.getClass().getName());
+				logErr( "Result was not of type Long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - Long operand:");
+			logMsg( "Testing - Long operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigLong - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected Long type");
+				logTrace( "Received expected Long type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Long:" + p.getClass().getName());
+				logErr( "Result was not of type Long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * Long operand:");
+			logMsg( "Testing * Long operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigLong * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected Long type");
+				logTrace( "Received expected Long type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Long:" + p.getClass().getName());
+				logErr( "Result was not of type Long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		try {
-			logger.log(Logger.Level.INFO, "Testing + long operand:");
+			logMsg( "Testing + long operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicLong + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected long type");
+				logTrace( "Received expected long type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type long:" + p.getClass().getName());
+				logErr( "Result was not of type long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - long operand:");
+			logMsg( "Testing - long operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicLong - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected long type");
+				logTrace( "Received expected long type");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type long:" + p.getClass().getName());
+				logErr( "Result was not of type long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * long operand:");
+			logMsg( "Testing * long operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicLong * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected long type");
+				logTrace( "Received expected long type");
 				pass6 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type long:" + p.getClass().getName());
+				logErr( "Result was not of type long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
@@ -608,96 +608,96 @@ public class Client2 extends Client {
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + Short operand:");
+			logMsg( "Testing + Short operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigShort + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - Short operand:");
+			logMsg( "Testing - Short operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigShort - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * Short operand:");
+			logMsg( "Testing * Short operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicBigShort * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing + short operand:");
+			logMsg( "Testing + short operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicShort + 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - short operand:");
+			logMsg( "Testing - short operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicShort - 1) From A a where (a.id = '9')")
 					.getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * short operand:");
+			logMsg( "Testing * short operand:");
 			getEntityTransaction().begin();
 			p = getEntityManager().createQuery("Select (a.basicShort * 1) From A a where (a.id = '9')")
 					.getSingleResult();
 
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass6 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)

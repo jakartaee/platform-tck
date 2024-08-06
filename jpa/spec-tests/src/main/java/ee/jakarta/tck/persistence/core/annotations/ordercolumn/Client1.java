@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.ordercolumn;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ import jakarta.persistence.Query;
 public class Client1 extends PMClientBase {
 
 	private List<Student> expectedResults;
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
+	
 
 	public Client1() {
 	}
@@ -47,14 +47,14 @@ public class Client1 extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createStudentTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -96,7 +96,7 @@ public class Client1 extends PMClientBase {
 				// force students to be read
 				numStudents = course.getStudents().size();
 			} else {
-				logger.log(Logger.Level.ERROR, "course from find() is NULL!");
+				logErr( "course from find() is NULL!");
 			}
 
 			if (numStudents == expectedListSize) {
@@ -104,33 +104,33 @@ public class Client1 extends PMClientBase {
 				if (students.get(0).equals(expectedResults.get(0)) && students.get(1).equals(expectedResults.get(1))
 						&& students.get(2).equals(expectedResults.get(2))
 						&& students.get(3).equals(expectedResults.get(3))) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"****Current order of students returned via " + "getStudents()\nNow checking via JPQL");
 
 					Query q = getEntityManager().createQuery("SELECT s.studentName "
 							+ "FROM Course c JOIN c.students s where c.courseName ='Physics' and INDEX(s) = 1");
 					final String result = (String) q.getSingleResult();
 					if (result.equals(expectedStudentName)) {
-						logger.log(Logger.Level.TRACE, "+++Received expected Name via Query:" + expectedStudentName);
+						logTrace( "+++Received expected Name via Query:" + expectedStudentName);
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Did NOT get expected name via Query: " + expectedStudentName
+						logErr( "Did NOT get expected name via Query: " + expectedStudentName
 								+ ", received: " + result);
 					}
 
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Failed to return the correct order of " + "students via getStudents()");
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "course.getStudents() returned wrong number!");
+				logErr( "course.getStudents() returned wrong number!");
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 		}
 
 		if (!pass) {
@@ -141,7 +141,7 @@ public class Client1 extends PMClientBase {
 
 	public void createStudentTestData() {
 		try {
-			logger.log(Logger.Level.TRACE, "createTestData");
+			logTrace( "createTestData");
 			getEntityTransaction().begin();
 
 			// Create 8 students;
@@ -226,7 +226,7 @@ public class Client1 extends PMClientBase {
 			entityManager.persist(student6);
 			entityManager.persist(student7);
 			entityManager.persist(student8);
-			logger.log(Logger.Level.TRACE, "persisted 8 students");
+			logTrace( "persisted 8 students");
 
 			// persist courses
 			entityManager.persist(appliedMath);
@@ -234,21 +234,21 @@ public class Client1 extends PMClientBase {
 			entityManager.persist(operationResearch);
 			entityManager.persist(statistics);
 			entityManager.persist(operatingSystem);
-			logger.log(Logger.Level.TRACE, "persisted 5 Courses");
+			logTrace( "persisted 5 Courses");
 
-			logger.log(Logger.Level.TRACE, "persisted Entity Data");
+			logTrace( "persisted Entity Data");
 			getEntityManager().flush();
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
+			logErr( "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -257,9 +257,9 @@ public class Client1 extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -267,7 +267,7 @@ public class Client1 extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -278,14 +278,14 @@ public class Client1 extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from COURSE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

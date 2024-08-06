@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
-import java.lang.System.Logger;
+
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -34,7 +34,7 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client8 extends UtilTrimData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client8.class.getName());
+	
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -67,12 +67,12 @@ public class Client8 extends UtilTrimData {
 		getEntityTransaction().begin();
 		/*
 		 * Trim tTrim = getEntityManager().find(Trim.class, "19");
-		 * logger.log(Logger.Level.TRACE,"Trim(19):" + tTrim.toString()); if
+		 * logTrace("Trim(19):" + tTrim.toString()); if
 		 * (tTrim.getName().equals(expected)) {
-		 * logger.log(Logger.Level.TRACE,"Received expected find result: " +
+		 * logTrace("Received expected find result: " +
 		 * tTrim.getName()); pass1 = true; } else {
-		 * logger.log(Logger.Level.ERROR,"Name returned by find does not match expected"
-		 * ); logger.log(Logger.Level.ERROR,"Expected:|" + expected + "|, actual:|" +
+		 * logErr("Name returned by find does not match expected"
+		 * ); logErr("Expected:|" + expected + "|, actual:|" +
 		 * tTrim.getName() + "|"); }
 		 * 
 		 */
@@ -92,15 +92,15 @@ public class Client8 extends UtilTrimData {
 			String result = tq.getSingleResult();
 
 			if (result.equals(expected2)) {
-				logger.log(Logger.Level.TRACE, "Received expected result:|" + result + "|");
+				logTrace( "Received expected result:|" + result + "|");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Mismatch in received results - expected = |" + expected2 + "|, received = |" + result + "|");
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -131,10 +131,10 @@ public class Client8 extends UtilTrimData {
 	 * getEntityTransaction().begin();
 	 * 
 	 * Trim tTrim = getEntityManager().find(Trim.class, "19");
-	 * logger.log(Logger.Level.TRACE,"Trim(19):" + tTrim.toString()); if
+	 * logTrace("Trim(19):" + tTrim.toString()); if
 	 * (!tTrim.getName().equals(expected)) {
-	 * logger.log(Logger.Level.ERROR,"Name returned by find does not match expected"
-	 * ); logger.log(Logger.Level.ERROR,"Expected:|" + expected + "|, actual:|" +
+	 * logErr("Name returned by find does not match expected"
+	 * ); logErr("Expected:|" + expected + "|, actual:|" +
 	 * tTrim.getName() + "|"); }
 	 * 
 	 * 
@@ -154,13 +154,13 @@ public class Client8 extends UtilTrimData {
 	 * String result = tq.getSingleResult();
 	 * 
 	 * if (result.equals(expected2)) {
-	 * logger.log(Logger.Level.TRACE,"Received expected result:|" + result + "|");
+	 * logTrace("Received expected result:|" + result + "|");
 	 * pass = true; } else {
-	 * logger.log(Logger.Level.ERROR,"Mismatch in received results - expected = |" +
+	 * logErr("Mismatch in received results - expected = |" +
 	 * expected2 + "|, received = |" + result + "|"); }
 	 * 
 	 * } else {
-	 * logger.log(Logger.Level.ERROR,"Failed to get Non-null Criteria Query"); }
+	 * logErr("Failed to get Non-null Criteria Query"); }
 	 * 
 	 * getEntityTransaction().commit();
 	 * 
@@ -191,12 +191,12 @@ public class Client8 extends UtilTrimData {
 
 		/*
 		 * Trim tTrim = getEntityManager().find(Trim.class, "19");
-		 * logger.log(Logger.Level.TRACE,"Trim(19):" + tTrim.toString()); if
+		 * logTrace("Trim(19):" + tTrim.toString()); if
 		 * (tTrim.getName().equals(expected)) {
-		 * logger.log(Logger.Level.TRACE,"Received expected find result: " +
+		 * logTrace("Received expected find result: " +
 		 * tTrim.getName()); pass1 = true; } else {
-		 * logger.log(Logger.Level.ERROR,"Name returned by find does not match expected"
-		 * ); logger.log(Logger.Level.ERROR,"Expected:|" + expected + "|, actual:|" +
+		 * logErr("Name returned by find does not match expected"
+		 * ); logErr("Expected:|" + expected + "|, actual:|" +
 		 * tTrim.getName() + "|"); }
 		 */
 
@@ -216,15 +216,15 @@ public class Client8 extends UtilTrimData {
 			String result = tq.getSingleResult();
 
 			if (result.equals(expected2)) {
-				logger.log(Logger.Level.TRACE, "Received expected result:|" + result + "|");
+				logTrace( "Received expected result:|" + result + "|");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Mismatch in received results - expected = |" + expected2 + "|, received = |" + result + "|");
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();

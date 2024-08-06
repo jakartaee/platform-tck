@@ -31,7 +31,6 @@ import java.util.Vector;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -73,7 +72,6 @@ public class LogFileProcessor {
 	/**
 	 * setup method
 	 */
-	@BeforeAll
 	public void setup() {
 		logFileLocation = System.getProperty("log.file.location");
 

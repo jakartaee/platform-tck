@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.callback.common;
 
-import java.lang.System.Logger;
+
 
 /**
  * An annotation-free class that holds the logics for recording entity lifecycle
@@ -29,7 +29,7 @@ import java.lang.System.Logger;
  */
 abstract public class ListenerBase {
 
-	private static final Logger logger = (Logger) System.getLogger(ListenerBase.class.getName());
+
 
 	protected ListenerBase() {
 		super();
@@ -47,7 +47,7 @@ abstract public class ListenerBase {
 		b.addPrePersistCall(getShortName());
 		String testName = b.getTestName();
 		if (Constants.prePersistRuntimeExceptionTest.equals(testName)) {
-			logger.log(Logger.Level.TRACE, "Throwing ArithmeticException in ListenerBase");
+			logTrace( "Throwing ArithmeticException in ListenerBase");
 			throw new ArithmeticException("RuntimeException from PrePersist.");
 		}
 	}
@@ -56,7 +56,7 @@ abstract public class ListenerBase {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		GenerictListenerImpl.logTrace("In ListenerBase.postPersist." + this, p);
 		if (!p.isPrePersistCalled()) {
-			logger.log(Logger.Level.TRACE, "When calling postPersist, prePersist has not been called.");
+			logTrace( "When calling postPersist, prePersist has not been called.");
 			throw new IllegalStateException("When calling postPersist, prePersist has not been called.");
 		}
 		p.setPostPersistCalled(true);
@@ -73,7 +73,7 @@ abstract public class ListenerBase {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		GenerictListenerImpl.logTrace("In ListenerBase.postRemove." + this, p);
 		if (!p.isPreRemoveCalled()) {
-			logger.log(Logger.Level.TRACE, "When calling postRemove, preRemove has not been called.");
+			logTrace( "When calling postRemove, preRemove has not been called.");
 			throw new IllegalStateException("When calling postRemove, preRemove has not been called.");
 		}
 		p.setPostRemoveCalled(true);
@@ -90,7 +90,7 @@ abstract public class ListenerBase {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		GenerictListenerImpl.logTrace("In ListenerBase.postUpdate." + this, p);
 		if (!p.isPreUpdateCalled()) {
-			logger.log(Logger.Level.ERROR, "When calling postUpdate, preUpdate has not been called.");
+			logErr( "When calling postUpdate, preUpdate has not been called.");
 			throw new IllegalStateException("When calling postUpdate, preUpdate has not been called.");
 		}
 		p.setPostUpdateCalled(true);

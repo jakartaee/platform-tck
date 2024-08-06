@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.identifiabletype;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -41,7 +41,7 @@ import jakarta.persistence.Version;
 @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 public class A extends B {
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+	
 
 	@Id
 	protected String id;
@@ -75,42 +75,42 @@ public class A extends B {
 	}
 
 	public Set<Address> getAddressSet() {
-		logger.log(Logger.Level.TRACE, "getAddressSet");
+		logTrace( "getAddressSet");
 		return sAddress;
 	}
 
 	public void setAddressSet(Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressSet");
+		logTrace( "setAddressSet");
 		this.sAddress = addr;
 	}
 
 	public Collection<Address> getAddressCollection() {
-		logger.log(Logger.Level.TRACE, "getAddressCollection");
+		logTrace( "getAddressCollection");
 		return cAddress;
 	}
 
 	public void setAddressCollection(Collection<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressCollection");
+		logTrace( "setAddressCollection");
 		this.cAddress = addr;
 	}
 
 	public List<Address> getAddressList() {
-		logger.log(Logger.Level.TRACE, "getAddressList");
+		logTrace( "getAddressList");
 		return lAddress;
 	}
 
 	public void setAddressList(List<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressList");
+		logTrace( "setAddressList");
 		this.lAddress = addr;
 	}
 
 	public Map<Address, String> getAddressMap() {
-		logger.log(Logger.Level.TRACE, "getAddressMap");
+		logTrace( "getAddressMap");
 		return mAddress;
 	}
 
 	public void setAddressMap(Map<Address, String> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressMap");
+		logTrace( "setAddressMap");
 		this.mAddress = addr;
 	}
 

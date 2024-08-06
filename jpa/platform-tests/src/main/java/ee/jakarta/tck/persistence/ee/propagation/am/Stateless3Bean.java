@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.propagation.am;
 
-import java.lang.System.Logger;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -47,7 +47,7 @@ import jakarta.persistence.PersistenceUnit;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateless3Bean implements Stateless3IF {
 
-	private static final Logger logger = (Logger) System.getLogger(Stateless3Bean.class.getName());
+
 
 	@PersistenceUnit(unitName = "CTS-APPMANAGED-UNIT")
 	private EntityManagerFactory entityManagerFactory;
@@ -72,13 +72,13 @@ public class Stateless3Bean implements Stateless3IF {
 	// Our business methods
 
 	public void transfer(final int from, final int to, final double amt) {
-		logger.log(Logger.Level.TRACE, "transfer()");
+		logTrace( "transfer()");
 		withdraw(from, amt);
 		deposit(to, amt);
 	}
 
 	public double balance(final int acct) {
-		logger.log(Logger.Level.TRACE, "balance()");
+		logTrace( "balance()");
 		Account thisAccount = entityManager.find(Account.class, acct);
 		double balance;
 		try {
@@ -91,7 +91,7 @@ public class Stateless3Bean implements Stateless3IF {
 	}
 
 	public double deposit(final int acct, final double amt) {
-		logger.log(Logger.Level.TRACE, "deposit()");
+		logTrace( "deposit()");
 		double balance;
 		Account thisAccount = entityManager.find(Account.class, acct);
 		try {
@@ -104,7 +104,7 @@ public class Stateless3Bean implements Stateless3IF {
 	}
 
 	public double withdraw(final int acct, final double amt) {
-		logger.log(Logger.Level.TRACE, "withdraw()");
+		logTrace( "withdraw()");
 		double balance;
 		Account thisAccount = entityManager.find(Account.class, acct);
 		try {
@@ -117,7 +117,7 @@ public class Stateless3Bean implements Stateless3IF {
 	}
 
 	public boolean checkAccountStatus(final Account acct) {
-		logger.log(Logger.Level.TRACE, "checkAccountStatus()");
+		logTrace( "checkAccountStatus()");
 		Account thisAccount = entityManager.find(Account.class, acct.id());
 		if (acct.equals(thisAccount)) {
 			return true;
@@ -149,28 +149,28 @@ public class Stateless3Bean implements Stateless3IF {
 	// Helpers
 
 	public void removeTestData() {
-		logger.log(Logger.Level.TRACE, "entering removeTestData()");
+		logTrace( "entering removeTestData()");
 		try {
 			entityManager.createNativeQuery("DELETE FROM ACCOUNT").executeUpdate();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logger.log(Logger.Level.TRACE, "Clearing cache");
+		logTrace( "Clearing cache");
 		entityManagerFactory.getCache().evictAll();
-		logger.log(Logger.Level.TRACE, "leaving removeTestData()");
+		logTrace( "leaving removeTestData()");
 	}
 
 	public void createTestData() {
-		logger.log(Logger.Level.TRACE, "entering createTestData()");
+		logTrace( "entering createTestData()");
 
 		try {
 
-			logger.log(Logger.Level.TRACE, "Create 5 Account Entities");
+			logTrace( "Create 5 Account Entities");
 
 			for (int i = 0; i < ACCOUNTS.length; i++) {
-				logger.log(Logger.Level.TRACE, "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+				logTrace( "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 				System.out.println("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 				accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
 				entityManager.persist(accountRef);
@@ -179,23 +179,23 @@ public class Stateless3Bean implements Stateless3IF {
 			entityManager.flush();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "createTestData: Unexpected Exception caught in createTestData", e);
+			logErr( "createTestData: Unexpected Exception caught in createTestData", e);
 		} finally {
-			logger.log(Logger.Level.TRACE, "createTestData complete");
+			logTrace( "createTestData complete");
 		}
-		logger.log(Logger.Level.TRACE, "leaving createTestData()");
+		logTrace( "leaving createTestData()");
 
 	}
 
 	public void init(final Properties p) {
-		logger.log(Logger.Level.TRACE, "entering init()");
+		logTrace( "entering init()");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
 			TestUtil.printStackTrace(e);
 			throw new EJBException(e.getMessage());
 		}
-		logger.log(Logger.Level.TRACE, "leaving init()");
+		logTrace( "leaving init()");
 	}
 
 	// Test Methods
@@ -213,18 +213,18 @@ public class Stateless3Bean implements Stateless3IF {
 			accounts = getAllAccounts();
 
 			if (accounts != null) {
-				logger.log(Logger.Level.TRACE, accounts);
+				logTrace( accounts);
 			}
 
 			Account ACCOUNT = entityManager.find(Account.class, 1075);
 			pass = checkAccountStatus(ACCOUNT);
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+			logErr( "Unexpected Exception:", e);
 		} finally {
 			closeEntityManager();
 		}
-		logger.log(Logger.Level.TRACE, "leaving test1()");
+		logTrace( "leaving test1()");
 		return pass;
 	}
 
@@ -245,53 +245,53 @@ public class Stateless3Bean implements Stateless3IF {
 			balance = withdraw(ACCOUNT.id(), 50.0);
 
 			if (EXPECTED_BALANCE.compareTo(balance) == 0) {
-				logger.log(Logger.Level.TRACE, "Expected balance received.");
+				logTrace( "Expected balance received.");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						" Did not get Expected balance, got:" + balance + "Expected: " + EXPECTED_BALANCE);
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+			logErr( "Unexpected Exception:", e);
 		} finally {
 			closeEntityManager();
 		}
-		logger.log(Logger.Level.TRACE, "leaving test2()");
+		logTrace( "leaving test2()");
 		return pass;
 	}
 
 	public void createEntityManager() {
-		logger.log(Logger.Level.TRACE, "entering createEntityManager()");
+		logTrace( "entering createEntityManager()");
 
 		if (entityManagerFactory != null) {
-			logger.log(Logger.Level.TRACE, "EntityManagerFactory is not null");
+			logTrace( "EntityManagerFactory is not null");
 			entityManager = entityManagerFactory.createEntityManager(myMap);
 		} else {
-			logger.log(Logger.Level.ERROR, "Unexpected: EntityManagerFactory is null");
+			logErr( "Unexpected: EntityManagerFactory is null");
 		}
-		logger.log(Logger.Level.TRACE, "leaving createEntityManager()");
+		logTrace( "leaving createEntityManager()");
 
 	}
 
 	public void closeEntityManager() {
-		logger.log(Logger.Level.TRACE, "entering closeEntityManager()");
+		logTrace( "entering closeEntityManager()");
 		try {
 			if (entityManager.isOpen()) {
 				entityManager.close();
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "closeEntityManager: Unexpected Exception caught while closing "
+			logErr( "closeEntityManager: Unexpected Exception caught while closing "
 					+ "an Application-Managed EntityManager" + e);
 		}
-		logger.log(Logger.Level.TRACE, "leaving closeEntityManager()");
+		logTrace( "leaving closeEntityManager()");
 	}
 
 	public void doCleanup() {
-		logger.log(Logger.Level.TRACE, "entering doCleanup()");
+		logTrace( "entering doCleanup()");
 		createEntityManager();
 		removeTestData();
 		closeEntityManager();
-		logger.log(Logger.Level.TRACE, "leaving doCleanup()");
+		logTrace( "leaving doCleanup()");
 	}
 }

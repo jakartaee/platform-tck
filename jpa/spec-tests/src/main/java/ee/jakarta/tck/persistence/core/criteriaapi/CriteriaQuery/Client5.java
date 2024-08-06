@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Time;
@@ -39,7 +39,7 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client5 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client5.class.getName());
+	
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -52,7 +52,7 @@ public class Client5 extends Util {
 
 	@BeforeEach
 	public void setupAData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupData");
+		logTrace( "setupData");
 		try {
 			super.setup();
 			createDeployment();
@@ -79,7 +79,7 @@ public class Client5 extends Util {
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + Double operand:");
+			logMsg( "Testing + Double operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -91,17 +91,17 @@ public class Client5 extends Util {
 			double whereValue = 1234.5;
 			p = getEntityManager().createQuery(cquery).setParameter(param, whereValue).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected Double type");
+				logTrace( "Received expected Double type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Double:" + p.getClass().getName());
+				logErr( "Result was not of type Double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - Double operand:");
+			logMsg( "Testing - Double operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -113,17 +113,17 @@ public class Client5 extends Util {
 			double whereValue = 1234.0;
 			p = getEntityManager().createQuery(cquery).setParameter(param, whereValue).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected Double type");
+				logTrace( "Received expected Double type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Double:" + p.getClass().getName());
+				logErr( "Result was not of type Double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * Double operand:");
+			logMsg( "Testing * Double operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -135,17 +135,17 @@ public class Client5 extends Util {
 			double whereValue = 1235.0;
 			p = getEntityManager().createQuery(cquery).setParameter(param, whereValue).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected Double type");
+				logTrace( "Received expected Double type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Double:" + p.getClass().getName());
+				logErr( "Result was not of type Double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / Double operand:");
+			logMsg( "Testing / Double operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -157,17 +157,17 @@ public class Client5 extends Util {
 			double whereValue = 1235.0;
 			p = getEntityManager().createQuery(cquery).setParameter(param, whereValue).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected Double type");
+				logTrace( "Received expected Double type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Double:" + p.getClass().getName());
+				logErr( "Result was not of type Double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing + double operand:");
+			logMsg( "Testing + double operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -177,17 +177,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected double type");
+				logTrace( "Received expected double type");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type double:" + p.getClass().getName());
+				logErr( "Result was not of type double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - double operand:");
+			logMsg( "Testing - double operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -197,17 +197,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected double type");
+				logTrace( "Received expected double type");
 				pass6 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type double:" + p.getClass().getName());
+				logErr( "Result was not of type double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * double operand:");
+			logMsg( "Testing * double operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -217,17 +217,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected double type");
+				logTrace( "Received expected double type");
 				pass7 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type double:" + p.getClass().getName());
+				logErr( "Result was not of type double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / double operand:");
+			logMsg( "Testing / double operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -237,14 +237,14 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Double) {
-				logger.log(Logger.Level.TRACE, "Received expected double type");
+				logTrace( "Received expected double type");
 				pass8 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type double:" + p.getClass().getName());
+				logErr( "Result was not of type double:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7 || !pass8)
 			throw new Exception("DoubleOperandResultTypeTests failed");
@@ -265,7 +265,7 @@ public class Client5 extends Util {
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + Float operand:");
+			logMsg( "Testing + Float operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -276,17 +276,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - Float operand:");
+			logMsg( "Testing - Float operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -297,17 +297,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * Float operand:");
+			logMsg( "Testing * Float operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -318,17 +318,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / Float operand:");
+			logMsg( "Testing / Float operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -339,17 +339,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing + float operand:");
+			logMsg( "Testing + float operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -360,17 +360,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected float type");
+				logTrace( "Received expected float type");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type float:" + p.getClass().getName());
+				logErr( "Result was not of type float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - float operand:");
+			logMsg( "Testing - float operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -381,17 +381,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected float type");
+				logTrace( "Received expected float type");
 				pass6 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type float:" + p.getClass().getName());
+				logErr( "Result was not of type float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * float operand:");
+			logMsg( "Testing * float operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -402,17 +402,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected float type");
+				logTrace( "Received expected float type");
 				pass7 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type float:" + p.getClass().getName());
+				logErr( "Result was not of type float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / float operand:");
+			logMsg( "Testing / float operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -423,14 +423,14 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Float) {
-				logger.log(Logger.Level.TRACE, "Received expected Float type");
+				logTrace( "Received expected Float type");
 				pass8 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Float:" + p.getClass().getName());
+				logErr( "Result was not of type Float:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7 || !pass8)
 			throw new Exception("FloatOperandResultTypeTests failed");
@@ -451,7 +451,7 @@ public class Client5 extends Util {
 		pass1 = pass2 = pass3 = pass4 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + BigDecimal operand:");
+			logMsg( "Testing + BigDecimal operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -462,17 +462,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof BigDecimal) {
-				logger.log(Logger.Level.TRACE, "Received expected BigDecimal type");
+				logTrace( "Received expected BigDecimal type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigDecimal:" + p.getClass().getName());
+				logErr( "Result was not of type BigDecimal:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - BigDecimal operand:");
+			logMsg( "Testing - BigDecimal operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -484,17 +484,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof BigDecimal) {
-				logger.log(Logger.Level.TRACE, "Received expected BigDecimal type");
+				logTrace( "Received expected BigDecimal type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigDecimal:" + p.getClass().getName());
+				logErr( "Result was not of type BigDecimal:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * BigDecimal operand:");
+			logMsg( "Testing * BigDecimal operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -505,17 +505,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof BigDecimal) {
-				logger.log(Logger.Level.TRACE, "Received expected BigDecimal type");
+				logTrace( "Received expected BigDecimal type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigDecimal:" + p.getClass().getName());
+				logErr( "Result was not of type BigDecimal:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing / BigDecimal operand:");
+			logMsg( "Testing / BigDecimal operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -527,14 +527,14 @@ public class Client5 extends Util {
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 
 			if (p instanceof BigDecimal) {
-				logger.log(Logger.Level.TRACE, "Received expected BigDecimal type");
+				logTrace( "Received expected BigDecimal type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigDecimal:" + p.getClass().getName());
+				logErr( "Result was not of type BigDecimal:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass1 || !pass2 || !pass3 || !pass4)
 			throw new Exception("BigDecimalOperandResultTypeTests failed");
@@ -555,7 +555,7 @@ public class Client5 extends Util {
 		pass1 = pass2 = pass3 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + BigInteger operand:");
+			logMsg( "Testing + BigInteger operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -566,17 +566,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof BigInteger) {
-				logger.log(Logger.Level.TRACE, "Received expected BigInteger type");
+				logTrace( "Received expected BigInteger type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigInteger:" + p.getClass().getName());
+				logErr( "Result was not of type BigInteger:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - BigInteger operand:");
+			logMsg( "Testing - BigInteger operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -588,17 +588,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof BigInteger) {
-				logger.log(Logger.Level.TRACE, "Received expected BigInteger type");
+				logTrace( "Received expected BigInteger type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigInteger:" + p.getClass().getName());
+				logErr( "Result was not of type BigInteger:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * BigInteger operand:");
+			logMsg( "Testing * BigInteger operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -609,14 +609,14 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof BigInteger) {
-				logger.log(Logger.Level.TRACE, "Received expected BigInteger type");
+				logTrace( "Received expected BigInteger type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type BigInteger:" + p.getClass().getName());
+				logErr( "Result was not of type BigInteger:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3)
@@ -638,7 +638,7 @@ public class Client5 extends Util {
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + Long operand:");
+			logMsg( "Testing + Long operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -649,17 +649,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected Long type");
+				logTrace( "Received expected Long type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Long:" + p.getClass().getName());
+				logErr( "Result was not of type Long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - Long operand:");
+			logMsg( "Testing - Long operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -670,17 +670,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected Long type");
+				logTrace( "Received expected Long type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Long:" + p.getClass().getName());
+				logErr( "Result was not of type Long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * Long operand:");
+			logMsg( "Testing * Long operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -691,18 +691,18 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected Long type");
+				logTrace( "Received expected Long type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Long:" + p.getClass().getName());
+				logErr( "Result was not of type Long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		try {
-			logger.log(Logger.Level.INFO, "Testing + long operand:");
+			logMsg( "Testing + long operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -713,17 +713,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected long type");
+				logTrace( "Received expected long type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type long:" + p.getClass().getName());
+				logErr( "Result was not of type long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - long operand:");
+			logMsg( "Testing - long operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -734,17 +734,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected long type");
+				logTrace( "Received expected long type");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type long:" + p.getClass().getName());
+				logErr( "Result was not of type long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * long operand:");
+			logMsg( "Testing * long operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -755,14 +755,14 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Long) {
-				logger.log(Logger.Level.TRACE, "Received expected long type");
+				logTrace( "Received expected long type");
 				pass6 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type long:" + p.getClass().getName());
+				logErr( "Result was not of type long:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
@@ -785,7 +785,7 @@ public class Client5 extends Util {
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;
 		Object p;
 		try {
-			logger.log(Logger.Level.INFO, "Testing + Short operand:");
+			logMsg( "Testing + Short operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -796,17 +796,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - Short operand:");
+			logMsg( "Testing - Short operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -817,17 +817,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * Short operand:");
+			logMsg( "Testing * Short operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -838,17 +838,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing + short operand:");
+			logMsg( "Testing + short operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -859,17 +859,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing - short operand:");
+			logMsg( "Testing - short operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -880,17 +880,17 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Testing * short operand:");
+			logMsg( "Testing * short operand:");
 			getEntityTransaction().begin();
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 			CriteriaQuery cquery = cbuilder.createQuery();
@@ -901,14 +901,14 @@ public class Client5 extends Util {
 			cquery.where(cbuilder.equal(a.get(A_.getSingularAttribute("id", String.class)), "9"));
 			p = getEntityManager().createQuery(cquery).getSingleResult();
 			if (p instanceof Integer) {
-				logger.log(Logger.Level.TRACE, "Received expected Integer type");
+				logTrace( "Received expected Integer type");
 				pass6 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Result was not of type Integer:" + p.getClass().getName());
+				logErr( "Result was not of type Integer:" + p.getClass().getName());
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6)
@@ -948,21 +948,21 @@ public class Client5 extends Util {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", e);
+			logErr( "Unexpected Exception in createTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 
 	}
 
 	private void removeATestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -971,14 +971,14 @@ public class Client5 extends Util {
 			getEntityManager().createNativeQuery("DELETE FROM A_BASIC").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

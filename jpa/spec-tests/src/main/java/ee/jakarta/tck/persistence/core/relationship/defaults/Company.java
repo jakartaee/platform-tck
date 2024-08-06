@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.relationship.defaults;
 
-import java.lang.System.Logger;
+
 import java.util.Collection;
 
 import ee.jakarta.tck.persistence.core.override.entitylistener.Client;
@@ -36,7 +36,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Company implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	private long companyId;
 
@@ -47,7 +47,7 @@ public class Company implements java.io.Serializable {
 	private Collection<Team> teams = new java.util.ArrayList<Team>();
 
 	public Company() {
-		logger.log(Logger.Level.TRACE, "Company no arg constructor");
+		logTrace( "Company no arg constructor");
 	}
 
 	public Company(long companyId, String name) {

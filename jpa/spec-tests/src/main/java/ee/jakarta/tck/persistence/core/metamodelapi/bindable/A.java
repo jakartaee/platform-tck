@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.bindable;
 
-import java.lang.System.Logger;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,7 +32,7 @@ import jakarta.persistence.Version;
 @Table(name = "COLTAB")
 public class A implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+
 
 	@Id
 	protected String id;
@@ -56,12 +56,12 @@ public class A implements java.io.Serializable {
 	}
 
 	public Set<Address> getAddress() {
-		logger.log(Logger.Level.TRACE, "getAddress");
+		logTrace( "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddress");
+		logTrace( "setAddress");
 		this.address = addr;
 	}
 

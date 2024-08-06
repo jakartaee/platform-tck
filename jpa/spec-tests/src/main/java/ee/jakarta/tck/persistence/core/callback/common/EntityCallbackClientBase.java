@@ -20,14 +20,14 @@
 
 package ee.jakarta.tck.persistence.core.callback.common;
 
-import java.lang.System.Logger;
+
 import java.sql.SQLException;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public abstract class EntityCallbackClientBase extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(EntityCallbackClientBase.class.getName());
+	
 
 	protected EntityCallbackClientBase() {
 		super();
@@ -36,15 +36,15 @@ public abstract class EntityCallbackClientBase extends PMClientBase {
 	protected Object txShouldRollback(Object b, String testName) throws Exception {
 		String reason = "";
 		try {
-			logger.log(Logger.Level.TRACE, "Persisting: " + b.getClass().getName());
+			logTrace( "Persisting: " + b.getClass().getName());
 			getEntityManager().persist(b);
-			logger.log(Logger.Level.TRACE, "Committing: " + b.getClass().getName() + " changes");
+			logTrace( "Committing: " + b.getClass().getName() + " changes");
 			getEntityTransaction().commit();
 			reason = "Expecting ArithmeticException from callback method, but got none.";
 			throw new Exception(reason);
 		} catch (ArithmeticException e) {
 			reason = "EntityCallbackClientBase: Got expected exception: " + e.toString();
-			logger.log(Logger.Level.TRACE, reason);
+			logTrace( reason);
 			if (!getEntityTransaction().isActive()) {
 				reason = "No Transaction was active, even though one was previously started";
 				throw new Exception(reason, e);
@@ -54,9 +54,9 @@ public abstract class EntityCallbackClientBase extends PMClientBase {
 					+ e.toString() + "]";
 			throw new Exception(reason, e);
 		}
-		logger.log(Logger.Level.TRACE, "Clearing cache");
+		logTrace( "Clearing cache");
 		clearCache();
-		logger.log(Logger.Level.TRACE, "Executing find");
+		logTrace( "Executing find");
 
 		Object p2 = null;
 		try {
@@ -74,7 +74,7 @@ public abstract class EntityCallbackClientBase extends PMClientBase {
 		}
 		if (p2 == null) {
 			reason = "EntityCallbackClientBase: Got expected result: entity with id " + testName + " was not found.";
-			logger.log(Logger.Level.TRACE, reason);
+			logTrace( reason);
 		} else {
 			reason = "EntityCallbackClientBase: Unexpected result: found entity with id " + testName;
 			throw new Exception(reason);
