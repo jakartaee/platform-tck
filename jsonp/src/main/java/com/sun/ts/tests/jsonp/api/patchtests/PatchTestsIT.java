@@ -32,6 +32,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 
 import org.junit.jupiter.api.AfterEach;
@@ -44,6 +45,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
 
 import java.lang.System.Logger;
 
@@ -69,8 +73,12 @@ public class PatchTestsIT extends JsonPTest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
-  @Deployment(testable = false)
-  public static WebArchive createServletDeployment() throws IOException {
+  static final String VEHICLE_ARCHIVE = "patchtests_servlet_vehicle";
+  
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")
+  @Deployment(name = VEHICLE_ARCHIVE)
+  public static EnterpriseArchive createServletDeployment() throws IOException {
   
     WebArchive war = ShrinkWrap.create(WebArchive.class, "patchtests_servlet_vehicle_web.war");
     war.addClass(PatchTestsIT.class);
@@ -101,7 +109,9 @@ public class PatchTestsIT extends JsonPTest {
 
     war.setWebXML(PatchTestsIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
 
-    return war;
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
+    ear.addAsModule(war);
+    return ear;
 
   }
 
@@ -120,6 +130,7 @@ public class PatchTestsIT extends JsonPTest {
    * @test_Strategy: Tests JsonPatch API factory methods added in JSON-P 1.1.
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonCreatePatch11Test() throws Exception {
     PatchCreate createTest = new PatchCreate();
     final TestResult result = createTest.test();

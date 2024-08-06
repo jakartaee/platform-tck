@@ -62,6 +62,7 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
@@ -75,10 +76,14 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+
 import java.lang.System.Logger;
 
 @ExtendWith(ArquillianExtension.class)
-public class ClientIT { //extends ServiceEETest {
+public class ClientIT extends ServiceEETest {
 
   private static final Logger logger = System.getLogger(ClientIT.class.getName());
 
@@ -113,9 +118,12 @@ public class ClientIT { //extends ServiceEETest {
 
   }
 
-
-  @Deployment(testable = false)
-  public static WebArchive createServletDeployment() throws Exception {
+  static final String VEHICLE_ARCHIVE = "jsonprovidertests_servlet_vehicle";
+  
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")
+  @Deployment(name = VEHICLE_ARCHIVE)
+  public static EnterpriseArchive createServletDeployment() throws Exception {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
   
@@ -149,8 +157,10 @@ public class ClientIT { //extends ServiceEETest {
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
     warArchive.addAsLibrary(jarArchive);
-    System.out.println("Alwin war:"+warArchive.getContent());
-    return warArchive;
+
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_servlet_vehicle.ear");
+    ear.addAsModule(warArchive);
+    return ear;
 
   }
 
@@ -219,12 +229,16 @@ public class ClientIT { //extends ServiceEETest {
    * static JsonProvider provider()
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest1() throws Exception {
     boolean pass = true;
+    System.out.println("Alwin starting jsonProviderTest1");
     try {
       // Load my provider
       JsonProvider provider = JsonProvider.provider();
+      System.out.println("Alwin jsonProviderTest1 provider"+provider.toString());
       String providerClass = provider.getClass().getName();
+      System.out.println("Alwin jsonProviderTest1 providerClass"+providerClass);
       logger.log(Logger.Level.INFO, "provider class=" + providerClass);
       if (providerClass.equals(MY_JSONPROVIDER_CLASS))
         logger.log(Logger.Level.INFO, "Current provider is my provider - expected.");
@@ -255,6 +269,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonGenerator createGenerator(Writer)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest2() throws Exception {
     boolean pass = true;
     String expString = "public JsonGenerator createGenerator(Writer)";
@@ -285,6 +300,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonGenerator createGenerator(OutputStream)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest3() throws Exception {
     boolean pass = true;
     String expString = "public JsonGenerator createGenerator(OutputStream)";
@@ -316,6 +332,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonParser createParser(Reader)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest4() throws Exception {
     boolean pass = true;
     String expString = "public JsonParser createParser(Reader)";
@@ -341,6 +358,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonParser createParser(InputStream)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest5() throws Exception {
     boolean pass = true;
     String expString = "public JsonParser createParser(InputStream)";
@@ -367,6 +385,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonParserFactory createParserFactory(Map<String, ?>)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest6() throws Exception {
     boolean pass = true;
     String expString = "public JsonParserFactory createParserFactory(Map<String, ?>)";
@@ -393,6 +412,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonParserFactory createParserFactory(Map<String, ?>)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest7() throws Exception {
     boolean pass = true;
     String expString = "public JsonParserFactory createParserFactory(Map<String, ?>)";
@@ -419,6 +439,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest8() throws Exception {
     boolean pass = true;
     String expString = "public JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)";
@@ -445,6 +466,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonWriterFactory createWriterFactory(Map<String, ?>)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest9() throws Exception {
     boolean pass = true;
     String expString = "public JsonWriterFactory createWriterFactory(Map<String, ?>)";
@@ -473,6 +495,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonException.
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest10() throws Exception {
     boolean pass = true;
     String expString = "public JsonParser createParser(InputStream)";
@@ -499,6 +522,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonArrayBuilder createArrayBuilder()
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest11() throws Exception {
     boolean pass = true;
     String expString = "public JsonArrayBuilder createArrayBuilder()";
@@ -524,6 +548,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonObjectBuilder createObjectBuilder()
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest12() throws Exception {
     boolean pass = true;
     String expString = "public JsonObjectBuilder createObjectBuilder()";
@@ -549,6 +574,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonBuilderFactory createBuilderFactory(Map<String, ?>)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest13() throws Exception {
     boolean pass = true;
     String expString = "public JsonBuilderFactory createBuilderFactory(Map<String, ?>)";
@@ -575,6 +601,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonReader createReader(Reader)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest14() throws Exception {
     boolean pass = true;
     String expString = "public JsonReader createReader(Reader)";
@@ -600,6 +627,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonReader createReader(InputStream)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest15() throws Exception {
     boolean pass = true;
     String expString = "public JsonReader createReader(InputStream)";
@@ -626,6 +654,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonWriter createWriter(Writer)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest16() throws Exception {
     boolean pass = true;
     String expString = "public JsonWriter createWriter(Writer)";
@@ -651,6 +680,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonWriter createWriter(OutputStream)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest17() throws Exception {
     boolean pass = true;
     String expString = "public JsonWriter createWriter(OutputStream)";
@@ -676,6 +706,7 @@ public class ClientIT { //extends ServiceEETest {
    * JsonReaderFactory createReaderFactory(Map<String, ?>)
    */
   @Test
+  @TargetVehicle("servlet")
   public void jsonProviderTest18() throws Exception {
     boolean pass = true;
     String expString = "public JsonReaderFactory createReaderFactory(Map<String, ?>)";

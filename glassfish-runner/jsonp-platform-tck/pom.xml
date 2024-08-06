@@ -38,6 +38,8 @@
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>jsonp-platform-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
+        <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
+        <version.jakarta.tck.arquillian>1.0.0-M1</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencies>
@@ -100,7 +102,37 @@
             <version>1.4</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-appclient</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>tck-porting-lib</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+
     </dependencies>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <url>https://repo1.maven.org/maven2</url>
+        </repository>
+        <repository>
+            <id>jboss</id>
+            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>jakarta-snapshots</id>
+            <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>
@@ -212,18 +244,18 @@
                 <version>3.0.0-M5</version>
                 <executions>
                     <execution>
-                        <id>pluggability-tests</id>
+                        <id>patch-tests</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <!-- <additionalClasspathElements>
+                            <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
-                            </additionalClasspathElements> -->
-                            <excludes>
-                                <exclude>**/PatchTestsIT.java</exclude>
-                            </excludes>
+                            </additionalClasspathElements>
+                            <includes>
+                                <include>**/PatchTestsIT.java</include>
+                            </includes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
@@ -239,18 +271,18 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>patch-tests</id>
+                        <id>pluggability-tests</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <additionalClasspathElements>
+                            <!-- <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                            <includes>
-                                <include>**/PatchTestsIT.java</include>
-                            </includes>
+                            </additionalClasspathElements> -->
+                            <excludes>
+                                <exclude>**/PatchTestsIT.java</exclude>
+                            </excludes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
