@@ -122,7 +122,7 @@ public class ClientIT extends ServiceEETest {
   
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
-  @Deployment(name = VEHICLE_ARCHIVE)
+  @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createServletDeployment() throws Exception {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");

@@ -77,7 +77,7 @@ public class PatchTestsIT extends JsonPTest {
   
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
-  @Deployment(name = VEHICLE_ARCHIVE)
+  @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createServletDeployment() throws IOException {
   
     WebArchive war = ShrinkWrap.create(WebArchive.class, "patchtests_servlet_vehicle_web.war");
