@@ -80,7 +80,7 @@ public class Client4 extends PMClientBase {
      */
 
     /*
-     * @testName: queryAPITest28
+     * @testName: queryAPIGetSingleResultOrNullWithValueTest
      *
      * @assertion_ids: PERSISTENCE:SPEC:527;
      *
@@ -134,7 +134,7 @@ public class Client4 extends PMClientBase {
     }
 
     /*
-     * @testName: queryAPITest28
+     * @testName: queryAPIGetSingleResultOrNullNullValueTest
      *
      * @assertion_ids: PERSISTENCE:SPEC:527;
      *
@@ -180,7 +180,7 @@ public class Client4 extends PMClientBase {
     }
 
     /*
-     * @testName: queryAPITest28
+     * @testName: typedQueryAPIGetSingleResultOrNullWithValueTest
      *
      * @assertion_ids: PERSISTENCE:SPEC:527;
      *
@@ -234,7 +234,7 @@ public class Client4 extends PMClientBase {
     }
 
     /*
-     * @testName: queryAPITest28
+     * @testName: typedQueryAPIGetSingleResultOrNullNullValueTest
      *
      * @assertion_ids: PERSISTENCE:SPEC:527;
      *

@@ -112,8 +112,8 @@ public class Client8 extends UtilTrimData {
 	}
 
 	/*
-	 * testName: trimLeadingExpTest assertion_ids: PERSISTENCE:JAVADOC:867
-	 *
+	 * test Name: trimLeadingExpTest assertion_ids: PERSISTENCE:JAVADOC:867
+	 * TODO: renable this test
 	 * test_Strategy: Select trim(leading from t.name) from Trim t where t.name= '
 	 * David R. Vincent '
 	 *
