@@ -138,6 +138,8 @@
         <shrinkwrap.version>3.3.0</shrinkwrap.version>
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
+        <version.openrewrite>8.24.0</version.openrewrite>
+        <version.openrewrite.maven-plugin>5.32.1</version.openrewrite.maven-plugin>
         <!-- Jakarta WebSocket -->
         <websocket-api.version>2.2.0</websocket-api.version>
         <websocket-client-api.version>2.2.0</websocket-client-api.version>
