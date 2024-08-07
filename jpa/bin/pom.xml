@@ -66,7 +66,7 @@
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <jakarta.ee.version>11.0.0-M1</jakarta.ee.version>
         <persistence.tck.version>3.2.0</persistence.tck.version>
-        <arquillian.junit5.version>1.7.0.Alpha14</arquillian.junit5.version>
+        <arquillian.junit5.version>1.9.1.Final</arquillian.junit5.version>
         <el.version>5.0.0-M1</el.version>
         <hibernate.version>8.0.1.Final</hibernate.version>
         <javadb.lib>${glassfish.toplevel.dir}/javadb/lib</javadb.lib>

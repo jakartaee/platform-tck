@@ -19,6 +19,7 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!-- Why does this not list the top level POM as a parent, as many other modules do? -->
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
@@ -38,7 +39,7 @@
         <module>tck-dist</module>
     </modules>
     <properties>
-        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
+        <arquillian.junit>1.9.1.Final</arquillian.junit>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.version>${project.version}</tck.version>
         <jakarta.ee.version>11.0.0-M1</jakarta.ee.version>

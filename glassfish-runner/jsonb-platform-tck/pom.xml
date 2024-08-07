@@ -20,7 +20,6 @@
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jsonb-platform-tck</artifactId>
@@ -28,7 +27,6 @@
     <packaging>jar</packaging>
 
     <properties>
-        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
         <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version>
         <!-- Use JDK21 to run with GF 8.0.0-M5 -->
@@ -77,7 +75,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.main.common</groupId>
@@ -87,12 +84,10 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>

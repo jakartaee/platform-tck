@@ -18,7 +18,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <testng.version>7.9.0</testng.version>
         <jboss.test.audit.version>2.0.0.Final</jboss.test.audit.version>
-        <arquillian.version>1.8.0.Final</arquillian.version>
+        <arquillian.version>1.9.1.Final</arquillian.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
         <apache.httpclient.version>3.1</apache.httpclient.version>
         <htmlunit.version>2.50.0</htmlunit.version>
@@ -168,6 +168,7 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap.descriptors</groupId>
             <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+            <version>2.0.0</version>
         </dependency>
 
         <dependency>
