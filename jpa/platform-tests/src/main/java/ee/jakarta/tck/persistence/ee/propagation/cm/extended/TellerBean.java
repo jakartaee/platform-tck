@@ -70,7 +70,7 @@ public class TellerBean implements Teller {
 	// Teller interface (our business methods)
 
 	public double balance(final int acct) {
-		logTrace( "balance");
+		TestUtil.logTrace( "balance");
 		Account thisAccount = entityManager.find(Account.class, acct);
 		double balance;
 		try {
@@ -83,7 +83,7 @@ public class TellerBean implements Teller {
 	}
 
 	public double deposit(final int acct, final double amt) {
-		logTrace( "deposit");
+		TestUtil.logTrace( "deposit");
 		double balance;
 		Account thisAccount = entityManager.find(Account.class, acct);
 		try {
@@ -96,7 +96,7 @@ public class TellerBean implements Teller {
 	}
 
 	public double withdraw(final int acct, final double amt) {
-		logTrace( "withdraw");
+		TestUtil.logTrace( "withdraw");
 		double balance;
 		Account thisAccount = entityManager.find(Account.class, acct);
 		try {
@@ -109,7 +109,7 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean checkAccountStatus(final Account acct) {
-		logTrace( "checkAccountStatus");
+		TestUtil.logTrace( "checkAccountStatus");
 		Account thisAccount = entityManager.find(Account.class, acct.id());
 		if (acct.equals(thisAccount)) {
 			return true;
@@ -119,14 +119,14 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean checkCustomerStatus(final B b) {
-		logTrace( "checkCustomerStatus");
+		TestUtil.logTrace( "checkCustomerStatus");
 		boolean pass = false;
 		B thisB = entityManager.find(B.class, b.getId());
 
 		if (null == thisB) {
-			logErr( "checkCustomerStatus: customerB is NULL");
+			TestUtil.logErr( "checkCustomerStatus: customerB is NULL");
 		} else {
-			logTrace( "checkCustomerStatus: customerB is Not Null, set A");
+			TestUtil.logTrace( "checkCustomerStatus: customerB is Not Null, set A");
 			A newA = new A("9", "customerA9", 9);
 			thisB.setA(newA);
 			entityManager.merge(thisB);
@@ -138,16 +138,16 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean rollbackStatus(final B b) {
-		logTrace( "rollbackStatus");
+		TestUtil.logTrace( "rollbackStatus");
 		boolean pass = false;
 
 		try {
 			B thisB = entityManager.find(B.class, b.getId());
 
 			if (null == thisB) {
-				logErr( "rollbackStatus: customerB is NULL");
+				TestUtil.logErr( "rollbackStatus: customerB is NULL");
 			} else {
-				logTrace( "rollbackStatus: customerB is not Null, setName");
+				TestUtil.logTrace( "rollbackStatus: customerB is not Null, setName");
 				System.out.println("rollbackStatus: customerB is NOT NULL, set Name");
 				thisB.setName("rolledBackB");
 				entityManager.merge(thisB);
@@ -155,13 +155,13 @@ public class TellerBean implements Teller {
 				pass = true;
 			}
 
-			logTrace(
+			TestUtil.logTrace(
 					"rollbackStatus - setRollbackOnly so the only " + "outcome is to roll back the changes");
 
 			sessionContext.setRollbackOnly();
 
 		} catch (Exception e) {
-			logErr( "Unexpected Exception caught in rollbackStatus", e);
+			TestUtil.logErr( "Unexpected Exception caught in rollbackStatus", e);
 			pass = false;
 		}
 
@@ -169,16 +169,16 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean flushStatus(final B b) {
-		logTrace( "flushStatus");
+		TestUtil.logTrace( "flushStatus");
 		boolean pass = false;
 
 		try {
 			B thisB = entityManager.find(B.class, b.getId());
 
 			if (null == thisB) {
-				logErr( "flushStatus: customerB is NULL");
+				TestUtil.logErr( "flushStatus: customerB is NULL");
 			} else {
-				logTrace( "flushStatus: customerB is not Null, setName");
+				TestUtil.logTrace( "flushStatus: customerB is not Null, setName");
 				System.out.println("flushStatus: customerB is NOT NULL, set Name");
 				thisB.setName("flushB");
 				entityManager.merge(thisB);
@@ -187,7 +187,7 @@ public class TellerBean implements Teller {
 			}
 
 		} catch (Exception e) {
-			logErr( "Unexpected Exception caught in flushStatus", e);
+			TestUtil.logErr( "Unexpected Exception caught in flushStatus", e);
 			pass = false;
 		}
 
@@ -219,11 +219,11 @@ public class TellerBean implements Teller {
 	public void createTestData() {
 		try {
 
-			logTrace( "createTestData");
+			TestUtil.logTrace( "createTestData");
 
-			logTrace( "Create 5 Account Entities");
+			TestUtil.logTrace( "Create 5 Account Entities");
 			for (int i = 0; i < ACCOUNTS.length; i++) {
-				logTrace( "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+				TestUtil.logTrace( "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 				System.out.println("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 
 				accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
@@ -231,29 +231,29 @@ public class TellerBean implements Teller {
 
 			}
 		} catch (Exception e) {
-			logErr( "Unexpected while creating test data:", e);
+			TestUtil.logErr( "Unexpected while creating test data:", e);
 		}
 	}
 
 	public void removeTestData() {
-		logTrace( "removeTestData");
+		TestUtil.logTrace( "removeTestData");
 		try {
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.createNativeQuery("DELETE FROM ACCOUNT").executeUpdate();
 		} catch (Exception e) {
-			logErr( "Exception encountered while removing entities:", e);
+			TestUtil.logErr( "Exception encountered while removing entities:", e);
 		}
 
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logTrace( "Clearing cache");
+		TestUtil.logTrace( "Clearing cache");
 		entityManager.getEntityManagerFactory().getCache().evictAll();
 
-		logTrace( "TellerBean: cleanup complete");
+		TestUtil.logTrace( "TellerBean: cleanup complete");
 	}
 
 	public void init(final Properties p) {
-		logTrace( "init");
+		TestUtil.logTrace( "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {

@@ -23,6 +23,7 @@ package ee.jakarta.tck.persistence.core.relationship.defaults;
 
 import java.util.Collection;
 
+import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.core.override.entitylistener.Client;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -47,7 +48,7 @@ public class Company implements java.io.Serializable {
 	private Collection<Team> teams = new java.util.ArrayList<Team>();
 
 	public Company() {
-		logTrace( "Company no arg constructor");
+		TestUtil.logTrace( "Company no arg constructor");
 	}
 
 	public Company(long companyId, String name) {

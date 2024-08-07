@@ -23,6 +23,8 @@ package ee.jakarta.tck.persistence.core.relationship.descriptors;
 
 import java.util.Collection;
 
+import com.sun.ts.lib.util.TestUtil;
+
 /*
  * XCompany
  */
@@ -40,7 +42,7 @@ public class XCompany implements java.io.Serializable {
 	private Collection<XTeam> xTeams = new java.util.ArrayList<XTeam>();
 
 	public XCompany() {
-		logTrace( "Company no arg constructor");
+		TestUtil.logTrace( "Company no arg constructor");
 	}
 
 	public XCompany(long xCompanyId, String xName) {

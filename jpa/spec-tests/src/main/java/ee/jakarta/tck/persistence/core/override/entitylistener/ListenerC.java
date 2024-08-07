@@ -18,6 +18,7 @@ package ee.jakarta.tck.persistence.core.override.entitylistener;
 
 
 
+import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.core.override.util.CallBackCounts;
 import jakarta.persistence.PostPersist;
 import jakarta.persistence.PrePersist;
@@ -32,13 +33,13 @@ public class ListenerC {
 	@PrePersist
 	public void prePersistFromXML(Object obj) {
 		updateCallBackCount("prePersist");
-		logTrace( "in perpersist");
+		TestUtil.logTrace( "in perpersist");
 	}
 
 	@PostPersist
 	public void postPersistFromXML(Object obj) {
 		updateCallBackCount("postPersist");
-		logTrace( "in postpersist");
+		TestUtil.logTrace( "in postpersist");
 	}
 
 	protected void updateCallBackCount(String callBackKeyName) {

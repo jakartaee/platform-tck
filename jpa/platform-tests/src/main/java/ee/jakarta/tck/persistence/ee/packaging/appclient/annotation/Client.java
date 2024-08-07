@@ -22,6 +22,7 @@ package ee.jakarta.tck.persistence.ee.packaging.appclient.annotation;
 
 
 
+import com.sun.ts.lib.harness.EETest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceUnit;
 
-public class Client {
+public class Client extends EETest {
 
 
 

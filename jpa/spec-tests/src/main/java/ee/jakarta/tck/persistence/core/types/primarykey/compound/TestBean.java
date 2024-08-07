@@ -22,6 +22,7 @@ package ee.jakarta.tck.persistence.core.types.primarykey.compound;
 
 
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -76,7 +77,7 @@ public class TestBean implements java.io.Serializable {
 	}
 
 	public void ping() {
-		logTrace( "[TestBean] ping()");
+		TestUtil.logTrace( "[TestBean] ping()");
 	}
 
 }

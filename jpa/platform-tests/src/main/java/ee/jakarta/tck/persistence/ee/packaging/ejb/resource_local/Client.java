@@ -23,13 +23,14 @@ package ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.EETest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TSNamingContext;
 
-public class Client {
+public class Client extends EETest {
 
 	
 

@@ -23,6 +23,7 @@ package ee.jakarta.tck.persistence.core.inheritance.nonentity;
 
 import java.math.BigDecimal;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -46,7 +47,7 @@ public class Project implements java.io.Serializable {
 	private Employee projectLead;
 
 	public Project() {
-		logTrace( "Project no-arg constructor");
+		TestUtil.logTrace( "Project no-arg constructor");
 	}
 
 	public Project(long projId, String name, BigDecimal budget) {

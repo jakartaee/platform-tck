@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -93,17 +94,17 @@ public class B implements java.io.Serializable {
 	}
 
 	public boolean isA() {
-		logTrace( "isA");
+		TestUtil.logTrace( "isA");
 		if (getA1() != null) {
-			logTrace( "Relationship set for A ...");
+			TestUtil.logTrace( "Relationship set for A ...");
 		} else {
-			logTrace( "Relationship not set for A ...");
+			TestUtil.logTrace( "Relationship not set for A ...");
 		}
 		return getA1() != null;
 	}
 
 	public A getA1Info() {
-		logTrace( "getA1Info");
+		TestUtil.logTrace( "getA1Info");
 		if (isA()) {
 			A a1 = getA1();
 			return a1;

@@ -23,6 +23,7 @@ package ee.jakarta.tck.persistence.core.entitytest.detach.manyXmany;
 
 import java.util.Collection;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -54,7 +55,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logTrace( "Entity A no arg constructor");
+		TestUtil.logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {
@@ -82,12 +83,12 @@ public class A implements java.io.Serializable {
 	// Business methods for test cases
 
 	public Collection getBCol() {
-		logTrace( "getBCol");
+		TestUtil.logTrace( "getBCol");
 		return bCol;
 	}
 
 	public void setBCol(Collection bCol) {
-		logTrace( "setBCol");
+		TestUtil.logTrace( "setBCol");
 		this.bCol = bCol;
 	}
 

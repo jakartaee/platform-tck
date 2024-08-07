@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.metamodelapi.entitytype;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CollectionTable;
@@ -58,12 +59,12 @@ public class A extends B {
 	}
 
 	public Set<Address> getAddress() {
-		logTrace( "getAddress");
+		TestUtil.logTrace( "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		logTrace( "setAddress");
+		TestUtil.logTrace( "setAddress");
 		this.address = addr;
 	}
 

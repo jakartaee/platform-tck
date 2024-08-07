@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.JoinColumn;
@@ -61,42 +62,42 @@ public abstract class B implements java.io.Serializable {
 	}
 
 	public Set<Address> getAddressSet() {
-		logTrace( "getAddressSet");
+		TestUtil.logTrace( "getAddressSet");
 		return sAddress_inherited;
 	}
 
 	public void setAddressSet(Set<Address> addr) {
-		logTrace( "setAddressSet");
+		TestUtil.logTrace( "setAddressSet");
 		this.sAddress_inherited = addr;
 	}
 
 	public Collection<Address> getAddressCollection() {
-		logTrace( "getAddressCollection");
+		TestUtil.logTrace( "getAddressCollection");
 		return cAddress_inherited;
 	}
 
 	public void setAddressCollection(Collection<Address> addr) {
-		logTrace( "setAddressCollection");
+		TestUtil.logTrace( "setAddressCollection");
 		this.cAddress_inherited = addr;
 	}
 
 	public List<Address> getAddressList() {
-		logTrace( "getAddressList");
+		TestUtil.logTrace( "getAddressList");
 		return lAddress_inherited;
 	}
 
 	public void setAddressList(List<Address> addr) {
-		logTrace( "setAddressList");
+		TestUtil.logTrace( "setAddressList");
 		this.lAddress_inherited = addr;
 	}
 
 	public Map<Address, String> getAddressMap() {
-		logTrace( "getAddressMap");
+		TestUtil.logTrace( "getAddressMap");
 		return mAddress_inherited;
 	}
 
 	public void setAddressMap(Map<Address, String> addr) {
-		logTrace( "setAddressMap");
+		TestUtil.logTrace( "setAddressMap");
 		this.mAddress_inherited = addr;
 	}
 

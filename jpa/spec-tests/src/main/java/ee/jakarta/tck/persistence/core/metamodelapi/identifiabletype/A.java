@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CollectionTable;
@@ -75,42 +76,42 @@ public class A extends B {
 	}
 
 	public Set<Address> getAddressSet() {
-		logTrace( "getAddressSet");
+		TestUtil.logTrace( "getAddressSet");
 		return sAddress;
 	}
 
 	public void setAddressSet(Set<Address> addr) {
-		logTrace( "setAddressSet");
+		TestUtil.logTrace( "setAddressSet");
 		this.sAddress = addr;
 	}
 
 	public Collection<Address> getAddressCollection() {
-		logTrace( "getAddressCollection");
+		TestUtil.logTrace( "getAddressCollection");
 		return cAddress;
 	}
 
 	public void setAddressCollection(Collection<Address> addr) {
-		logTrace( "setAddressCollection");
+		TestUtil.logTrace( "setAddressCollection");
 		this.cAddress = addr;
 	}
 
 	public List<Address> getAddressList() {
-		logTrace( "getAddressList");
+		TestUtil.logTrace( "getAddressList");
 		return lAddress;
 	}
 
 	public void setAddressList(List<Address> addr) {
-		logTrace( "setAddressList");
+		TestUtil.logTrace( "setAddressList");
 		this.lAddress = addr;
 	}
 
 	public Map<Address, String> getAddressMap() {
-		logTrace( "getAddressMap");
+		TestUtil.logTrace( "getAddressMap");
 		return mAddress;
 	}
 
 	public void setAddressMap(Map<Address, String> addr) {
-		logTrace( "setAddressMap");
+		TestUtil.logTrace( "setAddressMap");
 		this.mAddress = addr;
 	}
 

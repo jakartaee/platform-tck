@@ -32,6 +32,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import com.sun.ts.lib.util.TestUtil;
+
 @Entity
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
@@ -54,7 +56,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logTrace( "Entity A no arg constructor");
+		TestUtil.logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {
@@ -80,12 +82,12 @@ public class A implements java.io.Serializable {
 	// Business methods for test cases
 
 	public Collection getBCol() {
-		logTrace( "getBCol");
+		TestUtil.logTrace( "getBCol");
 		return bCol;
 	}
 
 	public void setBCol(Collection bCol) {
-		logTrace( "setBCol");
+		TestUtil.logTrace( "setBCol");
 		this.bCol = bCol;
 	}
 
@@ -106,7 +108,7 @@ public class A implements java.io.Serializable {
 	}
 
 	public Collection getBInfoFromA() {
-		logTrace( "getBInfoFromA");
+		TestUtil.logTrace( "getBInfoFromA");
 		Vector v = new Vector();
 		if (getBCol().size() != 0) {
 			Collection bcol = getBCol();

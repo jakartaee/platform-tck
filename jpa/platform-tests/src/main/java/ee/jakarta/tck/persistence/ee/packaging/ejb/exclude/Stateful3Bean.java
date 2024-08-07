@@ -59,7 +59,7 @@ public class Stateful3Bean implements Stateful3IF {
 	public void createTestData() {
 		try {
 
-			logTrace( "createTestData - create 5 B Instances");
+			TestUtil.logTrace( "createTestData - create 5 B Instances");
 
 			bRef[0] = new B("11", "myB", 1);
 			bRef[1] = new B("12", "yourB", 2);
@@ -67,39 +67,39 @@ public class Stateful3Bean implements Stateful3IF {
 			bRef[3] = new B("14", "hisB", 4);
 			bRef[4] = new B("15", "ourB", 5);
 
-			logTrace( "Start to persist Bees ");
+			TestUtil.logTrace( "Start to persist Bees ");
 			for (B b : bRef) {
 				if (b != null) {
 					entityManager.persist(b);
-					logTrace( "persisted B " + b);
+					TestUtil.logTrace( "persisted B " + b);
 				}
 			}
 			entityManager.flush();
 		} catch (Exception e) {
-			logErr( "Unexpected while creating test data:" + e);
+			TestUtil.logErr( "Unexpected while creating test data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		logTrace( "stateful3Bean removeTestData");
+		TestUtil.logTrace( "stateful3Bean removeTestData");
 
 		try {
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.flush();
 		} catch (Exception e) {
-			logErr( "Unexpected Exception caught while cleaning up:", e);
+			TestUtil.logErr( "Unexpected Exception caught while cleaning up:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logTrace( "Clearing cache");
+		TestUtil.logTrace( "Clearing cache");
 		entityManager.getEntityManagerFactory().getCache().evictAll();
-		logTrace( "cleanup complete");
+		TestUtil.logTrace( "cleanup complete");
 
 	}
 
 	public void init(final Properties p) {
-		logTrace( "init");
+		TestUtil.logTrace( "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -110,23 +110,23 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public boolean test1() {
 
-		logTrace( "Begin test1");
+		TestUtil.logTrace( "Begin test1");
 		boolean pass = false;
 
 		try {
 
 			createTestData();
 
-			logTrace( "try to find Entity B now that it has been create and persisted.");
+			TestUtil.logTrace( "try to find Entity B now that it has been create and persisted.");
 			final B newB = entityManager.find(B.class, "15");
 
 			if (newB != null) {
-				logTrace( "found B entity as expected");
+				TestUtil.logTrace( "found B entity as expected");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			TestUtil.logErr( "Unexpected Exception :", e);
 			pass = false;
 		}
 
@@ -135,22 +135,22 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public boolean test2() {
 
-		logTrace( "Begin test2");
+		TestUtil.logTrace( "Begin test2");
 		boolean pass = false;
 
 		try {
 
-			logTrace( "test2:  newA");
+			TestUtil.logTrace( "test2:  newA");
 			final A newA = new A("100", "nonexistent", 5);
-			logTrace( "test2:  try to Persist Entity A");
+			TestUtil.logTrace( "test2:  try to Persist Entity A");
 			entityManager.persist(newA);
-			logTrace( "test2:  Did not get expected Exception");
+			TestUtil.logTrace( "test2:  Did not get expected Exception");
 
 		} catch (IllegalArgumentException e) {
-			logTrace( "IllegalArgumentException Caught as Expected, A is not an Entity");
+			TestUtil.logTrace( "IllegalArgumentException Caught as Expected, A is not an Entity");
 			pass = true;
 		} catch (Exception e) {
-			logErr( "Unexpected Exception caught in test2:", e);
+			TestUtil.logErr( "Unexpected Exception caught in test2:", e);
 			pass = false;
 		}
 		return pass;

@@ -66,7 +66,7 @@ public class TellerBean implements Teller {
 	// Teller interface (our business methods)
 
 	public double balance(final int acct) {
-		logTrace( "balance");
+		TestUtil.logTrace( "balance");
 		Account thisAccount = entityManager.find(Account.class, acct);
 		double balance;
 		try {
@@ -79,7 +79,7 @@ public class TellerBean implements Teller {
 	}
 
 	public double deposit(final int acct, final double amt) {
-		logTrace( "deposit");
+		TestUtil.logTrace( "deposit");
 		double balance;
 		Account thisAccount = entityManager.find(Account.class, acct);
 		try {
@@ -92,7 +92,7 @@ public class TellerBean implements Teller {
 	}
 
 	public double withdraw(final int acct, final double amt) {
-		logTrace( "withdraw");
+		TestUtil.logTrace( "withdraw");
 		double balance;
 		Account thisAccount = entityManager.find(Account.class, acct);
 		try {
@@ -105,7 +105,7 @@ public class TellerBean implements Teller {
 	}
 
 	public boolean checkAccountStatus(final Account acct) {
-		logTrace( "checkAccountStatus");
+		TestUtil.logTrace( "checkAccountStatus");
 		Account thisAccount = entityManager.find(Account.class, acct.id());
 
 		if (acct.equals(thisAccount)) {
@@ -140,13 +140,13 @@ public class TellerBean implements Teller {
 	public void createTestData() {
 		try {
 
-			logTrace( "createAccountData");
+			TestUtil.logTrace( "createAccountData");
 
-			logTrace( "Create " + ACCOUNTS.length + " Account Entities");
+			TestUtil.logTrace( "Create " + ACCOUNTS.length + " Account Entities");
 			System.out.println("Create " + ACCOUNTS.length + " Account Entities");
 
 			for (int i = 0; i < ACCOUNTS.length; i++) {
-				logTrace( "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
+				TestUtil.logTrace( "Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 				System.out.println("Creating account=" + ACCOUNTS[i] + ", balance=" + BALANCES[i]);
 				accountRef = new Account(ACCOUNTS[i], BALANCES[i]);
 				System.out.println("Persisting Account:" + accountRef);
@@ -154,20 +154,20 @@ public class TellerBean implements Teller {
 
 			}
 		} catch (Exception e) {
-			logErr( "Unexpected while creating test data:" + e);
+			TestUtil.logErr( "Unexpected while creating test data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		logTrace( "removeTestData");
+		TestUtil.logTrace( "removeTestData");
 		try {
 			entityManager.createNativeQuery("DELETE FROM ACCOUNT").executeUpdate();
 		} catch (Exception e) {
-			logErr( "Exception encountered while removing entities:", e);
+			TestUtil.logErr( "Exception encountered while removing entities:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logTrace( "Clearing cache");
+		TestUtil.logTrace( "Clearing cache");
 		entityManager.getEntityManagerFactory().getCache().evictAll();
 	}
 

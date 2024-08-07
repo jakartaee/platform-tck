@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.annotations.elementcollection;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -55,12 +56,12 @@ public class A implements java.io.Serializable {
 
 	// Default to table A_ADDRESS
 	public Set<Address> getAddress() {
-		logTrace( "getAddress");
+		TestUtil.logTrace( "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		logTrace( "setAddress");
+		TestUtil.logTrace( "setAddress");
 		this.address = addr;
 	}
 

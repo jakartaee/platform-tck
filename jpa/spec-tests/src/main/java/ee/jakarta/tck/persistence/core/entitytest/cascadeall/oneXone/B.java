@@ -30,6 +30,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import com.sun.ts.lib.util.TestUtil;
+
 @Entity
 @Table(name = "BEJB_1X1_BI_BTOB")
 public class B implements java.io.Serializable {
@@ -58,7 +60,7 @@ public class B implements java.io.Serializable {
 	// constructors
 
 	public B() {
-		logTrace( "Entity B no arg constructor");
+		TestUtil.logTrace( "Entity B no arg constructor");
 	}
 
 	public B(String id, String name, int value) {
@@ -86,16 +88,16 @@ public class B implements java.io.Serializable {
 	}
 
 	public boolean isA() {
-		logTrace( "isA");
+		TestUtil.logTrace( "isA");
 		if (getA1() != null)
-			logTrace( "Relationship for A is not null...");
+			TestUtil.logTrace( "Relationship for A is not null...");
 		else
-			logTrace( "Relationship for A is null...");
+			TestUtil.logTrace( "Relationship for A is null...");
 		return getA1() != null;
 	}
 
 	public A getA1Info() {
-		logTrace( "getA1Info");
+		TestUtil.logTrace( "getA1Info");
 		if (isA()) {
 			A a1 = getA1();
 			return a1;

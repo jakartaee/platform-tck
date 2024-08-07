@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.ee.util;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import com.sun.ts.tests.common.webclient.WebTestCase;
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
@@ -182,7 +183,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
 				}
 			}
 			result = sb.toString();
-			logTrace( "[AbstractUrlClient] Interface info: " + result);
+			TestUtil.logTrace( "[AbstractUrlClient] Interface info: " + result);
 		}
 		return result;
 	}
@@ -192,7 +193,7 @@ public abstract class AbstractUrlClient extends BaseUrlClient {
 			try {
 				_addrs = InetAddress.getAllByName(InetAddress.getLocalHost().getCanonicalHostName());
 			} catch (UnknownHostException uhe) {
-				logMsg( "[AbstractUrlClient][WARNING] Unable to obtain local host information.");
+				TestUtil.logMsg( "[AbstractUrlClient][WARNING] Unable to obtain local host information.");
 			}
 		}
 	}

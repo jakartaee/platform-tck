@@ -69,20 +69,20 @@ public class Stateful3Bean2 implements Stateful3IF2 {
 	}
 
 	private EntityManagerFactory getEMF() {
-		logTrace( "In getEMF");
+		TestUtil.logTrace( "In getEMF");
 
 		if (this.entityManagerFactory == null) {
-			logTrace( "Obtaining EMF");
+			TestUtil.logTrace( "Obtaining EMF");
 			try {
 				TSNamingContext nctx = new TSNamingContext();
 				this.entityManagerFactory = (EntityManagerFactory) nctx.lookup(EMF_LOOKUP_NAME);
 				if (this.entityManagerFactory == null) {
-					logErr( "EMF returned by lookup was Null");
+					TestUtil.logErr( "EMF returned by lookup was Null");
 				} else {
-					logTrace( "EMF:" + this.entityManagerFactory.toString());
+					TestUtil.logTrace( "EMF:" + this.entityManagerFactory.toString());
 				}
 			} catch (Exception e) {
-				logErr( "Exception caught looking up EntityManagerFactory", e);
+				TestUtil.logErr( "Exception caught looking up EntityManagerFactory", e);
 				System.out.println("Exception caught looking up EntityManagerFactory");
 				e.printStackTrace();
 			}
@@ -92,20 +92,20 @@ public class Stateful3Bean2 implements Stateful3IF2 {
 	}
 
 	private EntityManagerFactory getEMF2() {
-		logTrace( "In getEMF2");
+		TestUtil.logTrace( "In getEMF2");
 
 		if (this.entityManagerFactory2 == null) {
-			logTrace( "Obtaining EMF");
+			TestUtil.logTrace( "Obtaining EMF");
 			try {
 				TSNamingContext nctx = new TSNamingContext();
 				this.entityManagerFactory2 = (EntityManagerFactory) nctx.lookup(EMF_LOOKUP_NAME2);
 				if (this.entityManagerFactory2 == null) {
-					logErr( "EMF returned by lookup was Null");
+					TestUtil.logErr( "EMF returned by lookup was Null");
 				} else {
-					logTrace( "EMF2:" + this.entityManagerFactory2.toString());
+					TestUtil.logTrace( "EMF2:" + this.entityManagerFactory2.toString());
 				}
 			} catch (Exception e) {
-				logErr( "Exception caught looking up EntityManagerFactory", e);
+				TestUtil.logErr( "Exception caught looking up EntityManagerFactory", e);
 				System.out.println("Exception caught looking up EntityManagerFactory");
 				e.printStackTrace();
 			}
@@ -116,26 +116,26 @@ public class Stateful3Bean2 implements Stateful3IF2 {
 	@PostConstruct
 	public void prepareEnvironment() {
 		try {
-			logTrace( "In PostContruct");
+			TestUtil.logTrace( "In PostContruct");
 			getEMF();
 			getEMF2();
 			if (entityManagerFactory != null) {
 				entityManager = this.entityManagerFactory.createEntityManager();
 			} else {
-				logErr( "EntityManagerFactory is null");
+				TestUtil.logErr( "EntityManagerFactory is null");
 			}
 			if (entityManagerFactory2 != null) {
 				entityManager2 = this.entityManagerFactory2.createEntityManager();
 			} else {
-				logErr( "EntityManagerFactory is null");
+				TestUtil.logErr( "EntityManagerFactory is null");
 			}
 		} catch (Exception e) {
-			logErr( " In PostConstruct: Exception caught while setting EntityManager", e);
+			TestUtil.logErr( " In PostConstruct: Exception caught while setting EntityManager", e);
 		}
 	}
 
 	public void init(final Properties p) {
-		logTrace( "init");
+		TestUtil.logTrace( "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -158,39 +158,39 @@ public class Stateful3Bean2 implements Stateful3IF2 {
 			createTestData2();
 
 			if (entityManager.contains(mRef[0])) {
-				logTrace( "Member:" + mRef[0].getMemberId() + " exists");
+				TestUtil.logTrace( "Member:" + mRef[0].getMemberId() + " exists");
 				pass1 = true;
 			} else {
-				logErr( "Member:" + mRef[0].getMemberId() + " does not exist");
+				TestUtil.logErr( "Member:" + mRef[0].getMemberId() + " does not exist");
 			}
 			if (entityManager2.contains(mRef2[0])) {
-				logTrace( "Member2:" + mRef2[0].getMemberId() + " exists");
+				TestUtil.logTrace( "Member2:" + mRef2[0].getMemberId() + " exists");
 				pass2 = true;
 			} else {
-				logErr( "Member2:" + mRef2[0].getMemberId() + " does not exist");
+				TestUtil.logErr( "Member2:" + mRef2[0].getMemberId() + " does not exist");
 			}
 
 			if (!entityManager.contains(mRef2[0])) {
-				logTrace( "PU " + EMF_LOOKUP_NAME + " does not contain Member2:"
+				TestUtil.logTrace( "PU " + EMF_LOOKUP_NAME + " does not contain Member2:"
 						+ mRef2[0].getMemberId() + " as expected");
 				pass3 = true;
 			} else {
-				logErr(
+				TestUtil.logErr(
 						"PU " + EMF_LOOKUP_NAME + " does incorrectly contain Member2:" + mRef2[0].getMemberId());
 			}
 			if (!entityManager2.contains(mRef[0])) {
-				logTrace( "PU " + EMF_LOOKUP_NAME2 + " does not contain Member:"
+				TestUtil.logTrace( "PU " + EMF_LOOKUP_NAME2 + " does not contain Member:"
 						+ mRef[0].getMemberId() + " as expected");
 				pass4 = true;
 			} else {
-				logErr(
+				TestUtil.logErr(
 						"PU " + EMF_LOOKUP_NAME2 + " does incorrectly contain Member:" + mRef[0].getMemberId());
 			}
 
 		} catch (Exception e) {
-			logErr( "Received unexpected exception", e);
+			TestUtil.logErr( "Received unexpected exception", e);
 		} finally {
-			logTrace( "Finally, removeTestData");
+			TestUtil.logTrace( "Finally, removeTestData");
 			removeTestData();
 			closeEntityManager();
 		}
@@ -206,10 +206,10 @@ public class Stateful3Bean2 implements Stateful3IF2 {
 		int newDonation = 10000;
 
 		if (null == m) {
-			logTrace( "checkMemberStatus: member is NULL");
+			TestUtil.logTrace( "checkMemberStatus: member is NULL");
 		} else {
 			if (m.isDuesPaid()) {
-				logTrace( "checkCustomerStatus: thisMember is not null, setDonation");
+				TestUtil.logTrace( "checkCustomerStatus: thisMember is not null, setDonation");
 				m.setDonation(new BigInteger("10000"));
 			} else {
 				BigInteger currentDonation = m.getDonation();
@@ -221,79 +221,79 @@ public class Stateful3Bean2 implements Stateful3IF2 {
 				m.setDuesPaid(true);
 			}
 
-			logTrace( "merge thisMember");
+			TestUtil.logTrace( "merge thisMember");
 			entityManager.flush();
 		}
 	}
 
 	public Member2 getMember(final int memberId) {
-		logTrace( "getMember");
+		TestUtil.logTrace( "getMember");
 		return entityManager.find(Member2.class, memberId);
 	}
 
 	public void createTestData() {
-		logTrace( "createTestData");
+		TestUtil.logTrace( "createTestData");
 		try {
 
-			logTrace( "Create Member Entities");
+			TestUtil.logTrace( "Create Member Entities");
 			mRef[0] = new Member(7, "Jane Lam", false);
 			mRef[1] = new Member(8, "Vinny Testa", false);
 			mRef[2] = new Member(9, "Mario Luigi", true, new BigInteger("25000"));
 			mRef[3] = new Member(10, "Sky Blue", false);
 			mRef[4] = new Member(11, "Leonardi DaVinci", true, new BigInteger("100000"));
 
-			logTrace( "Start to persist Members ");
+			TestUtil.logTrace( "Start to persist Members ");
 			System.out.println("Persist Member Entities");
 			for (Member m : mRef) {
 				if (m != null) {
 					entityManager.persist(m);
-					logTrace( "persisted Member " + m);
+					TestUtil.logTrace( "persisted Member " + m);
 				}
 			}
 
 			entityManager.flush();
 
 		} catch (Exception e) {
-			logErr( "Unexpected while creating member data:" + e);
+			TestUtil.logErr( "Unexpected while creating member data:" + e);
 		}
 	}
 
 	public void createTestData2() {
-		logTrace( "createTestData2");
+		TestUtil.logTrace( "createTestData2");
 		try {
 
-			logTrace( "Create Member2 Entities");
+			TestUtil.logTrace( "Create Member2 Entities");
 			mRef2[0] = new Member2(77, "Jane Lam", false);
 			mRef2[1] = new Member2(88, "Vinny Testa", false);
 			mRef2[2] = new Member2(99, "Mario Luigi", true, new BigInteger("25000"));
 			mRef2[3] = new Member2(100, "Sky Blue", false);
 			mRef2[4] = new Member2(111, "Leonardi DaVinci", true, new BigInteger("100000"));
 
-			logTrace( "Start to persist Members ");
+			TestUtil.logTrace( "Start to persist Members ");
 			System.out.println("Persist Member2 Entities");
 			for (Member2 m : mRef2) {
 				if (m != null) {
 					entityManager2.persist(m);
-					logTrace( "persisted Member2 " + m);
+					TestUtil.logTrace( "persisted Member2 " + m);
 				}
 			}
 
 			entityManager2.flush();
 		} catch (Exception e) {
-			logErr( "Unexpected while creating member data:" + e);
+			TestUtil.logErr( "Unexpected while creating member data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		logTrace( "removeTestData");
+		TestUtil.logTrace( "removeTestData");
 		try {
 			entityManager.createNativeQuery("DELETE FROM MEMBER").executeUpdate();
 		} catch (Exception e) {
-			logErr( "Exception encountered while removing entities:", e);
+			TestUtil.logErr( "Exception encountered while removing entities:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logTrace( "Clearing cache");
+		TestUtil.logTrace( "Clearing cache");
 		entityManagerFactory.getCache().evictAll();
 	}
 
@@ -303,7 +303,7 @@ public class Stateful3Bean2 implements Stateful3IF2 {
 				entityManager.close();
 			}
 		} catch (Exception e) {
-			logErr( "closeEntityManager: Unexpected Exception caught while closing "
+			TestUtil.logErr( "closeEntityManager: Unexpected Exception caught while closing "
 					+ "an Application-Managed EntityManager" + e);
 		}
 	}

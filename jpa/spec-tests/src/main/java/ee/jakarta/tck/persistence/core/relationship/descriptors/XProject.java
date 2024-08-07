@@ -24,6 +24,8 @@ package ee.jakarta.tck.persistence.core.relationship.descriptors;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+import com.sun.ts.lib.util.TestUtil;
+
 /*
  * XProject
  */
@@ -44,7 +46,7 @@ public class XProject implements java.io.Serializable {
 	private Collection<XPerson> xPersons = new java.util.ArrayList<XPerson>();
 
 	public XProject() {
-		logTrace( "XProject no-arg constructor");
+		TestUtil.logTrace( "XProject no-arg constructor");
 	}
 
 	public XProject(long xProjId, String xName, BigDecimal xBudget) {

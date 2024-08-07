@@ -29,6 +29,7 @@ import java.util.Map;
 
 import com.sun.ts.lib.util.TSNamingContext;
 
+import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.ee.common.Account;
 import ee.jakarta.tck.persistence.ee.util.Data;
 import ee.jakarta.tck.persistence.ee.util.HttpTCKServlet;
@@ -479,15 +480,15 @@ public class ServletTest extends HttpTCKServlet {
 				entityManager.merge(account);
 
 				desc = testName + ":Did not throw TransactionRequiredException";
-				logErr( desc);
+				TestUtil.logErr( desc);
 
 			} catch (TransactionRequiredException tre) {
 				desc = testName + ": Received expected TransactionRequiredException";
-				logTrace( desc);
+				TestUtil.logTrace( desc);
 				pass = true;
 			} catch (Exception e) {
 				desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-				logErr( desc);
+				TestUtil.logErr( desc);
 			}
 
 			if (pass) {
@@ -525,15 +526,15 @@ public class ServletTest extends HttpTCKServlet {
 				entityManager.persist(account);
 
 				desc = testName + ":Did not throw TransactionRequiredException";
-				logErr( desc);
+				TestUtil.logErr( desc);
 
 			} catch (TransactionRequiredException tre) {
 				desc = testName + ":Received expected TransactionRequiredException";
-				logTrace( desc);
+				TestUtil.logTrace( desc);
 				pass = true;
 			} catch (Exception e) {
 				desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-				logErr( desc);
+				TestUtil.logErr( desc);
 			}
 
 			if (pass) {
@@ -576,15 +577,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.refresh(account);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logErr( desc);
+					TestUtil.logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logTrace( desc);
+					TestUtil.logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logErr( desc);
+					TestUtil.logErr( desc);
 				}
 
 				if (pass) {
@@ -632,15 +633,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.refresh(account, myMap);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logErr( desc);
+					TestUtil.logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logTrace( desc);
+					TestUtil.logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logErr( desc);
+					TestUtil.logErr( desc);
 				}
 
 				if (pass) {
@@ -686,15 +687,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.refresh(account, LockModeType.OPTIMISTIC);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logErr( desc);
+					TestUtil.logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logTrace( desc);
+					TestUtil.logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logErr( desc);
+					TestUtil.logErr( desc);
 				}
 
 				if (pass) {
@@ -741,15 +742,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.refresh(account, LockModeType.OPTIMISTIC, myMap);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logErr( desc);
+					TestUtil.logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logTrace( desc);
+					TestUtil.logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logErr( desc);
+					TestUtil.logErr( desc);
 				}
 
 				if (pass) {
@@ -794,15 +795,15 @@ public class ServletTest extends HttpTCKServlet {
 					entityManager.remove(account);
 
 					desc = testName + ":Did not throw TransactionRequiredException";
-					logErr( desc);
+					TestUtil.logErr( desc);
 
 				} catch (TransactionRequiredException tre) {
 					desc = testName + ": Received expected TransactionRequiredException";
-					logTrace( desc);
+					TestUtil.logTrace( desc);
 					pass = true;
 				} catch (Exception e) {
 					desc = testName + ":Received unexpected Exception:" + convertExceptionToString(e);
-					logErr( desc);
+					TestUtil.logErr( desc);
 				}
 
 				if (pass) {

@@ -22,6 +22,7 @@ package ee.jakarta.tck.persistence.core.entitytest.persist.oneXone;
 
 
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -50,7 +51,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logTrace( "Entity A no arg constructor");
+		TestUtil.logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {
@@ -80,16 +81,16 @@ public class A implements java.io.Serializable {
 	}
 
 	public boolean isB1() {
-		logTrace( "isB1");
+		TestUtil.logTrace( "isB1");
 		if (getB1() != null)
-			logTrace( "Relationship to B is not null...");
+			TestUtil.logTrace( "Relationship to B is not null...");
 		else
-			logTrace( "Relationship for B is null ...");
+			TestUtil.logTrace( "Relationship for B is null ...");
 		return getB1() != null;
 	}
 
 	public B getB1Info() {
-		logTrace( "getBInfo");
+		TestUtil.logTrace( "getBInfo");
 		if (isB1()) {
 			B b1 = getB1();
 			return b1;

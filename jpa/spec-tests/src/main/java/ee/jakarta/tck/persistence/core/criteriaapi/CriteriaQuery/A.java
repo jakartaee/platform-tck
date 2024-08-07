@@ -24,6 +24,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Cacheable;
 import jakarta.persistence.Entity;
@@ -116,7 +117,7 @@ public class A implements java.io.Serializable {
 	// ===========================================================
 	// constructors
 	public A() {
-		logTrace( "Entity A no arg constructor");
+		TestUtil.logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value, Integer basicInteger, short basicShort, Short basicBigShort,

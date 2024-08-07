@@ -760,6 +760,9 @@ public abstract class EETest implements Serializable {
     TestUtil.logTrace(msg);
   }
 
+  public void logTrace(String msg, Throwable e) {
+    TestUtil.logTrace(msg, e);
+  }
   /**
    * prints a string to the TestUtil error stream. All tests should use this
    * method for error messages

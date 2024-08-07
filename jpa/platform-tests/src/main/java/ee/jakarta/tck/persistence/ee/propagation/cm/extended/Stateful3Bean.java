@@ -65,7 +65,7 @@ public class Stateful3Bean implements Stateful3IF {
 	}
 
 	public void init(final Properties p) {
-		logTrace( "init");
+		TestUtil.logTrace( "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -77,46 +77,46 @@ public class Stateful3Bean implements Stateful3IF {
 	public void createTestData() {
 		try {
 
-			logTrace( "createTestData");
+			TestUtil.logTrace( "createTestData");
 
-			logTrace( "Create 5 Bees");
+			TestUtil.logTrace( "Create 5 Bees");
 			bRef[0] = new B("1", "customerB1", 1);
 			bRef[1] = new B("2", "customerB2", 2);
 			bRef[2] = new B("3", "customerB3", 3);
 			bRef[3] = new B("4", "customerB4", 4);
 			bRef[4] = new B("5", "customerB5", 5);
 
-			logTrace( "Start to persist Bees ");
+			TestUtil.logTrace( "Start to persist Bees ");
 			for (B b : bRef) {
 				if (b != null) {
 					entityManager.persist(b);
-					logTrace( "persisted B " + b);
+					TestUtil.logTrace( "persisted B " + b);
 				}
 			}
 			entityManager.flush();
 		} catch (Exception e) {
-			logErr( "Unexpected while creating test data:" + e);
+			TestUtil.logErr( "Unexpected while creating test data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		logTrace( "removeTestData");
+		TestUtil.logTrace( "removeTestData");
 		try {
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 		} catch (Exception e) {
-			logErr( "Exception encountered while removing entities:", e);
+			TestUtil.logErr( "Exception encountered while removing entities:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logTrace( "Clearing cache");
+		TestUtil.logTrace( "Clearing cache");
 		entityManager.getEntityManagerFactory().getCache().evictAll();
 
 	}
 
 	public boolean test1() {
 
-		logTrace( "Begin test1");
+		TestUtil.logTrace( "Begin test1");
 		boolean pass = false;
 
 		try {
@@ -126,12 +126,12 @@ public class Stateful3Bean implements Stateful3IF {
 			B anotherB = entityManager.find(B.class, "3");
 
 			if (anotherB != null) {
-				logTrace( "newB found" + anotherB.getName());
+				TestUtil.logTrace( "newB found" + anotherB.getName());
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			TestUtil.logErr( "Unexpected Exception :", e);
 			pass = false;
 		} finally {
 			removeTestData();
@@ -147,16 +147,16 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public boolean test2() {
 
-		logTrace( "Begin test2");
+		TestUtil.logTrace( "Begin test2");
 		boolean pass = false;
 
 		try {
 			entityManager.getTransaction();
 		} catch (IllegalStateException ise) {
 			pass = true;
-			logTrace( "IllegalStateException Caught as Expected: " + ise);
+			TestUtil.logTrace( "IllegalStateException Caught as Expected: " + ise);
 		} catch (Exception e) {
-			logErr( "Unexpected Exception :", e);
+			TestUtil.logErr( "Unexpected Exception :", e);
 		}
 		return pass;
 	}
@@ -167,13 +167,13 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 			beanRef.removeTestData();
-			logTrace( "DEBUG:  createAccountData");
+			TestUtil.logTrace( "DEBUG:  createAccountData");
 			beanRef.createTestData();
 
 			accounts = beanRef.getAllAccounts();
 
 			if (accounts != null) {
-				logTrace( accounts);
+				TestUtil.logTrace( accounts);
 			}
 
 			Account ACCOUNT = entityManager.find(Account.class, 1075);
@@ -182,7 +182,7 @@ public class Stateful3Bean implements Stateful3IF {
 
 		} catch (Exception e) {
 			pass = false;
-			logErr( "Unexpected Exception:", e);
+			TestUtil.logErr( "Unexpected Exception:", e);
 		} finally {
 			beanRef.removeTestData();
 		}
@@ -206,15 +206,15 @@ public class Stateful3Bean implements Stateful3IF {
 			balance = beanRef.withdraw(ACCOUNT.id(), 50.0);
 
 			if (EXPECTED_BALANCE.equals(balance)) {
-				logTrace( "Expected balance received.");
+				TestUtil.logTrace( "Expected balance received.");
 				pass = true;
 			} else {
-				logErr(
+				TestUtil.logErr(
 						" Did not get Expected balance, got:" + balance + "Expected: " + EXPECTED_BALANCE);
 			}
 
 		} catch (Exception e) {
-			logErr( "Unexpected Exception:", e);
+			TestUtil.logErr( "Unexpected Exception:", e);
 		} finally {
 			beanRef.removeTestData();
 		}
@@ -227,13 +227,13 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 			removeTestData();
-			logTrace( "createTestData");
+			TestUtil.logTrace( "createTestData");
 			createTestData();
-			logTrace( "find customerB");
+			TestUtil.logTrace( "find customerB");
 			B customerB = entityManager.find(B.class, "4");
 
 			if (null != customerB) {
-				logTrace( "check customer status");
+				TestUtil.logTrace( "check customer status");
 				pass1 = beanRef.checkCustomerStatus(customerB);
 			}
 
@@ -244,7 +244,7 @@ public class Stateful3Bean implements Stateful3IF {
 			}
 
 		} catch (Exception e) {
-			logErr( "Unexpected Exception:", e);
+			TestUtil.logErr( "Unexpected Exception:", e);
 		} finally {
 			removeTestData();
 		}
@@ -256,17 +256,17 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 
-			logTrace( "find customerB");
+			TestUtil.logTrace( "find customerB");
 			B customerB = entityManager.find(B.class, "3");
 
 			if (null != customerB) {
-				logTrace( "customer is not null, call rollbackStatus()");
+				TestUtil.logTrace( "customer is not null, call rollbackStatus()");
 				pass = beanRef.rollbackStatus(customerB);
 			}
 
 		} catch (Exception e) {
 			pass = false;
-			logErr( "Unexpected Exception:", e);
+			TestUtil.logErr( "Unexpected Exception:", e);
 		}
 		return pass;
 	}
@@ -276,19 +276,19 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 
-			logTrace( "verifyTest6:  find customerB");
+			TestUtil.logTrace( "verifyTest6:  find customerB");
 			B customerB = entityManager.find(B.class, "3");
 
 			if ((customerB.getName().equals("customerB3"))) {
 				pass = true;
 			} else {
-				logErr(
+				TestUtil.logErr(
 						" did not get the expected result.  Expected" + " customerB3, got: " + customerB.getName());
 			}
 
 		} catch (Exception e) {
 			pass = false;
-			logErr( "Unexpected Exception in verifyTest6:", e);
+			TestUtil.logErr( "Unexpected Exception in verifyTest6:", e);
 		} finally {
 			removeTestData();
 
@@ -302,27 +302,27 @@ public class Stateful3Bean implements Stateful3IF {
 
 		try {
 			removeTestData();
-			logTrace( "createTestData");
+			TestUtil.logTrace( "createTestData");
 			createTestData();
 			B customerB = entityManager.find(B.class, "5");
 
 			if (null != customerB) {
-				logTrace( "customer is not null, call flushStatus()");
+				TestUtil.logTrace( "customer is not null, call flushStatus()");
 				pass1 = beanRef.flushStatus(customerB);
 
-				logTrace( "refresh customerB entity to be sure to get actual state");
+				TestUtil.logTrace( "refresh customerB entity to be sure to get actual state");
 				entityManager.refresh(customerB);
 
 				if ((pass1) && (customerB.getName().equals("flushB"))) {
 					pass = true;
 				} else {
-					logErr(
+					TestUtil.logErr(
 							" did not get the expected result.  Expected" + " flushB, got: " + customerB.getName());
 				}
 			}
 		} catch (Exception e) {
 			pass = false;
-			logErr( "Unexpected Exception:", e);
+			TestUtil.logErr( "Unexpected Exception:", e);
 		} finally {
 			removeTestData();
 

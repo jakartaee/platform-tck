@@ -22,6 +22,7 @@ package ee.jakarta.tck.persistence.core.entitytest.detach.manyXone;
 
 
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -49,7 +50,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logTrace( "Entity A no arg constructor");
+		TestUtil.logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {

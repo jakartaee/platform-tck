@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.callback.common;
 
-
+import com.sun.ts.lib.util.TestUtil;
 
 /**
  * An annotation-free class that holds the logics for recording entity lifecycle
@@ -37,7 +37,7 @@ public class GenerictListenerImpl {
 
 	public static void logTrace(String s, CallbackStatusIF b) {
 		String ss = b.getEntityName() + ": " + s;
-		logTrace( ss);
+		TestUtil.logTrace( ss);
 	}
 
 	public void prePersist(CallbackStatusIF b) {
@@ -54,7 +54,7 @@ public class GenerictListenerImpl {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		logTrace("In postPersist.", p);
 		if (!p.isPrePersistCalled()) {
-			logTrace( "When calling postPersist, prePersist has not been called.");
+			TestUtil.logTrace( "When calling postPersist, prePersist has not been called.");
 			throw new IllegalStateException("When calling postPersist, prePersist has not been called.");
 		}
 		p.setPostPersistCalled(true);
@@ -71,7 +71,7 @@ public class GenerictListenerImpl {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		logTrace("In postRemove.", p);
 		if (!p.isPreRemoveCalled()) {
-			logTrace( "When calling postRemove, preRemove has not been called.");
+			TestUtil.logTrace( "When calling postRemove, preRemove has not been called.");
 			throw new IllegalStateException("When calling postRemove, preRemove has not been called.");
 		}
 		p.setPostRemoveCalled(true);
@@ -88,7 +88,7 @@ public class GenerictListenerImpl {
 		CallbackStatusIF p = (CallbackStatusIF) b;
 		logTrace("In postUpdate.", p);
 		if (!p.isPreUpdateCalled()) {
-			logErr( "When calling postUpdate, preUpdate has not been called.");
+			TestUtil.logErr( "When calling postUpdate, preUpdate has not been called.");
 			throw new IllegalStateException("When calling postUpdate, preUpdate has not been called.");
 		}
 		p.setPostUpdateCalled(true);

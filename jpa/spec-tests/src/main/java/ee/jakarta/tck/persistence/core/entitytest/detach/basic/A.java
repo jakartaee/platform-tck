@@ -27,6 +27,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import com.sun.ts.lib.util.TestUtil;
+
 @Entity
 @Table(name = "AEJB_1XM_BI_BTOB")
 public class A implements java.io.Serializable {
@@ -49,7 +51,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logTrace( "in entity A no arg constructor");
+		TestUtil.logTrace( "in entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {

@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.entitytest.persist.oneXmanyFetchEager;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -50,7 +51,7 @@ public class A implements java.io.Serializable {
 	// constructors
 
 	public A() {
-		logTrace( "Entity A no arg constructor");
+		TestUtil.logTrace( "Entity A no arg constructor");
 	}
 
 	public A(String id, String name, int value) {
@@ -76,12 +77,12 @@ public class A implements java.io.Serializable {
 	// Business methods for test cases
 
 	public List<B> getBCol() {
-		logTrace( "getBCol");
+		TestUtil.logTrace( "getBCol");
 		return bCol;
 	}
 
 	public void setBCol(List<B> bCol) {
-		logTrace( "setBCol");
+		TestUtil.logTrace( "setBCol");
 		this.bCol = bCol;
 	}
 
@@ -102,7 +103,7 @@ public class A implements java.io.Serializable {
 	}
 
 	public List<B> getBInfoFromA() {
-		logTrace( "getBInfoFromA");
+		TestUtil.logTrace( "getBInfoFromA");
 		List<B> v = new java.util.ArrayList<B>();
 		if (getBCol().size() != 0) {
 			List<B> bcol = getBCol();

@@ -19,6 +19,7 @@ package ee.jakarta.tck.persistence.core.annotations.id;
 
 import java.math.BigDecimal;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -43,7 +44,7 @@ public class FieldBigDecimalId implements java.io.Serializable {
 	// ===========================================================
 	// constructors
 	public FieldBigDecimalId() {
-		logTrace( "Entity A no arg constructor");
+		TestUtil.logTrace( "Entity A no arg constructor");
 	}
 
 	public FieldBigDecimalId(BigDecimal id, BigDecimal bigDecimal) {

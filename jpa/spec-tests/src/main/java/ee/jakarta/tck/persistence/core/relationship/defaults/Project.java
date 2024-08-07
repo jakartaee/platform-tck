@@ -24,6 +24,7 @@ package ee.jakarta.tck.persistence.core.relationship.defaults;
 import java.math.BigDecimal;
 import java.util.Collection;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -51,7 +52,7 @@ public class Project implements java.io.Serializable {
 	private Collection<Person> persons = new java.util.ArrayList<Person>();
 
 	public Project() {
-		logTrace( "Project no-arg constructor");
+		TestUtil.logTrace( "Project no-arg constructor");
 	}
 
 	public Project(long projId, String name, BigDecimal budget) {
