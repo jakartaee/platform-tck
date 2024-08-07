@@ -26,7 +26,7 @@
         <version>2.2.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>servlet-tck-run</artifactId>
+    <artifactId>websocket-tck-run</artifactId>
     <packaging>jar</packaging>
 
     <properties>
