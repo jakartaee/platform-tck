@@ -38,6 +38,7 @@
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>jsonp-platform-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
+        <ts.home>/jakartaeetck</ts.home>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
         <version.jakarta.tck.arquillian>1.0.0-M1</version.jakarta.tck.arquillian>
     </properties>

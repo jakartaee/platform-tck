@@ -14,6 +14,8 @@
         </configuration>
         <protocol type="javatest">
             <property name="trace">true</property>
+            <property name="workDir">/tmp</property>
+            <property name="tsJteFile">/jakartaeetck/bin/ts.jte</property>
         </protocol>
     </container>
   </group>

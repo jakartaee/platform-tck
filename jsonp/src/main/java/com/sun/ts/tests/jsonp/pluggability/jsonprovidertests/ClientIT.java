@@ -232,13 +232,10 @@ public class ClientIT extends ServiceEETest {
   @TargetVehicle("servlet")
   public void jsonProviderTest1() throws Exception {
     boolean pass = true;
-    System.out.println("Alwin starting jsonProviderTest1");
     try {
       // Load my provider
       JsonProvider provider = JsonProvider.provider();
-      System.out.println("Alwin jsonProviderTest1 provider"+provider.toString());
       String providerClass = provider.getClass().getName();
-      System.out.println("Alwin jsonProviderTest1 providerClass"+providerClass);
       logger.log(Logger.Level.INFO, "provider class=" + providerClass);
       if (providerClass.equals(MY_JSONPROVIDER_CLASS))
         logger.log(Logger.Level.INFO, "Current provider is my provider - expected.");
