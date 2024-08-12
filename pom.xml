@@ -27,7 +27,7 @@
     </parent>
 
     <groupId>jakarta.tck</groupId>
-    <artifactId>platform-tck-parent</artifactId>
+    <artifactId>project</artifactId>
     <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>project</name>
