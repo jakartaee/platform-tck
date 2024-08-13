@@ -81,8 +81,9 @@
 
     <properties>
         <ant.version>1.10.11</ant.version>
-        <arquillian.version>1.9.1.Final</arquillian.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
+        <arquillian.version>1.9.1.Final</arquillian.version>
+        <arquillian.jakarta.tck.version>1.0.0-M2</arquillian.jakarta.tck.version>
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
         <!-- Jakarta Concurrency -->
@@ -539,6 +540,11 @@
                 <groupId>jakarta.servlet.jsp.jstl</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
                 <version>${jstl-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.tck.arquillian</groupId>
+                <artifactId>tck-porting-lib</artifactId>
+                <version>${arquillian.jakarta.tck.version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.transaction</groupId>
