@@ -82,8 +82,8 @@
     <properties>
         <ant.version>1.10.11</ant.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
-        <arquillian.version>1.9.1.Final</arquillian.version>
         <arquillian.jakarta.tck.version>1.0.0-M2</arquillian.jakarta.tck.version>
+        <arquillian.version>1.9.1.Final</arquillian.version>
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
         <!-- Jakarta Concurrency -->
@@ -133,8 +133,8 @@
         <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <shrinkwrap.version>3.3.0</shrinkwrap.version>
         <shrinkwrap.api.version>2.0.0-beta-1</shrinkwrap.api.version>
+        <shrinkwrap.version>3.3.0</shrinkwrap.version>
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
         <!-- Jakarta WebSocket -->
@@ -399,16 +399,15 @@
             </dependency>
 
             <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-api</artifactId>
+                <version>${shrinkwrap.api.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-depchain</artifactId>
                 <version>${shrinkwrap.version}</version>
                 <type>pom</type>
-            </dependency>
- 
-            <dependency>
-                <groupId>org.jboss.shrinkwrap</groupId>
-                <artifactId>shrinkwrap-api</artifactId>
-                <version>${shrinkwrap.api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
