@@ -82,6 +82,7 @@
     <properties>
         <ant.version>1.10.11</ant.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
+        <arquillian.jakarta.tck.version>1.0.0-M2</arquillian.jakarta.tck.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
@@ -398,6 +399,11 @@
             </dependency>
 
             <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-api</artifactId>
+                <version>${shrinkwrap.api.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-depchain</artifactId>
                 <version>${shrinkwrap.version}</version>
@@ -539,6 +545,11 @@
                 <groupId>jakarta.servlet.jsp.jstl</groupId>
                 <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
                 <version>${jstl-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.tck.arquillian</groupId>
+                <artifactId>tck-porting-lib</artifactId>
+                <version>${arquillian.jakarta.tck.version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.transaction</groupId>
