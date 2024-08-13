@@ -79,7 +79,7 @@
         <!-- Jakarta EE APIs Core -->
         <annotations.api.version>2.1.1</annotations.api.version>
         <apache.httpclient.version>3.1</apache.httpclient.version>
-        <arquillian.container.se.api.version>1.0.1.Final</arquillian.container.se.api.version>
+
         <cdi.api.version>4.0.0</cdi.api.version>
         <cdi.tck.version>4.0.6</cdi.tck.version>
         <!-- Required for distribution build, should be overriden for each build -->

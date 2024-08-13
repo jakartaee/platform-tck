@@ -81,7 +81,8 @@
 
     <properties>
         <ant.version>1.10.11</ant.version>
-        <arquillian.version>1.7.0.Alpha10</arquillian.version>
+        <arquillian.version>1.9.1.Final</arquillian.version>
+        <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
         <!-- Jakarta Concurrency -->
@@ -131,6 +132,8 @@
         <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <shrinkwrap.version>3.3.0</shrinkwrap.version>
+        <shrinkwrap.api.version>2.0.0-beta-1</shrinkwrap.api.version>
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
         <!-- Jakarta WebSocket -->
@@ -389,6 +392,30 @@
             </dependency>
 
             <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>container-se-api</artifactId>
+                <version>${arquillian.container.se.api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-depchain</artifactId>
+                <version>${shrinkwrap.version}</version>
+                <type>pom</type>
+            </dependency>
+ 
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-api</artifactId>
+                <version>${shrinkwrap.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+                <version>${shrinkwrap.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>jakarta.activation</groupId>
                 <artifactId>jakarta.activation-api</artifactId>
                 <version>${jakarta.activation-api.version}</version>
@@ -633,12 +660,6 @@
                     <groupId>org.netbeans.tools</groupId>
                     <artifactId>sigtest-maven-plugin</artifactId>
                     <version>1.5</version>
-                </plugin>
-                <!-- Plugin versions since ee4j parent no longer declares them-->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
