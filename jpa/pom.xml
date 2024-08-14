@@ -37,12 +37,12 @@
     </modules>
     <properties>
         <arquillian.junit>1.9.1.Final</arquillian.junit>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <tck.version>${project.version}</tck.version>
         <jakarta.ee.version>11.0.0-M1</jakarta.ee.version>
         <jakarta.ee.version></jakarta.ee.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <maven.compiler.release>17</maven.compiler.release>
+        <tck.version>${project.version}</tck.version>
         <tck.version>${project.version}</tck.version>
     </properties>
     <dependencies>
