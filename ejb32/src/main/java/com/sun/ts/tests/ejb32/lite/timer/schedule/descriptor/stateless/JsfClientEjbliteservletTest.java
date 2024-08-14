@@ -23,9 +23,9 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("javaee")
+@Tag("platform")
 @Tag("ejb_web_profile")
-@Tag("javaee_web_profile")
+@Tag("web")
 
 public class JsfClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.schedule.descriptor.stateless.JsfClient {
     static final String VEHICLE_ARCHIVE = "ejb32_lite_timer_schedule_descriptor_stateless_ejbliteservlet_vehicle";

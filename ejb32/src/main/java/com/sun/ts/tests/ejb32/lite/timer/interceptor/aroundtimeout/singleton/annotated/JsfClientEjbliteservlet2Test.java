@@ -23,8 +23,8 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("javaee")
-@Tag("javaee_web_profile_optional")
+@Tag("platform")
+@Tag("web_optional")
 @Tag("ejb_persistent_timer_optional")
 
 public class JsfClientEjbliteservlet2Test extends com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated.JsfClient {

@@ -23,9 +23,9 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("javaee")
+@Tag("platform")
 @Tag("ejb_web_profile")
-@Tag("javaee_web_profile")
+@Tag("web")
 
 public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton.Client {
     static final String VEHICLE_ARCHIVE = "ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet_vehicle";
