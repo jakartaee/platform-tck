@@ -916,7 +916,7 @@ public class Client1 extends Client {
     // disabling this test since Store Procedures with named parameters
     // isn't supported by all DB's at this time
     /*
-     * testName: setGetParameterStringTest assertion_ids: PERSISTENCE:JAVADOC:1549;
+     * test Name: setGetParameterStringTest assertion_ids: PERSISTENCE:JAVADOC:1549;
      * PERSISTENCE:JAVADOC:1558; PERSISTENCE:JAVADOC:1568; PERSISTENCE:JAVADOC:1591;
      * test_Strategy:
      */
