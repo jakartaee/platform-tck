@@ -20,37 +20,37 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Department</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.FTEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.PartTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Personnel</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Project</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Department</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.FTEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.PartTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Personnel</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Project</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Department</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.FTEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.PartTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Personnel</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Project</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Department</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.FTEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.PartTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Personnel</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Project</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Department</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.FTEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.PartTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Personnel</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.nonentity.Project</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Department</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.FTEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.PartTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Personnel</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.nonentity.Project</class>
   </persistence-unit>
 </persistence>
 

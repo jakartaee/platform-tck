@@ -20,37 +20,37 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XAddress</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XAnnualReview</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XCompany</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XInsurance</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XPerson</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XProject</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XTeam</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XAddress</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XAnnualReview</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XCompany</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XInsurance</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XPerson</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XProject</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XTeam</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XAddress</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XAnnualReview</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XCompany</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XInsurance</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XPerson</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XProject</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XTeam</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XAddress</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XAnnualReview</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XCompany</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XInsurance</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XPerson</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XProject</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XTeam</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XAddress</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XAnnualReview</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XCompany</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XInsurance</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XPerson</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XProject</class>
-    <class>com.sun.ts.tests.jpa.core.relationship.descriptors.XTeam</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XAddress</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XAnnualReview</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XCompany</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XInsurance</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XPerson</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XProject</class>
+    <class>ee.jakarta.tck.persistence.core.relationship.descriptors.XTeam</class>
   </persistence-unit>
 </persistence>
 

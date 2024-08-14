@@ -21,19 +21,19 @@
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
     <mapping-file>myMappingFile.xml</mapping-file>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Bar</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.CoffeeMappedSC</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Foo</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Bar</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.CoffeeMappedSC</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Foo</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
     <mapping-file>myMappingFile.xml</mapping-file>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Bar</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.CoffeeMappedSC</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Foo</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Bar</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.CoffeeMappedSC</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Foo</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
@@ -41,10 +41,10 @@
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
     <mapping-file>myMappingFile.xml</mapping-file>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Bar</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Coffee</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.CoffeeMappedSC</class>
-    <class>com.sun.ts.tests.jpa.core.entitytest.apitests.Foo</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Bar</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Coffee</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.CoffeeMappedSC</class>
+    <class>ee.jakarta.tck.persistence.core.entitytest.apitests.Foo</class>
   </persistence-unit>
 </persistence>
 

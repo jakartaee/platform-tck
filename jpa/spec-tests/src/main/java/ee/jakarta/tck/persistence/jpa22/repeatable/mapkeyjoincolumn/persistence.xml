@@ -20,25 +20,25 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Course</class>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Semester</class>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Student</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Course</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Semester</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Student</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Course</class>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Semester</class>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Student</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Course</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Semester</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Student</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Course</class>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Semester</class>
-    <class>com.sun.ts.tests.jpa.jpa22.repeatable.mapkeyjoincolumn.Student</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Course</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Semester</class>
+    <class>ee.jakarta.tck.persistence.jpa22.repeatable.mapkeyjoincolumn.Student</class>
   </persistence-unit>
 </persistence>
 

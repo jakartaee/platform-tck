@@ -20,28 +20,28 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2Dependent</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2DependentId</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2Employee</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2EmployeeId</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2Dependent</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2DependentId</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2Employee</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2EmployeeId</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2Dependent</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2DependentId</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2Employee</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2EmployeeId</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2Dependent</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2DependentId</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2Employee</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2EmployeeId</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2Dependent</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2DependentId</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2Employee</class>
-    <class>com.sun.ts.tests.jpa.core.derivedid.ex2a.DID2EmployeeId</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2Dependent</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2DependentId</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2Employee</class>
+    <class>ee.jakarta.tck.persistence.core.derivedid.ex2a.DID2EmployeeId</class>
   </persistence-unit>
 </persistence>
 

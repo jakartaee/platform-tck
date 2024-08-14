@@ -20,73 +20,73 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Address</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.B</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.CharConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.CommaConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Country</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Customer</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Department</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DisableAutoApplyConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DotConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DotConverter2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee3</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.FullTimeEmployee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.IntegerConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.NumberToStateConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.SalaryConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.SpaceConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Address</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.B</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.CharConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.CommaConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Country</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Customer</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Department</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DisableAutoApplyConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DotConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DotConverter2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee3</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.FullTimeEmployee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.IntegerConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.NumberToStateConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.SalaryConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.SpaceConverter</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Address</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.B</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.CharConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.CommaConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Country</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Customer</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Department</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DisableAutoApplyConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DotConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DotConverter2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee3</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.FullTimeEmployee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.IntegerConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.NumberToStateConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.SalaryConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.SpaceConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Address</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.B</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.CharConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.CommaConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Country</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Customer</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Department</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DisableAutoApplyConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DotConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DotConverter2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee3</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.FullTimeEmployee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.IntegerConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.NumberToStateConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.SalaryConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.SpaceConverter</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Address</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.B</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.CharConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.CommaConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Country</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Customer</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Department</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DisableAutoApplyConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DotConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.DotConverter2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.Employee3</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.FullTimeEmployee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.IntegerConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.NumberToStateConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.SalaryConverter</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.convert.SpaceConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Address</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.B</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.CharConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.CommaConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Country</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Customer</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Department</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DisableAutoApplyConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DotConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.DotConverter2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.Employee3</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.FullTimeEmployee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.IntegerConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.NumberToStateConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.SalaryConverter</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.convert.SpaceConverter</class>
   </persistence-unit>
 </persistence>
 

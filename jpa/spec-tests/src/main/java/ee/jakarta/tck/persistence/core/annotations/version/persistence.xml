@@ -20,58 +20,58 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Int_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Int_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Integer_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Integer_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.LongClass_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.LongClass_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Long_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Long_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.ShortClass_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.ShortClass_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Short_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Short_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Timestamp_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Timestamp_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Int_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Int_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Integer_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Integer_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.LongClass_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.LongClass_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Long_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Long_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.ShortClass_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.ShortClass_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Short_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Short_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Timestamp_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Timestamp_Property</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Int_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Int_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Integer_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Integer_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.LongClass_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.LongClass_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Long_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Long_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.ShortClass_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.ShortClass_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Short_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Short_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Timestamp_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Timestamp_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Int_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Int_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Integer_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Integer_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.LongClass_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.LongClass_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Long_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Long_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.ShortClass_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.ShortClass_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Short_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Short_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Timestamp_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Timestamp_Property</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Int_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Int_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Integer_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Integer_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.LongClass_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.LongClass_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Long_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Long_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.ShortClass_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.ShortClass_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Short_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Short_Property</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Timestamp_Field</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.version.Timestamp_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Int_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Int_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Integer_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Integer_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.LongClass_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.LongClass_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Long_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Long_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.ShortClass_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.ShortClass_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Short_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Short_Property</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Timestamp_Field</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.version.Timestamp_Property</class>
   </persistence-unit>
 </persistence>
 

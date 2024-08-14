@@ -20,37 +20,37 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department4</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.EmbeddedEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee4</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department4</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.EmbeddedEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee4</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department4</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.EmbeddedEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee4</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department4</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.EmbeddedEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee4</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Department4</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.EmbeddedEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee2</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.mapkeytemporal.Employee4</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Department4</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.EmbeddedEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee2</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.mapkeytemporal.Employee4</class>
   </persistence-unit>
 </persistence>
 

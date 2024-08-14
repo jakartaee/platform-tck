@@ -20,58 +20,58 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldBigDecimalId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldBigIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldIntId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldSQLDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldStringId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldUtilDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyBigDecimalId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyBigIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyIntId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertySQLDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyStringId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyUtilDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldBigDecimalId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldBigIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldIntId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldSQLDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldStringId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldUtilDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyBigDecimalId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyBigIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyIntId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertySQLDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyStringId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyUtilDateId</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldBigDecimalId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldBigIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldIntId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldSQLDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldStringId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldUtilDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyBigDecimalId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyBigIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyIntId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertySQLDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyStringId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyUtilDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldBigDecimalId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldBigIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldIntId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldSQLDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldStringId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldUtilDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyBigDecimalId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyBigIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyIntId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertySQLDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyStringId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyUtilDateId</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldBigDecimalId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldBigIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldIntId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldSQLDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldStringId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.FieldUtilDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyBigDecimalId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyBigIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyIntId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyIntegerId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertySQLDateId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyStringId</class>
-    <class>com.sun.ts.tests.jpa.core.annotations.id.PropertyUtilDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldBigDecimalId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldBigIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldIntId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldSQLDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldStringId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.FieldUtilDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyBigDecimalId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyBigIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyIntId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyIntegerId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertySQLDateId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyStringId</class>
+    <class>ee.jakarta.tck.persistence.core.annotations.id.PropertyUtilDateId</class>
   </persistence-unit>
 </persistence>
 

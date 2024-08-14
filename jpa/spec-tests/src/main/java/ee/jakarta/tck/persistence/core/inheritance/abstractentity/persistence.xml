@@ -20,34 +20,34 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.AbstractPersonnel</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Department</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.PartTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Project</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.AbstractPersonnel</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Department</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.PartTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Project</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.AbstractPersonnel</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Department</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.PartTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Project</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.AbstractPersonnel</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Department</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.PartTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Project</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.AbstractPersonnel</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Department</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Employee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.FullTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.PartTimeEmployee</class>
-    <class>com.sun.ts.tests.jpa.core.inheritance.abstractentity.Project</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.AbstractPersonnel</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Department</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Employee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.FullTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.PartTimeEmployee</class>
+    <class>ee.jakarta.tck.persistence.core.inheritance.abstractentity.Project</class>
   </persistence-unit>
 </persistence>
 

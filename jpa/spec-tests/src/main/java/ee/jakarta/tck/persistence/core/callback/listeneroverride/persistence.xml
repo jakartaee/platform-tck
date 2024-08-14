@@ -20,64 +20,64 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.Constants</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.GenerictListener</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.GenerictListenerImpl</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerA</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerAA</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerB</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerBB</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerBase</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerC</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerCC</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.LineItem</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.LineItemSuper</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.Order</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.Product</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.CallbackStatusIF</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.CallbackStatusImpl</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.Constants</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.GenerictListener</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.GenerictListenerImpl</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerA</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerAA</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerB</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerBB</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerBase</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerC</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerCC</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.LineItem</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.LineItemSuper</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.Order</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.Product</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.Constants</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.GenerictListener</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.GenerictListenerImpl</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerA</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerAA</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerB</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerBB</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerBase</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerC</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerCC</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.LineItem</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.LineItemSuper</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.Order</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.Product</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.CallbackStatusIF</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.CallbackStatusImpl</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.Constants</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.GenerictListener</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.GenerictListenerImpl</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerA</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerAA</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerB</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerBB</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerBase</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerC</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerCC</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.LineItem</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.LineItemSuper</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.Order</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.Product</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.callback.common.CallbackStatusIF</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.CallbackStatusImpl</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.Constants</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.GenerictListener</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.GenerictListenerImpl</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerA</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerAA</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerB</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerBB</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerBase</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerC</class>
-    <class>com.sun.ts.tests.jpa.core.callback.common.ListenerCC</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.LineItem</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.LineItemSuper</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.Order</class>
-    <class>com.sun.ts.tests.jpa.core.callback.listeneroverride.Product</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.CallbackStatusIF</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.CallbackStatusImpl</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.Constants</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.GenerictListener</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.GenerictListenerImpl</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerA</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerAA</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerB</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerBB</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerBase</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerC</class>
+    <class>ee.jakarta.tck.persistence.core.callback.common.ListenerCC</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.LineItem</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.LineItemSuper</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.Order</class>
+    <class>ee.jakarta.tck.persistence.core.callback.listeneroverride.Product</class>
   </persistence-unit>
 </persistence>
 

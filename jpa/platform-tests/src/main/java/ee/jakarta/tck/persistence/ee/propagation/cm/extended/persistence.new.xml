@@ -22,9 +22,9 @@
             If the transaction-type is not specified,
             the default is JTA.</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.ee.common.A</class>
-    <class>com.sun.ts.tests.jpa.ee.common.Account</class>
-    <class>com.sun.ts.tests.jpa.ee.common.B</class>
+    <class>ee.jakarta.tck.persistence.ee.common.A</class>
+    <class>ee.jakarta.tck.persistence.ee.common.Account</class>
+    <class>ee.jakarta.tck.persistence.ee.common.B</class>
   </persistence-unit>
 </persistence>
 

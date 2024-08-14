@@ -20,43 +20,43 @@
   <persistence-unit name="CTS-EM" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Course</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Cubicle</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.CubiclePK</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Customer1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Hardware</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.RetailOrder1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Student</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.TheatreCompany1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.TheatreLocation1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Course</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Cubicle</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.CubiclePK</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Customer1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Hardware</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.RetailOrder1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Student</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.TheatreCompany1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.TheatreLocation1</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Course</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Cubicle</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.CubiclePK</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Customer1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Hardware</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.RetailOrder1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Student</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.TheatreCompany1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.TheatreLocation1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Course</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Cubicle</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.CubiclePK</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Customer1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Hardware</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.RetailOrder1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Student</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.TheatreCompany1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.TheatreLocation1</class>
   </persistence-unit>
   <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Course</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Cubicle</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.CubiclePK</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Customer1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Hardware</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.RetailOrder1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.Student</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.TheatreCompany1</class>
-    <class>com.sun.ts.tests.jpa.core.override.joincolumn.TheatreLocation1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Course</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Cubicle</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.CubiclePK</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Customer1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Hardware</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.RetailOrder1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.Student</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.TheatreCompany1</class>
+    <class>ee.jakarta.tck.persistence.core.override.joincolumn.TheatreLocation1</class>
   </persistence-unit>
 </persistence>
 

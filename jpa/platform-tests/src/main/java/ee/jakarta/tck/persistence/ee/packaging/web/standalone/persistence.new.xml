@@ -20,7 +20,7 @@
   <persistence-unit name="StandaloneAccountManager" transaction-type="JTA">
     <description>Persistence Unit for CTS EE Package Tests</description>
     <jta-data-source>jdbc/DB1</jta-data-source>
-    <class>com.sun.ts.tests.jpa.ee.common.Account</class>
+    <class>ee.jakarta.tck.persistence.ee.common.Account</class>
   </persistence-unit>
 </persistence>
 
