@@ -33,7 +33,7 @@
     <description>EJB32</description>
 
     <properties>
-        <version.jakarta.tck.arquillian>1.0.0-M2</version.jakarta.tck.arquillian>
+        <version.jakarta.tck.arquillian>1.0.0-M3</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencies>

@@ -25,7 +25,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 @Tag("ejb")
 @Tag("ejb32")
-@Tag("javaee")
+@Tag("platform")
 
 public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.singleton.Client {
     /**

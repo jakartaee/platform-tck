@@ -23,7 +23,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("javaee")
+@Tag("platform")
 @Tag("ejb_mdb_optional")
 
 public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Client {

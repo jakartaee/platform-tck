@@ -23,9 +23,9 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("javaee")
+@Tag("platform")
 @Tag("ejb_web_profile")
-@Tag("javaee_web_profile")
+@Tag("web")
 
 public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.interceptor.business.stateless.Client {
     static final String VEHICLE_ARCHIVE = "ejb32_lite_timer_interceptor_business_stateless_ejblitejsp_vehicle";
