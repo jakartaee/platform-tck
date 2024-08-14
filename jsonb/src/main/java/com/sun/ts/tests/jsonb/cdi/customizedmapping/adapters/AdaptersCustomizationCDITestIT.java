@@ -113,7 +113,7 @@ public class AdaptersCustomizationCDITestIT { //extends ServiceEETest {
     war.addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class);
     war.addClass(com.sun.ts.lib.harness.EETest.class);
     war.addClass(com.sun.ts.lib.harness.RemoteStatus.class);
-    war.addClass(com.sun.javatest.Status.class);
+    war.addClass(com.sun.ts.lib.harness.Status.class);
     war.addClass(com.sun.ts.lib.harness.ServiceEETest.class);
 
     war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalIdentifier.class);

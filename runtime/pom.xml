@@ -38,12 +38,6 @@
             <artifactId>libutil</artifactId>
         </dependency>
         <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
             <groupId>jakarta.jms</groupId>
             <artifactId>jakarta.jms-api</artifactId>
         </dependency>

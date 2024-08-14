@@ -19,7 +19,6 @@ package com.sun.ts.lib.deliverable;
 import java.io.*;
 import java.util.*;
 
-import com.sun.javatest.*;
 import com.sun.ts.lib.util.*;
 
 /**
@@ -28,9 +27,10 @@ import com.sun.ts.lib.util.*;
  *
  * @created August 22, 2002
  * @author Kyle Grucci
+ * @deprecated
  */
+@Deprecated(forRemoval = true)
 public class AbstractPropertyManager implements PropertyManagerInterface {
-  private TestEnvironment env;
 
   private Properties jteProperties;
 
@@ -70,22 +70,6 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
    */
   private Properties copyEntries() {
     Properties props = new Properties();
-    if (this.env != null) {
-      String key = null;
-      String val = null;
-      for (Iterator it = env.keys().iterator(); it.hasNext();) {
-        key = (String) it.next();
-        val = getFromEnv(key);
-        if (key != null && val != null) {
-          props.setProperty(key, val);
-        } else {
-          if (TestUtil.harnessDebug) {
-            TestUtil.logHarnessDebug(
-                "AbstractPropertyManager.copyEntries():" + key + " is null.");
-          }
-        }
-      }
-    }
     if (this.jteProperties != null) {
       props.putAll(this.jteProperties);
     }
@@ -102,9 +86,9 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
    * Sets a property in property manager. If the key already exists in the
    * property manager, the old value is overriden by new value.
    *
-   * @param key
+   * @param sKey
    *          key of the property.
-   * @param val
+   * @param sVal
    *          value of the property.
    */
   public void setProperty(String sKey, String sVal) {
@@ -263,11 +247,6 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
   private String getFromEnv(String key) {
     String result = null;
     String[] values = null;
-    try {
-      values = env.lookup(key);
-    } catch (TestEnvironment.Fault f) {
-      f.printStackTrace();
-    }
     if (values != null) {
       switch (values.length) {
       case 0:
@@ -302,9 +281,6 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     if (jteProperties != null) {
       result = jteProperties.getProperty(key);
     }
-    if (result == null && env != null) {
-      result = getFromEnv(key);
-    }
     if (result == null) {
       result = getDefaultValue(key);
     }
@@ -322,21 +298,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
       throws PropertyNotSetException {
     jteProperties = p;
     jteProperties.put("bin.dir", System.getProperty("bin.dir", ""));
-    env = null;
     checkHarnessTempDir();
   }
 
-  /**
-   * Sets the testEnvironment attribute of the AbstractPropertyManager object
-   *
-   * @param env
-   *          The new testEnvironment value
-   * @exception PropertyNotSetException
-   */
-  protected final void setTestEnvironment(TestEnvironment env)
-      throws PropertyNotSetException {
-    this.env = env;
-    jteProperties = null;
-    checkHarnessTempDir();
-  }
 }

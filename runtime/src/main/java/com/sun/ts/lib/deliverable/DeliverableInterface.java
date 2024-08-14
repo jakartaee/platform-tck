@@ -19,7 +19,6 @@ package com.sun.ts.lib.deliverable;
 import java.util.Map;
 import java.util.Properties;
 import com.sun.ts.lib.porting.DeploymentInfo;
-import com.sun.javatest.TestEnvironment;
 
 /**
  * This interface serves as a place to retrieve deliverable specific
@@ -30,16 +29,6 @@ import com.sun.javatest.TestEnvironment;
  */
 public interface DeliverableInterface {
  
-  /**
-   * This method is called to retrieve a reference to this Deliverable's
-   * PropertyManager. If the PropertyManager instance does not yet exist, one
-   * will be created from the TestEnvironment object.
-   *
-   * @param te - TestEnvironment specific to the currently running test
-   * @return PropertyManagerInterface impl.
-   */
-  public PropertyManagerInterface createPropertyManager(TestEnvironment te)
-      throws Exception;
 
   /**
    * This method is called to retrieve a reference to this Deliverable's
