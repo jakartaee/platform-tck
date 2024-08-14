@@ -352,13 +352,6 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>javatest</groupId>
-                <artifactId>javatest</artifactId>
-                <version>${javatest.version}</version>
-                <scope>compile</scope>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>web-servlet</artifactId>
                 <version>${project.version}</version>

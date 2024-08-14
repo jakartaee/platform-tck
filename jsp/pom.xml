@@ -70,10 +70,6 @@
             <version>2.2</version>
         </dependency>
         <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-        </dependency>
-        <dependency>
             <groupId>jakarta.servlet.jsp</groupId>
             <artifactId>jakarta.servlet.jsp-api</artifactId>
             <version>${jsp-api.version}</version>

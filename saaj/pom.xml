@@ -45,10 +45,6 @@
             <artifactId>common</artifactId>
         </dependency>
         <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-        </dependency>
-        <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
         </dependency>
