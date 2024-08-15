@@ -25,6 +25,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 @Tag("platform")
 @Tag("ejb_mdb_optional")
+@Tag("tck-appclient")
 
 public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Client {
     /**
@@ -152,5 +153,6 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
         public void testModernConnector() throws Fault {
             super.testModernConnector();
         }
+
 
 }

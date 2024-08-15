@@ -26,6 +26,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("ejb")
 @Tag("ejb32")
 @Tag("platform")
+@Tag("tck-appclient")
 
 public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.stateless.Client {
     /**

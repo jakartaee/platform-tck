@@ -26,6 +26,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("platform")
 @Tag("ejb_web_profile")
 @Tag("web")
+@Tag("tck-javatest")
 
 public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.schedule.expression.descriptor.Client {
     static final String VEHICLE_ARCHIVE = "ejb32_lite_timer_schedule_expression_descriptor_ejbliteservlet_vehicle";

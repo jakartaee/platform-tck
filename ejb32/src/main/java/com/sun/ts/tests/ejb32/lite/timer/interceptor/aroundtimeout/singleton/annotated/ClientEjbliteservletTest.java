@@ -26,6 +26,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("platform")
 @Tag("web_optional")
 @Tag("ejb_persistent_timer_optional")
+@Tag("tck-javatest")
 
 public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated.Client {
     static final String VEHICLE_ARCHIVE = "ejb32_lite_timer_interceptor_aroundtimeout_singleton_annotated_ejbliteservlet_vehicle";

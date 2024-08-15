@@ -90,7 +90,7 @@
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
         <version.openrewrite>8.24.0</version.openrewrite>
-        <version.org.jboss.arquillian.core>1.7.2.Final</version.org.jboss.arquillian.core>
+        <version.org.jboss.arquillian.core>1.9.1.Final</version.org.jboss.arquillian.core>
         <webservices-api-osgi.version>3.0.0</webservices-api-osgi.version>
         <webservices-api.version>3.0.0</webservices-api.version>
         <webservices-osgi.version>3.0.0</webservices-osgi.version>
@@ -721,7 +721,7 @@
                     <dependency>
                         <groupId>jakarta.tck</groupId>
                         <artifactId>tck-rewrite-tools</artifactId>
-                        <version>1.0.0-M3</version>
+                        <version>1.0.0-M5</version>
                     </dependency>
                     <dependency>
                         <groupId>org.openrewrite</groupId>
