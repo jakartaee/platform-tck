@@ -26,6 +26,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("platform")
 @Tag("web_optional")
 @Tag("ejb_persistent_timer_optional")
+@Tag("tck-javatest")
 
 public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.schedule.expire.JsfClient {
     static final String VEHICLE_ARCHIVE = "ejb32_lite_timer_schedule_expire_ejblitejsf_vehicle";

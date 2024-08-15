@@ -26,6 +26,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("platform")
 @Tag("ejb_web_profile")
 @Tag("web")
+@Tag("tck-javatest")
 
 public class JsfClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.service.singleton.JsfClient {
     static final String VEHICLE_ARCHIVE = "ejb32_lite_timer_service_singleton_ejblitejsp_vehicle";
