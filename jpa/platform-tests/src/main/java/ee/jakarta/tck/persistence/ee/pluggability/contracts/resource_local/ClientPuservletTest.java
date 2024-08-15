@@ -23,8 +23,9 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-javatest")
 
 public class ClientPuservletTest extends ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Client {
     static final String VEHICLE_ARCHIVE = "pluggability_contracts_resource_local_puservlet_vehicle";

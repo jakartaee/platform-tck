@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-appclient")
 
 public class Client7AppmanagedTest extends ee.jakarta.tck.persistence.core.criteriaapi.metamodelquery.Client7 {
     static final String VEHICLE_ARCHIVE = "jpa_core_criteriaapi_metamodelquery_appmanaged_vehicle";

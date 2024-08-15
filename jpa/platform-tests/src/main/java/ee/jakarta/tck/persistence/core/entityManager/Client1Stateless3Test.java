@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-appclient")
 
 public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.entityManager.Client1 {
     static final String VEHICLE_ARCHIVE = "jpa_core_entityManager_stateless3_vehicle";

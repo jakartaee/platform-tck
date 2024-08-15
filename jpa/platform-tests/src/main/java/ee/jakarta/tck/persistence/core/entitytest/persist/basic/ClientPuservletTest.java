@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-javatest")
 
 public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.entitytest.persist.basic.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_et_persist_basic_puservlet_vehicle";

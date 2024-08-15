@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-javatest")
 
 public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packaging.jar.Client {
     static final String VEHICLE_ARCHIVE = "jpa_ee_packaging_jar_pmservlet_vehicle";

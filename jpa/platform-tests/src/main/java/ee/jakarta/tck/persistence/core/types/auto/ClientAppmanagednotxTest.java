@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-appclient")
 
 public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.types.auto.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_types_auto_appmanagedNoTx_vehicle";

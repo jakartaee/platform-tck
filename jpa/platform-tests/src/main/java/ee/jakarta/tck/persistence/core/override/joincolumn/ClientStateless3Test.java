@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-appclient")
 
 public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.override.joincolumn.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_override_joincolumn_stateless3_vehicle";

@@ -23,8 +23,9 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-appclient")
 
 public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggability.contracts.jta.Client {
     static final String VEHICLE_ARCHIVE = "jpa_ee_pluggability_contracts_jta_appmanaged_vehicle";

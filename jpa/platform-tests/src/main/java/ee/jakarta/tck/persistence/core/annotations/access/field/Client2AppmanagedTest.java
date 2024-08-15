@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-appclient")
 
 public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.annotations.access.field.Client2 {
     static final String VEHICLE_ARCHIVE = "jpa_core_annotations_access_field_appmanaged_vehicle";

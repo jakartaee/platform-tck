@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-appclient")
 
 public class Client4Stateless3Test extends ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder.Client4 {
     static final String VEHICLE_ARCHIVE = "jpa_core_criteriapia_CriteriaBuilder_stateless3_vehicle";

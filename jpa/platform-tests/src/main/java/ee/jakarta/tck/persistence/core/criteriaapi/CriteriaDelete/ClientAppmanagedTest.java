@@ -23,9 +23,10 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("jpa")
-@Tag("javaee")
-@Tag("javaee_web_profile")
+@Tag("persistence")
+@Tag("platform")
+@Tag("web")
+@Tag("tck-appclient")
 
 public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.criteriaapi.CriteriaDelete.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_criteriapia_CriteriaDelete_appmanaged_vehicle";

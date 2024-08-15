@@ -23,7 +23,8 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 
 @ExtendWith(ArquillianExtension.class)
-@Tag("javaee")
+@Tag("platform")
+@Tag("tck-appclient")
 
 public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.standalone.Client {
     /**
