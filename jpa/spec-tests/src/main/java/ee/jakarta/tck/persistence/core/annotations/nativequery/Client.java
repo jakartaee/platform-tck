@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.nativequery;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +34,7 @@ import jakarta.persistence.TransactionRequiredException;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	public Client() {
 	}
@@ -49,13 +49,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -87,12 +87,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			final Item i1 = new Item(7, "Loafers");
 			final Item i2 = new Item(8, "High Heels");
 			final Item i3 = new Item(9, "Socks");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 
 			Order1 o7 = new Order1(7, 25.0D);
 			o7.setItem(i1);
@@ -104,16 +104,16 @@ public class Client extends PMClientBase {
 			o9.setItem(i3);
 			getEntityManager().persist(o9);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery("Select o.ID AS \"OID\", o.TOTALPRICE AS \"OPRICE\", "
 					+ "o.FK1_FOR_ITEM AS \"OITEM\", i.ITEMNAME AS \"INAME\" from ORDER1 o, ITEM i "
 					+ "WHERE (o.TOTALPRICE < 100) AND (o.FK1_FOR_ITEM = i.ID)", "Order2ItemResults")
 					.getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR, " Did not get expected results.  Expected: 1, " + "got: " + q.size());
+				logErr( " Did not get expected results.  Expected: 1, " + "got: " + q.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
+				logTrace( "Expected size received, verify contents . . . ");
 
 				for (Object obj : q) {
 					// each element in the query result list should be an Object[], which
@@ -129,31 +129,31 @@ public class Client extends PMClientBase {
 								Order1 orderReturned = (Order1) o;
 
 								if (!orderReturned.equals(o7)) {
-									logger.log(Logger.Level.ERROR, "Expected:" + o7 + ", actual:" + orderReturned);
+									logErr( "Expected:" + o7 + ", actual:" + orderReturned);
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected order");
+									logTrace( "Received expected order");
 									passCounter++;
 								}
 								if (orderReturned.getItem() != i1) {
-									logger.log(Logger.Level.ERROR,
+									logErr(
 											"Expected:" + i1 + ", actual:" + orderReturned.getItem());
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected item");
+									logTrace( "Received expected item");
 									passCounter++;
 								}
 							} else if (o instanceof String) {
 
 								String itemName = (String) o;
 								if (!itemName.equals(i1.getItemName())) {
-									logger.log(Logger.Level.ERROR,
+									logErr(
 											"Expected:" + i1.getItemName() + ", actual:" + itemName);
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected itemName");
+									logTrace( "Received expected itemName");
 									passCounter++;
 								}
 
 							} else {
-								logger.log(Logger.Level.ERROR, "Received unexpected object:" + o);
+								logErr( "Received unexpected object:" + o);
 							}
 						}
 
@@ -167,7 +167,7 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -199,12 +199,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			final Item i1 = new Item(1, "Boots");
 			final Item i2 = new Item(2, "Sneakers");
 			final Item i3 = new Item(3, "Slippers");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 			Order1 o1 = new Order1(1, 25.0D);
 			o1.setItem(i1);
 			getEntityManager().persist(o1);
@@ -215,7 +215,7 @@ public class Client extends PMClientBase {
 			o3.setItem(i3);
 			getEntityManager().persist(o3);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager()
 					.createNativeQuery("Select o.ID AS \"THISID\", o.TOTALPRICE AS \"THISPRICE\", "
 							+ "o.FK1_FOR_ITEM AS \"THISITEM\", i.ID, i.ITEMNAME from ORDER1 o, ITEM i "
@@ -223,9 +223,9 @@ public class Client extends PMClientBase {
 					.getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR, " Did not get expected results.  Expected: 1, " + "got: " + q.size());
+				logErr( " Did not get expected results.  Expected: 1, " + "got: " + q.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
+				logTrace( "Expected size received, verify contents . . . ");
 
 				for (Object obj : q) {
 					// each element in the query result list should be an Object[], which
@@ -241,29 +241,29 @@ public class Client extends PMClientBase {
 								Order1 orderReturned = (Order1) o;
 
 								if (!orderReturned.equals(o3)) {
-									logger.log(Logger.Level.ERROR, "Expected:" + o3 + ", actual:" + orderReturned);
+									logErr( "Expected:" + o3 + ", actual:" + orderReturned);
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected order");
+									logTrace( "Received expected order");
 									passCounter++;
 								}
 								if (orderReturned.getItem() != i3) {
-									logger.log(Logger.Level.ERROR,
+									logErr(
 											"Expected:" + i3 + ", actual:" + orderReturned.getItem());
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected item");
+									logTrace( "Received expected item");
 									passCounter++;
 								}
 							} else if (o instanceof Item) {
 								Item item = (Item) o;
 								if (item != i3) {
-									logger.log(Logger.Level.ERROR, "Expected:" + i3 + ", actual:" + item);
+									logErr( "Expected:" + i3 + ", actual:" + item);
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected item");
+									logTrace( "Received expected item");
 									passCounter++;
 								}
 
 							} else {
-								logger.log(Logger.Level.ERROR, "Received unexpected object:" + o);
+								logErr( "Received unexpected object:" + o);
 							}
 						}
 
@@ -277,7 +277,7 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -304,12 +304,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			final Item i1 = new Item(7, "Loafers");
 			final Item i2 = new Item(8, "High Heels");
 			final Item i3 = new Item(9, "Socks");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 
 			Order1 o7 = new Order1(7, 25.0D);
 			o7.setItem(i1);
@@ -321,16 +321,16 @@ public class Client extends PMClientBase {
 			o9.setItem(i3);
 			getEntityManager().persist(o9);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery("Select o.ID AS \"OID\", o.TOTALPRICE AS \"OPRICE\", "
 					+ "o.FK1_FOR_ITEM AS \"OITEM\", i.ITEMNAME AS \"INAME\" from ORDER1 o, ITEM i "
 					+ "WHERE (o.TOTALPRICE < 100) AND (o.FK1_FOR_ITEM = i.ID)", "Order4ItemResults")
 					.getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR, " Did not get expected results.  Expected: 1, " + "got: " + q.size());
+				logErr( " Did not get expected results.  Expected: 1, " + "got: " + q.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
+				logTrace( "Expected size received, verify contents . . . ");
 
 				for (Object obj : q) {
 					// each element in the query result list should be an Object[], which
@@ -346,31 +346,31 @@ public class Client extends PMClientBase {
 								Order1 orderReturned = (Order1) o;
 
 								if (!orderReturned.equals(o7)) {
-									logger.log(Logger.Level.ERROR, "Expected:" + o7 + ", actual:" + orderReturned);
+									logErr( "Expected:" + o7 + ", actual:" + orderReturned);
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected order");
+									logTrace( "Received expected order");
 									passCounter++;
 								}
 								if (orderReturned.getItem() != i1) {
-									logger.log(Logger.Level.ERROR,
+									logErr(
 											"Expected:" + i1 + ", actual:" + orderReturned.getItem());
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected item");
+									logTrace( "Received expected item");
 									passCounter++;
 								}
 							} else if (o instanceof String) {
 
 								String itemName = (String) o;
 								if (!itemName.equals(i1.getItemName())) {
-									logger.log(Logger.Level.ERROR,
+									logErr(
 											"Expected:" + i1.getItemName() + ", actual:" + itemName);
 								} else {
-									logger.log(Logger.Level.TRACE, "Received expected itemName");
+									logTrace( "Received expected itemName");
 									passCounter++;
 								}
 
 							} else {
-								logger.log(Logger.Level.ERROR, "Received unexpected object:" + o);
+								logErr( "Received unexpected object:" + o);
 							}
 						}
 
@@ -384,7 +384,7 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -410,12 +410,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			final Item i1 = new Item(7, "Loafers");
 			final Item i2 = new Item(8, "High Heels");
 			final Item i3 = new Item(9, "Socks");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 
 			Order1 o7 = new Order1(7, 25.0D);
 			o7.setItem(i1);
@@ -427,7 +427,7 @@ public class Client extends PMClientBase {
 			o9.setItem(i3);
 			getEntityManager().persist(o9);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager()
 					.createNativeQuery(
 							"Select o.ID AS \"OID\", o.TOTALPRICE AS \"OPRICE\", "
@@ -437,32 +437,32 @@ public class Client extends PMClientBase {
 					.getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 references, got: " + q.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
+				logTrace( "Expected size received, verify contents . . . ");
 				Order2 o = q.get(0);
 				if (o.getId() == o7.getId()) {
 					if (o.getTotalPrice() == o7.getTotalPrice()) {
 						if (o.getItemName().equals(o7.getItem().getItemName())) {
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected:" + o7.getItem().getItemName() + ", actual:" + o.getItemName());
 						}
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected:" + o7.getTotalPrice() + ", actual:" + o.getTotalPrice());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + o7.getId() + ", actual:" + o.getId());
+					logErr( "Expected:" + o7.getId() + ", actual:" + o.getId());
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -489,7 +489,7 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Purchase Orders");
+			logTrace( "Create Purchase Orders");
 
 			PurchaseOrder p1 = new PurchaseOrder(7, 25);
 			getEntityManager().persist(p1);
@@ -498,39 +498,39 @@ public class Client extends PMClientBase {
 			PurchaseOrder p3 = new PurchaseOrder(9, 75);
 			getEntityManager().persist(p3);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery(
 					"Select o.ID AS \"OID\", o.TOTAL AS \"PTOTAL\" from PURCHASE_ORDER o "
 							+ "WHERE (o.TOTAL < 50)",
 					"PurchaseOrder1Results").getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 references, got: " + q.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
+				logTrace( "Expected size received, verify contents . . . ");
 				PurchaseOrder p = q.get(0);
 				if (p.getId() == p1.getId()) {
 					if (p.getTotal() == p1.getTotal()) {
 						pass1 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected:" + p1.getTotal() + ", actual:" + p.getTotal());
+						logErr( "Expected:" + p1.getTotal() + ", actual:" + p.getTotal());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected: " + p1.getId() + ", actual:" + p.getId());
+					logErr( "Expected: " + p1.getId() + ", actual:" + p.getId());
 				}
 				if (!getEntityManager().contains(p)) {
-					logger.log(Logger.Level.INFO, "Entity contains id and is managed.");
+					logMsg( "Entity contains id and is managed.");
 					pass2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Entity contains an id and is not managed.");
+					logErr( "Entity contains an id and is not managed.");
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -557,7 +557,7 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Purchase Orders");
+			logTrace( "Create Purchase Orders");
 
 			PurchaseOrder p1 = new PurchaseOrder(7, 25);
 			getEntityManager().persist(p1);
@@ -566,38 +566,38 @@ public class Client extends PMClientBase {
 			PurchaseOrder p3 = new PurchaseOrder(9, 75);
 			getEntityManager().persist(p3);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery(
 					"Select o.TOTAL AS \"PTOTAL\" from PURCHASE_ORDER o " + "WHERE (o.TOTAL < 50)",
 					"PurchaseOrder2Results").getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 references, got: " + q.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
+				logTrace( "Expected size received, verify contents . . . ");
 				PurchaseOrder p = q.get(0);
 				if (p.getId() == 0) {
 					if (p.getTotal() == p1.getTotal()) {
 						pass1 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected:" + p1.getTotal() + ", actual:" + p.getTotal());
+						logErr( "Expected:" + p1.getTotal() + ", actual:" + p.getTotal());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected: 0, actual:" + p.getId());
+					logErr( "Expected: 0, actual:" + p.getId());
 				}
 				if (!getEntityManager().contains(p)) {
-					logger.log(Logger.Level.INFO, "Entity does not contain id and is detached.");
+					logMsg( "Entity does not contain id and is detached.");
 					pass2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Entity does not contain an id and is not detached.");
+					logErr( "Entity does not contain an id and is not detached.");
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -623,12 +623,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			final Item i1 = new Item(1, "Boots");
 			final Item i2 = new Item(2, "Sneakers");
 			final Item i3 = new Item(3, "Slippers");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 			Order1 o1 = new Order1(1, 25.0D);
 			o1.setItem(i1);
 			getEntityManager().persist(o1);
@@ -639,7 +639,7 @@ public class Client extends PMClientBase {
 			o3.setItem(i3);
 			getEntityManager().persist(o3);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery("Select o.ID from ORDER1 o WHERE o.ID = 2 ")
 					.getResultList();
 
@@ -648,22 +648,22 @@ public class Client extends PMClientBase {
 				actual.add(convertToInt(o));
 			}
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				logErr( "Did not get expected results");
 				for (Integer i : expected) {
-					logger.log(Logger.Level.ERROR, "expected:" + i);
+					logErr( "expected:" + i);
 				}
 				for (Integer i : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + i);
+					logErr( "actual:" + i);
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -686,12 +686,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			final Item i1 = new Item(1, "Boots");
 			final Item i2 = new Item(2, "Sneakers");
 			final Item i3 = new Item(3, "Slippers");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 			Order1 o1 = new Order1(1, 25.0D);
 			o1.setItem(i1);
 			getEntityManager().persist(o1);
@@ -702,16 +702,16 @@ public class Client extends PMClientBase {
 			o3.setItem(i3);
 			getEntityManager().persist(o3);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery("Select * from ORDER1 o WHERE o.ID = 2 ", Order1.class)
 					.getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR, " Did not get expected results.  Expected: 1, got: " + q.size());
+				logErr( " Did not get expected results.  Expected: 1, got: " + q.size());
 			} else {
 				int id = q.get(0).getId();
 				if (id != 2) {
-					logger.log(Logger.Level.ERROR, "id expected:2, actual:" + id);
+					logErr( "id expected:2, actual:" + id);
 
 				} else {
 					pass = true;
@@ -722,7 +722,7 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -748,12 +748,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			Item i1 = new Item(1, "Boots");
 			Item i2 = new Item(2, "Sneakers");
 			Item i3 = new Item(3, "Slippers");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 			Order1 o1 = new Order1(1, 25.0D);
 			o1.setItem(i1);
 			getEntityManager().persist(o1);
@@ -764,16 +764,16 @@ public class Client extends PMClientBase {
 			o3.setItem(i3);
 			getEntityManager().persist(o3);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery("Select * from ORDER1 o WHERE o.ID = 2 ", Order1.class)
 					.getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR, " Did not get expected results.  Expected: 1, got: " + q.size());
+				logErr( " Did not get expected results.  Expected: 1, got: " + q.size());
 			} else {
 				int id = q.get(0).getId();
 				if (id != 2) {
-					logger.log(Logger.Level.ERROR, "id expected:2, actual:" + id);
+					logErr( "id expected:2, actual:" + id);
 
 				} else {
 					pass = true;
@@ -784,7 +784,7 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -805,19 +805,19 @@ public class Client extends PMClientBase {
 		boolean pass = false;
 		try {
 			getEntityManager().createNativeQuery("Delete from ORDER1").executeUpdate();
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException was not thrown");
+			logErr( "TransactionRequiredException was not thrown");
 		} catch (TransactionRequiredException ise) {
-			logger.log(Logger.Level.TRACE, "Received expected TransactionRequiredException");
+			logTrace( "Received expected TransactionRequiredException");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 		if (!pass)
@@ -840,12 +840,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			Item i1 = new Item(1, "Boots");
 			Item i2 = new Item(2, "Sneakers");
 			Item i3 = new Item(3, "Slippers");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 			Order1 o1 = new Order1(1, 25.0D);
 			o1.setItem(i1);
 			getEntityManager().persist(o1);
@@ -856,19 +856,19 @@ public class Client extends PMClientBase {
 			o3.setItem(i3);
 			getEntityManager().persist(o3);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery("Select * from ORDER1 o WHERE o.ID = ? ", Order1.class)
 					.setParameter(1, 2).getResultList();
 
 			if (q.size() != 1) {
-				logger.log(Logger.Level.ERROR, " Did not get expected results.  Expected: 1, got: " + q.size());
+				logErr( " Did not get expected results.  Expected: 1, got: " + q.size());
 			} else {
 				int id = q.get(0).getId();
 				if (id != 2) {
-					logger.log(Logger.Level.ERROR, "id expected:2, actual:" + id);
+					logErr( "id expected:2, actual:" + id);
 
 				} else {
-					logger.log(Logger.Level.TRACE, "Received expected result");
+					logTrace( "Received expected result");
 					pass = true;
 				}
 
@@ -877,7 +877,7 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -900,12 +900,12 @@ public class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create Items");
+			logTrace( "Create Items");
 			Item i1 = new Item(1, "Boots");
 			Item i2 = new Item(2, "Sneakers");
 			Item i3 = new Item(3, "Slippers");
 
-			logger.log(Logger.Level.TRACE, "Create Orders");
+			logTrace( "Create Orders");
 			Order1 o1 = new Order1(1, 25.0D);
 			o1.setItem(i1);
 			getEntityManager().persist(o1);
@@ -916,21 +916,21 @@ public class Client extends PMClientBase {
 			o3.setItem(i3);
 			getEntityManager().persist(o3);
 
-			logger.log(Logger.Level.TRACE, "Execute Query");
+			logTrace( "Execute Query");
 			q = getEntityManager().createNativeQuery("Select COUNT(*) from ORDER1 o").getSingleResult();
 			int i = 0;
 			i = convertToInt(q);
 			if (i == 3) {
-				logger.log(Logger.Level.TRACE, "Received expected result:" + i);
+				logTrace( "Received expected result:" + i);
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected: 3, actual:" + i);
+				logErr( "Expected: 3, actual:" + i);
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -940,9 +940,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -950,7 +950,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -963,14 +963,14 @@ public class Client extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

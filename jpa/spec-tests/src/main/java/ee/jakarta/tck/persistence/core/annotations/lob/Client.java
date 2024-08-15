@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.lob;
 
-import java.lang.System.Logger;
+
 import java.util.Arrays;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -28,7 +28,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private DataTypes dataTypes;
 
@@ -46,16 +46,16 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createTestData();
-			logger.log(Logger.Level.TRACE, "Done creating test data");
+			logTrace( "Done creating test data");
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -79,40 +79,40 @@ public class Client extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "FIND DataTypes and verify initial value");
+			logMsg( "FIND DataTypes and verify initial value");
 			dataTypes = getEntityManager().find(DataTypes.class, 1);
 			if ((null != dataTypes) && (Arrays.equals(smallByteArray, dataTypes.getByteArrayData()))) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass1 = true;
-				logger.log(Logger.Level.TRACE, "DataType Entity is not null, setting byteData ");
+				logTrace( "DataType Entity is not null, setting byteData ");
 				largeByteArray = createLargeByteArray();
 				dataTypes.setByteArrayData(largeByteArray);
 				getEntityManager().merge(dataTypes);
 				getEntityManager().flush();
 
-				logger.log(Logger.Level.INFO, "FIND DataTypes again and verify updated value");
+				logMsg( "FIND DataTypes again and verify updated value");
 				dataTypes = getEntityManager().find(DataTypes.class, 1);
 
-				logger.log(Logger.Level.TRACE, "Check results");
+				logTrace( "Check results");
 				if ((null != dataTypes) && (Arrays.equals(largeByteArray, dataTypes.getByteArrayData()))) {
-					logger.log(Logger.Level.TRACE, "Expected results received");
+					logTrace( "Expected results received");
 					pass2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Unexpected result in array comparison.");
+					logErr( "Unexpected result in array comparison.");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Unexpected result in array comparison.");
+				logErr( "Unexpected result in array comparison.");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -123,7 +123,7 @@ public class Client extends PMClientBase {
 
 	// Methods used for Tests
 	public void createTestData() {
-		logger.log(Logger.Level.TRACE, "createTestData");
+		logTrace( "createTestData");
 
 		try {
 			getEntityTransaction().begin();
@@ -136,14 +136,14 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", e);
+			logErr( "Unexpected Exception in createTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -200,9 +200,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -210,7 +210,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -219,14 +219,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DATATYPES").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

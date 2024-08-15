@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.entityManagerFactory;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -36,7 +36,7 @@ import jakarta.persistence.criteria.Root;
 
 public class Client1 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
+
 
 	Properties props = null;
 
@@ -54,14 +54,14 @@ public class Client1 extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createOrderTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -70,7 +70,7 @@ public class Client1 extends PMClientBase {
 	public void cleanup() throws Exception {
 		try {
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "done cleanup, calling super.cleanup");
+			logTrace( "done cleanup, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -97,7 +97,7 @@ public class Client1 extends PMClientBase {
 		boolean pass7 = false;
 		try {
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
-			logger.log(Logger.Level.TRACE, "Defining queries");
+			logTrace( "Defining queries");
 			Query nativeQuery = getEntityManager()
 					.createNativeQuery("Select o.ID from PURCHASE_ORDER o ORDER BY o.ID ASC");
 			nativeQuery.setMaxResults(1);
@@ -117,24 +117,24 @@ public class Client1 extends PMClientBase {
 
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing native query with different max result than the original");
+				logMsg( "*********************************");
+				logMsg( "Testing native query with different max result than the original");
 				Query namedQuery = getEntityManager().createNamedQuery("native_query");
 				boolean configOK = true;
 				if (namedQuery.getMaxResults() == 1) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result before change:" + namedQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result before change:1, actual:" + namedQuery.getMaxResults());
 					configOK = false;
 				}
 				namedQuery.setMaxResults(2);
 				if (namedQuery.getMaxResults() == 2) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result after change:" + namedQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result after change:2, actual:" + namedQuery.getMaxResults());
 					configOK = false;
 				}
@@ -149,20 +149,20 @@ public class Client1 extends PMClientBase {
 					for (int i : iList) {
 						if (i == 1) {
 							foundOne = true;
-							logger.log(Logger.Level.TRACE, "Found expected id:1");
+							logTrace( "Found expected id:1");
 						} else if (i == 2) {
 							foundTwo = true;
-							logger.log(Logger.Level.TRACE, "Found expected id:2");
+							logTrace( "Found expected id:2");
 						} else {
-							logger.log(Logger.Level.ERROR, "Received unexpected result:" + i);
+							logErr( "Received unexpected result:" + i);
 						}
 
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get expected number of results, expected:2, actual:" + iList.size());
 					for (Integer i : iList) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && foundTwo && configOK) {
@@ -172,22 +172,22 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing native query verify original max result is still active");
+				logMsg( "*********************************");
+				logMsg( "Testing native query verify original max result is still active");
 				Query namedQuery = getEntityManager().createNamedQuery("native_query");
 				boolean configOK = true;
 				if (namedQuery.getMaxResults() == 1) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result before change:" + namedQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result before change:1, actual:" + namedQuery.getMaxResults());
 					configOK = false;
 				}
@@ -201,16 +201,16 @@ public class Client1 extends PMClientBase {
 				if (iList.size() == 1) {
 					int result = iList.get(0);
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected Order");
+						logTrace( "Received expected Order");
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + iList.size());
 					for (int i : iList) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -219,32 +219,32 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query with different max result than the original");
+				logMsg( "*********************************");
+				logMsg( "Testing query with different max result than the original");
 
 				Query namedQuery = getEntityManager().createNamedQuery("query");
 				boolean configOK = true;
 				if (namedQuery.getMaxResults() == 1) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result before change:" + namedQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result before change:1, actual:" + namedQuery.getMaxResults());
 					configOK = false;
 				}
 				namedQuery.setMaxResults(2);
 				if (namedQuery.getMaxResults() == 2) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result after change:" + namedQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result after change:2, actual:" + namedQuery.getMaxResults());
 					configOK = false;
 				}
@@ -259,20 +259,20 @@ public class Client1 extends PMClientBase {
 					for (int i : iList) {
 						if (i == 1) {
 							foundOne = true;
-							logger.log(Logger.Level.TRACE, "Found expected id:1");
+							logTrace( "Found expected id:1");
 						} else if (i == 2) {
 							foundTwo = true;
-							logger.log(Logger.Level.TRACE, "Found expected id:2");
+							logTrace( "Found expected id:2");
 						} else {
-							logger.log(Logger.Level.ERROR, "Received unexpected result:" + i);
+							logErr( "Received unexpected result:" + i);
 						}
 
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get expected number of results, expected:2, actual:" + iList.size());
 					for (Integer i : iList) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && foundTwo && configOK) {
@@ -281,22 +281,22 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query verify original max result is active");
+				logMsg( "*********************************");
+				logMsg( "Testing query verify original max result is active");
 				Query namedQuery = getEntityManager().createNamedQuery("query");
 				boolean configOK = true;
 				if (namedQuery.getMaxResults() == 1) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result before change:" + namedQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result before change:1, actual:" + namedQuery.getMaxResults());
 					configOK = false;
 				}
@@ -310,16 +310,16 @@ public class Client1 extends PMClientBase {
 				if (iList.size() == 1) {
 					int result = iList.get(0);
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + iList.size());
 					for (int i : iList) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -328,15 +328,15 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query definition can be replaced ");
+				logMsg( "*********************************");
+				logMsg( "Testing query definition can be replaced ");
 				Query query2 = getEntityManager().createQuery("Select o.id from Order o where o.id in (1,2) ");
 				query2.setMaxResults(2);
 				getEntityManagerFactory().addNamedQuery("query", query2);
@@ -344,10 +344,10 @@ public class Client1 extends PMClientBase {
 
 				boolean configOK = true;
 				if (namedQuery.getMaxResults() == 2) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result before change:" + namedQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result before change:2, actual:" + namedQuery.getMaxResults());
 					configOK = false;
 				}
@@ -362,47 +362,47 @@ public class Client1 extends PMClientBase {
 				lExpected.add(2);
 				if (iList.containsAll(lExpected) && (lExpected.containsAll(iList))
 						&& iList.size() == lExpected.size()) {
-					logger.log(Logger.Level.TRACE, "Received expected ids");
+					logTrace( "Received expected ids");
 					if (configOK) {
 						pass5 = true;
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Did not receive expected results:");
+					logErr( "Did not receive expected results:");
 					for (Integer i : lExpected) {
-						logger.log(Logger.Level.ERROR, "Expected:" + i);
+						logErr( "Expected:" + i);
 					}
 					for (Integer i : iList) {
-						logger.log(Logger.Level.ERROR, "Expected:" + i);
+						logErr( "Expected:" + i);
 					}
 				}
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing TypedQuery with max result different than the original");
+				logMsg( "*********************************");
+				logMsg( "Testing TypedQuery with max result different than the original");
 				TypedQuery<Integer> namedTypeQuery = getEntityManager().createNamedQuery("typed_query", Integer.class);
 				boolean configOK = true;
 				if (namedTypeQuery.getMaxResults() == 1) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result before change:" + namedTypeQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result before change:1, actual:" + namedTypeQuery.getMaxResults());
 					configOK = false;
 				}
 				namedTypeQuery.setMaxResults(2);
 				if (namedTypeQuery.getMaxResults() == 2) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result after change:" + namedTypeQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result after change:2, actual:" + namedTypeQuery.getMaxResults());
 					configOK = false;
 				}
@@ -417,20 +417,20 @@ public class Client1 extends PMClientBase {
 					for (int i : iList) {
 						if (i == 1) {
 							foundOne = true;
-							logger.log(Logger.Level.TRACE, "Found expected id:1");
+							logTrace( "Found expected id:1");
 						} else if (i == 2) {
 							foundTwo = true;
-							logger.log(Logger.Level.TRACE, "Found expected id:2");
+							logTrace( "Found expected id:2");
 						} else {
-							logger.log(Logger.Level.ERROR, "Received unexpected result:" + i);
+							logErr( "Received unexpected result:" + i);
 						}
 
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get expected number of results, expected:2, actual:" + iList.size());
 					for (Integer i : iList) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && foundTwo && configOK) {
@@ -439,22 +439,22 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing TypedQuery verify original max result is active");
+				logMsg( "*********************************");
+				logMsg( "Testing TypedQuery verify original max result is active");
 				TypedQuery<Integer> namedTypeQuery = getEntityManager().createNamedQuery("typed_query", Integer.class);
 				boolean configOK = true;
 				if (namedTypeQuery.getMaxResults() == 1) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected Max Result before change:" + namedTypeQuery.getMaxResults());
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected Max Result before change:1, actual:" + namedTypeQuery.getMaxResults());
 					configOK = false;
 				}
@@ -468,16 +468,16 @@ public class Client1 extends PMClientBase {
 				if (iList.size() == 1) {
 					int result = iList.get(0);
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + iList.size());
 					for (int i : iList) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -486,13 +486,13 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7) {
@@ -520,7 +520,7 @@ public class Client1 extends PMClientBase {
 		boolean pass7 = false;
 		try {
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
-			logger.log(Logger.Level.TRACE, "Defining queries");
+			logTrace( "Defining queries");
 			Query nativeQuery = getEntityManager().createNativeQuery("Select ID from PURCHASE_ORDER where ID=1");
 			nativeQuery.setFlushMode(FlushModeType.AUTO);
 			getEntityManagerFactory().addNamedQuery("native_query", nativeQuery);
@@ -539,24 +539,24 @@ public class Client1 extends PMClientBase {
 
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing native query with different flush mode than the original");
+				logMsg( "*********************************");
+				logMsg( "Testing native query with different flush mode than the original");
 				Query namedQuery = getEntityManager().createNamedQuery("native_query");
 				boolean configOK = true;
 				if (namedQuery.getFlushMode().equals(FlushModeType.AUTO)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode before change:" + namedQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode before change:" + FlushModeType.AUTO
+					logErr( "Expected flush mode before change:" + FlushModeType.AUTO
 							+ ", actual:" + namedQuery.getFlushMode());
 					configOK = false;
 				}
 				namedQuery.setFlushMode(FlushModeType.COMMIT);
 				if (namedQuery.getFlushMode().equals(FlushModeType.COMMIT)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode after change:" + namedQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode after change:" + FlushModeType.AUTO
+					logErr( "Expected flush mode after change:" + FlushModeType.AUTO
 							+ ", actual:" + namedQuery.getFlushMode());
 					configOK = false;
 				}
@@ -565,16 +565,16 @@ public class Client1 extends PMClientBase {
 				if (lResult.size() == 1) {
 					int result = convertToInt(lResult.get(0));
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (int i : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -583,22 +583,22 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing native query verify original flush mode is still active");
+				logMsg( "*********************************");
+				logMsg( "Testing native query verify original flush mode is still active");
 				Query namedQuery = getEntityManager().createNamedQuery("native_query");
 				boolean configOK = true;
 				if (namedQuery.getFlushMode().equals(FlushModeType.AUTO)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode before change:" + namedQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode before change:" + FlushModeType.AUTO.name()
+					logErr( "Expected flush mode before change:" + FlushModeType.AUTO.name()
 							+ ", actual:" + namedQuery.getFlushMode());
 					configOK = false;
 				}
@@ -608,16 +608,16 @@ public class Client1 extends PMClientBase {
 				if (lResult.size() == 1) {
 					int result = convertToInt(lResult.get(0));
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (int i : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -626,31 +626,31 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query with different flush mode than the original");
+				logMsg( "*********************************");
+				logMsg( "Testing query with different flush mode than the original");
 				Query namedQuery = getEntityManager().createNamedQuery("query");
 				boolean configOK = true;
 				if (namedQuery.getFlushMode().equals(FlushModeType.AUTO)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode before change:" + namedQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode before change:" + FlushModeType.AUTO
+					logErr( "Expected flush mode before change:" + FlushModeType.AUTO
 							+ ", actual:" + namedQuery.getFlushMode());
 					configOK = false;
 				}
 				namedQuery.setFlushMode(FlushModeType.COMMIT);
 				if (namedQuery.getFlushMode().equals(FlushModeType.COMMIT)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode after change:" + namedQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode after change:" + FlushModeType.AUTO
+					logErr( "Expected flush mode after change:" + FlushModeType.AUTO
 							+ ", actual:" + namedQuery.getFlushMode());
 					configOK = false;
 				}
@@ -659,16 +659,16 @@ public class Client1 extends PMClientBase {
 				if (lResult.size() == 1) {
 					int result = lResult.get(0);
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (int i : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -677,22 +677,22 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query verify original flush mode is active");
+				logMsg( "*********************************");
+				logMsg( "Testing query verify original flush mode is active");
 				Query namedQuery = getEntityManager().createNamedQuery("query");
 				boolean configOK = true;
 				if (namedQuery.getFlushMode().equals(FlushModeType.AUTO)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode before change:" + namedQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode before change:" + FlushModeType.AUTO.name()
+					logErr( "Expected flush mode before change:" + FlushModeType.AUTO.name()
 							+ ", actual:" + namedQuery.getFlushMode());
 					configOK = false;
 				}
@@ -702,16 +702,16 @@ public class Client1 extends PMClientBase {
 				if (lResult.size() == 1) {
 					int result = lResult.get(0);
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (int i : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -720,25 +720,25 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query definition can be replaced ");
+				logMsg( "*********************************");
+				logMsg( "Testing query definition can be replaced ");
 				Query query2 = getEntityManager().createQuery("Select o.id from Order o where o.id = 2")
 						.setFlushMode(FlushModeType.COMMIT);
 				getEntityManagerFactory().addNamedQuery("query", query2);
 				Query namedQuery = getEntityManager().createNamedQuery("query");
 				boolean configOK = true;
 				if (namedQuery.getFlushMode().equals(FlushModeType.COMMIT)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode before change:" + namedQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode before change:" + FlushModeType.COMMIT.name()
+					logErr( "Expected flush mode before change:" + FlushModeType.COMMIT.name()
 							+ ", actual:" + namedQuery.getFlushMode());
 					configOK = false;
 				}
@@ -748,16 +748,16 @@ public class Client1 extends PMClientBase {
 				if (lResult.size() == 1) {
 					int result = lResult.get(0);
 					if (result == 2) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:2, actual:" + result);
+						logErr( "Expected id:2, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (int i : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -766,31 +766,31 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing TypedQuery with flush mode different than the original");
+				logMsg( "*********************************");
+				logMsg( "Testing TypedQuery with flush mode different than the original");
 				TypedQuery<Integer> namedTypeQuery = getEntityManager().createNamedQuery("typed_query", Integer.class);
 				boolean configOK = true;
 				if (namedTypeQuery.getFlushMode().equals(FlushModeType.AUTO)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode before change:" + namedTypeQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode before change:" + FlushModeType.AUTO
+					logErr( "Expected flush mode before change:" + FlushModeType.AUTO
 							+ ", actual:" + namedTypeQuery.getFlushMode());
 					configOK = false;
 				}
 				namedTypeQuery.setFlushMode(FlushModeType.COMMIT);
 				if (namedTypeQuery.getFlushMode().equals(FlushModeType.COMMIT)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode after change:" + namedTypeQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode after change:" + FlushModeType.AUTO
+					logErr( "Expected flush mode after change:" + FlushModeType.AUTO
 							+ ", actual:" + namedTypeQuery.getFlushMode());
 					configOK = false;
 				}
@@ -799,16 +799,16 @@ public class Client1 extends PMClientBase {
 				if (lResult.size() == 1) {
 					int result = lResult.get(0);
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (int i : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -817,22 +817,22 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing TypedQuery verify original flush mode is active");
+				logMsg( "*********************************");
+				logMsg( "Testing TypedQuery verify original flush mode is active");
 				TypedQuery<Integer> namedTypeQuery = getEntityManager().createNamedQuery("typed_query", Integer.class);
 				boolean configOK = true;
 				if (namedTypeQuery.getFlushMode().equals(FlushModeType.AUTO)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected flush mode before change:" + namedTypeQuery.getFlushMode());
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected flush mode before change:" + FlushModeType.AUTO.name()
+					logErr( "Expected flush mode before change:" + FlushModeType.AUTO.name()
 							+ ", actual:" + namedTypeQuery.getFlushMode());
 					configOK = false;
 				}
@@ -842,16 +842,16 @@ public class Client1 extends PMClientBase {
 				if (lResult.size() == 1) {
 					int result = lResult.get(0);
 					if (result == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result);
+						logTrace( "Received expected id:" + result);
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result);
+						logErr( "Expected id:1, actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (int i : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + i);
+						logErr( "Ids received:" + i);
 					}
 				}
 				if (foundOne && configOK) {
@@ -860,13 +860,13 @@ public class Client1 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7) {
@@ -886,26 +886,26 @@ public class Client1 extends PMClientBase {
 			orders[4] = new Order(5, 555);
 
 			for (Order o : orders) {
-				logger.log(Logger.Level.TRACE, "Persisting order:" + o.toString());
+				logTrace( "Persisting order:" + o.toString());
 				getEntityManager().persist(o);
 			}
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -916,14 +916,14 @@ public class Client1 extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM MEMBER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

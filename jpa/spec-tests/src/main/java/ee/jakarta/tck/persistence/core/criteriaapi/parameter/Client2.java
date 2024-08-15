@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.parameter;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -38,7 +38,7 @@ import jakarta.persistence.criteria.Root;
 
 public class Client2 extends Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -50,7 +50,7 @@ public class Client2 extends Client {
 	
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
@@ -58,7 +58,7 @@ public class Client2 extends Client {
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -110,16 +110,16 @@ public class Client2 extends Client {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				logger.log(Logger.Level.TRACE, "actual" + actual);
+				logTrace( "actual" + actual);
 
 				if (expected.equals(actual)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
+					logErr( "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -178,16 +178,16 @@ public class Client2 extends Client {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				logger.log(Logger.Level.TRACE, "actual" + actual);
+				logTrace( "actual" + actual);
 
 				if (expected.equals(actual)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
+					logErr( "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -248,16 +248,16 @@ public class Client2 extends Client {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				logger.log(Logger.Level.TRACE, "actual" + actual);
+				logTrace( "actual" + actual);
 
 				if (expected.equals(actual)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
+					logErr( "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -316,16 +316,16 @@ public class Client2 extends Client {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				logger.log(Logger.Level.TRACE, "actual" + actual);
+				logTrace( "actual" + actual);
 
 				if (expected.equals(actual)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
+					logErr( "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {

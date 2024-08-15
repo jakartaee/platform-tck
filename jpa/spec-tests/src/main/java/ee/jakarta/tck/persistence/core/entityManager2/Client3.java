@@ -30,7 +30,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.System.Logger;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,7 +39,6 @@ import java.util.Map;
 
 public class Client3 extends PMClientBase {
 
-    private static final Logger logger = System.getLogger(Client3.class.getName());
 
     Order[] orders = new Order[5];
 
@@ -66,7 +65,7 @@ public class Client3 extends PMClientBase {
      */
     @BeforeEach
     public void setupOrderData() throws Exception {
-        logger.log(Logger.Level.TRACE, "setupOrderData");
+        logTrace( "setupOrderData");
         try {
             super.setup();
             createDeployment();
@@ -77,7 +76,7 @@ public class Client3 extends PMClientBase {
             displayMap(map);
             dataBaseName = System.getProperty("jdbc.db");
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Exception: ", e);
+            logErr( "Exception: ", e);
             throw new Exception("Setup failed:", e);
         }
     }
@@ -85,7 +84,7 @@ public class Client3 extends PMClientBase {
     @AfterEach
     public void cleanupData() throws Exception {
         try {
-            logger.log(Logger.Level.TRACE, "Cleanup data");
+            logTrace( "Cleanup data");
             removeTestData();
             cleanup();
         } finally {
@@ -108,23 +107,23 @@ public class Client3 extends PMClientBase {
             if (reference instanceof Order) {
                 pass1 = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
+                logErr( "Fetched entity is not same as expected.");
             }
             if (orderDescription != null) {
                 pass2 = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Access to entity attribute doesn't work.");
+                logErr( "Access to entity attribute doesn't work.");
             }
 
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         } finally {
             try {
                 if (getEntityTransaction().isActive()) {
                     getEntityTransaction().rollback();
                 }
             } catch (Exception fe) {
-                logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+                logErr( "Unexpected exception rolling back TX:", fe);
             }
         }
         if (!pass1 || !pass2) {
@@ -144,7 +143,7 @@ public class Client3 extends PMClientBase {
         } catch (EntityNotFoundException enfe) {
             pass = true;
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         }
         if (!pass) {
             throw new Exception("getReferenceForNonExistingEntityTest failed");
@@ -173,17 +172,17 @@ public class Client3 extends PMClientBase {
             if (foundOrder.equals(newOrder)) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
+                logErr( "Fetched entity is not same as expected.");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         } finally {
             try {
                 if (getEntityTransaction().isActive()) {
                     getEntityTransaction().rollback();
                 }
             } catch (Exception fe) {
-                logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+                logErr( "Unexpected exception rolling back TX:", fe);
             }
         }
         if (!pass) {
@@ -226,17 +225,17 @@ public class Client3 extends PMClientBase {
             if (foundOrder.equals(selectedOrder)) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
+                logErr( "Fetched entity is not same as expected.");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         } finally {
             try {
                 if (getEntityTransaction().isActive()) {
                     getEntityTransaction().rollback();
                 }
             } catch (Exception fe) {
-                logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+                logErr( "Unexpected exception rolling back TX:", fe);
             }
         }
         if (!pass) {
@@ -253,10 +252,10 @@ public class Client3 extends PMClientBase {
             if (foundOrder.equals(orders[0])) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
+                logErr( "Fetched entity is not same as expected.");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         }
         if (!pass) {
             throw new Exception("findOptionsTest failed");
@@ -273,10 +272,10 @@ public class Client3 extends PMClientBase {
             if (order.equals(orders[0])) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "Fetched entity is not same as expected.");
+                logErr( "Fetched entity is not same as expected.");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         }
         if (!pass) {
             throw new Exception("refreshOptionsTest failed");
@@ -292,10 +291,10 @@ public class Client3 extends PMClientBase {
             if (CacheRetrieveMode.USE == em.getCacheRetrieveMode()) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "CacheRetrieveMode property is not set.");
+                logErr( "CacheRetrieveMode property is not set.");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         }
         if (!pass) {
             throw new Exception("setCacheRetrieveModeTest failed");
@@ -311,10 +310,10 @@ public class Client3 extends PMClientBase {
             if (CacheStoreMode.BYPASS == em.getCacheStoreMode()) {
                 pass = true;
             } else {
-                logger.log(Logger.Level.ERROR, "CacheStoreMode property is not set.");
+                logErr( "CacheStoreMode property is not set.");
             }
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         }
         if (!pass) {
             throw new Exception("setCacheStoreModeTest failed");
@@ -326,32 +325,32 @@ public class Client3 extends PMClientBase {
 
         try {
             getEntityTransaction().begin();
-            logger.log(Logger.Level.INFO, "Creating Orders");
+            logMsg( "Creating Orders");
             orders[0] = new Order(1, 111, "desc1");
             orders[1] = new Order(2, 222, "desc2");
             orders[2] = new Order(3, 333, "desc3");
             orders[3] = new Order(4, 444, "desc4");
             orders[4] = new Order(5, 555, "desc5");
             for (Order o : orders) {
-                logger.log(Logger.Level.TRACE, "Persisting order:" + o.toString());
+                logTrace( "Persisting order:" + o.toString());
                 getEntityManager().persist(o);
             }
             getEntityTransaction().commit();
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+            logErr( "Unexpected exception occurred", e);
         } finally {
             try {
                 if (getEntityTransaction().isActive()) {
                     getEntityTransaction().rollback();
                 }
             } catch (Exception fe) {
-                logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+                logErr( "Unexpected exception rolling back TX:", fe);
             }
         }
     }
 
     private void removeTestData() {
-        logger.log(Logger.Level.TRACE, "removeTestData");
+        logTrace( "removeTestData");
         if (getEntityTransaction().isActive()) {
             getEntityTransaction().rollback();
         }
@@ -360,14 +359,14 @@ public class Client3 extends PMClientBase {
             getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
             getEntityTransaction().commit();
         } catch (Exception e) {
-            logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+            logErr( "Exception encountered while removing entities:", e);
         } finally {
             try {
                 if (getEntityTransaction().isActive()) {
                     getEntityTransaction().rollback();
                 }
             } catch (Exception re) {
-                logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+                logErr( "Unexpected Exception in removeTestData:", re);
             }
         }
     }

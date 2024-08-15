@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.jpa22.repeatable.convert;
 
-import java.lang.System.Logger;
+
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
@@ -27,7 +27,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final long serialVersionUID = 22L;
 
@@ -46,13 +46,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -82,40 +82,40 @@ public class Client extends PMClientBase {
 			clearCache();
 			getEntityTransaction().begin();
 			B b1 = getEntityManager().find(B.class, b.id);
-			logger.log(Logger.Level.TRACE, "B:" + b1.toString());
+			logTrace( "B:" + b1.toString());
 			if (b1.getBValue().equals(1000)) {
-				logger.log(Logger.Level.TRACE, "Received expected value:" + b1.getBValue());
+				logTrace( "Received expected value:" + b1.getBValue());
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Converter was not properly applied, expected value:1000, actual" + b1.getBValue());
 			}
 			Address a = b1.getAddress();
 			if (a.getStreet().equals(street.replace(".", "_"))) {
-				logger.log(Logger.Level.TRACE, "Received expected street:" + a.getStreet());
+				logTrace( "Received expected street:" + a.getStreet());
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Converter was not properly applied, expected street:" + street + ", actual:" + a.getStreet());
 			}
 			if (a.getState() == 1) {
-				logger.log(Logger.Level.TRACE, "Received expected state:" + a.getState());
+				logTrace( "Received expected state:" + a.getState());
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Converter was not properly applied, expected state: 1, actual: " + a.getState());
 			}
 			getEntityTransaction().rollback();
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception received:", ex);
+			logErr( "Unexpected exception received:", ex);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception while rolling back TX:", re);
+				logErr( "Unexpected Exception while rolling back TX:", re);
 			}
 		}
 
@@ -127,9 +127,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -137,7 +137,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -150,7 +150,7 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PHONES").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 
 		} finally {
 			try {
@@ -158,7 +158,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.enums;
 
-import java.lang.System.Logger;
+
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -62,7 +62,7 @@ import jakarta.persistence.spi.PersistenceUnitTransactionType;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
@@ -78,14 +78,14 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 
 			super.setup();
 			createDeployment();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -106,30 +106,30 @@ public class Client extends PMClientBase {
 
 			AccessType at = AccessType.valueOf(AccessType.FIELD.name());
 			if (!at.equals(AccessType.FIELD)) {
-				logger.log(Logger.Level.ERROR, "expected:" + AccessType.FIELD.name() + ", actual:" + at.name());
+				logErr( "expected:" + AccessType.FIELD.name() + ", actual:" + at.name());
 				pass = false;
 			}
 			at = AccessType.valueOf(AccessType.PROPERTY.name());
 			if (!at.equals(AccessType.PROPERTY)) {
-				logger.log(Logger.Level.ERROR, "expected:" + AccessType.PROPERTY.name() + ", actual:" + at.name());
+				logErr( "expected:" + AccessType.PROPERTY.name() + ", actual:" + at.name());
 				pass = false;
 			}
 			try {
 				AccessType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				AccessType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -150,25 +150,25 @@ public class Client extends PMClientBase {
 	public void accessTypeValuesTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin accessTypeValuesTest");
+		logTrace( "Begin accessTypeValuesTest");
 		try {
 
 			Collection<AccessType> at = Arrays.asList(AccessType.values());
 			if (at.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Number of AccessType expected:2, actual:" + at.size());
+				logErr( "Number of AccessType expected:2, actual:" + at.size());
 				pass = false;
 			}
 
 			if (at.contains(AccessType.FIELD)) {
-				logger.log(Logger.Level.TRACE, "received:" + AccessType.FIELD.name());
+				logTrace( "received:" + AccessType.FIELD.name());
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + AccessType.FIELD.name());
+				logErr( "Expected value:" + AccessType.FIELD.name());
 				pass = false;
 			}
 			if (at.contains(AccessType.PROPERTY)) {
-				logger.log(Logger.Level.TRACE, "received:" + AccessType.PROPERTY.name());
+				logTrace( "received:" + AccessType.PROPERTY.name());
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + AccessType.PROPERTY.name());
+				logErr( "Expected value:" + AccessType.PROPERTY.name());
 				pass = false;
 			}
 
@@ -176,12 +176,12 @@ public class Client extends PMClientBase {
 				try {
 					AccessType.valueOf(a.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -202,36 +202,36 @@ public class Client extends PMClientBase {
 	public void cacheRetrieveModeValueOfTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin cacheRetrieveModeValueOfTest");
+		logTrace( "Begin cacheRetrieveModeValueOfTest");
 		try {
 
 			CacheRetrieveMode crm = CacheRetrieveMode.valueOf(CacheRetrieveMode.USE.name());
 			if (!crm.equals(CacheRetrieveMode.USE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CacheRetrieveMode.USE.name() + ", actual:" + crm.name());
+				logErr( "expected:" + CacheRetrieveMode.USE.name() + ", actual:" + crm.name());
 				pass = false;
 			}
 			crm = CacheRetrieveMode.valueOf(CacheRetrieveMode.BYPASS.name());
 			if (!crm.equals(CacheRetrieveMode.BYPASS)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + CacheRetrieveMode.BYPASS.name() + ", actual:" + crm.name());
 				pass = false;
 			}
 			try {
 				CacheRetrieveMode.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				CacheRetrieveMode.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -252,25 +252,25 @@ public class Client extends PMClientBase {
 	public void cacheRetrieveModeValuesTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin cacheRetrieveModeValuesTest");
+		logTrace( "Begin cacheRetrieveModeValuesTest");
 		try {
 
 			Collection<CacheRetrieveMode> crm = Arrays.asList(CacheRetrieveMode.values());
 			if (crm.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Number of CacheRetrieveMode expected:2, actual:" + crm.size());
+				logErr( "Number of CacheRetrieveMode expected:2, actual:" + crm.size());
 				pass = false;
 			}
 
 			if (crm.contains(CacheRetrieveMode.USE)) {
-				logger.log(Logger.Level.TRACE, "received:" + CacheRetrieveMode.USE);
+				logTrace( "received:" + CacheRetrieveMode.USE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CacheRetrieveMode.USE);
+				logErr( "Expected value:" + CacheRetrieveMode.USE);
 				pass = false;
 			}
 			if (crm.contains(CacheRetrieveMode.BYPASS)) {
-				logger.log(Logger.Level.TRACE, "received:" + CacheRetrieveMode.BYPASS);
+				logTrace( "received:" + CacheRetrieveMode.BYPASS);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CacheRetrieveMode.BYPASS);
+				logErr( "Expected value:" + CacheRetrieveMode.BYPASS);
 				pass = false;
 			}
 
@@ -278,12 +278,12 @@ public class Client extends PMClientBase {
 				try {
 					CacheRetrieveMode.valueOf(c.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -304,40 +304,40 @@ public class Client extends PMClientBase {
 	public void cacheStoreModeValueOfTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin cacheStoreModeValueOfTest");
+		logTrace( "Begin cacheStoreModeValueOfTest");
 		try {
 
 			CacheStoreMode csm = CacheStoreMode.valueOf(CacheStoreMode.USE.name());
 			if (!csm.equals(CacheStoreMode.USE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CacheStoreMode.USE.name() + ", actual:" + csm.name());
+				logErr( "expected:" + CacheStoreMode.USE.name() + ", actual:" + csm.name());
 				pass = false;
 			}
 			csm = CacheStoreMode.valueOf(CacheStoreMode.BYPASS.name());
 			if (!csm.equals(CacheStoreMode.BYPASS)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CacheStoreMode.BYPASS.name() + ", actual:" + csm.name());
+				logErr( "expected:" + CacheStoreMode.BYPASS.name() + ", actual:" + csm.name());
 				pass = false;
 			}
 			csm = CacheStoreMode.valueOf(CacheStoreMode.REFRESH.name());
 			if (!csm.equals(CacheStoreMode.REFRESH)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CacheStoreMode.REFRESH.name() + ", actual:" + csm.name());
+				logErr( "expected:" + CacheStoreMode.REFRESH.name() + ", actual:" + csm.name());
 				pass = false;
 			}
 			try {
 				CacheStoreMode.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				CacheStoreMode.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -358,31 +358,31 @@ public class Client extends PMClientBase {
 	public void cacheStoreModeValuesTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin cacheStoreModeValuesTest");
+		logTrace( "Begin cacheStoreModeValuesTest");
 		try {
 
 			Collection<CacheStoreMode> csm = Arrays.asList(CacheStoreMode.values());
 			if (csm.size() != 3) {
-				logger.log(Logger.Level.ERROR, "Number of CacheStoreMode expected:3, actual:" + csm.size());
+				logErr( "Number of CacheStoreMode expected:3, actual:" + csm.size());
 				pass = false;
 			}
 
 			if (csm.contains(CacheStoreMode.USE)) {
-				logger.log(Logger.Level.TRACE, "received:" + CacheStoreMode.USE);
+				logTrace( "received:" + CacheStoreMode.USE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CacheStoreMode.USE);
+				logErr( "Expected value:" + CacheStoreMode.USE);
 				pass = false;
 			}
 			if (csm.contains(CacheStoreMode.BYPASS)) {
-				logger.log(Logger.Level.TRACE, "received:" + CacheStoreMode.BYPASS);
+				logTrace( "received:" + CacheStoreMode.BYPASS);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CacheStoreMode.BYPASS);
+				logErr( "Expected value:" + CacheStoreMode.BYPASS);
 				pass = false;
 			}
 			if (csm.contains(CacheStoreMode.REFRESH)) {
-				logger.log(Logger.Level.TRACE, "received:" + CacheStoreMode.REFRESH);
+				logTrace( "received:" + CacheStoreMode.REFRESH);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CacheStoreMode.REFRESH);
+				logErr( "Expected value:" + CacheStoreMode.REFRESH);
 				pass = false;
 			}
 
@@ -390,12 +390,12 @@ public class Client extends PMClientBase {
 				try {
 					CacheStoreMode.valueOf(c.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -416,55 +416,55 @@ public class Client extends PMClientBase {
 	public void cascadeTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin cascadeTypeValueOfTest");
+		logTrace( "Begin cascadeTypeValueOfTest");
 		try {
 
 			CascadeType ct = CascadeType.valueOf(CascadeType.ALL.name());
 			if (!ct.equals(CascadeType.ALL)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CascadeType.ALL.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CascadeType.ALL.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			ct = CascadeType.valueOf(CascadeType.DETACH.name());
 			if (!ct.equals(CascadeType.DETACH)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CascadeType.DETACH.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CascadeType.DETACH.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			ct = CascadeType.valueOf(CascadeType.MERGE.name());
 			if (!ct.equals(CascadeType.MERGE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CascadeType.MERGE.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CascadeType.MERGE.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			ct = CascadeType.valueOf(CascadeType.PERSIST.name());
 			if (!ct.equals(CascadeType.PERSIST)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CascadeType.PERSIST.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CascadeType.PERSIST.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			ct = CascadeType.valueOf(CascadeType.REFRESH.name());
 			if (!ct.equals(CascadeType.REFRESH)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CascadeType.REFRESH.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CascadeType.REFRESH.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			ct = CascadeType.valueOf(CascadeType.REMOVE.name());
 			if (!ct.equals(CascadeType.REMOVE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CascadeType.REMOVE.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CascadeType.REMOVE.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			try {
 				CascadeType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				CascadeType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -485,49 +485,49 @@ public class Client extends PMClientBase {
 	public void cascadeTypeValuesTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin cascadeTypeValuesTest");
+		logTrace( "Begin cascadeTypeValuesTest");
 		try {
 
 			Collection<CascadeType> ct = Arrays.asList(CascadeType.values());
 			if (ct.size() != 6) {
-				logger.log(Logger.Level.ERROR, "Number of CascadeType expected:6, actual:" + ct.size());
+				logErr( "Number of CascadeType expected:6, actual:" + ct.size());
 				pass = false;
 			}
 
 			if (ct.contains(CascadeType.ALL)) {
-				logger.log(Logger.Level.TRACE, "received:" + CascadeType.ALL);
+				logTrace( "received:" + CascadeType.ALL);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CascadeType.ALL);
+				logErr( "Expected value:" + CascadeType.ALL);
 				pass = false;
 			}
 			if (ct.contains(CascadeType.DETACH)) {
-				logger.log(Logger.Level.TRACE, "received:" + CascadeType.DETACH);
+				logTrace( "received:" + CascadeType.DETACH);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CascadeType.DETACH);
+				logErr( "Expected value:" + CascadeType.DETACH);
 				pass = false;
 			}
 			if (ct.contains(CascadeType.MERGE)) {
-				logger.log(Logger.Level.TRACE, "received:" + CascadeType.MERGE);
+				logTrace( "received:" + CascadeType.MERGE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CascadeType.MERGE);
+				logErr( "Expected value:" + CascadeType.MERGE);
 				pass = false;
 			}
 			if (ct.contains(CascadeType.PERSIST)) {
-				logger.log(Logger.Level.TRACE, "received:" + CascadeType.PERSIST);
+				logTrace( "received:" + CascadeType.PERSIST);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CascadeType.PERSIST);
+				logErr( "Expected value:" + CascadeType.PERSIST);
 				pass = false;
 			}
 			if (ct.contains(CascadeType.REFRESH)) {
-				logger.log(Logger.Level.TRACE, "received:" + CascadeType.REFRESH);
+				logTrace( "received:" + CascadeType.REFRESH);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CascadeType.REFRESH);
+				logErr( "Expected value:" + CascadeType.REFRESH);
 				pass = false;
 			}
 			if (ct.contains(CascadeType.REMOVE)) {
-				logger.log(Logger.Level.TRACE, "received:" + CascadeType.REMOVE);
+				logTrace( "received:" + CascadeType.REMOVE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + CascadeType.REMOVE);
+				logErr( "Expected value:" + CascadeType.REMOVE);
 				pass = false;
 			}
 
@@ -535,12 +535,12 @@ public class Client extends PMClientBase {
 				try {
 					CascadeType.valueOf(c.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -561,41 +561,41 @@ public class Client extends PMClientBase {
 	public void discriminatorTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin discriminatorTypeValueOfTest");
+		logTrace( "Begin discriminatorTypeValueOfTest");
 		try {
 
 			DiscriminatorType dt = DiscriminatorType.valueOf(DiscriminatorType.CHAR.name());
 			if (!dt.equals(DiscriminatorType.CHAR)) {
-				logger.log(Logger.Level.ERROR, "expected:" + DiscriminatorType.CHAR.name() + ", actual:" + dt.name());
+				logErr( "expected:" + DiscriminatorType.CHAR.name() + ", actual:" + dt.name());
 				pass = false;
 			}
 			dt = DiscriminatorType.valueOf(DiscriminatorType.INTEGER.name());
 			if (!dt.equals(DiscriminatorType.INTEGER)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + DiscriminatorType.INTEGER.name() + ", actual:" + dt.name());
 				pass = false;
 			}
 			dt = DiscriminatorType.valueOf(DiscriminatorType.STRING.name());
 			if (!dt.equals(DiscriminatorType.STRING)) {
-				logger.log(Logger.Level.ERROR, "expected:" + DiscriminatorType.STRING.name() + ", actual:" + dt.name());
+				logErr( "expected:" + DiscriminatorType.STRING.name() + ", actual:" + dt.name());
 				pass = false;
 			}
 			try {
 				DiscriminatorType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				DiscriminatorType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -616,31 +616,31 @@ public class Client extends PMClientBase {
 	public void discriminatorTypeValuesTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin discriminatorTypeValuesTest");
+		logTrace( "Begin discriminatorTypeValuesTest");
 		try {
 
 			Collection<DiscriminatorType> dt = Arrays.asList(DiscriminatorType.values());
 			if (dt.size() != 3) {
-				logger.log(Logger.Level.ERROR, "Number of DiscriminatorType expected:3, actual:" + dt.size());
+				logErr( "Number of DiscriminatorType expected:3, actual:" + dt.size());
 				pass = false;
 			}
 
 			if (dt.contains(DiscriminatorType.CHAR)) {
-				logger.log(Logger.Level.TRACE, "received:" + DiscriminatorType.CHAR);
+				logTrace( "received:" + DiscriminatorType.CHAR);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + DiscriminatorType.CHAR);
+				logErr( "Expected value:" + DiscriminatorType.CHAR);
 				pass = false;
 			}
 			if (dt.contains(DiscriminatorType.INTEGER)) {
-				logger.log(Logger.Level.TRACE, "received:" + DiscriminatorType.INTEGER);
+				logTrace( "received:" + DiscriminatorType.INTEGER);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + DiscriminatorType.INTEGER);
+				logErr( "Expected value:" + DiscriminatorType.INTEGER);
 				pass = false;
 			}
 			if (dt.contains(DiscriminatorType.STRING)) {
-				logger.log(Logger.Level.TRACE, "received:" + DiscriminatorType.STRING);
+				logTrace( "received:" + DiscriminatorType.STRING);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + DiscriminatorType.STRING);
+				logErr( "Expected value:" + DiscriminatorType.STRING);
 				pass = false;
 			}
 
@@ -648,13 +648,13 @@ public class Client extends PMClientBase {
 				try {
 					DiscriminatorType.valueOf(d.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -675,35 +675,35 @@ public class Client extends PMClientBase {
 	public void enumTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin enumTypeValueOfTest");
+		logTrace( "Begin enumTypeValueOfTest");
 		try {
 
 			EnumType et = EnumType.valueOf(EnumType.ORDINAL.name());
 			if (!et.equals(EnumType.ORDINAL)) {
-				logger.log(Logger.Level.ERROR, "expected:" + EnumType.ORDINAL.name() + ", actual:" + et.name());
+				logErr( "expected:" + EnumType.ORDINAL.name() + ", actual:" + et.name());
 				pass = false;
 			}
 			et = EnumType.valueOf(EnumType.STRING.name());
 			if (!et.equals(EnumType.STRING)) {
-				logger.log(Logger.Level.ERROR, "expected:" + EnumType.STRING.name() + ", actual:" + et.name());
+				logErr( "expected:" + EnumType.STRING.name() + ", actual:" + et.name());
 				pass = false;
 			}
 			try {
 				EnumType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				EnumType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -724,25 +724,25 @@ public class Client extends PMClientBase {
 	public void enumTypeValuesTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin enumTypeValuesTest");
+		logTrace( "Begin enumTypeValuesTest");
 		try {
 
 			Collection<EnumType> et = Arrays.asList(EnumType.values());
 			if (et.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Number of EnumType expected:2, actual:" + et.size());
+				logErr( "Number of EnumType expected:2, actual:" + et.size());
 				pass = false;
 			}
 
 			if (et.contains(EnumType.ORDINAL)) {
-				logger.log(Logger.Level.TRACE, "received:" + EnumType.ORDINAL);
+				logTrace( "received:" + EnumType.ORDINAL);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + EnumType.ORDINAL);
+				logErr( "Expected value:" + EnumType.ORDINAL);
 				pass = false;
 			}
 			if (et.contains(EnumType.STRING)) {
-				logger.log(Logger.Level.TRACE, "received:" + EnumType.STRING);
+				logTrace( "received:" + EnumType.STRING);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + EnumType.STRING);
+				logErr( "Expected value:" + EnumType.STRING);
 				pass = false;
 			}
 
@@ -750,12 +750,12 @@ public class Client extends PMClientBase {
 				try {
 					EnumType.valueOf(e.name());
 				} catch (Exception ex) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", ex);
+					logErr( "Received exception for valueOf", ex);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -776,35 +776,35 @@ public class Client extends PMClientBase {
 	public void fetchTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin fetchTypeValueOfTest");
+		logTrace( "Begin fetchTypeValueOfTest");
 		try {
 
 			FetchType ft = FetchType.valueOf(FetchType.EAGER.name());
 			if (!ft.equals(FetchType.EAGER)) {
-				logger.log(Logger.Level.ERROR, "expected:" + FetchType.EAGER.name() + ", actual:" + ft.name());
+				logErr( "expected:" + FetchType.EAGER.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			ft = FetchType.valueOf(FetchType.LAZY.name());
 			if (!ft.equals(FetchType.LAZY)) {
-				logger.log(Logger.Level.ERROR, "expected:" + FetchType.LAZY.name() + ", actual:" + ft.name());
+				logErr( "expected:" + FetchType.LAZY.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			try {
 				FetchType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				FetchType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -825,25 +825,25 @@ public class Client extends PMClientBase {
 	public void fetchTypeValuesTest() throws Exception {
 		boolean pass = true;
 
-		logger.log(Logger.Level.TRACE, "Begin fetchTypeValuesTest");
+		logTrace( "Begin fetchTypeValuesTest");
 		try {
 
 			Collection<FetchType> ft = Arrays.asList(FetchType.values());
 			if (ft.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Number of FetchType expected:2, actual:" + ft.size());
+				logErr( "Number of FetchType expected:2, actual:" + ft.size());
 				pass = false;
 			}
 
 			if (ft.contains(FetchType.EAGER)) {
-				logger.log(Logger.Level.TRACE, "received:" + FetchType.EAGER);
+				logTrace( "received:" + FetchType.EAGER);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + FetchType.EAGER);
+				logErr( "Expected value:" + FetchType.EAGER);
 				pass = false;
 			}
 			if (ft.contains(FetchType.LAZY)) {
-				logger.log(Logger.Level.TRACE, "received:" + FetchType.LAZY);
+				logTrace( "received:" + FetchType.LAZY);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + FetchType.LAZY);
+				logErr( "Expected value:" + FetchType.LAZY);
 				pass = false;
 			}
 
@@ -851,12 +851,12 @@ public class Client extends PMClientBase {
 				try {
 					FetchType.valueOf(f.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -881,30 +881,30 @@ public class Client extends PMClientBase {
 
 			FlushModeType fmt = FlushModeType.valueOf(FlushModeType.AUTO.name());
 			if (!fmt.equals(FlushModeType.AUTO)) {
-				logger.log(Logger.Level.ERROR, "expected:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
+				logErr( "expected:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
 				pass = false;
 			}
 			fmt = FlushModeType.valueOf(FlushModeType.COMMIT.name());
 			if (!fmt.equals(FlushModeType.COMMIT)) {
-				logger.log(Logger.Level.ERROR, "expected:" + FlushModeType.COMMIT.name() + ", actual:" + fmt.name());
+				logErr( "expected:" + FlushModeType.COMMIT.name() + ", actual:" + fmt.name());
 				pass = false;
 			}
 			try {
 				FlushModeType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				FlushModeType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 			pass = false;
 		}
 
@@ -928,20 +928,20 @@ public class Client extends PMClientBase {
 		try {
 			Collection<FlushModeType> fmt = Arrays.asList(FlushModeType.values());
 			if (fmt.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Number of FlushModeType expected:2, actual:" + fmt.size());
+				logErr( "Number of FlushModeType expected:2, actual:" + fmt.size());
 				pass = false;
 			}
 
 			if (fmt.contains(FlushModeType.COMMIT)) {
-				logger.log(Logger.Level.TRACE, "received:" + FlushModeType.COMMIT);
+				logTrace( "received:" + FlushModeType.COMMIT);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + FlushModeType.COMMIT);
+				logErr( "Expected value:" + FlushModeType.COMMIT);
 				pass = false;
 			}
 			if (fmt.contains(FlushModeType.AUTO)) {
-				logger.log(Logger.Level.TRACE, "received:" + FlushModeType.AUTO);
+				logTrace( "received:" + FlushModeType.AUTO);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + FlushModeType.AUTO);
+				logErr( "Expected value:" + FlushModeType.AUTO);
 				pass = false;
 			}
 
@@ -949,13 +949,13 @@ public class Client extends PMClientBase {
 				try {
 					FlushModeType.valueOf(f.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 			pass = false;
 		}
 
@@ -977,34 +977,34 @@ public class Client extends PMClientBase {
 			EntityTransaction t = getEntityTransaction();
 			t.begin();
 			EntityManager em = getEntityManager();
-			logger.log(Logger.Level.TRACE, "Checking Default mode");
+			logTrace( "Checking Default mode");
 			FlushModeType fmt = em.getFlushMode();
 			if (fmt.equals(FlushModeType.AUTO)) {
-				logger.log(Logger.Level.TRACE, "Checking COMMIT");
+				logTrace( "Checking COMMIT");
 				em.setFlushMode(FlushModeType.COMMIT);
 				fmt = em.getFlushMode();
 				if (fmt.equals(FlushModeType.COMMIT)) {
-					logger.log(Logger.Level.TRACE, "Checking AUTO");
+					logTrace( "Checking AUTO");
 					em.setFlushMode(FlushModeType.AUTO);
 					fmt = em.getFlushMode();
 					if (!fmt.equals(FlushModeType.AUTO)) {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected a value of:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
 						pass = false;
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected a value of:" + FlushModeType.COMMIT.name() + ", actual:" + fmt.name());
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected a default value of:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
 				pass = false;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 			pass = false;
 
 		} finally {
@@ -1013,7 +1013,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1034,38 +1034,38 @@ public class Client extends PMClientBase {
 		try {
 			EntityManager em = getEntityManager();
 			Query q = em.createQuery("SELECT o FROM Order o WHERE o.id = 1");
-			logger.log(Logger.Level.TRACE, "Getting mode from query");
+			logTrace( "Getting mode from query");
 			FlushModeType fmt = q.getFlushMode();
 			if (fmt.equals(em.getFlushMode())) {
-				logger.log(Logger.Level.TRACE, "Setting mode to return default mode");
+				logTrace( "Setting mode to return default mode");
 				q.setFlushMode(fmt);
-				logger.log(Logger.Level.TRACE, "Setting mode to FlushModeType.COMMIT");
+				logTrace( "Setting mode to FlushModeType.COMMIT");
 				q.setFlushMode(FlushModeType.COMMIT);
 				fmt = q.getFlushMode();
 				if (fmt.equals(FlushModeType.COMMIT)) {
-					logger.log(Logger.Level.TRACE, "Setting mode to FlushModeType.AUTO");
+					logTrace( "Setting mode to FlushModeType.AUTO");
 					q.setFlushMode(FlushModeType.AUTO);
 					fmt = q.getFlushMode();
 					if (fmt.equals(FlushModeType.AUTO)) {
-						logger.log(Logger.Level.TRACE, "Received expected FlushModeType:" + fmt.name());
+						logTrace( "Received expected FlushModeType:" + fmt.name());
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected a value of:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
 						pass = false;
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected a default value of:" + FlushModeType.COMMIT.name() + ", actual:" + fmt.name());
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected EntityManager value of:" + em.getFlushMode() + ", actual:" + fmt.name());
 				pass = false;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 			pass = false;
 		}
 
@@ -1089,33 +1089,33 @@ public class Client extends PMClientBase {
 
 			FlushModeType fmt = q.getFlushMode();
 			if (fmt.equals(em.getFlushMode())) {
-				logger.log(Logger.Level.TRACE, "Setting mode to returned default mode");
+				logTrace( "Setting mode to returned default mode");
 				q.setFlushMode(fmt);
-				logger.log(Logger.Level.TRACE, "Setting mode to FlushModeType.COMMIT");
+				logTrace( "Setting mode to FlushModeType.COMMIT");
 				q.setFlushMode(FlushModeType.COMMIT);
 				fmt = q.getFlushMode();
 				if (fmt.equals(FlushModeType.COMMIT)) {
-					logger.log(Logger.Level.TRACE, "Setting mode to FlushModeType.AUTO");
+					logTrace( "Setting mode to FlushModeType.AUTO");
 					q.setFlushMode(FlushModeType.AUTO);
 					fmt = q.getFlushMode();
 					if (!fmt.equals(FlushModeType.AUTO)) {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Expected a value of:" + FlushModeType.AUTO.name() + ", actual:" + fmt.name());
 						pass = false;
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Expected a default value of:" + FlushModeType.COMMIT.name() + ", actual:" + fmt.name());
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected EntityManager value of:" + em.getFlushMode().name() + ", actual:" + fmt.name());
 				pass = false;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 			pass = false;
 		}
 
@@ -1139,46 +1139,46 @@ public class Client extends PMClientBase {
 
 			GenerationType ft = GenerationType.valueOf(GenerationType.AUTO.name());
 			if (!ft.equals(GenerationType.AUTO)) {
-				logger.log(Logger.Level.ERROR, "expected:" + GenerationType.AUTO.name() + ", actual:" + ft.name());
+				logErr( "expected:" + GenerationType.AUTO.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			ft = GenerationType.valueOf(GenerationType.IDENTITY.name());
 			if (!ft.equals(GenerationType.IDENTITY)) {
-				logger.log(Logger.Level.ERROR, "expected:" + GenerationType.IDENTITY.name() + ", actual:" + ft.name());
+				logErr( "expected:" + GenerationType.IDENTITY.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			ft = GenerationType.valueOf(GenerationType.SEQUENCE.name());
 
 			if (!ft.equals(GenerationType.SEQUENCE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + GenerationType.SEQUENCE.name() + ", actual:" + ft.name());
+				logErr( "expected:" + GenerationType.SEQUENCE.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			ft = GenerationType.valueOf(GenerationType.TABLE.name());
 			if (!ft.equals(GenerationType.TABLE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + GenerationType.TABLE.name() + ", actual:" + ft.name());
+				logErr( "expected:" + GenerationType.TABLE.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			ft = GenerationType.valueOf(GenerationType.UUID.name());
 			if (!ft.equals(GenerationType.UUID)) {
-				logger.log(Logger.Level.ERROR, "expected:" + GenerationType.UUID.name() + ", actual:" + ft.name());
+				logErr( "expected:" + GenerationType.UUID.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			try {
 				GenerationType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				GenerationType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1203,38 +1203,38 @@ public class Client extends PMClientBase {
 
 			Collection<GenerationType> gt = Arrays.asList(GenerationType.values());
 			if (gt.size() != 5) {
-				logger.log(Logger.Level.ERROR, "Number of GenerationType expected:5, actual:" + gt.size());
+				logErr( "Number of GenerationType expected:5, actual:" + gt.size());
 				pass = false;
 			}
 
 			if (gt.contains(GenerationType.AUTO)) {
-				logger.log(Logger.Level.TRACE, "received:" + GenerationType.AUTO);
+				logTrace( "received:" + GenerationType.AUTO);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + GenerationType.AUTO);
+				logErr( "Expected value:" + GenerationType.AUTO);
 				pass = false;
 			}
 			if (gt.contains(GenerationType.IDENTITY)) {
-				logger.log(Logger.Level.TRACE, "received:" + GenerationType.IDENTITY);
+				logTrace( "received:" + GenerationType.IDENTITY);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + GenerationType.IDENTITY);
+				logErr( "Expected value:" + GenerationType.IDENTITY);
 				pass = false;
 			}
 			if (gt.contains(GenerationType.SEQUENCE)) {
-				logger.log(Logger.Level.TRACE, "received:" + GenerationType.SEQUENCE);
+				logTrace( "received:" + GenerationType.SEQUENCE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + GenerationType.SEQUENCE);
+				logErr( "Expected value:" + GenerationType.SEQUENCE);
 				pass = false;
 			}
 			if (gt.contains(GenerationType.TABLE)) {
-				logger.log(Logger.Level.TRACE, "received:" + GenerationType.TABLE);
+				logTrace( "received:" + GenerationType.TABLE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + GenerationType.TABLE);
+				logErr( "Expected value:" + GenerationType.TABLE);
 				pass = false;
 			}
 			if (gt.contains(GenerationType.UUID)) {
-				logger.log(Logger.Level.TRACE, "received:" + GenerationType.UUID);
+				logTrace( "received:" + GenerationType.UUID);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + GenerationType.UUID);
+				logErr( "Expected value:" + GenerationType.UUID);
 				pass = false;
 			}
 
@@ -1242,12 +1242,12 @@ public class Client extends PMClientBase {
 				try {
 					GenerationType.valueOf(g.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1272,38 +1272,38 @@ public class Client extends PMClientBase {
 
 			InheritanceType ft = InheritanceType.valueOf(InheritanceType.JOINED.name());
 			if (!ft.equals(InheritanceType.JOINED)) {
-				logger.log(Logger.Level.ERROR, "expected:" + InheritanceType.JOINED.name() + ", actual:" + ft.name());
+				logErr( "expected:" + InheritanceType.JOINED.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			ft = InheritanceType.valueOf(InheritanceType.SINGLE_TABLE.name());
 			if (!ft.equals(InheritanceType.SINGLE_TABLE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + InheritanceType.SINGLE_TABLE.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			ft = InheritanceType.valueOf(InheritanceType.TABLE_PER_CLASS.name());
 
 			if (!ft.equals(InheritanceType.TABLE_PER_CLASS)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + InheritanceType.TABLE_PER_CLASS.name() + ", actual:" + ft.name());
 				pass = false;
 			}
 			try {
 				InheritanceType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				InheritanceType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1328,26 +1328,26 @@ public class Client extends PMClientBase {
 
 			Collection<InheritanceType> it = Arrays.asList(InheritanceType.values());
 			if (it.size() != 3) {
-				logger.log(Logger.Level.ERROR, "Number of InheritanceType expected:3, actual:" + it.size());
+				logErr( "Number of InheritanceType expected:3, actual:" + it.size());
 				pass = false;
 			}
 
 			if (it.contains(InheritanceType.JOINED)) {
-				logger.log(Logger.Level.TRACE, "received:" + InheritanceType.JOINED);
+				logTrace( "received:" + InheritanceType.JOINED);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + InheritanceType.JOINED);
+				logErr( "Expected value:" + InheritanceType.JOINED);
 				pass = false;
 			}
 			if (it.contains(InheritanceType.SINGLE_TABLE)) {
-				logger.log(Logger.Level.TRACE, "received:" + InheritanceType.SINGLE_TABLE);
+				logTrace( "received:" + InheritanceType.SINGLE_TABLE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + InheritanceType.SINGLE_TABLE);
+				logErr( "Expected value:" + InheritanceType.SINGLE_TABLE);
 				pass = false;
 			}
 			if (it.contains(InheritanceType.TABLE_PER_CLASS)) {
-				logger.log(Logger.Level.TRACE, "received:" + InheritanceType.TABLE_PER_CLASS);
+				logTrace( "received:" + InheritanceType.TABLE_PER_CLASS);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + InheritanceType.TABLE_PER_CLASS);
+				logErr( "Expected value:" + InheritanceType.TABLE_PER_CLASS);
 				pass = false;
 			}
 
@@ -1355,12 +1355,12 @@ public class Client extends PMClientBase {
 				try {
 					InheritanceType.valueOf(i.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1385,59 +1385,59 @@ public class Client extends PMClientBase {
 
 			LockModeType lm = LockModeType.valueOf(LockModeType.NONE.name());
 			if (!lm.equals(LockModeType.NONE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + LockModeType.NONE + ", actual:" + lm.name());
+				logErr( "expected:" + LockModeType.NONE + ", actual:" + lm.name());
 				pass = false;
 			}
 			lm = LockModeType.valueOf(LockModeType.OPTIMISTIC.name());
 			if (!lm.equals(LockModeType.OPTIMISTIC)) {
-				logger.log(Logger.Level.ERROR, "expected:" + LockModeType.OPTIMISTIC.name() + ", actual:" + lm.name());
+				logErr( "expected:" + LockModeType.OPTIMISTIC.name() + ", actual:" + lm.name());
 				pass = false;
 			}
 			lm = LockModeType.valueOf(LockModeType.OPTIMISTIC_FORCE_INCREMENT.name());
 			if (!lm.equals(LockModeType.OPTIMISTIC_FORCE_INCREMENT)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + LockModeType.OPTIMISTIC_FORCE_INCREMENT.name() + ", actual:" + lm.name());
 				pass = false;
 			}
 			lm = LockModeType.valueOf(LockModeType.PESSIMISTIC_READ.name());
 			if (!lm.equals(LockModeType.PESSIMISTIC_READ)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + LockModeType.PESSIMISTIC_READ.name() + ", actual:" + lm.name());
 				pass = false;
 			}
 			lm = LockModeType.valueOf(LockModeType.PESSIMISTIC_WRITE.name());
 			if (!lm.equals(LockModeType.PESSIMISTIC_WRITE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + LockModeType.PESSIMISTIC_WRITE.name() + ", actual:" + lm.name());
 				pass = false;
 			}
 			lm = LockModeType.valueOf(LockModeType.READ.name());
 			if (!lm.equals(LockModeType.READ)) {
-				logger.log(Logger.Level.ERROR, "expected:" + LockModeType.READ.name() + ", actual:" + lm.name());
+				logErr( "expected:" + LockModeType.READ.name() + ", actual:" + lm.name());
 				pass = false;
 			}
 			lm = LockModeType.valueOf(LockModeType.WRITE.name());
 			if (!lm.equals(LockModeType.WRITE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + LockModeType.WRITE.name() + ", actual:" + lm.name());
+				logErr( "expected:" + LockModeType.WRITE.name() + ", actual:" + lm.name());
 				pass = false;
 			}
 
 			try {
 				LockModeType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				LockModeType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1462,56 +1462,56 @@ public class Client extends PMClientBase {
 
 			Collection<LockModeType> lm = Arrays.asList(LockModeType.values());
 			if (lm.size() != 8) {
-				logger.log(Logger.Level.ERROR, "Number of LockModeTypes expected:8, actual:" + lm.size());
+				logErr( "Number of LockModeTypes expected:8, actual:" + lm.size());
 				pass = false;
 			}
 
 			if (lm.contains(LockModeType.NONE)) {
-				logger.log(Logger.Level.TRACE, "received:" + LockModeType.NONE);
+				logTrace( "received:" + LockModeType.NONE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + LockModeType.NONE);
+				logErr( "Expected value:" + LockModeType.NONE);
 				pass = false;
 			}
 			if (lm.contains(LockModeType.OPTIMISTIC)) {
-				logger.log(Logger.Level.TRACE, "received:" + LockModeType.OPTIMISTIC);
+				logTrace( "received:" + LockModeType.OPTIMISTIC);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + LockModeType.OPTIMISTIC);
+				logErr( "Expected value:" + LockModeType.OPTIMISTIC);
 				pass = false;
 			}
 			if (lm.contains(LockModeType.OPTIMISTIC_FORCE_INCREMENT)) {
-				logger.log(Logger.Level.TRACE, "received:" + LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+				logTrace( "received:" + LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + LockModeType.OPTIMISTIC_FORCE_INCREMENT);
+				logErr( "Expected value:" + LockModeType.OPTIMISTIC_FORCE_INCREMENT);
 				pass = false;
 			}
 			if (lm.contains(LockModeType.PESSIMISTIC_FORCE_INCREMENT)) {
-				logger.log(Logger.Level.TRACE, "received:" + LockModeType.PESSIMISTIC_FORCE_INCREMENT);
+				logTrace( "received:" + LockModeType.PESSIMISTIC_FORCE_INCREMENT);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + LockModeType.PESSIMISTIC_FORCE_INCREMENT);
+				logErr( "Expected value:" + LockModeType.PESSIMISTIC_FORCE_INCREMENT);
 				pass = false;
 			}
 			if (lm.contains(LockModeType.PESSIMISTIC_READ)) {
-				logger.log(Logger.Level.TRACE, "received:" + LockModeType.PESSIMISTIC_READ);
+				logTrace( "received:" + LockModeType.PESSIMISTIC_READ);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + LockModeType.PESSIMISTIC_READ);
+				logErr( "Expected value:" + LockModeType.PESSIMISTIC_READ);
 				pass = false;
 			}
 			if (lm.contains(LockModeType.PESSIMISTIC_WRITE)) {
-				logger.log(Logger.Level.TRACE, "received:" + LockModeType.PESSIMISTIC_WRITE);
+				logTrace( "received:" + LockModeType.PESSIMISTIC_WRITE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + LockModeType.PESSIMISTIC_WRITE);
+				logErr( "Expected value:" + LockModeType.PESSIMISTIC_WRITE);
 				pass = false;
 			}
 			if (lm.contains(LockModeType.READ)) {
-				logger.log(Logger.Level.TRACE, "received:" + LockModeType.READ);
+				logTrace( "received:" + LockModeType.READ);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + LockModeType.READ);
+				logErr( "Expected value:" + LockModeType.READ);
 				pass = false;
 			}
 			if (lm.contains(LockModeType.WRITE)) {
-				logger.log(Logger.Level.TRACE, "received:" + LockModeType.WRITE);
+				logTrace( "received:" + LockModeType.WRITE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + LockModeType.WRITE);
+				logErr( "Expected value:" + LockModeType.WRITE);
 				pass = false;
 			}
 
@@ -1519,13 +1519,13 @@ public class Client extends PMClientBase {
 				try {
 					LockModeType.valueOf(l.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1550,32 +1550,32 @@ public class Client extends PMClientBase {
 
 			PersistenceContextType pct = PersistenceContextType.valueOf(PersistenceContextType.EXTENDED.name());
 			if (!pct.equals(PersistenceContextType.EXTENDED)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistenceContextType.EXTENDED.name() + ", actual:" + pct.name());
 				pass = false;
 			}
 			pct = PersistenceContextType.valueOf(PersistenceContextType.TRANSACTION.name());
 			if (!pct.equals(PersistenceContextType.TRANSACTION)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistenceContextType.TRANSACTION.name() + ", actual:" + pct.name());
 				pass = false;
 			}
 			try {
 				PersistenceContextType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				PersistenceContextType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1600,20 +1600,20 @@ public class Client extends PMClientBase {
 
 			Collection<PersistenceContextType> pct = Arrays.asList(PersistenceContextType.values());
 			if (pct.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Number of PersistenceContextType expected:2, actual:" + pct.size());
+				logErr( "Number of PersistenceContextType expected:2, actual:" + pct.size());
 				pass = false;
 			}
 
 			if (pct.contains(PersistenceContextType.EXTENDED)) {
-				logger.log(Logger.Level.TRACE, "received:" + PersistenceContextType.EXTENDED);
+				logTrace( "received:" + PersistenceContextType.EXTENDED);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + PersistenceContextType.EXTENDED);
+				logErr( "Expected value:" + PersistenceContextType.EXTENDED);
 				pass = false;
 			}
 			if (pct.contains(PersistenceContextType.TRANSACTION)) {
-				logger.log(Logger.Level.TRACE, "received:" + PersistenceContextType.TRANSACTION);
+				logTrace( "received:" + PersistenceContextType.TRANSACTION);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + PersistenceContextType.TRANSACTION);
+				logErr( "Expected value:" + PersistenceContextType.TRANSACTION);
 				pass = false;
 			}
 
@@ -1621,12 +1621,12 @@ public class Client extends PMClientBase {
 				try {
 					PersistenceContextType.valueOf(p.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1651,32 +1651,32 @@ public class Client extends PMClientBase {
 
 			PessimisticLockScope pls = PessimisticLockScope.valueOf(PessimisticLockScope.EXTENDED.name());
 			if (!pls.equals(PessimisticLockScope.EXTENDED)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PessimisticLockScope.EXTENDED.name() + ", actual:" + pls.name());
 				pass = false;
 			}
 			pls = PessimisticLockScope.valueOf(PessimisticLockScope.NORMAL.name());
 			if (!pls.equals(PessimisticLockScope.NORMAL)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PessimisticLockScope.NORMAL.name() + ", actual:" + pls.name());
 				pass = false;
 			}
 			try {
 				PessimisticLockScope.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				PessimisticLockScope.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1701,20 +1701,20 @@ public class Client extends PMClientBase {
 
 			Collection<PessimisticLockScope> pls = Arrays.asList(PessimisticLockScope.values());
 			if (pls.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Number of PessimisticLockScope expected:2, actual:" + pls.size());
+				logErr( "Number of PessimisticLockScope expected:2, actual:" + pls.size());
 				pass = false;
 			}
 
 			if (pls.contains(PessimisticLockScope.EXTENDED)) {
-				logger.log(Logger.Level.TRACE, "received:" + PessimisticLockScope.EXTENDED);
+				logTrace( "received:" + PessimisticLockScope.EXTENDED);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + PessimisticLockScope.EXTENDED);
+				logErr( "Expected value:" + PessimisticLockScope.EXTENDED);
 				pass = false;
 			}
 			if (pls.contains(PessimisticLockScope.NORMAL)) {
-				logger.log(Logger.Level.TRACE, "received:" + PessimisticLockScope.NORMAL);
+				logTrace( "received:" + PessimisticLockScope.NORMAL);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + PessimisticLockScope.NORMAL);
+				logErr( "Expected value:" + PessimisticLockScope.NORMAL);
 				pass = false;
 			}
 
@@ -1722,13 +1722,13 @@ public class Client extends PMClientBase {
 				try {
 					PessimisticLockScope.valueOf(p.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1753,48 +1753,48 @@ public class Client extends PMClientBase {
 
 			SharedCacheMode scm = SharedCacheMode.valueOf(SharedCacheMode.ALL.name());
 			if (!scm.equals(SharedCacheMode.ALL)) {
-				logger.log(Logger.Level.ERROR, "expected:" + SharedCacheMode.ALL.name() + ", actual:" + scm.name());
+				logErr( "expected:" + SharedCacheMode.ALL.name() + ", actual:" + scm.name());
 				pass = false;
 			}
 			scm = SharedCacheMode.valueOf(SharedCacheMode.DISABLE_SELECTIVE.name());
 			if (!scm.equals(SharedCacheMode.DISABLE_SELECTIVE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + SharedCacheMode.DISABLE_SELECTIVE.name() + ", actual:" + scm.name());
 				pass = false;
 			}
 			scm = SharedCacheMode.valueOf(SharedCacheMode.ENABLE_SELECTIVE.name());
 			if (!scm.equals(SharedCacheMode.ENABLE_SELECTIVE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + SharedCacheMode.ENABLE_SELECTIVE.name() + ", actual:" + scm.name());
 				pass = false;
 			}
 			scm = SharedCacheMode.valueOf(SharedCacheMode.NONE.name());
 			if (!scm.equals(SharedCacheMode.NONE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + SharedCacheMode.NONE.name() + ", actual:" + scm.name());
+				logErr( "expected:" + SharedCacheMode.NONE.name() + ", actual:" + scm.name());
 				pass = false;
 			}
 			scm = SharedCacheMode.valueOf(SharedCacheMode.UNSPECIFIED.name());
 			if (!scm.equals(SharedCacheMode.UNSPECIFIED)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + SharedCacheMode.UNSPECIFIED.name() + ", actual:" + scm.name());
 				pass = false;
 			}
 			try {
 				SharedCacheMode.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				SharedCacheMode.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1819,38 +1819,38 @@ public class Client extends PMClientBase {
 
 			Collection<SharedCacheMode> scm = Arrays.asList(SharedCacheMode.values());
 			if (scm.size() != 5) {
-				logger.log(Logger.Level.ERROR, "Number of SharedCacheMode expected:5, actual:" + scm.size());
+				logErr( "Number of SharedCacheMode expected:5, actual:" + scm.size());
 				pass = false;
 			}
 
 			if (scm.contains(SharedCacheMode.ALL)) {
-				logger.log(Logger.Level.TRACE, "received:" + SharedCacheMode.ALL);
+				logTrace( "received:" + SharedCacheMode.ALL);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + SharedCacheMode.ALL);
+				logErr( "Expected value:" + SharedCacheMode.ALL);
 				pass = false;
 			}
 			if (scm.contains(SharedCacheMode.DISABLE_SELECTIVE)) {
-				logger.log(Logger.Level.TRACE, "received:" + SharedCacheMode.DISABLE_SELECTIVE);
+				logTrace( "received:" + SharedCacheMode.DISABLE_SELECTIVE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + SharedCacheMode.DISABLE_SELECTIVE);
+				logErr( "Expected value:" + SharedCacheMode.DISABLE_SELECTIVE);
 				pass = false;
 			}
 			if (scm.contains(SharedCacheMode.ENABLE_SELECTIVE)) {
-				logger.log(Logger.Level.TRACE, "received:" + SharedCacheMode.ENABLE_SELECTIVE);
+				logTrace( "received:" + SharedCacheMode.ENABLE_SELECTIVE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + SharedCacheMode.ENABLE_SELECTIVE);
+				logErr( "Expected value:" + SharedCacheMode.ENABLE_SELECTIVE);
 				pass = false;
 			}
 			if (scm.contains(SharedCacheMode.NONE)) {
-				logger.log(Logger.Level.TRACE, "received:" + SharedCacheMode.NONE);
+				logTrace( "received:" + SharedCacheMode.NONE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + SharedCacheMode.NONE);
+				logErr( "Expected value:" + SharedCacheMode.NONE);
 				pass = false;
 			}
 			if (scm.contains(SharedCacheMode.UNSPECIFIED)) {
-				logger.log(Logger.Level.TRACE, "received:" + SharedCacheMode.UNSPECIFIED);
+				logTrace( "received:" + SharedCacheMode.UNSPECIFIED);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + SharedCacheMode.UNSPECIFIED);
+				logErr( "Expected value:" + SharedCacheMode.UNSPECIFIED);
 				pass = false;
 			}
 
@@ -1858,13 +1858,13 @@ public class Client extends PMClientBase {
 				try {
 					SharedCacheMode.valueOf(s.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1889,35 +1889,35 @@ public class Client extends PMClientBase {
 
 			ValidationMode vm = ValidationMode.valueOf(ValidationMode.CALLBACK.name());
 			if (!vm.equals(ValidationMode.CALLBACK)) {
-				logger.log(Logger.Level.ERROR, "expected:" + ValidationMode.CALLBACK.name() + ", actual:" + vm.name());
+				logErr( "expected:" + ValidationMode.CALLBACK.name() + ", actual:" + vm.name());
 				pass = false;
 			}
 			vm = ValidationMode.valueOf(ValidationMode.AUTO.name());
 			if (!vm.equals(ValidationMode.AUTO)) {
-				logger.log(Logger.Level.ERROR, "expected:" + ValidationMode.AUTO.name() + ", actual:" + vm.name());
+				logErr( "expected:" + ValidationMode.AUTO.name() + ", actual:" + vm.name());
 				pass = false;
 			}
 			vm = ValidationMode.valueOf(ValidationMode.NONE.name());
 			if (!vm.equals(ValidationMode.NONE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + ValidationMode.NONE.name() + ", actual:" + vm.name());
+				logErr( "expected:" + ValidationMode.NONE.name() + ", actual:" + vm.name());
 				pass = false;
 			}
 			try {
 				ValidationMode.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				ValidationMode.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1942,26 +1942,26 @@ public class Client extends PMClientBase {
 
 			Collection<ValidationMode> vm = Arrays.asList(ValidationMode.values());
 			if (vm.size() != 3) {
-				logger.log(Logger.Level.ERROR, "Number of ValidationMode expected:3, actual:" + vm.size());
+				logErr( "Number of ValidationMode expected:3, actual:" + vm.size());
 				pass = false;
 			}
 
 			if (vm.contains(ValidationMode.CALLBACK)) {
-				logger.log(Logger.Level.TRACE, "received:" + ValidationMode.CALLBACK);
+				logTrace( "received:" + ValidationMode.CALLBACK);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + ValidationMode.CALLBACK);
+				logErr( "Expected value:" + ValidationMode.CALLBACK);
 				pass = false;
 			}
 			if (vm.contains(ValidationMode.AUTO)) {
-				logger.log(Logger.Level.TRACE, "received:" + ValidationMode.AUTO);
+				logTrace( "received:" + ValidationMode.AUTO);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + ValidationMode.AUTO);
+				logErr( "Expected value:" + ValidationMode.AUTO);
 				pass = false;
 			}
 			if (vm.contains(ValidationMode.NONE)) {
-				logger.log(Logger.Level.TRACE, "received:" + ValidationMode.NONE);
+				logTrace( "received:" + ValidationMode.NONE);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + ValidationMode.NONE);
+				logErr( "Expected value:" + ValidationMode.NONE);
 				pass = false;
 			}
 
@@ -1969,13 +1969,13 @@ public class Client extends PMClientBase {
 				try {
 					ValidationMode.valueOf(v.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -1998,26 +1998,26 @@ public class Client extends PMClientBase {
 
 		Collection<TemporalType> tt = Arrays.asList(TemporalType.values());
 		if (tt.size() != 3) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:3, actual:" + tt.size());
+			logErr( "Number of TemporalType expected:3, actual:" + tt.size());
 			pass = false;
 		}
 
 		if (tt.contains(TemporalType.DATE)) {
-			logger.log(Logger.Level.TRACE, "received:" + TemporalType.DATE);
+			logTrace( "received:" + TemporalType.DATE);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + TemporalType.DATE);
+			logErr( "Expected value:" + TemporalType.DATE);
 			pass = false;
 		}
 		if (tt.contains(TemporalType.TIME)) {
-			logger.log(Logger.Level.TRACE, "received:" + TemporalType.TIME);
+			logTrace( "received:" + TemporalType.TIME);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + TemporalType.TIME);
+			logErr( "Expected value:" + TemporalType.TIME);
 			pass = false;
 		}
 		if (tt.contains(TemporalType.TIMESTAMP)) {
-			logger.log(Logger.Level.TRACE, "received:" + TemporalType.TIMESTAMP);
+			logTrace( "received:" + TemporalType.TIMESTAMP);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + TemporalType.TIMESTAMP);
+			logErr( "Expected value:" + TemporalType.TIMESTAMP);
 			pass = false;
 		}
 
@@ -2025,7 +2025,7 @@ public class Client extends PMClientBase {
 			try {
 				TemporalType.valueOf(t.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+				logErr( "Received exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2052,37 +2052,37 @@ public class Client extends PMClientBase {
 
 			TemporalType tt = TemporalType.valueOf(TemporalType.DATE.name());
 			if (!tt.equals(TemporalType.DATE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + TemporalType.DATE.name() + ", actual:" + tt.name());
+				logErr( "expected:" + TemporalType.DATE.name() + ", actual:" + tt.name());
 				pass = false;
 			}
 			tt = TemporalType.valueOf(TemporalType.TIME.name());
 			if (!tt.equals(TemporalType.TIME)) {
-				logger.log(Logger.Level.ERROR, "expected:" + TemporalType.TIME.name() + ", actual:" + tt.name());
+				logErr( "expected:" + TemporalType.TIME.name() + ", actual:" + tt.name());
 				pass = false;
 			}
 			tt = TemporalType.valueOf(TemporalType.TIMESTAMP.name());
 			if (!tt.equals(TemporalType.TIMESTAMP)) {
-				logger.log(Logger.Level.ERROR, "expected:" + TemporalType.TIMESTAMP.name() + ", actual:" + tt.name());
+				logErr( "expected:" + TemporalType.TIMESTAMP.name() + ", actual:" + tt.name());
 				pass = false;
 			}
 
 			try {
 				TemporalType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				TemporalType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -2104,26 +2104,26 @@ public class Client extends PMClientBase {
 
 		Collection<JoinType> jt = Arrays.asList(JoinType.values());
 		if (jt.size() != 3) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:3, actual:" + jt.size());
+			logErr( "Number of TemporalType expected:3, actual:" + jt.size());
 			pass = false;
 		}
 
 		if (jt.contains(JoinType.LEFT)) {
-			logger.log(Logger.Level.TRACE, "received:" + JoinType.LEFT);
+			logTrace( "received:" + JoinType.LEFT);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + JoinType.LEFT);
+			logErr( "Expected value:" + JoinType.LEFT);
 			pass = false;
 		}
 		if (jt.contains(JoinType.INNER)) {
-			logger.log(Logger.Level.TRACE, "received:" + JoinType.INNER);
+			logTrace( "received:" + JoinType.INNER);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + JoinType.INNER);
+			logErr( "Expected value:" + JoinType.INNER);
 			pass = false;
 		}
 		if (jt.contains(JoinType.RIGHT)) {
-			logger.log(Logger.Level.TRACE, "received:" + JoinType.RIGHT);
+			logTrace( "received:" + JoinType.RIGHT);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + JoinType.RIGHT);
+			logErr( "Expected value:" + JoinType.RIGHT);
 			pass = false;
 		}
 
@@ -2131,7 +2131,7 @@ public class Client extends PMClientBase {
 			try {
 				JoinType.valueOf(j.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+				logErr( "Received exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2157,37 +2157,37 @@ public class Client extends PMClientBase {
 
 			JoinType jt = JoinType.valueOf(JoinType.LEFT.name());
 			if (!jt.equals(JoinType.LEFT)) {
-				logger.log(Logger.Level.ERROR, "expected:" + JoinType.LEFT.name() + ", actual:" + jt.name());
+				logErr( "expected:" + JoinType.LEFT.name() + ", actual:" + jt.name());
 				pass = false;
 			}
 			jt = JoinType.valueOf(JoinType.INNER.name());
 			if (!jt.equals(JoinType.INNER)) {
-				logger.log(Logger.Level.ERROR, "expected:" + JoinType.INNER.name() + ", actual:" + jt.name());
+				logErr( "expected:" + JoinType.INNER.name() + ", actual:" + jt.name());
 				pass = false;
 			}
 			jt = JoinType.valueOf(JoinType.RIGHT.name());
 			if (!jt.equals(JoinType.RIGHT)) {
-				logger.log(Logger.Level.ERROR, "expected:" + JoinType.RIGHT.name() + ", actual:" + jt.name());
+				logErr( "expected:" + JoinType.RIGHT.name() + ", actual:" + jt.name());
 				pass = false;
 			}
 
 			try {
 				JoinType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				JoinType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -2210,50 +2210,50 @@ public class Client extends PMClientBase {
 		Collection<PersistentAttributeType> pat = Arrays.asList(PersistentAttributeType.values());
 
 		if (pat.size() != 7) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:7, actual:" + pat.size());
+			logErr( "Number of TemporalType expected:7, actual:" + pat.size());
 			pass = false;
 		}
 
 		if (pat.contains(PersistentAttributeType.BASIC)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistentAttributeType.BASIC);
+			logTrace( "received:" + PersistentAttributeType.BASIC);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistentAttributeType.BASIC);
+			logErr( "Expected value:" + PersistentAttributeType.BASIC);
 			pass = false;
 		}
 		if (pat.contains(PersistentAttributeType.ELEMENT_COLLECTION)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistentAttributeType.ELEMENT_COLLECTION);
+			logTrace( "received:" + PersistentAttributeType.ELEMENT_COLLECTION);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistentAttributeType.ELEMENT_COLLECTION);
+			logErr( "Expected value:" + PersistentAttributeType.ELEMENT_COLLECTION);
 			pass = false;
 		}
 		if (pat.contains(PersistentAttributeType.EMBEDDED)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistentAttributeType.EMBEDDED);
+			logTrace( "received:" + PersistentAttributeType.EMBEDDED);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistentAttributeType.EMBEDDED);
+			logErr( "Expected value:" + PersistentAttributeType.EMBEDDED);
 			pass = false;
 		}
 		if (pat.contains(PersistentAttributeType.MANY_TO_MANY)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistentAttributeType.MANY_TO_MANY);
+			logTrace( "received:" + PersistentAttributeType.MANY_TO_MANY);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistentAttributeType.MANY_TO_MANY);
+			logErr( "Expected value:" + PersistentAttributeType.MANY_TO_MANY);
 			pass = false;
 		}
 		if (pat.contains(PersistentAttributeType.MANY_TO_ONE)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistentAttributeType.MANY_TO_ONE);
+			logTrace( "received:" + PersistentAttributeType.MANY_TO_ONE);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistentAttributeType.MANY_TO_ONE);
+			logErr( "Expected value:" + PersistentAttributeType.MANY_TO_ONE);
 			pass = false;
 		}
 		if (pat.contains(PersistentAttributeType.ONE_TO_MANY)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistentAttributeType.ONE_TO_MANY);
+			logTrace( "received:" + PersistentAttributeType.ONE_TO_MANY);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistentAttributeType.ONE_TO_MANY);
+			logErr( "Expected value:" + PersistentAttributeType.ONE_TO_MANY);
 			pass = false;
 		}
 		if (pat.contains(PersistentAttributeType.ONE_TO_ONE)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistentAttributeType.ONE_TO_ONE);
+			logTrace( "received:" + PersistentAttributeType.ONE_TO_ONE);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistentAttributeType.ONE_TO_ONE);
+			logErr( "Expected value:" + PersistentAttributeType.ONE_TO_ONE);
 			pass = false;
 		}
 
@@ -2261,7 +2261,7 @@ public class Client extends PMClientBase {
 			try {
 				PersistentAttributeType.valueOf(p.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+				logErr( "Received exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2287,63 +2287,63 @@ public class Client extends PMClientBase {
 
 			PersistentAttributeType pat = PersistentAttributeType.valueOf(PersistentAttributeType.BASIC.name());
 			if (!pat.equals(PersistentAttributeType.BASIC)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistentAttributeType.BASIC.name() + ", actual:" + pat.name());
 				pass = false;
 			}
 			pat = PersistentAttributeType.valueOf(PersistentAttributeType.ELEMENT_COLLECTION.name());
 			if (!pat.equals(PersistentAttributeType.ELEMENT_COLLECTION)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistentAttributeType.ELEMENT_COLLECTION.name() + ", actual:" + pat.name());
 				pass = false;
 			}
 			pat = PersistentAttributeType.valueOf(PersistentAttributeType.EMBEDDED.name());
 			if (!pat.equals(PersistentAttributeType.EMBEDDED)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistentAttributeType.EMBEDDED.name() + ", actual:" + pat.name());
 				pass = false;
 			}
 			pat = PersistentAttributeType.valueOf(PersistentAttributeType.MANY_TO_MANY.name());
 			if (!pat.equals(PersistentAttributeType.MANY_TO_MANY)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistentAttributeType.MANY_TO_MANY.name() + ", actual:" + pat.name());
 				pass = false;
 			}
 			pat = PersistentAttributeType.valueOf(PersistentAttributeType.MANY_TO_ONE.name());
 			if (!pat.equals(PersistentAttributeType.MANY_TO_ONE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistentAttributeType.MANY_TO_ONE.name() + ", actual:" + pat.name());
 				pass = false;
 			}
 			pat = PersistentAttributeType.valueOf(PersistentAttributeType.ONE_TO_MANY.name());
 			if (!pat.equals(PersistentAttributeType.ONE_TO_MANY)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistentAttributeType.ONE_TO_MANY.name() + ", actual:" + pat.name());
 				pass = false;
 			}
 			pat = PersistentAttributeType.valueOf(PersistentAttributeType.ONE_TO_ONE.name());
 			if (!pat.equals(PersistentAttributeType.ONE_TO_ONE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistentAttributeType.ONE_TO_ONE.name() + ", actual:" + pat.name());
 				pass = false;
 			}
 			try {
 				PersistentAttributeType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				PersistentAttributeType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -2366,26 +2366,26 @@ public class Client extends PMClientBase {
 		Collection<BindableType> bt = Arrays.asList(BindableType.values());
 
 		if (bt.size() != 3) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:3, actual:" + bt.size());
+			logErr( "Number of TemporalType expected:3, actual:" + bt.size());
 			pass = false;
 		}
 
 		if (bt.contains(BindableType.ENTITY_TYPE)) {
-			logger.log(Logger.Level.TRACE, "received:" + BindableType.ENTITY_TYPE.name());
+			logTrace( "received:" + BindableType.ENTITY_TYPE.name());
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + BindableType.ENTITY_TYPE.name());
+			logErr( "Expected value:" + BindableType.ENTITY_TYPE.name());
 			pass = false;
 		}
 		if (bt.contains(BindableType.PLURAL_ATTRIBUTE)) {
-			logger.log(Logger.Level.TRACE, "received:" + BindableType.PLURAL_ATTRIBUTE.name());
+			logTrace( "received:" + BindableType.PLURAL_ATTRIBUTE.name());
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + BindableType.PLURAL_ATTRIBUTE.name());
+			logErr( "Expected value:" + BindableType.PLURAL_ATTRIBUTE.name());
 			pass = false;
 		}
 		if (bt.contains(BindableType.SINGULAR_ATTRIBUTE)) {
-			logger.log(Logger.Level.TRACE, "received:" + BindableType.SINGULAR_ATTRIBUTE.name());
+			logTrace( "received:" + BindableType.SINGULAR_ATTRIBUTE.name());
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + BindableType.SINGULAR_ATTRIBUTE.name());
+			logErr( "Expected value:" + BindableType.SINGULAR_ATTRIBUTE.name());
 			pass = false;
 		}
 
@@ -2393,7 +2393,7 @@ public class Client extends PMClientBase {
 			try {
 				BindableType.valueOf(b.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+				logErr( "Received exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2419,38 +2419,38 @@ public class Client extends PMClientBase {
 
 			BindableType bt = BindableType.valueOf(BindableType.ENTITY_TYPE.name());
 			if (!bt.equals(BindableType.ENTITY_TYPE)) {
-				logger.log(Logger.Level.ERROR, "expected:" + BindableType.ENTITY_TYPE.name() + ", actual:" + bt.name());
+				logErr( "expected:" + BindableType.ENTITY_TYPE.name() + ", actual:" + bt.name());
 				pass = false;
 			}
 			bt = BindableType.valueOf(BindableType.PLURAL_ATTRIBUTE.name());
 			if (!bt.equals(BindableType.PLURAL_ATTRIBUTE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + BindableType.PLURAL_ATTRIBUTE.name() + ", actual:" + bt.name());
 				pass = false;
 			}
 			bt = BindableType.valueOf(BindableType.SINGULAR_ATTRIBUTE.name());
 			if (!bt.equals(BindableType.SINGULAR_ATTRIBUTE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + BindableType.SINGULAR_ATTRIBUTE.name() + ", actual:" + bt.name());
 				pass = false;
 			}
 			try {
 				BindableType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				BindableType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -2473,32 +2473,32 @@ public class Client extends PMClientBase {
 		Collection<CollectionType> ct = Arrays.asList(CollectionType.values());
 
 		if (ct.size() != 4) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:4, actual:" + ct.size());
+			logErr( "Number of TemporalType expected:4, actual:" + ct.size());
 			pass = false;
 		}
 
 		if (ct.contains(CollectionType.COLLECTION)) {
-			logger.log(Logger.Level.TRACE, "received:" + CollectionType.COLLECTION);
+			logTrace( "received:" + CollectionType.COLLECTION);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + CollectionType.COLLECTION);
+			logErr( "Expected value:" + CollectionType.COLLECTION);
 			pass = false;
 		}
 		if (ct.contains(CollectionType.LIST)) {
-			logger.log(Logger.Level.TRACE, "received:" + CollectionType.LIST);
+			logTrace( "received:" + CollectionType.LIST);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + CollectionType.LIST);
+			logErr( "Expected value:" + CollectionType.LIST);
 			pass = false;
 		}
 		if (ct.contains(CollectionType.MAP)) {
-			logger.log(Logger.Level.TRACE, "received:" + CollectionType.MAP);
+			logTrace( "received:" + CollectionType.MAP);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + CollectionType.MAP);
+			logErr( "Expected value:" + CollectionType.MAP);
 			pass = false;
 		}
 		if (ct.contains(CollectionType.SET)) {
-			logger.log(Logger.Level.TRACE, "received:" + CollectionType.SET);
+			logTrace( "received:" + CollectionType.SET);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + CollectionType.SET);
+			logErr( "Expected value:" + CollectionType.SET);
 			pass = false;
 		}
 
@@ -2506,7 +2506,7 @@ public class Client extends PMClientBase {
 			try {
 				CollectionType.valueOf(c.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+				logErr( "Received exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2532,42 +2532,42 @@ public class Client extends PMClientBase {
 
 			CollectionType ct = CollectionType.valueOf(CollectionType.COLLECTION.name());
 			if (!ct.equals(CollectionType.COLLECTION)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + CollectionType.COLLECTION.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			ct = CollectionType.valueOf(CollectionType.LIST.name());
 			if (!ct.equals(CollectionType.LIST)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CollectionType.LIST.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CollectionType.LIST.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			ct = CollectionType.valueOf(CollectionType.MAP.name());
 			if (!ct.equals(CollectionType.MAP)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CollectionType.MAP.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CollectionType.MAP.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			ct = CollectionType.valueOf(CollectionType.SET.name());
 			if (!ct.equals(CollectionType.SET)) {
-				logger.log(Logger.Level.ERROR, "expected:" + CollectionType.SET.name() + ", actual:" + ct.name());
+				logErr( "expected:" + CollectionType.SET.name() + ", actual:" + ct.name());
 				pass = false;
 			}
 			try {
 				CollectionType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				CollectionType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -2590,31 +2590,31 @@ public class Client extends PMClientBase {
 		Collection<PersistenceType> pt = Arrays.asList(PersistenceType.values());
 
 		if (pt.size() != 4) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:4, actual:" + pt.size());
+			logErr( "Number of TemporalType expected:4, actual:" + pt.size());
 			pass = false;
 		}
 		if (pt.contains(PersistenceType.BASIC)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistenceType.BASIC);
+			logTrace( "received:" + PersistenceType.BASIC);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistenceType.BASIC);
+			logErr( "Expected value:" + PersistenceType.BASIC);
 			pass = false;
 		}
 		if (pt.contains(PersistenceType.EMBEDDABLE)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistenceType.EMBEDDABLE);
+			logTrace( "received:" + PersistenceType.EMBEDDABLE);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistenceType.EMBEDDABLE);
+			logErr( "Expected value:" + PersistenceType.EMBEDDABLE);
 			pass = false;
 		}
 		if (pt.contains(PersistenceType.ENTITY)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistenceType.ENTITY);
+			logTrace( "received:" + PersistenceType.ENTITY);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistenceType.ENTITY);
+			logErr( "Expected value:" + PersistenceType.ENTITY);
 			pass = false;
 		}
 		if (pt.contains(PersistenceType.MAPPED_SUPERCLASS)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistenceType.MAPPED_SUPERCLASS);
+			logTrace( "received:" + PersistenceType.MAPPED_SUPERCLASS);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistenceType.MAPPED_SUPERCLASS);
+			logErr( "Expected value:" + PersistenceType.MAPPED_SUPERCLASS);
 			pass = false;
 		}
 
@@ -2622,7 +2622,7 @@ public class Client extends PMClientBase {
 			try {
 				PersistenceType.valueOf(p.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+				logErr( "Received exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2648,43 +2648,43 @@ public class Client extends PMClientBase {
 
 			PersistenceType pt = PersistenceType.valueOf(PersistenceType.BASIC.name());
 			if (!pt.equals(PersistenceType.BASIC)) {
-				logger.log(Logger.Level.ERROR, "expected:" + PersistenceType.BASIC.name() + ", actual:" + pt.name());
+				logErr( "expected:" + PersistenceType.BASIC.name() + ", actual:" + pt.name());
 				pass = false;
 			}
 			pt = PersistenceType.valueOf(PersistenceType.EMBEDDABLE.name());
 			if (!pt.equals(PersistenceType.EMBEDDABLE)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistenceType.EMBEDDABLE.name() + ", actual:" + pt.name());
 				pass = false;
 			}
 			pt = PersistenceType.valueOf(PersistenceType.ENTITY.name());
 			if (!pt.equals(PersistenceType.ENTITY)) {
-				logger.log(Logger.Level.ERROR, "expected:" + PersistenceType.ENTITY.name() + ", actual:" + pt.name());
+				logErr( "expected:" + PersistenceType.ENTITY.name() + ", actual:" + pt.name());
 				pass = false;
 			}
 			pt = PersistenceType.valueOf(PersistenceType.MAPPED_SUPERCLASS.name());
 			if (!pt.equals(PersistenceType.MAPPED_SUPERCLASS)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistenceType.MAPPED_SUPERCLASS.name() + ", actual:" + pt.name());
 				pass = false;
 			}
 			try {
 				PersistenceType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				PersistenceType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -2707,26 +2707,26 @@ public class Client extends PMClientBase {
 		Collection<LoadState> ls = Arrays.asList(LoadState.values());
 
 		if (ls.size() != 3) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:3, actual:" + ls.size());
+			logErr( "Number of TemporalType expected:3, actual:" + ls.size());
 			pass = false;
 		}
 
 		if (ls.contains(LoadState.LOADED)) {
-			logger.log(Logger.Level.TRACE, "received:" + LoadState.LOADED);
+			logTrace( "received:" + LoadState.LOADED);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + LoadState.LOADED);
+			logErr( "Expected value:" + LoadState.LOADED);
 			pass = false;
 		}
 		if (ls.contains(LoadState.NOT_LOADED)) {
-			logger.log(Logger.Level.TRACE, "received:" + LoadState.NOT_LOADED);
+			logTrace( "received:" + LoadState.NOT_LOADED);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + LoadState.NOT_LOADED);
+			logErr( "Expected value:" + LoadState.NOT_LOADED);
 			pass = false;
 		}
 		if (ls.contains(LoadState.UNKNOWN)) {
-			logger.log(Logger.Level.TRACE, "received:" + LoadState.UNKNOWN);
+			logTrace( "received:" + LoadState.UNKNOWN);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + LoadState.UNKNOWN);
+			logErr( "Expected value:" + LoadState.UNKNOWN);
 			pass = false;
 		}
 
@@ -2734,7 +2734,7 @@ public class Client extends PMClientBase {
 			try {
 				LoadState.valueOf(l.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+				logErr( "Received exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2760,36 +2760,36 @@ public class Client extends PMClientBase {
 
 			LoadState ls = LoadState.valueOf(LoadState.LOADED.name());
 			if (!ls.equals(LoadState.LOADED)) {
-				logger.log(Logger.Level.ERROR, "expected:" + LoadState.LOADED.name() + ", actual:" + ls.name());
+				logErr( "expected:" + LoadState.LOADED.name() + ", actual:" + ls.name());
 				pass = false;
 			}
 			ls = LoadState.valueOf(LoadState.NOT_LOADED.name());
 			if (!ls.equals(LoadState.NOT_LOADED)) {
-				logger.log(Logger.Level.ERROR, "expected:" + LoadState.NOT_LOADED.name() + ", actual:" + ls.name());
+				logErr( "expected:" + LoadState.NOT_LOADED.name() + ", actual:" + ls.name());
 				pass = false;
 			}
 			ls = LoadState.valueOf(LoadState.UNKNOWN.name());
 			if (!ls.equals(LoadState.UNKNOWN)) {
-				logger.log(Logger.Level.ERROR, "expected:" + LoadState.UNKNOWN.name() + ", actual:" + ls.name());
+				logErr( "expected:" + LoadState.UNKNOWN.name() + ", actual:" + ls.name());
 				pass = false;
 			}
 			try {
 				LoadState.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				LoadState.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception occurred", e);
+			logErr( "Unexpected Exception occurred", e);
 		}
 
 		if (!pass) {
@@ -2812,20 +2812,20 @@ public class Client extends PMClientBase {
 		Collection<PersistenceUnitTransactionType> putt = Arrays.asList(PersistenceUnitTransactionType.values());
 
 		if (putt.size() != 2) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:2, actual:" + putt.size());
+			logErr( "Number of TemporalType expected:2, actual:" + putt.size());
 			pass = false;
 		}
 
 		if (putt.contains(PersistenceUnitTransactionType.JTA)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistenceUnitTransactionType.JTA);
+			logTrace( "received:" + PersistenceUnitTransactionType.JTA);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistenceUnitTransactionType.JTA);
+			logErr( "Expected value:" + PersistenceUnitTransactionType.JTA);
 			pass = false;
 		}
 		if (putt.contains(PersistenceUnitTransactionType.RESOURCE_LOCAL)) {
-			logger.log(Logger.Level.TRACE, "received:" + PersistenceUnitTransactionType.RESOURCE_LOCAL);
+			logTrace( "received:" + PersistenceUnitTransactionType.RESOURCE_LOCAL);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + PersistenceUnitTransactionType.RESOURCE_LOCAL);
+			logErr( "Expected value:" + PersistenceUnitTransactionType.RESOURCE_LOCAL);
 			pass = false;
 		}
 
@@ -2833,7 +2833,7 @@ public class Client extends PMClientBase {
 			try {
 				PersistenceUnitTransactionType.valueOf(p.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+				logErr( "Received exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2860,33 +2860,33 @@ public class Client extends PMClientBase {
 			PersistenceUnitTransactionType putt = PersistenceUnitTransactionType
 					.valueOf(PersistenceUnitTransactionType.JTA.name());
 			if (!putt.equals(PersistenceUnitTransactionType.JTA)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistenceUnitTransactionType.JTA.name() + ", actual:" + putt.name());
 				pass = false;
 			}
 			putt = PersistenceUnitTransactionType.valueOf(PersistenceUnitTransactionType.RESOURCE_LOCAL.name());
 			if (!putt.equals(PersistenceUnitTransactionType.RESOURCE_LOCAL)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + PersistenceUnitTransactionType.RESOURCE_LOCAL.name() + ", actual:" + putt.name());
 				pass = false;
 			}
 			try {
 				PersistenceUnitTransactionType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				PersistenceUnitTransactionType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception occurred", e);
+			logErr( "Unexpected Exception occurred", e);
 		}
 
 		if (!pass) {
@@ -2909,32 +2909,32 @@ public class Client extends PMClientBase {
 		Collection<ParameterMode> cpm = Arrays.asList(ParameterMode.values());
 
 		if (cpm.size() != 4) {
-			logger.log(Logger.Level.ERROR, "Number of TemporalType expected:4, actual:" + cpm.size());
+			logErr( "Number of TemporalType expected:4, actual:" + cpm.size());
 			pass = false;
 		}
 
 		if (cpm.contains(ParameterMode.IN)) {
-			logger.log(Logger.Level.TRACE, "received:" + ParameterMode.IN);
+			logTrace( "received:" + ParameterMode.IN);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + ParameterMode.IN);
+			logErr( "Expected value:" + ParameterMode.IN);
 			pass = false;
 		}
 		if (cpm.contains(ParameterMode.INOUT)) {
-			logger.log(Logger.Level.TRACE, "received:" + ParameterMode.INOUT);
+			logTrace( "received:" + ParameterMode.INOUT);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + ParameterMode.INOUT);
+			logErr( "Expected value:" + ParameterMode.INOUT);
 			pass = false;
 		}
 		if (cpm.contains(ParameterMode.OUT)) {
-			logger.log(Logger.Level.TRACE, "received:" + ParameterMode.OUT);
+			logTrace( "received:" + ParameterMode.OUT);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + ParameterMode.OUT);
+			logErr( "Expected value:" + ParameterMode.OUT);
 			pass = false;
 		}
 		if (cpm.contains(ParameterMode.REF_CURSOR)) {
-			logger.log(Logger.Level.TRACE, "received:" + ParameterMode.REF_CURSOR);
+			logTrace( "received:" + ParameterMode.REF_CURSOR);
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected value:" + ParameterMode.REF_CURSOR);
+			logErr( "Expected value:" + ParameterMode.REF_CURSOR);
 			pass = false;
 		}
 
@@ -2942,7 +2942,7 @@ public class Client extends PMClientBase {
 			try {
 				ParameterMode.valueOf(pm.name());
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received Exception for valueOf", e);
+				logErr( "Received Exception for valueOf", e);
 				pass = false;
 			}
 		}
@@ -2968,41 +2968,41 @@ public class Client extends PMClientBase {
 
 			ParameterMode pm = ParameterMode.valueOf(ParameterMode.IN.name());
 			if (!pm.equals(ParameterMode.IN)) {
-				logger.log(Logger.Level.ERROR, "expected:" + ParameterMode.IN.name() + ", actual:" + pm.name());
+				logErr( "expected:" + ParameterMode.IN.name() + ", actual:" + pm.name());
 				pass = false;
 			}
 			pm = ParameterMode.valueOf(ParameterMode.INOUT.name());
 			if (!pm.equals(ParameterMode.INOUT)) {
-				logger.log(Logger.Level.ERROR, "expected:" + ParameterMode.INOUT.name() + ", actual:" + pm.name());
+				logErr( "expected:" + ParameterMode.INOUT.name() + ", actual:" + pm.name());
 				pass = false;
 			}
 			pm = ParameterMode.valueOf(ParameterMode.OUT.name());
 			if (!pm.equals(ParameterMode.OUT)) {
-				logger.log(Logger.Level.ERROR, "expected:" + ParameterMode.OUT.name() + ", actual:" + pm.name());
+				logErr( "expected:" + ParameterMode.OUT.name() + ", actual:" + pm.name());
 				pass = false;
 			}
 			pm = ParameterMode.valueOf(ParameterMode.REF_CURSOR.name());
 			if (!pm.equals(ParameterMode.REF_CURSOR)) {
-				logger.log(Logger.Level.ERROR, "expected:" + ParameterMode.REF_CURSOR.name() + ", actual:" + pm.name());
+				logErr( "expected:" + ParameterMode.REF_CURSOR.name() + ", actual:" + pm.name());
 				pass = false;
 			}
 			try {
 				ParameterMode.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				ParameterMode.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException npe) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception occurred", e);
+			logErr( "Unexpected Exception occurred", e);
 		}
 
 		if (!pass) {
@@ -3026,32 +3026,32 @@ public class Client extends PMClientBase {
 
 			SynchronizationType st = SynchronizationType.valueOf(SynchronizationType.SYNCHRONIZED.name());
 			if (!st.equals(SynchronizationType.SYNCHRONIZED)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + SynchronizationType.SYNCHRONIZED.name() + ", actual:" + st.name());
 				pass = false;
 			}
 			st = SynchronizationType.valueOf(SynchronizationType.UNSYNCHRONIZED.name());
 			if (!st.equals(SynchronizationType.UNSYNCHRONIZED)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"expected:" + SynchronizationType.UNSYNCHRONIZED.name() + ", actual:" + st.name());
 				pass = false;
 			}
 			try {
 				SynchronizationType.valueOf("DOESNOTEXIST");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+				logErr( "IllegalArgumentException was not thrown");
 				pass = false;
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 			}
 			try {
 				SynchronizationType.valueOf(null);
-				logger.log(Logger.Level.ERROR, "NullPointerException was not thrown");
+				logErr( "NullPointerException was not thrown");
 				pass = false;
 			} catch (NullPointerException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected NullPointerException");
+				logTrace( "Received expected NullPointerException");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -3076,20 +3076,20 @@ public class Client extends PMClientBase {
 
 			Collection<SynchronizationType> st = Arrays.asList(SynchronizationType.values());
 			if (st.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Number of SynchronizationType expected:2, actual:" + st.size());
+				logErr( "Number of SynchronizationType expected:2, actual:" + st.size());
 				pass = false;
 			}
 
 			if (st.contains(SynchronizationType.SYNCHRONIZED)) {
-				logger.log(Logger.Level.TRACE, "received:" + SynchronizationType.SYNCHRONIZED);
+				logTrace( "received:" + SynchronizationType.SYNCHRONIZED);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + SynchronizationType.SYNCHRONIZED);
+				logErr( "Expected value:" + SynchronizationType.SYNCHRONIZED);
 				pass = false;
 			}
 			if (st.contains(SynchronizationType.UNSYNCHRONIZED)) {
-				logger.log(Logger.Level.TRACE, "received:" + SynchronizationType.UNSYNCHRONIZED);
+				logTrace( "received:" + SynchronizationType.UNSYNCHRONIZED);
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected value:" + SynchronizationType.UNSYNCHRONIZED);
+				logErr( "Expected value:" + SynchronizationType.UNSYNCHRONIZED);
 				pass = false;
 			}
 
@@ -3097,12 +3097,12 @@ public class Client extends PMClientBase {
 				try {
 					SynchronizationType.valueOf(s.name());
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received exception for valueOf", e);
+					logErr( "Received exception for valueOf", e);
 					pass = false;
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		}
 
@@ -3114,11 +3114,11 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			if (getEntityManager().isOpen()) {
 				removeTestData();
 			}
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -3126,7 +3126,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -3135,14 +3135,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

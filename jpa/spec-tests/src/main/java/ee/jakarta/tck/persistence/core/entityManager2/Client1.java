@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.entityManager2;
 
-import java.lang.System.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -39,7 +39,7 @@ import jakarta.persistence.criteria.Root;
 
 public class Client1 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
+
 
 	Employee[] empRef = new Employee[5];
 
@@ -74,7 +74,7 @@ public class Client1 extends PMClientBase {
 	 */
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
@@ -83,7 +83,7 @@ public class Client1 extends PMClientBase {
 			displayMap(map);
 			dataBaseName = System.getProperty("jdbc.db");
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -91,7 +91,7 @@ public class Client1 extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -111,310 +111,310 @@ public class Client1 extends PMClientBase {
 	@Test
 	public void findExceptionsTest() throws Exception {
 		int pass = 0;
-		logger.log(Logger.Level.INFO, "Testing findClassObjectIllegalArgumentException");
+		logMsg( "Testing findClassObjectIllegalArgumentException");
 
-		logger.log(Logger.Level.INFO, "Invalid Object test");
+		logMsg( "Invalid Object test");
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Client1.class, 1);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Invalid PK test");
+		logMsg( "Invalid PK test");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Order.class, "PK");
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Null PK test");
+		logMsg( "Null PK test");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Order.class, null);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Testing findClassObjectMapIllegalArgumentException");
+		logMsg( "Testing findClassObjectMapIllegalArgumentException");
 
 		Map<String, Object> myMap = new HashMap<String, Object>();
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
 
-		logger.log(Logger.Level.TRACE, "Invalid Object test");
+		logTrace( "Invalid Object test");
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Client1.class, 1, myMap);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Invalid PK test");
+		logMsg( "Invalid PK test");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Order.class, "PK", myMap);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Null PK test");
+		logMsg( "Null PK test");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Order.class, null, myMap);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Testing findClassObjectLockModeTypeIllegalArgumentException");
+		logMsg( "Testing findClassObjectLockModeTypeIllegalArgumentException");
 
-		logger.log(Logger.Level.INFO, "Invalid Object test");
+		logMsg( "Invalid Object test");
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Client1.class, 1, LockModeType.NONE);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Invalid PK test");
+		logMsg( "Invalid PK test");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Order.class, "PK", LockModeType.NONE);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Null PK test");
+		logMsg( "Null PK test");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Order.class, null, LockModeType.NONE);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Testing findClassObjectLockModeTypeTransactionRequiredException");
+		logMsg( "Testing findClassObjectLockModeTypeTransactionRequiredException");
 		// Make sure there is no transaction active
 		try {
 			if (getEntityTransaction().isActive()) {
-				logger.log(Logger.Level.TRACE, "A transaction is active, execute rollback");
+				logTrace( "A transaction is active, execute rollback");
 				getEntityTransaction().rollback();
 			} else {
-				logger.log(Logger.Level.TRACE, "No transaction is active");
+				logTrace( "No transaction is active");
 			}
 		} catch (Exception fe) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			logErr( "Unexpected exception rolling back TX:", fe);
 		}
 		try {
 			getEntityManager().find(Order.class, 1, LockModeType.PESSIMISTIC_READ);
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException tre) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Testing findClassObjectLockModeTypeMapIllegalArgumentException");
+		logMsg( "Testing findClassObjectLockModeTypeMapIllegalArgumentException");
 
-		logger.log(Logger.Level.INFO, "Invalid Object test");
+		logMsg( "Invalid Object test");
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Client1.class, 1, LockModeType.NONE, myMap);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Invalid PK test");
+		logMsg( "Invalid PK test");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Order.class, "PK", LockModeType.NONE, myMap);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Null PK test");
+		logMsg( "Null PK test");
 
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(Order.class, null, LockModeType.NONE, myMap);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected.");
+			logTrace( "IllegalArgumentException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Testing findClassObjectLockModeTypeMapTransactionRequiredException");
+		logMsg( "Testing findClassObjectLockModeTypeMapTransactionRequiredException");
 		// Make sure there is no transaction active
 		try {
 			if (getEntityTransaction().isActive()) {
-				logger.log(Logger.Level.TRACE, "A transaction is active, execute rollback");
+				logTrace( "A transaction is active, execute rollback");
 				getEntityTransaction().rollback();
 			}
 		} catch (Exception fe) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+			logErr( "Unexpected exception rolling back TX:", fe);
 		}
 		try {
 			getEntityManager().find(Order.class, 0, LockModeType.PESSIMISTIC_READ, myMap);
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 
 		} catch (TransactionRequiredException tre) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass += 1;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 
 		}
 
@@ -437,12 +437,12 @@ public class Client1 extends PMClientBase {
 		try {
 
 			getEntityManager().flush();
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException was not thrown");
+			logErr( "TransactionRequiredException was not thrown");
 		} catch (TransactionRequiredException e) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -464,24 +464,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().contains(PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -504,17 +504,17 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createNamedQuery("doesnotexist");
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -522,7 +522,7 @@ public class Client1 extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -546,17 +546,17 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createNamedQuery("doesnotexist", PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -564,7 +564,7 @@ public class Client1 extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -587,17 +587,17 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createNamedStoredProcedureQuery("doesnotexist");
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -605,7 +605,7 @@ public class Client1 extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -632,29 +632,29 @@ public class Client1 extends PMClientBase {
 			cd.from(DoesNotExist.class);
 			try {
 				Query q = getEntityManager().createQuery(cd);
-				logger.log(Logger.Level.INFO, "RuntimeException wasn't thrown, try executing it");
+				logMsg( "RuntimeException wasn't thrown, try executing it");
 				q.executeUpdate();
-				logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+				logErr( "RuntimeException not thrown");
 			} catch (RuntimeException e) {
-				logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.", e);
+				logTrace( "RuntimeException Caught as Expected.", e);
 				if (!getEntityTransaction().getRollbackOnly()) {
-					logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+					logErr( "Transaction was not marked for rollback");
 				} else {
-					logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+					logTrace( "Transaction was marked for rollback");
 					pass = true;
 				}
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred while creating CriteriaDelete", e);
+			logErr( "Unexpected exception occurred while creating CriteriaDelete", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -679,26 +679,26 @@ public class Client1 extends PMClientBase {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 			CriteriaQuery<PMClientBase> cquery = cbuilder.createQuery(PMClientBase.class);
 			Query q = getEntityManager().createQuery(cquery);
-			logger.log(Logger.Level.INFO, "RuntimeException wasn't thrown, try executing it");
+			logMsg( "RuntimeException wasn't thrown, try executing it");
 			q.executeUpdate();
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -728,29 +728,29 @@ public class Client1 extends PMClientBase {
 			cu.set(root.get("firstName"), "foobar");
 			try {
 				Query q = getEntityManager().createQuery(cu);
-				logger.log(Logger.Level.INFO, "RuntimeException wasn't thrown, try executing it");
+				logMsg( "RuntimeException wasn't thrown, try executing it");
 				q.executeUpdate();
-				logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+				logErr( "RuntimeException not thrown");
 			} catch (RuntimeException e) {
-				logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+				logTrace( "RuntimeException Caught as Expected.");
 				if (!getEntityTransaction().getRollbackOnly()) {
-					logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+					logErr( "Transaction was not marked for rollback");
 				} else {
-					logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+					logTrace( "Transaction was marked for rollback");
 					pass = true;
 				}
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred while creating CriteriaUpdate", e);
+			logErr( "Unexpected exception occurred while creating CriteriaUpdate", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -773,24 +773,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createQuery("invalid");
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -813,24 +813,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().createQuery("invalid", PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -853,26 +853,26 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("doesnotexist");
-			logger.log(Logger.Level.INFO, "RuntimeException not thrown, try executing it");
+			logMsg( "RuntimeException not thrown, try executing it");
 			spq.execute();
-			logger.log(Logger.Level.ERROR, "RuntimeException was not thrown, after trying to executing it");
+			logErr( "RuntimeException was not thrown, after trying to executing it");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -896,26 +896,26 @@ public class Client1 extends PMClientBase {
 			getEntityTransaction().begin();
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("doesnotexist",
 					PMClientBase.class);
-			logger.log(Logger.Level.INFO, "RuntimeException not thrown, try executing it");
+			logMsg( "RuntimeException not thrown, try executing it");
 			spq.execute();
-			logger.log(Logger.Level.ERROR, "RuntimeException was not thrown, after trying to executing it");
+			logErr( "RuntimeException was not thrown, after trying to executing it");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -938,26 +938,26 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("doesnotexist", "doesnotexist");
-			logger.log(Logger.Level.INFO, "RuntimeException not thrown, try executing it");
+			logMsg( "RuntimeException not thrown, try executing it");
 			spq.execute();
-			logger.log(Logger.Level.ERROR, "RuntimeException was not thrown, after trying to executing it");
+			logErr( "RuntimeException was not thrown, after trying to executing it");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -980,17 +980,17 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().detach(PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -998,7 +998,7 @@ public class Client1 extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1021,24 +1021,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(PMClientBase.class, "doesnotexist");
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1061,24 +1061,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(PMClientBase.class, "doesnotexist", LockModeType.NONE);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1101,24 +1101,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(PMClientBase.class, "doesnotexist", LockModeType.NONE, map);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1141,24 +1141,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().find(PMClientBase.class, "doesnotexist", map);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1181,24 +1181,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().getLockMode(PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1221,24 +1221,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().getReference(PMClientBase.class, "doesnotexist");
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1261,24 +1261,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().lock(PMClientBase.class, LockModeType.NONE);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1301,24 +1301,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().lock(PMClientBase.class, LockModeType.NONE, map);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1341,24 +1341,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().merge(PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1381,24 +1381,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().persist(PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1421,24 +1421,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().refresh(PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1461,24 +1461,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().refresh(PMClientBase.class, LockModeType.NONE);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1501,24 +1501,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().refresh(PMClientBase.class, LockModeType.NONE, map);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1541,24 +1541,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().refresh(PMClientBase.class, map);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -1581,24 +1581,24 @@ public class Client1 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().remove(PMClientBase.class);
-			logger.log(Logger.Level.ERROR, "RuntimeException not thrown");
+			logErr( "RuntimeException not thrown");
 		} catch (RuntimeException e) {
-			logger.log(Logger.Level.TRACE, "RuntimeException Caught as Expected.");
+			logTrace( "RuntimeException Caught as Expected.");
 			if (!getEntityTransaction().getRollbackOnly()) {
-				logger.log(Logger.Level.ERROR, "Transaction was not marked for rollback");
+				logErr( "Transaction was not marked for rollback");
 			} else {
-				logger.log(Logger.Level.TRACE, "Transaction was marked for rollback");
+				logTrace( "Transaction was marked for rollback");
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 

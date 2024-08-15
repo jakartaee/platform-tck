@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.metamodel;
 
-import java.lang.System.Logger;
+
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Embedded;
@@ -28,7 +28,7 @@ import jakarta.persistence.Table;
 @Table(name = "B_EMBEDDABLE")
 public class B implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(B.class.getName());
+
 
 	// ===========================================================
 	// instance variables
@@ -55,7 +55,7 @@ public class B implements java.io.Serializable {
 	// ===========================================================
 	// constructors
 	public B() {
-		// logger.log(Logger.Level.TRACE,"Entity B no arg constructor");
+		// logTrace("Entity B no arg constructor");
 	}
 
 	public B(String id, String name, int value) {

@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.basic;
 
-import java.lang.System.Logger;
+
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
@@ -31,7 +31,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
@@ -47,13 +47,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -85,35 +85,35 @@ public class Client extends PMClientBase {
 		for (int i = 1; i < count; i++) {
 			order = new Order(i, 100 * i);
 			getEntityManager().persist(order);
-			logger.log(Logger.Level.TRACE, "persisted order " + order);
+			logTrace( "persisted order " + order);
 		}
 		getEntityTransaction().commit();
 
-		logger.log(Logger.Level.TRACE, "find and removing the previously persisted orders");
+		logTrace( "find and removing the previously persisted orders");
 		getEntityTransaction().begin();
 		for (int i = 1; i < count; i++) {
 			order = getEntityManager().find(Order.class, i);
 			if (order != null) {
 				getEntityManager().remove(order);
-				logger.log(Logger.Level.TRACE, "Found and removed order " + order);
+				logTrace( "Found and removed order " + order);
 			} else {
-				logger.log(Logger.Level.ERROR, "persisted order[" + i + "] DOES NOT EXIST");
+				logErr( "persisted order[" + i + "] DOES NOT EXIST");
 				pass = false;
 			}
 		}
 		getEntityTransaction().commit();
 		if (!pass) {
 
-			logger.log(Logger.Level.TRACE, "clearing the persistence context");
+			logTrace( "clearing the persistence context");
 			clearCache();
 
-			logger.log(Logger.Level.TRACE, "verify the previously removed orders were removed");
+			logTrace( "verify the previously removed orders were removed");
 			for (int i = 1; i < count; i++) {
 				order = getEntityManager().find(Order.class, i);
 				if (order == null) {
-					logger.log(Logger.Level.TRACE, "persisted order[" + i + "] was removed successfully");
+					logTrace( "persisted order[" + i + "] was removed successfully");
 				} else {
-					logger.log(Logger.Level.ERROR, "order[" + i + "] was NOT removed");
+					logErr( "order[" + i + "] was NOT removed");
 					pass = false;
 				}
 			}
@@ -133,15 +133,15 @@ public class Client extends PMClientBase {
 	@Test
 	public void newEntityTest() throws Exception {
 		boolean pass = false;
-		logger.log(Logger.Level.TRACE, "Instantiate an order ");
+		logTrace( "Instantiate an order ");
 		Order order = new Order(1, 101);
-		logger.log(Logger.Level.TRACE, "Try to find it");
+		logTrace( "Try to find it");
 		Order order2 = getEntityManager().find(Order.class, 1);
 		if (order2 == null) {
-			logger.log(Logger.Level.TRACE, "Did not find order as expected");
+			logTrace( "Did not find order as expected");
 			pass = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Found order when it should not exist" + order2.toString());
+			logErr( "Found order when it should not exist" + order2.toString());
 		}
 
 		if (!pass) {
@@ -152,9 +152,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -162,7 +162,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -171,14 +171,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

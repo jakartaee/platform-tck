@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
-import java.lang.System.Logger;
+
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +29,7 @@ public class Client3 extends Client {
 	public Client3() {
 	}
 
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client.class.getPackageName();
@@ -41,7 +41,7 @@ public class Client3 extends Client {
 
 	@BeforeEach
 	public void setup3() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup3");
+		logTrace( "setup3");
 		try {
 
 			super.setup();
@@ -49,7 +49,7 @@ public class Client3 extends Client {
 			removeTestData();
 			createTestData3();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -70,7 +70,7 @@ public class Client3 extends Client {
 		try {
 			getEntityTransaction().begin();
 			int id = d3.getId();
-			logger.log(Logger.Level.TRACE, "find id: " + id);
+			logTrace( "find id: " + id);
 			DataTypes3 d = getEntityManager().find(DataTypes3.class, id);
 			if (d != null) {
 				if (d.getStringData().equals(d3.getStringData())) {
@@ -79,10 +79,10 @@ public class Client3 extends Client {
 
 				getEntityTransaction().commit();
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -97,14 +97,14 @@ public class Client3 extends Client {
 
 			d3 = new DataTypes3();
 			d3.setStringData("testData3");
-			logger.log(Logger.Level.TRACE, "DataType3:" + d3.toString());
+			logTrace( "DataType3:" + d3.toString());
 			getEntityManager().persist(d3);
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 	}
 

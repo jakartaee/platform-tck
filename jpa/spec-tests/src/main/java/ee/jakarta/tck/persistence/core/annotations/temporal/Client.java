@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.temporal;
 
-import java.lang.System.Logger;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -32,7 +32,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final long serialVersionUID = 21L;
 	Date date = null;
@@ -60,7 +60,7 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupData");
+		logTrace( "setupData");
 		try {
 			super.setup();
 			createDeployment();
@@ -90,13 +90,13 @@ public class Client extends PMClientBase {
 				if (aFieldRef.equals(a)) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + aFieldRef.toString() + ", actual:" + a.toString());
+					logErr( "Expected:" + aFieldRef.toString() + ", actual:" + a.toString());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null result");
+				logErr( "Find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -119,17 +119,17 @@ public class Client extends PMClientBase {
 			A_Property a = getEntityManager().find(A_Property.class, "2");
 			if (a != null) {
 				if (aPropertyRef.equals(a)) {
-					logger.log(Logger.Level.TRACE, "Received expected entity:" + a.toString());
+					logTrace( "Received expected entity:" + a.toString());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + aPropertyRef.toString() + ", actual:" + a.toString());
+					logErr( "Expected:" + aPropertyRef.toString() + ", actual:" + a.toString());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null result");
+				logErr( "Find returned null result");
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -150,34 +150,34 @@ public class Client extends PMClientBase {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find the previously persisted Customer and Country and verify them");
+			logTrace( "find the previously persisted Customer and Country and verify them");
 			A_Field a = getEntityManager().find(A_Field.class, "1");
 			if (a != null) {
-				logger.log(Logger.Level.TRACE, "Found A: " + a.toString());
+				logTrace( "Found A: " + a.toString());
 				if (a.getDates().containsAll(expectedDates) && expectedDates.containsAll(a.getDates())
 						&& a.getDates().size() == expectedDates.size()) {
-					logger.log(Logger.Level.TRACE, "Received expected Dates:");
+					logTrace( "Received expected Dates:");
 					for (Date d : a.getDates()) {
-						logger.log(Logger.Level.TRACE, "date:" + d);
+						logTrace( "date:" + d);
 					}
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Did not get expected results.");
+					logErr( "Did not get expected results.");
 					for (Date d : expectedDates) {
-						logger.log(Logger.Level.ERROR, "expected:" + d);
+						logErr( "expected:" + d);
 					}
-					logger.log(Logger.Level.ERROR, "actual:");
+					logErr( "actual:");
 					for (Date d : a.getDates()) {
-						logger.log(Logger.Level.ERROR, "actual:" + d);
+						logErr( "actual:" + d);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null A");
+				logErr( "Find returned null A");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred: ", e);
+			logErr( "Unexpected exception occurred: ", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -197,34 +197,34 @@ public class Client extends PMClientBase {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find the previously persisted Customer and Country and verify them");
+			logTrace( "find the previously persisted Customer and Country and verify them");
 			A_Property a = getEntityManager().find(A_Property.class, "2");
 			if (a != null) {
-				logger.log(Logger.Level.TRACE, "Found A2: " + a.toString());
+				logTrace( "Found A2: " + a.toString());
 				if (a.getDates().containsAll(expectedCalendars) && expectedCalendars.containsAll(a.getDates())
 						&& a.getDates().size() == expectedCalendars.size()) {
-					logger.log(Logger.Level.TRACE, "Received expected Dates:");
+					logTrace( "Received expected Dates:");
 					for (Calendar d : a.getDates()) {
-						logger.log(Logger.Level.TRACE, "date:" + d);
+						logTrace( "date:" + d);
 					}
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Did not get expected results.");
+					logErr( "Did not get expected results.");
 					for (Date d : expectedDates) {
-						logger.log(Logger.Level.ERROR, "expected:" + d);
+						logErr( "expected:" + d);
 					}
-					logger.log(Logger.Level.ERROR, "actual:");
+					logErr( "actual:");
 					for (Calendar d : a.getDates()) {
-						logger.log(Logger.Level.ERROR, "actual:" + d);
+						logErr( "actual:" + d);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null A2");
+				logErr( "Find returned null A2");
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred: ", e);
+			logErr( "Unexpected exception occurred: ", e);
 			pass = false;
 		}
 		if (!pass) {
@@ -249,13 +249,13 @@ public class Client extends PMClientBase {
 				if (a2FieldRef.equals(a)) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + a2FieldRef.toString() + ", actual:" + a.toString());
+					logErr( "Expected:" + a2FieldRef.toString() + ", actual:" + a.toString());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null result");
+				logErr( "Find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -278,17 +278,17 @@ public class Client extends PMClientBase {
 			A2_Property a = getEntityManager().find(A2_Property.class, calendar2);
 			if (a != null) {
 				if (a2PropertyRef.equals(a)) {
-					logger.log(Logger.Level.TRACE, "Received expected entity:" + a.toString());
+					logTrace( "Received expected entity:" + a.toString());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected:" + a2PropertyRef.toString() + ", actual:" + a.toString());
+					logErr( "Expected:" + a2PropertyRef.toString() + ", actual:" + a.toString());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null result");
+				logErr( "Find returned null result");
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -300,9 +300,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -310,7 +310,7 @@ public class Client extends PMClientBase {
 	}
 
 	public void createTestData() {
-		logger.log(Logger.Level.TRACE, "createTestData");
+		logTrace( "createTestData");
 
 		try {
 			getEntityTransaction().begin();
@@ -349,21 +349,21 @@ public class Client extends PMClientBase {
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", e);
+			logErr( "Unexpected Exception in createTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -374,14 +374,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DATES_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.orderby;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +29,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client2 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	List<Address> addrRef;
 
@@ -61,7 +61,7 @@ public class Client2 extends PMClientBase {
 
 	@BeforeEach
 	public void setupAddress() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupAddress");
+		logTrace( "setupAddress");
 		try {
 			super.setup();
 			createDeployment();
@@ -69,7 +69,7 @@ public class Client2 extends PMClientBase {
 			removeAddressData();
 			createAddressData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -102,7 +102,7 @@ public class Client2 extends PMClientBase {
 			if (actual.size() == expected.size()) {
 				int count = 0;
 				for (int i = 0; i < expected.size(); i++) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Testing - expected[" + expected.get(i) + "], actual[" + actual.get(i) + "]");
 
 					if (expected.get(i).equals(actual.get(i))) {
@@ -112,28 +112,28 @@ public class Client2 extends PMClientBase {
 				if (count == expected.size()) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "count=" + count + ", expected size:" + expected.size());
+					logErr( "count=" + count + ", expected size:" + expected.size());
 					for (Address aa : expected) {
-						logger.log(Logger.Level.ERROR, "expected:" + aa);
+						logErr( "expected:" + aa);
 					}
-					logger.log(Logger.Level.ERROR, "------------");
+					logErr( "------------");
 					for (Address aa : actual) {
-						logger.log(Logger.Level.ERROR, "actual:" + aa);
+						logErr( "actual:" + aa);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected list size:" + expected.size() + ", actual size:" + actual.size());
 				for (Address aa : expected) {
-					logger.log(Logger.Level.ERROR, "expected:" + aa);
+					logErr( "expected:" + aa);
 				}
-				logger.log(Logger.Level.ERROR, "------------");
+				logErr( "------------");
 				for (Address aa : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + aa);
+					logErr( "actual:" + aa);
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("propertyDotNotationTest failed");
@@ -160,7 +160,7 @@ public class Client2 extends PMClientBase {
 			expected.add(addr13);
 			expected.add(addr11);
 
-			logger.log(Logger.Level.TRACE, "Clearing the cache");
+			logTrace( "Clearing the cache");
 			clearCache();
 			A2 a = getEntityManager().find(A2.class, "2");
 
@@ -169,7 +169,7 @@ public class Client2 extends PMClientBase {
 			if (actual.size() == expected.size()) {
 				int count = 0;
 				for (int i = 0; i < expected.size(); i++) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Testing - expected[" + expected.get(i) + "], actual[" + actual.get(i) + "]");
 
 					if (expected.get(i).equals(actual.get(i))) {
@@ -180,28 +180,28 @@ public class Client2 extends PMClientBase {
 				if (count == expected.size()) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.TRACE, "count=" + count + ", expected size:" + expected.size());
+					logTrace( "count=" + count + ", expected size:" + expected.size());
 					for (Address2 aa : expected) {
-						logger.log(Logger.Level.ERROR, "expected:" + aa);
+						logErr( "expected:" + aa);
 					}
-					logger.log(Logger.Level.ERROR, "------------");
+					logErr( "------------");
 					for (Address2 aa : actual) {
-						logger.log(Logger.Level.ERROR, "actual:" + aa);
+						logErr( "actual:" + aa);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected list size:" + expected.size() + ", actual size:" + actual.size());
 				for (Address2 aa : expected) {
-					logger.log(Logger.Level.ERROR, "expected:" + aa);
+					logErr( "expected:" + aa);
 				}
-				logger.log(Logger.Level.ERROR, "------------");
+				logErr( "------------");
 				for (Address2 aa : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + aa);
+					logErr( "actual:" + aa);
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("propertyDotNotationTest failed");
@@ -210,7 +210,7 @@ public class Client2 extends PMClientBase {
 
 	private void createAddressData() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "createAddressData");
+			logTrace( "createAddressData");
 			getEntityTransaction().begin();
 
 			addr1 = new Address("1 Network Drive", "Burlington", "MA", new ZipCode("01801"));
@@ -240,14 +240,14 @@ public class Client2 extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
+			logErr( "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
@@ -255,9 +255,9 @@ public class Client2 extends PMClientBase {
 	@AfterEach
 	public void cleanupAddress() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeAddressData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -265,7 +265,7 @@ public class Client2 extends PMClientBase {
 	}
 
 	private void removeAddressData() {
-		logger.log(Logger.Level.TRACE, "removeAddressData");
+		logTrace( "removeAddressData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -275,14 +275,14 @@ public class Client2 extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from COLTAB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

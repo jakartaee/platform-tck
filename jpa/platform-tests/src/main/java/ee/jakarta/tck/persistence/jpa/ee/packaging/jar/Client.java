@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.jpa.ee.packaging.jar;
 
-import java.lang.System.Logger;
+
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
@@ -35,12 +35,12 @@ public class Client extends PMClientBase {
 	 */
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -62,46 +62,46 @@ public class Client extends PMClientBase {
 		for (int i = 1; i <= count; i++) {
 			A a = new A(Integer.toString(i), "name_" + Integer.toString(i), i);
 			getEntityManager().persist(a);
-			logger.log(Logger.Level.TRACE, "persisted order " + a.toString());
+			logTrace( "persisted order " + a.toString());
 		}
 		for (int i = 1 + count; i <= count + count; i++) {
 			C c = new C(Integer.toString(i), "name_" + Integer.toString(i), i);
 			getEntityManager().persist(c);
-			logger.log(Logger.Level.TRACE, "persisted order " + c.toString());
+			logTrace( "persisted order " + c.toString());
 		}
 		for (int i = 1; i <= count; i++) {
 			B b = new B(Integer.toString(i), "name_" + Integer.toString(i), i);
 			getEntityManager().persist(b);
-			logger.log(Logger.Level.TRACE, "persisted order " + b.toString());
+			logTrace( "persisted order " + b.toString());
 		}
 
 		getEntityTransaction().commit();
 
-		logger.log(Logger.Level.TRACE, "find the previously persisted entities");
+		logTrace( "find the previously persisted entities");
 		for (int i = 1; i <= count; i++) {
 			A a = getEntityManager().find(A.class, Integer.toString(i));
 			if (a != null) {
-				logger.log(Logger.Level.TRACE, "Find returned non-null A entity:" + a.toString());
+				logTrace( "Find returned non-null A entity:" + a.toString());
 			} else {
-				logger.log(Logger.Level.ERROR, "persisted A[" + i + "] DOES NOT EXIST");
+				logErr( "persisted A[" + i + "] DOES NOT EXIST");
 				pass = false;
 			}
 		}
 		for (int i = 1 + count; i <= count + count; i++) {
 			C c = getEntityManager().find(C.class, Integer.toString(i));
 			if (c != null) {
-				logger.log(Logger.Level.TRACE, "Find returned non-null C entity:" + c.toString());
+				logTrace( "Find returned non-null C entity:" + c.toString());
 			} else {
-				logger.log(Logger.Level.ERROR, "persisted C[" + i + "] DOES NOT EXIST");
+				logErr( "persisted C[" + i + "] DOES NOT EXIST");
 				pass = false;
 			}
 		}
 		for (int i = 1; i <= count; i++) {
 			B b = getEntityManager().find(B.class, Integer.toString(i));
 			if (b != null) {
-				logger.log(Logger.Level.TRACE, "Find returned non-null B entity:" + b.toString());
+				logTrace( "Find returned non-null B entity:" + b.toString());
 			} else {
-				logger.log(Logger.Level.ERROR, "persisted B[" + i + "] DOES NOT EXIST");
+				logErr( "persisted B[" + i + "] DOES NOT EXIST");
 				pass = false;
 			}
 		}
@@ -112,14 +112,14 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup");
+		logTrace( "cleanup");
 		removeTestData();
-		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+		logTrace( "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -129,14 +129,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

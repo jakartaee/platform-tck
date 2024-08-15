@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
-import java.lang.System.Logger;
+
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +26,7 @@ public class Client4 extends Client {
 
 	private DataTypes4 d4;
 
-	private static final Logger logger = (Logger) System.getLogger(Client4.class.getName());
+	
 
 	public Client4() {
 	}
@@ -41,7 +41,7 @@ public class Client4 extends Client {
 
 	@BeforeEach
 	public void setup4() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup4");
+		logTrace( "setup4");
 		try {
 
 			super.setup();
@@ -50,7 +50,7 @@ public class Client4 extends Client {
 			removeTestData();
 			createTestData4();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -70,7 +70,7 @@ public class Client4 extends Client {
 		try {
 			getEntityTransaction().begin();
 			int id = d4.getId();
-			logger.log(Logger.Level.TRACE, "find id: " + id);
+			logTrace( "find id: " + id);
 			DataTypes4 d = getEntityManager().find(DataTypes4.class, id);
 			if (d != null) {
 				if (d.getStringData().equals(d4.getStringData())) {
@@ -79,10 +79,10 @@ public class Client4 extends Client {
 
 				getEntityTransaction().commit();
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -97,14 +97,14 @@ public class Client4 extends Client {
 
 			d4 = new DataTypes4();
 			d4.setStringData("testData4");
-			logger.log(Logger.Level.TRACE, "DataType4:" + d4.toString());
+			logTrace( "DataType4:" + d4.toString());
 			getEntityManager().persist(d4);
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 	}
 

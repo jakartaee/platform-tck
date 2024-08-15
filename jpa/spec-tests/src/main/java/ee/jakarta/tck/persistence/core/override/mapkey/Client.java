@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.override.mapkey;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ import jakarta.persistence.Query;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	private static final long DEPT1_ID = 777l;
 
@@ -121,13 +121,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
+			logErr( "Exception:test failed ", e);
 		}
 	}
 
@@ -179,7 +179,7 @@ public class Client extends PMClientBase {
 			List<Employee> actualList = dept1.getEmployees();
 
 			if (employeeList.equals(actualList)) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("The expected Employee List is not equal to the " + "actual List read from the DB");
 			}
@@ -232,7 +232,7 @@ public class Client extends PMClientBase {
 
 			if ((retrieveLocations.get(LOCATION_CODE).getId() == LOCATION_ID)
 					&& (retrieveLocations.get(CITY_CODE).getId() == CITY_ID)) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("Expected to read the relationship as a Map with keys" + " - " + LOCATION_CODE
 						+ " and " + CITY_CODE + "; Actual Locations Found - "
@@ -291,7 +291,7 @@ public class Client extends PMClientBase {
 			Map<String, Customers> retrieveCustomers = retrieveStore.getCustomers();
 			if ((retrieveCustomers.get(CUSTOMER1_NAME).getId() == CUSTOMER1_ID)
 					&& (retrieveCustomers.get(CUSTOMER2_NAME).getId() == CUSTOMER2_ID)) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("Expected to read relationship as a Map with " + "customers - " + CUSTOMER1_ID
 						+ " and " + CUSTOMER2_ID + "Actual Customers in the Map - "
@@ -355,7 +355,7 @@ public class Client extends PMClientBase {
 			List<RetailOrder> actualRetailOrders = consumer.getOrders();
 
 			if (consumer1Orders.equals(actualRetailOrders)) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("The expected Orders List is not equal to the actual List read from the DB");
 			}
@@ -419,9 +419,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -429,7 +429,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -448,14 +448,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from  THEATRECOMPANY").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

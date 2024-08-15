@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.query.apitests;
 
-import java.lang.System.Logger;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -33,7 +33,7 @@ import jakarta.persistence.Query;
 
 public class Client3 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
+
 
 	private final Employee empRef[] = new Employee[21];
 
@@ -60,15 +60,15 @@ public class Client3 extends PMClientBase {
 
 	@BeforeEach
 	public void setupDataTypes2() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 			createDataTypes2Data();
-			logger.log(Logger.Level.TRACE, "Done creating test data");
+			logTrace( "Done creating test data");
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in Setup: ", e);
+			logErr( "Unexpected Exception caught in Setup: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -77,7 +77,7 @@ public class Client3 extends PMClientBase {
 	@AfterEach
 	public void cleanupNoData() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "in cleanupNoData");
+			logTrace( "in cleanupNoData");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -106,75 +106,75 @@ public class Client3 extends PMClientBase {
 		boolean pass3 = false;
 		boolean pass4 = true;
 		java.sql.Time timeValue = getTimeData("10:30:15");
-		logger.log(Logger.Level.TRACE, "time Value = " + timeValue.toString());
+		logTrace( "time Value = " + timeValue.toString());
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "FIND D2: " + dateId);
+			logTrace( "FIND D2: " + dateId);
 			DataTypes2 dataTypes2 = getEntityManager().find(DataTypes2.class, dateId);
 
 			if (null != dataTypes2) {
-				logger.log(Logger.Level.TRACE, "DataType Entity is not null, setting TimeData ");
+				logTrace( "DataType Entity is not null, setting TimeData ");
 				dataTypes2.setTimeData(timeValue);
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Null returned during initial find");
+				logErr( "Null returned during initial find");
 			}
 
 			getEntityManager().merge(dataTypes2);
 			doFlush();
 			clearCache();
 
-			logger.log(Logger.Level.TRACE, "Make sure update occurred");
-			logger.log(Logger.Level.TRACE, "FIND D2 again:");
+			logTrace( "Make sure update occurred");
+			logTrace( "FIND D2 again:");
 			dataTypes2 = getEntityManager().find(DataTypes2.class, dateId);
 
 			if (null != dataTypes2) {
 				if (dataTypes2.getTimeData().equals(timeValue)) {
-					logger.log(Logger.Level.TRACE, "Update occurred properly:" + dataTypes2);
+					logTrace( "Update occurred properly:" + dataTypes2);
 					pass2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Update did not occur properly");
+					logErr( "Update did not occur properly");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null after update");
+				logErr( "Find returned null after update");
 			}
 
-			logger.log(Logger.Level.TRACE, "Retrieving all results first");
+			logTrace( "Retrieving all results first");
 
 			Collection<DataTypes2> cDataTypes2 = getEntityManager().createQuery("select d from DataTypes2 d")
 					.getResultList();
 			for (DataTypes2 d : cDataTypes2) {
-				logger.log(Logger.Level.TRACE, "result:" + d.toString());
+				logTrace( "result:" + d.toString());
 			}
 
-			logger.log(Logger.Level.TRACE, "Check results when testing for Time");
+			logTrace( "Check results when testing for Time");
 			result = getEntityManager().createQuery("select d.timeData from DataTypes2 d where d.timeData = :time")
 					.setParameter("time", timeValue).getResultList();
 
 			int result_size = result.size();
-			logger.log(Logger.Level.TRACE, "Result Size = " + result_size);
+			logTrace( "Result Size = " + result_size);
 
 			if (result_size == 1) {
 				pass3 = true;
-				logger.log(Logger.Level.TRACE, "Received expected result size");
+				logTrace( "Received expected result size");
 				for (Time t : result) {
-					logger.log(Logger.Level.TRACE, "time=" + t);
+					logTrace( "time=" + t);
 					if (t.equals(timeValue)) {
-						logger.log(Logger.Level.TRACE, "Received expected Time ");
+						logTrace( "Received expected Time ");
 					} else {
 						pass4 = false;
-						logger.log(Logger.Level.ERROR, "Received unexpected Time = " + t.toString());
+						logErr( "Received unexpected Time = " + t.toString());
 					}
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected 1 result, instead got: " + result_size);
+				logErr( "Expected 1 result, instead got: " + result_size);
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -182,7 +182,7 @@ public class Client3 extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -202,7 +202,7 @@ public class Client3 extends PMClientBase {
 	@Test
 	public void queryAPITest29() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin queryAPITest29");
+		logTrace( "Begin queryAPITest29");
 		Query q;
 		Collection<Timestamp> result;
 		int result_size = 0;
@@ -211,16 +211,16 @@ public class Client3 extends PMClientBase {
 		boolean pass2 = true;
 
 		java.sql.Timestamp tsValue = getTimestampData("2006-11-11");
-		logger.log(Logger.Level.TRACE, "timestamp Value = " + tsValue.toString());
+		logTrace( "timestamp Value = " + tsValue.toString());
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "FIND D2");
+			logTrace( "FIND D2");
 
 			DataTypes2 dataTypes2 = getEntityManager().find(DataTypes2.class, dateId);
 
 			if (null != dataTypes2) {
-				logger.log(Logger.Level.TRACE, "DataType Entity is not null, setting TimeData ");
+				logTrace( "DataType Entity is not null, setting TimeData ");
 				dataTypes2.setTsData(tsValue);
 			}
 
@@ -228,7 +228,7 @@ public class Client3 extends PMClientBase {
 			doFlush();
 			clearCache();
 
-			logger.log(Logger.Level.TRACE, "Check results");
+			logTrace( "Check results");
 			if ((null != dataTypes2)) {
 				// && (dataTypes2.getTimeData().equals(timeValue))
 
@@ -237,29 +237,29 @@ public class Client3 extends PMClientBase {
 
 				result = q.getResultList();
 				result_size = result.size();
-				logger.log(Logger.Level.TRACE, "Result Size = " + result_size);
+				logTrace( "Result Size = " + result_size);
 
 				if (result_size == 1) {
 					pass1 = true;
-					logger.log(Logger.Level.TRACE, "Received expected result size");
+					logTrace( "Received expected result size");
 
 					for (Timestamp t : result) {
-						logger.log(Logger.Level.TRACE, "time=" + t);
+						logTrace( "time=" + t);
 						if (t.equals(tsValue)) {
-							logger.log(Logger.Level.TRACE, "Received expected TimeStamp ");
+							logTrace( "Received expected TimeStamp ");
 						} else {
-							logger.log(Logger.Level.ERROR, "Received unexpected TimeStamp = " + t.toString());
+							logErr( "Received unexpected TimeStamp = " + t.toString());
 							pass2 = false;
 						}
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Did not get expected results. " + " Expected " + tsValue
+					logErr( "Did not get expected results. " + " Expected " + tsValue
 							+ " , got: " + dataTypes2.getTsData());
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 
 		} finally {
 			try {
@@ -267,7 +267,7 @@ public class Client3 extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 
@@ -277,7 +277,7 @@ public class Client3 extends PMClientBase {
 	}
 
 	private void createDataTypes2Data() throws Exception {
-		logger.log(Logger.Level.TRACE, "createDataTypes2Data");
+		logTrace( "createDataTypes2Data");
 		try {
 
 			getEntityTransaction().begin();
@@ -306,23 +306,23 @@ public class Client3 extends PMClientBase {
 			getEntityManager().persist(dT2);
 
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.TRACE, "Created TestData");
+			logTrace( "Created TestData");
 
 		} catch (Exception re) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", re);
+			logErr( "Unexpected Exception in createTestData:", re);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData while rolling back TX:", re);
+				logErr( "Unexpected Exception in createTestData while rolling back TX:", re);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -334,7 +334,7 @@ public class Client3 extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DATATYPES2").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 
 		} finally {
 			try {
@@ -342,7 +342,7 @@ public class Client3 extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +36,7 @@ import jakarta.persistence.criteria.Selection;
 
 public class Client2 extends UtilAliasData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -64,19 +64,19 @@ public class Client2 extends UtilAliasData {
 		if (cquery != null) {
 			Root<Customer> customer = cquery.from(Customer.class);
 
-			logger.log(Logger.Level.TRACE, "Creating select using selection items with the same alias");
+			logTrace( "Creating select using selection items with the same alias");
 			try {
 				CompoundSelection<java.lang.Object[]> c = cbuilder.array(customer.get("id").alias("SAMEALIAS"),
 						customer.get("name").alias("SAMEALIAS"));
 
 				cquery.select(c);
 
-				logger.log(Logger.Level.ERROR, "Did not thrown IllegalArgumentException");
+				logErr( "Did not thrown IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 				pass = true;
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+				logErr( "Received unexpected exception", e);
 			}
 		}
 
@@ -104,63 +104,63 @@ public class Client2 extends UtilAliasData {
 
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
-		logger.log(Logger.Level.INFO, "Testing multiselect invalid item");
+		logMsg( "Testing multiselect invalid item");
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
-			logger.log(Logger.Level.TRACE, "Creating multiselect using selection array of items that do not exist");
+			logTrace( "Creating multiselect using selection array of items that do not exist");
 			try {
 				cquery.multiselect(customer.get("doesnotexist").alias("ALIAS1"),
 						customer.get("doesnotexist2").alias("ALIAS2"));
-				logger.log(Logger.Level.ERROR, "Did not thrown IllegalArgumentException");
+				logErr( "Did not thrown IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 				pass1 = true;
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+				logErr( "Received unexpected exception", e);
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Testing multiselect selection[]");
+		logMsg( "Testing multiselect selection[]");
 		cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
-			logger.log(Logger.Level.TRACE, "Creating multiselect using selection array of items with the same alias");
+			logTrace( "Creating multiselect using selection array of items with the same alias");
 			Selection[] selection = { customer.get("id").alias("SAMEALIAS"), customer.get("name").alias("SAMEALIAS") };
 
 			try {
 				cquery.multiselect(selection);
-				logger.log(Logger.Level.ERROR, "Did not thrown IllegalArgumentException");
+				logErr( "Did not thrown IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "received expected IllegalArgumentException");
+				logTrace( "received expected IllegalArgumentException");
 				pass2 = true;
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+				logErr( "Received unexpected exception", e);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Testing multiselect List");
+		logMsg( "Testing multiselect List");
 		cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
-			logger.log(Logger.Level.TRACE, "Creating multiselect using selection items with the same alias");
+			logTrace( "Creating multiselect using selection items with the same alias");
 			try {
 				List list = new ArrayList();
 				list.add(customer.get("id").alias("SAMEALIAS"));
 				list.add(customer.get("name").alias("SAMEALIAS"));
 
 				cquery.multiselect(list);
-				logger.log(Logger.Level.ERROR, "Did not thrown IllegalArgumentException");
+				logErr( "Did not thrown IllegalArgumentException");
 			} catch (IllegalArgumentException iae) {
-				logger.log(Logger.Level.TRACE, "received expected IllegalArgumentException");
+				logTrace( "received expected IllegalArgumentException");
 				pass3 = true;
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+				logErr( "Received unexpected exception", e);
 			}
 		}
 		if (!pass1 || !pass2 || !pass3) {

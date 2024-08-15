@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.entityManagerFactory;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -34,7 +34,7 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client2 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	Properties props = null;
 
@@ -52,12 +52,12 @@ public class Client2 extends PMClientBase {
 
 	@BeforeEach
 	public void setupNoData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupNoData");
+		logTrace( "setupNoData");
 		try {
 			super.setup();
 			createDeployment();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -118,12 +118,12 @@ public class Client2 extends PMClientBase {
 		try {
 			Metamodel mm = getEntityManager().getEntityManagerFactory().getMetamodel();
 			if (mm == null) {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned a null result");
+				logErr( "getMetamodel() returned a null result");
 			} else {
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getMetamodelTest failed");
@@ -144,12 +144,12 @@ public class Client2 extends PMClientBase {
 		try {
 			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
 			if (puu == null) {
-				logger.log(Logger.Level.ERROR, "getPersistenceUnitUtil() returned a null result");
+				logErr( "getPersistenceUnitUtil() returned a null result");
 			} else {
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getPersistenceUnitUtil failed");
@@ -174,18 +174,18 @@ public class Client2 extends PMClientBase {
 				getEntityTransaction().begin();
 				CriteriaQuery<Object> cquery = cbuilder.createQuery();
 				if (cquery != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+					logTrace( "Obtained Non-null Criteria Query");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+					logErr( "Failed to get Non-null Criteria Query");
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				logger.log(Logger.Level.ERROR, "getCriteriaBuilder() returned null");
+				logErr( "getCriteriaBuilder() returned null");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getCriteriaBuilderTest failed");

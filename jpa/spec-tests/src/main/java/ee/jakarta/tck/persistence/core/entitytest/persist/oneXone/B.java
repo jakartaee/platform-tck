@@ -20,8 +20,9 @@
 
 package ee.jakarta.tck.persistence.core.entitytest.persist.oneXone;
 
-import java.lang.System.Logger;
 
+
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -35,7 +36,7 @@ import jakarta.persistence.Table;
 @Table(name = "BEJB_1X1_BI_BTOB")
 public class B implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(B.class.getName());
+
 
 	// ===========================================================
 	// instance variables
@@ -59,7 +60,7 @@ public class B implements java.io.Serializable {
 	// constructors
 
 	public B() {
-		logger.log(Logger.Level.TRACE, "Entity B no arg constructor");
+		TestUtil.logTrace( "Entity B no arg constructor");
 	}
 
 	public B(String id, String name, int value) {
@@ -87,16 +88,16 @@ public class B implements java.io.Serializable {
 	}
 
 	public boolean isA() {
-		logger.log(Logger.Level.TRACE, "isA");
+		TestUtil.logTrace( "isA");
 		if (getA1() != null)
-			logger.log(Logger.Level.TRACE, "Relationship for A is not null...");
+			TestUtil.logTrace( "Relationship for A is not null...");
 		else
-			logger.log(Logger.Level.TRACE, "Relationship for A is null...");
+			TestUtil.logTrace( "Relationship for A is null...");
 		return getA1() != null;
 	}
 
 	public A getA1Info() {
-		logger.log(Logger.Level.TRACE, "getA1Info");
+		TestUtil.logTrace( "getA1Info");
 		if (isA()) {
 			A a1 = getA1();
 			return a1;

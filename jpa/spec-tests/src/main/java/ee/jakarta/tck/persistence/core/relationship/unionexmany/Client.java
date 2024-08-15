@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.relationship.unionexmany;
 
-import java.lang.System.Logger;
+
 import java.util.Collection;
 import java.util.Vector;
 
@@ -29,7 +29,7 @@ import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
@@ -44,13 +44,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -69,7 +69,7 @@ public class Client extends PMClientBase {
 	 */
 	@Test
 	public void uni1XMTest1() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin uni1X1Test1");
+		logTrace( "Begin uni1X1Test1");
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -81,7 +81,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(project1);
 			getEntityManager().persist(project2);
 			getEntityManager().persist(person);
-			logger.log(Logger.Level.TRACE, "persisted Person and Projects");
+			logTrace( "persisted Person and Projects");
 
 			Vector<Uni1XMProject> projects = new Vector<Uni1XMProject>();
 			projects.add(project1);
@@ -89,7 +89,7 @@ public class Client extends PMClientBase {
 
 			person.setProjects(projects);
 			getEntityManager().merge(person);
-			logger.log(Logger.Level.TRACE, "merged Contents of Person Entity");
+			logTrace( "merged Contents of Person Entity");
 
 			Uni1XMPerson newPerson = getEntityManager().find(Uni1XMPerson.class, 1L);
 			boolean pass1 = false;
@@ -108,10 +108,10 @@ public class Client extends PMClientBase {
 			}
 
 			if (pass1 && pass2) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Unexpected results received");
+				logErr( "Unexpected results received");
 				pass = false;
 			}
 
@@ -119,14 +119,14 @@ public class Client extends PMClientBase {
 
 		} catch (Exception e) {
 
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -138,9 +138,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -148,7 +148,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -159,14 +159,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM UNI1XMPERSON").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

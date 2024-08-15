@@ -1,6 +1,6 @@
 package ee.jakarta.tck.persistence.core.annotations.access.field;
 
-import java.lang.System.Logger;
+
 import java.util.GregorianCalendar;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -11,7 +11,7 @@ import jakarta.persistence.TypedQuery;
 
 public class Client4 extends Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client4.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -25,7 +25,7 @@ public class Client4 extends Client {
 
 	@BeforeEach
 	public void setup4() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup3");
+		logTrace( "setup3");
 		try {
 
 			super.setup();
@@ -33,10 +33,10 @@ public class Client4 extends Client {
 
 			removeTestData();
 			createTestData4();
-			logger.log(Logger.Level.TRACE, "Done creating test data");
+			logTrace( "Done creating test data");
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -408,7 +408,7 @@ public class Client4 extends Client {
 	}
 
 	public void createTestData4() {
-		logger.log(Logger.Level.TRACE, "createTestData4");
+		logTrace( "createTestData4");
 		final GregorianCalendar cal = new GregorianCalendar(TD4_YEAR, TD4_MONTH - 1, TD4_DAY, TD4_HOUR, TD4_MINUTE,
 				TD4_SECOND);
 		final java.sql.Timestamp ts = new java.sql.Timestamp(cal.getTimeInMillis());
@@ -421,14 +421,14 @@ public class Client4 extends Client {
 			getEntityManager().persist(dataTypes2);
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", e);
+			logErr( "Unexpected Exception in createTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 

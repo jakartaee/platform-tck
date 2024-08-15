@@ -16,10 +16,11 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.entitytype;
 
-import java.lang.System.Logger;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CollectionTable;
@@ -36,7 +37,7 @@ import jakarta.persistence.Version;
 @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 public class A extends B {
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+	
 
 	@Id
 	protected String id;
@@ -58,12 +59,12 @@ public class A extends B {
 	}
 
 	public Set<Address> getAddress() {
-		logger.log(Logger.Level.TRACE, "getAddress");
+		TestUtil.logTrace( "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddress");
+		TestUtil.logTrace( "setAddress");
 		this.address = addr;
 	}
 

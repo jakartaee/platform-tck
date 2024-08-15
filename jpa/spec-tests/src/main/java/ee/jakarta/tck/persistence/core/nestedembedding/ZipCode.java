@@ -26,7 +26,7 @@ public class ZipCode implements java.io.Serializable {
 	protected String plusFour;
 
 	public ZipCode() {
-		// logger.log(Logger.Level.TRACE,"ZipCode no arg constructor");
+		// logTrace("ZipCode no arg constructor");
 	}
 
 	public ZipCode(String zip, String plusFour) {

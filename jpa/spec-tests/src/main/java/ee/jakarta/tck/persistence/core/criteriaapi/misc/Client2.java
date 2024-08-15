@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.misc;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -42,7 +42,7 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client2 extends UtilCustomerData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+	
 
 	public JavaArchive createDeployment() throws Exception {
 
@@ -80,14 +80,14 @@ public class Client2 extends UtilCustomerData {
 			expected.add(Integer.parseInt(customerRef[0].getId()));
 			expected.add(Integer.parseInt(customerRef[1].getId()));
 
-			logger.log(Logger.Level.INFO, "Testing disjunction");
+			logMsg( "Testing disjunction");
 			getEntityTransaction().begin();
 			Expression expr1 = cbuilder.equal(customer.get(Customer_.getSingularAttribute("id", String.class)), "1");
 			Expression expr2 = cbuilder.equal(customer.get(Customer_.getSingularAttribute("id", String.class)), "2");
 			Predicate predicate = cbuilder.or(expr1, expr2);
 			List<Expression<Boolean>> c = predicate.getExpressions();
 			if (c.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Expected a predicate expression size of:2, actual:" + c.size());
+				logErr( "Expected a predicate expression size of:2, actual:" + c.size());
 			} else {
 				pass2 = true;
 			}
@@ -96,21 +96,21 @@ public class Client2 extends UtilCustomerData {
 			TypedQuery<Customer> tquery = getEntityManager().createQuery(cquery);
 			List<Customer> result = tquery.getResultList();
 			for (Customer cust : result) {
-				logger.log(Logger.Level.TRACE, "result:" + cust);
+				logTrace( "result:" + cust);
 				actual.add(Integer.parseInt(cust.getId()));
 			}
 			Collections.sort(actual);
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				logErr( "Did not get expected results");
 				for (Integer i : expected) {
-					logger.log(Logger.Level.ERROR, "expected:" + i);
+					logErr( "expected:" + i);
 				}
 				for (Integer i : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + i);
+					logErr( "actual:" + i);
 				}
 			}
 
@@ -121,14 +121,14 @@ public class Client2 extends UtilCustomerData {
 			cquery = cbuilder.createQuery(Customer.class);
 			customer = cquery.from(Customer.class);
 
-			logger.log(Logger.Level.INFO, "Testing conjunction");
+			logMsg( "Testing conjunction");
 			expr1 = cbuilder.equal(customer.get(Customer_.getSingularAttribute("id", String.class)), "1");
 			expr2 = cbuilder.equal(customer.get(Customer_.getSingularAttribute("name", String.class)),
 					"Alan E. Frechette");
 			predicate = cbuilder.and(expr1, expr2);
 			c = predicate.getExpressions();
 			if (c.size() != 2) {
-				logger.log(Logger.Level.ERROR, "Expected a predicate expression size of:2, actual:" + c.size());
+				logErr( "Expected a predicate expression size of:2, actual:" + c.size());
 			} else {
 				pass4 = true;
 			}
@@ -138,27 +138,27 @@ public class Client2 extends UtilCustomerData {
 			tquery = getEntityManager().createQuery(cquery);
 			result = tquery.getResultList();
 			for (Customer cust : result) {
-				logger.log(Logger.Level.TRACE, "result:" + cust);
+				logTrace( "result:" + cust);
 				actual.add(Integer.parseInt(cust.getId()));
 			}
 			Collections.sort(actual);
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				logErr( "Did not get expected results");
 				for (Integer i : expected) {
-					logger.log(Logger.Level.ERROR, "expected:" + i);
+					logErr( "expected:" + i);
 				}
 				for (Integer i : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + i);
+					logErr( "actual:" + i);
 				}
 			}
 			getEntityTransaction().commit();
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		if (!pass2 || !pass3 || !pass4 || !pass5) {
@@ -216,20 +216,20 @@ public class Client2 extends UtilCustomerData {
 				List<Customer> clist = tquery.getResultList();
 
 				if (!checkEntityPK(clist, expected)) {
-					logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+					logErr( "Did not get expected results. Expected " + expected.length
 							+ " references, got: " + clist.size());
 				} else {
-					logger.log(Logger.Level.TRACE, "Expected results received");
+					logTrace( "Expected results received");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+				logErr( "Failed to get Non-null root");
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("predicateIsNotNullTest failed");
@@ -267,20 +267,20 @@ public class Client2 extends UtilCustomerData {
 				List<Customer> clist = tquery.getResultList();
 
 				if (!checkEntityPK(clist, expected)) {
-					logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+					logErr( "Did not get expected results. Expected " + expected.length
 							+ " references, got: " + clist.size());
 				} else {
-					logger.log(Logger.Level.TRACE, "Expected results received");
+					logTrace( "Expected results received");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+				logErr( "Failed to get Non-null root");
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("predicateIsNullTest failed");
@@ -320,14 +320,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -370,14 +370,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -423,14 +423,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -476,14 +476,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -544,14 +544,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -592,14 +592,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -650,14 +650,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -708,14 +708,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -766,14 +766,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -826,14 +826,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -880,14 +880,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -935,14 +935,14 @@ public class Client2 extends UtilCustomerData {
 			List<Customer> clist = tquery.getResultList();
 
 			if (!checkEntityPK(clist, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null root");
+			logErr( "Failed to get Non-null root");
 		}
 
 		getEntityTransaction().commit();
@@ -992,26 +992,26 @@ public class Client2 extends UtilCustomerData {
 					if (expected.containsAll(actual) && actual.containsAll(expected)
 							&& expected.size() == actual.size()) {
 
-						logger.log(Logger.Level.TRACE, "Received expected results");
+						logTrace( "Received expected results");
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Did not get expected results");
+						logErr( "Did not get expected results");
 						for (String s : expected) {
-							logger.log(Logger.Level.ERROR, "expected:" + s);
+							logErr( "expected:" + s);
 						}
 						for (String s : actual) {
-							logger.log(Logger.Level.ERROR, "actual:" + s);
+							logErr( "actual:" + s);
 						}
 					}
 
 				} else {
-					logger.log(Logger.Level.ERROR, "getGroupRestriction returned null instead of groupBy expressions");
+					logErr( "getGroupRestriction returned null instead of groupBy expressions");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception getGroupRestriction: " + e);
+			logErr( "Caught exception getGroupRestriction: " + e);
 		}
 
 		if (!pass) {

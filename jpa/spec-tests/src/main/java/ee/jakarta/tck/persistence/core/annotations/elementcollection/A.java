@@ -16,10 +16,11 @@
 
 package ee.jakarta.tck.persistence.core.annotations.elementcollection;
 
-import java.lang.System.Logger;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -38,7 +39,7 @@ public class A implements java.io.Serializable {
 
 	protected int value;
 
-	private static final Logger logger = (Logger) System.getLogger(LogFileProcessor.class.getName());
+
 
 	@ElementCollection(fetch = FetchType.EAGER, targetClass = Address.class)
 	// @CollectionTable(name="A_ADDRESS2")
@@ -55,12 +56,12 @@ public class A implements java.io.Serializable {
 
 	// Default to table A_ADDRESS
 	public Set<Address> getAddress() {
-		logger.log(Logger.Level.TRACE, "getAddress");
+		TestUtil.logTrace( "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddress");
+		TestUtil.logTrace( "setAddress");
 		this.address = addr;
 	}
 

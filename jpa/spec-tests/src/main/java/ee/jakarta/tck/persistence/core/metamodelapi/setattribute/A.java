@@ -16,10 +16,11 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.setattribute;
 
-import java.lang.System.Logger;
+
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -31,7 +32,7 @@ import jakarta.persistence.Table;
 @Table(name = "COLTAB")
 public class A implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+
 
 	@Id
 	protected String id;
@@ -54,12 +55,12 @@ public class A implements java.io.Serializable {
 	}
 
 	public Set<Address> getAddress() {
-		logger.log(Logger.Level.TRACE, "getAddress");
+		TestUtil.logTrace( "getAddress");
 		return address;
 	}
 
 	public void setAddress(Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddress");
+		TestUtil.logTrace( "setAddress");
 		this.address = addr;
 	}
 

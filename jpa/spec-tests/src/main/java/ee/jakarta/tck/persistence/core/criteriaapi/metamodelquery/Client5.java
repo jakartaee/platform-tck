@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.metamodelquery;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -35,7 +35,7 @@ import jakarta.persistence.criteria.Root;
 
 public class Client5 extends UtilAliasOnlyData {
 
-	private static final Logger logger = (Logger) System.getLogger(Client5.class.getName());
+
 
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client5.class.getPackageName();
@@ -63,7 +63,7 @@ public class Client5 extends UtilAliasOnlyData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all aliases who have match: stevie");
+			logTrace( "find all aliases who have match: stevie");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.equal(alias.get(Alias_.alias), cbuilder.concat(cbuilder.literal("ste"), "vie")));
@@ -75,10 +75,10 @@ public class Client5 extends UtilAliasOnlyData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "14";
 			if (!checkEntityPK(alist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + alist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
@@ -111,7 +111,7 @@ public class Client5 extends UtilAliasOnlyData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all aliases containing the substring: iris");
+			logTrace( "find all aliases containing the substring: iris");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.equal(alias.get(Alias_.alias),
@@ -128,10 +128,10 @@ public class Client5 extends UtilAliasOnlyData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "20";
 			if (!checkEntityPK(alist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + alist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
@@ -164,7 +164,7 @@ public class Client5 extends UtilAliasOnlyData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find aliases whose alias name is greater than 4 characters");
+			logTrace( "find aliases whose alias name is greater than 4 characters");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.gt(cbuilder.length(alias.get(Alias_.alias)), 4));
@@ -182,10 +182,10 @@ public class Client5 extends UtilAliasOnlyData {
 			expectedPKs[5] = "28";
 			expectedPKs[6] = "29";
 			if (!checkEntityPK(alist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 7 references, got: " + alist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
@@ -218,7 +218,7 @@ public class Client5 extends UtilAliasOnlyData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all aliases who contain the string: ev in their alias name");
+			logTrace( "find all aliases who contain the string: ev in their alias name");
 			CriteriaQuery<Alias> cquery = cbuilder.createQuery(Alias.class);
 			Root<Alias> alias = cquery.from(Alias.class);
 			cquery.where(cbuilder.equal(cbuilder.locate(alias.get(Alias_.alias), "ev"), 3));
@@ -232,10 +232,10 @@ public class Client5 extends UtilAliasOnlyData {
 			expectedPKs[1] = "14";
 			expectedPKs[2] = "18";
 			if (!checkEntityPK(alist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 references, got: " + alist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.override.nocallbacklistener;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -29,7 +29,7 @@ import ee.jakarta.tck.persistence.core.override.util.CallBackCounts;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	private static final Long ID = 1L;
 
@@ -48,13 +48,13 @@ public class Client extends PMClientBase {
 
 	@BeforeEach
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -88,7 +88,7 @@ public class Client extends PMClientBase {
 		entity.setId(ID);
 		getEntityTransaction().begin();
 		getEntityManager().persist(entity);
-		logger.log(Logger.Level.TRACE, "persisted entity" + entity);
+		logTrace( "persisted entity" + entity);
 		getEntityManager().flush();
 		getEntityManager().refresh(entity);
 
@@ -105,22 +105,22 @@ public class Client extends PMClientBase {
 		if (result != null && result.size() > 0) {
 			newEntity = (NoCallBackListener) result.get(0);
 			if (newEntity.getId() == 1) {
-				logger.log(Logger.Level.TRACE, "Retrieved persisted entity");
+				logTrace( "Retrieved persisted entity");
 			}
 			getEntityManager().remove(entity);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 			try {
 				pass1 = checkPersistCallBacks();
-				logger.log(Logger.Level.TRACE, "pass1 = " + pass1);
+				logTrace( "pass1 = " + pass1);
 
 				pass2 = checkRemoveCallBacks();
-				logger.log(Logger.Level.TRACE, "pass2 = " + pass2);
+				logTrace( "pass2 = " + pass2);
 
 				pass3 = checkLoadCallBacks();
-				logger.log(Logger.Level.TRACE, "pass3 = " + pass3);
+				logTrace( "pass3 = " + pass3);
 				if (pass1 && pass2 && pass3) {
-					logger.log(Logger.Level.TRACE, "testOverrideCallBackMethods Passed");
+					logTrace( "testOverrideCallBackMethods Passed");
 				} else {
 					throw new Exception("Test failed while testing prePersist" + ", postPersist, preremove and "
 							+ "postremove methods and also the post Load method");
@@ -163,10 +163,10 @@ public class Client extends PMClientBase {
 
 		int count = CallBackCounts.getCount(callBackName);
 		if (count == expectedCount) {
-			logger.log(Logger.Level.TRACE, "test passed in test method" + callBackName);
+			logTrace( "test passed in test method" + callBackName);
 			pass = true;
 		} else {
-			logger.log(Logger.Level.TRACE,
+			logTrace(
 					"test not passed as the count and the" + " expected count are not same" + callBackName);
 		}
 
@@ -176,9 +176,9 @@ public class Client extends PMClientBase {
 	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
 			removeTestJarFromCP();
@@ -186,7 +186,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -195,14 +195,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM NOENTITYLISTENER_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}
