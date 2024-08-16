@@ -14,6 +14,8 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenResolvedArtifact;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -82,6 +84,13 @@ public class JsfClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.tim
             com.sun.ts.tests.ejb32.lite.timer.schedule.expire.JsfClient.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
+            // commons lang jar
+            String[] activeMavenProfiles = {"staging"};
+            MavenResolvedArtifact resolvedArtifact = Maven.resolver().loadPomFromFile("pom.xml", activeMavenProfiles)
+                    .resolve("org.apache.commons:commons-lang3:3.9")
+                    .withTransitivity()
+                    .asSingleResolvedArtifact();
+            ejb32_lite_timer_schedule_expire_ejbliteservlet_vehicle_web.addAsLibraries(resolvedArtifact.asFile());
             // The web.xml descriptor
             URL warResURL = JsfClient.class.getResource("ejbliteservlet_vehicle_web.xml");
             if(warResURL != null) {
