@@ -23,8 +23,10 @@ import java.io.InputStream;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.StringReader;
+import java.util.Properties;
 import com.sun.ts.tests.jsonp.api.common.JsonPTest;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
+import com.sun.ts.lib.harness.ServiceEETest;
 
 import jakarta.json.JsonPatch;
 
@@ -57,11 +59,11 @@ import java.lang.System.Logger;
  * {@see <a href="https://tools.ietf.org/html/rfc6902">RFC 6902</a>}.
  */
 @ExtendWith(ArquillianExtension.class)
-public class PatchTestsIT extends JsonPTest {
+public class PatchEjbTestsIT extends ServiceEETest {
 
-  private static final Logger logger = System.getLogger(PatchTestsIT.class.getName());
+  private static final Logger logger = System.getLogger(PatchEjbTestsIT.class.getName());
 
-  private static String packagePath = PatchTestsIT.class.getPackageName().replace(".", "/");
+  private static String packagePath = PatchEjbTestsIT.class.getPackageName().replace(".", "/");
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
@@ -78,10 +80,10 @@ public class PatchTestsIT extends JsonPTest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createServletDeployment() throws IOException {
+  public static EnterpriseArchive createEjbDeployment() throws IOException {
   
     WebArchive war = ShrinkWrap.create(WebArchive.class, "patchtests_servlet_vehicle_web.war");
-    war.addClass(PatchTestsIT.class);
+    war.addClass(PatchEjbTestsIT.class);
     war.addClass(CommonOperation.class);
     war.addClass(PatchCreate.class);
 
@@ -107,13 +109,22 @@ public class PatchTestsIT extends JsonPTest {
     war.addClass(com.sun.ts.tests.jsonp.api.common.TestResult.class);
     war.addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class);
 
-    war.setWebXML(PatchTestsIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
+    war.setWebXML(PatchEjbTestsIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
 
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
     ear.addAsModule(war);
     return ear;
 
   }
+
+    /*
+     * @class.setup_props:
+     * This is needed by the vehicle base classes
+     */
+  public void setup(String[] args, Properties p) throws Exception {
+
+  }
+
 
   /**
    * Test {@link JsonPatch} factory methods added in JSON-P 1.1.
@@ -130,7 +141,7 @@ public class PatchTestsIT extends JsonPTest {
    * @test_Strategy: Tests JsonPatch API factory methods added in JSON-P 1.1.
    */
   @Test
-  @TargetVehicle("servlet")
+  @TargetVehicle("ejb")
   public void jsonCreatePatch11Test() throws Exception {
     PatchCreate createTest = new PatchCreate();
     final TestResult result = createTest.test();

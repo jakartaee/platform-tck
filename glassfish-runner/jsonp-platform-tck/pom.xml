@@ -40,7 +40,7 @@
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>/jakartaeetck</ts.home>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
-        <version.jakarta.tck.arquillian>1.0.0-M1</version.jakarta.tck.arquillian>
+        <version.jakarta.tck.arquillian>1.0.0-M6</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencies>
@@ -103,6 +103,7 @@
             <version>1.4</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
@@ -255,7 +256,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
-                                <include>**/PatchTestsIT.java</include>
+                                <include>**TestsIT.java</include>
                             </includes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
@@ -282,7 +283,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
                             </additionalClasspathElements> -->
                             <excludes>
-                                <exclude>**/PatchTestsIT.java</exclude>
+                                <exclude>**/Patch*.java</exclude>
                             </excludes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
