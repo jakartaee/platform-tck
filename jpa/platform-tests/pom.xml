@@ -65,10 +65,6 @@
             <artifactId>arquillian-junit5-container</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-core</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.jboss.arquillian.test</groupId>
             <artifactId>arquillian-test-api</artifactId>
         </dependency>
