@@ -118,6 +118,8 @@ public class ClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.basi
             if(warResURL != null) {
               ejb32_lite_timer_basic_xa_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/ejblitejsf_vehicle.xhtml");
             }
+            warResURL = Client.class.getResource("persistence.xml");
+            ejb32_lite_timer_basic_xa_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "classes/META-INF/persistence.xml");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb32_lite_timer_basic_xa_ejblitejsf_vehicle_web, Client.class, warResURL);

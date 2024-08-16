@@ -95,18 +95,8 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.
               ejb32_lite_timer_basic_xa_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet/EJBLiteServletVehicle.java.txt");
-            if(warResURL != null) {
-              ejb32_lite_timer_basic_xa_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/EJBLiteServletVehicle.java.txt");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet/HttpServletDelegate.java.txt");
-            if(warResURL != null) {
-              ejb32_lite_timer_basic_xa_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/HttpServletDelegate.java.txt");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              ejb32_lite_timer_basic_xa_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet_vehicle_web.xml");
-            }
+            warResURL = Client.class.getResource("persistence.xml");
+            ejb32_lite_timer_basic_xa_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "classes/META-INF/persistence.xml");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb32_lite_timer_basic_xa_ejbliteservlet_vehicle_web, Client.class, warResURL);
