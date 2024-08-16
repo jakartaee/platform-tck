@@ -94,8 +94,8 @@ public class Client6Stateful3Test extends ee.jakarta.tck.persistence.core.query.
               jpa_core_query_language_stateful3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_query_language_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client6.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_query_language_stateful3_vehicle_client, Client6.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -132,6 +132,7 @@ public class Client6Stateful3Test extends ee.jakarta.tck.persistence.core.query.
             if(ejbResURL != null) {
               jpa_core_query_language_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_query_language_stateful3_vehicle_ejb, Client6.class, ejbResURL);
 
         // Par
@@ -163,6 +164,7 @@ public class Client6Stateful3Test extends ee.jakarta.tck.persistence.core.query.
             if(parURL != null) {
               jpa_core_query_language.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_query_language, Client6.class, parURL);
             // The orm.xml file
             parURL = Client6.class.getResource("orm.xml");
@@ -193,6 +195,7 @@ public class Client6Stateful3Test extends ee.jakarta.tck.persistence.core.query.
             if(earResURL != null) {
               jpa_core_query_language_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_query_language_vehicles_ear, Client6.class, earResURL);
         return jpa_core_query_language_vehicles_ear;
         }

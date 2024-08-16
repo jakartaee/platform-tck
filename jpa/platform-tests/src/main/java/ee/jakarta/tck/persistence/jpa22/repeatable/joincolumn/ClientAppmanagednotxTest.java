@@ -93,8 +93,8 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.jpa22.r
               jpa_jpa22_repeatable_joincolumns_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_jpa22_repeatable_joincolumns_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_jpa22_repeatable_joincolumns_appmanagedNoTx_vehicle_client, Client.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -130,6 +130,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.jpa22.r
             if(ejbResURL != null) {
               jpa_jpa22_repeatable_joincolumns_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_jpa22_repeatable_joincolumns_appmanagedNoTx_vehicle_ejb, Client.class, ejbResURL);
 
         // Par
@@ -147,6 +148,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.jpa22.r
             if(parURL != null) {
               jpa_jpa22_repeatable_joincolumns.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_jpa22_repeatable_joincolumns, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -177,6 +179,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.jpa22.r
             if(earResURL != null) {
               jpa_jpa22_repeatable_joincolumns_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_jpa22_repeatable_joincolumns_vehicles_ear, Client.class, earResURL);
         return jpa_jpa22_repeatable_joincolumns_vehicles_ear;
         }

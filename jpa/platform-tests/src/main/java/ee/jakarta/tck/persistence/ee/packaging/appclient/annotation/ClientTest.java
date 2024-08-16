@@ -64,8 +64,8 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
               jpa_ee_packaging_appclient_annotation_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_ee_packaging_appclient_annotation_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_appclient_annotation_client, Client.class, resURL);
-
 
         // Ear
             EnterpriseArchive jpa_ee_packaging_appclient_annotation_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_appclient_annotation.ear");
@@ -87,6 +87,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
             if(earResURL != null) {
               jpa_ee_packaging_appclient_annotation_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_packaging_appclient_annotation_ear, Client.class, earResURL);
         return jpa_ee_packaging_appclient_annotation_ear;
         }

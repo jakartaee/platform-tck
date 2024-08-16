@@ -67,8 +67,8 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
               jpa_ee_propagation_cm_ext_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_ee_propagation_cm_ext_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_propagation_cm_ext_client, Client.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -90,6 +90,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
             if(ejbResURL != null) {
               jpa_ee_propagation_cm_ext_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_ee_propagation_cm_ext_ejb, Client.class, ejbResURL);
 
         // Par
@@ -106,6 +107,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
             if(parURL != null) {
               jpa_ee_propagation_cm_ext.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_propagation_cm_ext, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -136,6 +138,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
             if(earResURL != null) {
               jpa_ee_propagation_cm_ext_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_propagation_cm_ext_ear, Client.class, earResURL);
         return jpa_ee_propagation_cm_ext_ear;
         }

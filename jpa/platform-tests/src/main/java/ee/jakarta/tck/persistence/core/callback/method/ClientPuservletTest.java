@@ -106,6 +106,16 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.callbac
               jpa_core_callback_method_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/callback/method/jpa_core_callback_method.jar");
+            if(warResURL != null) {
+              jpa_core_callback_method_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_callback_method.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_callback_method_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_callback_method_puservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -134,6 +144,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.callbac
             if(parURL != null) {
               jpa_core_callback_method.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_callback_method, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -163,6 +174,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.callbac
             if(earResURL != null) {
               jpa_core_callback_method_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_callback_method_vehicles_ear, Client.class, earResURL);
         return jpa_core_callback_method_vehicles_ear;
         }

@@ -92,6 +92,16 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.derived
               jpa_core_deriverdid_ex5a_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/derivedid/ex5a/jpa_core_deriverdid_ex5a.jar");
+            if(warResURL != null) {
+              jpa_core_deriverdid_ex5a_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_deriverdid_ex5a.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_deriverdid_ex5a_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_deriverdid_ex5a_pmservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -108,6 +118,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.derived
             if(parURL != null) {
               jpa_core_deriverdid_ex5a.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_deriverdid_ex5a, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -137,6 +148,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.derived
             if(earResURL != null) {
               jpa_core_deriverdid_ex5a_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_deriverdid_ex5a_vehicles_ear, Client.class, earResURL);
         return jpa_core_deriverdid_ex5a_vehicles_ear;
         }

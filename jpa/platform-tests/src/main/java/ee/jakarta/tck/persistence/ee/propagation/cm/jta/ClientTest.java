@@ -71,8 +71,19 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
             }
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/cm/jta/jpa_ee_propagation_cm_jta_web.xml");
-            jpa_ee_propagation_cm_jta_web.addAsWebResource(warResURL, "/jpa_ee_propagation_cm_jta_web.xml");
+            if(warResURL != null) {
+              jpa_ee_propagation_cm_jta_web.addAsWebResource(warResURL, "//jpa_ee_propagation_cm_jta_web.xml");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/cm/jta/jpa_ee_propagation_cm_jta.jar");
+            if(warResURL != null) {
+              jpa_ee_propagation_cm_jta_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_propagation_cm_jta.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/cm/jta/jpa_ee_propagation_cm_jta_ejb.jar");
+            if(warResURL != null) {
+              jpa_ee_propagation_cm_jta_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_propagation_cm_jta_ejb.jar");
+            }
 
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_propagation_cm_jta_web, Client.class, warResURL);
 
         // Ejb
@@ -94,6 +105,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
             if(ejbResURL != null) {
               jpa_ee_propagation_cm_jta_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_ee_propagation_cm_jta_ejb, Client.class, ejbResURL);
 
         // Par
@@ -110,6 +122,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
             if(parURL != null) {
               jpa_ee_propagation_cm_jta.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_propagation_cm_jta, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -141,6 +154,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
             if(earResURL != null) {
               jpa_ee_propagation_cm_jta_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_propagation_cm_jta_ear, Client.class, earResURL);
         return jpa_ee_propagation_cm_jta_ear;
         }

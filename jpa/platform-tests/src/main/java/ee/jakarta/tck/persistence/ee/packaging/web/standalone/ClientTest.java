@@ -66,8 +66,15 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
             }
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.xml");
-            jpa_ee_packaging_web_standalone_component_web.addAsWebResource(warResURL, "/jpa_ee_packaging_web_standalone_component_web.xml");
+            if(warResURL != null) {
+              jpa_ee_packaging_web_standalone_component_web.addAsWebResource(warResURL, "//jpa_ee_packaging_web_standalone_component_web.xml");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone.jar");
+            if(warResURL != null) {
+              jpa_ee_packaging_web_standalone_component_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_packaging_web_standalone.jar");
+            }
 
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_packaging_web_standalone_component_web, Client.class, warResURL);
 
         // Par
@@ -82,6 +89,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
             if(parURL != null) {
               jpa_ee_packaging_web_standalone.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_packaging_web_standalone, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");

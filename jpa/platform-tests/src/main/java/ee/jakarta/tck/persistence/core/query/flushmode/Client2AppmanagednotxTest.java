@@ -90,8 +90,8 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
               jpa_core_query_flushmode_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_query_flushmode_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client2.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_query_flushmode_appmanagedNoTx_vehicle_client, Client2.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -128,6 +128,7 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
             if(ejbResURL != null) {
               jpa_core_query_flushmode_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_query_flushmode_appmanagedNoTx_vehicle_ejb, Client2.class, ejbResURL);
 
         // Par
@@ -159,6 +160,7 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
             if(parURL != null) {
               jpa_core_query_flushmode.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_query_flushmode, Client2.class, parURL);
             // The orm.xml file
             parURL = Client2.class.getResource("orm.xml");
@@ -189,6 +191,7 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
             if(earResURL != null) {
               jpa_core_query_flushmode_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_query_flushmode_vehicles_ear, Client2.class, earResURL);
         return jpa_core_query_flushmode_vehicles_ear;
         }

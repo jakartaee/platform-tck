@@ -94,8 +94,8 @@ public class Client8AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
               jpa_core_criteriapia_CriteriaBuilder_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_criteriapia_CriteriaBuilder_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client8.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriapia_CriteriaBuilder_appmanaged_vehicle_client, Client8.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -132,6 +132,7 @@ public class Client8AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             if(ejbResURL != null) {
               jpa_core_criteriapia_CriteriaBuilder_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_criteriapia_CriteriaBuilder_appmanaged_vehicle_ejb, Client8.class, ejbResURL);
 
         // Par
@@ -180,6 +181,7 @@ public class Client8AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             if(parURL != null) {
               jpa_core_criteriapia_CriteriaBuilder.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriapia_CriteriaBuilder, Client8.class, parURL);
             // The orm.xml file
             parURL = Client8.class.getResource("orm.xml");
@@ -210,6 +212,7 @@ public class Client8AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             if(earResURL != null) {
               jpa_core_criteriapia_CriteriaBuilder_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_criteriapia_CriteriaBuilder_vehicles_ear, Client8.class, earResURL);
         return jpa_core_criteriapia_CriteriaBuilder_vehicles_ear;
         }

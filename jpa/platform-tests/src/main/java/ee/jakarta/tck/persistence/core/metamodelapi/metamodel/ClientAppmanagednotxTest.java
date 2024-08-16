@@ -93,8 +93,8 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.me
               jpa_core_metamodelapi_metamodel_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_metamodelapi_metamodel_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_metamodelapi_metamodel_appmanagedNoTx_vehicle_client, Client.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -130,6 +130,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.me
             if(ejbResURL != null) {
               jpa_core_metamodelapi_metamodel_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_metamodelapi_metamodel_appmanagedNoTx_vehicle_ejb, Client.class, ejbResURL);
 
         // Par
@@ -149,6 +150,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.me
             if(parURL != null) {
               jpa_core_metamodelapi_metamodel.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_metamodelapi_metamodel, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -179,6 +181,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.me
             if(earResURL != null) {
               jpa_core_metamodelapi_metamodel_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_metamodelapi_metamodel_vehicles_ear, Client.class, earResURL);
         return jpa_core_metamodelapi_metamodel_vehicles_ear;
         }

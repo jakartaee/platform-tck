@@ -85,8 +85,8 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
               pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client, Client.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -122,6 +122,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
             if(ejbResURL != null) {
               pluggability_contracts_resource_local_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(pluggability_contracts_resource_local_appmanagedNoTx_vehicle_ejb, Client.class, ejbResURL);
 
         // Par
@@ -141,6 +142,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
             if(parURL != null) {
               pluggability_contracts_resource_local.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(pluggability_contracts_resource_local, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -171,6 +173,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
             if(earResURL != null) {
               pluggability_contracts_resource_local_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(pluggability_contracts_resource_local_vehicles_ear, Client.class, earResURL);
         return pluggability_contracts_resource_local_vehicles_ear;
         }

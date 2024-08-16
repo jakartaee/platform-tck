@@ -92,6 +92,16 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa22.repeat
               jpa_jpa22_repeatable_namedentitygraph_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/jpa22/repeatable/namedentitygraph/jpa_jpa22_repeatable_namedentitygraph.jar");
+            if(warResURL != null) {
+              jpa_jpa22_repeatable_namedentitygraph_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_jpa22_repeatable_namedentitygraph.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_jpa22_repeatable_namedentitygraph_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_jpa22_repeatable_namedentitygraph_pmservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -109,6 +119,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa22.repeat
             if(parURL != null) {
               jpa_jpa22_repeatable_namedentitygraph.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_jpa22_repeatable_namedentitygraph, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -138,6 +149,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa22.repeat
             if(earResURL != null) {
               jpa_jpa22_repeatable_namedentitygraph_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_jpa22_repeatable_namedentitygraph_vehicles_ear, Client.class, earResURL);
         return jpa_jpa22_repeatable_namedentitygraph_vehicles_ear;
         }

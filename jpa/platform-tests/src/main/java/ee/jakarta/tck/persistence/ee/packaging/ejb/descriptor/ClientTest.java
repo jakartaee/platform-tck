@@ -71,8 +71,8 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.desc
               jpa_ee_packaging_ejb_descriptor_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_ee_packaging_ejb_descriptor_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_ejb_descriptor_client, Client.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -97,6 +97,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.desc
             if(ejbResURL != null) {
               jpa_ee_packaging_ejb_descriptor_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_ee_packaging_ejb_descriptor_ejb, Client.class, ejbResURL);
 
         // Ear
@@ -120,6 +121,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.desc
             if(earResURL != null) {
               jpa_ee_packaging_ejb_descriptor_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_packaging_ejb_descriptor_ear, Client.class, earResURL);
         return jpa_ee_packaging_ejb_descriptor_ear;
         }

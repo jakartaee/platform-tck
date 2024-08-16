@@ -140,6 +140,16 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.annota
               jpa_core_annotations_mapkey_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client1.class.getResource("/com/sun/ts/tests/jpa/core/annotations/mapkey/jpa_core_annotations_mapkey.jar");
+            if(warResURL != null) {
+              jpa_core_annotations_mapkey_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_annotations_mapkey.jar");
+            }
+            warResURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_annotations_mapkey_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_annotations_mapkey_pmservlet_vehicle_web, Client1.class, warResURL);
 
         // Par
@@ -158,6 +168,7 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.annota
             if(parURL != null) {
               jpa_core_annotations_mapkey.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_annotations_mapkey, Client1.class, parURL);
             // The orm.xml file
             parURL = Client1.class.getResource("orm.xml");
@@ -187,6 +198,7 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.annota
             if(earResURL != null) {
               jpa_core_annotations_mapkey_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_annotations_mapkey_vehicles_ear, Client1.class, earResURL);
         return jpa_core_annotations_mapkey_vehicles_ear;
         }

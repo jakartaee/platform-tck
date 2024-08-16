@@ -93,8 +93,8 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
               jpa_core_anno_access_mappedsc_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_anno_access_mappedsc_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_anno_access_mappedsc_appmanaged_vehicle_client, Client.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -130,6 +130,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
             if(ejbResURL != null) {
               jpa_core_anno_access_mappedsc_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_anno_access_mappedsc_appmanaged_vehicle_ejb, Client.class, ejbResURL);
 
         // Par
@@ -149,6 +150,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
             if(parURL != null) {
               jpa_core_anno_access_mappedsc.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_anno_access_mappedsc, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -179,6 +181,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
             if(earResURL != null) {
               jpa_core_anno_access_mappedsc_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_anno_access_mappedsc_vehicles_ear, Client.class, earResURL);
         return jpa_core_anno_access_mappedsc_vehicles_ear;
         }
