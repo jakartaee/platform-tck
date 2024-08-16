@@ -72,8 +72,8 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
               ejb32_mdb_modernconnector_client.addAsManifestResource(resURL, "application-client.xml");
             }
             ejb32_mdb_modernconnector_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(ejb32_mdb_modernconnector_client, Client.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -96,6 +96,7 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
             if(ejbResURL != null) {
               ejb32_mdb_modernconnector_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(ejb32_mdb_modernconnector_ejb, Client.class, ejbResURL);
 
         // Rar
@@ -120,6 +121,7 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
             if(raResURL != null) {
               ejb32_mdb_modernconnector_ra.addAsManifestResource(raResURL, "sun-ra.xml");
             }
+            // Call the archive processor
             archiveProcessor.processRarArchive(ejb32_mdb_modernconnector_ra, Client.class, raResURL);
 
         // Ear
@@ -144,13 +146,14 @@ public class ClientTest extends com.sun.ts.tests.ejb32.mdb.modernconnector.Clien
             if(earResURL != null) {
               ejb32_mdb_modernconnector_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(ejb32_mdb_modernconnector_ear, Client.class, earResURL);
         return ejb32_mdb_modernconnector_ear;
         }
 
         @Test
         @Override
-        public void testModernConnector() throws Fault {
+        public void testModernConnector() throws com.sun.ts.lib.harness.EETest.Fault {
             super.testModernConnector();
         }
 

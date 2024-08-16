@@ -90,9 +90,20 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.time
               ejb32_lite_timer_timerconfig_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/timerconfig/ejblitejsp.tld");
+            if(warResURL != null) {
+              ejb32_lite_timer_timerconfig_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/tlds/ejblitejsp.tld");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsp/ejblitejsp.tld");
+            if(warResURL != null) {
+              ejb32_lite_timer_timerconfig_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp.tld");
+            }
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsp/ejblitejsp_vehicle.jsp");
-            ejb32_lite_timer_timerconfig_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp_vehicle.jsp");
+            if(warResURL != null) {
+              ejb32_lite_timer_timerconfig_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp_vehicle.jsp");
+            }
 
+           // Call the archive processor
            archiveProcessor.processWebArchive(ejb32_lite_timer_timerconfig_ejblitejsp_vehicle_web, Client.class, warResURL);
 
         return ejb32_lite_timer_timerconfig_ejblitejsp_vehicle_web;

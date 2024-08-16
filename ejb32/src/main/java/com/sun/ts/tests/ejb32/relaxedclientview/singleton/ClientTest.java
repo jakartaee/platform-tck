@@ -77,8 +77,8 @@ public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.singlet
               singleton_relaxed_client_view_client.addAsManifestResource(resURL, "application-client.xml");
             }
             singleton_relaxed_client_view_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(singleton_relaxed_client_view_client, Client.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -113,6 +113,7 @@ public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.singlet
             if(ejbResURL != null) {
               singleton_relaxed_client_view_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(singleton_relaxed_client_view_ejb, Client.class, ejbResURL);
 
         // Ear
@@ -136,6 +137,7 @@ public class ClientTest extends com.sun.ts.tests.ejb32.relaxedclientview.singlet
             if(earResURL != null) {
               singleton_relaxed_client_view_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(singleton_relaxed_client_view_ear, Client.class, earResURL);
         return singleton_relaxed_client_view_ear;
         }

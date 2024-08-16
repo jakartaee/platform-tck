@@ -94,9 +94,32 @@ public class ClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.inte
               ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/interceptor/aroundtimeout/singleton/dual/beans.xml");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/beans.xml");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejblitejsf_vehicle_web.xml");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/interceptor/aroundtimeout/singleton/dual/faces-config.xml");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/faces-config.xml");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/faces-config.xml");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/faces-config.xml");
+            }
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle.xhtml");
-            ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/ejblitejsf_vehicle.xhtml");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/ejblitejsf_vehicle.xhtml");
+            }
 
+           // Call the archive processor
            archiveProcessor.processWebArchive(ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web, Client.class, warResURL);
 
         return ejb32_lite_timer_interceptor_aroundtimeout_singleton_dual_ejblitejsf_vehicle_web;
