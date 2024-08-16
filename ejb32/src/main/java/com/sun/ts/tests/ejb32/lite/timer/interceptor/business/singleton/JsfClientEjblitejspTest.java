@@ -97,9 +97,24 @@ public class JsfClientEjblitejspTest extends com.sun.ts.tests.ejb32.lite.timer.i
               ejb32_lite_timer_interceptor_business_singleton_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/interceptor/business/singleton/ejb-jar.xml");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_business_singleton_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejb-jar.xml");
+            }
+            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/interceptor/business/singleton/ejblitejsp.tld");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_business_singleton_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/tlds/ejblitejsp.tld");
+            }
+            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsp/ejblitejsp.tld");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_business_singleton_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp.tld");
+            }
             warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsp/ejblitejsp_vehicle.jsp");
-            ejb32_lite_timer_interceptor_business_singleton_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp_vehicle.jsp");
+            if(warResURL != null) {
+              ejb32_lite_timer_interceptor_business_singleton_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp_vehicle.jsp");
+            }
 
+           // Call the archive processor
            archiveProcessor.processWebArchive(ejb32_lite_timer_interceptor_business_singleton_ejblitejsp_vehicle_web, JsfClient.class, warResURL);
 
         return ejb32_lite_timer_interceptor_business_singleton_ejblitejsp_vehicle_web;

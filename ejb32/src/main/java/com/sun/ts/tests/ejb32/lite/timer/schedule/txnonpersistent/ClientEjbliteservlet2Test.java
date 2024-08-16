@@ -99,9 +99,20 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb32.lite.timer
               ejb32_lite_timer_schedule_txnonpersistent_ejbliteservlet2_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet2/EJBLiteServlet2Filter.java.txt");
+            if(warResURL != null) {
+              ejb32_lite_timer_schedule_txnonpersistent_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/EJBLiteServlet2Filter.java.txt");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet2/ejbliteservlet2_vehicle_web.xml");
+            if(warResURL != null) {
+              ejb32_lite_timer_schedule_txnonpersistent_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet2_vehicle_web.xml");
+            }
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet2/ejbliteservlet2_vehicle.jsp");
-            ejb32_lite_timer_schedule_txnonpersistent_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/ejbliteservlet2_vehicle.jsp");
+            if(warResURL != null) {
+              ejb32_lite_timer_schedule_txnonpersistent_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/ejbliteservlet2_vehicle.jsp");
+            }
 
+           // Call the archive processor
            archiveProcessor.processWebArchive(ejb32_lite_timer_schedule_txnonpersistent_ejbliteservlet2_vehicle_web, Client.class, warResURL);
 
         return ejb32_lite_timer_schedule_txnonpersistent_ejbliteservlet2_vehicle_web;
