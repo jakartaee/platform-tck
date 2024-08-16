@@ -89,6 +89,16 @@ public class Client3PuservletTest extends ee.jakarta.tck.persistence.core.query.
               jpa_core_query_flushmode_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/query/flushmode/jpa_core_query_flushmode.jar");
+            if(warResURL != null) {
+              jpa_core_query_flushmode_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_query_flushmode.jar");
+            }
+            warResURL = Client3.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_query_flushmode_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_query_flushmode_puservlet_vehicle_web, Client3.class, warResURL);
 
         // Par
@@ -120,6 +130,7 @@ public class Client3PuservletTest extends ee.jakarta.tck.persistence.core.query.
             if(parURL != null) {
               jpa_core_query_flushmode.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_query_flushmode, Client3.class, parURL);
             // The orm.xml file
             parURL = Client3.class.getResource("orm.xml");
@@ -149,6 +160,7 @@ public class Client3PuservletTest extends ee.jakarta.tck.persistence.core.query.
             if(earResURL != null) {
               jpa_core_query_flushmode_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_query_flushmode_vehicles_ear, Client3.class, earResURL);
         return jpa_core_query_flushmode_vehicles_ear;
         }

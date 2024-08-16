@@ -93,8 +93,8 @@ public class Client4Stateless3Test extends ee.jakarta.tck.persistence.core.types
               jpa_core_types_generator_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_types_generator_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client4.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_types_generator_stateless3_vehicle_client, Client4.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -130,6 +130,7 @@ public class Client4Stateless3Test extends ee.jakarta.tck.persistence.core.types
             if(ejbResURL != null) {
               jpa_core_types_generator_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_types_generator_stateless3_vehicle_ejb, Client4.class, ejbResURL);
 
         // Par
@@ -147,6 +148,7 @@ public class Client4Stateless3Test extends ee.jakarta.tck.persistence.core.types
             if(parURL != null) {
               jpa_core_types_generator.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_types_generator, Client4.class, parURL);
             // The orm.xml file
             parURL = Client4.class.getResource("orm.xml");
@@ -177,6 +179,7 @@ public class Client4Stateless3Test extends ee.jakarta.tck.persistence.core.types
             if(earResURL != null) {
               jpa_core_types_generator_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_types_generator_vehicles_ear, Client4.class, earResURL);
         return jpa_core_types_generator_vehicles_ear;
         }

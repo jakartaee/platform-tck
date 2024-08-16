@@ -69,8 +69,15 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
             }
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.xml");
-            jpa_ee_packaging_web_scope_web.addAsWebResource(warResURL, "/jpa_ee_packaging_web_scope_web.xml");
+            if(warResURL != null) {
+              jpa_ee_packaging_web_scope_web.addAsWebResource(warResURL, "//jpa_ee_packaging_web_scope_web.xml");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/persistence.xml");
+            if(warResURL != null) {
+              jpa_ee_packaging_web_scope_web.addAsWebResource(warResURL, "/WEB-INF/classes/META-INF/persistence.xml");
+            }
 
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_packaging_web_scope_web, Client.class, warResURL);
 
         // Ear
@@ -93,6 +100,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
             if(earResURL != null) {
               jpa_ee_packaging_web_scope_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_packaging_web_scope_ear, Client.class, earResURL);
         return jpa_ee_packaging_web_scope_ear;
         }

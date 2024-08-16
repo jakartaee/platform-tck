@@ -94,8 +94,8 @@ public class Client3AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
               jpa_core_criteriaapi_metamodelquery_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_criteriaapi_metamodelquery_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client3.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriaapi_metamodelquery_appmanagedNoTx_vehicle_client, Client3.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -132,6 +132,7 @@ public class Client3AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             if(ejbResURL != null) {
               jpa_core_criteriaapi_metamodelquery_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_criteriaapi_metamodelquery_appmanagedNoTx_vehicle_ejb, Client3.class, ejbResURL);
 
         // Par
@@ -180,6 +181,7 @@ public class Client3AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             if(parURL != null) {
               jpa_core_criteriaapi_metamodelquery.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriaapi_metamodelquery, Client3.class, parURL);
             // The orm.xml file
             parURL = Client3.class.getResource("orm.xml");
@@ -210,6 +212,7 @@ public class Client3AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             if(earResURL != null) {
               jpa_core_criteriaapi_metamodelquery_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_criteriaapi_metamodelquery_vehicles_ear, Client3.class, earResURL);
         return jpa_core_criteriaapi_metamodelquery_vehicles_ear;
         }

@@ -92,6 +92,16 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.metamod
               jpa_core_metamodelapi_mappedsuperclasstype_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/metamodelapi/mappedsuperclasstype/jpa_core_metamodelapi_mappedsuperclasstype.jar");
+            if(warResURL != null) {
+              jpa_core_metamodelapi_mappedsuperclasstype_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_metamodelapi_mappedsuperclasstype.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_metamodelapi_mappedsuperclasstype_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_metamodelapi_mappedsuperclasstype_puservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -110,6 +120,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.metamod
             if(parURL != null) {
               jpa_core_metamodelapi_mappedsuperclasstype.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_metamodelapi_mappedsuperclasstype, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -139,6 +150,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.metamod
             if(earResURL != null) {
               jpa_core_metamodelapi_mappedsuperclasstype_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_metamodelapi_mappedsuperclasstype_vehicles_ear, Client.class, earResURL);
         return jpa_core_metamodelapi_mappedsuperclasstype_vehicles_ear;
         }

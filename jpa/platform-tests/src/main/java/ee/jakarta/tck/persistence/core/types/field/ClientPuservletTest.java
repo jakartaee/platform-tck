@@ -92,6 +92,16 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.types.f
               jpa_core_types_field_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/types/field/jpa_core_types_field.jar");
+            if(warResURL != null) {
+              jpa_core_types_field_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_types_field.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_types_field_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_types_field_puservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -109,6 +119,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.types.f
             if(parURL != null) {
               jpa_core_types_field.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_types_field, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -138,6 +149,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.types.f
             if(earResURL != null) {
               jpa_core_types_field_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_types_field_vehicles_ear, Client.class, earResURL);
         return jpa_core_types_field_vehicles_ear;
         }

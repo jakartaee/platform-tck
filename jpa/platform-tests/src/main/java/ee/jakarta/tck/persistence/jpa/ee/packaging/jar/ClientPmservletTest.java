@@ -91,6 +91,24 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packa
               jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/jpa_ee_packaging_jar.jar");
+            if(warResURL != null) {
+              jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_packaging_jar.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/jpa_ee_packaging_jar1.jar");
+            if(warResURL != null) {
+              jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_packaging_jar1.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/jpa_ee_packaging_jar2.jar");
+            if(warResURL != null) {
+              jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_packaging_jar2.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_packaging_jar_pmservlet_vehicle_web, Client.class, warResURL);
 
         // Ear
@@ -113,6 +131,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packa
             if(earResURL != null) {
               jpa_ee_packaging_jar_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_packaging_jar_vehicles_ear, Client.class, earResURL);
         return jpa_ee_packaging_jar_vehicles_ear;
         }

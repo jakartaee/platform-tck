@@ -93,8 +93,8 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
               jpa_core_annotations_access_property_stateful3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_annotations_access_property_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client2.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_annotations_access_property_stateful3_vehicle_client, Client2.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -130,6 +130,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             if(ejbResURL != null) {
               jpa_core_annotations_access_property_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_annotations_access_property_stateful3_vehicle_ejb, Client2.class, ejbResURL);
 
         // Par
@@ -146,6 +147,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             if(parURL != null) {
               jpa_core_annotations_access_property.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_annotations_access_property, Client2.class, parURL);
             // The orm.xml file
             parURL = Client2.class.getResource("orm.xml");
@@ -176,6 +178,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             if(earResURL != null) {
               jpa_core_annotations_access_property_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_annotations_access_property_vehicles_ear, Client2.class, earResURL);
         return jpa_core_annotations_access_property_vehicles_ear;
         }

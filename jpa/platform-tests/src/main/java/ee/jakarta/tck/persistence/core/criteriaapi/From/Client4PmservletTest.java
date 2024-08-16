@@ -93,6 +93,16 @@ public class Client4PmservletTest extends ee.jakarta.tck.persistence.core.criter
               jpa_core_criteriaapi_From_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/From/jpa_core_criteriaapi_From.jar");
+            if(warResURL != null) {
+              jpa_core_criteriaapi_From_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_criteriaapi_From.jar");
+            }
+            warResURL = Client4.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_criteriaapi_From_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_criteriaapi_From_pmservlet_vehicle_web, Client4.class, warResURL);
 
         // Par
@@ -141,6 +151,7 @@ public class Client4PmservletTest extends ee.jakarta.tck.persistence.core.criter
             if(parURL != null) {
               jpa_core_criteriaapi_From.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriaapi_From, Client4.class, parURL);
             // The orm.xml file
             parURL = Client4.class.getResource("orm.xml");
@@ -170,6 +181,7 @@ public class Client4PmservletTest extends ee.jakarta.tck.persistence.core.criter
             if(earResURL != null) {
               jpa_core_criteriaapi_From_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_criteriaapi_From_vehicles_ear, Client4.class, earResURL);
         return jpa_core_criteriaapi_From_vehicles_ear;
         }

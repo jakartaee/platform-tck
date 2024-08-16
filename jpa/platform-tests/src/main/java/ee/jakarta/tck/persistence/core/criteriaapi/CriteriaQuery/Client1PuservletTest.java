@@ -93,6 +93,16 @@ public class Client1PuservletTest extends ee.jakarta.tck.persistence.core.criter
               jpa_core_criteriaapi_CriteriaQuery_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client1.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/CriteriaQuery/jpa_core_criteriaapi_CriteriaQuery.jar");
+            if(warResURL != null) {
+              jpa_core_criteriaapi_CriteriaQuery_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_criteriaapi_CriteriaQuery.jar");
+            }
+            warResURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_criteriaapi_CriteriaQuery_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_criteriaapi_CriteriaQuery_puservlet_vehicle_web, Client1.class, warResURL);
 
         // Par
@@ -142,6 +152,7 @@ public class Client1PuservletTest extends ee.jakarta.tck.persistence.core.criter
             if(parURL != null) {
               jpa_core_criteriaapi_CriteriaQuery.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriaapi_CriteriaQuery, Client1.class, parURL);
             // The orm.xml file
             parURL = Client1.class.getResource("orm.xml");
@@ -171,6 +182,7 @@ public class Client1PuservletTest extends ee.jakarta.tck.persistence.core.criter
             if(earResURL != null) {
               jpa_core_criteriaapi_CriteriaQuery_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_criteriaapi_CriteriaQuery_vehicles_ear, Client1.class, earResURL);
         return jpa_core_criteriaapi_CriteriaQuery_vehicles_ear;
         }

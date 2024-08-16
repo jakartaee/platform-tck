@@ -92,6 +92,16 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.nestede
               jpa_core_nestedembedding_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/nestedembedding/jpa_core_nestedembedding.jar");
+            if(warResURL != null) {
+              jpa_core_nestedembedding_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_nestedembedding.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_nestedembedding_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_nestedembedding_puservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -109,6 +119,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.nestede
             if(parURL != null) {
               jpa_core_nestedembedding.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_nestedembedding, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -138,6 +149,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.nestede
             if(earResURL != null) {
               jpa_core_nestedembedding_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_nestedembedding_vehicles_ear, Client.class, earResURL);
         return jpa_core_nestedembedding_vehicles_ear;
         }

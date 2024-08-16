@@ -88,6 +88,16 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
               jpa_ee_pluggability_contracts_jta_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/pluggability/contracts/jta/jpa_ee_pluggability_contracts_jta.jar");
+            if(warResURL != null) {
+              jpa_ee_pluggability_contracts_jta_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_pluggability_contracts_jta.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_ee_pluggability_contracts_jta_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_pluggability_contracts_jta_pmservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -107,6 +117,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
             if(parURL != null) {
               jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_pluggability_contracts_jta, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -136,6 +147,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
             if(earResURL != null) {
               jpa_ee_pluggability_contracts_jta_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_pluggability_contracts_jta_vehicles_ear, Client.class, earResURL);
         return jpa_ee_pluggability_contracts_jta_vehicles_ear;
         }

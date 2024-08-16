@@ -84,6 +84,16 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
               pluggability_contracts_resource_local_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/pluggability/contracts/resource_local/pluggability_contracts_resource_local.jar");
+            if(warResURL != null) {
+              pluggability_contracts_resource_local_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/pluggability_contracts_resource_local.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              pluggability_contracts_resource_local_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(pluggability_contracts_resource_local_puservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -103,6 +113,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
             if(parURL != null) {
               pluggability_contracts_resource_local.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(pluggability_contracts_resource_local, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -132,6 +143,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
             if(earResURL != null) {
               pluggability_contracts_resource_local_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(pluggability_contracts_resource_local_vehicles_ear, Client.class, earResURL);
         return pluggability_contracts_resource_local_vehicles_ear;
         }

@@ -92,6 +92,16 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.types.p
               jpa_core_types_pkey_compound_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/types/primarykey/compound/jpa_core_types_pkey_compound.jar");
+            if(warResURL != null) {
+              jpa_core_types_pkey_compound_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_types_pkey_compound.jar");
+            }
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
+            if(warResURL != null) {
+              jpa_core_types_pkey_compound_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_types_pkey_compound_puservlet_vehicle_web, Client.class, warResURL);
 
         // Par
@@ -111,6 +121,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.types.p
             if(parURL != null) {
               jpa_core_types_pkey_compound.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_types_pkey_compound, Client.class, parURL);
             // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
@@ -140,6 +151,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.types.p
             if(earResURL != null) {
               jpa_core_types_pkey_compound_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_types_pkey_compound_vehicles_ear, Client.class, earResURL);
         return jpa_core_types_pkey_compound_vehicles_ear;
         }

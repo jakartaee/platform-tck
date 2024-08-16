@@ -93,8 +93,8 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.annota
               jpa_core_annotations_orderby_stateful3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             jpa_core_annotations_orderby_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client1.class.getName() + "\n"), "MANIFEST.MF");
+            // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_annotations_orderby_stateful3_vehicle_client, Client1.class, resURL);
-
 
         // Ejb
             // the jar with the correct archive name
@@ -130,6 +130,7 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             if(ejbResURL != null) {
               jpa_core_annotations_orderby_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_annotations_orderby_stateful3_vehicle_ejb, Client1.class, ejbResURL);
 
         // Par
@@ -154,6 +155,7 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             if(parURL != null) {
               jpa_core_annotations_orderby.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_annotations_orderby, Client1.class, parURL);
             // The orm.xml file
             parURL = Client1.class.getResource("orm.xml");
@@ -184,6 +186,7 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             if(earResURL != null) {
               jpa_core_annotations_orderby_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
+            // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_annotations_orderby_vehicles_ear, Client1.class, earResURL);
         return jpa_core_annotations_orderby_vehicles_ear;
         }
