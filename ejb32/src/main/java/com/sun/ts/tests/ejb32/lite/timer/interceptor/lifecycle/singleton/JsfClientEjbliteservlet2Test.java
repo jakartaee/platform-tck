@@ -85,26 +85,32 @@ public class JsfClientEjbliteservlet2Test extends com.sun.ts.tests.ejb32.lite.ti
               ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet2_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
             // Web content
-            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet2/EJBLiteServlet2Filter.java.txt");
-            if(warResURL != null) {
-              ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/EJBLiteServlet2Filter.java.txt");
-            }
             warResURL = JsfClient.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/interceptor/lifecycle/singleton/ejb-jar.xml");
             if(warResURL != null) {
               ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejb-jar.xml");
-            }
-            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet2/ejbliteservlet2_vehicle_web.xml");
-            if(warResURL != null) {
-              ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet2_vehicle_web.xml");
-            }
-            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/interceptor/lifecycle/singleton/ejb.jar");
-            if(warResURL != null) {
-              ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/ejb.jar");
             }
             warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet2/ejbliteservlet2_vehicle.jsp");
             if(warResURL != null) {
               ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet2_vehicle_web.addAsWebResource(warResURL, "/ejbliteservlet2_vehicle.jsp");
             }
+            // ejb.jar lib
+            JavaArchive ejbJar = ShrinkWrap.create(JavaArchive.class, "ejb.jar");
+            ejbJar.addClasses(
+                    com.sun.ts.tests.ejb30.timer.common.TimerInfo.class,
+                    com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
+                    com.sun.ts.tests.ejb30.timer.common.TimeoutStatusBean.class,
+                    com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod.class,
+                    com.sun.ts.tests.ejb30.timer.common.TimerBeanBase.class,
+                    com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton.Interceptor1.class,
+                    com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton.Interceptor2.class,
+                    com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton.Interceptor10.class,
+                    com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton.InterceptorBase.class,
+                    com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton.LifecycleTimerBean.class,
+                    com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton.LifecycleAroundConstructTimerBean.class,
+                    com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton.LifecycleTimerBeanBase.class
+
+            );
+            ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet2_vehicle_web.addAsLibrary(ejbJar);
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb32_lite_timer_interceptor_lifecycle_singleton_ejbliteservlet2_vehicle_web, JsfClient.class, warResURL);

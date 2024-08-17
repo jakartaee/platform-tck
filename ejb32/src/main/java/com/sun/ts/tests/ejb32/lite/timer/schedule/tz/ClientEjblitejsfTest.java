@@ -114,10 +114,6 @@ public class ClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.sche
             if(warResURL != null) {
               ejb32_lite_timer_schedule_tz_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejblitejsf_vehicle_web.xml");
             }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/schedule/tz/faces-config.xml");
-            if(warResURL != null) {
-              ejb32_lite_timer_schedule_tz_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/faces-config.xml");
-            }
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/faces-config.xml");
             if(warResURL != null) {
               ejb32_lite_timer_schedule_tz_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/faces-config.xml");
@@ -126,6 +122,9 @@ public class ClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.sche
             if(warResURL != null) {
               ejb32_lite_timer_schedule_tz_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/ejblitejsf_vehicle.xhtml");
             }
+            // zone.tab
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb32/lite/timer/schedule/tz/zone.tab");
+            ejb32_lite_timer_schedule_tz_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/classes/com/sun/ts/tests/ejb32/lite/timer/schedule/tz/zone.tab");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb32_lite_timer_schedule_tz_ejblitejsf_vehicle_web, Client.class, warResURL);
