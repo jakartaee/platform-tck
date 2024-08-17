@@ -32,10 +32,6 @@
     <name>EJB32</name>
     <description>EJB32</description>
 
-    <properties>
-        <version.jakarta.tck.arquillian>1.0.0-M3</version.jakarta.tck.arquillian>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -77,7 +73,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
