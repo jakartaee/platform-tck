@@ -16,8 +16,10 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenResolvedArtifact;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -29,7 +31,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("web_optional")
 @Tag("ejb_persistent_timer_optional")
 @Tag("tck-javatest")
-
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.schedule.lifecycle.Client {
     static final String VEHICLE_ARCHIVE = "ejb32_lite_timer_schedule_lifecycle_ejbliteservlet_vehicle";
 
@@ -120,12 +122,6 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.
         return ejb32_lite_timer_schedule_lifecycle_ejbliteservlet_vehicle_web;
         }
 
-        @Test
-        @Override
-        @TargetVehicle("ejbliteservlet")
-        public void timerHandle() throws java.io.IOException, java.lang.ClassNotFoundException {
-            super.timerHandle();
-        }
 
         @Test
         @Override
@@ -176,5 +172,10 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb32.lite.timer.
             super.cancelWithTxAndNoSuchObjectLocalException();
         }
 
-
+    @Test
+    @Override
+    @TargetVehicle("ejbliteservlet")
+    public void timerHandle() throws java.io.IOException, java.lang.ClassNotFoundException {
+        super.timerHandle();
+    }
 }
