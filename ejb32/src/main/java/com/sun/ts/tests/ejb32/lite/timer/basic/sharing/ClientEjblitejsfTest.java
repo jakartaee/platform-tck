@@ -82,8 +82,6 @@ public class ClientEjblitejsfTest extends com.sun.ts.tests.ejb32.lite.timer.basi
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.ejb32.lite.timer.basic.sharing.TimerIF.class
             );
-            ejb32_lite_timer_basic_sharing_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb32.lite.timer.basic.sharing.Client$1.class");
-            ejb32_lite_timer_basic_sharing_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb32.lite.timer.basic.sharing.JsfClient$1.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");
