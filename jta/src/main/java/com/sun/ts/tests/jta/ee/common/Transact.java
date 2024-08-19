@@ -25,12 +25,6 @@ import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-interface TransactionStatus {
-  public static final String[] transStatusArray = { "STATUS_ACTIVE",
-      "STATUS_MARKED_ROLLBACK", "STATUS_PREPARED", "STATUS_COMMITED",
-      "STATUS_ROLLBACK", "STATUS_UNKNOWN", "STATUS_NO_TRANSACTION",
-      "STATUS_PREPARING", "STATUS_COMMITTING", "STATUS_ROLLING_BACK" };
-}// End of TransactionStatus
 
 public class Transact extends ServiceEETest implements TransactionStatus {
   public static TSNamingContext nctx = null;
@@ -75,23 +69,3 @@ public class Transact extends ServiceEETest implements TransactionStatus {
   }
 }// End of Transact
 
-class InvalidStatusException extends Exception {
-  InvalidStatusException() {
-    super();
-  }
-
-  InvalidStatusException(String msg) {
-    super(msg);
-  }
-}// End of InvalidStatusException
-
-class InitFailedException extends Exception {
-
-  InitFailedException() {
-    super();
-  }
-
-  InitFailedException(String msg) {
-    super(msg);
-  }
-}// End of InitFailedException
