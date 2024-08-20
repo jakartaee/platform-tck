@@ -61,16 +61,16 @@ public class UserBeginClientEjbTest extends com.sun.ts.tests.jta.ee.usertransact
             JavaArchive begin_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "begin_ejb_vehicle_client.jar");
             // The class files
             begin_ejb_vehicle_client.addClasses(
-            com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+                com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+                com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
+                com.sun.ts.lib.harness.EETest.Fault.class,
+                com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
+                com.sun.ts.lib.harness.EETest.class,
+                com.sun.ts.lib.harness.ServiceEETest.class,
+                com.sun.ts.lib.harness.EETest.SetupException.class,
+                com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
             URL resURL = UserBeginClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -95,14 +95,14 @@ public class UserBeginClientEjbTest extends com.sun.ts.tests.jta.ee.usertransact
                 com.sun.ts.lib.harness.EETest.Fault.class,
                 com.sun.ts.tests.jta.ee.usertransaction.begin.UserBeginClient.class,
                 com.sun.ts.tests.jta.ee.common.Transact.class,
-                                    com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-                                    com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                                    com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
                 com.sun.ts.lib.harness.EETest.class,
                 com.sun.ts.lib.harness.ServiceEETest.class,
                 com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -138,7 +138,7 @@ public class UserBeginClientEjbTest extends com.sun.ts.tests.jta.ee.usertransact
               begin_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
             }
             // The sun-application.xml descriptor
-            earResURL = UserBeginClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/begin/.ear.sun-application.xml");
+            earResURL = UserBeginClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/begin/begin_ejb_vehicle_client.jar.sun-application-client.xml");
             if(earResURL != null) {
               begin_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

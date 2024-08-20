@@ -62,12 +62,12 @@ public class UserGetStatusClientJspTest extends com.sun.ts.tests.jta.ee.usertran
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.jta.ee.common.Transact.class,
-                                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+            com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
             com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-                                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+            com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+            com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -80,7 +80,7 @@ public class UserGetStatusClientJspTest extends com.sun.ts.tests.jta.ee.usertran
               getstatus_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = UserGetStatusClient.class.getResource("/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = UserGetStatusClient.class.getResource("/getstatus_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               getstatus_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -102,17 +102,17 @@ public class UserGetStatusClientJspTest extends com.sun.ts.tests.jta.ee.usertran
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/");
-            if(earResURL != null) {
-              getstatus_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/.ear.sun-application.xml");
-            if(earResURL != null) {
-              getstatus_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(getstatus_jsp_vehicle_ear, UserGetStatusClient.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/");
+            // if(earResURL != null) {
+            //   getstatus_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   getstatus_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(getstatus_jsp_vehicle_ear, UserGetStatusClient.class, earResURL);
         return getstatus_jsp_vehicle_ear;
         }
 

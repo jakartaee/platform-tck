@@ -77,11 +77,11 @@ public class UserSetRollbackOnlyClientEjbTest extends com.sun.ts.tests.jta.ee.us
             if(resURL != null) {
               setrollbackonly_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = UserSetRollbackOnlyClient.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              setrollbackonly_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
+            // resURL = UserSetRollbackOnlyClient.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            // if(resURL != null) {
+            //   setrollbackonly_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+            // }
             setrollbackonly_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + UserSetRollbackOnlyClient.class.getName() + "\n"), "MANIFEST.MF");
             archiveProcessor.processClientArchive(setrollbackonly_ejb_vehicle_client, UserSetRollbackOnlyClient.class, resURL);
 
@@ -94,15 +94,15 @@ public class UserSetRollbackOnlyClientEjbTest extends com.sun.ts.tests.jta.ee.us
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.lib.harness.EETest.Fault.class,
                 com.sun.ts.tests.jta.ee.common.Transact.class,
-                                    com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-                                    com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
                 com.sun.ts.tests.jta.ee.usertransaction.setrollbackonly.UserSetRollbackOnlyClient.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                                    com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
                 com.sun.ts.lib.harness.EETest.class,
                 com.sun.ts.lib.harness.ServiceEETest.class,
                 com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -115,7 +115,7 @@ public class UserSetRollbackOnlyClientEjbTest extends com.sun.ts.tests.jta.ee.us
               setrollbackonly_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = UserSetRollbackOnlyClient.class.getResource("/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = UserSetRollbackOnlyClient.class.getResource("/setrollbackonly_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               setrollbackonly_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -132,13 +132,13 @@ public class UserSetRollbackOnlyClientEjbTest extends com.sun.ts.tests.jta.ee.us
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/");
-            if(earResURL != null) {
-              setrollbackonly_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            // // The application.xml descriptor
+            // URL earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/");
+            // if(earResURL != null) {
+            //   setrollbackonly_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
             // The sun-application.xml descriptor
-            earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/.ear.sun-application.xml");
+            URL earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/setrollbackonly_ejb_vehicle_client.jar.sun-application-client.xml");
             if(earResURL != null) {
               setrollbackonly_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

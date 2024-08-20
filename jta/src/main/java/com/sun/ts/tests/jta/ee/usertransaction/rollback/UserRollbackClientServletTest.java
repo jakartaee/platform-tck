@@ -61,14 +61,14 @@ public class UserRollbackClientServletTest extends com.sun.ts.tests.jta.ee.usert
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.jta.ee.common.Transact.class,
-                                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+            com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
             com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
-                                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+            com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
             com.sun.ts.tests.jta.ee.usertransaction.rollback.UserRollbackClient.class,
-                                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+            com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -81,7 +81,7 @@ public class UserRollbackClientServletTest extends com.sun.ts.tests.jta.ee.usert
               rollback_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = UserRollbackClient.class.getResource("/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = UserRollbackClient.class.getResource("/rollback_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               rollback_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -98,17 +98,17 @@ public class UserRollbackClientServletTest extends com.sun.ts.tests.jta.ee.usert
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/");
-            if(earResURL != null) {
-              rollback_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/.ear.sun-application.xml");
-            if(earResURL != null) {
-              rollback_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(rollback_servlet_vehicle_ear, UserRollbackClient.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/");
+            // if(earResURL != null) {
+            //   rollback_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   rollback_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(rollback_servlet_vehicle_ear, UserRollbackClient.class, earResURL);
         return rollback_servlet_vehicle_ear;
         }
 

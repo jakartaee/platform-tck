@@ -94,15 +94,15 @@ public class UserCommitClientEjbTest extends com.sun.ts.tests.jta.ee.usertransac
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.lib.harness.EETest.Fault.class,
                 com.sun.ts.tests.jta.ee.common.Transact.class,
-                                    com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-                                    com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
                 com.sun.ts.tests.jta.ee.usertransaction.commit.UserCommitClient.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                                    com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
                 com.sun.ts.lib.harness.EETest.class,
                 com.sun.ts.lib.harness.ServiceEETest.class,
                 com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -132,13 +132,13 @@ public class UserCommitClientEjbTest extends com.sun.ts.tests.jta.ee.usertransac
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/");
-            if(earResURL != null) {
-              commit_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            // // The application.xml descriptor
+            // URL earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/");
+            // if(earResURL != null) {
+            //   commit_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
             // The sun-application.xml descriptor
-            earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/.ear.sun-application.xml");
+            URL earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/commit_ejb_vehicle_client.jar.sun-application-client.xml");
             if(earResURL != null) {
               commit_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

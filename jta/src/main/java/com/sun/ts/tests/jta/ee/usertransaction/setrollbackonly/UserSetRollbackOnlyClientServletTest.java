@@ -61,14 +61,14 @@ public class UserSetRollbackOnlyClientServletTest extends com.sun.ts.tests.jta.e
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.jta.ee.common.Transact.class,
-                                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+            com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
             com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
-                                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+            com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
             com.sun.ts.tests.jta.ee.usertransaction.setrollbackonly.UserSetRollbackOnlyClient.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+            com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -81,7 +81,7 @@ public class UserSetRollbackOnlyClientServletTest extends com.sun.ts.tests.jta.e
               setrollbackonly_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = UserSetRollbackOnlyClient.class.getResource("/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = UserSetRollbackOnlyClient.class.getResource("/setrollbackonly_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               setrollbackonly_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -98,17 +98,17 @@ public class UserSetRollbackOnlyClientServletTest extends com.sun.ts.tests.jta.e
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/");
-            if(earResURL != null) {
-              setrollbackonly_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/.ear.sun-application.xml");
-            if(earResURL != null) {
-              setrollbackonly_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(setrollbackonly_servlet_vehicle_ear, UserSetRollbackOnlyClient.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/");
+            // if(earResURL != null) {
+            //   setrollbackonly_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   setrollbackonly_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(setrollbackonly_servlet_vehicle_ear, UserSetRollbackOnlyClient.class, earResURL);
         return setrollbackonly_servlet_vehicle_ear;
         }
 

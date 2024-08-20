@@ -81,9 +81,9 @@ public class ClientEjblitejsfTest extends com.sun.ts.tests.jta.ee.transactional.
               transactional_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/faces-config.xml");
             if(warResURL != null) {
-              transactional_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
+              transactional_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "faces-config.xml");
             }
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle.xhtml");

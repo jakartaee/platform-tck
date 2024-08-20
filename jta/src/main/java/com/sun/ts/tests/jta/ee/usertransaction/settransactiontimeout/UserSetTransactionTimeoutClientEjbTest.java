@@ -77,11 +77,11 @@ public class UserSetTransactionTimeoutClientEjbTest extends com.sun.ts.tests.jta
             if(resURL != null) {
               settransactiontimeout_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = UserSetTransactionTimeoutClient.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              settransactiontimeout_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
+            // resURL = UserSetTransactionTimeoutClient.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            // if(resURL != null) {
+            //   settransactiontimeout_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+            // }
             settransactiontimeout_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + UserSetTransactionTimeoutClient.class.getName() + "\n"), "MANIFEST.MF");
             archiveProcessor.processClientArchive(settransactiontimeout_ejb_vehicle_client, UserSetTransactionTimeoutClient.class, resURL);
 
@@ -94,15 +94,15 @@ public class UserSetTransactionTimeoutClientEjbTest extends com.sun.ts.tests.jta
                 com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
                 com.sun.ts.lib.harness.EETest.Fault.class,
                 com.sun.ts.tests.jta.ee.common.Transact.class,
-                                    com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
                 com.sun.ts.tests.jta.ee.usertransaction.settransactiontimeout.UserSetTransactionTimeoutClient.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
                 com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-                                    com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
                 com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                                    com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
                 com.sun.ts.lib.harness.EETest.class,
                 com.sun.ts.lib.harness.ServiceEETest.class,
                 com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -115,7 +115,7 @@ public class UserSetTransactionTimeoutClientEjbTest extends com.sun.ts.tests.jta
               settransactiontimeout_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = UserSetTransactionTimeoutClient.class.getResource("/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = UserSetTransactionTimeoutClient.class.getResource("/settransactiontimeout_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               settransactiontimeout_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -131,14 +131,13 @@ public class UserSetTransactionTimeoutClientEjbTest extends com.sun.ts.tests.jta
             settransactiontimeout_ejb_vehicle_ear.addAsModule(settransactiontimeout_ejb_vehicle_client);
 
 
-
-            // The application.xml descriptor
-            URL earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/");
-            if(earResURL != null) {
-              settransactiontimeout_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            // // The application.xml descriptor
+            // URL earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/");
+            // if(earResURL != null) {
+            //   settransactiontimeout_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
             // The sun-application.xml descriptor
-            earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/.ear.sun-application.xml");
+            URL earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/settransactiontimeout_ejb_vehicle_client.jar.sun-application-client.xml");
             if(earResURL != null) {
               settransactiontimeout_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

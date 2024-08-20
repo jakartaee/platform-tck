@@ -74,7 +74,7 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
             com.sun.ts.tests.jta.ee.txpropagationtest.Client.class,
             com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class,
                                 // com.sun.ts.tests.jta.ee.txpropagationtest.DBSysException.class,
-            com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
+            com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
@@ -82,12 +82,12 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
                                 com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("servlet_vehicle_web.xml");
+            URL warResURL = Client.class.getResource("/servlet_vehicle_web.xml");
             if(warResURL != null) {
               jta_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/jta_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               jta_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -96,27 +96,27 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
 
         // Ejb
             // the jar with the correct archive name
-            JavaArchive jta_ee_txpropagate3_ejb = ShrinkWrap.create(JavaArchive.class, "jta_ee_txpropagate3_ejb.jar");
+            JavaArchive jta_ee_txpropagate2_ejb = ShrinkWrap.create(JavaArchive.class, "jta_ee_txpropagate2_ejb.jar");
             // The class files
-            jta_ee_txpropagate3_ejb.addClasses(
+            jta_ee_txpropagate2_ejb.addClasses(
                 // com.sun.ts.tests.jta.ee.txpropagationtest.DBAppException.class,
                                     // com.sun.ts.tests.jta.ee.txpropagationtest.DBSysException.class,
                                     com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
                 com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class,
-                com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
+                com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome.class,
                                     com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("//vehicle/servlet/servlet_vehicle_ejb.xml");
+            URL ejbResURL = Client.class.getResource("/jta_ee_txpropagate2_ejb.xml");
             if(ejbResURL != null) {
-              jta_ee_txpropagate3_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+              jta_ee_txpropagate2_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("//vehicle/servlet/servlet_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/jta_ee_txpropagate2_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
-              jta_ee_txpropagate3_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+              jta_ee_txpropagate2_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
-            archiveProcessor.processEjbArchive(jta_ee_txpropagate3_ejb, Client.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jta_ee_txpropagate2_ejb, Client.class, ejbResURL);
 
         // Ear
             EnterpriseArchive jta_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "jta_servlet_vehicle.ear");
@@ -125,23 +125,22 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
 
             // The component jars built by the package target
             // jta_servlet_vehicle_ear.addAsModule(jta_ee_txpropagate1_ejb);
-            // jta_servlet_vehicle_ear.addAsModule(jta_ee_txpropagate2_ejb);
-            jta_servlet_vehicle_ear.addAsModule(jta_ee_txpropagate3_ejb);
+            jta_servlet_vehicle_ear.addAsModule(jta_ee_txpropagate2_ejb);
+            // jta_servlet_vehicle_ear.addAsModule(jta_ee_txpropagate3_ejb);
             jta_servlet_vehicle_ear.addAsModule(jta_servlet_vehicle_web);
 
 
-
-            // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/");
-            if(earResURL != null) {
-              jta_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jta_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(jta_servlet_vehicle_ear, Client.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/");
+            // if(earResURL != null) {
+            //   jta_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   jta_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(jta_servlet_vehicle_ear, Client.class, earResURL);
         return jta_servlet_vehicle_ear;
         }
 

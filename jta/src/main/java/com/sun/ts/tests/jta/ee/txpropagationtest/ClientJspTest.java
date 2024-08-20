@@ -73,7 +73,7 @@ public class ClientJspTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
             com.sun.ts.tests.jta.ee.txpropagationtest.Client.class,
             com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class,
                                 // com.sun.ts.tests.jta.ee.txpropagationtest.DBSysException.class,
-            com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
+            com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
@@ -85,16 +85,18 @@ public class ClientJspTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
             if(warResURL != null) {
               jta_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/jsp_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              jta_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
+
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
             jta_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
             jta_jsp_vehicle_web.addAsWebResource(warResURL, "/jsp_vehicle.jsp");
+            
+            // The sun-web.xml descriptor
+            warResURL = Client.class.getResource("/jta_jsp_vehicle_web.war.sun-web.xml");
+            if(warResURL != null) {
+              jta_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
+            }
 
            archiveProcessor.processWebArchive(jta_jsp_vehicle_web, Client.class, warResURL);
 
@@ -107,16 +109,16 @@ public class ClientJspTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
                                     // com.sun.ts.tests.jta.ee.txpropagationtest.DBSysException.class,
                                     com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
                 com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class,
-                com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
+                com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome.class,
                                     com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("//vehicle/jsp/jsp_vehicle_ejb.xml");
+            URL ejbResURL = Client.class.getResource("/jta_ee_txpropagate3_ejb.xml");
             if(ejbResURL != null) {
               jta_ee_txpropagate3_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("//vehicle/jsp/jsp_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/jta_ee_txpropagate3_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               jta_ee_txpropagate3_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -135,17 +137,17 @@ public class ClientJspTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
 
 
 
-            // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/");
-            if(earResURL != null) {
-              jta_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jta_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(jta_jsp_vehicle_ear, Client.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/");
+            // if(earResURL != null) {
+            //   jta_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   jta_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(jta_jsp_vehicle_ear, Client.class, earResURL);
         return jta_jsp_vehicle_ear;
         }
 

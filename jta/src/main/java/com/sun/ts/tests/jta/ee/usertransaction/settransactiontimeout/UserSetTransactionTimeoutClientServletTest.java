@@ -61,14 +61,14 @@ public class UserSetTransactionTimeoutClientServletTest extends com.sun.ts.tests
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.jta.ee.common.Transact.class,
-                                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+            com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
             com.sun.ts.tests.jta.ee.usertransaction.settransactiontimeout.UserSetTransactionTimeoutClient.class,
             com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
-                                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+            com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+            com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -81,7 +81,7 @@ public class UserSetTransactionTimeoutClientServletTest extends com.sun.ts.tests
               settransactiontimeout_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = UserSetTransactionTimeoutClient.class.getResource("/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = UserSetTransactionTimeoutClient.class.getResource("/settransactiontimeout_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               settransactiontimeout_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -98,17 +98,17 @@ public class UserSetTransactionTimeoutClientServletTest extends com.sun.ts.tests
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/");
-            if(earResURL != null) {
-              settransactiontimeout_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/.ear.sun-application.xml");
-            if(earResURL != null) {
-              settransactiontimeout_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(settransactiontimeout_servlet_vehicle_ear, UserSetTransactionTimeoutClient.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/");
+            // if(earResURL != null) {
+            //   settransactiontimeout_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   settransactiontimeout_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(settransactiontimeout_servlet_vehicle_ear, UserSetTransactionTimeoutClient.class, earResURL);
         return settransactiontimeout_servlet_vehicle_ear;
         }
 

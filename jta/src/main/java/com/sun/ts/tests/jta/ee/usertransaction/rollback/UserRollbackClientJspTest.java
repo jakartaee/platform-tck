@@ -80,7 +80,7 @@ public class UserRollbackClientJspTest extends com.sun.ts.tests.jta.ee.usertrans
               rollback_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = UserRollbackClient.class.getResource("/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = UserRollbackClient.class.getResource("/rollback_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               rollback_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -102,17 +102,17 @@ public class UserRollbackClientJspTest extends com.sun.ts.tests.jta.ee.usertrans
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/");
-            if(earResURL != null) {
-              rollback_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/.ear.sun-application.xml");
-            if(earResURL != null) {
-              rollback_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(rollback_jsp_vehicle_ear, UserRollbackClient.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/");
+            // if(earResURL != null) {
+            //   rollback_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   rollback_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(rollback_jsp_vehicle_ear, UserRollbackClient.class, earResURL);
         return rollback_jsp_vehicle_ear;
         }
 

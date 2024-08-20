@@ -102,17 +102,17 @@ public class UserBeginClientJspTest extends com.sun.ts.tests.jta.ee.usertransact
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserBeginClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/begin/");
-            if(earResURL != null) {
-              begin_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = UserBeginClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/begin/.ear.sun-application.xml");
-            if(earResURL != null) {
-              begin_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(begin_jsp_vehicle_ear, UserBeginClient.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = UserBeginClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/begin/");
+            // if(earResURL != null) {
+            //   begin_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = UserBeginClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/begin/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   begin_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(begin_jsp_vehicle_ear, UserBeginClient.class, earResURL);
         return begin_jsp_vehicle_ear;
         }
 

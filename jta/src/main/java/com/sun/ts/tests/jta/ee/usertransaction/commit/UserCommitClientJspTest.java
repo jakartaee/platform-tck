@@ -61,13 +61,13 @@ public class UserCommitClientJspTest extends com.sun.ts.tests.jta.ee.usertransac
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.jta.ee.common.Transact.class,
-                                com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+            com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
             com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-                                com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+            com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
             com.sun.ts.tests.jta.ee.usertransaction.commit.UserCommitClient.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-                                com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+            com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
@@ -80,7 +80,7 @@ public class UserCommitClientJspTest extends com.sun.ts.tests.jta.ee.usertransac
               commit_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = UserCommitClient.class.getResource("/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = UserCommitClient.class.getResource("/commit_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               commit_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -102,17 +102,17 @@ public class UserCommitClientJspTest extends com.sun.ts.tests.jta.ee.usertransac
 
 
 
-            // The application.xml descriptor
-            URL earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/");
-            if(earResURL != null) {
-              commit_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/.ear.sun-application.xml");
-            if(earResURL != null) {
-              commit_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            archiveProcessor.processEarArchive(commit_jsp_vehicle_ear, UserCommitClient.class, earResURL);
+            // // The application.xml descriptor
+            // URL earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/");
+            // if(earResURL != null) {
+            //   commit_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
+            // // The sun-application.xml descriptor
+            // earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   commit_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // archiveProcessor.processEarArchive(commit_jsp_vehicle_ear, UserCommitClient.class, earResURL);
         return commit_jsp_vehicle_ear;
         }
 

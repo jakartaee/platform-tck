@@ -117,11 +117,32 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
               jta_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/jta_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               jta_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
             archiveProcessor.processEjbArchive(jta_ejb_vehicle_ejb, Client.class, ejbResURL);
+
+
+            JavaArchive jta_ee_txpropagate1_ejb = ShrinkWrap.create(JavaArchive.class, "jta_ee_txpropagate1_ejb.jar");
+            // The class files
+            jta_ee_txpropagate1_ejb.addClasses(
+                com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
+                com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class,
+                com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome.class
+            );
+            // The ejb-jar.xml descriptor
+            ejbResURL = Client.class.getResource("/jta_ee_txpropagate1_ejb.xml");
+            if(ejbResURL != null) {
+              jta_ee_txpropagate1_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            }
+            // The sun-ejb-jar.xml file
+            ejbResURL = Client.class.getResource("/jta_ee_txpropagate1_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL != null) {
+              jta_ee_txpropagate1_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            }
+            archiveProcessor.processEjbArchive(jta_ee_txpropagate1_ejb, Client.class, ejbResURL);
+
 
         // Ear
             EnterpriseArchive jta_ejb_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "jta_ejb_vehicle.ear");
@@ -129,7 +150,7 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
             // Any libraries added to the ear
 
             // The component jars built by the package target
-            // jta_ejb_vehicle_ear.addAsModule(jta_ee_txpropagate1_ejb);
+            jta_ejb_vehicle_ear.addAsModule(jta_ee_txpropagate1_ejb);
             // jta_ejb_vehicle_ear.addAsModule(jta_ee_txpropagate2_ejb);
             // jta_ejb_vehicle_ear.addAsModule(jta_ee_txpropagate3_ejb);
             jta_ejb_vehicle_ear.addAsModule(jta_ejb_vehicle_ejb);
@@ -137,13 +158,13 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
 
 
 
-            // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/");
-            if(earResURL != null) {
-              jta_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            // // The application.xml descriptor
+            // URL earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/");
+            // if(earResURL != null) {
+            //   jta_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            // }
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/.ear.sun-application.xml");
+            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jta/ee/txpropagationtest/jta_ejb_vehicle_client.jar.sun-application-client.xml");
             if(earResURL != null) {
               jta_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
