@@ -38,7 +38,6 @@ import jakarta.mail.MailSessionDefinition;
 import jakarta.mail.Session;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceUnit;
-import jakarta.xml.ws.WebServiceRef;
 
 @MailSessionDefinition(name = "java:comp/myMailSession", host = "smtp.gmail.com", transportProtocol = "smtps", properties = {
     "mail.debug=true" })
@@ -62,9 +61,6 @@ public class TestAppClient extends EETest {
 
   @EJB
   static DataStoreRemote dataStore;
-
-  @WebServiceRef(name = "service/HelloService")
-  static HelloService service;
 
   @Resource(lookup = "java:app/jms/TestConnectionFactory")
   private static ConnectionFactory testFac;
@@ -226,32 +222,6 @@ public class TestAppClient extends EETest {
       }
     } catch (Exception e) {
       throw new Exception("EJBAnnotation test failed: " + e, e);
-    }
-  }
-
-  /**
-   * @testName: testWebServiceRefAnnotation
-   *
-   * @assertion_ids: JavaEE:SPEC:323
-   *
-   * @test_Strategy:
-   *
-   *                 We check that:
-   *
-   *                 - When the meta-data complete attribute is set to
-   *                 true,WebServiceRef annotation should be ignored - as it is
-   *                 one of the annotations to which metadata-complete is
-   *                 applicable.
-   *
-   */
-  public void testWebServiceRefAnnotation() throws Exception {
-    try {
-      logMsg("service" + service);
-      if (null != service) {
-        throw new Exception("WebServiceRefAnnotation test failed!");
-      }
-    } catch (Exception e) {
-      throw new Exception("WebServiceRefAnnotation test failed: " + e, e);
     }
   }
 

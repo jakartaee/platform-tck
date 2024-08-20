@@ -31,7 +31,6 @@ import com.sun.ts.tests.common.connector.whitebox.Debug;
 
 import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.work.WorkManager;
-import jakarta.xml.ws.WebServicePermission;
 
 public class PermissionDDWorkManager {
   private BootstrapContext bsc = null;
@@ -53,9 +52,7 @@ public class PermissionDDWorkManager {
   public void runTests() {
     debug("enterred runTests");
 
-    validateCustomPerm();
     validateCustomPermFromAppServer();
-    validateLocalGrantForCustomPerm();
     validateRequiredPermSet();
     validateMissingPermFails();
     validateRestrictedLocalPerm();
@@ -65,92 +62,6 @@ public class PermissionDDWorkManager {
     // doTCWork();
     // submitNestedXidWork();
     debug("leaving runTests");
-  }
-
-  public void validateCustomPerm() {
-    try {
-      // call a priviledged method
-      WebServicePermission perm = new WebServicePermission(
-          "CTSPermission1_name");
-      doCheckPermission(perm);
-
-      // we have perms so should get here
-      debug("validateCustomPerm():  CTSPermission1_name permission okay");
-      ConnectorStatus.getConnectorStatus()
-          .logState("SUCCESS:  validateCustomPerm passed.");
-    } catch (AccessControlException ex) {
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateCustomPerm(), throwing AccessControlException.");
-      debug(
-          "FAILURE:  CTSPermission1_name perm missing, throwing AccessControlException.");
-      Debug.printDebugStack(ex);
-    } catch (Exception ex) {
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateCustomPerm(), throwing unexpected Exception.");
-      Debug.printDebugStack(ex);
-    }
-
-    return;
-  }
-
-  public void validateCustomPermFromAppServer() {
-    try {
-      // call a priviledged method
-      WebServicePermission perm = new WebServicePermission(
-          "ConnectorPermission1_name2");
-      doCheckPermission(perm);
-
-      // we have perms set from within appserver as part of initial config
-      // and even though we did not set anything in our permissions.xml for
-      // ConnectorPermission1_name2, we should still make it here.
-      debug(
-          "validateCustomPermFromAppServer():  ConnectorPermission1_name2 permission okay");
-      ConnectorStatus.getConnectorStatus()
-          .logState("SUCCESS:  validateCustomPermFromAppServer passed.");
-    } catch (AccessControlException ex) {
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateCustomPermFromAppServer(), throwing AccessControlException.");
-      debug(
-          "FAILURE:  ConnectorPermission1_name2 perm missing, throwing AccessControlException.");
-      Debug.printDebugStack(ex);
-    } catch (Exception ex) {
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateCustomPermFromAppServer(), throwing unexpected Exception.");
-      Debug.printDebugStack(ex);
-    }
-
-    return;
-  }
-
-  public void validateLocalGrantForCustomPerm() {
-    try {
-      // call a priviledged method
-      WebServicePermission perm = new WebServicePermission(
-          "CTSPermission2_name");
-      doCheckPermission(perm);
-
-      // we have locally defined grant/perms (thru permissions.xml) so we should
-      // get here
-      debug(
-          "validateLocalGrantForCustomPerm():  CTSPermission2_name permission property granted AccessControlException.");
-      ConnectorStatus.getConnectorStatus()
-          .logState("SUCCESS:  validateLocalGrantForCustomPerm passed.");
-    } catch (AccessControlException ex) {
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateLocalGrantForCustomPerm(), throwing AccessControlException.");
-      debug(
-          "FAILURE:  CTSPermission2_name perm missing, throwing AccessControlException.");
-      Debug.printDebugStack(ex);
-    } catch (Exception ex) {
-      debug(
-          "FAILURE:  validateLocalGrantForCustomPerm(), throwing unexpected Exception.");
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateLocalGrantForCustomPerm(), throwing unexpected Exception.");
-      Debug.printDebugStack(ex);
-    }
-
-    debug("returning from validateLocalGrantForCustomPerm()");
-    return;
   }
 
   public void validateRequiredPermSet() {

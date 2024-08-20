@@ -45,7 +45,6 @@
         <module>ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
         <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
-        <module>ejb30-ws</module>
         <module>ejb32</module>
         <module>el</module>
         <module>el-tck</module>

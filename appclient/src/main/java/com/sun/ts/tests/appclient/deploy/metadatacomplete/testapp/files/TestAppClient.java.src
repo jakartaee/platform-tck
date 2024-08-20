@@ -30,7 +30,6 @@ import com.sun.javatest.Status;
 import jakarta.mail.Session;
 import jakarta.mail.MailSessionDefinition;
 import jakarta.ejb.EJB;
-import jakarta.xml.ws.WebServiceRef;
 import jakarta.annotation.sql.DataSourceDefinition;
 import jakarta.jms.JMSConnectionFactoryDefinition;
 import jakarta.jms.JMSDestinationDefinition;
@@ -76,8 +75,6 @@ public class TestAppClient extends EETest
   private static Session session;
   @EJB
   static DataStoreRemote dataStore;
-  @WebServiceRef(name="service/HelloService")
-  static HelloService service;
   @Resource(lookup="java:app/jms/TestConnectionFactory")
   private static ConnectionFactory testFac;
   @Resource(lookup="java:app/jms/TestQ")
@@ -265,36 +262,6 @@ public class TestAppClient extends EETest
 	    }
          catch (Exception e) {
             throw new Exception("EJBAnnotation test failed: " + e, e);
-	}
-    }
-	
-	/**
-     * @testName:  testWebServiceRefAnnotation
-     *
-     * @assertion_ids: JavaEE:SPEC:323
-     *
-     * @test_Strategy: 
-     *
-     *    We check that:
-     *
-     *      - When the meta-data complete attribute is set to true,WebServiceRef annotation should be ignored
-	 *      - as it is one of the annotations to which metadat-complete is applicable. 
-     *      
-     */
-    public void testWebServiceRefAnnotation() throws Exception {
-
-        try {
-            
-	    
-		//logMsg("datastore"+dataStore);
-        logMsg("service"+service);		
-        if(null != service){
-			throw new Exception("WebServiceRefAnnotation test failed!");
-		}
-            
-	    }
-         catch (Exception e) {
-            throw new Exception("WebServiceRefAnnotation test failed: " + e, e);
 	}
     }
 	

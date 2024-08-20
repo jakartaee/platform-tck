@@ -176,41 +176,6 @@ public class Client extends EETest {
   }
 
   /*
-   * @testName: ValidateLocalGrantForCustomPerm
-   *
-   * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
-   * JavaEE:SPEC:304;
-   *
-   * @test_Strategy: This validates that we have a particular grant under the
-   * following conditions: - using locally declared Permission impl
-   * (SecurityPermission) note: SecurityPermission does NOT have support for
-   * actions. - have declared grant in permissions.xml - have NO declared grant
-   * at higher app server level (e.g. server.policy etc) - within ejb, use
-   * AccessController.checkPermission() to confirm our permissons are as
-   * expected
-   *
-   */
-  public void ValidateLocalGrantForCustomPerm() throws Exception {
-    logTrace("Starting ValidateLocalGrantForCustomPerm test");
-
-    try {
-      if (null == System.getSecurityManager()) {
-        // security manager is NOT enabled and must be for these tests
-        logMsg(SEC_MGR_WARNING);
-        throw new Exception(SEC_MGR_WARNING);
-      }
-
-      if (!ejbref.validateLocalGrantForCustomPerm()) {
-        throw new Exception("ValidateLocalGrantForCustomPerm test failed");
-      }
-    } catch (Exception e) {
-      throw new Exception("ValidateLocalGrantForCustomPerm test failed:", e);
-    }
-
-    logMsg("SUCCESS:  ValidateLocalGrantForCustomPerm Passed");
-  }
-
-  /*
    * @testName: ValidateLocalGrantForCustomPermInACC
    *
    * @assertion_ids: JavaEE:SPEC:292; JavaEE:SPEC:293; JavaEE:SPEC:303;
