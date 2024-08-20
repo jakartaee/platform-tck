@@ -98,27 +98,6 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.sun.xml.ws</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>hello-service-testapp</id>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <wsdlDirectory>${project.basedir}/src/main/java/com/sun/ts/tests/appclient/deploy/metadatacomplete/testapp/</wsdlDirectory>
-                            <wsdlFiles>
-                                <wsdlFile>HelloService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <packageName>com.sun.ts.tests.appclient.deploy.metadatacomplete.testapp</packageName>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 

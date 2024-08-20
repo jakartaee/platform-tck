@@ -52,11 +52,8 @@ public class PermissionDDWorkManager {
   public void runTests() {
     debug("enterred runTests");
 
-    validateCustomPermFromAppServer();
     validateRequiredPermSet();
-    validateMissingPermFails();
     validateRestrictedLocalPerm();
-    validateLocalPermsInvalidName();
 
     // doWork();
     // doTCWork();
@@ -109,35 +106,6 @@ public class PermissionDDWorkManager {
     return;
   }
 
-  public void validateMissingPermFails() {
-    try {
-      // call a non-priviledged method
-      WebServicePermission perm = new WebServicePermission(
-          "CTSPermission3_name");
-      doCheckPermission(perm);
-
-      // we do NOT have perms for this perm with name "CTSPermission3_name" so
-      // should NOT get here
-      ConnectorStatus.getConnectorStatus()
-          .logState("FAILURE:  CTSPermission3_name permission okay");
-    } catch (AccessControlException ex) {
-      debug("SUCCESS:  CTSPermission3_name doesnt exist and was caught.");
-      ConnectorStatus.getConnectorStatus().logState(
-          "SUCCESS:  CTSPermission3_name doesnt exist and was caught.");
-      ConnectorStatus.getConnectorStatus()
-          .logState("SUCCESS:  validateMissingPermFails passed.");
-      Debug.printDebugStack(ex);
-    } catch (Exception ex) {
-      debug("FAILURE:  validateMissingPermFails threw unexpected exception.");
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateMissingPermFails threw unexpected exception.");
-      Debug.printDebugStack(ex);
-    }
-
-    debug("returning from validateMissingPermFails()");
-    return;
-  }
-
   public void validateRestrictedLocalPerm() {
     try {
       // call a priviledged method
@@ -170,71 +138,6 @@ public class PermissionDDWorkManager {
     }
 
     debug("returning from validateRestrictedLocalPerm()");
-    return;
-  }
-
-  public void validateLocalPermsInvalidName() {
-    try {
-      // call a priviledged method that does not exist
-      WebServicePermission secPerm = new WebServicePermission(
-          "NonExistingName");
-
-      try {
-        doCheckPermission(secPerm);
-        // should NOT get here
-        debug(
-            "FAILURE:  validateLocalPermsInvalidName() did not throw expected AccessControlException.");
-        ConnectorStatus.getConnectorStatus()
-            .logState("FAILURE:  validateLocalPermsInvalidName().");
-        return;
-      } catch (AccessControlException ex) {
-        // should get here.
-        ConnectorStatus.getConnectorStatus().logState(
-            "SUCCESS:  validateLocalPermsInvalidName() threw expected AccessControlException");
-      }
-      // next call a priviledged method that does exist
-      try {
-        // call a priviledged method - that exists only in permissions.xml
-        WebServicePermission perm = new WebServicePermission(
-            "CTSPermission_second_name");
-        doCheckPermission(perm);
-
-        // should get here.
-        // we have locally defined grant/perms (thru permissions.xml) so we
-        // should get here
-        debug(
-            "CTSPermission_second_name permission property granted AccessControlException.");
-      } catch (AccessControlException ex) {
-        // should NOT get here
-        debug(
-            "FAILURE:  validateLocalPermsInvalidName() threw unexpected exception.");
-        ConnectorStatus.getConnectorStatus().logState(
-            "FAILURE:  validateLocalPermsInvalidName() threw unexpected exception.");
-        Debug.printDebugStack(ex);
-        return;
-      } catch (Exception ex) {
-        // should NOT get here
-        debug(
-            "FAILURE:  validateLocalPermsInvalidName had unexpeted exception.");
-        ConnectorStatus.getConnectorStatus().logState(
-            "FAILURE:  validateLocalPermsInvalidName had unexpeted exception.");
-        Debug.printDebugStack(ex);
-        return;
-      }
-
-      debug("SUCCESS:  validateLocalPermsInvalidName passed.");
-      ConnectorStatus.getConnectorStatus()
-          .logState("SUCCESS:  validateLocalPermsInvalidName passed.");
-
-    } catch (Exception ex) {
-      debug(
-          "FAILURE:  validateLocalPermsInvalidName had unexpected exception.");
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateLocalPermsInvalidName had unexpected exception.");
-      ex.printStackTrace();
-    }
-
-    debug("returning from validateLocalPermsInvalidName()");
     return;
   }
 
