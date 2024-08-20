@@ -47,11 +47,6 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ejb30-ws</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>servlet</artifactId>
         </dependency>
         <dependency>
@@ -130,67 +125,6 @@
                 <configuration>
                     <skip>true</skip>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>com.sun.xml.ws</groupId>
-                <artifactId>jaxws-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>hello-service-clientview</id>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <sei>com.sun.ts.tests.ejb30.webservice.clientview.HelloImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.directory}/generated-sources/wsdl/com/sun/ts/tests/ejb30/webservice/clientview</resourceDestDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>hello-service-interceptor</id>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <sei>com.sun.ts.tests.ejb30.webservice.interceptor.HelloImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.directory}/generated-sources/wsdl/com/sun/ts/tests/ejb30/webservice/interceptor</resourceDestDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>hello-service-wscontext</id>
-                        <goals>
-                            <goal>wsgen</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                        <configuration>
-                            <sei>com.sun.ts.tests.ejb30.webservice.wscontext.HelloImpl</sei>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <genWsdl>true</genWsdl>
-                            <resourceDestDir>${project.build.directory}/generated-sources/wsdl/com/sun/ts/tests/ejb30/webservice/wscontext</resourceDestDir>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>ws-services</id>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <phase>process-sources</phase>
-                        <configuration>
-                            <sourceDestDir>${project.build.directory}/generated-sources/</sourceDestDir>
-                            <staleFile>${jaxwsStaleDirectory}/com/sun/ts/tests/ejb30/webservice</staleFile>
-                            <wsdlFiles>
-                                <wsdlFile>${project.build.directory}/generated-sources/wsdl/com/sun/ts/tests/ejb30/webservice/clientview/HelloService.wsdl</wsdlFile>
-                                <wsdlFile>${project.build.directory}/generated-sources/wsdl/com/sun/ts/tests/ejb30/webservice/interceptor/HelloService.wsdl</wsdlFile>
-                                <wsdlFile>${project.build.directory}/generated-sources/wsdl/com/sun/ts/tests/ejb30/webservice/wscontext/HelloService.wsdl</wsdlFile>
-                            </wsdlFiles>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
