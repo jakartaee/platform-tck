@@ -20,7 +20,7 @@
         <glassfish.version>7.0.0-M10</glassfish.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <weld.version>5.0.0.SP2</weld.version>
+        <weld.version>5.1.2.Final</weld.version>
 
     </properties>
 
