@@ -113,7 +113,6 @@ public class Client7AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
                 com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleIF.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
                 ee.jakarta.tck.persistence.common.PMClientBase.class,
-                ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client7.ExpectedResult.class,
                 ee.jakarta.tck.persistence.common.schema30.Util.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleBean.class,

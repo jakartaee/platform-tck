@@ -70,7 +70,6 @@ public class Client4PuservletTest extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF.class,
             com.sun.ts.tests.common.vehicle.puservlet.PUServletVehicle.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client4.ExpectedResult.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,

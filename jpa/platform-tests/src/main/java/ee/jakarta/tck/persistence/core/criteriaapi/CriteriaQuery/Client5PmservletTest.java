@@ -76,7 +76,6 @@ public class Client5PmservletTest extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
             ee.jakarta.tck.persistence.common.schema30.Util.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client5.ExpectedResult.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,

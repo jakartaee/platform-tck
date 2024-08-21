@@ -117,7 +117,6 @@ public class Client5AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
                 ee.jakarta.tck.persistence.common.schema30.Util.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleBean.class,
-                ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client5.ExpectedResult.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
                 com.sun.ts.lib.harness.EETest.class,
                 com.sun.ts.lib.harness.ServiceEETest.class,

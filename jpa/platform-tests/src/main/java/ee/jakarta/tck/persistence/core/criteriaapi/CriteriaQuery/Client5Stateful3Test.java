@@ -117,7 +117,6 @@ public class Client5Stateful3Test extends ee.jakarta.tck.persistence.core.criter
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleBean.class,
                 com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleIF.class,
-                ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client5.ExpectedResult.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
                 com.sun.ts.lib.harness.EETest.class,
                 com.sun.ts.lib.harness.ServiceEETest.class,

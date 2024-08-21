@@ -76,7 +76,6 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
             ee.jakarta.tck.persistence.common.schema30.Util.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client2.ExpectedResult.class,
             ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client2.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,

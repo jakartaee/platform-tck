@@ -114,7 +114,6 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
                 ee.jakarta.tck.persistence.common.PMClientBase.class,
                 ee.jakarta.tck.persistence.common.schema30.Util.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-                ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client2.ExpectedResult.class,
                 ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client2.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
                 com.sun.ts.tests.common.vehicle.stateless3.Stateless3VehicleBean.class,

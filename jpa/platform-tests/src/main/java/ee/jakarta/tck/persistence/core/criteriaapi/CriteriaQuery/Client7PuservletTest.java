@@ -73,7 +73,6 @@ public class Client7PuservletTest extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client7.ExpectedResult.class,
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
             ee.jakarta.tck.persistence.common.schema30.Util.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
