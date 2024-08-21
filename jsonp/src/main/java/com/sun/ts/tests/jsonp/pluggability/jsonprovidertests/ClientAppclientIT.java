@@ -120,8 +120,8 @@ public class ClientAppclientIT extends ServiceEETest {
 
   static final String VEHICLE_ARCHIVE = "jsonprovidertests_servlet_vehicle";
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createAppclientDeployment() throws Exception {
 
