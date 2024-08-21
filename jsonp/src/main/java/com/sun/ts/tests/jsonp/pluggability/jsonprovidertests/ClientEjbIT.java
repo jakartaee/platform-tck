@@ -79,6 +79,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 
 import java.lang.System.Logger;
 
@@ -118,35 +120,15 @@ public class ClientEjbIT extends ServiceEETest {
 
   }
 
-  static final String VEHICLE_ARCHIVE = "jsonprovidertests_servlet_vehicle";
+  static final String VEHICLE_ARCHIVE = "jsonprovidertests_ejb_vehicle";
   
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createEjbDeployment() throws Exception {
+  public static EnterpriseArchive createEjbDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) throws Exception {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
-  
-    WebArchive warArchive = ShrinkWrap.create(WebArchive.class, "jsonprovidertests_servlet_vehicle_web.war");
-    warArchive.addClass(ClientEjbIT.class)
-      .addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
-      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Data.class)
-      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedReader.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedWriter.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyJsonLocation.class);
-
-    URL jsonURL = ClientEjbIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonArrayWithAllTypesOfData.json");
-    warArchive.addAsWebInfResource(jsonURL, "classes/jsonArrayWithAllTypesOfData.json");
-    jsonURL = ClientEjbIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonObjectWithAllTypesOfData.json");
-    warArchive.addAsWebInfResource(jsonURL, "classes/jsonObjectWithAllTypesOfData.json");
-    URL webXML = ClientEjbIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/servlet_vehicle_web.xml");
-    warArchive.setWebXML(webXML);
-
+    
     JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class)
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGeneratorFactory.class)
@@ -159,10 +141,71 @@ public class ClientEjbIT extends ServiceEETest {
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)     
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
-    warArchive.addAsLibrary(jarArchive);
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_servlet_vehicle.ear");
-    ear.addAsModule(warArchive);
+
+    JavaArchive jsonprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_client.jar");
+    // The class files
+    jsonprovidertests_ejb_vehicle_client.addClasses(
+        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+        com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.ServiceEETest.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.tests.common.vehicle.VehicleClient.class
+    );
+
+    // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
+    URL resURL = ClientEjbIT.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
+    if(resURL != null) {
+      jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+    }
+    jsonprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbIT.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processClientArchive(jsonprovidertests_ejb_vehicle_client, ClientEjbIT.class, resURL);
+
+
+    JavaArchive jsonprovidertests_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_ejb.jar");
+    // The class files
+    jsonprovidertests_ejb_vehicle_ejb.addClasses(
+        com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
+        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.ServiceEETest.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.tests.common.vehicle.VehicleClient.class,
+        com.sun.ts.tests.jsonp.common.JSONP_Data.class,
+        com.sun.ts.tests.jsonp.common.JSONP_Util.class,
+        com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class,
+        com.sun.ts.tests.jsonp.common.MyBufferedReader.class,
+        com.sun.ts.tests.jsonp.common.MyBufferedWriter.class,
+        com.sun.ts.tests.jsonp.common.MyJsonLocation.class,
+        ClientEjbIT.class       
+    );
+    // The ejb-jar.xml descriptor
+    URL ejbResURL = ClientEjbIT.class.getResource("/ejb_vehicle_ejb.xml");
+    if(ejbResURL != null) {
+      jsonprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+    }
+    // The sun-ejb-jar.xml file
+    ejbResURL = ClientEjbIT.class.getResource("/jsonprovidertests_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+    if(ejbResURL != null) {
+      jsonprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+    }
+    archiveProcessor.processEjbArchive(jsonprovidertests_ejb_vehicle_ejb, ClientEjbIT.class, ejbResURL);
+
+
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_ejb_vehicle.ear");
+    ear.addAsModule(jsonprovidertests_ejb_vehicle_client);
+    ear.addAsModule(jsonprovidertests_ejb_vehicle_ejb);
+    ear.addAsLibrary(jarArchive);
     return ear;
 
   }

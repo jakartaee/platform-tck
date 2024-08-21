@@ -128,7 +128,7 @@
             <url>https://jakarta.oss.sonatype.org/content/repositories/staging/</url>
         </repository>
     </repositories>
-    
+
     <build>
         <plugins>
             <!-- do not publish this artifact to Maven repositories -->

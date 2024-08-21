@@ -118,7 +118,7 @@ public class ClientAppclientIT extends ServiceEETest {
 
   }
 
-  static final String VEHICLE_ARCHIVE = "jsonprovidertests_servlet_vehicle";
+  static final String VEHICLE_ARCHIVE = "jsonprovidertests_appclient_vehicle";
   
   @TargetsContainer("tck-appclient")
   @OverProtocol("appclient")
@@ -127,12 +127,12 @@ public class ClientAppclientIT extends ServiceEETest {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
   
-    WebArchive warArchive = ShrinkWrap.create(WebArchive.class, "jsonprovidertests_servlet_vehicle_web.war");
-    warArchive.addClass(ClientAppclientIT.class)
-      .addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class)
+    JavaArchive jsonprovidertests_appclient_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_appclient_vehicle_client.jar");
+    jsonprovidertests_appclient_vehicle_client.addClass(ClientAppclientIT.class)
       .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
       .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
       .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
+      .addClass(com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class)
       .addClass(com.sun.ts.tests.jsonp.common.JSONP_Data.class)
       .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class)
       .addClass(com.sun.ts.tests.jsonp.common.MyBufferedReader.class)
@@ -141,11 +141,15 @@ public class ClientAppclientIT extends ServiceEETest {
       .addClass(com.sun.ts.tests.jsonp.common.MyJsonLocation.class);
 
     URL jsonURL = ClientAppclientIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonArrayWithAllTypesOfData.json");
-    warArchive.addAsWebInfResource(jsonURL, "classes/jsonArrayWithAllTypesOfData.json");
+    jsonprovidertests_appclient_vehicle_client.addAsResource(jsonURL, "classes/jsonArrayWithAllTypesOfData.json");
     jsonURL = ClientAppclientIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonObjectWithAllTypesOfData.json");
-    warArchive.addAsWebInfResource(jsonURL, "classes/jsonObjectWithAllTypesOfData.json");
-    URL webXML = ClientAppclientIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/servlet_vehicle_web.xml");
-    warArchive.setWebXML(webXML);
+    jsonprovidertests_appclient_vehicle_client.addAsResource(jsonURL, "classes/jsonObjectWithAllTypesOfData.json");
+
+    URL resURL = ClientAppclientIT.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+    if(resURL != null) {
+      jsonprovidertests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+      // TODO: replace client name with jsonprovidertests_appclient_vehicle_client
+    }
 
     JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class)
@@ -159,10 +163,11 @@ public class ClientAppclientIT extends ServiceEETest {
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)     
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
-    warArchive.addAsLibrary(jarArchive);
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_servlet_vehicle.ear");
-    ear.addAsModule(warArchive);
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_appclient_vehicle.ear");
+    ear.addAsModule(jsonprovidertests_appclient_vehicle_client);
+    ear.addAsLibrary(jarArchive);
+
     return ear;
 
   }

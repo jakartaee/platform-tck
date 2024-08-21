@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.Properties;
+import java.net.URL;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.tests.jsonp.api.common.JsonPTest;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
@@ -75,44 +76,53 @@ public class PatchJspTestsIT extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
-  static final String VEHICLE_ARCHIVE = "patchtests_servlet_vehicle";
+  static final String VEHICLE_ARCHIVE = "patchtests_jsp_vehicle";
   
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createJspDeployment() throws IOException {
   
-    WebArchive war = ShrinkWrap.create(WebArchive.class, "patchtests_servlet_vehicle_web.war");
-    war.addClass(PatchJspTestsIT.class);
-    war.addClass(CommonOperation.class);
-    war.addClass(PatchCreate.class);
+    WebArchive patchtests_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "patchtests_jsp_vehicle_web.war");
+    patchtests_jsp_vehicle_web.addClass(PatchJspTestsIT.class)
+    .addClass(CommonOperation.class)
+    .addClass(PatchCreate.class)
+    .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
+    .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
+    .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
+    .addClass(com.sun.ts.lib.harness.EETest.class)
+    .addClass(com.sun.ts.lib.harness.RemoteStatus.class)
+    .addClass(com.sun.ts.lib.harness.Status.class)
+    .addClass(com.sun.ts.lib.harness.ServiceEETest.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.ArrayBuilder.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.JsonAssert.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.JsonIO.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.JsonPTest.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.JsonValueType.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.MergeRFCObject.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.ObjectBuilder.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.PointerRFCObject.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.SimpleValues.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.TestFail.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.TestResult.class)
+    .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class);
 
-    war.addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class);
-    war.addClass(com.sun.ts.lib.harness.EETest.class);
-    war.addClass(com.sun.ts.lib.harness.RemoteStatus.class);
-    war.addClass(com.sun.javatest.Status.class);
-    war.addClass(com.sun.ts.lib.harness.ServiceEETest.class);
 
-    war.addClass(com.sun.ts.tests.jsonp.api.common.ArrayBuilder.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.JsonAssert.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.JsonIO.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.JsonPTest.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.JsonValueType.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.MergeRFCObject.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.ObjectBuilder.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.PointerRFCObject.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.SimpleValues.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.TestFail.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.TestResult.class);
-    war.addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class);
+    // The web.xml descriptor
+    URL warResURL = PatchJspTestsIT.class.getResource("jsp_vehicle_web.xml");
+    if(warResURL != null) {
+      patchtests_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+    }
 
-    war.setWebXML(PatchJspTestsIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
-
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
-    ear.addAsModule(war);
+    // Web content
+    warResURL = PatchJspTestsIT.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+    patchtests_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
+    warResURL = PatchJspTestsIT.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    patchtests_jsp_vehicle_web.addAsWebResource(warResURL, "/jsp_vehicle.jsp");    
+    
+    
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_jsp_vehicle.ear");
+    ear.addAsModule(patchtests_jsp_vehicle_web);
     return ear;
 
   }

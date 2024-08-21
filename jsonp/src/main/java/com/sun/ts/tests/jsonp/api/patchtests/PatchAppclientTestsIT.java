@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.Properties;
+import java.net.URL;
 import com.sun.ts.tests.jsonp.api.common.JsonPTest;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
 import com.sun.ts.lib.harness.ServiceEETest;
@@ -34,6 +35,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 
@@ -75,44 +77,39 @@ public class PatchAppclientTestsIT extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
-  static final String VEHICLE_ARCHIVE = "patchtests_servlet_vehicle";
+  static final String VEHICLE_ARCHIVE = "patchtests_appclient_vehicle";
   
   @TargetsContainer("tck-appclient")
   @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createAppclientDeployment() throws IOException {
   
-    WebArchive war = ShrinkWrap.create(WebArchive.class, "patchtests_servlet_vehicle_web.war");
-    war.addClass(PatchAppclientTestsIT.class);
-    war.addClass(CommonOperation.class);
-    war.addClass(PatchCreate.class);
+    JavaArchive patchtests_appclient_vehicle_client = ShrinkWrap.create(JavaArchive.class, "patchtests_appclient_vehicle_client.jar");
+    patchtests_appclient_vehicle_client.addClass(PatchAppclientTestsIT.class)
+      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
+      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
+      .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
+      .addClass(com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class)
+      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Data.class)
+      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class)
+      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedReader.class)
+      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedWriter.class)
+      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class)
+      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Data.class)
+      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class)
+      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class)
+      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedReader.class)
+      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedWriter.class)
+      .addClass(com.sun.ts.tests.jsonp.common.MyJsonLocation.class);
 
-    war.addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class);
-    war.addClass(com.sun.ts.lib.harness.EETest.class);
-    war.addClass(com.sun.ts.lib.harness.RemoteStatus.class);
-    war.addClass(com.sun.javatest.Status.class);
-    war.addClass(com.sun.ts.lib.harness.ServiceEETest.class);
+    URL resURL = PatchAppclientTestsIT.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+    if(resURL != null) {
+      patchtests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+      // TODO: replace client name with patchtests_appclient_vehicle_client
+    }
 
-    war.addClass(com.sun.ts.tests.jsonp.api.common.ArrayBuilder.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.JsonAssert.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.JsonIO.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.JsonPTest.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.JsonValueType.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.MergeRFCObject.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.ObjectBuilder.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.PointerRFCObject.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.SimpleValues.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.TestFail.class);
-    war.addClass(com.sun.ts.tests.jsonp.api.common.TestResult.class);
-    war.addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class);
-
-    war.setWebXML(PatchAppclientTestsIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
-
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
-    ear.addAsModule(war);
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_appclient_vehicle.ear");
+    ear.addAsModule(patchtests_appclient_vehicle_client);
     return ear;
 
   }

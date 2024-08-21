@@ -127,25 +127,27 @@ public class ClientServletIT extends ServiceEETest {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
   
-    WebArchive warArchive = ShrinkWrap.create(WebArchive.class, "jsonprovidertests_servlet_vehicle_web.war");
-    warArchive.addClass(ClientServletIT.class)
+    WebArchive jsonprovidertests_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jsonprovidertests_servlet_vehicle_web.war");
+    jsonprovidertests_servlet_vehicle_web.addClass(ClientServletIT.class)
       .addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class)
       .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
+      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)  
       .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
       .addClass(com.sun.ts.tests.jsonp.common.JSONP_Data.class)
       .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class)
       .addClass(com.sun.ts.tests.jsonp.common.MyBufferedReader.class)
       .addClass(com.sun.ts.tests.jsonp.common.MyBufferedWriter.class)
       .addClass(com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyJsonLocation.class);
+      .addClass(com.sun.ts.tests.jsonp.common.MyJsonLocation.class)
+      .addClass(com.sun.ts.lib.harness.EETest.class)
+      .addClass(com.sun.ts.lib.harness.ServiceEETest.class);
 
     URL jsonURL = ClientServletIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonArrayWithAllTypesOfData.json");
-    warArchive.addAsWebInfResource(jsonURL, "classes/jsonArrayWithAllTypesOfData.json");
+    jsonprovidertests_servlet_vehicle_web.addAsWebInfResource(jsonURL, "classes/jsonArrayWithAllTypesOfData.json");
     jsonURL = ClientServletIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonObjectWithAllTypesOfData.json");
-    warArchive.addAsWebInfResource(jsonURL, "classes/jsonObjectWithAllTypesOfData.json");
+    jsonprovidertests_servlet_vehicle_web.addAsWebInfResource(jsonURL, "classes/jsonObjectWithAllTypesOfData.json");
     URL webXML = ClientServletIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/servlet_vehicle_web.xml");
-    warArchive.setWebXML(webXML);
+    jsonprovidertests_servlet_vehicle_web.setWebXML(webXML);
 
     JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class)
@@ -159,10 +161,11 @@ public class ClientServletIT extends ServiceEETest {
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)     
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
-    warArchive.addAsLibrary(jarArchive);
+    jsonprovidertests_servlet_vehicle_web.addAsLibrary(jarArchive);
 
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_servlet_vehicle.ear");
-    ear.addAsModule(warArchive);
+    ear.addAsModule(jsonprovidertests_servlet_vehicle_web);
+    ear.addAsLibrary(jarArchive);
     return ear;
 
   }
