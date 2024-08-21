@@ -14,8 +14,10 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -28,6 +30,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("web")
 @Tag("tck-javatest")
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.cache.basicTests.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_cache_basicTests_pmservlet_vehicle";
 
@@ -91,6 +94,9 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.cache.b
             if(warResURL != null) {
               jpa_core_cache_basicTests_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
+
+            // Any libraries added to the war
+
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/cache/basicTests/jpa_core_cache_basicTests.jar");
             if(warResURL != null) {

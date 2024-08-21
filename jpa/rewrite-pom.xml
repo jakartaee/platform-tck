@@ -716,7 +716,7 @@
                     <dependency>
                         <groupId>jakarta.tck</groupId>
                         <artifactId>tck-rewrite-tools</artifactId>
-                        <version>1.0.0-M6</version>
+                        <version>1.0.0-M8</version>
                     </dependency>
                     <dependency>
                         <groupId>org.openrewrite</groupId>

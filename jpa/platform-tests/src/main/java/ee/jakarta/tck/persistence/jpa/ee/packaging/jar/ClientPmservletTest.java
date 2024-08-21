@@ -14,8 +14,10 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -28,6 +30,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("web")
 @Tag("tck-javatest")
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packaging.jar.Client {
     static final String VEHICLE_ARCHIVE = "jpa_ee_packaging_jar_pmservlet_vehicle";
 
@@ -90,19 +93,56 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packa
             if(warResURL != null) {
               jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
+
+            // Any libraries added to the war
+                URL libURL;
+                JavaArchive jpa_ee_packaging_jar2_lib = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_jar2.jar");
+                    // The class files
+                    jpa_ee_packaging_jar2_lib.addClasses(
+                        ee.jakarta.tck.persistence.jpa.ee.packaging.jar.C.class
+                    );
+
+
+                // The resources
+                        libURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/C.java");
+                        jpa_ee_packaging_jar2_lib.addAsResource(libURL, "/com/sun/ts/tests/jpa/ee/packaging/jar/C.java");
+
+                jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsLibrary(jpa_ee_packaging_jar2_lib);
+                JavaArchive jpa_ee_packaging_jar1_lib = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_jar1.jar");
+                    // The class files
+                    jpa_ee_packaging_jar1_lib.addClasses(
+                        ee.jakarta.tck.persistence.jpa.ee.packaging.jar.B.class
+                    );
+
+
+                // The resources
+                        libURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/B.java");
+                        jpa_ee_packaging_jar1_lib.addAsResource(libURL, "/com/sun/ts/tests/jpa/ee/packaging/jar/B.java");
+
+                jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsLibrary(jpa_ee_packaging_jar1_lib);
+                JavaArchive jpa_ee_packaging_jar_lib = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_jar.jar");
+                    // The class files
+                    jpa_ee_packaging_jar_lib.addClasses(
+                        ee.jakarta.tck.persistence.jpa.ee.packaging.jar.A.class
+                    );
+
+
+                // The resources
+                        libURL = Client.class.getResource("/persistence.xml");
+                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "/persistence.xml");
+                        libURL = Client.class.getResource("/orm.xml");
+                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "/orm.xml");
+                        libURL = Client.class.getResource("/myMappingFile.xml");
+                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "/myMappingFile.xml");
+                        libURL = Client.class.getResource("/myMappingFile2.xml");
+                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "/myMappingFile2.xml");
+                        libURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/A.java");
+                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "/com/sun/ts/tests/jpa/ee/packaging/jar/A.java");
+
+                jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsLibrary(jpa_ee_packaging_jar_lib);
+
+
             // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/jpa_ee_packaging_jar.jar");
-            if(warResURL != null) {
-              jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_packaging_jar.jar");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/jpa_ee_packaging_jar1.jar");
-            if(warResURL != null) {
-              jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_packaging_jar1.jar");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/jpa_ee_packaging_jar2.jar");
-            if(warResURL != null) {
-              jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_packaging_jar2.jar");
-            }
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
             if(warResURL != null) {
               jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");

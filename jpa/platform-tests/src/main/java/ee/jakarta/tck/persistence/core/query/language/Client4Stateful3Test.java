@@ -14,8 +14,10 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -28,6 +30,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("web")
 @Tag("tck-appclient")
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client4Stateful3Test extends ee.jakarta.tck.persistence.core.query.language.Client4 {
     static final String VEHICLE_ARCHIVE = "jpa_core_query_language_stateful3_vehicle";
 
