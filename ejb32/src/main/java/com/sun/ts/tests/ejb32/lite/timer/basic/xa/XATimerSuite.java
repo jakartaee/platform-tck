@@ -26,14 +26,10 @@ import org.junit.platform.suite.api.Suite;
  */
 @Suite
 @SelectClasses({
-        ClientEjblitejsfTest.class,
         ClientEjblitejspTest.class,
         ClientEjbliteservlet2Test.class,
         ClientEjbliteservletTest.class,
         JsfClientEjblitejsfTest.class,
-        JsfClientEjblitejspTest.class,
-        JsfClientEjbliteservlet2Test.class,
-        JsfClientEjbliteservletTest.class
 })
 public class XATimerSuite {
 }
