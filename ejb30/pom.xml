@@ -101,6 +101,16 @@
             <groupId>jakarta.servlet.jsp</groupId>
             <artifactId>jakarta.servlet.jsp-api</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-common</artifactId>
+            <version>${arquillian.jakarta.tck.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>tck-porting-lib</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

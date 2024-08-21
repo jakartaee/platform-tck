@@ -428,7 +428,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     }
   }
 
-  private static class ReadTask implements Runnable {
+  public static class ReadTask implements Runnable {
     private AccessTimeoutIF readBean;
 
     public ReadTask(AccessTimeoutIF b) {
@@ -449,7 +449,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     }
   }
 
-  private static class Read2Task implements Runnable {
+  public static class Read2Task implements Runnable {
     private AccessTimeoutIF read2Bean;
 
     public Read2Task(AccessTimeoutIF b) {
@@ -470,7 +470,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     }
   }
 
-  private static class WriteTask implements Runnable {
+  public static class WriteTask implements Runnable {
     private AccessTimeoutIF writeBean;
 
     public WriteTask(AccessTimeoutIF b) {
