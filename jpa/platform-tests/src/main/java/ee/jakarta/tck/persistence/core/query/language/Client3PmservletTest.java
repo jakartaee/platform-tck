@@ -14,8 +14,10 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -28,6 +30,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("web")
 @Tag("tck-javatest")
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.query.language.Client3 {
     static final String VEHICLE_ARCHIVE = "jpa_core_query_language_pmservlet_vehicle";
 
@@ -92,6 +95,9 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.query.
             if(warResURL != null) {
               jpa_core_query_language_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
+
+            // Any libraries added to the war
+
             // Web content
             warResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/query/language/jpa_core_query_language.jar");
             if(warResURL != null) {

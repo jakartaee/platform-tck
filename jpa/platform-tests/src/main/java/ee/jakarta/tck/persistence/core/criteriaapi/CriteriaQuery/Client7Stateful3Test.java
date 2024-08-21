@@ -14,8 +14,10 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -28,6 +30,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("web")
 @Tag("tck-appclient")
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client7Stateful3Test extends ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client7 {
     static final String VEHICLE_ARCHIVE = "jpa_core_criteriaapi_CriteriaQuery_stateful3_vehicle";
 
@@ -109,6 +112,7 @@ public class Client7Stateful3Test extends ee.jakarta.tck.persistence.core.criter
                 com.sun.ts.lib.harness.EETest.Fault.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
                 ee.jakarta.tck.persistence.common.PMClientBase.class,
+                ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client7.ExpectedResult.class,
                 ee.jakarta.tck.persistence.common.schema30.Util.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleBean.class,
