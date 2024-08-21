@@ -95,7 +95,6 @@ public class JsfClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.bb.asyn
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsBeanBase.class
             );
-            ejbbb_async_singleton_annotated_ejbliteservlet2_vehicle_web.addClass("com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsBeanBase$1.class");
 
             // The web.xml descriptor
             URL warResURL = JsfClient.class.getResource("ejbliteservlet2_vehicle_web.xml");

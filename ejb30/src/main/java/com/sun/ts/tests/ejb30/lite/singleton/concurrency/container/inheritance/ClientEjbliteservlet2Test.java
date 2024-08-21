@@ -82,8 +82,6 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.singl
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.inheritance.DefaultLockBeanBase.class
             );
-            ejblite_singleton_concurrency_container_inheritance_ejbliteservlet2_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.ClientBase$1.class");
-            ejblite_singleton_concurrency_container_inheritance_ejbliteservlet2_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.singleton.concurrency.common.JsfClientBase$1.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet2_vehicle_web.xml");

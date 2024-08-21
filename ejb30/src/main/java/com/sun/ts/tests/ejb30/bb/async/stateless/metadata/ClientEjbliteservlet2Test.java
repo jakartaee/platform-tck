@@ -90,7 +90,6 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.bb.async.s
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.ejb30.bb.async.stateless.metadata.EJBLiteServlet2Filter.class
             );
-            ejbbb_async_stateless_metadata_ejbliteservlet2_vehicle_web.addClass("com.sun.ts.tests.ejb30.bb.async.common.metadata.BeanClassLevel2BeanBase$1.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet2_vehicle_web.xml");

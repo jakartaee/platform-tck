@@ -61,7 +61,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.web.
             com.sun.ts.tests.ejb30.tx.common.web.TxServlet.class,
             com.sun.ts.tests.ejb30.tx.common.web.TestServlet.class
             );
-            tx_stateless_web_web.addClass("com.sun.ts.tests.ejb30.tx.common.web.TestServlet$1.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/tx/session/stateless/web/tx_stateless_web_web.xml");

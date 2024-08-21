@@ -94,7 +94,6 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.bb.async.statel
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsBeanBase.class
             );
-            ejbbb_async_stateless_annotated_ejblitejsp_vehicle_web.addClass("com.sun.ts.tests.ejb30.bb.async.common.annotated.AsyncAnnotatedMethodsBeanBase$1.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("/vehicle/ejblitejsp/ejblitejsp_vehicle_web.xml");

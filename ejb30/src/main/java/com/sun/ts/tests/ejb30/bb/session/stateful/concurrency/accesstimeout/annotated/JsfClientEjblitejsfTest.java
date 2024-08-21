@@ -90,13 +90,6 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.bb.session.s
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
-            bb_stateful_concurrency_accesstimeout_annotated_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$1.class");
-            bb_stateful_concurrency_accesstimeout_annotated_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$2.class");
-            bb_stateful_concurrency_accesstimeout_annotated_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$3.class");
-            bb_stateful_concurrency_accesstimeout_annotated_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$4.class");
-            bb_stateful_concurrency_accesstimeout_annotated_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$5.class");
-            bb_stateful_concurrency_accesstimeout_annotated_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$6.class");
-            bb_stateful_concurrency_accesstimeout_annotated_ejblitejsf_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$7.class");
 
             // The web.xml descriptor
             URL warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");

@@ -90,20 +90,6 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.statef
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.annotated.Client.class
             );
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$1.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$2.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$3.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$4.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$5.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$6.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$7.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase$1.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase$2.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase$3.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase$4.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase$5.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase$6.class");
-            ejblite_stateful_concurrency_accesstimeout_annotated_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.JsfClientBase$7.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");

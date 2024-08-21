@@ -81,7 +81,6 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.basic
             com.sun.ts.tests.ejb30.timer.basic.sharing.Client.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
-            ejb30_timer_basic_sharing_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.timer.basic.sharing.Client$1.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");

@@ -85,8 +85,6 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.single
             com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean.EJBLiteServletVehicle.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
-            ejblite_singleton_lifecycle_bean_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean.Client$1.class");
-            ejblite_singleton_lifecycle_bean_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.singleton.lifecycle.bean.JsfClient$1.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");

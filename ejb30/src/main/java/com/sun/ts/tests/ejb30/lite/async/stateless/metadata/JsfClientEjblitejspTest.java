@@ -88,7 +88,6 @@ public class JsfClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.async.s
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
-            ejblite_async_stateless_metadata_ejblitejsp_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.async.common.metadata.BeanClassLevel2BeanBase$1.class");
 
             // The web.xml descriptor
             URL warResURL = JsfClient.class.getResource("/vehicle/ejblitejsp/ejblitejsp_vehicle_web.xml");

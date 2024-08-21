@@ -82,15 +82,6 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.statef
             com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$1.class");
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$2.class");
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$3.class");
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$4.class");
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$5.class");
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$6.class");
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.common.ClientBase$7.class");
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.descriptor.Client$1.class");
-            ejblite_stateful_concurrency_accesstimeout_descriptor_ejbliteservlet_vehicle_web.addClass("com.sun.ts.tests.ejb30.lite.stateful.concurrency.accesstimeout.descriptor.Client$2.class");
 
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");

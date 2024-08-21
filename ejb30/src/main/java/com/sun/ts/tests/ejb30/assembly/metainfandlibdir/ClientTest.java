@@ -14,6 +14,7 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.impl.base.path.BasicPath;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -97,7 +98,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb3_assembly_metainfandlibdir_web.xml");
             if(warResURL != null) {
-              ejb3_assembly_metainfandlibdir_web.addAsWebResource(warResURL, "//ejb3_assembly_metainfandlibdir_web.xml");
+              ejb3_assembly_metainfandlibdir_web.addAsWebResource(warResURL, "/ejb3_assembly_metainfandlibdir_web.xml");
             }
 
            // Call the archive processor
@@ -133,10 +134,11 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
                 JavaArchive sub_shared_lib = ShrinkWrap.create(JavaArchive.class, "sub-shared.jar");
 
                 // The resources
-                        libURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/foo.txt");
-                        sub_shared_lib.addAsResource(libURL, "/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/foo.txt");
+            StringAsset fooTxt = new StringAsset("foo.txt");
+           sub_shared_lib.add(fooTxt, "/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/foo.txt");
+            sub_shared_lib.add(fooTxt, "/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/foo.txt");
 
-                ejb3_assembly_metainfandlibdir_ear.addAsLibrary(sub_shared_lib);
+                ejb3_assembly_metainfandlibdir_ear.add(sub_shared_lib, new BasicPath("my-lib/lib"), ZipExporter.class);
                 JavaArchive x4war_1_0_1_lib = ShrinkWrap.create(JavaArchive.class, "4war-1.0.1.jar");
                     // The class files
                     x4war_1_0_1_lib.addClasses(
@@ -156,9 +158,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
                         com.sun.ts.tests.ejb30.common.helloejbjar.HelloLocalIF.class,
                         com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF.class
                     );
+                ejb3_assembly_metainfandlibdir_ear.add(hello_client_view_lib, new BasicPath("/"), ZipExporter.class);
 
-
-                ejb3_assembly_metainfandlibdir_ear.addAsLibrary(hello_client_view_lib);
                 JavaArchive x4common_1_0_1_lib = ShrinkWrap.create(JavaArchive.class, "4common-1.0.1.jar");
                     // The class files
                     x4common_1_0_1_lib.addClasses(
@@ -174,7 +175,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
                     );
 
 
-                ejb3_assembly_metainfandlibdir_ear.addAsLibrary(x4common_1_0_1_lib);
+                ejb3_assembly_metainfandlibdir_ear.add(x4common_1_0_1_lib, new BasicPath("my-lib"), ZipExporter.class);
 
 
             // The component jars built by the package target
