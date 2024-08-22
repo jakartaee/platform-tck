@@ -122,6 +122,7 @@
                     <include>**/*.xml</include>
                     <include>**/*.tld</include>
                     <include>**/zone.tab</include>
+                    <include>**/*.mf</include>
                 </includes>
                 <excludes>
                     <exclude>**/build.xml</exclude>
