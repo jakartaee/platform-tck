@@ -109,6 +109,9 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.tx.cm.stat
             if(warResURL != null) {
               ejb_lite_tx_cm_stateful_webrw_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp_vehicle.jsp");
             }
+            // ejblite-pu persistence unit
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/lite/tx/cm/common/persistence.xml");
+            ejb_lite_tx_cm_stateful_webrw_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "classes/META-INF/persistence.xml");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb_lite_tx_cm_stateful_webrw_ejblitejsp_vehicle_web, Client.class, warResURL);
