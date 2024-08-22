@@ -125,7 +125,7 @@ public class ClientEjbIT extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createEjbDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) throws Exception {
+  public static EnterpriseArchive createEjbDeployment() throws Exception {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
     
@@ -165,7 +165,7 @@ public class ClientEjbIT extends ServiceEETest {
       jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
     jsonprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbIT.class.getName() + "\n"), "MANIFEST.MF");
-    archiveProcessor.processClientArchive(jsonprovidertests_ejb_vehicle_client, ClientEjbIT.class, resURL);
+    // archiveProcessor.processClientArchive(jsonprovidertests_ejb_vehicle_client, ClientEjbIT.class, resURL);
 
 
     JavaArchive jsonprovidertests_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_ejb.jar");
@@ -199,7 +199,7 @@ public class ClientEjbIT extends ServiceEETest {
     if(ejbResURL != null) {
       jsonprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
-    archiveProcessor.processEjbArchive(jsonprovidertests_ejb_vehicle_ejb, ClientEjbIT.class, ejbResURL);
+    // archiveProcessor.processEjbArchive(jsonprovidertests_ejb_vehicle_ejb, ClientEjbIT.class, ejbResURL);
 
 
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_ejb_vehicle.ear");

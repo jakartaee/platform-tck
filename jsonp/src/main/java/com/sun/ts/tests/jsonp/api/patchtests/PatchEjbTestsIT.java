@@ -84,7 +84,7 @@ public class PatchEjbTestsIT extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createEjbDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) throws IOException {
+  public static EnterpriseArchive createEjbDeployment() throws Exception {
 
     JavaArchive patchtests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "patchtests_ejb_vehicle_client.jar");
     // The class files
@@ -108,7 +108,7 @@ public class PatchEjbTestsIT extends ServiceEETest {
       patchtests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
     patchtests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + PatchEjbTestsIT.class.getName() + "\n"), "MANIFEST.MF");
-    archiveProcessor.processClientArchive(patchtests_ejb_vehicle_client, PatchEjbTestsIT.class, resURL);
+    // archiveProcessor.processClientArchive(patchtests_ejb_vehicle_client, PatchEjbTestsIT.class, resURL);
 
 
     JavaArchive patchtests_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "patchtests_ejb_vehicle_ejb.jar");
@@ -142,7 +142,7 @@ public class PatchEjbTestsIT extends ServiceEETest {
     if(ejbResURL != null) {
       patchtests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
-    archiveProcessor.processEjbArchive(patchtests_ejb_vehicle_ejb, PatchEjbTestsIT.class, ejbResURL);
+    // archiveProcessor.processEjbArchive(patchtests_ejb_vehicle_ejb, PatchEjbTestsIT.class, ejbResURL);
 
 
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");

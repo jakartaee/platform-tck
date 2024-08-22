@@ -79,8 +79,8 @@ public class PatchAppclientTestsIT extends ServiceEETest {
 
   static final String VEHICLE_ARCHIVE = "patchtests_appclient_vehicle";
   
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createAppclientDeployment() throws IOException {
   
