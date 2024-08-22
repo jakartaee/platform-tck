@@ -122,6 +122,9 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.tx.cm.s
             if(warResURL != null) {
               ejblite_tx_cm_stateful_rw_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/ejblitejsf_vehicle.xhtml");
             }
+            // ejblite-pu persistence unit
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/lite/tx/cm/common/persistence.xml");
+            ejblite_tx_cm_stateful_rw_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "classes/META-INF/persistence.xml");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejblite_tx_cm_stateful_rw_ejblitejsf_vehicle_web, JsfClient.class, warResURL);
