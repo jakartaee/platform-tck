@@ -83,23 +83,20 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
             com.sun.ts.tests.ejb30.assembly.metainfandlibdir.TestServlet.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb3_assembly_metainfandlibdir_web.xml");
+            URL warResURL = Client.class.getResource("ejb3_assembly_metainfandlibdir_web.xml");
             if(warResURL != null) {
               ejb3_assembly_metainfandlibdir_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb3_assembly_metainfandlibdir_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("ejb3_assembly_metainfandlibdir_web.war.sun-web.xml");
             if(warResURL != null) {
               ejb3_assembly_metainfandlibdir_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
+            warResURL = Client.class.getResource("war.mf");
+            ejb3_assembly_metainfandlibdir_web.setManifest(warResURL);
 
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb3_assembly_metainfandlibdir_web.xml");
-            if(warResURL != null) {
-              ejb3_assembly_metainfandlibdir_web.addAsWebResource(warResURL, "/ejb3_assembly_metainfandlibdir_web.xml");
-            }
+            // Any libraries added to the war
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb3_assembly_metainfandlibdir_web, Client.class, warResURL);
@@ -119,10 +116,12 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
               ejb3_assembly_metainfandlibdir_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/metainfandlibdir/ejb3_assembly_metainfandlibdir_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("ejb3_assembly_metainfandlibdir_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               ejb3_assembly_metainfandlibdir_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            ejbResURL = Client.class.getResource("ejb-jar.mf");
+            ejb3_assembly_metainfandlibdir_ejb.setManifest(ejbResURL);
             // Call the archive processor
             archiveProcessor.processEjbArchive(ejb3_assembly_metainfandlibdir_ejb, Client.class, ejbResURL);
 
@@ -150,7 +149,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.metainfandlibdir
                     );
 
 
-                ejb3_assembly_metainfandlibdir_ear.addAsLibrary(x4war_1_0_1_lib);
+                ejb3_assembly_metainfandlibdir_ear.add(x4war_1_0_1_lib, new BasicPath("/"), ZipExporter.class);
                 JavaArchive hello_client_view_lib = ShrinkWrap.create(JavaArchive.class, "hello-client-view.jar");
                     // The class files
                     hello_client_view_lib.addClasses(
