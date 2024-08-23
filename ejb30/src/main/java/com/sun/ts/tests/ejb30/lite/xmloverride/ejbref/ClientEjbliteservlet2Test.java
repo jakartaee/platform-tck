@@ -84,11 +84,6 @@ public class ClientEjbliteservlet2Test extends com.sun.ts.tests.ejb30.lite.xmlov
             if(warResURL != null) {
               ejblite_xmloverride_ejbref_ejbliteservlet2_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/ejbliteservlet2_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              ejblite_xmloverride_ejbref_ejbliteservlet2_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
 

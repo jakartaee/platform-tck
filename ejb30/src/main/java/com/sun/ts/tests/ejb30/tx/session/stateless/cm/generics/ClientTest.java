@@ -62,10 +62,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.g
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/tx/session/stateless/cm/generics/tx_stateless_generics_web.xml");
-            if(warResURL != null) {
-              tx_stateless_generics_web.addAsWebInfResource(warResURL, "web.xml");
-            }
+            URL warResURL = Client.class.getResource("tx_stateless_generics_web.xml");
+            tx_stateless_generics_web.addAsWebInfResource(warResURL, "web.xml");
             // The sun-web.xml descriptor
             warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/generics/tx_stateless_generics_web.war.sun-web.xml");
             if(warResURL != null) {
@@ -98,10 +96,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.g
               tx_stateless_generics_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/generics/tx_stateless_generics_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              tx_stateless_generics_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            ejbResURL = Client.class.getResource("tx_stateless_generics_ejb.jar.sun-ejb-jar.xml");
+            tx_stateless_generics_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(tx_stateless_generics_ejb, Client.class, ejbResURL);
 
@@ -131,20 +127,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.g
             tx_stateless_generics_ear.addAsModule(tx_stateless_generics_ejb);
             tx_stateless_generics_ear.addAsModule(tx_stateless_generics_web);
 
-
-
-            // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/generics/");
-            if(earResURL != null) {
-              tx_stateless_generics_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/generics/.ear.sun-application.xml");
-            if(earResURL != null) {
-              tx_stateless_generics_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
-            archiveProcessor.processEarArchive(tx_stateless_generics_ear, Client.class, earResURL);
+            archiveProcessor.processEarArchive(tx_stateless_generics_ear, Client.class, null);
         return tx_stateless_generics_ear;
         }
 

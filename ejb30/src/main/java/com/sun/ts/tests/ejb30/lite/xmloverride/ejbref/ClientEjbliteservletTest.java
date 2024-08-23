@@ -97,10 +97,6 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.xmlove
             if(warResURL != null) {
               ejblite_xmloverride_ejbref_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejb-jar.xml");
             }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              ejblite_xmloverride_ejbref_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet_vehicle_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejblite_xmloverride_ejbref_ejbliteservlet_vehicle_web, Client.class, warResURL);

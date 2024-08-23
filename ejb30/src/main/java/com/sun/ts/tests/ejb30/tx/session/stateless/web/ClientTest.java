@@ -63,23 +63,12 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.web.
             );
 
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/tx/session/stateless/web/tx_stateless_web_web.xml");
+            URL warResURL = Client.class.getResource("tx_stateless_web_web.xml");
             if(warResURL != null) {
               tx_stateless_web_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/web/tx_stateless_web_web.war.sun-web.xml");
-            if(warResURL != null) {
-              tx_stateless_web_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
-
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/web/tx_stateless_web_web.xml");
-            if(warResURL != null) {
-              tx_stateless_web_web.addAsWebResource(warResURL, "//tx_stateless_web_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(tx_stateless_web_web, Client.class, warResURL);

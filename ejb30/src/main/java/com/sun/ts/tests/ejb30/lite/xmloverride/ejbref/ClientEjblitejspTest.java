@@ -83,11 +83,6 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.xmloverrid
             if(warResURL != null) {
               ejblite_xmloverride_ejbref_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("//vehicle/ejblitejsp/ejblitejsp_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              ejblite_xmloverride_ejbref_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
 

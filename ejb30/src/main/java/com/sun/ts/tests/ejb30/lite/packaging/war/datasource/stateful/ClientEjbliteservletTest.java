@@ -86,22 +86,13 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.packag
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/ejbliteservlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              ejblite_packaging_war_datasource_stateful_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
 
             // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/stateful/ejb-jar.xml");
+            warResURL = Client.class.getResource("ejb-jar.xml");
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejb-jar.xml");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              ejblite_packaging_war_datasource_stateful_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet_vehicle_web.xml");
             }
 
            // Call the archive processor
