@@ -62,23 +62,14 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.v
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/tx_stateless_varargs_web.xml");
+            URL warResURL = Client.class.getResource("tx_stateless_varargs_web.xml");
             if(warResURL != null) {
               tx_stateless_varargs_web.addAsWebInfResource(warResURL, "web.xml");
-            }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/tx_stateless_varargs_web.war.sun-web.xml");
-            if(warResURL != null) {
-              tx_stateless_varargs_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
             // Any libraries added to the war
 
             // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/tx_stateless_varargs_web.xml");
-            if(warResURL != null) {
-              tx_stateless_varargs_web.addAsWebResource(warResURL, "//tx_stateless_varargs_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(tx_stateless_varargs_web, Client.class, warResURL);
@@ -91,14 +82,9 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.v
                 com.sun.ts.tests.ejb30.tx.session.stateless.cm.varargs.VarargsBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/tx_stateless_varargs_ejb.xml");
+            URL ejbResURL = Client.class.getResource("tx_stateless_varargs_ejb.xml");
             if(ejbResURL != null) {
               tx_stateless_varargs_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/varargs/tx_stateless_varargs_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              tx_stateless_varargs_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
             // Call the archive processor
             archiveProcessor.processEjbArchive(tx_stateless_varargs_ejb, Client.class, ejbResURL);

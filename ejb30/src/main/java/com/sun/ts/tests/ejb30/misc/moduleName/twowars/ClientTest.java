@@ -32,6 +32,31 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.Client {
+
+    @Deployment(name = "two_standalone_component_web", order = 1, testable = false)
+    public static WebArchive createCommonDeployment() {
+        WebArchive two_standalone_component_web = ShrinkWrap.create(WebArchive.class, "two_standalone_component_web.war");
+        // The class files
+        two_standalone_component_web.addClasses(
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase.class,
+                com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet.class,
+                com.sun.ts.tests.servlet.common.util.Data.class,
+                com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase.class,
+                com.sun.ts.tests.ejb30.misc.moduleName.twowars.TestServlet2.class,
+                com.sun.ts.tests.ejb30.misc.moduleName.twowars.Module2Bean.class,
+                com.sun.ts.tests.ejb30.misc.moduleName.twowars.ModuleMBean.class
+        );
+        URL warResURL = Client.class.getResource("two_standalone_component_web.xml");
+        two_standalone_component_web.addAsWebInfResource(warResURL, "web.xml");
+        warResURL = Client.class.getResource("two_standalone_component_web.war.sun-web.xml");
+        two_standalone_component_web.addAsWebInfResource(warResURL, "sun-web.xml");
+
+        return two_standalone_component_web;
+    }
+
     /**
         EE10 Deployment Descriptors:
         ejb3_misc_moduleName_twowars: 
@@ -61,23 +86,18 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/moduleName/twowars/ejb3_misc_moduleName_twowars_web.xml");
+            URL warResURL = Client.class.getResource("ejb3_misc_moduleName_twowars_web.xml");
             if(warResURL != null) {
               ejb3_misc_moduleName_twowars_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/ejb3_misc_moduleName_twowars_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("jb3_misc_moduleName_twowars_web.war.sun-web.xml");
             if(warResURL != null) {
               ejb3_misc_moduleName_twowars_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
             // Any libraries added to the war
 
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/twowars/ejb3_misc_moduleName_twowars_web.xml");
-            if(warResURL != null) {
-              ejb3_misc_moduleName_twowars_web.addAsWebResource(warResURL, "//ejb3_misc_moduleName_twowars_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb3_misc_moduleName_twowars_web, Client.class, warResURL);

@@ -95,6 +95,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.packaging.
                 JavaArchive x1_lib = ShrinkWrap.create(JavaArchive.class, "1.jar");
                     // The class files
                     x1_lib.addClasses(
+                        com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.OneBean.class,
                         com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
                         com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class
                     );
@@ -102,7 +103,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.packaging.
 
                 ejblite_packaging_war_webinflib_ejblitejsp_vehicle_web.addAsLibrary(x1_lib);
                 JavaArchive x2_lib = ShrinkWrap.create(JavaArchive.class, "2.jar");
-
+                x2_lib.addClasses(com.sun.ts.tests.ejb30.lite.packaging.war.webinflib.TwoBean.class);
                 ejblite_packaging_war_webinflib_ejblitejsp_vehicle_web.addAsLibrary(x2_lib);
 
 
