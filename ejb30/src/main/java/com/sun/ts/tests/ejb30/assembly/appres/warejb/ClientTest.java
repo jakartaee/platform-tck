@@ -143,6 +143,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.warejb.Cl
                         com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
                         com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF.class
                     );
+                    libURL = Client.class.getResource("/com/sun/ts/tests/ejb30/lite/tx/cm/common/persistence.xml");
+                    shared_lib.addAsManifestResource(libURL, "persistence.xml");
 
 
                 ejb3_assembly_appres_warejb_ear.addAsLibrary(shared_lib);
@@ -155,12 +157,12 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.warejb.Cl
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/warejb/application.xml");
+            URL earResURL = Client.class.getResource("application.xml");
             if(earResURL != null) {
               ejb3_assembly_appres_warejb_ear.addAsManifestResource(earResURL, "application.xml");
             }
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/warejb/application.ear.sun-application.xml");
+            earResURL = Client.class.getResource("ejb3_assembly_appres_warejb.ear.sun-application.xml");
             if(earResURL != null) {
               ejb3_assembly_appres_warejb_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
