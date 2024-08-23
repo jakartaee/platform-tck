@@ -190,6 +190,26 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
      * If a subclass overrides this method, the overriding implementation must call
      * super.setup() at the beginning.
      */
+    public void setup(String[] args, Properties p) throws Exception {
+        logTrace("PMClientBase.setup(String[] args, Properties)");
+        myProps = p;
+        mode = p.getProperty(MODE_PROP);
+        persistenceUnitName = p.getProperty(PERSISTENCE_UNIT_NAME_PROP);
+        logTrace( "Persistence Unit Name =" + persistenceUnitName);
+        secondPersistenceUnitName = p.getProperty(SECOND_PERSISTENCE_UNIT_NAME_PROP);
+        logTrace( "Second Persistence Unit Name =" + secondPersistenceUnitName);
+        if (JAVAEE_MODE.equalsIgnoreCase(mode)) {
+            logTrace(MODE_PROP + " is set to " + mode
+                    + ", so tests are running in JakartaEE environment.");
+        } else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
+            logTrace(MODE_PROP + " is set to " + mode
+                    + ", so tests are running in J2SE environment standalone mode."
+                    + PERSISTENCE_UNIT_NAME_PROP + " is set to " + persistenceUnitName);
+        } else {
+            logTrace("WARNING: " + MODE_PROP + " is set to " + mode
+                    + ", an invalid value.");
+        }
+    }
     public void setup() throws Exception {
         logTrace("PMClientBase.setup");
         mode = System.getProperty(MODE_PROP);
