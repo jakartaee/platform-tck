@@ -98,6 +98,10 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.basic.C
             // Any libraries added to the war
 
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/basic/jpa_core_basic.jar");
+            if(warResURL != null) {
+              jpa_core_basic_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_basic.jar");
+            }
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
             if(warResURL != null) {
               jpa_core_basic_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
@@ -115,8 +119,9 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.basic.C
             );
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
-            jpa_core_basic.addAsManifestResource(parURL, "persistence.xml");
-
+            if(parURL != null) {
+              jpa_core_basic.addAsManifestResource(parURL, "persistence.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_basic, Client.class, parURL);
             // The orm.xml file
@@ -124,7 +129,6 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.basic.C
             if(parURL != null) {
               jpa_core_basic.addAsManifestResource(parURL, "orm.xml");
             }
-            jpa_core_basic_puservlet_vehicle_web.addAsLibrary(jpa_core_basic);
 
         // Ear
             EnterpriseArchive jpa_core_basic_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_basic_vehicles.ear");
