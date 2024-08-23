@@ -85,34 +85,21 @@ public class JsfClientEjblitejsfTest extends com.sun.ts.tests.ejb30.lite.packagi
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = JsfClient.class.getResource("//com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              ejblite_packaging_war_datasource_stateful_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
 
             // Web content
-            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/stateful/beans.xml");
-            if(warResURL != null) {
-              ejblite_packaging_war_datasource_stateful_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
-            }
             warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/beans.xml");
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
             }
-            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/stateful/ejb-jar.xml");
+            warResURL = JsfClient.class.getResource("ejb-jar.xml");
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejb-jar.xml");
             }
             warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejblitejsf_vehicle_web.xml");
-            }
-            warResURL = JsfClient.class.getResource("/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/stateful/faces-config.xml");
-            if(warResURL != null) {
-              ejblite_packaging_war_datasource_stateful_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/faces-config.xml");
             }
             warResURL = JsfClient.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsf/faces-config.xml");
             if(warResURL != null) {

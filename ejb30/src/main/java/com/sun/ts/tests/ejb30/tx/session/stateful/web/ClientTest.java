@@ -68,23 +68,13 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateful.web.C
             );
 
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/tx/session/stateful/web/tx_stateful_web_web.xml");
+            URL warResURL = Client.class.getResource("tx_stateful_web_web.xml");
             if(warResURL != null) {
               tx_stateful_web_web.addAsWebInfResource(warResURL, "web.xml");
-            }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateful/web/tx_stateful_web_web.war.sun-web.xml");
-            if(warResURL != null) {
-              tx_stateful_web_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
             // Any libraries added to the war
 
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateful/web/tx_stateful_web_web.xml");
-            if(warResURL != null) {
-              tx_stateful_web_web.addAsWebResource(warResURL, "//tx_stateful_web_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(tx_stateful_web_web, Client.class, warResURL);
@@ -99,13 +89,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateful.web.C
                 com.sun.ts.tests.ejb30.tx.session.stateful.web.StatefulTestBean.class,
                 com.sun.ts.tests.ejb30.tx.common.web.Constants.class
             );
-            // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateful/web/tx_stateful_web_ejb.xml");
-            if(ejbResURL != null) {
-              tx_stateful_web_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-            }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateful/web/tx_stateful_web_ejb.jar.sun-ejb-jar.xml");
+            URL ejbResURL = Client.class.getResource("tx_stateful_web_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               tx_stateful_web_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -128,11 +113,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateful.web.C
             if(earResURL != null) {
               tx_stateful_web_ear.addAsManifestResource(earResURL, "application.xml");
             }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateful/web/application.ear.sun-application.xml");
-            if(earResURL != null) {
-              tx_stateful_web_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+
             // Call the archive processor
             archiveProcessor.processEarArchive(tx_stateful_web_ear, Client.class, earResURL);
         return tx_stateful_web_ear;

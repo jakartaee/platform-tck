@@ -96,10 +96,8 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.basic
             // Any libraries added to the war
 
             // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              ejb30_timer_basic_xa_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet_vehicle_web.xml");
-            }
+            warResURL = Client.class.getResource("persistence.xml");
+            ejb30_timer_basic_xa_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "classes/META-INF/persistence.xml");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb30_timer_basic_xa_ejbliteservlet_vehicle_web, Client.class, warResURL);

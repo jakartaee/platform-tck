@@ -14,6 +14,8 @@ import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.jboss.shrinkwrap.resolver.api.maven.MavenResolvedArtifact;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -78,6 +80,14 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.sched
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.ejb30.common.lite.NumberIF.class
             );
+            // commons lang jar
+            String[] activeMavenProfiles = {"staging"};
+            MavenResolvedArtifact resolvedArtifact = Maven.resolver().loadPomFromFile("pom.xml", activeMavenProfiles)
+                    .resolve("org.apache.commons:commons-lang3:3.9")
+                    .withTransitivity()
+                    .asSingleResolvedArtifact();
+            ejb30_timer_schedule_tz_ejbliteservlet_vehicle_web.addAsLibraries(resolvedArtifact.asFile());
+
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");
             if(warResURL != null) {
@@ -100,6 +110,9 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.sched
             if(warResURL != null) {
               ejb30_timer_schedule_tz_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet_vehicle_web.xml");
             }
+            // zone.tab
+            warResURL = Client.class.getResource("zone.tab");
+            ejb30_timer_schedule_tz_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/classes/com/sun/ts/tests/ejb30/timer/schedule/tz/zone.tab");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(ejb30_timer_schedule_tz_ejbliteservlet_vehicle_web, Client.class, warResURL);

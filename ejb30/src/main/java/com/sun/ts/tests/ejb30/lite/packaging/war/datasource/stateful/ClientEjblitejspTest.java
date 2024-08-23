@@ -85,26 +85,17 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.packaging.
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("//vehicle/ejblitejsp/ejblitejsp_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              ejblite_packaging_war_datasource_stateful_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
 
             // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/stateful/ejb-jar.xml");
+            warResURL = Client.class.getResource("ejb-jar.xml");
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejb-jar.xml");
             }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/lite/packaging/war/datasource/stateful/ejblitejsp.tld");
+            warResURL = Client.class.getResource("ejblitejsp.tld");
             if(warResURL != null) {
               ejblite_packaging_war_datasource_stateful_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/tlds/ejblitejsp.tld");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsp/ejblitejsp.tld");
-            if(warResURL != null) {
-              ejblite_packaging_war_datasource_stateful_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp.tld");
             }
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejblitejsp/ejblitejsp_vehicle.jsp");
             if(warResURL != null) {
