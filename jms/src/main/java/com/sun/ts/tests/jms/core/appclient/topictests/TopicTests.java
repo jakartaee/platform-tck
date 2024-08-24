@@ -559,7 +559,7 @@ public class TopicTests extends ServiceEETest {
     }
   }
 
-  private static class AutoAckMsgListener implements MessageListener {
+  public static class AutoAckMsgListener implements MessageListener {
     private boolean passed;
 
     TopicSession session;
@@ -1071,7 +1071,7 @@ public class TopicTests extends ServiceEETest {
     }
   }
 
-  private static class RequestorMsgListener implements MessageListener {
+  public static class RequestorMsgListener implements MessageListener {
     TopicSession session = null;
 
     boolean pass = false;

@@ -1,0 +1,220 @@
+package com.sun.ts.tests.jms.core.foreignMsgQueue;
+
+import com.sun.ts.tests.jms.core.foreignMsgQueue.ForeignMsgQueueTests;
+import java.net.URL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+
+
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("jms")
+@Tag("platform")
+@Tag("jms_web")
+@Tag("web_optional")
+@Tag("tck-javatest")
+
+@TestMethodOrder(MethodOrderer.MethodName.class)
+public class ForeignMsgQueueTestsServletTest extends com.sun.ts.tests.jms.core.foreignMsgQueue.ForeignMsgQueueTests {
+    static final String VEHICLE_ARCHIVE = "foreignMsgQueue_servlet_vehicle";
+
+        /**
+        EE10 Deployment Descriptors:
+        foreignMsgQueue_appclient_vehicle: 
+        foreignMsgQueue_appclient_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
+        foreignMsgQueue_ejb_vehicle: 
+        foreignMsgQueue_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
+        foreignMsgQueue_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
+        foreignMsgQueue_jsp_vehicle: 
+        foreignMsgQueue_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
+        foreignMsgQueue_servlet_vehicle: 
+        foreignMsgQueue_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
+
+        Found Descriptors:
+        War:
+
+        /com/sun/ts/tests/jms/core/foreignMsgQueue/servlet_vehicle_web.xml
+        /com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml
+        Ear:
+
+        */
+        @TargetsContainer("tck-javatest")
+        @OverProtocol("javatest")
+        @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        // War
+            // the war with the correct archive name
+            WebArchive foreignMsgQueue_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "foreignMsgQueue_servlet_vehicle_web.war");
+            // The class files
+            foreignMsgQueue_servlet_vehicle_web.addClasses(
+                                com.sun.ts.tests.jms.common.StreamMessageTestImpl.class,
+            com.sun.ts.tests.jms.common.TextMessageTestImpl.class,
+            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+            com.sun.ts.lib.harness.EETest.Fault.class,
+                                com.sun.ts.tests.jms.common.ObjectMessageTestImpl.class,
+            com.sun.ts.tests.jms.core.foreignMsgQueue.ForeignMsgQueueTests.class,
+            com.sun.ts.tests.jms.common.MessageTestImpl.class,
+                                com.sun.ts.tests.jms.common.JmsTool.class,
+            com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
+            com.sun.ts.tests.jms.common.JmsTool.class,
+            com.sun.ts.tests.jms.common.StreamMessageTestImpl.class,
+                                com.sun.ts.tests.jms.common.BytesMessageTestImpl.class,
+            com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+            com.sun.ts.tests.jms.common.ObjectMessageTestImpl.class,
+                                com.sun.ts.tests.jms.common.MessageTestImpl.class,
+            com.sun.ts.tests.jms.common.MapMessageTestImpl.class,
+                                com.sun.ts.tests.jms.common.MapMessageTestImpl.class,
+                                com.sun.ts.tests.jms.common.TextMessageTestImpl.class,
+            com.sun.ts.lib.harness.EETest.class,
+            com.sun.ts.tests.jms.common.BytesMessageTestImpl.class,
+            com.sun.ts.lib.harness.ServiceEETest.class,
+            com.sun.ts.lib.harness.EETest.SetupException.class,
+            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            );
+            // The web.xml descriptor
+            URL warResURL = ForeignMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+            if(warResURL != null) {
+              foreignMsgQueue_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+            }
+            // The sun-web.xml descriptor
+            warResURL = ForeignMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.war.sun-web.xml");
+            if(warResURL != null) {
+              foreignMsgQueue_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
+            }
+
+            // Any libraries added to the war
+
+            // Web content
+            warResURL = ForeignMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+            if(warResURL != null) {
+              foreignMsgQueue_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
+            }
+            warResURL = ForeignMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/foreignMsgQueue/servlet_vehicle_web.xml");
+            if(warResURL != null) {
+              foreignMsgQueue_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
+            }
+
+           // Call the archive processor
+           archiveProcessor.processWebArchive(foreignMsgQueue_servlet_vehicle_web, ForeignMsgQueueTests.class, warResURL);
+
+        // Ear
+            EnterpriseArchive foreignMsgQueue_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "foreignMsgQueue_servlet_vehicle.ear");
+
+            // Any libraries added to the ear
+
+            // The component jars built by the package target
+            foreignMsgQueue_servlet_vehicle_ear.addAsModule(foreignMsgQueue_servlet_vehicle_web);
+
+
+
+            // The application.xml descriptor
+            URL earResURL = ForeignMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/foreignMsgQueue/");
+            if(earResURL != null) {
+              foreignMsgQueue_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+            }
+            // The sun-application.xml descriptor
+            earResURL = ForeignMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/foreignMsgQueue/.ear.sun-application.xml");
+            if(earResURL != null) {
+              foreignMsgQueue_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            }
+            // Call the archive processor
+            archiveProcessor.processEarArchive(foreignMsgQueue_servlet_vehicle_ear, ForeignMsgQueueTests.class, earResURL);
+        return foreignMsgQueue_servlet_vehicle_ear;
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendReceiveBytesMsgQueueTest() throws java.lang.Exception {
+            super.sendReceiveBytesMsgQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendReceiveMsgQueueTest() throws java.lang.Exception {
+            super.sendReceiveMsgQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendReceiveMapMsgQueueTest() throws java.lang.Exception {
+            super.sendReceiveMapMsgQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendReceiveObjectMsgQueueTest() throws java.lang.Exception {
+            super.sendReceiveObjectMsgQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendReceiveStreamMsgQueueTest() throws java.lang.Exception {
+            super.sendReceiveStreamMsgQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendReceiveTextMsgQueueTest() throws java.lang.Exception {
+            super.sendReceiveTextMsgQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendSetsJMSDestinationQueueTest() throws java.lang.Exception {
+            super.sendSetsJMSDestinationQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendSetsJMSExpirationQueueTest() throws java.lang.Exception {
+            super.sendSetsJMSExpirationQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendSetsJMSPriorityQueueTest() throws java.lang.Exception {
+            super.sendSetsJMSPriorityQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendSetsJMSMessageIDQueueTest() throws java.lang.Exception {
+            super.sendSetsJMSMessageIDQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
+        public void sendSetsJMSTimestampQueueTest() throws java.lang.Exception {
+            super.sendSetsJMSTimestampQueueTest();
+        }
+
+
+}
