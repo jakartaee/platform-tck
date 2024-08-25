@@ -106,12 +106,9 @@ public class ClientServletTest extends com.sun.ts.tests.jms.core20.runtimeexcept
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/runtimeexceptiontests/");
-            if(earResURL != null) {
-              runtimeexceptiontests_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/runtimeexceptiontests/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               runtimeexceptiontests_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

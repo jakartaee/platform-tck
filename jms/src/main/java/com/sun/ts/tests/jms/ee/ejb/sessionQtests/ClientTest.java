@@ -114,12 +114,9 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.ejb.sessionQtests.Client
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee/ejb/sessionQtests/");
-            if(earResURL != null) {
-              jms_ejb_sessionQtests_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee/ejb/sessionQtests/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jms_ejb_sessionQtests_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

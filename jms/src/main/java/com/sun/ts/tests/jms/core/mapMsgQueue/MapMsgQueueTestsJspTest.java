@@ -120,12 +120,9 @@ public class MapMsgQueueTestsJspTest extends com.sun.ts.tests.jms.core.mapMsgQue
 
 
             // The application.xml descriptor
-            URL earResURL = MapMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/mapMsgQueue/");
-            if(earResURL != null) {
-              mapMsgQueue_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = MapMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/mapMsgQueue/.ear.sun-application.xml");
+            earResURL = MapMsgQueueTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               mapMsgQueue_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

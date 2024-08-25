@@ -112,12 +112,9 @@ public class TopicConnectionTestsServletTest extends com.sun.ts.tests.jms.core.t
 
 
             // The application.xml descriptor
-            URL earResURL = TopicConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/topicConnection/");
-            if(earResURL != null) {
-              topicConnection_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = TopicConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/topicConnection/.ear.sun-application.xml");
+            earResURL = TopicConnectionTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               topicConnection_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

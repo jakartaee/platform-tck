@@ -119,12 +119,9 @@ public class ClientJspTest extends com.sun.ts.tests.jms.core20.jmsproducerqueuet
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/jmsproducerqueuetests/");
-            if(earResURL != null) {
-              jmsproducerqueuetests_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/jmsproducerqueuetests/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jmsproducerqueuetests_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

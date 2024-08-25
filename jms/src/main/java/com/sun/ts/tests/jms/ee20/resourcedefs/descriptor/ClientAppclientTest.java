@@ -100,12 +100,9 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/");
-            if(earResURL != null) {
-              resourcedefs_descriptor_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               resourcedefs_descriptor_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

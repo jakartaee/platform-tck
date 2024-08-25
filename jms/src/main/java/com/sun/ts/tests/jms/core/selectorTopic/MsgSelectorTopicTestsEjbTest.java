@@ -136,12 +136,9 @@ public class MsgSelectorTopicTestsEjbTest extends com.sun.ts.tests.jms.core.sele
 
 
             // The application.xml descriptor
-            URL earResURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/jms/core/selectorTopic/");
-            if(earResURL != null) {
-              selectorTopic_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/jms/core/selectorTopic/.ear.sun-application.xml");
+            earResURL = MsgSelectorTopicTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               selectorTopic_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -139,12 +139,9 @@ public class ClosedQueueConnectionTestsEjbTest extends com.sun.ts.tests.jms.core
 
 
             // The application.xml descriptor
-            URL earResURL = ClosedQueueConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/closedQueueConnection/");
-            if(earResURL != null) {
-              closedQueueConnection_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = ClosedQueueConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/closedQueueConnection/.ear.sun-application.xml");
+            earResURL = ClosedQueueConnectionTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               closedQueueConnection_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -112,12 +112,9 @@ public class QueueConnectionTestsServletTest extends com.sun.ts.tests.jms.core.q
 
 
             // The application.xml descriptor
-            URL earResURL = QueueConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/queueConnection/");
-            if(earResURL != null) {
-              queueConnection_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = QueueConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/queueConnection/.ear.sun-application.xml");
+            earResURL = QueueConnectionTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               queueConnection_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

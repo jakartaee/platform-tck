@@ -101,12 +101,9 @@ public class ClosedTopicPublisherTestsAppclientTest extends com.sun.ts.tests.jms
 
 
             // The application.xml descriptor
-            URL earResURL = ClosedTopicPublisherTests.class.getResource("/com/sun/ts/tests/jms/core/closedTopicPublisher/");
-            if(earResURL != null) {
-              closedTopicPublisher_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = ClosedTopicPublisherTests.class.getResource("/com/sun/ts/tests/jms/core/closedTopicPublisher/.ear.sun-application.xml");
+            earResURL = ClosedTopicPublisherTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               closedTopicPublisher_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

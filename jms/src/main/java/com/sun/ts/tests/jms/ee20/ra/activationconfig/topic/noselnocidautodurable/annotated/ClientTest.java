@@ -120,7 +120,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.ra.activationconfig.to
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/topic/noselnocidautodurable/annotated/application.xml");
+            URL earResURL = null;
+            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/topic/noselnocidautodurable/annotated/application.xml");
             if(earResURL != null) {
               topic_noselnocidautodurable_annotated_ear.addAsManifestResource(earResURL, "application.xml");
             }

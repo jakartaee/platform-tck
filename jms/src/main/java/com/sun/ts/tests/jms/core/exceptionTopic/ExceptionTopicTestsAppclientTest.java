@@ -100,12 +100,9 @@ public class ExceptionTopicTestsAppclientTest extends com.sun.ts.tests.jms.core.
 
 
             // The application.xml descriptor
-            URL earResURL = ExceptionTopicTests.class.getResource("/com/sun/ts/tests/jms/core/exceptionTopic/");
-            if(earResURL != null) {
-              exceptionTopic_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = ExceptionTopicTests.class.getResource("/com/sun/ts/tests/jms/core/exceptionTopic/.ear.sun-application.xml");
+            earResURL = ExceptionTopicTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               exceptionTopic_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

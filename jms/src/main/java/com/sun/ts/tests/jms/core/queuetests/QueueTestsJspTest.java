@@ -127,12 +127,9 @@ public class QueueTestsJspTest extends com.sun.ts.tests.jms.core.queuetests.Queu
 
 
             // The application.xml descriptor
-            URL earResURL = QueueTests.class.getResource("/com/sun/ts/tests/jms/core/queuetests/");
-            if(earResURL != null) {
-              queuetests_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = QueueTests.class.getResource("/com/sun/ts/tests/jms/core/queuetests/.ear.sun-application.xml");
+            earResURL = QueueTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               queuetests_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

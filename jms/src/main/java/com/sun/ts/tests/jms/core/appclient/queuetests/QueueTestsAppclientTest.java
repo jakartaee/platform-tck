@@ -113,12 +113,9 @@ public class QueueTestsAppclientTest extends com.sun.ts.tests.jms.core.appclient
 
 
             // The application.xml descriptor
-            URL earResURL = QueueTests.class.getResource("/com/sun/ts/tests/jms/core/appclient/queuetests/");
-            if(earResURL != null) {
-              queuetests_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = QueueTests.class.getResource("/com/sun/ts/tests/jms/core/appclient/queuetests/.ear.sun-application.xml");
+            earResURL = QueueTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               queuetests_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

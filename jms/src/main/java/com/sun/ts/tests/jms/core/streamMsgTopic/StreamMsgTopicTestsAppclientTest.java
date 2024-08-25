@@ -100,12 +100,9 @@ public class StreamMsgTopicTestsAppclientTest extends com.sun.ts.tests.jms.core.
 
 
             // The application.xml descriptor
-            URL earResURL = StreamMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/streamMsgTopic/");
-            if(earResURL != null) {
-              streamMsgTopic_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = StreamMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/streamMsgTopic/.ear.sun-application.xml");
+            earResURL = StreamMsgTopicTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               streamMsgTopic_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

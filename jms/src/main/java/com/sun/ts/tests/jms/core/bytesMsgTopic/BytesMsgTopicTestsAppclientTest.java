@@ -100,12 +100,9 @@ public class BytesMsgTopicTestsAppclientTest extends com.sun.ts.tests.jms.core.b
 
 
             // The application.xml descriptor
-            URL earResURL = BytesMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgTopic/");
-            if(earResURL != null) {
-              bytesMsgTopic_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = BytesMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgTopic/.ear.sun-application.xml");
+            earResURL = BytesMsgTopicTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               bytesMsgTopic_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

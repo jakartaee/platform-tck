@@ -100,12 +100,9 @@ public class StreamMsgQueueTestsAppclientTest extends com.sun.ts.tests.jms.core.
 
 
             // The application.xml descriptor
-            URL earResURL = StreamMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/streamMsgQueue/");
-            if(earResURL != null) {
-              streamMsgQueue_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = StreamMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/streamMsgQueue/.ear.sun-application.xml");
+            earResURL = StreamMsgQueueTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               streamMsgQueue_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

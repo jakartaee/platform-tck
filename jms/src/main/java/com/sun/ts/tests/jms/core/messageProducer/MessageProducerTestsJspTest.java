@@ -119,12 +119,9 @@ public class MessageProducerTestsJspTest extends com.sun.ts.tests.jms.core.messa
 
 
             // The application.xml descriptor
-            URL earResURL = MessageProducerTests.class.getResource("/com/sun/ts/tests/jms/core/messageProducer/");
-            if(earResURL != null) {
-              messageProducer_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = MessageProducerTests.class.getResource("/com/sun/ts/tests/jms/core/messageProducer/.ear.sun-application.xml");
+            earResURL = MessageProducerTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               messageProducer_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

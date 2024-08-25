@@ -119,7 +119,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.ra.activationconfig.qu
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/queue/selectorauto/annotated/application.xml");
+            URL earResURL = null;
+            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/queue/selectorauto/annotated/application.xml");
             if(earResURL != null) {
               queue_selectorauto_annotated_ear.addAsManifestResource(earResURL, "application.xml");
             }

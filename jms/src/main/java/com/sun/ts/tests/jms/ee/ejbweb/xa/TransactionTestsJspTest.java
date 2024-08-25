@@ -117,12 +117,9 @@ public class TransactionTestsJspTest extends com.sun.ts.tests.jms.ee.ejbweb.xa.T
 
 
             // The application.xml descriptor
-            URL earResURL = TransactionTests.class.getResource("/com/sun/ts/tests/jms/ee/ejbweb/xa/");
-            if(earResURL != null) {
-              transaction_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = TransactionTests.class.getResource("/com/sun/ts/tests/jms/ee/ejbweb/xa/.ear.sun-application.xml");
+            earResURL = TransactionTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               transaction_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

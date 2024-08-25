@@ -116,12 +116,9 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.mdb.mdb_rec.MDBClient {
 
 
             // The application.xml descriptor
-            URL earResURL = MDBClient.class.getResource("/com/sun/ts/tests/jms/ee/mdb/mdb_rec/");
-            if(earResURL != null) {
-              mdb_asynch_receives_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = MDBClient.class.getResource("/com/sun/ts/tests/jms/ee/mdb/mdb_rec/.ear.sun-application.xml");
+            earResURL = MDBClient.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               mdb_asynch_receives_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

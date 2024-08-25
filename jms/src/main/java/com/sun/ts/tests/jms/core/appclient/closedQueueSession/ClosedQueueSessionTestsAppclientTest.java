@@ -115,12 +115,9 @@ public class ClosedQueueSessionTestsAppclientTest extends com.sun.ts.tests.jms.c
 
 
             // The application.xml descriptor
-            URL earResURL = ClosedQueueSessionTests.class.getResource("/com/sun/ts/tests/jms/core/appclient/closedQueueSession/");
-            if(earResURL != null) {
-              closedQueueSession_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = ClosedQueueSessionTests.class.getResource("/com/sun/ts/tests/jms/core/appclient/closedQueueSession/.ear.sun-application.xml");
+            earResURL = ClosedQueueSessionTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               closedQueueSession_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

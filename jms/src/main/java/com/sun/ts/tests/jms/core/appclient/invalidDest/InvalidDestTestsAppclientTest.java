@@ -93,12 +93,9 @@ public class InvalidDestTestsAppclientTest extends com.sun.ts.tests.jms.core.app
 
 
             // The application.xml descriptor
-            URL earResURL = InvalidDestTests.class.getResource("/com/sun/ts/tests/jms/core/appclient/invalidDest/");
-            if(earResURL != null) {
-              invalidDest_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = InvalidDestTests.class.getResource("/com/sun/ts/tests/jms/core/appclient/invalidDest/.ear.sun-application.xml");
+            earResURL = InvalidDestTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               invalidDest_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

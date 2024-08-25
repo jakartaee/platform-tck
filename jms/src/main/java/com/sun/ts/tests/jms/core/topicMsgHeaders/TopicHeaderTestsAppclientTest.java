@@ -100,12 +100,9 @@ public class TopicHeaderTestsAppclientTest extends com.sun.ts.tests.jms.core.top
 
 
             // The application.xml descriptor
-            URL earResURL = TopicHeaderTests.class.getResource("/com/sun/ts/tests/jms/core/topicMsgHeaders/");
-            if(earResURL != null) {
-              topicMsgHeaders_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = TopicHeaderTests.class.getResource("/com/sun/ts/tests/jms/core/topicMsgHeaders/.ear.sun-application.xml");
+            earResURL = TopicHeaderTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               topicMsgHeaders_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

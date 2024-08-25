@@ -103,12 +103,9 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.core20.appclient.m
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/appclient/messageproducertests/");
-            if(earResURL != null) {
-              messageproducertests_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/appclient/messageproducertests/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               messageproducertests_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

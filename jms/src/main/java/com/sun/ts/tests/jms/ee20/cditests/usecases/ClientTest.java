@@ -68,12 +68,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean2IF.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/jms/ee20/cditests/usecases/");
+            URL resURL = Client.class.getResource("");
             if(resURL != null) {
               cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/usecases/.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
             if(resURL != null) {
               cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
             }
@@ -120,7 +120,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/./application.xml");
+            URL earResURL = null;
+            earResURL = Client.class.getResource("/./application.xml");
             if(earResURL != null) {
               cditestsusecases_ear.addAsManifestResource(earResURL, "application.xml");
             }

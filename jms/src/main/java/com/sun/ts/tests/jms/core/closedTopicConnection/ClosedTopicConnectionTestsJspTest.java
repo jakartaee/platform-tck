@@ -121,12 +121,9 @@ public class ClosedTopicConnectionTestsJspTest extends com.sun.ts.tests.jms.core
 
 
             // The application.xml descriptor
-            URL earResURL = ClosedTopicConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/closedTopicConnection/");
-            if(earResURL != null) {
-              closedTopicConnection_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = ClosedTopicConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/closedTopicConnection/.ear.sun-application.xml");
+            earResURL = ClosedTopicConnectionTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               closedTopicConnection_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

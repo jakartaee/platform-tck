@@ -100,12 +100,9 @@ public class SessionTestsAppclientTest extends com.sun.ts.tests.jms.core.session
 
 
             // The application.xml descriptor
-            URL earResURL = SessionTests.class.getResource("/com/sun/ts/tests/jms/core/sessiontests/");
-            if(earResURL != null) {
-              sessiontests_appclient_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = SessionTests.class.getResource("/com/sun/ts/tests/jms/core/sessiontests/.ear.sun-application.xml");
+            earResURL = SessionTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               sessiontests_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

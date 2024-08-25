@@ -119,12 +119,9 @@ public class BytesMsgQueueTestsJspTest extends com.sun.ts.tests.jms.core.bytesMs
 
 
             // The application.xml descriptor
-            URL earResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgQueue/");
-            if(earResURL != null) {
-              bytesMsgQueue_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgQueue/.ear.sun-application.xml");
+            earResURL = BytesMsgQueueTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               bytesMsgQueue_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

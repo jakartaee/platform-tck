@@ -136,12 +136,9 @@ public class MapMsgTopicTestsEjbTest extends com.sun.ts.tests.jms.core.mapMsgTop
 
 
             // The application.xml descriptor
-            URL earResURL = MapMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/mapMsgTopic/");
-            if(earResURL != null) {
-              mapMsgTopic_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = MapMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/mapMsgTopic/.ear.sun-application.xml");
+            earResURL = MapMsgTopicTests.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               mapMsgTopic_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

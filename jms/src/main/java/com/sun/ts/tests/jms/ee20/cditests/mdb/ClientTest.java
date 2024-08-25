@@ -65,12 +65,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/jms/ee20/cditests/mdb/");
+            URL resURL = Client.class.getResource("");
             if(resURL != null) {
               cditestsmdb_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/mdb/.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
             if(resURL != null) {
               cditestsmdb_client.addAsManifestResource(resURL, "application-client.xml");
             }
@@ -112,7 +112,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/./application.xml");
+            URL earResURL = null;
+            earResURL = Client.class.getResource("/./application.xml");
             if(earResURL != null) {
               cditestsmdb_ear.addAsManifestResource(earResURL, "application.xml");
             }

@@ -120,7 +120,8 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.ra.activationconfig.qu
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/queue/selectordups/descriptor/application.xml");
+            URL earResURL = null;
+            earResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/queue/selectordups/descriptor/application.xml");
             if(earResURL != null) {
               queue_selectordups_descriptor_ear.addAsManifestResource(earResURL, "application.xml");
             }
