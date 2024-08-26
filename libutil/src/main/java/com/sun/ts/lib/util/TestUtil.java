@@ -440,7 +440,9 @@ public final class TestUtil {
             throw new RemoteLoggingInitException(
                 "Init: Error while trying to getProperty(harness.host) - returned null");
           }
-          socketOnRemoteVM.close();
+          if(socketOnRemoteVM != null) {
+            socketOnRemoteVM.close();
+          }
           socketOnRemoteVM = new Socket(hostOfHarness, portOfHarness);
           objectOutputStream = new ObjectOutputStream(
               socketOnRemoteVM.getOutputStream());
