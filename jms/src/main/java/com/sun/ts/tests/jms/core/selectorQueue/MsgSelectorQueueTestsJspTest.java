@@ -75,12 +75,12 @@ public class MsgSelectorQueueTestsJspTest extends com.sun.ts.tests.jms.core.sele
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = MsgSelectorQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            URL warResURL = MsgSelectorQueueTests.class.getResource("jsp_vehicle_web.xml");
             if(warResURL != null) {
               selectorQueue_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = MsgSelectorQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = MsgSelectorQueueTests.class.getResource("selectorQueue_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               selectorQueue_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -88,14 +88,6 @@ public class MsgSelectorQueueTestsJspTest extends com.sun.ts.tests.jms.core.sele
             // Any libraries added to the war
 
             // Web content
-            warResURL = MsgSelectorQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              selectorQueue_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
-            warResURL = MsgSelectorQueueTests.class.getResource("/com/sun/ts/tests/jms/core/selectorQueue/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              selectorQueue_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
             warResURL = MsgSelectorQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
             if(warResURL != null) {
               selectorQueue_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
