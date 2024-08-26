@@ -85,8 +85,6 @@ public class QueueTestsAppclientTest extends com.sun.ts.tests.jms.core.appclient
             com.sun.ts.tests.jms.common.SessionThread.class,
                                           com.sun.ts.tests.jms.common.SerialTestMessageListenerImpl.class
             );
-            queuetests_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.queuetests.QueueTests$1.class");
-            queuetests_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.queuetests.QueueTests$1.class");
 
             // The application-client.xml descriptor
             URL resURL = QueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");

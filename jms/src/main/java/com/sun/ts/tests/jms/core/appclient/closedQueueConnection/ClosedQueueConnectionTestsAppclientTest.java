@@ -77,10 +77,6 @@ public class ClosedQueueConnectionTestsAppclientTest extends com.sun.ts.tests.jm
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
                                           com.sun.ts.tests.jms.common.MessageTestImpl.class
             );
-            closedQueueConnection_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.closedQueueConnection.ClosedQueueConnectionTests$1.class");
-            closedQueueConnection_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.closedQueueConnection.ClosedQueueConnectionTests$2.class");
-            closedQueueConnection_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.closedQueueConnection.ClosedQueueConnectionTests$1.class");
-            closedQueueConnection_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.closedQueueConnection.ClosedQueueConnectionTests$2.class");
 
             // The application-client.xml descriptor
             URL resURL = ClosedQueueConnectionTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");

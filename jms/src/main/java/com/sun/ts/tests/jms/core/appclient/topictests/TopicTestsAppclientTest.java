@@ -85,8 +85,6 @@ public class TopicTestsAppclientTest extends com.sun.ts.tests.jms.core.appclient
             com.sun.ts.tests.jms.common.SessionThread.class,
                                           com.sun.ts.tests.jms.common.SerialTestMessageListenerImpl.class
             );
-            topictests_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.topictests.TopicTests$1.class");
-            topictests_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.topictests.TopicTests$1.class");
 
             // The application-client.xml descriptor
             URL resURL = TopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");

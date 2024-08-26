@@ -75,8 +75,6 @@ public class ClosedQueueReceiverTestsAppclientTest extends com.sun.ts.tests.jms.
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
-            closedQueueReceiver_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.closedQueueReceiver.ClosedQueueReceiverTests$1.class");
-            closedQueueReceiver_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.closedQueueReceiver.ClosedQueueReceiverTests$1.class");
 
             // The application-client.xml descriptor
             URL resURL = ClosedQueueReceiverTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");

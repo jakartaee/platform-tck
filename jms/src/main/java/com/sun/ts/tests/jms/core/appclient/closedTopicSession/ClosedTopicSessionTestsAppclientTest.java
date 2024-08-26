@@ -77,8 +77,6 @@ public class ClosedTopicSessionTestsAppclientTest extends com.sun.ts.tests.jms.c
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
                                           com.sun.ts.tests.jms.common.MessageTestImpl.class
             );
-            closedTopicSession_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.closedTopicSession.ClosedTopicSessionTests$1.class");
-            closedTopicSession_appclient_vehicle_client.addClass("com.sun.ts.tests.jms.core.appclient.closedTopicSession.ClosedTopicSessionTests$1.class");
 
             // The application-client.xml descriptor
             URL resURL = ClosedTopicSessionTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
