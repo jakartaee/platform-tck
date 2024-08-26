@@ -199,7 +199,7 @@
         <profile>
             <id>postgresql</id>
             <properties>
-                <postgresql.jdbc.version>42.6.2</postgresql.jdbc.version>
+                <postgresql.jdbc.version>42.7.4</postgresql.jdbc.version>
             </properties>
             <dependencies>
                 <dependency>
