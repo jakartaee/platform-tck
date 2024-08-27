@@ -69,17 +69,18 @@ public class ServletVehicle extends HttpServlet {
       System.out.println("ServletVehicle - got InputStream");
       TestUtil.logTrace("ServletVehicle - got InputStream");
       properties = (Properties) objInStream.readObject();
-      System.out.println("read properties!!!");
+      System.out.println("read properties!!!" + properties);
 
       // create an instance of the test client and run here
       String testClassName = TestUtil.getProperty(properties, "test_classname");
       Class c = Class.forName(testClassName);
       testObj = (EETest) c.newInstance();
-
-      // Thread.currentThread().dumpStack();
+      System.out.println("xxx read testObj " + testObj);
+      Thread.currentThread().dumpStack();
       arguments = (String[]) objInStream.readObject();
       // arguments = new String[1];
       // arguments[0] = "";
+      System.out.println("xxx ServletVehicle read arguments " + arguments);
       TestUtil.logTrace("ServletVehicle - read Objects");
       try {
         TestUtil.init(properties);
@@ -87,7 +88,8 @@ public class ServletVehicle extends HttpServlet {
         TestUtil.logTrace("ServletVehicle - Here are the props");
         TestUtil.list(properties);
       } catch (Exception e) {
-        throw new ServletException("unable to initialize remote logging");
+        e.printStackTrace();
+        throw new ServletException("unable to initialize remote logging" + e.getMessage());
       }
       ObjectOutputStream objOutStream = new ObjectOutputStream(
           res.getOutputStream());

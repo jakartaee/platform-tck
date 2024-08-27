@@ -325,11 +325,11 @@ public final class TestUtil {
         objectOutputStream.writeObject(info);
         // System.out.println("WROTE: " + info.sOutput);
       } catch (Exception e) {
-        // System.out.println("EXCEPTION WHILE WRITING: " + info.sOutput);
+        System.out.println("EXCEPTION (" + e.getMessage() +") WHILE WRITING: " + info.sOutput);
         synchronized (vBuffereredOutput) {
           vBuffereredOutput.addElement(info);
-          // System.out.println("ADDED THIS STRING TO BUFFERED OUT: " +
-          // info.sOutput);
+          System.out.println("ADDED THIS STRING TO BUFFERED OUT: " +
+          info.sOutput);
         }
       }
       flushStream();
@@ -345,7 +345,7 @@ public final class TestUtil {
           for (int ii = 0; ii < vBuffereredOutput.size(); ii++) {
             tri = (TestReportInfo) vBuffereredOutput.elementAt(ii);
             writeObject(tri);
-            // System.out.println("WRITING_bufferedoutput: " + tri.sOutput);
+            System.out.println("WRITING_bufferedoutput: " + tri.sOutput);
             // objectOutputStream.writeObject(tri);
             // objectOutputStream.flush();
             // logMsg("writing: " + ii);
@@ -354,6 +354,7 @@ public final class TestUtil {
         }
         // logMsg("wrote buffered output");
       } catch (Exception e) {
+        e.printStackTrace();
         throw e;
       } finally {
         vBuffereredOutput.removeAllElements();
@@ -442,17 +443,23 @@ public final class TestUtil {
         if (true) {
           // System.out.println("INIT_CALLED AND SOCKET = NULL");
           traceflag = Boolean.parseBoolean(p.getProperty("harness.log.traceflag", "true"));
+          traceflag = true; // hardcode trace on
           hostOfHarness = p.getProperty("harness.host");
+          System.out.println("xxx TestUtil.init hostOfHarness property = " + hostOfHarness);
           portOfHarness = Integer
               .parseInt(p.getProperty("harness.log.port", "2000"));
           if (hostOfHarness == null) {
             throw new RemoteLoggingInitException(
                 "Init: Error while trying to getProperty(harness.host) - returned null");
           }
+          Thread.dumpStack();
+          System.out.println("xxx TestUtil.init portOfHarness property = " + portOfHarness + " which will be used create new socketOnRemoteVM");
           socketOnRemoteVM = new Socket(hostOfHarness, portOfHarness);
+          System.out.println("xxx TestUtil.init socketOnRemoteVM = " + socketOnRemoteVM);
           objectOutputStream = new ObjectOutputStream(
               socketOnRemoteVM.getOutputStream());
           sendBufferedData();
+          System.out.println("xxx TestUtil.init renewed everything ");
           // logMsg("socketOnRemoteVM=null, renewed everything");
         } else {
           // we'll never get here now...
@@ -463,15 +470,18 @@ public final class TestUtil {
           // objectOutputStream.flush();
           // if this fails, then the connection is gone
           // this is better than flush, because flush seems to always fail
+          System.out.println("xxx TestUtil.init hit new reached code? " );
           TestReportInfo tri = new TestReportInfo("SVR: " + "Logging check",
               OUTPUT_STREAM, DEBUG_OUTPUT_LEVEL, null);
           objectOutputStream.writeObject(tri);
           // System.out.println("WROTE TEST OBJECT");
         }
       } catch (UnknownHostException e) {
+        System.out.println("xxx TestUtil.init caught " + e.getMessage() );
         throw new RemoteLoggingInitException(
             "You must pass a valid host string to init()");
       } catch (IOException e) {
+        System.out.println("xxx TestUtil.init caught " + e.getMessage() );
         // System.out.println("EXCEPTION WHILE WRITING TEST OBJECT");
         // the client VM may have shutdown, so establish a new connection
         try {
