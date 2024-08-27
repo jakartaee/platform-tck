@@ -79,6 +79,12 @@ public class PatchEjbTestsIT extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
+  @AfterEach
+  public void cleanup() throws Exception {
+    logger.log(Logger.Level.INFO, "cleanup ok");
+  }
+
+
   static final String VEHICLE_ARCHIVE = "patchtests_ejb_vehicle";
   
   @TargetsContainer("tck-javatest")
@@ -95,7 +101,7 @@ public class PatchEjbTestsIT extends ServiceEETest {
         com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
+        // com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
         com.sun.ts.lib.harness.EETest.class,
         com.sun.ts.lib.harness.ServiceEETest.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
@@ -103,7 +109,7 @@ public class PatchEjbTestsIT extends ServiceEETest {
     );
 
     // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-    URL resURL = PatchEjbTestsIT.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
+    URL resURL = PatchEjbTestsIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
     if(resURL != null) {
       patchtests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
@@ -119,7 +125,7 @@ public class PatchEjbTestsIT extends ServiceEETest {
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
+        // com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
         com.sun.ts.lib.harness.EETest.class,
         com.sun.ts.lib.harness.ServiceEETest.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
@@ -133,19 +139,20 @@ public class PatchEjbTestsIT extends ServiceEETest {
         PatchEjbTestsIT.class
     );
     // The ejb-jar.xml descriptor
-    URL ejbResURL = PatchEjbTestsIT.class.getResource("/ejb_vehicle_ejb.xml");
+    URL ejbResURL = PatchEjbTestsIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.xml");
     if(ejbResURL != null) {
       patchtests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
     }
-    // The sun-ejb-jar.xml file
-    ejbResURL = PatchEjbTestsIT.class.getResource("/patchtests_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+
+    // The sun-ejb-jar.xml file need to be added or should this be in in the vendor Arquillian extension?
+    ejbResURL = PatchEjbTestsIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
     if(ejbResURL != null) {
       patchtests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
     // archiveProcessor.processEjbArchive(patchtests_ejb_vehicle_ejb, PatchEjbTestsIT.class, ejbResURL);
 
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_ejb_vehicle.ear");
     ear.addAsModule(patchtests_ejb_vehicle_client);
     ear.addAsModule(patchtests_ejb_vehicle_ejb);
     return ear;

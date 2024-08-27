@@ -77,6 +77,12 @@ public class PatchAppclientTestsIT extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
+  @AfterEach
+  public void cleanup() throws Exception {
+    logger.log(Logger.Level.INFO, "cleanup ok");
+  }
+
+
   static final String VEHICLE_ARCHIVE = "patchtests_appclient_vehicle";
   
   @TargetsContainer("tck-javatest")
@@ -102,11 +108,13 @@ public class PatchAppclientTestsIT extends ServiceEETest {
       .addClass(com.sun.ts.tests.jsonp.common.MyBufferedWriter.class)
       .addClass(com.sun.ts.tests.jsonp.common.MyJsonLocation.class);
 
-    URL resURL = PatchAppclientTestsIT.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+    URL resURL = PatchAppclientTestsIT.class.getClassLoader().getResource(packagePath+"/appclient_vehicle_client.xml");
     if(resURL != null) {
       patchtests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-      // TODO: replace client name with patchtests_appclient_vehicle_client
     }
+    patchtests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + PatchAppclientTestsIT.class.getName() + "\n"), "MANIFEST.MF");
+
+
 
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_appclient_vehicle.ear");
     ear.addAsModule(patchtests_appclient_vehicle_client);

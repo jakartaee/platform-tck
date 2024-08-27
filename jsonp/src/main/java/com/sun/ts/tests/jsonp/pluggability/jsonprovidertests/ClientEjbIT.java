@@ -129,7 +129,7 @@ public class ClientEjbIT extends ServiceEETest {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
     
-    JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
+    JavaArchive jsonp_alternate_provider = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class)
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGeneratorFactory.class)
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonParser.class)
@@ -142,25 +142,23 @@ public class ClientEjbIT extends ServiceEETest {
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
 
-
     JavaArchive jsonprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_client.jar");
     // The class files
     jsonprovidertests_ejb_vehicle_client.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+        com.sun.ts.tests.common.vehicle.VehicleClient.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
+        // com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
         com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
+        com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.tests.common.vehicle.VehicleClient.class
+        com.sun.ts.lib.harness.ServiceEETest.class
     );
 
-    // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-    URL resURL = ClientEjbIT.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
+    URL resURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
     if(resURL != null) {
       jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
@@ -172,15 +170,15 @@ public class ClientEjbIT extends ServiceEETest {
     // The class files
     jsonprovidertests_ejb_vehicle_ejb.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
+        // com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.lib.harness.ServiceEETest.class,
         com.sun.ts.tests.jsonp.common.JSONP_Data.class,
         com.sun.ts.tests.jsonp.common.JSONP_Util.class,
         com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class,
@@ -190,12 +188,18 @@ public class ClientEjbIT extends ServiceEETest {
         ClientEjbIT.class       
     );
     // The ejb-jar.xml descriptor
-    URL ejbResURL = ClientEjbIT.class.getResource("/ejb_vehicle_ejb.xml");
+    URL ejbResURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.xml");
     if(ejbResURL != null) {
       jsonprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
     }
-    // The sun-ejb-jar.xml file
-    ejbResURL = ClientEjbIT.class.getResource("/jsonprovidertests_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+
+    URL jsonURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/jsonArrayWithAllTypesOfData.json");
+    jsonprovidertests_ejb_vehicle_ejb.addAsResource(jsonURL, "/jsonArrayWithAllTypesOfData.json");
+    jsonURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/jsonObjectWithAllTypesOfData.json");
+    jsonprovidertests_ejb_vehicle_ejb.addAsResource(jsonURL, "/jsonObjectWithAllTypesOfData.json");
+
+    // The sun-ejb-jar.xml file need to be added or should this be in in the vendor Arquillian extension?
+    ejbResURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
     if(ejbResURL != null) {
       jsonprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
@@ -205,7 +209,7 @@ public class ClientEjbIT extends ServiceEETest {
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_ejb_vehicle.ear");
     ear.addAsModule(jsonprovidertests_ejb_vehicle_client);
     ear.addAsModule(jsonprovidertests_ejb_vehicle_ejb);
-    ear.addAsLibrary(jarArchive);
+    ear.addAsLibrary(jsonp_alternate_provider);
     return ear;
 
   }
@@ -263,9 +267,9 @@ public class ClientEjbIT extends ServiceEETest {
      * @class.setup_props:
      * This is needed by the vehicle base classes
      */
-    public void setup(String[] args, Properties p) throws Exception {
+  public void setup(String[] args, Properties p) throws Exception {
 
-    }
+  }
 
   /* Tests */
 

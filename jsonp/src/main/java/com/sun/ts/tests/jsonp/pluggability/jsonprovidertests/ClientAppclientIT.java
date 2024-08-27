@@ -145,11 +145,12 @@ public class ClientAppclientIT extends ServiceEETest {
     jsonURL = ClientAppclientIT.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonObjectWithAllTypesOfData.json");
     jsonprovidertests_appclient_vehicle_client.addAsResource(jsonURL, "classes/jsonObjectWithAllTypesOfData.json");
 
-    URL resURL = ClientAppclientIT.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+    URL resURL = ClientAppclientIT.class.getClassLoader().getResource(packagePath+"/appclient_vehicle_client.xml");
     if(resURL != null) {
       jsonprovidertests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-      // TODO: replace client name with jsonprovidertests_appclient_vehicle_client
     }
+    jsonprovidertests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientAppclientIT.class.getName() + "\n"), "MANIFEST.MF");
+
 
     JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
       .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class)

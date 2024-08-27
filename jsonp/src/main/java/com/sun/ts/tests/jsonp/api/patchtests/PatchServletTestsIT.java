@@ -28,6 +28,7 @@ import com.sun.ts.tests.jsonp.api.common.JsonPTest;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
 import com.sun.ts.lib.harness.ServiceEETest;
 import jakarta.json.JsonPatch;
+import java.net.URL;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
@@ -74,6 +75,12 @@ public class PatchServletTestsIT extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
+  @AfterEach
+  public void cleanup() throws Exception {
+    logger.log(Logger.Level.INFO, "cleanup ok");
+  }
+
+
   static final String VEHICLE_ARCHIVE = "patchtests_servlet_vehicle";
   
   @TargetsContainer("tck-javatest")
@@ -106,10 +113,12 @@ public class PatchServletTestsIT extends ServiceEETest {
     .addClass(com.sun.ts.tests.jsonp.api.common.TestResult.class)
     .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class);
 
-    patchtests_servlet_vehicle_web.setWebXML(PatchServletTestsIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
+    URL webXML = PatchServletTestsIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml");
+    patchtests_servlet_vehicle_web.setWebXML(webXML);
 
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
     ear.addAsModule(patchtests_servlet_vehicle_web);
+
     return ear;
 
   }

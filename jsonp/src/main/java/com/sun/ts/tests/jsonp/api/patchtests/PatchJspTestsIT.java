@@ -76,6 +76,12 @@ public class PatchJspTestsIT extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
+  @AfterEach
+  public void cleanup() throws Exception {
+    logger.log(Logger.Level.INFO, "cleanup ok");
+  }
+
+
   static final String VEHICLE_ARCHIVE = "patchtests_jsp_vehicle";
   
   @TargetsContainer("tck-javatest")
@@ -109,20 +115,21 @@ public class PatchJspTestsIT extends ServiceEETest {
 
 
     // The web.xml descriptor
-    URL warResURL = PatchJspTestsIT.class.getResource("jsp_vehicle_web.xml");
+    URL warResURL = PatchServletTestsIT.class.getClassLoader().getResource(packagePath+"/jsp_vehicle_web.xml");
     if(warResURL != null) {
-      patchtests_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+      patchtests_jsp_vehicle_web.setWebXML(warResURL);
     }
 
     // Web content
-    warResURL = PatchJspTestsIT.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-    patchtests_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
-    warResURL = PatchJspTestsIT.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-    patchtests_jsp_vehicle_web.addAsWebResource(warResURL, "/jsp_vehicle.jsp");    
-    
+    URL resURL = PatchServletTestsIT.class.getResource("/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    patchtests_jsp_vehicle_web.addAsWebResource(resURL, "/jsp_vehicle.jsp");
+    resURL = PatchServletTestsIT.class.getResource("/vehicle/jsp/contentRoot/client.html");
+    patchtests_jsp_vehicle_web.addAsWebResource(resURL, "/client.html");
+
     
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_jsp_vehicle.ear");
     ear.addAsModule(patchtests_jsp_vehicle_web);
+
     return ear;
 
   }

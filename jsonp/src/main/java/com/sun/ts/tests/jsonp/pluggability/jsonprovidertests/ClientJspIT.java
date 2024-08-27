@@ -163,22 +163,23 @@ public class ClientJspIT extends ServiceEETest {
 
     jsonprovidertests_jsp_vehicle_web.addAsLibrary(jarArchive);
 
-
     // The web.xml descriptor
-    URL warResURL = ClientJspIT.class.getResource("jsp_vehicle_web.xml");
+    URL warResURL = ClientJspIT.class.getClassLoader().getResource(packagePath+"/jsp_vehicle_web.xml");
     if(warResURL != null) {
-      jsonprovidertests_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+      jsonprovidertests_jsp_vehicle_web.setWebXML(warResURL);
     }
 
     // Web content
-    warResURL = ClientJspIT.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
-    jsonprovidertests_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
-    warResURL = ClientJspIT.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
-    jsonprovidertests_jsp_vehicle_web.addAsWebResource(warResURL, "/jsp_vehicle.jsp");    
+    URL resURL = ClientJspIT.class.getResource("/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    jsonprovidertests_jsp_vehicle_web.addAsWebResource(resURL, "/jsp_vehicle.jsp");
+    resURL = ClientJspIT.class.getResource("/vehicle/jsp/contentRoot/client.html");
+    jsonprovidertests_jsp_vehicle_web.addAsWebResource(resURL, "/client.html");
 
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_jsp_vehicle.ear");
+
     ear.addAsModule(jsonprovidertests_jsp_vehicle_web);
     ear.addAsLibrary(jarArchive);
+
     return ear;
 
   }

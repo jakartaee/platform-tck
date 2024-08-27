@@ -212,7 +212,7 @@ public class ClientServletIT extends ServiceEETest {
   private String providerPath = null;
 
   // public static void main(String[] args) {
-  //   Client theTests = new Client();
+  //   ClientServletIT theTests = new ClientServletIT();
   //   Status s = theTests.run(args, System.out, System.err);
   //   s.exit();
   // }
@@ -223,9 +223,9 @@ public class ClientServletIT extends ServiceEETest {
      * @class.setup_props:
      * This is needed by the vehicle base classes
      */
-    public void setup(String[] args, Properties p) throws Exception {
+  public void setup(String[] args, Properties p) throws Exception {
 
-    }
+  }
 
   /* Tests */
 
