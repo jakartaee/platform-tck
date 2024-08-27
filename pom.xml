@@ -41,7 +41,6 @@
         <!-- not needed anymore -->
         <!--        <module>docker</module>-->
         <module>core-profile-tck</module>
-        <module>ejb</module>
         <module>ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
         <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
