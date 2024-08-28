@@ -69,7 +69,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.ext
             if(resURL != null) {
               jpa_ee_propagation_cm_ext_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_ee_propagation_cm_ext_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_ee_propagation_cm_ext_client.addAsManifestResource(new StringAsset("Main-Class: ${package}.Client\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_propagation_cm_ext_client, Client.class, resURL);
 

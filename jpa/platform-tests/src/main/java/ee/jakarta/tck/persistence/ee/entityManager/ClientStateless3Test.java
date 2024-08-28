@@ -104,7 +104,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.ee.entityMa
             if(resURL != null) {
               jpa_ee_entityManager_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_ee_entityManager_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_ee_entityManager_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_entityManager_stateless3_vehicle_client, Client.class, resURL);
 
