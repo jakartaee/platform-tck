@@ -113,7 +113,7 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
      * Denotes that tests are running in Java EE mode. This is the only valid
      * non-null value for this property.
      */
-    transient public static final String JAVAEE_MODE = "jakartaEE";
+    transient public static final String JAKARTA_EE = "jakartaEE";
 
     /**
      * Denotes that tests are running in Java SE mode. This is the only valid
@@ -193,12 +193,12 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
     public void setup(String[] args, Properties p) throws Exception {
         logTrace("PMClientBase.setup(String[] args, Properties)");
         myProps = p;
-        mode = p.getProperty(MODE_PROP);
+        mode = p.getProperty(MODE_PROP, JAKARTA_EE);
         persistenceUnitName = p.getProperty(PERSISTENCE_UNIT_NAME_PROP);
         logTrace( "Persistence Unit Name =" + persistenceUnitName);
         secondPersistenceUnitName = p.getProperty(SECOND_PERSISTENCE_UNIT_NAME_PROP);
         logTrace( "Second Persistence Unit Name =" + secondPersistenceUnitName);
-        if (JAVAEE_MODE.equalsIgnoreCase(mode)) {
+        if (JAKARTA_EE.equalsIgnoreCase(mode)) {
             logTrace(MODE_PROP + " is set to " + mode
                     + ", so tests are running in JakartaEE environment.");
         } else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
@@ -212,7 +212,7 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
     }
     public void setup() throws Exception {
         logTrace("PMClientBase.setup");
-        mode = System.getProperty(MODE_PROP);
+        mode = System.getProperty(MODE_PROP, JAKARTA_EE);
         myProps.put(MODE_PROP, mode);
         persistenceUnitName = System.getProperty(PERSISTENCE_UNIT_NAME_PROP);
         myProps.put(PERSISTENCE_UNIT_NAME_PROP, persistenceUnitName);
@@ -237,7 +237,7 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
         myProps.put(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED,
                 System.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED));
 
-        if (JAVAEE_MODE.equalsIgnoreCase(mode)) {
+        if (JAKARTA_EE.equalsIgnoreCase(mode)) {
             logTrace(
                     MODE_PROP + " is set to " + mode + ", so tests are running in JakartaEE environment.");
         } else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
