@@ -181,13 +181,13 @@ public class secformClient extends EETest {
     props = p;
 
     try {
-      hostname = p.getProperty(WebHostProp);
-      portnum = Integer.parseInt(p.getProperty(WebPortProp));
-      username = p.getProperty(UserNameProp);
-      password = p.getProperty(PasswordProp);
-      unauthUsername = p.getProperty(unauthUserNameProp);
-      unauthPassword = p.getProperty(unauthPasswordProp);
-      tshome = p.getProperty(tsHomeProp);
+      hostname = TestUtil.getProperty(p, WebHostProp);
+      portnum = Integer.parseInt(TestUtil.getProperty(p, WebPortProp));
+      username = TestUtil.getProperty(p, UserNameProp);
+      password = TestUtil.getProperty(p, PasswordProp);
+      unauthUsername = TestUtil.getProperty(p, unauthUserNameProp);
+      unauthPassword = TestUtil.getProperty(p, unauthPasswordProp);
+      tshome = TestUtil.getProperty(p, tsHomeProp);
 
       TestUtil.logMsg("username: " + username);
       TestUtil.logMsg("password: " + password);
@@ -312,10 +312,10 @@ public class secformClient extends EETest {
 
       // Check to make sure isUserInRole is working properly:
       Hashtable roleCheck = new Hashtable();
-      roleCheck.put("ADM", new Boolean(true));
-      roleCheck.put("MGR", new Boolean(false));
-      roleCheck.put("VP", new Boolean(false));
-      roleCheck.put("EMP", new Boolean(true));
+      roleCheck.put("ADM", Boolean.TRUE);
+      roleCheck.put("MGR", Boolean.FALSE);
+      roleCheck.put("VP", Boolean.FALSE);
+      roleCheck.put("EMP", Boolean.TRUE);
       // roleCheck.put( "Administrator", new Boolean( false ) );
       if (!checkRoles(response.content, roleCheck)) {
         TestUtil.logErr("isUserInRole() does not work correctly.");
@@ -752,10 +752,10 @@ public class secformClient extends EETest {
 
       // Check to make sure isUserInRole is working properly:
       Hashtable roleCheck = new Hashtable();
-      roleCheck.put("ADM", new Boolean(false));
-      roleCheck.put("MGR", new Boolean(true));
-      roleCheck.put("VP", new Boolean(false));
-      roleCheck.put("EMP", new Boolean(true));
+      roleCheck.put("ADM", Boolean.FALSE);
+      roleCheck.put("MGR", Boolean.TRUE);
+      roleCheck.put("VP", Boolean.FALSE);
+      roleCheck.put("EMP", Boolean.TRUE);
       // roleCheck.put( "Manager", new Boolean( false ) );
       if (!checkRoles(response.content, roleCheck)) {
         TestUtil.logErr("isUserInRole() does not work correctly.");
@@ -1097,7 +1097,7 @@ public class secformClient extends EETest {
 
       // Check to make sure isUserInRole is working properly:
       Hashtable roleCheck = new Hashtable();
-      roleCheck.put("Administrator", new Boolean(true));
+      roleCheck.put("Administrator", Boolean.TRUE);
       if (!checkRoles(response.content, roleCheck)) {
         TestUtil.logErr("isUserInRole() does not work correctly.");
         TestUtil.logErr("Page Received:");
@@ -1455,10 +1455,10 @@ public class secformClient extends EETest {
 
       // Check to make sure isUserInRole is working properly:
       Hashtable roleCheck = new Hashtable();
-      roleCheck.put("ADM", new Boolean(true));
-      roleCheck.put("MGR", new Boolean(false));
-      roleCheck.put("VP", new Boolean(false));
-      roleCheck.put("EMP", new Boolean(true));
+      roleCheck.put("ADM", Boolean.TRUE);
+      roleCheck.put("MGR", Boolean.FALSE);
+      roleCheck.put("VP", Boolean.FALSE);
+      roleCheck.put("EMP", Boolean.TRUE);
       // roleCheck.put( "Administrator", new Boolean( false ) );
       if (!checkRoles(response.content, roleCheck)) {
         TestUtil.logErr("isUserInRole() does not work correctly.");

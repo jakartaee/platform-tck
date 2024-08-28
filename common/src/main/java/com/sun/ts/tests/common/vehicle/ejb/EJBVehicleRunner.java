@@ -32,11 +32,10 @@ public class EJBVehicleRunner implements VehicleRunnable {
   public Status run(String[] argv, Properties p) {
 
     Status sTestStatus = Status.passed("");
-    String username = p.getProperty("user");
-    String password = p.getProperty("password");
+    String username = TestUtil.getProperty(p, "user");
+    String password = TestUtil.getProperty(p, "password");
 
-    String isSecuredEjbClientValue = p
-        .getProperty("secured.ejb.vehicle.client");
+    String isSecuredEjbClientValue = TestUtil.getProperty(p, "secured.ejb.vehicle.client");
     boolean isSecuredEjbClient = (isSecuredEjbClientValue != null);
     TestUtil.logTrace("%%%%%%% isSecuredEjbClient = " + isSecuredEjbClient);
 
@@ -52,8 +51,6 @@ public class EJBVehicleRunner implements VehicleRunnable {
             + username + " password " + password);
       }
     }
-
-    String sVehicle = p.getProperty("vehicle");
 
     String sEJBVehicleJndiName = "";
     EJBVehicleRemote ref = null;

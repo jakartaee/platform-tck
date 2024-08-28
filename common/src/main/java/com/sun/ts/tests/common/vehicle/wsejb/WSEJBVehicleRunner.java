@@ -29,7 +29,6 @@ import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class WSEJBVehicleRunner implements VehicleRunnable {
   public Status run(String[] argv, Properties p) {
-    String sVehicle = p.getProperty("vehicle");
     Status sTestStatus = Status.passed("");
 
     String sEJBVehicleJndiName = "";

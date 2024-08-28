@@ -178,7 +178,7 @@ public final class TestUtil {
    */
   public static String getProperty(String s) {
     Properties p = getProperties();
-    return p.getProperty(s);
+    return getProperty(p, s);
   }
 
   /**
@@ -190,7 +190,52 @@ public final class TestUtil {
    */
   public static String getProperty(String s, String defaultValue) {
     Properties p = getProperties();
-    return p.getProperty(s, defaultValue);
+    return getProperty(p, s, defaultValue);
+  }
+
+  /**
+   * Reads a property from the properties object and logs a message if the value is not set
+   * @param props the properties object
+   * @param key the property key
+   * @return the property value, null if not set
+   */
+  public static String getProperty(Properties props, String key) {
+    String value = props.getProperty(key);
+    if (value == null) {
+      logMsg("Test property " + key + " is not set");
+    }
+    return value;
+  }
+  /**
+   * Reads a property from the properties object and logs a message if the value is not set
+   * @param props the properties object
+   * @param key the property key
+   * @param defaultValue the default value
+   * @return the property value, defaultValue if not set
+   */
+  public static String getProperty(Properties props, String key, String defaultValue) {
+    String value = props.getProperty(key);
+    if (value == null) {
+      logMsg("Test property " + key + " is not set, using: "+defaultValue);
+      value = defaultValue;
+    }
+    return value;
+  }
+
+  /**
+   * Wrapper for System.getProperty(String) that logs missing properties
+   * @param key the property key
+   * @return the property value
+   */
+  public static String getSystemProperty(String key) {
+    String value = System.getProperty(key);
+    if (value == null) {
+      logMsg("System property " + key + " is not set");
+    }
+    return value;
+  }
+  public static String getSystemProperty(String key, String def) {
+    return System.getProperty(key, def);
   }
 
   /**

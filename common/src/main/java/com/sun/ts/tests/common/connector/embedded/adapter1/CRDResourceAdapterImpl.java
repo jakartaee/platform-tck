@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 
 import javax.transaction.xa.XAResource;
 
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
@@ -80,8 +81,8 @@ public class CRDResourceAdapterImpl
   public CRDResourceAdapterImpl() {
     debug("enterred constructor...");
 
-    this.eisUser = System.getProperty("eislogin.name");
-    this.eisPwd = System.getProperty("eislogin.password");
+    this.eisUser = TestUtil.getSystemProperty("eislogin.name");
+    this.eisPwd = TestUtil.getSystemProperty("eislogin.password");
 
     debug("leaving constructor...");
   }

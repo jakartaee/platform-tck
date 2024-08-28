@@ -109,7 +109,7 @@ public class WebUtil {
      */
     try {
       logTrace("[WebUtil] Getting test name...");
-      testName = webProps.getProperty(TEST_NAME_PROP);
+      testName = TestUtil.getProperty(webProps, TEST_NAME_PROP);
     } catch (Exception e) {
       logErr("[WebUtil] Unexpected exception", e);
       throw new ServletException("Cannot get test name");

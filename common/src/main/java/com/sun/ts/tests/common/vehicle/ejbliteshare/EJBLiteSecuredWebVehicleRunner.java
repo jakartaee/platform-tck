@@ -39,15 +39,15 @@ public class EJBLiteSecuredWebVehicleRunner implements VehicleRunnable {
   }
 
   public Status run(String[] argv, Properties p) {
-    String testName = p.getProperty("testName");
-    String vehicle = p.getProperty("vehicle");
-    String contextRoot = p.getProperty("vehicle_archive_name");
+    String testName = TestUtil.getProperty(p, "testName");
+    String vehicle = TestUtil.getProperty(p, "vehicle");
+    String contextRoot = TestUtil.getProperty(p, "vehicle_archive_name");
     String queryString = "?testName=" + testName;
     String requestUrl = "/" + contextRoot + getServletPath(vehicle)
         + queryString;
 
-    String username = p.getProperty("user");
-    String password = p.getProperty("password");
+    String username = TestUtil.getProperty(p, "user");
+    String password = TestUtil.getProperty(p, "password");
 
     TSURL ctsURL = new TSURL();
     URL url = null;
@@ -55,8 +55,8 @@ public class EJBLiteSecuredWebVehicleRunner implements VehicleRunnable {
     int statusCode = Status.NOT_RUN;
     String response = null;
     try {
-      url = ctsURL.getURL("http", p.getProperty("webServerHost"),
-          Integer.parseInt(p.getProperty("webServerPort")), requestUrl);
+      url = ctsURL.getURL("http", TestUtil.getProperty(p, "webServerHost"),
+          Integer.parseInt(TestUtil.getProperty(p, "webServerPort")), requestUrl);
 
       // Encode authData
       String authData = username + ":" + password;

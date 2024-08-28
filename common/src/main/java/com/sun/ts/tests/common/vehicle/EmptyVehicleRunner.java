@@ -35,7 +35,8 @@ public class EmptyVehicleRunner implements VehicleRunnable {
 
     // create an instance of the test client and run here
     try {
-      Class c = Class.forName(p.getProperty("test_classname"));
+      String testClassName = TestUtil.getProperty(p, "test_classname");
+      Class c = Class.forName(testClassName);
       theTestClient = (ServiceEETest) c.newInstance();
       theTestClient.setSharedObject(VehicleClient.getClientSharedObject());
       sTestStatus = theTestClient.run(argv, p);

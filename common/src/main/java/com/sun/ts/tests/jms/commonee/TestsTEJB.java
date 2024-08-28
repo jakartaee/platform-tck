@@ -84,9 +84,9 @@ public class TestsTEJB implements TestsT {
     try {
       TestUtil.logMsg("initialize remote logging");
       TestUtil.init(p);
-      timeout = Long.parseLong(harnessProps.getProperty("jms_timeout"));
-      username = harnessProps.getProperty("user");
-      password = harnessProps.getProperty("password");
+      timeout = Long.parseLong(TestUtil.getProperty(harnessProps, "jms_timeout"));
+      username = TestUtil.getProperty(harnessProps, "user");
+      password = TestUtil.getProperty(harnessProps, "password");
       // check props for errors
       if (timeout < 1) {
         throw new EJBException(
