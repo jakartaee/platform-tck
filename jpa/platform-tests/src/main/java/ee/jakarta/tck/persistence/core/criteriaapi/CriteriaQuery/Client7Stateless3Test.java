@@ -100,7 +100,7 @@ public class Client7Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_client, Client7.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_ejb.jar");
             // The class files
@@ -126,17 +126,18 @@ public class Client7Stateless3Test extends ee.jakarta.tck.persistence.core.crite
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client7.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.xml");
-            if(ejbResURL != null) {
-              jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client7.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client7.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client7.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_ejb, Client7.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_core_criteriaapi_CriteriaQuery_stateless3_vehicle_ejb, Client7.class, ejbResURL1);
+
 
         // Par
             // the jar with the correct archive name
@@ -207,12 +208,9 @@ public class Client7Stateless3Test extends ee.jakarta.tck.persistence.core.crite
 
 
             // The application.xml descriptor
-            URL earResURL = Client7.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/CriteriaQuery/");
-            if(earResURL != null) {
-              jpa_core_criteriaapi_CriteriaQuery_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client7.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/CriteriaQuery/.ear.sun-application.xml");
+            earResURL = Client7.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_criteriaapi_CriteriaQuery_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -131,7 +131,8 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.annotations.mapkey.Client.class
             );
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
@@ -147,7 +148,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_annotations_mapkey_stateful3_vehicle_client, Client2.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_core_annotations_mapkey_stateful3_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_core_annotations_mapkey_stateful3_vehicle_ejb.jar");
             // The class files
@@ -169,20 +170,22 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
                 com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
                 com.sun.ts.lib.harness.EETest.SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
-                com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+                com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+                ee.jakarta.tck.persistence.core.annotations.mapkey.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client2.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
-            if(ejbResURL != null) {
-              jpa_core_annotations_mapkey_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client2.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_annotations_mapkey_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client2.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_core_annotations_mapkey_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client2.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_annotations_mapkey_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_core_annotations_mapkey_stateful3_vehicle_ejb, Client2.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_core_annotations_mapkey_stateful3_vehicle_ejb, Client2.class, ejbResURL1);
+
 
         // Par
             // the jar with the correct archive name
@@ -222,12 +225,9 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
 
 
             // The application.xml descriptor
-            URL earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/annotations/mapkey/");
-            if(earResURL != null) {
-              jpa_core_annotations_mapkey_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/annotations/mapkey/.ear.sun-application.xml");
+            earResURL = Client2.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_annotations_mapkey_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

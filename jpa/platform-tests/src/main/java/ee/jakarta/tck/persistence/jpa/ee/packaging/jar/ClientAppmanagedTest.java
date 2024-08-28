@@ -98,7 +98,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.jpa.ee.pack
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_jar_appmanaged_vehicle_client, Client.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_ee_packaging_jar_appmanaged_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_jar_appmanaged_vehicle_ejb.jar");
             // The class files
@@ -123,17 +123,18 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.jpa.ee.pack
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
-            if(ejbResURL != null) {
-              jpa_ee_packaging_jar_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            if(ejbResURL1 != null) {
+              jpa_ee_packaging_jar_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_ee_packaging_jar_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_ee_packaging_jar_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_ee_packaging_jar_appmanaged_vehicle_ejb, Client.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_ee_packaging_jar_appmanaged_vehicle_ejb, Client.class, ejbResURL1);
+
 
         // Ear
             EnterpriseArchive jpa_ee_packaging_jar_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_jar_vehicles.ear");
@@ -147,12 +148,9 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.jpa.ee.pack
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/");
-            if(earResURL != null) {
-              jpa_ee_packaging_jar_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/jar/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_ee_packaging_jar_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

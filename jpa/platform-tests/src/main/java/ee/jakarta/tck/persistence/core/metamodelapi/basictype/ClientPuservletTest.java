@@ -110,6 +110,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.metamod
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_metamodelapi_basictype_puservlet_vehicle_web, Client.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_metamodelapi_basictype = ShrinkWrap.create(JavaArchive.class, "jpa_core_metamodelapi_basictype.jar");
@@ -143,12 +144,9 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.metamod
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/metamodelapi/basictype/");
-            if(earResURL != null) {
-              jpa_core_metamodelapi_basictype_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/metamodelapi/basictype/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_metamodelapi_basictype_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -110,6 +110,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.annotat
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_annotations_collectiontable_puservlet_vehicle_web, Client.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_annotations_collectiontable = ShrinkWrap.create(JavaArchive.class, "jpa_core_annotations_collectiontable.jar");
@@ -144,12 +145,9 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.annotat
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/annotations/collectiontable/");
-            if(earResURL != null) {
-              jpa_core_annotations_collectiontable_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/annotations/collectiontable/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_annotations_collectiontable_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

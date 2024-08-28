@@ -99,7 +99,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.jpa22.query
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_jpa22_query_stream_appmanaged_vehicle_client, Client.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_jpa22_query_stream_appmanaged_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_jpa22_query_stream_appmanaged_vehicle_ejb.jar");
             // The class files
@@ -125,17 +125,18 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.jpa22.query
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
-            if(ejbResURL != null) {
-              jpa_jpa22_query_stream_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            if(ejbResURL1 != null) {
+              jpa_jpa22_query_stream_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_jpa22_query_stream_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_jpa22_query_stream_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_jpa22_query_stream_appmanaged_vehicle_ejb, Client.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_jpa22_query_stream_appmanaged_vehicle_ejb, Client.class, ejbResURL1);
+
 
         // Par
             // the jar with the correct archive name
@@ -173,12 +174,9 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.jpa22.query
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/jpa22/query/stream/");
-            if(earResURL != null) {
-              jpa_jpa22_query_stream_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/jpa22/query/stream/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_jpa22_query_stream_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

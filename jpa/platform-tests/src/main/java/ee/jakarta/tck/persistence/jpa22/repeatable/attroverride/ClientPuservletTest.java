@@ -110,6 +110,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.jpa22.repeat
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_jpa22_repeatable_attroverride_puservlet_vehicle_web, Client.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_jpa22_repeatable_attroverride = ShrinkWrap.create(JavaArchive.class, "jpa_jpa22_repeatable_attroverride.jar");
@@ -148,12 +149,9 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.jpa22.repeat
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/jpa22/repeatable/attroverride/");
-            if(earResURL != null) {
-              jpa_jpa22_repeatable_attroverride_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/jpa22/repeatable/attroverride/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_jpa22_repeatable_attroverride_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

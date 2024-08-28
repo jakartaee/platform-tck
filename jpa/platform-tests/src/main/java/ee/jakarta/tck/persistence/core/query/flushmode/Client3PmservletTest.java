@@ -107,6 +107,7 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.query.
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_query_flushmode_pmservlet_vehicle_web, Client3.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_query_flushmode = ShrinkWrap.create(JavaArchive.class, "jpa_core_query_flushmode.jar");
@@ -157,12 +158,9 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.query.
 
 
             // The application.xml descriptor
-            URL earResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/query/flushmode/");
-            if(earResURL != null) {
-              jpa_core_query_flushmode_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/query/flushmode/.ear.sun-application.xml");
+            earResURL = Client3.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_query_flushmode_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

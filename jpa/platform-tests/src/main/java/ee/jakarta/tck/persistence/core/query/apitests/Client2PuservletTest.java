@@ -106,6 +106,7 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.query.
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_query_apitests_puservlet_vehicle_web, Client2.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_query_apitests = ShrinkWrap.create(JavaArchive.class, "jpa_core_query_apitests.jar");
@@ -142,12 +143,9 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.query.
 
 
             // The application.xml descriptor
-            URL earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/query/apitests/");
-            if(earResURL != null) {
-              jpa_core_query_apitests_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/query/apitests/.ear.sun-application.xml");
+            earResURL = Client2.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_query_apitests_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

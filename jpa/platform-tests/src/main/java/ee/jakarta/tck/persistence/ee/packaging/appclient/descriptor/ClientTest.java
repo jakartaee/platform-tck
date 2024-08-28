@@ -71,6 +71,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_appclient_descriptor_client, Client.class, resURL);
 
+
         // Ear
             EnterpriseArchive jpa_ee_packaging_appclient_descriptor_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_appclient_descriptor.ear");
 
@@ -82,12 +83,9 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.appclien
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/appclient/descriptor/");
-            if(earResURL != null) {
-              jpa_ee_packaging_appclient_descriptor_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/appclient/descriptor/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_ee_packaging_appclient_descriptor_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

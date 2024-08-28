@@ -111,6 +111,7 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.criter
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_criteriaapi_From_pmservlet_vehicle_web, Client2.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_criteriaapi_From = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_From.jar");
@@ -178,12 +179,9 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.criter
 
 
             // The application.xml descriptor
-            URL earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/From/");
-            if(earResURL != null) {
-              jpa_core_criteriaapi_From_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/From/.ear.sun-application.xml");
+            earResURL = Client2.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_criteriaapi_From_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -83,6 +83,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_packaging_web_standalone_component_web, Client.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_ee_packaging_web_standalone = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_web_standalone.jar");

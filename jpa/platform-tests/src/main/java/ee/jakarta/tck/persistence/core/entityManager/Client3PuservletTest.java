@@ -142,6 +142,7 @@ public class Client3PuservletTest extends ee.jakarta.tck.persistence.core.entity
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_entityManager_puservlet_vehicle_web, Client3.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_entityManager = ShrinkWrap.create(JavaArchive.class, "jpa_core_entityManager.jar");
@@ -176,12 +177,9 @@ public class Client3PuservletTest extends ee.jakarta.tck.persistence.core.entity
 
 
             // The application.xml descriptor
-            URL earResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/entityManager/");
-            if(earResURL != null) {
-              jpa_core_entityManager_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/entityManager/.ear.sun-application.xml");
+            earResURL = Client3.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_entityManager_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

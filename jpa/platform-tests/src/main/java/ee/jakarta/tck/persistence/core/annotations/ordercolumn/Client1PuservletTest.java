@@ -110,6 +110,7 @@ public class Client1PuservletTest extends ee.jakarta.tck.persistence.core.annota
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_annotations_ordercolumn_puservlet_vehicle_web, Client1.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_annotations_ordercolumn = ShrinkWrap.create(JavaArchive.class, "jpa_core_annotations_ordercolumn.jar");
@@ -148,12 +149,9 @@ public class Client1PuservletTest extends ee.jakarta.tck.persistence.core.annota
 
 
             // The application.xml descriptor
-            URL earResURL = Client1.class.getResource("/com/sun/ts/tests/jpa/core/annotations/ordercolumn/");
-            if(earResURL != null) {
-              jpa_core_annotations_ordercolumn_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client1.class.getResource("/com/sun/ts/tests/jpa/core/annotations/ordercolumn/.ear.sun-application.xml");
+            earResURL = Client1.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_annotations_ordercolumn_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

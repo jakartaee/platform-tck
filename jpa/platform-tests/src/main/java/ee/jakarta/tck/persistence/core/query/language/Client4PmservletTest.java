@@ -111,6 +111,7 @@ public class Client4PmservletTest extends ee.jakarta.tck.persistence.core.query.
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_query_language_pmservlet_vehicle_web, Client4.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_query_language = ShrinkWrap.create(JavaArchive.class, "jpa_core_query_language.jar");
@@ -161,12 +162,9 @@ public class Client4PmservletTest extends ee.jakarta.tck.persistence.core.query.
 
 
             // The application.xml descriptor
-            URL earResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/query/language/");
-            if(earResURL != null) {
-              jpa_core_query_language_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/query/language/.ear.sun-application.xml");
+            earResURL = Client4.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_query_language_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

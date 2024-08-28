@@ -75,7 +75,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_packaging_ejb_resource_local_client, Client.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_ee_packaging_ejb_resource_local_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_ejb_resource_local_ejb.jar");
             // The class files
@@ -86,17 +86,18 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
                 ee.jakarta.tck.persistence.ee.common.B.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_ejb.jar.xml");
-            if(ejbResURL != null) {
-              jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_ejb.jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_ejb.jar.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/jpa_ee_packaging_ejb_resource_local_ejb.jar.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_ee_packaging_ejb_resource_local_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_ee_packaging_ejb_resource_local_ejb, Client.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_ee_packaging_ejb_resource_local_ejb, Client.class, ejbResURL1);
+
 
         // Ear
             EnterpriseArchive jpa_ee_packaging_ejb_resource_local_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_ejb_resource_local.ear");
@@ -110,12 +111,9 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.ejb.reso
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/");
-            if(earResURL != null) {
-              jpa_ee_packaging_ejb_resource_local_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/ejb/resource_local/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_ee_packaging_ejb_resource_local_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

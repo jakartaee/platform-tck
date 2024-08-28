@@ -110,6 +110,7 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.types.
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_types_property_puservlet_vehicle_web, Client2.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_types_property = ShrinkWrap.create(JavaArchive.class, "jpa_core_types_property.jar");
@@ -146,12 +147,9 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.types.
 
 
             // The application.xml descriptor
-            URL earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/types/property/");
-            if(earResURL != null) {
-              jpa_core_types_property_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/types/property/.ear.sun-application.xml");
+            earResURL = Client2.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_types_property_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

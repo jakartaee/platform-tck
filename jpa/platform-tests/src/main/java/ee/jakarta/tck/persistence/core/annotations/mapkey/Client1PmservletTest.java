@@ -130,7 +130,8 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.annota
             com.sun.ts.tests.common.vehicle.pmservlet.PMServletVehicle.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.annotations.mapkey.Client.class
             );
             // The web.xml descriptor
             URL warResURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
@@ -157,6 +158,7 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.annota
 
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_annotations_mapkey_pmservlet_vehicle_web, Client1.class, warResURL);
+
 
         // Par
             // the jar with the correct archive name
@@ -195,12 +197,9 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.annota
 
 
             // The application.xml descriptor
-            URL earResURL = Client1.class.getResource("/com/sun/ts/tests/jpa/core/annotations/mapkey/");
-            if(earResURL != null) {
-              jpa_core_annotations_mapkey_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client1.class.getResource("/com/sun/ts/tests/jpa/core/annotations/mapkey/.ear.sun-application.xml");
+            earResURL = Client1.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_annotations_mapkey_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

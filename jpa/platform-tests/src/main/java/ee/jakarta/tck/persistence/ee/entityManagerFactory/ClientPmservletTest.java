@@ -110,6 +110,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.entityMan
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_entityManagerFactory_pmservlet_vehicle_web, Client.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_ee_entityManagerFactory = ShrinkWrap.create(JavaArchive.class, "jpa_ee_entityManagerFactory.jar");
@@ -143,12 +144,9 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.entityMan
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/entityManagerFactory/");
-            if(earResURL != null) {
-              jpa_ee_entityManagerFactory_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/entityManagerFactory/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_ee_entityManagerFactory_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

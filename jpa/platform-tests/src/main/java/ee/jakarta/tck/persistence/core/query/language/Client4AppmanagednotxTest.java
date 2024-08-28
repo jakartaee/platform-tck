@@ -100,7 +100,7 @@ public class Client4AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_query_language_appmanagedNoTx_vehicle_client, Client4.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_core_query_language_appmanagedNoTx_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_core_query_language_appmanagedNoTx_vehicle_ejb.jar");
             // The class files
@@ -126,17 +126,18 @@ public class Client4AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client4.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");
-            if(ejbResURL != null) {
-              jpa_core_query_language_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client4.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_query_language_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client4.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_core_query_language_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client4.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_query_language_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_core_query_language_appmanagedNoTx_vehicle_ejb, Client4.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_core_query_language_appmanagedNoTx_vehicle_ejb, Client4.class, ejbResURL1);
+
 
         // Par
             // the jar with the correct archive name
@@ -189,12 +190,9 @@ public class Client4AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
 
 
             // The application.xml descriptor
-            URL earResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/query/language/");
-            if(earResURL != null) {
-              jpa_core_query_language_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/query/language/.ear.sun-application.xml");
+            earResURL = Client4.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_query_language_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -103,6 +103,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.lock.qu
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_lock_query_puservlet_vehicle_web, Client.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_lock_query = ShrinkWrap.create(JavaArchive.class, "jpa_core_lock_query.jar");
@@ -138,12 +139,9 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.lock.qu
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/lock/query/");
-            if(earResURL != null) {
-              jpa_core_lock_query_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/lock/query/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_lock_query_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
