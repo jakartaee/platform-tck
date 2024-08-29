@@ -58,6 +58,7 @@ import java.lang.System.Logger;
  * RFC 6902: JavaScript Object Notation (JSON) Patch compatibility tests.<br>
  * {@see <a href="https://tools.ietf.org/html/rfc6902">RFC 6902</a>}.
  */
+@Tag("tck-javatest")
 @ExtendWith(ArquillianExtension.class)
 public class PatchServletTestsIT extends ServiceEETest {
 

@@ -62,6 +62,7 @@ import java.lang.System.Logger;
  * RFC 6902: JavaScript Object Notation (JSON) Patch compatibility tests.<br>
  * {@see <a href="https://tools.ietf.org/html/rfc6902">RFC 6902</a>}.
  */
+@Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
 public class PatchEjbTestsIT extends ServiceEETest {
 
@@ -87,8 +88,8 @@ public class PatchEjbTestsIT extends ServiceEETest {
 
   static final String VEHICLE_ARCHIVE = "patchtests_ejb_vehicle";
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createEjbDeployment() throws Exception {
 

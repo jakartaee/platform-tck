@@ -84,6 +84,7 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 
 import java.lang.System.Logger;
 
+@Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
 public class ClientEjbIT extends ServiceEETest {
 
@@ -122,8 +123,8 @@ public class ClientEjbIT extends ServiceEETest {
 
   static final String VEHICLE_ARCHIVE = "jsonprovidertests_ejb_vehicle";
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createEjbDeployment() throws Exception {
 

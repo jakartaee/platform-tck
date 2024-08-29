@@ -17,14 +17,12 @@
 --%>
 
 <%@ page language="java" %>
-<%@ page import="javax.naming.*" %>
 <%@ page import="java.rmi.RemoteException" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
 <%@ page import="com.sun.ts.lib.util.*" %>
 <%@ page import="com.sun.ts.lib.harness.*" %>
-<%@ page import="com.sun.ts.lib.porting.*" %>
-<%@ page import="com.sun.javatest.Status" %>
+<%@ page import="com.sun.ts.lib.harness.Status" %>
 <%@ page session="false" %>
 
 <%! Properties properties = null;

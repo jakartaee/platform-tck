@@ -82,6 +82,7 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 
 import java.lang.System.Logger;
 
+@Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
 public class ClientAppclientIT extends ServiceEETest {
 
@@ -120,8 +121,8 @@ public class ClientAppclientIT extends ServiceEETest {
 
   static final String VEHICLE_ARCHIVE = "jsonprovidertests_appclient_vehicle";
   
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
   public static EnterpriseArchive createAppclientDeployment() throws Exception {
 

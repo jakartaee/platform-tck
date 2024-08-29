@@ -82,6 +82,7 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 
 import java.lang.System.Logger;
 
+@Tag("tck-javatest")
 @ExtendWith(ArquillianExtension.class)
 public class ClientServletIT extends ServiceEETest {
 

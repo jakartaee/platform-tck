@@ -28,19 +28,19 @@
     <packaging>jar</packaging>
 
     <properties>
-        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
+        <arquillian.junit>1.9.1.Final</arquillian.junit>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
         <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version>
         <!-- Use JDK21 to run with GF 8.0.0-M5 -->
         <!-- <glassfish.container.version>8.0.0-M5</glassfish.container.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <tck.artifactId>jsonp-platform-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>/jakartaeetck</ts.home>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
-        <version.jakarta.tck.arquillian>1.0.0-M10</version.jakarta.tck.arquillian>
+        <version.jakarta.tck.arquillian>1.0.0-M12</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencyManagement>
@@ -335,13 +335,13 @@
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.5.0</version>
                 <configuration>
                     <trimStackTrace>false</trimStackTrace>
                 </configuration>
                 <executions>
                     <execution>
-                        <id>patch-tests</id>
+                        <id>patch-tests-appclient</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
@@ -351,8 +351,10 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
-                                <include>**TestsIT.java</include>
+                                <include>com/sun/ts/tests/jsonp/api/patchtests/**TestsIT.java</include>
                             </includes>
+                            <!-- Select the @Tag("tck-appclient") tests -->
+                            <groups>tck-appclient</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
@@ -361,6 +363,7 @@
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
+                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
@@ -368,7 +371,38 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>pluggability-tests</id>
+                        <id>patch-tests-javatest</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <includes>
+                                <include>com/sun/ts/tests/jsonp/api/patchtests/**TestsIT.java</include>
+                            </includes>
+                            <!-- Select the @Tag("tck-javatest") tests -->
+                            <groups>tck-javatest</groups>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            <systemPropertyVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <junit.log.traceflag>true</junit.log.traceflag>
+                                <harness.log.traceflag>true</harness.log.traceflag>
+                                <cts.harness.debug>true</cts.harness.debug>
+                                <java.io.tmpdir>/tmp</java.io.tmpdir>
+                                <arquillian.xml>arquillian.xml</arquillian.xml>
+                            </systemPropertyVariables>
+                            <environmentVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>pluggability-tests-appclient</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
@@ -377,9 +411,11 @@
                             <!-- <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
                             </additionalClasspathElements> -->
-                            <excludes>
-                                <exclude>**/Patch*.java</exclude>
-                            </excludes>
+                            <includes>
+                                <include>com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/**IT.java</include>
+                            </includes>
+                            <!-- Select the @Tag("tck-appclient") tests -->
+                            <groups>tck-appclient</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
@@ -388,6 +424,37 @@
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
+                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                            </systemPropertyVariables>
+                            <environmentVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>pluggability-tests-javatest</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <!-- <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+                            </additionalClasspathElements> -->
+                            <includes>
+                                <include>com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/**IT.java</include>
+                            </includes>
+                            <!-- Select the @Tag("tck-javatest") tests -->
+                            <groups>tck-javatest</groups>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            <systemPropertyVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <junit.log.traceflag>true</junit.log.traceflag>
+                                <harness.log.traceflag>true</harness.log.traceflag>
+                                <cts.harness.debug>true</cts.harness.debug>
+                                <java.io.tmpdir>/tmp</java.io.tmpdir>
+                                <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
