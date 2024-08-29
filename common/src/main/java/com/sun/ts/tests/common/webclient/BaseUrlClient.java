@@ -389,9 +389,9 @@ public abstract class BaseUrlClient extends EETest {
    */
   public void setup(String[] args, Properties p) throws Exception {
     _props = p;
-    String hostname = p.getProperty(SERVLETHOSTPROP).trim();
-    String portnum = p.getProperty(SERVLETPORTPROP).trim();
-    String tshome = p.getProperty(TSHOME).trim();
+    String hostname = TestUtil.getProperty(p, SERVLETHOSTPROP).trim();
+    String portnum = TestUtil.getProperty(p, SERVLETPORTPROP).trim();
+    String tshome = TestUtil.getProperty(p, TSHOME).trim();
 
     if (!isNullOrEmpty(hostname)) {
       _hostname = hostname;

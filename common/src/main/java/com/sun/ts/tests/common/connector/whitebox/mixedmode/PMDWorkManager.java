@@ -16,6 +16,7 @@
 
 package com.sun.ts.tests.common.connector.whitebox.mixedmode;
 
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.whitebox.Debug;
 import com.sun.ts.tests.common.connector.whitebox.WorkImpl;
 import com.sun.ts.tests.common.connector.whitebox.WorkListenerImpl;
@@ -41,9 +42,9 @@ public class PMDWorkManager {
     this.bsc = val;
     this.wmgr = bsc.getWorkManager();
 
-    this.sicUser = System.getProperty("j2eelogin.name");
-    this.sicPwd = System.getProperty("j2eelogin.password");
-    this.eisUser = System.getProperty("eislogin.name");
+    this.sicUser = TestUtil.getSystemProperty("j2eelogin.name");
+    this.sicPwd = TestUtil.getSystemProperty("j2eelogin.password");
+    this.eisUser = TestUtil.getSystemProperty("eislogin.name");
     debug("leaving constructor");
   }
 

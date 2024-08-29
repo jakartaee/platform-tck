@@ -89,11 +89,11 @@ public abstract class ServiceEETest extends EETest {
     if (TestUtil.iWhereAreWe == TestUtil.VM_HARNESS
         && this instanceof com.sun.ts.tests.common.vehicle.VehicleClient) {
       TestUtil.logTrace("in ServiceEETest.run() method");
-      String sVehicle = p.getProperty("vehicle");
+      String sVehicle = TestUtil.getProperty(p, "vehicle");
       String className = this.getClass().getName();
       // use this name for the context root or jndi name to eliminate
       // naming conflicts for apps deployed at the same time
-      String sVehicleEarName = p.getProperty("vehicle_ear_name");
+      String sVehicleEarName = TestUtil.getProperty(p, "vehicle_ear_name");
       TestUtil.logTrace("Vehicle to be used for this test is:  " + sVehicle);
       // call to the Deliverable to run in deliverable specific vehicles
       // This should never be called on the server, so there is
@@ -173,8 +173,8 @@ public abstract class ServiceEETest extends EETest {
     props = getTestPropsFromArgs(argv);
     // get the # of secs we should delay to allow reporting to finish
     try {
-      iLogDelaySeconds = Integer
-          .parseInt(props.getProperty("harness.log.delayseconds", "1")) * 1000;
+      String delayseconds = TestUtil.getProperty(props, "harness.log.delayseconds", "1");
+      iLogDelaySeconds = Integer.parseInt(delayseconds) * 1000;
     } catch (NumberFormatException e) {
       // set the default if a number was not set
       iLogDelaySeconds = 1000;
@@ -245,7 +245,7 @@ public abstract class ServiceEETest extends EETest {
     StringTokenizer st = null;
     try {
       // get vehicles property (DEFAULT to all)
-      sVal = p.getProperty("service_eetest.vehicles");
+      sVal = TestUtil.getProperty(p, "service_eetest.vehicles");
     } catch (Exception e) {
       // got an exception looking up the prop, so set defaults
       sVal = "";

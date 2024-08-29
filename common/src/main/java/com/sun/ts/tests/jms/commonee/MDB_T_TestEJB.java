@@ -88,9 +88,9 @@ public class MDB_T_TestEJB implements MDB_T_Test {
     try {
       TestUtil.init(props);
       // get props
-      timeout = Long.parseLong(props.getProperty("jms_timeout"));
-      jmsUser = props.getProperty("user");
-      jmsPassword = props.getProperty("password");
+      timeout = Long.parseLong(TestUtil.getProperty(props, "jms_timeout"));
+      jmsUser = TestUtil.getProperty(props, "user");
+      jmsPassword = TestUtil.getProperty(props, "password");
       // check props for errors
       if (timeout < 1) {
         throw new Exception(

@@ -25,6 +25,7 @@ import java.lang.reflect.Method;
 
 import javax.transaction.xa.XAResource;
 
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 import com.sun.ts.tests.common.connector.util.TSMessageListenerInterface;
 
@@ -92,10 +93,10 @@ public class LocalTxResourceAdapterImpl
         .logState("LocalTxResourceAdapterImpl Constructor ");
     Debug.trace("LocalTxResourceAdapterImpl Constructor ");
 
-    this.sicUser = System.getProperty("j2eelogin.name");
-    this.sicPwd = System.getProperty("j2eelogin.password");
-    this.eisUser = System.getProperty("eislogin.name");
-    this.eisPwd = System.getProperty("eislogin.password");
+    this.sicUser = TestUtil.getSystemProperty("j2eelogin.name");
+    this.sicPwd = TestUtil.getSystemProperty("j2eelogin.password");
+    this.eisUser = TestUtil.getSystemProperty("eislogin.name");
+    this.eisPwd = TestUtil.getSystemProperty("eislogin.password");
   }
 
   @Override

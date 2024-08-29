@@ -128,7 +128,7 @@ public class TestsEJB implements Tests {
 
   private long longValue = 9223372036854775807L;
 
-  private Integer nInteger = new Integer(-2147483648);
+  private Integer nInteger = Integer.valueOf(-2147483648);
 
   private short shortValue = -32768;
 
@@ -201,9 +201,9 @@ public class TestsEJB implements Tests {
     try {
       TestUtil.logMsg("initialize remote logging");
       TestUtil.init(p);
-      timeout = Long.parseLong(harnessProps.getProperty("jms_timeout"));
-      username = harnessProps.getProperty("user");
-      password = harnessProps.getProperty("password");
+      timeout = Long.parseLong(TestUtil.getProperty(harnessProps, "jms_timeout"));
+      username = TestUtil.getProperty(harnessProps, "user");
+      password = TestUtil.getProperty(harnessProps, "password");
       // check props for errors
       if (timeout < 1) {
         throw new EJBException(

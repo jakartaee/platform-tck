@@ -68,7 +68,8 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
 
     try {
       // create an instance of the test client and run here
-      Class c = Class.forName(props.getProperty("test_classname"));
+      String testClassName = TestUtil.getProperty(props, "test_classname");
+      Class c = Class.forName(testClassName);
       EETest testClient = (EETest) c.newInstance();
 
       initClient(testClient);
@@ -85,7 +86,7 @@ abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
   }
 
   protected String getTestName(Properties props) {
-    String testName = props.getProperty(FINDER_TEST_NAME_KEY);
+    String testName = TestUtil.getProperty(props, FINDER_TEST_NAME_KEY);
     if (testName == null) {
       testName = "test";
     }

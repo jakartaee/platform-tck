@@ -318,8 +318,8 @@ public abstract class EETest implements Serializable {
     props = getTestPropsFromArgs(argv);
     // get the # of secs we should delay to allow reporting to finish
     try {
-      iLogDelaySeconds = Integer
-          .parseInt(props.getProperty("harness.log.delayseconds", "0")) * 1000;
+      String delayseconds = TestUtil.getProperty(props, "harness.log.delayseconds", "0");
+      iLogDelaySeconds = Integer.parseInt(delayseconds) * 1000;
     } catch (NumberFormatException e) {
       // set the default if a number was not set
       iLogDelaySeconds = 0;
@@ -435,7 +435,7 @@ public abstract class EETest implements Serializable {
   public Status run(String[] argv, Properties p, PrintWriter log,
       PrintWriter err) {
     // need to pass these streams to the Local Reporter
-    sTestCase = p.getProperty("testName");
+    sTestCase = TestUtil.getProperty(p, "testName");
     TestUtil.setCurrentTest(sTestCase, log, err);
     TestUtil.initClient(p);
     return getPropsReady(argv, p);
@@ -459,7 +459,7 @@ public abstract class EETest implements Serializable {
       // TestUtil.logTrace("Trimming prop: " + key + ". Value = " + value);
     }
     // set testname just to be sure
-    sTestCase = p.getProperty("testName");
+    sTestCase = TestUtil.getProperty(p, "testName");
     // The code below is to allow JCK service tests to be run from
     // ejb vehicles that have been bundled with an appclient
     // Need to get the setup(), run() and cleanup() methods in the
@@ -468,9 +468,10 @@ public abstract class EETest implements Serializable {
     // this.getClass().getName());
     // TestUtil.logTrace("*** Got testclass property : " +
     // p.getProperty("test_classname"));
-    String sClass_name = p.getProperty("test_classname");
+    String sClass_name = TestUtil.getProperty(p, "test_classname");
     if (sClass_name != null) {
-      if ((p.getProperty("finder").trim()).equals("jck")) {
+      String finder = TestUtil.getProperty(p, "finder");
+      if (finder.trim().equals("jck")) {
         if (!((this.getClass().getName()).equals((sClass_name.trim())))) {
           try {
             testClInst = Class.forName(sClass_name).newInstance();
@@ -513,7 +514,7 @@ public abstract class EETest implements Serializable {
   public Status run(String[] argv, Properties p) {
     sTestStatus = Status.passed("");
     // Make sure we set the testname if we're in a generic vehicle
-    sTestCase = p.getProperty("testName");
+    sTestCase = TestUtil.getProperty(p, "testName");
     // Class testClass = this.getClass();
     Method setupMethod, runMethod, cleanupMethod;
 
@@ -658,11 +659,11 @@ public abstract class EETest implements Serializable {
     String[] testMethods;
     try {
       // read in exclude list once per VM
-      ExcludeListProcessor.readExcludeList(System.getProperty("exclude.list"));
+      ExcludeListProcessor.readExcludeList(TestUtil.getSystemProperty("exclude.list"));
       // setup a testname in a format that will macth the exclude list
       String sJavaTestName = "";
       String sVehicle;
-      sVehicle = p.getProperty("vehicle");
+      sVehicle = TestUtil.getProperty(p, "vehicle");
       if (sVehicle != null) {
         // tack on "_from_<vehicle-name>"
         sVehicle = "_from_" + sVehicle;
@@ -672,7 +673,7 @@ public abstract class EETest implements Serializable {
       String sClientClassName = this.getClass().getName();
       String sClientJavaName = sClientClassName
           .substring(sClientClassName.lastIndexOf('.') + 1) + ".java";
-      String sCurrentDir = System.getProperty("current.dir");
+      String sCurrentDir = TestUtil.getSystemProperty("current.dir");
       sCurrentDir = sCurrentDir.replace(File.separatorChar, '/');
       String sRelativeTestDir = sCurrentDir
           .substring(sCurrentDir.indexOf("tests/"));

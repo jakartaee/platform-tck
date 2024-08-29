@@ -72,7 +72,8 @@ public class ServletVehicle extends HttpServlet {
       System.out.println("read properties!!!");
 
       // create an instance of the test client and run here
-      Class c = Class.forName(properties.getProperty("test_classname"));
+      String testClassName = TestUtil.getProperty(properties, "test_classname");
+      Class c = Class.forName(testClassName);
       testObj = (EETest) c.newInstance();
 
       // Thread.currentThread().dumpStack();
