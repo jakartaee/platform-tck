@@ -170,6 +170,7 @@ public class AbstractPropertyManager implements PropertyManagerInterface {
     }
     // set all props that all tests need
     pTestProps.put("harness.log.port", getProperty("harness.log.port"));
+    pTestProps.put("harness.host", getProperty("harness.host"));
     pTestProps.put("harness.log.traceflag",
         getProperty("harness.log.traceflag"));
     pTestProps.put("harness.log.delayseconds",
