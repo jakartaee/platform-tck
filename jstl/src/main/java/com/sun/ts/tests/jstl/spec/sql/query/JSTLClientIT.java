@@ -30,9 +30,13 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
+@Tag("jstl")
+@Tag("platform")
+@Tag("web")
 @ExtendWith(ArquillianExtension.class)
 public class JSTLClientIT extends SqlUrlClient {
 
@@ -538,7 +542,7 @@ public class JSTLClientIT extends SqlUrlClient {
    * cusotm tag resultSetQuery, which invokes ResultSupport.toResult() to
    * convert a java.sql.ResultSet to jakarta.servlet.jsp.jstl.sql.Result.
    */
-
+  @Test
   public void positiveResultSupportTest() throws Exception {
     String testName = "positiveResultSupportTest";
     TEST_PROPS.setProperty(REQUEST,
