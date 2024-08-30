@@ -211,6 +211,9 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
         }
     }
     public void setup() throws Exception {
+        if (mode == JAKARTA_EE) {
+            throw new IllegalStateException("Standalone JPA TCK setup method called in Jakarta EE mode, instead call setup(String[], Properties) or figure out why JUnit @BeforeEach is being run against the calling class that called setup().");
+        }
         logTrace("PMClientBase.setup");
         mode = System.getProperty(MODE_PROP, JAKARTA_EE);
         myProps.put(MODE_PROP, mode);
