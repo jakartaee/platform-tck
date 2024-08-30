@@ -485,14 +485,10 @@ public abstract class EETest implements Serializable {
     }
     // set the harness.host prop so the server can initialize the
     // the TestUtil logging
-    try {
-      p.setProperty("harness.host",
-          InetAddress.getLocalHost().getHostAddress());
-    } catch (UnknownHostException e) {
-      TestUtil.logErr("Could not get our hostname to send to the "
-          + "server for testcase: " + sTestCase);
-      return Status.failed("Could not get our hostname to send to the "
-          + "server for testcase: " + sTestCase);
+
+    if(p.getProperty("harness.host") == null ) {
+      p.setProperty("harness.host", "localhost");
+                // InetAddress.getLocalHost().getHostAddress());
     }
     return run(argv, p);
   }
