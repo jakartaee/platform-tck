@@ -28,9 +28,13 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
+@Tag("jstl")
+@Tag("platform")
+@Tag("web")
 @ExtendWith(ArquillianExtension.class)
 public class JSTLClientIT extends AbstractUrlClient {
 
@@ -384,7 +388,7 @@ public class JSTLClientIT extends AbstractUrlClient {
    * @test_Strategy: validates jakarta.servlet.jsp.jstl.fmt.LocaleSupport for
    * static getLocalizedMessage() methods.
    */
-
+  @Test
   public void localeSupportTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_fmt_message_web/localeSupportTest.jsp HTTP/1.1");
@@ -404,7 +408,7 @@ public class JSTLClientIT extends AbstractUrlClient {
    * @test_Strategy: validates jakarta.servlet.jsp.jstl.fmt.LocaleSupport for
    * static getLocalizedMessage() methods.
    */
-
+  @Test
   public void negativeLocaleSupportTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
         "GET /jstl_fmt_message_web/negativeLocaleSupportTest.jsp HTTP/1.1");
