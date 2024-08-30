@@ -18,13 +18,13 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
 
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Trim;
-import ee.jakarta.tck.persistence.common.schema30.UtilTrimData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaBuilder.Trimspec;
@@ -32,7 +32,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.EntityType;
 
-public class Client8 extends UtilTrimData {
+public class Client8 extends Util {
 
 	
 

@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.query.language;
 import java.util.ArrayList;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -27,9 +28,8 @@ import org.junit.jupiter.api.Test;
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Department;
-import ee.jakarta.tck.persistence.common.schema30.UtilDepartmentEmployeeData;
 
-public class Client6 extends UtilDepartmentEmployeeData {
+public class Client6 extends Util {
 
 
 

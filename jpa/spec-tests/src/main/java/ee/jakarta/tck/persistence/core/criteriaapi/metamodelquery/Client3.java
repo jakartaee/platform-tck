@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,6 @@ import ee.jakarta.tck.persistence.common.schema30.Alias;
 import ee.jakarta.tck.persistence.common.schema30.Alias_;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
-import ee.jakarta.tck.persistence.common.schema30.UtilAliasData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -41,7 +41,7 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
-public class Client3 extends UtilAliasData {
+public class Client3 extends Util {
 
 
 

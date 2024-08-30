@@ -23,17 +23,17 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-public class Client1 extends UtilCustomerData {
+public class Client1 extends Util {
 
 
 

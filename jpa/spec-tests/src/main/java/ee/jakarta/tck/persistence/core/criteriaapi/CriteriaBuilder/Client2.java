@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,6 @@ import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.common.schema30.Address;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Spouse;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustAliasProductData;
 import jakarta.persistence.Query;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
@@ -48,7 +48,7 @@ import jakarta.persistence.criteria.Selection;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client2 extends UtilCustAliasProductData {
+public class Client2 extends Util {
 
 	
 

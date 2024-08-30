@@ -23,13 +23,13 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.schema30.Product;
-import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
 
-public class Client3 extends UtilProductData {
+public class Client3 extends Util {
 
 
 

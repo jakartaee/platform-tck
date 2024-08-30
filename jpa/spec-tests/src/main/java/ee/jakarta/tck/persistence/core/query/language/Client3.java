@@ -21,6 +21,7 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import ee.jakarta.tck.persistence.core.versioning.Member;
 import jakarta.persistence.PersistenceUnitUtil;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -29,10 +30,9 @@ import org.junit.jupiter.api.Test;
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
-import ee.jakarta.tck.persistence.common.schema30.UtilAliasData;
 import jakarta.persistence.Query;
 
-public class Client3 extends UtilAliasData {
+public class Client3 extends Util {
 
 	
 

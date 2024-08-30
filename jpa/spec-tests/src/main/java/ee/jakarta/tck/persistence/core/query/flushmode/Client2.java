@@ -24,6 +24,7 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 import java.util.List;
 import java.util.Vector;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -31,10 +32,9 @@ import ee.jakarta.tck.persistence.common.schema30.CreditCard;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.Spouse;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.FlushModeType;
 
-public class Client2 extends UtilOrderData {
+public class Client2 extends Util {
 
 
 

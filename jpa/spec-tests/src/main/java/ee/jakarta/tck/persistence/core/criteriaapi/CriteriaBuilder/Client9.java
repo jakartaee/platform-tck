@@ -26,7 +26,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import ee.jakarta.tck.persistence.common.schema30.CriteriaEntity;
-import ee.jakarta.tck.persistence.common.schema30.UtilCriteriaEntityData;
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.LocalDateField;
@@ -42,7 +42,7 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 
-public class Client9 extends UtilCriteriaEntityData {
+public class Client9 extends Util {
 
     public JavaArchive createDeployment() throws Exception {
 

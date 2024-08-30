@@ -18,6 +18,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.Join;
 
 
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -27,14 +28,13 @@ import ee.jakarta.tck.persistence.common.schema30.Department;
 import ee.jakarta.tck.persistence.common.schema30.Employee;
 import ee.jakarta.tck.persistence.common.schema30.Employee_;
 import ee.jakarta.tck.persistence.common.schema30.Order;
-import ee.jakarta.tck.persistence.common.schema30.UtilSetup;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 
-public class Client1 extends UtilSetup {
+public class Client1 extends Util {
 
 
 

@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -39,7 +40,6 @@ import ee.jakarta.tck.persistence.common.schema30.LineItem_;
 import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.Order_;
 import ee.jakarta.tck.persistence.common.schema30.Product_;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.AbstractQuery;
@@ -59,7 +59,7 @@ import jakarta.persistence.metamodel.Attribute;
 import jakarta.persistence.metamodel.PluralAttribute;
 import jakarta.persistence.metamodel.SetAttribute;
 
-public class Client2 extends UtilOrderData {
+public class Client2 extends Util {
 
 	
 

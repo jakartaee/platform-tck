@@ -19,6 +19,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.metamodelquery;
 
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,6 @@ import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
 import ee.jakarta.tck.persistence.common.schema30.Phone;
 import ee.jakarta.tck.persistence.common.schema30.Phone_;
-import ee.jakarta.tck.persistence.common.schema30.UtilPhoneData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -38,7 +38,7 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
 
 
-public class Client6 extends UtilPhoneData {
+public class Client6 extends Util {
 
 
 

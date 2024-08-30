@@ -21,6 +21,7 @@ import java.sql.Date;
 import java.util.Collections;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -30,13 +31,12 @@ import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.common.schema30.Product;
 import ee.jakarta.tck.persistence.common.schema30.Product_;
 import ee.jakarta.tck.persistence.common.schema30.ShelfLife_;
-import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class Client4 extends UtilProductData {
+public class Client4 extends Util {
 
 
 

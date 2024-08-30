@@ -19,6 +19,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,6 @@ import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Product;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustAliasProductData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TupleElement;
 import jakarta.persistence.TypedQuery;
@@ -34,7 +34,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class Client7 extends UtilCustAliasProductData {
+public class Client7 extends Util {
 
 
 

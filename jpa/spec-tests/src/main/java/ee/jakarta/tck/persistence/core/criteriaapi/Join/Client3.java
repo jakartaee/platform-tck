@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.Join;
 import java.util.ArrayList;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -29,7 +30,6 @@ import ee.jakarta.tck.persistence.common.schema30.Department;
 import ee.jakarta.tck.persistence.common.schema30.Department_;
 import ee.jakarta.tck.persistence.common.schema30.Employee;
 import ee.jakarta.tck.persistence.common.schema30.Employee_;
-import ee.jakarta.tck.persistence.common.schema30.UtilDepartmentEmployeeData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -40,7 +40,7 @@ import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.PluralAttribute;
 
-public class Client3 extends UtilDepartmentEmployeeData {
+public class Client3 extends Util {
 
 	
 

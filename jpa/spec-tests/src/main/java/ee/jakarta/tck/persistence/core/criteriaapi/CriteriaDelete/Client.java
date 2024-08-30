@@ -21,12 +21,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.schema30.Product;
 import ee.jakarta.tck.persistence.common.schema30.SoftwareProduct;
-import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaDelete;
@@ -37,7 +37,7 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client extends UtilProductData {
+public class Client extends Util {
 
 
 

@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +38,6 @@ import com.sun.ts.lib.util.TestUtil;
 
 import ee.jakarta.tck.persistence.common.schema30.Country;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
 import jakarta.persistence.Query;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
@@ -53,7 +53,7 @@ import jakarta.persistence.metamodel.EmbeddableType;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client3 extends UtilCustomerData {
+public class Client3 extends Util {
 
 
 

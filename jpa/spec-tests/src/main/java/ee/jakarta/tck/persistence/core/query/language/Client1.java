@@ -24,6 +24,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -31,10 +32,9 @@ import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.LineItem;
 import ee.jakarta.tck.persistence.common.schema30.Order;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.Query;
 
-public class Client1 extends UtilOrderData {
+public class Client1 extends Util {
 
 
 

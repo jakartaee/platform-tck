@@ -20,13 +20,13 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.Product;
-import ee.jakarta.tck.persistence.common.schema30.UtilSetup;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaDelete;
@@ -35,7 +35,7 @@ import jakarta.persistence.criteria.CriteriaUpdate;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Selection;
 
-public class Client1 extends UtilSetup {
+public class Client1 extends Util {
 
 	
 
