@@ -42,7 +42,13 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 
+/**
+ * TODO: add EE tests for ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder.Client9
+ */
+
 public class Client9 extends Util {
+
+    protected final CriteriaEntity criteriaEntity[] = new CriteriaEntity[5];
 
     public JavaArchive createDeployment() throws Exception {
 
@@ -51,6 +57,58 @@ public class Client9 extends Util {
         return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder9.jar", pkgNameWithoutSuffix, classes);
 
     }
+
+    public void createCriteriaEntityData() throws Exception {
+    		logTrace( "createCriteriaEntityData");
+    		getEntityTransaction().begin();
+
+    		try {
+
+    			criteriaEntity[0] = new CriteriaEntity(1L, "Left", null, null, null, null, null);
+    			criteriaEntity[1] = new CriteriaEntity(2L, "right", null, null, null, null, null);
+    			criteriaEntity[2] = new CriteriaEntity(3L, "LeftToken", "TokenRight", null, null, null, null);
+    			criteriaEntity[3] = new CriteriaEntity(4L, null, null, null, LocalTime.of(10, 11, 12), null, null);
+    			criteriaEntity[4] = new CriteriaEntity(5L, null, null, null, null, LocalDate.of(1918, 9, 28), null);
+
+    			for (CriteriaEntity c : criteriaEntity) {
+    				if (c != null) {
+    					getEntityManager().persist(c);
+    					logTrace( "persisting CriteriaEntity " + c);
+    					doFlush();
+    				}
+    			}
+    			doFlush();
+    			getEntityTransaction().commit();
+
+    		} catch (Exception e) {
+    			logErr( "Exception: ", e);
+    			throw new Exception("createCriteriaEntityData failed:", e);
+    		}
+    	}
+
+    public void removeTestData() {
+	logTrace( "removeTestData");
+	if (getEntityTransaction().isActive()) {
+		getEntityTransaction().rollback();
+	}
+	try {
+		getEntityTransaction().begin();
+		getEntityManager().createNativeQuery("DELETE FROM CRITERIA_TEST_TABLE").executeUpdate();
+		getEntityTransaction().commit();
+		logTrace( "done removeTestData");
+
+	} catch (Exception e) {
+		logErr( "Exception encountered while removing entities:", e);
+	} finally {
+		try {
+			if (getEntityTransaction().isActive()) {
+				getEntityTransaction().rollback();
+			}
+		} catch (Exception re) {
+			logErr( "Unexpected Exception in removeTestData:", re);
+		}
+	}
+}
 
     // Verify case 0: in the implementation code.
     // JPA spec: This shall be always evaluated as true and all existing entities must be returned

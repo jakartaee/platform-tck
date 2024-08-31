@@ -565,7 +565,8 @@ public abstract class EETest implements Serializable {
       // if anything went wrong while getting our methods, return
       if (setupMethod == null || runMethod == null || cleanupMethod == null)
         return Status.failed("One of the test methods could not be"
-            + "found for testcase: " + sTestCase);
+            + " found for testcase: " + sTestCase +
+                " (setupMethod: " + setupMethod + " runMethod: " + runMethod + " cleanupMethod: " + cleanupMethod);
       try {
         TestUtil.logTrace("ABOUT TO INVOKE SETUP METHOD!");
         // if new classname is true, use that class name instead of

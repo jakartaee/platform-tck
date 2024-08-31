@@ -18,8 +18,6 @@ package ee.jakarta.tck.persistence.common.schema30;
 
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -68,7 +66,6 @@ public abstract class Util extends PMClientBase {
 
 	protected final Trim trimRef[] = new Trim[20];
 
-	protected final CriteriaEntity criteriaEntity[] = new CriteriaEntity[5];
 
 	private final String[] schema30classes = { "Address_", "Address", "Alias_", "Alias", "Country_", "Country",
 			"CreditCard_", "CreditCard", "CriteriaEntity", "Customer_", "Customer", "Department_", "Department", "Employee_", "Employee",
@@ -1819,34 +1816,6 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
-	public void createCriteriaEntityData() throws Exception {
-		logTrace( "createCriteriaEntityData");
-		getEntityTransaction().begin();
-
-		try {
-
-			criteriaEntity[0] = new CriteriaEntity(1L, "Left", null, null, null, null, null);
-			criteriaEntity[1] = new CriteriaEntity(2L, "right", null, null, null, null, null);
-			criteriaEntity[2] = new CriteriaEntity(3L, "LeftToken", "TokenRight", null, null, null, null);
-			criteriaEntity[3] = new CriteriaEntity(4L, null, null, null, LocalTime.of(10, 11, 12), null, null);
-			criteriaEntity[4] = new CriteriaEntity(5L, null, null, null, null, LocalDate.of(1918, 9, 28), null);
-
-			for (CriteriaEntity c : criteriaEntity) {
-				if (c != null) {
-					getEntityManager().persist(c);
-					logTrace( "persisting CriteriaEntity " + c);
-					doFlush();
-				}
-			}
-			doFlush();
-			getEntityTransaction().commit();
-
-		} catch (Exception e) {
-			logErr( "Exception: ", e);
-			throw new Exception("createCriteriaEntityData failed:", e);
-		}
-	}
-
 	public void removeTestData() {
 		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
@@ -1892,6 +1861,40 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
-	public abstract JavaArchive createDeployment() throws Exception;
 
+	public void setupProductData() throws Exception {
+		logTrace("setupProductData");
+		try {
+			super.setup();
+			removeTestData();
+			createProductData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupProductData failed:", e);
+		}
+	}
+
+	public void setupTrimData() throws Exception {
+		logTrace("setupTrimData");
+		try {
+			super.setup();
+			removeTestData();
+			createTrimData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupTrimData failed:", e);
+		}
+	}
+
+	public void setupCustomerData() throws Exception {
+		logTrace("setupCustomerData");
+		try {
+			super.setup();
+			removeTestData();
+			createCustomerData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupCustomerData failed:", e);
+		}
+	}
 }
