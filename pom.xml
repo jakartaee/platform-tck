@@ -68,6 +68,7 @@
         <module>samples</module>
         <module>servlet</module>
         <module>signaturetest</module>
+        <module>tsharness</module>
         <module>user_guides</module>
         <module>webartifacts/jsf</module>
         <module>webartifacts/jsp</module>
@@ -396,11 +397,6 @@
                 <type>pom</type>
             </dependency>
 
-            <dependency>
-                <groupId>org.jboss.shrinkwrap</groupId>
-                <artifactId>shrinkwrap-api</artifactId>
-                <version>${shrinkwrap.api.version}</version>
-            </dependency>
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
