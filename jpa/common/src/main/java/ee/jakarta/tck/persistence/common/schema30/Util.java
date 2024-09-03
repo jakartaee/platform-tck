@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
@@ -1816,6 +1817,8 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
+	// TODO: ensure that each test client is correctly deleting its test data (only 3 overrides is not enough)
+	//
 	public void removeTestData() {
 		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
@@ -1862,10 +1865,10 @@ public abstract class Util extends PMClientBase {
 	}
 
 
-	public void setupProductData() throws Exception {
+	public void setupProductData(String[] args, Properties p) throws Exception {
 		logTrace("setupProductData");
 		try {
-			super.setup();
+			super.setup(args,p);
 			removeTestData();
 			createProductData();
 		} catch (Exception e) {
@@ -1874,10 +1877,10 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
-	public void setupTrimData() throws Exception {
+	public void setupTrimData(String[] args, Properties p) throws Exception {
 		logTrace("setupTrimData");
 		try {
-			super.setup();
+			super.setup(args,p);
 			removeTestData();
 			createTrimData();
 		} catch (Exception e) {
@@ -1886,10 +1889,10 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
-	public void setupCustomerData() throws Exception {
+	public void setupCustomerData(String[] args, Properties p) throws Exception {
 		logTrace("setupCustomerData");
 		try {
-			super.setup();
+			super.setup(args,p);
 			removeTestData();
 			createCustomerData();
 		} catch (Exception e) {
@@ -1897,4 +1900,58 @@ public abstract class Util extends PMClientBase {
 			throw new Exception("setupCustomerData failed:", e);
 		}
 	}
+
+	public void setupAliasData(String[] args, Properties p) throws Exception {
+		logTrace("setupAliasData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createCustomerData();
+			createAliasData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupAliasData failed:", e);
+		}
+	}
+
+	public void setupAliasOnlyData(String[] args, Properties p) throws Exception {
+		logTrace("setupAliasOnlyData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createAliasOnlyData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupAliasOnlyData failed:", e);
+		}
+	}
+
+	public void setupDepartmentEmployeeData(String[] args, Properties p) throws Exception {
+		logTrace("setupDepartmentEmployeeData");
+		try {
+			super.setup(args, p);
+			removeTestData();
+			createDepartmentEmployeeData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupDepartmentEmployeeData failed:", e);
+		}
+	}
+
+	public void setupPhoneData(String[] args, Properties p) throws Exception {
+         logTrace("setupPhoneData");
+         try {
+                 super.setup(args,p);
+                 removeTestData();
+                 createCustomerData();
+                 createPhoneData();
+         } catch (Exception e) {
+                 logErr("Exception: ", e);
+                 throw new Exception("setupCustomerData failed:", e);
+         }
+ 	}
+
+	// 	add test specific missing methods in test classes elsewhere (double check the above test setup methods also):
+	//	   @SetupMethod(name = "setupEmployee")
+	//        @SetupMethod(name = "setupOrderData")
 }
