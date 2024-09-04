@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
@@ -1950,8 +1949,4 @@ public abstract class Util extends PMClientBase {
                  throw new Exception("setupCustomerData failed:", e);
          }
  	}
-
-	// 	add test specific missing methods in test classes elsewhere (double check the above test setup methods also):
-	//	   @SetupMethod(name = "setupEmployee")
-	//        @SetupMethod(name = "setupOrderData")
 }

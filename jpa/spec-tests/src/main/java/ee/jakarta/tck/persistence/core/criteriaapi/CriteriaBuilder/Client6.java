@@ -20,7 +20,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-import ee.jakarta.tck.persistence.common.schema30.Util;
+import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -44,7 +44,7 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client6 extends Util {
+public class Client6 extends UtilOrderData {
 
 
 
