@@ -17,7 +17,7 @@
 
 -->
 
-<project name="adapter1_resouredef" basedir="." default="usage">
+<project name="adapter1_resouredef" basedir="../../../../../../../../../../../../common/src/main/java/com/sun/ts/tests/common/connector/embedded/adapter1" default="usage">
     <import file="../../../../../../../../../bin/xml/ts.import.xml"/> 
   
     <property name="whitebox.dir" value="com/sun/ts/tests/common/connector/whitebox"/>
@@ -50,7 +50,7 @@
     <target name="package" depends="compile, build.nested.jar">
         <mkdir dir="${dist.dir}/${pkg.dir}"/>   
 
-        <ant antfile="../../whitebox/build.xml" target="build.whitebox.jar"/>
+        <ant antfile="../../../../../../../../../../../../common/src/main/java/com/sun/ts/tests/common/connector/whitebox/build.xml" target="build.whitebox.jar"/>
 
         <!-- create a .rar that will only use annotations and no ra.xml-->
         <ts.rar archivename="whitebox-rd"
