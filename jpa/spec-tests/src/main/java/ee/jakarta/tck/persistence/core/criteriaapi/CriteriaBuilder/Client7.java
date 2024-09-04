@@ -148,4 +148,19 @@ public class Client7 extends Util {
 			throw new Exception("tupleGetTupleElementIllegalArgumentExceptionTest failed");
 		}
 	}
+
+	public void setupCustAliasProductData() throws Exception {
+		logTrace("setupCustAliasProductData");
+		try {
+			super.setup();
+			removeTestData();
+			createCustomerData();
+			createProductData();
+			createAliasData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupCustAliasProductData failed:", e);
+		}
+	}
+
 }
