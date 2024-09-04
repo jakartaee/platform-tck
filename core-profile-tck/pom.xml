@@ -77,7 +77,7 @@
     <properties>
 
         <!-- Jakarta EE APIs Core -->
-        <annotations.api.version>2.1.1</annotations.api.version>
+        <annotations.api.version>3.0.0</annotations.api.version>
         <apache.httpclient.version>3.1</apache.httpclient.version>
 
         <cdi.api.version>4.0.0</cdi.api.version>
