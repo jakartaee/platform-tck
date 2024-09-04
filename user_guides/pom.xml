@@ -39,7 +39,6 @@
         <module>jta</module>
         <module>parent</module>
         <module>platform</module>
-        <module>saaj</module>
     </modules>
     <build>
         <plugins>
