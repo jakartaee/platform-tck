@@ -545,7 +545,7 @@ public abstract class EETest implements Serializable {
       TestUtil.logTrace("TESTCLASS=" + testClass.getName());
       runMethod = getRunMethod(testClass);
       if (runMethod == null)
-        TestUtil.logTrace("* RUN METHOD is null and is not found");
+        return Status.failed("Invalid test case name as test run Method ( " + sTestCase + ") could not be found in " + testClass.getName());
       else {
         TestUtil.logTrace("** GOT RUN METHOD!");
         TestUtil.logTrace("**runmethod=" + runMethod.getName());
@@ -553,20 +553,15 @@ public abstract class EETest implements Serializable {
       TestUtil.logTrace("ABOUT TO GET SETUP METHOD!");
       setupMethod = getSetupMethod(testClass, runMethod);
       if (setupMethod == null)
-        TestUtil.logTrace("SETUP METHOD not found");
+        return Status.failed("Invalid test case name as test setupMethod Method ( for " + sTestCase + ") could not be found in " + testClass.getName());
       else
         TestUtil.logTrace("GOT SETUP METHOD!");
 
       cleanupMethod = getCleanupMethod(testClass, runMethod);
       if (cleanupMethod == null)
-        TestUtil.logTrace("CLEANUP METHOD not found");
+        return Status.failed("Invalid test case name as test cleanupMethod Method ( for " + sTestCase + ") could not be found in " + testClass.getName());
       else
         TestUtil.logTrace("GOT CLEANUP METHOD!");
-      // if anything went wrong while getting our methods, return
-      if (setupMethod == null || runMethod == null || cleanupMethod == null)
-        return Status.failed("One of the test methods could not be"
-            + " found for testcase: " + sTestCase +
-                " (setupMethod: " + setupMethod + " runMethod: " + runMethod + " cleanupMethod: " + cleanupMethod);
       try {
         TestUtil.logTrace("ABOUT TO INVOKE SETUP METHOD!");
         // if new classname is true, use that class name instead of
