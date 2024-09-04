@@ -26,11 +26,48 @@
         <version>11.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>jta</artifactId>
+    <artifactId>jta-tck</artifactId>
     <packaging>jar</packaging>
 
     <name>jta</name>
     <description>jta</description>
+
+    <properties>
+        <arquillian.junit>1.9.1.Final</arquillian.junit>
+        <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
+        <version.jakarta.tck.arquillian>1.0.0-M13</version.jakarta.tck.arquillian>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.9.1.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version>1.3</version>
+                <scope>test</scope>
+            </dependency> -->
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -68,27 +105,57 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>1.0.0-M7</version>
+            <version>${version.jakarta.tck.arquillian}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>1.0.0-M7</version>
+            <version>${version.jakarta.tck.arquillian}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>1.0.0-M7</version>
+            <version>${version.jakarta.tck.arquillian}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>1.0.0-M7</version>
+            <version>${version.jakarta.tck.arquillian}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>1.0.0-M7</version>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-core</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -110,7 +177,7 @@
 
     <build>
         <!-- Include the container descriptors in the output artifact -->
-        <resources>
+        <!-- <resources>
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
@@ -120,7 +187,10 @@
                     <exclude>**/build.xml</exclude>
                 </excludes>
             </resource>
-        </resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources> -->
 
         <plugins>
             <!-- do not publish this artifact to Maven repositories -->

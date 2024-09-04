@@ -16,18 +16,18 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+
 import jakarta.annotation.Resource;
 import jakarta.enterprise.context.ContextNotActiveException;
 import jakarta.inject.Inject;
@@ -41,18 +41,17 @@ import jakarta.transaction.UserTransaction;
 
 import java.lang.System.Logger;
 
+
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
 @Tag("platform")
 @Tag("web")
 @Tag("tck-javatest")
-@jakarta.inject.Named("client")
-@jakarta.enterprise.context.RequestScoped
-public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serializable {
-  
-    static final String VEHICLE_ARCHIVE = "transactional_ejblitejsf_vehicle";
+public class ClientEjbliteservletTest extends EJBLiteClientBase {
+    static final String VEHICLE_ARCHIVE = "transactional_ejbliteservlet_vehicle";
 
-    private static final Logger logger = System.getLogger(ClientEjblitejsfTest.class.getName());
+    private static final Logger logger = System.getLogger(ClientEjbliteservletTest.class.getName());
+
 
     @BeforeEach
     void logStartTest(TestInfo testInfo) {
@@ -69,9 +68,8 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    private static final long serialVersionUID = 1L;
     private static StringBuilder callRecords = new StringBuilder();
-  
+
     @Inject
     @OneManagedQualifier
     OneManagedBean one;
@@ -83,7 +81,7 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
     private UserTransaction ut;
   
     public static void main(String[] args) {
-      ClientEjblitejsfTest theTests = new ClientEjblitejsfTest();
+      ClientEjbliteservletTest theTests = new ClientEjbliteservletTest();
       com.sun.ts.lib.harness.Status s = theTests.run(args, System.out, System.err);
       s.exit();
     }
@@ -91,35 +89,27 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
     @Inject
     @TwoManagedQualifier
     TwoManagedBean two;
+  
 
-    /**
-    EE10 Deployment Descriptors:
-    transactional_ejblitejsf_vehicle_web: WEB-INF/beans.xml,WEB-INF/faces-config.xml,WEB-INF/web.xml
-
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static WebArchive createDeploymentVehicle() {
     // public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
-    // War
+        // War
         // the war with the correct archive name
-        WebArchive transactional_ejblitejsf_vehicle_web = ShrinkWrap.create(WebArchive.class, "transactional_ejblitejsf_vehicle_web.war");
+        WebArchive transactional_ejbliteservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "transactional_ejbliteservlet_vehicle_web.war");
         // The class files
-        transactional_ejblitejsf_vehicle_web.addClasses(
+        transactional_ejbliteservlet_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
         com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
         com.sun.ts.tests.common.vehicle.ejbliteshare.ReasonableStatus.class,
-        com.sun.ts.tests.ejb30.common.helper.Helper.class,
         com.sun.ts.tests.ejb30.common.lite.NumberEnum.class,
-        com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
+        com.sun.ts.tests.ejb30.common.helper.Helper.class,
+        com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
         com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
         com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.class,
@@ -133,32 +123,26 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
         com.sun.ts.tests.jta.ee.transactional.Helper.class,
         com.sun.ts.tests.jta.ee.transactional.CTSDontRollbackException.class,
         com.sun.ts.tests.jta.ee.transactional.OneManagedBean.class,
+        EJBLiteServletVehicle.class,
         HttpServletDelegate.class,
-        ClientEjblitejsfTest.class
+        ClientEjbliteservletTest.class
         );
         // The web.xml descriptor
-        URL warResURL = ClientEjblitejsfTest.class.getResource("/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml");
+        URL warResURL = ClientEjbliteservletTest.class.getResource("/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml");
         if(warResURL != null) {
-          transactional_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
-        }
-        // The sun-web.xml descriptor
-        warResURL = ClientEjblitejsfTest.class.getResource("/vehicle/ejblitejsf/faces-config.xml");
-        if(warResURL != null) {
-          transactional_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "faces-config.xml");
+          transactional_ejbliteservlet_vehicle_web.setWebXML(warResURL);
         }
 
-        warResURL = ClientEjblitejsfTest.class.getResource("/vehicle/ejblitejsf/beans.xml");
+        warResURL = ClientEjbliteservletTest.class.getResource("/vehicle/ejbliteservlet/beans.xml");
         if(warResURL != null) {
-          transactional_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "beans.xml");
+          transactional_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "beans.xml");
         }
 
-        // Web content
-        warResURL = ClientEjblitejsfTest.class.getResource("/vehicle/ejblitejsf/ejblitejsf_vehicle.xhtml");
-        transactional_ejblitejsf_vehicle_web.addAsWebResource(warResURL, "/ejblitejsf_vehicle.xhtml");
 
-        return transactional_ejblitejsf_vehicle_web;
-    }
+        return transactional_ejbliteservlet_vehicle_web;
+      }
 
+  
     /*
       * @testName: txTypeRequired_withoutTransaction
       * 
@@ -171,7 +155,7 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * must then continue inside this transaction context.
       */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeRequired_withoutTransaction() throws Exception {
   
       Helper.assertEquals("\n", "txTypeRequired called successfully",
@@ -192,9 +176,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * If called inside a transaction context, the managed bean method execution
       * must then continue inside this transaction context.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeRequired_withTransaction() throws Exception {
       try {
         ut.begin();
@@ -218,9 +202,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * @Transactional and a Transactional.TxType other than NOT_SUPPORTED or
       * NEVER, an IllegalStateException must be thrown.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeRequired_IllegalStateException() throws Exception {
   
       Helper.assertEquals(null, "IllegalStateException",
@@ -244,9 +228,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * method execution must then continue inside this transaction context, the
       * transaction must be completed, and the previously suspended transaction
       * must be resumed.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeRequiresNew() throws Exception {
   
       Helper.assertEquals(null, "txTypeRequiresNew called successfully",
@@ -270,9 +254,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * method execution must then continue inside this transaction context, the
       * transaction must be completed, and the previously suspended transaction
       * must be resumed.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeRequiresNew_withTransaction() throws Exception {
       try {
         ut.begin();
@@ -297,9 +281,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * If called inside a transaction context, managed bean method execution will
       * then continue under that context.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeMandatory_withoutTransaction() throws Exception {
       String result = "TransactionalException not received";
   
@@ -340,9 +324,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * If called inside a transaction context, managed bean method execution will
       * then continue under that context.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeMandatory_withTransaction() throws Exception {
       try {
         ut.begin();
@@ -366,9 +350,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * If called inside a transaction context, the managed bean method execution
       * must then continue inside this transaction context.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeSupports_withoutTransaction() throws Exception {
   
       Helper.assertEquals(null, "txTypeSupports run without active transaction",
@@ -388,9 +372,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * If called inside a transaction context, the managed bean method execution
       * must then continue inside this transaction context.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeSupports_withTransaction() throws Exception {
       try {
         ut.begin();
@@ -417,9 +401,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * outside a transaction context, and the previously suspended transaction
       * must be resumed by the interceptor that suspended it after the method
       * execution has completed.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeNotSupported_withoutTransaction() throws Exception {
   
       Helper.assertEquals(null,
@@ -443,9 +427,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * outside a transaction context, and the previously suspended transaction
       * must be resumed by the interceptor that suspended it after the method
       * execution has completed.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeNotSupported_withTransaction() throws Exception {
       try {
         ut.begin();
@@ -471,9 +455,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * If called inside a transaction context, a TransactionalException with a
       * nested InvalidTransactionException must be thrown
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeNever_withoutTransaction() throws Exception {
       Helper.assertEquals(null, "txTypeNever run without active transaction",
           one.txTypeNever(), callRecords);
@@ -491,9 +475,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * If called inside a transaction context, a TransactionalException with a
       * nested InvalidTransactionException must be thrown
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void txTypeNever_withTransaction() throws Exception {
       String result = "Expected TransactionalException not received";
   
@@ -535,9 +519,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * Conversely, the dontRollbackOn element can be set to indicate exceptions
       * that must not cause the interceptor to mark the transaction for rollback.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void rollbackOnException() throws Exception {
       String result = "failed to set STATUS_MARKED_ROLLBACK on CTSRollbackException";
       int status;
@@ -603,9 +587,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * Note: This test verifies the behavior in SubClass
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void rollbackOnExceptionTwo() throws Exception {
       String result = "failed to set STATUS_MARKED_ROLLBACK on CTSRollbackException";
       int status;
@@ -665,9 +649,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * Conversely, the dontRollbackOn element can be set to indicate exceptions
       * that must not cause the interceptor to mark the transaction for rollback.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void dontRollbackOnException() throws Exception {
       String result = "";
       int status;
@@ -734,9 +718,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * Note: This test verifies the behavior in SubClass
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void dontRollbackOnExceptionTwo() throws Exception {
       String result = "";
       int status;
@@ -801,9 +785,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * When a class is specified for either of these elements, the designated
       * behavior applies to subclasses of that class as well. If both elements are
       * specified, dontRollbackOn takes precedence.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void rollbackAndDontRollback() throws Exception {
       String result = "";
       int status;
@@ -870,9 +854,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * 
       * Note: This test verifies the behavior in SubClass
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void rollbackAndDontRollbackTwo() throws Exception {
       String result = "";
       int status;
@@ -943,9 +927,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * bean with this annotation is used when the transaction context is not
       * active.
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void transactionScopedBean_withoutTransaction() throws Exception {
   
       String result = "ContextNotActiveException not received";
@@ -988,9 +972,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
       * bean with this annotation is used when the transaction context is not
       * active.
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void transactionScopedBean_withTransaction() throws Exception {
   
       String result = "";
@@ -1021,9 +1005,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * @test_Strategy: The Transactional interceptors must have a priority of
       * Interceptor.Priority.PLATFORM_BEFORE+200
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void getInterceptorPriorityForTxTypeRequired() throws Exception {
       String methodName = "txTypeRequired";
       List<Integer> priorityList = one.getPriority(methodName);
@@ -1036,9 +1020,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * @test_Strategy: The Transactional interceptors must have a priority of
       * Interceptor.Priority.PLATFORM_BEFORE+200
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void getInterceptorPriorityForTxTypeRequiresNew() throws Exception {
       String methodName = "txTypeRequiresNew";
       List<Integer> priorityList = one.getPriority(methodName);
@@ -1051,9 +1035,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * @test_Strategy: The Transactional interceptors must have a priority of
       * Interceptor.Priority.PLATFORM_BEFORE+200
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void getInterceptorPriorityForTxTypeMandatory() throws Exception {
       String methodName = "txTypeMandatory";
       List<Integer> priorityList = one.getPriority(methodName);
@@ -1066,9 +1050,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * @test_Strategy: The Transactional interceptors must have a priority of
       * Interceptor.Priority.PLATFORM_BEFORE+200
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void getInterceptorPriorityForTxTypeSupports() throws Exception {
       String methodName = "txTypeSupports";
       List<Integer> priorityList = one.getPriority(methodName);
@@ -1081,9 +1065,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * @test_Strategy: The Transactional interceptors must have a priority of
       * Interceptor.Priority.PLATFORM_BEFORE+200
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void getInterceptorPriorityForTxTypeNotSupported() throws Exception {
       String methodName = "txTypeNotSupported";
       List<Integer> priorityList = one.getPriority(methodName);
@@ -1096,9 +1080,9 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
       * @test_Strategy: The Transactional interceptors must have a priority of
       * Interceptor.Priority.PLATFORM_BEFORE+200
       * 
-    */
+      */
     @Test
-    @TargetVehicle("ejblitejsf")
+    @TargetVehicle("ejbliteservlet")
     public void getInterceptorPriorityForTxTypeNever() throws Exception {
       String methodName = "txTypeNever";
       List<Integer> priorityList = one.getPriority(methodName);
@@ -1125,5 +1109,5 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
         appendReason(result);
   
     }
-
+      
 }

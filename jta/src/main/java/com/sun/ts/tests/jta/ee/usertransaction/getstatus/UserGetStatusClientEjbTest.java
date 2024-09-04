@@ -67,7 +67,6 @@ public class UserGetStatusClientEjbTest extends com.sun.ts.tests.jta.ee.usertran
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
