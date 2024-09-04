@@ -634,6 +634,41 @@
                             </environmentVariables>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>jta-tests-javatest</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <includes>
+                                <include>com/sun/ts/tests/jta/ee/transactional/ClientEjblitejspTest*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/transactional/ClientEjbliteservletTest*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/transactional/ClientEjbliteservlet2Test*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/transactional/ClientEjblitejsfTest*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientServletTest*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientJspTest*.java</include>
+                            </includes>
+                            <!-- Select the @Tag("tck-javatest") tests -->
+                            <groups>tck-javatest</groups>
+                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            <systemPropertyVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <junit.log.traceflag>true</junit.log.traceflag>
+                                <harness.log.traceflag>true</harness.log.traceflag>
+                                <cts.harness.debug>true</cts.harness.debug>
+                                <java.io.tmpdir>/tmp</java.io.tmpdir>
+                                <arquillian.xml>arquillian.xml</arquillian.xml>
+                            </systemPropertyVariables>
+                            <environmentVariables>
+                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                            </environmentVariables>
+                        </configuration>
+                    </execution>
 
                 </executions>
             </plugin>
