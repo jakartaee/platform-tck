@@ -150,13 +150,28 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.relati
             if(parURL != null) {
               jpa_core_relationship_unimanyxone.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_relationship_unimanyxone.addAsManifestResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_relationship_unimanyxone.addAsManifestResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_relationship_unimanyxone.addAsManifestResource(mappingURL, "myMappingFile2.xml");
+            }
+
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_relationship_unimanyxone, Client.class, parURL);
-            // The orm.xml file
+            // The orm.xml mapping file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_relationship_unimanyxone.addAsManifestResource(parURL, "orm.xml");
             }
+            // The mapping-file may be anywhere on the classpath
 
         // Ear
             EnterpriseArchive jpa_core_relationship_unimanyxone_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_relationship_unimanyxone_vehicles.ear");
