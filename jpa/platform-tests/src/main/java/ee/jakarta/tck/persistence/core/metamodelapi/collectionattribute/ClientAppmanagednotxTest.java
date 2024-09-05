@@ -153,25 +153,22 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.me
             // Add the Persistence mapping-file
             URL mappingURL = Client.class.getResource("myMappingFile.xml");
             if(mappingURL != null) {
-              jpa_core_metamodelapi_collectionattribute.addAsManifestResource(mappingURL, "myMappingFile.xml");
+              jpa_core_metamodelapi_collectionattribute.addAsResource(mappingURL, "myMappingFile.xml");
             }
             mappingURL = Client.class.getResource("myMappingFile1.xml");
             if(mappingURL != null) {
-              jpa_core_metamodelapi_collectionattribute.addAsManifestResource(mappingURL, "myMappingFile1.xml");
+              jpa_core_metamodelapi_collectionattribute.addAsResource(mappingURL, "myMappingFile1.xml");
             }
             mappingURL = Client.class.getResource("myMappingFile2.xml");
             if(mappingURL != null) {
-              jpa_core_metamodelapi_collectionattribute.addAsManifestResource(mappingURL, "myMappingFile2.xml");
+              jpa_core_metamodelapi_collectionattribute.addAsResource(mappingURL, "myMappingFile2.xml");
             }
-
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_metamodelapi_collectionattribute, Client.class, parURL);
-            // The orm.xml mapping file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_metamodelapi_collectionattribute.addAsManifestResource(parURL, "orm.xml");
             }
-            // The mapping-file may be anywhere on the classpath
 
         // Ear
             EnterpriseArchive jpa_core_metamodelapi_collectionattribute_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_metamodelapi_collectionattribute_vehicles.ear");

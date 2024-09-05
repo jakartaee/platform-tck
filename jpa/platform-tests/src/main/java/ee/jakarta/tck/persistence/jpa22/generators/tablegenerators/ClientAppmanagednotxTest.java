@@ -152,25 +152,22 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.jpa22.g
             // Add the Persistence mapping-file
             URL mappingURL = Client.class.getResource("myMappingFile.xml");
             if(mappingURL != null) {
-              jpa_jpa22_generators_tablegenerators.addAsManifestResource(mappingURL, "myMappingFile.xml");
+              jpa_jpa22_generators_tablegenerators.addAsResource(mappingURL, "myMappingFile.xml");
             }
             mappingURL = Client.class.getResource("myMappingFile1.xml");
             if(mappingURL != null) {
-              jpa_jpa22_generators_tablegenerators.addAsManifestResource(mappingURL, "myMappingFile1.xml");
+              jpa_jpa22_generators_tablegenerators.addAsResource(mappingURL, "myMappingFile1.xml");
             }
             mappingURL = Client.class.getResource("myMappingFile2.xml");
             if(mappingURL != null) {
-              jpa_jpa22_generators_tablegenerators.addAsManifestResource(mappingURL, "myMappingFile2.xml");
+              jpa_jpa22_generators_tablegenerators.addAsResource(mappingURL, "myMappingFile2.xml");
             }
-
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_jpa22_generators_tablegenerators, Client.class, parURL);
-            // The orm.xml mapping file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_jpa22_generators_tablegenerators.addAsManifestResource(parURL, "orm.xml");
             }
-            // The mapping-file may be anywhere on the classpath
 
         // Ear
             EnterpriseArchive jpa_jpa22_generators_tablegenerators_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_jpa22_generators_tablegenerators_vehicles.ear");

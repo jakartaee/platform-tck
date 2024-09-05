@@ -190,25 +190,22 @@ public class Client3Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             // Add the Persistence mapping-file
             URL mappingURL = Client3.class.getResource("myMappingFile.xml");
             if(mappingURL != null) {
-              jpa_core_criteriaapi_CriteriaQuery.addAsManifestResource(mappingURL, "myMappingFile.xml");
+              jpa_core_criteriaapi_CriteriaQuery.addAsResource(mappingURL, "myMappingFile.xml");
             }
             mappingURL = Client3.class.getResource("myMappingFile1.xml");
             if(mappingURL != null) {
-              jpa_core_criteriaapi_CriteriaQuery.addAsManifestResource(mappingURL, "myMappingFile1.xml");
+              jpa_core_criteriaapi_CriteriaQuery.addAsResource(mappingURL, "myMappingFile1.xml");
             }
             mappingURL = Client3.class.getResource("myMappingFile2.xml");
             if(mappingURL != null) {
-              jpa_core_criteriaapi_CriteriaQuery.addAsManifestResource(mappingURL, "myMappingFile2.xml");
+              jpa_core_criteriaapi_CriteriaQuery.addAsResource(mappingURL, "myMappingFile2.xml");
             }
-
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriaapi_CriteriaQuery, Client3.class, parURL);
-            // The orm.xml mapping file
             parURL = Client3.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_criteriaapi_CriteriaQuery.addAsManifestResource(parURL, "orm.xml");
             }
-            // The mapping-file may be anywhere on the classpath
 
         // Ear
             EnterpriseArchive jpa_core_criteriaapi_CriteriaQuery_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_criteriaapi_CriteriaQuery_vehicles.ear");

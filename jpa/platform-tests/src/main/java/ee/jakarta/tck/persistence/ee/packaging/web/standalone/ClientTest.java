@@ -99,25 +99,22 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
             // Add the Persistence mapping-file
             URL mappingURL = Client.class.getResource("myMappingFile.xml");
             if(mappingURL != null) {
-              jpa_ee_packaging_web_standalone.addAsManifestResource(mappingURL, "myMappingFile.xml");
+              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile.xml");
             }
             mappingURL = Client.class.getResource("myMappingFile1.xml");
             if(mappingURL != null) {
-              jpa_ee_packaging_web_standalone.addAsManifestResource(mappingURL, "myMappingFile1.xml");
+              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile1.xml");
             }
             mappingURL = Client.class.getResource("myMappingFile2.xml");
             if(mappingURL != null) {
-              jpa_ee_packaging_web_standalone.addAsManifestResource(mappingURL, "myMappingFile2.xml");
+              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile2.xml");
             }
-
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_packaging_web_standalone, Client.class, parURL);
-            // The orm.xml mapping file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_ee_packaging_web_standalone.addAsManifestResource(parURL, "orm.xml");
             }
-            // The mapping-file may be anywhere on the classpath
 
         return jpa_ee_packaging_web_standalone_component_web;
         }

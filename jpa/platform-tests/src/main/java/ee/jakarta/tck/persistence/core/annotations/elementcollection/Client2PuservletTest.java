@@ -129,25 +129,22 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.annota
             // Add the Persistence mapping-file
             URL mappingURL = Client2.class.getResource("myMappingFile.xml");
             if(mappingURL != null) {
-              jpa_core_annotations_elementcollection.addAsManifestResource(mappingURL, "myMappingFile.xml");
+              jpa_core_annotations_elementcollection.addAsResource(mappingURL, "myMappingFile.xml");
             }
             mappingURL = Client2.class.getResource("myMappingFile1.xml");
             if(mappingURL != null) {
-              jpa_core_annotations_elementcollection.addAsManifestResource(mappingURL, "myMappingFile1.xml");
+              jpa_core_annotations_elementcollection.addAsResource(mappingURL, "myMappingFile1.xml");
             }
             mappingURL = Client2.class.getResource("myMappingFile2.xml");
             if(mappingURL != null) {
-              jpa_core_annotations_elementcollection.addAsManifestResource(mappingURL, "myMappingFile2.xml");
+              jpa_core_annotations_elementcollection.addAsResource(mappingURL, "myMappingFile2.xml");
             }
-
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_annotations_elementcollection, Client2.class, parURL);
-            // The orm.xml mapping file
             parURL = Client2.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_annotations_elementcollection.addAsManifestResource(parURL, "orm.xml");
             }
-            // The mapping-file may be anywhere on the classpath
 
         // Ear
             EnterpriseArchive jpa_core_annotations_elementcollection_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_annotations_elementcollection_vehicles.ear");

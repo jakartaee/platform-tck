@@ -171,25 +171,22 @@ public class Client5AppmanagedTest extends ee.jakarta.tck.persistence.core.query
             // Add the Persistence mapping-file
             URL mappingURL = Client5.class.getResource("myMappingFile.xml");
             if(mappingURL != null) {
-              jpa_core_query_language.addAsManifestResource(mappingURL, "myMappingFile.xml");
+              jpa_core_query_language.addAsResource(mappingURL, "myMappingFile.xml");
             }
             mappingURL = Client5.class.getResource("myMappingFile1.xml");
             if(mappingURL != null) {
-              jpa_core_query_language.addAsManifestResource(mappingURL, "myMappingFile1.xml");
+              jpa_core_query_language.addAsResource(mappingURL, "myMappingFile1.xml");
             }
             mappingURL = Client5.class.getResource("myMappingFile2.xml");
             if(mappingURL != null) {
-              jpa_core_query_language.addAsManifestResource(mappingURL, "myMappingFile2.xml");
+              jpa_core_query_language.addAsResource(mappingURL, "myMappingFile2.xml");
             }
-
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_query_language, Client5.class, parURL);
-            // The orm.xml mapping file
             parURL = Client5.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_query_language.addAsManifestResource(parURL, "orm.xml");
             }
-            // The mapping-file may be anywhere on the classpath
 
         // Ear
             EnterpriseArchive jpa_core_query_language_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_query_language_vehicles.ear");
