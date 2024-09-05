@@ -22,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +46,7 @@ import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client1 extends UtilOrderData {
+public class Client1 extends Util {
 
 	
 
@@ -519,6 +519,19 @@ public class Client1 extends UtilOrderData {
 
 		if (!pass)
 			throw new Exception("distinctNotSpecifiedTest failed");
+	}
+	private void setupOrderData() throws Exception {
+		logTrace("setupOrderData");
+		try {
+			super.setup();
+			removeTestData();
+			createCustomerData();
+			createProductData();
+			createOrderData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupCustomerData failed:", e);
+		}
 	}
 
 }
