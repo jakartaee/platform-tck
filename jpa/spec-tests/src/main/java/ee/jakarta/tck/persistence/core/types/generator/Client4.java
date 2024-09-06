@@ -20,11 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.types.generator;
 
-
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 public class Client4 extends Client {
 
@@ -36,26 +32,16 @@ public class Client4 extends Client {
 
 	public Client4() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_types_generator4.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
+	
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-	@BeforeEach
-	public void setupDataTypes4() throws Exception {
+	
+	public void setupDataTypes4(String[] args, Properties p) throws Exception {
 		logTrace( "setupDataTypes4");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			String s = System.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
@@ -86,7 +72,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: A sequence generator may be specified on the primary key
 	 * property
 	 */
-	@Test
+	
 	public void sequenceGeneratorOnPropertyTest() throws Exception {
 
 		boolean pass = true;

@@ -24,8 +24,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public abstract class Util extends PMClientBase {
@@ -97,7 +95,7 @@ public abstract class Util extends PMClientBase {
 		return result.toString();
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -105,7 +103,7 @@ public abstract class Util extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 
 	}
@@ -1949,4 +1947,19 @@ public abstract class Util extends PMClientBase {
                  throw new Exception("setupCustomerData failed:", e);
          }
  	}
+
+	public void setupOrderData() throws Exception {
+         logTrace("setupOrderData");
+         try {
+                 super.setup();
+                 removeTestData();
+                 createCustomerData();
+                 createProductData();
+                 createOrderData();
+         } catch (Exception e) {
+                 logErr("Exception: ", e);
+                 throw new Exception("setupCustomerData failed:", e);
+         }
+ }
+
 }

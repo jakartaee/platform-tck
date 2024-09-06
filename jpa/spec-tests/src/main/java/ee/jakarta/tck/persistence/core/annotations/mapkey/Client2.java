@@ -22,9 +22,8 @@ package ee.jakarta.tck.persistence.core.annotations.mapkey;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
 
 public class Client2 extends Client {
 
@@ -33,27 +32,18 @@ public class Client2 extends Client {
 
 
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3",
-				pkgName + "Employee4" };
-		return createDeploymentJar("jpa_core_annotations_mapkey2.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	private Employee2 empRef2;
 
 	private Employee3 empRef3;
 
 	private Employee4 empRef4;
 
-	@BeforeEach
-	public void setupCreateTestData2() throws Exception {
+	
+	public void setupCreateTestData2(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+
 			removeTestData();
 			createTestData2();
 		} catch (Exception e) {
@@ -71,7 +61,6 @@ public class Client2 extends Client {
 	 * used to specify the mapping for the fk column to a second entity Execute a
 	 * query returning Employees objects.
 	 */
-	@Test
 	public void joinColumnInsertable() throws Exception {
 		boolean pass = true;
 
@@ -143,7 +132,6 @@ public class Client2 extends Client {
 	 * to specify the mapping for the fk column to a second entity Execute a query
 	 * returning Employees objects.
 	 */
-	@Test
 	public void joinColumnUpdatable() throws Exception {
 		boolean pass = true;
 
@@ -253,7 +241,6 @@ public class Client2 extends Client {
 	 * used to specify the mapping for the fk column to a second entity Execute a
 	 * query returning Employees objects.
 	 */
-	@Test
 	public void columnInsertable() throws Exception {
 		boolean pass = true;
 
@@ -320,7 +307,6 @@ public class Client2 extends Client {
 	 * to specify the mapping for the fk column to a second entity Execute a query
 	 * returning Employees objects.
 	 */
-	@Test
 	public void columnUpdatable() throws Exception {
 		boolean pass = true;
 

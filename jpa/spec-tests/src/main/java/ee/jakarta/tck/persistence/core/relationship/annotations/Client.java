@@ -24,12 +24,8 @@ package ee.jakarta.tck.persistence.core.relationship.annotations;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Vector;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -54,23 +50,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "AnnualReview", pkgName + "Company", pkgName + "Insurance",
-				pkgName + "Person", pkgName + "Project", pkgName + "Team" };
-		return createDeploymentJar("jpa_core_relationship_annotations.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -100,7 +84,7 @@ public class Client extends PMClientBase {
 	 * PROJECT_PROJID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest1() throws Exception {
 
 		logTrace( "Begin annotationMappingTest1");
@@ -165,7 +149,7 @@ public class Client extends PMClientBase {
 	 * transaction, and persist the owing side, which should be cascaded to the
 	 * inverse side.
 	 */
-	@Test
+	
 	public void annotationMappingPersistTest1() throws Exception {
 		logTrace( "Begin annotationMappingPersistTest1");
 		boolean pass = false;
@@ -224,7 +208,7 @@ public class Client extends PMClientBase {
 	 * COMPANY_COMPANYID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest2() throws Exception {
 
 		logTrace( "Begin annotationMappingTest2");
@@ -361,7 +345,7 @@ public class Client extends PMClientBase {
 	 * COMPANY_COMPANYID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest3() throws Exception {
 
 		logTrace( "Begin annotationMappingTest3");
@@ -456,7 +440,7 @@ public class Client extends PMClientBase {
 	 * ADDRESS_ID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest4() throws Exception {
 
 		logTrace( "Begin annotationMappingTest4");
@@ -528,7 +512,7 @@ public class Client extends PMClientBase {
 	 * TEAM_TEAMID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest5() throws Exception {
 		logTrace( "Begin annotationMappingTest5");
 		boolean pass = false;
@@ -614,7 +598,7 @@ public class Client extends PMClientBase {
 	 * The name of this foreign key is PERSONS_PERSONID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest6() throws Exception {
 		logTrace( "Begin annotationMappingTest6");
 		boolean pass1 = true;
@@ -772,7 +756,7 @@ public class Client extends PMClientBase {
 	 * ANNUALREVIEW table. The name of this foreign key is ANNUALREVIEWS_AID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest7() throws Exception {
 		logTrace( "Begin annotationMappingTest7");
 		boolean pass1 = true;
@@ -982,7 +966,7 @@ public class Client extends PMClientBase {
 	 * table. The name of this foreign key is INSURANCES_INSID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest8() throws Exception {
 		boolean pass1 = true;
 		boolean pass2 = false;
@@ -1280,7 +1264,6 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -1288,8 +1271,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

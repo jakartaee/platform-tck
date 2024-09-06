@@ -19,6 +19,7 @@ package ee.jakarta.tck.persistence.core.annotations.mapkeyjoincolumn;
 
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -45,12 +46,12 @@ public class Client extends PMClientBase {
 		return createDeploymentJar("jpa_core_annotations_mapkeyjoincolumn.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			removeTestData();
 
@@ -271,8 +272,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

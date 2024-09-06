@@ -54,8 +54,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	protected void removeTestData() {

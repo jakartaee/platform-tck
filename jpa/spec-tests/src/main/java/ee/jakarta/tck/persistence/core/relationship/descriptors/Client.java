@@ -23,12 +23,8 @@ package ee.jakarta.tck.persistence.core.relationship.descriptors;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Vector;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -53,23 +49,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "XAddress", pkgName + "XAnnualReview", pkgName + "XCompany",
-				pkgName + "XInsurance", pkgName + "XPerson", pkgName + "XProject", pkgName + "XTeam" };
-		return createDeploymentJar("jpa_core_relationship_descriptors.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -96,7 +80,7 @@ public class Client extends PMClientBase {
 	 * PROJECT_PROJID.
 	 * 
 	 */
-	@Test
+	
 	public void descriptorMappingTest1() throws Exception {
 
 		logTrace( "Begin descriptorMappingTest1");
@@ -156,7 +140,7 @@ public class Client extends PMClientBase {
 	 * COMPANY_COMPANYID.
 	 * 
 	 */
-	@Test
+	
 	public void descriptorMappingTest2() throws Exception {
 
 		logTrace( "Begin descriptorMappingTest2");
@@ -291,7 +275,7 @@ public class Client extends PMClientBase {
 	 * COMPANY_COMPANYID.
 	 *
 	 */
-	@Test
+	
 	public void descriptorMappingTest3() throws Exception {
 
 		logTrace( "Begin descriptorMappingTest3");
@@ -385,7 +369,7 @@ public class Client extends PMClientBase {
 	 * ADDRESS_ID.
 	 *
 	 */
-	@Test
+	
 	public void descriptorMappingTest4() throws Exception {
 
 		logTrace( "Begin descriptorMappingTest4");
@@ -455,7 +439,7 @@ public class Client extends PMClientBase {
 	 * TEAM_TEAMID.
 	 *
 	 */
-	@Test
+	
 	public void descriptorMappingTest5() throws Exception {
 		logTrace( "Begin descriptorMappingTest5");
 		boolean pass = false;
@@ -537,7 +521,7 @@ public class Client extends PMClientBase {
 	 * The name of this foreign key is PERSONS_PERSONID.
 	 *
 	 */
-	@Test
+	
 	public void descriptorMappingTest6() throws Exception {
 		logTrace( "Begin descriptorMappingTest6");
 		boolean pass1 = true;
@@ -690,7 +674,7 @@ public class Client extends PMClientBase {
 	 * ANNUALREVIEW table. The name of this foreign key is ANNUALREVIEWS_AID.
 	 *
 	 */
-	@Test
+	
 	public void descriptorMappingTest7() throws Exception {
 		logTrace( "Begin descriptorMappingTest7");
 		boolean pass1 = true;
@@ -897,7 +881,7 @@ public class Client extends PMClientBase {
 	 * table. The name of this foreign key is INSURANCES_INSID.
 	 *
 	 */
-	@Test
+	
 	public void descriptorMappingTest8() throws Exception {
 		boolean pass1 = true;
 		boolean pass2 = false;
@@ -1178,7 +1162,6 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -1186,7 +1169,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

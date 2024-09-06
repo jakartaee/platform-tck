@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -64,11 +65,11 @@ public class Client extends PMClientBase {
 	private static Employee2 empRef2[] = new Employee2[5];
 	private static Employee4 empRef3[] = new Employee4[5];
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			removeTestData();
 			createTestData();
@@ -491,8 +492,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

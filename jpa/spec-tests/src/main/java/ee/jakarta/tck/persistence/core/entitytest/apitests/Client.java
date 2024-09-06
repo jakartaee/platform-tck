@@ -22,8 +22,8 @@ package ee.jakarta.tck.persistence.core.entitytest.apitests;
 
 
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,25 +39,14 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { MAPPING_FILE_XML, ORM_XML };
-		String[] classes = { pkgName + "Bar", pkgName + "Coffee", pkgName + "CoffeeMappedSC", pkgName + "Foo" };
-		return createDeploymentJar("jpa_core_entitytest_apitests.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
-	}
-
 	/*
 	 * setup() is called before each test
 	 */
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -981,7 +970,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

@@ -20,40 +20,24 @@
 
 package ee.jakarta.tck.persistence.core.types.generator;
 
-
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 public class Client2 extends Client {
-
-
-
+	
 	private DataTypes2 d10;
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_types_generator2.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
+	
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-	@BeforeEach
-	public void setupDataTypes2() throws Exception {
+	
+	public void setupDataTypes2(String[] args, Properties p) throws Exception {
 		logTrace( "setupDataTypes2");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			String s = System.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
@@ -91,7 +75,7 @@ public class Client2 extends Client {
 	 * Using GenerationType.SEQUENCE, access a persisted entity and modify its'
 	 * data.
 	 */
-	@Test
+	
 	public void generatorTypeSequenceTest() throws Exception {
 
 		boolean pass = true;

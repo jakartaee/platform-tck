@@ -520,18 +520,5 @@ public class Client1 extends Util {
 		if (!pass)
 			throw new Exception("distinctNotSpecifiedTest failed");
 	}
-	private void setupOrderData() throws Exception {
-		logTrace("setupOrderData");
-		try {
-			super.setup();
-			removeTestData();
-			createCustomerData();
-			createProductData();
-			createOrderData();
-		} catch (Exception e) {
-			logErr("Exception: ", e);
-			throw new Exception("setupCustomerData failed:", e);
-		}
-	}
 
 }

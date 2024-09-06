@@ -20,11 +20,8 @@
 
 package ee.jakarta.tck.persistence.core.types.generator;
 
+import java.util.Properties;
 
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 public class Client1 extends Client {
 
@@ -47,26 +44,16 @@ public class Client1 extends Client {
 	public Client1() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_types_generator1.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			String s = System.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
@@ -106,7 +93,7 @@ public class Client1 extends Client {
 	 *
 	 * Using GenerationType.TABLE, access a persisted entity and modify its' data.
 	 */
-	@Test
+	
 	public void generatorTypeTest1() throws Exception {
 
 		boolean pass = false;
@@ -161,7 +148,7 @@ public class Client1 extends Client {
 	 *
 	 * Using GenerationType.TABLE, access a persisted entity and modify its' data.
 	 */
-	@Test
+	
 	public void generatorTypeTest2() throws Exception {
 
 		boolean pass = false;
@@ -216,7 +203,7 @@ public class Client1 extends Client {
 	 *
 	 * Using GenerationType.TABLE, access a persisted entity and modify its' data.
 	 */
-	@Test
+	
 	public void generatorTypeTest3() throws Exception {
 
 		boolean pass = false;
@@ -270,7 +257,7 @@ public class Client1 extends Client {
 	 *
 	 * Using GenerationType.TABLE, access a persisted entity and modify its' data.
 	 */
-	@Test
+	
 	public void generatorTypeTest4() throws Exception {
 
 		boolean pass = false;
@@ -326,7 +313,7 @@ public class Client1 extends Client {
 	 *
 	 * Using GenerationType.TABLE, access a persisted entity and modify its' data.
 	 */
-	@Test
+	
 	public void generatorTypeTest5() throws Exception {
 
 		boolean pass = false;
@@ -381,7 +368,7 @@ public class Client1 extends Client {
 	 *
 	 * Using GenerationType.TABLE, access a persisted entity and modify its' data.
 	 */
-	@Test
+	
 	public void generatorTypeTest6() throws Exception {
 
 		boolean pass = false;

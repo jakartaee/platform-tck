@@ -41,8 +41,8 @@ public abstract class Client extends PMClientBase {
 			removeTestData();
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	protected void createTestData() {

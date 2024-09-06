@@ -19,9 +19,9 @@ package ee.jakarta.tck.persistence.core.override.joincolumn;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -110,24 +110,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "Course", pkgName + "Cubicle", pkgName + "CubiclePK", pkgName + "Customer1",
-				pkgName + "Hardware", pkgName + "RetailOrder1", pkgName + "Student", pkgName + "TheatreCompany1",
-				pkgName + "TheatreLocation1" };
-		return createDeploymentJar("jpa_core_override_joincolumn.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception:test failed ", e);
@@ -401,7 +388,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

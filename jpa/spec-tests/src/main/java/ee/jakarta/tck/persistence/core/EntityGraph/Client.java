@@ -22,11 +22,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.AttributeNode;
 import jakarta.persistence.EntityGraph;
@@ -45,22 +40,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2",
-				pkgName + "Employee3" };
-		return createDeploymentJar("jpa_core_EntityGraph.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setupEmployeeData() throws Exception {
+	
+	public void setupEmployeeData(String[] args, Properties p) throws Exception {
 		logTrace( "setupOrderData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createEmployeeData();
 			displayMap(new Properties());
@@ -70,14 +54,13 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanupEmployeeData() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();
 			cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
@@ -89,7 +72,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Create attribute Nodes and retrieve them
 	 */
-	@Test
 	public void addAttributeNodesStringArrayTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
@@ -131,7 +113,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Create attribute Node that does not exist
 	 */
-	@Test
 	public void addAttributeNodesStringArrayIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
@@ -155,7 +136,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Create attribute Nodes via Attribute[] and retrieve them
 	 */
-	@Test
 	public void addAttributeNodesAttributeArrayTest() throws Exception {
 		boolean pass = false;
 
@@ -208,7 +188,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use createEntityGraph to create the named entity graphs in
 	 * the Employee entity
 	 */
-	@Test
 	public void createEntityGraphStringTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -249,7 +228,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use getEntityGraph to get the named entity graphs in the
 	 * Employee entity
 	 */
-	@Test
 	public void getEntityGraphStringTest() throws Exception {
 		boolean pass = false;
 
@@ -274,7 +252,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use getName to get the name of the named entity graph in the
 	 * Employee entity
 	 */
-	@Test
 	public void entityGraphGetNameTest() throws Exception {
 		boolean pass = false;
 
@@ -304,7 +281,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use getName to get the name of the named entity graph in the
 	 * Employee2 entity that has no name
 	 */
-	@Test
 	public void entityGraphGetNameNoNameExistsTest() throws Exception {
 		boolean pass = false;
 
@@ -333,7 +309,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Use getName to get the name of the entity graph
 	 */
-	@Test
 	public void getNameTest() throws Exception {
 		boolean pass = false;
 
@@ -358,7 +333,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: get entity graph that does not exist
 	 */
-	@Test
 	public void getEntityGraphStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
@@ -382,7 +356,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use getEntityGraph to get the named entity graphs in the
 	 * Employee entity
 	 */
-	@Test
+	
 	public void getEntityGraphsClassTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
@@ -426,7 +400,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: add an entity graph as a named entitygraph
 	 */
-	@Test
+	
 	public void addNamedEntityGraphStringEntityGraphTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -535,7 +509,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: get entity graphs from a non entity class
 	 */
-	@Test
+	
 	public void getEntityGraphsClassIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
@@ -560,7 +534,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: test that various data contained in the annotations is
 	 * returnable
 	 */
-	@Test
+	
 	public void annotationsTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();

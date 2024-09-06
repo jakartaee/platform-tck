@@ -20,12 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.types.auto;
 
-
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -54,22 +49,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes" };
-		return createDeploymentJar("jpa_core_types_auto.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 
@@ -98,7 +82,7 @@ public class Client extends PMClientBase {
 	 * the primary key and modify the data.
 	 * 
 	 */
-	@Test
+	
 	public void autoTypeTest1() throws Exception {
 
 		logTrace( "Begin autoTypeTest1");
@@ -169,7 +153,7 @@ public class Client extends PMClientBase {
 	 * Using GenerationType.AUTO and defaulting the column name to ID, try to find
 	 * the primary key and modify the data.
 	 */
-	@Test
+	
 	public void autoTypeTest2() throws Exception {
 
 		logTrace( "Begin autoTypeTest2");
@@ -230,7 +214,7 @@ public class Client extends PMClientBase {
 	 * Using GenerationType.AUTO and defaulting the column name to ID, try to find
 	 * the primary key and modify the data.
 	 */
-	@Test
+	
 	public void autoTypeTest3() throws Exception {
 
 		logTrace( "Begin autoTypeTest3");
@@ -291,7 +275,7 @@ public class Client extends PMClientBase {
 	 * Using GenerationType.AUTO and defaulting the column name to ID, try to find
 	 * the primary key and modify the data.
 	 */
-	@Test
+	
 	public void autoTypeTest4() throws Exception {
 
 		logTrace( "Begin autoTypeTest4");
@@ -352,7 +336,7 @@ public class Client extends PMClientBase {
 	 * Using GenerationType.AUTO and defaulting the column name to ID, try to find
 	 * the primary key and modify the data.
 	 */
-	@Test
+	
 	public void autoTypeTest5() throws Exception {
 
 		logTrace( "Begin autoTypeTest5");
@@ -413,7 +397,7 @@ public class Client extends PMClientBase {
 	 * Using GenerationType.AUTO and defaulting the column name to ID, try to find
 	 * the primary key and modify the data.
 	 */
-	@Test
+	
 	public void autoTypeTest6() throws Exception {
 
 		logTrace( "Begin autoTypeTest6");
@@ -490,7 +474,6 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -498,8 +481,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

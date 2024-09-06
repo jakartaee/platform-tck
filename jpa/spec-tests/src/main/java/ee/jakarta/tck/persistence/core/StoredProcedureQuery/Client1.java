@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -45,27 +46,16 @@ public class Client1 extends Client {
     public Client1() {
     }
 
-    public JavaArchive createDeployment() throws Exception {
-
-        String pkgNameWithoutSuffix = Client1.class.getPackageName();
-        String pkgName = pkgNameWithoutSuffix + ".";
-        String[] xmlFiles = {MAPPING_FILE_XML};
-        String[] classes = {pkgName + "Employee", pkgName + "Employee2", pkgName + "EmployeeMappedSC"};
-        return createDeploymentJar("jpa_core_types_StoredProcedureQuery1.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
-    }
-
     /*
      * setup() is called before each test
      *
      * @class.setup_props: jdbc.db;
      */
-    @BeforeEach
-    public void setup() throws Exception {
+    
+    public void setup(String[] args, Properties p) throws Exception {
         logTrace( "setup");
         try {
-            super.setup();
-            createDeployment();
+            super.setup(args,p);
             removeTestData();
             createEmployeeTestData();
             dataBaseName = System.getProperty("jdbc.db");

@@ -19,10 +19,7 @@ package ee.jakarta.tck.persistence.core.annotations.version;
 
 import java.sql.Timestamp;
 import java.util.Date;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 public class Client4 extends Client {
 
@@ -30,25 +27,13 @@ public class Client4 extends Client {
 
 	public Client4() {
 	}
+	
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Int_Field", pkgName + "Int_Property", pkgName + "Integer_Field",
-				pkgName + "Integer_Property", pkgName + "Long_Field", pkgName + "Long_Property",
-				pkgName + "LongClass_Field", pkgName + "LongClass_Property", pkgName + "Short_Field",
-				pkgName + "Short_Property", pkgName + "ShortClass_Field", pkgName + "ShortClass_Property",
-				pkgName + "Timestamp_Field", pkgName + "Timestamp_Property" };
-		return createDeploymentJar("jpa_core_annotations_version4.jar", pkgNameWithoutSuffix, classes);
-	}
-
-	@BeforeEach
-	public void setupTimestampData() throws Exception {
+	public void setupTimestampData(String[] args, Properties p) throws Exception {
 		logTrace( "setupTimestampData");
 		try {
-			super.setup();
-			createDeployment();
-
+			super.setup(args,p);
+	
 			removeTestData();
 			createTimestampTestData();
 
@@ -64,7 +49,7 @@ public class Client4 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void timestampFieldTest() throws Exception {
 
 		boolean pass = false;
@@ -121,7 +106,7 @@ public class Client4 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void timestampPropertyTest() throws Exception {
 		boolean pass = false;
 		try {

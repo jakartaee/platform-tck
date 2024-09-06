@@ -58,11 +58,11 @@ public class Client extends PMClientBase {
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-	@BeforeEach
-	public void setup() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			supportSequence = Boolean.valueOf(System.getProperty("db.supports.sequence"));
 
@@ -235,8 +235,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

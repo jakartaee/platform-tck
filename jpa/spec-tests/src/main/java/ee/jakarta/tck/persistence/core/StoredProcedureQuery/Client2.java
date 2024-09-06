@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.StoredProcedureQuery;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,27 +39,16 @@ public class Client2 extends Client {
 	public Client2() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { MAPPING_FILE_XML };
-		String[] classes = { pkgName + "Employee", pkgName + "Employee2", pkgName + "EmployeeMappedSC" };
-		return createDeploymentJar("jpa_core_types_StoredProcedureQuery2.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
-	}
-
 	/*
 	 * setupEmployee2Data() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupEmployee2Data() throws Exception {
+
+	public void setupEmployee2Data(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createEmployee2TestData();
 			dataBaseName = System.getProperty("jdbc.db");

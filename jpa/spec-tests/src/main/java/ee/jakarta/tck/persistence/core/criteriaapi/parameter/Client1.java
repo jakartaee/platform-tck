@@ -19,6 +19,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.parameter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,11 +45,11 @@ public class Client1 extends Client {
 		return createDeploymentJar("jpa_core_criteriaapi_parameter1.jar", pkgNameWithoutSuffix, classes);
 	}
 	
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			getEntityManager();
 		} catch (Exception e) {

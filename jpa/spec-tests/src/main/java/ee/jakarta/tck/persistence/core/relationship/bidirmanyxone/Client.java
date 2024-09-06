@@ -19,11 +19,7 @@ package ee.jakarta.tck.persistence.core.relationship.bidirmanyxone;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -34,22 +30,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "BiDirMX1Person", pkgName + "BiDirMX1Project" };
-		return createDeploymentJar("jpa_core_relationship_bidirmanyxone.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -69,7 +54,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Bi-Directional RelationShip ManyToOne Mapping
 	 *
 	 */
-	@Test
 	public void biDirMX1Test1() throws Exception {
 		logTrace( "Begin biDirMX1Test1");
 		boolean pass = false;
@@ -157,7 +141,6 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -165,8 +148,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

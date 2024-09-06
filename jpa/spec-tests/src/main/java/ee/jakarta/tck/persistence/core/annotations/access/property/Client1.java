@@ -18,6 +18,7 @@ package ee.jakarta.tck.persistence.core.annotations.access.property;
 
 
 import java.util.Arrays;
+import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,12 +42,12 @@ public class Client1 extends Client {
 	public Client1() {
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			removeTestData();
 			createTestData();

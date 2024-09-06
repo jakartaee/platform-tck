@@ -19,12 +19,8 @@ package ee.jakarta.tck.persistence.core.types.field;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 import java.util.UUID;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.types.common.Grade;
@@ -45,21 +41,12 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "UUIDType" };
-		return createDeploymentJar("jpa_core_types_field.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
@@ -78,7 +65,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: boolean
 	 */
-	@Test
+	
 	public void fieldTypeTest1() throws Exception {
 
 		boolean pass = false;
@@ -128,7 +115,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: byte
 	 */
-	@Test
+	
 	public void fieldTypeTest2() throws Exception {
 
 		boolean pass = false;
@@ -179,7 +166,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: char
 	 */
-	@Test
+	
 	public void fieldTypeTest3() throws Exception {
 
 		boolean pass = false;
@@ -230,7 +217,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: short
 	 */
-	@Test
+	
 	public void fieldTypeTest4() throws Exception {
 
 		boolean pass = false;
@@ -281,7 +268,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: int
 	 */
-	@Test
+	
 	public void fieldTypeTest5() throws Exception {
 
 		boolean pass = false;
@@ -331,7 +318,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: long
 	 */
-	@Test
+	
 	public void fieldTypeTest6() throws Exception {
 
 		boolean pass = false;
@@ -382,7 +369,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: double
 	 */
-	@Test
+	
 	public void fieldTypeTest7() throws Exception {
 
 		boolean pass = false;
@@ -432,7 +419,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: float
 	 */
-	@Test
+	
 	public void fieldTypeTest8() throws Exception {
 
 		boolean pass = false;
@@ -491,7 +478,7 @@ public class Client extends PMClientBase {
 	 *
 	 * With the Enumerated annotation and EnumType.STRING.
 	 */
-	@Test
+	
 	public void fieldTypeTest9() throws Exception {
 
 		boolean pass = false;
@@ -552,7 +539,7 @@ public class Client extends PMClientBase {
 	 *
 	 * Temporal.TemporalType.DATE
 	 */
-	@Test
+	
 	public void fieldTypeTest10() throws Exception {
 
 		boolean pass = false;
@@ -602,7 +589,7 @@ public class Client extends PMClientBase {
 	 * type: byte[]
 	 *
 	 */
-	@Test
+	
 	public void fieldTypeTest11() throws Exception {
 
 		boolean pass = false;
@@ -670,7 +657,7 @@ public class Client extends PMClientBase {
 	 * type: char[]
 	 *
 	 */
-	@Test
+	
 	public void fieldTypeTest12() throws Exception {
 
 		boolean pass = false;
@@ -726,7 +713,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: java.sql.Time
 	 */
-	@Test
+	
 	public void fieldTypeTest13() throws Exception {
 
 		boolean pass = false;
@@ -782,7 +769,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: java.sql.Timestamp
 	 */
-	@Test
+	
 	public void fieldTypeTest14() throws Exception {
 
 		boolean pass = false;
@@ -840,7 +827,7 @@ public class Client extends PMClientBase {
 	 *
 	 * statefield_path_expression
 	 */
-	@Test
+	
 	public void fieldTypeTest15() throws Exception {
 
 		boolean pass = false;
@@ -903,7 +890,7 @@ public class Client extends PMClientBase {
 	 *
 	 * named parameter
 	 */
-	@Test
+	
 	public void fieldTypeTest16() throws Exception {
 
 		boolean pass = false;
@@ -966,7 +953,7 @@ public class Client extends PMClientBase {
 	 *
 	 * positional parameters
 	 */
-	@Test
+	
 	public void fieldTypeTest17() throws Exception {
 
 		boolean pass = false;
@@ -1028,7 +1015,7 @@ public class Client extends PMClientBase {
 	 *
 	 * @test_Strategy: Test EM create on entity class with UUID.
 	 */
-	@Test
+	
 	public void testCreateUUIDType() throws Exception {
 		UUID id = UUID.randomUUID();
 		UUIDType uuidType = new UUIDType(id, "Create UUID Type");
@@ -1065,7 +1052,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Test various scalar expressions test
 	 *
 	 */
-	@Test
+	
 	public void scalarExpressionsTest() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5;
 		pass1 = pass2 = pass3 = pass4 = pass5 = false;
@@ -1242,7 +1229,6 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -1250,8 +1236,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

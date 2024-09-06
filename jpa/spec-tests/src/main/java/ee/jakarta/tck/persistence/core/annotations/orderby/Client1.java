@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
@@ -61,11 +62,11 @@ public class Client1 extends PMClientBase {
 		return createDeploymentJar("jpa_core_annotations_orderby1.jar", pkgNameWithoutSuffix, classes);
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 
 			removeTestData();
@@ -451,8 +452,8 @@ public class Client1 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

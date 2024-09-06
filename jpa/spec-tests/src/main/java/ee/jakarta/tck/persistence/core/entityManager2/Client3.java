@@ -25,10 +25,6 @@ import jakarta.persistence.FindOption;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.RefreshOption;
 import jakarta.persistence.Timeout;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 
 import java.sql.Connection;
@@ -36,6 +32,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class Client3 extends PMClientBase {
 
@@ -49,26 +46,17 @@ public class Client3 extends PMClientBase {
     public Client3() {
     }
 
-    public JavaArchive createDeployment() throws Exception {
-
-        String pkgNameWithoutSuffix = Client3.class.getPackageName();
-        String pkgName = pkgNameWithoutSuffix + ".";
-        String[] classes = {pkgName + "DoesNotExist", pkgName + "Employee", pkgName + "Order"};
-        return createDeploymentJar("jpa_core_entityManager3.jar", pkgNameWithoutSuffix, classes);
-
-    }
-
     /*
      * setupOrderData() is called before each test
      *
      * @class.setup_props: jdbc.db;
      */
-    @BeforeEach
-    public void setupOrderData() throws Exception {
+    
+    public void setupOrderData(String[] args, Properties p) throws Exception {
         logTrace( "setupOrderData");
         try {
-            super.setup();
-            createDeployment();
+            super.setup(args,p);
+            
             removeTestData();
             createOrderData();
             map.putAll(getEntityManager().getProperties());
@@ -81,18 +69,18 @@ public class Client3 extends PMClientBase {
         }
     }
 
-    @AfterEach
+
     public void cleanupData() throws Exception {
         try {
             logTrace( "Cleanup data");
             removeTestData();
             cleanup();
         } finally {
-            removeTestJarFromCP();
+
         }
     }
 
-    @Test
+    
     public void getReferenceForExistingEntityTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
@@ -131,7 +119,7 @@ public class Client3 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void getReferenceForNonExistingEntityTest() throws Exception {
         boolean pass = false;
         try {
@@ -150,7 +138,7 @@ public class Client3 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void runWithConnectionTest() throws Exception {
         boolean pass = false;
         Order newOrder = new Order(50, 5555, "desc55");
@@ -190,7 +178,7 @@ public class Client3 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void callWithConnectionTest() throws Exception {
         boolean pass = false;
         Order newOrder = new Order(60, 6666, "desc66");
@@ -243,7 +231,7 @@ public class Client3 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void findOptionsTest() throws Exception {
         boolean pass = false;
         try {
@@ -262,7 +250,7 @@ public class Client3 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void refreshOptionsTest() throws Exception {
         boolean pass = false;
         try {
@@ -282,7 +270,7 @@ public class Client3 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void setCacheRetrieveModeTest() throws Exception {
         boolean pass = false;
         try {
@@ -301,7 +289,7 @@ public class Client3 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void setCacheStoreModeTest() throws Exception {
         boolean pass = false;
         try {

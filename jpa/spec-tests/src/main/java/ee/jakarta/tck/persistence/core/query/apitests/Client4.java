@@ -16,13 +16,11 @@
 
 package ee.jakarta.tck.persistence.core.query.apitests;
 
+import java.util.Properties;
+
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 
 import java.sql.Date;
@@ -39,22 +37,10 @@ public class Client4 extends PMClientBase {
     public Client4() {
     }
 
-    public JavaArchive createDeployment() throws Exception {
-
-        String pkgNameWithoutSuffix = Client4.class.getPackageName();
-        String pkgName = pkgNameWithoutSuffix + ".";
-        String[] classes = {pkgName + "DataTypes2", pkgName + "Department", pkgName + "Employee",
-                pkgName + "Insurance"};
-        return createDeploymentJar("jpa_core_query_apitests4.jar", pkgNameWithoutSuffix, classes);
-
-    }
-
-    @BeforeEach
-    public void setupDataTypes2() throws Exception {
+    public void setupDataTypes2(String[] args, Properties p) throws Exception {
         logTrace( "setup");
         try {
-            super.setup();
-            createDeployment();
+            super.setup(args,p);
             removeTestData();
             createTestData();
             logTrace( "Done creating test data");
@@ -65,13 +51,12 @@ public class Client4 extends PMClientBase {
         }
     }
 
-    @AfterEach
     public void cleanupNoData() throws Exception {
         try {
             logTrace( "in cleanupNoData");
             super.cleanup();
         } finally {
-            removeTestJarFromCP();
+
         }
     }
 
@@ -87,7 +72,7 @@ public class Client4 extends PMClientBase {
      * @test_Strategy: Verify Query.getSingleResultOrNull() with value as a return
      *
      */
-    @Test
+    
     public void queryAPIGetSingleResultOrNullWithValueTest() throws Exception {
         final int ID = 1;
         boolean pass1 = false;
@@ -141,7 +126,7 @@ public class Client4 extends PMClientBase {
      * @test_Strategy: Verify Query.getSingleResultOrNull() with null as a return
      *
      */
-    @Test
+    
     public void queryAPIGetSingleResultOrNullNullValueTest() throws Exception {
         final int ID = 0;
         boolean pass1 = false;
@@ -187,7 +172,7 @@ public class Client4 extends PMClientBase {
      * @test_Strategy: Verify Query.getSingleResultOrNull() with value as a return
      *
      */
-    @Test
+    
     public void typedQueryAPIGetSingleResultOrNullWithValueTest() throws Exception {
         final int ID = 1;
         boolean pass1 = false;
@@ -241,7 +226,7 @@ public class Client4 extends PMClientBase {
      * @test_Strategy: Verify Query.getSingleResultOrNull() with null as a return
      *
      */
-    @Test
+    
     public void typedQueryAPIGetSingleResultOrNullNullValueTest() throws Exception {
         final int ID = 0;
         boolean pass1 = false;

@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.nestedembedding;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -45,11 +46,11 @@ public class Client extends PMClientBase {
 
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
@@ -442,8 +443,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

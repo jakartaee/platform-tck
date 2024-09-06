@@ -79,11 +79,11 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setup() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
@@ -101,8 +101,8 @@ public class Client1 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {

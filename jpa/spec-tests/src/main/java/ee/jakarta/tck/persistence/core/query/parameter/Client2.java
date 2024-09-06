@@ -18,11 +18,7 @@ package ee.jakarta.tck.persistence.core.query.parameter;
 
 
 import java.util.List;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
@@ -36,21 +32,11 @@ public class Client2 extends PMClientBase {
 	public Client2() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_relationship_annotations2.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setupEmployee() throws Exception {
+	
+	public void setupEmployee(String[] args, Properties p) throws Exception {
 		logTrace( "setupEmployee");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			createEmployeeData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -67,7 +53,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create a query with a having clause with a positional
 	 * parameter and retrieve information about the parameter.
 	 */
-	@Test
+	
 	public void parameterPositionalTest() throws Exception {
 		boolean pass = false;
 		List result;
@@ -106,7 +92,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create an update query with a positional parameter and
 	 * retrieve information about the parameter.
 	 */
-	@Test
+	
 	public void parameterUpdateTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -149,7 +135,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create a query with a name parameter using different cases
 	 * and retrieve information about the parameter.
 	 */
-	@Test
+	
 	public void parameterCaseTest() throws Exception {
 		boolean pass = false;
 		List result;
@@ -187,7 +173,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create a query using a name parameter twice and retrieve
 	 * information about the parameter.
 	 */
-	@Test
+	
 	public void parameterNamedParameterTwiceTest() throws Exception {
 		boolean pass = false;
 		List result;
@@ -241,7 +227,6 @@ public class Client2 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanupEmployee() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -249,8 +234,8 @@ public class Client2 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

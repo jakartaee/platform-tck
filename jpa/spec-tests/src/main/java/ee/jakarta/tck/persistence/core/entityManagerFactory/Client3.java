@@ -20,10 +20,6 @@ package ee.jakarta.tck.persistence.core.entityManagerFactory;
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.LockModeType;
@@ -41,22 +37,11 @@ public class Client3 extends PMClientBase {
 
 	public Client3() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManagerFactory3.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setupMember() throws Exception {
+	
+	public void setupMember(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createMemberTestData();
 		} catch (Exception e) {
@@ -64,14 +49,13 @@ public class Client3 extends PMClientBase {
 			throw new Exception("Setup failed:", e);
 		}
 	}
-
-	@AfterEach
+	
 	public void cleanupNoData() throws Exception {
 		try {
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -83,7 +67,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy: Test that lock mode of addNamedQuery is retained or can be
 	 * overridden
 	 */
-	@Test
+	
 	public void addNamedQueryLockModeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;

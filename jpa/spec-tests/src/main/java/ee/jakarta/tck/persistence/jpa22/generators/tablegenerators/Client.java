@@ -16,12 +16,7 @@
 
 package ee.jakarta.tck.persistence.jpa22.generators.tablegenerators;
 
-
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -36,22 +31,10 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes" };
-		return createDeploymentJar("jpa_jpa22_generators_tablegenerators.jar", pkgNameWithoutSuffix,
-				(String[]) classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
@@ -67,7 +50,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: use a generator specified on an entity
 	 */
-	@Test
 	public void generatorOnEntityTest() throws Exception {
 
 		boolean pass = false;
@@ -112,7 +94,6 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -120,8 +101,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

@@ -18,6 +18,8 @@ package ee.jakarta.tck.persistence.core.metamodelapi.singularattribute;
 
 
 
+import java.util.Properties;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,11 +49,11 @@ public class Client extends PMClientBase {
 
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			removeTestData();
 		} catch (Exception e) {
@@ -627,8 +629,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

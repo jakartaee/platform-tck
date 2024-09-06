@@ -24,12 +24,9 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
 
@@ -60,22 +57,11 @@ public class Client1 extends PMClientBase {
 	public Client1() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes2", pkgName + "Department", pkgName + "Employee",
-				pkgName + "Insurance" };
-		return createDeploymentJar("jpa_core_query_apitests1.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -106,7 +92,7 @@ public class Client1 extends PMClientBase {
 	 * Create a TypedQuery where id <= 10 sorted by id. setFirstResult(5) and verify
 	 * the results that were returned
 	 */
-	@Test
+	
 	public void setFirstResultTest() throws Exception {
 		List q;
 		boolean pass1 = false;
@@ -274,7 +260,7 @@ public class Client1 extends PMClientBase {
 	 * Create a TypedQuery. setFirstResult(-5) and verify IllegalArgumentException
 	 * is thrown
 	 */
-	@Test
+	
 	public void setFirstResultIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -321,7 +307,7 @@ public class Client1 extends PMClientBase {
 	 * TypedQuery.getParameter(String, Class) and verify returned Parameter or that
 	 * IllegalStateException is thrown.
 	 */
-	@Test
+	
 	public void getParameterTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -382,7 +368,7 @@ public class Client1 extends PMClientBase {
 	 * call TypedQuery.getParameter(String, String) with a name that does not match
 	 * and verify that IllegalArgumentException is thrown.
 	 */
-	@Test
+	
 	public void getParameterIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -428,7 +414,7 @@ public class Client1 extends PMClientBase {
 	 * TypedQuery.getParameter(String) with name that does not exist and verify that
 	 * IllegalArgumentException is thrown.
 	 */
-	@Test
+	
 	public void getParameterIllegalArgumentException2Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -476,7 +462,7 @@ public class Client1 extends PMClientBase {
 	 * for a positional parameter
 	 *
 	 */
-	@Test
+	
 	public void getParameterIntClassTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -538,7 +524,7 @@ public class Client1 extends PMClientBase {
 	 * Verify getParameter for a position that does not exist throws
 	 * IllegalArgumentException*
 	 */
-	@Test
+	
 	public void getParameterIntIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -587,7 +573,7 @@ public class Client1 extends PMClientBase {
 	 * create TypedQuery and set a String parameter. Verify getParameterValue can
 	 * retrieve that value
 	 */
-	@Test
+	
 	public void getParameterValueParameterTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -655,7 +641,7 @@ public class Client1 extends PMClientBase {
 	 * parameter. Try to get the first parameter value from the second query and
 	 * verify IllegalArgumentException is thrown*
 	 */
-	@Test
+	
 	public void getParameterValueParameterIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -711,7 +697,7 @@ public class Client1 extends PMClientBase {
 	 * not set. call getParameterValue(Parameter) for that parameter and verify
 	 * IllegalArgumentException is thrown
 	 */
-	@Test
+	
 	public void getParameterValueParameterIllegalStateExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -783,7 +769,7 @@ public class Client1 extends PMClientBase {
 	 * not set. call setParameter(Parameter,Object) for that parameter and verify
 	 * IllegalArgumentException is thrown
 	 */
-	@Test
+	
 	public void setParameterParameterObjectIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -859,7 +845,7 @@ public class Client1 extends PMClientBase {
 	 * not set. call setParameter(Parameter,Calendar,TemporalType) for that
 	 * parameter and verify IllegalArgumentException is thrown
 	 */
-	@Test
+	
 	public void setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -934,7 +920,7 @@ public class Client1 extends PMClientBase {
 	 * not set. call setParameter(Parameter,Date,TemporalType) for that parameter
 	 * and verify IllegalArgumentException is thrown
 	 */
-	@Test
+	
 	public void setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1006,7 +992,7 @@ public class Client1 extends PMClientBase {
 	 * getParameterValue can retrieve that value create TypedQuery and set a String
 	 * parameter. Verify getParameterValue can retrieve that value
 	 */
-	@Test
+	
 	public void getParameterValueStringTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1063,7 +1049,7 @@ public class Client1 extends PMClientBase {
 	 * create a TypedQuery and set a String parameter. Try to get the parameter
 	 * value from the query and verify IllegalArgumentException is thrown*
 	 */
-	@Test
+	
 	public void getParameterValueStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1110,7 +1096,7 @@ public class Client1 extends PMClientBase {
 	 * getParameterValue for a parameter that is not bound throws an
 	 * IllegalStateException
 	 */
-	@Test
+	
 	public void getParameterValueStringIllegalStateExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1157,7 +1143,7 @@ public class Client1 extends PMClientBase {
 	 * getParameterValue can retrieve that value create TypedQuery and set a
 	 * positional parameter. Verify getParameterValue can retrieve that value
 	 */
-	@Test
+	
 	public void getParameterValueIntTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1214,7 +1200,7 @@ public class Client1 extends PMClientBase {
 	 * Verify getParameterValue for a position that does not exist throws
 	 * IllegalArgumentException
 	 */
-	@Test
+	
 	public void getParameterValueIntIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1263,7 +1249,7 @@ public class Client1 extends PMClientBase {
 	 * Verify getParameterValue for a position that is not bound throws
 	 * IllegalStateException
 	 */
-	@Test
+	
 	public void getParameterValueIntIllegalStateExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1307,7 +1293,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Obtain employees using valid name/value data in query. Obtain
 	 * employees using valid name/value data in a TypedQuery.
 	 */
-	@Test
+	
 	public void setParameter1Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1393,7 +1379,7 @@ public class Client1 extends PMClientBase {
 	 * 
 	 * @test_Strategy: Test named parameters for case-sensitive
 	 */
-	@Test
+	
 	public void setParameter2Test() throws Exception {
 		boolean pass = false;
 		Integer[] expected = new Integer[3];
@@ -1449,7 +1435,7 @@ public class Client1 extends PMClientBase {
 	 * TypedQuery.setParameter(String, Object) containing an argument of an
 	 * incorrect type should throw an IllegalArgumentException.*
 	 */
-	@Test
+	
 	public void setParameterStringObject1IllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1497,7 +1483,7 @@ public class Client1 extends PMClientBase {
 	 * not exist should throw an IllegalArgumentException.
 	 *
 	 */
-	@Test
+	
 	public void setParameterStringObject2IllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1542,7 +1528,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Obtain employees using valid name/value data in query. Obtain
 	 * employees using valid name/value data in TypedQuery.
 	 */
-	@Test
+	
 	public void setParameterStringDateTemporalTypeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1634,7 +1620,7 @@ public class Client1 extends PMClientBase {
 	 * containing a parameter name that does not correspond to parameter in query
 	 * string should throw an IllegalArgumentException.
 	 */
-	@Test
+	
 	public void setParameterStringDateTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1680,7 +1666,7 @@ public class Client1 extends PMClientBase {
 	 * TemporalType). Obtain employees using TypedQuery.setParameter(String,
 	 * Calendar, TemporalType).
 	 */
-	@Test
+	
 	public void setParameterStringCalendarTemporalTypeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1769,7 +1755,7 @@ public class Client1 extends PMClientBase {
 	 * parameter name that does not correspond to parameter in query string should
 	 * throw an IllegalArgumentException.
 	 */
-	@Test
+	
 	public void setParameterStringCalendarTemporalTypeTestIllegalArgumentExceptionTest() throws Exception {
 		final java.util.Calendar c = Calendar.getInstance();
 		boolean pass1 = false;
@@ -1814,7 +1800,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Obtain employees using positional parameter data in query.
 	 * Obtain employees using positional parameter data in TypedQuery.
 	 */
-	@Test
+	
 	public void setParameterIntObjectTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1905,7 +1891,7 @@ public class Client1 extends PMClientBase {
 	 * parameter which is not used in the query string. An IllegalArgumentException
 	 * should be thrown.
 	 */
-	@Test
+	
 	public void setParameterIntObjectIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -1980,7 +1966,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * Obtain employees using positional parameter data in the TypedQuery.
 	 */
-	@Test
+	
 	public void setParameterIntDateTemporalTypeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2067,7 +2053,7 @@ public class Client1 extends PMClientBase {
 	 * containing a positional parameter that does not correspond to parameter in
 	 * query string should throw an IllegalArgumentException.
 	 */
-	@Test
+	
 	public void setParameterIntDateTemporalTypeIllegalArgumentException1Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2114,7 +2100,7 @@ public class Client1 extends PMClientBase {
 	 * Obtain employees using TypedQuery.setParameter(int position, Calendar value,
 	 * TemporalType type).
 	 */
-	@Test
+	
 	public void setParameterIntCalendarTemporalTypeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2203,7 +2189,7 @@ public class Client1 extends PMClientBase {
 	 * containing a parameter name that does not correspond to parameter in query
 	 * string should throw an IllegalArgumentException.
 	 */
-	@Test
+	
 	public void setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		final java.util.Calendar c = Calendar.getInstance();
 		boolean pass1 = false;
@@ -2252,7 +2238,7 @@ public class Client1 extends PMClientBase {
 	 * create TypedQuery and set a positional parameter. Use setParameter(Parameter,
 	 * Object) to change the original parameter value then execute query.
 	 */
-	@Test
+	
 	public void setParameter7Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2350,7 +2336,7 @@ public class Client1 extends PMClientBase {
 	 * setParameter(Parameter,Calendar,TemporalType) for that parameter and verify
 	 * the correct result is returned
 	 */
-	@Test
+	
 	public void setParameterParameterCalendarTemporalTypeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2424,7 +2410,7 @@ public class Client1 extends PMClientBase {
 	 * setParameter(Parameter,Date,TemporalType) for that parameter and verify the
 	 * correct result is returned
 	 */
-	@Test
+	
 	public void setParameterParameterDateTemporalTypeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2498,7 +2484,7 @@ public class Client1 extends PMClientBase {
 	 * Obtain employees using TypedQuery.setParameter(int position, Date value,
 	 * TemporalType type).
 	 */
-	@Test
+	
 	public void setParameter8Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2584,7 +2570,7 @@ public class Client1 extends PMClientBase {
 	 * thrown. TypedQuery.getSingleResult() is expected to return a single result.
 	 * If the query does not return a result, an NoResultException is thrown.
 	 */
-	@Test
+	
 	public void getSingleResultNoResultExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2650,7 +2636,7 @@ public class Client1 extends PMClientBase {
 	 * which has a lock mode set without a transaction being active then call
 	 * getSingleResult() and verify a TransactionRequiredException is thrown
 	 */
-	@Test
+	
 	public void getSingleResultTransactionRequiredException() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2719,7 +2705,7 @@ public class Client1 extends PMClientBase {
 	 * result. If the query returns more than one result, a NonUniqueResultException
 	 * is thrown.
 	 */
-	@Test
+	
 	public void getSingleResultNonUniqueResultExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2783,7 +2769,7 @@ public class Client1 extends PMClientBase {
 	 * setParameter has set a value. Create a TypedQuery and set a parameter. Verify
 	 * isbound knows setParameter has set a value.
 	 */
-	@Test
+	
 	public void isBoundTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2852,7 +2838,7 @@ public class Client1 extends PMClientBase {
 	 * rows skipped with setFirstResult will correspond to the number of objects
 	 * specified by setFirstResult."
 	 */
-	@Test
+	
 	public void setFirstResult() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -2924,7 +2910,7 @@ public class Client1 extends PMClientBase {
 	 * positional parameter value specified that does not correspond to a positional
 	 * parameter in the query string. An IllegalArgumentException is thrown.
 	 */
-	@Test
+	
 	public void queryAPITest11() throws Exception {
 		boolean pass = false;
 		try {
@@ -2979,7 +2965,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: setParameter(int position, Object value) which defines a
 	 * value of the incorrect type should throw an IllegalArgumentException.
 	 */
-	@Test
+	
 	public void queryAPITest12() throws Exception {
 		boolean pass = false;
 		logTrace( "invoke query for queryAPITest12 ...");
@@ -3035,7 +3021,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: setFirstResult(int startPosition) with a negative value for
 	 * startPosition should throw an IllegalArgumentException.
 	 */
-	@Test
+	
 	public void setFirstResultIllegalArgumentException() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -3085,7 +3071,7 @@ public class Client1 extends PMClientBase {
 	 * Using TypedQuery.setMaxResult() set the maximum number of results to a value
 	 * which exceeds number of expected result and verify the result set.
 	 */
-	@Test
+	
 	public void setGetMaxResultsTest() throws Exception {
 		Collection<Department> q;
 		boolean pass1 = false;
@@ -3196,7 +3182,7 @@ public class Client1 extends PMClientBase {
 	 * IllegalArgumentException is thrown Call TypedQuery.setMaxResult(-1) and
 	 * verify an IllegalArgumentException is thrown
 	 */
-	@Test
+	
 	public void setMaxResultsIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -3262,7 +3248,7 @@ public class Client1 extends PMClientBase {
 	 * Using TypedQuery.setMaxResult() set the maximum number of results to a value
 	 * which exceeds number of expected result and verify the result set.
 	 */
-	@Test
+	
 	public void getResultListTransactionRequiredExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -3313,7 +3299,7 @@ public class Client1 extends PMClientBase {
 	 * set returned is only contains the number of results requested to be
 	 * retrieved.
 	 */
-	@Test
+	
 	public void setMaxResults() throws Exception {
 		Collection<Department> q;
 		boolean pass = false;
@@ -3360,7 +3346,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: getResultList() should throw an IllegalStateException if
 	 * called for an EJB QL Update statement.
 	 */
-	@Test
+	
 	public void queryAPITest16() throws Exception {
 		boolean pass1 = false;
 		try {
@@ -3402,7 +3388,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: getResultList() should throw an IllegalStateException if
 	 * called for an EJB QL Delete statement.
 	 */
-	@Test
+	
 	public void queryAPITest17() throws Exception {
 		Query q;
 		boolean pass = false;
@@ -3445,7 +3431,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: create query and call getSingleResult() and verify result
 	 * create TypedQuery and call getSingleResult() and verify result
 	 */
-	@Test
+	
 	public void getSingleResultTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -3518,7 +3504,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: getSingleResult() should throw an IllegalStateException if
 	 * called for an update or delete statement.
 	 */
-	@Test
+	
 	public void getSingleResultIllegalStateException() throws Exception {
 		Query q;
 		boolean pass1 = false;
@@ -3570,7 +3556,7 @@ public class Client1 extends PMClientBase {
 	 * if called for a JPQL Select statement. TypedQuery.executeUpdate() should
 	 * throw an IllegalStateException if called for a JPQL Select statement.
 	 */
-	@Test
+	
 	public void executeUpdateIllegalStateException() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -3637,7 +3623,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Query.executeUpdate() should throw an
 	 * TransactionRequiredException when no Transaction is active
 	 */
-	@Test
+	
 	public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
 		boolean pass1 = false;
 
@@ -3676,7 +3662,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: setFlushMode - AUTO
 	 *
 	 */
-	@Test
+	
 	public void queryAPITest21() throws Exception {
 		boolean pass = false;
 
@@ -3723,7 +3709,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Update Query
 	 *
 	 */
-	@Test
+	
 	public void queryAPITest22() throws Exception {
 		Query q;
 		int result_size = 0;
@@ -3781,7 +3767,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Delete Query
 	 *
 	 */
-	@Test
+	
 	public void queryAPITest23() throws Exception {
 		Query q;
 		int result_size = 0;
@@ -3828,7 +3814,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Bulk Update Query
 	 *
 	 */
-	@Test
+	
 	public void queryAPITest24() throws Exception {
 		Query q;
 		int result_size = 0;
@@ -3908,7 +3894,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Bulk Delete Query
 	 *
 	 */
-	@Test
+	
 	public void queryAPITest25() throws Exception {
 		Query q;
 		int result_size = 0;
@@ -3961,7 +3947,7 @@ public class Client1 extends PMClientBase {
 	 * 
 	 * @test_Strategy: Usage of Date literals in Query
 	 */
-	@Test
+	
 	public void queryAPITest27() throws Exception {
 		Query q;
 		Collection<Date> result;
@@ -4025,7 +4011,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Try to execute a delete query
 	 *
 	 */
-	@Test
+	
 	public void getResultListIllegalStateException() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -4079,7 +4065,7 @@ public class Client1 extends PMClientBase {
 	 * type set to none and getSingleResult and getResultList should execute
 	 * successfully.
 	 */
-	@Test
+	
 	public void noTransactionLockModeTypeNoneTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -4363,7 +4349,6 @@ public class Client1 extends PMClientBase {
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -4371,8 +4356,8 @@ public class Client1 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

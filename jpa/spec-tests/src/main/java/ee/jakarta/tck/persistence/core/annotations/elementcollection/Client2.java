@@ -19,11 +19,7 @@ package ee.jakarta.tck.persistence.core.annotations.elementcollection;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -32,26 +28,11 @@ public class Client2 extends PMClientBase {
 	public Client2() {
 	}
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { MAPPING_FILE_XML };
-
-		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "Customer", pkgName + "CustomerXML" };
-
-		return createDeploymentJar("jpa_core_annotations_elementcollection2.jar", pkgNameWithoutSuffix, classes,
-				xmlFile);
-
-	}
-
-	@BeforeEach
-	public void setupCust() throws Exception {
+	
+	public void setupCust(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeCustTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -67,7 +48,7 @@ public class Client2 extends PMClientBase {
 	 * 
 	 * @test_Strategy: ElementCollection of a basic type
 	 */
-	@Test
+	
 	public void elementCollectionBasicType() throws Exception {
 		boolean pass = false;
 		try {
@@ -129,7 +110,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: ElementCollection of a basic type using mapping file to
 	 * define annotation
 	 */
-	@Test
+	
 	public void elementCollectionBasicTypeXMLTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -188,7 +169,6 @@ public class Client2 extends PMClientBase {
 	 *
 	 */
 
-	@AfterEach
 	public void cleanupCust() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -196,7 +176,7 @@ public class Client2 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

@@ -58,11 +58,11 @@ public class Client extends PMClientBase {
     }
 
     @Override
-    @BeforeEach
-    public void setup() throws Exception {
+    
+    public void setup(String[] args, Properties p) throws Exception {
         logMsg( "Setup: Jakarta Persistence Java 8 date and time types test");
         try {
-            super.setup();
+            super.setup(args,p);
             createDeployment();
             Properties props = getPersistenceUnitProperties();
             props.put("jakarta.persistence.schema-generation.database.action", "drop-and-create");
@@ -91,7 +91,7 @@ public class Client extends PMClientBase {
             closeEMAndEMF();
             super.cleanup();
         } finally {
-            removeTestJarFromCP();
+
         }
     }
 

@@ -43,20 +43,12 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_ee_entityManager.jar", pkgNameWithoutSuffix, (String[]) classes);
 
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args, p);
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
 			displayMap(map);

@@ -18,10 +18,10 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
 
 import java.util.List;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -38,15 +38,6 @@ public class Client7 extends Util {
 
 
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client7.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder7.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	/*
 	 * @testName: tupleGetTupleElementIllegalArgumentExceptionTest
 	 * 
@@ -57,7 +48,6 @@ public class Client7 extends Util {
 	 * WHERE (ID = 1)
 	 */
 	@SetupMethod(name = "setupCustAliasProductData")
-	@Test
 	public void tupleGetTupleElementIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -149,10 +139,10 @@ public class Client7 extends Util {
 		}
 	}
 
-	public void setupCustAliasProductData() throws Exception {
+	public void setupCustAliasProductData(String[] args, Properties p) throws Exception {
 		logTrace("setupCustAliasProductData");
 		try {
-			super.setup();
+			super.setup(args,p);
 			removeTestData();
 			createCustomerData();
 			createProductData();

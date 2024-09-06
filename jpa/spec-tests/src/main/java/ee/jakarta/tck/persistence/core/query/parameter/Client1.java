@@ -19,12 +19,8 @@ package ee.jakarta.tck.persistence.core.query.parameter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.util.TestUtil;
 
@@ -42,21 +38,11 @@ public class Client1 extends PMClientBase {
 	public Client1() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_relationship_annotations1.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			getEntityManager();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -75,7 +61,6 @@ public class Client1 extends PMClientBase {
 	 * information about the parameters.
 	 *
 	 */
-	@Test
 	public void parameterTest1() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -185,7 +170,6 @@ public class Client1 extends PMClientBase {
 	 * information about the parameters.
 	 *
 	 */
-	@Test
 	public void parameterTestTQ1() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -296,7 +280,6 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Create a query with 2 positional parameters and retrieve
 	 * information about the parameters.
 	 */
-	@Test
 	public void parameterTest2() throws Exception {
 		int pass1 = 0;
 		int pass2 = 0;
@@ -368,7 +351,6 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Create a TypedQuery with 2 positional parameters and retrieve
 	 * information about the parameters.
 	 */
-	@Test
 	public void parameterTQTest2() throws Exception {
 		int pass1 = 0;
 		int pass2 = 0;
@@ -437,7 +419,6 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Create a query with a named parameter that is a date and and
 	 * retrieve information about the parameter.
 	 */
-	@Test
 	public void parameterTest4() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -484,7 +465,7 @@ public class Client1 extends PMClientBase {
 	 * retrieve information about the parameter.
 	 *
 	 */
-	@Test
+	
 	public void parameterTest5() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -531,7 +512,7 @@ public class Client1 extends PMClientBase {
 	 * parameters.
 	 *
 	 */
-	@Test
+	
 	public void getParametersTest() throws Exception {
 		boolean pass = false;
 		logTrace( "Starting getParametersTest");
@@ -596,7 +577,7 @@ public class Client1 extends PMClientBase {
 	 * parameters.
 	 *
 	 */
-	@Test
+	
 	public void getParametersTQTest() throws Exception {
 		boolean pass = false;
 		logTrace( "Starting getParametersTest");
@@ -659,7 +640,7 @@ public class Client1 extends PMClientBase {
 	 * 
 	 * @test_Strategy: Create a query with no parameters
 	 */
-	@Test
+	
 	public void getParametersNoParametersTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -694,14 +675,13 @@ public class Client1 extends PMClientBase {
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 }

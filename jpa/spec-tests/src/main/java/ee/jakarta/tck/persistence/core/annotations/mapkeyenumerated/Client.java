@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -58,11 +59,11 @@ public class Client extends PMClientBase {
 	private static Employee3 empRef3[] = new Employee3[5];
 	private static Employee4 empRef4[] = new Employee4[5];
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			createDeployment();
 			removeTestData();
 			createTestData();
@@ -76,7 +77,7 @@ public class Client extends PMClientBase {
 
 	/*
 	 * public void setupCust(String[] args, Properties p) throws Exception {
-	 * logTrace("setup"); try { super.setup();
+	 * logTrace("setup"); try { super.setup(args,p);
 	 * removeCustTestData(); } catch (Exception e) {
 	 * logErr("Exception: ", e); throw new
 	 * Exception("Setup failed:", e);
@@ -628,8 +629,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*

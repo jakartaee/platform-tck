@@ -16,12 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.query.apitests;
 
-
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
@@ -35,23 +30,11 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes2", pkgName + "Department", pkgName + "Employee",
-				pkgName + "Insurance" };
-		return createDeploymentJar("jpa_core_query_apitests2.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setupNoData() throws Exception {
+	
+	public void setupNoData(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			logTrace( "Done creating test data");
 		} catch (Exception e) {
 			logErr( "Unexpected Exception caught in Setup: ", e);
@@ -60,14 +43,13 @@ public class Client2 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanupNoData() throws Exception {
 		try {
 			logTrace( "in cleanupNoData");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -81,7 +63,7 @@ public class Client2 extends PMClientBase {
 	 * Verify calling getParameter with a class that is not assignable to the type
 	 * throws IllegalArgumentException
 	 */
-	@Test
+	
 	public void getParameterIntIllegalArgumentException2Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;

@@ -18,6 +18,8 @@ package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
 
 
+import java.util.Properties;
+
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,21 +33,11 @@ public class Client2 extends Client {
 	public Client2() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_annotations_tableGenerator2.jar", pkgNameWithoutSuffix, classes);
-	}
-
-	@BeforeEach
-	public void setup2() throws Exception {
+	public void setup2(String[] args, Properties p) throws Exception {
 		logTrace( "setup2");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData2();
 		} catch (Exception e) {

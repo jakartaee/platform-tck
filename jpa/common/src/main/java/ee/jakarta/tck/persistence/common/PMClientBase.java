@@ -1187,24 +1187,10 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
 
     }
 
-    public JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes, String[] xmlFiles)
-            throws Exception {
-        return createDeploymentJar(jarName, packageName, classes, STANDALONE_PERSISTENCE_XML, xmlFiles);
-    }
-
     public JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes) throws Exception {
         String xmlFiles[] = {};
         return createDeploymentJar(jarName, packageName, classes, STANDALONE_PERSISTENCE_XML, xmlFiles);
 
-    }
-
-    public void removeTestJarFromCP() throws Exception {
-        if (testArtifactDeployed && STANDALONE_MODE.equalsIgnoreCase(mode)) {
-            URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
-            Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
-            currentThreadClassLoader.close();
-            testArtifactDeployed = false;
-        }
     }
 
     public static String toString(InputStream inStream) throws IOException {

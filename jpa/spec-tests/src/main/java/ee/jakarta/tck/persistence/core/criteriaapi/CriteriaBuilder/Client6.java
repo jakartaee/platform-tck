@@ -1404,18 +1404,4 @@ public class Client6 extends Util {
 			throw new Exception("joinOnPredicateArrayTest failed");
 	}
 
-	private void setupOrderData() throws Exception {
-		logTrace("setupOrderData");
-		try {
-			super.setup();
-			removeTestData();
-			createCustomerData();
-			createProductData();
-			createOrderData();
-		} catch (Exception e) {
-			logErr("Exception: ", e);
-			throw new Exception("setupCustomerData failed:", e);
-		}
-	}
-
 }

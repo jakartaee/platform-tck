@@ -16,12 +16,9 @@
 
 package ee.jakarta.tck.persistence.core.entityManagerFactory;
 
-import ee.jakarta.tck.persistence.common.PMClientBase;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
+import ee.jakarta.tck.persistence.common.PMClientBase;
 
 
 public class Client4 extends PMClientBase {
@@ -29,38 +26,26 @@ public class Client4 extends PMClientBase {
 
     public Client4() {
     }
-
-    public JavaArchive createDeployment() throws Exception {
-
-        String pkgNameWithoutSuffix = Client4.class.getPackageName();
-        String pkgName = pkgNameWithoutSuffix + ".";
-        String[] classes = {pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order"};
-        return createDeploymentJar("jpa_core_entityManagerFactory4.jar", pkgNameWithoutSuffix, classes);
-
-    }
-
-    @BeforeEach
-    public void setupMember() throws Exception {
+    
+    public void setupMember(String[] args, Properties p) throws Exception {
         logTrace( "setup");
         try {
-            super.setup();
-            createDeployment();
+            super.setup(args,p);
         } catch (Exception e) {
             logErr( "Exception: ", e);
             throw new Exception("Setup failed:", e);
         }
     }
-
-    @AfterEach
+    
     public void cleanupNoData() throws Exception {
         try {
             super.cleanup();
         } finally {
-            removeTestJarFromCP();
+
         }
     }
 
-    @Test
+    
     public void callInTransactionTest() throws Exception {
         final int MEMBER_ID = 10;
 
@@ -85,7 +70,7 @@ public class Client4 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void runInTransactionTest() throws Exception {
         final int MEMBER_ID = 11;
 
@@ -109,7 +94,7 @@ public class Client4 extends PMClientBase {
         }
     }
 
-    @Test
+    
     public void getNameTest() throws Exception {
 
         boolean pass = false;

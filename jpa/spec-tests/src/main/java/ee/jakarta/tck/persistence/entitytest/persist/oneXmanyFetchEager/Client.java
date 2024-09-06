@@ -20,36 +20,20 @@ package ee.jakarta.tck.persistence.entitytest.persist.oneXmanyFetchEager;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-
-
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_persist_oneXmanyFetchEager.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -76,7 +60,6 @@ public class Client extends PMClientBase {
 	 * cascade=PERSIST and ensure the persist operation is cascaded.
 	 *
 	 */
-	@Test
 	public void persist1XMTest1() throws Exception {
 		logTrace( "Begin persist1XMTest1");
 		boolean pass = false;
@@ -147,7 +130,6 @@ public class Client extends PMClientBase {
 	 * IllegalStateException should be thrown.
 	 *
 	 */
-	@Test
 	public void persist1XMTest2() throws Exception {
 		logTrace( "Begin persist1XMTest2");
 		boolean pass = false;
@@ -203,7 +185,7 @@ public class Client extends PMClientBase {
 	 * it is managed and is accessible.
 	 *
 	 */
-	@Test
+
 	public void persist1XMTest3() throws Exception {
 		logTrace( "Begin persist1XMTest3");
 		boolean pass = false;
@@ -281,7 +263,6 @@ public class Client extends PMClientBase {
 	 * relationship is NOT annotated with REMOVE. Ensure the remove is NOT cascaded.
 	 *
 	 */
-	@Test
 	public void persist1XMTest4() throws Exception {
 		logTrace( "Begin persist1XMTest4");
 		boolean pass = false;
@@ -356,7 +337,6 @@ public class Client extends PMClientBase {
 	 * If the entity has been retrieved from the database and has not been removed
 	 * or detached.
 	 */
-	@Test
 	public void persist1XMTest5() throws Exception {
 		logTrace( "Begin persist1XMTest5");
 		boolean pass = false;
@@ -416,7 +396,6 @@ public class Client extends PMClientBase {
 	 * and the persist method has been called on the entity. The effect of cascading
 	 * persist is immediately visible visible to the contains method.
 	 */
-	@Test
 	public void persist1XMTest6() throws Exception {
 		logTrace( "Begin persist1XMTest6");
 		boolean pass = false;
@@ -477,7 +456,6 @@ public class Client extends PMClientBase {
 	 * Create an entity instance where cascade=persist is not used. Verify the
 	 * contains method returns false.
 	 */
-	@Test
 	public void persist1XMTest7() throws Exception {
 		logTrace( "Begin persist1XMTest7");
 		boolean pass = false;
@@ -522,7 +500,6 @@ public class Client extends PMClientBase {
 	 * Create an entity instance where cascade=persist is not used. Verify that an
 	 * illegalStateException is thrown when the flush is executed
 	 */
-	@Test
 	public void persist1XMTest7IllegalStateException() throws Exception {
 		logTrace( "Begin persist1XMTest7IllegalStateException");
 		boolean pass = false;
@@ -570,7 +547,6 @@ public class Client extends PMClientBase {
 	 * it.
 	 *
 	 */
-	@Test
 	public void persist1XMTest8() throws Exception {
 		boolean pass = true;
 		A a1;
@@ -619,7 +595,6 @@ public class Client extends PMClientBase {
 	 * If the entity instance is new and the persist operation has not been cascaded
 	 * to it.
 	 */
-	@Test
 	public void persist1XMTest9() throws Exception {
 		boolean pass = false;
 
@@ -660,7 +635,6 @@ public class Client extends PMClientBase {
 	 * objects. Ensure the proper relationship results are correct.
 	 *
 	 */
-	@Test
 	public void persist1XMTest10() throws Exception {
 		boolean pass = false;
 
@@ -739,7 +713,7 @@ public class Client extends PMClientBase {
 	 * cascade=PERSIST annotation member value.
 	 *
 	 */
-	@Test
+
 	public void persist1XMTest11() throws Exception {
 		boolean pass = false;
 		A aRef;
@@ -795,7 +769,6 @@ public class Client extends PMClientBase {
 	 * If X is a managed entity, it is synchronized to the database.
 	 *
 	 */
-	@Test
 	public void persist1XMTest12() throws Exception {
 		boolean pass = false;
 		A aRef;
@@ -851,7 +824,6 @@ public class Client extends PMClientBase {
 	 * persist operation is applied to Y.
 	 *
 	 */
-	@Test
 	public void persist1XMTest13() throws Exception {
 		boolean pass = false;
 
@@ -902,7 +874,6 @@ public class Client extends PMClientBase {
 	 * transaction commit will fail.
 	 *
 	 */
-	@Test
 	public void persist1XMTest14() throws Exception {
 		boolean pass = false;
 		B bRef;
@@ -951,7 +922,6 @@ public class Client extends PMClientBase {
 	 * undefined.
 	 *
 	 */
-	@Test
 	public void persist1XMTest15() throws Exception {
 		A a1;
 		B bRef;
@@ -1029,7 +999,6 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -1037,8 +1006,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 
 	}
 

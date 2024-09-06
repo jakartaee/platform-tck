@@ -18,7 +18,8 @@ package ee.jakarta.tck.persistence.core.override.callbacklistener;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import java.util.Properties;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,23 +34,12 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "OverridenCallBack" };
-		String[] xmlFiles = { ORM_XML };
-		return createDeploymentJar("jpa_core_override_callbacklistener.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -236,7 +226,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

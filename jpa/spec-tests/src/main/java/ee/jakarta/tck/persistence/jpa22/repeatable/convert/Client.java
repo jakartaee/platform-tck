@@ -16,12 +16,7 @@
 
 package ee.jakarta.tck.persistence.jpa22.repeatable.convert;
 
-
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -34,22 +29,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "DotConverter", pkgName + "Employee3",
-				pkgName + "NumberToStateConverter" };
-		return createDeploymentJar("jpa_jpa22_repeatable_convert.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -65,7 +49,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: try @Convert works when annotated multiple times
 	 * without @Converts
 	 */
-	@Test
+	
 	public void convertsTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -124,7 +108,6 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -132,8 +115,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

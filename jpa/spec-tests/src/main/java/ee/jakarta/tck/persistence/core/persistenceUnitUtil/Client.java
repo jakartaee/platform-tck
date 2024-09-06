@@ -18,13 +18,9 @@ package ee.jakarta.tck.persistence.core.persistenceUnitUtil;
 
 
 import java.math.BigInteger;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.core.versioning.Member;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.PersistenceUnitUtil;
 
@@ -37,21 +33,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee", Member.class.getName() };
-		return createDeploymentJar("jpa_core_persistenceUtilUtil.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
@@ -68,7 +54,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void getPersistenceUtilUtilTest() throws Exception {
 		boolean pass = false;
 		PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
@@ -91,7 +77,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest on an entity and
 	 * verify the correct id is returned
 	 */
-	@Test
+	
 	public void getIdentifierTest() throws Exception {
 		boolean pass = true;
 		Employee emp = new Employee(1, "foo", "bar", getSQLDate("2000-02-14"), (float) 35000.0);
@@ -147,7 +133,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Call PersistenceUnitUtil.getIdentifierTest of a non-entity
 	 * and verify IllegalArgumentException is thrown
 	 */
-	@Test
+	
 	public void getIdentifierIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -165,7 +151,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@Test
+	
 	public void getVersionTest() throws Exception {
 		boolean pass = false;
 		final int ID = 1;
@@ -218,7 +204,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@Test
+	
 	public void loadIsLoadTest() throws Exception {
 		boolean pass = false;
 
@@ -238,7 +224,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@Test
+	
 	public void isInstanceTest() throws Exception {
 		boolean pass = false;
 
@@ -257,7 +243,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@Test
+	
 	public void getClassTest() throws Exception {
 		boolean pass = false;
 
@@ -277,7 +263,6 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -285,8 +270,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void createTestData() throws Exception {
