@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Stream;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -41,6 +42,11 @@ public class Client extends PMClientBase {
 	final Department deptRef[] = new Department[5];
 
 	public Client() {
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public void setup(String[] args, Properties p) throws Exception {

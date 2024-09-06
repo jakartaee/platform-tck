@@ -24,6 +24,7 @@ package ee.jakarta.tck.persistence.core.annotations.mapkey;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.sun.ts.lib.harness.Status;
 import org.junit.jupiter.api.AfterEach;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
@@ -33,6 +34,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
 
 	protected Employee empRef[] = new Employee[10];

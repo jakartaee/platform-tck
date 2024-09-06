@@ -275,7 +275,7 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
      * super.cleanup() at the end. Also, the cache cleared.
      */
     public void cleanup() throws Exception {
-        closeEMAndEMF();
+        // closeEMAndEMF();
     }
 
     /*

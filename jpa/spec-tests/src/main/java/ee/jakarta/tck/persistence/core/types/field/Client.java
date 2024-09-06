@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.types.common.Grade;
 import jakarta.persistence.Query;
@@ -39,6 +40,11 @@ public class Client extends PMClientBase {
 	private final java.sql.Date dateValue = getSQLDate(2006, 04, 15);
 
 	public Client() {
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	

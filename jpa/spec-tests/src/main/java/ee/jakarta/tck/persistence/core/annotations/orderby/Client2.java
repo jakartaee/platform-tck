@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client2 extends PMClientBase {
@@ -45,8 +46,13 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-	public void setupAddress(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupAddress");
 		try {
 			super.setup(args,p);

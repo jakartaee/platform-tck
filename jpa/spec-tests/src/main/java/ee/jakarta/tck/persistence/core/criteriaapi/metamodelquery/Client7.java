@@ -19,6 +19,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.metamodelquery;
 
 import java.util.Set;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -37,7 +38,12 @@ import jakarta.persistence.criteria.Subquery;
 
 public class Client7 extends Util {
 
-	
+	public static void main(String[] args) {
+		Client7 theTests = new Client7();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 
 	public JavaArchive createDeployment() throws Exception {
 		String pkgNameWithoutSuffix = Client7.class.getPackageName();

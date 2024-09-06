@@ -28,6 +28,7 @@ import java.util.Properties;
 import java.util.Set;
 
 
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
@@ -55,6 +56,11 @@ public class Client1 extends PMClientBase {
 	private static final DecimalFormat df = new DecimalFormat();
 
 	public Client1() {
+	}
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 

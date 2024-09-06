@@ -18,6 +18,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
 
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,12 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client8 extends Util {
 
-	
+	public static void main(String[] args) {
+		Client8 theTests = new Client8();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 
 	public JavaArchive createDeployment() throws Exception {
 

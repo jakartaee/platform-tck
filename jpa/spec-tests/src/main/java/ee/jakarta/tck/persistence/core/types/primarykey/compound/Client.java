@@ -23,6 +23,7 @@ package ee.jakarta.tck.persistence.core.types.primarykey.compound;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
@@ -42,6 +43,11 @@ public class Client extends PMClientBase {
 	private static final CompoundPK3 refPK6 = new CompoundPK3(6, "cof0006", 6.0F);
 
 	public Client() {
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	

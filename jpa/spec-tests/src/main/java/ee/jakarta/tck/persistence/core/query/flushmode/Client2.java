@@ -24,6 +24,7 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 import java.util.List;
 import java.util.Vector;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -46,6 +47,11 @@ public class Client2 extends Util {
 	}
 
 	public Client2() {
+	}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*

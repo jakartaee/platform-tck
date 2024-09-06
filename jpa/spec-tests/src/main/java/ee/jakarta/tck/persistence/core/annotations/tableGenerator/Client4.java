@@ -19,6 +19,8 @@ package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
+
 public class Client4 extends Client {
 
 	private DataTypes4 d4;
@@ -28,6 +30,11 @@ public class Client4 extends Client {
 	public Client4() {
 	}
 
+	public static void main(String[] args) {
+		Client4 theTests = new Client4();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
 	
 	public void setup4(String[] args, Properties p) throws Exception {

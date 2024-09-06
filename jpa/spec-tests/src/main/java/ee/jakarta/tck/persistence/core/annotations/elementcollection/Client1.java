@@ -21,14 +21,22 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
+import ee.jakarta.tck.persistence.core.annotations.assocoverride.Client;
 
 public class Client1 extends PMClientBase {
 
 	public Client1() {
 	}
 
-	public void setupA(String[] args, Properties p) throws Exception {
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);

@@ -18,6 +18,7 @@ package ee.jakarta.tck.persistence.core.relationship.unionexone;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
@@ -27,7 +28,12 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {

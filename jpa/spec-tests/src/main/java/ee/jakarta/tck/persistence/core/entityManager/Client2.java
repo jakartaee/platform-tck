@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 
 import com.sun.ts.lib.harness.CleanupMethod;
@@ -56,6 +57,11 @@ public class Client2 extends Util {
 	final static String POSTGRESQL = "postgresql";
 
 	public Client2() {
+	}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*

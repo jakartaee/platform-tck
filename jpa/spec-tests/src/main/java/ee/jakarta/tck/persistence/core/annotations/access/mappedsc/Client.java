@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.annotations.access.mappedsc;
 import java.sql.Date;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,6 +57,12 @@ public class Client extends PMClientBase {
 	final private Date d10 = getSQLDate(2003, 1, 25);
 
 	public Client() {
+	}
+
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public JavaArchive createDeployment() throws Exception {

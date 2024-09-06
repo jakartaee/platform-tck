@@ -22,18 +22,25 @@ package ee.jakarta.tck.persistence.core.types.generator;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
+
 public class Client2 extends Client {
 	
 	private DataTypes2 d10;
 
 	public Client2() {
 	}
-	
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
 	
-	public void setupDataTypes2(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupDataTypes2");
 		try {
 

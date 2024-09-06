@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.Properties;
 import java.util.Set;
 
+import com.sun.ts.lib.harness.Status;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -55,6 +56,11 @@ public class Client extends PMClientBase {
 				pkgName + "Uni1XMPerson", pkgName + "Uni1XMProject", pkgName + "ZipCode" };
 		return createDeploymentJar("jpa_core_metamodelapi_managedtype.jar", pkgNameWithoutSuffix, classes);
 
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	

@@ -24,6 +24,7 @@ package ee.jakarta.tck.persistence.core.inheritance.mappedsc.descriptors;
 import java.sql.Date;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,6 +62,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");

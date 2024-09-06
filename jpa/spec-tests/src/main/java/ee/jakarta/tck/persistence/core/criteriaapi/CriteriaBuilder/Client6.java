@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -55,6 +56,11 @@ public class Client6 extends Util {
 		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder6.jar", pkgNameWithoutSuffix, classes);
 
+	}
+	public static void main(String[] args) {
+		Client6 theTests = new Client6();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*

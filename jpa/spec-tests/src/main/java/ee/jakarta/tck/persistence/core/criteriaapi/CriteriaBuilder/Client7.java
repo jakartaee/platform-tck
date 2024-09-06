@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 
 
@@ -37,6 +38,11 @@ import jakarta.persistence.criteria.Root;
 public class Client7 extends Util {
 
 
+	public static void main(String[] args) {
+		Client7 theTests = new Client7();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
 	/*
 	 * @testName: tupleGetTupleElementIllegalArgumentExceptionTest

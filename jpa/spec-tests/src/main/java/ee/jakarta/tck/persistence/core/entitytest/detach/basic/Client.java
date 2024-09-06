@@ -24,6 +24,7 @@ package ee.jakarta.tck.persistence.core.entitytest.detach.basic;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,6 +37,11 @@ public class Client extends PMClientBase {
 	
 
 	public Client() {
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public JavaArchive createDeployment() throws Exception {

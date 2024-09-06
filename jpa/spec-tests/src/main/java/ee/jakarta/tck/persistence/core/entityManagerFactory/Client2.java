@@ -19,6 +19,7 @@ package ee.jakarta.tck.persistence.core.entityManagerFactory;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -34,6 +35,11 @@ public class Client2 extends PMClientBase {
 	Properties props = null;
 
 	public Client2() {
+	}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*

@@ -18,6 +18,7 @@ package ee.jakarta.tck.persistence.core.query.apitests;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -36,6 +37,11 @@ public class Client4 extends PMClientBase {
 
     public Client4() {
     }
+    public static void main(String[] args) {
+   		Client4 theTests = new Client4();
+   		Status s = theTests.run(args, System.out, System.err);
+   		s.exit();
+   	}
 
     public void setupDataTypes2(String[] args, Properties p) throws Exception {
         logTrace( "setup");

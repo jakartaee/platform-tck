@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.CriteriaEntity;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import jakarta.persistence.EntityManager;
@@ -49,6 +50,12 @@ import jakarta.persistence.criteria.CriteriaQuery;
 public class Client9 extends Util {
 
     protected final CriteriaEntity criteriaEntity[] = new CriteriaEntity[5];
+
+    public static void main(String[] args) {
+   		Client9 theTests = new Client9();
+   		Status s = theTests.run(args, System.out, System.err);
+   		s.exit();
+   	}
 
     public JavaArchive createDeployment() throws Exception {
 

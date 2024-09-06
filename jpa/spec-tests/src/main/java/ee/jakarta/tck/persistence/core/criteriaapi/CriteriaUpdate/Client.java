@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaUpdate;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -42,6 +43,11 @@ public class Client extends Util {
 
 	public Client() {
 
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public JavaArchive createDeployment() throws Exception {

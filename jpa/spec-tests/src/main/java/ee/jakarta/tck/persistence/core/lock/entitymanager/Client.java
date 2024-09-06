@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import jakarta.persistence.LockOption;
 import jakarta.persistence.Timeout;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -36,6 +37,11 @@ public class Client extends PMClientBase {
 
 
 	public Client() {
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public JavaArchive createDeployment() throws Exception {

@@ -22,6 +22,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -48,6 +49,11 @@ public class Client5 extends Util {
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_criteriaapi_strquery5.jar", pkgNameWithoutSuffix, classes);
+	}
+	public static void main(String[] args) {
+		Client5 theTests = new Client5();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/* Run test */

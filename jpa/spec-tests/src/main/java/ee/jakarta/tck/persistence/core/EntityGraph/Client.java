@@ -75,16 +75,10 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	public void cleanup() throws Fault {
-		try {
-			logTrace( "Cleanup data");
-			removeTestData();
-			super.cleanup();
-		} catch (Exception e) {
-			throw new Fault(e);
-		} finally {
-
-		}
+	public void cleanup() throws Exception {
+		logTrace( "Cleanup data");
+		removeTestData();
+		super.cleanup();
 	}
 
 	public void cleanupEmployeeData() throws Fault {

@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.derivedid.ex1b;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,6 +42,11 @@ public class Client extends PMClientBase {
 		String[] classes = { pkgName + "DID1bDependent", pkgName + "DID1bDependentId", pkgName + "DID1bEmployee" };
 		return createDeploymentJar("jpa_core_derivedid_ex1b.jar", pkgNameWithoutSuffix, classes);
 
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 

@@ -27,6 +27,7 @@ import java.util.Properties;
 
 import com.sun.ts.lib.harness.SetupMethod;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -36,8 +37,14 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client5 extends Util {
 
-	
-	public void setupAData(String[] args, Properties p) throws Exception {
+
+	public static void main(String[] args) {
+		Client5 theTests = new Client5();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupData");
 		try {
 			super.setup(args,p);

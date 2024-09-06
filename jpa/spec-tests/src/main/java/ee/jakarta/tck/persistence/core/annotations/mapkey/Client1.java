@@ -26,12 +26,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
+
 public class Client1 extends Client {
 
 	public Client1() {
 	}
 	
-	
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 	public void setupCreateTestData(String args[], Properties p) throws Exception {
 		logTrace( "setup");
 		try {

@@ -24,12 +24,19 @@ package ee.jakarta.tck.persistence.core.annotations.mapkey;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
+
 
 public class Client2 extends Client {
 
 	public Client2() {
 	}
 
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
 
 	private Employee2 empRef2;

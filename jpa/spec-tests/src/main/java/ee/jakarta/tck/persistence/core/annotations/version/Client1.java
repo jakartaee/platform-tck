@@ -18,6 +18,8 @@ package ee.jakarta.tck.persistence.core.annotations.version;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
+
 
 public class Client1 extends Client {
 
@@ -25,8 +27,13 @@ public class Client1 extends Client {
 
 	public Client1() {
 	}
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-	public void setupIntData(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupIntData");
 		try {
 			super.setup(args,p);

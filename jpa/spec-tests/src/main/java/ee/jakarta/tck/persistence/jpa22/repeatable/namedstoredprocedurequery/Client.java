@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
@@ -50,14 +51,19 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 
 	/*
-	 * setupEmployeeData() is called before each test
+	 * setup() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-
-	public void setupEmployeeData(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupOrderData");
 		try {
 			super.setup(args,p);

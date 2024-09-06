@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.Properties;
 import java.util.Vector;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
@@ -48,6 +49,11 @@ public class Client extends PMClientBase {
 	private static final Team tRef[] = new Team[10];
 
 	public Client() {
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public void setup(String[] args, Properties p) throws Exception {

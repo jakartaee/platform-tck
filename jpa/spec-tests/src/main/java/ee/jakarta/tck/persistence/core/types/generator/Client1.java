@@ -22,6 +22,8 @@ package ee.jakarta.tck.persistence.core.types.generator;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
+
 
 public class Client1 extends Client {
 
@@ -42,6 +44,11 @@ public class Client1 extends Client {
 	private DataTypes d6;
 
 	public Client1() {
+	}
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*

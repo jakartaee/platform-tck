@@ -16,6 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.entityManager2;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.CacheRetrieveMode;
 import jakarta.persistence.CacheStoreMode;
@@ -45,6 +46,11 @@ public class Client3 extends PMClientBase {
 
     public Client3() {
     }
+    public static void main(String[] args) {
+   		Client3 theTests = new Client3();
+   		Status s = theTests.run(args, System.out, System.err);
+   		s.exit();
+   	}
 
     /*
      * setupOrderData() is called before each test

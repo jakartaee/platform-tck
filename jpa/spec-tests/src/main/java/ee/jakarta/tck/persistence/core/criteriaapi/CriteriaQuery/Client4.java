@@ -18,6 +18,7 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
 
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -41,6 +42,11 @@ public class Client4 extends Util {
 		String[] classes = { pkgName + "A" };
 		classes = concat(getSchema30classes(), classes);
 		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery4.jar", pkgNameWithoutSuffix, classes);
+	}
+	public static void main(String[] args) {
+		Client4 theTests = new Client4();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*

@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Properties;
 
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.Query;
@@ -37,7 +38,12 @@ public class Client3 extends PMClientBase {
 
 	public Client3() {
 	}
-	
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 	public void setupMember(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {

@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.query.parameter;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
 
@@ -31,9 +32,14 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
 	
-	public void setupEmployee(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupEmployee");
 		try {
 			super.setup(args,p);

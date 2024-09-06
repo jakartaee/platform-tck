@@ -59,31 +59,20 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public void setup(String[] args, Properties p) throws Fault {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace("setup");
-		try {
-			super.setup(args, p);
-			removeTestData();
-			createEmployeeTestData();
-			dataBaseName = p.getProperty("jdbc.db");
-		} catch (Exception e) {
-			logErr("Exception: ", e);
-			throw new Fault("Setup failed:", e);
-		}
+
+		super.setup(args, p);
+		removeTestData();
+		createEmployeeTestData();
+		dataBaseName = p.getProperty("jdbc.db");
 	}
 
-
-	public void cleanup() throws Fault {
-		try {
-			logTrace( "Cleanup data");
-			removeTestData();
-			logTrace( "cleanup complete, calling super.cleanup");
-			super.cleanup();
-		} catch (Exception e) {
-			throw new Fault(e);
-		} finally {
-
-		}
+	public void cleanup() throws Exception {
+		logTrace( "Cleanup data");
+		removeTestData();
+		logTrace( "cleanup complete, calling super.cleanup");
+		super.cleanup();
 	}
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {

@@ -22,6 +22,8 @@ package ee.jakarta.tck.persistence.core.types.generator;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
+
 
 public class Client3 extends Client {
 
@@ -33,7 +35,12 @@ public class Client3 extends Client {
 
 	public Client3() {
 	}
-	
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */

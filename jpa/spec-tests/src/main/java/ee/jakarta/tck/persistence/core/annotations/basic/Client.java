@@ -24,6 +24,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.sun.ts.lib.harness.Status;
 import org.junit.jupiter.api.AfterEach;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
@@ -33,6 +34,12 @@ public class Client extends PMClientBase {
 	
 
 	public Client() {
+	}
+
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public void createTestData() {

@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,12 @@ public class Client1 extends Client {
 
 
 	public Client1() {
+	}
+
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public JavaArchive createDeployment() throws Exception {

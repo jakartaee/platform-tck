@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Test;
@@ -41,6 +42,11 @@ public class Client4 extends Util {
 		String pkgName = pkgNameWithoutSuffix + ".";
 		String[] classes = getSchema30classes();
 		return createDeploymentJar("jpa_core_query_language4.jar", pkgNameWithoutSuffix, classes);
+	}
+	public static void main(String[] args) {
+		Client4 theTests = new Client4();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/* Run test */

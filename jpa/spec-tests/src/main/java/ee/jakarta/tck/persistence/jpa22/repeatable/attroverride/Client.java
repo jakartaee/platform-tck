@@ -20,6 +20,7 @@ package ee.jakarta.tck.persistence.jpa22.repeatable.attroverride;
 import java.sql.Date;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 /*
@@ -56,6 +57,11 @@ public class Client extends PMClientBase {
 	final private Date d10 = getSQLDate(2003, 1, 25);
 
 	public Client() {
+	}
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	public void setup(String[] args, Properties p) throws Exception {
