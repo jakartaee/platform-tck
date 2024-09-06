@@ -122,19 +122,20 @@ public abstract class EETest implements Serializable {
 
     // first check for @SetupMethod annotation on run method
     Annotation annotation = runMethod.getAnnotation(SetupMethod.class);
-
+    String testSetupMethodName = null;
     if (annotation != null) {
       try {
         TestUtil
             .logTrace("getSetupMethod - getting setup method from annotation");
         SetupMethod setupAnnotation = (SetupMethod) annotation;
+        testSetupMethodName = setupAnnotation.name();
         setupMethod = testClass.getMethod(setupAnnotation.name(),
             setupParameterTypes);
         TestUtil.logTrace(
             "getSetupMethod - setup method name: " + setupAnnotation.name());
       } catch (NoSuchMethodException e) {
         setTestStatus(Status.failed(
-            "Could not find annotation defined setup method for testcase: "
+            "Could not find annotation defined test setup method (" + testSetupMethodName + ") for testcase: "
                 + sTestCase),
             e);
       }
@@ -553,7 +554,9 @@ public abstract class EETest implements Serializable {
       TestUtil.logTrace("ABOUT TO GET SETUP METHOD!");
       setupMethod = getSetupMethod(testClass, runMethod);
       if (setupMethod == null)
-        return Status.failed("Invalid test case name as test setupMethod Method ( for " + sTestCase + ") could not be found in " + testClass.getName());
+        return Status.failed("Invalid test case name as test setupMethod could not be found ( Test setup method: " +
+                getSetupMethodName(runMethod) + ", testName:" + sTestCase + ") " +
+                "in test class " + testClass.getName() + "(test class was loaded from: " + testClass.getClassLoader().getName() + ")");
       else
         TestUtil.logTrace("GOT SETUP METHOD!");
 
@@ -644,6 +647,15 @@ public abstract class EETest implements Serializable {
       }
     }
     return sTestStatus;
+  }
+
+  private String getSetupMethodName(Method runMethod) {
+    Annotation annotation = runMethod.getAnnotation(SetupMethod.class);
+    if (annotation != null) {
+      SetupMethod setupAnnotation = (SetupMethod) annotation;
+      return setupAnnotation.name();
+    }
+    return "";
   }
 
   private String[] getAllTestCases(Properties p) throws SetupException {
