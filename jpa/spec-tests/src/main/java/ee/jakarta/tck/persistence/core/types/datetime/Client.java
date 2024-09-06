@@ -30,10 +30,10 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityTransaction;
@@ -54,14 +54,6 @@ public class Client extends PMClientBase {
    		s.exit();
    	}
 
-    public JavaArchive createDeployment() throws Exception {
-
-        String pkgNameWithoutSuffix = Client.class.getPackageName();
-        String pkgName = pkgNameWithoutSuffix + ".";
-        String[] classes = { pkgName + "DateTimeEntity", pkgName + "DummyEntity" };
-        return createDeploymentJar("jpa_datetime.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-    }
 
     @Override
     
@@ -69,7 +61,7 @@ public class Client extends PMClientBase {
         logMsg( "Setup: Jakarta Persistence Java 8 date and time types test");
         try {
             super.setup(args,p);
-            createDeployment();
+            
             Properties props = getPersistenceUnitProperties();
             props.put("jakarta.persistence.schema-generation.database.action", "drop-and-create");
             props.put("jakarta.persistence.schema-generation.create-database-schemas", "true");
@@ -85,7 +77,7 @@ public class Client extends PMClientBase {
     }
 
     @Override
-    @AfterEach
+    
     public void cleanup() throws Exception {
         try {
             logMsg( "Cleanup: Jakarta Persistence 2.2 Java 8 date and time types test");
@@ -178,8 +170,7 @@ public class Client extends PMClientBase {
      *
      * @throws com.sun.ts.lib.harness.EETest.Exception when test failed
      */
-    @Test
-    public void dateTimeTest() throws Exception {
+        public void dateTimeTest() throws Exception {
         logMsg( "Test: Jakarta Persistence Java 8 date and time types");
         verifySchema();
         boolean createResult = createEntities();

@@ -22,8 +22,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -50,14 +50,6 @@ public class Client3 extends Util {
 	}
 
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_join.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	/*
 	 * @testName: joinMapAttributeTest
 	 * 
@@ -72,8 +64,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeTest() throws Exception {
+		public void joinMapAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -131,8 +122,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeJoinTypeTest() throws Exception {
+		public void joinMapAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -184,8 +174,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringTest() throws Exception {
+		public void joinMapStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -242,8 +231,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringJoinTypeTest() throws Exception {
+		public void joinMapStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -293,8 +281,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void mapJoinValueTest() throws Exception {
+		public void mapJoinValueTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
 

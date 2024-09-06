@@ -21,10 +21,10 @@ package ee.jakarta.tck.persistence.core.metamodelapi.basictype;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.Attribute;
@@ -45,21 +45,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_core_metamodelapi_basictype.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -75,8 +65,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Get the javaType of the ID
 	 *
 	 */
-	@Test
-	public void getJavaType() throws Exception {
+		public void getJavaType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -120,8 +109,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Get the persistent type of the Order class
 	 *
 	 */
-	@Test
-	public void getPersistenceType() throws Exception {
+		public void getPersistenceType() throws Exception {
 		boolean pass = false;
 
 		String expected = Type.PersistenceType.ENTITY.name();
@@ -157,7 +145,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

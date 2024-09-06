@@ -22,8 +22,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -37,16 +37,6 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client4 extends Util {
 
-	
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder4.jar", pkgNameWithoutSuffix, classes);
-
-	}
 	public static void main(String[] args) {
 		Client4 theTests = new Client4();
 		Status s = theTests.run(args, System.out, System.err);
@@ -62,8 +52,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void greaterThanExpNumTest() throws Exception {
+		public void greaterThanExpNumTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -124,8 +113,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void greaterThanExpExpTest() throws Exception {
+		public void greaterThanExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -188,8 +176,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void greaterThanOrEqualToExpNumTest() throws Exception {
+		public void greaterThanOrEqualToExpNumTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[13];
@@ -258,8 +245,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void greaterThanOrEqualToExpExpTest() throws Exception {
+		public void greaterThanOrEqualToExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[13];
@@ -328,8 +314,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void gtExpNumTest() throws Exception {
+		public void gtExpNumTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -391,8 +376,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void gtExpExpTest() throws Exception {
+		public void gtExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -455,8 +439,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void geExpNumTest() throws Exception {
+		public void geExpNumTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[13];
@@ -526,8 +509,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void geExpExpTest() throws Exception {
+		public void geExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[13];
@@ -597,8 +579,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void substringExpIntTest() throws Exception {
+		public void substringExpIntTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -656,8 +637,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void substringExpExpTest() throws Exception {
+		public void substringExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -715,8 +695,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void substringExpIntIntTest() throws Exception {
+		public void substringExpIntIntTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -774,8 +753,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void substringExpExpExpTest() throws Exception {
+		public void substringExpExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -833,8 +811,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void upper() throws Exception {
+		public void upper() throws Exception {
 		final String expectedResult = "IRIS";
 		boolean pass = false;
 
@@ -887,8 +864,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void length() throws Exception {
+		public void length() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -945,8 +921,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void locateExpStringTest() throws Exception {
+		public void locateExpStringTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[3];
@@ -1004,8 +979,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void locateExpExpTest() throws Exception {
+		public void locateExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[3];
@@ -1064,8 +1038,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void locateExpressionExpressionExpressionTest() throws Exception {
+		public void locateExpressionExpressionExpressionTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[3];
@@ -1131,8 +1104,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void locateExpressionStringIntTest() throws Exception {
+		public void locateExpressionStringIntTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[3];

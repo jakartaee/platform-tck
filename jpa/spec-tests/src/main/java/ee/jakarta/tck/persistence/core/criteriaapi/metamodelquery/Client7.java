@@ -21,8 +21,8 @@ import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.util.TestUtil;
 
@@ -44,14 +44,6 @@ public class Client7 extends Util {
 		s.exit();
 	}
 
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client7.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_metamodelquery7.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	/*
 	 * @testName: getCorrelatedJoinsTest
 	 * 
@@ -59,8 +51,7 @@ public class Client7 extends Util {
 	 * 
 	 * @test_Strategy: Test getting correlated joins from subquery.
 	 */
-	@Test
-	public void getCorrelatedJoinsTest() throws Exception {
+		public void getCorrelatedJoinsTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();

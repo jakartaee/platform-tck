@@ -23,8 +23,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -44,15 +44,7 @@ public class Client6 extends Util {
 	}
 
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client6.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery6.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	/*
 	 * @testName: typeTest
@@ -64,8 +56,7 @@ public class Client6 extends Util {
 	 * Select p from Product p where TYPE(p) = HardwareProduct
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void typeTest() throws Exception {
+		public void typeTest() throws Exception {
 		boolean pass = false;
 		List<Integer> expected = new ArrayList<Integer>();
 		for (Product p : hardwareRef) {

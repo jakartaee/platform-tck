@@ -21,9 +21,9 @@ package ee.jakarta.tck.persistence.core.override.callbacklistener;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.override.util.CallBackCounts;
@@ -67,8 +67,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: CallBack methods are tested using callback listeners.
 	 */
-	@Test
-	public void postLoad() throws Exception {
+		public void postLoad() throws Exception {
 		boolean pass3 = false;
 		final Long ID = 1L;
 
@@ -109,8 +108,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: CallBack methods are tested using callback listeners.
 	 */
-	@Test
-	public void preAndPostPersist() throws Exception {
+		public void preAndPostPersist() throws Exception {
 		boolean pass1 = false;
 		final Long ID = 1L;
 
@@ -150,8 +148,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: CallBack methods are tested using callback listeners.
 	 */
-	@Test
-	public void preAndPostRemove() throws Exception {
+		public void preAndPostRemove() throws Exception {
 		boolean pass2 = false;
 		final Long ID = 1L;
 
@@ -224,7 +221,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

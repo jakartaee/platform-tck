@@ -27,10 +27,10 @@ import java.util.Properties;
 import java.util.Vector;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityExistsException;
@@ -47,21 +47,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_remove_oneXone.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -90,8 +80,7 @@ public class Client extends PMClientBase {
 	 * detached entity.
 	 *
 	 */
-	@Test
-	public void detach1XMTest1() throws Exception {
+		public void detach1XMTest1() throws Exception {
 		logTrace( "Begin detach1XMTest1");
 		boolean pass = false;
 		final A aRef = new A("1", "a1", 1);
@@ -157,8 +146,7 @@ public class Client extends PMClientBase {
 	 * will fail. Invoke remove on a detached entity.
 	 *
 	 */
-	@Test
-	public void detach1XMTest2() throws Exception {
+		public void detach1XMTest2() throws Exception {
 		logTrace( "Begin detach1XMTest2");
 		boolean pass = false;
 
@@ -250,7 +238,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

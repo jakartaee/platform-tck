@@ -20,8 +20,8 @@ package ee.jakarta.tck.persistence.core.criteriaapi.strquery;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -33,15 +33,7 @@ import jakarta.persistence.metamodel.Attribute;
 
 public class Client1 extends Util {
 
-	
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_strquery1.jar", pkgNameWithoutSuffix, classes);
-	}
 	public static void main(String[] args) {
 		Client1 theTests = new Client1();
 		Status s = theTests.run(args, System.out, System.err);
@@ -57,8 +49,7 @@ public class Client1 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void joinTest() throws Exception {
+		public void joinTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -144,8 +135,7 @@ public class Client1 extends Util {
 	 * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch an attribute that
 	 * does not exist .
 	 */
-	@Test
-	public void fetchStringAndStringJoinTypeIllegalArgumentException() throws Exception {
+		public void fetchStringAndStringJoinTypeIllegalArgumentException() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();

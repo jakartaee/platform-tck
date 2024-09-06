@@ -21,9 +21,9 @@ package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 public class Client1 extends Client {
 
@@ -40,13 +40,6 @@ public class Client1 extends Client {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_annotations_tableGenerator1.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	
 	public void setup(String[] args, Properties p) throws Exception {
@@ -54,7 +47,7 @@ public class Client1 extends Client {
 		try {
 
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
@@ -71,8 +64,7 @@ public class Client1 extends Client {
 	 * 
 	 * @test_Strategy: use a generator specified on an entity
 	 */
-	@Test
-	public void generatorOnEntityTest() throws Exception {
+		public void generatorOnEntityTest() throws Exception {
 
 		boolean pass = false;
 

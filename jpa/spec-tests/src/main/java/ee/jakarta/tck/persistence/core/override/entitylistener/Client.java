@@ -21,9 +21,9 @@ package ee.jakarta.tck.persistence.core.override.entitylistener;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.override.util.CallBackCounts;
@@ -70,8 +70,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: CallBack methods are tested by overriding entity listener in
 	 * XML file.
 	 */
-	@Test
-	public void testOverrideEntityListener() throws Exception {
+		public void testOverrideEntityListener() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -120,8 +119,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: CallBack methods are tested by using entitylistener with
 	 * empty xml tag.
 	 */
-	@Test
-	public void testEntityListenerXML() throws Exception {
+		public void testEntityListenerXML() throws Exception {
 
 		boolean pass = false;
 		CallBackCounts.clearCountsMap();
@@ -160,8 +158,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: CallBack methods are tested without using entitylistener.
 	 */
-	@Test
-	public void testNoEntityListener() throws Exception {
+		public void testNoEntityListener() throws Exception {
 
 		boolean pass = false;
 		CallBackCounts.clearCountsMap();
@@ -215,7 +212,7 @@ public class Client extends PMClientBase {
 		return result;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

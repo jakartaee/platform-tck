@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
@@ -37,20 +37,12 @@ public class Client extends PMClientBase {
 
 
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_annotations_embeddableMapValue.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -67,8 +59,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use Embeddable class in MapValue
 	 *
 	 */
-	@Test
-	public void embeddableMapValue() throws Exception {
+		public void embeddableMapValue() throws Exception {
 		logTrace( "Begin embeddableMapValue");
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -164,7 +155,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

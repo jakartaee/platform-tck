@@ -21,10 +21,10 @@ package ee.jakarta.tck.persistence.core.metamodelapi.type;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.EmbeddableType;
@@ -39,15 +39,6 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "Order", pkgName + "ZipCode" };
-		return createDeploymentJar("jpa_core_metamodelapi_type.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	public static void main(String[] args) {
 		Client theTests = new Client();
 		Status s = theTests.run(args, System.out, System.err);
@@ -58,7 +49,7 @@ public class Client extends PMClientBase {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -74,8 +65,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getPersistenceType() throws Exception {
+		public void getPersistenceType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -110,8 +100,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getEmbeddablePersistenceType() throws Exception {
+		public void getEmbeddablePersistenceType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -146,8 +135,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getJavaType() throws Exception {
+		public void getJavaType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -174,7 +162,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

@@ -23,10 +23,10 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -41,21 +41,12 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "Address", };
-		return createDeploymentJar("jpa_core_annotations_collectiontable.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -73,8 +64,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void collectionTable1() throws Exception {
+		public void collectionTable1() throws Exception {
 		logTrace( "Begin collectionTable1");
 		boolean pass = false;
 		A aRef = null;
@@ -167,7 +157,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

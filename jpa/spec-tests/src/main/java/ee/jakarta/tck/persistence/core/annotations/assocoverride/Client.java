@@ -21,10 +21,10 @@ import java.sql.Date;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -55,13 +55,6 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "Employee", pkgName + "PartTimeEmployee" };
-		return createDeploymentJar("jpa_core_annotations_access_property.jar", pkgNameWithoutSuffix, classes);
-
-	}
 
 
 	public void setup(String[] args, Properties p) throws Exception {
@@ -69,7 +62,7 @@ public class Client extends PMClientBase {
 		try {
 
 			super.setup(args,p);
-			createDeployment();
+			
 
 			removeTestData();
 			createTestData();
@@ -96,8 +89,7 @@ public class Client extends PMClientBase {
 	 * persistent entity state and mapping information. Use AssociationOverride
 	 * annotation
 	 */
-	@Test
-	public void associationOverride() throws Exception {
+		public void associationOverride() throws Exception {
 
 		logTrace( "Begin AssociationOverride");
 		boolean pass = false;
@@ -165,7 +157,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

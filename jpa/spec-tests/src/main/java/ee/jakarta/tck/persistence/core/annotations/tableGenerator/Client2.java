@@ -21,9 +21,9 @@ package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 public class Client2 extends Client {
 
@@ -61,8 +61,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy: use a generator specified on a property
 	 */
-	@Test
-	public void generatorOnPropertyTest() throws Exception {
+		public void generatorOnPropertyTest() throws Exception {
 
 		boolean pass = false;
 

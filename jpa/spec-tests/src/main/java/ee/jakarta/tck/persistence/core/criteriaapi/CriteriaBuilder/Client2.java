@@ -25,8 +25,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -51,16 +51,7 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client2 extends Util {
 
-	
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder2.jar", pkgNameWithoutSuffix, classes);
-
-	}
 	public static void main(String[] args) {
 		Client2 theTests = new Client2();
 		Status s = theTests.run(args, System.out, System.err);
@@ -82,8 +73,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void construct() throws Exception {
+		public void construct() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -140,8 +130,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void tupleIntTest() throws Exception {
+		public void tupleIntTest() throws Exception {
 		boolean pass1 = true;
 		boolean pass2 = false;
 
@@ -225,8 +214,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void tupleToArrayTest() throws Exception {
+		public void tupleToArrayTest() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -299,8 +287,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void tupleIntClassTest() throws Exception {
+		public void tupleIntClassTest() throws Exception {
 		boolean pass1 = true;
 		boolean pass2 = false;
 
@@ -383,8 +370,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void tupleGetIntClassIllegalArgumentExceptionTest() throws Exception {
+		public void tupleGetIntClassIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -455,8 +441,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void tupleElementGetJavaTypeTest() throws Exception {
+		public void tupleElementGetJavaTypeTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -499,8 +484,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void tupleSelectionArrayTest() throws Exception {
+		public void tupleSelectionArrayTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -574,8 +558,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void array() throws Exception {
+		public void array() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = false;
@@ -660,8 +643,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void arrayIllegalArgumentExceptionTest() throws Exception {
+		public void arrayIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -715,8 +697,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void constructIllegalArgumentExceptionTest() throws Exception {
+		public void constructIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -768,8 +749,7 @@ public class Client2 extends Util {
 	 * @test_Strategy: Select DISTINCT Count(c.home.city) from Customer c
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void countDistinct() throws Exception {
+		public void countDistinct() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -824,8 +804,7 @@ public class Client2 extends Util {
 	 * '11345'
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void andPredicates() throws Exception {
+		public void andPredicates() throws Exception {
 		boolean pass = false;
 
 		Customer expectedCustomer = customerRef[2];
@@ -887,8 +866,7 @@ public class Client2 extends Util {
 	 * c.home.zip = '02155'
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void orPredicates() throws Exception {
+		public void orPredicates() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[4];
@@ -961,8 +939,7 @@ public class Client2 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void isNull() throws Exception {
+		public void isNull() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -1018,8 +995,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void isNotNull() throws Exception {
+		public void isNotNull() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[17];
@@ -1089,8 +1065,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void parameter() throws Exception {
+		public void parameter() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[4];
@@ -1174,8 +1149,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void parameterCaseSensitiveTest() throws Exception {
+		public void parameterCaseSensitiveTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -1246,8 +1220,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void criteriaBuilderValuesTest() throws Exception {
+		public void criteriaBuilderValuesTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[12];
@@ -1322,8 +1295,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void criteriaBuilderIn1Test() throws Exception {
+		public void criteriaBuilderIn1Test() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[12];
@@ -1399,8 +1371,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void criteriaBuilderIn2Test() throws Exception {
+		public void criteriaBuilderIn2Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -1475,8 +1446,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void criteriaBuilderInValueTest() throws Exception {
+		public void criteriaBuilderInValueTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[12];
@@ -1547,8 +1517,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void expressionInObjectArrayTest() throws Exception {
+		public void expressionInObjectArrayTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -1605,8 +1574,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void expressionInExpressionArrayTest() throws Exception {
+		public void expressionInExpressionArrayTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -1664,8 +1632,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void expressionInExpressionTest() throws Exception {
+		public void expressionInExpressionTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -1722,8 +1689,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void expressionInCollectionTest() throws Exception {
+		public void expressionInCollectionTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -1783,8 +1749,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void parameterExpressionIsNullTest() throws Exception {
+		public void parameterExpressionIsNullTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[0];
@@ -1838,8 +1803,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void parameterExpressionIsNotNullTest() throws Exception {
+		public void parameterExpressionIsNotNullTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[6];
@@ -1900,8 +1864,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void likeExpStringTest() throws Exception {
+		public void likeExpStringTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -1963,8 +1926,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void likeExpExpTest() throws Exception {
+		public void likeExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -2026,8 +1988,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void notLikeExpStringTest() throws Exception {
+		public void notLikeExpStringTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[17];
@@ -2093,8 +2054,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void notLikeExpExpTest() throws Exception {
+		public void notLikeExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[17];
@@ -2160,8 +2120,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void notLikeExpExpExpTest() throws Exception {
+		public void notLikeExpExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[16];
@@ -2229,8 +2188,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void notLikeExpExpCharTest() throws Exception {
+		public void notLikeExpExpCharTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[16];
@@ -2296,8 +2254,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void notLikeExpStringExpTest() throws Exception {
+		public void notLikeExpStringExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[16];
@@ -2363,8 +2320,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void notLikeExpStringCharTest() throws Exception {
+		public void notLikeExpStringCharTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[16];
@@ -2431,8 +2387,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void concatExpStringTest() throws Exception {
+		public void concatExpStringTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[18];
@@ -2498,8 +2453,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void concatStringExpTest() throws Exception {
+		public void concatStringExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[18];
@@ -2565,8 +2519,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void concatExpExpTest() throws Exception {
+		public void concatExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[18];
@@ -2630,8 +2583,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void trimBothExpTest() throws Exception {
+		public void trimBothExpTest() throws Exception {
 		boolean pass = false;
 		final String expectedResult = "David R. Vincent";
 
@@ -2682,8 +2634,7 @@ public class Client2 extends Util {
 	 * M. Presley'
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void lower() throws Exception {
+		public void lower() throws Exception {
 		final String expectedResult = "lisa m. presley";
 		boolean pass = false;
 
@@ -2739,8 +2690,7 @@ public class Client2 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void nullifExpressionExpressionTest() throws Exception {
+		public void nullifExpressionExpressionTest() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -2834,8 +2784,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void nullifExpressionObjectTest() throws Exception {
+		public void nullifExpressionObjectTest() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -2931,8 +2880,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void selectMultiSelectTest() throws Exception {
+		public void selectMultiSelectTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -3061,8 +3009,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void multiRootTest() throws Exception {
+		public void multiRootTest() throws Exception {
 		boolean pass = true;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();

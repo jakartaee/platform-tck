@@ -21,10 +21,10 @@ package ee.jakarta.tck.persistence.core.metamodelapi.setattribute;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.ManagedType;
@@ -39,15 +39,6 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "ZipCode" };
-		return createDeploymentJar("jpa_core_metamodelapi_setattribute.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	public static void main(String[] args) {
 		Client theTests = new Client();
 		Status s = theTests.run(args, System.out, System.err);
@@ -58,7 +49,7 @@ public class Client extends PMClientBase {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -74,8 +65,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSet() throws Exception {
+		public void getSet() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -113,8 +103,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getCollectionType() throws Exception {
+		public void getCollectionType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -153,8 +142,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getElementType() throws Exception {
+		public void getElementType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -186,7 +174,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

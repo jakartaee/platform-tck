@@ -25,10 +25,10 @@ import java.sql.Date;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -68,23 +68,12 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "FTEmployee",
-				pkgName + "FullTimeEmployee", pkgName + "PartTimeEmployee", pkgName + "Personnel",
-				pkgName + "Project" };
-		return createDeploymentJar("jpa_core_inheritance_nonentity.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 
 			removeTestData();
 			createTestData();
@@ -110,8 +99,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: An entity may have a non-entity superclass which may be
 	 * either abstract or concrete.
 	 */
-	@Test
-	public void nonEntityTest1() throws Exception {
+		public void nonEntityTest1() throws Exception {
 
 		logTrace( "Begin nonEntityTest1");
 		boolean pass = false;
@@ -151,8 +139,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: An entity may have a non-entity superclass which may be
 	 * either abstract or concrete.
 	 */
-	@Test
-	public void nonEntityTest2() throws Exception {
+		public void nonEntityTest2() throws Exception {
 
 		logTrace( "Begin nonEntityTest2");
 		boolean pass = false;
@@ -189,8 +176,7 @@ public class Client extends PMClientBase {
 	 * hierarchy attempting to persist a non-entity class extended from an entity
 	 * class.
 	 */
-	@Test
-	public void nonEntityTest3() throws Exception {
+		public void nonEntityTest3() throws Exception {
 
 		logTrace( "Begin nonEntityTest3");
 		boolean pass = false;
@@ -276,7 +262,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

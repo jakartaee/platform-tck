@@ -21,8 +21,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
@@ -42,14 +42,6 @@ public class Client5 extends Util {
 		s.exit();
 	}
 
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client5.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_metamodelquery5.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	/*
 	 * @testName: queryTest24
 	 * 
@@ -60,8 +52,7 @@ public class Client5 extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void queryTest24() throws Exception {
+		public void queryTest24() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -108,8 +99,7 @@ public class Client5 extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void queryTest25() throws Exception {
+		public void queryTest25() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -161,8 +151,7 @@ public class Client5 extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void queryTest26() throws Exception {
+		public void queryTest26() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -215,8 +204,7 @@ public class Client5 extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void queryTest28() throws Exception {
+		public void queryTest28() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 

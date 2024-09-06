@@ -24,10 +24,10 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.CacheRetrieveMode;
@@ -71,14 +71,6 @@ public class Client1 extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManager1.jar", pkgNameWithoutSuffix, classes);
-
-	}
 
 	/*
 	 * setup() is called before each test
@@ -90,7 +82,7 @@ public class Client1 extends PMClientBase {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
 			displayMap(map);
@@ -101,7 +93,7 @@ public class Client1 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup complete, calling super.cleanup");
@@ -242,8 +234,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Create EntityManager in try with resources block and verify
 	 * whether it's open inside and outside of the try block.
 	 */
-	@Test
-	public void autoCloseableTest() throws Exception {
+		public void autoCloseableTest() throws Exception {
 		EntityManager em = null;
 		try (final EntityManagerFactory emfLocal = Persistence.createEntityManagerFactory(getPersistenceUnitName(),
 				getPersistenceUnitProperties())) {
@@ -275,8 +266,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Merge new entity
 	 */
-	@Test
-	public void mergeTest() throws Exception {
+		public void mergeTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -308,8 +298,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.merge() method
 	 */
-	@Test
-	public void mergeExceptionsTest() throws Exception {
+		public void mergeExceptionsTest() throws Exception {
 		boolean pass = false;
 
 		logMsg( "Testing merge(Object");
@@ -373,8 +362,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.remove() method
 	 */
-	@Test
-	public void removeExceptionsTest() throws Exception {
+		public void removeExceptionsTest() throws Exception {
 		boolean pass = false;
 		logMsg( "Testing findClassObjectIllegalStateException");
 
@@ -410,8 +398,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.lock() method
 	 */
-	@Test
-	public void lockIllegalStateExceptionTest() throws Exception {
+		public void lockIllegalStateExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
@@ -471,8 +458,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method
 	 */
-	@Test
-	public void refreshInvalidObjectIllegalArgumentExceptionTest() throws Exception {
+		public void refreshInvalidObjectIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -507,8 +493,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method
 	 */
-	@Test
-	public void refreshNonManagedObjectIllegalArgumentExceptionTest() throws Exception {
+		public void refreshNonManagedObjectIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -543,8 +528,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method
 	 */
-	@Test
-	public void refreshInvalidObjectMapIllegalArgumentExceptionTest() throws Exception {
+		public void refreshInvalidObjectMapIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
@@ -580,8 +564,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method
 	 */
-	@Test
-	public void refreshNonManagedObjectMapIllegalArgumentExceptionTest() throws Exception {
+		public void refreshNonManagedObjectMapIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
@@ -617,8 +600,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method
 	 */
-	@Test
-	public void refreshInvalidObjectLockModeTypeIllegalArgumentExceptionTest() throws Exception {
+		public void refreshInvalidObjectLockModeTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -652,8 +634,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method
 	 */
-	@Test
-	public void refreshNonManagedObjectLockModeTypeIllegalArgumentExceptionTest() throws Exception {
+		public void refreshNonManagedObjectLockModeTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -687,8 +668,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method
 	 */
-	@Test
-	public void refreshInvalidObjectLockModeTypeMapIllegalArgumentExceptionTest() throws Exception {
+		public void refreshInvalidObjectLockModeTypeMapIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
@@ -724,8 +704,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method
 	 */
-	@Test
-	public void refreshNonManagedObjectLockModeTypeMapIllegalArgumentExceptionTest() throws Exception {
+		public void refreshNonManagedObjectLockModeTypeMapIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
@@ -762,8 +741,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.contains() method passing an Object that
 	 * is not an Entity
 	 */
-	@Test
-	public void containsIllegalArgumentException() throws Exception {
+		public void containsIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -805,8 +783,7 @@ public class Client1 extends PMClientBase {
 	 * not assignable to the specified type, verify IllegalArgumentException is
 	 * thrown.
 	 */
-	@Test
-	public void createNamedQueryIllegalArgumentExceptionTest() throws Exception {
+		public void createNamedQueryIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false, pass2 = false;
 		logMsg( "Testing TypedQuery version");
 
@@ -859,8 +836,7 @@ public class Client1 extends PMClientBase {
 	 * EntityManager.createQuery(CriteriaQuery) with an invalid CriteriaQuery verify
 	 * IllegalArgumentException is thrown.*
 	 */
-	@Test
-	public void createQueryIllegalArgumentExceptionTest() throws Exception {
+		public void createQueryIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false, pass2 = false, pass3 = false;
 		logTrace( "Testing String version");
 
@@ -929,8 +905,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.detach(String), verify
 	 * IllegalArgumentException is thrown
 	 */
-	@Test
-	public void detachIllegalArgumentExceptionTest() throws Exception {
+		public void detachIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -963,8 +938,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Get EntityManagerFactory
 	 */
-	@Test
-	public void getEntityManagerFactoryTest() throws Exception {
+		public void getEntityManagerFactoryTest() throws Exception {
 		boolean pass = false;
 		try {
 			EntityManager em = getEntityManager();
@@ -990,8 +964,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Get a MetaModel Object from the EntityManager an make sure it
 	 * is not null
 	 */
-	@Test
-	public void emGetMetamodelTest() throws Exception {
+		public void emGetMetamodelTest() throws Exception {
 		boolean pass = false;
 		try {
 			EntityManager em = getEntityManager();
@@ -1016,8 +989,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: Set a standard property in the EntityManager and retrieve it.
 	 */
-	@Test
-	public void setPropertyTest() throws Exception {
+		public void setPropertyTest() throws Exception {
 		boolean foundKey = false;
 		boolean foundValue = false;
 
@@ -1088,8 +1060,7 @@ public class Client1 extends PMClientBase {
 	 * used to create a query
 	 *
 	 */
-	@Test
-	public void getCriteriaBuilderTest() throws Exception {
+		public void getCriteriaBuilderTest() throws Exception {
 		boolean pass = false;
 		try {
 			CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -1123,8 +1094,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isJoinedToTransactionTest() throws Exception {
+		public void isJoinedToTransactionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		logMsg( "Test when no transaction active");
@@ -1159,8 +1129,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void createStoredProcedureQueryStringIllegalArgumentExceptionTest() throws Exception {
+		public void createStoredProcedureQueryStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		StringBuilder msg = new StringBuilder();
 		try {
@@ -1199,8 +1168,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void createStoredProcedureQueryStringClassArrayIllegalArgumentExceptionTest() throws Exception {
+		public void createStoredProcedureQueryStringClassArrayIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		Class[] cArray = { Integer.class };
 		StringBuilder msg = new StringBuilder();
@@ -1240,8 +1208,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void createStoredProcedureQueryStringStringArrayIllegalArgumentExceptionTest() throws Exception {
+		public void createStoredProcedureQueryStringStringArrayIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 		StringBuilder msg = new StringBuilder();
 		try {
@@ -1280,8 +1247,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void createNamedStoredProcedureQueryStringIllegalArgumentExceptionTest() throws Exception {
+		public void createNamedStoredProcedureQueryStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();

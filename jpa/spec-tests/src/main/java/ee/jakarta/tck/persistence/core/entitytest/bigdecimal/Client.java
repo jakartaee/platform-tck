@@ -26,10 +26,10 @@ import java.util.Date;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -45,21 +45,12 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		return createDeploymentJar("jpa_core_entitytest_bigdecimal.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			throw new Exception("Setup failed:", e);
@@ -88,8 +79,7 @@ public class Client extends PMClientBase {
 	 *
 	 * Instantiate an entity and verify the contains method returns false.
 	 */
-	@Test
-	public void persistBasicTest1() throws Exception {
+		public void persistBasicTest1() throws Exception {
 
 		logTrace( "Begin persistBasicTest1");
 
@@ -165,8 +155,7 @@ public class Client extends PMClientBase {
 	 * Invoke persist on the new entity. Find the entity instance and ensure it is
 	 * managed by calling contains() verifying it returns true.
 	 */
-	@Test
-	public void persistBasicTest2() throws Exception {
+		public void persistBasicTest2() throws Exception {
 
 		logTrace( "Begin persistBasicTest2");
 
@@ -251,8 +240,7 @@ public class Client extends PMClientBase {
 	 * entity by find and invoking a query on it.
 	 *
 	 */
-	@Test
-	public void persistBasicTest3() throws Exception {
+		public void persistBasicTest3() throws Exception {
 
 		logTrace( "Begin persistBasicTest3");
 
@@ -338,8 +326,7 @@ public class Client extends PMClientBase {
 	 * and that the entity is still persisted and managed.
 	 *
 	 */
-	@Test
-	public void persistBasicTest4() throws Exception {
+		public void persistBasicTest4() throws Exception {
 
 		logTrace( "Begin persistBasicTest4");
 
@@ -433,8 +420,7 @@ public class Client extends PMClientBase {
 	 * change.
 	 *
 	 */
-	@Test
-	public void persistBasicTest5() throws Exception {
+		public void persistBasicTest5() throws Exception {
 
 		logTrace( "Begin persistBasicTest5");
 		A a2 = null;
@@ -540,7 +526,7 @@ public class Client extends PMClientBase {
 		return getEntityManager().contains(o);
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

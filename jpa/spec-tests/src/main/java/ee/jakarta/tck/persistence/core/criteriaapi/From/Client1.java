@@ -20,8 +20,8 @@ package ee.jakarta.tck.persistence.core.criteriaapi.From;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -39,13 +39,6 @@ public class Client1 extends Util {
 	}
 
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_from.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	/*
 	 * @testName: joinStringIllegalArgumentExceptionTest
@@ -55,8 +48,7 @@ public class Client1 extends Util {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void joinStringIllegalArgumentExceptionTest() throws Exception {
+		public void joinStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		logMsg( "String Test");
@@ -119,8 +111,7 @@ public class Client1 extends Util {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void joinCollectionIllegalArgumentExceptionTest() throws Exception {
+		public void joinCollectionIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -183,8 +174,7 @@ public class Client1 extends Util {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void joinSetIllegalArgumentExceptionTest() throws Exception {
+		public void joinSetIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		logMsg( "String Test");
@@ -244,8 +234,7 @@ public class Client1 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void joinListIllegalArgumentExceptionTest() throws Exception {
+		public void joinListIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		logMsg( "Testing String");
@@ -306,8 +295,7 @@ public class Client1 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void joinMapIllegalArgumentExceptionTest() throws Exception {
+		public void joinMapIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		logMsg( "Testing String");
@@ -368,8 +356,7 @@ public class Client1 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void fromGetCorrelationParentIllegalStateExceptionTest() throws Exception {
+		public void fromGetCorrelationParentIllegalStateExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 

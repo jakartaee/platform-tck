@@ -23,8 +23,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -37,12 +37,6 @@ public class Client2 extends Util {
 
 
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_language2.jar", pkgNameWithoutSuffix, classes);
-	}
 	public static void main(String[] args) {
 		Client2 theTests = new Client2();
 		Status s = theTests.run(args, System.out, System.err);
@@ -62,8 +56,7 @@ public class Client2 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest2() throws Exception {
+		public void queryTest2() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		try {
@@ -104,8 +97,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest4() throws Exception {
+		public void queryTest4() throws Exception {
 		boolean pass = false;
 		Customer c;
 		Query q;
@@ -147,8 +139,7 @@ public class Client2 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest6() throws Exception {
+		public void queryTest6() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -193,8 +184,7 @@ public class Client2 extends Util {
 	 * expression of the WHERE clause. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest15() throws Exception {
+		public void queryTest15() throws Exception {
 		boolean pass = false;
 		Customer c;
 		Query q;
@@ -234,8 +224,7 @@ public class Client2 extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest16() throws Exception {
+		public void queryTest16() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -272,8 +261,7 @@ public class Client2 extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest17() throws Exception {
+		public void queryTest17() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -328,8 +316,7 @@ public class Client2 extends Util {
 	 * percent character. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest18() throws Exception {
+		public void queryTest18() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -368,8 +355,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest19() throws Exception {
+		public void queryTest19() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -422,8 +408,7 @@ public class Client2 extends Util {
 	 * WHERE clause. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest22() throws Exception {
+		public void queryTest22() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -460,8 +445,7 @@ public class Client2 extends Util {
 	 * query is executed against non-NULL data. For NULL data, see test queryTest47)
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest23() throws Exception {
+		public void queryTest23() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -516,8 +500,7 @@ public class Client2 extends Util {
 	 * an input parameter. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest36() throws Exception {
+		public void queryTest36() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -554,8 +537,7 @@ public class Client2 extends Util {
 	 * two queries are equivalent regardless of the way the expression is composed.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest37() throws Exception {
+		public void queryTest37() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -622,8 +604,7 @@ public class Client2 extends Util {
 	 * collection_valued_association_field where the field is EMPTY.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest45() throws Exception {
+		public void queryTest45() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -684,8 +665,7 @@ public class Client2 extends Util {
 	 * returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest47() throws Exception {
+		public void queryTest47() throws Exception {
 		boolean pass = false;
 		List c;
 		final String[] expectedZips = new String[] { "00252", "00252", "00252", "00252", "00252", "00252", "00252",
@@ -721,8 +701,7 @@ public class Client2 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest51() throws Exception {
+		public void queryTest51() throws Exception {
 		boolean pass = false;
 		List c;
 		try {
@@ -758,8 +737,7 @@ public class Client2 extends Util {
 	 * were accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest54() throws Exception {
+		public void queryTest54() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -797,8 +775,7 @@ public class Client2 extends Util {
 	 * returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest56() throws Exception {
+		public void queryTest56() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = true;
@@ -863,8 +840,7 @@ public class Client2 extends Util {
 	 * returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest58() throws Exception {
+		public void queryTest58() throws Exception {
 		boolean pass = false;
 		Object s;
 
@@ -899,8 +875,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest59() throws Exception {
+		public void queryTest59() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -939,8 +914,7 @@ public class Client2 extends Util {
 	 * without addresses. Verify the results are accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest61() throws Exception {
+		public void queryTest61() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -985,8 +959,7 @@ public class Client2 extends Util {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest64() throws Exception {
+		public void queryTest64() throws Exception {
 		boolean pass = false;
 		List c;
 		String expectedPKs[];
@@ -1050,8 +1023,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest69() throws Exception {
+		public void queryTest69() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		Query q1;
@@ -1104,8 +1076,7 @@ public class Client2 extends Util {
 	 * Verify the results are accurately returned.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void queryTest71() throws Exception {
+		public void queryTest71() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -1135,8 +1106,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_leftouterjoin_1xM() throws Exception {
+		public void test_leftouterjoin_1xM() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1179,8 +1149,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_groupBy() throws Exception {
+		public void test_groupBy() throws Exception {
 		boolean pass = false;
 		List result;
 		String expected[] = new String[] { "CHA", "GBR", "IRE", "JPN", "USA" };
@@ -1224,8 +1193,7 @@ public class Client2 extends Util {
 	 * spouses.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_innerjoin_1x1() throws Exception {
+		public void test_innerjoin_1x1() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1267,8 +1235,7 @@ public class Client2 extends Util {
 	 * Customers.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_fetchjoin_1x1() throws Exception {
+		public void test_fetchjoin_1x1() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1311,8 +1278,7 @@ public class Client2 extends Util {
 	 * count of customers in each country where Country is China, England
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_groupByHaving() throws Exception {
+		public void test_groupByHaving() throws Exception {
 		boolean pass = false;
 		List result;
 		final Long expectedGBR = 2L;
@@ -1366,8 +1332,7 @@ public class Client2 extends Util {
 	 * customer Margaret Mills by firstname-lastname concatenation.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_concatHavingClause() throws Exception {
+		public void test_concatHavingClause() throws Exception {
 		boolean pass = false;
 		Query q;
 		String result;
@@ -1407,8 +1372,7 @@ public class Client2 extends Util {
 	 * all customers in country with code GBR
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_lowerHavingClause() throws Exception {
+		public void test_lowerHavingClause() throws Exception {
 		boolean pass = false;
 		List result;
 		final Long expectedCount = 2L;
@@ -1452,8 +1416,7 @@ public class Client2 extends Util {
 	 */
 
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_upperHavingClause() throws Exception {
+		public void test_upperHavingClause() throws Exception {
 		boolean pass = false;
 		List result;
 		final Long expectedCount = 2L;
@@ -1497,8 +1460,7 @@ public class Client2 extends Util {
 	 * all customer names having the length of the city of the home address = 10
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_lengthHavingClause() throws Exception {
+		public void test_lengthHavingClause() throws Exception {
 		boolean pass = false;
 		List result;
 		final String[] expected = new String[] { "Burlington", "Chelmsford", "Roslindale" };
@@ -1545,8 +1507,7 @@ public class Client2 extends Util {
 	 * name.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_locateHavingClause() throws Exception {
+		public void test_locateHavingClause() throws Exception {
 		boolean pass = false;
 		List result;
 		final String[] expected = new String[] { "Alan E. Frechette", "Arthur D. Frechette" };
@@ -1591,8 +1552,7 @@ public class Client2 extends Util {
 	 * @test_Strategy: Use IN expression in a sub query.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void test_subquery_in() throws Exception {
+		public void test_subquery_in() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1641,8 +1601,7 @@ public class Client2 extends Util {
 	 * Customers.
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void fetchStringJoinTypeTest() throws Exception {
+		public void fetchStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1685,8 +1644,7 @@ public class Client2 extends Util {
 	 * entity
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void embeddableNotManagedTest() throws Exception {
+		public void embeddableNotManagedTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		List<Object[]> q;

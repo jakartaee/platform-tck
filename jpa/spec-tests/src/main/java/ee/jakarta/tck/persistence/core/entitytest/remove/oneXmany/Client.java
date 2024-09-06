@@ -27,10 +27,10 @@ import java.util.Properties;
 import java.util.Vector;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -46,21 +46,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_remove_oneXmany.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -88,8 +78,7 @@ public class Client extends PMClientBase {
 	 * Invoke remove on a new entity.
 	 *
 	 */
-	@Test
-	public void remove1XMTest1() throws Exception {
+		public void remove1XMTest1() throws Exception {
 		boolean pass = false;
 
 		logTrace( "Begin remove1XMTest1");
@@ -145,8 +134,7 @@ public class Client extends PMClientBase {
 	 * transition to the removed state. Invoke remove on a managed entity.
 	 *
 	 */
-	@Test
-	public void remove1XMTest2() throws Exception {
+		public void remove1XMTest2() throws Exception {
 		boolean pass = false;
 		boolean status = false;
 
@@ -228,8 +216,7 @@ public class Client extends PMClientBase {
 	 * cascade=REMOVE and ensure the remove operation is cascaded.
 	 *
 	 */
-	@Test
-	public void remove1XMTest3() throws Exception {
+		public void remove1XMTest3() throws Exception {
 		logTrace( "Begin remove1XMTest3");
 		boolean pass = false;
 		boolean status = false;
@@ -300,8 +287,7 @@ public class Client extends PMClientBase {
 	 * operation. Invoke remove on a removed entity.
 	 *
 	 */
-	@Test
-	public void remove1XMTest4() throws Exception {
+		public void remove1XMTest4() throws Exception {
 		logTrace( "Begin remove1XMTest4");
 		boolean pass = false;
 		boolean status = false;
@@ -376,8 +362,7 @@ public class Client extends PMClientBase {
 	 *
 	 * If X is a removed entity, it is removed from the database.
 	 */
-	@Test
-	public void remove1XMTest5() throws Exception {
+		public void remove1XMTest5() throws Exception {
 		boolean pass = false;
 		boolean status = false;
 		logTrace( "Begin remove1XMTest5");
@@ -451,8 +436,7 @@ public class Client extends PMClientBase {
 	 * been called on the entity.
 	 *
 	 */
-	@Test
-	public void remove1XMTest6() throws Exception {
+		public void remove1XMTest6() throws Exception {
 		logTrace( "Begin remove1XMTest6");
 		boolean pass = false;
 		boolean status = false;
@@ -525,8 +509,7 @@ public class Client extends PMClientBase {
 	 * been cascaded to it.
 	 *
 	 */
-	@Test
-	public void remove1XMTest7() throws Exception {
+		public void remove1XMTest7() throws Exception {
 		logTrace( "Begin remove1XMTest7");
 		boolean pass = false;
 		boolean status = false;
@@ -631,7 +614,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

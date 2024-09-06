@@ -34,8 +34,8 @@ import jakarta.persistence.criteria.LocalDateField;
 import jakarta.persistence.criteria.LocalTimeField;
 import jakarta.persistence.criteria.ParameterExpression;
 import jakarta.persistence.criteria.Root;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -56,14 +56,6 @@ public class Client9 extends Util {
    		Status s = theTests.run(args, System.out, System.err);
    		s.exit();
    	}
-
-    public JavaArchive createDeployment() throws Exception {
-
-        String pkgNameWithoutSuffix = Client9.class.getPackageName();
-        String[] classes = getSchema30classes();
-        return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder9.jar", pkgNameWithoutSuffix, classes);
-
-    }
 
     public void createCriteriaEntityData() throws Exception {
     		logTrace( "createCriteriaEntityData");
@@ -120,8 +112,7 @@ public class Client9 extends Util {
     // Verify case 0: in the implementation code.
     // JPA spec: This shall be always evaluated as true and all existing entities must be returned
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void andPredicateAsListOf0Test() throws Exception {
+        public void andPredicateAsListOf0Test() throws Exception {
         boolean pass = false;
 
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
@@ -157,8 +148,7 @@ public class Client9 extends Util {
     // Verify case 0: in the implementation code.
     // JPA spec: This shall be always evaluated as false and no entities must be returned
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testOrPredicateAsListOf0() throws Exception {
+        public void testOrPredicateAsListOf0() throws Exception {
         final int EXPECTED_SIZE = 0;
         boolean pass = false;
 
@@ -194,8 +184,7 @@ public class Client9 extends Util {
 
     // Verify case 1: in the implementation code
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testAndPredicateAsListOf1() throws Exception {
+        public void testAndPredicateAsListOf1() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -241,8 +230,7 @@ public class Client9 extends Util {
 
     // Verify case 1: in the implementation code
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testOrPredicateAsListOf1() throws Exception {
+        public void testOrPredicateAsListOf1() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -288,8 +276,7 @@ public class Client9 extends Util {
 
     // Verify case 2: in the implementation code
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testAndPredicateAsListOf2() throws Exception {
+        public void testAndPredicateAsListOf2() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -337,8 +324,7 @@ public class Client9 extends Util {
 
     // Verify case 2: in the implementation code
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testOrPredicateAsListOf2() throws Exception {
+        public void testOrPredicateAsListOf2() throws Exception {
         final int EXPECTED_SIZE = 2;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -387,8 +373,7 @@ public class Client9 extends Util {
 
     // Verify default: in the implementation code with list of size 4
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testAndPredicateAsListOfN() throws Exception {
+        public void testAndPredicateAsListOfN() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -438,8 +423,7 @@ public class Client9 extends Util {
 
     // Verify default: in the implementation code with list of size 4
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testOrPredicateAsListOfN() throws Exception {
+        public void testOrPredicateAsListOfN() throws Exception {
         final int EXPECTED_SIZE = 4;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -491,8 +475,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testLeftIntLen() throws Exception {
+        public void testLeftIntLen() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -536,8 +519,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testLeftExprLen() throws Exception {
+        public void testLeftExprLen() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -581,8 +563,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testRightIntLen() throws Exception {
+        public void testRightIntLen() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -626,8 +607,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testRightExprLen() throws Exception {
+        public void testRightExprLen() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -671,8 +651,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //In case of Derby REPLACE function must be created
+        //In case of Derby REPLACE function must be created
     public void testReplaceExprExpr() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -717,8 +696,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //In case of Derby REPLACE function must be created
+        //In case of Derby REPLACE function must be created
     public void testReplaceExprStr() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -763,8 +741,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //In case of Derby REPLACE function must be created
+        //In case of Derby REPLACE function must be created
     public void testReplaceStrExpr() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -809,8 +786,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //In case of Derby REPLACE function must be created
+        //In case of Derby REPLACE function must be created
     public void testReplaceStrStr() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -855,8 +831,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractHourFromTime() throws Exception {
+        public void testExtractHourFromTime() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -901,8 +876,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractMinuteFromTime() throws Exception {
+        public void testExtractMinuteFromTime() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -948,8 +922,7 @@ public class Client9 extends Util {
 
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractSecondFromTime() throws Exception {
+        public void testExtractSecondFromTime() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -994,8 +967,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractYearFromDate() throws Exception {
+        public void testExtractYearFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1040,8 +1012,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractMonthFromDate() throws Exception {
+        public void testExtractMonthFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1086,8 +1057,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractDayFromDate() throws Exception {
+        public void testExtractDayFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1132,8 +1102,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractQuarterFromDate() throws Exception {
+        public void testExtractQuarterFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1178,8 +1147,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //Derby only?
+        //Derby only?
     public void testExtractWeekFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -1226,8 +1194,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExpressionEqualToExpression() throws Exception {
+        public void testExpressionEqualToExpression() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1271,8 +1238,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExpressionEqualToObject() throws Exception {
+        public void testExpressionEqualToObject() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1315,8 +1281,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExpressionNotEqualToExpression() throws Exception {
+        public void testExpressionNotEqualToExpression() throws Exception {
         final int EXPECTED_SIZE = 2;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1361,8 +1326,7 @@ public class Client9 extends Util {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExpressionNotEqualToObject() throws Exception {
+        public void testExpressionNotEqualToObject() throws Exception {
         final int EXPECTED_SIZE = 2;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1405,8 +1369,7 @@ public class Client9 extends Util {
         }
     }
 
-    @Test
-    public void testExpressionCast() throws Exception {
+        public void testExpressionCast() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         boolean pass3 = false;

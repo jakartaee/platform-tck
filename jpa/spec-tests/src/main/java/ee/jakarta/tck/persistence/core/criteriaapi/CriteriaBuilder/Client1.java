@@ -22,8 +22,8 @@ import java.util.Collection;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Order;
@@ -40,14 +40,8 @@ public class Client1 extends Util {
 
 	
 
-	public JavaArchive createDeployment() throws Exception {
+	
 
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder1.jar", pkgNameWithoutSuffix, classes);
-
-	}
 	public static void main(String[] args) {
 		Client1 theTests = new Client1();
 		Status s = theTests.run(args, System.out, System.err);
@@ -63,8 +57,7 @@ public class Client1 extends Util {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void createQuery() throws Exception {
+		public void createQuery() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -94,8 +87,7 @@ public class Client1 extends Util {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void createQuery2() throws Exception {
+		public void createQuery2() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -125,8 +117,7 @@ public class Client1 extends Util {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void createTuple() throws Exception {
+		public void createTuple() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -154,8 +145,7 @@ public class Client1 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void tupleSelectionArrayIllegalArgumentExceptionTest() throws Exception {
+		public void tupleSelectionArrayIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -212,8 +202,7 @@ public class Client1 extends Util {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
-	public void literalIllegalArgumentExceptionTest() throws Exception {
+		public void literalIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -241,8 +230,7 @@ public class Client1 extends Util {
 	 *
 	 *
 	 */
-	@Test
-	public void trimspecTest() throws Exception {
+		public void trimspecTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		Collection<CriteriaBuilder.Trimspec> expected = new ArrayList();
@@ -282,8 +270,7 @@ public class Client1 extends Util {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
-	public void createCriteriaDeleteTest() throws Exception {
+		public void createCriteriaDeleteTest() throws Exception {
 		boolean pass = false;
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -311,8 +298,7 @@ public class Client1 extends Util {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
-	public void createCriteriaUpdateTest() throws Exception {
+		public void createCriteriaUpdateTest() throws Exception {
 		boolean pass = false;
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -340,8 +326,7 @@ public class Client1 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void coalesceTest() throws Exception {
+		public void coalesceTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();

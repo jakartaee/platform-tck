@@ -25,10 +25,10 @@ package ee.jakarta.tck.persistence.core.entitytest.detach.oneXone;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityExistsException;
@@ -45,21 +45,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_detach_oneXone.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "Entering Setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -85,8 +75,7 @@ public class Client extends PMClientBase {
 	 * IllegalArgumentException is thrown or an EntityExistsException, or the
 	 * transaction commit will fail. Invoke persist on a detached entity.
 	 */
-	@Test
-	public void detach1X1Test1() throws Exception {
+		public void detach1X1Test1() throws Exception {
 
 		logTrace( "Begin detach1X1Test1");
 		boolean pass = false;
@@ -153,8 +142,7 @@ public class Client extends PMClientBase {
 	 * will fail. Invoke remove on a detached entity.
 	 *
 	 */
-	@Test
-	public void detach1X1Test2() throws Exception {
+		public void detach1X1Test2() throws Exception {
 		logTrace( "Begin detach1X1Test2");
 		boolean pass = false;
 		final A a1 = new A("2", "a2", 2);
@@ -227,7 +215,7 @@ public class Client extends PMClientBase {
 		getEntityTransaction().commit();
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

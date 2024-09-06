@@ -21,10 +21,10 @@ package ee.jakarta.tck.persistence.core.annotations.discriminatorValue;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -32,14 +32,6 @@ public class Client extends PMClientBase {
 
 
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "PartProduct", pkgName + "PartProduct2", pkgName + "PricedPartProduct2",
-				pkgName + "Product", pkgName + "Product2" };
-		return createDeploymentJar("jpa_core_annotations_discrinimatorValue.jar", pkgNameWithoutSuffix, classes);
-
-	}
 
 	public Client() {
 		super();
@@ -56,7 +48,7 @@ public class Client extends PMClientBase {
 		try {
 
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -98,8 +90,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void integerDiscriminatorValueTest() throws Exception {
+		public void integerDiscriminatorValueTest() throws Exception {
 		boolean pass = false;
 		final String testName = "integerDiscriminatorValueTest";
 		try {
@@ -137,8 +128,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void discriminatorValueTest() throws Exception {
+		public void discriminatorValueTest() throws Exception {
 		boolean pass1 = false;
 		final String testName = "discriminatorValueTest";
 		try {
@@ -185,7 +175,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

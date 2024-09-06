@@ -22,8 +22,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -43,17 +43,6 @@ public class Client7 extends Util {
 		s.exit();
 	}
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client7.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery7.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	/*
 	 * @testName: resultContainsFetchReference
 	 * 
@@ -63,8 +52,7 @@ public class Client7 extends Util {
 	 * d.lastNameEmployees WHERE d.id = 1
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void resultContainsFetchReference() throws Exception {
+		public void resultContainsFetchReference() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();

@@ -24,10 +24,10 @@ package ee.jakarta.tck.persistence.core.entitytest.cascadeall.oneXone;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -43,21 +43,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_cascadeall_oneXone.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "Entering Setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -86,8 +76,7 @@ public class Client extends PMClientBase {
 	 * so call persist from there.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test1() throws Exception {
+		public void cascadeAll1X1Test1() throws Exception {
 		logTrace( "Begin cascadeAll1X1Test1");
 		boolean pass = false;
 		A a1;
@@ -145,8 +134,7 @@ public class Client extends PMClientBase {
 	 * is is managed and is accessible.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test2() throws Exception {
+		public void cascadeAll1X1Test2() throws Exception {
 		logTrace( "Begin cascadeAll1X1Test2");
 		B bRef;
 		A a1;
@@ -216,8 +204,7 @@ public class Client extends PMClientBase {
 	 * cascade=ALL and ensure the persist operation is cascaded.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test3() throws Exception {
+		public void cascadeAll1X1Test3() throws Exception {
 
 		logTrace( "Begin cascadeAll1X1Test3");
 		boolean pass = false;
@@ -269,8 +256,7 @@ public class Client extends PMClientBase {
 	 * and the persist operation has been cascaded to it.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test4() throws Exception {
+		public void cascadeAll1X1Test4() throws Exception {
 		logTrace( "Begin cascadeAll1X1Test4");
 		boolean pass = false;
 		B bRef;
@@ -318,8 +304,7 @@ public class Client extends PMClientBase {
 	 * new and the persist operation has not been cascaded to it.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test5() throws Exception {
+		public void cascadeAll1X1Test5() throws Exception {
 
 		logTrace( "Begin cascadeAll1X1Test5");
 		boolean pass1 = true;
@@ -377,8 +362,7 @@ public class Client extends PMClientBase {
 	 * operation is applied to Y.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test6() throws Exception {
+		public void cascadeAll1X1Test6() throws Exception {
 		logTrace( "Begin cascadeAll1X1Test6");
 		boolean pass = false;
 
@@ -441,8 +425,7 @@ public class Client extends PMClientBase {
 	 * operation or the transaction commit will fail.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test7() throws Exception {
+		public void cascadeAll1X1Test7() throws Exception {
 
 		logTrace( "Begin cascadeAll1X1Test7");
 		boolean pass = false;
@@ -496,8 +479,7 @@ public class Client extends PMClientBase {
 	 * and ensure the remove operation is cascaded.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test8() throws Exception {
+		public void cascadeAll1X1Test8() throws Exception {
 		logTrace( "Begin cascadeAll1X1Test8");
 		boolean pass = false;
 
@@ -560,8 +542,7 @@ public class Client extends PMClientBase {
 	 * If the remove operation has been cascaded to it.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test9() throws Exception {
+		public void cascadeAll1X1Test9() throws Exception {
 		logTrace( "Begin cascadeAll1X1Test9");
 		boolean pass = false;
 
@@ -624,8 +605,7 @@ public class Client extends PMClientBase {
 	 * annotation member value.
 	 *
 	 */
-	@Test
-	public void cascadeAll1X1Test10() throws Exception {
+		public void cascadeAll1X1Test10() throws Exception {
 		logTrace( "Begin cascadeAll1X1Test10");
 		boolean pass = false;
 		boolean status = true;
@@ -694,7 +674,7 @@ public class Client extends PMClientBase {
 		return getEntityManager().contains(o);
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

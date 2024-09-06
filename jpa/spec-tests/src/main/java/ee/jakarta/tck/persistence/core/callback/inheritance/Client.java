@@ -25,10 +25,10 @@ package ee.jakarta.tck.persistence.core.callback.inheritance;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.core.callback.common.Constants;
 import ee.jakarta.tck.persistence.core.callback.common.EntityCallbackClientBase;
@@ -50,24 +50,12 @@ public class Client extends EntityCallbackClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "PartProduct", pkgName + "PartProductListener", pkgName + "PricedPartProduct_2",
-				pkgName + "PricedPartProduct", pkgName + "PricedPartProductCallback",
-				pkgName + "PricedPartProductListener", pkgName + "Product", pkgName + "ProductListener" };
-		return createDeploymentJar("jpa_core_callback_inheritance.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -106,8 +94,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void prePersistTest() throws Exception {
+		public void prePersistTest() throws Exception {
 		String reason;
 		final String testName = Constants.prePersistTest;
 		try {
@@ -144,8 +131,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void prePersistTest2() throws Exception {
+		public void prePersistTest2() throws Exception {
 		String reason;
 		final String testName = Constants.prePersistTest2;
 		try {
@@ -182,8 +168,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void preRemoveTest() throws Exception {
+		public void preRemoveTest() throws Exception {
 		String reason;
 		final String testName = Constants.preRemoveTest;
 		try {
@@ -222,8 +207,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void preRemoveTest2() throws Exception {
+		public void preRemoveTest2() throws Exception {
 		String reason;
 		final String testName = Constants.preRemoveTest2;
 		try {
@@ -262,8 +246,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void preUpdateTest() throws Exception {
+		public void preUpdateTest() throws Exception {
 		final String testName = Constants.preUpdateTest;
 		try {
 			getEntityTransaction().begin();
@@ -294,8 +277,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void preUpdateTest2() throws Exception {
+		public void preUpdateTest2() throws Exception {
 		final String testName = Constants.preUpdateTest2;
 		try {
 			getEntityTransaction().begin();
@@ -328,8 +310,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void postLoadTest() throws Exception {
+		public void postLoadTest() throws Exception {
 		String reason;
 		final String testName = Constants.postLoadTest;
 		try {
@@ -375,8 +356,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void postLoadTest2() throws Exception {
+		public void postLoadTest2() throws Exception {
 		String reason;
 		final String testName = Constants.postLoadTest2;
 		try {
@@ -422,8 +402,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void findProductTest() throws Exception {
+		public void findProductTest() throws Exception {
 		final String testName = "findProductTest";
 		try {
 			getEntityTransaction().begin();
@@ -473,7 +452,7 @@ public class Client extends EntityCallbackClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

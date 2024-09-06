@@ -23,8 +23,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -53,14 +53,6 @@ public class Client3 extends Util {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_misc3.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	/*
 	 * @testName: compoundSelectionGetCompoundSelectionItemsTest
 	 * 
@@ -72,8 +64,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void compoundSelectionGetCompoundSelectionItemsTest() throws Exception {
+		public void compoundSelectionGetCompoundSelectionItemsTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 
@@ -142,8 +133,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void selectionGetCompoundSelectionItemsTest() throws Exception {
+		public void selectionGetCompoundSelectionItemsTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 
@@ -211,8 +201,7 @@ public class Client3 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void pathGetPluralAttributeTest() throws Exception {
+		public void pathGetPluralAttributeTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -256,8 +245,7 @@ public class Client3 extends Util {
 	 * name like Caruso. The name Caruso is derived in the subquery.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void subquery() throws Exception {
+		public void subquery() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -307,8 +295,7 @@ public class Client3 extends Util {
 	 * name like Caruso. The name Caruso is derived in the subquery.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void subqueryGroupByExpressionTest() throws Exception {
+		public void subqueryGroupByExpressionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -419,8 +406,7 @@ public class Client3 extends Util {
 	 * with name like Caruso. The name Caruso is derived in the subquery.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void subqueryGroupByExpressionArrayTest() throws Exception {
+		public void subqueryGroupByExpressionArrayTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -480,8 +466,7 @@ public class Client3 extends Util {
 	 * with name like Caruso. The name Caruso is derived in the subquery.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void subqueryGroupByListTest() throws Exception {
+		public void subqueryGroupByListTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 

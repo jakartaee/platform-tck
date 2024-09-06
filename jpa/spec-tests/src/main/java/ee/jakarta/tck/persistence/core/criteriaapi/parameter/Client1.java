@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import jakarta.persistence.Parameter;
 import jakarta.persistence.Query;
@@ -36,16 +36,6 @@ import jakarta.persistence.criteria.Root;
 
 public class Client1 extends Client {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_criteriaapi_parameter1.jar", pkgNameWithoutSuffix, classes);
-	}
-	
 	public static void main(String[] args) {
 		Client1 theTests = new Client1();
 		Status s = theTests.run(args, System.out, System.err);
@@ -56,7 +46,7 @@ public class Client1 extends Client {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			getEntityManager();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -75,8 +65,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: Create a query with 2 named parameters and retrieve
 	 * information about the parameters.
 	 */
-	@Test
-	public void parameterTest1() throws Exception {
+		public void parameterTest1() throws Exception {
 		logTrace( "Starting parameterTest1");
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -206,8 +195,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: Create a query with a named parameter that is a float and
 	 * retrieve information about the parameter.
 	 */
-	@Test
-	public void parameterTest2() throws Exception {
+		public void parameterTest2() throws Exception {
 		logTrace( "Starting parameterTest2");
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -279,8 +267,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: Create a query with a named parameter that is a date and and
 	 * retrieve information about the parameter.
 	 */
-	@Test
-	public void parameterTest3() throws Exception {
+		public void parameterTest3() throws Exception {
 		logTrace( "Starting parameterTest3");
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -351,8 +338,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: Create a query with a parameter where the name is not
 	 * specified and retrieve information about the parameter.
 	 */
-	@Test
-	public void parameterTest4() throws Exception {
+		public void parameterTest4() throws Exception {
 		logTrace( "Starting parameterTest4");
 		boolean pass1 = false;
 		boolean pass2 = true;

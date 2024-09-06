@@ -25,10 +25,10 @@ package ee.jakarta.tck.persistence.core.basic;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -44,21 +44,12 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_core_basic.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-
+	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -84,8 +75,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: With basic entity requirements, persist/remove an entity.
 	 */
-	@Test
-	public void updateOrderTest() throws Exception {
+		public void updateOrderTest() throws Exception {
 		boolean pass = true;
 		final int count = 6;
 		Order order = null;
@@ -138,8 +128,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Instantiate entity and verify it didn't get persisted
 	 */
-	@Test
-	public void newEntityTest() throws Exception {
+		public void newEntityTest() throws Exception {
 		boolean pass = false;
 		logTrace( "Instantiate an order ");
 		Order order = new Order(1, 101);
@@ -157,7 +146,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

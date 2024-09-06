@@ -21,10 +21,10 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -39,22 +39,12 @@ public class Client extends PMClientBase {
 		Status s = theTests.run(args, System.out, System.err);
 		s.exit();
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DID5bMedicalHistory", pkgName + "DID5bPerson", pkgName + "DID5bPersonId" };
-		return createDeploymentJar("jpa_core_derivedid_ex5b.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -73,8 +63,7 @@ public class Client extends PMClientBase {
 	 *                 annotated Embeddable or denoted as an embeddable class in the
 	 *                 XML descriptor.
 	 */
-	@Test
-	public void DIDTest() throws Exception {
+		public void DIDTest() throws Exception {
 		boolean pass = false;
 		boolean pass1 = false;
 		boolean pass2 = true;
@@ -147,7 +136,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

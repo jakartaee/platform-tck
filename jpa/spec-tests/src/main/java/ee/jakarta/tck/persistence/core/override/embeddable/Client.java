@@ -21,9 +21,9 @@ package ee.jakarta.tck.persistence.core.override.embeddable;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -89,8 +89,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: A field in an entity which is declared as Basic is overriden
 	 * in orm.xml as Transient.
 	 */
-	@Test
-	public void testOverrideTransient() throws Exception {
+		public void testOverrideTransient() throws Exception {
 
 		getEntityTransaction().begin();
 		Publisher publisher = new Publisher();
@@ -139,8 +138,7 @@ public class Client extends PMClientBase {
 	 * without using annotation and an entity named Complaint uses Applicant. The
 	 * following test test applies that by reading from the orm.xml.
 	 */
-	@Test
-	public void testOverrideEmbeddable() throws Exception {
+		public void testOverrideEmbeddable() throws Exception {
 
 		getEntityTransaction().begin();
 		Applicant applicant = new Applicant();
@@ -186,8 +184,7 @@ public class Client extends PMClientBase {
 	 * annotation. The following test checks for the above.
 	 * 
 	 */
-	@Test
-	public void testOverrideEmbedded() throws Exception {
+		public void testOverrideEmbedded() throws Exception {
 
 		getEntityTransaction().begin();
 		Film film = new Film();
@@ -232,8 +229,7 @@ public class Client extends PMClientBase {
 	 * metadata completeness.
 	 * 
 	 */
-	@Test
-	public void testMetadataCompleteness() throws Exception {
+		public void testMetadataCompleteness() throws Exception {
 
 		getEntityTransaction().begin();
 		Book book = new Book();
@@ -267,7 +263,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

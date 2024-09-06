@@ -23,8 +23,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Product;
 import ee.jakarta.tck.persistence.common.schema30.SoftwareProduct;
@@ -40,15 +40,6 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client extends Util {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaDelete.jar", pkgNameWithoutSuffix, classes);
-
-	}
 	public static void main(String[] args) {
 		Client theTests = new Client();
 		Status s = theTests.run(args, System.out, System.err);
@@ -64,8 +55,7 @@ public class Client extends Util {
 	 *
 	 * @test_Strategy: DELETE FROM Product p
 	 */
-	@Test
-	public void fromClassTest() throws Exception {
+		public void fromClassTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 
@@ -109,8 +99,7 @@ public class Client extends Util {
 	 *
 	 * @test_Strategy: DELETE FROM Product p
 	 */
-	@Test
-	public void fromEntityTypeTest() throws Exception {
+		public void fromEntityTypeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 
@@ -160,8 +149,7 @@ public class Client extends Util {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getRootTest() throws Exception {
+		public void getRootTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -193,8 +181,7 @@ public class Client extends Util {
 	 *
 	 * @test_Strategy: DELETE FROM Product p where p.id in (1,2,3)
 	 */
-	@Test
-	public void whereExpressionTest() throws Exception {
+		public void whereExpressionTest() throws Exception {
 		boolean pass2 = false;
 		boolean pass3 = true;
 		boolean pass4 = true;
@@ -279,8 +266,7 @@ public class Client extends Util {
 	 *
 	 * @test_Strategy: DELETE FROM Product p where p.id in (2)
 	 */
-	@Test
-	public void wherePredicateArrayTest() throws Exception {
+		public void wherePredicateArrayTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -363,8 +349,7 @@ public class Client extends Util {
 	 * PRODUCT hardprod where hardprod.id = '1').
 	 *
 	 */
-	@Test
-	public void subquery() throws Exception {
+		public void subquery() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		List<Integer> expected = new ArrayList<Integer>();
@@ -440,8 +425,7 @@ public class Client extends Util {
 	 * FROM SoftwareProduct WHERE p.quantity > 100)
 	 *
 	 */
-	@Test
-	public void modifiedQueryTest() throws Exception {
+		public void modifiedQueryTest() throws Exception {
 		int passDeletedCount1 = 0;
 		int passUnDeletedCount1 = 0;
 		int passDeletedCount2 = 0;

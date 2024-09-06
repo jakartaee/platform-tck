@@ -27,10 +27,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import com.sun.ts.lib.util.TestUtil;
 
@@ -50,16 +50,6 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Department2", pkgName + "Department3",
-				pkgName + "Department4", pkgName + "EmbeddedEmployee", pkgName + "Employee", pkgName + "Employee2",
-				pkgName + "Employee3", pkgName + "Employee4", pkgName + "Numbers", pkgName + "Offices" };
-		return createDeploymentJar("jpa_core_annotations_mapkeyenumerated.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	private static Employee empRef[] = new Employee[5];
 	private static Employee2 empRef2[] = new Employee2[5];
 	private static Employee3 empRef3[] = new Employee3[5];
@@ -70,7 +60,7 @@ public class Client extends PMClientBase {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -100,8 +90,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void mapKeyEnumeratedTest() throws Exception {
+		public void mapKeyEnumeratedTest() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -188,8 +177,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void mapKeyEnumeratedDefaultTypeTest() throws Exception {
+		public void mapKeyEnumeratedDefaultTypeTest() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -274,8 +262,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void mapKeyEnumeratedWithMayKeyAnnotationTest() throws Exception {
+		public void mapKeyEnumeratedWithMayKeyAnnotationTest() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -359,8 +346,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void elementCollectionTest() throws Exception {
+		public void elementCollectionTest() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -627,7 +613,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

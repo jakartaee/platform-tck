@@ -22,9 +22,9 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -81,8 +81,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Many-to-Many is tested without using its annotation;instead
 	 * it is overridden in orm.xml.
 	 */
-	@Test
-	public void testNoManyToManyAnnotation() throws Exception {
+		public void testNoManyToManyAnnotation() throws Exception {
 
 		getEntityTransaction().begin();
 		Course mathCourse = createCourse(COURSE1_ID, COURSE1_NAME);
@@ -142,7 +141,7 @@ public class Client extends PMClientBase {
 		return course;
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

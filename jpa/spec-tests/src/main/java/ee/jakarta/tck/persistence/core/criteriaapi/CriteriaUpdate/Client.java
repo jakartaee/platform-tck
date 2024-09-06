@@ -22,8 +22,8 @@ import java.util.Collection;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Product;
 import ee.jakarta.tck.persistence.common.schema30.SoftwareProduct;
@@ -50,13 +50,7 @@ public class Client extends Util {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaUpdate.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	/*
 	 * @testName: fromClassGetRootSetStringObjectTest
@@ -68,8 +62,7 @@ public class Client extends Util {
 	 * @test_Strategy: UPDATE Product SET QUANTITY = 0
 	 *
 	 */
-	@Test
-	public void fromClassGetRootSetStringObjectTest() throws Exception {
+		public void fromClassGetRootSetStringObjectTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -138,8 +131,7 @@ public class Client extends Util {
 	 * 
 	 * @test_Strategy: UPDATE Product SET QUANTITY = 0
 	 */
-	@Test
-	public void fromEntityTypeSetStringObjectTest() throws Exception {
+		public void fromEntityTypeSetStringObjectTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -206,8 +198,7 @@ public class Client extends Util {
 	 *
 	 * @test_Strategy: UPDATE Product p SET p.quantity = 0 WHERE p.id in (1,2,3)
 	 */
-	@Test
-	public void whereExpressionTest() throws Exception {
+		public void whereExpressionTest() throws Exception {
 		boolean pass2 = false;
 		boolean pass3 = true;
 		boolean pass4 = true;
@@ -299,8 +290,7 @@ public class Client extends Util {
 	 *
 	 * @test_Strategy: UPDATE Product p SET p.quantity = 0 WHERE p.id in (2)
 	 */
-	@Test
-	public void wherePredicateArrayTest() throws Exception {
+		public void wherePredicateArrayTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -391,8 +381,7 @@ public class Client extends Util {
 	 * @test_Strategy: UPDATE Product SET QUANTITY = 0
 	 *
 	 */
-	@Test
-	public void setSingularAttributeObjectTest() throws Exception {
+		public void setSingularAttributeObjectTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -466,8 +455,7 @@ public class Client extends Util {
 	 * @test_Strategy: UPDATE Product p SET p.quantity = prod(p.quantity,0)
 	 *
 	 */
-	@Test
-	public void setSingularAttributeExpressionTest() throws Exception {
+		public void setSingularAttributeExpressionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -541,8 +529,7 @@ public class Client extends Util {
 	 * @test_Strategy: UPDATE Product SET QUANTITY = 0
 	 *
 	 */
-	@Test
-	public void setPathObjectTest() throws Exception {
+		public void setPathObjectTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -613,8 +600,7 @@ public class Client extends Util {
 	 * @test_Strategy: UPDATE Product p SET p.quantity = prod(p.quantity,0)
 	 *
 	 */
-	@Test
-	public void setPathExpressionTest() throws Exception {
+		public void setPathExpressionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -686,8 +672,7 @@ public class Client extends Util {
 	 * hardProd From PRODUCT hardprod where hardprod.id = '1').
 	 *
 	 */
-	@Test
-	public void subquery() throws Exception {
+		public void subquery() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -753,8 +738,7 @@ public class Client extends Util {
 	 * < 35) UPDATE SoftwareProduct p SET p.quantity = 0 WHERE p.quantity > 100)
 	 *
 	 */
-	@Test
-	public void modifiedQueryTest() throws Exception {
+		public void modifiedQueryTest() throws Exception {
 		int passModifiedCount1 = 0;
 		int passUnModifiedCount1 = 0;
 		int passModifiedCount2 = 0;

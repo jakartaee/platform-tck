@@ -25,9 +25,9 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
@@ -135,8 +135,7 @@ public class Client extends PMClientBase {
 	 * "Many-to-One" but is specified only in orm.xml. All of the annotations like
 	 * "mappedBy" and "orderBy" are overriden in orm.xml.
 	 */
-	@Test
-	public void testNoOrderByAnnotation() throws Exception {
+		public void testNoOrderByAnnotation() throws Exception {
 
 		Department dept = createDepartment(DEPT1_ID, DEPT1_NAME);
 		employee1 = createEmployee(EMP1_ID, EMP1_CODE);
@@ -194,8 +193,7 @@ public class Client extends PMClientBase {
 	 * test checks for the overriden value.
 	 *
 	 */
-	@Test
-	public void testOverrideMapKey() throws Exception {
+		public void testOverrideMapKey() throws Exception {
 
 		TheatreCompany regal = createTheatreCompany(COMPANY_ID, COMPANY_NAME);
 		TheatreLocation knoxville = createTheatreLocation(LOCATION_ID, LOCATION_CODE);
@@ -251,8 +249,7 @@ public class Client extends PMClientBase {
 	 * and not by using annotation. The following test checks whether MapKey is read
 	 * or not.
 	 */
-	@Test
-	public void testNoMapKeyAnnotation() throws Exception {
+		public void testNoMapKeyAnnotation() throws Exception {
 
 		getEntityTransaction().begin();
 		Store store = createStore(STORE_ID, STORE_NAME);
@@ -310,8 +307,7 @@ public class Client extends PMClientBase {
 	 * following test checks whether OrderBy is performed in descending or not.
 	 *
 	 */
-	@Test
-	public void testOverrideOrderBy() throws Exception {
+		public void testOverrideOrderBy() throws Exception {
 
 		Consumer consumer1 = new Consumer();
 		consumer1.setId(CUST1_ID);
@@ -408,7 +404,7 @@ public class Client extends PMClientBase {
 		return order;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

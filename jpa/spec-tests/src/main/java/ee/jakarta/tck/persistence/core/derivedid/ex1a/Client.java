@@ -21,10 +21,10 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -35,14 +35,6 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DID1Dependent", pkgName + "DID1DependentId", pkgName + "DID1Employee" };
-		return createDeploymentJar("jpa_core_derivedid_ex1a.jar", pkgNameWithoutSuffix, classes);
-
-	}
 	public static void main(String[] args) {
 		Client theTests = new Client();
 		Status s = theTests.run(args, System.out, System.err);
@@ -54,7 +46,7 @@ public class Client extends PMClientBase {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -72,8 +64,7 @@ public class Client extends PMClientBase {
 	 * simple primary key Case (a): The dependent entity (DID1Dependent ) uses
 	 * IdClass to represent a composite key:
 	 */
-	@Test
-	public void DIDTest() throws Exception {
+		public void DIDTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -135,7 +126,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

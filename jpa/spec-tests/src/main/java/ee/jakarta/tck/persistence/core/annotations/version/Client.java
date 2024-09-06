@@ -19,7 +19,7 @@ package ee.jakarta.tck.persistence.core.annotations.version;
 
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -35,7 +35,7 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

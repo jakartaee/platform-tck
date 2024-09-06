@@ -24,8 +24,8 @@ import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -51,14 +51,8 @@ public class Client1 extends Util {
 
 	
 
-	public JavaArchive createDeployment() throws Exception {
+	
 
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery1.jar", pkgNameWithoutSuffix, classes);
-	}
 	public static void main(String[] args) {
 		Client1 theTests = new Client1();
 		Status s = theTests.run(args, System.out, System.err);
@@ -76,8 +70,7 @@ public class Client1 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void fromClass() throws Exception {
+		public void fromClass() throws Exception {
 		boolean pass = false;
 		final Double expectedTotalPrice = 4500.0D;
 
@@ -135,8 +128,7 @@ public class Client1 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void fromEntityType() throws Exception {
+		public void fromEntityType() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		final Double expectedTotalPrice = 4500.0D;
@@ -205,8 +197,7 @@ public class Client1 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void select() throws Exception {
+		public void select() throws Exception {
 		boolean pass = false;
 		final Double expectedTotalPrice = 4500.0D;
 
@@ -262,8 +253,7 @@ public class Client1 extends Util {
 	 * @test_Strategy: Pass a predicate array to the where clause and verify results
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void wherePredicateArrayTest() throws Exception {
+		public void wherePredicateArrayTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -345,8 +335,7 @@ public class Client1 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void fromGetParentPathTest() throws Exception {
+		public void fromGetParentPathTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -409,8 +398,7 @@ public class Client1 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void getParameters() throws Exception {
+		public void getParameters() throws Exception {
 		boolean pass = false;
 		final Double expectedTotalPrice = 4500.0D;
 
@@ -461,8 +449,7 @@ public class Client1 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void distinctNotSpecifiedTest() throws Exception {
+		public void distinctNotSpecifiedTest() throws Exception {
 		boolean pass = false;
 		Integer expectedPKs[];
 		List<String> o;

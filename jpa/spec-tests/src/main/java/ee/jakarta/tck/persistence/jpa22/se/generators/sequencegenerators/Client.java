@@ -22,10 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManagerFactory;
@@ -45,25 +45,14 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Simple" };
-		return createDeploymentJar("jpa_jpa22_se_generators_sequencegenerators.jar", pkgNameWithoutSuffix,
-				(String[]) classes);
-
-	}
-
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			supportSequence = Boolean.valueOf(System.getProperty("db.supports.sequence"));
 
 			schemaGenerationDir = System.getProperty("user.dir");
@@ -96,8 +85,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Test the @SequenceGenerator annotation
 	 */
-	@Test
-	public void sequenceGeneratorTest() throws Exception {
+		public void sequenceGeneratorTest() throws Exception {
 		if (!supportSequence) {
 			logMsg( "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 			return;
@@ -227,7 +215,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

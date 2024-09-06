@@ -25,21 +25,12 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Product;
 
 public class Client3 extends Util {
-
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_flushmode3.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	public Client3() {
 	}
@@ -56,8 +47,7 @@ public class Client3 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void secondaryTablesValueTest() throws Exception {
+		public void secondaryTablesValueTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[4];

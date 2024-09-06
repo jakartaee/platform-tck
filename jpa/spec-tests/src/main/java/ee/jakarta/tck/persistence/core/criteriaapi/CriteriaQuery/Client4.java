@@ -20,8 +20,8 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Order;
@@ -34,15 +34,6 @@ import jakarta.persistence.metamodel.Bindable;
 public class Client4 extends Util {
 
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery4.jar", pkgNameWithoutSuffix, classes);
-	}
 	public static void main(String[] args) {
 		Client4 theTests = new Client4();
 		Status s = theTests.run(args, System.out, System.err);
@@ -56,8 +47,7 @@ public class Client4 extends Util {
 	 * 
 	 * @test_Strategy: Verify get(String) returns an exception for a basic type
 	 */
-	@Test
-	public void fromGetStringIllegalStateExceptionTest() throws Exception {
+		public void fromGetStringIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -91,8 +81,7 @@ public class Client4 extends Util {
 	 * 
 	 * @test_Strategy: Verify get(String) returns an exception for a basic type
 	 */
-	@Test
-	public void pathGetStringIllegalStateExceptionTest() throws Exception {
+		public void pathGetStringIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -128,8 +117,7 @@ public class Client4 extends Util {
 	 * @test_Strategy: Verify get(String) returns an exception
 	 *
 	 */
-	@Test
-	public void fromGetStringIllegalArgumentExceptionTest() throws Exception {
+		public void fromGetStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -164,8 +152,7 @@ public class Client4 extends Util {
 	 * @test_Strategy: Verify getModel() returns correct result.
 	 *
 	 */
-	@Test
-	public void fromGetModelTest() throws Exception {
+		public void fromGetModelTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -199,8 +186,7 @@ public class Client4 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void pathGetIllegalArgumentException() throws Exception {
+		public void pathGetIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
@@ -231,8 +217,7 @@ public class Client4 extends Util {
 	 * and verify a IllegalStateException is thrown
 	 *
 	 */
-	@Test
-	public void executeUpdateIllegalStateException1Test() throws Exception {
+		public void executeUpdateIllegalStateException1Test() throws Exception {
 		boolean pass = false;
 
 		try {

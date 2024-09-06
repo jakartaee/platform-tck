@@ -26,10 +26,10 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.Attribute;
@@ -53,21 +53,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "ZipCode" };
-		return createDeploymentJar("jpa_core_metamodelapi_embeddabletype.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -83,8 +73,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void embeddableTest() throws Exception {
+		public void embeddableTest() throws Exception {
 		boolean pass = true;
 		Collection<String> expected = new ArrayList<String>();
 		expected.add("cZipcode");
@@ -150,8 +139,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getAttribute() throws Exception {
+		public void getAttribute() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -196,8 +184,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getAttributeIllegalArgumentException() throws Exception {
+		public void getAttributeIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -238,8 +225,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getAttributes() throws Exception {
+		public void getAttributes() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -318,8 +304,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getCollectionStringClass() throws Exception {
+		public void getCollectionStringClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -364,8 +349,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getCollectionStringClassIllegalArgumentException() throws Exception {
+		public void getCollectionStringClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -405,8 +389,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getCollectionString() throws Exception {
+		public void getCollectionString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -451,8 +434,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getCollectionStringIllegalArgumentException() throws Exception {
+		public void getCollectionStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -492,8 +474,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredAttribute() throws Exception {
+		public void getDeclaredAttribute() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -538,8 +519,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredAttributeIllegalArgumentException() throws Exception {
+		public void getDeclaredAttributeIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -579,8 +559,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredAttributes() throws Exception {
+		public void getDeclaredAttributes() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -659,8 +638,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredCollectionStringClass() throws Exception {
+		public void getDeclaredCollectionStringClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -705,8 +683,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredCollectionStringClassIllegalArgumentException() throws Exception {
+		public void getDeclaredCollectionStringClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -746,8 +723,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredCollectionString() throws Exception {
+		public void getDeclaredCollectionString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -792,8 +768,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredCollectionStringIllegalArgumentException() throws Exception {
+		public void getDeclaredCollectionStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -833,8 +808,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredListStringClass() throws Exception {
+		public void getDeclaredListStringClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -879,8 +853,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredListStringClassIllegalArgumentException() throws Exception {
+		public void getDeclaredListStringClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -920,8 +893,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredListString() throws Exception {
+		public void getDeclaredListString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -966,8 +938,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredListStringIllegalArgumentException() throws Exception {
+		public void getDeclaredListStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1007,8 +978,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredMapStringClassClass() throws Exception {
+		public void getDeclaredMapStringClassClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1053,8 +1023,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredMapStringClassClassIllegalArgumentException() throws Exception {
+		public void getDeclaredMapStringClassClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1094,8 +1063,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredMapString() throws Exception {
+		public void getDeclaredMapString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1140,8 +1108,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredMapStringIllegalArgumentException() throws Exception {
+		public void getDeclaredMapStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1181,8 +1148,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSetStringClass() throws Exception {
+		public void getDeclaredSetStringClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1227,8 +1193,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSetStringClassIllegalArgumentException() throws Exception {
+		public void getDeclaredSetStringClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1268,8 +1233,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSetString() throws Exception {
+		public void getDeclaredSetString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1314,8 +1278,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSetStringIllegalArgumentException() throws Exception {
+		public void getDeclaredSetStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1355,8 +1318,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSingularAttributeStringClass() throws Exception {
+		public void getDeclaredSingularAttributeStringClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1401,8 +1363,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSingularAttributeStringClassIllegalArgumentException() throws Exception {
+		public void getDeclaredSingularAttributeStringClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1443,8 +1404,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSingularAttributeString() throws Exception {
+		public void getDeclaredSingularAttributeString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1489,8 +1449,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSingularAttributeStringIllegalArgumentException() throws Exception {
+		public void getDeclaredSingularAttributeStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1531,8 +1490,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredSingularAttributes() throws Exception {
+		public void getDeclaredSingularAttributes() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -1607,8 +1565,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getListStringClass() throws Exception {
+		public void getListStringClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1653,8 +1610,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getListStringClassIllegalArgumentException() throws Exception {
+		public void getListStringClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1694,8 +1650,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getListString() throws Exception {
+		public void getListString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1740,8 +1695,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getListStringIllegalArgumentException() throws Exception {
+		public void getListStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1781,8 +1735,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getMapStringClassClass() throws Exception {
+		public void getMapStringClassClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1827,8 +1780,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getMapStringClassClassIllegalArgumentException() throws Exception {
+		public void getMapStringClassClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1868,8 +1820,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getMapString() throws Exception {
+		public void getMapString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1914,8 +1865,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getMapStringIllegalArgumentException() throws Exception {
+		public void getMapStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -1955,8 +1905,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getPluralAttributes() throws Exception {
+		public void getPluralAttributes() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -2032,8 +1981,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSetStringClass() throws Exception {
+		public void getSetStringClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -2078,8 +2026,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSetStringClassIllegalArgumentException() throws Exception {
+		public void getSetStringClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -2119,8 +2066,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSetString() throws Exception {
+		public void getSetString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -2165,8 +2111,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSetStringIllegalArgumentException() throws Exception {
+		public void getSetStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -2206,8 +2151,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSingularAttributeStringClass() throws Exception {
+		public void getSingularAttributeStringClass() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -2252,8 +2196,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSingularAttributeStringClassIllegalArgumentException() throws Exception {
+		public void getSingularAttributeStringClassIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -2294,8 +2237,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSingularAttributeString() throws Exception {
+		public void getSingularAttributeString() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -2340,8 +2282,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSingularAttributeStringIllegalArgumentException() throws Exception {
+		public void getSingularAttributeStringIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -2382,8 +2323,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSingularAttributes() throws Exception {
+		public void getSingularAttributes() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -2458,8 +2398,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredPluralAttributes() throws Exception {
+		public void getDeclaredPluralAttributes() throws Exception {
 		boolean pass = false;
 
 		List<String> expected = new ArrayList<String>();
@@ -2526,7 +2465,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

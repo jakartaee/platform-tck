@@ -22,8 +22,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -49,13 +49,6 @@ public class Client4 extends Util {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_from4.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	/*
 	 * @testName: joinMapAttributeTest
@@ -69,8 +62,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeTest() throws Exception {
+		public void joinMapAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -118,8 +110,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeJoinTypeTest() throws Exception {
+		public void joinMapAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -168,8 +159,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringTest() throws Exception {
+		public void joinMapStringTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
 
@@ -231,8 +221,7 @@ public class Client4 extends Util {
 	 * d.lastNameEmployees e WHERE (e.id = 1)
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringJoinTypeTest() throws Exception {
+		public void joinMapStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
 
@@ -292,8 +281,7 @@ public class Client4 extends Util {
 	 * SELECT d.lastNameEmployees FROM DEPARTMENT d WHERE d.ID = 1
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void fromGetMapAttributeTest() throws Exception {
+		public void fromGetMapAttributeTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
 		expected.add("1, Alan, Frechette");
@@ -352,8 +340,7 @@ public class Client4 extends Util {
 	 * SELECT d.lastNameEmployees FROM DEPARTMENT d WHERE d.ID = 1
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void pathGetMapAttributeTest() throws Exception {
+		public void pathGetMapAttributeTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
 		expected.add("1, Alan, Frechette");

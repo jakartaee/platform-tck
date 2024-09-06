@@ -20,8 +20,8 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -41,16 +41,6 @@ public class Client8 extends Util {
 		s.exit();
 	}
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client8.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder8.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	/*
 	 * @testName: trimExpTest
 	 * 
@@ -62,8 +52,7 @@ public class Client8 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupTrimData")
-	@Test
-	public void trimExpTest() throws Exception {
+		public void trimExpTest() throws Exception {
 		boolean pass = false;
 		final String expected = " David R. Vincent ";
 		final String expected2 = "David R. Vincent";
@@ -185,8 +174,7 @@ public class Client8 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupTrimData")
-	@Test
-	public void trimTrailingCharExpTest() throws Exception {
+		public void trimTrailingCharExpTest() throws Exception {
 		boolean pass = false;
 		final String expected = " David R. Vincent ";
 		final String expected2 = " David R. Vincent";

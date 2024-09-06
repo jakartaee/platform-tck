@@ -21,10 +21,10 @@ package ee.jakarta.tck.persistence.core.annotations.onexmanyuni;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
@@ -66,19 +66,13 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Customer1", pkgName + "RetailOrder2" };
-		return createDeploymentJar("jpa_core_annotations_onexmanyuni.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 
 		} catch (Exception e) {
 			logErr( "Exception:test failed ", e);
@@ -97,8 +91,7 @@ public class Client extends PMClientBase {
 	 * One-to-Many relationship.
 	 * 
 	 */
-	@Test
-	public void oneXmanyUniJoinColumn() throws Exception {
+		public void oneXmanyUniJoinColumn() throws Exception {
 
 		EntityManager em = getEntityManager();
 		EntityTransaction tx = getEntityTransaction();
@@ -154,7 +147,7 @@ public class Client extends PMClientBase {
 		return customer;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

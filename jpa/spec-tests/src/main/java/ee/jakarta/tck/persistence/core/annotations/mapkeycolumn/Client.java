@@ -30,10 +30,10 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import com.sun.ts.lib.util.TestUtil;
 
@@ -51,13 +51,6 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Department2", pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_annotations_mapkeycolumn.jar", pkgNameWithoutSuffix, classes);
-
-	}
 
 	private static Employee empRef[] = new Employee[10];
 
@@ -72,7 +65,7 @@ public class Client extends PMClientBase {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -99,8 +92,7 @@ public class Client extends PMClientBase {
 	 * Execute a query returning Employees objects.
 	 *
 	 */
-	@Test
-	public void annotationMapKeyColumnTest1() throws Exception {
+		public void annotationMapKeyColumnTest1() throws Exception {
 
 		boolean pass = false;
 		List e = null;
@@ -155,8 +147,7 @@ public class Client extends PMClientBase {
 	 *
 	 * Execute a query returning Employee IDs.
 	 */
-	@Test
-	public void annotationMapKeyColumnTest2() throws Exception {
+		public void annotationMapKeyColumnTest2() throws Exception {
 
 		boolean pass = false;
 		List e = null;
@@ -220,8 +211,7 @@ public class Client extends PMClientBase {
 	 *
 	 * Execute a query returning Employees objects.
 	 */
-	@Test
-	public void annotationMapKeyColumnTest3() throws Exception {
+		public void annotationMapKeyColumnTest3() throws Exception {
 		boolean pass = false;
 
 		List<Integer> expected = new ArrayList<Integer>();
@@ -287,8 +277,7 @@ public class Client extends PMClientBase {
 	 * insertable=false is used to specify the mapping for the fk column to a second
 	 * entity Execute a query returning Employees objects.
 	 */
-	@Test
-	public void mapKeyColumnInsertableFalseTest() throws Exception {
+		public void mapKeyColumnInsertableFalseTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -332,8 +321,7 @@ public class Client extends PMClientBase {
 	 * updatable=false is used to specify the mapping for the fk column to a second
 	 * entity Execute a query returning Employees objects.
 	 */
-	@Test
-	public void mapKeyColumnUpdatableFalseTest() throws Exception {
+		public void mapKeyColumnUpdatableFalseTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -387,8 +375,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void criteriaBuilderKeysValuesTest() throws Exception {
+		public void criteriaBuilderKeysValuesTest() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -577,7 +564,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

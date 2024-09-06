@@ -22,10 +22,10 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
@@ -44,20 +44,13 @@ public class Client1 extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Course", pkgName + "Department", pkgName + "Department2", pkgName + "Employee",
-				pkgName + "Employee2", pkgName + "Student" };
-		return createDeploymentJar("jpa_core_annotations_ordercolumn1.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	
+
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 			createStudentTestData();
 		} catch (Exception e) {
@@ -85,8 +78,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @test_Strategy: With basic entity requirements, persist/remove an entity.
 	 */
-	@Test
-	public void orderColumn() throws Exception {
+		public void orderColumn() throws Exception {
 		boolean pass = false;
 		final String expectedStudentName = "Joseph";
 		final int expectedListSize = 4;
@@ -261,7 +253,7 @@ public class Client1 extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

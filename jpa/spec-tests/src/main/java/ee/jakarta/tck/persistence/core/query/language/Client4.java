@@ -24,8 +24,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -35,14 +35,6 @@ import jakarta.persistence.Query;
 
 public class Client4 extends Util {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_language4.jar", pkgNameWithoutSuffix, classes);
-	}
 	public static void main(String[] args) {
 		Client4 theTests = new Client4();
 		Status s = theTests.run(args, System.out, System.err);
@@ -62,8 +54,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void queryTest7() throws Exception {
+		public void queryTest7() throws Exception {
 		boolean pass = false;
 		List p;
 		try {
@@ -102,8 +93,7 @@ public class Client4 extends Util {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void queryTest38() throws Exception {
+		public void queryTest38() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -165,8 +155,7 @@ public class Client4 extends Util {
 	 * two queries are equivalent regardless of the way the expression is composed.
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void queryTest40() throws Exception {
+		public void queryTest40() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -240,8 +229,7 @@ public class Client4 extends Util {
 	 * composed.
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void queryTest41() throws Exception {
+		public void queryTest41() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -321,8 +309,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void queryTest43() throws Exception {
+		public void queryTest43() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List p;
@@ -360,8 +347,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void queryTest44() throws Exception {
+		public void queryTest44() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List p;
@@ -400,8 +386,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void queryTest68() throws Exception {
+		public void queryTest68() throws Exception {
 		boolean pass = false;
 		final Double d1 = 33387.14D;
 		final Double d2 = 33387.15D;
@@ -439,8 +424,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void queryTest70() throws Exception {
+		public void queryTest70() throws Exception {
 		boolean pass = false;
 		final Long expectedValue = 3277L;
 		Long result;
@@ -477,8 +461,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void test_betweenDates() throws Exception {
+		public void test_betweenDates() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -525,8 +508,7 @@ public class Client4 extends Util {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void test_notBetweenDates() throws Exception {
+		public void test_notBetweenDates() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -568,8 +550,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void aggregateFunctionsWithNoValuesTest() throws Exception {
+		public void aggregateFunctionsWithNoValuesTest() throws Exception {
 		boolean pass = false;
 		Query q;
 
@@ -663,8 +644,7 @@ public class Client4 extends Util {
 	 * @test_Strategy: Select p from Product p where p.whouse = "WH5"
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void primaryKeyJoinColumnTest() throws Exception {
+		public void primaryKeyJoinColumnTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List<Product> actual;
@@ -701,8 +681,7 @@ public class Client4 extends Util {
 	 * @test_Strategy: test path.type()
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void typeTest() throws Exception {
+		public void typeTest() throws Exception {
 		boolean pass = false;
 		List<Integer> expected = new ArrayList<Integer>();
 		for (Product p : hardwareRef) {
@@ -744,8 +723,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void entityTypeLiteralTest() throws Exception {
+		public void entityTypeLiteralTest() throws Exception {
 		boolean pass = false;
 		List p;
 		try {
@@ -785,8 +763,7 @@ public class Client4 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void scalarExpressionsTest() throws Exception {
+		public void scalarExpressionsTest() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		List p;

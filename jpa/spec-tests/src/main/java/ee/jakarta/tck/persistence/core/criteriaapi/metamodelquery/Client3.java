@@ -23,8 +23,8 @@ import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -50,13 +50,6 @@ public class Client3 extends Util {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_metamodelquery3.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	/* Run test */
 	/*
@@ -71,8 +64,7 @@ public class Client3 extends Util {
 	 * results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest3() throws Exception {
+		public void queryTest3() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = true;
@@ -146,8 +138,7 @@ public class Client3 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest20() throws Exception {
+		public void queryTest20() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -200,8 +191,7 @@ public class Client3 extends Util {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest21() throws Exception {
+		public void queryTest21() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -262,8 +252,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest31() throws Exception {
+		public void queryTest31() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -312,8 +301,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void likeExpExpCharTest() throws Exception {
+		public void likeExpExpCharTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -362,8 +350,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void likeExpExpExpTest() throws Exception {
+		public void likeExpExpExpTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -412,8 +399,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void likeExpStringExpTest() throws Exception {
+		public void likeExpStringExpTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -460,8 +446,7 @@ public class Client3 extends Util {
 	 * collection_valued_association_field where the field is EMPTY.
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest45() throws Exception {
+		public void queryTest45() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -528,8 +513,7 @@ public class Client3 extends Util {
 	 * returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest49() throws Exception {
+		public void queryTest49() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -593,8 +577,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest50() throws Exception {
+		public void queryTest50() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -644,8 +627,7 @@ public class Client3 extends Util {
 	 * 
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest51() throws Exception {
+		public void queryTest51() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -690,8 +672,7 @@ public class Client3 extends Util {
 	 * results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest53() throws Exception {
+		public void queryTest53() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -755,8 +736,7 @@ public class Client3 extends Util {
 	 * results were accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void queryTest54() throws Exception {
+		public void queryTest54() throws Exception {
 		boolean pass = false;
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -802,8 +782,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void test_leftouterjoin_MxM() throws Exception {
+		public void test_leftouterjoin_MxM() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = true;
@@ -878,8 +857,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void test_upperStringExpression() throws Exception {
+		public void test_upperStringExpression() throws Exception {
 
 		boolean pass = false;
 		String expectedPKs[];
@@ -927,8 +905,7 @@ public class Client3 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void test_lowerStringExpression() throws Exception {
+		public void test_lowerStringExpression() throws Exception {
 
 		boolean pass = false;
 		String expectedPKs[];
@@ -974,8 +951,7 @@ public class Client3 extends Util {
 	 * name=fish.
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void test_innerjoin_MxM() throws Exception {
+		public void test_innerjoin_MxM() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -1024,8 +1000,7 @@ public class Client3 extends Util {
 	 * orders that live in NH.
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void test_fetchjoin_MxM() throws Exception {
+		public void test_fetchjoin_MxM() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -1075,8 +1050,7 @@ public class Client3 extends Util {
 	 * Select all customers with alias = fish
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void substringHavingExpressionTest() throws Exception {
+		public void substringHavingExpressionTest() throws Exception {
 		boolean pass = false;
 		Object result;
 		final Long expectedCount = Long.valueOf(2);
@@ -1127,8 +1101,7 @@ public class Client3 extends Util {
 	 * Select all customers with alias = fish
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void substringHavingExpressionPredicateArrayTest() throws Exception {
+		public void substringHavingExpressionPredicateArrayTest() throws Exception {
 		boolean pass = false;
 		Object result;
 		final Long expectedCount = Long.valueOf(2);

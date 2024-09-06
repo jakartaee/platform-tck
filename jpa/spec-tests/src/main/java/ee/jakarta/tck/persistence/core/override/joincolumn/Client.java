@@ -23,9 +23,9 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -141,8 +141,7 @@ public class Client extends PMClientBase {
 	 * relationships are specified in orm.xml rather than using annotations.
 	 * 
 	 */
-	@Test
-	public void testNoJoinColumnAnnotation() throws Exception {
+		public void testNoJoinColumnAnnotation() throws Exception {
 
 		TheatreCompany1 regal = createTheatreCompany(COMPANY_ID, COMPANY_NAME);
 		TheatreLocation1 knoxville = createTheatreLocation(LOCATION_ID, LOCATION_CODE);
@@ -190,8 +189,7 @@ public class Client extends PMClientBase {
 	 * rather than using annotations.
 	 * 
 	 */
-	@Test
-	public void testNoJoinTableAnnotation() throws Exception {
+		public void testNoJoinTableAnnotation() throws Exception {
 
 		Course mathCourse = createCourse(MATH_ID, MATH_COURSE);
 		Course chemCourse = createCourse(CHEM_ID, CHEM_COURSE);
@@ -247,8 +245,7 @@ public class Client extends PMClientBase {
 	 * above.
 	 * 
 	 */
-	@Test
-	public void testOverrideJoinColumns() throws Exception {
+		public void testOverrideJoinColumns() throws Exception {
 
 		Hardware equipment1 = new Hardware();
 		equipment1.setId(Hardware1_ID);
@@ -299,8 +296,7 @@ public class Client extends PMClientBase {
 	 * overriden in orm.xml.
 	 * 
 	 */
-	@Test
-	public void testOverrideJoinTable() throws Exception {
+		public void testOverrideJoinTable() throws Exception {
 
 		Customer1 customer1 = createCustomer(CUST1_ID, CUST1_NAME);
 		Customer1 customer2 = createCustomer(CUST2_ID, CUST2_NAME);
@@ -386,7 +382,7 @@ public class Client extends PMClientBase {
 		return customer;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

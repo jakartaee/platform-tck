@@ -23,8 +23,8 @@ import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -57,15 +57,6 @@ public class Client2 extends Util {
 		s.exit();
 	}
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_join.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	/*
 	 * @testName: joinStringTest
 	 * 
@@ -77,8 +68,7 @@ public class Client2 extends Util {
 	 * select c FROM Customer c JOIN c.orders o JOIN o.lineItems l where (l.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinStringTest() throws Exception {
+		public void joinStringTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = true;
@@ -176,8 +166,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinStringJoinTypeTest() throws Exception {
+		public void joinStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -225,8 +214,7 @@ public class Client2 extends Util {
 	 * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSingularAttributeTest() throws Exception {
+		public void joinSingularAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -276,8 +264,7 @@ public class Client2 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSingularAttributeJoinTypeTest() throws Exception {
+		public void joinSingularAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -327,8 +314,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionAttributeTest() throws Exception {
+		public void joinCollectionAttributeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -387,8 +373,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionAttributeJoinTypeTest() throws Exception {
+		public void joinCollectionAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -437,8 +422,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionStringTest() throws Exception {
+		public void joinCollectionStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -492,8 +476,7 @@ public class Client2 extends Util {
 	 * = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionStringJoinTypeTest() throws Exception {
+		public void joinCollectionStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -542,8 +525,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetAttributeTest() throws Exception {
+		public void joinSetAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -591,8 +573,7 @@ public class Client2 extends Util {
 	 * (l.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetAttributeJoinTypeTest() throws Exception {
+		public void joinSetAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -640,8 +621,7 @@ public class Client2 extends Util {
 	 * 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetStringTest() throws Exception {
+		public void joinSetStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -689,8 +669,7 @@ public class Client2 extends Util {
 	 * (l.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetStringJoinTypeTest() throws Exception {
+		public void joinSetStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -738,8 +717,7 @@ public class Client2 extends Util {
 	 * = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListAttributeTest() throws Exception {
+		public void joinListAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -794,8 +772,7 @@ public class Client2 extends Util {
 	 * (l.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListAttributeJoinTypeTest() throws Exception {
+		public void joinListAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -843,8 +820,7 @@ public class Client2 extends Util {
 	 * = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListStringTest() throws Exception {
+		public void joinListStringTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -900,8 +876,7 @@ public class Client2 extends Util {
 	 * (l.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListStringJoinTypeTest() throws Exception {
+		public void joinListStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -950,8 +925,7 @@ public class Client2 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void pluralJoinTest() throws Exception {
+		public void pluralJoinTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -1030,8 +1004,7 @@ public class Client2 extends Util {
 	 * results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void pluralJoinOnExpressionTest() throws Exception {
+		public void pluralJoinOnExpressionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -1088,8 +1061,7 @@ public class Client2 extends Util {
 	 * results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void pluralJoinOnPredicateArrayTest() throws Exception {
+		public void pluralJoinOnPredicateArrayTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -1145,8 +1117,7 @@ public class Client2 extends Util {
 	 * where (l.QUANTITY > 5))
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void collectionJoinOnExpressionTest() throws Exception {
+		public void collectionJoinOnExpressionTest() throws Exception {
 		boolean pass = false;
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
 
@@ -1192,8 +1163,7 @@ public class Client2 extends Util {
 	 * where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void collectionJoinOnPredicateArrayTest() throws Exception {
+		public void collectionJoinOnPredicateArrayTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -1240,8 +1210,7 @@ public class Client2 extends Util {
 	 * where (l.QUANTITY > 5)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void listJoinOnExpressionTest() throws Exception {
+		public void listJoinOnExpressionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -1288,8 +1257,7 @@ public class Client2 extends Util {
 	 * where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void listJoinOnPredicateArrayTest() throws Exception {
+		public void listJoinOnPredicateArrayTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -1336,8 +1304,7 @@ public class Client2 extends Util {
 	 * where (l.QUANTITY > 5)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void setJoinOnExpressionTest() throws Exception {
+		public void setJoinOnExpressionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -1384,8 +1351,7 @@ public class Client2 extends Util {
 	 * where ((l.QUANTITY > 5) AND (l.QUANTITY < 8))
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void setJoinOnPredicateArrayTest() throws Exception {
+		public void setJoinOnPredicateArrayTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();

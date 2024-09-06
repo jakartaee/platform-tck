@@ -25,10 +25,10 @@ package ee.jakarta.tck.persistence.core.entitytest.detach.manyXone;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityExistsException;
@@ -45,21 +45,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_detach_manyXone.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -86,8 +76,7 @@ public class Client extends PMClientBase {
 	 * successful by invoking find(). Invoke persist on a detached entity.
 	 *
 	 */
-	@Test
-	public void detachMX1Test1() throws Exception {
+		public void detachMX1Test1() throws Exception {
 		logTrace( "Begin detachMX1Test1");
 		boolean pass = false;
 		final A aRef = new A("3", "a3", 3);
@@ -159,7 +148,7 @@ public class Client extends PMClientBase {
 		getEntityTransaction().commit();
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

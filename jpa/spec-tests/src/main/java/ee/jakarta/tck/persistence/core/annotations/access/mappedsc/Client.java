@@ -21,10 +21,10 @@ import java.sql.Date;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -65,23 +65,13 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "AbstractPersonnel", pkgName + "Department", pkgName + "Employee",
-				pkgName + "FullTimeEmployee", pkgName + "PartTimeEmployee", pkgName + "Project" };
-		return createDeploymentJar("jpa_core_anno_access_mappedsc.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-	}
-
-
+	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
 			super.setup(args,p);
-			createDeployment();
+			
 
 			removeTestData();
 			createTestData();
@@ -106,8 +96,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: An entity may have a mapped superclass which provides
 	 * persistent entity state and mapping information
 	 */
-	@Test
-	public void test1() throws Exception {
+		public void test1() throws Exception {
 
 		logTrace( "Begin test1");
 		boolean pass = false;
@@ -140,8 +129,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: An entity may have a mapped superclass which provides
 	 * persistent entity state and mapping information but is not an entity itself.
 	 */
-	@Test
-	public void test2() throws Exception {
+		public void test2() throws Exception {
 
 		logTrace( "Begin test2");
 		boolean pass = false;
@@ -205,7 +193,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

@@ -21,10 +21,10 @@ import java.util.Arrays;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -36,12 +36,6 @@ public class Client extends PMClientBase {
 
 	private Byte[] smallByteArray = null;
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes" };
-		return createDeploymentJar("jpa_core_annotations_lob.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	public Client() {
 	}
@@ -56,7 +50,7 @@ public class Client extends PMClientBase {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -76,8 +70,7 @@ public class Client extends PMClientBase {
 	 * type: Byte[]
 	 *
 	 */
-	@Test
-	public void lobTest() throws Exception {
+		public void lobTest() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -204,7 +197,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

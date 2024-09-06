@@ -25,9 +25,9 @@ import java.sql.Date;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -92,8 +92,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: An entity may have a mapped superclass which provides
 	 * persistent entity state and mapping information
 	 */
-	@Test
-	public void test1() throws Exception {
+		public void test1() throws Exception {
 
 		logTrace( "Begin test1");
 		boolean pass = false;
@@ -124,8 +123,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: An entity may have a mapped superclass which provides
 	 * persistent entity state and mapping information
 	 */
-	@Test
-	public void test2() throws Exception {
+		public void test2() throws Exception {
 
 		logTrace( "Begin test2");
 		boolean pass = false;
@@ -195,7 +193,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

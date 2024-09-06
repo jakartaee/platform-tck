@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.override.util.CallBackCounts;
@@ -71,8 +71,7 @@ public class Client extends PMClientBase {
 	 * annotations.
 	 * 
 	 */
-	@Test
-	public void testNoCallBackListener() throws Exception {
+		public void testNoCallBackListener() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -168,7 +167,7 @@ public class Client extends PMClientBase {
 		return pass;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

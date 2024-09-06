@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -69,8 +69,7 @@ public class Client extends PMClientBase {
 	 * "name" is overriden in Orm.xml as "BOOK_NAME". The following test tests for
 	 * the same.
 	 */
-	@Test
-	public void testNoAttributeOverrideAnnotation() throws Exception {
+		public void testNoAttributeOverrideAnnotation() throws Exception {
 
 		LawBook book = new LawBook();
 		getEntityTransaction().begin();
@@ -97,7 +96,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

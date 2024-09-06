@@ -25,8 +25,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import jakarta.persistence.EntityManager;
@@ -35,16 +35,6 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 public class Client1 extends Util {
-
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_flushmode1.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	public Client1() {
 	}
 	public static void main(String[] args) {
@@ -70,8 +60,7 @@ public class Client1 extends Util {
 	 * updated name.*
 	 *
 	 */
-	@Test
-	public void flushModeTest1() throws Exception {
+		public void flushModeTest1() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;

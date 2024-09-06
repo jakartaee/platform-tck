@@ -21,9 +21,9 @@ package ee.jakarta.tck.persistence.core.override.table;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -61,8 +61,7 @@ public class Client extends PMClientBase {
 	 * annotation. The following test reads the entity and table names from the
 	 * orm.xml and persists the entity.
 	 */
-	@Test
-	public void testNoTableAnnotation() throws Exception {
+		public void testNoTableAnnotation() throws Exception {
 		NoTableAnnotation entity = new NoTableAnnotation();
 		entity.setId(ID);
 		try {
@@ -78,7 +77,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

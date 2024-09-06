@@ -24,10 +24,10 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -60,21 +60,13 @@ public class Client1 extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "A2", pkgName + "Address", pkgName + "Address2",
-				pkgName + "Customer", pkgName + "Customer2", pkgName + "Department", pkgName + "Employee",
-				pkgName + "Insurance", pkgName + "ZipCode", pkgName + "ZipCode2" };
-		return createDeploymentJar("jpa_core_annotations_orderby1.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 
 			removeTestData();
 			createTestData();
@@ -104,8 +96,7 @@ public class Client1 extends PMClientBase {
 	 * 
 	 * Retrieve the Collection using getter property accessor.
 	 */
-	@Test
-	public void orderByTest1() throws Exception {
+		public void orderByTest1() throws Exception {
 
 		logTrace( "Begin orderByTest1");
 		boolean pass1 = true;
@@ -185,8 +176,7 @@ public class Client1 extends PMClientBase {
 	 * 
 	 * Retrieve the Collection using getter property accessor.
 	 */
-	@Test
-	public void orderByTest2() throws Exception {
+		public void orderByTest2() throws Exception {
 
 		logTrace( "Begin orderByTest2");
 		boolean pass1 = true;
@@ -261,8 +251,7 @@ public class Client1 extends PMClientBase {
 	 * list is ordered.
 	 * 
 	 */
-	@Test
-	public void orderByTest3() throws Exception {
+		public void orderByTest3() throws Exception {
 		logTrace( "Begin orderByTest3");
 		boolean pass1 = true;
 		boolean pass2 = false;
@@ -339,8 +328,7 @@ public class Client1 extends PMClientBase {
 	 * sure the list is ordered .
 	 * 
 	 */
-	@Test
-	public void orderByTest4() throws Exception {
+		public void orderByTest4() throws Exception {
 		logTrace( "Begin orderByTest4");
 		boolean pass1 = true;
 		boolean pass2 = false;
@@ -451,7 +439,7 @@ public class Client1 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

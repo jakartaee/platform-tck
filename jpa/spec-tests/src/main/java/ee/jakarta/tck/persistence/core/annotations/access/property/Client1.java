@@ -20,24 +20,14 @@ package ee.jakarta.tck.persistence.core.annotations.access.property;
 import java.util.Arrays;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.core.types.common.Grade;
 
 public class Client1 extends Client {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = Client1.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
-				"ee.jakarta.tck.persistence.core.types.common.Grade" };
-		return createDeploymentJar("jpa_core_annotations_access_property1.jar", pkgNameWithoutSuffix, classes);
-
-	}
 
 	public Client1() {
 	}
@@ -48,7 +38,7 @@ public class Client1 extends Client {
 		try {
 
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -69,8 +59,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Character
 	 */
-	@Test
-	public void propertyTypeTest1() throws Exception {
+		public void propertyTypeTest1() throws Exception {
 
 		boolean pass = false;
 		final Character newChar = 'b';
@@ -121,8 +110,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Short
 	 */
-	@Test
-	public void propertyTypeTest2() throws Exception {
+		public void propertyTypeTest2() throws Exception {
 
 		boolean pass = false;
 		final Short newShort = 101;
@@ -172,8 +160,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Integer
 	 */
-	@Test
-	public void propertyTypeTest3() throws Exception {
+		public void propertyTypeTest3() throws Exception {
 
 		boolean pass = false;
 		final Integer newInt = 500;
@@ -222,8 +209,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Long
 	 */
-	@Test
-	public void propertyTypeTest4() throws Exception {
+		public void propertyTypeTest4() throws Exception {
 
 		boolean pass = false;
 		final Long newLong = 600L;
@@ -273,8 +259,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Double
 	 */
-	@Test
-	public void propertyTypeTest5() throws Exception {
+		public void propertyTypeTest5() throws Exception {
 
 		boolean pass = false;
 		final Double newDbl = 80D;
@@ -325,8 +310,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Float
 	 */
-	@Test
-	public void propertyTypeTest6() throws Exception {
+		public void propertyTypeTest6() throws Exception {
 
 		boolean pass = false;
 		final Float newFloat = 3.0F;
@@ -381,8 +365,7 @@ public class Client1 extends Client {
 	 *
 	 * Using the Enumerated annotation, with EnumType.ORDINAL.
 	 */
-	@Test
-	public void propertyTypeTest7() throws Exception {
+		public void propertyTypeTest7() throws Exception {
 
 		boolean pass = false;
 
@@ -443,8 +426,7 @@ public class Client1 extends Client {
 	 *
 	 * Temporal.TemporalType.DATE
 	 */
-	@Test
-	public void propertyTypeTest8() throws Exception {
+		public void propertyTypeTest8() throws Exception {
 
 		boolean pass = false;
 
@@ -494,8 +476,7 @@ public class Client1 extends Client {
 	 * type: Byte[]
 	 *
 	 */
-	@Test
-	public void propertyTypeTest9() throws Exception {
+		public void propertyTypeTest9() throws Exception {
 
 		boolean pass = false;
 		final Byte[] b = { 31, 32, 33, 63, 64, 65 };
@@ -563,8 +544,7 @@ public class Client1 extends Client {
 	 * type: Character[]
 	 *
 	 */
-	@Test
-	public void propertyTypeTest10() throws Exception {
+		public void propertyTypeTest10() throws Exception {
 
 		boolean pass = false;
 
@@ -620,8 +600,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: java.sql.Time
 	 */
-	@Test
-	public void propertyTypeTest11() throws Exception {
+		public void propertyTypeTest11() throws Exception {
 
 		boolean pass = false;
 		final java.sql.Time timeValue = getTimeData(18, 30, 15);
@@ -677,8 +656,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: java.sql.Timestamp
 	 */
-	@Test
-	public void propertyTypeTest12() throws Exception {
+		public void propertyTypeTest12() throws Exception {
 
 		boolean pass = false;
 		final java.sql.Timestamp tsValue = getTimestampData(2006, 02, 11);
@@ -734,8 +712,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Boolean
 	 */
-	@Test
-	public void propertyTypeTest13() throws Exception {
+		public void propertyTypeTest13() throws Exception {
 
 		boolean pass = false;
 		final Boolean newBoolean = false;

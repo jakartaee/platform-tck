@@ -22,10 +22,10 @@ import java.math.BigInteger;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -40,25 +40,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "FieldBigDecimalId", pkgName + "FieldBigIntegerId", pkgName + "FieldIntId",
-				pkgName + "FieldIntegerId", pkgName + "FieldSQLDateId", pkgName + "FieldStringId",
-				pkgName + "FieldUtilDateId", pkgName + "PropertyBigDecimalId", pkgName + "PropertyBigIntegerId",
-				pkgName + "PropertyIntId", pkgName + "PropertyIntegerId", pkgName + "PropertySQLDateId",
-				pkgName + "PropertyStringId", pkgName + "PropertyUtilDateId" };
-		return createDeploymentJar("jpa_core_annotations_id.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			throw new Exception("Setup failed:", e);
@@ -74,8 +60,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 */
 
-	@Test
-	public void FieldIntegerIdTest() throws Exception {
+		public void FieldIntegerIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -121,8 +106,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void FieldIntIdTest() throws Exception {
+		public void FieldIntIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -168,8 +152,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void FieldBigIntegerIdTest() throws Exception {
+		public void FieldBigIntegerIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -215,8 +198,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void FieldBigDecimalIdTest() throws Exception {
+		public void FieldBigDecimalIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -262,8 +244,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void FieldStringIdTest() throws Exception {
+		public void FieldStringIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -309,8 +290,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void FieldSQLDateIdTest() throws Exception {
+		public void FieldSQLDateIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -356,8 +336,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void FieldUtilDateIdTest() throws Exception {
+		public void FieldUtilDateIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -403,8 +382,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void PropertyIntegerIdTest() throws Exception {
+		public void PropertyIntegerIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -450,8 +428,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void PropertyIntIdTest() throws Exception {
+		public void PropertyIntIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -497,8 +474,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void PropertyBigIntegerIdTest() throws Exception {
+		public void PropertyBigIntegerIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -544,8 +520,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void PropertyBigDecimalIdTest() throws Exception {
+		public void PropertyBigDecimalIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -591,8 +566,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void PropertyStringIdTest() throws Exception {
+		public void PropertyStringIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -638,8 +612,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void PropertySQLDateIdTest() throws Exception {
+		public void PropertySQLDateIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -685,8 +658,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void PropertyUtilDateIdTest() throws Exception {
+		public void PropertyUtilDateIdTest() throws Exception {
 
 		boolean pass = false;
 
@@ -725,7 +697,7 @@ public class Client extends PMClientBase {
 			throw new Exception("PropertyUtilDateIdTest failed");
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

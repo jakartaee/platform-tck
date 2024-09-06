@@ -23,10 +23,10 @@ import java.util.Properties;
 import java.util.Set;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
@@ -45,20 +45,13 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Course", pkgName + "Semester", pkgName + "Student" };
-		return createDeploymentJar("jpa_core_annotations_mapkeyjoincolumn.jar", pkgNameWithoutSuffix, classes);
-	}
 
-	
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 
 		} catch (Exception e) {
@@ -86,8 +79,7 @@ public class Client extends PMClientBase {
 	 *
 	 * @test_Strategy: With basic entity requirements, persist/remove an entity.
 	 */
-	@Test
-	public void mapKeyJoinColumn() throws Exception {
+		public void mapKeyJoinColumn() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -270,7 +262,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");

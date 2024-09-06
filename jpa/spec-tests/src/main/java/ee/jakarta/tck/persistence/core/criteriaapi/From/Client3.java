@@ -21,8 +21,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -47,14 +47,6 @@ public class Client3 extends Util {
 	}
 
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_from3.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	/*
 	 * @testName: joinCollectionAttributeTest
 	 * 
@@ -66,8 +58,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionAttributeTest() throws Exception {
+		public void joinCollectionAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -113,8 +104,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionAttributeJoinTypeTest() throws Exception {
+		public void joinCollectionAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -160,8 +150,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionStringTest() throws Exception {
+		public void joinCollectionStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -207,8 +196,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionStringJoinTypeTest() throws Exception {
+		public void joinCollectionStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -254,8 +242,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetAttributeTest() throws Exception {
+		public void joinSetAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -301,8 +288,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.orders2 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetAttributeJoinTypeTest() throws Exception {
+		public void joinSetAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -348,8 +334,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetStringTest() throws Exception {
+		public void joinSetStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -395,8 +380,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetStringJoinTypeTest() throws Exception {
+		public void joinSetStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -442,8 +426,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListAttributeTest() throws Exception {
+		public void joinListAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -489,8 +472,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListAttributeJoinTypeTest() throws Exception {
+		public void joinListAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -536,8 +518,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListStringTest() throws Exception {
+		public void joinListStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -583,8 +564,7 @@ public class Client3 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListStringJoinTypeTest() throws Exception {
+		public void joinListStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 

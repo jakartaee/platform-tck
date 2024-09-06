@@ -18,8 +18,8 @@ package ee.jakarta.tck.persistence.core.criteriaapi.parameter;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -30,11 +30,7 @@ public abstract class Client extends PMClientBase {
 	Employee[] empRef = new Employee[5];
 
 	final java.sql.Date d1 = getSQLDate("2000-02-14");
-
-
-	abstract public JavaArchive createDeployment() throws Exception;
-
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "calling super.cleanup");

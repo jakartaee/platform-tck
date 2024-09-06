@@ -21,8 +21,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -48,13 +48,6 @@ public class Client6 extends Util {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client6.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_metamodelquery6.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	  /*
 	   * @testName: queryTest55
 	   * 
@@ -66,8 +59,7 @@ public class Client6 extends Util {
 	   *
 	   */
 	  @SetupMethod(name = "setupPhoneData")
-	  @Test
-	  public void queryTest55() throws Exception {
+	  	  public void queryTest55() throws Exception {
 	    boolean pass = false;
 	    String expectedPKs[];
 

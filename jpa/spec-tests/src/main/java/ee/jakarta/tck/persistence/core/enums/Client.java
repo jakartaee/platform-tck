@@ -26,10 +26,10 @@ import java.util.Collection;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.AccessType;
@@ -74,14 +74,7 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_core_enums.jar", pkgNameWithoutSuffix, classes);
-
-	}
 
 	
 	public void setup(String[] args, Properties p) throws Exception {
@@ -89,7 +82,7 @@ public class Client extends PMClientBase {
 		try {
 
 			super.setup(args,p);
-			createDeployment();
+			
 
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -105,8 +98,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void accessTypeValueOfTest() throws Exception {
+		public void accessTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -153,8 +145,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void accessTypeValuesTest() throws Exception {
+		public void accessTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin accessTypeValuesTest");
@@ -205,8 +196,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void cacheRetrieveModeValueOfTest() throws Exception {
+		public void cacheRetrieveModeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin cacheRetrieveModeValueOfTest");
@@ -255,8 +245,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void cacheRetrieveModeValuesTest() throws Exception {
+		public void cacheRetrieveModeValuesTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin cacheRetrieveModeValuesTest");
@@ -307,8 +296,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void cacheStoreModeValueOfTest() throws Exception {
+		public void cacheStoreModeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin cacheStoreModeValueOfTest");
@@ -361,8 +349,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void cacheStoreModeValuesTest() throws Exception {
+		public void cacheStoreModeValuesTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin cacheStoreModeValuesTest");
@@ -419,8 +406,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void cascadeTypeValueOfTest() throws Exception {
+		public void cascadeTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin cascadeTypeValueOfTest");
@@ -488,8 +474,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void cascadeTypeValuesTest() throws Exception {
+		public void cascadeTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin cascadeTypeValuesTest");
@@ -564,8 +549,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void discriminatorTypeValueOfTest() throws Exception {
+		public void discriminatorTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin discriminatorTypeValueOfTest");
@@ -619,8 +603,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void discriminatorTypeValuesTest() throws Exception {
+		public void discriminatorTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin discriminatorTypeValuesTest");
@@ -678,8 +661,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void enumTypeValueOfTest() throws Exception {
+		public void enumTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin enumTypeValueOfTest");
@@ -727,8 +709,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void enumTypeValuesTest() throws Exception {
+		public void enumTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin enumTypeValuesTest");
@@ -779,8 +760,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void fetchTypeValueOfTest() throws Exception {
+		public void fetchTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin fetchTypeValueOfTest");
@@ -828,8 +808,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void fetchTypeValuesTest() throws Exception {
+		public void fetchTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin fetchTypeValuesTest");
@@ -881,8 +860,7 @@ public class Client extends PMClientBase {
 	 * using valueOf
 	 *
 	 */
-	@Test
-	public void flushModeTypeValueOfTest() throws Exception {
+		public void flushModeTypeValueOfTest() throws Exception {
 		boolean pass = true;
 		try {
 
@@ -928,8 +906,7 @@ public class Client extends PMClientBase {
 	 * try valueOf for the returned values
 	 *
 	 */
-	@Test
-	public void flushModeTypeValuesTest() throws Exception {
+		public void flushModeTypeValuesTest() throws Exception {
 		boolean pass = true;
 		int count = 0;
 		try {
@@ -977,8 +954,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Set and Get the various flushModes of the EntityManager
 	 */
-	@Test
-	public void setgetFlushModeEntityManagerTest() throws Exception {
+		public void setgetFlushModeEntityManagerTest() throws Exception {
 		boolean pass = true;
 		try {
 			EntityTransaction t = getEntityTransaction();
@@ -1035,8 +1011,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Set and Get the various flushModes of a Query
 	 */
-	@Test
-	public void setgetFlushModeTest() throws Exception {
+		public void setgetFlushModeTest() throws Exception {
 		boolean pass = true;
 		try {
 			EntityManager em = getEntityManager();
@@ -1087,8 +1062,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Set and Get the various flushModes of a TypedQuery
 	 */
-	@Test
-	public void setgetFlushModeTQTest() throws Exception {
+		public void setgetFlushModeTQTest() throws Exception {
 		boolean pass = true;
 		try {
 			EntityManager em = getEntityManager();
@@ -1138,8 +1112,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void generationTypeValueOfTest() throws Exception {
+		public void generationTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1202,8 +1175,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void generationTypeValuesTest() throws Exception {
+		public void generationTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1271,8 +1243,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void inheritanceTypeValueOfTest() throws Exception {
+		public void inheritanceTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1327,8 +1298,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void inheritanceTypeValuesTest() throws Exception {
+		public void inheritanceTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1384,8 +1354,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void lockModeTypeValueOfTest() throws Exception {
+		public void lockModeTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1461,8 +1430,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Test each LockModeType value
 	 *
 	 */
-	@Test
-	public void lockModeTypeValuesTest() throws Exception {
+		public void lockModeTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1549,8 +1517,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void persistenceContextTypeValueOfTest() throws Exception {
+		public void persistenceContextTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1599,8 +1566,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void persistenceContextTypeValuesTest() throws Exception {
+		public void persistenceContextTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1650,8 +1616,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void pessimisticLockScopeValueOfTest() throws Exception {
+		public void pessimisticLockScopeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1700,8 +1665,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void pessimisticLockScopeValuesTest() throws Exception {
+		public void pessimisticLockScopeValuesTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1752,8 +1716,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void sharedCacheModeValueOfTest() throws Exception {
+		public void sharedCacheModeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1818,8 +1781,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void sharedCacheModeValuesTest() throws Exception {
+		public void sharedCacheModeValuesTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1888,8 +1850,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void validationModeValueOfTest() throws Exception {
+		public void validationModeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1941,8 +1902,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void validationModeValuesTest() throws Exception {
+		public void validationModeValuesTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -1999,8 +1959,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void temporalTypeValuesTest() throws Exception {
+		public void temporalTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<TemporalType> tt = Arrays.asList(TemporalType.values());
@@ -2051,8 +2010,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void temporalTypeValueOfTest() throws Exception {
+		public void temporalTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -2105,8 +2063,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void joinTypeValuesTest() throws Exception {
+		public void joinTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<JoinType> jt = Arrays.asList(JoinType.values());
@@ -2156,8 +2113,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void joinTypeValueOfTest() throws Exception {
+		public void joinTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -2210,8 +2166,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void persistentAttributeTypeValuesTest() throws Exception {
+		public void persistentAttributeTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<PersistentAttributeType> pat = Arrays.asList(PersistentAttributeType.values());
@@ -2286,8 +2241,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void persistentAttributeTypeValueOfTest() throws Exception {
+		public void persistentAttributeTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -2366,8 +2320,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void bindableTypeValuesTest() throws Exception {
+		public void bindableTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<BindableType> bt = Arrays.asList(BindableType.values());
@@ -2418,8 +2371,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void bindableTypeValueOfTest() throws Exception {
+		public void bindableTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -2473,8 +2425,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void collectionTypeValuesTest() throws Exception {
+		public void collectionTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<CollectionType> ct = Arrays.asList(CollectionType.values());
@@ -2531,8 +2482,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void collectionTypeValueOfTest() throws Exception {
+		public void collectionTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -2590,8 +2540,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void persistenceTypeValuesTest() throws Exception {
+		public void persistenceTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<PersistenceType> pt = Arrays.asList(PersistenceType.values());
@@ -2647,8 +2596,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void persistenceTypeValueOfTest() throws Exception {
+		public void persistenceTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -2707,8 +2655,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void loadStateValuesTest() throws Exception {
+		public void loadStateValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<LoadState> ls = Arrays.asList(LoadState.values());
@@ -2759,8 +2706,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void loadStateValueOfTest() throws Exception {
+		public void loadStateValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -2812,8 +2758,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void persistenceUnitTransactionTypeValuesTest() throws Exception {
+		public void persistenceUnitTransactionTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<PersistenceUnitTransactionType> putt = Arrays.asList(PersistenceUnitTransactionType.values());
@@ -2858,8 +2803,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void persistenceUnitTransactionTypeValueOfTest() throws Exception {
+		public void persistenceUnitTransactionTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -2909,8 +2853,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void parameterModeValuesTest() throws Exception {
+		public void parameterModeValuesTest() throws Exception {
 		boolean pass = true;
 
 		Collection<ParameterMode> cpm = Arrays.asList(ParameterMode.values());
@@ -2967,8 +2910,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void parameterModeValueOfTest() throws Exception {
+		public void parameterModeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -3025,8 +2967,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void synchronizationTypeValueOfTest() throws Exception {
+		public void synchronizationTypeValueOfTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -3075,8 +3016,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void synchronizationTypeValuesTest() throws Exception {
+		public void synchronizationTypeValuesTest() throws Exception {
 		boolean pass = true;
 
 		try {
@@ -3118,7 +3058,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

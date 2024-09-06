@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import jakarta.persistence.Parameter;
 import jakarta.persistence.ParameterMode;
@@ -194,8 +194,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void setParameterIntCalendarTemporalTypeTest() throws Exception {
+		public void setParameterIntCalendarTemporalTypeTest() throws Exception {
 		boolean pass2 = false;
 		boolean pass4 = false;
 		try {
@@ -277,8 +276,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
+		public void setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
@@ -329,8 +327,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void setParameterParameterCalendarTemporalTypeTest() throws Exception {
+		public void setParameterParameterCalendarTemporalTypeTest() throws Exception {
 		boolean pass2 = false;
 		boolean pass3 = false;
 		boolean pass5 = false;
@@ -428,8 +425,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
+		public void setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {

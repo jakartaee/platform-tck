@@ -25,10 +25,10 @@ package ee.jakarta.tck.persistence.core.entitytest.remove.oneXone;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -44,21 +44,11 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_remove_oneXone.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
-			createDeployment();
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -83,8 +73,7 @@ public class Client extends PMClientBase {
 	 * If X is a new entity, it is ignored by the remove operation. Invoke remove on
 	 * a new entity.
 	 */
-	@Test
-	public void remove1X1Test1() throws Exception {
+		public void remove1X1Test1() throws Exception {
 		logTrace( "Begin remove1X1Test1");
 		boolean pass = false;
 		final A a1 = new A("1", "a1", 1);
@@ -132,8 +121,7 @@ public class Client extends PMClientBase {
 	 * transition to the removed state. Invoke remove on a managed entity.
 	 *
 	 */
-	@Test
-	public void remove1X1Test2() throws Exception {
+		public void remove1X1Test2() throws Exception {
 		logTrace( "Begin remove1X1Test2");
 		boolean pass = true;
 		final A a1 = new A("2", "a2", 2);
@@ -193,8 +181,7 @@ public class Client extends PMClientBase {
 	 * and ensure the remove operation is cascaded.
 	 *
 	 */
-	@Test
-	public void remove1X1Test3() throws Exception {
+		public void remove1X1Test3() throws Exception {
 		logTrace( "Begin remove1X1Test3");
 		boolean pass = false;
 		boolean status = false;
@@ -251,8 +238,7 @@ public class Client extends PMClientBase {
 	 * will be ignored. Invoke remove on a removed entity.
 	 *
 	 */
-	@Test
-	public void remove1X1Test4() throws Exception {
+		public void remove1X1Test4() throws Exception {
 		boolean pass = false;
 		boolean status = false;
 		final A a1 = new A("4", "a4", 4);
@@ -310,8 +296,7 @@ public class Client extends PMClientBase {
 	 * transaction commit.
 	 *
 	 */
-	@Test
-	public void remove1X1Test5() throws Exception {
+		public void remove1X1Test5() throws Exception {
 		logTrace( "Begin remove1X1Test5");
 		boolean pass = false;
 		boolean status = false;
@@ -376,8 +361,7 @@ public class Client extends PMClientBase {
 	 * If X is a removed entity, it is removed from the database.
 	 *
 	 */
-	@Test
-	public void remove1X1Test6() throws Exception {
+		public void remove1X1Test6() throws Exception {
 		logTrace( "Begin remove1X1Test6");
 		boolean pass = false;
 		boolean status = false;
@@ -429,8 +413,7 @@ public class Client extends PMClientBase {
 	 * If the remove method has been called on the entity.
 	 *
 	 */
-	@Test
-	public void remove1X1Test7() throws Exception {
+		public void remove1X1Test7() throws Exception {
 		logTrace( "Begin remove1X1Test7");
 		boolean pass = false;
 		boolean status = false;
@@ -487,8 +470,7 @@ public class Client extends PMClientBase {
 	 * If the remove operation has been cascaded to it.
 	 *
 	 */
-	@Test
-	public void remove1X1Test8() throws Exception {
+		public void remove1X1Test8() throws Exception {
 		logTrace( "Begin remove1X1Test8");
 		boolean pass = false;
 		boolean status = false;
@@ -547,8 +529,7 @@ public class Client extends PMClientBase {
 	 * annotation member value.
 	 *
 	 */
-	@Test
-	public void remove1X1Test9() throws Exception {
+		public void remove1X1Test9() throws Exception {
 		logTrace( "Begin remove1X1Test9");
 		boolean pass = false;
 		boolean status = false;
@@ -617,7 +598,7 @@ public class Client extends PMClientBase {
 		return getEntityManager().contains(o);
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

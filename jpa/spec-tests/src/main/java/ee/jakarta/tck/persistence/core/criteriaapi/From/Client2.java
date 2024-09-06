@@ -21,8 +21,8 @@ import java.util.List;
 
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -47,15 +47,6 @@ public class Client2 extends Util {
 		s.exit();
 	}
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_from2.jar", pkgNameWithoutSuffix, classes);
-	}
-
 	/*
 	 * @testName: joinStringTest
 	 * 
@@ -67,8 +58,7 @@ public class Client2 extends Util {
 	 * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinStringTest() throws Exception {
+		public void joinStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -116,8 +106,7 @@ public class Client2 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinStringJoinTypeTest() throws Exception {
+		public void joinStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -165,8 +154,7 @@ public class Client2 extends Util {
 	 * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinSingularAttributeTest() throws Exception {
+		public void joinSingularAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -214,8 +202,7 @@ public class Client2 extends Util {
 	 * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinSingularAttributeJoinTypeTest() throws Exception {
+		public void joinSingularAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -260,8 +247,7 @@ public class Client2 extends Util {
 	 * @test_Strategy:
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void fromGetCorrelationParentTest() throws Exception {
+		public void fromGetCorrelationParentTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
