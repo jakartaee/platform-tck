@@ -16,11 +16,14 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
+import java.lang.System.Logger;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
@@ -31,121 +34,142 @@ import tck.arquillian.protocol.common.TargetVehicle;
 public class UserGetStatusClientServletTest extends com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient {
     static final String VEHICLE_ARCHIVE = "getstatus_servlet_vehicle";
 
-        /**
-        EE10 Deployment Descriptors:
-        getstatus_ejb_vehicle: 
-        getstatus_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-        getstatus_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-        getstatus_jsp_vehicle: 
-        getstatus_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-        getstatus_servlet_vehicle: 
-        getstatus_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
+    private static String packagePath = UserGetStatusClientServletTest.class.getPackageName().replace(".", "/");
 
-        Found Descriptors:
-        War:
+    private static final Logger logger = System.getLogger(UserGetStatusClientServletTest.class.getName());
 
-        /com/sun/ts/tests/jta/ee/usertransaction/getstatus/servlet_vehicle_web.xml
-        /com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml
-        Ear:
+    @BeforeEach
+    void logStartTest(TestInfo testInfo) {
+        logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
+    }
+  
+    @AfterEach
+    void logFinishTest(TestInfo testInfo) {
+        logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
+    }
 
-        */
-        @TargetsContainer("tck-javatest")
-        @OverProtocol("javatest")
-        @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-        // War
-            // the war with the correct archive name
-            WebArchive getstatus_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "getstatus_servlet_vehicle_web.war");
-            // The class files
-            getstatus_servlet_vehicle_web.addClasses(
-            com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            com.sun.ts.tests.jta.ee.common.Transact.class,
-            com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-            com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-            com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
-            com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-            com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-            com.sun.ts.tests.jta.ee.common.InitFailedException.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
-            );
-            // The web.xml descriptor
-            URL warResURL = UserGetStatusClient.class.getResource("servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              getstatus_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
-            }
-            // The sun-web.xml descriptor
-            warResURL = UserGetStatusClient.class.getResource("/getstatus_servlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              getstatus_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
-            // Web content
-           archiveProcessor.processWebArchive(getstatus_servlet_vehicle_web, UserGetStatusClient.class, warResURL);
+    @AfterEach
+    public void cleanup() {
+      logger.log(Logger.Level.INFO, "cleanup ok");
+    }
 
-        // Ear
-            EnterpriseArchive getstatus_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "getstatus_servlet_vehicle.ear");
+    /**
+    EE10 Deployment Descriptors:
+    getstatus_ejb_vehicle: 
+    getstatus_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
+    getstatus_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
+    getstatus_jsp_vehicle: 
+    getstatus_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
+    getstatus_servlet_vehicle: 
+    getstatus_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
 
-            // Any libraries added to the ear
+    Found Descriptors:
+    War:
 
-            // The component jars built by the package target
-            getstatus_servlet_vehicle_ear.addAsModule(getstatus_servlet_vehicle_web);
+    /com/sun/ts/tests/jta/ee/usertransaction/getstatus/servlet_vehicle_web.xml
+    /com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml
+    Ear:
+
+    */
+    @TargetsContainer("tck-javatest")
+    @OverProtocol("javatest")
+    @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    // War
+        // the war with the correct archive name
+        WebArchive getstatus_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "getstatus_servlet_vehicle_web.war");
+        // The class files
+        getstatus_servlet_vehicle_web.addClasses(
+        com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient.class,
+        com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.tests.jta.ee.common.Transact.class,
+        com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+        com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+        com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
+        com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+        com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+        com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.ServiceEETest.class,
+        com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.tests.common.vehicle.VehicleClient.class,
+        UserGetStatusClientServletTest.class
+        );
+        // The web.xml descriptor
+        URL warResURL = UserGetStatusClientServletTest.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml");
+        if(warResURL != null) {
+            getstatus_servlet_vehicle_web.setWebXML(warResURL);
+        }
+        // The sun-web.xml descriptor
+        warResURL = UserGetStatusClientServletTest.class.getClassLoader().getResource(packagePath+"/getstatus_servlet_vehicle_web.war.sun-web.xml");
+        if(warResURL != null) {
+            getstatus_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
+        }
+        // Web content
+        archiveProcessor.processWebArchive(getstatus_servlet_vehicle_web, UserGetStatusClientServletTest.class, warResURL);
+
+    // Ear
+        EnterpriseArchive getstatus_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "getstatus_servlet_vehicle.ear");
+
+        // Any libraries added to the ear
+
+        // The component jars built by the package target
+        getstatus_servlet_vehicle_ear.addAsModule(getstatus_servlet_vehicle_web);
 
 
 
-            // // The application.xml descriptor
-            // URL earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/");
-            // if(earResURL != null) {
-            //   getstatus_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-            // }
-            // // The sun-application.xml descriptor
-            // earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/.ear.sun-application.xml");
-            // if(earResURL != null) {
-            //   getstatus_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            // }
-            // archiveProcessor.processEarArchive(getstatus_servlet_vehicle_ear, UserGetStatusClient.class, earResURL);
+        // // The application.xml descriptor
+        // URL earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/");
+        // if(earResURL != null) {
+        //   getstatus_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
+        // }
+        // // The sun-application.xml descriptor
+        // earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/.ear.sun-application.xml");
+        // if(earResURL != null) {
+        //   getstatus_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+        // }
+        // archiveProcessor.processEarArchive(getstatus_servlet_vehicle_ear, UserGetStatusClient.class, earResURL);
+    
         return getstatus_servlet_vehicle_ear;
-        }
+    }
 
-        @Test
-        @Override
-        @TargetVehicle("servlet")
-        public void testUserGetStatus001() throws java.lang.Exception {
-            super.testUserGetStatus001();
-        }
+    @Test
+    @Override
+    @TargetVehicle("servlet")
+    public void testUserGetStatus001() throws java.lang.Exception {
+        super.testUserGetStatus001();
+    }
 
-        @Test
-        @Override
-        @TargetVehicle("servlet")
-        public void testUserGetStatus002() throws java.lang.Exception {
-            super.testUserGetStatus002();
-        }
+    @Test
+    @Override
+    @TargetVehicle("servlet")
+    public void testUserGetStatus002() throws java.lang.Exception {
+        super.testUserGetStatus002();
+    }
 
-        @Test
-        @Override
-        @TargetVehicle("servlet")
-        public void testUserGetStatus003() throws java.lang.Exception {
-            super.testUserGetStatus003();
-        }
+    @Test
+    @Override
+    @TargetVehicle("servlet")
+    public void testUserGetStatus003() throws java.lang.Exception {
+        super.testUserGetStatus003();
+    }
 
-        @Test
-        @Override
-        @TargetVehicle("servlet")
-        public void testUserGetStatus004() throws java.lang.Exception {
-            super.testUserGetStatus004();
-        }
+    @Test
+    @Override
+    @TargetVehicle("servlet")
+    public void testUserGetStatus004() throws java.lang.Exception {
+        super.testUserGetStatus004();
+    }
 
-        @Test
-        @Override
-        @TargetVehicle("servlet")
-        public void testUserGetStatus005() throws java.lang.Exception {
-            super.testUserGetStatus005();
-        }
+    @Test
+    @Override
+    @TargetVehicle("servlet")
+    public void testUserGetStatus005() throws java.lang.Exception {
+        super.testUserGetStatus005();
+    }
 
 
 }

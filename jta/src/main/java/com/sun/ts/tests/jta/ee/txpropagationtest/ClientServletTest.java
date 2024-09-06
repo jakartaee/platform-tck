@@ -16,11 +16,14 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
+import java.lang.System.Logger;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
@@ -31,6 +34,23 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
     static final String VEHICLE_ARCHIVE = "jta_servlet_vehicle";
 
     private static String packagePath = ClientServletTest.class.getPackageName().replace(".", "/");
+
+    private static final Logger logger = System.getLogger(ClientServletTest.class.getName());
+
+    @BeforeEach
+    void logStartTest(TestInfo testInfo) {
+        logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
+    }
+  
+    @AfterEach
+    void logFinishTest(TestInfo testInfo) {
+        logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
+    }
+
+    @AfterEach
+    public void cleanup() {
+      logger.log(Logger.Level.INFO, "cleanup ok");
+    }
 
     /**
     EE10 Deployment Descriptors:

@@ -16,10 +16,14 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
+import java.lang.System.Logger;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -32,6 +36,22 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
 
     private static String packagePath = ClientJspTest.class.getPackageName().replace(".", "/");
 
+    private static final Logger logger = System.getLogger(ClientEjbTest.class.getName());
+
+    @BeforeEach
+    void logStartTest(TestInfo testInfo) {
+        logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
+    }
+  
+    @AfterEach
+    void logFinishTest(TestInfo testInfo) {
+        logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
+    }
+
+    @AfterEach
+    public void cleanup() {
+      logger.log(Logger.Level.INFO, "cleanup ok");
+    }
 
     /**
     EE10 Deployment Descriptors:
@@ -78,6 +98,7 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
         com.sun.ts.tests.common.vehicle.VehicleClient.class
         );
         // The application-client.xml descriptor
+        //TODO : replace display-name as jta_ejb_vehicle_client
         URL resURL = ClientEjbTest.class.getResource("/vehicle/ejb/ejb_vehicle_client.xml");
 
         if(resURL != null) {

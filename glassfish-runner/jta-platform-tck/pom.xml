@@ -32,6 +32,9 @@
         <arquillian.junit>1.9.1.Final</arquillian.junit>
         <connectionpoolid>${derby.poolName}</connectionpoolid>
         <datasourceclassname>${derby.dataSource}</datasourceclassname>
+        <db.delimiter>;</db.delimiter>
+        <db1>db1</db1>
+        <db2>db1OnlyUsedIfDriverManagerIsYes</db2>
         <derby.classes>${derby.home}/lib/derbyclient.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar</derby.classes>
         <derby.classpath>../../lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar</derby.classpath>
         <derby.dataSource>org.apache.derby.jdbc.ClientDataSource</derby.dataSource>
@@ -49,23 +52,39 @@
         <derby.url>jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true</derby.url>
         <derby.user>cts1</derby.user>
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
+        <ftable>ctstable2</ftable>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
         <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version>
+        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <!-- Use JDK21 to run with GF 8.0.0-M5 -->
         <!-- <glassfish.container.version>8.0.0-M5</glassfish.container.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
-        <jdbc.maxpoolsize>30</jdbc.maxpoolsize>
-        <jdbc.steadypoolsize>5</jdbc.steadypoolsize>
+        <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
+        <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
+        <jdbc.db>derby</jdbc.db>
+        <jdbc.driver>org.apache.derby.jdbc.ClientDriver</jdbc.driver>
+        <jdbc.driver.classes>${javadb.lib}/derbyclient.jar:${javadb.lib}/derbyshared.jar:${javadb.lib}/derbytools.jar</jdbc.driver.classes>
+        <jdbc.maxpoolsize>64</jdbc.maxpoolsize>
+        <jdbc.password>cts1</jdbc.password>
+        <jdbc.steadypoolsize>32</jdbc.steadypoolsize>
+        <jdbc.url>jdbc:derby://localhost:1527/derbyDB;create=true</jdbc.url>
+        <jdbc.user>cts1</jdbc.user>
         <jndiName>jdbc/DB1</jndiName>
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
+        <password1>cts1</password1>
+        <password2>cts1</password2>
         <pathsep>:</pathsep>
         <pool.properties>${derby.properties}</pool.properties>
         <poolName>${derby.poolName}</poolName>
+        <ptable>ctstable1</ptable>
         <restype>javax.sql.DataSource</restype>
+        <sql.directory>./sql</sql.directory>
         <tck.artifactId>jta-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>/jakartaeetck</ts.home>
+        <user1>cts1</user1>
+        <user2>cts1</user2>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
         <version.jakarta.tck.arquillian>1.0.0-M13</version.jakarta.tck.arquillian>
     </properties>
@@ -526,19 +545,110 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <executable>${exec.asadmin}</executable>
                             <arguments>
                                 <argument>create-jdbc-connection-pool</argument>
-                                <argument>--datasourceClassname=org.apache.derby.jdbc.ClientDataSource</argument>
-                                <argument>--resType=javax.sql.DataSource</argument>
+                                <argument>--restype</argument>
+                                <argument>${restype}</argument>
+                                <argument>--datasourceclassname</argument>
+                                <argument>${datasourceclassname}</argument>
                                 <argument>--property</argument>
                                 <argument>DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1</argument>
-                                <argument>cts-derby-pool</argument>
+                                <argument>--steadypoolsize</argument>
+                                <argument>${jdbc.steadypoolsize}</argument>
+                                <argument>--maxpoolsize</argument>
+                                <argument>${jdbc.maxpoolsize}</argument>
+                                <argument>${poolName}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>018-create-jndi</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>create-jdbc-resource</argument>
+                                <argument>--connectionpoolid</argument>
+                                <argument>${poolName}</argument>
+                                <argument>${jndiName}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+                    <!-- <execution>
+                        <id>019-ping-connection-pool</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>ping-connection-pool</argument>
+                                <argument>${poolName}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution> -->
+                    <execution>
+                        <id>020-list-jdbc-connection-pools</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>list-jdbc-connection-pools</argument>
                             </arguments>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>018-Create Connection Pool Resource</id>
+                        <id>021-list-jdbc-resources</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>list-jdbc-resources</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>022-stop-domain</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-domain</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <!-- <execution>
+                        <id>023-start-database</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution> -->
+
+                    <!-- <execution>
+                        <id>024-Create Connection Pool Resource</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -547,15 +657,15 @@
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
                                 <argument>create-jdbc-resource</argument>
-                                <argument>--poolName=cts-derby-pool</argument>
+                                <argument>poolName=cts-derby-pool</argument>
                                 <argument>jdbc/DB1</argument>
                             </arguments>
                         </configuration>
-                    </execution>
+                    </execution> -->
                 </executions>
             </plugin>
 
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
@@ -595,6 +705,56 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin> -->
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>023-start-database</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>024-initdb</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <!-- <path id="jdbc.classpath">
+                                    <pathelement path="${jdbc.driver.classes}"></pathelement>
+                                    <path refid="maven.runtime.classpath"></path>
+                                </path> -->
+                                <sql autocommit="true" classpath="${jdbc.classpath}" delimiter="${db.delimiter}" driver="${jdbc.driver}" onerror="continue" password="${jdbc.password}" url="${jdbc.url}" userid="${jdbc.user}">
+                                    <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sql"></transaction>
+                                    <!-- <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.dml.sql"></transaction> -->
+                                </sql>
+                            </target>
+                            <!-- <target>
+                                <sql autocommit="true" classpath="${jdbc.classpath}" delimiter="${db.delimiter}" driver="${jdbc.driver}" onerror="continue" password="${jdbc.password}" url="${jdbc.url}" userid="${jdbc.user}">
+                                    <transaction src="${project.build.directory}/../sql/${jdbc.db}/${jdbc.db}.ddl.sql"></transaction>
+                                </sql>
+                            </target> -->
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
@@ -604,6 +764,7 @@
                     <trimStackTrace>false</trimStackTrace>
                 </configuration>
                 <executions>
+
                     <execution>
                         <id>jta-tests-appclient</id>
                         <goals>
@@ -614,9 +775,6 @@
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
                             </additionalClasspathElements>
-                            <includes>
-                                <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientEjbTest*.java</include>
-                            </includes>
                             <!-- Select the @Tag("tck-appclient") tests -->
                             <groups>tck-appclient</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
@@ -631,6 +789,16 @@
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                                <Driver>${jdbc.driver}</Driver>
+                                <db1>db1</db1>
+                                <user1>cts1</user1>
+                                <password1>cts1</password1>
+                                <db2>db1OnlyUsedIfDriverManagerIsYes</db2>
+                                <user2>cts1</user2>
+                                <password2>cts1</password2>
+                                <DriverManager>no</DriverManager>
+                                <ptable>ctstable1</ptable>
+                                <ftable>ctstable2</ftable>
                             </environmentVariables>
                         </configuration>
                     </execution>
@@ -642,7 +810,10 @@
                         </goals>
                         <configuration>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
                                 <include>com/sun/ts/tests/jta/ee/transactional/ClientEjblitejspTest*.java</include>
@@ -651,6 +822,8 @@
                                 <include>com/sun/ts/tests/jta/ee/transactional/ClientEjblitejsfTest*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientServletTest*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientJspTest*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*JspTest*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*ServletTest*.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
@@ -666,6 +839,13 @@
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
+                                <Driver>${jdbc.driver}</Driver>
+                                <db1>db1</db1>
+                                <user1>cts1</user1>
+                                <password1>cts1</password1>
+                                <db2>db1OnlyUsedIfDriverManagerIsYes</db2>
+                                <user2>cts1</user2>
+                                <password2>cts1</password2>
                             </environmentVariables>
                         </configuration>
                     </execution>

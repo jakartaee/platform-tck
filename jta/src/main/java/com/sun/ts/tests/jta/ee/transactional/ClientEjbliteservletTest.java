@@ -52,7 +52,6 @@ public class ClientEjbliteservletTest extends EJBLiteClientBase {
 
     private static final Logger logger = System.getLogger(ClientEjbliteservletTest.class.getName());
 
-
     @BeforeEach
     void logStartTest(TestInfo testInfo) {
         logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
