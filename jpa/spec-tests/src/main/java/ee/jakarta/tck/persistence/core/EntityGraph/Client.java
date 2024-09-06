@@ -22,6 +22,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
+
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.AttributeNode;
 import jakarta.persistence.EntityGraph;
@@ -40,8 +42,27 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	
-	public void setupEmployeeData(String[] args, Properties p) throws Exception {
+	public static void main(String[] args) {
+		Client theTests = new Client();
+
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Fault {
+		logTrace("setup");
+		try {
+			super.setup(args, p);
+			removeTestData();
+			createEmployeeData();
+			displayMap(new Properties());
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Fault("Setup failed:", e);
+		}
+	}
+
+	public void setupEmployeeData(String[] args, Properties p) throws Fault {
 		logTrace( "setupOrderData");
 		try {
 			super.setup(args,p);
@@ -50,19 +71,32 @@ public class Client extends PMClientBase {
 			displayMap(new Properties());
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
-			throw new Exception("Setup failed:", e);
+			throw new Fault("Setup failed:", e);
 		}
 	}
 
-	public void cleanupEmployeeData() throws Exception {
+	public void cleanup() throws Fault {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();
-			cleanup();
+			super.cleanup();
+		} catch (Exception e) {
+			throw new Fault(e);
 		} finally {
 
 		}
 	}
+
+	public void cleanupEmployeeData() throws Fault {
+		logTrace("Cleanup data");
+		removeTestData();
+		try {
+			super.cleanup();
+		} catch (Exception e) {
+			throw new Fault(e);
+		}
+	}
+
 
 	/*
 	 * @testName: addAttributeNodesStringArrayTest
@@ -102,7 +136,7 @@ public class Client extends PMClientBase {
 		}
 
 		if (!pass) {
-			throw new Exception("addAttributeNodesStringArrayTest failed");
+			throw new Fault("addAttributeNodesStringArrayTest failed");
 		}
 	}
 
@@ -125,7 +159,7 @@ public class Client extends PMClientBase {
 			logTrace( "Received expected IllegalArgumentException");
 		}
 		if (!pass) {
-			throw new Exception("addAttributeNodesStringArrayIllegalArgumentExceptionTest failed");
+			throw new Fault("addAttributeNodesStringArrayIllegalArgumentExceptionTest failed");
 		}
 	}
 
@@ -176,7 +210,7 @@ public class Client extends PMClientBase {
 		}
 
 		if (!pass) {
-			throw new Exception("addAttributeNodesAttributeArrayTest failed");
+			throw new Fault("addAttributeNodesAttributeArrayTest failed");
 		}
 	}
 
@@ -216,7 +250,7 @@ public class Client extends PMClientBase {
 		}
 
 		if (!pass1 || !pass2) {
-			throw new Exception("createEntityGraphStringTest failed");
+			throw new Fault("createEntityGraphStringTest failed");
 		}
 	}
 
@@ -240,7 +274,7 @@ public class Client extends PMClientBase {
 		}
 
 		if (!pass) {
-			throw new Exception("getEntityGraphStringTest failed");
+			throw new Fault("getEntityGraphStringTest failed");
 		}
 	}
 
@@ -269,7 +303,7 @@ public class Client extends PMClientBase {
 		}
 
 		if (!pass) {
-			throw new Exception("entityGraphGetNameTest failed");
+			throw new Fault("entityGraphGetNameTest failed");
 		}
 	}
 

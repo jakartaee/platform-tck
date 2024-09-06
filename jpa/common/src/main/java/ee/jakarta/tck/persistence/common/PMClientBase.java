@@ -291,6 +291,9 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
      * Also, the cache cleared.
      */
     public void closeEMAndEMF() throws Exception {
+        if (!isStandAloneMode()) {
+            return;
+        }
 
         try {
             logTrace( 
