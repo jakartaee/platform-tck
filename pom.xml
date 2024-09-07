@@ -81,7 +81,7 @@
     <properties>
         <ant.version>1.10.11</ant.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
-        <arquillian.jakarta.tck.version>1.0.0-M14</arquillian.jakarta.tck.version>
+        <arquillian.jakarta.tck.version>1.0.0-M15</arquillian.jakarta.tck.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
