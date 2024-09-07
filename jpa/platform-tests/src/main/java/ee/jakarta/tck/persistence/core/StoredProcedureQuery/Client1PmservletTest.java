@@ -124,6 +124,12 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.Stored
             if(parURL != null) {
               jpa_core_StoredProcedureQuery.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+                jpa_core_StoredProcedureQuery.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_StoredProcedureQuery, Client1.class, parURL);
             // The orm.xml file
