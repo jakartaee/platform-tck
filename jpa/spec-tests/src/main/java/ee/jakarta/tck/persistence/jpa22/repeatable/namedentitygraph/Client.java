@@ -45,8 +45,8 @@ public class Client extends PMClientBase {
 		s.exit();
 	}
 
-	public void setupEmployeeData(String[] args, Properties p) throws Exception {
-		logTrace( "setupOrderData");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 			super.setup(args,p);
 			removeTestData();
@@ -58,7 +58,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	public void cleanupEmployeeData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();

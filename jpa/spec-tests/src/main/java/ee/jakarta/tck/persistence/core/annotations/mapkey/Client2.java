@@ -46,7 +46,7 @@ public class Client2 extends Client {
 	private Employee4 empRef4;
 
 	
-	public void setupCreateTestData2(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);

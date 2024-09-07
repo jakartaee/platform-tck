@@ -44,7 +44,7 @@ public class Client2 extends PMClientBase {
 		s.exit();
 	}
 
-	public void setupEmployee(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 

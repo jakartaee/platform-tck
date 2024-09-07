@@ -48,7 +48,7 @@ public class Client3 extends PMClientBase {
 		s.exit();
 	}
 
-	public void setupDataTypes2(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);
@@ -62,7 +62,7 @@ public class Client3 extends PMClientBase {
 		}
 	}
 
-	public void cleanupNoData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "in cleanupNoData");
 			super.cleanup();

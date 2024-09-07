@@ -59,8 +59,8 @@ public class Client2 extends PMClientBase {
 	 * @class.setup_props: jdbc.db;
 	 */
 
-	public void setupOrderData(String[] args, Properties p) throws Exception {
-		logTrace( "setupOrderData");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 			super.setup(args,p);
 
@@ -77,7 +77,7 @@ public class Client2 extends PMClientBase {
 	}
 
 
-	public void cleanupData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();

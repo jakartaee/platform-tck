@@ -57,13 +57,13 @@ public class Client3 extends PMClientBase {
 
 
 	/*
-	 * setupEmployeeData() is called before each test
+	 * setup() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
 	
-	public void setupEmployeeData(String[] args, Properties p) throws Exception {
-		logTrace( "setupOrderData");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 			super.setup(args,p);
 			removeTestData();
@@ -78,7 +78,7 @@ public class Client3 extends PMClientBase {
 		}
 	}
 	
-	public void cleanupData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();

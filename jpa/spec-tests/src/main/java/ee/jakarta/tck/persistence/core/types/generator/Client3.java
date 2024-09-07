@@ -45,7 +45,7 @@ public class Client3 extends Client {
 	 * @class.setup_props: db.supports.sequence;
 	 */
 
-	public void setupDataTypes3(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupDataTypes3");
 		try {
 

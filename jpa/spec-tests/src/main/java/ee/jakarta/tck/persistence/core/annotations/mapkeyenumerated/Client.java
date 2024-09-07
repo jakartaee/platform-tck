@@ -72,7 +72,7 @@ public class Client extends PMClientBase {
 	}
 
 	/*
-	 * public void setupCust(String[] args, Properties p) throws Exception {
+	 * public void setup(String[] args, Properties p) throws Exception {
 	 * logTrace("setup"); try { super.setup(args,p);
 	 * removeCustTestData(); } catch (Exception e) {
 	 * logErr("Exception: ", e); throw new
