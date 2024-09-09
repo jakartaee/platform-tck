@@ -140,6 +140,8 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.appclient
                         com.sun.ts.tests.ejb30.common.helper.ServiceLocator.class,
                         com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF.class
                     );
+                    libURL = Client.class.getResource("persistence.xml");
+                    shared_lib.addAsManifestResource(libURL, "persistence.xml");
 
 
                 ejb3_assembly_appres_appclientejb_ear.addAsLibrary(shared_lib);
