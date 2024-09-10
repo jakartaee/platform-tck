@@ -21,11 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.TransactionRequiredException;
@@ -50,27 +46,24 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DoesNotExist", pkgName + "Employee", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManager2.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
 
 	/*
 	 * setupOrderData() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupOrderData() throws Exception {
-		logTrace( "setupOrderData");
+
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+
 			removeTestData();
 			createOrderData();
 			map.putAll(getEntityManager().getProperties());
@@ -83,15 +76,15 @@ public class Client2 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
-	public void cleanupData() throws Exception {
+
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();
 			cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -102,7 +95,7 @@ public class Client2 extends PMClientBase {
 	 * 
 	 * @test_Strategy: Call EntityManager.lock() method
 	 */
-	@Test
+	
 	public void lockTransactionRequiredExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -146,7 +139,7 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method without a transaction
 	 */
-	@Test
+	
 	public void refreshTransactionRequiredExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -210,7 +203,7 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.lock() method without a transaction
 	 */
-	@Test
+	
 	public void lockTransactionRequiredException2Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;

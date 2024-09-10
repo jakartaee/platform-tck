@@ -18,15 +18,16 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
 
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Product;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustAliasProductData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TupleElement;
 import jakarta.persistence.TypedQuery;
@@ -34,17 +35,13 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class Client7 extends UtilCustAliasProductData {
+public class Client7 extends Util {
 
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client7.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder7.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client7 theTests = new Client7();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -57,7 +54,6 @@ public class Client7 extends UtilCustAliasProductData {
 	 * WHERE (ID = 1)
 	 */
 	@SetupMethod(name = "setupCustAliasProductData")
-	@Test
 	public void tupleGetTupleElementIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -148,4 +144,19 @@ public class Client7 extends UtilCustAliasProductData {
 			throw new Exception("tupleGetTupleElementIllegalArgumentExceptionTest failed");
 		}
 	}
+
+	public void setupCustAliasProductData(String[] args, Properties p) throws Exception {
+		logTrace("setupCustAliasProductData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createCustomerData();
+			createProductData();
+			createAliasData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupCustAliasProductData failed:", e);
+		}
+	}
+
 }

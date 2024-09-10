@@ -18,7 +18,8 @@ package ee.jakarta.tck.persistence.core.annotations.access.field;
 
 
 
-import org.junit.jupiter.api.AfterEach;
+import com.sun.ts.lib.harness.Status;
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -33,9 +34,14 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
 
-	@AfterEach
+
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -43,8 +49,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	protected void removeTestData() {

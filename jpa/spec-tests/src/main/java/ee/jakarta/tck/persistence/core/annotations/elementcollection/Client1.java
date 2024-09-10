@@ -18,39 +18,28 @@ package ee.jakarta.tck.persistence.core.annotations.elementcollection;
 
 
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
+import ee.jakarta.tck.persistence.core.annotations.assocoverride.Client;
 
 public class Client1 extends PMClientBase {
 
 	public Client1() {
 	}
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { MAPPING_FILE_XML };
-		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "Customer", pkgName + "CustomerXML" };
-
-		return createDeploymentJar("jpa_core_annotations_elementcollection1.jar", pkgNameWithoutSuffix, classes,
-				xmlFile);
-
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupA() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeATestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -68,7 +57,6 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: ElementCollection of an embeddable class
 	 *
 	 */
-	@Test
 	public void elementCollectionEmbeddableType() throws Exception {
 		boolean pass = false;
 		A aRef = null;
@@ -157,7 +145,6 @@ public class Client1 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanupA() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -165,7 +152,7 @@ public class Client1 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

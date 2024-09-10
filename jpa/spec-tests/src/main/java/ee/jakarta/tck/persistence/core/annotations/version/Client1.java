@@ -16,11 +16,10 @@
 
 package ee.jakarta.tck.persistence.core.annotations.version;
 
+import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 public class Client1 extends Client {
 
@@ -28,24 +27,16 @@ public class Client1 extends Client {
 
 	public Client1() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Int_Field", pkgName + "Int_Property", pkgName + "Integer_Field",
-				pkgName + "Integer_Property", pkgName + "Long_Field", pkgName + "Long_Property",
-				pkgName + "LongClass_Field", pkgName + "LongClass_Property", pkgName + "Short_Field",
-				pkgName + "Short_Property", pkgName + "ShortClass_Field", pkgName + "ShortClass_Property",
-				pkgName + "Timestamp_Field", pkgName + "Timestamp_Property" };
-		return createDeploymentJar("jpa_core_annotations_version1.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupIntData() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupIntData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createIntTestData();
 
@@ -62,7 +53,7 @@ public class Client1 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void intFieldTest() throws Exception {
 
 		boolean pass = false;
@@ -114,7 +105,7 @@ public class Client1 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void intPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -165,7 +156,7 @@ public class Client1 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void integerFieldTest() throws Exception {
 
 		boolean pass = false;
@@ -216,7 +207,7 @@ public class Client1 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void integerPropertyTest() throws Exception {
 		boolean pass = false;
 		try {

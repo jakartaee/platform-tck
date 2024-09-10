@@ -18,10 +18,12 @@ package ee.jakarta.tck.persistence.core.override.embeddable;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -57,24 +59,17 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "Applicant", pkgName + "Book", pkgName + "BookStore", pkgName + "Complaint",
-				pkgName + "Film", pkgName + "MovieTicket", pkgName + "Publisher", pkgName + "Publisher1" };
-		return createDeploymentJar("jpa_core_override_embeddable.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception:test failed ", e);
@@ -94,8 +89,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: A field in an entity which is declared as Basic is overriden
 	 * in orm.xml as Transient.
 	 */
-	@Test
-	public void testOverrideTransient() throws Exception {
+		public void testOverrideTransient() throws Exception {
 
 		getEntityTransaction().begin();
 		Publisher publisher = new Publisher();
@@ -144,8 +138,7 @@ public class Client extends PMClientBase {
 	 * without using annotation and an entity named Complaint uses Applicant. The
 	 * following test test applies that by reading from the orm.xml.
 	 */
-	@Test
-	public void testOverrideEmbeddable() throws Exception {
+		public void testOverrideEmbeddable() throws Exception {
 
 		getEntityTransaction().begin();
 		Applicant applicant = new Applicant();
@@ -191,8 +184,7 @@ public class Client extends PMClientBase {
 	 * annotation. The following test checks for the above.
 	 * 
 	 */
-	@Test
-	public void testOverrideEmbedded() throws Exception {
+		public void testOverrideEmbedded() throws Exception {
 
 		getEntityTransaction().begin();
 		Film film = new Film();
@@ -237,8 +229,7 @@ public class Client extends PMClientBase {
 	 * metadata completeness.
 	 * 
 	 */
-	@Test
-	public void testMetadataCompleteness() throws Exception {
+		public void testMetadataCompleteness() throws Exception {
 
 		getEntityTransaction().begin();
 		Book book = new Book();
@@ -272,7 +263,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -280,7 +271,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

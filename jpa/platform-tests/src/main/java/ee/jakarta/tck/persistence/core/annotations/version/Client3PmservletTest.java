@@ -82,7 +82,8 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.annota
             com.sun.ts.tests.common.vehicle.pmservlet.PMServletVehicle.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.annotations.version.Client.class
             );
             // The web.xml descriptor
             URL warResURL = Client3.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
@@ -110,6 +111,7 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.annota
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_annotations_version_pmservlet_vehicle_web, Client3.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_annotations_version = ShrinkWrap.create(JavaArchive.class, "jpa_core_annotations_version.jar");
@@ -135,9 +137,21 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.annota
             if(parURL != null) {
               jpa_core_annotations_version.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client3.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_annotations_version.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client3.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_annotations_version.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client3.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_annotations_version.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_annotations_version, Client3.class, parURL);
-            // The orm.xml file
             parURL = Client3.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_annotations_version.addAsManifestResource(parURL, "orm.xml");
@@ -156,12 +170,9 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.annota
 
 
             // The application.xml descriptor
-            URL earResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/annotations/version/");
-            if(earResURL != null) {
-              jpa_core_annotations_version_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/annotations/version/.ear.sun-application.xml");
+            earResURL = Client3.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_annotations_version_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

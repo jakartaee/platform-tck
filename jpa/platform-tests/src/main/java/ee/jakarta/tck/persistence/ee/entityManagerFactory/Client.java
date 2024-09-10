@@ -39,25 +39,6 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_ee_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-	}
-
-	@BeforeEach
-	public void setupNoData() throws Exception {
-		logTrace( "setupNoData");
-		try {
-			super.setup();
-		} catch (Exception e) {
-			logErr( "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
-	}
 
 	public void setup() throws Exception {
 		logTrace( "setup");
@@ -69,11 +50,6 @@ public class Client extends PMClientBase {
 			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
-	}
-
-	@AfterEach
-	public void cleanupNoData() throws Exception {
-		super.cleanup();
 	}
 
 	public void cleanup() throws Exception {

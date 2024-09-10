@@ -96,11 +96,11 @@ public class Client4Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             if(resURL != null) {
               jpa_core_criteriaapi_From_stateful3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_core_criteriaapi_From_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client4.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_criteriaapi_From_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriaapi_From_stateful3_vehicle_client, Client4.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_core_criteriaapi_From_stateful3_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_From_stateful3_vehicle_ejb.jar");
             // The class files
@@ -126,17 +126,18 @@ public class Client4Stateful3Test extends ee.jakarta.tck.persistence.core.criter
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client4.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
-            if(ejbResURL != null) {
-              jpa_core_criteriaapi_From_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client4.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_criteriaapi_From_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client4.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_core_criteriaapi_From_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client4.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_criteriaapi_From_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_core_criteriaapi_From_stateful3_vehicle_ejb, Client4.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_core_criteriaapi_From_stateful3_vehicle_ejb, Client4.class, ejbResURL1);
+
 
         // Par
             // the jar with the correct archive name
@@ -184,9 +185,21 @@ public class Client4Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             if(parURL != null) {
               jpa_core_criteriaapi_From.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client4.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_From.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client4.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_From.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client4.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_From.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriaapi_From, Client4.class, parURL);
-            // The orm.xml file
             parURL = Client4.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_criteriaapi_From.addAsManifestResource(parURL, "orm.xml");
@@ -206,12 +219,9 @@ public class Client4Stateful3Test extends ee.jakarta.tck.persistence.core.criter
 
 
             // The application.xml descriptor
-            URL earResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/From/");
-            if(earResURL != null) {
-              jpa_core_criteriaapi_From_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/From/.ear.sun-application.xml");
+            earResURL = Client4.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_criteriaapi_From_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -83,10 +83,12 @@ public class TxBeanEJB {
       ds1 = (DataSource) context.lookup("java:comp/env/eis/JDBCwhitebox-tx");
       TestUtil.logTrace("ds1: " + ds1);
 
+      System.out.println("##################" + ds1.getConnection().toString());
       eMsg = "Exception looking up EIS whitebox";
       ds2 = (TSEISDataSource) context.lookup("java:comp/env/eis/whitebox-tx");
       TestUtil.logTrace("ds2: " + ds2);
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logTrace(eMsg);
       TestUtil.logErr("Unexpected exception getting the DB DataSource", e);
       throw new EJBException(e.getMessage());
@@ -109,6 +111,7 @@ public class TxBeanEJB {
         TestUtil.logMsg("Made the connection to EIS");
       }
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Unexpected exception on JDBC connection", e);
       throw new EJBException(e.getMessage());
     }
@@ -126,6 +129,7 @@ public class TxBeanEJB {
         TestUtil.logMsg("Created the EIS data");
       }
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception creating table", e);
       throw new EJBException(e.getMessage());
     }
@@ -161,6 +165,7 @@ public class TxBeanEJB {
       return true;
 
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception inserting a row into table " + tName + ";\n"
           + e.getMessage(), e);
       return false;
@@ -190,6 +195,7 @@ public class TxBeanEJB {
             .logTrace("Deleted row(s) from EIS " + fromKey + " thru " + toKey);
       }
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception deleting row(s) " + fromKey + " thru " + toKey
           + " from the table " + tName, e);
       throw new EJBException(e.getMessage());
@@ -207,6 +213,7 @@ public class TxBeanEJB {
         TestUtil.logMsg("Deleted all rows from EIS");
       }
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception occured trying to drop table", e);
       throw new EJBException(e.getMessage());
     }
@@ -226,6 +233,7 @@ public class TxBeanEJB {
         TestUtil.logTrace("Closed EIS connection");
       }
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception occured trying to close the DB connection", e);
       throw new EJBException(e.getMessage());
     }
@@ -262,6 +270,7 @@ public class TxBeanEJB {
       }
 
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception obtaining " + tName + " table ResultSet", e);
       throw new EJBException(e.getMessage());
     }
@@ -278,6 +287,7 @@ public class TxBeanEJB {
       TestUtil.logMsg(dbTable1 + " initLogging OK!");
 
     } catch (RemoteLoggingInitException e) {
+    	e.printStackTrace();
       TestUtil.printStackTrace(e);
       throw new EJBException(e.getMessage());
     }
@@ -299,6 +309,7 @@ public class TxBeanEJB {
           TestUtil.logTrace(dbResults.elementAt(j).toString());
       }
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception occured trying to list table data", e);
       throw new EJBException(e.getMessage());
     }
@@ -312,9 +323,11 @@ public class TxBeanEJB {
       con1 = ds1.getConnection();
       TestUtil.logTrace("con1: " + con1.toString());
     } catch (SQLException e) {
+    	e.printStackTrace();
       TestUtil.logErr("SQLException connecting to " + dbTable1 + " DB", e);
       throw new EJBException(e.getMessage());
     } catch (Exception ee) {
+    	ee.printStackTrace();
       TestUtil.logErr("Exception connecting to " + dbTable1 + " DB", ee);
       throw new EJBException(ee.getMessage());
     }
@@ -327,6 +340,7 @@ public class TxBeanEJB {
       con2 = ds2.getConnection();
       TestUtil.logTrace("con2: " + con2.toString());
     } catch (Exception ee) {
+    	ee.printStackTrace();
       TestUtil.logErr("Exception connecting to EIS ", ee);
       throw new EJBException(ee.getMessage());
     }
@@ -339,6 +353,7 @@ public class TxBeanEJB {
       dropTable1();
       TestUtil.logTrace("All rows deleted from table " + dbTable1);
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.printStackTrace(e);
       TestUtil.logMsg(
           "SQLException encountered in createTable1: " + e.getMessage());
@@ -363,6 +378,7 @@ public class TxBeanEJB {
 
       pStmt.close();
     } catch (SQLException e) {
+    	e.printStackTrace();
       TestUtil.logErr("SQLException creating " + dbTable1 + " table", e);
       throw new EJBException(e.getMessage());
     }
@@ -383,6 +399,7 @@ public class TxBeanEJB {
         con2.insert((new Integer(i)).toString(), (new Integer(i)).toString());
       }
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("SQLException creating " + dbTable1 + " table", e);
       throw new EJBException(e.getMessage());
     }
@@ -392,11 +409,23 @@ public class TxBeanEJB {
     TestUtil.logTrace("dropTable1");
     // Delete the data in dbTable1 table
     String removeString = TestUtil.getProperty("Xa_Tab1_Delete");
+    System.out.println("###################################"+ removeString);
+    try {
+		System.out.println("###################################url "+ con1.getMetaData().getURL().toString());
+		System.out.println("###################################username "+ con1.getMetaData().getUserName());
+		System.out.println("###################################schema-term "+ con1.getMetaData().getSchemaTerm());
+
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
     try {
       stmt = con1.createStatement();
       stmt.executeUpdate(removeString);
       stmt.close();
     } catch (SQLException e) {
+    	e.printStackTrace();
       // TestUtil.logErr("SQLException dropping "+dbTable1+" table", e);
       throw new EJBException(e.getMessage());
     }
@@ -408,6 +437,7 @@ public class TxBeanEJB {
     try {
       con2.dropTable();
     } catch (Exception e) {
+    	e.printStackTrace();
       // TestUtil.logErr("SQLException dropping "+dbTable1+" table", e);
       throw new EJBException(e.getMessage());
     }

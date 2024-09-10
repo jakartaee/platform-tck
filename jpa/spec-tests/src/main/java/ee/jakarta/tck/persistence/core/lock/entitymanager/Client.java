@@ -19,13 +19,15 @@ package ee.jakarta.tck.persistence.core.lock.entitymanager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import jakarta.persistence.LockOption;
 import jakarta.persistence.Timeout;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.LockModeType;
@@ -36,22 +38,19 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Coffee" };
-		return createDeploymentJar("jpa_core_lock_entitymanager.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 
 			logTrace( "Cleanup data");
 			removeTestData();
@@ -89,8 +88,7 @@ public class Client extends PMClientBase {
 	 * if the database locking failure causes only statement-level rollback
 	 * 
 	 */
-	@Test
-	public void findTest1() throws Exception {
+		public void findTest1() throws Exception {
 
 		logTrace( "Begin findTest1");
 		boolean pass = false;
@@ -152,8 +150,7 @@ public class Client extends PMClientBase {
 	 * hint may or may not be observed
 	 * 
 	 */
-	@Test
-	public void findTest2() throws Exception {
+		public void findTest2() throws Exception {
 
 		logTrace( "Begin findTest2");
 		boolean pass = false;
@@ -203,8 +200,7 @@ public class Client extends PMClientBase {
 	 * PESSIMISTIC_WRITE lock
 	 *
 	 */
-	@Test
-	public void findTest3() throws Exception {
+		public void findTest3() throws Exception {
 
 		logTrace( "Begin findTest3");
 		boolean pass = false;
@@ -255,8 +251,7 @@ public class Client extends PMClientBase {
 	 * property or hint is not recognized, it is silently ignored.
 	 *
 	 */
-	@Test
-	public void findTest4() throws Exception {
+		public void findTest4() throws Exception {
 
 		logTrace( "Begin findTest1");
 		boolean pass = false;
@@ -304,8 +299,7 @@ public class Client extends PMClientBase {
 	 * obtain same Lock for cofee the same object and modify its contents
 	 *
 	 */
-	@Test
-	public void lockTest1() throws Exception {
+		public void lockTest1() throws Exception {
 		logTrace( "Begin lockTest1");
 		boolean pass = false;
 
@@ -355,8 +349,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * Note: This test uses lock with property map (unlike lockTest1)
 	 */
-	@Test
-	public void lockTest2() throws Exception {
+		public void lockTest2() throws Exception {
 		logTrace( "Begin lockTest2");
 		boolean pass = false;
 
@@ -406,8 +399,7 @@ public class Client extends PMClientBase {
 	 *
 	 * Note: This test uses lock LockOption... options
 	 */
-	@Test
-	public void lockTest3() throws Exception {
+		public void lockTest3() throws Exception {
 		logTrace( "Begin lockTest3");
 		boolean pass = false;
 
@@ -454,8 +446,7 @@ public class Client extends PMClientBase {
 	 * contents
 	 *
 	 */
-	@Test
-	public void refreshTest1() throws Exception {
+		public void refreshTest1() throws Exception {
 
 		boolean pass = false;
 
@@ -506,8 +497,7 @@ public class Client extends PMClientBase {
 	 * with property map (unlike refreshTest1)
 	 *
 	 */
-	@Test
-	public void refreshTest2() throws Exception {
+		public void refreshTest2() throws Exception {
 
 		logTrace( "Begin refreshTest2");
 		boolean pass = false;
@@ -559,8 +549,7 @@ public class Client extends PMClientBase {
 	 * obtain refresh same entity and modify its contents
 	 *
 	 */
-	@Test
-	public void refreshTest3() throws Exception {
+		public void refreshTest3() throws Exception {
 
 		logTrace( "Begin refreshTest3");
 		boolean pass = false;
@@ -638,7 +627,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -646,8 +635,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

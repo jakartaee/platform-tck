@@ -24,19 +24,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
 
 public class Client3 extends PMClientBase {
-
-
-
+	
 	List<Employee> empRef = new ArrayList<Employee>();
 
 	Employee emp0 = null;
@@ -55,27 +49,23 @@ public class Client3 extends PMClientBase {
 
 	public Client3() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManager3.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
+
 	/*
-	 * setupEmployeeData() is called before each test
+	 * setup() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupEmployeeData() throws Exception {
-		logTrace( "setupOrderData");
+	
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createEmployeeData();
 			map.putAll(getEntityManager().getProperties());
@@ -87,16 +77,15 @@ public class Client3 extends PMClientBase {
 			throw new Exception("Setup failed:", e);
 		}
 	}
-
-	@AfterEach
-	public void cleanupData() throws Exception {
+	
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();
 			cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {
@@ -230,7 +219,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringTest() throws Exception {
 		boolean pass = false;
 
@@ -271,7 +260,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringClassArrayTest() throws Exception {
 		boolean pass = false;
 		getEntityTransaction().begin();
@@ -318,7 +307,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringStringArrayTest() throws Exception {
 		boolean pass = false;
 
@@ -371,7 +360,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createNamedStoredProcedureQueryStringTest() throws Exception {
 		boolean pass = false;
 		getEntityTransaction().begin();

@@ -23,6 +23,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Properties;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -34,6 +38,13 @@ import jakarta.mail.Session;
 import jakarta.mail.Transport;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("mail")
+@Tag("platform")
+@Tag("mail_webprofile")
+@Tag("web_optional")
+@Tag("tck-javatest")
 
 public class send_Test extends ServiceEETest implements Serializable {
 
@@ -82,19 +93,20 @@ public class send_Test extends ServiceEETest implements Serializable {
   public void setup(String[] args, Properties props) throws Exception {
     try {
 
-      String protocol = TestUtil.getProperty("javamail.protocol");
-      String host = TestUtil.getProperty("javamail.server");
-      user = TestUtil.getProperty("javamail.username");
-      password = TestUtil.getProperty("javamail.password");
-      String mailbox = TestUtil.getProperty("javamail.mailbox");
+    	  String protocol = TestUtil.getProperty("javamail.protocol");
+          String host = TestUtil.getProperty("javamail.server");
+          user = TestUtil.getProperty("javamail.username");
+          password = TestUtil.getProperty("javamail.password");
+          String mailbox = TestUtil.getProperty("javamail.mailbox");
+          String rootPath = TestUtil.getProperty("javamail.root.path");
 
-      String smtpPortStr = TestUtil.getProperty("smtp.port");
-      int smtpPort = Integer.parseInt(smtpPortStr);
-      TestUtil.logTrace("SMTP Port = " + smtpPort);
+          String smtpPortStr = TestUtil.getProperty("smtp.port");
+          int smtpPort = Integer.parseInt(smtpPortStr);
+          TestUtil.logTrace("SMTP Port = " + smtpPort);
 
-      String imapPortStr = TestUtil.getProperty("imap.port");
-      int imapPort = Integer.parseInt(imapPortStr);
-      TestUtil.logTrace("IMAP Port = " + imapPort);
+          String imapPortStr = TestUtil.getProperty("imap.port");
+          int imapPort = 1143; //Integer.parseInt(imapPortStr);
+          TestUtil.logTrace("IMAP Port = " + imapPort);
 
       mailTestUtil = new MailTestUtil();
       session = mailTestUtil.createSession(host, smtpPortStr, user, password);

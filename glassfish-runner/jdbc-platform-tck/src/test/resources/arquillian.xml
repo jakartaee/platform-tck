@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<arquillian xmlns="http://jboss.org/schema/arquillian" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+  <engine>
+    <property name="ts.home">/home/g/oracle/tck/javatestprotocol/jakartaee-tck/glassfish-runner/jdbc-platform-tck/jakartaeetck</property>
+  </engine>
+  <container default="true" qualifier="tck-javatest">
+    <protocol type="javatest">
+      <property name="workDir">/home/g/oracle/tck/javatestprotocol/jakartaee-tck/glassfish-runner/jdbc-platform-tck/jakartaeetck/tmp</property>
+      <property name="tsJteFile">/home/g/oracle/tck/javatestprotocol/jakartaee-tck/glassfish-runner/jdbc-platform-tck/jakartaeetck/bin/ts.jte</property>
+      <property name="trace">true</property>
+      <property name="tsSqlStmtFile">/home/g/oracle/tck/javatestprotocol/jakartaee-tck/glassfish-runner/jdbc-platform-tck/jakartaeetck/bin/tssql.stmt</property>
+    </protocol>
+  </container>
+</arquillian>

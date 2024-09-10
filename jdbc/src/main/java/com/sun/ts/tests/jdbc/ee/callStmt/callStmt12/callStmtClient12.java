@@ -30,7 +30,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
@@ -51,6 +54,11 @@ import com.sun.ts.tests.jdbc.ee.common.rsSchema;
  * @author
  * @version 1.7, 06/16/99
  */
+@ExtendWith(ArquillianExtension.class)
+@Tag("jdbc")
+@Tag("platform")
+@Tag("web_profile")
+@Tag("tck-javatest")
 
 public class callStmtClient12 extends ServiceEETest implements Serializable {
   private static final String testName = "jdbc.ee.callStmt.callStmt12";
@@ -81,13 +89,6 @@ public class callStmtClient12 extends ServiceEETest implements Serializable {
   private Properties props = null;
 
   private JDBCTestMsg msg = null;
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    callStmtClient12 theTests = new callStmtClient12();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup: */
   /*

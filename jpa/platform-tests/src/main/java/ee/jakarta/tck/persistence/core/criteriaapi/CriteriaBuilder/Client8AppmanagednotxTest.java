@@ -96,11 +96,11 @@ public class Client8AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             if(resURL != null) {
               jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client8.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_client, Client8.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_ejb.jar");
             // The class files
@@ -126,17 +126,18 @@ public class Client8AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client8.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");
-            if(ejbResURL != null) {
-              jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client8.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client8.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client8.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_ejb, Client8.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_core_criteriapia_CriteriaBuilder_appmanagedNoTx_vehicle_ejb, Client8.class, ejbResURL1);
+
 
         // Par
             // the jar with the correct archive name
@@ -184,9 +185,21 @@ public class Client8AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
             if(parURL != null) {
               jpa_core_criteriapia_CriteriaBuilder.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client8.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriapia_CriteriaBuilder.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client8.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriapia_CriteriaBuilder.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client8.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriapia_CriteriaBuilder.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriapia_CriteriaBuilder, Client8.class, parURL);
-            // The orm.xml file
             parURL = Client8.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_criteriapia_CriteriaBuilder.addAsManifestResource(parURL, "orm.xml");
@@ -206,12 +219,9 @@ public class Client8AppmanagednotxTest extends ee.jakarta.tck.persistence.core.c
 
 
             // The application.xml descriptor
-            URL earResURL = Client8.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/CriteriaBuilder/");
-            if(earResURL != null) {
-              jpa_core_criteriapia_CriteriaBuilder_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client8.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/CriteriaBuilder/.ear.sun-application.xml");
+            earResURL = Client8.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_criteriapia_CriteriaBuilder_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

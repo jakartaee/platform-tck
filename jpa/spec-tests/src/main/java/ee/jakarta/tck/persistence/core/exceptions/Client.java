@@ -18,10 +18,13 @@ package ee.jakarta.tck.persistence.core.exceptions;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityExistsException;
@@ -43,22 +46,16 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Coffee" };
-		return createDeploymentJar("jpa_core_exceptions.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 
 			logTrace( "Cleanup data");
 			removeTestData();
@@ -82,8 +79,7 @@ public class Client extends PMClientBase {
 	 * Java SE environments) the persist operation may be called regardless whether
 	 * a transaction is active.
 	 */
-	@Test
-	public void TransactionRequiredExceptionTest() throws Exception {
+		public void TransactionRequiredExceptionTest() throws Exception {
 		boolean pass = false;
 		final Coffee newCoffee = new Coffee(1, "hazelnut", 1.0F);
 
@@ -115,8 +111,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw TransactionRequiredException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void TransactionRequiredException2Test() throws Exception {
+		public void TransactionRequiredException2Test() throws Exception {
 
 		logTrace( "Test TransactionRequiredExceptionNullMsg");
 		boolean pass = true;
@@ -173,8 +168,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: flush() throws a
 	 * jakarta.persistence.TransactionRequiredException if there is no transaction
 	 */
-	@Test
-	public void exceptionTest2() throws Exception {
+		public void exceptionTest2() throws Exception {
 
 		logTrace( "Begin exceptionTest2");
 		final Coffee newCoffee = new Coffee(2, "french roast", 9.0F);
@@ -222,8 +216,7 @@ public class Client extends PMClientBase {
 	 * Java SE environments) the refresh operation may be called regardless whether
 	 * a transaction is active.
 	 */
-	@Test
-	public void exceptionTest3() throws Exception {
+		public void exceptionTest3() throws Exception {
 
 		logTrace( "Begin exceptionTest3");
 		boolean pass = false;
@@ -278,8 +271,7 @@ public class Client extends PMClientBase {
 	 * transaction is active.
 	 * 
 	 */
-	@Test
-	public void exceptionTest4() throws Exception {
+		public void exceptionTest4() throws Exception {
 
 		logTrace( "Begin exceptionTest4");
 		final Coffee newCoffee = new Coffee(5, "breakfast blend", 3.0F);
@@ -328,8 +320,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: close throws an IllegalStateException will be thrown if the
 	 * EntityManager is container-managed.
 	 */
-	@Test
-	public void exceptionTest5() throws Exception {
+		public void exceptionTest5() throws Exception {
 
 		logTrace( "Begin exceptionTest5");
 		boolean pass = false;
@@ -372,8 +363,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: refresh throws an IllegalArgumentException if the entity is
 	 * not managed
 	 */
-	@Test
-	public void exceptionTest6() throws Exception {
+		public void exceptionTest6() throws Exception {
 
 		logTrace( "Begin exceptionTest6");
 		boolean pass = false;
@@ -420,8 +410,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw RollbackException() and validate contents of
 	 * Exception
 	 */
-	@Test
-	public void RollbackExceptionTest() throws Exception {
+		public void RollbackExceptionTest() throws Exception {
 
 		logMsg( "Test RollbackExceptionNullMsg");
 		boolean pass = true;
@@ -539,8 +528,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw EntityExistsException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void EntityExistsExceptionTest() throws Exception {
+		public void EntityExistsExceptionTest() throws Exception {
 
 		logMsg( "Test EntityExistsExceptionNullMsg");
 		boolean pass = true;
@@ -661,8 +649,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw EntityNotFoundException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void EntityNotFoundExceptionTest() throws Exception {
+		public void EntityNotFoundExceptionTest() throws Exception {
 
 		logMsg( "Test EntityNotFoundExceptionNullMsg");
 		boolean pass = true;
@@ -719,8 +706,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw OptimisticLockException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void OptimisticLockExceptionTest() throws Exception {
+		public void OptimisticLockExceptionTest() throws Exception {
 
 		logMsg( "Test OptimisticLockExceptionNullMsg");
 		boolean pass = true;
@@ -912,8 +898,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw PersistenceException() and validate contents
 	 * of Exception
 	 */
-	@Test
-	public void PersistenceExceptionTest() throws Exception {
+		public void PersistenceExceptionTest() throws Exception {
 
 		logMsg( "Test PersistenceExceptionNullMsg");
 		boolean pass = true;
@@ -1036,8 +1021,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw LockTimeoutException() and validate contents
 	 * of Exception
 	 */
-	@Test
-	public void LockTimeoutExceptionTest() throws Exception {
+		public void LockTimeoutExceptionTest() throws Exception {
 
 		logMsg( "Test LockTimeoutExceptionNullMsg");
 		boolean pass = true;
@@ -1230,8 +1214,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw PessimisticLockException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void PessimisticLockExceptionTest() throws Exception {
+		public void PessimisticLockExceptionTest() throws Exception {
 
 		logMsg( "Test PessimisticLockExceptionNullMsg");
 		boolean pass = true;
@@ -1423,8 +1406,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw QueryTimeoutException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void QueryTimeoutExceptionTest() throws Exception {
+		public void QueryTimeoutExceptionTest() throws Exception {
 
 		logMsg( "Begin QueryTimeoutExceptionNullMsgTest");
 		boolean pass = true;
@@ -1616,8 +1598,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw NonUniqueResultException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void NonUniqueResultExceptionTest() throws Exception {
+		public void NonUniqueResultExceptionTest() throws Exception {
 
 		boolean pass = true;
 		logMsg( "Begin NonUniqueResultExceptionNullMsgTest");
@@ -1672,8 +1653,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw NonUniqueResultException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void NoResultExceptionTest() throws Exception {
+		public void NoResultExceptionTest() throws Exception {
 
 		boolean pass = true;
 		logMsg( "Testing NoResultExceptionNullMsg");
@@ -1715,7 +1695,7 @@ public class Client extends PMClientBase {
 			throw new Exception("NoResultExceptionTest failed");
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -1725,8 +1705,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

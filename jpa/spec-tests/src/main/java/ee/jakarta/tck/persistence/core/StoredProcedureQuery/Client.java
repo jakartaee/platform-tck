@@ -21,8 +21,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
+import com.sun.ts.lib.harness.Status;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.StoredProcedureQuery;
@@ -52,16 +53,26 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	@AfterEach
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace("setup");
+
+		super.setup(args, p);
+		removeTestData();
+		createEmployeeTestData();
+		dataBaseName = p.getProperty("jdbc.db");
+	}
+
 	public void cleanup() throws Exception {
-		try {
-			logTrace( "Cleanup data");
-			removeTestData();
-			logTrace( "cleanup complete, calling super.cleanup");
-			super.cleanup();
-		} finally {
-			removeTestJarFromCP();
-		}
+		logTrace( "Cleanup data");
+		removeTestData();
+		logTrace( "cleanup complete, calling super.cleanup");
+		super.cleanup();
 	}
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {
@@ -185,6 +196,46 @@ public class Client extends PMClientBase {
 			}
 		}
 		return result;
+	}
+
+	private void createEmployeeTestData() {
+
+		try {
+			getEntityTransaction().begin();
+
+			logMsg("Creating Employees");
+
+			final Date d2 = getUtilDate("2001-06-27");
+			final Date d3 = getUtilDate("2002-07-07");
+			final Date d4 = getUtilDate("2003-03-03");
+			final Date d5 = getUtilDate();
+
+			emp0 = new Employee(1, "Alan", "Frechette", utilDate, (float) 35000.0);
+			empRef.add(emp0);
+			empRef.add(new Employee(2, "Arthur", "Frechette", d2, (float) 35000.0));
+			empRef.add(new Employee(3, "Shelly", "McGowan", d3, (float) 50000.0));
+			empRef.add(new Employee(4, "Robert", "Bissett", d4, (float) 55000.0));
+			empRef.add(new Employee(5, "Stephen", "DMilla", d5, (float) 25000.0));
+			for (Employee e : empRef) {
+				if (e != null) {
+					getEntityManager().persist(e);
+					logTrace("persisted employee:" + e);
+				}
+			}
+
+			getEntityManager().flush();
+			getEntityTransaction().commit();
+		} catch (Exception e) {
+			logErr("Unexpected exception occurred", e);
+		} finally {
+			try {
+				if (getEntityTransaction().isActive()) {
+					getEntityTransaction().rollback();
+				}
+			} catch (Exception fe) {
+				logErr("Unexpected exception rolling back TX:", fe);
+			}
+		}
 	}
 
 	protected void removeTestData() {

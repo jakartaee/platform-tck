@@ -98,6 +98,10 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.basic.C
             // Any libraries added to the war
 
             // Web content
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/basic/jpa_core_basic.jar");
+            if(warResURL != null) {
+              jpa_core_basic_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_basic.jar");
+            }
             warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
             if(warResURL != null) {
               jpa_core_basic_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
@@ -105,6 +109,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.basic.C
 
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_basic_puservlet_vehicle_web, Client.class, warResURL);
+
 
         // Par
             // the jar with the correct archive name
@@ -115,16 +120,28 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.basic.C
             );
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
-            jpa_core_basic.addAsManifestResource(parURL, "persistence.xml");
-
+            if(parURL != null) {
+              jpa_core_basic.addAsManifestResource(parURL, "persistence.xml");
+            }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_basic.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_basic.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_basic.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_basic, Client.class, parURL);
-            // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_basic.addAsManifestResource(parURL, "orm.xml");
             }
-            jpa_core_basic_puservlet_vehicle_web.addAsLibrary(jpa_core_basic);
 
         // Ear
             EnterpriseArchive jpa_core_basic_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_basic_vehicles.ear");
@@ -139,12 +156,9 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.basic.C
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/basic/");
-            if(earResURL != null) {
-              jpa_core_basic_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/basic/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_basic_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

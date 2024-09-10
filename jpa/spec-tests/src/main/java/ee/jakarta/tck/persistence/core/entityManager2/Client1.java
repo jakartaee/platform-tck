@@ -21,10 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.LockModeType;
@@ -55,16 +56,13 @@ public class Client1 extends PMClientBase {
 
 	final static String ORACLE = "oracle";
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DoesNotExist", pkgName + "Employee", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManager1.jar", pkgNameWithoutSuffix, classes);
-
+	public Client1() {
 	}
 
-	public Client1() {
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -72,12 +70,12 @@ public class Client1 extends PMClientBase {
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
 			displayMap(map);
@@ -88,14 +86,14 @@ public class Client1 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -108,8 +106,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.find() method with various invalid
 	 * argument combinations and verify various exceptions are thrown
 	 */
-	@Test
-	public void findExceptionsTest() throws Exception {
+		public void findExceptionsTest() throws Exception {
 		int pass = 0;
 		logMsg( "Testing findClassObjectIllegalArgumentException");
 
@@ -431,8 +428,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.flush() method with various invalid
 	 * argument combinations and verify various exceptions are thrown
 	 */
-	@Test
-	public void flushExceptionsTest() throws Exception {
+		public void flushExceptionsTest() throws Exception {
 		boolean pass = false;
 		try {
 
@@ -458,8 +454,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.contains(Class) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback1Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback1Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -498,8 +493,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createNamedQuery(String) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback2Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback2Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -539,8 +533,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createNamedQuery(String,Class) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback3Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback3Test() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -581,8 +574,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createNamedStoredProcedureQuery(String)
 	 * that causes RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback4Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback4Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -622,8 +614,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createQuery(CriteriaDelete) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback5Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback5Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -671,8 +662,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createQuery(CriteriaQuery) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback6Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback6Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -715,8 +705,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createQuery(CriteriaUpdate) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback7Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback7Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -767,8 +756,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createQuery(String) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback8Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback8Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -807,8 +795,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createQuery(String,Class) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback9Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback9Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -847,8 +834,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String) that
 	 * causes RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback10Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback10Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -889,8 +875,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,Class)
 	 * that causes RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback11Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback11Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -932,8 +917,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.createStoredProcedureQuery(String,String)
 	 * that causes RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback12Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback12Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -974,8 +958,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.detach(Object) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback13Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback13Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1015,8 +998,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.find(Class,Object) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback14Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback14Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1055,8 +1037,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.find(Class,Object,LockModeType) that
 	 * causes RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback15Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback15Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1095,8 +1076,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.find(Class,Object,LockModeType,Map) that
 	 * causes RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback16Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback16Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1135,8 +1115,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.find(Class,Object,Map) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback17Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback17Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1175,8 +1154,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager. getLockMode(Object) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback21Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback21Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1215,8 +1193,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.getReference(Class,Object) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback23Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback23Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1255,8 +1232,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.lock(Object,LockModeType) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback24Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback24Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1295,8 +1271,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.lock(Object,LockModeType,Map() that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback25Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback25Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1335,8 +1310,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.merge(Class) that causes RuntimeException
 	 * and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback26Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback26Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1375,8 +1349,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.persist(Object) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback27Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback27Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1415,8 +1388,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.refresh(Object) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback28Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback28Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1455,8 +1427,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.refresh(Object,LockModeType) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback29Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback29Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1495,8 +1466,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.refresh(Object,LockModeType,Map) that
 	 * causes RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback30Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback30Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1535,8 +1505,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.refresh(Object,Map) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback31Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback31Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -1575,8 +1544,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.remove(Object) that causes
 	 * RuntimeException and verify Transaction is set for rollback
 	 */
-	@Test
-	public void entityManagerMethodsRuntimeExceptionsCauseRollback32Test() throws Exception {
+		public void entityManagerMethodsRuntimeExceptionsCauseRollback32Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();

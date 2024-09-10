@@ -23,30 +23,17 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
-
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Department2", pkgName + "Department4",
-				pkgName + "EmbeddedEmployee", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee4" };
-		return createDeploymentJar("jpa_core_annotations_mapkeytemporal.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	private static final long serialVersionUID = 20L;
 	final Date d1 = getUtilDate("2000-02-14");
@@ -60,16 +47,21 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 	private static Employee empRef[] = new Employee[5];
 	private static Employee2 empRef2[] = new Employee2[5];
 	private static Employee4 empRef3[] = new Employee4[5];
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -89,7 +81,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
 	public void mapKeyTemporalTest() throws Exception {
 
 		boolean pass1 = false;
@@ -175,7 +166,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
 	public void mapKeyEnumeratedWithMayKeyClassAnnotationTest() throws Exception {
 
 		boolean pass1 = false;
@@ -258,7 +248,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
 	public void elementCollectionTest() throws Exception {
 
 		boolean pass1 = false;
@@ -483,16 +472,15 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
-	public void cleanupCust() throws Exception {
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
 			removeCustTestData();
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

@@ -66,6 +66,7 @@ public class fpopulate {
     int optind;
 
     for (optind = 0; optind < argv.length; optind++) {
+    	System.out.println(argv[optind] + "####################### : " +argv[optind+1]);
       if (argv[optind].equals("-s")) {
         srcdir = argv[++optind];
         System.out.println("srcdir = " + srcdir);
@@ -103,6 +104,7 @@ public class fpopulate {
       }
     }
 
+    System.out.println("###########" + "protocol: " + protocol + "  host: " + host  + "  imapPort: "  + portStr+ " user: " + user + "  password: " + password);
     try {
 
       if (srcdir == null || dstURL == null) {

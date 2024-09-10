@@ -19,15 +19,16 @@ package ee.jakarta.tck.persistence.core.criteriaapi.From;
 
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Address;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -38,16 +39,12 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
 
-public class Client2 extends UtilCustomerData {
+public class Client2 extends Util {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_from2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -61,8 +58,7 @@ public class Client2 extends UtilCustomerData {
 	 * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinStringTest() throws Exception {
+		public void joinStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -110,8 +106,7 @@ public class Client2 extends UtilCustomerData {
 	 * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinStringJoinTypeTest() throws Exception {
+		public void joinStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -159,8 +154,7 @@ public class Client2 extends UtilCustomerData {
 	 * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinSingularAttributeTest() throws Exception {
+		public void joinSingularAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -208,8 +202,7 @@ public class Client2 extends UtilCustomerData {
 	 * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinSingularAttributeJoinTypeTest() throws Exception {
+		public void joinSingularAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -254,8 +247,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy:
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void fromGetCorrelationParentTest() throws Exception {
+		public void fromGetCorrelationParentTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;

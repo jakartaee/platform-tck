@@ -16,7 +16,17 @@
 
 package com.sun.ts.tests.javamail.ee.getMessageContent;
 
+import java.io.IOException;
 import java.util.Properties;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
@@ -29,6 +39,13 @@ import jakarta.mail.Folder;
 import jakarta.mail.Message;
 import jakarta.mail.Session;
 import jakarta.mail.Store;
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("mail")
+@Tag("platform")
+@Tag("mail_webprofile")
+@Tag("web_optional")
+@Tag("tck-javatest")
 
 public class getMessageContent_Test extends ServiceEETest {
 
@@ -45,13 +62,8 @@ public class getMessageContent_Test extends ServiceEETest {
   private Status status;
 
   private String rootPath;
-
-  public static void main(String[] args) {
-    getMessageContent_Test theTests = new getMessageContent_Test();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
+  
+ 
   /* Test setup: */
   /*
    * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
@@ -111,7 +123,6 @@ public class getMessageContent_Test extends ServiceEETest {
    * @test_Strategy: getMessageContent test
    */
   // derived from javamail suite getMessageContent_Test
-
   public void test1() throws Exception {
 
     try {

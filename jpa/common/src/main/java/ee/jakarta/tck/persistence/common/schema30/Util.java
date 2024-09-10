@@ -18,15 +18,11 @@ package ee.jakarta.tck.persistence.common.schema30;
 
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -68,7 +64,6 @@ public abstract class Util extends PMClientBase {
 
 	protected final Trim trimRef[] = new Trim[20];
 
-	protected final CriteriaEntity criteriaEntity[] = new CriteriaEntity[5];
 
 	private final String[] schema30classes = { "Address_", "Address", "Alias_", "Alias", "Country_", "Country",
 			"CreditCard_", "CreditCard", "CriteriaEntity", "Customer_", "Customer", "Department_", "Department", "Employee_", "Employee",
@@ -100,7 +95,7 @@ public abstract class Util extends PMClientBase {
 		return result.toString();
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -108,7 +103,7 @@ public abstract class Util extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 
 	}
@@ -1819,34 +1814,8 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
-	public void createCriteriaEntityData() throws Exception {
-		logTrace( "createCriteriaEntityData");
-		getEntityTransaction().begin();
-
-		try {
-
-			criteriaEntity[0] = new CriteriaEntity(1L, "Left", null, null, null, null, null);
-			criteriaEntity[1] = new CriteriaEntity(2L, "right", null, null, null, null, null);
-			criteriaEntity[2] = new CriteriaEntity(3L, "LeftToken", "TokenRight", null, null, null, null);
-			criteriaEntity[3] = new CriteriaEntity(4L, null, null, null, LocalTime.of(10, 11, 12), null, null);
-			criteriaEntity[4] = new CriteriaEntity(5L, null, null, null, null, LocalDate.of(1918, 9, 28), null);
-
-			for (CriteriaEntity c : criteriaEntity) {
-				if (c != null) {
-					getEntityManager().persist(c);
-					logTrace( "persisting CriteriaEntity " + c);
-					doFlush();
-				}
-			}
-			doFlush();
-			getEntityTransaction().commit();
-
-		} catch (Exception e) {
-			logErr( "Exception: ", e);
-			throw new Exception("createCriteriaEntityData failed:", e);
-		}
-	}
-
+	// TODO: ensure that each test client is correctly deleting its test data (only 3 overrides is not enough)
+	//
 	public void removeTestData() {
 		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
@@ -1892,6 +1861,105 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
-	public abstract JavaArchive createDeployment() throws Exception;
+
+	public void setupProductData(String[] args, Properties p) throws Exception {
+		logTrace("setupProductData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createProductData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupProductData failed:", e);
+		}
+	}
+
+	public void setupTrimData(String[] args, Properties p) throws Exception {
+		logTrace("setupTrimData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createTrimData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupTrimData failed:", e);
+		}
+	}
+
+	public void setupCustomerData(String[] args, Properties p) throws Exception {
+		logTrace("setupCustomerData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createCustomerData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupCustomerData failed:", e);
+		}
+	}
+
+	public void setupAliasData(String[] args, Properties p) throws Exception {
+		logTrace("setupAliasData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createCustomerData();
+			createAliasData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupAliasData failed:", e);
+		}
+	}
+
+	public void setupAliasOnlyData(String[] args, Properties p) throws Exception {
+		logTrace("setupAliasOnlyData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createAliasOnlyData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupAliasOnlyData failed:", e);
+		}
+	}
+
+	public void setupDepartmentEmployeeData(String[] args, Properties p) throws Exception {
+		logTrace("setupDepartmentEmployeeData");
+		try {
+			super.setup(args, p);
+			removeTestData();
+			createDepartmentEmployeeData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupDepartmentEmployeeData failed:", e);
+		}
+	}
+
+	public void setupPhoneData(String[] args, Properties p) throws Exception {
+         logTrace("setupPhoneData");
+         try {
+                 super.setup(args,p);
+                 removeTestData();
+                 createCustomerData();
+                 createPhoneData();
+         } catch (Exception e) {
+                 logErr("Exception: ", e);
+                 throw new Exception("setupCustomerData failed:", e);
+         }
+ 	}
+
+	public void setupOrderData() throws Exception {
+         logTrace("setupOrderData");
+         try {
+                 super.setup();
+                 removeTestData();
+                 createCustomerData();
+                 createProductData();
+                 createOrderData();
+         } catch (Exception e) {
+                 logErr("Exception: ", e);
+                 throw new Exception("setupCustomerData failed:", e);
+         }
+ }
 
 }

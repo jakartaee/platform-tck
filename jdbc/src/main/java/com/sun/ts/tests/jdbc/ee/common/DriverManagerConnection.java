@@ -39,7 +39,7 @@ public class DriverManagerConnection extends ServiceEETest
 
     dbName = p.getProperty("db1", "");
     dbUser = p.getProperty("user1", "");
-    dbPassword = p.getProperty("password1", "");
+    dbPassword = "cts1"; // p.getProperty("password1", "");
     dbDriver = p.getProperty("Driver", "");
 
     TestUtil.logTrace("Database1 : " + dbName);
@@ -47,12 +47,22 @@ public class DriverManagerConnection extends ServiceEETest
     TestUtil.logTrace("Password  : " + dbPassword);
     TestUtil.logTrace("Driver    : " + dbDriver);
 
+    System.out.println("Database1 : " + dbName);
+    System.out.println("Username  : " + dbUser);
+    System.out.println("Password  : " + dbPassword);
+    System.out.println("Driver    : " + dbDriver);
+
     TestUtil.logTrace("About to load the driver class");
     Class.forName(dbDriver);
     TestUtil.logMsg("Successfully loaded the driver class");
 
     TestUtil.logTrace("About to make the DB connection");
+    try {
     con = DriverManager.getConnection(dbName, dbUser, dbPassword);
+    } catch (Exception e) {
+    	e.printStackTrace();
+    	throw e;
+    }
     TestUtil.logMsg("Made the JDBC connection to the DB");
 
     return con;

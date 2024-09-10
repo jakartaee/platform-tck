@@ -21,6 +21,10 @@ import java.io.OutputStream;
 import java.io.StringBufferInputStream;
 import java.util.Properties;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -36,6 +40,13 @@ import jakarta.mail.Store;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("mail")
+@Tag("platform")
+@Tag("mail_webprofile")
+@Tag("web_optional")
+@Tag("tck-javatest")
 
 public class internetMimeMultipart_Test extends ServiceEETest {
 
@@ -59,12 +70,6 @@ public class internetMimeMultipart_Test extends ServiceEETest {
 
   private String ioFile;
 
-  public static void main(String[] args) {
-    internetMimeMultipart_Test theTests = new internetMimeMultipart_Test();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
   /* Test setup: */
   /*
    * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
@@ -74,21 +79,20 @@ public class internetMimeMultipart_Test extends ServiceEETest {
   public void setup(String[] args, Properties props) throws Exception {
     try {
 
-      String protocol = TestUtil.getProperty("javamail.protocol");
-      String host = TestUtil.getProperty("javamail.server");
-      String user = TestUtil.getProperty("javamail.username");
-      String password = TestUtil.getProperty("javamail.password");
-      String mailbox = TestUtil.getProperty("javamail.mailbox");
-      workDir = TestUtil.getProperty("work.dir");
-      ioFile = TestUtil.getProperty("iofile");
+    	  String protocol = TestUtil.getProperty("javamail.protocol");
+          String host = TestUtil.getProperty("javamail.server");
+          String user = TestUtil.getProperty("javamail.username");
+          String password = TestUtil.getProperty("javamail.password");
+          String mailbox = TestUtil.getProperty("javamail.mailbox");
+          String rootPath = TestUtil.getProperty("javamail.root.path");
 
-      String smtpPortStr = TestUtil.getProperty("smtp.port");
-      int smtpPort = Integer.parseInt(smtpPortStr);
-      TestUtil.logTrace("SMTP Port = " + smtpPort);
+          String smtpPortStr = TestUtil.getProperty("smtp.port");
+          int smtpPort = Integer.parseInt(smtpPortStr);
+          TestUtil.logTrace("SMTP Port = " + smtpPort);
 
-      String imapPortStr = TestUtil.getProperty("imap.port");
-      int imapPort = Integer.parseInt(imapPortStr);
-      TestUtil.logTrace("IMAP Port = " + imapPort);
+          String imapPortStr = TestUtil.getProperty("imap.port");
+          int imapPort = Integer.parseInt(imapPortStr);
+          TestUtil.logTrace("IMAP Port = " + imapPort);
 
       mailTestUtil = new MailTestUtil();
       store = mailTestUtil.connect2host(protocol, host, imapPort, user,
@@ -105,6 +109,7 @@ public class internetMimeMultipart_Test extends ServiceEETest {
       folder.open(Folder.READ_ONLY);
 
     } catch (Exception e) {
+    e.printStackTrace();
       logErr("Exception : " + e.getMessage());
       logErr("Setup Failed!");
       TestUtil.printStackTrace(e);
@@ -179,7 +184,7 @@ public class internetMimeMultipart_Test extends ServiceEETest {
    */
   // derived from javamail suite properties_Test
 
-  public void properties_Test() throws Exception {
+  public void propertiesTest() throws Exception {
 
     TestUtil.logMsg("\nTesting class MimeMultipart: effect of "
         + "system property settings\n");

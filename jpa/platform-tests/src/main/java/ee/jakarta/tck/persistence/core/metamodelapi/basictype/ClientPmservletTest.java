@@ -110,6 +110,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.metamod
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_metamodelapi_basictype_pmservlet_vehicle_web, Client.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_metamodelapi_basictype = ShrinkWrap.create(JavaArchive.class, "jpa_core_metamodelapi_basictype.jar");
@@ -122,9 +123,21 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.metamod
             if(parURL != null) {
               jpa_core_metamodelapi_basictype.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_metamodelapi_basictype.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_metamodelapi_basictype.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_metamodelapi_basictype.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_metamodelapi_basictype, Client.class, parURL);
-            // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_metamodelapi_basictype.addAsManifestResource(parURL, "orm.xml");
@@ -143,12 +156,9 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.metamod
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/metamodelapi/basictype/");
-            if(earResURL != null) {
-              jpa_core_metamodelapi_basictype_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/metamodelapi/basictype/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_metamodelapi_basictype_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -78,6 +78,7 @@ public class LogFileProcessor {
 		if (logFileLocation == null) {
 			logger.log(Logger.Level.ERROR, "LogFileProcessor setup failed ");
 			logger.log(Logger.Level.ERROR, "Please verify that the property log.file.location exists in ts.jte");
+			throw new IllegalArgumentException("Configure log.file.location in your ts.jte");
 		} else {
 			logger.log(Logger.Level.INFO, "log.file.location = " + logFileLocation);
 		}

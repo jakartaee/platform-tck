@@ -23,24 +23,21 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Product;
-import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
 
-public class Client3 extends UtilProductData {
-
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_flushmode3.jar", pkgNameWithoutSuffix, classes);
-	}
+public class Client3 extends Util {
 
 	public Client3() {
+	}
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -50,8 +47,7 @@ public class Client3 extends UtilProductData {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void secondaryTablesValueTest() throws Exception {
+		public void secondaryTablesValueTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[4];

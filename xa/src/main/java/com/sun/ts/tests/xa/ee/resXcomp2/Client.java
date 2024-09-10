@@ -26,12 +26,22 @@ package com.sun.ts.tests.xa.ee.resXcomp2;
 import java.io.Serializable;
 import java.util.Properties;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.transaction.UserTransaction;
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("xa")
+@Tag("platform")
+@Tag("web_profile")
+@Tag("tck-javatest")
 
 public class Client extends ServiceEETest implements Serializable {
   private TSNamingContext nctx = null;

@@ -19,12 +19,9 @@ package ee.jakarta.tck.persistence.core.types.property;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.types.common.Grade;
 
@@ -34,23 +31,16 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { Grade.class.getCanonicalName(), pkgName + "Customer", pkgName + "DataTypes",
-				pkgName + "DataTypes2" };
-		return createDeploymentJar("jpa_core_types_property2.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupCust() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeCustTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -66,7 +56,7 @@ public class Client2 extends PMClientBase {
 	 * 
 	 * @test_Strategy: ElementCollection of a basic type
 	 */
-	@Test
+	
 	public void elementCollectionTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -123,7 +113,6 @@ public class Client2 extends PMClientBase {
 
 	// Methods used for Tests
 
-	@AfterEach
 	public void cleanupCust() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -131,8 +120,8 @@ public class Client2 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeCustTestData() {

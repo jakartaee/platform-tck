@@ -18,11 +18,13 @@ package ee.jakarta.tck.persistence.core.annotations.lob;
 
 
 import java.util.Arrays;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -34,22 +36,21 @@ public class Client extends PMClientBase {
 
 	private Byte[] smallByteArray = null;
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes" };
-		return createDeploymentJar("jpa_core_annotations_lob.jar", pkgNameWithoutSuffix, classes);
-	}
 
 	public Client() {
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -69,8 +70,7 @@ public class Client extends PMClientBase {
 	 * type: Byte[]
 	 *
 	 */
-	@Test
-	public void lobTest() throws Exception {
+		public void lobTest() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -197,7 +197,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -205,8 +205,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

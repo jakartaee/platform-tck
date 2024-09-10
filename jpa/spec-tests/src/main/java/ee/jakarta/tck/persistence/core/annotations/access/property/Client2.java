@@ -1,32 +1,14 @@
 package ee.jakarta.tck.persistence.core.annotations.access.property;
 
-
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 public class Client2 extends Client {
-
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
-				"ee.jakarta.tck.persistence.core.types.common.Grade" };
-		return createDeploymentJar("jpa_core_annotations_access_property2.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setup2() throws Exception {
+	
+	public void setup2(String[] args, Properties p) throws Exception {
 		logTrace( "setup2");
 		try {
 
-			super.setup();
-			createDeployment();
-
+			super.setup(args,p);
 			removeTestData();
 			createTestData2();
 			logTrace( "Done creating test data");
@@ -44,7 +26,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy: when transient is specified, verify data isn't persisted
 	 */
-	@Test
+
 	public void transientTest() throws Exception {
 
 		boolean pass = false;

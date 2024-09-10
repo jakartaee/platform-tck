@@ -24,33 +24,25 @@ package ee.jakarta.tck.persistence.core.annotations.mapkey;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
 
 public class Client1 extends Client {
 
 	public Client1() {
 	}
-
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3",
-				pkgName + "Employee4" };
-		return createDeploymentJar("jpa_core_annotations_mapkey1.jar", pkgNameWithoutSuffix, classes);
-
+	
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupCreateTestData() throws Exception {
+	public void setupCreateTestData(String args[], Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
@@ -74,7 +66,7 @@ public class Client1 extends Client {
 	 * Execute a query returning Employees objects.
 	 * 
 	 */
-	@Test
+	
 	public void annotationMapKeyTest1() throws Exception {
 
 		boolean pass = true;
@@ -146,7 +138,7 @@ public class Client1 extends Client {
 	 *
 	 * Execute a query returning Employee IDs.
 	 */
-	@Test
+	
 	public void annotationMapKeyTest2() throws Exception {
 
 		boolean pass = true;

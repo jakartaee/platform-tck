@@ -54,14 +54,18 @@ public class rsSchema extends ServiceEETest {
     // drop table if it exists
     try {
       props = sqlProps;
+      System.out.println("###########################" + conn.getSchema());
+      System.out.println("@@@@@@@@@@@@@@@@@@@"+ sTableName);
       dropTab(sTableName, conn);
       TestUtil.logTrace("deleted rows from table " + sTableName);
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception encountered deleting rows from  table: "
           + sTableName + ": " + e.getMessage(), e);
     }
 
     try {
+        System.out.println("###########################" + conn.getSchema());
 
       stmt = conn.createStatement();
       if ((sTableName.startsWith("Binary_Tab"))) {
@@ -135,6 +139,7 @@ public class rsSchema extends ServiceEETest {
       stmt.executeUpdate(removeString);
       stmt.close();
     } catch (SQLException e) {
+    	e.printStackTrace();
       TestUtil.printStackTrace(e);
 
       throw new RemoteException(e.getMessage());

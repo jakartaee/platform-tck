@@ -19,32 +19,19 @@ package ee.jakarta.tck.persistence.core.annotations.basic;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 public class Client2 extends Client {
-
 	
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "A" };
-		return createDeploymentJar("jpa_core_annotations_basic2.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	public Client2() {
 	}
 
-	@BeforeEach
-	public void setupData() throws Exception {
+	
+	public void setupData(String[] args, Properties p) throws Exception {
 		logTrace( "setupData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
@@ -61,7 +48,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: Test various operands result in various types
 	 *
 	 */
-	@Test
+	
 	public void DoubleOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5, pass6, pass7, pass8;
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
@@ -206,7 +193,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: Test various operands result in various types
 	 *
 	 */
-	@Test
+	
 	public void FloatOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5, pass6, pass7, pass8;
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
@@ -347,7 +334,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: Test various operands result in various types
 	 *
 	 */
-	@Test
+	
 	public void BigDecimalOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4;
 		pass1 = pass2 = pass3 = pass4 = false;
@@ -426,7 +413,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: Test various operands result in various types
 	 *
 	 */
-	@Test
+	
 	public void BigIntegerOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3;
 		pass1 = pass2 = pass3 = false;
@@ -490,7 +477,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: Test various operands result in various types
 	 *
 	 */
-	@Test
+	
 	public void LongOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5, pass6;
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;
@@ -602,7 +589,7 @@ public class Client2 extends Client {
 	 * of the operation is of type Integer
 	 *
 	 */
-	@Test
+	
 	public void ShortOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5, pass6;
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;

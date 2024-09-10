@@ -28,6 +28,10 @@ import java.io.Serializable;
 import java.util.Properties;
 import java.util.Vector;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContext;
@@ -35,12 +39,18 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.transaction.UserTransaction;
 
+@ExtendWith(ArquillianExtension.class)
+@Tag("xa")
+@Tag("platform")
+@Tag("web_profile")
+@Tag("tck-javatest")
+
 public class Client extends ServiceEETest implements Serializable {
   private TSNamingContext nctx = null;
 
   private Properties testProps = null;
 
-  private static final String txRef = "java:comp/env/ejb/MyEjbReference";
+  protected String txRef = "java:comp/env/ejb/MyEjbReference";
 
   private TxBean beanRef = null;
 
@@ -56,11 +66,6 @@ public class Client extends ServiceEETest implements Serializable {
 
   private Integer toKey2 = null;
 
-  public static void main(String[] args) {
-    Client client = new Client();
-    Status s = client.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup: */
 
@@ -83,6 +88,7 @@ public class Client extends ServiceEETest implements Serializable {
 
       TestUtil.logMsg("Lookup java:comp/UserTransaction");
       ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
+      
 
       // Get the table names
       TestUtil.logMsg("Lookup environment variables");
@@ -115,7 +121,7 @@ public class Client extends ServiceEETest implements Serializable {
       throw new Exception("setup failed", e);
     }
   }
-
+  
   /* Test cleanup */
 
   public void cleanup() throws Exception {
@@ -202,6 +208,7 @@ public class Client extends ServiceEETest implements Serializable {
         testResult = true;
       //
     } catch (Exception e) {
+      e.printStackTrace();
       TestUtil.logErr("Caught exception: " + e.getMessage());
       TestUtil.printStackTrace(e);
       throw new Exception(testname + " failed", e);
@@ -214,6 +221,7 @@ public class Client extends ServiceEETest implements Serializable {
         beanRef.dbUnConnect(tName1);
         ut.commit();
       } catch (Exception e) {
+    	  e.printStackTrace();
       }
       ;
       if (!testResult)

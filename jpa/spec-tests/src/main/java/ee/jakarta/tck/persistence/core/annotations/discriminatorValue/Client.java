@@ -18,10 +18,13 @@ package ee.jakarta.tck.persistence.core.annotations.discriminatorValue;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -29,26 +32,23 @@ public class Client extends PMClientBase {
 
 
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "PartProduct", pkgName + "PartProduct2", pkgName + "PricedPartProduct2",
-				pkgName + "Product", pkgName + "Product2" };
-		return createDeploymentJar("jpa_core_annotations_discrinimatorValue.jar", pkgNameWithoutSuffix, classes);
-
-	}
 
 	public Client() {
 		super();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -90,8 +90,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void integerDiscriminatorValueTest() throws Exception {
+		public void integerDiscriminatorValueTest() throws Exception {
 		boolean pass = false;
 		final String testName = "integerDiscriminatorValueTest";
 		try {
@@ -129,8 +128,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void discriminatorValueTest() throws Exception {
+		public void discriminatorValueTest() throws Exception {
 		boolean pass1 = false;
 		final String testName = "discriminatorValueTest";
 		try {
@@ -177,7 +175,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -185,8 +183,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

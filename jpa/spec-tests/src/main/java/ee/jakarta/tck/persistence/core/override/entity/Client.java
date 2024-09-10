@@ -18,11 +18,12 @@ package ee.jakarta.tck.persistence.core.override.entity;
 
 
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -35,23 +36,16 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "NameOnlyInAnnotation", pkgName + "NameOnlyInXML", pkgName + "NameOverride",
-				pkgName + "NoEntityAnnotation" };
-		return createDeploymentJar("jpa_core_override_entity.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception:test failed ", e);
@@ -78,8 +72,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Table name is specified only in orm.xml and the test is
 	 * performed by retrieving data from that table.
 	 */
-	@Test
-	public void testNameOnlyInXML() throws Exception {
+		public void testNameOnlyInXML() throws Exception {
 
 		getEntityTransaction().begin();
 		NameOnlyInXML entity = new NameOnlyInXML();
@@ -122,8 +115,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Entity name is specified in the entity using annotation. Test
 	 * is executed by retrieving data from the table.
 	 */
-	@Test
-	public void testNameOnlyInAnnotation() throws Exception {
+		public void testNameOnlyInAnnotation() throws Exception {
 
 		List result = getEntityManager().createQuery("SELECT m FROM NAMEONLYINANNOTATION" + " m").getResultList();
 		if (result.size() == 0) {
@@ -154,8 +146,7 @@ public class Client extends PMClientBase {
 	 * overriden by another name in orm.xml. Test is executed by retrieving data
 	 * from the overriden table name.
 	 */
-	@Test
-	public void testNameOverride() throws Exception {
+		public void testNameOverride() throws Exception {
 
 		List result = getEntityManager().createQuery("SELECT n FROM NAMEOVERRIDE" + " n").getResultList();
 		if (result.size() == 0) {
@@ -187,8 +178,7 @@ public class Client extends PMClientBase {
 	 * annotation. Test is performed by select from the entity name that is
 	 * specified in the orm.xml.
 	 */
-	@Test
-	public void testNoEntityAnnotation() throws Exception {
+		public void testNoEntityAnnotation() throws Exception {
 
 		getEntityTransaction().begin();
 		NoEntityAnnotation entity = new NoEntityAnnotation();
@@ -211,7 +201,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -219,7 +209,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

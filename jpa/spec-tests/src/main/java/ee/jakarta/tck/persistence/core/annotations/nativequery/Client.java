@@ -23,11 +23,12 @@ package ee.jakarta.tck.persistence.core.annotations.nativequery;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.TransactionRequiredException;
@@ -39,20 +40,16 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { ORM_XML };
-		String[] classes = { pkgName + "Item", pkgName + "Order1", pkgName + "Order2", pkgName + "PurchaseOrder" };
-		return createDeploymentJar("jpa_core_annotations_nativequery.jar", pkgNameWithoutSuffix, classes, xmlFile);
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -77,8 +74,7 @@ public class Client extends PMClientBase {
 	 *
 	 * 
 	 */
-	@Test
-	public void nativeQueryTest2() throws Exception {
+		public void nativeQueryTest2() throws Exception {
 
 		boolean pass = false;
 		int passCounter = 0;
@@ -190,8 +186,7 @@ public class Client extends PMClientBase {
 	 * fields. The FieldResult annotation is used for this purpose.
 	 *
 	 */
-	@Test
-	public void nativeQueryTest3() throws Exception {
+		public void nativeQueryTest3() throws Exception {
 		boolean pass = false;
 		List q;
 		int passCounter = 0;
@@ -294,8 +289,7 @@ public class Client extends PMClientBase {
 	 * return the totalprice as a String
 	 *
 	 */
-	@Test
-	public void nativeQueryColumnResultTypeTest() throws Exception {
+		public void nativeQueryColumnResultTypeTest() throws Exception {
 
 		boolean pass = false;
 		List q;
@@ -401,8 +395,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Verify jakarta.persistence.ConstructorResult can call a class
 	 * constructor passing in arg data and return the class.
 	 */
-	@Test
-	public void nativeQueryTestConstructorResult() throws Exception {
+		public void nativeQueryTestConstructorResult() throws Exception {
 
 		boolean pass = false;
 		List<Order2> q;
@@ -479,8 +472,7 @@ public class Client extends PMClientBase {
 	 * constructor passing in arg data and return the class.
 	 *
 	 */
-	@Test
-	public void nativeQueryTestConstructorResultWithId() throws Exception {
+		public void nativeQueryTestConstructorResultWithId() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -547,8 +539,7 @@ public class Client extends PMClientBase {
 	 * constructor passing in arg data except the id and return the class.
 	 *
 	 */
-	@Test
-	public void nativeQueryTestConstructorResultNoId() throws Exception {
+		public void nativeQueryTestConstructorResultNoId() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -613,8 +604,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void createNativeQueryStringTest() throws Exception {
+		public void createNativeQueryStringTest() throws Exception {
 		boolean pass = false;
 		List q = null;
 		List<Integer> expected = new ArrayList<Integer>();
@@ -678,8 +668,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use the createNativeQuery(String,Class)
 	 *
 	 */
-	@Test
-	public void createNativeQueryResultClassTest() throws Exception {
+		public void createNativeQueryResultClassTest() throws Exception {
 		boolean pass = false;
 		List<Order1> q;
 
@@ -740,8 +729,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use the createNativeQuery(String,Class) a TypedQuery
 	 *
 	 */
-	@Test
-	public void createNativeQueryResultClassTQTest() throws Exception {
+		public void createNativeQueryResultClassTQTest() throws Exception {
 		boolean pass = false;
 		List<Order1> q;
 
@@ -800,8 +788,7 @@ public class Client extends PMClientBase {
 	 * transaction is in effect and verify TransactionRequiredException is thrown
 	 *
 	 */
-	@Test
-	public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
+		public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityManager().createNativeQuery("Delete from ORDER1").executeUpdate();
@@ -832,8 +819,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use the createNativeQuery(String,Class) a TypedQuery
 	 *
 	 */
-	@Test
-	public void setParameterTest() throws Exception {
+		public void setParameterTest() throws Exception {
 		boolean pass = false;
 		List<Order1> q;
 
@@ -892,8 +878,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSingleResultTest() throws Exception {
+		public void getSingleResultTest() throws Exception {
 		boolean pass = false;
 		Object q;
 
@@ -937,7 +922,7 @@ public class Client extends PMClientBase {
 			throw new Exception("getSingleResultTest failed");
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -945,7 +930,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

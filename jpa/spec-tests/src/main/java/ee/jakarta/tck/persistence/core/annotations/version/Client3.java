@@ -16,11 +16,9 @@
 
 package ee.jakarta.tck.persistence.core.annotations.version;
 
+import java.util.Properties;
 
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
 
 public class Client3 extends Client {
 
@@ -29,24 +27,17 @@ public class Client3 extends Client {
 	public Client3() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Int_Field", pkgName + "Int_Property", pkgName + "Integer_Field",
-				pkgName + "Integer_Property", pkgName + "Long_Field", pkgName + "Long_Property",
-				pkgName + "LongClass_Field", pkgName + "LongClass_Property", pkgName + "Short_Field",
-				pkgName + "Short_Property", pkgName + "ShortClass_Field", pkgName + "ShortClass_Property",
-				pkgName + "Timestamp_Field", pkgName + "Timestamp_Property" };
-		return createDeploymentJar("jpa_core_annotations_version3.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupLongData() throws Exception {
+	public void setupLongData(String[] args, Properties p) throws Exception {
 		logTrace( "setupLongData");
 		try {
-			super.setup();
-			createDeployment();
-
+			super.setup(args,p);
+	
 			removeTestData();
 			createLongTestData();
 
@@ -62,7 +53,7 @@ public class Client3 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void longFieldTest() throws Exception {
 
 		boolean pass = false;
@@ -113,7 +104,7 @@ public class Client3 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void longPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -163,7 +154,7 @@ public class Client3 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void longClassFieldTest() throws Exception {
 
 		boolean pass = false;
@@ -214,7 +205,7 @@ public class Client3 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void longClassPropertyTest() throws Exception {
 		boolean pass = false;
 		try {

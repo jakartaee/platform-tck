@@ -21,10 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.FlushModeType;
@@ -42,22 +43,18 @@ public class Client1 extends PMClientBase {
 
 	public Client1() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManagerFactory1.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 			createOrderTestData();
 		} catch (Exception e) {
@@ -66,15 +63,15 @@ public class Client1 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			removeTestData();
 			logTrace( "done cleanup, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -86,8 +83,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Test that max result of addNamedQuery is retained or can be
 	 * overridden
 	 */
-	@Test
-	public void addNamedQueryMaxResultTest() throws Exception {
+		public void addNamedQueryMaxResultTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -509,8 +505,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Test that flush mode of addNamedQuery is retained or can be
 	 * overridden
 	 */
-	@Test
-	public void addNamedQueryFlushModeTest() throws Exception {
+		public void addNamedQueryFlushModeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;

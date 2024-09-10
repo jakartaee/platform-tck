@@ -2,34 +2,18 @@ package ee.jakarta.tck.persistence.core.annotations.access.field;
 
 
 import java.util.GregorianCalendar;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import jakarta.persistence.TypedQuery;
 
 public class Client4 extends Client {
 
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = Client4.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
-				"ee.jakarta.tck.persistence.core.types.common.Grade" };
-		return createDeploymentJar("jpa_core_annotations_access_field4.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-	}
-
-	@BeforeEach
-	public void setup4() throws Exception {
+	public void setup4(String[] args, Properties p) throws Exception {
 		logTrace( "setup3");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 
 			removeTestData();
 			createTestData4();
@@ -50,7 +34,7 @@ public class Client4 extends Client {
 	 * :id
 	 */
 
-	@Test
+	
 	public void testExtractDateYear() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager()
@@ -75,7 +59,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(QUARTER FROM d.id) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractDateQuarter() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager()
@@ -100,7 +84,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(MONTH FROM d.id) FROM DataTypes2 d WHERE d.id
 	 * = :id
 	 */
-	@Test
+	
 	public void testExtractDateMonth() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager()
@@ -125,7 +109,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(DAY FROM d.id) FROM DataTypes2 d WHERE d.id =
 	 * :id
 	 */
-	@Test
+	
 	public void testExtractDateDay() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager()
@@ -150,7 +134,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(HOUR FROM d.timeData) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractTimeHour() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager().createQuery(
@@ -175,7 +159,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(MINUTE FROM d.timeData) FROM DataTypes2 d
 	 * WHERE d.id = :id
 	 */
-	@Test
+	
 	public void testExtractTimeMinute() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager().createQuery(
@@ -200,7 +184,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(SECOND FROM d.timeData) FROM DataTypes2 d
 	 * WHERE d.id = :id
 	 */
-	@Test
+	
 	public void testExtractTimeSecond() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager().createQuery(
@@ -225,7 +209,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(YEAR FROM d.tsData) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractDateTimeYear() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager()
@@ -250,7 +234,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(QUARTER FROM d.tsData) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractDateTimeQuarter() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager().createQuery(
@@ -275,7 +259,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(MONTH FROM d.tsData) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractDateTimeMonth() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager().createQuery(
@@ -300,7 +284,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(DAY FROM d.tsData) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractDateTimeDay() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager()
@@ -325,7 +309,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(HOUR FROM d.tsData) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractDateTimeHour() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager()
@@ -350,7 +334,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(MINUTE FROM d.tsData) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractDateTimeMinute() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager().createQuery(
@@ -375,7 +359,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: SELECT EXTRACT(SECOND FROM d.tsData) FROM DataTypes2 d WHERE
 	 * d.id = :id
 	 */
-	@Test
+	
 	public void testExtractDateTimeSecond() throws Exception {
 		try {
 			TypedQuery<Number> q1 = getEntityManager().createQuery(

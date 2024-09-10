@@ -18,10 +18,13 @@ package ee.jakarta.tck.persistence.core.cache.basicTests;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Cache;
@@ -35,24 +38,19 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Order" };
-		String[] xmlFiles = {};
-		return createDeploymentJar("jpa_core_cache_basicTests.jar", pkgNameWithoutSuffix, classes, "persistence_se.xml",
-				xmlFiles);
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 
 		} catch (Exception e) {
@@ -79,8 +77,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: With basic entity requirements, persist/remove an entity.
 	 */
-	@Test
-	public void getcacheTest() throws Exception {
+		public void getcacheTest() throws Exception {
 		Cache cache;
 		boolean pass = false;
 		final int count = 5;
@@ -147,8 +144,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Persist data, evict class and specific PK
 	 */
-	@Test
-	public void evictTest1() throws Exception {
+		public void evictTest1() throws Exception {
 		Cache cache;
 		final int count = 5;
 		boolean pass1 = false;
@@ -228,8 +224,7 @@ public class Client extends PMClientBase {
 	 *
 	 * @test_Strategy: Persist data, evict class
 	 */
-	@Test
-	public void evictTest2() throws Exception {
+		public void evictTest2() throws Exception {
 		Cache cache;
 		final int count = 5;
 		boolean pass1, pass2 = false;
@@ -306,8 +301,7 @@ public class Client extends PMClientBase {
 	 *
 	 * @test_Strategy: Persist data, evict all
 	 */
-	@Test
-	public void evictallTest() throws Exception {
+		public void evictallTest() throws Exception {
 		Cache cache;
 		final int count = 5;
 		boolean pass1 = false;
@@ -367,7 +361,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -375,7 +369,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 
 	}

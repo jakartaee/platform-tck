@@ -23,6 +23,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Properties;
 
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
@@ -39,6 +43,13 @@ import jakarta.mail.Store;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("mail")
+@Tag("platform")
+@Tag("mail_webprofile")
+@Tag("web_optional")
+@Tag("tck-javatest")
 
 public class mimemessage_Test extends ServiceEETest implements Serializable {
 
@@ -84,19 +95,21 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
   public void setup(String[] args, Properties props) throws Exception {
     try {
 
-      String protocol = TestUtil.getProperty("javamail.protocol");
-      String host = TestUtil.getProperty("javamail.server");
-      user = TestUtil.getProperty("javamail.username");
-      String password = TestUtil.getProperty("javamail.password");
-      String mailbox = TestUtil.getProperty("javamail.mailbox");
+    	  mailTo = props.getProperty("mailuser1");
+    	  String protocol = TestUtil.getProperty("javamail.protocol");
+          String host = TestUtil.getProperty("javamail.server");
+          user = TestUtil.getProperty("javamail.username");
+          String password = TestUtil.getProperty("javamail.password");
+          String mailbox = TestUtil.getProperty("javamail.mailbox");
+          String rootPath = TestUtil.getProperty("javamail.root.path");
 
-      String smtpPortStr = TestUtil.getProperty("smtp.port");
-      int smtpPort = Integer.parseInt(smtpPortStr);
-      TestUtil.logTrace("SMTP Port = " + smtpPort);
+          String smtpPortStr = TestUtil.getProperty("smtp.port");
+          int smtpPort = Integer.parseInt(smtpPortStr);
+          TestUtil.logTrace("SMTP Port = " + smtpPort);
 
-      String imapPortStr = TestUtil.getProperty("imap.port");
-      int imapPort = Integer.parseInt(imapPortStr);
-      TestUtil.logTrace("IMAP Port = " + imapPort);
+          String imapPortStr = TestUtil.getProperty("imap.port");
+          int imapPort = Integer.parseInt(imapPortStr);
+          TestUtil.logTrace("IMAP Port = " + imapPort);
 
       MailTestUtil mailTestUtil = new MailTestUtil();
 
@@ -248,9 +261,9 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
    * Returns the Session object used when the message was created. Returns null
    * if no Session is available. <p>
    */
-  // derived from javamail suite getSession_Test class
+  // derived from javamail suite getSession class
 
-  public void getSession_Test() throws Exception {
+  public void getSession() throws Exception {
 
     TestUtil.logMsg("\nTesting class Message: getSession()\n");
 
@@ -299,7 +312,7 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
   
    */
   /*
-   * @testName: createMimeMessage_Test
+   * @testName: createMimeMessage
    * 
    * @assertion_ids: JavaEE:SPEC:235; JavaEE:SPEC:238;
    * 
@@ -315,8 +328,8 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
    * verify that user specified recipient address types have been added. If so
    * then this testcase passes, otherwise it fails. <p>
    */
-  // derived from javamail suite createMimeMessage_Test
-  public void createMimeMessage_Test() throws Exception {
+  // derived from javamail suite createMimeMessage
+  public void createMimeMessage() throws Exception {
 
     try {
       // Create a custom MimeMessage objectcreateMimeMessage_Test
@@ -367,7 +380,7 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
    * 
    * derived from javamail suite reply_Test
    */
-  public void reply_Test() throws Exception {
+  public void reply() throws Exception {
 
     try {
 
@@ -466,7 +479,7 @@ public class mimemessage_Test extends ServiceEETest implements Serializable {
    * 
    * derived from javamail suite setContent_Test
    */
-  public void setFrom_Test() throws Exception {
+  public void setFrom() throws Exception {
 
     TestUtil.logMsg("\nTesting class MimeMessage: setFrom(String)\n");
 
