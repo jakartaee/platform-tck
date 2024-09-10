@@ -39,6 +39,9 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 import java.lang.System.Logger;
 
+@Tag("jsp")
+@Tag("platform")
+@Tag("web")
 @ExtendWith(ArquillianExtension.class)
 public class ClientIT extends SecBasicClient {
 
@@ -97,7 +100,7 @@ public class ClientIT extends SecBasicClient {
      * authentication request.
      */
     @Test
-    @Tag("security")
+    @Tag("jsp_security")
     @RunAsClient
     public void test1() throws Exception {
         super.test1();
@@ -120,7 +123,7 @@ public class ClientIT extends SecBasicClient {
      * with.
      */
     @Test
-    @Tag("security")
+    @Tag("jsp_security")
     @RunAsClient
     public void test2() throws Exception {
         super.test2();
@@ -139,7 +142,7 @@ public class ClientIT extends SecBasicClient {
      * the container denies access to the web resource.
      */
     @Test
-    @Tag("security")
+    @Tag("jsp_security")
     @RunAsClient
     public void test3() throws Exception {
         super.test3();
@@ -163,7 +166,7 @@ public class ClientIT extends SecBasicClient {
      *
      */
     @Test
-    @Tag("security")
+    @Tag("jsp_security")
     @RunAsClient
     public void test4() throws Exception {
         super.test4();
@@ -185,7 +188,7 @@ public class ClientIT extends SecBasicClient {
      * role reference. 3. getRemoteUser() must return false
      */
     @Test
-    @Tag("security")
+    @Tag("jsp_security")
     @RunAsClient
     public void test5() throws Exception {
         super.test5();
@@ -216,7 +219,7 @@ public class ClientIT extends SecBasicClient {
      * 8. Receive resource (check isUserInRole for all known roles)
      */
     @Test
-    @Tag("security")
+    @Tag("jsp_security")
     @RunAsClient
     public void test6() throws Exception {
         super.test6();
