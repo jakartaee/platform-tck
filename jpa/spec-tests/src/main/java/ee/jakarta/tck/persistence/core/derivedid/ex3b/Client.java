@@ -18,11 +18,13 @@ package ee.jakarta.tck.persistence.core.derivedid.ex3b;
 
 
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -32,23 +34,17 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DID3bDependent", pkgName + "DID3bDependentId", pkgName + "DID3bEmployee",
-				pkgName + "DID3bEmployeeId" };
-		return createDeploymentJar("jpa_core_derivedid_ex3b.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -64,8 +60,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Derived Identifier The parent entity uses EmbeddedId Case
 	 * (b): The dependent entity uses EmbeddedId
 	 */
-	@Test
-	public void DIDTest() throws Exception {
+		public void DIDTest() throws Exception {
 		boolean pass = false;
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -156,7 +151,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -164,8 +159,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

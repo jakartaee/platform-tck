@@ -18,10 +18,12 @@ package ee.jakarta.tck.persistence.core.override.entitylistener;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.override.util.CallBackCounts;
@@ -35,24 +37,17 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "ListenerA", pkgName + "ListenerB", pkgName + "ListenerC", pkgName + "ListenerD",
-				pkgName + "NoEntityListener", pkgName + "NoListener", pkgName + "OverridenListener" };
-		return createDeploymentJar("jpa_core_override_entitylistener.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -75,8 +70,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: CallBack methods are tested by overriding entity listener in
 	 * XML file.
 	 */
-	@Test
-	public void testOverrideEntityListener() throws Exception {
+		public void testOverrideEntityListener() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -125,8 +119,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: CallBack methods are tested by using entitylistener with
 	 * empty xml tag.
 	 */
-	@Test
-	public void testEntityListenerXML() throws Exception {
+		public void testEntityListenerXML() throws Exception {
 
 		boolean pass = false;
 		CallBackCounts.clearCountsMap();
@@ -165,8 +158,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: CallBack methods are tested without using entitylistener.
 	 */
-	@Test
-	public void testNoEntityListener() throws Exception {
+		public void testNoEntityListener() throws Exception {
 
 		boolean pass = false;
 		CallBackCounts.clearCountsMap();
@@ -220,7 +212,7 @@ public class Client extends PMClientBase {
 		return result;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -228,7 +220,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

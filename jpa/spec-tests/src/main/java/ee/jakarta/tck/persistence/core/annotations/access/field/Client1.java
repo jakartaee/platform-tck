@@ -2,36 +2,24 @@ package ee.jakarta.tck.persistence.core.annotations.access.field;
 
 
 import java.util.Arrays;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
 
 import ee.jakarta.tck.persistence.core.types.common.Grade;
 import jakarta.persistence.Query;
 
 public class Client1 extends Client {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = Client1.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
-				"ee.jakarta.tck.persistence.core.types.common.Grade" };
-		return createDeploymentJar("jpa_core_annotations_access_field1.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 
 		logTrace( "setup");
 
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 			createTestData();
 			logTrace( "Done creating test data");
@@ -54,8 +42,7 @@ public class Client1 extends Client {
 	 * type: Java primitive types: boolean
 	 */
 
-	@Test
-	public void fieldTypeTest1() throws Exception {
+		public void fieldTypeTest1() throws Exception {
 
 		boolean pass = false;
 
@@ -107,8 +94,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: byte
 	 */
-	@Test
-	public void fieldTypeTest2() throws Exception {
+		public void fieldTypeTest2() throws Exception {
 
 		boolean pass = false;
 		byte newByte = (byte) 111;
@@ -159,8 +145,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: char
 	 */
-	@Test
-	public void fieldTypeTest3() throws Exception {
+		public void fieldTypeTest3() throws Exception {
 
 		boolean pass = false;
 		final char newChar = 'b';
@@ -210,8 +195,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: short
 	 */
-	@Test
-	public void fieldTypeTest4() throws Exception {
+		public void fieldTypeTest4() throws Exception {
 
 		boolean pass = false;
 		final short newShort = (short) 101;
@@ -261,8 +245,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: int
 	 */
-	@Test
-	public void fieldTypeTest5() throws Exception {
+		public void fieldTypeTest5() throws Exception {
 
 		boolean pass = false;
 		final int newInt = 500;
@@ -311,8 +294,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: long
 	 */
-	@Test
-	public void fieldTypeTest6() throws Exception {
+		public void fieldTypeTest6() throws Exception {
 
 		boolean pass = false;
 		final long newLong = 600L;
@@ -362,8 +344,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: double
 	 */
-	@Test
-	public void fieldTypeTest7() throws Exception {
+		public void fieldTypeTest7() throws Exception {
 
 		boolean pass = false;
 		final double newDbl = 80D;
@@ -412,8 +393,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent field of an entity may be of the following
 	 * type: Java primitive types: float
 	 */
-	@Test
-	public void fieldTypeTest8() throws Exception {
+		public void fieldTypeTest8() throws Exception {
 
 		boolean pass = false;
 		final float expFloat = 1.0F;
@@ -473,8 +453,7 @@ public class Client1 extends Client {
 	 *
 	 * With the Enumerated annotation and EnumType.STRING.
 	 */
-	@Test
-	public void fieldTypeTest9() throws Exception {
+		public void fieldTypeTest9() throws Exception {
 
 		boolean pass = false;
 
@@ -534,8 +513,7 @@ public class Client1 extends Client {
 	 *
 	 * Temporal.TemporalType.DATE
 	 */
-	@Test
-	public void fieldTypeTest10() throws Exception {
+		public void fieldTypeTest10() throws Exception {
 
 		boolean pass = false;
 
@@ -584,8 +562,7 @@ public class Client1 extends Client {
 	 * type: byte[]
 	 *
 	 */
-	@Test
-	public void fieldTypeTest11() throws Exception {
+		public void fieldTypeTest11() throws Exception {
 
 		boolean pass = false;
 		final byte[] b = { 31, 32, 33, 63, 64, 65 };
@@ -653,8 +630,7 @@ public class Client1 extends Client {
 	 * type: char[]
 	 *
 	 */
-	@Test
-	public void fieldTypeTest12() throws Exception {
+		public void fieldTypeTest12() throws Exception {
 
 		boolean pass = false;
 		final char[] charData = new char[] { 'c', 't', 's' };
@@ -710,8 +686,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: java.sql.Time
 	 */
-	@Test
-	public void fieldTypeTest13() throws Exception {
+		public void fieldTypeTest13() throws Exception {
 
 		boolean pass = false;
 		final java.sql.Time timeValue = getTimeData(18, 30, 15);
@@ -766,8 +741,7 @@ public class Client1 extends Client {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: java.sql.Timestamp
 	 */
-	@Test
-	public void fieldTypeTest14() throws Exception {
+		public void fieldTypeTest14() throws Exception {
 
 		boolean pass = false;
 		final java.sql.Timestamp tsValue = getTimestampData(2006, 02, 11);
@@ -824,8 +798,7 @@ public class Client1 extends Client {
 	 *
 	 * statefield_path_expression
 	 */
-	@Test
-	public void fieldTypeTest15() throws Exception {
+		public void fieldTypeTest15() throws Exception {
 
 		boolean pass = false;
 		Object result;
@@ -885,8 +858,7 @@ public class Client1 extends Client {
 	 *
 	 * named parameter
 	 */
-	@Test
-	public void fieldTypeTest16() throws Exception {
+		public void fieldTypeTest16() throws Exception {
 
 		boolean pass = false;
 		Object result;
@@ -945,8 +917,7 @@ public class Client1 extends Client {
 	 *
 	 * positional parameters
 	 */
-	@Test
-	public void fieldTypeTest17() throws Exception {
+		public void fieldTypeTest17() throws Exception {
 
 		boolean pass = false;
 		Object result;

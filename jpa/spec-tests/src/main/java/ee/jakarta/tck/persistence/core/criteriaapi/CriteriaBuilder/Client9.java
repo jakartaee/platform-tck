@@ -25,16 +25,17 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.CriteriaEntity;
-import ee.jakarta.tck.persistence.common.schema30.UtilCriteriaEntityData;
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.LocalDateField;
 import jakarta.persistence.criteria.LocalTimeField;
 import jakarta.persistence.criteria.ParameterExpression;
 import jakarta.persistence.criteria.Root;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -42,21 +43,76 @@ import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 
-public class Client9 extends UtilCriteriaEntityData {
+/**
+ * TODO: add EE tests for ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder.Client9
+ */
 
-    public JavaArchive createDeployment() throws Exception {
+public class Client9 extends Util {
 
-        String pkgNameWithoutSuffix = Client9.class.getPackageName();
-        String[] classes = getSchema30classes();
-        return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder9.jar", pkgNameWithoutSuffix, classes);
+    protected final CriteriaEntity criteriaEntity[] = new CriteriaEntity[5];
 
-    }
+    public static void main(String[] args) {
+   		Client9 theTests = new Client9();
+   		Status s = theTests.run(args, System.out, System.err);
+   		s.exit();
+   	}
+
+    public void createCriteriaEntityData() throws Exception {
+    		logTrace( "createCriteriaEntityData");
+    		getEntityTransaction().begin();
+
+    		try {
+
+    			criteriaEntity[0] = new CriteriaEntity(1L, "Left", null, null, null, null, null);
+    			criteriaEntity[1] = new CriteriaEntity(2L, "right", null, null, null, null, null);
+    			criteriaEntity[2] = new CriteriaEntity(3L, "LeftToken", "TokenRight", null, null, null, null);
+    			criteriaEntity[3] = new CriteriaEntity(4L, null, null, null, LocalTime.of(10, 11, 12), null, null);
+    			criteriaEntity[4] = new CriteriaEntity(5L, null, null, null, null, LocalDate.of(1918, 9, 28), null);
+
+    			for (CriteriaEntity c : criteriaEntity) {
+    				if (c != null) {
+    					getEntityManager().persist(c);
+    					logTrace( "persisting CriteriaEntity " + c);
+    					doFlush();
+    				}
+    			}
+    			doFlush();
+    			getEntityTransaction().commit();
+
+    		} catch (Exception e) {
+    			logErr( "Exception: ", e);
+    			throw new Exception("createCriteriaEntityData failed:", e);
+    		}
+    	}
+
+    public void removeTestData() {
+	logTrace( "removeTestData");
+	if (getEntityTransaction().isActive()) {
+		getEntityTransaction().rollback();
+	}
+	try {
+		getEntityTransaction().begin();
+		getEntityManager().createNativeQuery("DELETE FROM CRITERIA_TEST_TABLE").executeUpdate();
+		getEntityTransaction().commit();
+		logTrace( "done removeTestData");
+
+	} catch (Exception e) {
+		logErr( "Exception encountered while removing entities:", e);
+	} finally {
+		try {
+			if (getEntityTransaction().isActive()) {
+				getEntityTransaction().rollback();
+			}
+		} catch (Exception re) {
+			logErr( "Unexpected Exception in removeTestData:", re);
+		}
+	}
+}
 
     // Verify case 0: in the implementation code.
     // JPA spec: This shall be always evaluated as true and all existing entities must be returned
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void andPredicateAsListOf0Test() throws Exception {
+        public void andPredicateAsListOf0Test() throws Exception {
         boolean pass = false;
 
         CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
@@ -92,8 +148,7 @@ public class Client9 extends UtilCriteriaEntityData {
     // Verify case 0: in the implementation code.
     // JPA spec: This shall be always evaluated as false and no entities must be returned
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testOrPredicateAsListOf0() throws Exception {
+        public void testOrPredicateAsListOf0() throws Exception {
         final int EXPECTED_SIZE = 0;
         boolean pass = false;
 
@@ -129,8 +184,7 @@ public class Client9 extends UtilCriteriaEntityData {
 
     // Verify case 1: in the implementation code
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testAndPredicateAsListOf1() throws Exception {
+        public void testAndPredicateAsListOf1() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -176,8 +230,7 @@ public class Client9 extends UtilCriteriaEntityData {
 
     // Verify case 1: in the implementation code
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testOrPredicateAsListOf1() throws Exception {
+        public void testOrPredicateAsListOf1() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -223,8 +276,7 @@ public class Client9 extends UtilCriteriaEntityData {
 
     // Verify case 2: in the implementation code
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testAndPredicateAsListOf2() throws Exception {
+        public void testAndPredicateAsListOf2() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -272,8 +324,7 @@ public class Client9 extends UtilCriteriaEntityData {
 
     // Verify case 2: in the implementation code
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testOrPredicateAsListOf2() throws Exception {
+        public void testOrPredicateAsListOf2() throws Exception {
         final int EXPECTED_SIZE = 2;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -322,8 +373,7 @@ public class Client9 extends UtilCriteriaEntityData {
 
     // Verify default: in the implementation code with list of size 4
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testAndPredicateAsListOfN() throws Exception {
+        public void testAndPredicateAsListOfN() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -373,8 +423,7 @@ public class Client9 extends UtilCriteriaEntityData {
 
     // Verify default: in the implementation code with list of size 4
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testOrPredicateAsListOfN() throws Exception {
+        public void testOrPredicateAsListOfN() throws Exception {
         final int EXPECTED_SIZE = 4;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -426,8 +475,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testLeftIntLen() throws Exception {
+        public void testLeftIntLen() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -471,8 +519,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testLeftExprLen() throws Exception {
+        public void testLeftExprLen() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -516,8 +563,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testRightIntLen() throws Exception {
+        public void testRightIntLen() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -561,8 +607,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testRightExprLen() throws Exception {
+        public void testRightExprLen() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -606,8 +651,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //In case of Derby REPLACE function must be created
+        //In case of Derby REPLACE function must be created
     public void testReplaceExprExpr() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -652,8 +696,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //In case of Derby REPLACE function must be created
+        //In case of Derby REPLACE function must be created
     public void testReplaceExprStr() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -698,8 +741,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //In case of Derby REPLACE function must be created
+        //In case of Derby REPLACE function must be created
     public void testReplaceStrExpr() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -744,8 +786,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //In case of Derby REPLACE function must be created
+        //In case of Derby REPLACE function must be created
     public void testReplaceStrStr() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -790,8 +831,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractHourFromTime() throws Exception {
+        public void testExtractHourFromTime() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -836,8 +876,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractMinuteFromTime() throws Exception {
+        public void testExtractMinuteFromTime() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -883,8 +922,7 @@ public class Client9 extends UtilCriteriaEntityData {
 
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractSecondFromTime() throws Exception {
+        public void testExtractSecondFromTime() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -929,8 +967,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractYearFromDate() throws Exception {
+        public void testExtractYearFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -975,8 +1012,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractMonthFromDate() throws Exception {
+        public void testExtractMonthFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1021,8 +1057,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractDayFromDate() throws Exception {
+        public void testExtractDayFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1067,8 +1102,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExtractQuarterFromDate() throws Exception {
+        public void testExtractQuarterFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1113,8 +1147,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    //Derby only?
+        //Derby only?
     public void testExtractWeekFromDate() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
@@ -1161,8 +1194,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExpressionEqualToExpression() throws Exception {
+        public void testExpressionEqualToExpression() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1206,8 +1238,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExpressionEqualToObject() throws Exception {
+        public void testExpressionEqualToObject() throws Exception {
         final int EXPECTED_SIZE = 1;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1250,8 +1281,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExpressionNotEqualToExpression() throws Exception {
+        public void testExpressionNotEqualToExpression() throws Exception {
         final int EXPECTED_SIZE = 2;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1296,8 +1326,7 @@ public class Client9 extends UtilCriteriaEntityData {
     }
 
     @SetupMethod(name = "setupTrimData")
-    @Test
-    public void testExpressionNotEqualToObject() throws Exception {
+        public void testExpressionNotEqualToObject() throws Exception {
         final int EXPECTED_SIZE = 2;
         boolean pass1 = false;
         boolean pass2 = false;
@@ -1340,8 +1369,7 @@ public class Client9 extends UtilCriteriaEntityData {
         }
     }
 
-    @Test
-    public void testExpressionCast() throws Exception {
+        public void testExpressionCast() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         boolean pass3 = false;

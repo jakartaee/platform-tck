@@ -18,12 +18,13 @@ package ee.jakarta.tck.persistence.core.override.manytomany;
 
 
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -53,23 +54,17 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "Course", pkgName + "Student" };
-		return createDeploymentJar("jpa_core_override_manytomany.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception:test failed ", e);
@@ -86,8 +81,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Many-to-Many is tested without using its annotation;instead
 	 * it is overridden in orm.xml.
 	 */
-	@Test
-	public void testNoManyToManyAnnotation() throws Exception {
+		public void testNoManyToManyAnnotation() throws Exception {
 
 		getEntityTransaction().begin();
 		Course mathCourse = createCourse(COURSE1_ID, COURSE1_NAME);
@@ -147,7 +141,7 @@ public class Client extends PMClientBase {
 		return course;
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -155,7 +149,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

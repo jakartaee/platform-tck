@@ -22,11 +22,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -49,21 +51,19 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A_Field", pkgName + "A_Property", pkgName + "A2_Field",
-				pkgName + "A2_Property" };
-		return createDeploymentJar("jpa_core_annotations_temporal.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 
 			removeTestData();
 			createTestData();
@@ -80,8 +80,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Used with a Basic annotation for field access
 	 */
-	@Test
-	public void basicFieldTest() throws Exception {
+		public void basicFieldTest() throws Exception {
 
 		boolean pass = false;
 		try {
@@ -112,8 +111,7 @@ public class Client extends PMClientBase {
 	 *
 	 * @test_Strategy: Used with a Basic annotation for property access
 	 */
-	@Test
-	public void basicPropertyTest() throws Exception {
+		public void basicPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
 			A_Property a = getEntityManager().find(A_Property.class, "2");
@@ -145,8 +143,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: ElementCollection of a basic type
 	 */
-	@Test
-	public void fieldElementCollectionTemporalTest() throws Exception {
+		public void fieldElementCollectionTemporalTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -192,8 +189,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: ElementCollection of a basic type
 	 */
-	@Test
-	public void propertyElementCollectionTemporalTest() throws Exception {
+		public void propertyElementCollectionTemporalTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -239,8 +235,7 @@ public class Client extends PMClientBase {
 	 *
 	 * @test_Strategy: Used with a id annotation for field access
 	 */
-	@Test
-	public void idFieldTest() throws Exception {
+		public void idFieldTest() throws Exception {
 
 		boolean pass = false;
 		try {
@@ -271,8 +266,7 @@ public class Client extends PMClientBase {
 	 *
 	 * @test_Strategy: Used with a id annotation for property access
 	 */
-	@Test
-	public void idPropertyTest() throws Exception {
+		public void idPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
 			A2_Property a = getEntityManager().find(A2_Property.class, calendar2);
@@ -297,7 +291,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -305,8 +299,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	public void createTestData() {

@@ -24,25 +24,23 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.LineItem;
 import ee.jakarta.tck.persistence.common.schema30.Order;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.Query;
 
-public class Client1 extends UtilOrderData {
+public class Client1 extends Util {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_language1.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/* Run test */
@@ -60,8 +58,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest1() throws Exception {
+		public void queryTest1() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -103,8 +100,7 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest5() throws Exception {
+		public void queryTest5() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -150,8 +146,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest8() throws Exception {
+		public void queryTest8() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -193,8 +188,7 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest9() throws Exception {
+		public void queryTest9() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -242,8 +236,7 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest10() throws Exception {
+		public void queryTest10() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -290,8 +283,7 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest11() throws Exception {
+		public void queryTest11() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -332,8 +324,7 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest12() throws Exception {
+		public void queryTest12() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -376,8 +367,7 @@ public class Client1 extends UtilOrderData {
 	 * were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest13() throws Exception {
+		public void queryTest13() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -435,8 +425,7 @@ public class Client1 extends UtilOrderData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest14() throws Exception {
+		public void queryTest14() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -481,8 +470,7 @@ public class Client1 extends UtilOrderData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest27() throws Exception {
+		public void queryTest27() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -553,8 +541,7 @@ public class Client1 extends UtilOrderData {
 	 * optional reserved word OF. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest32() throws Exception {
+		public void queryTest32() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -596,8 +583,7 @@ public class Client1 extends UtilOrderData {
 	 * of 'OF'. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest33() throws Exception {
+		public void queryTest33() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -658,8 +644,7 @@ public class Client1 extends UtilOrderData {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest34() throws Exception {
+		public void queryTest34() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -701,8 +686,7 @@ public class Client1 extends UtilOrderData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest35() throws Exception {
+		public void queryTest35() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -750,8 +734,7 @@ public class Client1 extends UtilOrderData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest39() throws Exception {
+		public void queryTest39() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -810,8 +793,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest42() throws Exception {
+		public void queryTest42() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -869,8 +851,7 @@ public class Client1 extends UtilOrderData {
 	 * association-field, verifies the null is not included in the result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest48() throws Exception {
+		public void queryTest48() throws Exception {
 		boolean pass = false;
 		List o;
 		final Double[] expectedBalances = new Double[] { 400D, 500D, 750D, 1000D, 1400D, 1500D, 2000D, 2500D, 4400D,
@@ -911,8 +892,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest60() throws Exception {
+		public void queryTest60() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -969,8 +949,7 @@ public class Client1 extends UtilOrderData {
 	 * were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest62() throws Exception {
+		public void queryTest62() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -1016,8 +995,7 @@ public class Client1 extends UtilOrderData {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest63() throws Exception {
+		public void queryTest63() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -1058,8 +1036,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest65() throws Exception {
+		public void queryTest65() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		final Integer i1 = 1;
@@ -1132,8 +1109,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest66() throws Exception {
+		public void queryTest66() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		final Integer i1 = 8;
@@ -1207,8 +1183,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest67() throws Exception {
+		public void queryTest67() throws Exception {
 		boolean pass = false;
 		Double d1 = 1487.29;
 		Double d2 = 1487.30;
@@ -1245,8 +1220,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_leftouterjoin_Mx1() throws Exception {
+		public void test_leftouterjoin_Mx1() throws Exception {
 		List q;
 		boolean pass1 = false;
 		boolean pass2 = true;
@@ -1306,8 +1280,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_groupBy_1() throws Exception {
+		public void test_groupBy_1() throws Exception {
 		boolean pass = false;
 		List result;
 		String expected[] = new String[] { "AXP", "MCARD", "VISA" };
@@ -1350,8 +1323,7 @@ public class Client1 extends UtilOrderData {
 	 * information for all customers.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_innerjoin_1xM() throws Exception {
+		public void test_innerjoin_1xM() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1399,8 +1371,7 @@ public class Client1 extends UtilOrderData {
 	 * information from Order. customer name = Kellie A. Sanborn
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_innerjoin_Mx1() throws Exception {
+		public void test_innerjoin_Mx1() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1442,8 +1413,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_fetchjoin_1xM() throws Exception {
+		public void test_fetchjoin_1xM() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1483,8 +1453,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_fetchjoin_Mx1() throws Exception {
+		public void test_fetchjoin_Mx1() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1525,8 +1494,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_fetchjoin_Mx1_1() throws Exception {
+		public void test_fetchjoin_Mx1_1() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1567,8 +1535,7 @@ public class Client1 extends UtilOrderData {
 	 * BETWEEN. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_notBetweenArithmetic() throws Exception {
+		public void test_notBetweenArithmetic() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1621,8 +1588,7 @@ public class Client1 extends UtilOrderData {
 	 * the result is also TRUE Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ANDconditionTT() throws Exception {
+		public void test_ANDconditionTT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1661,8 +1627,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also False
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ANDconditionTF() throws Exception {
+		public void test_ANDconditionTF() throws Exception {
 		boolean pass = false;
 		List result;
 
@@ -1698,8 +1663,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also False
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ANDconditionFT() throws Exception {
+		public void test_ANDconditionFT() throws Exception {
 		boolean pass = false;
 		List result;
 
@@ -1736,8 +1700,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also False
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ANDconditionFF() throws Exception {
+		public void test_ANDconditionFF() throws Exception {
 		boolean pass = false;
 		List result;
 
@@ -1774,8 +1737,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also TRUE
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ORconditionTT() throws Exception {
+		public void test_ORconditionTT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1816,8 +1778,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also TRUE
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ORconditionTF() throws Exception {
+		public void test_ORconditionTF() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1856,8 +1817,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also TRUE
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ORconditionFT() throws Exception {
+		public void test_ORconditionFT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1902,8 +1862,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also FALSE
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ORconditionFF() throws Exception {
+		public void test_ORconditionFF() throws Exception {
 		boolean pass = false;
 		List result;
 
@@ -1939,8 +1898,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: Test for Group By within a WHERE clause
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_groupByWhereClause() throws Exception {
+		public void test_groupByWhereClause() throws Exception {
 		boolean pass = false;
 		List result;
 		final String[] expected = new String[] { "Jonathan K. Smith", "Kellie A. Sanborn", "Robert E. Bissett" };
@@ -1983,8 +1941,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: Test for ABS expression in the Having Clause
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ABSHavingClause() throws Exception {
+		public void test_ABSHavingClause() throws Exception {
 		boolean pass = false;
 		Query q;
 		Object result;
@@ -2022,8 +1979,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: Test for SQRT expression in the WHERE Clause
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_SQRTWhereClause() throws Exception {
+		public void test_SQRTWhereClause() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2066,8 +2022,7 @@ public class Client1 extends UtilOrderData {
 	 * Select the customers without orders.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_exists_01() throws Exception {
+		public void test_subquery_exists_01() throws Exception {
 		boolean pass = false;
 		List result;
 		final String[] expectedPKs = { "19", "20" };
@@ -2103,8 +2058,7 @@ public class Client1 extends UtilOrderData {
 	 * Select the customers with orders where total order > 1500.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_exists_02() throws Exception {
+		public void test_subquery_exists_02() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -2148,8 +2102,7 @@ public class Client1 extends UtilOrderData {
 	 * name like Caruso. The name Caruso is derived in the subquery.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_like() throws Exception {
+		public void test_subquery_like() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2189,8 +2142,7 @@ public class Client1 extends UtilOrderData {
 	 * whose orders total price is between 1000 and 2000.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_between() throws Exception {
+		public void test_subquery_between() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2236,8 +2188,7 @@ public class Client1 extends UtilOrderData {
 	 * have line items of quantity > 2.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_join() throws Exception {
+		public void test_subquery_join() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -2282,8 +2233,7 @@ public class Client1 extends UtilOrderData {
 	 * values in the result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_GT() throws Exception {
+		public void test_subquery_ALL_GT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2327,8 +2277,7 @@ public class Client1 extends UtilOrderData {
 	 * in the result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_LT() throws Exception {
+		public void test_subquery_ALL_LT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2369,8 +2318,7 @@ public class Client1 extends UtilOrderData {
 	 * result set. The result set contains the min of total price of orders.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_EQ() throws Exception {
+		public void test_subquery_ALL_EQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2415,8 +2363,7 @@ public class Client1 extends UtilOrderData {
 	 */
 
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_LTEQ() throws Exception {
+		public void test_subquery_ALL_LTEQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2458,8 +2405,7 @@ public class Client1 extends UtilOrderData {
 	 * result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_GTEQ() throws Exception {
+		public void test_subquery_ALL_GTEQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2502,8 +2448,7 @@ public class Client1 extends UtilOrderData {
 	 * result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_NOTEQ() throws Exception {
+		public void test_subquery_ALL_NOTEQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2562,8 +2507,7 @@ public class Client1 extends UtilOrderData {
 	 * count of lineItems = 3.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ANY_GT() throws Exception {
+		public void test_subquery_ANY_GT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2620,8 +2564,7 @@ public class Client1 extends UtilOrderData {
 	 * where count of lineItems = 3.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ANY_LT() throws Exception {
+		public void test_subquery_ANY_LT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2679,8 +2622,7 @@ public class Client1 extends UtilOrderData {
 	 * result set. The result set contains the min and avg of total price of orders.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ANY_EQ() throws Exception {
+		public void test_subquery_ANY_EQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2723,8 +2665,7 @@ public class Client1 extends UtilOrderData {
 	 * total price of orders where count of lineItems = 3.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_SOME_LTEQ() throws Exception {
+		public void test_subquery_SOME_LTEQ() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -2785,8 +2726,7 @@ public class Client1 extends UtilOrderData {
 	 * count of lineItems = 3.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_SOME_GTEQ() throws Exception {
+		public void test_subquery_SOME_GTEQ() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -2843,8 +2783,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void treatJoinClassTest() throws Exception {
+		public void treatJoinClassTest() throws Exception {
 		boolean pass = false;
 		List<String> actual;
 		List<String> expected = new ArrayList<String>();
@@ -2897,8 +2836,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void treatInWhereClauseTest() throws Exception {
+		public void treatInWhereClauseTest() throws Exception {
 		boolean pass = false;
 		List<String> actual;
 		List<String> expected = new ArrayList<String>();
@@ -2947,8 +2885,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void appropriateSuffixesTest() throws Exception {
+		public void appropriateSuffixesTest() throws Exception {
 		boolean pass = false;
 		List<String> actual;
 		List<String> expected = new ArrayList<String>();
@@ -2997,8 +2934,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void sqlApproximateNumericLiteralTest() throws Exception {
+		public void sqlApproximateNumericLiteralTest() throws Exception {
 		boolean pass = false;
 		List<String> actual;
 		List<String> expected = new ArrayList<String>();
@@ -3046,8 +2982,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy:
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinOnExpressionTest() throws Exception {
+		public void joinOnExpressionTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List<Order> actual;
@@ -3094,8 +3029,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: variable in a query is overridden in a subquery
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void subqueryVariableOverridesQueryVariableTest() throws Exception {
+		public void subqueryVariableOverridesQueryVariableTest() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -3134,8 +3068,7 @@ public class Client1 extends UtilOrderData {
 	 * identifier evaluates to a value of the type of the expression
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void longIdentifierNameTest() throws Exception {
+		public void longIdentifierNameTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		String expectedPKs[];
@@ -3186,8 +3119,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: verify an identifier name can begin with an underscore.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void underscoreIdentifierNameTest() throws Exception {
+		public void underscoreIdentifierNameTest() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		String expectedPKs[];
@@ -3235,8 +3167,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: verify an identifier name can begin with a dollarsign.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void dollarsignIdentifierNameTest() throws Exception {
+		public void dollarsignIdentifierNameTest() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		String expectedPKs[];
@@ -3286,8 +3217,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void distinctNotSpecifiedTest() throws Exception {
+		public void distinctNotSpecifiedTest() throws Exception {
 		boolean pass = false;
 		Integer expectedPKs[];
 		List<String> o;
@@ -3344,8 +3274,7 @@ public class Client1 extends UtilOrderData {
 	 * query result
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void resultVariableTest() throws Exception {
+		public void resultVariableTest() throws Exception {
 
 		boolean pass = false;
 		List<String> o;

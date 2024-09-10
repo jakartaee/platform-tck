@@ -29,10 +29,11 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityTransaction;
@@ -47,23 +48,20 @@ public class Client extends PMClientBase {
 
     public Client() {
     }
+    public static void main(String[] args) {
+   		Client theTests = new Client();
+   		Status s = theTests.run(args, System.out, System.err);
+   		s.exit();
+   	}
 
-    public JavaArchive createDeployment() throws Exception {
-
-        String pkgNameWithoutSuffix = Client.class.getPackageName();
-        String pkgName = pkgNameWithoutSuffix + ".";
-        String[] classes = { pkgName + "DateTimeEntity", pkgName + "DummyEntity" };
-        return createDeploymentJar("jpa_datetime.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-    }
 
     @Override
-    @BeforeEach
-    public void setup() throws Exception {
+    
+    public void setup(String[] args, Properties p) throws Exception {
         logMsg( "Setup: Jakarta Persistence Java 8 date and time types test");
         try {
-            super.setup();
-            createDeployment();
+            super.setup(args,p);
+            
             Properties props = getPersistenceUnitProperties();
             props.put("jakarta.persistence.schema-generation.database.action", "drop-and-create");
             props.put("jakarta.persistence.schema-generation.create-database-schemas", "true");
@@ -79,7 +77,7 @@ public class Client extends PMClientBase {
     }
 
     @Override
-    @AfterEach
+    
     public void cleanup() throws Exception {
         try {
             logMsg( "Cleanup: Jakarta Persistence 2.2 Java 8 date and time types test");
@@ -91,7 +89,7 @@ public class Client extends PMClientBase {
             closeEMAndEMF();
             super.cleanup();
         } finally {
-            removeTestJarFromCP();
+
         }
     }
 
@@ -172,8 +170,7 @@ public class Client extends PMClientBase {
      *
      * @throws com.sun.ts.lib.harness.EETest.Exception when test failed
      */
-    @Test
-    public void dateTimeTest() throws Exception {
+        public void dateTimeTest() throws Exception {
         logMsg( "Test: Jakarta Persistence Java 8 date and time types");
         verifySchema();
         boolean createResult = createEntities();

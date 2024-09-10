@@ -22,35 +22,27 @@ package ee.jakarta.tck.persistence.core.entitytest.remove.basic;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-
-
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		return createDeploymentJar("jpa_core_entitytest_remove_basic.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -78,8 +70,7 @@ public class Client extends PMClientBase {
 	 * Invoke remove on a new entity.
 	 *
 	 */
-	@Test
-	public void removeBasicTest1() throws Exception {
+		public void removeBasicTest1() throws Exception {
 		logTrace( "Begin removeBasicTest1");
 		boolean pass = false;
 		final A a1 = new A("1", "a1", 1);
@@ -116,8 +107,7 @@ public class Client extends PMClientBase {
 	 * transition to the removed state. Invoke remove on a managed entity.
 	 *
 	 */
-	@Test
-	public void removeBasicTest2() throws Exception {
+		public void removeBasicTest2() throws Exception {
 		logTrace( "Begin removeBasicTest2");
 		boolean pass = false;
 		final A a1 = new A("2", "a2", 2);
@@ -158,8 +148,7 @@ public class Client extends PMClientBase {
 	 * Invoke remove on a removed entity.
 	 *
 	 */
-	@Test
-	public void removeBasicTest3() throws Exception {
+		public void removeBasicTest3() throws Exception {
 		final A a1 = new A("4", "a4", 4);
 		boolean pass = false;
 
@@ -224,8 +213,7 @@ public class Client extends PMClientBase {
 	 * If X is a removed entity, it is removed from the database.
 	 *
 	 */
-	@Test
-	public void removeBasicTest4() throws Exception {
+		public void removeBasicTest4() throws Exception {
 		logTrace( "Begin removeBasicTest4");
 		boolean pass = false;
 		final A a1 = new A("5", "a5", 5);
@@ -279,8 +267,7 @@ public class Client extends PMClientBase {
 	 * If the remove method has been called on the entity.
 	 *
 	 */
-	@Test
-	public void removeBasicTest5() throws Exception {
+		public void removeBasicTest5() throws Exception {
 		logTrace( "Begin removeBasicTest5");
 		boolean pass = false;
 		final A a1 = new A("6", "a6", 6);
@@ -322,8 +309,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: To merge a removed entity will result in
 	 * IllegalArgumentException, or commit will fail.
 	 */
-	@Test
-	public void removeMergeBasicTest() throws Exception {
+		public void removeMergeBasicTest() throws Exception {
 		logTrace( "Begin removeMergeBasicTest");
 		boolean pass = false;
 		String reason = null;
@@ -389,7 +375,7 @@ public class Client extends PMClientBase {
 		return getEntityManager().find(A.class, id);
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -397,8 +383,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

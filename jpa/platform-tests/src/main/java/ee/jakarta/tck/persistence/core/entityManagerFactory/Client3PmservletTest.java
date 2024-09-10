@@ -122,6 +122,7 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.entity
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_entityManagerFactory_pmservlet_vehicle_web, Client3.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_entityManagerFactory = ShrinkWrap.create(JavaArchive.class, "jpa_core_entityManagerFactory.jar");
@@ -137,9 +138,21 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.entity
             if(parURL != null) {
               jpa_core_entityManagerFactory.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client3.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_entityManagerFactory.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client3.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_entityManagerFactory.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client3.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_entityManagerFactory.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_entityManagerFactory, Client3.class, parURL);
-            // The orm.xml file
             parURL = Client3.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_entityManagerFactory.addAsManifestResource(parURL, "orm.xml");
@@ -158,12 +171,9 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.entity
 
 
             // The application.xml descriptor
-            URL earResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/entityManagerFactory/");
-            if(earResURL != null) {
-              jpa_core_entityManagerFactory_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client3.class.getResource("/com/sun/ts/tests/jpa/core/entityManagerFactory/.ear.sun-application.xml");
+            earResURL = Client3.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_entityManagerFactory_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

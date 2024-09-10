@@ -20,13 +20,14 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
-import ee.jakarta.tck.persistence.common.schema30.UtilAliasData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CompoundSelection;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -34,17 +35,13 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Selection;
 
-public class Client2 extends UtilAliasData {
+public class Client2 extends Util {
 
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -55,8 +52,7 @@ public class Client2 extends UtilAliasData {
 	 * @test_Strategy:
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void selectIllegalArgumentException() throws Exception {
+		public void selectIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
@@ -96,8 +92,7 @@ public class Client2 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void multiselectIllegalArgumentExceptionTest() throws Exception {
+		public void multiselectIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;

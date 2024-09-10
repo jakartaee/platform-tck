@@ -1,32 +1,15 @@
 package ee.jakarta.tck.persistence.core.annotations.access.field;
 
-
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 public class Client3 extends Client {
 
 
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = Client3.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2",
-				"ee.jakarta.tck.persistence.core.types.common.Grade" };
-		return createDeploymentJar("jpa_core_annotations_access_field3.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-	}
-
-	@BeforeEach
-	public void setup3() throws Exception {
+	public void setup3(String[] args, Properties p) throws Exception {
 		logTrace( "setup3");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData3();
 			logTrace( "Done creating test data");
@@ -57,7 +40,7 @@ public class Client3 extends Client {
 			} catch (Exception re) {
 				logErr( "Unexpected Exception during Rollback:", re);
 			}
-		}
+ 		}
 
 	}
 
@@ -68,7 +51,6 @@ public class Client3 extends Client {
 	 * 
 	 * @test_Strategy: when transient is specified, verify data isn't persisted
 	 */
-	@Test
 	public void transientTest() throws Exception {
 
 		boolean pass = false;

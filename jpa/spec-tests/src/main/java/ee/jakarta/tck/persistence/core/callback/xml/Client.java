@@ -24,11 +24,12 @@ package ee.jakarta.tck.persistence.core.callback.xml;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.core.callback.common.Constants;
 import ee.jakarta.tck.persistence.core.callback.common.EntityCallbackClientBase;
@@ -51,24 +52,17 @@ public class Client extends EntityCallbackClientBase {
 	public Client() {
 		super();
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Customer", pkgName + "LineItem", pkgName + "LineItemSuper", pkgName + "Order",
-				pkgName + "Product" };
-		String[] xmlFiles = { ORM_XML };
-		return createDeploymentJar("jpa_core_callback_xml.jar", pkgNameWithoutSuffix, classes, xmlFiles);
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -86,8 +80,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistTest() throws Exception {
+		public void prePersistTest() throws Exception {
 		String reason;
 		final String testName = Constants.prePersistTest;
 		try {
@@ -128,8 +121,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistMultiTest() throws Exception {
+		public void prePersistMultiTest() throws Exception {
 		final String testName = Constants.prePersistMultiTest;
 		try {
 			getEntityTransaction().begin();
@@ -163,8 +155,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistCascadeTest() throws Exception {
+		public void prePersistCascadeTest() throws Exception {
 		String reason;
 		final String testName = Constants.prePersistCascadeTest;
 		try {
@@ -222,8 +213,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistMultiCascadeTest() throws Exception {
+		public void prePersistMultiCascadeTest() throws Exception {
 		final String testName = Constants.prePersistMultiCascadeTest;
 		try {
 			getEntityTransaction().begin();
@@ -266,8 +256,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preRemoveTest() throws Exception {
+		public void preRemoveTest() throws Exception {
 		String reason;
 		final String testName = Constants.preRemoveTest;
 		try {
@@ -309,8 +298,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preRemoveMultiTest() throws Exception {
+		public void preRemoveMultiTest() throws Exception {
 		final String testName = Constants.preRemoveMultiTest;
 		try {
 			getEntityTransaction().begin();
@@ -346,8 +334,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preRemoveCascadeTest() throws Exception {
+		public void preRemoveCascadeTest() throws Exception {
 		String reason;
 		final String testName = Constants.preRemoveCascadeTest;
 		try {
@@ -406,8 +393,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preRemoveMultiCascadeTest() throws Exception {
+		public void preRemoveMultiCascadeTest() throws Exception {
 		final String testName = Constants.preRemoveMultiCascadeTest;
 		try {
 			getEntityTransaction().begin();
@@ -453,8 +439,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preUpdateTest() throws Exception {
+		public void preUpdateTest() throws Exception {
 		final String testName = Constants.preUpdateTest;
 		try {
 			getEntityTransaction().begin();
@@ -488,8 +473,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void postLoadTest() throws Exception {
+		public void postLoadTest() throws Exception {
 		String reason;
 		final String testName = Constants.postLoadTest;
 		try {
@@ -538,8 +522,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void postLoadMultiTest() throws Exception {
+		public void postLoadMultiTest() throws Exception {
 		final String testName = Constants.postLoadMultiTest;
 		try {
 			getEntityTransaction().begin();
@@ -577,8 +560,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistRuntimeExceptionTest() throws Exception {
+		public void prePersistRuntimeExceptionTest() throws Exception {
 		final String testName = Constants.prePersistRuntimeExceptionTest;
 		try {
 			getEntityTransaction().begin();
@@ -610,8 +592,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy: make use of the default listener defined in the orm.xml
 	 */
-	@Test
-	public void prePersistDefaultListenerTest() throws Exception {
+		public void prePersistDefaultListenerTest() throws Exception {
 		String reason;
 		final String testName = Constants.prePersistDefaultListenerTest;
 		try {
@@ -672,7 +653,7 @@ public class Client extends EntityCallbackClientBase {
 		return customer;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -680,7 +661,7 @@ public class Client extends EntityCallbackClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

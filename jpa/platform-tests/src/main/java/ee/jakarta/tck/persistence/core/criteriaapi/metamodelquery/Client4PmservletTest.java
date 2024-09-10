@@ -111,6 +111,7 @@ public class Client4PmservletTest extends ee.jakarta.tck.persistence.core.criter
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_criteriaapi_metamodelquery_pmservlet_vehicle_web, Client4.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_core_criteriaapi_metamodelquery = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_metamodelquery.jar");
@@ -157,9 +158,21 @@ public class Client4PmservletTest extends ee.jakarta.tck.persistence.core.criter
             if(parURL != null) {
               jpa_core_criteriaapi_metamodelquery.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client4.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_metamodelquery.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client4.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_metamodelquery.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client4.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_metamodelquery.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriaapi_metamodelquery, Client4.class, parURL);
-            // The orm.xml file
             parURL = Client4.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_criteriaapi_metamodelquery.addAsManifestResource(parURL, "orm.xml");
@@ -178,12 +191,9 @@ public class Client4PmservletTest extends ee.jakarta.tck.persistence.core.criter
 
 
             // The application.xml descriptor
-            URL earResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/");
-            if(earResURL != null) {
-              jpa_core_criteriaapi_metamodelquery_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client4.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/metamodelquery/.ear.sun-application.xml");
+            earResURL = Client4.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_criteriaapi_metamodelquery_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -92,7 +92,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_propagation_cm_jta_web, Client.class, warResURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_ee_propagation_cm_jta_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_ee_propagation_cm_jta_ejb.jar");
             // The class files
@@ -102,17 +102,18 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
                 ee.jakarta.tck.persistence.ee.propagation.cm.jta.TellerBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/cm/jta/");
-            if(ejbResURL != null) {
-              jpa_ee_propagation_cm_jta_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client.class.getResource("/");
+            if(ejbResURL1 != null) {
+              jpa_ee_propagation_cm_jta_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/cm/jta/.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_ee_propagation_cm_jta_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client.class.getResource("/.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_ee_propagation_cm_jta_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_ee_propagation_cm_jta_ejb, Client.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_ee_propagation_cm_jta_ejb, Client.class, ejbResURL1);
+
 
         // Par
             // the jar with the correct archive name
@@ -128,9 +129,21 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
             if(parURL != null) {
               jpa_ee_propagation_cm_jta.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_ee_propagation_cm_jta.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_ee_propagation_cm_jta.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_ee_propagation_cm_jta.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_propagation_cm_jta, Client.class, parURL);
-            // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_ee_propagation_cm_jta.addAsManifestResource(parURL, "orm.xml");
@@ -151,7 +164,8 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/cm/jta/application.xml");
+            URL earResURL = null;
+            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/cm/jta/application.xml");
             if(earResURL != null) {
               jpa_ee_propagation_cm_jta_ear.addAsManifestResource(earResURL, "application.xml");
             }

@@ -18,9 +18,9 @@ package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
 
 public class Client3 extends Client {
 
@@ -29,23 +29,17 @@ public class Client3 extends Client {
 	public Client3() {
 	}
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_annotations_tableGenerator3.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup3() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup3");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData3();
 		} catch (Exception e) {
@@ -62,7 +56,6 @@ public class Client3 extends Client {
 	 * 
 	 * @test_Strategy: use a generator specified on a field
 	 */
-	@Test
 	public void generatorOnFieldTest() throws Exception {
 
 		boolean pass = false;

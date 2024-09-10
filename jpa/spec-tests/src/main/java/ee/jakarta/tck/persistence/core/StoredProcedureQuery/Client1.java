@@ -21,11 +21,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.LockModeType;
@@ -45,35 +47,26 @@ public class Client1 extends Client {
     public Client1() {
     }
 
-    public JavaArchive createDeployment() throws Exception {
-
-        String pkgNameWithoutSuffix = Client1.class.getPackageName();
-        String pkgName = pkgNameWithoutSuffix + ".";
-        String[] xmlFiles = {MAPPING_FILE_XML};
-        String[] classes = {pkgName + "Employee", pkgName + "Employee2", pkgName + "EmployeeMappedSC"};
-        return createDeploymentJar("jpa_core_types_StoredProcedureQuery1.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
-    }
-
     /*
      * setup() is called before each test
      *
      * @class.setup_props: jdbc.db;
      */
-    @BeforeEach
-    public void setup() throws Exception {
+    
+    public void setup(String[] args, Properties p) throws Exception {
         logTrace( "setup");
-        try {
-            super.setup();
-            createDeployment();
-            removeTestData();
-            createEmployeeTestData();
-            dataBaseName = System.getProperty("jdbc.db");
-        } catch (Exception e) {
-            logErr( "Exception: ", e);
-            throw new Exception("Setup failed:", e);
-        }
+
+        super.setup(args,p);
+        removeTestData();
+        createEmployeeTestData();
+        dataBaseName = System.getProperty("jdbc.db");
+
     }
+    public static void main(String[] args) {
+   		Client1 theTests = new Client1();
+   		Status s = theTests.run(args, System.out, System.err);
+   		s.exit();
+   	}
 
     /*
      * @testName: executeTest
@@ -86,8 +79,7 @@ public class Client1 extends Client {
      * @test_Strategy:
      *
      */
-    @Test
-    public void executeTest() throws Exception {
+        public void executeTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         boolean pass3 = false;
@@ -203,8 +195,7 @@ public class Client1 extends Client {
      * @test_Strategy:
      *
      */
-    @Test
-    public void getOutputParameterValueIntTest() throws Exception {
+        public void getOutputParameterValueIntTest() throws Exception {
         boolean pass2 = false;
         boolean pass4 = false;
         boolean pass6 = false;
@@ -294,7 +285,7 @@ public class Client1 extends Client {
         }
 
         if (!pass2 || !pass4 || !pass6) {
-            throw new Exception("getOutputParameterValueIntTest failed");
+            throw new Fault("getOutputParameterValueIntTest failed");
         }
 
     }
@@ -307,8 +298,7 @@ public class Client1 extends Client {
      * @test_Strategy:
      *
      */
-    @Test
-    public void getOutputParameterValueIntIllegalArgumentExceptionTest() throws Exception {
+        public void getOutputParameterValueIntIllegalArgumentExceptionTest() throws Exception {
         boolean pass2 = false;
         boolean pass4 = false;
 
@@ -366,7 +356,7 @@ public class Client1 extends Client {
         }
 
         if (!pass2 || !pass4) {
-            throw new Exception("getOutputParameterValueIntIllegalArgumentExceptionTest failed");
+            throw new Fault("getOutputParameterValueIntIllegalArgumentExceptionTest failed");
         }
 
     }
@@ -380,8 +370,7 @@ public class Client1 extends Client {
      * @test_Strategy:
      *
      */
-    @Test
-    public void getFirstResultTest() throws Exception {
+        public void getFirstResultTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         boolean pass3 = false;
@@ -421,7 +410,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2 || !pass3) {
-            throw new Exception("getFirstResultTest failed");
+            throw new Fault("getFirstResultTest failed");
         }
 
     }
@@ -434,8 +423,7 @@ public class Client1 extends Client {
      * @test_Strategy:
      *
      */
-    @Test
-    public void getMaxResultsTest() throws Exception {
+        public void getMaxResultsTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         boolean pass3 = false;
@@ -476,7 +464,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2 || !pass3) {
-            throw new Exception("getMaxResultsTest failed");
+            throw new Fault("getMaxResultsTest failed");
         }
 
     }
@@ -489,8 +477,7 @@ public class Client1 extends Client {
      * @test_Strategy: Get single result from returned resultset.
      *
      */
-    @Test
-    public void getSingleResultTest() throws Exception {
+        public void getSingleResultTest() throws Exception {
         boolean pass = false;
 
         try {
@@ -525,7 +512,7 @@ public class Client1 extends Client {
         }
 
         if (!pass) {
-            throw new Exception("getSingleResultTest failed");
+            throw new Fault("getSingleResultTest failed");
         }
 
     }
@@ -538,8 +525,7 @@ public class Client1 extends Client {
      * @test_Strategy: Get single result from returned resultset. Expected result is some value.
      *
      */
-    @Test
-    public void getSingleResultOrNullWithValueTest() throws Exception {
+        public void getSingleResultOrNullWithValueTest() throws Exception {
         boolean pass = false;
 
         try {
@@ -574,7 +560,7 @@ public class Client1 extends Client {
         }
 
         if (!pass) {
-            throw new Exception("getSingleResultOrNullWithValueTest failed");
+            throw new Fault("getSingleResultOrNullWithValueTest failed");
         }
     }
 
@@ -586,8 +572,7 @@ public class Client1 extends Client {
      * @test_Strategy: Get single result from returned resultset. Expected result is null.
      *
      */
-    @Test
-    public void getSingleResultOrNullWithNullTest() throws Exception {
+        public void getSingleResultOrNullWithNullTest() throws Exception {
         boolean pass = false;
 
         try {
@@ -617,7 +602,7 @@ public class Client1 extends Client {
         }
 
         if (!pass) {
-            throw new Exception("getSingleResultOrNullWithNullTest failed");
+            throw new Fault("getSingleResultOrNullWithNullTest failed");
         }
     }
 
@@ -629,8 +614,7 @@ public class Client1 extends Client {
      * @test_Strategy: Get single result from returned resultset that is empty
      *
      */
-    @Test
-    public void getSingleResultNoResultExceptionTest() throws Exception {
+        public void getSingleResultNoResultExceptionTest() throws Exception {
         boolean pass = false;
 
         try {
@@ -661,7 +645,7 @@ public class Client1 extends Client {
         }
 
         if (!pass) {
-            throw new Exception("getSingleResultNoResultExceptionTest failed");
+            throw new Fault("getSingleResultNoResultExceptionTest failed");
         }
 
     }
@@ -675,8 +659,7 @@ public class Client1 extends Client {
      * multiple values
      *
      */
-    @Test
-    public void getSingleResultNonUniqueResultExceptionTest() throws Exception {
+        public void getSingleResultNonUniqueResultExceptionTest() throws Exception {
         boolean pass = false;
 
         try {
@@ -704,7 +687,7 @@ public class Client1 extends Client {
         }
 
         if (!pass) {
-            throw new Exception("getSingleResultNonUniqueResultExceptionTest failed");
+            throw new Fault("getSingleResultNonUniqueResultExceptionTest failed");
         }
 
     }
@@ -716,8 +699,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy: Set and Get the various flushModes of a Query
      */
-    @Test
-    public void setgetFlushModeTest() throws Exception {
+        public void setgetFlushModeTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
 
@@ -791,7 +773,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2)
-            throw new Exception("setgetFlushModeTest failed");
+            throw new Fault("setgetFlushModeTest failed");
     }
 
     /*
@@ -801,8 +783,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void setLockModeIllegalStateExceptionTest() throws Exception {
+        public void setLockModeIllegalStateExceptionTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -825,7 +806,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("setLockModeIllegalStateExceptionTest failed");
+            throw new Fault("setLockModeIllegalStateExceptionTest failed");
     }
 
     /*
@@ -835,8 +816,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getLockModeIllegalStateExceptionTest() throws Exception {
+        public void getLockModeIllegalStateExceptionTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -859,7 +839,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("getLockModeIllegalStateExceptionTest failed");
+            throw new Fault("getLockModeIllegalStateExceptionTest failed");
     }
 
     /*
@@ -869,8 +849,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void setGetParameterIntTest() throws Exception {
+        public void setGetParameterIntTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         try {
@@ -910,7 +889,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2)
-            throw new Exception("setGetParameterIntTest failed");
+            throw new Fault("setGetParameterIntTest failed");
     }
 
     // disabling this test since Store Procedures with named parameters
@@ -961,8 +940,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getParameterStringExceptionTest() throws Exception {
+        public void getParameterStringExceptionTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         try {
@@ -1012,7 +990,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2)
-            throw new Exception("getParameterStringExceptionTest failed");
+            throw new Fault("getParameterStringExceptionTest failed");
     }
 
     /*
@@ -1022,8 +1000,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getParameterIntIllegalArgumentExceptionTest() throws Exception {
+        public void getParameterIntIllegalArgumentExceptionTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         try {
@@ -1067,7 +1044,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2)
-            throw new Exception("getParameterIntIllegalArgumentExceptionTest failed");
+            throw new Fault("getParameterIntIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1077,8 +1054,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void setParameterParameterObjectTest() throws Exception {
+        public void setParameterParameterObjectTest() throws Exception {
         boolean pass2 = false;
         boolean pass4 = false;
         try {
@@ -1157,7 +1133,7 @@ public class Client1 extends Client {
         }
 
         if (!pass2 || !pass4)
-            throw new Exception("setParameterParameterObjectTest failed");
+            throw new Fault("setParameterParameterObjectTest failed");
 
     }
 
@@ -1169,8 +1145,7 @@ public class Client1 extends Client {
      * @test_Strategy: call setParameter(Parameter, Object) using parameter from
      * different query.
      */
-    @Test
-    public void setParameterParameterObjectIllegalArgumentExceptionTest() throws Exception {
+        public void setParameterParameterObjectIllegalArgumentExceptionTest() throws Exception {
         boolean pass1 = false;
         try {
             getEntityTransaction().begin();
@@ -1204,7 +1179,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1)
-            throw new Exception("setParameterParameterObjectIllegalArgumentExceptionTest failed");
+            throw new Fault("setParameterParameterObjectIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1214,8 +1189,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void setParameterIntObjectIllegalArgumentExceptionTest() throws Exception {
+        public void setParameterIntObjectIllegalArgumentExceptionTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         boolean pass3 = false;
@@ -1289,7 +1263,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2 || !pass3 || !pass4)
-            throw new Exception("setParameterIntObjectIllegalArgumentExceptionTest failed");
+            throw new Fault("setParameterIntObjectIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1299,8 +1273,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getParametersTest() throws Exception {
+        public void getParametersTest() throws Exception {
         boolean pass1 = false;
         boolean pass3 = false;
         try {
@@ -1336,7 +1309,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass3)
-            throw new Exception("getParametersTest failed");
+            throw new Fault("getParametersTest failed");
 
     }
 
@@ -1347,8 +1320,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void setParameterIntDateTemporalTypeTest() throws Exception {
+        public void setParameterIntDateTemporalTypeTest() throws Exception {
         boolean pass2 = false;
         boolean pass4 = false;
         try {
@@ -1421,7 +1393,7 @@ public class Client1 extends Client {
         }
 
         if (!pass2 || !pass4)
-            throw new Exception("setParameterIntDateTemporalTypeTest failed");
+            throw new Fault("setParameterIntDateTemporalTypeTest failed");
 
     }
 
@@ -1432,8 +1404,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void setParameterIntDateTemporalTypeIllegalArgumentExceptionTest() throws Exception {
+        public void setParameterIntDateTemporalTypeIllegalArgumentExceptionTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         try {
@@ -1474,7 +1445,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2)
-            throw new Exception("setParameterIntDateTemporalTypeIllegalArgumentExceptionTest failed");
+            throw new Fault("setParameterIntDateTemporalTypeIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1484,8 +1455,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void setParameterParameterDateTemporalTypeTest() throws Exception {
+        public void setParameterParameterDateTemporalTypeTest() throws Exception {
         boolean pass2 = false;
         boolean pass3 = false;
         boolean pass5 = false;
@@ -1576,7 +1546,7 @@ public class Client1 extends Client {
         }
 
         if (!pass2 || !pass3 || !pass5)
-            throw new Exception("setParameterParameterDateTemporalTypeTest failed");
+            throw new Fault("setParameterParameterDateTemporalTypeTest failed");
     }
 
     /*
@@ -1586,8 +1556,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest() throws Exception {
+        public void setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         try {
@@ -1635,7 +1604,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2)
-            throw new Exception("setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest failed");
+            throw new Fault("setParameterParameterDateTemporalTypeIllegalArgumentExceptionTest failed");
     }
 
     /*
@@ -1646,8 +1615,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void executeUpdateOfAnUpdateTest() throws Exception {
+        public void executeUpdateOfAnUpdateTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -1668,7 +1636,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("executeUpdateOfAnUpdateTest failed");
+            throw new Fault("executeUpdateOfAnUpdateTest failed");
     }
 
     /*
@@ -1679,8 +1647,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void executeUpdateOfADeleteTest() throws Exception {
+        public void executeUpdateOfADeleteTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -1700,7 +1667,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("executeUpdateOfADeleteTest failed");
+            throw new Fault("executeUpdateOfADeleteTest failed");
     }
 
     /*
@@ -1710,8 +1677,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
+        public void executeUpdateTransactionRequiredExceptionTest() throws Exception {
         boolean pass = false;
         try {
             StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("DeleteAllEmp");
@@ -1731,7 +1697,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("executeUpdateTransactionRequiredExceptionTest failed");
+            throw new Fault("executeUpdateTransactionRequiredExceptionTest failed");
     }
 
     /*
@@ -1741,8 +1707,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getParameterValueParameterTest() throws Exception {
+        public void getParameterValueParameterTest() throws Exception {
         boolean pass1 = false;
         boolean pass3 = false;
         try {
@@ -1787,7 +1752,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass3)
-            throw new Exception("getParameterValueParameterTest failed");
+            throw new Fault("getParameterValueParameterTest failed");
 
     }
 
@@ -1799,8 +1764,7 @@ public class Client1 extends Client {
      * @test_Strategy: execute getParameterValue using parameter from different
      * query
      */
-    @Test
-    public void getParameterValueParameterIllegalArgumentExceptionTest() throws Exception {
+        public void getParameterValueParameterIllegalArgumentExceptionTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -1831,7 +1795,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("getParameterValueParameterIllegalArgumentExceptionTest failed");
+            throw new Fault("getParameterValueParameterIllegalArgumentExceptionTest failed");
 
     }
 
@@ -1842,8 +1806,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getParameterValueParameterIllegalStateExceptionTest() throws Exception {
+        public void getParameterValueParameterIllegalStateExceptionTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         try {
@@ -1879,7 +1842,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2)
-            throw new Exception("getParameterValueParameterIllegalStateExceptionTest failed");
+            throw new Fault("getParameterValueParameterIllegalStateExceptionTest failed");
 
     }
 
@@ -1890,8 +1853,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getParameterValueIntTest() throws Exception {
+        public void getParameterValueIntTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
         boolean pass3 = false;
@@ -1985,7 +1947,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2 || !pass3 || !pass4)
-            throw new Exception("getParameterValueIntTest failed");
+            throw new Fault("getParameterValueIntTest failed");
 
     }
 
@@ -1996,8 +1958,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getParameterValueIntIllegalArgumentExceptionTest() throws Exception {
+        public void getParameterValueIntIllegalArgumentExceptionTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -2023,7 +1984,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("getParameterValueIntIllegalArgumentExceptionTest failed");
+            throw new Fault("getParameterValueIntIllegalArgumentExceptionTest failed");
 
     }
 
@@ -2034,8 +1995,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy:
      */
-    @Test
-    public void getParameterValueIntIllegalStateExceptionTest() throws Exception {
+        public void getParameterValueIntIllegalStateExceptionTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -2060,7 +2020,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("getParameterValueIntIllegalStateExceptionTest failed");
+            throw new Fault("getParameterValueIntIllegalStateExceptionTest failed");
 
     }
 
@@ -2072,8 +2032,7 @@ public class Client1 extends Client {
      * @test_Strategy: Vendor-specific hints that are not recognized by a provider
      * must be silently ignored.
      */
-    @Test
-    public void setHintStringObjectTest() throws Exception {
+        public void setHintStringObjectTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -2091,7 +2050,7 @@ public class Client1 extends Client {
         }
 
         if (!pass)
-            throw new Exception("setHintStringObjectTest failed");
+            throw new Fault("setHintStringObjectTest failed");
 
     }
 
@@ -2103,8 +2062,7 @@ public class Client1 extends Client {
      *
      * @test_Strategy: verify xml overrides NamedStoredProcedureQuery annotation
      */
-    @Test
-    public void xmlOverridesNamedStoredProcedureQueryTest() throws Exception {
+        public void xmlOverridesNamedStoredProcedureQueryTest() throws Exception {
         boolean pass1 = false;
         boolean pass2 = false;
 
@@ -2148,7 +2106,7 @@ public class Client1 extends Client {
         }
 
         if (!pass1 || !pass2)
-            throw new Exception("xmlOverridesNamedStoredProcedureQueryTest failed");
+            throw new Fault("xmlOverridesNamedStoredProcedureQueryTest failed");
 
     }
 
@@ -2161,8 +2119,7 @@ public class Client1 extends Client {
      * @test_Strategy: verify xml overrides SqlResultSetMapping annotation
      *
      */
-    @Test
-    public void xmlOverridesSqlResultSetMappingAnnotationTest() throws Exception {
+        public void xmlOverridesSqlResultSetMappingAnnotationTest() throws Exception {
         boolean pass = false;
         try {
             getEntityTransaction().begin();
@@ -2203,7 +2160,7 @@ public class Client1 extends Client {
         }
 
         if (!pass) {
-            throw new Exception("xmlOverridesSqlResultSetMappingAnnotationTest failed");
+            throw new Fault("xmlOverridesSqlResultSetMappingAnnotationTest failed");
         }
 
     }

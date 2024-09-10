@@ -83,6 +83,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_packaging_web_standalone_component_web, Client.class, warResURL);
 
+
         // Par
             // the jar with the correct archive name
             JavaArchive jpa_ee_packaging_web_standalone = ShrinkWrap.create(JavaArchive.class, "jpa_ee_packaging_web_standalone.jar");
@@ -95,9 +96,21 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
             if(parURL != null) {
               jpa_ee_packaging_web_standalone.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_packaging_web_standalone, Client.class, parURL);
-            // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_ee_packaging_web_standalone.addAsManifestResource(parURL, "orm.xml");

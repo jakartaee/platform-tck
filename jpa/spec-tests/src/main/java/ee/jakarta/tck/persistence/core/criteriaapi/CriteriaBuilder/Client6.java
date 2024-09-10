@@ -20,8 +20,10 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -30,7 +32,6 @@ import ee.jakarta.tck.persistence.common.schema30.Customer_;
 import ee.jakarta.tck.persistence.common.schema30.LineItem;
 import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.Order_;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CollectionJoin;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -44,17 +45,12 @@ import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client6 extends UtilOrderData {
+public class Client6 extends Util {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client6.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder6.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client6 theTests = new Client6();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -67,8 +63,7 @@ public class Client6 extends UtilOrderData {
 	 * AVG(o.totalPrice) FROM Order o
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void avg() throws Exception {
+		public void avg() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -115,8 +110,7 @@ public class Client6 extends UtilOrderData {
 	 * MAX(l.quantity) FROM LineItem l
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void max() throws Exception {
+		public void max() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		final Integer i1 = 8;
@@ -209,8 +203,7 @@ public class Client6 extends UtilOrderData {
 	 * DISTINCT MIN(l.quantity) FROM LineItem l
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void min() throws Exception {
+		public void min() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		final Integer i1 = 1;
@@ -302,8 +295,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void greatest() throws Exception {
+		public void greatest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -355,8 +347,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void least() throws Exception {
+		public void least() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -411,8 +402,7 @@ public class Client6 extends UtilOrderData {
 	 * (o.id) From Order o
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void count() throws Exception {
+		public void count() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -461,8 +451,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void some() throws Exception {
+		public void some() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[18];
@@ -547,8 +536,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void any() throws Exception {
+		public void any() throws Exception {
 		boolean pass = false;
 
 		int j = 0;
@@ -635,8 +623,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void notPredicate() throws Exception {
+		public void notPredicate() throws Exception {
 		boolean pass = false;
 
 		final Double expectedTotalPrice = 4500.0D;
@@ -701,8 +688,7 @@ public class Client6 extends UtilOrderData {
 	 * Note: cbuilder.conjunction() always returns true
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void conjunction() throws Exception {
+		public void conjunction() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -767,8 +753,7 @@ public class Client6 extends UtilOrderData {
 	 * Note: cbuilder.disjunction() always returns false
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void disjunction() throws Exception {
+		public void disjunction() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -833,8 +818,7 @@ public class Client6 extends UtilOrderData {
 	 * Note: cbuilder.conjunction() always returns true
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void isTrue() throws Exception {
+		public void isTrue() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -898,8 +882,7 @@ public class Client6 extends UtilOrderData {
 	 * Note: cbuilder.disjunction() always returns false
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void isFalse() throws Exception {
+		public void isFalse() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -960,8 +943,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void equalExpObjectTest() throws Exception {
+		public void equalExpObjectTest() throws Exception {
 		boolean pass = false;
 		int j = 0;
 		String[] expected = new String[17];
@@ -1023,8 +1005,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void equalExpExpTest() throws Exception {
+		public void equalExpExpTest() throws Exception {
 		boolean pass = false;
 
 		int j = 0;
@@ -1088,8 +1069,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void notEqualExpObjectTest() throws Exception {
+		public void notEqualExpObjectTest() throws Exception {
 		boolean pass = false;
 
 		int j = 0;
@@ -1151,8 +1131,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void notEqualExpExpTest() throws Exception {
+		public void notEqualExpExpTest() throws Exception {
 		boolean pass = false;
 
 		int j = 0;
@@ -1217,8 +1196,7 @@ public class Client6 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void abs() throws Exception {
+		public void abs() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[9];
@@ -1284,8 +1262,7 @@ public class Client6 extends UtilOrderData {
 	 * > 5
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinOnExpressionTest() throws Exception {
+		public void joinOnExpressionTest() throws Exception {
 		boolean pass = false;
 
 		String expectedPKs[];
@@ -1335,8 +1312,7 @@ public class Client6 extends UtilOrderData {
 	 * > 5 AND l.quantity < 9)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinOnPredicateArrayTest() throws Exception {
+		public void joinOnPredicateArrayTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;

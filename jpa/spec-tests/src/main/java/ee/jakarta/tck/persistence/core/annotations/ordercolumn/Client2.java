@@ -19,12 +19,9 @@ package ee.jakarta.tck.persistence.core.annotations.ordercolumn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -41,22 +38,17 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Course", pkgName + "Department", pkgName + "Department2", pkgName + "Employee",
-				pkgName + "Employee2", pkgName + "Student" };
-		return createDeploymentJar("jpa_core_annotations_ordercolumn2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupEmployee() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeEmployeeTestData();
 			createEmployeeTestData();
 		} catch (Exception e) {
@@ -73,7 +65,6 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @test_Strategy: name is specified while using property access.
 	 */
-	@Test
 	public void propertyAccessWithNameTest() throws Exception {
 		boolean pass = false;
 
@@ -168,7 +159,6 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @test_Strategy: name is specified while using property access.
 	 */
-	@Test
 	public void fieldAccessWithNameTest() throws Exception {
 		boolean pass = false;
 
@@ -425,7 +415,6 @@ public class Client2 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanupEmployee() throws Exception {
 		try {
 			logTrace( "cleanupEmployee");
@@ -433,8 +422,8 @@ public class Client2 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeEmployeeTestData() {

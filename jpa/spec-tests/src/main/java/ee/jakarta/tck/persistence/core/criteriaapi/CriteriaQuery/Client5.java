@@ -23,13 +23,11 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import com.sun.ts.lib.harness.SetupMethod;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -39,23 +37,17 @@ import jakarta.persistence.metamodel.EntityType;
 
 public class Client5 extends Util {
 
-	
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client5.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery5.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client5 theTests = new Client5();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupAData() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeATestData();
 			createATestData();
 		} catch (Exception e) {
@@ -73,7 +65,7 @@ public class Client5 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAData")
-	@Test
+	
 	public void DoubleOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5, pass6, pass7, pass8;
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
@@ -259,7 +251,7 @@ public class Client5 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAData")
-	@Test
+	
 	public void FloatOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5, pass6, pass7, pass8;
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = pass7 = pass8 = false;
@@ -445,7 +437,7 @@ public class Client5 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAData")
-	@Test
+	
 	public void BigDecimalOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4;
 		pass1 = pass2 = pass3 = pass4 = false;
@@ -549,7 +541,7 @@ public class Client5 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAData")
-	@Test
+	
 	public void BigIntegerOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3;
 		pass1 = pass2 = pass3 = false;
@@ -632,7 +624,7 @@ public class Client5 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAData")
-	@Test
+	
 	public void LongOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5, pass6;
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;
@@ -779,7 +771,7 @@ public class Client5 extends Util {
 	 *
 	 */
 	@SetupMethod(name = "setupAData")
-	@Test
+	
 	public void ShortOperandResultTypeTests() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5, pass6;
 		pass1 = pass2 = pass3 = pass4 = pass5 = pass6 = false;

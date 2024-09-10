@@ -20,10 +20,12 @@ package ee.jakarta.tck.persistence.core.StoredProcedureQuery;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import jakarta.persistence.Parameter;
 import jakarta.persistence.ParameterMode;
@@ -38,27 +40,21 @@ public class Client2 extends Client {
 	public Client2() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { MAPPING_FILE_XML };
-		String[] classes = { pkgName + "Employee", pkgName + "Employee2", pkgName + "EmployeeMappedSC" };
-		return createDeploymentJar("jpa_core_types_StoredProcedureQuery2.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
-	}
-
 	/*
 	 * setupEmployee2Data() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupEmployee2Data() throws Exception {
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createEmployee2TestData();
 			dataBaseName = System.getProperty("jdbc.db");
@@ -198,8 +194,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void setParameterIntCalendarTemporalTypeTest() throws Exception {
+		public void setParameterIntCalendarTemporalTypeTest() throws Exception {
 		boolean pass2 = false;
 		boolean pass4 = false;
 		try {
@@ -281,8 +276,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
+		public void setParameterIntCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
@@ -333,8 +327,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void setParameterParameterCalendarTemporalTypeTest() throws Exception {
+		public void setParameterParameterCalendarTemporalTypeTest() throws Exception {
 		boolean pass2 = false;
 		boolean pass3 = false;
 		boolean pass5 = false;
@@ -432,8 +425,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
+		public void setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {

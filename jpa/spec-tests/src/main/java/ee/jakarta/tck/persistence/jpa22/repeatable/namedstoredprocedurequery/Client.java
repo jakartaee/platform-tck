@@ -24,11 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
@@ -55,28 +51,22 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee" };
-		return createDeploymentJar("jpa_jpa22_repeatable_namedstoredprocedurequery.jar", pkgNameWithoutSuffix,
-				(String[]) classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
+
 	/*
-	 * setupEmployeeData() is called before each test
+	 * setup() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupEmployeeData() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupOrderData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createEmployeeData();
 			map.putAll(getEntityManager().getProperties());
@@ -89,15 +79,14 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanupData() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();
 			cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -109,7 +98,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringTest() throws Exception {
 		boolean pass = false;
 
@@ -151,7 +140,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringClassArrayTest() throws Exception {
 		boolean pass = false;
 		getEntityTransaction().begin();
@@ -200,7 +189,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringStringArrayTest() throws Exception {
 		boolean pass = false;
 
@@ -253,7 +242,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createNamedStoredProcedureQueryStringTest() throws Exception {
 		boolean pass = false;
 		getEntityTransaction().begin();

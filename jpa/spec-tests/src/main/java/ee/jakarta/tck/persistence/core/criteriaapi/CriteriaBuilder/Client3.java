@@ -24,14 +24,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Alias;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
-import ee.jakarta.tck.persistence.common.schema30.UtilAliasData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TupleElement;
 import jakarta.persistence.TypedQuery;
@@ -44,17 +45,14 @@ import jakarta.persistence.criteria.Selection;
 import jakarta.persistence.metamodel.Bindable;
 import jakarta.persistence.metamodel.EntityType;
 
-public class Client3 extends UtilAliasData {
+public class Client3 extends Util {
 
 
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder2.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -69,8 +67,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void tupleGetIntIllegalArgumentExceptionTest() throws Exception {
+		public void tupleGetIntIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -136,8 +133,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void tupleGetElementsGetTest() throws Exception {
+		public void tupleGetElementsGetTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -235,8 +231,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void tupleGetStringTest() throws Exception {
+		public void tupleGetStringTest() throws Exception {
 		boolean pass1 = true;
 		boolean pass2 = false;
 
@@ -321,8 +316,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void tupleGetStringIllegalArgumentExceptionTest() throws Exception {
+		public void tupleGetStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -388,8 +382,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void tupleGetStringClassIllegalArgumentExceptionTest() throws Exception {
+		public void tupleGetStringClassIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -466,8 +459,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void tupleGetStringClassTest() throws Exception {
+		public void tupleGetStringClassTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		boolean pass3 = false;
@@ -554,8 +546,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void tupleElementGetAliasTest() throws Exception {
+		public void tupleElementGetAliasTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -618,8 +609,7 @@ public class Client3 extends UtilAliasData {
 	 * @test_Strategy: Select c fRoM Customer c where c.aliases IS EMPTY
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void isEmpty() throws Exception {
+		public void isEmpty() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -675,8 +665,7 @@ public class Client3 extends UtilAliasData {
 	 * EMPTY
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void isNotEmpty() throws Exception {
+		public void isNotEmpty() throws Exception {
 		boolean pass = false;
 
 		int j = 0;
@@ -731,8 +720,7 @@ public class Client3 extends UtilAliasData {
 	 * @test_Strategy: Select size(c.aliases) from Customer c where c.id ="3"
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void sizeCollectionTest() throws Exception {
+		public void sizeCollectionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -778,8 +766,7 @@ public class Client3 extends UtilAliasData {
 	 * @test_Strategy: Select size(c.aliases) fRoM Customer c where c.id ="3"
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void sizeExpTest() throws Exception {
+		public void sizeExpTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -828,8 +815,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void isMember() throws Exception {
+		public void isMember() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -884,8 +870,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void isNotMember() throws Exception {
+		public void isNotMember() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[30];
@@ -944,8 +929,7 @@ public class Client3 extends UtilAliasData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasData")
-	@Test
-	public void expressionAliasTest() throws Exception {
+		public void expressionAliasTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();

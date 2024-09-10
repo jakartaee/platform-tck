@@ -24,22 +24,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
 
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 
-import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.StoredProcedureQuery;
 
-public class Client2 extends PMClientBase {
+public class Client2 extends Util {
 
 
 
@@ -61,14 +58,10 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManager2.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -76,12 +69,11 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupOrderData() throws Exception {
+	
+	public void setupOrderData(String[] args, Properties p) throws Exception {
 		logTrace( "setupOrderData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createOrderData();
 			map.putAll(getEntityManager().getProperties());
@@ -94,13 +86,12 @@ public class Client2 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
@@ -237,7 +228,7 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void persistExceptionsTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -304,7 +295,7 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void refreshRemovedObjectEntityNotFoundExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -346,7 +337,7 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void refreshRemovedObjectMapEntityNotFoundExceptionTest() throws Exception {
 		boolean pass = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
@@ -389,7 +380,7 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void refreshRemovedObjectLockModeTypeEntityNotFoundExceptionTest() throws Exception {
 		boolean pass = false;
 
@@ -432,7 +423,7 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void refreshRemovedObjectLockModeTypeMapEntityNotFoundExceptionTest() throws Exception {
 		boolean pass = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
@@ -467,7 +458,7 @@ public class Client2 extends PMClientBase {
 		}
 	}
 
-	private void createOrderData() {
+	public void createOrderData() {
 
 		try {
 			getEntityTransaction().begin();
@@ -534,7 +525,7 @@ public class Client2 extends PMClientBase {
 		}
 	}
 
-	private void removeTestData() {
+	public void removeTestData() {
 		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();

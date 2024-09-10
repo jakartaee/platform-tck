@@ -95,11 +95,11 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.derive
             if(resURL != null) {
               jpa_core_deriverdid_ex2a_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_core_deriverdid_ex2a_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_core_deriverdid_ex2a_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_deriverdid_ex2a_stateless3_vehicle_client, Client.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_core_deriverdid_ex2a_stateless3_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_core_deriverdid_ex2a_stateless3_vehicle_ejb.jar");
             // The class files
@@ -124,17 +124,18 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.derive
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.xml");
-            if(ejbResURL != null) {
-              jpa_core_deriverdid_ex2a_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_deriverdid_ex2a_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_core_deriverdid_ex2a_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_core_deriverdid_ex2a_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_core_deriverdid_ex2a_stateless3_vehicle_ejb, Client.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_core_deriverdid_ex2a_stateless3_vehicle_ejb, Client.class, ejbResURL1);
+
 
         // Par
             // the jar with the correct archive name
@@ -151,9 +152,21 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.derive
             if(parURL != null) {
               jpa_core_deriverdid_ex2a.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_deriverdid_ex2a.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_deriverdid_ex2a.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_deriverdid_ex2a.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_deriverdid_ex2a, Client.class, parURL);
-            // The orm.xml file
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_deriverdid_ex2a.addAsManifestResource(parURL, "orm.xml");
@@ -173,12 +186,9 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.derive
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/derivedid/ex2a/");
-            if(earResURL != null) {
-              jpa_core_deriverdid_ex2a_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/derivedid/ex2a/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_deriverdid_ex2a_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

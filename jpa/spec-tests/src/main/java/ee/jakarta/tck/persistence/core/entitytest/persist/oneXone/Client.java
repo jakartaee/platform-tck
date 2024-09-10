@@ -22,10 +22,13 @@ package ee.jakarta.tck.persistence.core.entitytest.persist.oneXone;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -35,22 +38,17 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_remove_persist.oneXone.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "Entering Setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -82,8 +80,7 @@ public class Client extends PMClientBase {
 	 * annotated with PERSIST so call persist from there.
 	 *
 	 */
-	@Test
-	public void persist1X1Test1() throws Exception {
+		public void persist1X1Test1() throws Exception {
 		logTrace( "Begin persist1X1Test1");
 		boolean pass = false;
 		A a1;
@@ -140,8 +137,7 @@ public class Client extends PMClientBase {
 	 * is is managed and is accessible.
 	 *
 	 */
-	@Test
-	public void persist1X1Test2() throws Exception {
+		public void persist1X1Test2() throws Exception {
 		logTrace( "Begin persist1X1Test2");
 		B bRef;
 		A a1;
@@ -211,8 +207,7 @@ public class Client extends PMClientBase {
 	 * operation or the transaction commit will fail.
 	 *
 	 */
-	@Test
-	public void persist1X1Test3() throws Exception {
+		public void persist1X1Test3() throws Exception {
 
 		logTrace( "Begin persist1X1Test3");
 		boolean pass = false;
@@ -264,8 +259,7 @@ public class Client extends PMClientBase {
 	 * cascade=PERSIST and ensure the persist operation is cascaded.
 	 *
 	 */
-	@Test
-	public void persist1X1Test4() throws Exception {
+		public void persist1X1Test4() throws Exception {
 
 		logTrace( "Begin persist1X1Test4");
 		boolean pass = false;
@@ -319,8 +313,7 @@ public class Client extends PMClientBase {
 	 * has NOT been annotated with REMOVE.
 	 *
 	 */
-	@Test
-	public void persist1X1Test5() throws Exception {
+		public void persist1X1Test5() throws Exception {
 		logTrace( "Begin persist1X1Test5");
 		boolean pass = false;
 		B bRef;
@@ -381,8 +374,7 @@ public class Client extends PMClientBase {
 	 * or detached.
 	 *
 	 */
-	@Test
-	public void persist1X1Test6() throws Exception {
+		public void persist1X1Test6() throws Exception {
 		logTrace( "Begin persist1X1Test6");
 		boolean pass = false;
 		B bRef;
@@ -426,8 +418,7 @@ public class Client extends PMClientBase {
 	 * and the persist method has been called on the entity.
 	 *
 	 */
-	@Test
-	public void persist1X1Test7() throws Exception {
+		public void persist1X1Test7() throws Exception {
 		logTrace( "Begin persist1X1Test7");
 		boolean pass = false;
 		B bRef;
@@ -470,8 +461,7 @@ public class Client extends PMClientBase {
 	 * and the persist operation has been cascaded to it.
 	 *
 	 */
-	@Test
-	public void persist1X1Test8() throws Exception {
+		public void persist1X1Test8() throws Exception {
 		logTrace( "Begin persist1X1Test8");
 		boolean pass = false;
 		B bRef;
@@ -516,8 +506,7 @@ public class Client extends PMClientBase {
 	 * new and the persist operation has not been called on it.
 	 *
 	 */
-	@Test
-	public void persist1X1Test9() throws Exception {
+		public void persist1X1Test9() throws Exception {
 		logTrace( "Begin persist1X1Test9");
 		boolean pass = true;
 		B bRef;
@@ -559,8 +548,7 @@ public class Client extends PMClientBase {
 	 * new and the persist operation has not been cascaded to it.
 	 *
 	 */
-	@Test
-	public void persist1X1Test10() throws Exception {
+		public void persist1X1Test10() throws Exception {
 
 		logTrace( "Begin persist1X1Test10");
 		boolean pass1 = true;
@@ -619,8 +607,7 @@ public class Client extends PMClientBase {
 	 * persist operation is applied to Y.
 	 *
 	 */
-	@Test
-	public void persist1X1Test11() throws Exception {
+		public void persist1X1Test11() throws Exception {
 		logTrace( "Begin persist1X1Test11");
 		boolean pass = false;
 
@@ -676,8 +663,7 @@ public class Client extends PMClientBase {
 	 * If X is a managed entity, it is synchronized to the database.
 	 *
 	 */
-	@Test
-	public void persist1X1Test12() throws Exception {
+		public void persist1X1Test12() throws Exception {
 
 		logTrace( "Begin persist1X1Test12");
 		boolean pass = false;
@@ -749,7 +735,7 @@ public class Client extends PMClientBase {
 		return getEntityManager().contains(o);
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -757,8 +743,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

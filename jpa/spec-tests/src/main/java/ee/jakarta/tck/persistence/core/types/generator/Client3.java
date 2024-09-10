@@ -20,11 +20,10 @@
 
 package ee.jakarta.tck.persistence.core.types.generator;
 
+import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 public class Client3 extends Client {
 
@@ -36,26 +35,21 @@ public class Client3 extends Client {
 
 	public Client3() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_types_generator3.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-	@BeforeEach
-	public void setupDataTypes3() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupDataTypes3");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			String s = System.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
@@ -85,7 +79,7 @@ public class Client3 extends Client {
 	 * 
 	 * @test_Strategy: A sequence generator may be specified on the entity class
 	 */
-	@Test
+	
 	public void sequenceGeneratorOnEntityTest() throws Exception {
 
 		boolean pass = true;

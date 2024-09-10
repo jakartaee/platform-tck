@@ -19,11 +19,13 @@ package ee.jakarta.tck.persistence.core.lock.query;
 
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
@@ -40,22 +42,17 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Insurance" };
-		return createDeploymentJar("jpa_core_lock_query.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			logTrace( "Create Test Data");
 			removeTestData();
 			createTestData();
@@ -81,8 +78,7 @@ public class Client extends PMClientBase {
 	 * TypedQuery and do the same above
 	 *
 	 */
-	@Test
-	public void getResultListTest1() throws Exception {
+		public void getResultListTest1() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Begin getResultListTest1");
@@ -254,8 +250,7 @@ public class Client extends PMClientBase {
 	 * IllegalStateException should be thrown
 	 *
 	 */
-	@Test
-	public void getLockModeNONSELECTIllegalStateExceptionTest() throws Exception {
+		public void getLockModeNONSELECTIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -293,8 +288,7 @@ public class Client extends PMClientBase {
 	 *
 	 *
 	 */
-	@Test
-	public void getLockModeObjectIllegalArgumentExceptionTest() throws Exception {
+		public void getLockModeObjectIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		logTrace( "Begin getLockModeObjectIllegalArgumentExceptionTest");
@@ -340,8 +334,7 @@ public class Client extends PMClientBase {
 	 *
 	 *
 	 */
-	@Test
-	public void getLockModeObjectTransactionRequiredException1Test() throws Exception {
+		public void getLockModeObjectTransactionRequiredException1Test() throws Exception {
 		boolean pass = false;
 
 		int expected = 9;
@@ -402,8 +395,7 @@ public class Client extends PMClientBase {
 	 *
 	 *
 	 */
-	@Test
-	public void getLockModeObjectIllegalArgumentException1Test() throws Exception {
+		public void getLockModeObjectIllegalArgumentException1Test() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -463,8 +455,7 @@ public class Client extends PMClientBase {
 	 * JPQL Query, an IllegalStateException should be thrown
 	 *
 	 */
-	@Test
-	public void setLockModeIllegalStateException() throws Exception {
+		public void setLockModeIllegalStateException() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -514,8 +505,7 @@ public class Client extends PMClientBase {
 	 * TransactionRequiredException is thrown
 	 *
 	 */
-	@Test
-	public void getResultListTest2() throws Exception {
+		public void getResultListTest2() throws Exception {
 		boolean pass = true;
 
 		logTrace( "Testing Query version");
@@ -573,8 +563,7 @@ public class Client extends PMClientBase {
 	 * PESSIMISTIC_WRITE 4. Update Department
 	 *
 	 */
-	@Test
-	public void getSingleResultTest() throws Exception {
+		public void getSingleResultTest() throws Exception {
 		boolean pass = false;
 
 		logTrace( "Begin getSingleResultTest");
@@ -766,7 +755,7 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -774,8 +763,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
