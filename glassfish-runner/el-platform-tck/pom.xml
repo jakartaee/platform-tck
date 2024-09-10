@@ -414,9 +414,9 @@
                             </additionalClasspathElements>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <includes>
-                                <include>**/methodreference/ELClientServletTest*</include>
-                                <include>**/methodreference/ELClientJspTest*</include>
-                                <!-- <include>**/ELClientTest*</include> -->
+                                <include>**/ELClientServletTest*</include>
+                                <include>**/ELClientJspTest*</include>
+                                <include>**/ELClientTest*</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
