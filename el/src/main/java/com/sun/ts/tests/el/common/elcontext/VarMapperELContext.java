@@ -92,6 +92,7 @@ public class VarMapperELContext extends ELContext {
 
   private VariableMapper getVariableMapperImpl(Properties testProps) {
     String implSpecificClassName = testProps.getProperty("variable.mapper");
+    // String implSpecificClassName = System.getProperty("variable.mapper", "org.glassfish.expressly.lang.VariableMapperImpl");
 
     return (implSpecificClassName == null) ? null
         : (VariableMapper) getImplSpecificInstance(implSpecificClassName);
