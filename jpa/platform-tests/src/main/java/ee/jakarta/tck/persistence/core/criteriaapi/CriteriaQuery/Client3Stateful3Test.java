@@ -85,7 +85,7 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The application-client.xml descriptor
             URL resURL = Client3.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(resURL != null) {
@@ -125,7 +125,7 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
                 ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client3.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client3.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
             if(ejbResURL1 != null) {

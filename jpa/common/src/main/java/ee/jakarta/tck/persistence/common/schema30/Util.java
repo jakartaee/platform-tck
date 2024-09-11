@@ -65,18 +65,14 @@ public abstract class Util extends PMClientBase {
 	protected final Trim trimRef[] = new Trim[20];
 
 
-	private final String[] schema30classes = { "Address_", "Address", "Alias_", "Alias", "Country_", "Country",
-			"CreditCard_", "CreditCard", "CriteriaEntity", "Customer_", "Customer", "Department_", "Department", "Employee_", "Employee",
-			"HardwareProduct_", "HardwareProduct", "Info_", "Info", "LineItem_", "LineItem", "LineItemException",
-			"Order_", "Order", "Phone_", "Phone", "Product_", "Product", "ShelfLife_", "ShelfLife", "SoftwareProduct_",
-			"SoftwareProduct", "Spouse_", "Spouse", "Trim_", "Trim" };
+	private final Class[] schema30classes = { Address_.class, Address.class, Alias_.class, Alias.class, Country_.class, Country.class,
+			CreditCard_.class, CreditCard.class, CriteriaEntity.class, Customer_.class, Customer.class, Department_.class, Department.class, Employee_.class, Employee.class,
+			HardwareProduct_.class, HardwareProduct.class, Info_.class, Info.class, LineItem_.class, LineItem.class, LineItemException.class,
+			Order_.class, Order.class, Phone_.class, Phone.class, Product_.class, Product.class, ShelfLife_.class, ShelfLife.class, SoftwareProduct_.class,
+			SoftwareProduct.class, Spouse_.class, Spouse.class, Trim_.class, Trim.class };
 
-	protected String[] getSchema30classes() {
-		String[] classes = new String[schema30classes.length];
-		for (int i = 0; i < schema30classes.length; i++) {
-			classes[i] = Util.class.getPackageName() + "." + schema30classes[i];
-		}
-		return classes;
+	public static Class[] getSchema30classes() {
+		return getSchema30classes();
 	}
 
 	public static String[] concat(String[] first, String[] second) {

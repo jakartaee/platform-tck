@@ -80,7 +80,7 @@ public class Client3PmservletTest extends ee.jakarta.tck.persistence.core.query.
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The web.xml descriptor
             URL warResURL = Client3.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
             if(warResURL != null) {

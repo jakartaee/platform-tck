@@ -84,7 +84,7 @@ public class Client1PuservletTest extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.Join.Client1.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The web.xml descriptor
             URL warResURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
             if(warResURL != null) {
