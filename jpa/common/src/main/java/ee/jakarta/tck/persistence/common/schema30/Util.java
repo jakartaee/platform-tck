@@ -65,14 +65,14 @@ public abstract class Util extends PMClientBase {
 	protected final Trim trimRef[] = new Trim[20];
 
 
-	private final Class[] schema30classes = { Address_.class, Address.class, Alias_.class, Alias.class, Country_.class, Country.class,
+	private static final Class[] schema30classes = { Address_.class, Address.class, Alias_.class, Alias.class, Country_.class, Country.class,
 			CreditCard_.class, CreditCard.class, CriteriaEntity.class, Customer_.class, Customer.class, Department_.class, Department.class, Employee_.class, Employee.class,
 			HardwareProduct_.class, HardwareProduct.class, Info_.class, Info.class, LineItem_.class, LineItem.class, LineItemException.class,
 			Order_.class, Order.class, Phone_.class, Phone.class, Product_.class, Product.class, ShelfLife_.class, ShelfLife.class, SoftwareProduct_.class,
 			SoftwareProduct.class, Spouse_.class, Spouse.class, Trim_.class, Trim.class };
 
 	public static Class[] getSchema30classes() {
-		return getSchema30classes();
+		return schema30classes;
 	}
 
 	public static String[] concat(String[] first, String[] second) {
