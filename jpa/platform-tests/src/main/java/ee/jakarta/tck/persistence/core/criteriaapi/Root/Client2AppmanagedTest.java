@@ -143,43 +143,7 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             // the jar with the correct archive name
             JavaArchive jpa_core_criteriaapi_Root = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_Root.jar");
             // The class files
-            jpa_core_criteriaapi_Root.addClasses(
-                ee.jakarta.tck.persistence.common.schema30.Department.class,
-                ee.jakarta.tck.persistence.common.schema30.Address_.class,
-                ee.jakarta.tck.persistence.common.schema30.Department_.class,
-                ee.jakarta.tck.persistence.common.schema30.CreditCard.class,
-                ee.jakarta.tck.persistence.common.schema30.Info.class,
-                ee.jakarta.tck.persistence.common.schema30.LineItem_.class,
-                ee.jakarta.tck.persistence.common.schema30.Phone.class,
-                ee.jakarta.tck.persistence.common.schema30.Customer_.class,
-                ee.jakarta.tck.persistence.common.schema30.Employee_.class,
-                ee.jakarta.tck.persistence.common.schema30.Trim_.class,
-                ee.jakarta.tck.persistence.common.schema30.Order_.class,
-                ee.jakarta.tck.persistence.common.schema30.ShelfLife_.class,
-                ee.jakarta.tck.persistence.common.schema30.ShelfLife.class,
-                ee.jakarta.tck.persistence.common.schema30.Phone_.class,
-                ee.jakarta.tck.persistence.common.schema30.Address.class,
-                ee.jakarta.tck.persistence.common.schema30.Info_.class,
-                ee.jakarta.tck.persistence.common.schema30.HardwareProduct.class,
-                ee.jakarta.tck.persistence.common.schema30.Country_.class,
-                ee.jakarta.tck.persistence.common.schema30.Alias_.class,
-                ee.jakarta.tck.persistence.common.schema30.Trim.class,
-                ee.jakarta.tck.persistence.common.schema30.HardwareProduct_.class,
-                ee.jakarta.tck.persistence.common.schema30.CreditCard_.class,
-                ee.jakarta.tck.persistence.common.schema30.SoftwareProduct.class,
-                ee.jakarta.tck.persistence.common.schema30.Product.class,
-                ee.jakarta.tck.persistence.common.schema30.Spouse.class,
-                ee.jakarta.tck.persistence.common.schema30.SoftwareProduct_.class,
-                ee.jakarta.tck.persistence.common.schema30.Spouse_.class,
-                ee.jakarta.tck.persistence.common.schema30.LineItem.class,
-                ee.jakarta.tck.persistence.common.schema30.Employee.class,
-                ee.jakarta.tck.persistence.common.schema30.Product_.class,
-                ee.jakarta.tck.persistence.common.schema30.Customer.class,
-                ee.jakarta.tck.persistence.common.schema30.Alias.class,
-                ee.jakarta.tck.persistence.common.schema30.Order.class,
-                ee.jakarta.tck.persistence.common.schema30.LineItemException.class,
-                ee.jakarta.tck.persistence.common.schema30.Country.class
-            );
+            jpa_core_criteriaapi_Root.addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The persistence.xml descriptor
             URL parURL = Client2.class.getResource("persistence.xml");
             if(parURL != null) {
