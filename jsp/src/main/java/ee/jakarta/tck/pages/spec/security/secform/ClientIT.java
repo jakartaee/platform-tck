@@ -42,6 +42,9 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 import java.lang.System.Logger;
 
+@Tag("jsp")
+@Tag("platform")
+@Tag("web")
 @ExtendWith(ArquillianExtension.class)
 public class ClientIT extends secformClient {
 

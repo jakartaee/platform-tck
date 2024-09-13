@@ -40,6 +40,8 @@ import ee.jakarta.tck.pages.common.util.Data;
 import ee.jakarta.tck.pages.common.servlet.GenericTCKServlet;
 import java.lang.System.Logger;
 
+@Tag("jsp")
+@Tag("platform")
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends ServletAbstractUrlClient {
 
@@ -82,7 +84,7 @@ public class URLClientIT extends ServletAbstractUrlClient {
 
     //  Vendor implementations are encouraged to utilize Arqullian SPI (LoadableExtension, ApplicationArchiveProcessor)
     //  to extend the archive with vendor deployment descriptors as needed.
-    //  For GlassFish, this is demonstrated in the glassfish-runner/jsp-tck module of the Jakarta Platform GitHub repository.
+    //  For GlassFish, this is demonstrated in the glassfish-runner/jsp-platform-tck module of the Jakarta Platform GitHub repository.
 
     return archive;
 
@@ -109,7 +111,6 @@ public class URLClientIT extends ServletAbstractUrlClient {
    */
 
   @Test
-  @Tag("resource")
   @RunAsClient
   public void ContextListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testResourceCL");
@@ -134,7 +135,6 @@ public class URLClientIT extends ServletAbstractUrlClient {
    */
 
   @Test
-  @Tag("resource")
   @RunAsClient
   public void ContextAttributeListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testResourceCAL");
@@ -159,7 +159,6 @@ public class URLClientIT extends ServletAbstractUrlClient {
    */
 
   @Test
-  @Tag("resource")
   @RunAsClient
   public void RequestListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testResourceRL");
@@ -184,7 +183,6 @@ public class URLClientIT extends ServletAbstractUrlClient {
    */
 
   @Test
-  @Tag("resource")
   @RunAsClient
   public void RequestAttributeListenerTest() throws Exception {
     TEST_PROPS.setProperty(APITEST, "testResourceRAL");

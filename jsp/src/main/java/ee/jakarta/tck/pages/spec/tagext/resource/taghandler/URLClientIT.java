@@ -41,6 +41,8 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 import ee.jakarta.tck.pages.common.util.JspTestUtil;
 import java.lang.System.Logger;
 
+@Tag("jsp")
+@Tag("platform")
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
 
@@ -82,7 +84,7 @@ public class URLClientIT extends AbstractUrlClient {
 
     //  Vendor implementations are encouraged to utilize Arqullian SPI (LoadableExtension, ApplicationArchiveProcessor)
     //  to extend the archive with vendor deployment descriptors as needed.
-    //  For GlassFish, this is demonstrated in the glassfish-runner/jsp-tck module of the Jakarta Platform GitHub repository.
+    //  For GlassFish, this is demonstrated in the glassfish-runner/jsp-platform-tck module of the Jakarta Platform GitHub repository.
 
     return archive;
 
@@ -108,7 +110,6 @@ public class URLClientIT extends AbstractUrlClient {
    */
 
   @Test
-  @Tag("resource")
   @RunAsClient
   public void ResourceTagHandlerTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
@@ -134,7 +135,6 @@ public class URLClientIT extends AbstractUrlClient {
    */
 
   @Test
-  @Tag("resource")
   @RunAsClient
   public void ResourceSimpleTagHandlerTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
@@ -157,7 +157,6 @@ public class URLClientIT extends AbstractUrlClient {
    */
 
   @Test
-  @Tag("resource")
   @RunAsClient
   public void ResourceTagHandlerTimingTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
@@ -181,7 +180,6 @@ public class URLClientIT extends AbstractUrlClient {
    */
 
   @Test
-  @Tag("resource")
   @RunAsClient
   public void ResourceSimpleTagHandlerTimingTest() throws Exception {
     TEST_PROPS.setProperty(REQUEST,
