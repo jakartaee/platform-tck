@@ -76,10 +76,8 @@ public class ClientServletTest extends com.sun.ts.tests.jms.ee20.resourcedefs.de
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              resourcedefs_descriptor_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
-            }
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/xml/servlet_vehicle_web.xml");
+            resourcedefs_descriptor_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             // The sun-web.xml descriptor
             warResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
@@ -88,15 +86,6 @@ public class ClientServletTest extends com.sun.ts.tests.jms.ee20.resourcedefs.de
 
             // Any libraries added to the war
 
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              resourcedefs_descriptor_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              resourcedefs_descriptor_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(resourcedefs_descriptor_servlet_vehicle_web, Client.class, warResURL);

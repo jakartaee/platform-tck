@@ -15,11 +15,13 @@
  */
 
 /*
- * $Id$
+ * $Id: DataSourceBean.java 58944 2009-08-05 03:09:34Z cf126330 $
  */
-package com.sun.ts.tests.ejb30.misc.datasource.twojars;
+package com.sun.ts.tests.ejb30.misc.datasource.twowars;
 
-import java.sql.Connection;
+import jakarta.annotation.sql.DataSourceDefinition;
+import jakarta.ejb.Remote;
+import jakarta.ejb.Stateless;
 
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
@@ -27,36 +29,34 @@ import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTest;
 
-import jakarta.annotation.sql.DataSourceDefinition;
-import jakarta.annotation.sql.DataSourceDefinitions;
-import jakarta.ejb.Remote;
-import jakarta.ejb.Singleton;
-
-@Singleton
+@Stateless
 @Remote(AppResRemoteIF.class)
-@DataSourceDefinitions({
-    @DataSourceDefinition(name = "java:global/datasource/twojars/2/globalds",
-            description = "override it with <data-source> in ejb-jar.xml",
-            className = "org.apache.derby.jdbc.ClientDataSource",
-            portNumber = 8080,
-            serverName = "localhost",
-            databaseName = "derbyDB",
-            user = "cts1",
-            password = "cts1",
-            isolationLevel = Connection.TRANSACTION_SERIALIZABLE)
-})
-public class DataSource2Bean extends AppResBeanBase {
+@DataSourceDefinition(name="java:app/datasource/twowars/ejb/appds",
+        className="org.apache.derby.jdbc.ClientDataSource",
+        portNumber=1527,
+        serverName="localhost",
+        databaseName="derbyDB",
+        user="cts1",
+        password="cts1",
+        properties={})
+public class DataSourceBean extends AppResBeanBase {
 
+  //We don't know which archive will be deployed and loaded first, the ear or the standalone war.
+  //So verify the resources in a business method.
   private void nonPostConstruct() {
-    ServiceLocator.lookupShouldFail(
-        "java:app/datasource/twojars/appclient/appds", postConstructRecords);
+    ServiceLocator.lookupShouldFail("java:app/env/servlet2/appds", postConstructRecords);
+    ServiceLocator.lookupShouldFail("java:comp/env/compdsservlet", postConstructRecords);
+    ServiceLocator.lookupShouldFail("java:comp/env/defaultdsservlet", postConstructRecords);
+    ServiceLocator.lookupShouldFail("java:module/env/moduledsservlet", postConstructRecords);
+
     Helper.getLogger().info(postConstructRecords.toString());
 
     DataSourceTest.verifyDataSource(postConstructRecords, false,
-        "java:global/datasource/twojars/appclient/globalds",
-
-        "java:app/datasource/twojars/2/appds",
-        "java:global/datasource/twojars/2/globalds");
+            "java:app/datasource/twowars/ejb/appds",
+            "java:app/env/servlet/appds",
+            "java:global/env/ts/datasource/servlet/globalds",
+            "java:global/env/ts/datasource/servlet2/globalds"
+    );
   }
 
   @Override
