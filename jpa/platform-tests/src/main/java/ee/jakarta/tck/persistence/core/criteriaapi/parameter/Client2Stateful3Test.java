@@ -74,18 +74,20 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
+            ee.jakarta.tck.persistence.common.schema30.Util.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleRunner.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleIF.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
+            com.sun.ts.lib.harness.Status.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(resURL != null) {
@@ -118,13 +120,14 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.criter
                 com.sun.ts.tests.common.vehicle.stateful3.Stateful3VehicleIF.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
                 com.sun.ts.lib.harness.EETest.class,
+                com.sun.ts.lib.harness.Status.class,
                 com.sun.ts.lib.harness.ServiceEETest.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
                 com.sun.ts.lib.harness.EETest.SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client2.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
             if(ejbResURL1 != null) {

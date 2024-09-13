@@ -74,6 +74,7 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.criter
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
             ee.jakarta.tck.persistence.common.schema30.Util.class,
+            com.sun.ts.lib.harness.Status.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             ee.jakarta.tck.persistence.core.criteriaapi.metamodelquery.Client2.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,

@@ -79,6 +79,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.cache.
             com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
+            com.sun.ts.lib.harness.Status.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
