@@ -19,11 +19,7 @@ package ee.jakarta.tck.persistence.core.entityManagerFactory;
 
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -40,35 +36,10 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManagerFactory2.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setupNoData() throws Exception {
-		logTrace( "setupNoData");
-		try {
-			super.setup();
-			createDeployment();
-		} catch (Exception e) {
-			logErr( "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
-	}
-
-	@AfterEach
-	public void cleanupNoData() throws Exception {
-		try {
-			super.cleanup();
-		} finally {
-			removeTestJarFromCP();
-		}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -79,7 +50,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create EntityManagerFactory in try with resources block and
 	 * verify whether it's open inside and outside of the try block.
 	 */
-	@Test
+	
 	public void autoCloseableTest() throws Exception {
 		EntityManagerFactory emf = null;
 		try (final EntityManagerFactory emfLocal = Persistence.createEntityManagerFactory(getPersistenceUnitName(),
@@ -112,7 +83,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and make
 	 * sure it is not null
 	 */
-	@Test
+	
 	public void getMetamodelTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -138,7 +109,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Get a PersistenceUnitUtil Object from the
 	 * EntityManagerFactory an make sure it is not null
 	 */
-	@Test
+	
 	public void getPersistenceUnitUtil() throws Exception {
 		boolean pass = false;
 		try {
@@ -165,7 +136,7 @@ public class Client2 extends PMClientBase {
 	 * can be used to create a query
 	 *
 	 */
-	@Test
+	
 	public void getCriteriaBuilderTest() throws Exception {
 		boolean pass = false;
 		try {

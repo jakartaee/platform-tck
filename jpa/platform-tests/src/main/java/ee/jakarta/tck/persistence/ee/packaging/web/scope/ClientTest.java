@@ -86,6 +86,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_packaging_web_scope_web, Client.class, warResURL);
 
+
         // Ear
             EnterpriseArchive jpa_ee_packaging_web_scope_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_web_scope.ear");
 
@@ -97,7 +98,8 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/application.xml");
+            URL earResURL = null;
+            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/application.xml");
             if(earResURL != null) {
               jpa_ee_packaging_web_scope_ear.addAsManifestResource(earResURL, "application.xml");
             }

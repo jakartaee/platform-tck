@@ -19,12 +19,9 @@ package ee.jakarta.tck.persistence.core.types.property;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.types.common.Grade;
 
@@ -40,26 +37,20 @@ public class Client1 extends PMClientBase {
 
 	private final java.sql.Date dateValue = getSQLDate(2006, 04, 15);
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { Grade.class.getCanonicalName(), pkgName + "Customer", pkgName + "DataTypes",
-				pkgName + "DataTypes2" };
-		return createDeploymentJar("jpa_core_types_property1.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
 	public Client1() {
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 
@@ -79,7 +70,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Character
 	 */
-	@Test
+	
 	public void propertyTypeTest1() throws Exception {
 
 		boolean pass = false;
@@ -132,7 +123,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Short
 	 */
-	@Test
+	
 	public void propertyTypeTest2() throws Exception {
 
 		boolean pass = false;
@@ -184,7 +175,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Integer
 	 */
-	@Test
+	
 	public void propertyTypeTest3() throws Exception {
 
 		boolean pass = false;
@@ -235,7 +226,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Long
 	 */
-	@Test
+	
 	public void propertyTypeTest4() throws Exception {
 
 		boolean pass = false;
@@ -287,7 +278,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Double
 	 */
-	@Test
+	
 	public void propertyTypeTest5() throws Exception {
 
 		boolean pass = false;
@@ -340,7 +331,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: wrappers of the primitive types: Float
 	 */
-	@Test
+	
 	public void propertyTypeTest6() throws Exception {
 
 		boolean pass = false;
@@ -396,7 +387,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * Using the Enumerated annotation, with EnumType.ORDINAL.
 	 */
-	@Test
+	
 	public void propertyTypeTest7() throws Exception {
 
 		boolean pass = false;
@@ -458,7 +449,7 @@ public class Client1 extends PMClientBase {
 	 *
 	 * Temporal.TemporalType.DATE
 	 */
-	@Test
+	
 	public void propertyTypeTest8() throws Exception {
 
 		boolean pass = false;
@@ -509,7 +500,7 @@ public class Client1 extends PMClientBase {
 	 * type: Byte[]
 	 *
 	 */
-	@Test
+	
 	public void propertyTypeTest9() throws Exception {
 
 		boolean pass = false;
@@ -578,7 +569,7 @@ public class Client1 extends PMClientBase {
 	 * type: Character[]
 	 *
 	 */
-	@Test
+	
 	public void propertyTypeTest10() throws Exception {
 
 		boolean pass = false;
@@ -635,7 +626,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: java.sql.Time
 	 */
-	@Test
+	
 	public void propertyTypeTest11() throws Exception {
 
 		boolean pass = false;
@@ -692,7 +683,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: The persistent property of an entity may be of the following
 	 * type: java.sql.Timestamp
 	 */
-	@Test
+	
 	public void propertyTypeTest12() throws Exception {
 
 		boolean pass = false;
@@ -748,7 +739,7 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: Test various scalar expressions test
 	 *
 	 */
-	@Test
+	
 	public void scalarExpressionsTest() throws Exception {
 		boolean pass1, pass2, pass3, pass4, pass5;
 		pass1 = pass2 = pass3 = pass4 = pass5 = false;
@@ -928,7 +919,6 @@ public class Client1 extends PMClientBase {
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -936,8 +926,8 @@ public class Client1 extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

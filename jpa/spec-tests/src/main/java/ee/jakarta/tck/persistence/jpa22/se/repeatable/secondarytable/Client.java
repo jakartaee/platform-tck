@@ -18,10 +18,7 @@ package ee.jakarta.tck.persistence.jpa22.se.repeatable.secondarytable;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Cache;
@@ -38,23 +35,10 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = {};
-		String[] classes = { pkgName + "HardwareProduct", pkgName + "Product", pkgName + "SoftwareProduct" };
-		return createDeploymentJar("jpa_se_repeatable_secondarytable.jar", pkgNameWithoutSuffix, (String[]) classes,
-				PERSISTENCE_XML, xmlFile);
-
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -70,7 +54,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: follow se/cache/inherit but without @SecondaryTables
 	 */
-	@Test
 	public void subClassInheritsCacheableTrue() throws Exception {
 		Cache cache;
 		boolean pass1 = false;
@@ -154,7 +137,6 @@ public class Client extends PMClientBase {
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -162,7 +144,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

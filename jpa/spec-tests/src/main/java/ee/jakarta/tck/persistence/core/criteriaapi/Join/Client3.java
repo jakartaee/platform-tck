@@ -20,8 +20,10 @@ package ee.jakarta.tck.persistence.core.criteriaapi.Join;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -29,7 +31,6 @@ import ee.jakarta.tck.persistence.common.schema30.Department;
 import ee.jakarta.tck.persistence.common.schema30.Department_;
 import ee.jakarta.tck.persistence.common.schema30.Employee;
 import ee.jakarta.tck.persistence.common.schema30.Employee_;
-import ee.jakarta.tck.persistence.common.schema30.UtilDepartmentEmployeeData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -40,17 +41,14 @@ import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.PluralAttribute;
 
-public class Client3 extends UtilDepartmentEmployeeData {
+public class Client3 extends Util {
 
-	
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_join.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
 
 	/*
 	 * @testName: joinMapAttributeTest
@@ -66,8 +64,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeTest() throws Exception {
+		public void joinMapAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -125,8 +122,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeJoinTypeTest() throws Exception {
+		public void joinMapAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -178,8 +174,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringTest() throws Exception {
+		public void joinMapStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -236,8 +231,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringJoinTypeTest() throws Exception {
+		public void joinMapStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -287,8 +281,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void mapJoinValueTest() throws Exception {
+		public void mapJoinValueTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
 

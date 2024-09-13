@@ -115,6 +115,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.entityM
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_entityManagerFactoryCloseException_puservlet_vehicle_web, Client.class, warResURL);
 
+
         // Ear
             EnterpriseArchive jpa_core_entityManagerFactoryCloseException_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_entityManagerFactoryCloseException_vehicles.ear");
 
@@ -126,12 +127,9 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.entityM
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/entityManagerFactoryCloseExceptions/");
-            if(earResURL != null) {
-              jpa_core_entityManagerFactoryCloseException_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/entityManagerFactoryCloseExceptions/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_entityManagerFactoryCloseException_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -24,28 +24,25 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 import java.util.List;
 import java.util.Vector;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.CreditCard;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.Spouse;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.FlushModeType;
 
-public class Client2 extends UtilOrderData {
-
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_flushmode2.jar", pkgNameWithoutSuffix, classes);
-	}
+public class Client2 extends Util {
 
 	public Client2() {
+	}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -59,8 +56,7 @@ public class Client2 extends UtilOrderData {
 	 * customer used in the setCustomer call.
 	 * 
 	 */
-	@Test
-	public void flushModeTest2() throws Exception {
+		public void flushModeTest2() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -103,8 +99,7 @@ public class Client2 extends UtilOrderData {
 	 * updates the name of a customer. It then executes an EJBQL query selecting
 	 * orders where the related customer has the updated name.
 	 */
-	@Test
-	public void flushModeTest3() throws Exception {
+		public void flushModeTest3() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -148,8 +143,7 @@ public class Client2 extends UtilOrderData {
 	 * name of the new spouse.
 	 *
 	 */
-	@Test
-	public void flushModeTest4() throws Exception {
+		public void flushModeTest4() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -196,8 +190,7 @@ public class Client2 extends UtilOrderData {
 	 * selecting orders where the related spouse of the related customer has the
 	 * updated name.
 	 */
-	@Test
-	public void flushModeTest5() throws Exception {
+		public void flushModeTest5() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -239,8 +232,7 @@ public class Client2 extends UtilOrderData {
 	 * executes an EJBQL query selecting customers having an order with the removed
 	 * number.
 	 */
-	@Test
-	public void flushModeTest6() throws Exception {
+		public void flushModeTest6() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -290,8 +282,7 @@ public class Client2 extends UtilOrderData {
 	 * executes an EJBQL query selecting a spouse whose customer has an order with
 	 * an credit card having the new number.
 	 */
-	@Test
-	public void flushModeTest7() throws Exception {
+		public void flushModeTest7() throws Exception {
 		boolean pass = false;
 		String[] expected = new String[1];
 		expected[0] = "2";

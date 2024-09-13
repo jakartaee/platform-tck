@@ -20,11 +20,13 @@ package ee.jakarta.tck.persistence.core.annotations.convert;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.PersistenceException;
@@ -38,26 +40,18 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "CharConverter", pkgName + "CommaConverter",
-				pkgName + "Country", pkgName + "Customer", pkgName + "Department",
-				pkgName + "DisableAutoApplyConverter", pkgName + "DotConverter", pkgName + "DotConverter2",
-				pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3", pkgName + "FullTimeEmployee",
-				pkgName + "FullTimeEmployee2", pkgName + "IntegerConverter", pkgName + "NumberToStateConverter",
-				pkgName + "SalaryConverter", pkgName + "SpaceConverter" };
-		return createDeploymentJar("jpa_core_annotations_convert.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -74,8 +68,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void convertTest() throws Exception {
+		public void convertTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -124,8 +117,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Converter throws a RuntimeException wrapped by a
 	 * PersistenceException during a persist
 	 */
-	@Test
-	public void convertExceptionDuringPersistTest() throws Exception {
+		public void convertExceptionDuringPersistTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -169,8 +161,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Converter throws a RuntimeException wrapped by a
 	 * PersistenceException during a load
 	 */
-	@Test
-	public void convertExceptionDuringLoadTest() throws Exception {
+		public void convertExceptionDuringLoadTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -236,8 +227,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Converter throws a RuntimeException during a persist
 	 */
-	@Test
-	public void convertsTest() throws Exception {
+		public void convertsTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -304,8 +294,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Test converter with property access and attributes from
 	 * MappedSuperClass
 	 */
-	@Test
-	public void mappedSuperClassTest() throws Exception {
+		public void mappedSuperClassTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -353,8 +342,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Test overriding a converter
 	 */
-	@Test
-	public void mappedSuperClass2Test() throws Exception {
+		public void mappedSuperClass2Test() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -399,8 +387,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Test converters are applied when a JPQL or CriteriaQuery
 	 * reads from the DB
 	 */
-	@Test
-	public void convert2Test() throws Exception {
+		public void convert2Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -510,8 +497,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Test converters are applied when a JPQL or CriteriaQuery
 	 * write to the DB
 	 */
-	@Test
-	public void convert3Test() throws Exception {
+		public void convert3Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -630,8 +616,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Test converter in an embedded entity
 	 */
-	@Test
-	public void embeddedTest() throws Exception {
+		public void embeddedTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -676,8 +661,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Test converter of an element collection of basic type
 	 */
-	@Test
-	public void elementCollectionBasicType() throws Exception {
+		public void elementCollectionBasicType() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -733,7 +717,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "cleanup");
@@ -741,8 +725,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

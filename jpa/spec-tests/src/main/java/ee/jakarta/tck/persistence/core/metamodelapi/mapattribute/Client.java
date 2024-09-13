@@ -18,10 +18,13 @@ package ee.jakarta.tck.persistence.core.metamodelapi.mapattribute;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.ManagedType;
@@ -37,21 +40,17 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_metamodelapi_mapattribute.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -67,8 +66,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getJavaKeyType() throws Exception {
+		public void getJavaKeyType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -109,8 +107,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getKeyType() throws Exception {
+		public void getKeyType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -152,8 +149,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getCollectionType() throws Exception {
+		public void getCollectionType() throws Exception {
 		boolean pass = false;
 
 		String expected = PluralAttribute.CollectionType.MAP.name();
@@ -203,8 +199,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getElementType() throws Exception {
+		public void getElementType() throws Exception {
 		boolean pass = false;
 
 		String expected = "ee.jakarta.tck.persistence.core.metamodelapi.mapattribute.Employee";
@@ -246,7 +241,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -254,8 +249,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

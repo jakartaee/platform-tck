@@ -22,12 +22,14 @@ package ee.jakarta.tck.persistence.core.entitytest.cascadeall.manyXmany;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Vector;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -37,22 +39,18 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_cascadeall_manyXmany.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			throw new Exception("Setup failed:", e);
@@ -80,8 +78,7 @@ public class Client extends PMClientBase {
 	 * and ensure the persist operation is cascaded.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest1() throws Exception {
+		public void cascadeAllMXMTest1() throws Exception {
 
 		logTrace( "Begin cascadeAllMXMTest1");
 		boolean pass = false;
@@ -145,8 +142,7 @@ public class Client extends PMClientBase {
 	 * it is managed and is accessible.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest2() throws Exception {
+		public void cascadeAllMXMTest2() throws Exception {
 		logTrace( "Begin cascadeAllMXMTest2");
 		boolean pass = false;
 		A aRef;
@@ -219,8 +215,7 @@ public class Client extends PMClientBase {
 	 * If X is a managed entity, it is synchronized to the database.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest3() throws Exception {
+		public void cascadeAllMXMTest3() throws Exception {
 		boolean pass = false;
 		A aRef;
 		A a2;
@@ -279,8 +274,7 @@ public class Client extends PMClientBase {
 	 * entity has NOT been annotated with REMOVE.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest4() throws Exception {
+		public void cascadeAllMXMTest4() throws Exception {
 
 		logTrace( "Begin cascadeAllMXMTest4");
 		boolean pass = false;
@@ -347,8 +341,7 @@ public class Client extends PMClientBase {
 	 * retrieved from the database and has not been removed or detached.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest5() throws Exception {
+		public void cascadeAllMXMTest5() throws Exception {
 
 		logTrace( "Begin cascadeAllMXMTest5");
 		boolean pass = false;
@@ -415,8 +408,7 @@ public class Client extends PMClientBase {
 	 * and the persist method has been called on the entity.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest6() throws Exception {
+		public void cascadeAllMXMTest6() throws Exception {
 		logTrace( "Begin cascadeAllMXMTest6");
 		boolean pass = false;
 		A a1;
@@ -467,8 +459,7 @@ public class Client extends PMClientBase {
 	 * and the persist operation has been cascaded to it.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest7() throws Exception {
+		public void cascadeAllMXMTest7() throws Exception {
 
 		logTrace( "Begin cascadeAllMXMTest7");
 		boolean pass = false;
@@ -521,8 +512,7 @@ public class Client extends PMClientBase {
 	 * new and the persist operation has not been called on it.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest8() throws Exception {
+		public void cascadeAllMXMTest8() throws Exception {
 
 		logTrace( "Begin cascadeAllMXMTest8");
 		boolean pass = true;
@@ -564,8 +554,7 @@ public class Client extends PMClientBase {
 	 * new and the persist operation has not been cascaded to it.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest9() throws Exception {
+		public void cascadeAllMXMTest9() throws Exception {
 
 		logTrace( "Begin cascadeAllMXMTest9");
 		boolean pass1 = true;
@@ -620,8 +609,7 @@ public class Client extends PMClientBase {
 	 * cascade=ALL annotation member value.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest10() throws Exception {
+		public void cascadeAllMXMTest10() throws Exception {
 		boolean pass = false;
 		A a1;
 		B bRef;
@@ -682,8 +670,7 @@ public class Client extends PMClientBase {
 	 * operation is applied to Y.
 	 *
 	 */
-	@Test
-	public void cascadeAllMXMTest11() throws Exception {
+		public void cascadeAllMXMTest11() throws Exception {
 		boolean pass = false;
 		A a1;
 
@@ -767,7 +754,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -775,8 +762,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

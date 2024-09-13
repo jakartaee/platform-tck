@@ -18,13 +18,14 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Trim;
-import ee.jakarta.tck.persistence.common.schema30.UtilTrimData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaBuilder.Trimspec;
@@ -32,17 +33,12 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.EntityType;
 
-public class Client8 extends UtilTrimData {
+public class Client8 extends Util {
 
-	
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client8.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder8.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client8 theTests = new Client8();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -56,8 +52,7 @@ public class Client8 extends UtilTrimData {
 	 *
 	 */
 	@SetupMethod(name = "setupTrimData")
-	@Test
-	public void trimExpTest() throws Exception {
+		public void trimExpTest() throws Exception {
 		boolean pass = false;
 		final String expected = " David R. Vincent ";
 		final String expected2 = "David R. Vincent";
@@ -179,8 +174,7 @@ public class Client8 extends UtilTrimData {
 	 *
 	 */
 	@SetupMethod(name = "setupTrimData")
-	@Test
-	public void trimTrailingCharExpTest() throws Exception {
+		public void trimTrailingCharExpTest() throws Exception {
 		boolean pass = false;
 		final String expected = " David R. Vincent ";
 		final String expected2 = " David R. Vincent";

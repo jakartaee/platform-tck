@@ -21,10 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import com.sun.ts.lib.harness.CleanupMethod;
 
@@ -39,35 +40,30 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = {};
-		return createDeploymentJar("jpa_core_entityManagerFactoryCloseExceptions.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	public void nullCleanup() throws Exception {
@@ -83,8 +79,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Close the EntityManagerFactory, then call various methods
 	 */
 	@CleanupMethod(name = "nullCleanup")
-	@Test
-	public void exceptionsTest() throws Exception {
+		public void exceptionsTest() throws Exception {
 		int passCount = 0;
 		Map<String, Object> myMap = new HashMap<String, Object>();
 		myMap.put("some.cts.specific.property", "nothing.in.particular");

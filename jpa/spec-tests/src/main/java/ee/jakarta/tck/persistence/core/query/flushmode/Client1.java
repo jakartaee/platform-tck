@@ -23,28 +23,24 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.FlushModeType;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-public class Client1 extends UtilCustomerData {
-
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_flushmode1.jar", pkgNameWithoutSuffix, classes);
-	}
-
+public class Client1 extends Util {
 	public Client1() {
+	}
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/* Run test */
@@ -64,8 +60,7 @@ public class Client1 extends UtilCustomerData {
 	 * updated name.*
 	 *
 	 */
-	@Test
-	public void flushModeTest1() throws Exception {
+		public void flushModeTest1() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;

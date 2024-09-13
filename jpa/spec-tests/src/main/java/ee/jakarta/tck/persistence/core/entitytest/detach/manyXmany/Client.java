@@ -23,11 +23,13 @@ package ee.jakarta.tck.persistence.core.entitytest.detach.manyXmany;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -37,22 +39,17 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_detach_manyXmany.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			throw new Exception("Setup failed:", e);
@@ -81,8 +78,7 @@ public class Client extends PMClientBase {
 	 * these relationships have been annotated with the cascade element value
 	 *
 	 */
-	@Test
-	public void detachMXMTest1() throws Exception {
+		public void detachMXMTest1() throws Exception {
 
 		final A aRef = new A("1", "a1", 1);
 		final B b1 = new B("1", "b1", 1);
@@ -180,7 +176,7 @@ public class Client extends PMClientBase {
 		getEntityTransaction().commit();
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 
@@ -189,8 +185,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

@@ -16,11 +16,9 @@
 
 package ee.jakarta.tck.persistence.core.annotations.version;
 
+import java.util.Properties;
 
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
 
 public class Client2 extends Client {
 
@@ -29,24 +27,16 @@ public class Client2 extends Client {
 	public Client2() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Int_Field", pkgName + "Int_Property", pkgName + "Integer_Field",
-				pkgName + "Integer_Property", pkgName + "Long_Field", pkgName + "Long_Property",
-				pkgName + "LongClass_Field", pkgName + "LongClass_Property", pkgName + "Short_Field",
-				pkgName + "Short_Property", pkgName + "ShortClass_Field", pkgName + "ShortClass_Property",
-				pkgName + "Timestamp_Field", pkgName + "Timestamp_Property" };
-		return createDeploymentJar("jpa_core_annotations_version2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupShortData() throws Exception {
+	public void setupShortData(String[] args, Properties p) throws Exception {
 		logTrace( "setupShortData");
 		try {
-			super.setup();
-			createDeployment();
-
+			super.setup(args,p);
 			removeTestData();
 			createShortTestData();
 
@@ -62,7 +52,7 @@ public class Client2 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void shortFieldTest() throws Exception {
 
 		boolean pass = false;
@@ -113,7 +103,7 @@ public class Client2 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void shortPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -163,7 +153,7 @@ public class Client2 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void shortClassFieldTest() throws Exception {
 
 		boolean pass = false;
@@ -214,7 +204,7 @@ public class Client2 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void shortClassPropertyTest() throws Exception {
 		boolean pass = false;
 		try {

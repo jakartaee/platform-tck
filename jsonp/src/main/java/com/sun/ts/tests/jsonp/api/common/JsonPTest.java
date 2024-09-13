@@ -26,7 +26,7 @@ import com.sun.ts.lib.harness.ServiceEETest;
 /**
  * Common JSON-P test.
  */
-public class JsonPTest { //extends ServiceEETest {
+public class JsonPTest extends ServiceEETest {
 
   /**
    * Java VM code execution entry point.

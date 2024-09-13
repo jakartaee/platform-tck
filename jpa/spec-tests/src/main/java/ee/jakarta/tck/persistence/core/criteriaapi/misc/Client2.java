@@ -22,14 +22,15 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -40,16 +41,13 @@ import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
 import jakarta.persistence.metamodel.EntityType;
 
-public class Client2 extends UtilCustomerData {
+public class Client2 extends Util {
 
 	
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_misc2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -60,8 +58,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy:
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void predicateGetExpressionsTest() throws Exception {
+		public void predicateGetExpressionsTest() throws Exception {
 		boolean pass2 = false;
 		boolean pass3 = false;
 		boolean pass4 = false;
@@ -175,8 +172,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy: SELECT c FROM Customer c WHERE c.name IS NOT NULL
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void predicateIsNotNullTest() throws Exception {
+		public void predicateIsNotNullTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[19];
@@ -244,8 +240,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy: SELECT c FROM Customer c WHERE c.name IS NULL
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void predicateIsNullTest() throws Exception {
+		public void predicateIsNullTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -295,8 +290,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy: SELECT c FROM Customer c WHERE c.ID IN (1,2)
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void pathInObjectArrayTest() throws Exception {
+		public void pathInObjectArrayTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -345,8 +339,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy: SELECT c FROM Customer c WHERE c.ID = 1
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void pathInExpressionTest() throws Exception {
+		public void pathInExpressionTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -397,8 +390,7 @@ public class Client2 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void pathInExpressionArrayTest() throws Exception {
+		public void pathInExpressionArrayTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -448,8 +440,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy: SELECT c FROM Customer c WHERE c.ID IN (1,2)
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void pathInCollectionTest() throws Exception {
+		public void pathInCollectionTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[2];
@@ -502,8 +493,7 @@ public class Client2 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void pathIsNotNullTest() throws Exception {
+		public void pathIsNotNullTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[19];
@@ -569,8 +559,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy: SELECT c FROM Customer c WHERE c.name IS NULL
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void pathIsNullTest() throws Exception {
+		public void pathIsNullTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -621,8 +610,7 @@ public class Client2 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void subqueryInObjectArrayTest() throws Exception {
+		public void subqueryInObjectArrayTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -679,8 +667,7 @@ public class Client2 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void subqueryInExpressionArrayTest() throws Exception {
+		public void subqueryInExpressionArrayTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -737,8 +724,7 @@ public class Client2 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void subqueryInExpressionTest() throws Exception {
+		public void subqueryInExpressionTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -795,8 +781,7 @@ public class Client2 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void subqueryInCollectionTest() throws Exception {
+		public void subqueryInCollectionTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -853,8 +838,7 @@ public class Client2 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void subqueryIsNotNull() throws Exception {
+		public void subqueryIsNotNull() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -909,8 +893,7 @@ public class Client2 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void subqueryIsNull() throws Exception {
+		public void subqueryIsNull() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -963,8 +946,7 @@ public class Client2 extends UtilCustomerData {
 	 */
 
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void getGroupRestriction() throws Exception {
+		public void getGroupRestriction() throws Exception {
 		boolean pass = false;
 
 		try {

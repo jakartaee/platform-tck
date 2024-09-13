@@ -18,10 +18,12 @@ package ee.jakarta.tck.persistence.core.override.table;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -34,22 +36,16 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "NoTableAnnotation" };
-		return createDeploymentJar("jpa_core_override_table.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception:test failed ", e);
@@ -65,8 +61,7 @@ public class Client extends PMClientBase {
 	 * annotation. The following test reads the entity and table names from the
 	 * orm.xml and persists the entity.
 	 */
-	@Test
-	public void testNoTableAnnotation() throws Exception {
+		public void testNoTableAnnotation() throws Exception {
 		NoTableAnnotation entity = new NoTableAnnotation();
 		entity.setId(ID);
 		try {
@@ -82,7 +77,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -90,7 +85,7 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 

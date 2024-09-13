@@ -18,9 +18,12 @@ package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 public class Client2 extends Client {
 
@@ -31,21 +34,17 @@ public class Client2 extends Client {
 	public Client2() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_annotations_tableGenerator2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup2() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup2");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData2();
 		} catch (Exception e) {
@@ -62,8 +61,7 @@ public class Client2 extends Client {
 	 * 
 	 * @test_Strategy: use a generator specified on a property
 	 */
-	@Test
-	public void generatorOnPropertyTest() throws Exception {
+		public void generatorOnPropertyTest() throws Exception {
 
 		boolean pass = false;
 

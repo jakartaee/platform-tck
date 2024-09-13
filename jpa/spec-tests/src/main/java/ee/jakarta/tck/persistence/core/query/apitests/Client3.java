@@ -22,18 +22,13 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.Collection;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
 
 public class Client3 extends PMClientBase {
-
-
 
 	private final Employee empRef[] = new Employee[21];
 
@@ -47,23 +42,16 @@ public class Client3 extends PMClientBase {
 
 	public Client3() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes2", pkgName + "Department", pkgName + "Employee",
-				pkgName + "Insurance" };
-		return createDeploymentJar("jpa_core_query_apitests3.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupDataTypes2() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createDataTypes2Data();
 			logTrace( "Done creating test data");
@@ -74,14 +62,13 @@ public class Client3 extends PMClientBase {
 		}
 	}
 
-	@AfterEach
-	public void cleanupNoData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "in cleanupNoData");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -96,7 +83,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy: Usage of Time literal in Query
 	 *
 	 */
-	@Test
+	
 	public void queryAPITest28() throws Exception {
 
 		Collection<Time> result;
@@ -199,7 +186,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy: Usage of TimeStamp literal in Query
 	 *
 	 */
-	@Test
+	
 	public void queryAPITest29() throws Exception {
 
 		logTrace( "Begin queryAPITest29");

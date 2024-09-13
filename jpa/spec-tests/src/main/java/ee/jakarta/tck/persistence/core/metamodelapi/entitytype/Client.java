@@ -19,12 +19,14 @@ package ee.jakarta.tck.persistence.core.metamodelapi.entitytype;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.Bindable;
@@ -41,22 +43,18 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "B", pkgName + "DID2Employee",
-				pkgName + "DID2EmployeeId", pkgName + "ZipCode" };
-		return createDeploymentJar("jpa_core_metamodelapi_entitytype.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -72,8 +70,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 * 
 	 */
-	@Test
-	public void getName() throws Exception {
+		public void getName() throws Exception {
 		boolean pass = false;
 
 		String expected = "A";
@@ -112,8 +109,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredId() throws Exception {
+		public void getDeclaredId() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -154,8 +150,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredIdIllegalArgumentException() throws Exception {
+		public void getDeclaredIdIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -196,8 +191,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredVersion() throws Exception {
+		public void getDeclaredVersion() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -236,8 +230,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaredVersionIllegalArgumentException() throws Exception {
+		public void getDeclaredVersionIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -278,8 +271,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getId() throws Exception {
+		public void getId() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -319,8 +311,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getIdIllegalArgumentException() throws Exception {
+		public void getIdIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -362,8 +353,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getIdClassAttributes() throws Exception {
+		public void getIdClassAttributes() throws Exception {
 		boolean pass = false;
 
 		Set<String> expected = new HashSet<String>();
@@ -433,8 +423,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getIdClassAttributesIllegalArgumentException() throws Exception {
+		public void getIdClassAttributesIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -474,8 +463,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getIdType() throws Exception {
+		public void getIdType() throws Exception {
 		boolean pass = false;
 
 		String expected = "java.lang.String";
@@ -515,8 +503,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSupertype() throws Exception {
+		public void getSupertype() throws Exception {
 		boolean pass = false;
 		String expected = "ee.jakarta.tck.persistence.core.metamodelapi.entitytype.B";
 
@@ -556,8 +543,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getVersion() throws Exception {
+		public void getVersion() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -596,8 +582,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getVersionIllegalArgumentException() throws Exception {
+		public void getVersionIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -638,8 +623,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void hasSingleIdAttribute() throws Exception {
+		public void hasSingleIdAttribute() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -680,8 +664,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void hasVersionAttribute() throws Exception {
+		public void hasVersionAttribute() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -721,8 +704,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getBindableJavaType() throws Exception {
+		public void getBindableJavaType() throws Exception {
 		boolean pass = false;
 
 		String expected = "ee.jakarta.tck.persistence.core.metamodelapi.entitytype.A";
@@ -765,8 +747,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getBindableType() throws Exception {
+		public void getBindableType() throws Exception {
 		boolean pass = false;
 
 		String expected = Bindable.BindableType.ENTITY_TYPE.name();
@@ -801,7 +782,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -809,8 +790,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

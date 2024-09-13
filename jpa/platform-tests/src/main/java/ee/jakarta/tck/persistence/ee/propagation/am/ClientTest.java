@@ -62,20 +62,20 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.am.Cli
             ee.jakarta.tck.persistence.ee.propagation.am.Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/jpa/ee/propagation/am/");
+            URL resURL = Client.class.getResource("");
             if(resURL != null) {
               jpa_ee_propagation_am_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/am/.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
             if(resURL != null) {
               jpa_ee_propagation_am_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_ee_propagation_am_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            jpa_ee_propagation_am_client.addAsManifestResource(new StringAsset("Main-Class: ${package}.Client\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_ee_propagation_am_client, Client.class, resURL);
 
-        // Ejb
+        // Ejb 1
             // the jar with the correct archive name
             JavaArchive jpa_ee_propagation_am_ejb = ShrinkWrap.create(JavaArchive.class, "jpa_ee_propagation_am_ejb.jar");
             // The class files
@@ -88,17 +88,18 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.am.Cli
                 ee.jakarta.tck.persistence.ee.propagation.am.Stateful3Bean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/am/");
-            if(ejbResURL != null) {
-              jpa_ee_propagation_am_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+            URL ejbResURL1 = Client.class.getResource("/");
+            if(ejbResURL1 != null) {
+              jpa_ee_propagation_am_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/am/.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              jpa_ee_propagation_am_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            ejbResURL1 = Client.class.getResource("/.jar.sun-ejb-jar.xml");
+            if(ejbResURL1 != null) {
+              jpa_ee_propagation_am_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
             // Call the archive processor
-            archiveProcessor.processEjbArchive(jpa_ee_propagation_am_ejb, Client.class, ejbResURL);
+            archiveProcessor.processEjbArchive(jpa_ee_propagation_am_ejb, Client.class, ejbResURL1);
+
 
         // Ear
             EnterpriseArchive jpa_ee_propagation_am_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_propagation_am.ear");
@@ -112,12 +113,9 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.am.Cli
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/am/");
-            if(earResURL != null) {
-              jpa_ee_propagation_am_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/propagation/am/.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_ee_propagation_am_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

@@ -29,15 +29,16 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 
 import ee.jakarta.tck.persistence.common.schema30.Country;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
 import jakarta.persistence.Query;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
@@ -53,17 +54,15 @@ import jakarta.persistence.metamodel.EmbeddableType;
 import jakarta.persistence.metamodel.EntityType;
 import jakarta.persistence.metamodel.Metamodel;
 
-public class Client3 extends UtilCustomerData {
+public class Client3 extends Util {
 
 
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery3.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -76,8 +75,7 @@ public class Client3 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void multiselect() throws Exception {
+		public void multiselect() throws Exception {
 		boolean pass = false;
 		final int expectedResultSize = 20;
 
@@ -128,8 +126,7 @@ public class Client3 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void multiselectListTest() throws Exception {
+		public void multiselectListTest() throws Exception {
 		boolean pass = false;
 		final int expectedResultSize = 20;
 
@@ -186,8 +183,7 @@ public class Client3 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void where() throws Exception {
+		public void where() throws Exception {
 		boolean pass = false;
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
@@ -239,8 +235,7 @@ public class Client3 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void createQueryCriteriaUpdateTest() throws Exception {
+		public void createQueryCriteriaUpdateTest() throws Exception {
 		boolean pass = false;
 		String expected = "foobar";
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
@@ -287,8 +282,7 @@ public class Client3 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void createQueryCriteriaDeleteTest() throws Exception {
+		public void createQueryCriteriaDeleteTest() throws Exception {
 		boolean pass = false;
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
 
@@ -330,8 +324,7 @@ public class Client3 extends UtilCustomerData {
 	 * Select c FROM Customer c where customer.name = 'Karen R. Tegan'
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void fromGetStringTest() throws Exception {
+		public void fromGetStringTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -377,8 +370,7 @@ public class Client3 extends UtilCustomerData {
 	 * GROUP BY c.country.code ORDER BY c.country.code"
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void groupBy() throws Exception {
+		public void groupBy() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -467,8 +459,7 @@ public class Client3 extends UtilCustomerData {
 	 * c.id"
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void groupByExpArrayTest() throws Exception {
+		public void groupByExpArrayTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		final ArrayList<ExpectedResult> expected = new ArrayList<ExpectedResult>();
@@ -583,8 +574,7 @@ public class Client3 extends UtilCustomerData {
 	 * Customer c GROUP BY c.country.code, c.id ORDER BY c.country.code, c.id"
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void groupByListTest() throws Exception {
+		public void groupByListTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -711,8 +701,7 @@ public class Client3 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void having() throws Exception {
+		public void having() throws Exception {
 		boolean pass = false;
 		final Long expectedGBR = 2L;
 		final Long expectedCHA = 4L;
@@ -774,8 +763,7 @@ public class Client3 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void distinct() throws Exception {
+		public void distinct() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -997,8 +985,7 @@ public class Client3 extends UtilCustomerData {
 	 * NULL ORDER BY c.work.zip ASC
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void orderBy() throws Exception {
+		public void orderBy() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -1061,8 +1048,7 @@ public class Client3 extends UtilCustomerData {
 	 * NULL ORDER BY c.work.zip ASC
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void orderReverseTest() throws Exception {
+		public void orderReverseTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -1127,8 +1113,7 @@ public class Client3 extends UtilCustomerData {
 	 * NULL ORDER BY c.work.zip ASC
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void getOrderList() throws Exception {
+		public void getOrderList() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
@@ -1175,8 +1160,7 @@ public class Client3 extends UtilCustomerData {
 	 *
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void modifiedQueryTest() throws Exception {
+		public void modifiedQueryTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 

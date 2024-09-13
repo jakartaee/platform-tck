@@ -19,29 +19,27 @@ package ee.jakarta.tck.persistence.core.criteriaapi.metamodelquery;
 
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.util.TestUtil;
 
 import ee.jakarta.tck.persistence.common.schema30.Alias;
 import ee.jakarta.tck.persistence.common.schema30.Alias_;
-import ee.jakarta.tck.persistence.common.schema30.UtilAliasOnlyData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class Client5 extends UtilAliasOnlyData {
+public class Client5 extends Util {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client5.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_metamodelquery5.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client5 theTests = new Client5();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -54,8 +52,7 @@ public class Client5 extends UtilAliasOnlyData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void queryTest24() throws Exception {
+		public void queryTest24() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -102,8 +99,7 @@ public class Client5 extends UtilAliasOnlyData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void queryTest25() throws Exception {
+		public void queryTest25() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -155,8 +151,7 @@ public class Client5 extends UtilAliasOnlyData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void queryTest26() throws Exception {
+		public void queryTest26() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -209,8 +204,7 @@ public class Client5 extends UtilAliasOnlyData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void queryTest28() throws Exception {
+		public void queryTest28() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 

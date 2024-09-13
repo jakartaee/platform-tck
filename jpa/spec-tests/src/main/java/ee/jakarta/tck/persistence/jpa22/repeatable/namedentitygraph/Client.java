@@ -22,11 +22,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityGraph;
 
@@ -43,23 +39,16 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2",
-				pkgName + "Employee3" };
-		return createDeploymentJar("jpa_jpa22_repeatable_namedentitygraph.jar", pkgNameWithoutSuffix,
-				(String[]) classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupEmployeeData() throws Exception {
-		logTrace( "setupOrderData");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createEmployeeData();
 			displayMap(new Properties());
@@ -69,15 +58,14 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
-	public void cleanupEmployeeData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();
 			cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -88,7 +76,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use getName to get the name of the named entity graph in the
 	 * Employee2 entity that has no name
 	 */
-	@Test
+	
 	public void entityGraphGetNameNoNameExistsTest() throws Exception {
 		boolean pass = false;
 
@@ -117,7 +105,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Use getName to get the name of the entity graph
 	 */
-	@Test
+	
 	public void getNameTest() throws Exception {
 		boolean pass = false;
 
@@ -143,7 +131,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use getEntityGraph to get the named entity graphs in the
 	 * Employee entity
 	 */
-	@Test
+	
 	public void getEntityGraphsClassTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();

@@ -2,7 +2,7 @@ package ee.jakarta.tck.persistence.core.annotations.access.property;
 
 
 
-import org.junit.jupiter.api.AfterEach;
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -16,7 +16,7 @@ public class Client extends PMClientBase {
 
 
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 		logTrace( "cleanup");
@@ -24,8 +24,8 @@ public class Client extends PMClientBase {
 		logTrace( "cleanup complete, calling super.cleanup");
 		super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	protected void removeTestData() {

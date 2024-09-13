@@ -84,7 +84,7 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The web.xml descriptor
             URL warResURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
             if(warResURL != null) {
@@ -110,6 +110,7 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.criter
 
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_criteriaapi_misc_puservlet_vehicle_web, Client2.class, warResURL);
+
 
         // Par
             // the jar with the correct archive name
@@ -157,9 +158,21 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.criter
             if(parURL != null) {
               jpa_core_criteriaapi_misc.addAsManifestResource(parURL, "persistence.xml");
             }
+            // Add the Persistence mapping-file
+            URL mappingURL = Client2.class.getResource("myMappingFile.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_misc.addAsResource(mappingURL, "myMappingFile.xml");
+            }
+            mappingURL = Client2.class.getResource("myMappingFile1.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_misc.addAsResource(mappingURL, "myMappingFile1.xml");
+            }
+            mappingURL = Client2.class.getResource("myMappingFile2.xml");
+            if(mappingURL != null) {
+              jpa_core_criteriaapi_misc.addAsResource(mappingURL, "myMappingFile2.xml");
+            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriaapi_misc, Client2.class, parURL);
-            // The orm.xml file
             parURL = Client2.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_criteriaapi_misc.addAsManifestResource(parURL, "orm.xml");
@@ -178,12 +191,9 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.criter
 
 
             // The application.xml descriptor
-            URL earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/misc/");
-            if(earResURL != null) {
-              jpa_core_criteriaapi_misc_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
+            URL earResURL = null;
             // The sun-application.xml descriptor
-            earResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/criteriaapi/misc/.ear.sun-application.xml");
+            earResURL = Client2.class.getResource("/.ear.sun-application.xml");
             if(earResURL != null) {
               jpa_core_criteriaapi_misc_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

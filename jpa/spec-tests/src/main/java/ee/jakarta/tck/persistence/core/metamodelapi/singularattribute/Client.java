@@ -18,10 +18,13 @@ package ee.jakarta.tck.persistence.core.metamodelapi.singularattribute;
 
 
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.Attribute;
@@ -38,21 +41,17 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "ZipCode" };
-		return createDeploymentJar("jpa_core_metamodelapi_singularattribute.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -68,8 +67,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isId() throws Exception {
+		public void isId() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -109,8 +107,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isVersion() throws Exception {
+		public void isVersion() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -150,8 +147,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isOptional() throws Exception {
+		public void isOptional() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -191,8 +187,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getType() throws Exception {
+		public void getType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -234,8 +229,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isCollection() throws Exception {
+		public void isCollection() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -277,8 +271,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isAssociation() throws Exception {
+		public void isAssociation() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -320,8 +313,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getPersistentAttributeType() throws Exception {
+		public void getPersistentAttributeType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -363,8 +355,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getName() throws Exception {
+		public void getName() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -405,8 +396,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getJavaType() throws Exception {
+		public void getJavaType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -447,8 +437,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getJavaMember() throws Exception {
+		public void getJavaMember() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -490,8 +479,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaringType() throws Exception {
+		public void getDeclaringType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -537,8 +525,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getBindableType() throws Exception {
+		public void getBindableType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -583,8 +570,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getBindableJavaType() throws Exception {
+		public void getBindableJavaType() throws Exception {
 		boolean pass = false;
 		String expected = "ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address";
 		getEntityTransaction().begin();
@@ -619,7 +605,7 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -627,8 +613,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {

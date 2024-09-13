@@ -20,13 +20,14 @@ package ee.jakarta.tck.persistence.core.criteriaapi.misc;
 import java.util.List;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
 import ee.jakarta.tck.persistence.common.schema30.Order;
-import ee.jakarta.tck.persistence.common.schema30.UtilSetup;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -36,16 +37,12 @@ import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Selection;
 import jakarta.persistence.metamodel.EntityType;
 
-public class Client1 extends UtilSetup {
+public class Client1 extends Util {
 
-
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_misc1.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -56,8 +53,7 @@ public class Client1 extends UtilSetup {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void predicateIsNegatedTest() throws Exception {
+		public void predicateIsNegatedTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -109,8 +105,7 @@ public class Client1 extends UtilSetup {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
-	public void predicateBooleanOperatorTest() throws Exception {
+		public void predicateBooleanOperatorTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -176,8 +171,7 @@ public class Client1 extends UtilSetup {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
-	public void predicateGetOperatorTest() throws Exception {
+		public void predicateGetOperatorTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -236,8 +230,7 @@ public class Client1 extends UtilSetup {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void selectionGetCompoundSelectionItemsIllegalStateExceptionTest() throws Exception {
+		public void selectionGetCompoundSelectionItemsIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -270,8 +263,7 @@ public class Client1 extends UtilSetup {
 	 *
 	 * expression will never be a compound expression
 	 */
-	@Test
-	public void expressionIsCompoundSelectionTest() throws Exception {
+		public void expressionIsCompoundSelectionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -296,8 +288,7 @@ public class Client1 extends UtilSetup {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void expressionGetCompoundSelectionItemsIllegalStateExceptionTest() throws Exception {
+		public void expressionGetCompoundSelectionItemsIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -326,8 +317,7 @@ public class Client1 extends UtilSetup {
 	 * @test_Strategy: convert the following JPQL to CriteriaQuery
 	 *
 	 */
-	@Test
-	public void getRoots() throws Exception {
+		public void getRoots() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -397,8 +387,7 @@ public class Client1 extends UtilSetup {
 	 *
 	 *
 	 */
-	@Test
-	public void getSelection() throws Exception {
+		public void getSelection() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -471,8 +460,7 @@ public class Client1 extends UtilSetup {
 	 * @test_Strategy: select c.country.code FROM Customer c GROUP BY
 	 * c.country.code"
 	 */
-	@Test
-	public void getGroupList() throws Exception {
+		public void getGroupList() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 
@@ -556,8 +544,7 @@ public class Client1 extends UtilSetup {
 	 *
 	 *
 	 */
-	@Test
-	public void isDistinct() throws Exception {
+		public void isDistinct() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -596,8 +583,7 @@ public class Client1 extends UtilSetup {
 	 *
 	 *
 	 */
-	@Test
-	public void getResultType() throws Exception {
+		public void getResultType() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;

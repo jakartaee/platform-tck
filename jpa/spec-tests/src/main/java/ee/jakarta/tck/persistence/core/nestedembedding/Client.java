@@ -20,12 +20,14 @@ package ee.jakarta.tck.persistence.core.nestedembedding;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.Vector;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -36,21 +38,17 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "B", pkgName + "ZipCode" };
-		return createDeploymentJar("jpa_core_override_nestedembedding.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
@@ -75,8 +73,7 @@ public class Client extends PMClientBase {
 	 * and ensure the persist operation is cascaded.
 	 *
 	 */
-	@Test
-	public void NE1XMTest1() throws Exception {
+		public void NE1XMTest1() throws Exception {
 		boolean pass = false;
 		A aRef;
 		Collection newCol;
@@ -185,8 +182,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use Nested embeddable class in Query
 	 *
 	 */
-	@Test
-	public void NE1XMTest2() throws Exception {
+		public void NE1XMTest2() throws Exception {
 		boolean pass = false;
 		A aRef;
 		Collection<B> newCol;
@@ -270,8 +266,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use embedded class in Query
 	 *
 	 */
-	@Test
-	public void NE1XMTest3() throws Exception {
+		public void NE1XMTest3() throws Exception {
 		boolean pass = false;
 		A aRef;
 		Collection newCol;
@@ -434,7 +429,7 @@ public class Client extends PMClientBase {
 		return resultB;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
@@ -442,8 +437,8 @@ public class Client extends PMClientBase {
 			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
