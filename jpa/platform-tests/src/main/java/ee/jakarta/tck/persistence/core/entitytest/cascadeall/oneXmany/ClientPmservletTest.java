@@ -90,7 +90,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityt
               jpa_core_et_cascadeall_oneXmany_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               jpa_core_et_cascadeall_oneXmany_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }

@@ -84,7 +84,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
               jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
               jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
@@ -117,12 +117,12 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            URL ejbResURL = Client.class.getResource("/vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
             if(ejbResURL != null) {
               jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
