@@ -127,6 +127,7 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.Stored
               jpa_core_StoredProcedureQuery.addAsManifestResource(parURL, "persistence.xml");
             }
             // Add the Persistence mapping-file
+
             URL mappingURL = Client1.class.getResource("myMappingFile.xml");
             if(mappingURL != null) {
               jpa_core_StoredProcedureQuery.addAsResource(mappingURL, "myMappingFile.xml");
