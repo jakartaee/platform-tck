@@ -24,29 +24,29 @@
       <description>Define ConnectionFactory AppClientMyTestConnectionFactory</description>
       <name>java:global/AppClientMyTestConnectionFactory</name>
       <interface-name>jakarta.jms.ConnectionFactory</interface-name>
-      <user>@user@</user>
-      <password>@password@</password>
+      <user>cts1</user>
+      <password>cts1</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define QueueConnectionFactory AppClientMyTestQueueConnectionFactory</description>
       <name>java:app/AppClientMyTestQueueConnectionFactory</name>
       <interface-name>jakarta.jms.QueueConnectionFactory</interface-name>
-      <user>@user@</user>
-      <password>@password@</password>
+      <user>cts1</user>
+      <password>cts1</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define TopicConnectionFactory AppClientMyTestTopicConnectionFactory</description>
       <name>java:module/AppClientMyTestTopicConnectionFactory</name>
       <interface-name>jakarta.jms.TopicConnectionFactory</interface-name>
-      <user>@user@</user>
-      <password>@password@</password>
+      <user>cts1</user>
+      <password>cts1</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define Durbale TopicConnectionFactory AppClientMyTestDurableTopicConnectionFactory</description>
       <name>java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory</name>
       <interface-name>jakarta.jms.TopicConnectionFactory</interface-name>
-      <user>@user@</user>
-      <password>@password@</password>
+      <user>cts1</user>
+      <password>cts1</password>
       <client-id>MyClientID</client-id>
       <property>
 	<name>Property1</name>

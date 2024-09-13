@@ -29,7 +29,7 @@
         <server-name>localhost</server-name>
         <port-number>1527</port-number>
         <database-name>derbyDB</database-name>
-        <url>jdbc:xxxx://xxxx:1234</url>
+        <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
         <user>cts1</user>
         <password>cts1</password>
 
@@ -59,7 +59,7 @@
         <server-name>localhost</server-name>
         <port-number>1527</port-number>
         <database-name>derbyDB</database-name>
-        <url>jdbc:xxxx://xxxx:1234</url>
+        <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
         <user>cts1</user>
         <password>cts1</password>
 
@@ -89,7 +89,7 @@
         <server-name>localhost</server-name>
         <port-number>1527</port-number>
         <database-name>derbyDB</database-name>
-        <url>jdbc:xxxx://xxxx:1234</url>
+        <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
         <user>cts1</user>
         <password>cts1</password>
 

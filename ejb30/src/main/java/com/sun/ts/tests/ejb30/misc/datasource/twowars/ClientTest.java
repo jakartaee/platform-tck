@@ -83,7 +83,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.datasource.twowars.C
             JavaArchive ejb3_misc_datasource_twowars_ejb = ShrinkWrap.create(JavaArchive.class, "ejb3_misc_datasource_twowars_ejb.jar");
             // The class files
             ejb3_misc_datasource_twowars_ejb.addClasses(
-                    com.sun.ts.tests.ejb30.misc.datasource.twojars.DataSourceBean.class
+                    com.sun.ts.tests.ejb30.misc.datasource.twowars.DataSourceBean.class
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/datasource/twowars/ejb3_misc_datasource_twowars_ejb.xml");
