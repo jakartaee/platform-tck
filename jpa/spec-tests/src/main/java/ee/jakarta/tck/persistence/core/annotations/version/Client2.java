@@ -16,37 +16,27 @@
 
 package ee.jakarta.tck.persistence.core.annotations.version;
 
-import java.lang.System.Logger;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
 
 public class Client2 extends Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	public Client2() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "Int_Field", pkgName + "Int_Property", pkgName + "Integer_Field",
-				pkgName + "Integer_Property", pkgName + "Long_Field", pkgName + "Long_Property",
-				pkgName + "LongClass_Field", pkgName + "LongClass_Property", pkgName + "Short_Field",
-				pkgName + "Short_Property", pkgName + "ShortClass_Field", pkgName + "ShortClass_Property",
-				pkgName + "Timestamp_Field", pkgName + "Timestamp_Property" };
-		return createDeploymentJar("jpa_core_annotations_version2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupShortData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupShortData");
+	public void setupShortData(String[] args, Properties p) throws Exception {
+		logTrace( "setupShortData");
 		try {
-			super.setup();
-			createDeployment();
-
+			super.setup(args,p);
 			removeTestData();
 			createShortTestData();
 
@@ -62,14 +52,14 @@ public class Client2 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void shortFieldTest() throws Exception {
 
 		boolean pass = false;
 		try {
 			Short_Field a = getEntityManager().find(Short_Field.class, "1");
 			if (a != null) {
-				logger.log(Logger.Level.TRACE, "version:" + a.getVersion());
+				logTrace( "version:" + a.getVersion());
 				// if (a.getVersion() == 1) {
 				short version = a.getVersion();
 				a.setName("two");
@@ -80,24 +70,24 @@ public class Client2 extends Client {
 				Short_Field a1 = getEntityManager().find(Short_Field.class, "1");
 				if (a1 != null) {
 					if (a1.getVersion() > version) {
-						logger.log(Logger.Level.TRACE, "version:" + a1.getVersion());
+						logTrace( "version:" + a1.getVersion());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Did not get a greater version after a modification:" + a1.getVersion());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Second find returned null result");
+					logErr( "Second find returned null result");
 				}
 				/*
 				 * } else {
-				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
+				 * logErr("Did not get a version of 1 after find"); }
 				 */
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null result");
+				logErr( "Find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -113,13 +103,13 @@ public class Client2 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void shortPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
 			Short_Property a = getEntityManager().find(Short_Property.class, "2");
 			if (a != null) {
-				logger.log(Logger.Level.TRACE, "version:" + a.getBasicShort());
+				logTrace( "version:" + a.getBasicShort());
 				// if (a.getVersion() == 1) {
 				short version = a.getBasicShort();
 				a.setName("two");
@@ -130,24 +120,24 @@ public class Client2 extends Client {
 				Short_Property a1 = getEntityManager().find(Short_Property.class, "2");
 				if (a1 != null) {
 					if (a1.getBasicShort() > version) {
-						logger.log(Logger.Level.TRACE, "version:" + a1.getBasicShort());
+						logTrace( "version:" + a1.getBasicShort());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Did not get a greater version after a modification:" + a1.getBasicShort());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Second find returned null result");
+					logErr( "Second find returned null result");
 				}
 				/*
 				 * } else {
-				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
+				 * logErr("Did not get a version of 1 after find"); }
 				 */
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null result");
+				logErr( "Find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -163,14 +153,14 @@ public class Client2 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void shortClassFieldTest() throws Exception {
 
 		boolean pass = false;
 		try {
 			ShortClass_Field a = getEntityManager().find(ShortClass_Field.class, "3");
 			if (a != null) {
-				logger.log(Logger.Level.TRACE, "version:" + a.getVersion());
+				logTrace( "version:" + a.getVersion());
 				// if (a.getVersion() == 1) {
 				Short version = a.getVersion();
 				a.setName("two");
@@ -181,24 +171,24 @@ public class Client2 extends Client {
 				ShortClass_Field a1 = getEntityManager().find(ShortClass_Field.class, "3");
 				if (a1 != null) {
 					if (a1.getVersion() > version) {
-						logger.log(Logger.Level.TRACE, "version:" + a1.getVersion());
+						logTrace( "version:" + a1.getVersion());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Did not get a greater version after a modification:" + a1.getVersion());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Second find returned null result");
+					logErr( "Second find returned null result");
 				}
 				/*
 				 * } else {
-				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
+				 * logErr("Did not get a version of 1 after find"); }
 				 */
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null result");
+				logErr( "Find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -214,13 +204,13 @@ public class Client2 extends Client {
 	 *
 	 * @test_Strategy:
 	 */
-	@Test
+	
 	public void shortClassPropertyTest() throws Exception {
 		boolean pass = false;
 		try {
 			ShortClass_Property a = getEntityManager().find(ShortClass_Property.class, "4");
 			if (a != null) {
-				logger.log(Logger.Level.TRACE, "version:" + a.getBasicShort());
+				logTrace( "version:" + a.getBasicShort());
 				// if (a.getVersion() == 1) {
 				Short version = a.getBasicShort();
 				a.setName("two");
@@ -231,24 +221,24 @@ public class Client2 extends Client {
 				ShortClass_Property a1 = getEntityManager().find(ShortClass_Property.class, "4");
 				if (a1 != null) {
 					if (a1.getBasicShort() > version) {
-						logger.log(Logger.Level.TRACE, "version:" + a1.getBasicShort());
+						logTrace( "version:" + a1.getBasicShort());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Did not get a greater version after a modification:" + a1.getBasicShort());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Second find returned null result");
+					logErr( "Second find returned null result");
 				}
 				/*
 				 * } else {
-				 * logger.log(Logger.Level.ERROR,"Did not get a version of 1 after find"); }
+				 * logErr("Did not get a version of 1 after find"); }
 				 */
 			} else {
-				logger.log(Logger.Level.ERROR, "Find returned null result");
+				logErr( "Find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {
@@ -258,7 +248,7 @@ public class Client2 extends Client {
 	}
 
 	public void createShortTestData() {
-		logger.log(Logger.Level.TRACE, "createShortTestData");
+		logTrace( "createShortTestData");
 
 		try {
 			getEntityTransaction().begin();
@@ -268,14 +258,14 @@ public class Client2 extends Client {
 			getEntityManager().persist(new ShortClass_Property("4", new Short((short) 0)));
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createShortTestData:", e);
+			logErr( "Unexpected Exception in createShortTestData:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception during Rollback:", re);
+				logErr( "Unexpected Exception during Rollback:", re);
 			}
 		}
 

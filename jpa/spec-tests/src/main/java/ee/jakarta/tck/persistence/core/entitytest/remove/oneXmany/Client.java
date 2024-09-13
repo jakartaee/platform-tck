@@ -20,43 +20,40 @@
 
 package ee.jakarta.tck.persistence.core.entitytest.remove.oneXmany;
 
-import java.lang.System.Logger;
+
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Vector;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "B" };
-		return createDeploymentJar("jpa_core_entitytest_remove_oneXmany.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -81,11 +78,10 @@ public class Client extends PMClientBase {
 	 * Invoke remove on a new entity.
 	 *
 	 */
-	@Test
-	public void remove1XMTest1() throws Exception {
+		public void remove1XMTest1() throws Exception {
 		boolean pass = false;
 
-		logger.log(Logger.Level.TRACE, "Begin remove1XMTest1");
+		logTrace( "Begin remove1XMTest1");
 		try {
 			getEntityTransaction().begin();
 			final B b1 = new B("11", "b1", 1);
@@ -101,18 +97,18 @@ public class Client extends PMClientBase {
 
 			boolean status = getInstanceStatus(aRef);
 			if (!status) {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"Instance state is not managed as expected." + "Try invoking remove on it.");
 				getEntityManager().remove(aRef);
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Instance state is managed." + "  Unexpected as this is NEW instance.");
+				logErr( "Instance state is managed." + "  Unexpected as this is NEW instance.");
 				pass = false;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception fe) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception during remove operation. Should have been ignored.",
+			logErr( "Unexpected Exception during remove operation. Should have been ignored.",
 					fe);
 			pass = false;
 		} finally {
@@ -121,7 +117,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -138,12 +134,11 @@ public class Client extends PMClientBase {
 	 * transition to the removed state. Invoke remove on a managed entity.
 	 *
 	 */
-	@Test
-	public void remove1XMTest2() throws Exception {
+		public void remove1XMTest2() throws Exception {
 		boolean pass = false;
 		boolean status = false;
 
-		logger.log(Logger.Level.TRACE, "Begin remove1XMTest2");
+		logTrace( "Begin remove1XMTest2");
 		try {
 			getEntityTransaction().begin();
 
@@ -167,25 +162,25 @@ public class Client extends PMClientBase {
 
 			dumpCollectionDataB(newCol);
 
-			logger.log(Logger.Level.TRACE, "Get Instance Status ");
+			logTrace( "Get Instance Status ");
 			status = getInstanceStatus(aRef);
 
 			if ((status) && (newCol.contains(b1)) && (newCol.contains(b2)) && (newCol.contains(b3))
 					&& (newCol.contains(b4))) {
-				logger.log(Logger.Level.TRACE, "Status is true as expected, try remove");
+				logTrace( "Status is true as expected, try remove");
 				getEntityManager().remove(findA("2"));
-				logger.log(Logger.Level.TRACE, "Call contains after remove");
+				logTrace( "Call contains after remove");
 				if (!getEntityManager().contains(aRef)) {
 					pass = true;
 				}
 
 			} else {
-				logger.log(Logger.Level.TRACE, "Instance is not managed- Unexpected");
+				logTrace( "Instance is not managed- Unexpected");
 				pass = false;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -193,7 +188,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -221,9 +216,8 @@ public class Client extends PMClientBase {
 	 * cascade=REMOVE and ensure the remove operation is cascaded.
 	 *
 	 */
-	@Test
-	public void remove1XMTest3() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin remove1XMTest3");
+		public void remove1XMTest3() throws Exception {
+		logTrace( "Begin remove1XMTest3");
 		boolean pass = false;
 		boolean status = false;
 
@@ -249,34 +243,34 @@ public class Client extends PMClientBase {
 
 			dumpCollectionDataB(newCol);
 
-			logger.log(Logger.Level.TRACE, "Get Instance Status ");
+			logTrace( "Get Instance Status ");
 			status = getInstanceStatus(aRef);
 
 			if ((status) && (newCol.contains(b1)) && (newCol.contains(b2)) && (newCol.contains(b3))
 					&& (newCol.contains(b4))) {
-				logger.log(Logger.Level.TRACE, "Status is true as expected, try remove()");
+				logTrace( "Status is true as expected, try remove()");
 				getEntityManager().remove(findA("3"));
-				logger.log(Logger.Level.TRACE, "Remove is immediately visible to the contains method");
+				logTrace( "Remove is immediately visible to the contains method");
 				if ((!getEntityManager().contains(aRef)) && (!getEntityManager().contains(b1))
 						&& (!getEntityManager().contains(b2)) && (!getEntityManager().contains(b3))
 						&& (!getEntityManager().contains(b4))) {
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Instance is not managed- Unexpected");
+				logErr( "Instance is not managed- Unexpected");
 				pass = false;
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -293,9 +287,8 @@ public class Client extends PMClientBase {
 	 * operation. Invoke remove on a removed entity.
 	 *
 	 */
-	@Test
-	public void remove1XMTest4() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin remove1XMTest4");
+		public void remove1XMTest4() throws Exception {
+		logTrace( "Begin remove1XMTest4");
 		boolean pass = false;
 		boolean status = false;
 
@@ -317,11 +310,11 @@ public class Client extends PMClientBase {
 			final A aRef = new A("5", "bean5", 5, v1);
 			createA(aRef);
 
-			logger.log(Logger.Level.TRACE, "Get Instance Status ");
+			logTrace( "Get Instance Status ");
 			status = getEntityManager().contains(aRef);
 
 			if (status) {
-				logger.log(Logger.Level.TRACE, "Status is true, try remove");
+				logTrace( "Status is true, try remove");
 				getEntityManager().remove(aRef);
 
 				if (!getEntityManager().contains(aRef)) {
@@ -329,14 +322,14 @@ public class Client extends PMClientBase {
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "contains method returned true; unexpected, test fails.");
+				logErr( "contains method returned true; unexpected, test fails.");
 				pass = false;
 
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -344,7 +337,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception caught trying to remove entity instance :", fe);
+				logErr( "Unexpected exception caught trying to remove entity instance :", fe);
 			}
 		}
 
@@ -369,11 +362,10 @@ public class Client extends PMClientBase {
 	 *
 	 * If X is a removed entity, it is removed from the database.
 	 */
-	@Test
-	public void remove1XMTest5() throws Exception {
+		public void remove1XMTest5() throws Exception {
 		boolean pass = false;
 		boolean status = false;
-		logger.log(Logger.Level.TRACE, "Begin remove1XMTest5");
+		logTrace( "Begin remove1XMTest5");
 
 		try {
 			getEntityTransaction().begin();
@@ -397,15 +389,15 @@ public class Client extends PMClientBase {
 
 			dumpCollectionDataB(newCol);
 
-			logger.log(Logger.Level.TRACE, "Get Instance Status ");
+			logTrace( "Get Instance Status ");
 			status = getInstanceStatus(aRef);
 
 			if ((status) && (newCol.contains(b1)) && (newCol.contains(b2)) && (newCol.contains(b3))
 					&& (newCol.contains(b4))) {
-				logger.log(Logger.Level.TRACE, "Status is true as expected, try remove()");
+				logTrace( "Status is true as expected, try remove()");
 				getEntityManager().remove(findA("6"));
 				getEntityManager().flush();
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"A removed entity is removed from the " + " database as a result of the flush operation");
 				A newA = findA("6");
 				if (newA == null) {
@@ -413,13 +405,13 @@ public class Client extends PMClientBase {
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Instance is not managed- Unexpected");
+				logErr( "Instance is not managed- Unexpected");
 				pass = false;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass = false;
 		} finally {
 			try {
@@ -427,7 +419,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception caught trying to remove entity instance :", fe);
+				logErr( "Unexpected exception caught trying to remove entity instance :", fe);
 			}
 		}
 		if (!pass)
@@ -444,9 +436,8 @@ public class Client extends PMClientBase {
 	 * been called on the entity.
 	 *
 	 */
-	@Test
-	public void remove1XMTest6() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin remove1XMTest6");
+		public void remove1XMTest6() throws Exception {
+		logTrace( "Begin remove1XMTest6");
 		boolean pass = false;
 		boolean status = false;
 
@@ -472,12 +463,12 @@ public class Client extends PMClientBase {
 
 			dumpCollectionDataB(newCol);
 
-			logger.log(Logger.Level.TRACE, "Get Instance Status ");
+			logTrace( "Get Instance Status ");
 			status = getInstanceStatus(aRef);
 
 			if ((status) && (newCol.contains(b1)) && (newCol.contains(b2)) && (newCol.contains(b3))
 					&& (newCol.contains(b4))) {
-				logger.log(Logger.Level.TRACE, "Status is true as expected, try remove()");
+				logTrace( "Status is true as expected, try remove()");
 				getEntityManager().remove(findA("7"));
 				if ((!getEntityManager().contains(aRef)) && (!getEntityManager().contains(b1))
 						&& (!getEntityManager().contains(b2)) && (!getEntityManager().contains(b3))
@@ -485,14 +476,14 @@ public class Client extends PMClientBase {
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Instance is not managed- Unexpected");
+				logErr( "Instance is not managed- Unexpected");
 				pass = false;
 
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception fe) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception during remove operation. Should have been ignored.",
+			logErr( "Unexpected Exception during remove operation. Should have been ignored.",
 					fe);
 			pass = false;
 		} finally {
@@ -501,7 +492,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass)
@@ -518,9 +509,8 @@ public class Client extends PMClientBase {
 	 * been cascaded to it.
 	 *
 	 */
-	@Test
-	public void remove1XMTest7() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin remove1XMTest7");
+		public void remove1XMTest7() throws Exception {
+		logTrace( "Begin remove1XMTest7");
 		boolean pass = false;
 		boolean status = false;
 
@@ -546,13 +536,13 @@ public class Client extends PMClientBase {
 
 			dumpCollectionDataB(newCol);
 
-			logger.log(Logger.Level.TRACE, "Get Instance Status ");
+			logTrace( "Get Instance Status ");
 			status = getInstanceStatus(aRef);
 
 			if ((status) && (newCol.contains(b1)) && (newCol.contains(b2)) && (newCol.contains(b3))
 					&& (newCol.contains(b4))) {
 
-				logger.log(Logger.Level.TRACE, "Status is true as expected, try remove()");
+				logTrace( "Status is true as expected, try remove()");
 				getEntityManager().remove(findA("8"));
 				if ((!getEntityManager().contains(aRef)) && (!getEntityManager().contains(b1))
 						&& (!getEntityManager().contains(b2)) && (!getEntityManager().contains(b3))
@@ -561,13 +551,13 @@ public class Client extends PMClientBase {
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Instance is not managed- Unexpected");
+				logErr( "Instance is not managed- Unexpected");
 				pass = false;
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception fe) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception during remove operation.  Should have been ignored.",
+			logErr( "Unexpected Exception during remove operation.  Should have been ignored.",
 					fe);
 			pass = false;
 		} finally {
@@ -576,7 +566,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -589,55 +579,55 @@ public class Client extends PMClientBase {
 	 */
 
 	private void createA(final A a) {
-		logger.log(Logger.Level.TRACE, "Entered createA method");
+		logTrace( "Entered createA method");
 		getEntityManager().persist(a);
 		getEntityManager().flush();
 	}
 
 	private A findA(final String id) {
-		logger.log(Logger.Level.TRACE, "Entered findA method");
+		logTrace( "Entered findA method");
 		return getEntityManager().find(A.class, id);
 	}
 
 	private void createB(final B b) {
-		logger.log(Logger.Level.TRACE, "Entered createB method");
+		logTrace( "Entered createB method");
 		getEntityManager().persist(b);
 		getEntityManager().flush();
 	}
 
 	private boolean getInstanceStatus(final Object o) {
-		logger.log(Logger.Level.TRACE, "Entered getInstanceStatus method");
+		logTrace( "Entered getInstanceStatus method");
 		return getEntityManager().contains(o);
 	}
 
 	private void dumpCollectionDataB(final Collection c) {
-		logger.log(Logger.Level.TRACE, "Collection Data");
-		logger.log(Logger.Level.TRACE, "---------------");
-		logger.log(Logger.Level.TRACE, "- size=" + c.size());
+		logTrace( "Collection Data");
+		logTrace( "---------------");
+		logTrace( "- size=" + c.size());
 		Iterator i = c.iterator();
 		int elem = 1;
 		while (i.hasNext()) {
 			B v = (B) i.next();
-			logger.log(Logger.Level.TRACE, "- Element #" + elem++);
-			logger.log(Logger.Level.TRACE,
+			logTrace( "- Element #" + elem++);
+			logTrace(
 					"  id=" + v.getBId() + ", name=" + v.getBName() + ", value=" + v.getBValue());
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -647,14 +637,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM BEJB_1XM_BI_BTOB").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -44,7 +44,7 @@ public interface PropertyManagerInterface {
    * gets property value with default
    *
    * @param sKey - Property to retrieve
-   * @param default - default value to use
+   * @param def - default value to use
    * @return String - property value
    */
   public String getProperty(String sKey, String def);
@@ -61,7 +61,7 @@ public interface PropertyManagerInterface {
   /**
    * This method is called to set a property on the property manager
    *
-   * @param skey - key to be used
+   * @param sKey - key to be used
    * @param sVal - value to use
    */
   public void setProperty(String sKey, String sVal);

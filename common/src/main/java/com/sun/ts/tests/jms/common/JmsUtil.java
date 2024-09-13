@@ -88,7 +88,7 @@ public final class JmsUtil {
       // sometimes they are null when passed
       // ??Harness issue??
 
-      hostname = p.getProperty("harness.host");
+      hostname = TestUtil.getProperty(p, "harness.host");
       TestUtil.logTrace("Hostname " + hostname);
       if (hostname == null) {
         if (hHost != null)
@@ -102,7 +102,7 @@ public final class JmsUtil {
         hHost = hostname;
       }
 
-      traceFlag = p.getProperty("harness.log.traceflag");
+      traceFlag = TestUtil.getProperty(p, "harness.log.traceflag");
       TestUtil.logTrace("testFlag  " + traceFlag);
       if (traceFlag == null) {
         if (hTrace != null)
@@ -116,7 +116,7 @@ public final class JmsUtil {
         hTrace = traceFlag;
       }
 
-      logPort = p.getProperty("harness.log.port");
+      logPort = TestUtil.getProperty(p, "harness.log.port");
       TestUtil.logTrace("logPort  " + logPort);
       if (logPort == null) {
         if (hPort != null)
@@ -142,7 +142,7 @@ public final class JmsUtil {
         if ((key.indexOf(notValid) == -1) && (key.indexOf("***") == -1)
             && !(key.startsWith("JMS"))) {
           TestUtil.logTrace("addProps: add property " + key);
-          msg.setStringProperty(key, p.getProperty(key));
+          msg.setStringProperty(key, TestUtil.getProperty(p, key));
         }
       }
     } catch (Exception ex) {

@@ -16,15 +16,12 @@
 
 package ee.jakarta.tck.persistence.core.annotations.ordercolumn;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -37,30 +34,25 @@ public class Client2 extends PMClientBase {
 
 	private List<Employee2> expectedEmployees2;
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+	
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Course", pkgName + "Department", pkgName + "Department2", pkgName + "Employee",
-				pkgName + "Employee2", pkgName + "Student" };
-		return createDeploymentJar("jpa_core_annotations_ordercolumn2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupEmployee() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeEmployeeTestData();
 			createEmployeeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -73,7 +65,6 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @test_Strategy: name is specified while using property access.
 	 */
-	@Test
 	public void propertyAccessWithNameTest() throws Exception {
 		boolean pass = false;
 
@@ -81,10 +72,10 @@ public class Client2 extends PMClientBase {
 			getEntityTransaction().begin();
 			clearCache();
 			Department d = getEntityManager().find(Department.class, 50);
-			logger.log(Logger.Level.INFO, "Display find data");
+			logMsg( "Display find data");
 
 			for (Employee e : d.getEmployees()) {
-				logger.log(Logger.Level.INFO, "Employee:" + e);
+				logMsg( "Employee:" + e);
 			}
 
 			List<Employee> actual = new ArrayList<Employee>();
@@ -94,7 +85,7 @@ public class Client2 extends PMClientBase {
 			if (emp != null) {
 				actual.add(emp);
 			} else {
-				logger.log(Logger.Level.ERROR, "Query of INDEX(0) returned null result");
+				logErr( "Query of INDEX(0) returned null result");
 			}
 			q = getEntityManager().createQuery(
 					"SELECT e FROM Department d JOIN d.employees e WHERE d.id = 50 AND INDEX(e) = 1", Employee.class);
@@ -102,7 +93,7 @@ public class Client2 extends PMClientBase {
 			if (emp != null) {
 				actual.add(emp);
 			} else {
-				logger.log(Logger.Level.ERROR, "Query of INDEX(1) returned null result");
+				logErr( "Query of INDEX(1) returned null result");
 			}
 			q = getEntityManager().createQuery(
 					"SELECT e FROM Department d JOIN d.employees e WHERE d.id = 50 AND INDEX(e) = 2", Employee.class);
@@ -110,13 +101,13 @@ public class Client2 extends PMClientBase {
 			if (emp != null) {
 				actual.add(emp);
 			} else {
-				logger.log(Logger.Level.ERROR, "Query of INDEX(2) returned null result");
+				logErr( "Query of INDEX(2) returned null result");
 			}
 
 			if (actual.size() == expectedEmployees.size()) {
 				int count = 0;
 				for (int i = 0; i < expectedEmployees.size(); i++) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Testing - expected[" + expectedEmployees.get(i) + "], actual[" + actual.get(i) + "]");
 
 					if (expectedEmployees.get(i).equals(actual.get(i))) {
@@ -127,31 +118,31 @@ public class Client2 extends PMClientBase {
 				if (count == expectedEmployees.size()) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.TRACE, "count=" + count + ", expected size:" + expectedEmployees.size());
+					logTrace( "count=" + count + ", expected size:" + expectedEmployees.size());
 					for (Employee e : expectedEmployees) {
-						logger.log(Logger.Level.ERROR, "expected:" + e);
+						logErr( "expected:" + e);
 					}
-					logger.log(Logger.Level.ERROR, "------------");
+					logErr( "------------");
 					for (Employee e : actual) {
-						logger.log(Logger.Level.ERROR, "actual:" + e);
+						logErr( "actual:" + e);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected list size:" + expectedEmployees.size() + ", actual size:" + actual.size());
 				for (Employee e : expectedEmployees) {
-					logger.log(Logger.Level.ERROR, "expected:" + e);
+					logErr( "expected:" + e);
 				}
-				logger.log(Logger.Level.ERROR, "------------");
+				logErr( "------------");
 				for (Employee e : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + e);
+					logErr( "actual:" + e);
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 		}
 
 		if (!pass) {
@@ -168,7 +159,6 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @test_Strategy: name is specified while using property access.
 	 */
-	@Test
 	public void fieldAccessWithNameTest() throws Exception {
 		boolean pass = false;
 
@@ -176,10 +166,10 @@ public class Client2 extends PMClientBase {
 			getEntityTransaction().begin();
 			clearCache();
 			Department2 d = getEntityManager().find(Department2.class, 55);
-			logger.log(Logger.Level.INFO, "Display find data");
+			logMsg( "Display find data");
 
 			for (Employee2 e : d.getEmployees()) {
-				logger.log(Logger.Level.INFO, "Employee2:" + e);
+				logMsg( "Employee2:" + e);
 			}
 
 			List<Employee2> actual = new ArrayList<Employee2>();
@@ -189,7 +179,7 @@ public class Client2 extends PMClientBase {
 			if (emp != null) {
 				actual.add(emp);
 			} else {
-				logger.log(Logger.Level.ERROR, "Query of INDEX(0) returned null result");
+				logErr( "Query of INDEX(0) returned null result");
 			}
 			q = getEntityManager().createQuery(
 					"SELECT e FROM Department2 d JOIN d.employees e WHERE d.id = 55 AND INDEX(e) = 1", Employee2.class);
@@ -197,7 +187,7 @@ public class Client2 extends PMClientBase {
 			if (emp != null) {
 				actual.add(emp);
 			} else {
-				logger.log(Logger.Level.ERROR, "Query of INDEX(1) returned null result");
+				logErr( "Query of INDEX(1) returned null result");
 			}
 			q = getEntityManager().createQuery(
 					"SELECT e FROM Department2 d JOIN d.employees e WHERE d.id = 55 AND INDEX(e) = 2", Employee2.class);
@@ -205,13 +195,13 @@ public class Client2 extends PMClientBase {
 			if (emp != null) {
 				actual.add(emp);
 			} else {
-				logger.log(Logger.Level.ERROR, "Query of INDEX(2) returned null result");
+				logErr( "Query of INDEX(2) returned null result");
 			}
 
 			if (actual.size() == expectedEmployees2.size()) {
 				int count = 0;
 				for (int i = 0; i < expectedEmployees2.size(); i++) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Testing - expected[" + expectedEmployees2.get(i) + "], actual[" + actual.get(i) + "]");
 
 					if (expectedEmployees2.get(i).equals(actual.get(i))) {
@@ -222,31 +212,31 @@ public class Client2 extends PMClientBase {
 				if (count == expectedEmployees.size()) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.TRACE, "count=" + count + ", expected size:" + expectedEmployees2.size());
+					logTrace( "count=" + count + ", expected size:" + expectedEmployees2.size());
 					for (Employee2 e : expectedEmployees2) {
-						logger.log(Logger.Level.ERROR, "expected:" + e);
+						logErr( "expected:" + e);
 					}
-					logger.log(Logger.Level.ERROR, "------------");
+					logErr( "------------");
 					for (Employee2 e : actual) {
-						logger.log(Logger.Level.ERROR, "actual:" + e);
+						logErr( "actual:" + e);
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected list size:" + expectedEmployees2.size() + ", actual size:" + actual.size());
 				for (Employee2 e : expectedEmployees2) {
-					logger.log(Logger.Level.ERROR, "expected:" + e);
+					logErr( "expected:" + e);
 				}
-				logger.log(Logger.Level.ERROR, "------------");
+				logErr( "------------");
 				for (Employee2 e : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + e);
+					logErr( "actual:" + e);
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 		}
 
 		if (!pass) {
@@ -257,7 +247,7 @@ public class Client2 extends PMClientBase {
 
 	public void createStudentTestData() {
 		try {
-			logger.log(Logger.Level.TRACE, "createTestData");
+			logTrace( "createTestData");
 			getEntityTransaction().begin();
 
 			// Create 8 students;
@@ -342,7 +332,7 @@ public class Client2 extends PMClientBase {
 			entityManager.persist(student6);
 			entityManager.persist(student7);
 			entityManager.persist(student8);
-			logger.log(Logger.Level.TRACE, "persisted 8 students");
+			logTrace( "persisted 8 students");
 
 			// persist courses
 			entityManager.persist(appliedMath);
@@ -350,21 +340,21 @@ public class Client2 extends PMClientBase {
 			entityManager.persist(operationResearch);
 			entityManager.persist(statistics);
 			entityManager.persist(operatingSystem);
-			logger.log(Logger.Level.TRACE, "persisted 5 Courses");
+			logTrace( "persisted 5 Courses");
 
-			logger.log(Logger.Level.TRACE, "persisted Entity Data");
+			logTrace( "persisted Entity Data");
 			getEntityManager().flush();
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
+			logErr( "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -372,7 +362,7 @@ public class Client2 extends PMClientBase {
 
 	private void createEmployeeTestData() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "createEmployeeTestData");
+			logTrace( "createEmployeeTestData");
 			getEntityTransaction().begin();
 
 			Department d1 = new Department(50, "Dept1");
@@ -408,37 +398,36 @@ public class Client2 extends PMClientBase {
 			d2.setEmployees(expectedEmployees2);
 			getEntityManager().merge(d2);
 
-			logger.log(Logger.Level.TRACE, "persisted Entity Data");
+			logTrace( "persisted Entity Data");
 			getEntityManager().flush();
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
+			logErr( "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
 
-	@AfterEach
 	public void cleanupEmployee() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanupEmployee");
+			logTrace( "cleanupEmployee");
 			removeEmployeeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeEmployeeTestData() {
-		logger.log(Logger.Level.TRACE, "removeEmployeeTestData");
+		logTrace( "removeEmployeeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -448,14 +437,14 @@ public class Client2 extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from DEPARTMENT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.core.inheritance.nonentity;
 
-import java.lang.System.Logger;
+
 import java.sql.Date;
 
 import jakarta.persistence.Column;
@@ -35,7 +35,7 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("EXEMPT")
 public class FullTimeEmployee extends Employee {
 
-	private static final Logger logger = (Logger) System.getLogger(FullTimeEmployee.class.getName());
+
 
 	private float salary;
 

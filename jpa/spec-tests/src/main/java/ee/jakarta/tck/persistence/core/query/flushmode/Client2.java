@@ -20,32 +20,29 @@
 
 package ee.jakarta.tck.persistence.core.query.flushmode;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 import java.util.Vector;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.CreditCard;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Order;
 import ee.jakarta.tck.persistence.common.schema30.Spouse;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.FlushModeType;
 
-public class Client2 extends UtilOrderData {
-
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_flushmode2.jar", pkgNameWithoutSuffix, classes);
-	}
+public class Client2 extends Util {
 
 	public Client2() {
+	}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -59,14 +56,13 @@ public class Client2 extends UtilOrderData {
 	 * customer used in the setCustomer call.
 	 * 
 	 */
-	@Test
-	public void flushModeTest2() throws Exception {
+		public void flushModeTest2() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest2");
+			logTrace( "Execute Starting flushModeTest2");
 			Order o1 = getEntityManager().find(Order.class, "1");
 			Customer cust2 = getEntityManager().find(Customer.class, "2");
 			o1.setCustomer(cust2);
@@ -79,15 +75,15 @@ public class Client2 extends UtilOrderData {
 			expectedPKs[1] = "2";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
+			logErr( "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -103,14 +99,13 @@ public class Client2 extends UtilOrderData {
 	 * updates the name of a customer. It then executes an EJBQL query selecting
 	 * orders where the related customer has the updated name.
 	 */
-	@Test
-	public void flushModeTest3() throws Exception {
+		public void flushModeTest3() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest3");
+			logTrace( "Execute Starting flushModeTest3");
 			Customer cust1 = getEntityManager().find(Customer.class, "1");
 			cust1.setName("Michael Bouschen");
 			o = getEntityManager().createQuery("SELECT o FROM Order o WHERE o.customer.name = 'Michael Bouschen'")
@@ -119,18 +114,18 @@ public class Client2 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected 1 reference, got: " + o.size());
+				logErr( "Did not get expected results.  Expected 1 reference, got: " + o.size());
 			} else {
 				Customer newCust = getEntityManager().find(Customer.class, "1");
 				if (newCust.getName().equals("Michael Bouschen")) {
 					pass = true;
 				}
 
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
+			logErr( "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -148,14 +143,13 @@ public class Client2 extends UtilOrderData {
 	 * name of the new spouse.
 	 *
 	 */
-	@Test
-	public void flushModeTest4() throws Exception {
+		public void flushModeTest4() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Execute Starting flushModeTest4");
+			logTrace( "Execute Starting flushModeTest4");
 			Customer cust6 = getEntityManager().find(Customer.class, "6");
 			Spouse s4 = getEntityManager().find(Spouse.class, "4");
 			cust6.setSpouse(s4);
@@ -170,16 +164,16 @@ public class Client2 extends UtilOrderData {
 			expectedPKs[0] = "6";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected " + " 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
+			logErr( "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -196,14 +190,13 @@ public class Client2 extends UtilOrderData {
 	 * selecting orders where the related spouse of the related customer has the
 	 * updated name.
 	 */
-	@Test
-	public void flushModeTest5() throws Exception {
+		public void flushModeTest5() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Starting flushModeTest5");
+			logTrace( "Starting flushModeTest5");
 			Spouse s4 = getEntityManager().find(Spouse.class, "4");
 			s4.setLastName("Miller");
 			List<Order> result = getEntityManager()
@@ -214,15 +207,15 @@ public class Client2 extends UtilOrderData {
 			expectedPKs[0] = "11";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected " + " 1 reference, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexception: " + e);
+			logErr( "Caught unexception: " + e);
 		}
 
 		if (!pass)
@@ -239,14 +232,13 @@ public class Client2 extends UtilOrderData {
 	 * executes an EJBQL query selecting customers having an order with the removed
 	 * number.
 	 */
-	@Test
-	public void flushModeTest6() throws Exception {
+		public void flushModeTest6() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Starting flushModeTest6");
+			logTrace( "Starting flushModeTest6");
 			Customer cust4 = getEntityManager().find(Customer.class, "4");
 			Order order4 = getEntityManager().find(Order.class, "4");
 			Order order9 = getEntityManager().find(Order.class, "9");
@@ -265,15 +257,15 @@ public class Client2 extends UtilOrderData {
 			expectedPKs = new String[0];
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected " + " 0 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -290,15 +282,14 @@ public class Client2 extends UtilOrderData {
 	 * executes an EJBQL query selecting a spouse whose customer has an order with
 	 * an credit card having the new number.
 	 */
-	@Test
-	public void flushModeTest7() throws Exception {
+		public void flushModeTest7() throws Exception {
 		boolean pass = false;
 		String[] expected = new String[1];
 		expected[0] = "2";
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Starting flushModeTest7");
+			logTrace( "Starting flushModeTest7");
 
 			CreditCard c17 = getEntityManager().find(CreditCard.class, "17");
 			c17.setNumber("1111-1111-1111-1111");
@@ -308,16 +299,16 @@ public class Client2 extends UtilOrderData {
 					.setFlushMode(FlushModeType.AUTO).getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected " + expected.length
+				logErr( "Did not get expected results.  Expected " + expected.length
 						+ " references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)

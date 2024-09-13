@@ -16,12 +16,15 @@
 
 package ee.jakarta.tck.persistence.core.exceptions;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityExistsException;
@@ -39,31 +42,25 @@ import jakarta.persistence.TransactionRequiredException;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Coffee" };
-		return createDeploymentJar("jpa_core_exceptions.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
-
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -82,24 +79,23 @@ public class Client extends PMClientBase {
 	 * Java SE environments) the persist operation may be called regardless whether
 	 * a transaction is active.
 	 */
-	@Test
-	public void TransactionRequiredExceptionTest() throws Exception {
+		public void TransactionRequiredExceptionTest() throws Exception {
 		boolean pass = false;
 		final Coffee newCoffee = new Coffee(1, "hazelnut", 1.0F);
 
 		try {
-			logger.log(Logger.Level.TRACE, "Invoked persist without an active transaction");
+			logTrace( "Invoked persist without an active transaction");
 			getEntityManager().persist(newCoffee);
 
 		} catch (jakarta.persistence.TransactionRequiredException tre) {
 			pass = true;
-			logger.log(Logger.Level.TRACE, "In JavaEE, Exception Caught as Expected: " + tre);
+			logTrace( "In JavaEE, Exception Caught as Expected: " + tre);
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if ((!pass) && (isStandAloneMode())) {
-			logger.log(Logger.Level.TRACE, "In JavaSE, Exception Not Thrown as Expected");
+			logTrace( "In JavaSE, Exception Not Thrown as Expected");
 			pass = true;
 		}
 
@@ -115,48 +111,47 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw TransactionRequiredException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void TransactionRequiredException2Test() throws Exception {
+		public void TransactionRequiredException2Test() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Test TransactionRequiredExceptionNullMsg");
+		logTrace( "Test TransactionRequiredExceptionNullMsg");
 		boolean pass = true;
 
 		try {
 			throw new TransactionRequiredException();
 
 		} catch (TransactionRequiredException eee) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected");
+			logTrace( "TransactionRequiredException Caught as Expected");
 			if (eee.getMessage() != null) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"TransactionRequiredException should have had null message, actual message="
 								+ eee.getMessage());
 				pass = false;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 			pass = false;
 		}
 
-		logger.log(Logger.Level.INFO, "Test TransactionRequiredExceptionStringMsg");
+		logMsg( "Test TransactionRequiredExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new TransactionRequiredException(expected);
 
 		} catch (TransactionRequiredException eee) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected");
+			logTrace( "TransactionRequiredException Caught as Expected");
 			String msg = eee.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "TransactionRequiredException returned null message");
+				logErr( "TransactionRequiredException returned null message");
 				pass = false;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 			pass = false;
 		}
 
@@ -173,10 +168,9 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: flush() throws a
 	 * jakarta.persistence.TransactionRequiredException if there is no transaction
 	 */
-	@Test
-	public void exceptionTest2() throws Exception {
+		public void exceptionTest2() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin exceptionTest2");
+		logTrace( "Begin exceptionTest2");
 		final Coffee newCoffee = new Coffee(2, "french roast", 9.0F);
 		boolean pass = false;
 
@@ -185,21 +179,21 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(newCoffee);
 			getEntityTransaction().commit();
 
-			logger.log(Logger.Level.TRACE, "try flush");
+			logTrace( "try flush");
 			getEntityManager().flush();
 
 		} catch (jakarta.persistence.TransactionRequiredException tre) {
 			pass = true;
-			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + tre);
+			logTrace( "Exception Caught as Expected: " + tre);
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception :", re);
+				logErr( "Unexpected Exception :", re);
 			}
 
 		}
@@ -222,28 +216,27 @@ public class Client extends PMClientBase {
 	 * Java SE environments) the refresh operation may be called regardless whether
 	 * a transaction is active.
 	 */
-	@Test
-	public void exceptionTest3() throws Exception {
+		public void exceptionTest3() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin exceptionTest3");
+		logTrace( "Begin exceptionTest3");
 		boolean pass = false;
 		final Coffee newCoffee = new Coffee(3, "french roast", 9.0F);
 
 		try {
 
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Persist Coffee ");
+			logTrace( "Persist Coffee ");
 			getEntityManager().persist(newCoffee);
 			getEntityTransaction().commit();
 
-			logger.log(Logger.Level.TRACE, "Call refresh without an active transaction");
+			logTrace( "Call refresh without an active transaction");
 			getEntityManager().refresh(newCoffee);
 
 		} catch (TransactionRequiredException tre) {
 			pass = true;
-			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + tre);
+			logTrace( "Exception Caught as Expected: " + tre);
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -251,12 +244,12 @@ public class Client extends PMClientBase {
 				}
 
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception Caught rolling back TX:", fe);
+				logErr( "Unexpected Exception Caught rolling back TX:", fe);
 			}
 		}
 
 		if ((!pass) && (isStandAloneMode())) {
-			logger.log(Logger.Level.TRACE, "In JavaSE, Exception Not Thrown as Expected");
+			logTrace( "In JavaSE, Exception Not Thrown as Expected");
 			pass = true;
 		}
 
@@ -278,10 +271,9 @@ public class Client extends PMClientBase {
 	 * transaction is active.
 	 * 
 	 */
-	@Test
-	public void exceptionTest4() throws Exception {
+		public void exceptionTest4() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin exceptionTest4");
+		logTrace( "Begin exceptionTest4");
 		final Coffee newCoffee = new Coffee(5, "breakfast blend", 3.0F);
 		boolean pass = false;
 
@@ -290,14 +282,14 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(newCoffee);
 			getEntityTransaction().commit();
 
-			logger.log(Logger.Level.TRACE, "Call remove without an active transaction");
+			logTrace( "Call remove without an active transaction");
 			getEntityManager().remove(newCoffee);
 
 		} catch (jakarta.persistence.TransactionRequiredException tre) {
 			pass = true;
-			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + tre);
+			logTrace( "Exception Caught as Expected: " + tre);
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -305,13 +297,13 @@ public class Client extends PMClientBase {
 				}
 
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception Caught rolling back TX:", fe);
+				logErr( "Unexpected Exception Caught rolling back TX:", fe);
 			}
 
 		}
 
 		if ((!pass) && (isStandAloneMode())) {
-			logger.log(Logger.Level.TRACE, "In JavaSE, Exception Not Thrown as Expected");
+			logTrace( "In JavaSE, Exception Not Thrown as Expected");
 			pass = true;
 		}
 
@@ -328,10 +320,9 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: close throws an IllegalStateException will be thrown if the
 	 * EntityManager is container-managed.
 	 */
-	@Test
-	public void exceptionTest5() throws Exception {
+		public void exceptionTest5() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin exceptionTest5");
+		logTrace( "Begin exceptionTest5");
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -340,9 +331,9 @@ public class Client extends PMClientBase {
 
 		} catch (IllegalStateException ise) {
 			pass = true;
-			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + ise);
+			logTrace( "Exception Caught as Expected: " + ise);
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -350,13 +341,13 @@ public class Client extends PMClientBase {
 				}
 
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception Caught rolling back TX:", fe);
+				logErr( "Unexpected Exception Caught rolling back TX:", fe);
 			}
 
 		}
 
 		if ((!pass) && (isStandAloneMode())) {
-			logger.log(Logger.Level.TRACE, "In JavaSE, Exception Not Thrown as Expected");
+			logTrace( "In JavaSE, Exception Not Thrown as Expected");
 			pass = true;
 		}
 
@@ -372,10 +363,9 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: refresh throws an IllegalArgumentException if the entity is
 	 * not managed
 	 */
-	@Test
-	public void exceptionTest6() throws Exception {
+		public void exceptionTest6() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin exceptionTest6");
+		logTrace( "Begin exceptionTest6");
 		boolean pass = false;
 		final Coffee newCoffee = new Coffee(7, "cinnamon", 7.0F);
 
@@ -387,22 +377,22 @@ public class Client extends PMClientBase {
 			if (!getEntityManager().contains(newCoffee)) {
 				getEntityManager().refresh(newCoffee);
 			} else {
-				logger.log(Logger.Level.TRACE, "Entity is managed, cannot proceed with test");
+				logTrace( "Entity is managed, cannot proceed with test");
 			}
 			getEntityTransaction().commit();
 
 		} catch (IllegalArgumentException iae) {
 			pass = true;
-			logger.log(Logger.Level.TRACE, "Exception Caught as Expected: " + iae);
+			logTrace( "Exception Caught as Expected: " + iae);
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 
 		}
@@ -420,49 +410,48 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw RollbackException() and validate contents of
 	 * Exception
 	 */
-	@Test
-	public void RollbackExceptionTest() throws Exception {
+		public void RollbackExceptionTest() throws Exception {
 
-		logger.log(Logger.Level.INFO, "Test RollbackExceptionNullMsg");
+		logMsg( "Test RollbackExceptionNullMsg");
 		boolean pass = true;
 
 		try {
 			throw new RollbackException();
 		} catch (RollbackException re) {
-			logger.log(Logger.Level.TRACE, "RollbackException Caught as Expected");
+			logTrace( "RollbackException Caught as Expected");
 			if (re.getMessage() != null) {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"RollbackException should have had null message, actual message=" + re.getMessage());
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 			pass = false;
 		}
 
-		logger.log(Logger.Level.INFO, "Test RollbackExceptionStringMsg");
+		logMsg( "Test RollbackExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new RollbackException(expected);
 		} catch (RollbackException re) {
-			logger.log(Logger.Level.TRACE, "RollbackException Caught as Expected");
+			logTrace( "RollbackException Caught as Expected");
 			String msg = re.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "RollbackException returned null message");
+				logErr( "RollbackException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test RollbackExceptionStringThrowable");
+		logMsg( "Test RollbackExceptionStringThrowable");
 
 		expected = "This is the String message";
 		String expected2 = "This is the Throwable message";
@@ -471,7 +460,7 @@ public class Client extends PMClientBase {
 			throw new RollbackException(expected, new IllegalAccessException(expected2));
 
 		} catch (RollbackException re) {
-			logger.log(Logger.Level.TRACE, "RollbackException Caught as Expected");
+			logTrace( "RollbackException Caught as Expected");
 			String msg = re.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -480,50 +469,50 @@ public class Client extends PMClientBase {
 						msg = t.getMessage();
 						if (!msg.equals(expected2)) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "RollbackException returned null message");
+				logErr( "RollbackException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test RollbackExceptionThrowable");
+		logMsg( "Test RollbackExceptionThrowable");
 		expected = "This is the Throwable message";
 
 		try {
 			throw new RollbackException(new IllegalAccessException(expected));
 
 		} catch (RollbackException re) {
-			logger.log(Logger.Level.TRACE, "RollbackException Caught as Expected");
+			logTrace( "RollbackException Caught as Expected");
 			Throwable t = re.getCause();
 			if (t instanceof IllegalAccessException) {
 				String msg = t.getMessage();
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+					logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"getCause did not return an instance of IllegalAccessException, instead got " + t);
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
 		if (!pass)
@@ -539,51 +528,50 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw EntityExistsException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void EntityExistsExceptionTest() throws Exception {
+		public void EntityExistsExceptionTest() throws Exception {
 
-		logger.log(Logger.Level.INFO, "Test EntityExistsExceptionNullMsg");
+		logMsg( "Test EntityExistsExceptionNullMsg");
 		boolean pass = true;
 
 		try {
 			throw new EntityExistsException();
 
 		} catch (EntityExistsException eee) {
-			logger.log(Logger.Level.TRACE, "EntityExistsException Caught as Expected");
+			logTrace( "EntityExistsException Caught as Expected");
 			if (eee.getMessage() != null) {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"EntityExistsException should have had null message, actual message=" + eee.getMessage());
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 			pass = false;
 		}
 
-		logger.log(Logger.Level.INFO, "Test EntityExistskExceptionStringMsg");
+		logMsg( "Test EntityExistskExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new EntityExistsException(expected);
 
 		} catch (EntityExistsException eee) {
-			logger.log(Logger.Level.TRACE, "EntityExistsException Caught as Expected");
+			logTrace( "EntityExistsException Caught as Expected");
 			String msg = eee.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "EntityExistsException returned null message");
+				logErr( "EntityExistsException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test EntityExistsExceptionStringThrowable");
+		logMsg( "Test EntityExistsExceptionStringThrowable");
 
 		expected = "This is the String message";
 		String expected2 = "This is the Throwable message";
@@ -592,7 +580,7 @@ public class Client extends PMClientBase {
 			throw new EntityExistsException(expected, new IllegalAccessException(expected2));
 
 		} catch (EntityExistsException eee) {
-			logger.log(Logger.Level.TRACE, "EntityExistsException Caught as Expected");
+			logTrace( "EntityExistsException Caught as Expected");
 			String msg = eee.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -601,28 +589,28 @@ public class Client extends PMClientBase {
 						msg = t.getMessage();
 						if (!msg.equals(expected2)) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "EntityExistsException returned null message");
+				logErr( "EntityExistsException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test EntityExistsExceptionThrowable");
+		logMsg( "Test EntityExistsExceptionThrowable");
 
 		expected = "This is the Throwable message";
 
@@ -630,23 +618,23 @@ public class Client extends PMClientBase {
 			throw new EntityExistsException(new IllegalAccessException(expected));
 
 		} catch (EntityExistsException eee) {
-			logger.log(Logger.Level.TRACE, "EntityExistsException Caught as Expected");
+			logTrace( "EntityExistsException Caught as Expected");
 			Throwable t = eee.getCause();
 			if (t instanceof IllegalAccessException) {
 				String msg = t.getMessage();
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+					logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"getCause did not return an instance of IllegalAccessException, instead got " + t);
 			}
 
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
 		if (!pass)
@@ -661,48 +649,47 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw EntityNotFoundException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void EntityNotFoundExceptionTest() throws Exception {
+		public void EntityNotFoundExceptionTest() throws Exception {
 
-		logger.log(Logger.Level.INFO, "Test EntityNotFoundExceptionNullMsg");
+		logMsg( "Test EntityNotFoundExceptionNullMsg");
 		boolean pass = true;
 
 		try {
 			throw new EntityNotFoundException();
 
 		} catch (EntityNotFoundException enf) {
-			logger.log(Logger.Level.TRACE, "EntityNotFoundException Caught as Expected");
+			logTrace( "EntityNotFoundException Caught as Expected");
 			if (enf.getMessage() != null) {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"EntityNotFoundException should have had null message, actual message=" + enf.getMessage());
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test EntityNotFoundExceptionStringMsg");
+		logMsg( "Test EntityNotFoundExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new EntityNotFoundException(expected);
 
 		} catch (EntityNotFoundException enf) {
-			logger.log(Logger.Level.TRACE, "EntityNotFoundException Caught as Expected");
+			logTrace( "EntityNotFoundException Caught as Expected");
 			String msg = enf.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "EntityNotFoundException returned null message");
+				logErr( "EntityNotFoundException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
 		if (!pass)
@@ -719,51 +706,50 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw OptimisticLockException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void OptimisticLockExceptionTest() throws Exception {
+		public void OptimisticLockExceptionTest() throws Exception {
 
-		logger.log(Logger.Level.INFO, "Test OptimisticLockExceptionNullMsg");
+		logMsg( "Test OptimisticLockExceptionNullMsg");
 		boolean pass = true;
 
 		try {
 			throw new OptimisticLockException();
 
 		} catch (OptimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "OptimisticLockException Caught as Expected");
+			logTrace( "OptimisticLockException Caught as Expected");
 			if (ole.getMessage() != null) {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"OptimisticLockException should have had null message, actual message=" + ole.getMessage());
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test OptimisticLockExceptionStringMsg");
+		logMsg( "Test OptimisticLockExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new OptimisticLockException(expected);
 
 		} catch (OptimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "OptimisticLockException Caught as Expected");
+			logTrace( "OptimisticLockException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "OptimisticLockException returned null message");
+				logErr( "OptimisticLockException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test OptimisticLockExceptionStringThrowable");
+		logMsg( "Test OptimisticLockExceptionStringThrowable");
 
 		expected = "This is the String message";
 		String expected2 = "This is the Throwable message";
@@ -772,7 +758,7 @@ public class Client extends PMClientBase {
 			throw new OptimisticLockException(expected, new IllegalAccessException(expected2));
 
 		} catch (OptimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "OptimisticLockException Caught as Expected");
+			logTrace( "OptimisticLockException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -781,28 +767,28 @@ public class Client extends PMClientBase {
 						msg = t.getMessage();
 						if (!msg.equals(expected2)) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "OptimisticLockException returned null message");
+				logErr( "OptimisticLockException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test OptimisticLockExceptionThrowable");
+		logMsg( "Test OptimisticLockExceptionThrowable");
 
 		expected = "This is the Throwable message";
 
@@ -810,26 +796,26 @@ public class Client extends PMClientBase {
 			throw new OptimisticLockException(new IllegalAccessException(expected));
 
 		} catch (OptimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "OptimisticLockException Caught as Expected");
+			logTrace( "OptimisticLockException Caught as Expected");
 			Throwable t = ole.getCause();
 			if (t instanceof IllegalAccessException) {
 				String msg = t.getMessage();
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+					logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"getCause did not return an instance of IllegalAccessException, instead got " + t);
 			}
 
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test OptimisticLockExceptionObjectMsg");
+		logMsg( "Test OptimisticLockExceptionObjectMsg");
 
 		Coffee cExpected = new Coffee(1, "hazelnut", 1.0F);
 
@@ -837,23 +823,23 @@ public class Client extends PMClientBase {
 			throw new OptimisticLockException(cExpected);
 
 		} catch (OptimisticLockException ol) {
-			logger.log(Logger.Level.TRACE, "OptimisticLockException Caught as Expected");
+			logTrace( "OptimisticLockException Caught as Expected");
 			Coffee c = (Coffee) ol.getEntity();
 			if (c != null) {
 				if (!c.equals(cExpected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + cExpected + ", Actual=" + c);
+					logErr( "Expected=" + cExpected + ", Actual=" + c);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "OptimisticLockException returned null message");
+				logErr( "OptimisticLockException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test OptimisticLockExceptionStringThrowableObject");
+		logMsg( "Test OptimisticLockExceptionStringThrowableObject");
 
 		expected = "This is the String message";
 		expected2 = "This is the Throwable message";
@@ -863,7 +849,7 @@ public class Client extends PMClientBase {
 			throw new OptimisticLockException(expected, new IllegalAccessException(expected2), cExpected);
 
 		} catch (OptimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "OptimisticLockException Caught as Expected");
+			logTrace( "OptimisticLockException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -874,29 +860,29 @@ public class Client extends PMClientBase {
 							Coffee c = (Coffee) ole.getEntity();
 							if (!c.equals(cExpected)) {
 								pass = false;
-								logger.log(Logger.Level.ERROR, "Expected Entity=" + cExpected + ", Actual=" + c);
+								logErr( "Expected Entity=" + cExpected + ", Actual=" + c);
 							}
 						} else {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "OptimisticLockException returned null message");
+				logErr( "OptimisticLockException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
 		if (!pass)
@@ -912,51 +898,50 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw PersistenceException() and validate contents
 	 * of Exception
 	 */
-	@Test
-	public void PersistenceExceptionTest() throws Exception {
+		public void PersistenceExceptionTest() throws Exception {
 
-		logger.log(Logger.Level.INFO, "Test PersistenceExceptionNullMsg");
+		logMsg( "Test PersistenceExceptionNullMsg");
 		boolean pass = true;
 
 		try {
 			throw new PersistenceException();
 
 		} catch (PersistenceException eee) {
-			logger.log(Logger.Level.TRACE, "PersistenceException Caught as Expected");
+			logTrace( "PersistenceException Caught as Expected");
 			if (eee.getMessage() != null) {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"PersistenceException should have had null message, actual message=" + eee.getMessage());
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test EntityExistskExceptionStringMsg");
+		logMsg( "Test EntityExistskExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new PersistenceException(expected);
 
 		} catch (PersistenceException eee) {
-			logger.log(Logger.Level.TRACE, "PersistenceException Caught as Expected");
+			logTrace( "PersistenceException Caught as Expected");
 			String msg = eee.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "PersistenceException returned null message");
+				logErr( "PersistenceException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test PersistenceExceptionStringThrowable");
+		logMsg( "Test PersistenceExceptionStringThrowable");
 
 		expected = "This is the String message";
 		String expected2 = "This is the Throwable message";
@@ -965,7 +950,7 @@ public class Client extends PMClientBase {
 			throw new PersistenceException(expected, new IllegalAccessException(expected2));
 
 		} catch (PersistenceException eee) {
-			logger.log(Logger.Level.TRACE, "PersistenceException Caught as Expected");
+			logTrace( "PersistenceException Caught as Expected");
 			String msg = eee.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -974,28 +959,28 @@ public class Client extends PMClientBase {
 						msg = t.getMessage();
 						if (!msg.equals(expected2)) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "PersistenceException returned null message");
+				logErr( "PersistenceException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test PersistenceExceptionThrowable");
+		logMsg( "Test PersistenceExceptionThrowable");
 
 		expected = "This is the Throwable message";
 
@@ -1003,23 +988,23 @@ public class Client extends PMClientBase {
 			throw new PersistenceException(new IllegalAccessException(expected));
 
 		} catch (PersistenceException eee) {
-			logger.log(Logger.Level.TRACE, "PersistenceException Caught as Expected");
+			logTrace( "PersistenceException Caught as Expected");
 			Throwable t = eee.getCause();
 			if (t instanceof IllegalAccessException) {
 				String msg = t.getMessage();
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+					logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"getCause did not return an instance of IllegalAccessException, instead got " + t);
 			}
 
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
 		if (!pass)
@@ -1036,51 +1021,50 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw LockTimeoutException() and validate contents
 	 * of Exception
 	 */
-	@Test
-	public void LockTimeoutExceptionTest() throws Exception {
+		public void LockTimeoutExceptionTest() throws Exception {
 
-		logger.log(Logger.Level.INFO, "Test LockTimeoutExceptionNullMsg");
+		logMsg( "Test LockTimeoutExceptionNullMsg");
 		boolean pass = true;
 
 		try {
 			throw new LockTimeoutException();
 
 		} catch (LockTimeoutException ole) {
-			logger.log(Logger.Level.TRACE, "LockTimeoutException Caught as Expected");
+			logTrace( "LockTimeoutException Caught as Expected");
 			if (ole.getMessage() != null) {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"LockTimeoutException should have had null message, actual message=" + ole.getMessage());
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test LockTimeoutExceptionStringMsg");
+		logMsg( "Test LockTimeoutExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new LockTimeoutException(expected);
 
 		} catch (LockTimeoutException ole) {
-			logger.log(Logger.Level.TRACE, "LockTimeoutException Caught as Expected");
+			logTrace( "LockTimeoutException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "LockTimeoutException returned null message");
+				logErr( "LockTimeoutException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test LockTimeoutExceptionStringThrowable");
+		logMsg( "Test LockTimeoutExceptionStringThrowable");
 
 		expected = "This is the String message";
 		String expected2 = "This is the Throwable message";
@@ -1089,7 +1073,7 @@ public class Client extends PMClientBase {
 			throw new LockTimeoutException(expected, new IllegalAccessException(expected2));
 
 		} catch (LockTimeoutException ole) {
-			logger.log(Logger.Level.TRACE, "LockTimeoutException Caught as Expected");
+			logTrace( "LockTimeoutException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -1098,28 +1082,28 @@ public class Client extends PMClientBase {
 						msg = t.getMessage();
 						if (!msg.equals(expected2)) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "LockTimeoutException returned null message");
+				logErr( "LockTimeoutException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test LockTimeoutExceptionThrowable");
+		logMsg( "Test LockTimeoutExceptionThrowable");
 
 		expected = "This is the Throwable message";
 
@@ -1127,26 +1111,26 @@ public class Client extends PMClientBase {
 			throw new LockTimeoutException(new IllegalAccessException(expected));
 
 		} catch (LockTimeoutException ole) {
-			logger.log(Logger.Level.TRACE, "LockTimeoutException Caught as Expected");
+			logTrace( "LockTimeoutException Caught as Expected");
 			Throwable t = ole.getCause();
 			if (t instanceof IllegalAccessException) {
 				String msg = t.getMessage();
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+					logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"getCause did not return an instance of IllegalAccessException, instead got " + t);
 			}
 
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test LockTimeoutExceptionObjectMsg");
+		logMsg( "Test LockTimeoutExceptionObjectMsg");
 
 		Coffee cExpected = new Coffee(1, "hazelnut", 1.0F);
 
@@ -1154,23 +1138,23 @@ public class Client extends PMClientBase {
 			throw new LockTimeoutException(cExpected);
 
 		} catch (LockTimeoutException ol) {
-			logger.log(Logger.Level.TRACE, "LockTimeoutException Caught as Expected");
+			logTrace( "LockTimeoutException Caught as Expected");
 			Coffee c = (Coffee) ol.getObject();
 			if (c != null) {
 				if (!c.equals(cExpected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + cExpected + ", Actual=" + c);
+					logErr( "Expected=" + cExpected + ", Actual=" + c);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "LockTimeoutException returned null message");
+				logErr( "LockTimeoutException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test LockTimeoutExceptionStringThrowableObject");
+		logMsg( "Test LockTimeoutExceptionStringThrowableObject");
 
 		expected = "This is the String message";
 		expected2 = "This is the Throwable message";
@@ -1180,7 +1164,7 @@ public class Client extends PMClientBase {
 			throw new LockTimeoutException(expected, new IllegalAccessException(expected2), cExpected);
 
 		} catch (LockTimeoutException ole) {
-			logger.log(Logger.Level.TRACE, "LockTimeoutException Caught as Expected");
+			logTrace( "LockTimeoutException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -1191,29 +1175,29 @@ public class Client extends PMClientBase {
 							Coffee c = (Coffee) ole.getObject();
 							if (!c.equals(cExpected)) {
 								pass = false;
-								logger.log(Logger.Level.ERROR, "Expected Entity=" + cExpected + ", Actual=" + c);
+								logErr( "Expected Entity=" + cExpected + ", Actual=" + c);
 							}
 						} else {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "LockTimeoutException returned null message");
+				logErr( "LockTimeoutException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
 		if (!pass)
@@ -1230,51 +1214,50 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw PessimisticLockException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void PessimisticLockExceptionTest() throws Exception {
+		public void PessimisticLockExceptionTest() throws Exception {
 
-		logger.log(Logger.Level.INFO, "Test PessimisticLockExceptionNullMsg");
+		logMsg( "Test PessimisticLockExceptionNullMsg");
 		boolean pass = true;
 
 		try {
 			throw new PessimisticLockException();
 
 		} catch (PessimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "PessimisticLockException Caught as Expected");
+			logTrace( "PessimisticLockException Caught as Expected");
 			if (ole.getMessage() != null) {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"PessimisticLockException should have had null message, actual message=" + ole.getMessage());
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test PessimisticLockExceptionStringMsg");
+		logMsg( "Test PessimisticLockExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new PessimisticLockException(expected);
 
 		} catch (PessimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "PessimisticLockException Caught as Expected");
+			logTrace( "PessimisticLockException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "PessimisticLockException returned null message");
+				logErr( "PessimisticLockException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test PessimisticLockExceptionStringThrowable");
+		logMsg( "Test PessimisticLockExceptionStringThrowable");
 
 		expected = "This is the String message";
 		String expected2 = "This is the Throwable message";
@@ -1283,7 +1266,7 @@ public class Client extends PMClientBase {
 			throw new PessimisticLockException(expected, new IllegalAccessException(expected2));
 
 		} catch (PessimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "PessimisticLockException Caught as Expected");
+			logTrace( "PessimisticLockException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -1292,28 +1275,28 @@ public class Client extends PMClientBase {
 						msg = t.getMessage();
 						if (!msg.equals(expected2)) {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "PessimisticLockException returned null message");
+				logErr( "PessimisticLockException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test PessimisticLockExceptionThrowable");
+		logMsg( "Test PessimisticLockExceptionThrowable");
 
 		expected = "This is the Throwable message";
 
@@ -1321,25 +1304,25 @@ public class Client extends PMClientBase {
 			throw new PessimisticLockException(new IllegalAccessException(expected));
 
 		} catch (PessimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "PessimisticLockException Caught as Expected");
+			logTrace( "PessimisticLockException Caught as Expected");
 			Throwable t = ole.getCause();
 			if (t instanceof IllegalAccessException) {
 				String msg = t.getMessage();
 				if (!msg.equals(expected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+					logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"getCause did not return an instance of IllegalAccessException, instead got " + t);
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test PessimisticLockExceptionObjectMsg");
+		logMsg( "Test PessimisticLockExceptionObjectMsg");
 
 		Coffee cExpected = new Coffee(1, "hazelnut", 1.0F);
 
@@ -1347,23 +1330,23 @@ public class Client extends PMClientBase {
 			throw new PessimisticLockException(cExpected);
 
 		} catch (PessimisticLockException ol) {
-			logger.log(Logger.Level.TRACE, "PessimisticLockException Caught as Expected");
+			logTrace( "PessimisticLockException Caught as Expected");
 			Coffee c = (Coffee) ol.getEntity();
 			if (c != null) {
 				if (!c.equals(cExpected)) {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + cExpected + ", Actual=" + c);
+					logErr( "Expected=" + cExpected + ", Actual=" + c);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "PessimisticLockException returned null message");
+				logErr( "PessimisticLockException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Test PessimisticLockExceptionStringThrowableObject");
+		logMsg( "Test PessimisticLockExceptionStringThrowableObject");
 
 		expected = "This is the String message";
 		expected2 = "This is the Throwable message";
@@ -1373,7 +1356,7 @@ public class Client extends PMClientBase {
 			throw new PessimisticLockException(expected, new IllegalAccessException(expected2), cExpected);
 
 		} catch (PessimisticLockException ole) {
-			logger.log(Logger.Level.TRACE, "PessimisticLockException Caught as Expected");
+			logTrace( "PessimisticLockException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -1384,29 +1367,29 @@ public class Client extends PMClientBase {
 							Coffee c = (Coffee) ole.getEntity();
 							if (!c.equals(cExpected)) {
 								pass = false;
-								logger.log(Logger.Level.ERROR, "Expected Entity=" + cExpected + ", Actual=" + c);
+								logErr( "Expected Entity=" + cExpected + ", Actual=" + c);
 							}
 						} else {
 							pass = false;
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						}
 					} else {
 						pass = false;
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 					}
 
 				} else {
 					pass = false;
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 				}
 			} else {
 				pass = false;
-				logger.log(Logger.Level.ERROR, "PessimisticLockException returned null message");
+				logErr( "PessimisticLockException returned null message");
 			}
 		} catch (Exception e) {
 			pass = false;
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 		}
 
 		if (!pass)
@@ -1423,45 +1406,44 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw QueryTimeoutException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void QueryTimeoutExceptionTest() throws Exception {
+		public void QueryTimeoutExceptionTest() throws Exception {
 
-		logger.log(Logger.Level.INFO, "Begin QueryTimeoutExceptionNullMsgTest");
+		logMsg( "Begin QueryTimeoutExceptionNullMsgTest");
 		boolean pass = true;
 
 		try {
 			throw new QueryTimeoutException();
 
 		} catch (QueryTimeoutException ole) {
-			logger.log(Logger.Level.TRACE, "QueryTimeoutException Caught as Expected");
+			logTrace( "QueryTimeoutException Caught as Expected");
 			if (ole.getMessage() != null) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"QueryTimeoutException should have had null message, actual message=" + ole.getMessage());
 				pass = false;
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Test QueryTimeoutExceptionStringMsg");
+		logMsg( "Test QueryTimeoutExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new QueryTimeoutException(expected);
 
 		} catch (QueryTimeoutException ole) {
-			logger.log(Logger.Level.TRACE, "QueryTimeoutException Caught as Expected");
+			logTrace( "QueryTimeoutException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "QueryTimeoutException returned null message");
+				logErr( "QueryTimeoutException returned null message");
 				pass = false;
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Test QueryTimeoutExceptionStringThrowable");
+		logMsg( "Test QueryTimeoutExceptionStringThrowable");
 
 		expected = "This is the String message";
 		String expected2 = "This is the Throwable message";
@@ -1470,7 +1452,7 @@ public class Client extends PMClientBase {
 			throw new QueryTimeoutException(expected, new IllegalAccessException(expected2));
 
 		} catch (QueryTimeoutException ole) {
-			logger.log(Logger.Level.TRACE, "QueryTimeoutException Caught as Expected");
+			logTrace( "QueryTimeoutException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -1478,76 +1460,76 @@ public class Client extends PMClientBase {
 					if (t instanceof IllegalAccessException) {
 						msg = t.getMessage();
 						if (!msg.equals(expected2)) {
-							logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+							logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 							pass = false;
 						}
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 						pass = false;
 					}
 
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "QueryTimeoutException returned null message");
+				logErr( "QueryTimeoutException returned null message");
 				pass = false;
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Test QueryTimeoutExceptionThrowable");
+		logMsg( "Test QueryTimeoutExceptionThrowable");
 		expected = "This is the Throwable message";
 
 		try {
 			throw new QueryTimeoutException(new IllegalAccessException(expected));
 
 		} catch (QueryTimeoutException qte) {
-			logger.log(Logger.Level.TRACE, "QueryTimeoutException Caught as Expected");
+			logTrace( "QueryTimeoutException Caught as Expected");
 			Throwable t = qte.getCause();
 			if (t instanceof IllegalAccessException) {
 				String msg = t.getMessage();
 				if (msg != null) {
 					if (!msg.equals(expected)) {
-						logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+						logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 						pass = false;
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "t.getMessage() returned null");
+					logErr( "t.getMessage() returned null");
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"getCause did not return an instance of IllegalAccessException, instead got " + t);
 				pass = false;
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Begin QueryTimeoutExceptionObjectMsgTest");
+		logMsg( "Begin QueryTimeoutExceptionObjectMsgTest");
 
 		Query qExpected = getEntityManager().createQuery("select c from Coffee c");
 		try {
 			throw new QueryTimeoutException(qExpected);
 
 		} catch (QueryTimeoutException qte) {
-			logger.log(Logger.Level.TRACE, "QueryTimeoutException Caught as Expected");
+			logTrace( "QueryTimeoutException Caught as Expected");
 			Query q = qte.getQuery();
 			if (q != null) {
 				if (q.equals(qExpected)) {
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected=" + expected + ", Actual=" + q);
+					logErr( "Expected=" + expected + ", Actual=" + q);
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "QueryTimeoutException returned null message");
+				logErr( "QueryTimeoutException returned null message");
 				pass = false;
 			}
 
 		}
 
-		logger.log(Logger.Level.INFO, "Test QueryTimeoutExceptionStringThrowableObject");
+		logMsg( "Test QueryTimeoutExceptionStringThrowableObject");
 
 		expected = "This is the String message";
 		expected2 = "This is the Throwable message";
@@ -1557,7 +1539,7 @@ public class Client extends PMClientBase {
 			throw new QueryTimeoutException(expected, new IllegalAccessException(expected2), qExpected);
 
 		} catch (QueryTimeoutException qte) {
-			logger.log(Logger.Level.TRACE, "QueryTimeoutException Caught as Expected");
+			logTrace( "QueryTimeoutException Caught as Expected");
 			String msg = qte.getMessage();
 			if (msg != null) {
 				if (msg.equals(expected)) {
@@ -1569,38 +1551,38 @@ public class Client extends PMClientBase {
 								Query q = qte.getQuery();
 								if (q != null) {
 									if (!q.equals(qExpected)) {
-										logger.log(Logger.Level.ERROR,
+										logErr(
 												"Expected Entity=" + qExpected + ", Actual=" + q);
 										pass = false;
 									}
 								} else {
-									logger.log(Logger.Level.ERROR, "getQuery returned null");
+									logErr( "getQuery returned null");
 									pass = false;
 								}
 							} else {
-								logger.log(Logger.Level.ERROR, "Expected Throwable msg=" + msg + ", Actual=" + msg);
+								logErr( "Expected Throwable msg=" + msg + ", Actual=" + msg);
 								pass = false;
 							}
 						} else {
-							logger.log(Logger.Level.ERROR, "t.getMessage returned null");
+							logErr( "t.getMessage returned null");
 							pass = false;
 						}
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"getCause did not return an instance of IllegalAccessException, instead got " + t);
 						pass = false;
 					}
 
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "QueryTimeoutException returned null message");
+				logErr( "QueryTimeoutException returned null message");
 				pass = false;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 			pass = false;
 		}
 
@@ -1616,47 +1598,46 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw NonUniqueResultException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void NonUniqueResultExceptionTest() throws Exception {
+		public void NonUniqueResultExceptionTest() throws Exception {
 
 		boolean pass = true;
-		logger.log(Logger.Level.INFO, "Begin NonUniqueResultExceptionNullMsgTest");
+		logMsg( "Begin NonUniqueResultExceptionNullMsgTest");
 
 		try {
 			throw new NonUniqueResultException();
 		} catch (NonUniqueResultException nure) {
-			logger.log(Logger.Level.TRACE, "NonUniqueResultException Caught as Expected");
+			logTrace( "NonUniqueResultException Caught as Expected");
 			if (nure.getMessage() != null) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"NonUniqueResultException should have had null message, actual message=" + nure.getMessage());
 				pass = false;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 			pass = false;
 		}
 
-		logger.log(Logger.Level.TRACE, "Testing NonUniqueResultExceptionStringMsg");
+		logTrace( "Testing NonUniqueResultExceptionStringMsg");
 
 		String expected = "This is the String message";
 		try {
 			throw new NonUniqueResultException(expected);
 
 		} catch (NonUniqueResultException ole) {
-			logger.log(Logger.Level.TRACE, "NonUniqueResultException Caught as Expected");
+			logTrace( "NonUniqueResultException Caught as Expected");
 			String msg = ole.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "NonUniqueResultException returned null message");
+				logErr( "NonUniqueResultException returned null message");
 				pass = false;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 			pass = false;
 		}
 
@@ -1672,41 +1653,40 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: create and throw NonUniqueResultException() and validate
 	 * contents of Exception
 	 */
-	@Test
-	public void NoResultExceptionTest() throws Exception {
+		public void NoResultExceptionTest() throws Exception {
 
 		boolean pass = true;
-		logger.log(Logger.Level.INFO, "Testing NoResultExceptionNullMsg");
+		logMsg( "Testing NoResultExceptionNullMsg");
 		try {
 			throw new NoResultException();
 		} catch (NoResultException nre) {
-			logger.log(Logger.Level.TRACE, "NoResultException Caught as Expected");
+			logTrace( "NoResultException Caught as Expected");
 			if (nre.getMessage() != null) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"NoResultException should have had null message, actual message=" + nre.getMessage());
 				pass = false;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception Caught", e);
+			logErr( "Unexpected Exception Caught", e);
 			pass = false;
 		}
 
-		logger.log(Logger.Level.INFO, "Testing NoResultExceptionStringMsgTest");
+		logMsg( "Testing NoResultExceptionStringMsgTest");
 
 		String expected = "This is the String message";
 		try {
 			throw new NoResultException(expected);
 
 		} catch (NoResultException nre) {
-			logger.log(Logger.Level.TRACE, "NoResultException Caught as Expected");
+			logTrace( "NoResultException Caught as Expected");
 			String msg = nre.getMessage();
 			if (msg != null) {
 				if (!msg.equals(expected)) {
-					logger.log(Logger.Level.ERROR, "Expected=" + msg + ", Actual=" + msg);
+					logErr( "Expected=" + msg + ", Actual=" + msg);
 					pass = false;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "NoResultException returned null message");
+				logErr( "NoResultException returned null message");
 				pass = false;
 			}
 		}
@@ -1715,22 +1695,22 @@ public class Client extends PMClientBase {
 			throw new Exception("NoResultExceptionTest failed");
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			if (getEntityManager().isOpen()) {
 				removeTestData();
 			}
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -1739,14 +1719,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM COFFEE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

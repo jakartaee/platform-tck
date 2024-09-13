@@ -16,11 +16,13 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.metamodelquery;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -30,7 +32,6 @@ import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
 import ee.jakarta.tck.persistence.common.schema30.Phone;
 import ee.jakarta.tck.persistence.common.schema30.Phone_;
-import ee.jakarta.tck.persistence.common.schema30.UtilPhoneData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -38,15 +39,13 @@ import jakarta.persistence.criteria.Join;
 import jakarta.persistence.criteria.Root;
 
 
-public class Client6 extends UtilPhoneData {
+public class Client6 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client6.class.getName());
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client6.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_metamodelquery6.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client6 theTests = new Client6();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	  /*
@@ -60,8 +59,7 @@ public class Client6 extends UtilPhoneData {
 	   *
 	   */
 	  @SetupMethod(name = "setupPhoneData")
-	  @Test
-	  public void queryTest55() throws Exception {
+	  	  public void queryTest55() throws Exception {
 	    boolean pass = false;
 	    String expectedPKs[];
 
@@ -69,7 +67,7 @@ public class Client6 extends UtilPhoneData {
 
 	    try {
 	      getEntityTransaction().begin();
-	      logger.log(Logger.Level.TRACE,
+	      logTrace(
 	          "determine which customers have an area code beginning with 9");
 	      CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 	      Root<Customer> customer = cquery.from(Customer.class);
@@ -89,16 +87,16 @@ public class Client6 extends UtilPhoneData {
 	      expectedPKs[2] = "16";
 
 	      if (!checkEntityPK(clist, expectedPKs)) {
-	    	  logger.log(Logger.Level.ERROR,
+	    	  logErr(
 	            "Did not get expected results.  Expected 3 references, got: "
 	                + clist.size());
 	      } else {
-	    	  logger.log(Logger.Level.TRACE,"Expected results received");
+	    	  logTrace("Expected results received");
 	        pass = true;
 	      }
 	      getEntityTransaction().commit();
 	    } catch (Exception e) {
-	    	logger.log(Logger.Level.ERROR,"Caught unexpected exception:", e);
+	    	logErr("Caught unexpected exception:", e);
 
 	    }
 

@@ -16,18 +16,19 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.Root;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Department;
 import ee.jakarta.tck.persistence.common.schema30.Department_;
 import ee.jakarta.tck.persistence.common.schema30.Employee;
-import ee.jakarta.tck.persistence.common.schema30.UtilDepartmentEmployeeData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -35,16 +36,12 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
 
-public class Client4 extends UtilDepartmentEmployeeData {
+public class Client4 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client4.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_root4.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client4 theTests = new Client4();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -59,8 +56,7 @@ public class Client4 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeTest() throws Exception {
+		public void joinMapAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -78,15 +74,15 @@ public class Client4 extends UtilDepartmentEmployeeData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -106,8 +102,7 @@ public class Client4 extends UtilDepartmentEmployeeData {
 	 * SELECT d FROM Department d INNER JOIN d.lastNameEmployees e WHERE (e.id = 1)
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeJoinTypeTest() throws Exception {
+		public void joinMapAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -126,15 +121,15 @@ public class Client4 extends UtilDepartmentEmployeeData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -154,8 +149,7 @@ public class Client4 extends UtilDepartmentEmployeeData {
 	 * SELECT d FROM Department d JOIN d.lastNameEmployees e WHERE (e.id = 1)
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringTest() throws Exception {
+		public void joinMapStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -174,15 +168,15 @@ public class Client4 extends UtilDepartmentEmployeeData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -202,8 +196,7 @@ public class Client4 extends UtilDepartmentEmployeeData {
 	 * SELECT d FROM Department d INNER JOIN d.lastNameEmployees e WHERE (e.id = 1)
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringJoinTypeTest() throws Exception {
+		public void joinMapStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -222,15 +215,15 @@ public class Client4 extends UtilDepartmentEmployeeData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 

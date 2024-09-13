@@ -20,7 +20,6 @@
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jstl-tck</artifactId>
@@ -31,8 +30,8 @@
         <db.delimiter>;</db.delimiter>
         <db.name>derby</db.name>
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
-        <!-- <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version> -->
-        <glassfish.container.version>8.0.0-M5</glassfish.container.version>
+        <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version>
+        <!-- <glassfish.container.version>8.0.0-M5</glassfish.container.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
@@ -68,7 +67,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>1.7.0.Alpha10</version>
         </dependency>
         <dependency>
             <groupId>jakarta.platform</groupId>
@@ -89,7 +87,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>1.7.0.Alpha10</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>

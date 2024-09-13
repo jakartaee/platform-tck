@@ -20,41 +20,33 @@
 
 package ee.jakarta.tck.persistence.core.annotations.mapkey;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
 
 public class Client1 extends Client {
 
 	public Client1() {
 	}
-
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2", pkgName + "Employee3",
-				pkgName + "Employee4" };
-		return createDeploymentJar("jpa_core_annotations_mapkey1.jar", pkgNameWithoutSuffix, classes);
-
+	
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupCreateTestData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setupCreateTestData(String args[], Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -74,7 +66,7 @@ public class Client1 extends Client {
 	 * Execute a query returning Employees objects.
 	 * 
 	 */
-	@Test
+	
 	public void annotationMapKeyTest1() throws Exception {
 
 		boolean pass = true;
@@ -89,7 +81,7 @@ public class Client1 extends Client {
 
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "find Employees belonging to Department: Marketing");
+			logTrace( "find Employees belonging to Department: Marketing");
 			List l = getEntityManager().createQuery("Select e from Employee e where e.department.name = 'Marketing'")
 					.getResultList();
 
@@ -100,23 +92,23 @@ public class Client1 extends Client {
 
 			Collections.sort(actual);
 			if (expected.equals(actual)) {
-				logger.log(Logger.Level.TRACE, "Received expected employees");
+				logTrace( "Received expected employees");
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected id values were:");
+				logErr( "Expected id values were:");
 				for (Integer i : expected) {
-					logger.log(Logger.Level.ERROR, "id: " + i);
+					logErr( "id: " + i);
 				}
-				logger.log(Logger.Level.ERROR, "actual id values were:");
+				logErr( "actual id values were:");
 				Collections.sort(actual);
 				for (Integer i : actual) {
-					logger.log(Logger.Level.ERROR, "id: " + i);
+					logErr( "id: " + i);
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", ex);
+			logErr( "Unexpected exception occurred", ex);
 			pass = false;
 		} finally {
 			try {
@@ -124,7 +116,7 @@ public class Client1 extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -146,7 +138,7 @@ public class Client1 extends Client {
 	 *
 	 * Execute a query returning Employee IDs.
 	 */
-	@Test
+	
 	public void annotationMapKeyTest2() throws Exception {
 
 		boolean pass = true;
@@ -160,7 +152,7 @@ public class Client1 extends Client {
 
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "find Employees belonging to Department: Marketing");
+			logTrace( "find Employees belonging to Department: Marketing");
 			List l = getEntityManager()
 					.createQuery(
 							"Select e.id from Employee e where e.department.name = 'Administration' ORDER BY e.id DESC")
@@ -173,23 +165,23 @@ public class Client1 extends Client {
 
 			Collections.sort(actual);
 			if (expected.equals(actual)) {
-				logger.log(Logger.Level.TRACE, "Received expected employees");
+				logTrace( "Received expected employees");
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected id values were:");
+				logErr( "Expected id values were:");
 				for (Integer i : expected) {
-					logger.log(Logger.Level.ERROR, "id: " + i);
+					logErr( "id: " + i);
 				}
-				logger.log(Logger.Level.ERROR, "actual id values were:");
+				logErr( "actual id values were:");
 				Collections.sort(actual);
 				for (Integer i : actual) {
-					logger.log(Logger.Level.ERROR, "id: " + i);
+					logErr( "id: " + i);
 				}
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", ex);
+			logErr( "Unexpected exception occurred", ex);
 			pass = false;
 		} finally {
 			try {
@@ -197,7 +189,7 @@ public class Client1 extends Client {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 

@@ -20,21 +20,23 @@
 
 package ee.jakarta.tck.persistence.core.inheritance.abstractentity;
 
-import java.lang.System.Logger;
+
 import java.sql.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final FullTimeEmployee ftRef[] = new FullTimeEmployee[5];
 
@@ -62,30 +64,24 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "AbstractPersonnel", pkgName + "Department", pkgName + "Employee",
-				pkgName + "FullTimeEmployee", pkgName + "PartTimeEmployee", pkgName + "Project" };
-		return createDeploymentJar("jpa_core_inheritance_abstractentity.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 
 			removeTestData();
 			createTestData();
-			logger.log(Logger.Level.TRACE, "Done creating test data");
+			logTrace( "Done creating test data");
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -104,10 +100,9 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: An entity may have a non-entity superclass which may be
 	 * either abstract or concrete.
 	 */
-	@Test
-	public void abstractEntityTest1() throws Exception {
+		public void abstractEntityTest1() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin abstractEntityTest1");
+		logTrace( "Begin abstractEntityTest1");
 		boolean pass = false;
 
 		try {
@@ -118,7 +113,7 @@ public class Client extends PMClientBase {
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -138,10 +133,9 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: An entity may have a non-entity superclass which may be
 	 * either abstract or concrete.
 	 */
-	@Test
-	public void abstractEntityTest2() throws Exception {
+		public void abstractEntityTest2() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin abstractEntityTest2");
+		logTrace( "Begin abstractEntityTest2");
 		boolean pass = false;
 
 		try {
@@ -152,7 +146,7 @@ public class Client extends PMClientBase {
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -169,10 +163,9 @@ public class Client extends PMClientBase {
 	 * target of queries (which will operate over and/or retrieve instances of its
 	 * concrete subclasses).
 	 */
-	@Test
-	public void abstractEntityTest3() throws Exception {
+		public void abstractEntityTest3() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin abstractEntityTest3");
+		logTrace( "Begin abstractEntityTest3");
 		boolean pass1 = true;
 		boolean pass2 = true;
 		List result;
@@ -180,20 +173,20 @@ public class Client extends PMClientBase {
 
 		try {
 			// getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find Employees By ID");
+			logTrace( "find Employees By ID");
 			result = getEntityManager().createQuery("Select e from Employee e where e.id between :param1 and :param2")
 					.setParameter("param1", 4).setParameter("param2", 7).setMaxResults(10).getResultList();
 
 			if (result.size() != 4) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 4 references, got: " + result.size());
 				pass1 = false;
 			} else if (pass1) {
 				Iterator i = result.iterator();
 				while (i.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check List for Expected Employees");
+					logTrace( "Check List for Expected Employees");
 					Employee e = (Employee) i.next();
-					logger.log(Logger.Level.TRACE, "Got Employee: " + e.getLastName());
+					logTrace( "Got Employee: " + e.getLastName());
 
 					if (e.getLastName().equals("Lee") || e.getLastName().equals("Martin")
 							|| e.getLastName().equals("OClaire") || e.getLastName().equals("Rich")) {
@@ -203,23 +196,23 @@ public class Client extends PMClientBase {
 			}
 
 			if (foundEmp != 4) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				logErr( "Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 			}
 
 			// getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -228,7 +221,7 @@ public class Client extends PMClientBase {
 	}
 
 	public void createTestData() {
-		logger.log(Logger.Level.TRACE, "createTestData");
+		logTrace( "createTestData");
 
 		try {
 			getEntityTransaction().begin();
@@ -238,12 +231,12 @@ public class Client extends PMClientBase {
 			ftRef[3] = new FullTimeEmployee(4, "Julie", "OClaire", d7, 21000.0F);
 			ftRef[4] = new FullTimeEmployee(5, "Steven", "Rich", d6, 60000.0F);
 
-			logger.log(Logger.Level.TRACE, "Persist full time employees ");
+			logTrace( "Persist full time employees ");
 			for (FullTimeEmployee ft : ftRef) {
 				if (ft != null) {
 					getEntityManager().persist(ft);
 					getEntityManager().flush();
-					logger.log(Logger.Level.TRACE, "persisted employee " + ft);
+					logTrace( "persisted employee " + ft);
 				}
 			}
 
@@ -253,12 +246,12 @@ public class Client extends PMClientBase {
 			ptRef[3] = new PartTimeEmployee(9, "Will", "Forrest", d2, 250000.0F);
 			ptRef[4] = new PartTimeEmployee(10, "Katy", "Hughes", d1, 60000.0F);
 
-			logger.log(Logger.Level.TRACE, "Persist part time employees ");
+			logTrace( "Persist part time employees ");
 			for (PartTimeEmployee pt : ptRef) {
 				if (pt != null) {
 					getEntityManager().persist(pt);
 					getEntityManager().flush();
-					logger.log(Logger.Level.TRACE, "persisted employee " + pt);
+					logTrace( "persisted employee " + pt);
 				}
 			}
 			getEntityTransaction().commit();
@@ -266,34 +259,34 @@ public class Client extends PMClientBase {
 			clearCache();
 
 		} catch (Exception re) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception in createTestData:", re);
+			logErr( "Unexpected Exception in createTestData:", re);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
-		logger.log(Logger.Level.TRACE, "done creating test data ");
+		logTrace( "done creating test data ");
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -302,14 +295,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

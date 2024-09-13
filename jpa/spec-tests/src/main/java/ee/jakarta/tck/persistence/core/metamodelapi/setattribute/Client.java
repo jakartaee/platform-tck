@@ -16,12 +16,15 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.setattribute;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.ManagedType;
@@ -31,29 +34,25 @@ import jakarta.persistence.metamodel.Type;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "ZipCode" };
-		return createDeploymentJar("jpa_core_metamodelapi_setattribute.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -66,22 +65,21 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getSet() throws Exception {
+		public void getSet() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<A> mType = metaModel.managedType(ee.jakarta.tck.persistence.core.metamodelapi.setattribute.A.class);
 			if (mType != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.setattribute.Address.class);
 				Type t = setAttrib.getElementType();
 				if (t != null) {
-					logger.log(Logger.Level.TRACE, "element Java Type  = " + t.getJavaType());
+					logTrace( "element Java Type  = " + t.getJavaType());
 					if (t.getJavaType().getName()
 							.equals("ee.jakarta.tck.persistence.core.metamodelapi.setattribute.Address")) {
 						pass = true;
@@ -105,27 +103,26 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getCollectionType() throws Exception {
+		public void getCollectionType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<A> mType = metaModel.managedType(ee.jakarta.tck.persistence.core.metamodelapi.setattribute.A.class);
 			if (mType != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.setattribute.Address.class);
 
 				SetAttribute.CollectionType setAttribColType = setAttrib.getCollectionType();
-				logger.log(Logger.Level.TRACE, "collection Type = " + setAttrib.getCollectionType());
+				logTrace( "collection Type = " + setAttrib.getCollectionType());
 				if (setAttribColType == SetAttribute.CollectionType.SET) {
-					logger.log(Logger.Level.TRACE, "Received expected result = " + setAttribColType);
+					logTrace( "Received expected result = " + setAttribColType);
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Received unexpected result = " + setAttribColType);
+					logErr( "Received unexpected result = " + setAttribColType);
 				}
 			}
 		}
@@ -145,28 +142,27 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getElementType() throws Exception {
+		public void getElementType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<A> mType = metaModel.managedType(ee.jakarta.tck.persistence.core.metamodelapi.setattribute.A.class);
 			if (mType != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SetAttribute<? super A, Address> setAttrib = mType.getSet("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.setattribute.Address.class);
 
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"collection Element Type = " + setAttrib.getElementType().getJavaType().getName());
 				String elementTypeName = setAttrib.getElementType().getJavaType().getName();
 				if (elementTypeName.equals("ee.jakarta.tck.persistence.core.metamodelapi.setattribute.Address")) {
-					logger.log(Logger.Level.TRACE, "Received expected result = " + elementTypeName);
+					logTrace( "Received expected result = " + elementTypeName);
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Received unexpected result = " + elementTypeName);
+					logErr( "Received unexpected result = " + elementTypeName);
 				}
 			}
 		}
@@ -178,20 +174,20 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

@@ -16,19 +16,20 @@
 
 package ee.jakarta.tck.persistence.core.override.attributeoverride;
 
-import java.lang.System.Logger;
-import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final int ENTITY_ID = 3039;
 
@@ -41,25 +42,19 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "Book", pkgName + "LawBook" };
-		return createDeploymentJar("jpa_core_override_attributeoverride.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
+			logErr( "Exception:test failed ", e);
 		}
 	}
 
@@ -74,8 +69,7 @@ public class Client extends PMClientBase {
 	 * "name" is overriden in Orm.xml as "BOOK_NAME". The following test tests for
 	 * the same.
 	 */
-	@Test
-	public void testNoAttributeOverrideAnnotation() throws Exception {
+		public void testNoAttributeOverrideAnnotation() throws Exception {
 
 		LawBook book = new LawBook();
 		getEntityTransaction().begin();
@@ -90,7 +84,7 @@ public class Client extends PMClientBase {
 			List result = getEntityManager().createQuery("SELECT b FROM LawBook b where b.name= " + ":name")
 					.setParameter("name", NAME).getResultList();
 			if (result.size() == 1) {
-				logger.log(Logger.Level.TRACE, "test Overriding Attributes passed");
+				logTrace( "test Overriding Attributes passed");
 			} else {
 				throw new Exception("Expected the size to be 1 " + " but it is -" + result.size());
 			}
@@ -102,20 +96,20 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -124,14 +118,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM LAWBOOK").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

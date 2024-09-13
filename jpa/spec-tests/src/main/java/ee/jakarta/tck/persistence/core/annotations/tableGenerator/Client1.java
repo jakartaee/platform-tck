@@ -16,40 +16,42 @@
 
 package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 public class Client1 extends Client {
 
 	private DataTypes d0;
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
+
 
 	public Client1() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_annotations_tableGenerator1.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+
+	
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -62,15 +64,14 @@ public class Client1 extends Client {
 	 * 
 	 * @test_Strategy: use a generator specified on an entity
 	 */
-	@Test
-	public void generatorOnEntityTest() throws Exception {
+		public void generatorOnEntityTest() throws Exception {
 
 		boolean pass = false;
 
 		try {
 			getEntityTransaction().begin();
 			int id = d0.getId();
-			logger.log(Logger.Level.TRACE, "find id: " + id);
+			logTrace( "find id: " + id);
 			DataTypes d = getEntityManager().find(DataTypes.class, id);
 			if (d != null) {
 				if (d.getStringData().equals(d0.getStringData())) {
@@ -79,10 +80,10 @@ public class Client1 extends Client {
 
 				getEntityTransaction().commit();
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -97,14 +98,14 @@ public class Client1 extends Client {
 
 			d0 = new DataTypes();
 			d0.setStringData("testData");
-			logger.log(Logger.Level.TRACE, "DataType:" + d0.toString());
+			logTrace( "DataType:" + d0.toString());
 			getEntityManager().persist(d0);
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 	}
 

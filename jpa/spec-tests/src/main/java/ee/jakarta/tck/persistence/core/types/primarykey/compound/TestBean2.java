@@ -20,8 +20,9 @@
 
 package ee.jakarta.tck.persistence.core.types.primarykey.compound;
 
-import java.lang.System.Logger;
 
+
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -33,7 +34,7 @@ import jakarta.persistence.Table;
 @Table(name = "PKEY")
 public class TestBean2 implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(TestBean2.class.getName());
+
 
 	private Integer pmIDInteger;
 
@@ -103,7 +104,7 @@ public class TestBean2 implements java.io.Serializable {
 	}
 
 	public void ping() {
-		logger.log(Logger.Level.TRACE, "[TestBean] ping()");
+		TestUtil.logTrace( "[TestBean] ping()");
 	}
 
 }

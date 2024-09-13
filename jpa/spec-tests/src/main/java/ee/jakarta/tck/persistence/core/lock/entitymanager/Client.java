@@ -16,51 +16,50 @@
 
 package ee.jakarta.tck.persistence.core.lock.entitymanager;
 
-import java.lang.System.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import jakarta.persistence.LockOption;
 import jakarta.persistence.Timeout;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.LockModeType;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Coffee" };
-		return createDeploymentJar("jpa_core_lock_entitymanager.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
-		try {
-			super.setup();
-			createDeployment();
 
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
+		try {
+			super.setup(args,p);
+			
+
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "Create Test data");
+			logTrace( "Create Test data");
 			createTestData();
-			logger.log(Logger.Level.TRACE, "Done creating test data");
+			logTrace( "Done creating test data");
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -89,10 +88,9 @@ public class Client extends PMClientBase {
 	 * if the database locking failure causes only statement-level rollback
 	 * 
 	 */
-	@Test
-	public void findTest1() throws Exception {
+		public void findTest1() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin findTest1");
+		logTrace( "Begin findTest1");
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -102,19 +100,19 @@ public class Client extends PMClientBase {
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1, LockModeType.PESSIMISTIC_READ);
 
 			if (coffeeFound != null) {
-				logger.log(Logger.Level.TRACE, "Found coffee as expected");
+				logTrace( "Found coffee as expected");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -152,10 +150,9 @@ public class Client extends PMClientBase {
 	 * hint may or may not be observed
 	 * 
 	 */
-	@Test
-	public void findTest2() throws Exception {
+		public void findTest2() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin findTest2");
+		logTrace( "Begin findTest2");
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -168,19 +165,19 @@ public class Client extends PMClientBase {
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1, LockModeType.PESSIMISTIC_READ, myMap);
 
 			if (coffeeFound != null) {
-				logger.log(Logger.Level.TRACE, "Found coffee as expected");
+				logTrace( "Found coffee as expected");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -203,20 +200,19 @@ public class Client extends PMClientBase {
 	 * PESSIMISTIC_WRITE lock
 	 *
 	 */
-	@Test
-	public void findTest3() throws Exception {
+		public void findTest3() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin findTest3");
+		logTrace( "Begin findTest3");
 		boolean pass = false;
 
 		try {
 
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and lock");
+			logTrace( "locate Entity Coffee in EntityManager em1 and lock");
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1, LockModeType.PESSIMISTIC_READ);
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em2 and update");
+			logTrace( "locate Entity Coffee in EntityManager em2 and update");
 			Coffee coffeeFound2 = getEntityManager().find(Coffee.class, 1, LockModeType.PESSIMISTIC_WRITE);
 
 			coffeeFound2.setPrice(6.0F);
@@ -224,14 +220,14 @@ public class Client extends PMClientBase {
 			pass = true;
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -255,10 +251,9 @@ public class Client extends PMClientBase {
 	 * property or hint is not recognized, it is silently ignored.
 	 *
 	 */
-	@Test
-	public void findTest4() throws Exception {
+		public void findTest4() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin findTest1");
+		logTrace( "Begin findTest1");
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -271,19 +266,19 @@ public class Client extends PMClientBase {
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1, myMap);
 
 			if (coffeeFound != null) {
-				logger.log(Logger.Level.TRACE, "Found coffee as expected");
+				logTrace( "Found coffee as expected");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -304,27 +299,26 @@ public class Client extends PMClientBase {
 	 * obtain same Lock for cofee the same object and modify its contents
 	 *
 	 */
-	@Test
-	public void lockTest1() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin lockTest1");
+		public void lockTest1() throws Exception {
+		logTrace( "Begin lockTest1");
 		boolean pass = false;
 
 		try {
 
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and lock");
+			logTrace( "locate Entity Coffee in EntityManager em1 and lock");
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1);
 			getEntityManager().lock(coffeeFound, LockModeType.PESSIMISTIC_WRITE);
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager and update");
+			logTrace( "locate Entity Coffee in EntityManager and update");
 			Coffee coffeeFound2 = getEntityManager().find(Coffee.class, 1);
 			getEntityManager().lock(coffeeFound2, LockModeType.PESSIMISTIC_WRITE);
 			coffeeFound2.setPrice(6.0F);
 			getEntityTransaction().commit();
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -332,7 +326,7 @@ public class Client extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -355,22 +349,21 @@ public class Client extends PMClientBase {
 	 * 
 	 * Note: This test uses lock with property map (unlike lockTest1)
 	 */
-	@Test
-	public void lockTest2() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin lockTest2");
+		public void lockTest2() throws Exception {
+		logTrace( "Begin lockTest2");
 		boolean pass = false;
 
 		try {
 
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and lock");
+			logTrace( "locate Entity Coffee in EntityManager em1 and lock");
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1);
 			Map<String, Object> myMap = new HashMap<String, Object>();
 			myMap.put("some.cts.specific.property", "nothing.in.particular");
 			getEntityManager().lock(coffeeFound, LockModeType.PESSIMISTIC_WRITE, myMap);
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and update");
+			logTrace( "locate Entity Coffee in EntityManager em1 and update");
 			Coffee coffeeFound2 = getEntityManager().find(Coffee.class, 1);
 			getEntityManager().lock(coffeeFound2, LockModeType.PESSIMISTIC_WRITE, myMap);
 			coffeeFound2.setPrice(6.0F);
@@ -378,14 +371,14 @@ public class Client extends PMClientBase {
 			pass = true;
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -406,34 +399,33 @@ public class Client extends PMClientBase {
 	 *
 	 * Note: This test uses lock LockOption... options
 	 */
-	@Test
-	public void lockTest3() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin lockTest3");
+		public void lockTest3() throws Exception {
+		logTrace( "Begin lockTest3");
 		boolean pass = false;
 
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and lock");
+			logTrace( "locate Entity Coffee in EntityManager em1 and lock");
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1);
 			LockOption[] lockOptions = new LockOption[]{Timeout.ms(0)};
 			getEntityManager().lock(coffeeFound, LockModeType.PESSIMISTIC_WRITE, lockOptions);
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and update");
+			logTrace( "locate Entity Coffee in EntityManager em1 and update");
 			Coffee coffeeFound2 = getEntityManager().find(Coffee.class, 1);
 			getEntityManager().lock(coffeeFound2, LockModeType.PESSIMISTIC_WRITE);
 			coffeeFound2.setPrice(6.0F);
 			getEntityTransaction().commit();
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 		if (!pass) {
@@ -454,8 +446,7 @@ public class Client extends PMClientBase {
 	 * contents
 	 *
 	 */
-	@Test
-	public void refreshTest1() throws Exception {
+		public void refreshTest1() throws Exception {
 
 		boolean pass = false;
 
@@ -463,11 +454,11 @@ public class Client extends PMClientBase {
 
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and lock");
+			logTrace( "locate Entity Coffee in EntityManager em1 and lock");
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 1);
 			getEntityManager().refresh(coffeeFound, LockModeType.PESSIMISTIC_READ);
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager  and update");
+			logTrace( "locate Entity Coffee in EntityManager  and update");
 			Coffee coffeeFound2 = getEntityManager().find(Coffee.class, 1);
 			getEntityManager().refresh(coffeeFound2, LockModeType.PESSIMISTIC_WRITE);
 			coffeeFound2.setPrice(6.0F);
@@ -475,7 +466,7 @@ public class Client extends PMClientBase {
 			pass = true;
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -483,7 +474,7 @@ public class Client extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -506,23 +497,22 @@ public class Client extends PMClientBase {
 	 * with property map (unlike refreshTest1)
 	 *
 	 */
-	@Test
-	public void refreshTest2() throws Exception {
+		public void refreshTest2() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin refreshTest2");
+		logTrace( "Begin refreshTest2");
 		boolean pass = false;
 
 		try {
 
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager em1 and lock");
+			logTrace( "locate Entity Coffee in EntityManager em1 and lock");
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 2);
 			Map<String, Object> myMap = new HashMap<String, Object>();
 			myMap.put("some.cts.specific.property", "nothing.in.particular");
 			getEntityManager().refresh(coffeeFound, LockModeType.PESSIMISTIC_READ, myMap);
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager and update");
+			logTrace( "locate Entity Coffee in EntityManager and update");
 			Coffee coffeeFound2 = getEntityManager().find(Coffee.class, 2);
 			getEntityManager().refresh(coffeeFound2, LockModeType.PESSIMISTIC_WRITE, myMap);
 			coffeeFound2.setPrice(6.0F);
@@ -530,7 +520,7 @@ public class Client extends PMClientBase {
 			pass = true;
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -538,7 +528,7 @@ public class Client extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -559,23 +549,22 @@ public class Client extends PMClientBase {
 	 * obtain refresh same entity and modify its contents
 	 *
 	 */
-	@Test
-	public void refreshTest3() throws Exception {
+		public void refreshTest3() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin refreshTest3");
+		logTrace( "Begin refreshTest3");
 		boolean pass = false;
 
 		try {
 
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager");
+			logTrace( "locate Entity Coffee in EntityManager");
 			Coffee coffeeFound = getEntityManager().find(Coffee.class, 2);
 			Map<String, Object> myMap = new HashMap<String, Object>();
 			myMap.put("some.cts.specific.property", "nothing.in.particular");
 			getEntityManager().refresh(coffeeFound, myMap);
 
-			logger.log(Logger.Level.TRACE, "locate Entity Coffee in EntityManager and update");
+			logTrace( "locate Entity Coffee in EntityManager and update");
 			Coffee coffeeFound2 = getEntityManager().find(Coffee.class, 2);
 			getEntityManager().refresh(coffeeFound2, myMap);
 			coffeeFound2.setPrice(6.0F);
@@ -583,7 +572,7 @@ public class Client extends PMClientBase {
 			pass = true;
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
@@ -591,7 +580,7 @@ public class Client extends PMClientBase {
 				}
 
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -606,10 +595,10 @@ public class Client extends PMClientBase {
 	private void createTestData() throws Exception {
 		try {
 
-			logger.log(Logger.Level.TRACE, "createTestData");
+			logTrace( "createTestData");
 
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Create 5 Coffees");
+			logTrace( "Create 5 Coffees");
 			Coffee cRef[] = new Coffee[5];
 			cRef[0] = new Coffee(1, "hazelnut", 1.0F);
 			cRef[1] = new Coffee(2, "vanilla creme", 2.0F);
@@ -617,41 +606,41 @@ public class Client extends PMClientBase {
 			cRef[3] = new Coffee(4, "breakfast blend", 4.0F);
 			cRef[4] = new Coffee(5, "mocha", 5.0F);
 
-			logger.log(Logger.Level.TRACE, "Start to persist coffees ");
+			logTrace( "Start to persist coffees ");
 			for (Coffee c : cRef) {
 				if (c != null) {
 					getEntityManager().persist(c);
-					logger.log(Logger.Level.TRACE, "persisted coffee " + c);
+					logTrace( "persisted coffee " + c);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
+			logErr( "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -661,14 +650,14 @@ public class Client extends PMClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

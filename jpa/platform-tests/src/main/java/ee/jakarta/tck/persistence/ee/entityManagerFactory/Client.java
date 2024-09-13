@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.ee.entityManagerFactory;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -32,53 +32,29 @@ import jakarta.persistence.Persistence;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	Properties props = null;
 
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_ee_entityManagerFactory.jar", pkgNameWithoutSuffix, (String[]) classes);
-
-	}
-
-	@BeforeEach
-	public void setupNoData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupNoData");
-		try {
-			super.setup();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
-	}
 
 	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+		logTrace( "setup");
 		try {
 			super.setup();
 			removeTestData();
 			createOrderTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
-	@AfterEach
-	public void cleanupNoData() throws Exception {
-		super.cleanup();
-	}
-
 	public void cleanup() throws Exception {
 		removeTestData();
-		logger.log(Logger.Level.TRACE, "done cleanup, calling super.cleanup");
+		logTrace( "done cleanup, calling super.cleanup");
 		super.cleanup();
 	}
 
@@ -99,13 +75,13 @@ public class Client extends PMClientBase {
 		try {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName());
 			if (emf != null) {
-				logger.log(Logger.Level.TRACE, "Received non-null EntityManagerFactory");
+				logTrace( "Received non-null EntityManagerFactory");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Received null EntityManagerFactory");
+				logErr( "Received null EntityManagerFactory");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass) {
 			throw new Exception("createEntityManagerFactoryStringTest failed");
@@ -124,26 +100,26 @@ public class Client extends PMClientBase {
 			orders[4] = new Order(5, 555);
 
 			for (Order o : orders) {
-				logger.log(Logger.Level.TRACE, "Persisting order:" + o.toString());
+				logTrace( "Persisting order:" + o.toString());
 				getEntityManager().persist(o);
 			}
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -153,14 +129,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -41,11 +41,9 @@
         <!-- not needed anymore -->
         <!--        <module>docker</module>-->
         <module>core-profile-tck</module>
-        <module>ejb</module>
         <module>ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
         <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
-        <module>ejb30-ws</module>
         <module>ejb32</module>
         <module>el</module>
         <module>el-tck</module>
@@ -57,6 +55,7 @@
         <module>jms</module>
         <module>jms-tck</module>
         <module>jpa</module>
+        <module>jpa-tck</module>
         <module>jsonb</module>
         <module>jsonp</module>
         <module>jsp</module>
@@ -65,10 +64,10 @@
         <module>libutil</module>
         <!--        <module>glassfishtck</module>-->
         <module>runtime</module>
-        <module>saaj</module>
         <module>samples</module>
         <module>servlet</module>
         <module>signaturetest</module>
+        <module>tsharness</module>
         <module>user_guides</module>
         <module>webartifacts/jsf</module>
         <module>webartifacts/jsp</module>
@@ -81,56 +80,55 @@
 
     <properties>
         <ant.version>1.10.11</ant.version>
-        <arquillian.version>1.7.0.Alpha10</arquillian.version>
+        <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
+        <arquillian.jakarta.tck.version>1.0.0-M15</arquillian.jakarta.tck.version>
+        <arquillian.version>1.9.1.Final</arquillian.version>
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
         <!-- Jakarta Concurrency -->
         <concurrent-api.version>2.0.0</concurrent-api.version>
         <!-- Jakarta Persistence -->
-        <jakarta-persistence-api.version>3.2.0-M2</jakarta-persistence-api.version>
-        <jakarta.activation-api.version>2.0.0</jakarta.activation-api.version>
+        <jakarta-persistence-api.version>3.2.0</jakarta-persistence-api.version>
+        <jakarta.activation-api.version>2.1.3</jakarta.activation-api.version>
 
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
-        <jakarta.authentication-api.version>2.0.0</jakarta.authentication-api.version>
-        <jakarta.authorization-api.version>2.1.0</jakarta.authorization-api.version>
+        <jakarta.authentication-api.version>3.1.0</jakarta.authentication-api.version>
+        <jakarta.authorization-api.version>3.0.0</jakarta.authorization-api.version>
         <!-- Jakarta Batch -->
-        <jakarta.batch-api.version>2.0.0</jakarta.batch-api.version>
+        <jakarta.batch-api.version>2.1.1</jakarta.batch-api.version>
         <!-- Jakarta Enterprise beans -->
-        <jakarta.ejb-api.version>4.0.0</jakarta.ejb-api.version>
-        <jakarta.el-api.version>6.0.0-M1</jakarta.el-api.version>
-        <jakarta.faces-api.version>3.0.0</jakarta.faces-api.version>
+        <jakarta.ejb-api.version>4.0.1</jakarta.ejb-api.version>
+        <jakarta.el-api.version>6.0.1</jakarta.el-api.version>
+        <jakarta.faces-api.version>4.1.0</jakarta.faces-api.version>
         <jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
         <!-- Jakarta Interceptors -->
-        <jakarta.interceptor-api.version>2.1.0</jakarta.interceptor-api.version>
-        <jakarta.mail-api.version>2.0.0</jakarta.mail-api.version>
+        <jakarta.interceptor-api.version>2.2.0</jakarta.interceptor-api.version>
+        <jakarta.mail-api.version>2.1.3</jakarta.mail-api.version>
         <!-- Jakarta Connectors -->
-        <jakarta.resource-api.version>2.0.0</jakarta.resource-api.version>
+        <jakarta.resource-api.version>2.1.0</jakarta.resource-api.version>
         <!-- Jakarta EE Security + Authentication/Authorization -->
-        <jakarta.security.enterprise-api.version>2.0.0</jakarta.security.enterprise-api.version>
+        <jakarta.security.enterprise-api.version>4.0.0</jakarta.security.enterprise-api.version>
         <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
         <!-- Jakarta Transactions -->
-        <jakarta.transaction-api.version>2.0.0</jakarta.transaction-api.version>
-        <jakarta.validation-api.version>3.0.0</jakarta.validation-api.version>
+        <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>
+        <jakarta.validation-api.version>3.1.0</jakarta.validation-api.version>
 
-        <jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
-        <jakarta.xml.bind-api.version>3.0.0</jakarta.xml.bind-api.version>
-        <jakarta.xml.soap-api.version>3.0.0</jakarta.xml.soap-api.version>
-        <jakarta.xml.ws-api.version>4.0.0</jakarta.xml.ws-api.version>
-        <javatest.version>5.0</javatest.version>
-        <jaxb-osgi.version>3.0.0</jaxb-osgi.version>
+        <jakarta.ws.rs-api.version>4.0.0</jakarta.ws.rs-api.version>
         <!-- Jakarta Messaging -->
         <jms-api.version>3.1.0</jms-api.version>
-        <json.bind-api.version>3.0.0</json.bind-api.version>
+        <json.bind-api.version>3.0.1</json.bind-api.version>
         <!-- Jakarta JSON -->
-        <jsonp-api.version>2.1.1</jsonp-api.version>
+        <jsonp-api.version>2.1.3</jsonp-api.version>
         <!-- Jakarta Server Pages -->
-        <jsp-api.version>3.1.0</jsp-api.version>
+        <jsp-api.version>4.0.0</jsp-api.version>
         <!-- Jakarta Standard Tag Library -->
-        <jstl-api.version>2.0.0</jstl-api.version>
+        <jstl-api.version>3.0.2</jstl-api.version>
         <maven.compiler.release>17</maven.compiler.release>
         <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <shrinkwrap.api.version>2.0.0-beta-1</shrinkwrap.api.version>
+        <shrinkwrap.version>3.3.0</shrinkwrap.version>
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
         <!-- Jakarta WebSocket -->
@@ -167,11 +165,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>ejb30</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>ejb30-ws</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -296,12 +289,6 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>saaj</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>samples</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -355,13 +342,6 @@
                 <version>${slf4j.version}</version>
             </dependency>
             <dependency>
-                <groupId>javatest</groupId>
-                <artifactId>javatest</artifactId>
-                <version>${javatest.version}</version>
-                <scope>compile</scope>
-                <optional>true</optional>
-            </dependency>
-            <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>web-servlet</artifactId>
                 <version>${project.version}</version>
@@ -375,7 +355,7 @@
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.9.1</version>
+                <version>5.10.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -386,6 +366,30 @@
                 <version>${arquillian.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.container</groupId>
+                <artifactId>container-se-api</artifactId>
+                <version>${arquillian.container.se.api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-api</artifactId>
+                <version>${shrinkwrap.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-depchain</artifactId>
+                <version>${shrinkwrap.version}</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+                <version>${shrinkwrap.version}</version>
             </dependency>
 
             <dependency>
@@ -514,6 +518,11 @@
                 <version>${jstl-api.version}</version>
             </dependency>
             <dependency>
+                <groupId>jakarta.tck.arquillian</groupId>
+                <artifactId>tck-porting-lib</artifactId>
+                <version>${arquillian.jakarta.tck.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>jakarta.transaction</groupId>
                 <artifactId>jakarta.transaction-api</artifactId>
                 <version>${jakarta.transaction-api.version}</version>
@@ -539,26 +548,6 @@
                 <version>${jakarta.ws.rs-api.version}</version>
             </dependency>
             <dependency>
-                <groupId>jakarta.xml.soap</groupId>
-                <artifactId>jakarta.xml.soap-api</artifactId>
-                <version>${jakarta.xml.soap-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.xml.ws</groupId>
-                <artifactId>jakarta.xml.ws-api</artifactId>
-                <version>${jakarta.xml.ws-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.xml.bind</groupId>
-                <artifactId>jakarta.xml.bind-api</artifactId>
-                <version>${jakarta.xml.bind-api.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-osgi</artifactId>
-                <version>${jaxb-osgi.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.jboss.spec.javax.rmi</groupId>
                 <artifactId>jboss-rmi-api_1.0_spec</artifactId>
                 <version>1.0.6.Final</version>
@@ -572,7 +561,10 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-api</artifactId>
         </dependency>
 
     </dependencies>
@@ -633,12 +625,6 @@
                     <groupId>org.netbeans.tools</groupId>
                     <artifactId>sigtest-maven-plugin</artifactId>
                     <version>1.5</version>
-                </plugin>
-                <!-- Plugin versions since ee4j parent no longer declares them-->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

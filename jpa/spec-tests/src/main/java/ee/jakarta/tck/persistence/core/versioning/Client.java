@@ -20,41 +20,33 @@
 
 package ee.jakarta.tck.persistence.core.versioning;
 
-import java.lang.System.Logger;
+
 import java.math.BigInteger;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Member" };
-		return createDeploymentJar("jpa_core_versioning.jar", pkgNameWithoutSuffix, (String[]) classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -74,10 +66,9 @@ public class Client extends PMClientBase {
 	 * positive test with sequential tx
 	 * 
 	 */
-	@Test
 	public void versionTest1() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin versionTest1");
+		logTrace( "Begin versionTest1");
 		boolean pass1 = true;
 		boolean pass2 = true;
 		boolean pass3 = true;
@@ -95,10 +86,10 @@ public class Client extends PMClientBase {
 
 			Member newMember = getEntityManager().find(Member.class, 1);
 			if (newMember.getVersion() == null) {
-				logger.log(Logger.Level.ERROR, "version after persistence is null.");
+				logErr( "version after persistence is null.");
 				pass1 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Correct non-null version after create: " + newMember.getVersion());
+				logTrace( "Correct non-null version after create: " + newMember.getVersion());
 			}
 
 			// update member
@@ -112,11 +103,11 @@ public class Client extends PMClientBase {
 
 			Member newMember3 = getEntityManager().find(Member.class, 1);
 			if (newMember3.getVersion() <= oldVersion) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Wrong version after update: " + newMember3.getVersion() + ", old version: " + oldVersion);
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"Correct version after update: " + newMember3.getVersion() + ", old version: " + oldVersion);
 			}
 
@@ -130,16 +121,16 @@ public class Client extends PMClientBase {
 
 			Member newMember4 = getEntityManager().find(Member.class, 1);
 			if (newMember4.getVersion() != oldVersion) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Wrong version after query, expected " + oldVersion + ", got " + newMember4.getVersion());
 				pass3 = false;
 			} else {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"Correct version after query, expected " + oldVersion + ", got:" + newMember4.getVersion());
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			pass1 = false;
 			pass2 = false;
 			pass3 = false;
@@ -149,7 +140,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -157,20 +148,19 @@ public class Client extends PMClientBase {
 			throw new Exception("versionTest1 failed");
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -179,14 +169,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM MEMBER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

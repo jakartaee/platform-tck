@@ -84,14 +84,14 @@ public class WebServer {
       throw new IllegalArgumentException(msg);
     }
 
-    host = props.getProperty(WEB_HOST_PROP);
+    host = TestUtil.getProperty(props, WEB_HOST_PROP);
     if (null == host || host.equals("")) {
       msg = "Empty " + WEB_HOST_PROP + " property: " + host;
       printConfigError(msg);
       throw new IllegalArgumentException(msg);
     }
 
-    portValue = props.getProperty(WEB_PORT_PROP);
+    portValue = TestUtil.getProperty(props, WEB_PORT_PROP);
     if (null == portValue || portValue.equals("")) {
       msg = "Empty " + WEB_PORT_PROP + " property: " + portValue;
       printConfigError(msg);

@@ -41,10 +41,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-        </dependency>
     </dependencies>
     <build>
         <!-- Include the container descriptors in the output artifact -->

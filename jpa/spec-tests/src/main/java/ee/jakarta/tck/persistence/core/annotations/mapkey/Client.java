@@ -20,11 +20,12 @@
 
 package ee.jakarta.tck.persistence.core.annotations.mapkey;
 
-import java.lang.System.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterEach;
+import com.sun.ts.lib.harness.Status;
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
@@ -33,7 +34,12 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+
 
 	protected Employee empRef[] = new Employee[10];
 
@@ -47,32 +53,32 @@ public class Client extends PMClientBase {
 	public void createTestDataCommon() throws Exception {
 		try {
 
-			logger.log(Logger.Level.TRACE, "createTestDataCommon");
+			logTrace( "createTestDataCommon");
 
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Create 2 Departments");
+			logTrace( "Create 2 Departments");
 			deptRef[0] = new Department(1, "Marketing");
 			deptRef[1] = new Department(2, "Administration");
 
-			logger.log(Logger.Level.TRACE, "Start to persist departments ");
+			logTrace( "Start to persist departments ");
 			for (Department dept : deptRef) {
 				if (dept != null) {
 					getEntityManager().persist(dept);
-					logger.log(Logger.Level.TRACE, "persisted department " + dept.getName());
+					logTrace( "persisted department " + dept.getName());
 				}
 			}
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
+			logErr( "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
@@ -80,11 +86,11 @@ public class Client extends PMClientBase {
 	public void createTestData() throws Exception {
 		try {
 
-			logger.log(Logger.Level.TRACE, "createTestData");
+			logTrace( "createTestData");
 			createTestDataCommon();
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "Create 5 employees");
+			logTrace( "Create 5 employees");
 			empRef[0] = new Employee(1, "Alan", "Frechette");
 			empRef[0].setDepartment(deptRef[0]);
 
@@ -111,43 +117,43 @@ public class Client extends PMClientBase {
 			link1.put(empRef[3].getLastName(), empRef[3]);
 			deptRef[1].setLastNameEmployees(link1);
 
-			logger.log(Logger.Level.TRACE, "Start to persist employees ");
+			logTrace( "Start to persist employees ");
 			for (Employee emp : empRef) {
 				if (emp != null) {
 					getEntityManager().persist(emp);
-					logger.log(Logger.Level.TRACE, "persisted employee " + emp.getId());
+					logTrace( "persisted employee " + emp.getId());
 				}
 			}
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception creating test data:", e);
+			logErr( "Unexpected Exception creating test data:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	protected void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -157,14 +163,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from DEPARTMENT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in RemoveSchemaData:", re);
+				logErr( "Unexpected Exception in RemoveSchemaData:", re);
 			}
 		}
 	}

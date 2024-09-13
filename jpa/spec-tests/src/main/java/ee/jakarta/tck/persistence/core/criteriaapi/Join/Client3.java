@@ -16,12 +16,14 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.Join;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -29,7 +31,6 @@ import ee.jakarta.tck.persistence.common.schema30.Department;
 import ee.jakarta.tck.persistence.common.schema30.Department_;
 import ee.jakarta.tck.persistence.common.schema30.Employee;
 import ee.jakarta.tck.persistence.common.schema30.Employee_;
-import ee.jakarta.tck.persistence.common.schema30.UtilDepartmentEmployeeData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -40,17 +41,14 @@ import jakarta.persistence.criteria.MapJoin;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.PluralAttribute;
 
-public class Client3 extends UtilDepartmentEmployeeData {
+public class Client3 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_join.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
 
 	/*
 	 * @testName: joinMapAttributeTest
@@ -66,8 +64,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeTest() throws Exception {
+		public void joinMapAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -82,9 +79,9 @@ public class Client3 extends UtilDepartmentEmployeeData {
 			PluralAttribute pa = mEmployee.getModel();
 			String name = pa.getName();
 			if (name.equals("lastNameEmployees")) {
-				logger.log(Logger.Level.TRACE, "Received expected attribute:" + name);
+				logTrace( "Received expected attribute:" + name);
 			} else {
-				logger.log(Logger.Level.ERROR, "getModel - Expected: lastNameEmployees, actual:" + name);
+				logErr( "getModel - Expected: lastNameEmployees, actual:" + name);
 			}
 			cquery.where(cbuilder.equal(mEmployee.get("id"), "1")).select(employee);
 			TypedQuery<Employee> tquery = getEntityManager().createQuery(cquery);
@@ -95,15 +92,15 @@ public class Client3 extends UtilDepartmentEmployeeData {
 			expectedPKs[1] = "3";
 			expectedPKs[2] = "5";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -125,8 +122,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapAttributeJoinTypeTest() throws Exception {
+		public void joinMapAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -148,15 +144,15 @@ public class Client3 extends UtilDepartmentEmployeeData {
 			expectedPKs[1] = "3";
 			expectedPKs[2] = "5";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -178,8 +174,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringTest() throws Exception {
+		public void joinMapStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -193,9 +188,9 @@ public class Client3 extends UtilDepartmentEmployeeData {
 			MapJoin<Department, String, Employee> mEmployee = department.joinMap("lastNameEmployees");
 			String name = mEmployee.getModel().getName();
 			if (name.equals("lastNameEmployees")) {
-				logger.log(Logger.Level.TRACE, "Received expected attribute:" + name);
+				logTrace( "Received expected attribute:" + name);
 			} else {
-				logger.log(Logger.Level.ERROR, "getModel - Expected: lastNameEmployees, actual:" + name);
+				logErr( "getModel - Expected: lastNameEmployees, actual:" + name);
 			}
 			cquery.where(cbuilder.equal(mEmployee.get("id"), "1")).select(employee);
 			TypedQuery<Employee> tquery = getEntityManager().createQuery(cquery);
@@ -206,15 +201,15 @@ public class Client3 extends UtilDepartmentEmployeeData {
 			expectedPKs[1] = "3";
 			expectedPKs[2] = "5";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -236,8 +231,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void joinMapStringJoinTypeTest() throws Exception {
+		public void joinMapStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -258,15 +252,15 @@ public class Client3 extends UtilDepartmentEmployeeData {
 			expectedPKs[1] = "3";
 			expectedPKs[2] = "5";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -287,8 +281,7 @@ public class Client3 extends UtilDepartmentEmployeeData {
 	 *
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void mapJoinValueTest() throws Exception {
+		public void mapJoinValueTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
 
@@ -322,25 +315,25 @@ public class Client3 extends UtilDepartmentEmployeeData {
 			List<Tuple> clist = tquery.getResultList();
 
 			for (Tuple t : clist) {
-				logger.log(Logger.Level.TRACE, "result:" + t.get(0) + ", " + t.get(1) + ", " + t.get(2));
+				logTrace( "result:" + t.get(0) + ", " + t.get(1) + ", " + t.get(2));
 				actual.add(t.get(0) + ", " + t.get(1) + ", " + t.get(2));
 			}
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected results:");
+				logErr( "Did not get expected results:");
 				for (String s : expected) {
-					logger.log(Logger.Level.ERROR, "expected:" + s);
+					logErr( "expected:" + s);
 				}
 				for (String s : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + s);
+					logErr( "actual:" + s);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 

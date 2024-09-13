@@ -16,43 +16,34 @@
 
 package ee.jakarta.tck.persistence.core.relationship.bidirmanyxone;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "BiDirMX1Person", pkgName + "BiDirMX1Project" };
-		return createDeploymentJar("jpa_core_relationship_bidirmanyxone.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -69,9 +60,8 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Bi-Directional RelationShip ManyToOne Mapping
 	 *
 	 */
-	@Test
 	public void biDirMX1Test1() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin biDirMX1Test1");
+		logTrace( "Begin biDirMX1Test1");
 		boolean pass = false;
 		try {
 
@@ -85,7 +75,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(project1);
 			getEntityManager().persist(person1);
 			getEntityManager().persist(person2);
-			logger.log(Logger.Level.TRACE, "persisted Persons and Project");
+			logTrace( "persisted Persons and Project");
 
 			person1.setProject(project1);
 			person2.setProject(project1);
@@ -96,9 +86,9 @@ public class Client extends PMClientBase {
 			project1.setBiDirMX1Persons(list);
 
 			getEntityManager().merge(person1);
-			logger.log(Logger.Level.TRACE, "merged contents of Person1");
+			logTrace( "merged contents of Person1");
 			getEntityManager().merge(person2);
-			logger.log(Logger.Level.TRACE, "merged contents of Person2");
+			logTrace( "merged contents of Person2");
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
@@ -112,28 +102,28 @@ public class Client extends PMClientBase {
 				List<BiDirMX1Person> persons = newProject.getBiDirMX1Persons();
 				for (BiDirMX1Person person : persons) {
 					if (person.getName().equals("Duke")) {
-						logger.log(Logger.Level.TRACE, "Found Searched Person");
+						logTrace( "Found Searched Person");
 						pass1 = true;
 					} else if (person.getName().equals("Foo")) {
-						logger.log(Logger.Level.TRACE, "Found Searched Person");
+						logTrace( "Found Searched Person");
 						pass2 = true;
 
 					} else {
-						logger.log(Logger.Level.TRACE, "searched Person not Found");
+						logTrace( "searched Person not Found");
 					}
 
 				}
 
 			} else {
-				logger.log(Logger.Level.TRACE, "searched Project not Found");
+				logTrace( "searched Project not Found");
 
 			}
 
 			if (pass1 && pass2) {
-				logger.log(Logger.Level.TRACE, "biDirMX1Test1: Expected results received");
+				logTrace( "biDirMX1Test1: Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Unexpected results received");
+				logErr( "Unexpected results received");
 				pass = false;
 			}
 
@@ -141,14 +131,14 @@ public class Client extends PMClientBase {
 
 		} catch (Exception e) {
 
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -157,20 +147,19 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -180,14 +169,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM BIDIRMX1PROJECT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -21,32 +21,25 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>jakarta.tck</groupId>
-        <artifactId>persistence-tck</artifactId>
-        <version>3.2.0</version>
+        <artifactId>persistence-platform-tck</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>persistence-tck-common</artifactId>
+    <artifactId>persistence-platform-tck-common</artifactId>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>runtime</artifactId>
-            <version>${jakarta.ee.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>libutil</artifactId>
-            <version>${jakarta.ee.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <configuration>
-                    <doclint>none</doclint>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -75,6 +68,14 @@
                             </includes>
                         </resource>
                     </resources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
                 </configuration>
             </plugin>
         </plugins>

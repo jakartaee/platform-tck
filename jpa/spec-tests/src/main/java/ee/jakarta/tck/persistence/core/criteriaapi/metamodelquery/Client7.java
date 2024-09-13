@@ -16,18 +16,19 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.metamodelquery;
 
-import java.lang.System.Logger;
+
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.util.TestUtil;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
 import ee.jakarta.tck.persistence.common.schema30.Order;
-import ee.jakarta.tck.persistence.common.schema30.UtilSetup;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Join;
@@ -35,15 +36,12 @@ import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
 
 
-public class Client7 extends UtilSetup {
+public class Client7 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client7.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client7.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_metamodelquery7.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client7 theTests = new Client7();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -53,8 +51,7 @@ public class Client7 extends UtilSetup {
 	 * 
 	 * @test_Strategy: Test getting correlated joins from subquery.
 	 */
-	@Test
-	public void getCorrelatedJoinsTest() throws Exception {
+		public void getCorrelatedJoinsTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -68,7 +65,7 @@ public class Client7 extends UtilSetup {
 			Set cJoins = sq.getCorrelatedJoins();
 			if (cJoins != null) {
 				if (cJoins.size() == 0) {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Received expected 0 correlated joins from subquery.getCorrelatedJoins() when none exist");
 
 					// correlate subquery
@@ -77,26 +74,26 @@ public class Client7 extends UtilSetup {
 					cJoins = sq.getCorrelatedJoins();
 					if (cJoins != null) {
 						if (cJoins.size() == 1) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Received expected 1 correlated join from subquery.getCorrelatedJoins()");
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Received " + cJoins.size()
+							logErr( "Received " + cJoins.size()
 									+ " correlated joins from subquery.getCorrelatedJoins() when 1 exist");
 
 						}
 					} else {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Received null from subquery.getCorrelatedJoins() when 1 correlated join exists");
 
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Received " + cJoins.size()
+					logErr( "Received " + cJoins.size()
 							+ " unexpected correlated joins from subquery.getCorrelatedJoins() when non exist");
 
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Received null from subquery.getCorrelatedJoins() instead of empty set when non exist");
 
 			}

@@ -16,41 +16,40 @@
 
 package ee.jakarta.tck.persistence.core.derivedid.ex1a;
 
-import java.lang.System.Logger;
-import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DID1Dependent", pkgName + "DID1DependentId", pkgName + "DID1Employee" };
-		return createDeploymentJar("jpa_core_derivedid_ex1a.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -65,8 +64,7 @@ public class Client extends PMClientBase {
 	 * simple primary key Case (a): The dependent entity (DID1Dependent ) uses
 	 * IdClass to represent a composite key:
 	 */
-	@Test
-	public void DIDTest() throws Exception {
+		public void DIDTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -86,7 +84,7 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(dep2);
 			getEntityManager().persist(dep3);
 
-			logger.log(Logger.Level.TRACE, "persisted Employees and Dependents");
+			logTrace( "persisted Employees and Dependents");
 			getEntityManager().flush();
 
 			// Refresh Employee and Dependents
@@ -110,16 +108,16 @@ public class Client extends PMClientBase {
 				newDependent = (DID1Dependent) depList.get(0);
 				if (newDependent == dep1) {
 					pass = true;
-					logger.log(Logger.Level.TRACE, "Received Expected Dependent");
+					logTrace( "Received Expected Dependent");
 				} else {
-					logger.log(Logger.Level.ERROR, "Searched Dependent not found");
+					logErr( "Searched Dependent not found");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getEntityManager().createQuery returned null entry");
+				logErr( "getEntityManager().createQuery returned null entry");
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 			getEntityTransaction().rollback();
 		}
 
@@ -128,20 +126,20 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -151,14 +149,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DID1EMPLOYEE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

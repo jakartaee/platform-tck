@@ -17,15 +17,15 @@
 package ee.jakarta.tck.persistence.jpa22.se.generators.sequencegenerators;
 
 import java.io.File;
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManagerFactory;
@@ -33,7 +33,7 @@ import jakarta.persistence.Persistence;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	private static final long serialVersionUID = 22L;
 
@@ -45,25 +45,14 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Simple" };
-		return createDeploymentJar("jpa_jpa22_se_generators_sequencegenerators.jar", pkgNameWithoutSuffix,
-				(String[]) classes);
-
-	}
-
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			supportSequence = Boolean.valueOf(System.getProperty("db.supports.sequence"));
 
 			schemaGenerationDir = System.getProperty("user.dir");
@@ -71,12 +60,12 @@ public class Client extends PMClientBase {
 				schemaGenerationDir += File.separator;
 			}
 			schemaGenerationDir += "schemaGeneration";
-			logger.log(Logger.Level.INFO, "schemaGenerationDir=" + this.schemaGenerationDir);
+			logMsg( "schemaGenerationDir=" + this.schemaGenerationDir);
 
 			File f = new File(schemaGenerationDir);
-			logger.log(Logger.Level.INFO, "Delete existing directory ");
+			logMsg( "Delete existing directory ");
 			deleteItem(f);
-			logger.log(Logger.Level.INFO, "Create new directory ");
+			logMsg( "Create new directory ");
 			if (!f.mkdir()) {
 				String msg = "Could not mkdir:" + f.getAbsolutePath();
 				throw new Exception(msg);
@@ -84,7 +73,7 @@ public class Client extends PMClientBase {
 			removeTestData();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -96,10 +85,9 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Test the @SequenceGenerator annotation
 	 */
-	@Test
-	public void sequenceGeneratorTest() throws Exception {
+		public void sequenceGeneratorTest() throws Exception {
 		if (!supportSequence) {
-			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logMsg( "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 			return;
 		}
 		boolean pass1a = false;
@@ -109,15 +97,15 @@ public class Client extends PMClientBase {
 		boolean pass3 = false;
 		boolean pass4 = false;
 
-		logger.log(Logger.Level.INFO, "Create the script(s)");
+		logMsg( "Create the script(s)");
 		final String CREATEFILENAME = schemaGenerationDir + File.separator + "create_" + this.sTestCase + ".sql";
 		final String DROPFILENAME = schemaGenerationDir + File.separator + "drop_" + this.sTestCase + ".sql";
 
 		File f1 = new File(CREATEFILENAME);
-		logger.log(Logger.Level.TRACE, "Deleting previous create script");
+		logTrace( "Deleting previous create script");
 		deleteItem(f1);
 		File f2 = new File(DROPFILENAME);
-		logger.log(Logger.Level.TRACE, "Deleting previous drop script");
+		logTrace( "Deleting previous drop script");
 		deleteItem(f2);
 
 		Properties props = getPersistenceUnitProperties();
@@ -129,12 +117,12 @@ public class Client extends PMClientBase {
 
 		displayProperties(props);
 
-		logger.log(Logger.Level.INFO, "Executing Persistence.createEntityManagerFactory(...)");
+		logMsg( "Executing Persistence.createEntityManagerFactory(...)");
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory(getPersistenceUnitName(), props);
 		emf.close();
 		emf = null;
 
-		logger.log(Logger.Level.INFO, "Check script(s) content");
+		logMsg( "Check script(s) content");
 
 		List<String> expected = new ArrayList<String>();
 		expected.add("CREATE TABLE SCHEMAGENSIMPLE");
@@ -157,7 +145,7 @@ public class Client extends PMClientBase {
 		expected.add("SEQGENERATOR");
 		pass2b = findDataInFile(f2, expected);
 
-		logger.log(Logger.Level.TRACE, "Execute the create script");
+		logTrace( "Execute the create script");
 		props = getPersistenceUnitProperties();
 
 		props.put("jakarta.persistence.schema-generation.database.action", "create");
@@ -166,12 +154,12 @@ public class Client extends PMClientBase {
 		props.put("jakarta.persistence.schema-generation.create-script-source", convertToURI(CREATEFILENAME));
 		displayProperties(props);
 
-		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
+		logMsg( "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 
 		clearEMAndEMF();
 		try {
-			logger.log(Logger.Level.INFO, "Persist some data");
+			logMsg( "Persist some data");
 			getEntityTransaction(true).begin();
 			Simple s = new Simple();
 			getEntityManager().persist(s);
@@ -179,78 +167,78 @@ public class Client extends PMClientBase {
 			clearCache();
 			Simple s2 = getEntityManager().find(Simple.class, s.getId());
 			if (s2 == null) {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"Received unexpected null from getEntityManager().find(Simple.class, 10)");
 			} else if (s.equals(s2)) {
-				logger.log(Logger.Level.TRACE, "Received expected result:" + s.toString());
+				logTrace( "Received expected result:" + s.toString());
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + s.toString());
-				logger.log(Logger.Level.ERROR, "Actual:" + s2.toString());
+				logErr( "Expected:" + s.toString());
+				logErr( "Actual:" + s2.toString());
 			}
 		} catch (Throwable t) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", t);
+			logErr( "Received unexpected exception", t);
 		}
 		clearEMAndEMF();
 
-		logger.log(Logger.Level.TRACE, "Execute the drop script");
+		logTrace( "Execute the drop script");
 		props = getPersistenceUnitProperties();
 		props.put("jakarta.persistence.schema-generation.database.action", "drop");
 		props.put("jakarta.persistence.schema-generation.scripts.action", "none");
 		props.put("jakarta.persistence.schema-generation.drop-script-source", convertToURI(DROPFILENAME));
 		displayProperties(props);
 
-		logger.log(Logger.Level.INFO, "Executing Persistence.generateSchema(...)");
+		logMsg( "Executing Persistence.generateSchema(...)");
 		Persistence.generateSchema(getPersistenceUnitName(), props);
 		clearEMAndEMF();
 
-		logger.log(Logger.Level.INFO, "Try to persist an entity, it should fail");
+		logMsg( "Try to persist an entity, it should fail");
 		try {
 			getEntityTransaction(true).begin();
 			Simple s3 = new Simple(2);
 			getEntityManager().persist(s3);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "An exception should have been thrown if drop had occurred successfully");
+			logErr( "An exception should have been thrown if drop had occurred successfully");
 		} catch (Exception ex) {
-			logger.log(Logger.Level.TRACE, "Receive expected exception");
+			logTrace( "Receive expected exception");
 			pass4 = true;
 		}
-		logger.log(Logger.Level.TRACE, "pass1a:" + pass1a);
-		logger.log(Logger.Level.TRACE, "pass1b:" + pass1b);
-		logger.log(Logger.Level.TRACE, "pass2a:" + pass2a);
-		logger.log(Logger.Level.TRACE, "pass2b:" + pass2b);
-		logger.log(Logger.Level.TRACE, "pass3:" + pass3);
-		logger.log(Logger.Level.TRACE, "pass4:" + pass4);
+		logTrace( "pass1a:" + pass1a);
+		logTrace( "pass1b:" + pass1b);
+		logTrace( "pass2a:" + pass2a);
+		logTrace( "pass2b:" + pass2b);
+		logTrace( "pass3:" + pass3);
+		logTrace( "pass4:" + pass4);
 		if (!pass1a || !pass1b || !pass2a || !pass2b || !pass3 || !pass4) {
 			throw new Exception("sequenceGeneratorTest failed");
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Try to drop table SCHEMAGENSIMPLE");
+			logMsg( "Try to drop table SCHEMAGENSIMPLE");
 			getEntityManager().createNativeQuery("DROP TABLE SCHEMAGENSIMPLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Throwable t) {
-			logger.log(Logger.Level.INFO,
+			logMsg(
 					"AN EXCEPTION WAS THROWN DURING DROP TABLE SCHEMAGENSIMPLE, IT MAY OR MAY NOT BE A PROBLEM, "
 							+ t.getMessage());
 		} finally {
@@ -263,7 +251,7 @@ public class Client extends PMClientBase {
 				// ensure that we close the EM and EMF before proceeding.
 				clearEMAndEMF();
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

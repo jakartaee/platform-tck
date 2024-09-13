@@ -16,46 +16,41 @@
 
 package ee.jakarta.tck.persistence.core.override.entitylistener;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.override.util.CallBackCounts;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final Long ID = 1L;
 
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "ListenerA", pkgName + "ListenerB", pkgName + "ListenerC", pkgName + "ListenerD",
-				pkgName + "NoEntityListener", pkgName + "NoListener", pkgName + "OverridenListener" };
-		return createDeploymentJar("jpa_core_override_entitylistener.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -75,8 +70,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: CallBack methods are tested by overriding entity listener in
 	 * XML file.
 	 */
-	@Test
-	public void testOverrideEntityListener() throws Exception {
+		public void testOverrideEntityListener() throws Exception {
 
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -86,16 +80,16 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		getEntityManager().persist(entity);
 		getEntityManager().flush();
-		logger.log(Logger.Level.TRACE, "persisted entity" + entity);
+		logTrace( "persisted entity" + entity);
 		getEntityManager().remove(entity);
 		getEntityManager().flush();
-		logger.log(Logger.Level.TRACE, "Removed entity" + entity);
+		logTrace( "Removed entity" + entity);
 		getEntityTransaction().commit();
 		try {
 			pass1 = checkPersistCallBacks();
 			pass2 = checkRemoveCallBacks();
 			if ((pass1 && pass2) == true) {
-				logger.log(Logger.Level.TRACE, "testOverrideEntityListener Passed");
+				logTrace( "testOverrideEntityListener Passed");
 			} else if (pass1 == true) {
 				throw new Exception("Test failed while testing preremove and "
 						+ "postremove methods in testOverrideEntityListener ");
@@ -125,8 +119,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: CallBack methods are tested by using entitylistener with
 	 * empty xml tag.
 	 */
-	@Test
-	public void testEntityListenerXML() throws Exception {
+		public void testEntityListenerXML() throws Exception {
 
 		boolean pass = false;
 		CallBackCounts.clearCountsMap();
@@ -135,11 +128,11 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		getEntityManager().persist(entity);
 		getEntityManager().flush();
-		logger.log(Logger.Level.TRACE, "persisted entity" + entity);
+		logTrace( "persisted entity" + entity);
 		try {
 			pass = checkPersistCallBacks();
 			if (pass == true) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("TestEntityListenerXML method failed");
 			}
@@ -165,8 +158,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: CallBack methods are tested without using entitylistener.
 	 */
-	@Test
-	public void testNoEntityListener() throws Exception {
+		public void testNoEntityListener() throws Exception {
 
 		boolean pass = false;
 		CallBackCounts.clearCountsMap();
@@ -175,11 +167,11 @@ public class Client extends PMClientBase {
 		getEntityTransaction().begin();
 		getEntityManager().persist(entity);
 		getEntityManager().flush();
-		logger.log(Logger.Level.TRACE, "persisted entity" + entity);
+		logTrace( "persisted entity" + entity);
 		try {
 			pass = checkPersistCallBacks();
 			if (pass == true) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("TestNoEntityListener method failed");
 			}
@@ -212,28 +204,28 @@ public class Client extends PMClientBase {
 		int count = CallBackCounts.getCount(callBackName);
 		boolean result = false;
 		if (count == expectedCount) {
-			logger.log(Logger.Level.TRACE, "test passed" + callBackName);
+			logTrace( "test passed" + callBackName);
 			result = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "test failed" + callBackName);
+			logErr( "test failed" + callBackName);
 		}
 		return result;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -242,14 +234,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM NOENTITYLISTENER_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

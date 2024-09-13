@@ -20,15 +20,16 @@
 
 package ee.jakarta.tck.persistence.core.callback.xml;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.core.callback.common.Constants;
 import ee.jakarta.tck.persistence.core.callback.common.EntityCallbackClientBase;
@@ -36,7 +37,7 @@ import jakarta.persistence.Query;
 
 public class Client extends EntityCallbackClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final long serialVersionUID = 1L;
 
@@ -51,27 +52,20 @@ public class Client extends EntityCallbackClientBase {
 	public Client() {
 		super();
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Customer", pkgName + "LineItem", pkgName + "LineItemSuper", pkgName + "Order",
-				pkgName + "Product" };
-		String[] xmlFiles = { ORM_XML };
-		return createDeploymentJar("jpa_core_callback_xml.jar", pkgNameWithoutSuffix, classes, xmlFiles);
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -86,8 +80,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistTest() throws Exception {
+		public void prePersistTest() throws Exception {
 		String reason;
 		final String testName = Constants.prePersistTest;
 		try {
@@ -98,14 +91,14 @@ public class Client extends EntityCallbackClientBase {
 
 			if (product.isPrePersistCalled()) {
 				reason = "Product: prePersist was called.";
-				logger.log(Logger.Level.TRACE, reason);
+				logTrace( reason);
 			} else {
 				reason = "Product: prePersist was not called.";
 				throw new Exception(reason);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during prePersistTest", e);
+			logErr( "Exception caught during prePersistTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -113,7 +106,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -128,8 +121,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistMultiTest() throws Exception {
+		public void prePersistMultiTest() throws Exception {
 		final String testName = Constants.prePersistMultiTest;
 		try {
 			getEntityTransaction().begin();
@@ -147,7 +139,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -163,8 +155,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistCascadeTest() throws Exception {
+		public void prePersistCascadeTest() throws Exception {
 		String reason;
 		final String testName = Constants.prePersistCascadeTest;
 		try {
@@ -181,7 +172,7 @@ public class Client extends EntityCallbackClientBase {
 
 			if (order.isPrePersistCalled()) {
 				reason = "Order: prePersist was called.";
-				logger.log(Logger.Level.TRACE, reason);
+				logTrace( reason);
 			} else {
 				reason = "Order: prePersist was not called.";
 				throw new Exception(reason);
@@ -189,7 +180,7 @@ public class Client extends EntityCallbackClientBase {
 
 			if (lineItem.isPrePersistCalled()) {
 				reason = "LineItem: prePersist was called.";
-				logger.log(Logger.Level.TRACE, reason);
+				logTrace( reason);
 			} else {
 				reason = "LineItem: prePersist was not called.";
 				throw new Exception(reason);
@@ -197,7 +188,7 @@ public class Client extends EntityCallbackClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during prePersistCascadeTest", e);
+			logErr( "Exception caught during prePersistCascadeTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -205,7 +196,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -222,8 +213,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistMultiCascadeTest() throws Exception {
+		public void prePersistMultiCascadeTest() throws Exception {
 		final String testName = Constants.prePersistMultiCascadeTest;
 		try {
 			getEntityTransaction().begin();
@@ -252,7 +242,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -266,8 +256,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preRemoveTest() throws Exception {
+		public void preRemoveTest() throws Exception {
 		String reason;
 		final String testName = Constants.preRemoveTest;
 		try {
@@ -278,7 +267,7 @@ public class Client extends EntityCallbackClientBase {
 
 			if (product.isPreRemoveCalled()) {
 				reason = "Product: preRemove was called.";
-				logger.log(Logger.Level.TRACE, reason);
+				logTrace( reason);
 			} else {
 				reason = "Product: preRemove was not called.";
 				throw new Exception(reason);
@@ -286,7 +275,7 @@ public class Client extends EntityCallbackClientBase {
 			product = null;
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during preRemoveTest", e);
+			logErr( "Exception caught during preRemoveTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -294,7 +283,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -309,8 +298,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preRemoveMultiTest() throws Exception {
+		public void preRemoveMultiTest() throws Exception {
 		final String testName = Constants.preRemoveMultiTest;
 		try {
 			getEntityTransaction().begin();
@@ -331,7 +319,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -346,8 +334,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preRemoveCascadeTest() throws Exception {
+		public void preRemoveCascadeTest() throws Exception {
 		String reason;
 		final String testName = Constants.preRemoveCascadeTest;
 		try {
@@ -366,7 +353,7 @@ public class Client extends EntityCallbackClientBase {
 
 			if (b) {
 				reason = "Order: preRemove was called.";
-				logger.log(Logger.Level.TRACE, reason);
+				logTrace( reason);
 			} else {
 				reason = "Order: preRemove was not called.";
 				throw new Exception(reason);
@@ -374,7 +361,7 @@ public class Client extends EntityCallbackClientBase {
 
 			if (lineItem.isPreRemoveCalled()) {
 				reason = "LineItem: preRemove was called.";
-				logger.log(Logger.Level.TRACE, reason);
+				logTrace( reason);
 			} else {
 				reason = "LineItem: preRemove was not called.";
 				throw new Exception(reason);
@@ -382,7 +369,7 @@ public class Client extends EntityCallbackClientBase {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during preRemoveCascadeTest", e);
+			logErr( "Exception caught during preRemoveCascadeTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -390,7 +377,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -406,8 +393,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preRemoveMultiCascadeTest() throws Exception {
+		public void preRemoveMultiCascadeTest() throws Exception {
 		final String testName = Constants.preRemoveMultiCascadeTest;
 		try {
 			getEntityTransaction().begin();
@@ -431,7 +417,7 @@ public class Client extends EntityCallbackClientBase {
 			order = null;
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during preRemoveMultiCascadeTest", e);
+			logErr( "Exception caught during preRemoveMultiCascadeTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -439,7 +425,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -453,8 +439,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void preUpdateTest() throws Exception {
+		public void preUpdateTest() throws Exception {
 		final String testName = Constants.preUpdateTest;
 		try {
 			getEntityTransaction().begin();
@@ -465,7 +450,7 @@ public class Client extends EntityCallbackClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during preUpdateTest", e);
+			logErr( "Exception caught during preUpdateTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -473,7 +458,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -488,8 +473,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void postLoadTest() throws Exception {
+		public void postLoadTest() throws Exception {
 		String reason;
 		final String testName = Constants.postLoadTest;
 		try {
@@ -503,11 +487,11 @@ public class Client extends EntityCallbackClientBase {
 			// for(int i = 0, n = results.size(); i < n; i++) {
 			//
 			// }
-			logger.log(Logger.Level.TRACE, results.toString());
+			logTrace( results.toString());
 
 			if (product.isPostLoadCalled()) {
 				reason = "Product: postLoad was called after the query result was returned.";
-				logger.log(Logger.Level.TRACE, reason);
+				logTrace( reason);
 			} else {
 				reason = "Product: postLoad was not called even after the query result was returned.";
 				throw new Exception(reason);
@@ -515,7 +499,7 @@ public class Client extends EntityCallbackClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during postLoadTest", e);
+			logErr( "Exception caught during postLoadTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -523,7 +507,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -538,8 +522,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void postLoadMultiTest() throws Exception {
+		public void postLoadMultiTest() throws Exception {
 		final String testName = Constants.postLoadMultiTest;
 		try {
 			getEntityTransaction().begin();
@@ -549,7 +532,7 @@ public class Client extends EntityCallbackClientBase {
 			getEntityManager().refresh(product);
 			final Query q = getEntityManager().createQuery("select distinct p from Product p");
 			final java.util.List results = q.getResultList();
-			logger.log(Logger.Level.TRACE, results.toString());
+			logTrace( results.toString());
 
 			final List actual = product.getPostLoadCalls();
 			compareResultList(Constants.LISTENER_AABBCC, actual);
@@ -563,7 +546,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -577,8 +560,7 @@ public class Client extends EntityCallbackClientBase {
 	 * @test_Strategy: xml elements are used to define behavior instead of
 	 * annotations
 	 */
-	@Test
-	public void prePersistRuntimeExceptionTest() throws Exception {
+		public void prePersistRuntimeExceptionTest() throws Exception {
 		final String testName = Constants.prePersistRuntimeExceptionTest;
 		try {
 			getEntityTransaction().begin();
@@ -587,10 +569,10 @@ public class Client extends EntityCallbackClientBase {
 			List actual = product.getPrePersistCalls();
 			List expected = new ArrayList(Arrays.asList("ListenerA"));
 			if (!product.isPrePersistCalled() || !expected.equals(actual)) {
-				logger.log(Logger.Level.ERROR, "Expected: " + expected.toString() + ", actual:" + actual.toString());
+				logErr( "Expected: " + expected.toString() + ", actual:" + actual.toString());
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during prePersistRuntimeExceptionTest", e);
+			logErr( "Exception caught during prePersistRuntimeExceptionTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -598,7 +580,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -610,8 +592,7 @@ public class Client extends EntityCallbackClientBase {
 	 * 
 	 * @test_Strategy: make use of the default listener defined in the orm.xml
 	 */
-	@Test
-	public void prePersistDefaultListenerTest() throws Exception {
+		public void prePersistDefaultListenerTest() throws Exception {
 		String reason;
 		final String testName = Constants.prePersistDefaultListenerTest;
 		try {
@@ -622,14 +603,14 @@ public class Client extends EntityCallbackClientBase {
 
 			if (customer.isPrePersistCalled()) {
 				reason = "Customer: prePersist was called.";
-				logger.log(Logger.Level.TRACE, reason);
+				logTrace( reason);
 			} else {
 				reason = "Customer: prePersist was not called.";
 				throw new Exception(reason);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception caught during prePersistTest", e);
+			logErr( "Exception caught during prePersistTest", e);
 			throw new Exception(e);
 		} finally {
 			try {
@@ -637,7 +618,7 @@ public class Client extends EntityCallbackClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Exception caught while rolling back TX", re);
+				logErr( "Exception caught while rolling back TX", re);
 			}
 		}
 	}
@@ -672,20 +653,20 @@ public class Client extends EntityCallbackClientBase {
 		return customer;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -697,14 +678,14 @@ public class Client extends EntityCallbackClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM CUSTOMER_TABLE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

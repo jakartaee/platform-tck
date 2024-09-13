@@ -16,15 +16,17 @@
 
 package ee.jakarta.tck.persistence.core.annotations.mapkeyclass;
 
-import java.lang.System.Logger;
+
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
@@ -33,29 +35,26 @@ public class Client extends PMClientBase {
 
 	private Map<Course, Semester> student2EnrollmentMap;
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Course", pkgName + "Semester", pkgName + "Student" };
-		return createDeploymentJar("jpa_core_annotations_mapkeyclass.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
 
 	public Client() {
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -79,8 +78,7 @@ public class Client extends PMClientBase {
 	 *
 	 * @test_Strategy: With basic entity requirements, persist/remove an entity.
 	 */
-	@Test
-	public void mapKeyClass() throws Exception {
+		public void mapKeyClass() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -98,13 +96,13 @@ public class Client extends PMClientBase {
 						&& courses.size() == student2EnrollmentMap.keySet().size())
 					pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "getCourses() returned null value");
+				logErr( "getCourses() returned null value");
 			}
 			clearCache();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred:", e);
+			logErr( "Unexpected exception occurred:", e);
 		}
 
 		if (!pass) {
@@ -151,37 +149,37 @@ public class Client extends PMClientBase {
 		// persist 8 students
 		entityManager.persist(student1);
 		entityManager.persist(student2);
-		logger.log(Logger.Level.TRACE, "persisted 2 students");
+		logTrace( "persisted 2 students");
 
 		// persist 4 semesters
 		entityManager.persist(semester1);
 		entityManager.persist(semester2);
 		entityManager.persist(semester3);
-		logger.log(Logger.Level.TRACE, "persisted 4 semesters");
+		logTrace( "persisted 4 semesters");
 
 		// persist 12 courses
 		entityManager.persist(appliedMath);
 		entityManager.persist(physics);
 		entityManager.persist(operationResearch);
 		entityManager.persist(statistics);
-		logger.log(Logger.Level.TRACE, "persisted 4 Courses");
+		logTrace( "persisted 4 Courses");
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -193,14 +191,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from COURSE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in RemoveSchemaData:", re);
+				logErr( "Unexpected Exception in RemoveSchemaData:", re);
 			}
 		}
 	}

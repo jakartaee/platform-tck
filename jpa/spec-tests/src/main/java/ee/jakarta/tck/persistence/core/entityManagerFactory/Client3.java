@@ -16,15 +16,12 @@
 
 package ee.jakarta.tck.persistence.core.entityManagerFactory;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.Query;
@@ -35,43 +32,36 @@ import jakarta.persistence.criteria.Root;
 
 public class Client3 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
+
 
 	Properties props = null;
 
 	public Client3() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManagerFactory3.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupMember() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createMemberTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
-
-	@AfterEach
-	public void cleanupNoData() throws Exception {
+	
+	public void cleanup() throws Exception {
 		try {
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -83,7 +73,7 @@ public class Client3 extends PMClientBase {
 	 * @test_Strategy: Test that lock mode of addNamedQuery is retained or can be
 	 * overridden
 	 */
-	@Test
+	
 	public void addNamedQueryLockModeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -93,7 +83,7 @@ public class Client3 extends PMClientBase {
 
 		try {
 			CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
-			logger.log(Logger.Level.TRACE, "Defining queries");
+			logTrace( "Defining queries");
 			Query query = getEntityManager().createQuery("select m from Member m where m.memberId=1");
 			query.setLockMode(LockModeType.NONE);
 			getEntityManagerFactory().addNamedQuery("query", query);
@@ -108,34 +98,34 @@ public class Client3 extends PMClientBase {
 
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query with different lock mode than the original");
+				logMsg( "*********************************");
+				logMsg( "Testing query with different lock mode than the original");
 				Query namedQuery = getEntityManager().createNamedQuery("query");
 				boolean ok1 = false;
 				LockModeType lmt = namedQuery.getLockMode();
 				if (lmt != null) {
 					if (lmt.equals(LockModeType.NONE)) {
-						logger.log(Logger.Level.TRACE, "Received expected lock mode before change:" + lmt.name());
+						logTrace( "Received expected lock mode before change:" + lmt.name());
 						ok1 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected lock mode before change:" + LockModeType.NONE.name()
+						logErr( "Expected lock mode before change:" + LockModeType.NONE.name()
 								+ ", actual:" + lmt.name());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "getLockModeType returned null");
+					logErr( "getLockModeType returned null");
 				}
 				namedQuery.setLockMode(LockModeType.PESSIMISTIC_READ);
 				lmt = namedQuery.getLockMode();
 				boolean ok2 = false;
 				if (lmt.equals(LockModeType.PESSIMISTIC_READ)) {
-					logger.log(Logger.Level.TRACE, "Received LockModeType:" + lmt.name());
+					logTrace( "Received LockModeType:" + lmt.name());
 					ok2 = true;
 				} else if (lmt.equals(LockModeType.PESSIMISTIC_WRITE)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received LockModeType:" + lmt + " inplace of " + LockModeType.PESSIMISTIC_READ.name());
 					ok2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected lock mode after change:"
+					logErr( "Expected lock mode after change:"
 							+ LockModeType.PESSIMISTIC_READ.name() + ", actual:" + lmt.name());
 				}
 				List<Member> lResult = namedQuery.getResultList();
@@ -143,16 +133,16 @@ public class Client3 extends PMClientBase {
 				if (lResult.size() == 1) {
 					Member result = lResult.get(0);
 					if (result.getMemberId() == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result.getMemberId());
+						logTrace( "Received expected id:" + result.getMemberId());
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result.getMemberId());
+						logErr( "Expected id:1, actual:" + result.getMemberId());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (Member m : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + m.getMemberId());
+						logErr( "Ids received:" + m.getMemberId());
 					}
 				}
 				if (foundOne && ok1 && ok2) {
@@ -161,7 +151,7 @@ public class Client3 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 			} finally {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
@@ -169,21 +159,21 @@ public class Client3 extends PMClientBase {
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query verify original lock mode is active");
+				logMsg( "*********************************");
+				logMsg( "Testing query verify original lock mode is active");
 				Query namedQuery = getEntityManager().createNamedQuery("query");
 				boolean ok1 = false;
 				LockModeType lmt = namedQuery.getLockMode();
 				if (lmt != null) {
 					if (lmt.equals(LockModeType.NONE)) {
-						logger.log(Logger.Level.TRACE, "Received expected lock mode before change:" + lmt.name());
+						logTrace( "Received expected lock mode before change:" + lmt.name());
 						ok1 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected lock mode before change:" + LockModeType.NONE.name()
+						logErr( "Expected lock mode before change:" + LockModeType.NONE.name()
 								+ ", actual:" + lmt.name());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "getLockModeType returned null");
+					logErr( "getLockModeType returned null");
 				}
 
 				List<Member> lResult = namedQuery.getResultList();
@@ -191,16 +181,16 @@ public class Client3 extends PMClientBase {
 				if (lResult.size() == 1) {
 					Member result = lResult.get(0);
 					if (result.getMemberId() == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result.getMemberId());
+						logTrace( "Received expected id:" + result.getMemberId());
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result.getMemberId());
+						logErr( "Expected id:1, actual:" + result.getMemberId());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (Member m : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + m.getMemberId());
+						logErr( "Ids received:" + m.getMemberId());
 					}
 				}
 				if (foundOne && ok1) {
@@ -209,7 +199,7 @@ public class Client3 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 			} finally {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
@@ -217,8 +207,8 @@ public class Client3 extends PMClientBase {
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing query definition can be replaced ");
+				logMsg( "*********************************");
+				logMsg( "Testing query definition can be replaced ");
 				Query query2 = getEntityManager().createQuery("select m from Member m where m.memberId=2")
 						.setLockMode(LockModeType.PESSIMISTIC_READ);
 				getEntityManagerFactory().addNamedQuery("query", query2);
@@ -227,34 +217,34 @@ public class Client3 extends PMClientBase {
 				LockModeType lmt = namedQuery.getLockMode();
 				if (lmt != null) {
 					if (lmt.equals(LockModeType.PESSIMISTIC_READ)) {
-						logger.log(Logger.Level.TRACE, "Received LockModeType:" + lmt.name());
+						logTrace( "Received LockModeType:" + lmt.name());
 						ok1 = true;
 					} else if (lmt.equals(LockModeType.PESSIMISTIC_WRITE)) {
-						logger.log(Logger.Level.TRACE,
+						logTrace(
 								"Received LockModeType:" + lmt + " inplace of " + LockModeType.PESSIMISTIC_READ.name());
 						ok1 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected lock mode after change:"
+						logErr( "Expected lock mode after change:"
 								+ LockModeType.PESSIMISTIC_READ.name() + ", actual:" + lmt.name());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "getLockModeType returned null");
+					logErr( "getLockModeType returned null");
 				}
 				List<Member> lResult = namedQuery.getResultList();
 				boolean foundOne = false;
 				if (lResult.size() == 1) {
 					Member result = lResult.get(0);
 					if (result.getMemberId() == 2) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result.getMemberId());
+						logTrace( "Received expected id:" + result.getMemberId());
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:2, actual:" + result.getMemberId());
+						logErr( "Expected id:2, actual:" + result.getMemberId());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:2, actual:" + lResult.size());
 					for (Member m : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + m.getMemberId());
+						logErr( "Ids received:" + m.getMemberId());
 					}
 				}
 				if (foundOne && ok1) {
@@ -263,7 +253,7 @@ public class Client3 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 			} finally {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
@@ -271,34 +261,34 @@ public class Client3 extends PMClientBase {
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing TypedQuery with lock mode different than the original");
+				logMsg( "*********************************");
+				logMsg( "Testing TypedQuery with lock mode different than the original");
 				TypedQuery<Member> namedTypeQuery = getEntityManager().createNamedQuery("typed_query", Member.class);
 				boolean ok1 = false;
 				LockModeType lmt = namedTypeQuery.getLockMode();
 				if (lmt != null) {
 					if (lmt.equals(LockModeType.NONE)) {
-						logger.log(Logger.Level.TRACE, "Received expected lock mode before change:" + lmt.name());
+						logTrace( "Received expected lock mode before change:" + lmt.name());
 						ok1 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected lock mode before change:" + LockModeType.NONE.name()
+						logErr( "Expected lock mode before change:" + LockModeType.NONE.name()
 								+ ", actual:" + lmt.name());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "getLockModeType returned null");
+					logErr( "getLockModeType returned null");
 				}
 				namedTypeQuery.setLockMode(LockModeType.PESSIMISTIC_READ);
 				lmt = namedTypeQuery.getLockMode();
 				boolean ok2 = false;
 				if (lmt.equals(LockModeType.PESSIMISTIC_READ)) {
-					logger.log(Logger.Level.TRACE, "Received expected lock mode after change:" + lmt.name());
+					logTrace( "Received expected lock mode after change:" + lmt.name());
 					ok2 = true;
 				} else if (lmt.equals(LockModeType.PESSIMISTIC_WRITE)) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received LockModeType:" + lmt + " inplace of " + LockModeType.PESSIMISTIC_READ.name());
 					ok2 = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected lock mode after change:"
+					logErr( "Expected lock mode after change:"
 							+ LockModeType.PESSIMISTIC_READ.name() + ", actual:" + lmt.name());
 				}
 
@@ -307,16 +297,16 @@ public class Client3 extends PMClientBase {
 				if (lResult.size() == 1) {
 					Member result = lResult.get(0);
 					if (result.getMemberId() == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result.getMemberId());
+						logTrace( "Received expected id:" + result.getMemberId());
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result.getMemberId());
+						logErr( "Expected id:1, actual:" + result.getMemberId());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (Member m : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + m.getMemberId());
+						logErr( "Ids received:" + m.getMemberId());
 					}
 				}
 				if (foundOne && ok1 && ok2) {
@@ -325,7 +315,7 @@ public class Client3 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 			} finally {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
@@ -333,37 +323,37 @@ public class Client3 extends PMClientBase {
 			}
 			try {
 				getEntityTransaction().begin();
-				logger.log(Logger.Level.INFO, "*********************************");
-				logger.log(Logger.Level.INFO, "Testing TypedQuery verify original lock mode is active");
+				logMsg( "*********************************");
+				logMsg( "Testing TypedQuery verify original lock mode is active");
 				TypedQuery<Member> namedTypeQuery = getEntityManager().createNamedQuery("typed_query", Member.class);
 				boolean ok1 = false;
 				LockModeType lmt = namedTypeQuery.getLockMode();
 				if (lmt != null) {
 					if (lmt.equals(LockModeType.NONE)) {
-						logger.log(Logger.Level.TRACE, "Received expected lock mode before change:" + lmt.name());
+						logTrace( "Received expected lock mode before change:" + lmt.name());
 						ok1 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected lock mode before change:" + LockModeType.NONE.name()
+						logErr( "Expected lock mode before change:" + LockModeType.NONE.name()
 								+ ", actual:" + lmt.name());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "getLockModeType returned null");
+					logErr( "getLockModeType returned null");
 				}
 				List<Member> lResult = namedTypeQuery.getResultList();
 				boolean foundOne = false;
 				if (lResult.size() == 1) {
 					Member result = lResult.get(0);
 					if (result.getMemberId() == 1) {
-						logger.log(Logger.Level.TRACE, "Received expected id:" + result.getMemberId());
+						logTrace( "Received expected id:" + result.getMemberId());
 						foundOne = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected id:1, actual:" + result.getMemberId());
+						logErr( "Expected id:1, actual:" + result.getMemberId());
 					}
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get correct number of results, expected:1, actual:" + lResult.size());
 					for (Member m : lResult) {
-						logger.log(Logger.Level.ERROR, "Ids received:" + m.getMemberId());
+						logErr( "Ids received:" + m.getMemberId());
 					}
 				}
 				if (foundOne && ok1) {
@@ -372,14 +362,14 @@ public class Client3 extends PMClientBase {
 				getEntityTransaction().commit();
 
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 			} finally {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
@@ -400,27 +390,27 @@ public class Client3 extends PMClientBase {
 			members[4] = new Member(5, "5");
 
 			for (Member m : members) {
-				logger.log(Logger.Level.TRACE, "Persisting member:" + m.toString());
+				logTrace( "Persisting member:" + m.toString());
 				getEntityManager().persist(m);
 			}
 			getEntityManager().flush();
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -431,14 +421,14 @@ public class Client3 extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM MEMBER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -20,18 +20,15 @@
 
 package ee.jakarta.tck.persistence.core.types.primarykey.compound;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final CompoundPK refPK1 = new CompoundPK(1, "cof0001", 1.0F);
 
@@ -47,23 +44,17 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "CompoundPK", pkgName + "CompoundPK2", pkgName + "CompoundPK3",
-				pkgName + "TestBean", pkgName + "TestBean2", pkgName + "TestBean3" };
-		return createDeploymentJar("jpa_core_types_primarykey_compound.jar", pkgNameWithoutSuffix, (String[]) classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
+	
+	public void setup(String[] args, Properties p) throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Entering setup");
-		super.setup();
-		createDeployment();
+		logTrace( "Entering setup");
+		super.setup(args,p);
 		removeTestData();
 	}
 
@@ -89,7 +80,6 @@ public class Client extends PMClientBase {
 	 *                 There should be only one EmbeddedId annotation and no Id
 	 *                 annotations when the EmbeddedId annotation is used.
 	 */
-	@Test
 	public void testCompoundPK1() throws Exception {
 
 		TestBean bean1;
@@ -102,26 +92,26 @@ public class Client extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Creating bean1 and bean2 instance...");
+			logTrace( "Creating bean1 and bean2 instance...");
 			bean1 = new TestBean(refPK1, "Arabica", 10);
 			bean2 = new TestBean(refPK2, "Java", 12);
 			getEntityManager().persist(bean1);
 			getEntityManager().persist(bean2);
 			getEntityManager().flush();
 
-			logger.log(Logger.Level.TRACE, "[Client] Locate beans using primary keys...");
+			logTrace( "[Client] Locate beans using primary keys...");
 			bean3 = getEntityManager().find(TestBean.class, refPK1);
 			bean4 = getEntityManager().find(TestBean.class, refPK2);
 
-			logger.log(Logger.Level.TRACE, "Check we can call the beans...");
+			logTrace( "Check we can call the beans...");
 			bean1.ping();
 			bean2.ping();
 			bean3.ping();
 			bean4.ping();
 
-			logger.log(Logger.Level.TRACE, "Check beans are identical...");
+			logTrace( "Check beans are identical...");
 			if ((bean1 == bean3)) {
-				logger.log(Logger.Level.TRACE, "bean1 and bean3 are equal");
+				logTrace( "bean1 and bean3 are equal");
 				pass = true;
 			}
 			if (!pass) {
@@ -129,25 +119,25 @@ public class Client extends PMClientBase {
 			}
 
 			if ((bean2 == bean4)) {
-				logger.log(Logger.Level.TRACE, "bean2 and bean4 are equal");
+				logTrace( "bean2 and bean4 are equal");
 				pass = true;
 			}
 			if (!pass) {
 				throw new Exception("[testCompoundPK1] bean2 and bean4 should be identical!");
 			}
 
-			logger.log(Logger.Level.TRACE, "Comparing primary keys...");
+			logTrace( "Comparing primary keys...");
 			valPK1 = bean3.getCompoundPK();
 			valPK2 = bean4.getCompoundPK();
 			if (valPK1.equals(refPK1) && refPK1.equals(valPK1)) {
-				logger.log(Logger.Level.TRACE, "testCompoundPK1: valPK1 equals refPK1");
+				logTrace( "testCompoundPK1: valPK1 equals refPK1");
 				pass = true;
 			}
 			if (!pass) {
 				throw new Exception("testCompoundPK1: bean1 and bean3 PK should match!");
 			}
 			if (valPK2.equals(refPK2) && refPK2.equals(valPK2)) {
-				logger.log(Logger.Level.TRACE, "testCompoundPK1: valPK2 equals refPK2");
+				logTrace( "testCompoundPK1: valPK2 equals refPK2");
 				pass = true;
 			}
 			if (!pass) {
@@ -155,7 +145,7 @@ public class Client extends PMClientBase {
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "[testCompoundPK1] Caught exception: " + e);
+			logErr( "[testCompoundPK1] Caught exception: " + e);
 			throw new Exception("testCompoundPK1 test failed: " + e, e);
 		} finally {
 			try {
@@ -163,7 +153,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "[testCompoundPK1] Exception caught while rolling back TX", e);
+				logErr( "[testCompoundPK1] Exception caught while rolling back TX", e);
 			}
 		}
 
@@ -194,7 +184,7 @@ public class Client extends PMClientBase {
 	 *                 also be applied to such field or properties. This entity uses
 	 *                 the @Id annotations on the primary key properties.
 	 */
-	@Test
+	
 	public void testCompoundPK2() throws Exception {
 
 		TestBean2 bean1;
@@ -205,26 +195,26 @@ public class Client extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Creating bean1 and bean2 instance...");
+			logTrace( "Creating bean1 and bean2 instance...");
 			bean1 = new TestBean2(3, "cof0003", 3.0F, "Vanilla", 10);
 			bean2 = new TestBean2(4, "cof0004", 4.0F, "Mocha Java", 12);
 			getEntityManager().persist(bean1);
 			getEntityManager().persist(bean2);
 			getEntityManager().flush();
 
-			logger.log(Logger.Level.TRACE, "Locate beans using primary keys...");
+			logTrace( "Locate beans using primary keys...");
 			bean3 = getEntityManager().find(TestBean2.class, refPK3);
 			bean4 = getEntityManager().find(TestBean2.class, refPK4);
 
-			logger.log(Logger.Level.TRACE, "Check we can call the beans...");
+			logTrace( "Check we can call the beans...");
 			bean1.ping();
 			bean2.ping();
 			bean3.ping();
 			bean4.ping();
 
-			logger.log(Logger.Level.TRACE, "Check beans are identical...");
+			logTrace( "Check beans are identical...");
 			if ((bean1 == bean3)) {
-				logger.log(Logger.Level.TRACE, "bean1 and bean3 are equal");
+				logTrace( "bean1 and bean3 are equal");
 				pass = true;
 			}
 			if (!pass) {
@@ -232,7 +222,7 @@ public class Client extends PMClientBase {
 			}
 
 			if ((bean2 == bean4)) {
-				logger.log(Logger.Level.TRACE, "bean2 and bean4 are equal");
+				logTrace( "bean2 and bean4 are equal");
 				pass = true;
 			}
 			if (!pass) {
@@ -240,7 +230,7 @@ public class Client extends PMClientBase {
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "[testCompoundPK2] Caught exception: " + e);
+			logErr( "[testCompoundPK2] Caught exception: " + e);
 			throw new Exception("testCompoundPK2 test failed: " + e, e);
 		} finally {
 			try {
@@ -248,7 +238,7 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "[testCompoundPK2] Exception caught while rolling back TX", e);
+				logErr( "[testCompoundPK2] Exception caught while rolling back TX", e);
 			}
 		}
 
@@ -277,7 +267,7 @@ public class Client extends PMClientBase {
 	 *                 When using the @IdClass annotion, the @Id annotation must
 	 *                 also be applied to such fields.
 	 */
-	@Test
+	
 	public void testCompoundPK3() throws Exception {
 
 		TestBean3 bean1;
@@ -288,26 +278,26 @@ public class Client extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Creating bean1 and bean2 instance...");
+			logTrace( "Creating bean1 and bean2 instance...");
 			bean1 = new TestBean3(5, "cof0005", 5.0F, "Cinnamon", 11);
 			bean2 = new TestBean3(6, "cof0006", 6.0F, "Hazelnut", 12);
 			getEntityManager().persist(bean1);
 			getEntityManager().persist(bean2);
 			getEntityManager().flush();
 
-			logger.log(Logger.Level.TRACE, "Locate beans using primary keys...");
+			logTrace( "Locate beans using primary keys...");
 			bean3 = getEntityManager().find(TestBean3.class, refPK5);
 			bean4 = getEntityManager().find(TestBean3.class, refPK6);
 
-			logger.log(Logger.Level.TRACE, "Check we can call the beans...");
+			logTrace( "Check we can call the beans...");
 			bean1.ping();
 			bean2.ping();
 			bean3.ping();
 			bean4.ping();
 
-			logger.log(Logger.Level.TRACE, "Check beans are identical...");
+			logTrace( "Check beans are identical...");
 			if ((bean1 == bean3)) {
-				logger.log(Logger.Level.TRACE, "bean1 and bean3 are equal");
+				logTrace( "bean1 and bean3 are equal");
 				pass = true;
 			}
 			if (!pass) {
@@ -315,7 +305,7 @@ public class Client extends PMClientBase {
 			}
 
 			if ((bean2 == bean4)) {
-				logger.log(Logger.Level.TRACE, "bean2 and bean4 are equal");
+				logTrace( "bean2 and bean4 are equal");
 				pass = true;
 			}
 			if (!pass) {
@@ -323,7 +313,7 @@ public class Client extends PMClientBase {
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "[testCompoundPK3] Caught exception: " + e);
+			logErr( "[testCompoundPK3] Caught exception: " + e);
 			throw new Exception("testCompoundPK3 test failed: " + e, e);
 		} finally {
 			try {
@@ -331,27 +321,26 @@ public class Client extends PMClientBase {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "[testCompoundPK3] Exception caught while rolling back TX", e);
+				logErr( "[testCompoundPK3] Exception caught while rolling back TX", e);
 			}
 		}
 
 		/* testCompoundPK3 pass */
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -360,14 +349,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PKEY").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

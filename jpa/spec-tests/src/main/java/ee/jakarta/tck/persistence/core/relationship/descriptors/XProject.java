@@ -20,9 +20,11 @@
 
 package ee.jakarta.tck.persistence.core.relationship.descriptors;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.util.Collection;
+
+import com.sun.ts.lib.util.TestUtil;
 
 /*
  * XProject
@@ -30,7 +32,7 @@ import java.util.Collection;
 
 public class XProject implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(XProject.class.getName());
+
 
 	// Instance Variables
 	private long xProjId;
@@ -44,7 +46,7 @@ public class XProject implements java.io.Serializable {
 	private Collection<XPerson> xPersons = new java.util.ArrayList<XPerson>();
 
 	public XProject() {
-		logger.log(Logger.Level.TRACE, "XProject no-arg constructor");
+		TestUtil.logTrace( "XProject no-arg constructor");
 	}
 
 	public XProject(long xProjId, String xName, BigDecimal xBudget) {

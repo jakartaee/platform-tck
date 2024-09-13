@@ -20,7 +20,6 @@
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
     <artifactId>glassfish.jsonp-platform-tck</artifactId>
@@ -92,7 +91,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.main.common</groupId>
@@ -102,12 +100,10 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>

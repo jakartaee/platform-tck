@@ -54,11 +54,11 @@ public class ConnectorVehicleRunner implements VehicleRunnable {
   public Status run(String[] argv, Properties p) {
     this.argv = argv;
     this.p = p;
-    sVehicle = p.getProperty("vehicle");
+    sVehicle = TestUtil.getProperty(p, "vehicle");
 
     // use this name for the context root or jndi name to eliminate
     // naming conflicts for apps deployed at the same time
-    sVehicleArchiveName = p.getProperty("vehicle_archive_name");
+    sVehicleArchiveName = TestUtil.getProperty(p, "vehicle_archive_name");
 
     if (sVehicleArchiveName.indexOf("_vehicles") != -1) {
       contextRootPrefix = sVehicleArchiveName.substring(0,
@@ -101,8 +101,9 @@ public class ConnectorVehicleRunner implements VehicleRunnable {
     Status status;
 
     try {
-      url = new URL("http://" + p.getProperty("webServerHost") + ":"
-          + Integer.parseInt(p.getProperty("webServerPort")) + urlSuffix);
+      String webServerHost = TestUtil.getProperty(p, "webServerHost");
+      String webServerPort = TestUtil.getProperty(p, "webServerPort");
+      url = new URL("http://" + webServerHost + ":" + Integer.parseInt(webServerPort) + urlSuffix);
       connection = url.openConnection();
       LOGGER.info("Opened connection to {}", url);
       connection.setDoOutput(true);

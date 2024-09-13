@@ -16,6 +16,8 @@
 
 package com.sun.ts.tests.common.connector.whitebox;
 
+import com.sun.ts.lib.util.TestUtil;
+
 public class Debug {
 
   private static String debuggingProp = null;
@@ -28,7 +30,7 @@ public class Debug {
    * Constructor
    */
   public Debug(String str) {
-    debuggingProp = System.getProperty(str);
+    debuggingProp = TestUtil.getSystemProperty(str);
     if ((debuggingProp != null) && (debuggingProp.equals("ON"))) {
       setDebugStatus(true); // turn tracing on
       trace("Debugging enabled");
@@ -49,10 +51,8 @@ public class Debug {
    * This is used to turn debugging off or on. This is off by default and must
    * be explicitly set to true in order to turn on debugging.
    *
-   * @exception none.
-   * @param boolean:
+   * @param bVal:
    *          True means turn debugging on.
-   * @return none.
    */
   public static void setDebugStatus(boolean bVal) {
     bDebug = bVal;
@@ -80,8 +80,6 @@ public class Debug {
    * This gets the status of the debugging functionality. false means that
    * debugging is disabled, true means it is enabled.
    *
-   * @exception none.
-   * @param none.
    * @return boolean: True means turn debugging on.
    */
   public static boolean getDebugStatus() {
@@ -91,8 +89,6 @@ public class Debug {
   /**
    * This gets the current level of debugging we are using.
    *
-   * @exception none.
-   * @param none.
    * @return int: 0=none, 1=errors, 2=errors+warnings, 3=all
    */
 
@@ -103,8 +99,7 @@ public class Debug {
   /**
    * This sets the current level of debugging we are using.
    *
-   * @exception none.
-   * @param int:
+   * @param val:
    *          0=none, 1=errors, 2=errors+warnings, 3=all
    * @return none.
    */

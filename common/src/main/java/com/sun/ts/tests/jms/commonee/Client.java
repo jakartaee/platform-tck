@@ -101,35 +101,35 @@ public class Client extends EETest {
     props = p;
 
     try {
-      jmsUser = p.getProperty("user");
+      jmsUser = TestUtil.getProperty(p, "user");
       if (jmsUser == null) {
         TestUtil.logTrace("user is null");
         throw new Exception("Error getting user");
       }
 
-      jmsPassword = p.getProperty("password");
+      jmsPassword = TestUtil.getProperty(p, "password");
       if (jmsPassword == null) {
         TestUtil.logTrace("password is null");
         throw new Exception("Error getting password");
       }
 
-      String time = p.getProperty("jms_timeout");
+      String time = TestUtil.getProperty(p, "jms_timeout");
       if (time == null) {
         TestUtil.logTrace("jms_timeout is null");
         throw new Exception("Error getting jms_timeout");
       }
 
-      hostname = p.getProperty("harness.host");
+      hostname = TestUtil.getProperty(p, "harness.host");
       if (hostname == null) {
         TestUtil.logTrace("harness.host is null");
         throw new Exception("Error getting harness.host");
       }
-      traceFlag = p.getProperty("harness.log.traceflag");
+      traceFlag = TestUtil.getProperty(p, "harness.log.traceflag");
       if (traceFlag == null) {
         TestUtil.logTrace("harness.log.traceflag is null");
         throw new Exception("Error getting harness.log.traceflag");
       }
-      logPort = p.getProperty("harness.log.port");
+      logPort = TestUtil.getProperty(p, "harness.log.port");
       if (logPort == null) {
         TestUtil.logTrace("harness.log.port is null");
         throw new Exception("Error getting harness.log.port");
@@ -186,7 +186,8 @@ public class Client extends EETest {
       while (e.hasMoreElements()) {
         key = (String) e.nextElement();
         if ((key.indexOf(notValid) == -1) && (key.indexOf("***") == -1)) {
-          msg.setStringProperty(key, props.getProperty(key));
+          String value = TestUtil.getProperty(props, key);
+          msg.setStringProperty(key, value);
         }
       }
 

@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.entityManager;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,24 +24,21 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
 
 import com.sun.ts.lib.harness.CleanupMethod;
 import com.sun.ts.lib.harness.SetupMethod;
 
-import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.StoredProcedureQuery;
 
-public class Client2 extends PMClientBase {
+public class Client2 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	List<Employee> empRef = new ArrayList<Employee>();
 
@@ -61,14 +58,10 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManager2.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -76,12 +69,11 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupOrderData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupOrderData");
+	
+	public void setupOrderData(String[] args, Properties p) throws Exception {
+		logTrace( "setupOrderData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createOrderData();
 			map.putAll(getEntityManager().getProperties());
@@ -89,23 +81,22 @@ public class Client2 extends PMClientBase {
 			displayMap(map);
 			dataBaseName = System.getProperty("jdbc.db");
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {
-		logger.log(Logger.Level.TRACE, "in getResultSetsFromStoredProcedure");
+		logTrace( "in getResultSetsFromStoredProcedure");
 		boolean results = true;
 		List<List> listOfList = new ArrayList<List>();
 		int rsnum = 1;
@@ -113,18 +104,18 @@ public class Client2 extends PMClientBase {
 
 		do {
 			if (results) {
-				logger.log(Logger.Level.TRACE, "Processing set:" + rsnum);
+				logTrace( "Processing set:" + rsnum);
 				List<Employee> empList = new ArrayList<Employee>();
 				List list = spq.getResultList();
 				if (list != null) {
-					logger.log(Logger.Level.TRACE, "Getting result set: " + (rsnum) + ", size:" + list.size());
+					logTrace( "Getting result set: " + (rsnum) + ", size:" + list.size());
 					for (Object o : list) {
 						if (o instanceof Employee) {
 							Employee e = (Employee) o;
-							logger.log(Logger.Level.TRACE, "Saving:" + e);
+							logTrace( "Saving:" + e);
 							empList.add(e);
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Did not get instance of Employee, instead got:" + o.getClass().getName());
 						}
 					}
@@ -132,16 +123,16 @@ public class Client2 extends PMClientBase {
 						listOfList.add(empList);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Result set[" + rsnum + "] returned was null");
+					logErr( "Result set[" + rsnum + "] returned was null");
 				}
 				rsnum++;
 			} else {
 				rowsAffected = spq.getUpdateCount();
 				if (rowsAffected >= 0)
-					logger.log(Logger.Level.TRACE, "rowsAffected:" + rowsAffected);
+					logTrace( "rowsAffected:" + rowsAffected);
 			}
 			results = spq.hasMoreResults();
-			logger.log(Logger.Level.TRACE, "Results:" + results);
+			logTrace( "Results:" + results);
 
 		} while (results || rowsAffected != -1);
 		return listOfList;
@@ -159,23 +150,23 @@ public class Client2 extends PMClientBase {
 				}
 
 				if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-					logger.log(Logger.Level.TRACE, "Received expected result:");
+					logTrace( "Received expected result:");
 					for (Integer a : actual) {
-						logger.log(Logger.Level.TRACE, "id:" + a);
+						logTrace( "id:" + a);
 					}
 					count++;
 				} else {
-					logger.log(Logger.Level.ERROR, "Did not receive expected result:");
+					logErr( "Did not receive expected result:");
 					for (Integer e : expected) {
-						logger.log(Logger.Level.ERROR, " Expected id:" + e);
+						logErr( " Expected id:" + e);
 					}
 					for (Integer a : actual) {
-						logger.log(Logger.Level.ERROR, "Actual id:" + a);
+						logErr( "Actual id:" + a);
 					}
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Result set that was returned had 0 length");
+				logErr( "Result set that was returned had 0 length");
 			}
 
 		}
@@ -199,7 +190,7 @@ public class Client2 extends PMClientBase {
 					count++;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Result set that was returned had 0 length");
+				logErr( "Result set that was returned had 0 length");
 			}
 		}
 		if (count == listOfList.size()) {
@@ -212,16 +203,16 @@ public class Client2 extends PMClientBase {
 		boolean result = false;
 		if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 			for (Employee e : expected) {
-				logger.log(Logger.Level.TRACE, "Received expected result:" + e);
+				logTrace( "Received expected result:" + e);
 			}
 			result = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Did not receive expected result:");
+			logErr( "Did not receive expected result:");
 			for (Employee e : expected) {
-				logger.log(Logger.Level.ERROR, "expected employee:" + e);
+				logErr( "expected employee:" + e);
 			}
 			for (Employee e : actual) {
-				logger.log(Logger.Level.ERROR, "actual employee :" + e);
+				logErr( "actual employee :" + e);
 			}
 		}
 		return result;
@@ -237,56 +228,56 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void persistExceptionsTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		logger.log(Logger.Level.INFO, "Testing persisting an entity twice ");
+		logMsg( "Testing persisting an entity twice ");
 
 		try {
 			getEntityManager().detach(orders[0]);
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Try to persist an existing Order");
+			logTrace( "Try to persist an existing Order");
 			getEntityManager().persist(orders[0]);
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
-			logger.log(Logger.Level.ERROR, "A PersistenceException was not thrown");
+			logErr( "A PersistenceException was not thrown");
 		} catch (EntityExistsException eee) {
-			logger.log(Logger.Level.TRACE, "EntityExistsException Caught as Expected:", eee);
+			logTrace( "EntityExistsException Caught as Expected:", eee);
 			pass1 = true;
 		} catch (PersistenceException pe) {
-			logger.log(Logger.Level.TRACE, "A PersistentException was caught:", pe);
+			logTrace( "A PersistentException was caught:", pe);
 			pass1 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
+				logErr( "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
-		logger.log(Logger.Level.INFO, "Testing non-entity ");
+		logMsg( "Testing non-entity ");
 		try {
 			getEntityTransaction().begin();
 			getEntityManager().persist(this);
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException was not thrown");
+			logErr( "IllegalArgumentException was not thrown");
 		} catch (IllegalArgumentException iae) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException caught as expected");
+			logTrace( "IllegalArgumentException caught as expected");
 			pass2 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in while rolling back TX:", re);
+				logErr( "Unexpected Exception in while rolling back TX:", re);
 			}
 		}
 
@@ -304,31 +295,31 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void refreshRemovedObjectEntityNotFoundExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Finding Order");
+			logTrace( "Finding Order");
 			Order o = getEntityManager().find(Order.class, 1);
-			logger.log(Logger.Level.TRACE, "Removing all data");
+			logTrace( "Removing all data");
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
-			logger.log(Logger.Level.TRACE, "Refreshing previous order");
+			logTrace( "Refreshing previous order");
 			getEntityManager().refresh(o);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "EntityNotFoundException not thrown");
+			logErr( "EntityNotFoundException not thrown");
 		} catch (EntityNotFoundException e) {
-			logger.log(Logger.Level.TRACE, "EntityNotFoundException Caught as Expected.");
+			logTrace( "EntityNotFoundException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -346,7 +337,7 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void refreshRemovedObjectMapEntityNotFoundExceptionTest() throws Exception {
 		boolean pass = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
@@ -354,24 +345,24 @@ public class Client2 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			Order o = getEntityManager().find(Order.class, 2);
-			logger.log(Logger.Level.TRACE, "Removing all data");
+			logTrace( "Removing all data");
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
-			logger.log(Logger.Level.TRACE, "Refreshing previous order");
+			logTrace( "Refreshing previous order");
 			getEntityManager().refresh(o, myMap);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "EntityNotFoundException not thrown");
+			logErr( "EntityNotFoundException not thrown");
 		} catch (EntityNotFoundException e) {
-			logger.log(Logger.Level.TRACE, "EntityNotFoundException Caught as Expected.");
+			logTrace( "EntityNotFoundException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -389,32 +380,32 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void refreshRemovedObjectLockModeTypeEntityNotFoundExceptionTest() throws Exception {
 		boolean pass = false;
 
 		try {
 			getEntityTransaction().begin();
 			Order o = getEntityManager().find(Order.class, 3);
-			logger.log(Logger.Level.TRACE, "Removing all data");
+			logTrace( "Removing all data");
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityManager().refresh(o, LockModeType.PESSIMISTIC_READ);
-			logger.log(Logger.Level.TRACE, "Refreshing previous order");
+			logTrace( "Refreshing previous order");
 			getEntityManager().refresh(o, LockModeType.PESSIMISTIC_READ);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "EntityNotFoundException not thrown");
+			logErr( "EntityNotFoundException not thrown");
 		} catch (EntityNotFoundException e) {
-			logger.log(Logger.Level.TRACE, "EntityNotFoundException Caught as Expected.");
+			logTrace( "EntityNotFoundException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -432,7 +423,7 @@ public class Client2 extends PMClientBase {
 	 */
 	@SetupMethod(name = "setupOrderData")
 	@CleanupMethod(name = "cleanupData")
-	@Test
+	
 	public void refreshRemovedObjectLockModeTypeMapEntityNotFoundExceptionTest() throws Exception {
 		boolean pass = false;
 		Map<String, Object> myMap = new HashMap<String, Object>();
@@ -440,25 +431,25 @@ public class Client2 extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 			Order o = getEntityManager().find(Order.class, 4);
-			logger.log(Logger.Level.TRACE, "Removing all data");
+			logTrace( "Removing all data");
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityManager().refresh(o, LockModeType.PESSIMISTIC_READ, myMap);
-			logger.log(Logger.Level.TRACE, "Refreshing previous order");
+			logTrace( "Refreshing previous order");
 			getEntityManager().refresh(o, LockModeType.PESSIMISTIC_READ, myMap);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.ERROR, "EntityNotFoundException not thrown");
+			logErr( "EntityNotFoundException not thrown");
 		} catch (EntityNotFoundException e) {
-			logger.log(Logger.Level.TRACE, "EntityNotFoundException Caught as Expected.");
+			logTrace( "EntityNotFoundException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -467,30 +458,30 @@ public class Client2 extends PMClientBase {
 		}
 	}
 
-	private void createOrderData() {
+	public void createOrderData() {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Creating Orders");
+			logMsg( "Creating Orders");
 			orders[0] = new Order(1, 111, "desc1");
 			orders[1] = new Order(2, 222, "desc2");
 			orders[2] = new Order(3, 333, "desc3");
 			orders[3] = new Order(4, 444, "desc4");
 			orders[4] = new Order(5, 555, "desc5");
 			for (Order o : orders) {
-				logger.log(Logger.Level.TRACE, "Persisting order:" + o.toString());
+				logTrace( "Persisting order:" + o.toString());
 				getEntityManager().persist(o);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
@@ -499,7 +490,7 @@ public class Client2 extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Creating Employees");
+			logMsg( "Creating Employees");
 
 			final Date d1 = getUtilDate("2000-02-14");
 			final Date d2 = getUtilDate("2001-06-27");
@@ -516,26 +507,26 @@ public class Client2 extends PMClientBase {
 			for (Employee e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					logger.log(Logger.Level.TRACE, "persisted employee:" + e);
+					logTrace( "persisted employee:" + e);
 				}
 			}
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
-	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+	public void removeTestData() {
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -545,14 +536,14 @@ public class Client2 extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

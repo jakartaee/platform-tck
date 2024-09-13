@@ -20,15 +20,13 @@
 
 package ee.jakarta.tck.persistence.core.types.generator;
 
-import java.lang.System.Logger;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
 
 public class Client4 extends Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client4.class.getName());
+
 
 	private DataTypes4 d12;
 
@@ -36,44 +34,39 @@ public class Client4 extends Client {
 
 	public Client4() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_types_generator4.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client4 theTests = new Client4();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
 	 * @class.setup_props: db.supports.sequence;
 	 */
-	@BeforeEach
-	public void setupDataTypes4() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupDataTypes4");
+	
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			String s = System.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
-				logger.log(Logger.Level.INFO, "db.supports.sequence:" + supports_sequence);
+				logMsg( "db.supports.sequence:" + supports_sequence);
 				if (supports_sequence) {
 					createSequenceGenerator();
 					removeTestData();
 					createDataTypes4Data();
 				}
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"The property db.supports.sequence is not defined in the ts.jte, this must be corrected before running tests");
 				throw new Exception("setupDataTypes4 failed");
 
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("setupDataTypes4 failed:", e);
 		}
 	}
@@ -86,7 +79,7 @@ public class Client4 extends Client {
 	 * @test_Strategy: A sequence generator may be specified on the primary key
 	 * property
 	 */
-	@Test
+	
 	public void sequenceGeneratorOnPropertyTest() throws Exception {
 
 		boolean pass = true;
@@ -96,16 +89,16 @@ public class Client4 extends Client {
 			try {
 				getEntityTransaction().begin();
 				clearCache();
-				logger.log(Logger.Level.INFO, "Doing a find of id: " + d12.getId());
+				logMsg( "Doing a find of id: " + d12.getId());
 				DataTypes4 d = getEntityManager().find(DataTypes4.class, d12.getId());
 
 				if (d != null) {
 					Integer i = d.getIntegerData();
 					if (i.equals(d12.getIntegerData())) {
-						logger.log(Logger.Level.TRACE, "find returned correct Integer value:" + i);
+						logTrace( "find returned correct Integer value:" + i);
 						d.setIntegerData(newInt);
 					} else {
-						logger.log(Logger.Level.ERROR, "find did not return correct Integer value, expected: "
+						logErr( "find did not return correct Integer value, expected: "
 								+ d12.getIntegerData() + ", actual:" + i);
 						pass = false;
 					}
@@ -113,28 +106,28 @@ public class Client4 extends Client {
 					getEntityManager().merge(d);
 					getEntityManager().flush();
 					clearCache();
-					logger.log(Logger.Level.INFO, "Doing a find of merged data for id: " + d.getId());
+					logMsg( "Doing a find of merged data for id: " + d.getId());
 					DataTypes4 d2 = getEntityManager().find(DataTypes4.class, d.getId());
 					i = d2.getIntegerData();
 					if (i.equals(d2.getIntegerData())) {
-						logger.log(Logger.Level.TRACE, "find returned correct merged Integer value:" + i);
+						logTrace( "find returned correct merged Integer value:" + i);
 					} else {
-						logger.log(Logger.Level.ERROR, "find did not return correct Integer value, expected: "
+						logErr( "find did not return correct Integer value, expected: "
 								+ d.getIntegerData() + ", actual:" + i);
 						pass = false;
 					}
 
 					getEntityTransaction().commit();
 				} else {
-					logger.log(Logger.Level.ERROR, "find returned null result");
+					logErr( "find returned null result");
 					pass = false;
 				}
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+				logErr( "Unexpected exception occurred", e);
 				pass = false;
 			}
 		} else {
-			logger.log(Logger.Level.INFO, "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
+			logMsg( "WARNING: Test not run because db.supports.sequence set to false in ts.jte");
 		}
 		if (!pass)
 			throw new Exception("sequenceGeneratorOnEntityTest failed");
@@ -147,19 +140,19 @@ public class Client4 extends Client {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.TRACE, "in createDataTypes4Data");
+			logTrace( "in createDataTypes4Data");
 
-			logger.log(Logger.Level.TRACE, "new DataType4");
+			logTrace( "new DataType4");
 			d12 = new DataTypes4(500);
-			logger.log(Logger.Level.TRACE, "Persist DataType4");
+			logTrace( "Persist DataType4");
 			getEntityManager().persist(d12);
-			logger.log(Logger.Level.TRACE, "DataType4 id:" + d12.getId());
+			logTrace( "DataType4 id:" + d12.getId());
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 	}
 

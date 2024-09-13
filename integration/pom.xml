@@ -49,13 +49,6 @@
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-            <version>${javatest.version}</version>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
     </dependencies>
     <build>
         <!-- Include the container descriptors in the output artifact -->

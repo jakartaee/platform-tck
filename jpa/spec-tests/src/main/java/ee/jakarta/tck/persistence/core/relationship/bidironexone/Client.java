@@ -16,41 +16,33 @@
 
 package ee.jakarta.tck.persistence.core.relationship.bidironexone;
 
-import java.lang.System.Logger;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "BiDir1X1Person", pkgName + "BiDir1X1Project" };
-		return createDeploymentJar("jpa_core_relationship_bidironexone.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -67,9 +59,8 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: RelationShip OneToOne Mapping
 	 *
 	 */
-	@Test
 	public void biDir1X1Test1() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin biDir1X1Test1");
+		logTrace( "Begin biDir1X1Test1");
 		boolean pass = false;
 		try {
 			getEntityTransaction().begin();
@@ -82,7 +73,7 @@ public class Client extends PMClientBase {
 			// persist project
 			getEntityManager().persist(project);
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.TRACE, "persisted Project this in turn must persist Person too..");
+			logTrace( "persisted Project this in turn must persist Person too..");
 
 			getEntityTransaction().begin();
 
@@ -90,26 +81,26 @@ public class Client extends PMClientBase {
 			// persisting project must have persisted person too
 			BiDir1X1Person newPerson = getEntityManager().find(BiDir1X1Person.class, 1L);
 			if (newPerson != null) {
-				logger.log(Logger.Level.TRACE, "Found Searched Person Entity");
+				logTrace( "Found Searched Person Entity");
 				if ((getEntityManager().contains(newPerson)) && (newPerson.getName().equals("Duke"))) {
-					logger.log(Logger.Level.TRACE, "biDir1X1Test1: Expected results received");
+					logTrace( "biDir1X1Test1: Expected results received");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.TRACE, "searched Person not found");
+				logTrace( "searched Person not found");
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
 
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -118,21 +109,20 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -142,14 +132,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM BIDIR1X1PROJECT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

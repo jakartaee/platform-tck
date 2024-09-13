@@ -16,18 +16,19 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.From;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
 import ee.jakarta.tck.persistence.common.schema30.Order;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CollectionJoin;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -37,17 +38,14 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.ListJoin;
 import jakarta.persistence.criteria.SetJoin;
 
-public class Client3 extends UtilOrderData {
+public class Client3 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_from3.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
 
 	/*
 	 * @testName: joinCollectionAttributeTest
@@ -60,8 +58,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionAttributeTest() throws Exception {
+		public void joinCollectionAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -79,15 +76,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -107,8 +104,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionAttributeJoinTypeTest() throws Exception {
+		public void joinCollectionAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -126,15 +122,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -154,8 +150,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionStringTest() throws Exception {
+		public void joinCollectionStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -173,15 +168,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -201,8 +196,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinCollectionStringJoinTypeTest() throws Exception {
+		public void joinCollectionStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -220,15 +214,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -248,8 +242,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetAttributeTest() throws Exception {
+		public void joinSetAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -267,15 +260,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -295,8 +288,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c INNER JOIN c.orders2 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetAttributeJoinTypeTest() throws Exception {
+		public void joinSetAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -314,15 +306,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -342,8 +334,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c JOIN c.orders2 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetStringTest() throws Exception {
+		public void joinSetStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -361,15 +352,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -389,8 +380,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c INNER JOIN c.orders o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinSetStringJoinTypeTest() throws Exception {
+		public void joinSetStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -408,15 +398,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -436,8 +426,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListAttributeTest() throws Exception {
+		public void joinListAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -455,15 +444,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -483,8 +472,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListAttributeJoinTypeTest() throws Exception {
+		public void joinListAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -502,15 +490,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -530,8 +518,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c JOIN c.orders3 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListStringTest() throws Exception {
+		public void joinListStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -549,15 +536,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -577,8 +564,7 @@ public class Client3 extends UtilOrderData {
 	 * SELECT c FROM Customer c INNER JOIN c.orders3 o WHERE (o.id = 1)
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinListStringJoinTypeTest() throws Exception {
+		public void joinListStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -596,15 +582,15 @@ public class Client3 extends UtilOrderData {
 			expectedPKs = new String[1];
 			expectedPKs[0] = "1";
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 

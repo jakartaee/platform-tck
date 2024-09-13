@@ -16,23 +16,19 @@
 
 package ee.jakarta.tck.persistence.jpa22.repeatable.namedentitygraph;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityGraph;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	private static final long serialVersionUID = 22L;
 
@@ -43,41 +39,33 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Department", pkgName + "Employee", pkgName + "Employee2",
-				pkgName + "Employee3" };
-		return createDeploymentJar("jpa_jpa22_repeatable_namedentitygraph.jar", pkgNameWithoutSuffix,
-				(String[]) classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupEmployeeData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupOrderData");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createEmployeeData();
 			displayMap(new Properties());
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
-	@AfterEach
-	public void cleanupEmployeeData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
 			cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -88,7 +76,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use getName to get the name of the named entity graph in the
 	 * Employee2 entity that has no name
 	 */
-	@Test
+	
 	public void entityGraphGetNameNoNameExistsTest() throws Exception {
 		boolean pass = false;
 
@@ -96,13 +84,13 @@ public class Client extends PMClientBase {
 		if (egs.size() == 1) {
 			EntityGraph<?> e = egs.get(0);
 			if (e.getName().equals("Employee2")) {
-				logger.log(Logger.Level.TRACE, "Received expected name:" + e.getName());
+				logTrace( "Received expected name:" + e.getName());
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected name: Employee2, actual:" + e.getName());
+				logErr( "Expected name: Employee2, actual:" + e.getName());
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected 1 graph to be returned, instead got:" + egs.size());
+			logErr( "Expected 1 graph to be returned, instead got:" + egs.size());
 		}
 
 		if (!pass) {
@@ -117,17 +105,17 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Use getName to get the name of the entity graph
 	 */
-	@Test
+	
 	public void getNameTest() throws Exception {
 		boolean pass = false;
 
 		EntityGraph<Employee2> eg = getEntityManager().createEntityGraph(Employee2.class);
 
 		if (eg.getName() == null) {
-			logger.log(Logger.Level.TRACE, "Received expected null");
+			logTrace( "Received expected null");
 			pass = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Expected name: null, actual:" + eg.getName());
+			logErr( "Expected name: null, actual:" + eg.getName());
 		}
 
 		if (!pass) {
@@ -143,7 +131,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use getEntityGraph to get the named entity graphs in the
 	 * Employee entity
 	 */
-	@Test
+	
 	public void getEntityGraphsClassTest() throws Exception {
 		boolean pass = false;
 		List<String> expected = new ArrayList<String>();
@@ -159,20 +147,20 @@ public class Client extends PMClientBase {
 				actual.add(e.getName());
 			}
 			if (actual.containsAll(expected) && expected.containsAll(actual) && actual.size() == expected.size()) {
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected results");
+				logErr( "Expected results");
 				for (String s : expected) {
-					logger.log(Logger.Level.ERROR, "expected:" + s);
+					logErr( "expected:" + s);
 				}
-				logger.log(Logger.Level.ERROR, "Actual results");
+				logErr( "Actual results");
 				for (String s : actual) {
-					logger.log(Logger.Level.ERROR, "actual:" + s);
+					logErr( "actual:" + s);
 				}
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "No named entity graphs were returned eventhough they exist in entity");
+			logErr( "No named entity graphs were returned eventhough they exist in entity");
 		}
 
 		if (!pass) {
@@ -184,7 +172,7 @@ public class Client extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Creating Employees");
+			logMsg( "Creating Employees");
 
 			final Date d1 = getUtilDate("2000-02-14");
 			final Date d2 = getUtilDate("2001-06-27");
@@ -196,7 +184,7 @@ public class Client extends PMClientBase {
 			deptRef[1] = new Department(2, "Administration");
 			for (Department d : deptRef) {
 				getEntityManager().persist(d);
-				logger.log(Logger.Level.TRACE, "persisted department:" + d);
+				logTrace( "persisted department:" + d);
 			}
 
 			empRef[0] = new Employee3(1, "Alan", "Frechette", d1, (float) 35000.0);
@@ -213,26 +201,26 @@ public class Client extends PMClientBase {
 			for (Employee3 e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					logger.log(Logger.Level.TRACE, "persisted employee3:" + e);
+					logTrace( "persisted employee3:" + e);
 				}
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -242,14 +230,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM DEPARTMENT").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -16,14 +16,10 @@
 
 package ee.jakarta.tck.persistence.core.entityManagerFactory;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -34,41 +30,16 @@ import jakarta.persistence.metamodel.Metamodel;
 
 public class Client2 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	Properties props = null;
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Member_", pkgName + "Member", pkgName + "Order_", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManagerFactory2.jar", pkgNameWithoutSuffix, classes);
-
-	}
-
-	@BeforeEach
-	public void setupNoData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupNoData");
-		try {
-			super.setup();
-			createDeployment();
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("Setup failed:", e);
-		}
-	}
-
-	@AfterEach
-	public void cleanupNoData() throws Exception {
-		try {
-			super.cleanup();
-		} finally {
-			removeTestJarFromCP();
-		}
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -79,7 +50,7 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create EntityManagerFactory in try with resources block and
 	 * verify whether it's open inside and outside of the try block.
 	 */
-	@Test
+	
 	public void autoCloseableTest() throws Exception {
 		EntityManagerFactory emf = null;
 		try (final EntityManagerFactory emfLocal = Persistence.createEntityManagerFactory(getPersistenceUnitName(),
@@ -112,18 +83,18 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Get a MetaModel Object from the EntityManagerFactory and make
 	 * sure it is not null
 	 */
-	@Test
+	
 	public void getMetamodelTest() throws Exception {
 		boolean pass = false;
 		try {
 			Metamodel mm = getEntityManager().getEntityManagerFactory().getMetamodel();
 			if (mm == null) {
-				logger.log(Logger.Level.ERROR, "getMetamodel() returned a null result");
+				logErr( "getMetamodel() returned a null result");
 			} else {
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getMetamodelTest failed");
@@ -138,18 +109,18 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Get a PersistenceUnitUtil Object from the
 	 * EntityManagerFactory an make sure it is not null
 	 */
-	@Test
+	
 	public void getPersistenceUnitUtil() throws Exception {
 		boolean pass = false;
 		try {
 			PersistenceUnitUtil puu = getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil();
 			if (puu == null) {
-				logger.log(Logger.Level.ERROR, "getPersistenceUnitUtil() returned a null result");
+				logErr( "getPersistenceUnitUtil() returned a null result");
 			} else {
 				pass = true;
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getPersistenceUnitUtil failed");
@@ -165,7 +136,7 @@ public class Client2 extends PMClientBase {
 	 * can be used to create a query
 	 *
 	 */
-	@Test
+	
 	public void getCriteriaBuilderTest() throws Exception {
 		boolean pass = false;
 		try {
@@ -174,18 +145,18 @@ public class Client2 extends PMClientBase {
 				getEntityTransaction().begin();
 				CriteriaQuery<Object> cquery = cbuilder.createQuery();
 				if (cquery != null) {
-					logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+					logTrace( "Obtained Non-null Criteria Query");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+					logErr( "Failed to get Non-null Criteria Query");
 				}
 
 				getEntityTransaction().commit();
 			} else {
-				logger.log(Logger.Level.ERROR, "getCriteriaBuilder() returned null");
+				logErr( "getCriteriaBuilder() returned null");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass) {
 			throw new Exception("getCriteriaBuilderTest failed");

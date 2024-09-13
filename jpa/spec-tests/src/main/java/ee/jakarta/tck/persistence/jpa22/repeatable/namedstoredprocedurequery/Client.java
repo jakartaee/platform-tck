@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.jpa22.repeatable.namedstoredprocedurequery;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,18 +24,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.ParameterMode;
 import jakarta.persistence.StoredProcedureQuery;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final long serialVersionUID = 22L;
 
@@ -55,28 +51,22 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee" };
-		return createDeploymentJar("jpa_jpa22_repeatable_namedstoredprocedurequery.jar", pkgNameWithoutSuffix,
-				(String[]) classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
+
 	/*
-	 * setupEmployeeData() is called before each test
+	 * setup() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupEmployeeData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupOrderData");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setupOrderData");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createEmployeeData();
 			map.putAll(getEntityManager().getProperties());
@@ -84,20 +74,19 @@ public class Client extends PMClientBase {
 			displayMap(map);
 			dataBaseName = System.getProperty("jdbc.db");
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
-	@AfterEach
 	public void cleanupData() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
 			cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -109,7 +98,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringTest() throws Exception {
 		boolean pass = false;
 
@@ -123,16 +112,16 @@ public class Client extends PMClientBase {
 			if (oActual instanceof String) {
 				String actual = (String) oActual;
 				if (actual.equals(emp0.getFirstName())) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + actual);
+					logTrace( "Received expected result:" + actual);
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected result: " + emp0.getFirstName() + ", actual:" + actual);
+					logErr( "Expected result: " + emp0.getFirstName() + ", actual:" + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected String to be returned, actual:" + oActual.getClass());
+				logErr( "Expected String to be returned, actual:" + oActual.getClass());
 			}
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
+			logErr( "Received unexpected exception:", ex);
 		}
 		getEntityTransaction().commit();
 
@@ -151,7 +140,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringClassArrayTest() throws Exception {
 		boolean pass = false;
 		getEntityTransaction().begin();
@@ -159,7 +148,7 @@ public class Client extends PMClientBase {
 			Class<?>[] cArray = { Employee.class };
 			StoredProcedureQuery spq = getEntityManager().createStoredProcedureQuery("GetEmpASCFromRS", cArray);
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				logger.log(Logger.Level.TRACE, "register refcursor parameter");
+				logTrace( "register refcursor parameter");
 				spq.registerStoredProcedureParameter(1, void.class, ParameterMode.REF_CURSOR);
 			}
 			if (spq.execute()) {
@@ -171,16 +160,16 @@ public class Client extends PMClientBase {
 					}
 					pass = verifyListOfListEmployeeIds(expected, listOfList);
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get the correct number of result sets returned, expected: 1, actual:"
 									+ listOfList.size());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected execute() to return true, actual: false");
+				logErr( "Expected execute() to return true, actual: false");
 			}
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
+			logErr( "Received unexpected exception:", ex);
 		}
 		getEntityTransaction().commit();
 
@@ -200,7 +189,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createStoredProcedureQueryStringStringArrayTest() throws Exception {
 		boolean pass = false;
 
@@ -212,7 +201,7 @@ public class Client extends PMClientBase {
 					sArray);
 			spq.registerStoredProcedureParameter(1, Integer.class, ParameterMode.IN);
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				logger.log(Logger.Level.TRACE, "register refcursor parameter");
+				logTrace( "register refcursor parameter");
 				spq.registerStoredProcedureParameter(2, void.class, ParameterMode.REF_CURSOR);
 			}
 			spq.setParameter(1, 1);
@@ -225,15 +214,15 @@ public class Client extends PMClientBase {
 					expected.add(new Employee(emp0.getId(), emp0.getFirstName(), emp0.getLastName()));
 					pass = verifyListOfListEmployees(expected, listOfList);
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get the correct number of result sets returned, expected: 1, actual:"
 									+ listOfList.size());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected execute() to return true, actual: false");
+				logErr( "Expected execute() to return true, actual: false");
 			}
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
+			logErr( "Received unexpected exception:", ex);
 		}
 		getEntityTransaction().commit();
 
@@ -253,7 +242,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
+	
 	public void createNamedStoredProcedureQueryStringTest() throws Exception {
 		boolean pass = false;
 		getEntityTransaction().begin();
@@ -261,7 +250,7 @@ public class Client extends PMClientBase {
 		try {
 			StoredProcedureQuery spq = null;
 			if (dataBaseName.equalsIgnoreCase(ORACLE) || dataBaseName.equalsIgnoreCase(POSTGRESQL)) {
-				logger.log(Logger.Level.TRACE, "Calling refcursor specific named stored procedure query");
+				logTrace( "Calling refcursor specific named stored procedure query");
 				spq = getEntityManager().createNamedStoredProcedureQuery("get-id-firstname-lastname-refcursor");
 			} else {
 				spq = getEntityManager().createNamedStoredProcedureQuery("get-id-firstname-lastname");
@@ -274,16 +263,16 @@ public class Client extends PMClientBase {
 					expected.add(new Employee(emp0.getId(), emp0.getFirstName(), emp0.getLastName()));
 					pass = verifyListOfListEmployees(expected, listOfList);
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not get the correct number of result sets returned, expected: 1, actual:"
 									+ listOfList.size());
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected execute() to return true, actual: false");
+				logErr( "Expected execute() to return true, actual: false");
 			}
 
 		} catch (Exception ex) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception:", ex);
+			logErr( "Received unexpected exception:", ex);
 		}
 		getEntityTransaction().commit();
 
@@ -297,7 +286,7 @@ public class Client extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Creating Employees");
+			logMsg( "Creating Employees");
 
 			final Date d1 = getUtilDate("2000-02-14");
 			final Date d2 = getUtilDate("2001-06-27");
@@ -314,26 +303,26 @@ public class Client extends PMClientBase {
 			for (Employee e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					logger.log(Logger.Level.TRACE, "persisted employee:" + e);
+					logTrace( "persisted employee:" + e);
 				}
 			}
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -343,20 +332,20 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}
 
 	private List<List<Employee>> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {
-		logger.log(Logger.Level.TRACE, "in getResultSetsFromStoredProcedure");
+		logTrace( "in getResultSetsFromStoredProcedure");
 		boolean results = true;
 		List<List<Employee>> listOfList = new ArrayList<List<Employee>>();
 		int rsnum = 1;
@@ -364,19 +353,19 @@ public class Client extends PMClientBase {
 
 		do {
 			if (results) {
-				logger.log(Logger.Level.TRACE, "Processing set:" + rsnum);
+				logTrace( "Processing set:" + rsnum);
 				List<Employee> empList = new ArrayList<Employee>();
 				@SuppressWarnings("unchecked")
 				List<Employee> list = spq.getResultList();
 				if (list != null) {
-					logger.log(Logger.Level.TRACE, "Getting result set: " + (rsnum) + ", size:" + list.size());
+					logTrace( "Getting result set: " + (rsnum) + ", size:" + list.size());
 					for (Object o : list) {
 						if (o instanceof Employee) {
 							Employee e = (Employee) o;
-							logger.log(Logger.Level.TRACE, "Saving:" + e);
+							logTrace( "Saving:" + e);
 							empList.add(e);
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Did not get instance of Employee, instead got:" + o.getClass().getName());
 						}
 					}
@@ -384,16 +373,16 @@ public class Client extends PMClientBase {
 						listOfList.add(empList);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Result set[" + rsnum + "] returned was null");
+					logErr( "Result set[" + rsnum + "] returned was null");
 				}
 				rsnum++;
 			} else {
 				rowsAffected = spq.getUpdateCount();
 				if (rowsAffected >= 0)
-					logger.log(Logger.Level.TRACE, "rowsAffected:" + rowsAffected);
+					logTrace( "rowsAffected:" + rowsAffected);
 			}
 			results = spq.hasMoreResults();
-			logger.log(Logger.Level.TRACE, "Results:" + results);
+			logTrace( "Results:" + results);
 
 		} while (results || rowsAffected != -1);
 		return listOfList;
@@ -411,23 +400,23 @@ public class Client extends PMClientBase {
 				}
 
 				if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-					logger.log(Logger.Level.TRACE, "Received expected result:");
+					logTrace( "Received expected result:");
 					for (Integer a : actual) {
-						logger.log(Logger.Level.TRACE, "id:" + a);
+						logTrace( "id:" + a);
 					}
 					count++;
 				} else {
-					logger.log(Logger.Level.ERROR, "Did not receive expected result:");
+					logErr( "Did not receive expected result:");
 					for (Integer e : expected) {
-						logger.log(Logger.Level.ERROR, " Expected id:" + e);
+						logErr( " Expected id:" + e);
 					}
 					for (Integer a : actual) {
-						logger.log(Logger.Level.ERROR, "Actual id:" + a);
+						logErr( "Actual id:" + a);
 					}
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, "Result set that was returned had 0 length");
+				logErr( "Result set that was returned had 0 length");
 			}
 
 		}
@@ -451,7 +440,7 @@ public class Client extends PMClientBase {
 					count++;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Result set that was returned had 0 length");
+				logErr( "Result set that was returned had 0 length");
 			}
 		}
 		if (count == listOfList.size()) {
@@ -464,16 +453,16 @@ public class Client extends PMClientBase {
 		boolean result = false;
 		if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
 			for (Employee e : expected) {
-				logger.log(Logger.Level.TRACE, "Received expected result:" + e);
+				logTrace( "Received expected result:" + e);
 			}
 			result = true;
 		} else {
-			logger.log(Logger.Level.ERROR, "Did not receive expected result:");
+			logErr( "Did not receive expected result:");
 			for (Employee e : expected) {
-				logger.log(Logger.Level.ERROR, "expected employee:" + e);
+				logErr( "expected employee:" + e);
 			}
 			for (Employee e : actual) {
-				logger.log(Logger.Level.ERROR, "actual employee :" + e);
+				logErr( "actual employee :" + e);
 			}
 		}
 		return result;

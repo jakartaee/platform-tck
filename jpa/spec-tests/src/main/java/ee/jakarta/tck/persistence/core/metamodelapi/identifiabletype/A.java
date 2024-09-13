@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.identifiabletype;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.CollectionTable;
@@ -41,7 +42,7 @@ import jakarta.persistence.Version;
 @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "NAME")) })
 public class A extends B {
 
-	private static final Logger logger = (Logger) System.getLogger(A.class.getName());
+	
 
 	@Id
 	protected String id;
@@ -75,42 +76,42 @@ public class A extends B {
 	}
 
 	public Set<Address> getAddressSet() {
-		logger.log(Logger.Level.TRACE, "getAddressSet");
+		TestUtil.logTrace( "getAddressSet");
 		return sAddress;
 	}
 
 	public void setAddressSet(Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressSet");
+		TestUtil.logTrace( "setAddressSet");
 		this.sAddress = addr;
 	}
 
 	public Collection<Address> getAddressCollection() {
-		logger.log(Logger.Level.TRACE, "getAddressCollection");
+		TestUtil.logTrace( "getAddressCollection");
 		return cAddress;
 	}
 
 	public void setAddressCollection(Collection<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressCollection");
+		TestUtil.logTrace( "setAddressCollection");
 		this.cAddress = addr;
 	}
 
 	public List<Address> getAddressList() {
-		logger.log(Logger.Level.TRACE, "getAddressList");
+		TestUtil.logTrace( "getAddressList");
 		return lAddress;
 	}
 
 	public void setAddressList(List<Address> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressList");
+		TestUtil.logTrace( "setAddressList");
 		this.lAddress = addr;
 	}
 
 	public Map<Address, String> getAddressMap() {
-		logger.log(Logger.Level.TRACE, "getAddressMap");
+		TestUtil.logTrace( "getAddressMap");
 		return mAddress;
 	}
 
 	public void setAddressMap(Map<Address, String> addr) {
-		logger.log(Logger.Level.TRACE, "setAddressMap");
+		TestUtil.logTrace( "setAddressMap");
 		this.mAddress = addr;
 	}
 

@@ -2322,7 +2322,7 @@ public class Client extends ServiceEETest {
     }
   }
 
-  private static class MyCompletionListener implements CompletionListener {
+  public static class MyCompletionListener implements CompletionListener {
 
     public MyCompletionListener() {
       TestUtil.logMsg("MyCompletionListener()");

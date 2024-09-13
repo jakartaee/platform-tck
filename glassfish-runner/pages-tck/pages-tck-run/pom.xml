@@ -46,10 +46,15 @@
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.8.0.Final</version>
+                <version>1.9.1.Final</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+        </dependency>
         </dependencies>
     </dependencyManagement>
 

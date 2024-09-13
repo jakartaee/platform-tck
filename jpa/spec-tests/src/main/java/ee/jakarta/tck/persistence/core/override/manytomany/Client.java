@@ -16,20 +16,21 @@
 
 package ee.jakarta.tck.persistence.core.override.manytomany;
 
-import java.lang.System.Logger;
+
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	private static final Integer COURSE1_ID = 203;
 
@@ -53,26 +54,20 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "Course", pkgName + "Student" };
-		return createDeploymentJar("jpa_core_override_manytomany.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
+			logErr( "Exception:test failed ", e);
 		}
 	}
 
@@ -86,8 +81,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Many-to-Many is tested without using its annotation;instead
 	 * it is overridden in orm.xml.
 	 */
-	@Test
-	public void testNoManyToManyAnnotation() throws Exception {
+		public void testNoManyToManyAnnotation() throws Exception {
 
 		getEntityTransaction().begin();
 		Course mathCourse = createCourse(COURSE1_ID, COURSE1_NAME);
@@ -121,7 +115,7 @@ public class Client extends PMClientBase {
 			Course retrieveScience = getEntityManager().find(Course.class, COURSE2_ID);
 
 			if (retrieveMath.getStudents().size() == 2 && retrieveScience.getStudents().size() == 2) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("Expected many to many relationship between course "
 						+ "and student to have been set. Expected 2 students in Math " + "and 2 in Science, Actual - "
@@ -147,20 +141,20 @@ public class Client extends PMClientBase {
 		return course;
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -171,14 +165,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM STUDENT_2").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

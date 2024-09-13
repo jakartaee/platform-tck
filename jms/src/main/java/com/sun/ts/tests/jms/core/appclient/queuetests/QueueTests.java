@@ -563,7 +563,7 @@ public class QueueTests extends ServiceEETest {
     }
   }
 
-  private static class AutoAckMsgListener implements MessageListener {
+  public static class AutoAckMsgListener implements MessageListener {
     private boolean passed;
 
     QueueSession session;
@@ -1094,7 +1094,7 @@ public class QueueTests extends ServiceEETest {
     }
   }
 
-  private static class RequestorMsgListener implements MessageListener {
+  public static class RequestorMsgListener implements MessageListener {
     QueueSession session = null;
 
     boolean pass = false;

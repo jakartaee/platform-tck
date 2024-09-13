@@ -193,7 +193,9 @@ public final class TimerUtil {
       Timer t = it.next();
       Serializable ser = t.getInfo();
       if (ser != null) {
-        if (testName.trim().equals(getTimerName(t))) {
+        String timerName = getTimerName(t);
+        Helper.getLogger().info("Checking timer("+timerName+"): "+t);
+        if (testName.trim().equals(timerName)) {
           result = t;
           break;
         }

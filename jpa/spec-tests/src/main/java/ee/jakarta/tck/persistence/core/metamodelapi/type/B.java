@@ -51,7 +51,7 @@ public class B implements java.io.Serializable {
 	// ===========================================================
 	// constructors
 	public B() {
-		// logger.log(Logger.Level.TRACE,"Entity B no arg constructor");
+		// logTrace("Entity B no arg constructor");
 	}
 
 	public B(String id, String name, int value) {
