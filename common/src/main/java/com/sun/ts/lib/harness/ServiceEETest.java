@@ -86,8 +86,9 @@ public abstract class ServiceEETest extends EETest {
    */
   public Status run(String[] argv, Properties p) {
     Status status = null;
-    if (TestUtil.iWhereAreWe == TestUtil.VM_HARNESS
-        && this instanceof com.sun.ts.tests.common.vehicle.VehicleClient) {
+    boolean inTestHarness = TestUtil.iWhereAreWe == TestUtil.VM_HARNESS;
+    boolean isVehicleClient = this instanceof com.sun.ts.tests.common.vehicle.VehicleClient;
+    if (inTestHarness && isVehicleClient) {
       TestUtil.logTrace("in ServiceEETest.run() method");
       String sVehicle = TestUtil.getProperty(p, "vehicle");
       String className = this.getClass().getName();
