@@ -40,7 +40,7 @@
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>/jakartaeetck</ts.home>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
-        <version.jakarta.tck.arquillian>1.0.0-M12</version.jakarta.tck.arquillian>
+        <version.jakarta.tck.arquillian>1.0.0-M15</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencyManagement>
@@ -243,65 +243,6 @@
                             <target>
                                 <chmod dir="target/glassfish8/glassfish/bin/asadmin" perm="777"></chmod>
                             </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>03-StopDomain1</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>04-StartDomain1</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>start-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>05-Enable Trace requests</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>set</argument>
-                                <argument>server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>06-StopDomain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
                         </configuration>
                     </execution>
                 </executions>
