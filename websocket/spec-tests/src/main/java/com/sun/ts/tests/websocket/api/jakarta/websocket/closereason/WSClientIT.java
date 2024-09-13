@@ -31,7 +31,7 @@ import jakarta.websocket.CloseReason.CloseCodes;
 
 @Tag("websocket")
 @Tag("platform")
-@Tag("webprofile")
+@Tag("web")
 
 public class WSClientIT {
 

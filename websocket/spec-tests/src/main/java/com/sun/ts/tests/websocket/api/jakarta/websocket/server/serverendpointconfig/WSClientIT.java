@@ -44,7 +44,7 @@ import jakarta.websocket.server.ServerEndpointConfig;
 @ExtendWith(ArquillianExtension.class)
 @Tag("websocket")
 @Tag("platform")
-@Tag("webprofile")
+@Tag("web")
 
 public class WSClientIT {
 
