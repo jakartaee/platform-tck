@@ -222,7 +222,7 @@
                                 create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
                                 create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
                                 create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
-                                create-custom-resource --restype java.net.URL --factoryclass javax.naming.spi.ObjectFactory --property name=http://webServerHost:webServerPort myUrl</glassfish.postBootCommands>
+                                create-custom-resource --restype java.net.URL --factoryclass javax.naming.spi.ObjectFactory --property name=myUrl "http\://webServerHost\:webServerPort"</glassfish.postBootCommands>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <webServerHome>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</webServerHome>
                                 <webServerHost>localhost</webServerHost>
