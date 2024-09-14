@@ -1,6 +1,6 @@
 package ee.jakarta.tck.persistence.ee.entityManager;
 
-import ee.jakarta.tck.persistence.ee.entityManager.Client;
+
 import java.net.URL;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
