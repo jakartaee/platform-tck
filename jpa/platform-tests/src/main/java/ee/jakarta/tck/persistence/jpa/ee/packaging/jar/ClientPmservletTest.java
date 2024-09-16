@@ -128,8 +128,8 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packa
 
 
                 // The resources
-                        libURL = Client.class.getResource("/persistence.xml");
-                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "/persistence.xml");
+                        libURL = Client.class.getResource("persistence.xml");
+                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "persistence.xml");
                         libURL = Client.class.getResource("/orm.xml");
                         jpa_ee_packaging_jar_lib.addAsResource(libURL, "/orm.xml");
                         libURL = Client.class.getResource("/myMappingFile.xml");

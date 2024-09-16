@@ -100,8 +100,8 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityM
                 JavaArchive jpa_core_entityManagerFactoryCloseException_lib = ShrinkWrap.create(JavaArchive.class, "jpa_core_entityManagerFactoryCloseException.jar");
 
                 // The resources
-                        libURL = Client.class.getResource("/persistence.xml");
-                        jpa_core_entityManagerFactoryCloseException_lib.addAsResource(libURL, "/persistence.xml");
+                        libURL = Client.class.getResource("persistence.xml");
+                        jpa_core_entityManagerFactoryCloseException_lib.addAsResource(libURL, "persistence.xml");
 
                 jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsLibrary(jpa_core_entityManagerFactoryCloseException_lib);
 
