@@ -94,7 +94,7 @@ public abstract class ServiceEETest extends EETest {
       String className = this.getClass().getName();
       // use this name for the context root or jndi name to eliminate
       // naming conflicts for apps deployed at the same time
-      String sVehicleEarName = TestUtil.getProperty(p, "vehicle_ear_name");
+      // comment out unused: String sVehicleEarName = TestUtil.getProperty(p, "vehicle_ear_name");
       TestUtil.logTrace("Vehicle to be used for this test is:  " + sVehicle);
       // call to the Deliverable to run in deliverable specific vehicles
       // This should never be called on the server, so there is
