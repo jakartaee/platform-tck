@@ -27,7 +27,7 @@
     </parent>
 
     <artifactId>jakarta-expression-language-tck</artifactId>
-    <version>6.0.1</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>el-tck</name>
