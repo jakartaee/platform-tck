@@ -32,6 +32,7 @@ import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.AnimalShelterInjectedAdapter;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat;
@@ -40,8 +41,9 @@ import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-// import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 
 import org.junit.jupiter.api.AfterEach;
@@ -54,6 +56,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+
 
 import java.lang.System.Logger;
 
@@ -65,18 +71,23 @@ import java.lang.System.Logger;
 /*
  * @class.setup_props: webServerHost; webServerPort; ts_home;
  */
-@ExtendWith(ArquillianExtension.class)
-public class AdaptersCustomizationCDITestIT { //extends ServiceEETest {
 
-  private static final long serialVersionUID = 10L;
+@Tag("tck-javatest")
+@Tag("jsonb")
+@Tag("platform")
+@Tag("web")
+@ExtendWith(ArquillianExtension.class)
+public class AdaptersCustomizationCDIJspTest extends ServiceEETest {
+
+  static final String VEHICLE_ARCHIVE = "jsonb_cdi_customizedmapping_adapters_jsp_vehicle";
 
   private final Jsonb jsonb = JsonbBuilder.create();
 
-  // public static void main(String[] args) {
-  //   EETest t = new AdaptersCustomizationCDITest();
-  //   Status s = t.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) {
+    AdaptersCustomizationCDIJspTest t = new AdaptersCustomizationCDIJspTest();
+    Status s = t.run(args, System.out, System.err);
+    s.exit();
+  }
 
   public void setup(String[] args, Properties p) throws Exception {
     // logMsg("setup ok");
@@ -86,9 +97,9 @@ public class AdaptersCustomizationCDITestIT { //extends ServiceEETest {
     // logMsg("cleanup ok");
   }
 
-  private static final Logger logger = System.getLogger(AdaptersCustomizationCDITestIT.class.getName());
+  private static final Logger logger = System.getLogger(AdaptersCustomizationCDIJspTest.class.getName());
 
-  private static String packagePath = AdaptersCustomizationCDITestIT.class.getPackageName().replace(".", "/");
+  private static String packagePath = AdaptersCustomizationCDIJspTest.class.getPackageName().replace(".", "/");
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
@@ -100,51 +111,49 @@ public class AdaptersCustomizationCDITestIT { //extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
-  @Deployment(testable = false)
-  public static WebArchive createServletDeployment() throws IOException {
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")
+  @Deployment(name = VEHICLE_ARCHIVE, testable = true)
+  public static EnterpriseArchive createServletDeployment() throws IOException {
   
   //   EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_adapters_servlet_vehicle.ear");
-    WebArchive war = ShrinkWrap.create(WebArchive.class, "jsonb_cdi_customizedmapping_adapters_servlet_vehicle_web.war");
-    war.addClass(AdaptersCustomizationCDITestIT.class);
+    WebArchive jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.war");
+    jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.addClass(AdaptersCustomizationCDIJspTest.class)
+     .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
+     .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
+     .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
+     .addClass(com.sun.ts.lib.harness.EETest.class)
+     .addClass(com.sun.ts.lib.harness.EETest.SetupException.class)
+     .addClass(com.sun.ts.lib.harness.EETest.Fault.class)
+     .addClass(com.sun.ts.lib.harness.Status.class)
+     .addClass(com.sun.ts.lib.harness.ServiceEETest.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalIdentifier.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedAdapter.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.AnimalShelterInjectedAdapter.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat.class)
+     .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog.class);
 
-    war.addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class);
-    war.addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class);
-    war.addClass(com.sun.ts.lib.harness.EETest.class);
-    war.addClass(com.sun.ts.lib.harness.RemoteStatus.class);
-    war.addClass(com.sun.ts.lib.harness.Status.class);
-    war.addClass(com.sun.ts.lib.harness.ServiceEETest.class);
+     jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.setWebXML(AdaptersCustomizationCDIJspTest.class.getClassLoader().getResource(packagePath+"/jsp_vehicle_web.xml"));
 
-    war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalIdentifier.class);
-    war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.class);
-    war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedAdapter.class);
-    war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter.class);
-    war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal.class);
-    war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.AnimalShelterInjectedAdapter.class);
-    war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat.class);
-    war.addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog.class);
+    // Web content
+    URL resURL = AdaptersCustomizationCDIJspTest.class.getResource("/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.addAsWebResource(resURL, "/jsp_vehicle.jsp");
+    resURL = AdaptersCustomizationCDIJspTest.class.getResource("/vehicle/jsp/contentRoot/client.html");
+    jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.addAsWebResource(resURL, "/client.html");
 
-    // InputStream inStream = AdaptersCustomizationCDITestIT.class.getClassLoader().getResourceAsStream(packagePath + "/servlet_vehicle_web.xml");
-    // String webXml = editWebXmlString(inStream, "jsonb_cdi_customizedmapping_adapters_servlet_vehicle");
-    // war.setWebXML(new StringAsset(webXml));
-    war.setWebXML(AdaptersCustomizationCDITestIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
-
-    InputStream inStream = AdaptersCustomizationCDITestIT.class.getClassLoader().getResourceAsStream(packagePath+"/beans.xml");
-    String beansXml = toString(inStream);
-    war.addAsWebInfResource(new StringAsset(beansXml), "beans.xml");
-
-  //   war.as(ZipExporter.class).exportTo(new File("/tmp/jsonbprovidertests_servlet_vehicle_web.war"), true);
-  //   ear.addAsModule(war);
-
-    return war;
-
-  }
-
-  public static String toString(InputStream inStream) throws IOException{
-    try (BufferedReader bufReader = new BufferedReader(new InputStreamReader(inStream, StandardCharsets.UTF_8))) {
-      return bufReader.lines().collect(Collectors.joining(System.lineSeparator()));
+    URL warResURL = AdaptersCustomizationCDIJspTest.class.getClassLoader().getResource(packagePath+"/beans.xml");
+    if(warResURL != null) {
+      jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
     }
+
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_adapters_jsp_vehicle.ear");
+    ear.addAsModule(jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web);
+    return ear;
+
   }
 
   /*
@@ -155,6 +164,7 @@ public class AdaptersCustomizationCDITestIT { //extends ServiceEETest {
    * @test_Strategy: Assert that CDI injection is supported in adapters
    */
   @Test
+  @TargetVehicle("jsp")
   public void testCDISupport() throws Exception {
     AnimalShelterInjectedAdapter animalShelter = new AnimalShelterInjectedAdapter();
     animalShelter.addAnimal(new Cat(5, "Garfield", 10.5f, true, true));

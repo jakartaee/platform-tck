@@ -28,10 +28,8 @@ import jakarta.inject.Inject;
 import jakarta.json.bind.adapter.JsonbAdapter;
 
 public class InjectedAdapter implements JsonbAdapter<Animal, AnimalJson> {
-  // @Inject
-  // TODO: Check why Inject is not working. 
-  // creating object instead of Inject for now.
-  private AnimalIdentifier animalIdentifier = new AnimalIdentifier();
+  @Inject
+  private AnimalIdentifier animalIdentifier;
 
   @Override
   public AnimalJson adaptToJson(Animal animal) throws Exception {
