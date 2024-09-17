@@ -31,7 +31,6 @@ import java.util.Vector;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -73,13 +72,13 @@ public class LogFileProcessor {
 	/**
 	 * setup method
 	 */
-	@BeforeAll
 	public void setup() {
 		logFileLocation = System.getProperty("log.file.location");
 
 		if (logFileLocation == null) {
 			logger.log(Logger.Level.ERROR, "LogFileProcessor setup failed ");
 			logger.log(Logger.Level.ERROR, "Please verify that the property log.file.location exists in ts.jte");
+			throw new IllegalArgumentException("Configure log.file.location in your ts.jte");
 		} else {
 			logger.log(Logger.Level.INFO, "log.file.location = " + logFileLocation);
 		}

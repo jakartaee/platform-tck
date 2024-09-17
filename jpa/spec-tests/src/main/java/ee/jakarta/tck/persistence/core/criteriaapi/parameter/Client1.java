@@ -16,13 +16,15 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.parameter;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import jakarta.persistence.Parameter;
 import jakarta.persistence.Query;
@@ -34,25 +36,20 @@ import jakarta.persistence.criteria.Root;
 
 public class Client1 extends Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_criteriaapi_parameter1.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
-	
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			getEntityManager();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -68,9 +65,8 @@ public class Client1 extends Client {
 	 * @test_Strategy: Create a query with 2 named parameters and retrieve
 	 * information about the parameters.
 	 */
-	@Test
-	public void parameterTest1() throws Exception {
-		logger.log(Logger.Level.TRACE, "Starting parameterTest1");
+		public void parameterTest1() throws Exception {
+		logTrace( "Starting parameterTest1");
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -91,24 +87,24 @@ public class Client1 extends Client {
 			ParameterExpression<String> pe = qbuilder.parameter(String.class, "first");
 			Class<?> c = pe.getParameterType();
 			if (c.isAssignableFrom(java.lang.String.class)) {
-				logger.log(Logger.Level.TRACE, "Received expected type from getParameterType()");
+				logTrace( "Received expected type from getParameterType()");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected type String from getParameterType(), instead got:" + c);
+				logErr( "Expected type String from getParameterType(), instead got:" + c);
 			}
 			String name = pe.getName();
 			if (name != null) {
 				if (!name.equals("first")) {
-					logger.log(Logger.Level.ERROR, "getName() returned wrong name, expected: first, actual:" + name);
+					logErr( "getName() returned wrong name, expected: first, actual:" + name);
 				} else {
 					pass2 = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "getName() returned null");
+				logErr( "getName() returned null");
 			}
 			Integer position = pe.getPosition();
 			if (position != null) {
-				logger.log(Logger.Level.ERROR, "getPosition() returned:" + position + ", instead of null");
+				logErr( "getPosition() returned:" + position + ", instead of null");
 			} else {
 				pass3 = true;
 			}
@@ -124,16 +120,16 @@ public class Client1 extends Client {
 			List<Object> list = new ArrayList<Object>(q.getParameters());
 			for (int i = 0; i < list.size(); i++) {
 				Parameter p = (Parameter) list.get(i);
-				logger.log(Logger.Level.TRACE, "parameter name = " + p.getName());
-				logger.log(Logger.Level.TRACE, "parameter position = " + p.getPosition());
-				logger.log(Logger.Level.TRACE, "parameter type =" + p.getParameterType());
+				logTrace( "parameter name = " + p.getName());
+				logTrace( "parameter position = " + p.getPosition());
+				logTrace( "parameter type =" + p.getParameterType());
 			}
 
 			String sExpected = "first";
 			Parameter p1 = q.getParameter(sExpected);
 			String sActual = p1.getName();
 			if (!sActual.equals(sExpected)) {
-				logger.log(Logger.Level.ERROR, "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
+				logErr( "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass4 = true;
 			}
@@ -141,14 +137,14 @@ public class Client1 extends Client {
 			sExpected = null;
 			Integer iActual = p1.getPosition();
 			if (iActual != null) {
-				logger.log(Logger.Level.ERROR, "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+				logErr( "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 			} else {
 				pass5 = true;
 			}
 			sExpected = "java.lang.String";
 			sActual = p1.getParameterType().getName();
 			if (!sActual.equals(sExpected)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"p1.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass6 = true;
@@ -158,14 +154,14 @@ public class Client1 extends Client {
 			Parameter p2 = q.getParameter(sExpected);
 			sActual = p2.getName();
 			if (!sActual.equals(sExpected)) {
-				logger.log(Logger.Level.ERROR, "p2.getName() - Expected: " + sExpected + ", actual:" + sActual);
+				logErr( "p2.getName() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass7 = true;
 			}
 			sExpected = null;
 			iActual = p2.getPosition();
 			if (iActual != null) {
-				logger.log(Logger.Level.ERROR, "p2.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+				logErr( "p2.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 			} else {
 				pass8 = true;
 			}
@@ -173,14 +169,14 @@ public class Client1 extends Client {
 			sExpected = "java.lang.String";
 			sActual = p2.getParameterType().getName();
 			if (!sActual.equals(sExpected)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"p2.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass9 = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5 || !pass6 || !pass7 || !pass8 || !pass9) {
@@ -199,9 +195,8 @@ public class Client1 extends Client {
 	 * @test_Strategy: Create a query with a named parameter that is a float and
 	 * retrieve information about the parameter.
 	 */
-	@Test
-	public void parameterTest2() throws Exception {
-		logger.log(Logger.Level.TRACE, "Starting parameterTest2");
+		public void parameterTest2() throws Exception {
+		logTrace( "Starting parameterTest2");
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -223,16 +218,16 @@ public class Client1 extends Client {
 			List<Object> list = new ArrayList<Object>(q.getParameters());
 			for (int i = 0; i < list.size(); i++) {
 				Parameter p = (Parameter) list.get(i);
-				logger.log(Logger.Level.TRACE, "parameter name = " + p.getName());
-				logger.log(Logger.Level.TRACE, "parameter position = " + p.getPosition());
-				logger.log(Logger.Level.TRACE, "parameter type =" + p.getParameterType());
+				logTrace( "parameter name = " + p.getName());
+				logTrace( "parameter position = " + p.getPosition());
+				logTrace( "parameter type =" + p.getParameterType());
 			}
 
 			String sExpected = "salary";
 			Parameter p1 = q.getParameter(sExpected);
 			String sActual = p1.getName();
 			if (!sActual.equals(sExpected)) {
-				logger.log(Logger.Level.ERROR, "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
+				logErr( "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass1 = true;
 			}
@@ -240,21 +235,21 @@ public class Client1 extends Client {
 			sExpected = null;
 			Integer iActual = p1.getPosition();
 			if (iActual != null) {
-				logger.log(Logger.Level.ERROR, "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+				logErr( "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 			} else {
 				pass2 = true;
 			}
 			sExpected = "java.lang.Float";
 			sActual = p1.getParameterType().getName();
 			if (!sActual.equals(sExpected)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"p1.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass3 = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		if (!pass1 || !pass2 || !pass3) {
@@ -272,9 +267,8 @@ public class Client1 extends Client {
 	 * @test_Strategy: Create a query with a named parameter that is a date and and
 	 * retrieve information about the parameter.
 	 */
-	@Test
-	public void parameterTest3() throws Exception {
-		logger.log(Logger.Level.TRACE, "Starting parameterTest3");
+		public void parameterTest3() throws Exception {
+		logTrace( "Starting parameterTest3");
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -296,16 +290,16 @@ public class Client1 extends Client {
 			List<Object> list = new ArrayList<Object>(q.getParameters());
 			for (int i = 0; i < list.size(); i++) {
 				Parameter p = (Parameter) list.get(i);
-				logger.log(Logger.Level.TRACE, "parameter name = " + p.getName());
-				logger.log(Logger.Level.TRACE, "parameter position = " + p.getPosition());
-				logger.log(Logger.Level.TRACE, "parameter type =" + p.getParameterType());
+				logTrace( "parameter name = " + p.getName());
+				logTrace( "parameter position = " + p.getPosition());
+				logTrace( "parameter type =" + p.getParameterType());
 			}
 
 			String sExpected = "hdate";
 			Parameter p1 = q.getParameter(sExpected);
 			String sActual = p1.getName();
 			if (!sActual.equals(sExpected)) {
-				logger.log(Logger.Level.ERROR, "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
+				logErr( "p1.getName() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass1 = true;
 			}
@@ -313,21 +307,21 @@ public class Client1 extends Client {
 			sExpected = null;
 			Integer iActual = p1.getPosition();
 			if (iActual != null) {
-				logger.log(Logger.Level.ERROR, "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+				logErr( "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 			} else {
 				pass2 = true;
 			}
 			sExpected = "java.sql.Date";
 			sActual = p1.getParameterType().getName();
 			if (!sActual.equals(sExpected)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"p1.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 			} else {
 				pass3 = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		if (!pass1 || !pass2 || !pass3) {
@@ -344,9 +338,8 @@ public class Client1 extends Client {
 	 * @test_Strategy: Create a query with a parameter where the name is not
 	 * specified and retrieve information about the parameter.
 	 */
-	@Test
-	public void parameterTest4() throws Exception {
-		logger.log(Logger.Level.TRACE, "Starting parameterTest4");
+		public void parameterTest4() throws Exception {
+		logTrace( "Starting parameterTest4");
 		boolean pass1 = false;
 		boolean pass2 = true;
 		CriteriaBuilder qbuilder = getEntityManagerFactory().getCriteriaBuilder();
@@ -369,8 +362,8 @@ public class Client1 extends Client {
 			List<Object> list = new ArrayList<Object>(q.getParameters());
 			for (int i = 0; i < list.size(); i++) {
 				Parameter p = (Parameter) list.get(i);
-				logger.log(Logger.Level.TRACE, "parameter position = " + p.getPosition());
-				logger.log(Logger.Level.TRACE, "parameter type =" + p.getParameterType());
+				logTrace( "parameter position = " + p.getPosition());
+				logTrace( "parameter type =" + p.getParameterType());
 			}
 
 			for (int i = 0; i < list.size(); i++) {
@@ -383,18 +376,18 @@ public class Client1 extends Client {
 				String sExpected = null;
 				Integer iActual = p.getPosition();
 				if (iActual != null) {
-					logger.log(Logger.Level.ERROR, "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
+					logErr( "p1.getPosition() - Expected: " + sExpected + ", actual:" + iActual);
 				}
 				sExpected = "java.lang.String";
 				String sActual = p.getParameterType().getName();
 				if (!sActual.equals(sExpected)) {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"p1.getParameterType() - Expected: " + sExpected + ", actual:" + sActual);
 				}
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		if (!pass1 || !pass2) {

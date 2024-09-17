@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.propagation.cm.jta;
 
-import java.lang.System.Logger;
+
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ import ee.jakarta.tck.persistence.ee.util.AbstractUrlClient;
 
 public class Client extends AbstractUrlClient {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	public static final String SERVLET_NAME = "ServletTest";
 

@@ -16,14 +16,15 @@
 
 package ee.jakarta.tck.persistence.core.annotations.embeddableMapValue;
 
-import java.lang.System.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
@@ -34,25 +35,17 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
 
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_annotations_embeddableMapValue.jar", pkgNameWithoutSuffix, classes);
 
-	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -66,9 +59,8 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Use Embeddable class in MapValue
 	 *
 	 */
-	@Test
-	public void embeddableMapValue() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin embeddableMapValue");
+		public void embeddableMapValue() throws Exception {
+		logTrace( "Begin embeddableMapValue");
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -78,7 +70,7 @@ public class Client extends PMClientBase {
 		EntityTransaction et = getEntityTransaction();
 
 		try {
-			logger.log(Logger.Level.TRACE, "New instances");
+			logTrace( "New instances");
 
 			final Address addr1 = new Address("1", "1 Network Drive", "Burlington", "MA", "01801");
 			final Address addr2 = new Address("2", "Some Address", "Boston", "MA", "01803");
@@ -90,37 +82,37 @@ public class Client extends PMClientBase {
 			locationAddressMap.put("office", addr1);
 			emp1.setLocationAddress(locationAddressMap);
 
-			logger.log(Logger.Level.TRACE, "Created new Employee");
+			logTrace( "Created new Employee");
 
 			et.begin();
 			em.persist(emp1);
-			logger.log(Logger.Level.TRACE, "persisted new Employee");
+			logTrace( "persisted new Employee");
 			em.flush();
 			clearCache();
 
-			logger.log(Logger.Level.TRACE, "query for Employee");
+			logTrace( "query for Employee");
 			final Employee newEmployee = em.find(Employee.class, 1);
 
 			final int newEmployeeId = newEmployee.getId();
 			final String newEmployeeFirstName = newEmployee.getFirstName();
 			final String newEmployeeLastName = newEmployee.getLastName();
 
-			logger.log(Logger.Level.TRACE, "Employee Id = " + newEmployeeId);
-			logger.log(Logger.Level.TRACE, "Employee First Name = " + newEmployeeFirstName);
-			logger.log(Logger.Level.TRACE, "Employee Last Name = " + newEmployeeLastName);
+			logTrace( "Employee Id = " + newEmployeeId);
+			logTrace( "Employee First Name = " + newEmployeeFirstName);
+			logTrace( "Employee Last Name = " + newEmployeeLastName);
 
 			if (newEmployeeId == 1) {
 				pass1 = true;
-				logger.log(Logger.Level.TRACE, "Employee Id match");
+				logTrace( "Employee Id match");
 			}
 
 			if (newEmployeeFirstName.equals("Barack")) {
-				logger.log(Logger.Level.TRACE, "Employee First Name match");
+				logTrace( "Employee First Name match");
 				pass2 = true;
 			}
 
 			if (newEmployeeLastName.equals("Obama")) {
-				logger.log(Logger.Level.TRACE, "Employee Last Name match");
+				logTrace( "Employee Last Name match");
 				pass3 = true;
 			}
 
@@ -132,51 +124,51 @@ public class Client extends PMClientBase {
 					&& officeAddress.getState().equals("MA") && officeAddress.getZip().equals("01801")) {
 
 				pass4 = true;
-				logger.log(Logger.Level.TRACE, "Employee officeAddress match");
+				logTrace( "Employee officeAddress match");
 			}
 
 			if (homeAddress.getStreet().equals("Some Address") && homeAddress.getCity().equals("Boston")
 					&& homeAddress.getState().equals("MA") && homeAddress.getZip().equals("01803")) {
 
 				pass5 = true;
-				logger.log(Logger.Level.TRACE, "Employee HomeAddress match");
+				logTrace( "Employee HomeAddress match");
 			}
 
 			et.commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			logErr( "Unexpected Exception :", e);
 		} finally {
 			try {
 				if (et.isActive()) {
 					et.rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
-			logger.log(Logger.Level.ERROR, "embeddableMapValue failed");
+			logErr( "embeddableMapValue failed");
 		}
 
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -186,14 +178,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from EMPLOYEE_EMBEDED_ADDRESS").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

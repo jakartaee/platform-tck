@@ -61,6 +61,16 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-common</artifactId>
+            <version>${arquillian.jakarta.tck.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>tck-porting-lib</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <!-- Include the container descriptors in the output artifact -->
@@ -69,6 +79,8 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                    <include>**/*.tld</include>
+                    <include>**/zone.tab</include>
                 </includes>
                 <excludes>
                     <exclude>**/build.xml</exclude>

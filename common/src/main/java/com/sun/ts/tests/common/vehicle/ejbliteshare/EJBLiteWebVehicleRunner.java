@@ -27,7 +27,7 @@ import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
@@ -41,12 +41,12 @@ public class EJBLiteWebVehicleRunner implements VehicleRunnable {
   }
 
   protected String getQueryString(Properties p) {
-    return "?testName=" + p.getProperty("testName");
+    return "?testName=" + TestUtil.getProperty(p, "testName");
   }
 
   public Status run(String[] argv, Properties p) {
-    String vehicle = p.getProperty("vehicle");
-    String contextRoot = p.getProperty("vehicle_archive_name");
+    String vehicle = TestUtil.getProperty(p, "vehicle");
+    String contextRoot = TestUtil.getProperty(p, "vehicle_archive_name");
     String requestUrl = "/" + contextRoot + getServletPath(vehicle)
         + getQueryString(p);
 
@@ -56,8 +56,8 @@ public class EJBLiteWebVehicleRunner implements VehicleRunnable {
     int statusCode = Status.NOT_RUN;
     String response = null;
     try {
-      url = ctsURL.getURL("http", p.getProperty("webServerHost"),
-          Integer.parseInt(p.getProperty("webServerPort")), requestUrl);
+      url = ctsURL.getURL("http", TestUtil.getProperty(p, "webServerHost"),
+          Integer.parseInt(TestUtil.getProperty(p, "webServerPort")), requestUrl);
 
       connection = (HttpURLConnection) url.openConnection();
       connection.setRequestMethod("GET");

@@ -16,12 +16,15 @@
 
 package ee.jakarta.tck.persistence.core.metamodelapi.singularattribute;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.metamodel.Attribute;
@@ -33,29 +36,25 @@ import jakarta.persistence.metamodel.Type;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "B", pkgName + "ZipCode" };
-		return createDeploymentJar("jpa_core_metamodelapi_singularattribute.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -68,27 +67,26 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isId() throws Exception {
+		public void isId() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 
 				if (!singAttrib.isId()) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected result singular attribute isId =" + singAttrib.isId());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received UnExpected result singular attribute isId =" + singAttrib.isId());
 				}
 			}
@@ -109,27 +107,26 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isVersion() throws Exception {
+		public void isVersion() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 
 				if (!singAttrib.isVersion()) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected result singular attribute isVersion =" + singAttrib.isVersion());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received UnExpected result singular attribute isVersion =" + singAttrib.isVersion());
 				}
 			}
@@ -150,27 +147,26 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isOptional() throws Exception {
+		public void isOptional() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 
 				if (singAttrib.isOptional()) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected result singular attribute isOptional =" + singAttrib.isOptional());
 					pass = true;
 				} else {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received UnExpected result singular attribute isOptional =" + singAttrib.isOptional());
 				}
 			}
@@ -191,29 +187,28 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getType() throws Exception {
+		public void getType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 
 				Type attributeType = singAttrib.getType();
 				String attributeJavaTypeName = attributeType.getJavaType().getName();
 				if (attributeJavaTypeName.equals("ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address")) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Received expected result singular attribute JavaType =" + attributeJavaTypeName);
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Received Unexpected result singular attribute JavaType =" + attributeJavaTypeName);
 				}
 			}
@@ -234,33 +229,32 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isCollection() throws Exception {
+		public void isCollection() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 
 				boolean b = singAttrib.isCollection();
 				if (!b) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + b);
+					logTrace( "Received expected result:" + b);
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected: false, actual: " + b);
+					logErr( "Expected: false, actual: " + b);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "managedType() returned null");
+				logErr( "managedType() returned null");
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+			logErr( "getMetamodel() returned null");
 		}
 		getEntityTransaction().commit();
 
@@ -277,33 +271,32 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void isAssociation() throws Exception {
+		public void isAssociation() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 
 				boolean b = singAttrib.isAssociation();
 				if (!b) {
-					logger.log(Logger.Level.TRACE, "Received expected result:" + b);
+					logTrace( "Received expected result:" + b);
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "Expected: false, actual: " + b);
+					logErr( "Expected: false, actual: " + b);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "managedType() returned null");
+				logErr( "managedType() returned null");
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "getMetamodel() returned null");
+			logErr( "getMetamodel() returned null");
 		}
 		getEntityTransaction().commit();
 
@@ -320,28 +313,27 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getPersistentAttributeType() throws Exception {
+		public void getPersistentAttributeType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
 					Attribute.PersistentAttributeType pAttribType = singAttrib.getPersistentAttributeType();
 					if (pAttribType == Attribute.PersistentAttributeType.EMBEDDED) {
-						logger.log(Logger.Level.TRACE, "Received expected result " + pAttribType);
+						logTrace( "Received expected result " + pAttribType);
 						pass = true;
 
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected: "
+						logErr( "Expected: "
 								+ Attribute.PersistentAttributeType.EMBEDDED.toString() + ", actual:" + pAttribType);
 					}
 				}
@@ -363,28 +355,27 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getName() throws Exception {
+		public void getName() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
 					String name = singAttrib.getName();
 					if (name.equals("address")) {
-						logger.log(Logger.Level.TRACE, "Received expected result" + name);
+						logTrace( "Received expected result" + name);
 						pass = true;
 
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected: address, actual:" + name);
+						logErr( "Expected: address, actual:" + name);
 					}
 				}
 			}
@@ -405,28 +396,27 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getJavaType() throws Exception {
+		public void getJavaType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
 					Class pSingAttribJavaType = singAttrib.getJavaType();
 					if (pSingAttribJavaType.getName()
 							.equals("ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address")) {
-						logger.log(Logger.Level.TRACE, "Received expected result " + pSingAttribJavaType);
+						logTrace( "Received expected result " + pSingAttribJavaType);
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected: address, actual:" + pSingAttribJavaType);
+						logErr( "Expected: address, actual:" + pSingAttribJavaType);
 					}
 				}
 			}
@@ -447,29 +437,28 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getJavaMember() throws Exception {
+		public void getJavaMember() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
-					logger.log(Logger.Level.TRACE,
+					logTrace(
 							"Singular attribute JavaMember = " + singAttrib.getJavaMember().getName());
 					java.lang.reflect.Member javaMember = singAttrib.getJavaMember();
 					if (javaMember.getName().equals("address")) {
-						logger.log(Logger.Level.TRACE, "Received expected result " + javaMember.getName());
+						logTrace( "Received expected result " + javaMember.getName());
 						pass = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Expected: address, actual:" + javaMember.getName());
+						logErr( "Expected: address, actual:" + javaMember.getName());
 					}
 				}
 			}
@@ -490,30 +479,29 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getDeclaringType() throws Exception {
+		public void getDeclaringType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
+					logTrace( "attribute Name = " + singAttrib.getName());
 					ManagedType<B> newTypeOrder = singAttrib.getDeclaringType();
 					if (newTypeOrder != null) {
 						Class javaType = newTypeOrder.getJavaType();
 						if (javaType.getName().equals("ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B")) {
-							logger.log(Logger.Level.TRACE, "Received expected result:" + javaType.getName());
+							logTrace( "Received expected result:" + javaType.getName());
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expected: ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B, actual:"
 											+ javaType.getName());
 						}
@@ -537,30 +525,29 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getBindableType() throws Exception {
+		public void getBindableType() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
+					logTrace( "attribute Name = " + singAttrib.getName());
 					Bindable.BindableType bType = singAttrib.getBindableType();
 					if (bType != null) {
 
 						if (bType.name().equals(Bindable.BindableType.SINGULAR_ATTRIBUTE.name())) {
-							logger.log(Logger.Level.TRACE, "Received expected result:" + bType.name());
+							logTrace( "Received expected result:" + bType.name());
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Expected: "
+							logErr( "Expected: "
 									+ Bindable.BindableType.SINGULAR_ATTRIBUTE.name() + ", actual:" + bType.name());
 						}
 					}
@@ -583,29 +570,28 @@ public class Client extends PMClientBase {
 	 * @test_Strategy:
 	 *
 	 */
-	@Test
-	public void getBindableJavaType() throws Exception {
+		public void getBindableJavaType() throws Exception {
 		boolean pass = false;
 		String expected = "ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address";
 		getEntityTransaction().begin();
 		Metamodel metaModel = getEntityManager().getMetamodel();
 		if (metaModel != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Metamodel from EntityManager");
+			logTrace( "Obtained Non-null Metamodel from EntityManager");
 			ManagedType<B> mTypeB = metaModel
 					.managedType(ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.B.class);
 			if (mTypeB != null) {
-				logger.log(Logger.Level.TRACE, "Obtained Non-null ManagedType");
+				logTrace( "Obtained Non-null ManagedType");
 				SingularAttribute<B, Address> singAttrib = mTypeB.getDeclaredSingularAttribute("address",
 						ee.jakarta.tck.persistence.core.metamodelapi.singularattribute.Address.class);
 				if (singAttrib != null) {
-					logger.log(Logger.Level.TRACE, "attribute Name = " + singAttrib.getName());
+					logTrace( "attribute Name = " + singAttrib.getName());
 					Class cType = singAttrib.getBindableJavaType();
 					if (cType != null) {
 						if (cType.getName().equals(expected)) {
-							logger.log(Logger.Level.TRACE, "Received expected result:" + cType.getName());
+							logTrace( "Received expected result:" + cType.getName());
 							pass = true;
 						} else {
-							logger.log(Logger.Level.ERROR, "Expected: " + expected + ", actual:" + cType.getName());
+							logErr( "Expected: " + expected + ", actual:" + cType.getName());
 						}
 					}
 				}
@@ -619,20 +605,20 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}

@@ -30,6 +30,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -41,6 +42,10 @@ import jakarta.websocket.Extension;
 import jakarta.websocket.server.ServerEndpointConfig;
 
 @ExtendWith(ArquillianExtension.class)
+@Tag("websocket")
+@Tag("platform")
+@Tag("webprofile")
+
 public class WSClientIT {
 
 	private static final Logger logger = System.getLogger(WSClientIT.class.getName());

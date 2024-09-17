@@ -44,25 +44,26 @@
         <maven.build.cache.enabled>false</maven.build.cache.enabled>
 
         <!-- Weld uses 2 versions numbers. Some artefact use one version, other the second. -->
-        <weld.version>6.0.0.Beta1</weld.version>
-        <weld.version2>6.0.Beta4</weld.version2>
+        <weld.version>5.1.2.Final</weld.version>
+        <weld.version2>6.0.Beta5</weld.version2>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>1.8.0.Final</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
             <dependency>
                 <groupId>jakarta.enterprise</groupId>
                 <artifactId>jakarta.enterprise.cdi-api</artifactId>
                 <version>4.1.0</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+                <version>2.0.0</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -264,7 +265,6 @@
         <dependency>
             <groupId>org.jboss.arquillian.testng</groupId>
             <artifactId>arquillian-testng-container</artifactId>
-            <version>1.8.0.Final</version>
             <scope>test</scope>
         </dependency>
         <dependency>

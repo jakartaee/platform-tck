@@ -32,7 +32,7 @@ public class Address implements java.io.Serializable {
 	protected ZipCode zipcode;
 
 	public Address() {
-		// logger.log(Logger.Level.TRACE,"address no arg constructor");
+		// logTrace("address no arg constructor");
 	}
 
 	public Address(String street, String city, String state) {

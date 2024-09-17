@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.core.query.language;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,25 +24,23 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.LineItem;
 import ee.jakarta.tck.persistence.common.schema30.Order;
-import ee.jakarta.tck.persistence.common.schema30.UtilOrderData;
 import jakarta.persistence.Query;
 
-public class Client1 extends UtilOrderData {
+public class Client1 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_language1.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/* Run test */
@@ -60,15 +58,14 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest1() throws Exception {
+		public void queryTest1() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find All Orders for Customer: Robert E. Bissett");
+			logTrace( "find All Orders for Customer: Robert E. Bissett");
 			o = getEntityManager().createQuery("Select Distinct o from Order AS o WHERE o.customer.name = :name")
 					.setParameter("name", "Robert E. Bissett").getResultList();
 
@@ -76,15 +73,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "4";
 			expectedPKs[1] = "9";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -103,14 +100,13 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest5() throws Exception {
+		public void queryTest5() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all Customers with AXP Credit Cards");
+			logTrace( "find all Customers with AXP Credit Cards");
 			c = getEntityManager()
 					.createQuery("Select Distinct Object(c) fRoM Customer c, IN(c.creditCards) a where a.type = :ccard")
 					.setParameter("ccard", "AXP").getResultList();
@@ -125,15 +121,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[6] = "15";
 
 			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 7 references, got: " + c.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -150,15 +146,14 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest8() throws Exception {
+		public void queryTest8() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders where the total price is NOT less than $4500");
+			logTrace( "find all orders where the total price is NOT less than $4500");
 			o = getEntityManager().createQuery("Select Distinct Object(o) FROM Order o WHERE NOT o.totalPrice < 4500")
 					.getResultList();
 
@@ -167,15 +162,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "11";
 			expectedPKs[2] = "16";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -193,15 +188,14 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest9() throws Exception {
+		public void queryTest9() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders where the customer name is Karen R. Tegan"
+			logTrace( "find all orders where the customer name is Karen R. Tegan"
 					+ " OR the total price is less than $100");
 			o = getEntityManager().createQuery(
 					"SeLeCt DiStInCt oBjEcT(o) FROM Order AS o WHERE o.customer.name = 'Karen R. Tegan' OR o.totalPrice < 100")
@@ -214,15 +208,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[3] = "12";
 			expectedPKs[4] = "13";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 5 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -242,15 +236,14 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest10() throws Exception {
+		public void queryTest10() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders where line item quantity is 1 AND the"
+			logTrace( "find all orders where line item quantity is 1 AND the"
 					+ " order total less than 100 or customer name is Robert E. Bissett");
 
 			o = getEntityManager().createQuery(
@@ -263,15 +256,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[2] = "12";
 			expectedPKs[3] = "13";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 4 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -290,14 +283,13 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest11() throws Exception {
+		public void queryTest11() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE,
+			logTrace(
 					"find all orders with line item quantity < 2" + " for customer Robert E. Bissett");
 			o = getEntityManager().createQuery(
 					"SELECT DISTINCT Object(o) FROM Order o, in(o.lineItemsCollection) l WHERE l.quantity < 2 AND o.customer.name = 'Robert E. Bissett'")
@@ -307,15 +299,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "4";
 			expectedPKs[1] = "9";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -332,15 +324,14 @@ public class Client1 extends UtilOrderData {
 	 * 
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest12() throws Exception {
+		public void queryTest12() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders with a total price BETWEEN $1000 and $1200");
+			logTrace( "find all orders with a total price BETWEEN $1000 and $1200");
 			o = getEntityManager()
 					.createQuery("SELECT DISTINCT Object(o) From Order o where o.totalPrice BETWEEN 1000 AND 1200")
 					.getResultList();
@@ -352,15 +343,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[3] = "8";
 			expectedPKs[4] = "14";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 5 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -376,15 +367,14 @@ public class Client1 extends UtilOrderData {
 	 * were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest13() throws Exception {
+		public void queryTest13() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders with a total price NOT BETWEEN $1000 and $1200");
+			logTrace( "find all orders with a total price NOT BETWEEN $1000 and $1200");
 			o = getEntityManager()
 					.createQuery("SELECT DISTINCT Object(o) From Order o where o.totalPrice NOT bETwEeN 1000 AND 1200")
 					.getResultList();
@@ -406,15 +396,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[13] = "19";
 			expectedPKs[14] = "20";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 15 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -435,15 +425,14 @@ public class Client1 extends UtilOrderData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest14() throws Exception {
+		public void queryTest14() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders that do not have approved Credit Cards");
+			logTrace( "find all orders that do not have approved Credit Cards");
 			o = getEntityManager()
 					.createQuery("select distinct Object(o) From Order o WHERE o.creditCard.approved = FALSE")
 					.getResultList();
@@ -456,15 +445,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[4] = "18";
 			expectedPKs[5] = "20";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 6 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -481,16 +470,15 @@ public class Client1 extends UtilOrderData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest27() throws Exception {
+		public void queryTest27() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
 		List o;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Testing ABS with numeric Java object types");
-			logger.log(Logger.Level.TRACE, "find all Orders with a total price greater than 1180");
+			logMsg( "Testing ABS with numeric Java object types");
+			logTrace( "find all Orders with a total price greater than 1180");
 			o = getEntityManager().createQuery("Select DISTINCT Object(o) From Order o WHERE :dbl < ABS(o.totalPrice)")
 					.setParameter("dbl", 1180D).getResultList();
 
@@ -505,14 +493,14 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[7] = "17";
 			expectedPKs[8] = "18";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 9 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass1 = true;
 			}
-			logger.log(Logger.Level.INFO, "Testing ABS with primitive numeric type");
-			logger.log(Logger.Level.TRACE, "find all Orders with a total price greater than 1180");
+			logMsg( "Testing ABS with primitive numeric type");
+			logTrace( "find all Orders with a total price greater than 1180");
 			o = getEntityManager().createQuery("Select DISTINCT Object(o) From Order o WHERE o.totalPrice > ABS(:dbl)")
 					.setParameter("dbl", 1180.55D).getResultList();
 
@@ -527,16 +515,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[7] = "17";
 			expectedPKs[8] = "18";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 9 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -553,14 +541,13 @@ public class Client1 extends UtilOrderData {
 	 * optional reserved word OF. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest32() throws Exception {
+		public void queryTest32() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders where line items are members of the orders");
+			logTrace( "find all orders where line items are members of the orders");
 			o = getEntityManager()
 					.createQuery(
 							"Select Distinct Object(o) FROM Order o, LineItem l WHERE l MEMBER o.lineItemsCollection")
@@ -571,15 +558,15 @@ public class Client1 extends UtilOrderData {
 				expectedPKs[i] = Integer.toString(i + 1);
 
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected " + orderRef.length + "references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -596,15 +583,14 @@ public class Client1 extends UtilOrderData {
 	 * of 'OF'. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest33() throws Exception {
+		public void queryTest33() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 		LineItem liDvc;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find orders whose orders are do NOT contain the specified line items");
+			logTrace( "find orders whose orders are do NOT contain the specified line items");
 			liDvc = getEntityManager().find(LineItem.class, "30");
 			o = getEntityManager()
 					.createQuery("Select Distinct Object(o) FROM Order o WHERE :param NOT MEMBER o.lineItemsCollection")
@@ -632,16 +618,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[18] = "20";
 
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 19 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -658,14 +644,13 @@ public class Client1 extends UtilOrderData {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest34() throws Exception {
+		public void queryTest34() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find orders who have Samples in their orders");
+			logTrace( "find orders who have Samples in their orders");
 			o = getEntityManager().createQuery(
 					"Select Distinct Object(o) FROM Order o WHERE o.sampleLineItem MEMBER OF o.lineItemsCollection")
 					.getResultList();
@@ -674,16 +659,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "1";
 			expectedPKs[1] = "6";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -701,14 +686,13 @@ public class Client1 extends UtilOrderData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest35() throws Exception {
+		public void queryTest35() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders which contain lineitems not of quantities 1 or 5");
+			logTrace( "find all orders which contain lineitems not of quantities 1 or 5");
 			o = getEntityManager().createQuery(
 					"Select Distinct Object(o) from Order o, in(o.lineItemsCollection) l where l.quantity NOT IN (1, 5)")
 					.getResultList();
@@ -724,15 +708,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[7] = "19";
 			expectedPKs[8] = "20";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 9 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -750,8 +734,7 @@ public class Client1 extends UtilOrderData {
 	 * accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest39() throws Exception {
+		public void queryTest39() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		String expectedPKs[];
@@ -759,8 +742,8 @@ public class Client1 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Testing SQRT with numeric Java object types");
-			logger.log(Logger.Level.TRACE, "find customers with specific credit card balance");
+			logMsg( "Testing SQRT with numeric Java object types");
+			logTrace( "find customers with specific credit card balance");
 			c = getEntityManager().createQuery(
 					"Select Distinct OBJECT(c) from Customer c, IN(c.creditCards) b where SQRT(b.balance) = :dbl")
 					.setParameter("dbl", 50D).getResultList();
@@ -769,14 +752,14 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "3";
 
 			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected 1 reference, got: " + c.size());
+				logErr( "Did not get expected results.  Expected 1 reference, got: " + c.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass1 = true;
 			}
 
-			logger.log(Logger.Level.INFO, "Testing SQRT with primitive numeric type");
-			logger.log(Logger.Level.TRACE, "find customers with specific credit card balance");
+			logMsg( "Testing SQRT with primitive numeric type");
+			logTrace( "find customers with specific credit card balance");
 			c = getEntityManager().createQuery(
 					"Select Distinct OBJECT(c) from Customer c, IN(c.creditCards) b where SQRT(b.balance) = SQRT(:dbl)")
 					.setParameter("dbl", 2500D).getResultList();
@@ -785,14 +768,14 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "3";
 
 			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected 1 reference, got: " + c.size());
+				logErr( "Did not get expected results.  Expected 1 reference, got: " + c.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -810,14 +793,13 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest42() throws Exception {
+		public void queryTest42() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all orders where related customer name is not null");
+			logTrace( "find all orders where related customer name is not null");
 			o = getEntityManager()
 					.createQuery("Select Distinct Object(o) from Order o where o.customer.name IS NOT NULL")
 					.getResultList();
@@ -844,15 +826,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[18] = "20";
 
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 19 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -869,15 +851,14 @@ public class Client1 extends UtilOrderData {
 	 * association-field, verifies the null is not included in the result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest48() throws Exception {
+		public void queryTest48() throws Exception {
 		boolean pass = false;
 		List o;
 		final Double[] expectedBalances = new Double[] { 400D, 500D, 750D, 1000D, 1400D, 1500D, 2000D, 2500D, 4400D,
 				5000D, 5500D, 7000D, 7400D, 8000D, 9500D, 13000D, 15000D, 23000D };
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find all credit card balances");
+			logTrace( "find all credit card balances");
 			o = getEntityManager()
 					.createQuery("Select Distinct o.creditCard.balance from Order o ORDER BY o.creditCard.balance ASC")
 					.getResultList();
@@ -885,14 +866,14 @@ public class Client1 extends UtilOrderData {
 			Double[] result = (Double[]) (o.toArray(new Double[o.size()]));
 			Iterator i = o.iterator();
 			while (i.hasNext()) {
-				logger.log(Logger.Level.TRACE, "query results returned:  " + (Double) i.next());
+				logTrace( "query results returned:  " + (Double) i.next());
 			}
-			logger.log(Logger.Level.TRACE, "Compare expected results to query results");
+			logTrace( "Compare expected results to query results");
 			pass = Arrays.equals(expectedBalances, result);
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -911,14 +892,13 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest60() throws Exception {
+		public void queryTest60() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find Customers with an Order");
+			logTrace( "find Customers with an Order");
 			c = getEntityManager().createQuery("SELECT DISTINCT c FROM Customer c, IN(c.orders) o").getResultList();
 
 			expectedPKs = new String[18];
@@ -942,15 +922,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[17] = "18";
 
 			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 18 references, got: " + c.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -969,8 +949,7 @@ public class Client1 extends UtilOrderData {
 	 * were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest62() throws Exception {
+		public void queryTest62() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -986,16 +965,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "14";
 
 			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + c.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -1016,8 +995,7 @@ public class Client1 extends UtilOrderData {
 	 * Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest63() throws Exception {
+		public void queryTest63() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
@@ -1031,16 +1009,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs = new String[0];
 
 			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 0 references, got: " + c.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -1058,8 +1036,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest65() throws Exception {
+		public void queryTest65() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		final Integer i1 = 1;
@@ -1068,54 +1045,54 @@ public class Client1 extends UtilOrderData {
 		List<Integer> i3;
 
 		try {
-			logger.log(Logger.Level.TRACE, "select MINIMUM number of lineItem quantities available an order may have");
+			logTrace( "select MINIMUM number of lineItem quantities available an order may have");
 			q = getEntityManager().createQuery("SELECT DISTINCT MIN(l.quantity) FROM LineItem l");
 			i2 = q.getResultList();
 
 			q1 = getEntityManager().createQuery("SELECT MIN(l.quantity) FROM LineItem l");
 			i3 = q1.getResultList();
 
-			logger.log(Logger.Level.INFO, "Verify select WITH DISTINCT keyword");
+			logMsg( "Verify select WITH DISTINCT keyword");
 			if (i2.size() == 1) {
 				Integer result = i2.get(0);
 				if (result != null) {
 					if (result.equals(i1)) {
-						logger.log(Logger.Level.TRACE, "Received expected results:" + result);
+						logTrace( "Received expected results:" + result);
 						pass1 = true;
 					} else {
-						logger.log(Logger.Level.TRACE, "Expected: " + i1 + ", actual:" + result);
+						logTrace( "Expected: " + i1 + ", actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Receive null result from query");
+					logErr( "Receive null result from query");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Receive more than one result:");
+				logErr( "Receive more than one result:");
 				for (Integer i : i2) {
-					logger.log(Logger.Level.ERROR, "Received:" + i);
+					logErr( "Received:" + i);
 				}
 			}
-			logger.log(Logger.Level.INFO, "Verify Select WITHOUT DISTINCT keyword");
+			logMsg( "Verify Select WITHOUT DISTINCT keyword");
 			if (i3.size() == 1) {
 				Integer result = i3.get(0);
 				if (result != null) {
 					if (result.equals(i1)) {
-						logger.log(Logger.Level.TRACE, "Received expected results:" + result);
+						logTrace( "Received expected results:" + result);
 						pass2 = true;
 					} else {
-						logger.log(Logger.Level.TRACE, "Expected: " + i1 + ", actual:" + result);
+						logTrace( "Expected: " + i1 + ", actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Receive null result from query");
+					logErr( "Receive null result from query");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Receive more than one result:");
+				logErr( "Receive more than one result:");
 				for (Integer i : i3) {
-					logger.log(Logger.Level.ERROR, "Received:" + i);
+					logErr( "Received:" + i);
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass1 || !pass2)
 			throw new Exception("queryTest65 failed");
@@ -1132,8 +1109,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest66() throws Exception {
+		public void queryTest66() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		final Integer i1 = 8;
@@ -1142,54 +1118,54 @@ public class Client1 extends UtilOrderData {
 		List<Integer> i3;
 
 		try {
-			logger.log(Logger.Level.TRACE, "find MAXIMUM number of lineItem quantities available an order may have");
+			logTrace( "find MAXIMUM number of lineItem quantities available an order may have");
 			q = getEntityManager().createQuery("SELECT DISTINCT MAX(l.quantity) FROM LineItem l");
 			i2 = q.getResultList();
 
 			q1 = getEntityManager().createQuery("SELECT MAX(l.quantity) FROM LineItem l");
 			i3 = q1.getResultList();
 
-			logger.log(Logger.Level.INFO, "Testing select WITH DISTINCT keyword");
+			logMsg( "Testing select WITH DISTINCT keyword");
 			if (i2.size() == 1) {
 				Integer result = i2.get(0);
 				if (result != null) {
 					if (result.equals(i1)) {
-						logger.log(Logger.Level.TRACE, "Received expected results:" + result);
+						logTrace( "Received expected results:" + result);
 						pass1 = true;
 					} else {
-						logger.log(Logger.Level.TRACE, "Expected: " + i1 + ", actual:" + result);
+						logTrace( "Expected: " + i1 + ", actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Receive null result from query");
+					logErr( "Receive null result from query");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Receive more than one result:");
+				logErr( "Receive more than one result:");
 				for (Integer i : i2) {
-					logger.log(Logger.Level.ERROR, "Received:" + i);
+					logErr( "Received:" + i);
 				}
 			}
-			logger.log(Logger.Level.INFO, "Testing Select WITHOUT DISTINCT keyword");
+			logMsg( "Testing Select WITHOUT DISTINCT keyword");
 			if (i3.size() == 1) {
 				Integer result = i3.get(0);
 				if (result != null) {
 					if (result.equals(i1)) {
-						logger.log(Logger.Level.TRACE, "Received expected results:" + result);
+						logTrace( "Received expected results:" + result);
 						pass2 = true;
 					} else {
-						logger.log(Logger.Level.TRACE, "Expected: " + i1 + ", actual:" + result);
+						logTrace( "Expected: " + i1 + ", actual:" + result);
 					}
 				} else {
-					logger.log(Logger.Level.ERROR, "Receive null result from query");
+					logErr( "Receive null result from query");
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Receive more than one result:");
+				logErr( "Receive more than one result:");
 				for (Integer i : i3) {
-					logger.log(Logger.Level.ERROR, "Received:" + i);
+					logErr( "Received:" + i);
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass1 || !pass2)
 			throw new Exception("queryTest66 failed");
@@ -1207,8 +1183,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void queryTest67() throws Exception {
+		public void queryTest67() throws Exception {
 		boolean pass = false;
 		Double d1 = 1487.29;
 		Double d2 = 1487.30;
@@ -1216,19 +1191,19 @@ public class Client1 extends UtilOrderData {
 		Query q;
 
 		try {
-			logger.log(Logger.Level.TRACE, "find AVERAGE price of all orders");
+			logTrace( "find AVERAGE price of all orders");
 			q = getEntityManager().createQuery("SELECT AVG(o.totalPrice) FROM Order o");
 
 			d3 = (Double) q.getSingleResult();
 
 			if (((d3 >= d1) && (d3 < d2))) {
-				logger.log(Logger.Level.TRACE, "Returned expected results: " + d1);
+				logTrace( "Returned expected results: " + d1);
 				pass = true;
 			} else {
-				logger.log(Logger.Level.TRACE, "Returned " + d3 + "expected: " + d1);
+				logTrace( "Returned " + d3 + "expected: " + d1);
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 		if (!pass)
 			throw new Exception("queryTest67 failed");
@@ -1245,8 +1220,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_leftouterjoin_Mx1() throws Exception {
+		public void test_leftouterjoin_Mx1() throws Exception {
 		List q;
 		boolean pass1 = false;
 		boolean pass2 = true;
@@ -1258,10 +1232,10 @@ public class Client1 extends UtilOrderData {
 					+ " where cust.name=?1 ORDER BY o.id").setParameter(1, "Kellie A. Sanborn").getResultList();
 
 			if (q.size() != 2) {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"test_leftouterjoin_Mx1:  Did not get expected results. " + "Expected 2,  got: " + q.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected size received, verify contents . . . ");
+				logTrace( "Expected size received, verify contents . . . ");
 				// each element of the list q should be a size-2 array
 				for (int i = 0; i < q.size(); i++) {
 					pass1 = true;
@@ -1269,11 +1243,11 @@ public class Client1 extends UtilOrderData {
 					Object[] orderAndCustomerExpected = expectedResultSet[i];
 					Object[] orderAndCustomer;
 					if (obj instanceof Object[]) {
-						logger.log(Logger.Level.TRACE,
+						logTrace(
 								"The element in the result list is of type Object[], continue . . .");
 						orderAndCustomer = (Object[]) obj;
 						if (!Arrays.equals(orderAndCustomerExpected, orderAndCustomer)) {
-							logger.log(Logger.Level.ERROR,
+							logErr(
 									"Expecting element value: " + Arrays.asList(orderAndCustomerExpected)
 											+ ", actual element value: " + Arrays.asList(orderAndCustomer));
 							pass2 = false;
@@ -1281,7 +1255,7 @@ public class Client1 extends UtilOrderData {
 						}
 					} else {
 						pass2 = false;
-						logger.log(Logger.Level.ERROR, "The element in the result list is not of type Object[]:" + obj);
+						logErr( "The element in the result list is not of type Object[]:" + obj);
 						break;
 					}
 				}
@@ -1289,7 +1263,7 @@ public class Client1 extends UtilOrderData {
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -1306,8 +1280,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_groupBy_1() throws Exception {
+		public void test_groupBy_1() throws Exception {
 		boolean pass = false;
 		List result;
 		String expected[] = new String[] { "AXP", "MCARD", "VISA" };
@@ -1324,17 +1297,17 @@ public class Client1 extends UtilOrderData {
 			pass = Arrays.equals(expected, output);
 
 			if (!pass) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				logErr( "Did not get expected results");
 				for (String s : expected) {
-					logger.log(Logger.Level.ERROR, "Expected:" + s);
+					logErr( "Expected:" + s);
 				}
 				for (String s : output) {
-					logger.log(Logger.Level.ERROR, "Actual:" + s);
+					logErr( "Actual:" + s);
 				}
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1350,8 +1323,7 @@ public class Client1 extends UtilOrderData {
 	 * information for all customers.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_innerjoin_1xM() throws Exception {
+		public void test_innerjoin_1xM() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1374,16 +1346,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[7] = "17";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 8 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1399,8 +1371,7 @@ public class Client1 extends UtilOrderData {
 	 * information from Order. customer name = Kellie A. Sanborn
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_innerjoin_Mx1() throws Exception {
+		public void test_innerjoin_Mx1() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1415,16 +1386,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "16";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1442,8 +1413,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_fetchjoin_1xM() throws Exception {
+		public void test_fetchjoin_1xM() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1459,15 +1429,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "17";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1483,8 +1453,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_fetchjoin_Mx1() throws Exception {
+		public void test_fetchjoin_Mx1() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1501,15 +1470,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "16";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 8 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1525,8 +1494,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_fetchjoin_Mx1_1() throws Exception {
+		public void test_fetchjoin_Mx1_1() throws Exception {
 		List result;
 		boolean pass = false;
 		String expectedPKs[];
@@ -1542,16 +1510,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1567,8 +1535,7 @@ public class Client1 extends UtilOrderData {
 	 * BETWEEN. Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_notBetweenArithmetic() throws Exception {
+		public void test_notBetweenArithmetic() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1597,15 +1564,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[14] = "20";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 15 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1621,8 +1588,7 @@ public class Client1 extends UtilOrderData {
 	 * the result is also TRUE Verify the results were accurately returned.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ANDconditionTT() throws Exception {
+		public void test_ANDconditionTT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1637,15 +1603,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "6";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1661,8 +1627,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also False
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ANDconditionTF() throws Exception {
+		public void test_ANDconditionTF() throws Exception {
 		boolean pass = false;
 		List result;
 
@@ -1673,16 +1638,16 @@ public class Client1 extends UtilOrderData {
 					.getResultList();
 
 			if (result.size() == 0) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 0 references, got: " + result.size());
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1698,8 +1663,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also False
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ANDconditionFT() throws Exception {
+		public void test_ANDconditionFT() throws Exception {
 		boolean pass = false;
 		List result;
 
@@ -1711,16 +1675,16 @@ public class Client1 extends UtilOrderData {
 					.getResultList();
 
 			if (result.size() == 0) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 0 references, got: " + result.size());
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1736,8 +1700,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also False
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ANDconditionFF() throws Exception {
+		public void test_ANDconditionFF() throws Exception {
 		boolean pass = false;
 		List result;
 
@@ -1749,16 +1712,16 @@ public class Client1 extends UtilOrderData {
 					.getResultList();
 
 			if (result.size() == 0) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 0 references, got: " + result.size());
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1774,8 +1737,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also TRUE
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ORconditionTT() throws Exception {
+		public void test_ORconditionTT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1792,15 +1754,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[2] = "16";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1816,8 +1778,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also TRUE
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ORconditionTF() throws Exception {
+		public void test_ORconditionTF() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1832,15 +1793,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "6";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1856,8 +1817,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also TRUE
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ORconditionFT() throws Exception {
+		public void test_ORconditionFT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -1878,15 +1838,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[6] = "20";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 7 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1902,8 +1862,7 @@ public class Client1 extends UtilOrderData {
 	 * result is also FALSE
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ORconditionFF() throws Exception {
+		public void test_ORconditionFF() throws Exception {
 		boolean pass = false;
 		List result;
 
@@ -1915,16 +1874,16 @@ public class Client1 extends UtilOrderData {
 					.getResultList();
 
 			if (result.size() == 0) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 0 references, got: " + result.size());
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1939,8 +1898,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: Test for Group By within a WHERE clause
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_groupByWhereClause() throws Exception {
+		public void test_groupByWhereClause() throws Exception {
 		boolean pass = false;
 		List result;
 		final String[] expected = new String[] { "Jonathan K. Smith", "Kellie A. Sanborn", "Robert E. Bissett" };
@@ -1957,18 +1915,18 @@ public class Client1 extends UtilOrderData {
 			pass = Arrays.equals(expected, output);
 
 			if (!pass) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				logErr( "Did not get expected results");
 				for (String s : expected) {
-					logger.log(Logger.Level.ERROR, "Expected:" + s);
+					logErr( "Expected:" + s);
 				}
 				for (String s : output) {
-					logger.log(Logger.Level.ERROR, "Actual:" + s);
+					logErr( "Actual:" + s);
 				}
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -1983,8 +1941,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: Test for ABS expression in the Having Clause
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_ABSHavingClause() throws Exception {
+		public void test_ABSHavingClause() throws Exception {
 		boolean pass = false;
 		Query q;
 		Object result;
@@ -2000,14 +1957,14 @@ public class Client1 extends UtilOrderData {
 
 			if (expectedPrice.equals(result)) {
 				pass = true;
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "test_ABSHavingClause:  Did not get expected results."
+				logErr( "test_ABSHavingClause:  Did not get expected results."
 						+ "Expected 10190, got: " + (Double) result);
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2022,15 +1979,14 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: Test for SQRT expression in the WHERE Clause
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_SQRTWhereClause() throws Exception {
+		public void test_SQRTWhereClause() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "SQRT: Executing Query");
+			logTrace( "SQRT: Executing Query");
 			result = getEntityManager()
 					.createQuery("select object(o) FROM Order o Where SQRT(o.totalPrice) > :doubleValue ")
 					.setParameter("doubleValue", 70D).getResultList();
@@ -2040,15 +1996,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "16";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_SQRTWhereClause:  Did not get expected results."
+				logErr( "test_SQRTWhereClause:  Did not get expected results."
 						+ "  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2066,8 +2022,7 @@ public class Client1 extends UtilOrderData {
 	 * Select the customers without orders.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_exists_01() throws Exception {
+		public void test_subquery_exists_01() throws Exception {
 		boolean pass = false;
 		List result;
 		final String[] expectedPKs = { "19", "20" };
@@ -2079,15 +2034,15 @@ public class Client1 extends UtilOrderData {
 					.getResultList();
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_exists_01:  Did not get expected results.  "
+				logErr( "test_subquery_exists_01:  Did not get expected results.  "
 						+ "Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2103,8 +2058,7 @@ public class Client1 extends UtilOrderData {
 	 * Select the customers with orders where total order > 1500.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_exists_02() throws Exception {
+		public void test_subquery_exists_02() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -2123,15 +2077,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[3] = "15";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_exists_02:  Did not get expected results. "
+				logErr( "test_subquery_exists_02:  Did not get expected results. "
 						+ " Expected 4 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2148,8 +2102,7 @@ public class Client1 extends UtilOrderData {
 	 * name like Caruso. The name Caruso is derived in the subquery.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_like() throws Exception {
+		public void test_subquery_like() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2164,15 +2117,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "8";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_like:  Did not get expected "
+				logErr( "test_subquery_like:  Did not get expected "
 						+ " results.  Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2189,15 +2142,14 @@ public class Client1 extends UtilOrderData {
 	 * whose orders total price is between 1000 and 2000.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_between() throws Exception {
+		public void test_subquery_between() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "Execute query for test_subquery_between");
+			logTrace( "Execute query for test_subquery_between");
 			result = getEntityManager().createQuery(
 					"SELECT DISTINCT c FROM Customer c WHERE EXISTS (SELECT o FROM c.orders o where o.totalPrice BETWEEN 1000 AND 1200)")
 					.getResultList();
@@ -2210,15 +2162,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[4] = "13";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_between:  Did not get expected "
+				logErr( "test_subquery_between:  Did not get expected "
 						+ " results.  Expected 5 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2236,8 +2188,7 @@ public class Client1 extends UtilOrderData {
 	 * have line items of quantity > 2.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_join() throws Exception {
+		public void test_subquery_join() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -2256,15 +2207,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[4] = "16";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_join:  Did not get expected results."
+				logErr( "test_subquery_join:  Did not get expected results."
 						+ "  Expected 5 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2282,8 +2233,7 @@ public class Client1 extends UtilOrderData {
 	 * values in the result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_GT() throws Exception {
+		public void test_subquery_ALL_GT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2302,15 +2252,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[3] = "15";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ALL_GT:  Did not get expected results. "
+				logErr( "test_subquery_ALL_GT:  Did not get expected results. "
 						+ " Expected 4 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2327,8 +2277,7 @@ public class Client1 extends UtilOrderData {
 	 * in the result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_LT() throws Exception {
+		public void test_subquery_ALL_LT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2344,15 +2293,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "12";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ALL_LT:  Did not get expected results."
+				logErr( "test_subquery_ALL_LT:  Did not get expected results."
 						+ "  Expected 1 reference, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2369,8 +2318,7 @@ public class Client1 extends UtilOrderData {
 	 * result set. The result set contains the min of total price of orders.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_EQ() throws Exception {
+		public void test_subquery_ALL_EQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2386,16 +2334,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "12";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ALL_EQ:  Did not get expected results. "
+				logErr( "test_subquery_ALL_EQ:  Did not get expected results. "
 						+ " Expected 1 reference, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2415,8 +2363,7 @@ public class Client1 extends UtilOrderData {
 	 */
 
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_LTEQ() throws Exception {
+		public void test_subquery_ALL_LTEQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2433,15 +2380,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "12";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ALL_LTEQ:  Did not get expected results.  "
+				logErr( "test_subquery_ALL_LTEQ:  Did not get expected results.  "
 						+ "Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2458,8 +2405,7 @@ public class Client1 extends UtilOrderData {
 	 * result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_GTEQ() throws Exception {
+		public void test_subquery_ALL_GTEQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2476,15 +2422,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "14";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ALL_GTEQ:  Did not get expected results. "
+				logErr( "test_subquery_ALL_GTEQ:  Did not get expected results. "
 						+ " Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2502,8 +2448,7 @@ public class Client1 extends UtilOrderData {
 	 * result set.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ALL_NOTEQ() throws Exception {
+		public void test_subquery_ALL_NOTEQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2535,15 +2480,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[16] = "18";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ALL_NOTEQ:  Did not get expected results."
+				logErr( "test_subquery_ALL_NOTEQ:  Did not get expected results."
 						+ "  Expected 17 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2562,8 +2507,7 @@ public class Client1 extends UtilOrderData {
 	 * count of lineItems = 3.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ANY_GT() throws Exception {
+		public void test_subquery_ANY_GT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2594,15 +2538,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[15] = "18";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ANY_GT:  Did not get expected results. "
+				logErr( "test_subquery_ANY_GT:  Did not get expected results. "
 						+ "  Expected 16 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 		if (!pass)
 			throw new Exception("test_subquery_ANY_GT failed");
@@ -2620,8 +2564,7 @@ public class Client1 extends UtilOrderData {
 	 * where count of lineItems = 3.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ANY_LT() throws Exception {
+		public void test_subquery_ANY_LT() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2653,15 +2596,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[16] = "18";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ANY_LT:  Did not get expected results.  "
+				logErr( "test_subquery_ANY_LT:  Did not get expected results.  "
 						+ "Expected 17 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2679,8 +2622,7 @@ public class Client1 extends UtilOrderData {
 	 * result set. The result set contains the min and avg of total price of orders.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_ANY_EQ() throws Exception {
+		public void test_subquery_ANY_EQ() throws Exception {
 		boolean pass = false;
 		List result;
 		String expectedPKs[];
@@ -2697,16 +2639,16 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "14";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_ANY_EQ:  Did not get expected results.  "
+				logErr( "test_subquery_ANY_EQ:  Did not get expected results.  "
 						+ "Expected 2 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2723,8 +2665,7 @@ public class Client1 extends UtilOrderData {
 	 * total price of orders where count of lineItems = 3.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_SOME_LTEQ() throws Exception {
+		public void test_subquery_SOME_LTEQ() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -2758,15 +2699,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[17] = "18";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_SOME_LTEQ:  Did not get expected results. "
+				logErr( "test_subquery_SOME_LTEQ:  Did not get expected results. "
 						+ " Expected 18 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2785,8 +2726,7 @@ public class Client1 extends UtilOrderData {
 	 * count of lineItems = 3.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void test_subquery_SOME_GTEQ() throws Exception {
+		public void test_subquery_SOME_GTEQ() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -2819,15 +2759,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[16] = "18";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_SOME_GTEQ:  Did not get expected results. "
+				logErr( "test_subquery_SOME_GTEQ:  Did not get expected results. "
 						+ " Expected 17 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -2843,8 +2783,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void treatJoinClassTest() throws Exception {
+		public void treatJoinClassTest() throws Exception {
 		boolean pass = false;
 		List<String> actual;
 		List<String> expected = new ArrayList<String>();
@@ -2863,24 +2802,24 @@ public class Client1 extends UtilOrderData {
 
 			Collections.sort(actual);
 			for (String s : actual) {
-				logger.log(Logger.Level.TRACE, "result:" + s);
+				logTrace( "result:" + s);
 
 			}
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected result:");
+				logErr( "Did not get expected result:");
 				for (String s : expected) {
-					logger.log(Logger.Level.TRACE, "expected:" + s);
+					logTrace( "expected:" + s);
 				}
 				for (String s : actual) {
-					logger.log(Logger.Level.TRACE, "actual:" + s);
+					logTrace( "actual:" + s);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -2897,8 +2836,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void treatInWhereClauseTest() throws Exception {
+		public void treatInWhereClauseTest() throws Exception {
 		boolean pass = false;
 		List<String> actual;
 		List<String> expected = new ArrayList<String>();
@@ -2913,24 +2851,24 @@ public class Client1 extends UtilOrderData {
 
 			Collections.sort(actual);
 			for (String s : actual) {
-				logger.log(Logger.Level.TRACE, "result:" + s);
+				logTrace( "result:" + s);
 
 			}
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected result:");
+				logErr( "Did not get expected result:");
 				for (String s : expected) {
-					logger.log(Logger.Level.TRACE, "expected:" + s);
+					logTrace( "expected:" + s);
 				}
 				for (String s : actual) {
-					logger.log(Logger.Level.TRACE, "actual:" + s);
+					logTrace( "actual:" + s);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -2947,8 +2885,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void appropriateSuffixesTest() throws Exception {
+		public void appropriateSuffixesTest() throws Exception {
 		boolean pass = false;
 		List<String> actual;
 		List<String> expected = new ArrayList<String>();
@@ -2963,24 +2900,24 @@ public class Client1 extends UtilOrderData {
 
 			Collections.sort(actual);
 			for (String s : actual) {
-				logger.log(Logger.Level.TRACE, "result:" + s);
+				logTrace( "result:" + s);
 
 			}
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected result:");
+				logErr( "Did not get expected result:");
 				for (String s : expected) {
-					logger.log(Logger.Level.TRACE, "expected:" + s);
+					logTrace( "expected:" + s);
 				}
 				for (String s : actual) {
-					logger.log(Logger.Level.TRACE, "actual:" + s);
+					logTrace( "actual:" + s);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -2997,8 +2934,7 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void sqlApproximateNumericLiteralTest() throws Exception {
+		public void sqlApproximateNumericLiteralTest() throws Exception {
 		boolean pass = false;
 		List<String> actual;
 		List<String> expected = new ArrayList<String>();
@@ -3013,24 +2949,24 @@ public class Client1 extends UtilOrderData {
 
 			Collections.sort(actual);
 			for (String s : actual) {
-				logger.log(Logger.Level.TRACE, "result:" + s);
+				logTrace( "result:" + s);
 
 			}
 			if (expected.containsAll(actual) && actual.containsAll(expected) && expected.size() == actual.size()) {
-				logger.log(Logger.Level.TRACE, "Received expected results");
+				logTrace( "Received expected results");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected result:");
+				logErr( "Did not get expected result:");
 				for (String s : expected) {
-					logger.log(Logger.Level.TRACE, "expected:" + s);
+					logTrace( "expected:" + s);
 				}
 				for (String s : actual) {
-					logger.log(Logger.Level.TRACE, "actual:" + s);
+					logTrace( "actual:" + s);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 		}
 
 		if (!pass) {
@@ -3046,8 +2982,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy:
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void joinOnExpressionTest() throws Exception {
+		public void joinOnExpressionTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List<Order> actual;
@@ -3062,24 +2997,24 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[1] = "12";
 
 			for (Order o : actual) {
-				logger.log(Logger.Level.TRACE, "order:" + o.getId() + ":");
+				logTrace( "order:" + o.getId() + ":");
 				Collection<LineItem> li = o.getLineItemsCollection();
 				for (LineItem i : li) {
-					logger.log(Logger.Level.TRACE, "   item:" + i.getId() + ", " + i.getQuantity());
+					logTrace( "   item:" + i.getId() + ", " + i.getQuantity());
 				}
 			}
 
 			if (!checkEntityPK(actual, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -3094,8 +3029,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: variable in a query is overridden in a subquery
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void subqueryVariableOverridesQueryVariableTest() throws Exception {
+		public void subqueryVariableOverridesQueryVariableTest() throws Exception {
 
 		boolean pass = false;
 		List result;
@@ -3111,14 +3045,14 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[0] = "10";
 
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "Expected 1 result, got: " + result.size());
+				logErr( "Expected 1 result, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception:", e);
+			logErr( "Caught exception:", e);
 		}
 
 		if (!pass)
@@ -3134,8 +3068,7 @@ public class Client1 extends UtilOrderData {
 	 * identifier evaluates to a value of the type of the expression
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void longIdentifierNameTest() throws Exception {
+		public void longIdentifierNameTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = true;
 		String expectedPKs[];
@@ -3143,35 +3076,35 @@ public class Client1 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find All Orders for Customer: Robert E. Bissett");
+			logTrace( "find All Orders for Customer: Robert E. Bissett");
 			o = getEntityManager().createQuery(
 					"Select Distinct variable01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789 from Order variable01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789 WHERE variable01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789.customer.name = :name")
 					.setParameter("name", "Robert E. Bissett").getResultList();
 			if (o.size() > 0) {
 				for (Object oo : o) {
 					if (!(oo instanceof Order)) {
-						logger.log(Logger.Level.ERROR,
+						logErr(
 								"Object returned was not of type Order:" + oo.getClass().getName());
 						pass2 = false;
 					}
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Not results were returned");
+				logErr( "Not results were returned");
 				pass2 = false;
 			}
 			expectedPKs = new String[2];
 			expectedPKs[0] = "4";
 			expectedPKs[1] = "9";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass1 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -3186,8 +3119,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: verify an identifier name can begin with an underscore.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void underscoreIdentifierNameTest() throws Exception {
+		public void underscoreIdentifierNameTest() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		String expectedPKs[];
@@ -3195,32 +3127,32 @@ public class Client1 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find All Orders for Customer: Robert E. Bissett");
+			logTrace( "find All Orders for Customer: Robert E. Bissett");
 			String variable = "_01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
 			if (checkIdentifierValues(variable)) {
-				logger.log(Logger.Level.TRACE, "Identifier is valid");
+				logTrace( "Identifier is valid");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.TRACE, "Identifier[" + variable + "] is invalid");
+				logTrace( "Identifier[" + variable + "] is invalid");
 			}
 			String sQuery = "Select Distinct " + variable + " from Order " + variable + " WHERE " + variable
 					+ ".customer.name = :name";
-			logger.log(Logger.Level.TRACE, "Query=" + sQuery);
+			logTrace( "Query=" + sQuery);
 			o = getEntityManager().createQuery(sQuery).setParameter("name", "Robert E. Bissett").getResultList();
 
 			expectedPKs = new String[2];
 			expectedPKs[0] = "4";
 			expectedPKs[1] = "9";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -3235,8 +3167,7 @@ public class Client1 extends UtilOrderData {
 	 * @test_Strategy: verify an identifier name can begin with a dollarsign.
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void dollarsignIdentifierNameTest() throws Exception {
+		public void dollarsignIdentifierNameTest() throws Exception {
 		boolean pass1, pass2;
 		pass1 = pass2 = false;
 		String expectedPKs[];
@@ -3244,33 +3175,33 @@ public class Client1 extends UtilOrderData {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find All Orders for Customer: Robert E. Bissett");
+			logTrace( "find All Orders for Customer: Robert E. Bissett");
 
 			String variable = "$01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789";
 			if (checkIdentifierValues(variable)) {
-				logger.log(Logger.Level.TRACE, "Identifier is valid");
+				logTrace( "Identifier is valid");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.TRACE, "Identifier[" + variable + "] is invalid");
+				logTrace( "Identifier[" + variable + "] is invalid");
 			}
 			String sQuery = "Select Distinct " + variable + " from Order " + variable + " WHERE " + variable
 					+ ".customer.name = :name";
-			logger.log(Logger.Level.TRACE, "Query=" + sQuery);
+			logTrace( "Query=" + sQuery);
 			o = getEntityManager().createQuery(sQuery).setParameter("name", "Robert E. Bissett").getResultList();
 
 			expectedPKs = new String[2];
 			expectedPKs[0] = "4";
 			expectedPKs[1] = "9";
 			if (!checkEntityPK(o, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 2 references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass1 || !pass2)
@@ -3286,15 +3217,14 @@ public class Client1 extends UtilOrderData {
 	 *
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void distinctNotSpecifiedTest() throws Exception {
+		public void distinctNotSpecifiedTest() throws Exception {
 		boolean pass = false;
 		Integer expectedPKs[];
 		List<String> o;
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "find All customer ids from Orders");
+			logTrace( "find All customer ids from Orders");
 			o = getEntityManager().createQuery("Select o.customer.id from Order AS o ").getResultList();
 
 			expectedPKs = new Integer[20];
@@ -3320,15 +3250,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[19] = Integer.parseInt("18");
 
 			if (!checkEntityPK(o, expectedPKs, true, true)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected " + expectedPKs.length
+				logErr( "Did not get expected results.  Expected " + expectedPKs.length
 						+ " references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -3344,8 +3274,7 @@ public class Client1 extends UtilOrderData {
 	 * query result
 	 */
 	@SetupMethod(name = "setupOrderData")
-	@Test
-	public void resultVariableTest() throws Exception {
+		public void resultVariableTest() throws Exception {
 
 		boolean pass = false;
 		List<String> o;
@@ -3364,15 +3293,15 @@ public class Client1 extends UtilOrderData {
 			expectedPKs[3] = Integer.parseInt("13");
 
 			if (!checkEntityPK(o, expectedPKs, true, true)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results.  Expected " + expectedPKs.length
+				logErr( "Did not get expected results.  Expected " + expectedPKs.length
 						+ " references, got: " + o.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)
@@ -3381,21 +3310,21 @@ public class Client1 extends UtilOrderData {
 
 	private boolean checkIdentifierValues(String var) {
 		boolean pass = true;
-		logger.log(Logger.Level.INFO, "Testing that identifier is valid");
+		logMsg( "Testing that identifier is valid");
 		char[] c = var.toCharArray();
 		boolean first = true;
 		for (char cc : c) {
 			if (first) {
 				if (!Character.isJavaIdentifierStart(cc)) {
-					logger.log(Logger.Level.ERROR, "Value[" + cc + "is not a valid start character");
+					logErr( "Value[" + cc + "is not a valid start character");
 					pass = false;
 				}
-				// logger.log(Logger.Level.TRACE,"start["+cc+"]:"+Character.isJavaIdentifierStart(cc));
+				// logTrace("start["+cc+"]:"+Character.isJavaIdentifierStart(cc));
 				first = false;
 			} else {
-				// logger.log(Logger.Level.TRACE,"part["+cc+"]:"+Character.isJavaIdentifierPart(cc));
+				// logTrace("part["+cc+"]:"+Character.isJavaIdentifierPart(cc));
 				if (!Character.isJavaIdentifierPart(cc)) {
-					logger.log(Logger.Level.ERROR, "Value[" + cc + "is not a valid part character");
+					logErr( "Value[" + cc + "is not a valid part character");
 					pass = false;
 				}
 			}

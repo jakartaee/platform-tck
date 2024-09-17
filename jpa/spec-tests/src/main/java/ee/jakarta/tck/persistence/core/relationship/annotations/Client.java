@@ -20,22 +20,19 @@
 
 package ee.jakarta.tck.persistence.core.relationship.annotations;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.Vector;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private static final Address aRef[] = new Address[5];
 
@@ -53,27 +50,20 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Address", pkgName + "AnnualReview", pkgName + "Company", pkgName + "Insurance",
-				pkgName + "Person", pkgName + "Project", pkgName + "Team" };
-		return createDeploymentJar("jpa_core_relationship_annotations.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -100,10 +90,10 @@ public class Client extends PMClientBase {
 	 * PROJECT_PROJID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest1() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin annotationMappingTest1");
+		logTrace( "Begin annotationMappingTest1");
 		boolean pass = false;
 
 		try {
@@ -120,21 +110,21 @@ public class Client extends PMClientBase {
 			Person newPerson = getEntityManager().find(Person.class, 1);
 
 			if (newPerson.getProject().getName().equals("Asp")) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -165,9 +155,9 @@ public class Client extends PMClientBase {
 	 * transaction, and persist the owing side, which should be cascaded to the
 	 * inverse side.
 	 */
-	@Test
+	
 	public void annotationMappingPersistTest1() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin annotationMappingPersistTest1");
+		logTrace( "Begin annotationMappingPersistTest1");
 		boolean pass = false;
 
 		try {
@@ -184,18 +174,18 @@ public class Client extends PMClientBase {
 			if (personFound != null && projectFound != null) {
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to find persisted Person or Project: " + " personFound: "
+				logErr( "Failed to find persisted Person or Project: " + " personFound: "
 						+ personFound + ", projectFound: " + projectFound);
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -224,10 +214,10 @@ public class Client extends PMClientBase {
 	 * COMPANY_COMPANYID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest2() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin annotationMappingTest2");
+		logTrace( "Begin annotationMappingTest2");
 		boolean pass1 = true;
 		boolean pass2 = false;
 		Vector<Team> v1;
@@ -278,7 +268,7 @@ public class Client extends PMClientBase {
 			Collection<Team> t2 = c2.getTeams();
 
 			if ((t1.size() != 3) || (t2.size() != 2)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"annotationMappingTest2: Did not get expected results."
 								+ "Team1 Collection Expected 3 references, got: " + t1.size()
 								+ ", Team2 Collection Expected 2 references, got: " + t2.size());
@@ -287,12 +277,12 @@ public class Client extends PMClientBase {
 
 				Iterator i1 = t1.iterator();
 				while (i1.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Team 1 Collection for expected Teams");
+					logTrace( "Check Team 1 Collection for expected Teams");
 					Team o1 = (Team) i1.next();
 
 					for (int l = 0; l < 3; l++) {
 						if (expectedTeam1[l].equals((String) o1.getName())) {
-							logger.log(Logger.Level.TRACE, "Found Team 1:" + (String) o1.getName());
+							logTrace( "Found Team 1:" + (String) o1.getName());
 							foundTeam1++;
 							break;
 						}
@@ -301,12 +291,12 @@ public class Client extends PMClientBase {
 
 				Iterator i2 = t2.iterator();
 				while (i2.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Team 2 Collection for expected Teams");
+					logTrace( "Check Team 2 Collection for expected Teams");
 					Team o2 = (Team) i2.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedTeam2[l].equals((String) o2.getName())) {
-							logger.log(Logger.Level.TRACE, "Found Team 2:" + (String) o2.getName());
+							logTrace( "Found Team 2:" + (String) o2.getName());
 							foundTeam2++;
 							break;
 						}
@@ -315,24 +305,24 @@ public class Client extends PMClientBase {
 			}
 
 			if ((foundTeam1 != 3) || (foundTeam2 != 2)) {
-				logger.log(Logger.Level.ERROR, "annotationMappingTest2: Did not get expected results");
+				logErr( "annotationMappingTest2: Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 
 		}
@@ -361,10 +351,10 @@ public class Client extends PMClientBase {
 	 * COMPANY_COMPANYID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest3() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin annotationMappingTest3");
+		logTrace( "Begin annotationMappingTest3");
 		boolean pass = false;
 		Vector v1;
 		Vector v2;
@@ -421,14 +411,14 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -456,10 +446,10 @@ public class Client extends PMClientBase {
 	 * ADDRESS_ID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest4() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Begin annotationMappingTest4");
+		logTrace( "Begin annotationMappingTest4");
 		boolean pass = false;
 
 		try {
@@ -481,10 +471,10 @@ public class Client extends PMClientBase {
 			Company c2 = getEntityManager().find(Company.class, 37560L);
 
 			if (c1.getAddress().getCity().equals("Burlington") && c2.getAddress().getCity().equals("Santa Clara")) {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"annotationMappingTest4: Did not get expected results"
 								+ "Expected: Burlington and Santa Clara, got: " + c1.getAddress().getCity()
 								+ c2.getAddress().getCity());
@@ -493,14 +483,14 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 
 		}
@@ -528,9 +518,9 @@ public class Client extends PMClientBase {
 	 * TEAM_TEAMID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest5() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin annotationMappingTest5");
+		logTrace( "Begin annotationMappingTest5");
 		boolean pass = false;
 
 		try {
@@ -563,24 +553,24 @@ public class Client extends PMClientBase {
 					&& (pRef[4].getTeam() == tRef[3]) && (pRef[9].getTeam() == tRef[4])
 					&& (pRef[2].getTeam() == tRef[4])) {
 
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Did not get expected results");
+				logErr( "Did not get expected results");
 				pass = false;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 
 		}
@@ -614,9 +604,9 @@ public class Client extends PMClientBase {
 	 * The name of this foreign key is PERSONS_PERSONID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest6() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin annotationMappingTest6");
+		logTrace( "Begin annotationMappingTest6");
 		boolean pass1 = true;
 		boolean pass2 = false;
 		Vector<Team> v1;
@@ -669,7 +659,7 @@ public class Client extends PMClientBase {
 			Collection<Project> projCol2 = p2.getProjects();
 
 			if ((projCol1.size() != 3) || (projCol2.size() != 3)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"annotationMappingTest6: Did not get expected results."
 								+ "Expected 3 Projects for Karen Tegan (PK 6) , got: " + projCol1.size()
 								+ ", Expected 2 Projects for William Keaton (PK 9), got: " + projCol2.size());
@@ -678,12 +668,12 @@ public class Client extends PMClientBase {
 
 				Iterator i1 = projCol1.iterator();
 				while (i1.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Karen Tegan Projects");
+					logTrace( "Check Collection for Karen Tegan Projects");
 					Project o1 = (Project) i1.next();
 
 					for (int l = 0; l < 3; l++) {
 						if (expectedResults1[l].equals((Long) o1.getProjId())) {
-							logger.log(Logger.Level.TRACE, "Found Project for Karen Tegan: " + (String) o1.getName());
+							logTrace( "Found Project for Karen Tegan: " + (String) o1.getName());
 							foundProject1++;
 							break;
 						}
@@ -692,12 +682,12 @@ public class Client extends PMClientBase {
 
 				Iterator i2 = projCol2.iterator();
 				while (i2.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for William Keaton Projects");
+					logTrace( "Check Collection for William Keaton Projects");
 					Project o2 = (Project) i2.next();
 
 					for (int l = 0; l < 3; l++) {
 						if (expectedResults2[l].equals((Long) o2.getProjId())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Project for William Keaton: " + (String) o2.getName());
 							foundProject2++;
 							break;
@@ -708,10 +698,10 @@ public class Client extends PMClientBase {
 			}
 
 			if ((foundProject1 != 3) || (foundProject2 != 3)) {
-				logger.log(Logger.Level.ERROR, "annotationMappingTest6: Did not get expected results");
+				logErr( "annotationMappingTest6: Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
@@ -734,14 +724,14 @@ public class Client extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -772,9 +762,9 @@ public class Client extends PMClientBase {
 	 * ANNUALREVIEW table. The name of this foreign key is ANNUALREVIEWS_AID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest7() throws Exception {
-		logger.log(Logger.Level.TRACE, "Begin annotationMappingTest7");
+		logTrace( "Begin annotationMappingTest7");
 		boolean pass1 = true;
 		boolean pass2 = false;
 
@@ -844,7 +834,7 @@ public class Client extends PMClientBase {
 			Collection<AnnualReview> col5 = p5.getAnnualReviews();
 
 			if ((col1.size() != 4) || (col2.size() != 2 || col3.size() != 2 || col4.size() != 2 || col5.size() != 4)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"annotationMappingTest7: Did not get expected results."
 								+ "Expected 4 reviews for Mary Macy (PK 12) , got: " + col1.size()
 								+ ", Expected 2 reviews for Julie OClaire (PK 14), got: " + col2.size()
@@ -856,12 +846,12 @@ public class Client extends PMClientBase {
 
 				Iterator i1 = col1.iterator();
 				while (i1.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Mary Macy Reviews");
+					logTrace( "Check Collection for Mary Macy Reviews");
 					AnnualReview o1 = (AnnualReview) i1.next();
 
 					for (int l = 0; l < 5; l++) {
 						if (expectedCol1[l].equals((Integer) o1.getService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Mary Macy Annual Review for Service Year: " + (Integer) o1.getService());
 							foundCol1++;
 							break;
@@ -871,12 +861,12 @@ public class Client extends PMClientBase {
 
 				Iterator i2 = col2.iterator();
 				while (i2.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Julie OClaire Reviews");
+					logTrace( "Check Collection for Julie OClaire Reviews");
 					AnnualReview o2 = (AnnualReview) i2.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedCol2[l].equals((Integer) o2.getService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Julie OClaire Annual Review for Service Year: " + (Integer) o2.getService());
 							foundCol2++;
 							break;
@@ -886,12 +876,12 @@ public class Client extends PMClientBase {
 
 				Iterator i3 = col3.iterator();
 				while (i3.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Kellie Lee Reviews");
+					logTrace( "Check Collection for Kellie Lee Reviews");
 					AnnualReview o3 = (AnnualReview) i3.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedCol3[l].equals((Integer) o3.getService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Kellie Lee Annual Review for Service Year: " + (Integer) o3.getService());
 							foundCol3++;
 							break;
@@ -901,12 +891,12 @@ public class Client extends PMClientBase {
 
 				Iterator i4 = col4.iterator();
 				while (i4.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Mark Francis Reviews");
+					logTrace( "Check Collection for Mark Francis Reviews");
 					AnnualReview o4 = (AnnualReview) i4.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedCol4[l].equals((Integer) o4.getService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Mark Francis Annual Review for Service Year: " + (Integer) o4.getService());
 							foundCol4++;
 							break;
@@ -916,12 +906,12 @@ public class Client extends PMClientBase {
 
 				Iterator i5 = col5.iterator();
 				while (i5.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Collection for Katy Hughes Reviews");
+					logTrace( "Check Collection for Katy Hughes Reviews");
 					AnnualReview o5 = (AnnualReview) i5.next();
 
 					for (int l = 0; l < 5; l++) {
 						if (expectedCol5[l].equals((Integer) o5.getService())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Katy Hughes Annual Review for Service Year: " + (Integer) o5.getService());
 							foundCol5++;
 							break;
@@ -933,24 +923,24 @@ public class Client extends PMClientBase {
 
 			if ((foundCol1 != 4) || (foundCol2 != 2) || (foundCol3 != 2) || (foundCol4 != 2) || (foundCol5 != 4)) {
 
-				logger.log(Logger.Level.ERROR, "annotationMappingTest7: Did not get expected results");
+				logErr( "annotationMappingTest7: Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -982,7 +972,7 @@ public class Client extends PMClientBase {
 	 * table. The name of this foreign key is INSURANCES_INSID.
 	 *
 	 */
-	@Test
+	
 	public void annotationMappingTest8() throws Exception {
 		boolean pass1 = true;
 		boolean pass2 = false;
@@ -1023,7 +1013,7 @@ public class Client extends PMClientBase {
 			Collection<Insurance> insCol3 = p3.getInsurance();
 
 			if ((insCol1.size() != 2) || (insCol2.size() != 2) || (insCol3.size() != 3)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"annotationMappingTest8: Did not get expected results."
 								+ "Expected 2 Insurance Carriers for Shelly McGowan (PK 3) , got: " + insCol1.size()
 								+ ", Expected 2 Insurance Carriers for Cheng Fang (PK 13) , got: " + insCol2.size()
@@ -1033,12 +1023,12 @@ public class Client extends PMClientBase {
 
 				Iterator i1 = insCol1.iterator();
 				while (i1.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Insurance Carriers for Shelly McGowan");
+					logTrace( "Check Insurance Carriers for Shelly McGowan");
 					Insurance o1 = (Insurance) i1.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedResults1[l].equals((Integer) o1.getInsId())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Insurance Carrier for Shelly McGowan: " + (String) o1.getCarrier());
 							foundInsurance1++;
 							break;
@@ -1048,12 +1038,12 @@ public class Client extends PMClientBase {
 
 				Iterator i2 = insCol2.iterator();
 				while (i2.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Insurance Carriers for Cheng Fang");
+					logTrace( "Check Insurance Carriers for Cheng Fang");
 					Insurance o2 = (Insurance) i2.next();
 
 					for (int l = 0; l < 2; l++) {
 						if (expectedResults2[l].equals((Integer) o2.getInsId())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Insurance Carrier for Cheng Fang: " + (String) o2.getCarrier());
 							foundInsurance2++;
 							break;
@@ -1063,12 +1053,12 @@ public class Client extends PMClientBase {
 
 				Iterator i3 = insCol3.iterator();
 				while (i3.hasNext()) {
-					logger.log(Logger.Level.TRACE, "Check Insurance Carriers for Nicole Martin");
+					logTrace( "Check Insurance Carriers for Nicole Martin");
 					Insurance o3 = (Insurance) i3.next();
 
 					for (int l = 0; l < 3; l++) {
 						if (expectedResults3[l].equals((Integer) o3.getInsId())) {
-							logger.log(Logger.Level.TRACE,
+							logTrace(
 									"Found Insurance Carrier for Nicole Martin: " + (String) o3.getCarrier());
 							foundInsurance3++;
 							break;
@@ -1079,24 +1069,24 @@ public class Client extends PMClientBase {
 			}
 
 			if ((foundInsurance1 != 2) || (foundInsurance2 != 2) || (foundInsurance3 != 3)) {
-				logger.log(Logger.Level.ERROR, "annotationMappingTest8: Did not get expected results");
+				logErr( "annotationMappingTest8: Did not get expected results");
 				pass2 = false;
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass2 = true;
 			}
 
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 
@@ -1116,9 +1106,9 @@ public class Client extends PMClientBase {
 	}
 
 	private void createPeople(boolean persist) throws Exception {
-		logger.log(Logger.Level.TRACE, "CreatePeople(persist=" + persist + ")");
+		logTrace( "CreatePeople(persist=" + persist + ")");
 
-		logger.log(Logger.Level.TRACE, "Create 20 People");
+		logTrace( "Create 20 People");
 		pRef[0] = new Person(1, "Alan", "Frechette");
 		pRef[1] = new Person(2, "Arthur", "Frechette");
 		pRef[2] = new Person(3, "Shelly", "McGowan");
@@ -1141,12 +1131,12 @@ public class Client extends PMClientBase {
 		pRef[19] = new Person(20, "Katy", "Hughes");
 
 		if (persist) {
-			logger.log(Logger.Level.TRACE, "Start to persist people ");
+			logTrace( "Start to persist people ");
 			getEntityTransaction().begin();
 			for (Person p : pRef) {
 				if (p != null) {
 					getEntityManager().persist(p);
-					logger.log(Logger.Level.TRACE, "Persisting person " + p);
+					logTrace( "Persisting person " + p);
 				}
 			}
 			getEntityTransaction().commit();
@@ -1155,20 +1145,20 @@ public class Client extends PMClientBase {
 
 	private void createTeams() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Create 5 Teams");
+		logTrace( "Create 5 Teams");
 		tRef[0] = new Team(1, "Engineering");
 		tRef[1] = new Team(2, "Marketing");
 		tRef[2] = new Team(3, "Sales");
 		tRef[3] = new Team(4, "Accounting");
 		tRef[4] = new Team(5, "Training");
 
-		logger.log(Logger.Level.TRACE, "Start to persist teams ");
+		logTrace( "Start to persist teams ");
 		getEntityTransaction().begin();
 
 		for (Team t : tRef) {
 			if (t != null) {
 				getEntityManager().persist(t);
-				logger.log(Logger.Level.TRACE, "persisted team " + t);
+				logTrace( "persisted team " + t);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1176,18 +1166,18 @@ public class Client extends PMClientBase {
 	}
 
 	private void createInsurance() throws Exception {
-		logger.log(Logger.Level.TRACE, "Create 3 Insurance Carriers");
+		logTrace( "Create 3 Insurance Carriers");
 		insRef[0] = new Insurance(1, "Prudential");
 		insRef[1] = new Insurance(2, "Cigna");
 		insRef[2] = new Insurance(3, "Sentry");
 
-		logger.log(Logger.Level.TRACE, "Start to persist insurance ");
+		logTrace( "Start to persist insurance ");
 		getEntityTransaction().begin();
 		for (Insurance i : insRef) {
 			if (i != null) {
 
 				getEntityManager().persist(i);
-				logger.log(Logger.Level.TRACE, "persisted insurance " + i);
+				logTrace( "persisted insurance " + i);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1199,7 +1189,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void createProjects(boolean persist) throws Exception {
-		logger.log(Logger.Level.TRACE, "Create 5 Projects (persist=" + persist + ")");
+		logTrace( "Create 5 Projects (persist=" + persist + ")");
 		projRef[0] = new Project(123456789L, "Sidewinder", new BigDecimal("20500.0"));
 		projRef[1] = new Project(234567890L, "Boa", new BigDecimal("75000.0"));
 		projRef[2] = new Project(345678901L, "Asp", new BigDecimal("500000.0"));
@@ -1207,13 +1197,13 @@ public class Client extends PMClientBase {
 		projRef[4] = new Project(567890123L, "Python", new BigDecimal("1000.0"));
 
 		if (persist) {
-			logger.log(Logger.Level.TRACE, "Start to persist projects ");
+			logTrace( "Start to persist projects ");
 			getEntityTransaction().begin();
 			for (Project p : projRef) {
 				if (p != null) {
 
 					getEntityManager().persist(p);
-					logger.log(Logger.Level.TRACE, "persisted project " + p);
+					logTrace( "persisted project " + p);
 				}
 			}
 			getEntityTransaction().commit();
@@ -1222,34 +1212,34 @@ public class Client extends PMClientBase {
 
 	private void createCompany() throws Exception {
 
-		logger.log(Logger.Level.TRACE, "Create 2 Companies");
+		logTrace( "Create 2 Companies");
 		cRef[0] = new Company(25501L, "American Gifts");
 		cRef[1] = new Company(37560L, "Planet Earth");
 
-		logger.log(Logger.Level.TRACE, "Start to persist companies ");
+		logTrace( "Start to persist companies ");
 		getEntityTransaction().begin();
 		for (Company c : cRef) {
 			if (c != null) {
 
 				getEntityManager().persist(c);
-				logger.log(Logger.Level.TRACE, "persisted company " + c);
+				logTrace( "persisted company " + c);
 			}
 		}
 		getEntityTransaction().commit();
 	}
 
 	private void createAddress() throws Exception {
-		logger.log(Logger.Level.TRACE, "Create 2 Addresses");
+		logTrace( "Create 2 Addresses");
 		aRef[0] = new Address("100", "1 Network Drive", "Burlington", "MA", "01803");
 		aRef[1] = new Address("200", "4150 Network Drive", "Santa Clara", "CA", "95054");
 
-		logger.log(Logger.Level.TRACE, "Start to persist addresses ");
+		logTrace( "Start to persist addresses ");
 		getEntityTransaction().begin();
 		for (Address a : aRef) {
 			if (a != null) {
 
 				getEntityManager().persist(a);
-				logger.log(Logger.Level.TRACE, "persisted address " + a);
+				logTrace( "persisted address " + a);
 			}
 		}
 		getEntityTransaction().commit();
@@ -1257,7 +1247,7 @@ public class Client extends PMClientBase {
 	}
 
 	private void createReviews() throws Exception {
-		logger.log(Logger.Level.TRACE, "Create 5 Addresses");
+		logTrace( "Create 5 Addresses");
 		rRef[0] = new AnnualReview(1, 1);
 		rRef[1] = new AnnualReview(2, 2);
 		rRef[2] = new AnnualReview(3, 3);
@@ -1267,33 +1257,32 @@ public class Client extends PMClientBase {
 		rRef[6] = new AnnualReview(7, 7);
 		rRef[7] = new AnnualReview(8, 8);
 
-		logger.log(Logger.Level.TRACE, "Start to persist annual reviews ");
+		logTrace( "Start to persist annual reviews ");
 		getEntityTransaction().begin();
 		for (AnnualReview a : rRef) {
 			if (a != null) {
 
 				getEntityManager().persist(a);
-				logger.log(Logger.Level.TRACE, "persisted annual reviews " + a);
+				logTrace( "persisted annual reviews " + a);
 			}
 		}
 		getEntityTransaction().commit();
 
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -1311,14 +1300,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM ADDRESS").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.ejb.exclude;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
 import com.sun.ts.lib.util.RemoteLoggingInitException;
@@ -42,7 +42,7 @@ import jakarta.persistence.PersistenceContext;
 @TransactionManagement(TransactionManagementType.CONTAINER)
 public class Stateful3Bean implements Stateful3IF {
 
-	private static final Logger logger = (Logger) System.getLogger(Stateless3Bean.class.getName());
+
 
 	@PersistenceContext(unitName = "CTS-EJB-EXCLUDE")
 	private EntityManager entityManager;
@@ -59,7 +59,7 @@ public class Stateful3Bean implements Stateful3IF {
 	public void createTestData() {
 		try {
 
-			logger.log(Logger.Level.TRACE, "createTestData - create 5 B Instances");
+			TestUtil.logTrace( "createTestData - create 5 B Instances");
 
 			bRef[0] = new B("11", "myB", 1);
 			bRef[1] = new B("12", "yourB", 2);
@@ -67,39 +67,39 @@ public class Stateful3Bean implements Stateful3IF {
 			bRef[3] = new B("14", "hisB", 4);
 			bRef[4] = new B("15", "ourB", 5);
 
-			logger.log(Logger.Level.TRACE, "Start to persist Bees ");
+			TestUtil.logTrace( "Start to persist Bees ");
 			for (B b : bRef) {
 				if (b != null) {
 					entityManager.persist(b);
-					logger.log(Logger.Level.TRACE, "persisted B " + b);
+					TestUtil.logTrace( "persisted B " + b);
 				}
 			}
 			entityManager.flush();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected while creating test data:" + e);
+			TestUtil.logErr( "Unexpected while creating test data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		logger.log(Logger.Level.TRACE, "stateful3Bean removeTestData");
+		TestUtil.logTrace( "stateful3Bean removeTestData");
 
 		try {
 			entityManager.createNativeQuery("DELETE FROM BEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.createNativeQuery("DELETE FROM AEJB_1X1_BI_BTOB").executeUpdate();
 			entityManager.flush();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception caught while cleaning up:", e);
+			TestUtil.logErr( "Unexpected Exception caught while cleaning up:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logger.log(Logger.Level.TRACE, "Clearing cache");
+		TestUtil.logTrace( "Clearing cache");
 		entityManager.getEntityManagerFactory().getCache().evictAll();
-		logger.log(Logger.Level.TRACE, "cleanup complete");
+		TestUtil.logTrace( "cleanup complete");
 
 	}
 
 	public void init(final Properties p) {
-		logger.log(Logger.Level.TRACE, "init");
+		TestUtil.logTrace( "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -110,23 +110,23 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public boolean test1() {
 
-		logger.log(Logger.Level.TRACE, "Begin test1");
+		TestUtil.logTrace( "Begin test1");
 		boolean pass = false;
 
 		try {
 
 			createTestData();
 
-			logger.log(Logger.Level.TRACE, "try to find Entity B now that it has been create and persisted.");
+			TestUtil.logTrace( "try to find Entity B now that it has been create and persisted.");
 			final B newB = entityManager.find(B.class, "15");
 
 			if (newB != null) {
-				logger.log(Logger.Level.TRACE, "found B entity as expected");
+				TestUtil.logTrace( "found B entity as expected");
 				pass = true;
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception :", e);
+			TestUtil.logErr( "Unexpected Exception :", e);
 			pass = false;
 		}
 
@@ -135,22 +135,22 @@ public class Stateful3Bean implements Stateful3IF {
 
 	public boolean test2() {
 
-		logger.log(Logger.Level.TRACE, "Begin test2");
+		TestUtil.logTrace( "Begin test2");
 		boolean pass = false;
 
 		try {
 
-			logger.log(Logger.Level.TRACE, "test2:  newA");
+			TestUtil.logTrace( "test2:  newA");
 			final A newA = new A("100", "nonexistent", 5);
-			logger.log(Logger.Level.TRACE, "test2:  try to Persist Entity A");
+			TestUtil.logTrace( "test2:  try to Persist Entity A");
 			entityManager.persist(newA);
-			logger.log(Logger.Level.TRACE, "test2:  Did not get expected Exception");
+			TestUtil.logTrace( "test2:  Did not get expected Exception");
 
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "IllegalArgumentException Caught as Expected, A is not an Entity");
+			TestUtil.logTrace( "IllegalArgumentException Caught as Expected, A is not an Entity");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in test2:", e);
+			TestUtil.logErr( "Unexpected Exception caught in test2:", e);
 			pass = false;
 		}
 		return pass;

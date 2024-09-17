@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.misc.datasource.twojars;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
@@ -34,7 +34,16 @@ import jakarta.annotation.sql.DataSourceDefinitions;
 import jakarta.ejb.EJB;
 
 @DataSourceDefinitions({
-    @DataSourceDefinition(name = "java:global/datasource/twojars/appclient/globalds", description = "override it with <data-source> in application-client.xml", className = "@className@", portNumber = 8080, serverName = "@serverName@", databaseName = "@databaseName@", user = "@user@", password = "@password@", transactional = true) })
+    @DataSourceDefinition(name = "java:global/datasource/twojars/appclient/globalds",
+            description = "override it with <data-source> in application-client.xml",
+            className = "org.apache.derby.jdbc.ClientDataSource",
+            portNumber = 8080,
+            serverName = "localhost",
+            databaseName = "derbyDB",
+            user = "cts1",
+            password = "cts1",
+            transactional = true)
+})
 public class Client extends EETest {
   private static StringBuilder postConstructRecords = new StringBuilder();
 

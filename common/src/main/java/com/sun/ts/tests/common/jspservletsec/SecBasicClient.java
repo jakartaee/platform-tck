@@ -92,10 +92,10 @@ public class SecBasicClient extends BaseUrlClient {
     super.setup(args, p);
 
     try {
-      username = p.getProperty(USERNAME);
-      password = p.getProperty(PASSWORD);
-      unauthUsername = p.getProperty(UNAUTH_USERNAME);
-      unauthPassword = p.getProperty(UNAUTH_PASSWORD);
+      username = TestUtil.getProperty(p, USERNAME);
+      password = TestUtil.getProperty(p, PASSWORD);
+      unauthUsername = TestUtil.getProperty(p, UNAUTH_USERNAME);
+      unauthPassword = TestUtil.getProperty(p, UNAUTH_PASSWORD);
 
       if (args[0].equals("jsp")) {
         pageSec = pageJspSec;

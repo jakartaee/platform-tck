@@ -22,7 +22,7 @@ package com.sun.ts.tests.common.vehicle;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 
@@ -35,7 +35,8 @@ public class EmptyVehicleRunner implements VehicleRunnable {
 
     // create an instance of the test client and run here
     try {
-      Class c = Class.forName(p.getProperty("test_classname"));
+      String testClassName = TestUtil.getProperty(p, "test_classname");
+      Class c = Class.forName(testClassName);
       theTestClient = (ServiceEETest) c.newInstance();
       theTestClient.setSharedObject(VehicleClient.getClientSharedObject());
       sTestStatus = theTestClient.run(argv, p);

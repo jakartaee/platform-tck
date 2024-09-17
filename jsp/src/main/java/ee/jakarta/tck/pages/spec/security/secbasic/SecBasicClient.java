@@ -17,18 +17,13 @@
 
 package ee.jakarta.tck.pages.spec.security.secbasic;
 
-import java.util.Properties;
 import java.net.URL;
-import com.sun.ts.tests.common.webclient.BaseUrlClient;
-import ee.jakarta.tck.pages.common.client.AbstractUrlClient;
 
+import ee.jakarta.tck.pages.common.client.BaseUrlClient;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestInfo;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import com.sun.ts.tests.common.webclient.BaseUrlClient;
 import java.lang.System.Logger;
 
 public class SecBasicClient extends BaseUrlClient {

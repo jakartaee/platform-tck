@@ -62,20 +62,6 @@
                 <executions>
 
                     <execution>
-                        <id>install-javatest</id>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <file>${project.build.directory}/../../../../lib/javatest.jar</file>
-                            <groupId>javatest</groupId>
-                            <artifactId>javatest</artifactId>
-                            <version>5.0</version>
-                            <packaging>jar</packaging>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>install-pages-tck-jar</id>
                         <goals>
                             <goal>install-file</goal>

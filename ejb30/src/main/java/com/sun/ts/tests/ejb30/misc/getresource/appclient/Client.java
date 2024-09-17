@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.misc.getresource.appclient;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.misc.getresource.common.GetResourceIF;

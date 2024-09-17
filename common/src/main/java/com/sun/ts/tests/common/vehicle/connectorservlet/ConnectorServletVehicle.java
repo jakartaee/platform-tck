@@ -26,7 +26,7 @@ import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.util.TestUtil;
@@ -66,7 +66,8 @@ public class ConnectorServletVehicle extends HttpServlet {
       System.out.println("read properties!!!");
 
       // create an instance of the test client and run here
-      Class c = Class.forName(properties.getProperty("test_classname"));
+      String testClassName = TestUtil.getProperty(properties, "test_classname");
+      Class c = Class.forName(testClassName);
       testObj = (EETest) c.newInstance();
 
       // Thread.currentThread().dumpStack();

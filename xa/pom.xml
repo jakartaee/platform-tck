@@ -42,10 +42,6 @@
             <artifactId>common</artifactId>
         </dependency>
         <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-        </dependency>
-        <dependency>
             <groupId>jakarta.ejb</groupId>
             <artifactId>jakarta.ejb-api</artifactId>
         </dependency>

@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.core.appclient.queuetests;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.DoneLatch;
@@ -563,7 +563,7 @@ public class QueueTests extends ServiceEETest {
     }
   }
 
-  private static class AutoAckMsgListener implements MessageListener {
+  public static class AutoAckMsgListener implements MessageListener {
     private boolean passed;
 
     QueueSession session;
@@ -1094,7 +1094,7 @@ public class QueueTests extends ServiceEETest {
     }
   }
 
-  private static class RequestorMsgListener implements MessageListener {
+  public static class RequestorMsgListener implements MessageListener {
     QueueSession session = null;
 
     boolean pass = false;

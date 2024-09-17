@@ -27,7 +27,7 @@ package com.sun.ts.tests.signaturetest.saaj;
 import java.io.PrintWriter;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.signaturetest.SigTestEE;
 import com.sun.ts.tests.signaturetest.SignatureTestDriver;
 import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;

@@ -20,7 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.propagation.am;
 
-import java.lang.System.Logger;
+
 import java.math.BigInteger;
 import java.util.Properties;
 
@@ -42,7 +42,7 @@ import jakarta.persistence.PersistenceUnit;
 @Remote({ Stateful3IF.class })
 public class Stateful3Bean implements Stateful3IF {
 
-	private static final Logger logger = (Logger) System.getLogger(Stateful3Bean.class.getName());
+
 
 	@PersistenceUnit(unitName = "CTS-APPMANAGED-UNIT")
 	private EntityManagerFactory entityManagerFactory;
@@ -64,20 +64,20 @@ public class Stateful3Bean implements Stateful3IF {
 	public void prepareEnvironment() {
 		try {
 
-			logger.log(Logger.Level.TRACE, "In PostContruct");
+			TestUtil.logTrace( "In PostContruct");
 			if (entityManagerFactory != null) {
 				entityManager = entityManagerFactory.createEntityManager();
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManagerFactory is null");
+				TestUtil.logErr( "EntityManagerFactory is null");
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, " In PostConstruct: Exception caught while setting EntityManager", e);
+			TestUtil.logErr( " In PostConstruct: Exception caught while setting EntityManager", e);
 		}
 	}
 
 	public void init(final Properties p) {
-		logger.log(Logger.Level.TRACE, "init");
+		TestUtil.logTrace( "init");
 		try {
 			TestUtil.init(p);
 		} catch (RemoteLoggingInitException e) {
@@ -91,11 +91,11 @@ public class Stateful3Bean implements Stateful3IF {
 		int memId = 9;
 		try {
 
-			logger.log(Logger.Level.TRACE, "createTestData");
+			TestUtil.logTrace( "createTestData");
 			entityManager.joinTransaction();
 			removeTestData();
 			createTestData();
-			logger.log(Logger.Level.TRACE, "find member");
+			TestUtil.logTrace( "find member");
 			Member member = getMember(memId);
 			entityManager.clear();
 
@@ -106,15 +106,15 @@ public class Stateful3Bean implements Stateful3IF {
 				entityManager.merge(member);
 				entityManager.flush();
 			} else {
-				logger.log(Logger.Level.ERROR, " member is null, Unexpected - cannot proceed with test.");
+				TestUtil.logErr( " member is null, Unexpected - cannot proceed with test.");
 			}
 			pass = false;
 
 		} catch (OptimisticLockException e) {
 			pass = true;
-			logger.log(Logger.Level.TRACE, "Caught expected OptimisticLockException");
+			TestUtil.logTrace( "Caught expected OptimisticLockException");
 		} finally {
-			logger.log(Logger.Level.TRACE, "Finally, removeTestData");
+			TestUtil.logTrace( "Finally, removeTestData");
 			removeTestData();
 		}
 		return pass;
@@ -125,15 +125,15 @@ public class Stateful3Bean implements Stateful3IF {
 		int memId = 8;
 		try {
 
-			logger.log(Logger.Level.TRACE, "test4: createTestData");
+			TestUtil.logTrace( "test4: createTestData");
 			entityManager.joinTransaction();
 			removeTestData();
 			createTestData();
-			logger.log(Logger.Level.TRACE, "find member");
+			TestUtil.logTrace( "find member");
 			Member member = getMember(memId);
 
 			if (null != member) {
-				logger.log(Logger.Level.TRACE, "check member status");
+				TestUtil.logTrace( "check member status");
 				checkMemberStatus(member);
 				// When an EntityManager with an extended persistence context
 				// is used, the persist, remove merge, and refresh operations
@@ -149,11 +149,11 @@ public class Stateful3Bean implements Stateful3IF {
 				}
 
 			} else {
-				logger.log(Logger.Level.ERROR, " member is null, Unexpected - cannot proceed with test.");
+				TestUtil.logErr( " member is null, Unexpected - cannot proceed with test.");
 			}
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception:", e);
+			TestUtil.logErr( "Unexpected Exception:", e);
 		} finally {
 			removeTestData();
 		}
@@ -165,10 +165,10 @@ public class Stateful3Bean implements Stateful3IF {
 		int newDonation = 10000;
 
 		if (null == m) {
-			logger.log(Logger.Level.TRACE, "checkMemberStatus: member is NULL");
+			TestUtil.logTrace( "checkMemberStatus: member is NULL");
 		} else {
 			if (m.isDuesPaid()) {
-				logger.log(Logger.Level.TRACE, "checkCustomerStatus: thisMember is not null, setDonation");
+				TestUtil.logTrace( "checkCustomerStatus: thisMember is not null, setDonation");
 				m.setDonation(new BigInteger("10000"));
 			} else {
 				BigInteger currentDonation = m.getDonation();
@@ -180,52 +180,52 @@ public class Stateful3Bean implements Stateful3IF {
 				m.setDuesPaid(true);
 			}
 
-			logger.log(Logger.Level.TRACE, "merge thisMember");
+			TestUtil.logTrace( "merge thisMember");
 			entityManager.flush();
 		}
 	}
 
 	public Member getMember(final int memberId) {
-		logger.log(Logger.Level.TRACE, "getMember");
+		TestUtil.logTrace( "getMember");
 		return entityManager.find(Member.class, memberId);
 	}
 
 	public void createTestData() {
-		logger.log(Logger.Level.TRACE, "createTestData");
+		TestUtil.logTrace( "createTestData");
 		try {
 
-			logger.log(Logger.Level.TRACE, "Create Member Entities");
+			TestUtil.logTrace( "Create Member Entities");
 			mRef[0] = new Member(7, "Jane Lam", false);
 			mRef[1] = new Member(8, "Vinny Testa", false);
 			mRef[2] = new Member(9, "Mario Luigi", true, new BigInteger("25000"));
 			mRef[3] = new Member(10, "Sky Blue", false);
 			mRef[4] = new Member(11, "Leonardi DaVinci", true, new BigInteger("100000"));
 
-			logger.log(Logger.Level.TRACE, "Start to persist Members ");
+			TestUtil.logTrace( "Start to persist Members ");
 			System.out.println("Persist Member Entities");
 			for (Member m : mRef) {
 				if (m != null) {
 					entityManager.persist(m);
-					logger.log(Logger.Level.TRACE, "persisted Member " + m);
+					TestUtil.logTrace( "persisted Member " + m);
 				}
 			}
 
 			entityManager.flush();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected while creating member data:" + e);
+			TestUtil.logErr( "Unexpected while creating member data:" + e);
 		}
 	}
 
 	public void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		TestUtil.logTrace( "removeTestData");
 		try {
 			entityManager.createNativeQuery("DELETE FROM MEMBER").executeUpdate();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			TestUtil.logErr( "Exception encountered while removing entities:", e);
 		}
 		// clear the cache if the provider supports caching otherwise
 		// the evictAll is ignored.
-		logger.log(Logger.Level.TRACE, "Clearing cache");
+		TestUtil.logTrace( "Clearing cache");
 		entityManagerFactory.getCache().evictAll();
 	}
 }

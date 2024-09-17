@@ -16,31 +16,28 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Order;
-import ee.jakarta.tck.persistence.common.schema30.UtilSetup;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Path;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.Bindable;
 
-public class Client4 extends UtilSetup {
+public class Client4 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client4.class.getName());
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery4.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client4 theTests = new Client4();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -50,8 +47,7 @@ public class Client4 extends UtilSetup {
 	 * 
 	 * @test_Strategy: Verify get(String) returns an exception for a basic type
 	 */
-	@Test
-	public void fromGetStringIllegalStateExceptionTest() throws Exception {
+		public void fromGetStringIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -61,16 +57,16 @@ public class Client4 extends UtilSetup {
 			CriteriaQuery<A> cquery = cbuilder.createQuery(A.class);
 			try {
 				cquery.from(A.class).get("value").get("value2");
-				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
+				logErr( "IllegalStateException not thrown");
 			} catch (IllegalStateException ise) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
+				logTrace( "Received expected IllegalStateException");
 				pass = true;
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+				logErr( "Caught unexpected exception: ", e);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 		}
 
 		if (!pass) {
@@ -85,8 +81,7 @@ public class Client4 extends UtilSetup {
 	 * 
 	 * @test_Strategy: Verify get(String) returns an exception for a basic type
 	 */
-	@Test
-	public void pathGetStringIllegalStateExceptionTest() throws Exception {
+		public void pathGetStringIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -97,16 +92,16 @@ public class Client4 extends UtilSetup {
 			Path path = cquery.from(A.class).get("value");
 			try {
 				path.get("value2");
-				logger.log(Logger.Level.ERROR, "IllegalStateException not thrown");
+				logErr( "IllegalStateException not thrown");
 			} catch (IllegalStateException ise) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalStateException");
+				logTrace( "Received expected IllegalStateException");
 				pass = true;
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+				logErr( "Caught unexpected exception: ", e);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 		}
 
 		if (!pass) {
@@ -122,8 +117,7 @@ public class Client4 extends UtilSetup {
 	 * @test_Strategy: Verify get(String) returns an exception
 	 *
 	 */
-	@Test
-	public void fromGetStringIllegalArgumentExceptionTest() throws Exception {
+		public void fromGetStringIllegalArgumentExceptionTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -133,16 +127,16 @@ public class Client4 extends UtilSetup {
 			CriteriaQuery<A> cquery = cbuilder.createQuery(A.class);
 			try {
 				cquery.from(A.class).get("doesnotexist");
-				logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+				logErr( "IllegalArgumentException not thrown");
 			} catch (IllegalArgumentException ise) {
-				logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+				logTrace( "Received expected IllegalArgumentException");
 				pass = true;
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+				logErr( "Caught unexpected exception: ", e);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 		}
 
 		if (!pass) {
@@ -158,8 +152,7 @@ public class Client4 extends UtilSetup {
 	 * @test_Strategy: Verify getModel() returns correct result.
 	 *
 	 */
-	@Test
-	public void fromGetModelTest() throws Exception {
+		public void fromGetModelTest() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
@@ -171,14 +164,14 @@ public class Client4 extends UtilSetup {
 			Bindable bind = cquery.from(Customer.class).getModel();
 			String name = bind.getBindableJavaType().getName();
 			if (name.equals(expected)) {
-				logger.log(Logger.Level.TRACE, "Received expected name:" + name);
+				logTrace( "Received expected name:" + name);
 				pass = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + expected + ", actual:" + name);
+				logErr( "Expected:" + expected + ", actual:" + name);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 		}
 
 		if (!pass) {
@@ -193,8 +186,7 @@ public class Client4 extends UtilSetup {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void pathGetIllegalArgumentException() throws Exception {
+		public void pathGetIllegalArgumentException() throws Exception {
 		boolean pass = false;
 
 		CriteriaBuilder cbuilder = getEntityManagerFactory().getCriteriaBuilder();
@@ -202,12 +194,12 @@ public class Client4 extends UtilSetup {
 			CriteriaQuery<String> cquery = cbuilder.createQuery(String.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			customer.get("doesnotexist");
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException iae) {
-			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+			logTrace( "Received expected IllegalArgumentException");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception: ", e);
+			logErr( "Caught unexpected exception: ", e);
 		}
 
 		if (!pass) {
@@ -225,8 +217,7 @@ public class Client4 extends UtilSetup {
 	 * and verify a IllegalStateException is thrown
 	 *
 	 */
-	@Test
-	public void executeUpdateIllegalStateException1Test() throws Exception {
+		public void executeUpdateIllegalStateException1Test() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -239,19 +230,19 @@ public class Client4 extends UtilSetup {
 			cquery.select(order);
 			cquery.where(cb.equal(order.get("id"), "1"));
 			getEntityManager().createQuery(cquery).executeUpdate();
-			logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
+			logErr( "IllegalStateException was not thrown");
 
 		} catch (IllegalStateException ise) {
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in rollback:", re);
+				logErr( "Unexpected Exception in rollback:", re);
 			}
 		}
 

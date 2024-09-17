@@ -17,7 +17,7 @@
 env.label = "jakartaee-tck-pod-${UUID.randomUUID().toString()}"
 
 default_suites=[ "samples", "signaturetest/javaee" ] 
-default_tcks=["caj", "connector", "el", "jaxws", "jms", "jpa", "jsp", "jstl", "jta", "saaj", "servlet",  "websocket"]
+default_tcks=["caj", "connector", "el", "jms", "jpa", "jsp", "jstl", "jta", "saaj", "servlet",  "websocket"]
 
 def cts_suites = params.test_suites != null ? params.test_suites.split() : default_suites
 def tcks = params.standalone_tcks != null ? params.standalone_tcks.split() : default_tcks
@@ -44,7 +44,7 @@ def generateCTSStage(job) {
             container('jakartaeetck-ci') {
               unstash 'jakartaeetck-bundles'
               sh """
-                env
+                id && ant -version && mvn -version && ls -la ${HOME}/ && cat /etc/hosts && (env|sort)
                 unzip -q -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck*.zip -d ${CTS_HOME}
                 bash -x ${CTS_HOME}/jakartaeetck/docker/run_jakartaeetck.sh ${job} 2>&1 | tee ${CTS_HOME}/run_jakartaeetck.log
               """
@@ -63,7 +63,7 @@ def generateCTSStage(job) {
             container('jakartaeetck-ci') {
               unstash 'jakartaeetck-bundles'
               sh """
-                env
+                id && ant -version && mvn -version && ls -la ${HOME}/ && cat /etc/hosts && (env|sort)
                 unzip -q -o ${WORKSPACE}/jakartaeetck-bundles/*jakartaeetck*.zip -d ${CTS_HOME}
                 bash -x ${CTS_HOME}/jakartaeetck/docker/run_jakartaeetck.sh ${job} 2>&1 | tee ${CTS_HOME}/run_cts.log
               """
@@ -90,7 +90,7 @@ def generateStandaloneTCKStage(job) {
             checkout scm
             unstash 'standalone-bundles'
             sh """
-              env
+              id && ant -version && mvn -version && ls -la ${HOME}/ && cat /etc/hosts && (env|sort)
               bash -x ${WORKSPACE}/docker/${job}tck.sh 2>&1 | tee ${WORKSPACE}/${job}tck.log
             """
             archiveArtifacts artifacts: "*tck-results.tar.gz,*-junitreports.tar.gz,${job}tck.log",allowEmptyArchive: true
@@ -131,18 +131,20 @@ spec:
       limits:
         memory: "3Gi"
   - name: jakartaeetck-ci
-    image: jakartaee/cts-base:0.3
+    image: jakartaee/cts-base:0.4
     command:
     - cat
     tty: true
     imagePullPolicy: Always
-    env:
-      - name: JAVA_TOOL_OPTIONS
-        value: -Xmx6G
     resources:
       limits:
         memory: "10Gi"
         cpu: "2.0"
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 1003270000
+      runAsGroup: 0
+      fsGroup: 1003270000
   - name: james-mail
     image: jakartaee/cts-mailserver:0.1
     command:
@@ -166,14 +168,14 @@ spec:
     string(name: 'GF_VERSION_URL', 
            defaultValue: '', 
            description: 'URL required for downloading GlassFish version details' )
-	  string(name: 'OLD_GF_BUNDLE_URL', 
+    string(name: 'OLD_GF_BUNDLE_URL',
            defaultValue: '', 
            description: 'URL required for downloading Old GlassFish Full/Web profile bundle' )
     string(name: 'TCK_BUNDLE_BASE_URL', 
-           defaultValue: '', 
+           defaultValue: '',
            description: 'Base URL required for downloading prebuilt binary TCK Bundle from a hosted location' )
     string(name: 'TCK_BUNDLE_FILE_NAME', 
-           defaultValue: 'jakartaeetck.zip', 
+           defaultValue: 'jakartaeetck.zip',
            description: 'Name of bundle file to be appended to the base url' )
     string(name: 'STANDALONE_TCK_BUNDLES_FILE_NAME_LIST',
            defaultValue: '',
@@ -184,25 +186,28 @@ spec:
            description: 'Java SE Version to be used for running TCK either JDK11/JDK17' )
     choice(name: 'LICENSE', choices: 'EPL\nEFTL',
            description: 'License file to be used to build the TCK bundle(s) either EPL(default) or Eclipse Foundation TCK License' )
+    choice(name: 'AS_TRACE', choices: 'false\ntrue',
+           description: 'Verbose logging of the asadmin command' )
     choice(name: 'DATABASE', choices: 'JavaDB\nOracle\nMySQL', 
            description: 'Database to be used for running CTS. Currently only JavaDB is supported.' )
     choice(name: 'BUILD_TYPE', choices: 'CTS\nSTANDALONE-TCK', 
            description: 'Run the full EE compliance testsuite or a standalone tck' )
     string(name: 'test_suites', defaultValue: 'connector ejb ejb30/bb ejb30/lite/appexception ejb30/lite/async ejb30/lite/basic ejb30/lite/ejbcontext ejb30/lite/enventry ejb30/lite/interceptor ejb30/lite/lookup ejb30/lite/naming ejb30/lite/nointerface  ejb30/lite/packaging ejb30/lite/singleton ejb30/lite/stateful ejb30/lite/tx ejb30/lite/view ejb30/lite/xmloverride ejb30/assembly ejb30/timer ejb30/webservice ejb30/zombie ejb30/misc ejb30/sec ejb32 el integration jacc javaee javamail jaxrs jdbc_appclient jdbc_ejb jdbc_jsp jdbc_servlet jms_appclient jms_ejb jms_jsp jms_servlet jpa_appmanaged jpa_appmanagedNoTx jpa_pmservlet jpa_puservlet jpa_stateful3 jpa_stateless3 jsonb jsonp jsp jstl jta jws samples servlet signaturetest/javaee webservices12 webservices13 websocket xa',
            description: 'Space separated list of Test suites to run') 
-    string(name: 'standalone_tcks', defaultValue: 'caj connector el jaxws jms jpa jsp jstl jta saaj servlet websocket', 
+    string(name: 'standalone_tcks', defaultValue: 'caj connector el jms jpa jsp jstl jta saaj servlet websocket', 
            description: 'Space separated list of standalone TCKs to build and run') 
     string(name: 'USER_KEYWORDS',
            defaultValue: '',
            description: 'Optional keywords prefixed by joining operator - [&|] for filtering out the tests to run' )
   }
   environment {
-    CTS_HOME = "/root"
-    ANT_OPTS = "-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http" 
+    CTS_HOME="/home/tck"
+    ANT_OPTS="-Djavax.xml.accessExternalStylesheet=all -Djavax.xml.accessExternalSchema=all -Djavax.xml.accessExternalDTD=file,http"
     MAIL_USER="user01@james.local"
     MAIL_HOST="localhost"
     LANG="en_US.UTF-8"
     DEFAULT_GF_BUNDLE_URL="https://download.eclipse.org/ee4j/glassfish/glassfish-7.0.0-SNAPSHOT-nightly.zip"
+    JAVA_TOOL_OPTIONS="-Djava.awt.headless=true"
   }
   stages {
     stage('jakartaeetck-build') {
@@ -214,7 +219,7 @@ spec:
       steps {
         container('jakartaeetck-ci') {
           sh """
-            env
+            id && ant -version && mvn -version && ls -la ${HOME}/ && cat /etc/hosts && (env|sort)
             bash -x ${WORKSPACE}/docker/build_jakartaeetck.sh 2>&1 | tee ${WORKSPACE}/build_jakartaeetck.log
           """
           archiveArtifacts artifacts: "jakartaeetck-bundles/*.zip,*.version,*.log", allowEmptyArchive: true
@@ -240,13 +245,13 @@ spec:
       when {
         expression {
           return params.BUILD_TYPE == 'STANDALONE-TCK';
-         }
+        }
       }
  
       steps {
         container('jakartaeetck-ci') {
           sh """
-            env
+            id && ant -version && mvn -version && ls -la ${HOME}/ && cat /etc/hosts && (env|sort)
             bash -x ${WORKSPACE}/docker/build_standalone-tcks.sh ${standalone_tcks} 2>&1 | tee ${WORKSPACE}/build_standalone-tcks.log
           """
           archiveArtifacts artifacts: "standalone-bundles/*.zip,*.version,*.log", allowEmptyArchive: true

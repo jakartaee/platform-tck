@@ -16,23 +16,19 @@
 
 package ee.jakarta.tck.persistence.core.entityManager2;
 
-import java.lang.System.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.TransactionRequiredException;
 
 public class Client2 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	Employee[] empRef = new Employee[5];
 
@@ -50,27 +46,24 @@ public class Client2 extends PMClientBase {
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DoesNotExist", pkgName + "Employee", pkgName + "Order" };
-		return createDeploymentJar("jpa_core_entityManager2.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
 
 	/*
 	 * setupOrderData() is called before each test
 	 *
 	 * @class.setup_props: jdbc.db;
 	 */
-	@BeforeEach
-	public void setupOrderData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setupOrderData");
+
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+
 			removeTestData();
 			createOrderData();
 			map.putAll(getEntityManager().getProperties());
@@ -78,20 +71,20 @@ public class Client2 extends PMClientBase {
 			displayMap(map);
 			dataBaseName = System.getProperty("jdbc.db");
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
-	@AfterEach
-	public void cleanupData() throws Exception {
+
+	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
 			cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -102,7 +95,7 @@ public class Client2 extends PMClientBase {
 	 * 
 	 * @test_Strategy: Call EntityManager.lock() method
 	 */
-	@Test
+	
 	public void lockTransactionRequiredExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -110,28 +103,28 @@ public class Client2 extends PMClientBase {
 
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
 
-		logger.log(Logger.Level.INFO, "Testing TransactionRequiredException for lock(Object, LockModeType)");
+		logMsg( "Testing TransactionRequiredException for lock(Object, LockModeType)");
 		try {
 			Order o = getEntityManager().find(Order.class, 1);
 			getEntityManager().lock(o, LockModeType.WRITE);
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException e) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass1 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Testing TransactionRequiredException for lock(Object, LockModeType, Map)");
+		logMsg( "Testing TransactionRequiredException for lock(Object, LockModeType, Map)");
 		try {
 			Order o = getEntityManager().find(Order.class, 1);
 			getEntityManager().lock(o, LockModeType.WRITE, myMap);
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException e) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass2 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass1 || !pass2) {
@@ -146,11 +139,11 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.refresh() method without a transaction
 	 */
-	@Test
+	
 	public void refreshTransactionRequiredExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		logger.log(Logger.Level.INFO, "Testing refresh(Object, LockModeType)");
+		logMsg( "Testing refresh(Object, LockModeType)");
 
 		try {
 			getEntityTransaction().begin();
@@ -158,22 +151,22 @@ public class Client2 extends PMClientBase {
 			getEntityTransaction().commit();
 			o.setdescription("FOOBAR");
 			getEntityManager().refresh(o, LockModeType.PESSIMISTIC_READ);
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException tre) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass1 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Testing refresh(Object, LockModeType, Map)");
+		logMsg( "Testing refresh(Object, LockModeType, Map)");
 		Map<String, Object> myMap = new HashMap<String, Object>();
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
 		try {
@@ -182,19 +175,19 @@ public class Client2 extends PMClientBase {
 			getEntityTransaction().commit();
 			o.setdescription("FOOBAR");
 			getEntityManager().refresh(o, LockModeType.PESSIMISTIC_READ, myMap);
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException tre) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass2 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -210,33 +203,33 @@ public class Client2 extends PMClientBase {
 	 *
 	 * @test_Strategy: Call EntityManager.lock() method without a transaction
 	 */
-	@Test
+	
 	public void lockTransactionRequiredException2Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
-		logger.log(Logger.Level.INFO, "Testing lock(Object, LockModeType)");
+		logMsg( "Testing lock(Object, LockModeType)");
 		try {
 			getEntityTransaction().begin();
 			Order o = getEntityManager().find(Order.class, 4);
 			getEntityTransaction().commit();
 			removeTestData();
 			getEntityManager().lock(o, LockModeType.PESSIMISTIC_READ);
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException tre) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass1 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
-		logger.log(Logger.Level.INFO, "Testing lock(Object, LockModeType, Map)");
+		logMsg( "Testing lock(Object, LockModeType, Map)");
 		Map<String, Object> myMap = new HashMap<String, Object>();
 		myMap.put("some.cts.specific.property", "nothing.in.particular");
 		try {
@@ -245,19 +238,19 @@ public class Client2 extends PMClientBase {
 			getEntityTransaction().commit();
 			removeTestData();
 			getEntityManager().lock(o, LockModeType.PESSIMISTIC_READ, myMap);
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException tre) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass2 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -270,32 +263,32 @@ public class Client2 extends PMClientBase {
 
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.INFO, "Creating Orders");
+			logMsg( "Creating Orders");
 			orders[0] = new Order(1, 111, "desc1");
 			orders[1] = new Order(2, 222, "desc2");
 			orders[2] = new Order(3, 333, "desc3");
 			orders[3] = new Order(4, 444, "desc4");
 			orders[4] = new Order(5, 555, "desc5");
 			for (Order o : orders) {
-				logger.log(Logger.Level.TRACE, "Persisting order:" + o.toString());
+				logTrace( "Persisting order:" + o.toString());
 				getEntityManager().persist(o);
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -304,14 +297,14 @@ public class Client2 extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM PURCHASE_ORDER").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

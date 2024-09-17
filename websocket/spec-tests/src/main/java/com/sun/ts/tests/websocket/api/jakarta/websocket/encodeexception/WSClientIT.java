@@ -23,9 +23,14 @@ package com.sun.ts.tests.websocket.api.jakarta.websocket.encodeexception;
 import java.lang.System.Logger;
 import java.nio.ByteBuffer;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import jakarta.websocket.EncodeException;
+
+@Tag("websocket")
+@Tag("platform")
+@Tag("webprofile")
 
 public class WSClientIT {
 

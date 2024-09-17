@@ -16,26 +16,25 @@
 
 package ee.jakarta.tck.persistence.core.query.language;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
-import ee.jakarta.tck.persistence.common.schema30.UtilPhoneData;
+public class Client5 extends Util {
 
-public class Client5 extends UtilPhoneData {
-
-	private static final Logger logger = (Logger) System.getLogger(Client5.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_language5.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client5 theTests = new Client5();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
+
 	/* Run test */
 
 	/*
@@ -48,14 +47,13 @@ public class Client5 extends UtilPhoneData {
 	 *
 	 */
 	@SetupMethod(name = "setupPhoneData")
-	@Test
-	public void queryTest55() throws Exception {
+		public void queryTest55() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List c;
 		try {
 			getEntityTransaction().begin();
-			logger.log(Logger.Level.TRACE, "determine which customers have an area code beginning with 9");
+			logTrace( "determine which customers have an area code beginning with 9");
 			c = getEntityManager()
 					.createQuery(
 							"SELECT Distinct Object(c) From Customer c, IN(c.home.phones) p where p.area LIKE :area")
@@ -67,15 +65,15 @@ public class Client5 extends UtilPhoneData {
 			expectedPKs[2] = "16";
 
 			if (!checkEntityPK(c, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 3 references, got: " + c.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)

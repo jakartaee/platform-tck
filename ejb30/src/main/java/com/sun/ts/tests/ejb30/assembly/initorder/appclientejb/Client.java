@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.assembly.initorder.common.InitOrderRemoteIF;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;

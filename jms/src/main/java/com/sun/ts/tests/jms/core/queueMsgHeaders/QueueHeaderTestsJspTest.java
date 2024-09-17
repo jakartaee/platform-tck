@@ -1,0 +1,204 @@
+package com.sun.ts.tests.jms.core.queueMsgHeaders;
+
+import com.sun.ts.tests.jms.core.queueMsgHeaders.QueueHeaderTests;
+import java.net.URL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+
+
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("jms")
+@Tag("platform")
+@Tag("jms_web")
+@Tag("web_optional")
+@Tag("tck-javatest")
+
+@TestMethodOrder(MethodOrderer.MethodName.class)
+public class QueueHeaderTestsJspTest extends com.sun.ts.tests.jms.core.queueMsgHeaders.QueueHeaderTests {
+    static final String VEHICLE_ARCHIVE = "queueMsgHeaders_jsp_vehicle";
+
+        /**
+        EE10 Deployment Descriptors:
+        queueMsgHeaders_appclient_vehicle: 
+        queueMsgHeaders_appclient_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
+        queueMsgHeaders_ejb_vehicle: 
+        queueMsgHeaders_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
+        queueMsgHeaders_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
+        queueMsgHeaders_jsp_vehicle: 
+        queueMsgHeaders_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
+        queueMsgHeaders_servlet_vehicle: 
+        queueMsgHeaders_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
+
+        Found Descriptors:
+        War:
+
+        /com/sun/ts/tests/jms/core/queueMsgHeaders/jsp_vehicle_web.xml
+        /com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml
+        Ear:
+
+        */
+        @TargetsContainer("tck-javatest")
+        @OverProtocol("javatest")
+        @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        // War
+            // the war with the correct archive name
+            WebArchive queueMsgHeaders_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "queueMsgHeaders_jsp_vehicle_web.war");
+            // The class files
+            queueMsgHeaders_jsp_vehicle_web.addClasses(
+            com.sun.ts.tests.jms.common.JmsTool.class,
+            com.sun.ts.tests.jms.core.queueMsgHeaders.QueueHeaderTests.class,
+            com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+            com.sun.ts.lib.harness.EETest.Fault.class,
+            com.sun.ts.lib.harness.EETest.class,
+            com.sun.ts.lib.harness.ServiceEETest.class,
+            com.sun.ts.lib.harness.EETest.SetupException.class,
+            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            );
+            // The web.xml descriptor
+            URL warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            if(warResURL != null) {
+              queueMsgHeaders_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+            }
+            // The sun-web.xml descriptor
+            warResURL = QueueHeaderTests.class.getResource("//com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");
+            if(warResURL != null) {
+              queueMsgHeaders_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
+            }
+
+            // Any libraries added to the war
+
+            // Web content
+            warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            if(warResURL != null) {
+              queueMsgHeaders_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
+            }
+            warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/jms/core/queueMsgHeaders/jsp_vehicle_web.xml");
+            if(warResURL != null) {
+              queueMsgHeaders_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
+            }
+            warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
+            if(warResURL != null) {
+              queueMsgHeaders_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
+            }
+            warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+            if(warResURL != null) {
+              queueMsgHeaders_jsp_vehicle_web.addAsWebResource(warResURL, "/jsp_vehicle.jsp");
+            }
+
+           // Call the archive processor
+           archiveProcessor.processWebArchive(queueMsgHeaders_jsp_vehicle_web, QueueHeaderTests.class, warResURL);
+
+        // Ear
+            EnterpriseArchive queueMsgHeaders_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "queueMsgHeaders_jsp_vehicle.ear");
+
+            // Any libraries added to the ear
+
+            // The component jars built by the package target
+            queueMsgHeaders_jsp_vehicle_ear.addAsModule(queueMsgHeaders_jsp_vehicle_web);
+
+
+
+            // The application.xml descriptor
+            URL earResURL = null;
+            // The sun-application.xml descriptor
+            earResURL = QueueHeaderTests.class.getResource("/.ear.sun-application.xml");
+            if(earResURL != null) {
+              queueMsgHeaders_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            }
+            // Call the archive processor
+            archiveProcessor.processEarArchive(queueMsgHeaders_jsp_vehicle_ear, QueueHeaderTests.class, earResURL);
+        return queueMsgHeaders_jsp_vehicle_ear;
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrIDQTest() throws java.lang.Exception {
+            super.msgHdrIDQTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrTimeStampQTest() throws java.lang.Exception {
+            super.msgHdrTimeStampQTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrCorlIdQTest() throws java.lang.Exception {
+            super.msgHdrCorlIdQTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrReplyToQTest() throws java.lang.Exception {
+            super.msgHdrReplyToQTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrJMSTypeQTest() throws java.lang.Exception {
+            super.msgHdrJMSTypeQTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrJMSPriorityQTest() throws java.lang.Exception {
+            super.msgHdrJMSPriorityQTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrJMSExpirationQueueTest() throws java.lang.Exception {
+            super.msgHdrJMSExpirationQueueTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrJMSDestinationQTest() throws java.lang.Exception {
+            super.msgHdrJMSDestinationQTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrJMSDeliveryModeQTest() throws java.lang.Exception {
+            super.msgHdrJMSDeliveryModeQTest();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void msgHdrJMSRedeliveredTest() throws java.lang.Exception {
+            super.msgHdrJMSRedeliveredTest();
+        }
+
+
+}

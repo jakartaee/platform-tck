@@ -20,8 +20,10 @@
 
 package ee.jakarta.tck.persistence.core.relationship.descriptors;
 
-import java.lang.System.Logger;
+
 import java.util.Collection;
+
+import com.sun.ts.lib.util.TestUtil;
 
 /*
  * XCompany
@@ -29,7 +31,7 @@ import java.util.Collection;
 
 public class XCompany implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(XCompany.class.getName());
+
 
 	private long xCompanyId;
 
@@ -40,7 +42,7 @@ public class XCompany implements java.io.Serializable {
 	private Collection<XTeam> xTeams = new java.util.ArrayList<XTeam>();
 
 	public XCompany() {
-		logger.log(Logger.Level.TRACE, "Company no arg constructor");
+		TestUtil.logTrace( "Company no arg constructor");
 	}
 
 	public XCompany(long xCompanyId, String xName) {

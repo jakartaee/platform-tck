@@ -34,7 +34,6 @@
     <description>JSP Tests for Jakarta EE Platform</description>
 
     <properties>
-        <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
         <jakarta.annotation-api.version>3.0.0-M1</jakarta.annotation-api.version>
         <jakarta.el-api.version>6.0.0-RC1</jakarta.el-api.version>
         <jakarta.mail-api.version>2.1.2</jakarta.mail-api.version>
@@ -69,10 +68,6 @@
             <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
             <version>2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.servlet.jsp</groupId>
@@ -112,12 +107,10 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
     </dependencies>
 

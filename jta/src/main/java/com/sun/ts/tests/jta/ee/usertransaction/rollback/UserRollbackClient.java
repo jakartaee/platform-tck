@@ -77,7 +77,7 @@ public class UserRollbackClient extends ServiceEETest implements Serializable {
 
   public static void main(String args[]) {
     UserRollbackClient userRollbackClientInst = new UserRollbackClient();
-    com.sun.javatest.Status s = userRollbackClientInst.run(args, System.out,
+    com.sun.ts.lib.harness.Status s = userRollbackClientInst.run(args, System.out,
         System.err);
     s.exit();
 

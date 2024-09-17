@@ -37,11 +37,5 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
         </dependency>
-        <dependency>
-            <groupId>javatest</groupId>
-            <artifactId>javatest</artifactId>
-            <scope>compile</scope>
-            <optional>true</optional>
-        </dependency>
     </dependencies>
 </project>

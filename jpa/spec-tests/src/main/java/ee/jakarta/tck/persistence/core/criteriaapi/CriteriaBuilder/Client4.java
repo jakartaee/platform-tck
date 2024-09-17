@@ -16,17 +16,18 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Alias;
-import ee.jakarta.tck.persistence.common.schema30.UtilAliasOnlyData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -34,17 +35,12 @@ import jakarta.persistence.criteria.Expression;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.EntityType;
 
-public class Client4 extends UtilAliasOnlyData {
+public class Client4 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client4.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client4.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder4.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client4 theTests = new Client4();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -56,8 +52,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void greaterThanExpNumTest() throws Exception {
+		public void greaterThanExpNumTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -90,15 +85,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -118,8 +113,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void greaterThanExpExpTest() throws Exception {
+		public void greaterThanExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -154,15 +148,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -182,8 +176,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void greaterThanOrEqualToExpNumTest() throws Exception {
+		public void greaterThanOrEqualToExpNumTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[13];
@@ -224,15 +217,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -252,8 +245,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void greaterThanOrEqualToExpExpTest() throws Exception {
+		public void greaterThanOrEqualToExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[13];
@@ -294,15 +286,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -322,8 +314,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void gtExpNumTest() throws Exception {
+		public void gtExpNumTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -357,15 +348,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -385,8 +376,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void gtExpExpTest() throws Exception {
+		public void gtExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[7];
@@ -421,15 +411,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -449,8 +439,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void geExpNumTest() throws Exception {
+		public void geExpNumTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[13];
@@ -492,15 +481,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -520,8 +509,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void geExpExpTest() throws Exception {
+		public void geExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[13];
@@ -563,15 +551,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -591,8 +579,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void substringExpIntTest() throws Exception {
+		public void substringExpIntTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -622,15 +609,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -650,8 +637,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void substringExpExpTest() throws Exception {
+		public void substringExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -681,15 +667,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -709,8 +695,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void substringExpIntIntTest() throws Exception {
+		public void substringExpIntIntTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -740,15 +725,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -768,8 +753,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void substringExpExpExpTest() throws Exception {
+		public void substringExpExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -799,15 +783,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -827,8 +811,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void upper() throws Exception {
+		public void upper() throws Exception {
 		final String expectedResult = "IRIS";
 		boolean pass = false;
 
@@ -850,18 +833,18 @@ public class Client4 extends UtilAliasOnlyData {
 
 			if (result != null) {
 				if (result.equals(expectedResult)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Mismatch in received results - expected = " + expectedResult + " received = " + result);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Missing expected result");
+				logErr( "Missing expected result");
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -881,8 +864,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void length() throws Exception {
+		public void length() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[1];
@@ -911,15 +893,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -939,8 +921,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void locateExpStringTest() throws Exception {
+		public void locateExpStringTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[3];
@@ -970,15 +951,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -998,8 +979,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void locateExpExpTest() throws Exception {
+		public void locateExpExpTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[3];
@@ -1029,15 +1009,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1058,8 +1038,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void locateExpressionExpressionExpressionTest() throws Exception {
+		public void locateExpressionExpressionExpressionTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[3];
@@ -1096,15 +1075,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -1125,8 +1104,7 @@ public class Client4 extends UtilAliasOnlyData {
 	 *
 	 */
 	@SetupMethod(name = "setupAliasOnlyData")
-	@Test
-	public void locateExpressionStringIntTest() throws Exception {
+		public void locateExpressionStringIntTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[3];
@@ -1161,15 +1139,15 @@ public class Client4 extends UtilAliasOnlyData {
 				actual.add(Integer.parseInt(a.getId()));
 			}
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();

@@ -22,7 +22,7 @@ package com.sun.ts.tests.common.vehicle.ejb;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.util.TestUtil;
@@ -50,7 +50,8 @@ public class EJBVehicle {
 
     // create an instance of the test client
     try {
-      Class c = Class.forName(p.getProperty("test_classname"));
+      String testClassName = TestUtil.getProperty(properties, "test_classname");
+      Class c = Class.forName(testClassName);
       testObj = (EETest) c.newInstance();
     } catch (Exception e) {
       TestUtil.logErr("Failed to create the EETest instance in the vehicle", e);

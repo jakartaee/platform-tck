@@ -51,7 +51,7 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
 
   public static void main(String[] args) {
     JsfClient theTests = new JsfClient();
-    com.sun.javatest.Status s = theTests.run(args, System.out, System.err);
+    com.sun.ts.lib.harness.Status s = theTests.run(args, System.out, System.err);
     s.exit();
   }
 

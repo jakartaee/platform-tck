@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.session.stateless.sessioncontext.annotated;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.common.sessioncontext.AcceptIF;
 import com.sun.ts.tests.ejb30.common.sessioncontext.ClientBase;

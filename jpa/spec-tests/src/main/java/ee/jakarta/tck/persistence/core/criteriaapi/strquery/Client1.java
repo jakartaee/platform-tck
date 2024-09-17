@@ -16,13 +16,14 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.strquery;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
-import ee.jakarta.tck.persistence.common.schema30.UtilSetup;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.From;
@@ -30,16 +31,13 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.metamodel.Attribute;
 
-public class Client1 extends UtilSetup {
+public class Client1 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_strquery1.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/* Run test */
@@ -51,8 +49,7 @@ public class Client1 extends UtilSetup {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void joinTest() throws Exception {
+		public void joinTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -65,63 +62,63 @@ public class Client1 extends UtilSetup {
 			getEntityTransaction().begin();
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
-			logger.log(Logger.Level.INFO, "Testing default getJoinType");
+			logMsg( "Testing default getJoinType");
 			JoinType jt = customer.join("aliases").getJoinType();
 			if (jt.equals(JoinType.INNER)) {
-				logger.log(Logger.Level.TRACE, "Received expected:" + jt.name());
+				logTrace( "Received expected:" + jt.name());
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + JoinType.INNER.name() + ", actual:" + jt);
+				logErr( "Expected:" + JoinType.INNER.name() + ", actual:" + jt);
 			}
 			cquery = null;
-			logger.log(Logger.Level.INFO, "Testing INNER getJoinType");
+			logMsg( "Testing INNER getJoinType");
 			cquery = cbuilder.createQuery(Customer.class);
 			customer = cquery.from(Customer.class);
 			jt = customer.join("aliases", JoinType.INNER).getJoinType();
 			if (jt.equals(JoinType.INNER)) {
-				logger.log(Logger.Level.TRACE, "Received expected:" + jt.name());
+				logTrace( "Received expected:" + jt.name());
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + JoinType.INNER.name() + ", actual:" + jt);
+				logErr( "Expected:" + JoinType.INNER.name() + ", actual:" + jt);
 			}
 			cquery = null;
-			logger.log(Logger.Level.INFO, "Testing LEFT getJoinType");
+			logMsg( "Testing LEFT getJoinType");
 			cquery = cbuilder.createQuery(Customer.class);
 			customer = cquery.from(Customer.class);
 			jt = customer.join("aliases", JoinType.LEFT).getJoinType();
 			if (jt.equals(JoinType.LEFT)) {
-				logger.log(Logger.Level.TRACE, "Received expected:" + jt.name());
+				logTrace( "Received expected:" + jt.name());
 				pass3 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:" + JoinType.LEFT.name() + ", actual:" + jt);
+				logErr( "Expected:" + JoinType.LEFT.name() + ", actual:" + jt);
 			}
 			cquery = null;
-			logger.log(Logger.Level.INFO, "Testing INNER getAttribute");
+			logMsg( "Testing INNER getAttribute");
 			cquery = cbuilder.createQuery(Customer.class);
 			customer = cquery.from(Customer.class);
 			Attribute attr = customer.join("aliases").getAttribute();
 			if (attr.getName().equals("aliases")) {
-				logger.log(Logger.Level.TRACE, "Received expected:" + attr.getName());
+				logTrace( "Received expected:" + attr.getName());
 				pass4 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected:aliases, actual:" + attr.getName());
+				logErr( "Expected:aliases, actual:" + attr.getName());
 			}
 			cquery = null;
-			logger.log(Logger.Level.INFO, "Testing getParent");
+			logMsg( "Testing getParent");
 			cquery = cbuilder.createQuery(Customer.class);
 			customer = cquery.from(Customer.class);
 			From from = customer.join("aliases").getParent();
 			if (from.getClass().getName().equals(customer.getClass().getName())) {
-				logger.log(Logger.Level.TRACE, "Received expected:" + from.getClass().getName());
+				logTrace( "Received expected:" + from.getClass().getName());
 				pass5 = true;
 			} else {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Expected:" + customer.getClass().getName() + ", actual:" + from.getClass().getName());
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3 || !pass4 || !pass5) {
@@ -138,37 +135,36 @@ public class Client1 extends UtilSetup {
 	 * @test_Strategy: JOIN FETCH for 1-1 relationship. Prefetch an attribute that
 	 * does not exist .
 	 */
-	@Test
-	public void fetchStringAndStringJoinTypeIllegalArgumentException() throws Exception {
+		public void fetchStringAndStringJoinTypeIllegalArgumentException() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		CriteriaBuilder cbuilder = getEntityManager().getCriteriaBuilder();
-		logger.log(Logger.Level.INFO, "Testing String");
+		logMsg( "Testing String");
 
 		try {
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			customer.fetch("doesnotexist");
-			logger.log(Logger.Level.ERROR, "did not throw IllegalArgumentException");
+			logErr( "did not throw IllegalArgumentException");
 		} catch (IllegalArgumentException iae) {
-			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+			logTrace( "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 		}
 
-		logger.log(Logger.Level.INFO, "Testing String, JoinType");
+		logMsg( "Testing String, JoinType");
 
 		try {
 			CriteriaQuery<Customer> cquery = cbuilder.createQuery(Customer.class);
 			Root<Customer> customer = cquery.from(Customer.class);
 			customer.fetch("doesnotexist", JoinType.INNER);
-			logger.log(Logger.Level.ERROR, "did not throw IllegalArgumentException");
+			logErr( "did not throw IllegalArgumentException");
 		} catch (IllegalArgumentException iae) {
-			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+			logTrace( "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception:", e);
+			logErr( "Caught unexpected exception:", e);
 		}
 
 		if (!pass1 || !pass2) {

@@ -20,27 +20,24 @@
 
 package ee.jakarta.tck.persistence.core.query.flushmode;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import ee.jakarta.tck.persistence.common.schema30.Product;
-import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
 
-public class Client3 extends UtilProductData {
-
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client3.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_flushmode3.jar", pkgNameWithoutSuffix, classes);
-	}
+public class Client3 extends Util {
 
 	public Client3() {
+	}
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -50,8 +47,7 @@ public class Client3 extends UtilProductData {
 	 * 
 	 * @test_Strategy:
 	 */
-	@Test
-	public void secondaryTablesValueTest() throws Exception {
+		public void secondaryTablesValueTest() throws Exception {
 		boolean pass = false;
 
 		String[] expected = new String[4];
@@ -67,16 +63,16 @@ public class Client3 extends UtilProductData {
 					.createQuery("SELECT p FROM Product p WHERE p.wareHouse = 'Lowell' ").getResultList();
 
 			if (!checkEntityPK(result, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.length
+				logErr( "Did not get expected results. Expected " + expected.length
 						+ " references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().rollback();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception: ", e);
+			logErr( "Caught exception: ", e);
 		}
 
 		if (!pass)

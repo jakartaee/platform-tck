@@ -28,7 +28,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.RemoteStatus;
 import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
@@ -57,11 +57,11 @@ public class WebVehicleRunner implements VehicleRunnable {
   public Status run(String[] argv, Properties p) {
     this.argv = argv;
     this.p = p;
-    sVehicle = p.getProperty("vehicle");
+    sVehicle = TestUtil.getProperty(p, "vehicle");
 
     // use this name for the context root or jndi name to eliminate
     // naming conflicts for apps deployed at the same time
-    sVehicleArchiveName = p.getProperty("vehicle_archive_name");
+    sVehicleArchiveName = TestUtil.getProperty(p, "vehicle_archive_name");
 
     if (sVehicleArchiveName.indexOf("_vehicles") != -1) {
       contextRootPrefix = sVehicleArchiveName.substring(0,
@@ -121,8 +121,8 @@ public class WebVehicleRunner implements VehicleRunnable {
       }
 
       TSURL ctsURL = new TSURL();
-      url = ctsURL.getURL("http", p.getProperty("webServerHost"),
-          Integer.parseInt(p.getProperty("webServerPort")), urlSuffix);
+      url = ctsURL.getURL("http", TestUtil.getProperty(p, "webServerHost"),
+          Integer.parseInt(TestUtil.getProperty(p, "webServerPort")), urlSuffix);
       connection = url.openConnection();
       TestUtil.logMsg("Opened connection to " + url);
       connection.setDoOutput(true);
@@ -143,8 +143,8 @@ public class WebVehicleRunner implements VehicleRunnable {
       // read the status when it comes back
       if (vehicle.indexOf("jsp") != -1) {
         Properties sprop = TestUtil.getResponseProperties(connection);
-        int type = Integer.parseInt(sprop.getProperty("type"));
-        String reason = sprop.getProperty("reason");
+        int type = Integer.parseInt(TestUtil.getProperty(sprop, "type"));
+        String reason = TestUtil.getProperty(sprop, "reason");
         status = new Status(type, reason);
       } else {
         objIn = new ObjectInputStream(connection.getInputStream());

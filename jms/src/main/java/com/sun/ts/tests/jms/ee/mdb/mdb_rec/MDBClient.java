@@ -26,7 +26,7 @@ import java.util.Properties;
  * The MDBClient class invokes a test bean to send each type of 
  * jms message to a message driven bean for a queue and a topic 
  */
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TestUtil;
 

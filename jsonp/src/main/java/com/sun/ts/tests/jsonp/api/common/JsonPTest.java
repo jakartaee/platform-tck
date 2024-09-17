@@ -18,7 +18,7 @@ package com.sun.ts.tests.jsonp.api.common;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.harness.ServiceEETest;
 
@@ -26,7 +26,7 @@ import com.sun.ts.lib.harness.ServiceEETest;
 /**
  * Common JSON-P test.
  */
-public class JsonPTest { //extends ServiceEETest {
+public class JsonPTest extends ServiceEETest {
 
   /**
    * Java VM code execution entry point.

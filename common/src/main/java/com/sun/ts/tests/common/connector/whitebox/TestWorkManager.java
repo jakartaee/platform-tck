@@ -22,6 +22,7 @@ package com.sun.ts.tests.common.connector.whitebox;
 
 import javax.transaction.xa.Xid;
 
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 
 import jakarta.resource.spi.BootstrapContext;
@@ -66,9 +67,9 @@ public class TestWorkManager {
     this.wmgr = bsc.getWorkManager();
     this.xa = bsc.getXATerminator();
 
-    this.sicUser = System.getProperty("j2eelogin.name");
-    this.sicPwd = System.getProperty("j2eelogin.password");
-    this.eisUser = System.getProperty("eislogin.name");
+    this.sicUser = TestUtil.getSystemProperty("j2eelogin.name");
+    this.sicPwd = TestUtil.getSystemProperty("j2eelogin.password");
+    this.eisUser = TestUtil.getSystemProperty("eislogin.name");
 
     verifyConfigSettings();
   }

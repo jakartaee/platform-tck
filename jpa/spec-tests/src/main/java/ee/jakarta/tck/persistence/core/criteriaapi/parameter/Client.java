@@ -16,33 +16,29 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.parameter;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public abstract class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	Employee[] empRef = new Employee[5];
 
 	final java.sql.Date d1 = getSQLDate("2000-02-14");
-
-
-	abstract public JavaArchive createDeployment() throws Exception;
-
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "calling super.cleanup");
+			logTrace( "calling super.cleanup");
 			removeTestData();
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	protected void createTestData() {
@@ -50,7 +46,7 @@ public abstract class Client extends PMClientBase {
 		try {
 			getEntityTransaction().begin();
 
-			logger.log(Logger.Level.INFO, "Creating Employees");
+			logMsg( "Creating Employees");
 
 			final java.sql.Date d2 = getSQLDate("2001-06-27");
 			final java.sql.Date d3 = getSQLDate("2002-07-07");
@@ -65,25 +61,25 @@ public abstract class Client extends PMClientBase {
 			for (Employee e : empRef) {
 				if (e != null) {
 					getEntityManager().persist(e);
-					logger.log(Logger.Level.TRACE, "persisted employee:" + e);
+					logTrace( "persisted employee:" + e);
 				}
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 	}
 
 	protected void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -92,14 +88,14 @@ public abstract class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM EMPLOYEE").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

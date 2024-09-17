@@ -16,23 +16,19 @@
 
 package ee.jakarta.tck.persistence.common.schema30;
 
-import java.lang.System.Logger;
+
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
+import java.util.Properties;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public abstract class Util extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Util.class.getName());
+	
 
 	protected final Phone phone[] = new Phone[50];
 
@@ -68,20 +64,15 @@ public abstract class Util extends PMClientBase {
 
 	protected final Trim trimRef[] = new Trim[20];
 
-	protected final CriteriaEntity criteriaEntity[] = new CriteriaEntity[5];
 
-	private final String[] schema30classes = { "Address_", "Address", "Alias_", "Alias", "Country_", "Country",
-			"CreditCard_", "CreditCard", "CriteriaEntity", "Customer_", "Customer", "Department_", "Department", "Employee_", "Employee",
-			"HardwareProduct_", "HardwareProduct", "Info_", "Info", "LineItem_", "LineItem", "LineItemException",
-			"Order_", "Order", "Phone_", "Phone", "Product_", "Product", "ShelfLife_", "ShelfLife", "SoftwareProduct_",
-			"SoftwareProduct", "Spouse_", "Spouse", "Trim_", "Trim" };
+	private static final Class[] schema30classes = { Address_.class, Address.class, Alias_.class, Alias.class, Country_.class, Country.class,
+			CreditCard_.class, CreditCard.class, CriteriaEntity.class, Customer_.class, Customer.class, Department_.class, Department.class, Employee_.class, Employee.class,
+			HardwareProduct_.class, HardwareProduct.class, Info_.class, Info.class, LineItem_.class, LineItem.class, LineItemException.class,
+			Order_.class, Order.class, Phone_.class, Phone.class, Product_.class, Product.class, ShelfLife_.class, ShelfLife.class, SoftwareProduct_.class,
+			SoftwareProduct.class, Spouse_.class, Spouse.class, Trim_.class, Trim.class };
 
-	protected String[] getSchema30classes() {
-		String[] classes = new String[schema30classes.length];
-		for (int i = 0; i < schema30classes.length; i++) {
-			classes[i] = Util.class.getPackageName() + "." + schema30classes[i];
-		}
-		return classes;
+	public static Class[] getSchema30classes() {
+		return schema30classes;
 	}
 
 	public static String[] concat(String[] first, String[] second) {
@@ -100,21 +91,21 @@ public abstract class Util extends PMClientBase {
 		return result.toString();
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 
 	}
 
 	public void createTrimData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createTrimData");
+		logTrace( "createTrimData");
 		getEntityTransaction().begin();
 		try {
 			trimRef[0] = new Trim("1", "Alan E. Frechette");
@@ -139,14 +130,14 @@ public abstract class Util extends PMClientBase {
 			for (Trim t : trimRef) {
 				if (t != null) {
 					getEntityManager().persist(t);
-					logger.log(Logger.Level.TRACE, "persisted trim " + t);
+					logTrace( "persisted trim " + t);
 					doFlush();
 				}
 			}
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("createTrimData failed:", e);
 		}
 
@@ -154,8 +145,8 @@ public abstract class Util extends PMClientBase {
 
 	public void createProductData() throws Exception {
 
-		// logger.log(Logger.Level.TRACE,"persisting product entities");
-		logger.log(Logger.Level.TRACE, "createProductData");
+		// logTrace("persisting product entities");
+		logTrace( "createProductData");
 		getEntityTransaction().begin();
 		try {
 			productRef[0] = new Product("1", "Java 2 Unleashed Programming", (double) 54.95, 100, (long) 987654321);
@@ -200,7 +191,7 @@ public abstract class Util extends PMClientBase {
 			for (Product p : productRef) {
 				if (p != null) {
 					getEntityManager().persist(p);
-					logger.log(Logger.Level.TRACE, "persisting product " + p);
+					logTrace( "persisting product " + p);
 					doFlush();
 				}
 			}
@@ -216,7 +207,7 @@ public abstract class Util extends PMClientBase {
 			final Date d9 = getSQLDate("2002-10-04");
 			final Date d10 = getSQLDate("2003-01-25");
 
-			logger.log(Logger.Level.TRACE, "create ShelfLife Data");
+			logTrace( "create ShelfLife Data");
 
 			shelfRef[0] = new ShelfLife(d1, null);
 			shelfRef[1] = new ShelfLife(d2, null);
@@ -229,7 +220,7 @@ public abstract class Util extends PMClientBase {
 			shelfRef[8] = new ShelfLife(d8, d9);
 			shelfRef[9] = new ShelfLife(null, d10);
 
-			logger.log(Logger.Level.TRACE, "create Hardware Data");
+			logTrace( "create Hardware Data");
 			hardwareRef[0] = new HardwareProduct();
 			hardwareRef[0].setId("19");
 			hardwareRef[0].setName("Gateway E Series");
@@ -323,7 +314,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().persist(hardwareRef[9]);
 			doFlush();
 
-			logger.log(Logger.Level.TRACE, "create Software Data");
+			logTrace( "create Software Data");
 			softwareRef[0] = new SoftwareProduct();
 			softwareRef[0].setId("29");
 			softwareRef[0].setName("SunOS 9");
@@ -416,13 +407,13 @@ public abstract class Util extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("createProductData failed:", e);
 		}
 	}
 
 	private void createAddressData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createAddressData");
+		logTrace( "createAddressData");
 
 		// DO NOT PERSIST THIS ENTITY, it will be done via the Cascade.ALL
 		// in the other entities that use it.
@@ -483,12 +474,12 @@ public abstract class Util extends PMClientBase {
 	}
 
 	public void createCustomerData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createCustomerData");
+		logTrace( "createCustomerData");
 		createAddressData();
 
 		getEntityTransaction().begin();
 		try {
-			// logger.log(Logger.Level.TRACE,"Create " + NUMOFCOUNTRIES + " countries");
+			// logTrace("Create " + NUMOFCOUNTRIES + " countries");
 			country[0] = new Country("United States", "USA");
 			country[1] = new Country("United States", "USA");
 			country[2] = new Country("United States", "USA");
@@ -510,7 +501,7 @@ public abstract class Util extends PMClientBase {
 			country[18] = new Country("China", "CHA");
 			country[19] = new Country("China", "CHA");
 
-			// logger.log(Logger.Level.TRACE,"persisting customer entities");
+			// logTrace("persisting customer entities");
 			customerRef[0] = new Customer("1", "Alan E. Frechette", address[0], address[1], country[0]);
 			customerRef[1] = new Customer("2", "Arthur D. Frechette", address[2], address[3], country[1]);
 			customerRef[2] = new Customer("3", "Shelly D. McGowan", address[4], address[5], country[2]);
@@ -535,7 +526,7 @@ public abstract class Util extends PMClientBase {
 			for (Customer c : customerRef) {
 				if (c != null) {
 					getEntityManager().persist(c);
-					logger.log(Logger.Level.TRACE, "persisting customer " + c);
+					logTrace( "persisting customer " + c);
 					doFlush();
 				}
 			}
@@ -577,7 +568,7 @@ public abstract class Util extends PMClientBase {
 			info[5].setState("NJ");
 			info[5].setZip("65490");
 
-			// logger.log(Logger.Level.TRACE,"Create " + NUMOFSPOUSES + " spouses");
+			// logTrace("Create " + NUMOFSPOUSES + " spouses");
 			spouse[0] = new Spouse("1", "Kathleen", "Jones", "Porter", "034-58-0988", info[0], customerRef[6]);
 			spouse[1] = new Spouse("2", "Judith", "Connors", "McCall", "074-22-6431", info[1], customerRef[10]);
 			spouse[2] = new Spouse("3", "Linda", "Kelly", "Morrison", "501-22-5940", info[2], customerRef[12]);
@@ -588,7 +579,7 @@ public abstract class Util extends PMClientBase {
 			for (Spouse s : spouse) {
 				if (s != null) {
 					getEntityManager().persist(s);
-					logger.log(Logger.Level.TRACE, "persisting spouse " + s);
+					logTrace( "persisting spouse " + s);
 					doFlush();
 				}
 			}
@@ -609,14 +600,14 @@ public abstract class Util extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("createCustomerData failed:", e);
 		}
 
 	}
 
 	public void createAliasOnlyData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createAliasOnlyData");
+		logTrace( "createAliasOnlyData");
 		getEntityTransaction().begin();
 		try {
 			aliasRef[0] = new Alias("1", "aef");
@@ -653,7 +644,7 @@ public abstract class Util extends PMClientBase {
 			for (Alias a : aliasRef) {
 				if (a != null) {
 					getEntityManager().persist(a);
-					logger.log(Logger.Level.TRACE, "persisting alias " + a);
+					logTrace( "persisting alias " + a);
 					doFlush();
 				}
 			}
@@ -662,14 +653,14 @@ public abstract class Util extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("createAliasOnlyData failed:", e);
 		}
 
 	}
 
 	public void createAliasData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createAliasData");
+		logTrace( "createAliasData");
 		createAliasOnlyData();
 		getEntityTransaction().begin();
 		try {
@@ -686,7 +677,7 @@ public abstract class Util extends PMClientBase {
 			aliasRef[3].getCustomers().add(customerRef[0]);
 			getEntityManager().merge(aliasRef[3]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 2");
 			aliasRef[2].getCustomers().add(customerRef[1]);
 			getEntityManager().merge(aliasRef[2]);
@@ -700,7 +691,7 @@ public abstract class Util extends PMClientBase {
 			aliasRef[5].getCustomers().add(customerRef[1]);
 			getEntityManager().merge(aliasRef[5]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 3");
 			aliasRef[6].getCustomers().add(customerRef[2]);
 			getEntityManager().merge(aliasRef[6]);
@@ -708,7 +699,7 @@ public abstract class Util extends PMClientBase {
 			aliasRef[7].getCustomers().add(customerRef[2]);
 			getEntityManager().merge(aliasRef[7]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 4");
 			aliasRef[8].getCustomers().add(customerRef[3]);
 			getEntityManager().merge(aliasRef[8]);
@@ -719,7 +710,7 @@ public abstract class Util extends PMClientBase {
 			aliasRef[10].getCustomers().add(customerRef[3]);
 			getEntityManager().merge(aliasRef[10]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 5");
 			aliasRef[11].getCustomers().add(customerRef[4]);
 			getEntityManager().merge(aliasRef[11]);
@@ -730,7 +721,7 @@ public abstract class Util extends PMClientBase {
 			aliasRef[13].getCustomers().add(customerRef[4]);
 			getEntityManager().merge(aliasRef[13]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 7");
 			aliasRef[13].getCustomers().add(customerRef[6]);
 			getEntityManager().merge(aliasRef[13]);
@@ -741,7 +732,7 @@ public abstract class Util extends PMClientBase {
 			aliasRef[17].getCustomers().add(customerRef[6]);
 			getEntityManager().merge(aliasRef[17]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 8");
 			aliasRef[18].getCustomers().add(customerRef[7]);
 			getEntityManager().merge(aliasRef[18]);
@@ -749,12 +740,12 @@ public abstract class Util extends PMClientBase {
 			aliasRef[19].getCustomers().add(customerRef[7]);
 			getEntityManager().merge(aliasRef[19]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 9");
 			aliasRef[23].getCustomers().add(customerRef[8]);
 			getEntityManager().merge(aliasRef[23]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 10");
 			aliasRef[21].getCustomers().add(customerRef[9]);
 			getEntityManager().merge(aliasRef[21]);
@@ -762,7 +753,7 @@ public abstract class Util extends PMClientBase {
 			aliasRef[29].getCustomers().add(customerRef[9]);
 			getEntityManager().merge(aliasRef[29]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 11");
 			aliasRef[25].getCustomers().add(customerRef[10]);
 			getEntityManager().merge(aliasRef[25]);
@@ -773,17 +764,17 @@ public abstract class Util extends PMClientBase {
 			aliasRef[28].getCustomers().add(customerRef[10]);
 			getEntityManager().merge(aliasRef[28]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 12");
 			aliasRef[24].getCustomers().add(customerRef[11]);
 			getEntityManager().merge(aliasRef[24]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 13");
 			aliasRef[20].getCustomers().add(customerRef[12]);
 			getEntityManager().merge(aliasRef[20]);
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 14");
 			aliasRef[22].getCustomers().add(customerRef[13]);
 			getEntityManager().merge(aliasRef[22]);
@@ -794,20 +785,20 @@ public abstract class Util extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("createAliasData failed:", e);
 		}
 
 	}
 
 	public void createOrderData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createOrderData");
+		logTrace( "createOrderData");
 		getEntityTransaction().begin();
 		double totalPrice;
 
 		try {
 
-			// logger.log(Logger.Level.TRACE,"persisting creditcard entities");
+			// logTrace("persisting creditcard entities");
 
 			creditCard[0] = new CreditCard("1", "1234-2567-1222-9999", "VISA", "04/02", true, (double) 5579);
 			creditCard[1] = new CreditCard("2", "3455-9876-1221-0060", "MCARD", "10/03", false, (double) 15000);
@@ -837,11 +828,11 @@ public abstract class Util extends PMClientBase {
 			for (CreditCard c : creditCard) {
 				if (c != null) {
 					getEntityManager().persist(c);
-					logger.log(Logger.Level.TRACE, "persisting creditCard " + c);
+					logTrace( "persisting creditCard " + c);
 					doFlush();
 				}
 			}
-			// logger.log(Logger.Level.TRACE,"persisting creditCard entities");
+			// logTrace("persisting creditCard entities");
 
 			lineItem[0] = new LineItem("1", 1);
 			lineItem[1] = new LineItem("2", 1);
@@ -903,14 +894,14 @@ public abstract class Util extends PMClientBase {
 			for (LineItem l : lineItem) {
 				if (l != null) {
 					getEntityManager().persist(l);
-					logger.log(Logger.Level.TRACE, "persisting lineItem " + l);
+					logTrace( "persisting lineItem " + l);
 					doFlush();
 				}
 			}
 
-			// logger.log(Logger.Level.TRACE,"persisting customer entities ");
+			// logTrace("persisting customer entities ");
 
-			// logger.log(Logger.Level.TRACE,"Create " + NUMOFORDERS + " Orders");
+			// logTrace("Create " + NUMOFORDERS + " Orders");
 			orderRef[0] = new Order("1", customerRef[0]);
 			orderRef[1] = new Order("2", customerRef[1]);
 			orderRef[2] = new Order("3", customerRef[2]);
@@ -935,12 +926,12 @@ public abstract class Util extends PMClientBase {
 			for (Order o : orderRef) {
 				if (o != null) {
 					getEntityManager().persist(o);
-					logger.log(Logger.Level.TRACE, "persisting order " + o);
+					logTrace( "persisting order " + o);
 					doFlush();
 				}
 			}
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 1");
 			lineItem[0].setProduct(productRef[0]);
 			lineItem[0].setOrder(orderRef[0]);
@@ -971,9 +962,9 @@ public abstract class Util extends PMClientBase {
 			creditCard[1].setCustomer(customerRef[0]);
 			getEntityManager().merge(creditCard[1]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done with Order 1 relationships");
+			// logTrace("done with Order 1 relationships");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 2");
 			lineItem[3].setProduct(productRef[0]);
 			lineItem[3].setOrder(orderRef[1]);
@@ -1009,9 +1000,9 @@ public abstract class Util extends PMClientBase {
 			creditCard[3].setCustomer(customerRef[1]);
 			getEntityManager().merge(creditCard[3]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting relationships for Order 2");
+			// logTrace("done Setting relationships for Order 2");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 3");
 			lineItem[8].setProduct(productRef[2]);
 			lineItem[8].setOrder(orderRef[2]);
@@ -1031,9 +1022,9 @@ public abstract class Util extends PMClientBase {
 			creditCard[4].setCustomer(customerRef[2]);
 			getEntityManager().merge(creditCard[4]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting Relationships for Order 3");
+			// logTrace("done Setting Relationships for Order 3");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 4");
 			lineItem[10].setProduct(productRef[6]);
 			lineItem[10].setOrder(orderRef[3]);
@@ -1048,9 +1039,9 @@ public abstract class Util extends PMClientBase {
 			creditCard[5].setCustomer(customerRef[3]);
 			getEntityManager().merge(creditCard[5]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting Relationships for Order 4");
+			// logTrace("done Setting Relationships for Order 4");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 5");
 			lineItem[11].setProduct(productRef[0]);
 			lineItem[11].setOrder(orderRef[4]);
@@ -1102,9 +1093,9 @@ public abstract class Util extends PMClientBase {
 			creditCard[7].setCustomer(customerRef[4]);
 			getEntityManager().merge(creditCard[7]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting Relationships for Order 5");
+			// logTrace("done Setting Relationships for Order 5");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 6");
 			lineItem[19].setProduct(productRef[3]);
 			lineItem[19].setOrder(orderRef[5]);
@@ -1129,9 +1120,9 @@ public abstract class Util extends PMClientBase {
 			creditCard[10].setCustomer(customerRef[5]);
 			getEntityManager().merge(creditCard[10]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting Relationships for Order 6");
+			// logTrace("done Setting Relationships for Order 6");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 7");
 			lineItem[21].setProduct(productRef[2]);
 			lineItem[21].setOrder(orderRef[6]);
@@ -1156,10 +1147,10 @@ public abstract class Util extends PMClientBase {
 			creditCard[11].setCustomer(customerRef[6]);
 			getEntityManager().merge(creditCard[11]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order 7");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 8");
 			lineItem[24].setProduct(productRef[0]);
 			lineItem[24].setOrder(orderRef[7]);
@@ -1179,10 +1170,10 @@ public abstract class Util extends PMClientBase {
 			creditCard[13].setCustomer(customerRef[7]);
 			getEntityManager().merge(creditCard[13]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order 8");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 9");
 			lineItem[26].setProduct(productRef[0]);
 			lineItem[26].setOrder(orderRef[8]);
@@ -1202,10 +1193,10 @@ public abstract class Util extends PMClientBase {
 			creditCard[6].setCustomer(customerRef[3]);
 			getEntityManager().merge(creditCard[6]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order 9");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 10");
 			lineItem[30].setProduct(productRef[9]);
 			lineItem[30].setOrder(orderRef[9]);
@@ -1225,11 +1216,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[14].setCustomer(customerRef[8]);
 			getEntityManager().merge(creditCard[14]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 10");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 11");
 			lineItem[32].setProduct(productRef[13]);
 			lineItem[32].setOrder(orderRef[10]);
@@ -1244,11 +1235,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[15].setCustomer(customerRef[9]);
 			getEntityManager().merge(creditCard[15]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 11");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 12");
 			lineItem[33].setProduct(productRef[10]);
 			lineItem[33].setOrder(orderRef[11]);
@@ -1268,11 +1259,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[16].setCustomer(customerRef[10]);
 			getEntityManager().merge(creditCard[16]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 12");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 13");
 			lineItem[35].setProduct(productRef[17]);
 			lineItem[35].setOrder(orderRef[12]);
@@ -1287,11 +1278,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[17].setCustomer(customerRef[11]);
 			getEntityManager().merge(creditCard[17]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 13");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 14");
 			lineItem[36].setProduct(productRef[7]);
 			lineItem[36].setOrder(orderRef[13]);
@@ -1316,11 +1307,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[18].setCustomer(customerRef[12]);
 			getEntityManager().merge(creditCard[18]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 14");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 15");
 			lineItem[39].setProduct(productRef[1]);
 			lineItem[39].setOrder(orderRef[14]);
@@ -1351,11 +1342,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[19].setCustomer(customerRef[13]);
 			getEntityManager().merge(creditCard[19]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 15");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 16");
 			lineItem[43].setProduct(productRef[13]);
 			lineItem[43].setOrder(orderRef[15]);
@@ -1370,11 +1361,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[19].setCustomer(customerRef[13]);
 			getEntityManager().merge(creditCard[19]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 16");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 17");
 			lineItem[44].setProduct(hardwareRef[0]);
 			lineItem[44].setOrder(orderRef[16]);
@@ -1399,11 +1390,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[20].setCustomer(customerRef[14]);
 			getEntityManager().merge(creditCard[20]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 17");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 18");
 			lineItem[47].setProduct(hardwareRef[2]);
 			lineItem[47].setOrder(orderRef[17]);
@@ -1434,11 +1425,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[21].setCustomer(customerRef[15]);
 			getEntityManager().merge(creditCard[21]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 18");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 19");
 			lineItem[51].setProduct(hardwareRef[4]);
 			lineItem[51].setOrder(orderRef[18]);
@@ -1463,11 +1454,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[22].setCustomer(customerRef[16]);
 			getEntityManager().merge(creditCard[22]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 19");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Order
+			// logTrace("setting additional relationships for Order
 			// 20");
 			lineItem[54].setProduct(hardwareRef[5]);
 			lineItem[54].setOrder(orderRef[19]);
@@ -1487,11 +1478,11 @@ public abstract class Util extends PMClientBase {
 			creditCard[23].setCustomer(customerRef[17]);
 			getEntityManager().merge(creditCard[23]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"done Setting additional relationships for
+			// logTrace("done Setting additional relationships for
 			// Order
 			// 20");
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 1");
 
 			orderRef[0].setCustomer(customerRef[0]);
@@ -1507,7 +1498,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[2]);
 			doFlush();
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 2");
 
 			orderRef[1].setCustomer(customerRef[1]);
@@ -1517,7 +1508,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[3]);
 			doFlush();
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 3");
 
 			orderRef[2].setCustomer(customerRef[2]);
@@ -1527,7 +1518,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[4]);
 			doFlush();
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 4");
 
 			orderRef[3].setCustomer(customerRef[3]);
@@ -1540,7 +1531,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[6]);
 			doFlush();
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 5");
 
 			orderRef[4].setCustomer(customerRef[4]);
@@ -1553,7 +1544,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[8]);
 			doFlush();
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 6");
 			orderRef[5].setCustomer(customerRef[5]);
 			getEntityManager().merge(orderRef[5]);
@@ -1565,7 +1556,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[10]);
 			doFlush();
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 7");
 
 			orderRef[6].setCustomer(customerRef[6]);
@@ -1576,7 +1567,7 @@ public abstract class Util extends PMClientBase {
 
 			doFlush();
 
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 8");
 
 			orderRef[7].setCustomer(customerRef[7]);
@@ -1588,7 +1579,7 @@ public abstract class Util extends PMClientBase {
 			creditCard[13].setCustomer(customerRef[7]);
 			getEntityManager().merge(creditCard[13]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 9");;
 
 			orderRef[9].setCustomer(customerRef[8]);
@@ -1598,7 +1589,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[14]);
 
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 10");
 
 			orderRef[10].setCustomer(customerRef[9]);
@@ -1608,7 +1599,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[15]);
 
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 11");
 
 			orderRef[11].setCustomer(customerRef[10]);
@@ -1618,7 +1609,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[16]);
 
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 12");
 
 			orderRef[12].setCustomer(customerRef[11]);
@@ -1628,7 +1619,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[17]);
 
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 13");
 
 			orderRef[13].setCustomer(customerRef[12]);
@@ -1638,7 +1629,7 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().merge(creditCard[18]);
 
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 14");
 
 			orderRef[14].setCustomer(customerRef[13]);
@@ -1650,7 +1641,7 @@ public abstract class Util extends PMClientBase {
 			creditCard[19].setCustomer(customerRef[13]);
 			getEntityManager().merge(creditCard[19]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 15");
 			// No Aliases
 			orderRef[16].setCustomer(customerRef[14]);
@@ -1659,7 +1650,7 @@ public abstract class Util extends PMClientBase {
 			creditCard[20].setCustomer(customerRef[14]);
 			getEntityManager().merge(creditCard[20]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 16");
 			// No Aliases
 			orderRef[17].setCustomer(customerRef[15]);
@@ -1668,7 +1659,7 @@ public abstract class Util extends PMClientBase {
 			creditCard[21].setCustomer(customerRef[15]);
 			getEntityManager().merge(creditCard[21]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 17");
 			// No Aliases
 			orderRef[18].setCustomer(customerRef[16]);
@@ -1677,7 +1668,7 @@ public abstract class Util extends PMClientBase {
 			creditCard[22].setCustomer(customerRef[16]);
 			getEntityManager().merge(creditCard[22]);
 			doFlush();
-			// logger.log(Logger.Level.TRACE,"setting additional relationships for Customer
+			// logTrace("setting additional relationships for Customer
 			// 18");
 			// No Aliases
 			orderRef[19].setCustomer(customerRef[17]);
@@ -1689,29 +1680,29 @@ public abstract class Util extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("createOrderData failed:", e);
 		}
 	}
 
 	public void createDepartmentEmployeeData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createDepartmentEmployeeData");
+		logTrace( "createDepartmentEmployeeData");
 		getEntityTransaction().begin();
 
 		try {
-			logger.log(Logger.Level.TRACE, "Create 2 Departments");
+			logTrace( "Create 2 Departments");
 			deptRef[0] = new Department(1, "Marketing");
 			deptRef[1] = new Department(2, "Administration");
 
-			logger.log(Logger.Level.TRACE, "Start to persist departments ");
+			logTrace( "Start to persist departments ");
 			for (Department dept : deptRef) {
 				if (dept != null) {
 					getEntityManager().persist(dept);
-					logger.log(Logger.Level.TRACE, "persisted department " + dept.getName());
+					logTrace( "persisted department " + dept.getName());
 				}
 			}
 
-			logger.log(Logger.Level.TRACE, "Create 5 employees");
+			logTrace( "Create 5 employees");
 			empRef[0] = new Employee(1, "Alan", "Frechette");
 			empRef[0].setDepartment(deptRef[0]);
 
@@ -1738,24 +1729,24 @@ public abstract class Util extends PMClientBase {
 			link1.put(empRef[3].getLastName(), empRef[3]);
 			deptRef[1].setLastNameEmployees(link1);
 
-			logger.log(Logger.Level.TRACE, "Start to persist employees ");
+			logTrace( "Start to persist employees ");
 			for (Employee emp : empRef) {
 				if (emp != null) {
 					getEntityManager().persist(emp);
-					logger.log(Logger.Level.TRACE, "persisted employee " + emp.getId());
+					logTrace( "persisted employee " + emp.getId());
 				}
 			}
 			doFlush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("createDepartmentEmployeeData failed:", e);
 		}
 	}
 
 	public void createPhoneData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createPhoneData");
+		logTrace( "createPhoneData");
 		getEntityTransaction().begin();
 
 		try {
@@ -1806,7 +1797,7 @@ public abstract class Util extends PMClientBase {
 			for (Phone p : phone) {
 				if (p != null) {
 					getEntityManager().persist(p);
-					logger.log(Logger.Level.TRACE, "persisting phone " + p);
+					logTrace( "persisting phone " + p);
 					doFlush();
 				}
 			}
@@ -1814,41 +1805,15 @@ public abstract class Util extends PMClientBase {
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("createPhoneData failed:", e);
 		}
 	}
 
-	public void createCriteriaEntityData() throws Exception {
-		logger.log(Logger.Level.TRACE, "createCriteriaEntityData");
-		getEntityTransaction().begin();
-
-		try {
-
-			criteriaEntity[0] = new CriteriaEntity(1L, "Left", null, null, null, null, null);
-			criteriaEntity[1] = new CriteriaEntity(2L, "right", null, null, null, null, null);
-			criteriaEntity[2] = new CriteriaEntity(3L, "LeftToken", "TokenRight", null, null, null, null);
-			criteriaEntity[3] = new CriteriaEntity(4L, null, null, null, LocalTime.of(10, 11, 12), null, null);
-			criteriaEntity[4] = new CriteriaEntity(5L, null, null, null, null, LocalDate.of(1918, 9, 28), null);
-
-			for (CriteriaEntity c : criteriaEntity) {
-				if (c != null) {
-					getEntityManager().persist(c);
-					logger.log(Logger.Level.TRACE, "persisting CriteriaEntity " + c);
-					doFlush();
-				}
-			}
-			doFlush();
-			getEntityTransaction().commit();
-
-		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
-			throw new Exception("createCriteriaEntityData failed:", e);
-		}
-	}
-
+	// TODO: ensure that each test client is correctly deleting its test data (only 3 overrides is not enough)
+	//
 	public void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -1877,21 +1842,120 @@ public abstract class Util extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM A_BASIC").executeUpdate();
 			getEntityManager().createNativeQuery("DELETE FROM CRITERIA_TEST_TABLE").executeUpdate();
 			getEntityTransaction().commit();
-			logger.log(Logger.Level.TRACE, "done removeTestData");
+			logTrace( "done removeTestData");
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}
 
-	public abstract JavaArchive createDeployment() throws Exception;
+
+	public void setupProductData(String[] args, Properties p) throws Exception {
+		logTrace("setupProductData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createProductData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupProductData failed:", e);
+		}
+	}
+
+	public void setupTrimData(String[] args, Properties p) throws Exception {
+		logTrace("setupTrimData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createTrimData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupTrimData failed:", e);
+		}
+	}
+
+	public void setupCustomerData(String[] args, Properties p) throws Exception {
+		logTrace("setupCustomerData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createCustomerData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupCustomerData failed:", e);
+		}
+	}
+
+	public void setupAliasData(String[] args, Properties p) throws Exception {
+		logTrace("setupAliasData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createCustomerData();
+			createAliasData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupAliasData failed:", e);
+		}
+	}
+
+	public void setupAliasOnlyData(String[] args, Properties p) throws Exception {
+		logTrace("setupAliasOnlyData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createAliasOnlyData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupAliasOnlyData failed:", e);
+		}
+	}
+
+	public void setupDepartmentEmployeeData(String[] args, Properties p) throws Exception {
+		logTrace("setupDepartmentEmployeeData");
+		try {
+			super.setup(args, p);
+			removeTestData();
+			createDepartmentEmployeeData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupDepartmentEmployeeData failed:", e);
+		}
+	}
+
+	public void setupPhoneData(String[] args, Properties p) throws Exception {
+         logTrace("setupPhoneData");
+         try {
+                 super.setup(args,p);
+                 removeTestData();
+                 createCustomerData();
+                 createPhoneData();
+         } catch (Exception e) {
+                 logErr("Exception: ", e);
+                 throw new Exception("setupCustomerData failed:", e);
+         }
+ 	}
+
+	public void setupOrderData() throws Exception {
+         logTrace("setupOrderData");
+         try {
+                 super.setup();
+                 removeTestData();
+                 createCustomerData();
+                 createProductData();
+                 createOrderData();
+         } catch (Exception e) {
+                 logErr("Exception: ", e);
+                 throw new Exception("setupCustomerData failed:", e);
+         }
+ }
 
 }

@@ -16,44 +16,33 @@
 
 package ee.jakarta.tck.persistence.core.annotations.elementcollection;
 
-import java.lang.System.Logger;
+
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
+import ee.jakarta.tck.persistence.core.annotations.assocoverride.Client;
 
 public class Client1 extends PMClientBase {
 
 	public Client1() {
 	}
 
-	private static final Logger logger = (Logger) System.getLogger(Client1.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFile = { MAPPING_FILE_XML };
-		String[] classes = { pkgName + "A", pkgName + "Address", pkgName + "Customer", pkgName + "CustomerXML" };
-
-		return createDeploymentJar("jpa_core_annotations_elementcollection1.jar", pkgNameWithoutSuffix, classes,
-				xmlFile);
-
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupA() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeATestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
@@ -68,7 +57,6 @@ public class Client1 extends PMClientBase {
 	 * @test_Strategy: ElementCollection of an embeddable class
 	 *
 	 */
-	@Test
 	public void elementCollectionEmbeddableType() throws Exception {
 		boolean pass = false;
 		A aRef = null;
@@ -83,7 +71,7 @@ public class Client1 extends PMClientBase {
 
 			aRef = new A("1", "bean1", 1);
 			aRef.setAddress(s1);
-			logger.log(Logger.Level.TRACE, "Persisting A");
+			logTrace( "Persisting A");
 			getEntityTransaction().begin();
 			getEntityManager().persist(aRef);
 			getEntityTransaction().commit();
@@ -102,15 +90,15 @@ public class Client1 extends PMClientBase {
 					if (addr.getStreet().equals("1 Network Drive") && addr.getCity().equals("Burlington")
 							&& addr.getState().equals("MA") && addr.getZip().equals("01801")) {
 						pass1 = true;
-						logger.log(Logger.Level.TRACE, "pass1 = " + pass1);
+						logTrace( "pass1 = " + pass1);
 					}
 					if (addr.getStreet().equals("Some Address") && addr.getCity().equals("Boston")
 							&& addr.getState().equals("MA") && addr.getZip().equals("01803")) {
 						pass2 = true;
-						logger.log(Logger.Level.TRACE, "pass2 = " + pass2);
+						logTrace( "pass2 = " + pass2);
 					}
 				} else {
-					logger.log(Logger.Level.TRACE, "address=null");
+					logTrace( "address=null");
 					pass3 = false;
 				}
 			}
@@ -120,14 +108,14 @@ public class Client1 extends PMClientBase {
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 
 		}
@@ -142,35 +130,34 @@ public class Client1 extends PMClientBase {
 	}
 
 	private void dumpAddresses(final Set<Address> addr) {
-		logger.log(Logger.Level.TRACE, "address Data");
-		logger.log(Logger.Level.TRACE, "---------------");
+		logTrace( "address Data");
+		logTrace( "---------------");
 		if (addr != null) {
-			logger.log(Logger.Level.TRACE, "size=" + addr.size());
+			logTrace( "size=" + addr.size());
 			int elem = 1;
 			for (Address v : addr) {
-				logger.log(Logger.Level.TRACE, "- Element #" + elem++);
-				logger.log(Logger.Level.TRACE, "  street=" + v.getStreet() + ", city=" + v.getCity() + ", state="
+				logTrace( "- Element #" + elem++);
+				logTrace( "  street=" + v.getStreet() + ", city=" + v.getCity() + ", state="
 						+ v.getState() + ", zip=" + v.getZip());
 			}
 		} else {
-			logger.log(Logger.Level.TRACE, "  address=NULL");
+			logTrace( "  address=NULL");
 		}
 	}
 
-	@AfterEach
 	public void cleanupA() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeATestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
 	private void removeATestData() {
-		logger.log(Logger.Level.TRACE, "removeATestData");
+		logTrace( "removeATestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -180,14 +167,14 @@ public class Client1 extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from AEC").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

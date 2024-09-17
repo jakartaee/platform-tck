@@ -19,7 +19,7 @@
  */
 package com.sun.ts.tests.common.vehicle.ejbliteshare;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 /**
  * This class is used to work around javatest bugs/features: javatest Status

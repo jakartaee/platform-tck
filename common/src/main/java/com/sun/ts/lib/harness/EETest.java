@@ -16,14 +16,24 @@
 
 package com.sun.ts.lib.harness;
 
-import com.sun.ts.lib.util.*;
-import java.util.*;
-import java.io.*;
-import java.net.*;
-import java.lang.reflect.*;
-import com.sun.javatest.Status;
-import com.sun.javatest.*;
+import com.sun.ts.lib.harness.Status;
+import com.sun.ts.lib.util.TestUtil;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.io.Serializable;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
+import java.util.Properties;
+import java.util.Vector;
 
 /**
  * This abstract class must be extended by all clients of all J2EE-TS tests. All
@@ -112,19 +122,20 @@ public abstract class EETest implements Serializable {
 
     // first check for @SetupMethod annotation on run method
     Annotation annotation = runMethod.getAnnotation(SetupMethod.class);
-
+    String testSetupMethodName = null;
     if (annotation != null) {
       try {
         TestUtil
             .logTrace("getSetupMethod - getting setup method from annotation");
         SetupMethod setupAnnotation = (SetupMethod) annotation;
+        testSetupMethodName = setupAnnotation.name();
         setupMethod = testClass.getMethod(setupAnnotation.name(),
             setupParameterTypes);
         TestUtil.logTrace(
             "getSetupMethod - setup method name: " + setupAnnotation.name());
       } catch (NoSuchMethodException e) {
         setTestStatus(Status.failed(
-            "Could not find annotation defined setup method for testcase: "
+            "Could not find annotation defined test setup method (" + testSetupMethodName + ") for testcase: "
                 + sTestCase),
             e);
       }
@@ -308,8 +319,8 @@ public abstract class EETest implements Serializable {
     props = getTestPropsFromArgs(argv);
     // get the # of secs we should delay to allow reporting to finish
     try {
-      iLogDelaySeconds = Integer
-          .parseInt(props.getProperty("harness.log.delayseconds", "0")) * 1000;
+      String delayseconds = TestUtil.getProperty(props, "harness.log.delayseconds", "0");
+      iLogDelaySeconds = Integer.parseInt(delayseconds) * 1000;
     } catch (NumberFormatException e) {
       // set the default if a number was not set
       iLogDelaySeconds = 0;
@@ -425,7 +436,7 @@ public abstract class EETest implements Serializable {
   public Status run(String[] argv, Properties p, PrintWriter log,
       PrintWriter err) {
     // need to pass these streams to the Local Reporter
-    sTestCase = p.getProperty("testName");
+    sTestCase = TestUtil.getProperty(p, "testName");
     TestUtil.setCurrentTest(sTestCase, log, err);
     TestUtil.initClient(p);
     return getPropsReady(argv, p);
@@ -449,7 +460,7 @@ public abstract class EETest implements Serializable {
       // TestUtil.logTrace("Trimming prop: " + key + ". Value = " + value);
     }
     // set testname just to be sure
-    sTestCase = p.getProperty("testName");
+    sTestCase = TestUtil.getProperty(p, "testName");
     // The code below is to allow JCK service tests to be run from
     // ejb vehicles that have been bundled with an appclient
     // Need to get the setup(), run() and cleanup() methods in the
@@ -458,9 +469,10 @@ public abstract class EETest implements Serializable {
     // this.getClass().getName());
     // TestUtil.logTrace("*** Got testclass property : " +
     // p.getProperty("test_classname"));
-    String sClass_name = p.getProperty("test_classname");
+    String sClass_name = TestUtil.getProperty(p, "test_classname");
     if (sClass_name != null) {
-      if ((p.getProperty("finder").trim()).equals("jck")) {
+      String finder = TestUtil.getProperty(p, "finder");
+      if (finder.trim().equals("jck")) {
         if (!((this.getClass().getName()).equals((sClass_name.trim())))) {
           try {
             testClInst = Class.forName(sClass_name).newInstance();
@@ -474,14 +486,10 @@ public abstract class EETest implements Serializable {
     }
     // set the harness.host prop so the server can initialize the
     // the TestUtil logging
-    try {
-      p.setProperty("harness.host",
-          InetAddress.getLocalHost().getHostAddress());
-    } catch (UnknownHostException e) {
-      TestUtil.logErr("Could not get our hostname to send to the "
-          + "server for testcase: " + sTestCase);
-      return Status.failed("Could not get our hostname to send to the "
-          + "server for testcase: " + sTestCase);
+
+    if(p.getProperty("harness.host") == null ) {
+      p.setProperty("harness.host", "localhost");
+                // InetAddress.getLocalHost().getHostAddress());
     }
     return run(argv, p);
   }
@@ -503,7 +511,7 @@ public abstract class EETest implements Serializable {
   public Status run(String[] argv, Properties p) {
     sTestStatus = Status.passed("");
     // Make sure we set the testname if we're in a generic vehicle
-    sTestCase = p.getProperty("testName");
+    sTestCase = TestUtil.getProperty(p, "testName");
     // Class testClass = this.getClass();
     Method setupMethod, runMethod, cleanupMethod;
 
@@ -538,7 +546,7 @@ public abstract class EETest implements Serializable {
       TestUtil.logTrace("TESTCLASS=" + testClass.getName());
       runMethod = getRunMethod(testClass);
       if (runMethod == null)
-        TestUtil.logTrace("* RUN METHOD is null and is not found");
+        return Status.failed("Invalid test case name as test run Method ( " + sTestCase + ") could not be found in " + testClass.getName());
       else {
         TestUtil.logTrace("** GOT RUN METHOD!");
         TestUtil.logTrace("**runmethod=" + runMethod.getName());
@@ -546,19 +554,17 @@ public abstract class EETest implements Serializable {
       TestUtil.logTrace("ABOUT TO GET SETUP METHOD!");
       setupMethod = getSetupMethod(testClass, runMethod);
       if (setupMethod == null)
-        TestUtil.logTrace("SETUP METHOD not found");
+        return Status.failed("Invalid test case name as test setupMethod could not be found ( Test setup method: " +
+                getSetupMethodName(runMethod) + ", testName:" + sTestCase + ") " +
+                "in test class " + testClass.getName() + "(test class was loaded from: " + testClass.getClassLoader().getName() + ")");
       else
         TestUtil.logTrace("GOT SETUP METHOD!");
 
       cleanupMethod = getCleanupMethod(testClass, runMethod);
       if (cleanupMethod == null)
-        TestUtil.logTrace("CLEANUP METHOD not found");
+        return Status.failed("Invalid test case name as test cleanupMethod Method ( for " + sTestCase + ") could not be found in " + testClass.getName());
       else
         TestUtil.logTrace("GOT CLEANUP METHOD!");
-      // if anything went wrong while getting our methods, return
-      if (setupMethod == null || runMethod == null || cleanupMethod == null)
-        return Status.failed("One of the test methods could not be"
-            + "found for testcase: " + sTestCase);
       try {
         TestUtil.logTrace("ABOUT TO INVOKE SETUP METHOD!");
         // if new classname is true, use that class name instead of
@@ -643,16 +649,25 @@ public abstract class EETest implements Serializable {
     return sTestStatus;
   }
 
+  private String getSetupMethodName(Method runMethod) {
+    Annotation annotation = runMethod.getAnnotation(SetupMethod.class);
+    if (annotation != null) {
+      SetupMethod setupAnnotation = (SetupMethod) annotation;
+      return setupAnnotation.name();
+    }
+    return "";
+  }
+
   private String[] getAllTestCases(Properties p) throws SetupException {
     Vector tests = new Vector();
     String[] testMethods;
     try {
       // read in exclude list once per VM
-      ExcludeListProcessor.readExcludeList(System.getProperty("exclude.list"));
+      ExcludeListProcessor.readExcludeList(TestUtil.getSystemProperty("exclude.list"));
       // setup a testname in a format that will macth the exclude list
       String sJavaTestName = "";
       String sVehicle;
-      sVehicle = p.getProperty("vehicle");
+      sVehicle = TestUtil.getProperty(p, "vehicle");
       if (sVehicle != null) {
         // tack on "_from_<vehicle-name>"
         sVehicle = "_from_" + sVehicle;
@@ -662,7 +677,7 @@ public abstract class EETest implements Serializable {
       String sClientClassName = this.getClass().getName();
       String sClientJavaName = sClientClassName
           .substring(sClientClassName.lastIndexOf('.') + 1) + ".java";
-      String sCurrentDir = System.getProperty("current.dir");
+      String sCurrentDir = TestUtil.getSystemProperty("current.dir");
       sCurrentDir = sCurrentDir.replace(File.separatorChar, '/');
       String sRelativeTestDir = sCurrentDir
           .substring(sCurrentDir.indexOf("tests/"));
@@ -750,6 +765,9 @@ public abstract class EETest implements Serializable {
     TestUtil.logTrace(msg);
   }
 
+  public void logTrace(String msg, Throwable e) {
+    TestUtil.logTrace(msg, e);
+  }
   /**
    * prints a string to the TestUtil error stream. All tests should use this
    * method for error messages

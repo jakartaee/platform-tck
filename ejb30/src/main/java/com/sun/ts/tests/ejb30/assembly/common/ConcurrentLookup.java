@@ -74,7 +74,7 @@ public class ConcurrentLookup {
     return "All " + count + " lookups returned good results: " + lookupResults;
   }
 
-  class LookupThread extends Thread {
+  public class LookupThread extends Thread {
     private String shortLookupName;
 
     public LookupThread() {

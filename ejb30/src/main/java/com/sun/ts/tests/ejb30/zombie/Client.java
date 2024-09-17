@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.zombie;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 
 public class Client extends EETest {

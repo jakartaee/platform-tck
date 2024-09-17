@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+</h:head>
+<h:body>
+
+	<h:form id="form">
+		<h:panelGrid columns="1">
+			<h:outputText value="Cumulus humilis"
+				rendered="#{cumulus.conversationIdentifiedByCustomIdentifier}" />
+			<h:outputText value="Cumulus congestus"
+				rendered="#{not cumulus.conversationIdentifierNull}" />
+			<h:outputText value="Cumulonimbus"
+				rendered="#{cumulus.conversationTimeoutSetProperly}" />
+			<h:outputText value="Stratocumulus"
+				rendered="#{cumulus.conversationHasDefaultTimeout}" />
+			<h:commandButton action="#{cumulus.beginConversation}"
+				value="Begin conversation" id="beginConversationButton" />
+			<h:commandButton
+				action="#{cumulus.beginConversationIdentifiedByCustomIdentifier}"
+				value="Begin conversation identified by custom identifier"
+				id="beginConversationIdentifiedByCustomIdentifier" />
+			<h:commandButton
+				action="#{cumulus.beginNextConversationIdentifiedByCustomIdentifier}"
+				value="Begin next conversation identified by custom identifier"
+				id="beginNextConversationIdentifiedByCustomIdentifier" />
+			<h:commandButton
+				action="#{cumulus.beginConversationIdentifiedByCustomIdentifierAndSwallowException}"
+				value="Begin conversation identified by custom identifier and swallow exception"
+				id="beginConversationIdentifiedByCustomIdentifierAndSwallowException" />
+			<h:commandButton
+				action="#{cumulus.beginConversationAndSwallowException}"
+				value="Begin conversation and swallow exception"
+				id="beginConversationAndSwallowException" />
+			<h:commandButton action="#{cumulus.beginConversationAndSetTimeout}"
+				value="Begin conversation and set timeout"
+				id="beginConversationAndSetTimeout" />
+			<h:commandButton action="#{cumulus.endConversation}"
+				value="End conversation" id="endConversationButton" />
+			<h:commandButton
+				action="#{cumulus.endConversationAndSwallowException}"
+				value="End conversation and swallow exception"
+				id="endConversationAndSwallowException" />
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>
+
+

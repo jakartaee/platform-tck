@@ -16,29 +16,28 @@
 
 package ee.jakarta.tck.persistence.core.query.language;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Department;
-import ee.jakarta.tck.persistence.common.schema30.UtilDepartmentEmployeeData;
 
-public class Client6 extends UtilDepartmentEmployeeData {
+public class Client6 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client6.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client1.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_query_language6.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client6 theTests = new Client6();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
 	/* Run test */
 
 	/*
@@ -50,8 +49,7 @@ public class Client6 extends UtilDepartmentEmployeeData {
 	 * d.lastNameEmployees WHERE d.id = 1
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	@Disabled
+		@Disabled
 	public void resultContainsFetchReference() throws Exception {
 		boolean pass = false;
 		List<Department> result;
@@ -69,16 +67,16 @@ public class Client6 extends UtilDepartmentEmployeeData {
 			List<Integer> actual = new ArrayList<Integer>();
 			actual.add(result.get(0).getId());
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+				logErr( "Did not get expected results. Expected " + expected.size()
 						+ " references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "More than 1 result got returned:");
+			logErr( "More than 1 result got returned:");
 			for (Department dept : result) {
-				logger.log(Logger.Level.ERROR, "Dept:" + dept.toString());
+				logErr( "Dept:" + dept.toString());
 			}
 		}
 

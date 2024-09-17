@@ -23,7 +23,7 @@ package com.sun.ts.tests.signaturetest.el;
 
 import java.io.PrintWriter;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.signaturetest.SigTest;
 import com.sun.ts.tests.signaturetest.SignatureTestDriver;
 import com.sun.ts.tests.signaturetest.SignatureTestDriverFactory;

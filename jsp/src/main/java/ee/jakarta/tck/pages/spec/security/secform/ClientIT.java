@@ -20,7 +20,7 @@ package ee.jakarta.tck.pages.spec.security.secform;
 
 import java.util.Properties;
 import java.io.IOException;
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
@@ -42,6 +42,9 @@ import org.jboss.shrinkwrap.api.asset.UrlAsset;
 
 import java.lang.System.Logger;
 
+@Tag("jsp")
+@Tag("platform")
+@Tag("web")
 @ExtendWith(ArquillianExtension.class)
 public class ClientIT extends secformClient {
 

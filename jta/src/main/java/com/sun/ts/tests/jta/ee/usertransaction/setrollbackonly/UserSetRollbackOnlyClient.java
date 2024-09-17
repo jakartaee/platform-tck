@@ -78,7 +78,7 @@ public class UserSetRollbackOnlyClient extends ServiceEETest
 
   public static void main(String args[]) {
     UserSetRollbackOnlyClient userSetRollbackOnlyClientInst = new UserSetRollbackOnlyClient();
-    com.sun.javatest.Status s = userSetRollbackOnlyClientInst.run(args,
+    com.sun.ts.lib.harness.Status s = userSetRollbackOnlyClientInst.run(args,
         System.out, System.err);
     s.exit();
 

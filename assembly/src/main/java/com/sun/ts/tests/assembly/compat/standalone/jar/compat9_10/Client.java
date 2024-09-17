@@ -22,7 +22,7 @@ package com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 

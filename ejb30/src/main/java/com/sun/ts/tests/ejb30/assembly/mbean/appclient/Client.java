@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.assembly.mbean.appclient;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResCommonIF;
 import com.sun.ts.tests.ejb30.common.helloejbjar.HelloRemoteIF;

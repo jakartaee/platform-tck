@@ -22,14 +22,13 @@ package com.sun.ts.tests.common.vehicle.wsejb;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class WSEJBVehicleRunner implements VehicleRunnable {
   public Status run(String[] argv, Properties p) {
-    String sVehicle = p.getProperty("vehicle");
     Status sTestStatus = Status.passed("");
 
     String sEJBVehicleJndiName = "";

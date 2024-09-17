@@ -16,58 +16,46 @@
 
 package ee.jakarta.tck.persistence.core.query.apitests;
 
-import java.lang.System.Logger;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
 public class Client2 extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
+
 
 	final Department deptRef[] = new Department[5];
 
 	public Client2() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "DataTypes2", pkgName + "Department", pkgName + "Employee",
-				pkgName + "Insurance" };
-		return createDeploymentJar("jpa_core_query_apitests2.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setupNoData() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
-			logger.log(Logger.Level.TRACE, "Done creating test data");
+			super.setup(args,p);
+			logTrace( "Done creating test data");
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected Exception caught in Setup: ", e);
+			logErr( "Unexpected Exception caught in Setup: ", e);
 			throw new Exception("Setup failed:", e);
 
 		}
 	}
 
-	@AfterEach
-	public void cleanupNoData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "in cleanupNoData");
+			logTrace( "in cleanupNoData");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -81,35 +69,35 @@ public class Client2 extends PMClientBase {
 	 * Verify calling getParameter with a class that is not assignable to the type
 	 * throws IllegalArgumentException
 	 */
-	@Test
+	
 	public void getParameterIntIllegalArgumentException2Test() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			logger.log(Logger.Level.INFO, "Testing Query version");
+			logMsg( "Testing Query version");
 			Query query = getEntityManager().createQuery("select e from Employee e where e.firstName = ?1")
 					.setParameter(1, "Tom");
 			query.getParameter(1, java.util.List.class);
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+			logTrace( "Received expected IllegalArgumentException");
 			pass1 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
-		logger.log(Logger.Level.INFO, "Testing TypedQuery version");
+		logMsg( "Testing TypedQuery version");
 
 		try {
 			TypedQuery<Employee> query = getEntityManager()
 					.createQuery("select e from Employee e where e.firstName = ?1", Employee.class)
 					.setParameter(1, "Tom");
 			query.getParameter(1, java.util.List.class);
-			logger.log(Logger.Level.ERROR, "IllegalArgumentException not thrown");
+			logErr( "IllegalArgumentException not thrown");
 		} catch (IllegalArgumentException e) {
-			logger.log(Logger.Level.TRACE, "Received expected IllegalArgumentException");
+			logTrace( "Received expected IllegalArgumentException");
 			pass2 = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("getParameterIntIllegalArgumentException2Test failed");

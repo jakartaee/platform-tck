@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.timer.basic.mdb;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 
 public class Client extends com.sun.ts.tests.ejb30.timer.common.MDBClientBase {
   public static void main(String[] args) {

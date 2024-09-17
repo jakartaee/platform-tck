@@ -22,7 +22,7 @@ package com.sun.ts.tests.jms.core.appclient.topictests;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.DoneLatch;
@@ -559,7 +559,7 @@ public class TopicTests extends ServiceEETest {
     }
   }
 
-  private static class AutoAckMsgListener implements MessageListener {
+  public static class AutoAckMsgListener implements MessageListener {
     private boolean passed;
 
     TopicSession session;
@@ -1071,7 +1071,7 @@ public class TopicTests extends ServiceEETest {
     }
   }
 
-  private static class RequestorMsgListener implements MessageListener {
+  public static class RequestorMsgListener implements MessageListener {
     TopicSession session = null;
 
     boolean pass = false;

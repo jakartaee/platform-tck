@@ -16,18 +16,19 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.From;
 
-import java.lang.System.Logger;
+
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Address;
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Customer_;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustomerData;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -38,16 +39,12 @@ import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 import jakarta.persistence.criteria.Subquery;
 
-public class Client2 extends UtilCustomerData {
+public class Client2 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_from2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -61,8 +58,7 @@ public class Client2 extends UtilCustomerData {
 	 * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinStringTest() throws Exception {
+		public void joinStringTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -82,15 +78,15 @@ public class Client2 extends UtilCustomerData {
 			expectedPKs[0] = "2";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -110,8 +106,7 @@ public class Client2 extends UtilCustomerData {
 	 * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinStringJoinTypeTest() throws Exception {
+		public void joinStringJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -131,15 +126,15 @@ public class Client2 extends UtilCustomerData {
 			expectedPKs[0] = "2";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -159,8 +154,7 @@ public class Client2 extends UtilCustomerData {
 	 * SELECT c FROM Customer c JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinSingularAttributeTest() throws Exception {
+		public void joinSingularAttributeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -180,15 +174,15 @@ public class Client2 extends UtilCustomerData {
 			expectedPKs[0] = "2";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -208,8 +202,7 @@ public class Client2 extends UtilCustomerData {
 	 * SELECT c FROM Customer c INNER JOIN c.work o WHERE (o.id in (4))
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void joinSingularAttributeJoinTypeTest() throws Exception {
+		public void joinSingularAttributeJoinTypeTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -229,15 +222,15 @@ public class Client2 extends UtilCustomerData {
 			expectedPKs[0] = "2";
 
 			if (!checkEntityPK(clist, expectedPKs)) {
-				logger.log(Logger.Level.ERROR,
+				logErr(
 						"Did not get expected results.  Expected 1 reference, got: " + clist.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 
 		}
 
@@ -254,8 +247,7 @@ public class Client2 extends UtilCustomerData {
 	 * @test_Strategy:
 	 */
 	@SetupMethod(name = "setupCustomerData")
-	@Test
-	public void fromGetCorrelationParentTest() throws Exception {
+		public void fromGetCorrelationParentTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;
@@ -272,18 +264,18 @@ public class Client2 extends UtilCustomerData {
 			From<Customer, Customer> sqc = sq.correlate(customer);
 			boolean isCorr = sqc.isCorrelated();
 			if (isCorr) {
-				logger.log(Logger.Level.TRACE, "From.isCorrelated() return true");
+				logTrace( "From.isCorrelated() return true");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected From.isCorrelated() to return true, actual:" + isCorr);
+				logErr( "Expected From.isCorrelated() to return true, actual:" + isCorr);
 			}
 			From f = sqc.getCorrelationParent();
 			String name = f.getJavaType().getSimpleName();
 			if (name.equals("Customer")) {
-				logger.log(Logger.Level.TRACE, "Received expected parent:" + name);
+				logTrace( "Received expected parent:" + name);
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Expected getCorrelationParent() to return Customer, actual:" + name);
+				logErr( "Expected getCorrelationParent() to return Customer, actual:" + name);
 			}
 			Join<Customer, Address> w = sqc.join("work");
 			sq.select(w.<String>get("state"));
@@ -306,15 +298,15 @@ public class Client2 extends UtilCustomerData {
 			expectedPKs[9] = "15";
 			expectedPKs[10] = "18";
 			if (!checkEntityPK(result, expectedPKs)) {
-				logger.log(Logger.Level.ERROR, "test_subquery_in:  Did not get expected results. "
+				logErr( "test_subquery_in:  Did not get expected results. "
 						+ " Expected 11 references, got: " + result.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass3 = true;
 			}
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught unexpected exception", e);
+			logErr( "Caught unexpected exception", e);
 		}
 
 		if (!pass1 || !pass2 || !pass3) {

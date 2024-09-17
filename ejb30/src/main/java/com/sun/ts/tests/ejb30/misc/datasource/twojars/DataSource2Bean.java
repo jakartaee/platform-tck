@@ -35,7 +35,16 @@ import jakarta.ejb.Singleton;
 @Singleton
 @Remote(AppResRemoteIF.class)
 @DataSourceDefinitions({
-    @DataSourceDefinition(name = "java:global/datasource/twojars/2/globalds", description = "override it with <data-source> in ejb-jar.xml", className = "@className@", portNumber = 8080, serverName = "@serverName@", databaseName = "@databaseName@", user = "@user@", password = "@password@", isolationLevel = Connection.TRANSACTION_SERIALIZABLE) })
+    @DataSourceDefinition(name = "java:global/datasource/twojars/2/globalds",
+            description = "override it with <data-source> in ejb-jar.xml",
+            className = "org.apache.derby.jdbc.ClientDataSource",
+            portNumber = 8080,
+            serverName = "localhost",
+            databaseName = "derbyDB",
+            user = "cts1",
+            password = "cts1",
+            isolationLevel = Connection.TRANSACTION_SERIALIZABLE)
+})
 public class DataSource2Bean extends AppResBeanBase {
 
   private void nonPostConstruct() {

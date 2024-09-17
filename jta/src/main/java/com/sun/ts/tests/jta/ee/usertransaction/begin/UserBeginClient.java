@@ -75,7 +75,7 @@ public class UserBeginClient extends ServiceEETest implements Serializable {
 
   public static void main(String args[]) {
     UserBeginClient userBeginClientInst = new UserBeginClient();
-    com.sun.javatest.Status s = userBeginClientInst.run(args, System.out,
+    com.sun.ts.lib.harness.Status s = userBeginClientInst.run(args, System.out,
         System.err);
     s.exit();
 

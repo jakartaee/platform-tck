@@ -20,13 +20,14 @@
 
 package com.sun.ts.tests.common.webclient;
 
-import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
+import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.util.TestUtil;
 import org.apache.commons.httpclient.HttpState;
 
 import com.sun.ts.tests.common.webclient.http.HttpRequest;
@@ -40,8 +41,7 @@ import com.sun.ts.tests.common.webclient.http.HttpRequest;
  * that particular technology.
  * </PRE>
  */
-public abstract class BaseUrlClient {
-
+public abstract class BaseUrlClient extends EETest {
   private static final Logger LOGGER = Logger.getLogger(BaseUrlClient.class.getName());
 
   /**
@@ -389,9 +389,9 @@ public abstract class BaseUrlClient {
    */
   public void setup(String[] args, Properties p) throws Exception {
     _props = p;
-    String hostname = p.getProperty(SERVLETHOSTPROP).trim();
-    String portnum = p.getProperty(SERVLETPORTPROP).trim();
-    String tshome = p.getProperty(TSHOME).trim();
+    String hostname = TestUtil.getProperty(p, SERVLETHOSTPROP).trim();
+    String portnum = TestUtil.getProperty(p, SERVLETPORTPROP).trim();
+    String tshome = TestUtil.getProperty(p, TSHOME).trim();
 
     if (!isNullOrEmpty(hostname)) {
       _hostname = hostname;
@@ -414,7 +414,7 @@ public abstract class BaseUrlClient {
           "[BaseUrlClient] 'tshome' was not set in the " + " ts.jte.");
     }
 
-    LOGGER.log(Level.INFO,"[BaseUrlClient] Test setup OK");
+    TestUtil.logMsg("[BaseUrlClient] Test setup OK");
   }
 
   /**
@@ -423,7 +423,7 @@ public abstract class BaseUrlClient {
    *
    */
   public void cleanup() throws Exception {
-    LOGGER.log(Level.INFO, "[BaseUrlClient] Test cleanup OK");
+    TestUtil.logMsg( "[BaseUrlClient] Test cleanup OK");
   }
 
   /*
@@ -445,21 +445,25 @@ public abstract class BaseUrlClient {
     try {
       _testCase = new WebTestCase();
       setTestProperties(_testCase);
+      TestUtil.logTrace("[BaseUrlClient] EXECUTING");
       LOGGER.fine("[BaseUrlClient] EXECUTING");
       if (_useSavedState && _state != null) {
         _testCase.getRequest().setState(_state);
       }
       if (_redirect != false) {
+        TestUtil.logTrace("##########Call setFollowRedirects");
         LOGGER.fine("##########Call setFollowRedirects");
         _testCase.getRequest().setFollowRedirects(_redirect);
       }
       _testCase.execute();
+      TestUtil.logMsg(_testCase.getResponse().getResponseBodyAsString());
       if (_saveState) {
         _state = _testCase.getResponse().getState();
       }
     } catch (TestFailureException tfe) {
       Throwable t = tfe.getRootCause();
       if (t != null) {
+        TestUtil.logErr("Root cause of Failure: " + t.getMessage(), t);
         LOGGER.log(Level.WARNING, "Root cause of Failure: " + t.getMessage(), t);
       }
       throw new Exception("[BaseUrlClient] " + _testName
@@ -593,11 +597,6 @@ public abstract class BaseUrlClient {
       return true;
     }
     return false;
-  }
-
-  public Status run(String args[], PrintWriter out, PrintWriter err)  {
-    // TODO remove
-    return new Status(0, "");
   }
 
 }

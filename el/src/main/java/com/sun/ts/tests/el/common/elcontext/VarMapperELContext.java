@@ -22,7 +22,7 @@ package com.sun.ts.tests.el.common.elcontext;
 
 import java.util.Properties;
 
-
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 
 import jakarta.el.CompositeELResolver;
@@ -31,7 +31,6 @@ import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
 
-import java.lang.System.Logger;
 /**
  * This ELContext provides a VariableELResolver to enable the setting and
  * resolution of variables as well as a VariableMapper implementation. The path
@@ -39,8 +38,6 @@ import java.lang.System.Logger;
  * ts.jte file.
  */
 public class VarMapperELContext extends ELContext {
-
-  private static final Logger logger = System.getLogger(VarMapperELContext.class.getName());
 
   private final VariableMapper varMapper;
 
@@ -84,17 +81,18 @@ public class VarMapperELContext extends ELContext {
       clazz = Class.forName(classname);
       instance = clazz.newInstance();
     } catch (ClassNotFoundException cnfe) {
-      logger.log(Logger.Level.ERROR, "ClassNotFoundException: " + cnfe.getMessage());
+      TestUtil.logErr("ClassNotFoundException: " + cnfe.getMessage());
     } catch (InstantiationException ie) {
-      logger.log(Logger.Level.ERROR, "InstantiationException: " + ie.getMessage());
+      TestUtil.logErr("InstantiationException: " + ie.getMessage());
     } catch (IllegalAccessException iae) {
-      logger.log(Logger.Level.ERROR, "IllegalAccessException: " + iae.getMessage());
+      TestUtil.logErr("IllegalAccessException: " + iae.getMessage());
     }
     return instance;
   }
 
   private VariableMapper getVariableMapperImpl(Properties testProps) {
     String implSpecificClassName = testProps.getProperty("variable.mapper");
+    // String implSpecificClassName = System.getProperty("variable.mapper", "org.glassfish.expressly.lang.VariableMapperImpl");
 
     return (implSpecificClassName == null) ? null
         : (VariableMapper) getImplSpecificInstance(implSpecificClassName);

@@ -21,7 +21,7 @@ package com.sun.ts.tests.jms.core20.messageproducertests;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
@@ -2322,7 +2322,7 @@ public class Client extends ServiceEETest {
     }
   }
 
-  private static class MyCompletionListener implements CompletionListener {
+  public static class MyCompletionListener implements CompletionListener {
 
     public MyCompletionListener() {
       TestUtil.logMsg("MyCompletionListener()");

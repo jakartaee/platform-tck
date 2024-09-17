@@ -29,6 +29,7 @@ import java.util.Base64;
 @ApplicationScoped
 public class KeysProducer {
 
+    private static final String PUB_KEY = "/key.pub";
     private PublicKey publicKey;
 
     /**
@@ -38,8 +39,10 @@ public class KeysProducer {
     @PostConstruct
     private void loadKeys() {
         try {
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
             byte[] pubKeyData;
-            try (InputStream keyIS = getClass().getResourceAsStream("/key.pub")) {
+            try (InputStream keyIS = classLoader != null ?
+                    classLoader.getResourceAsStream(PUB_KEY) : getClass().getResourceAsStream(PUB_KEY)) {
                 if (keyIS == null) {
                     throw new IllegalStateException("Failed to find /key.pub");
                 }

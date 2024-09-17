@@ -20,10 +20,11 @@
 
 package ee.jakarta.tck.persistence.core.relationship.defaults;
 
-import java.lang.System.Logger;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 
+import com.sun.ts.lib.util.TestUtil;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -37,7 +38,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Project implements java.io.Serializable {
 
-	private static final Logger logger = (Logger) System.getLogger(Project.class.getName());
+	
 
 	// Instance Variables
 	private long projId;
@@ -51,7 +52,7 @@ public class Project implements java.io.Serializable {
 	private Collection<Person> persons = new java.util.ArrayList<Person>();
 
 	public Project() {
-		logger.log(Logger.Level.TRACE, "Project no-arg constructor");
+		TestUtil.logTrace( "Project no-arg constructor");
 	}
 
 	public Project(long projId, String name, BigDecimal budget) {

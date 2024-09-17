@@ -16,7 +16,7 @@
 
 package ee.jakarta.tck.persistence.ee.entityManager;
 
-import java.lang.System.Logger;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -34,7 +34,7 @@ import jakarta.persistence.TransactionRequiredException;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	Properties props = null;
 
@@ -43,32 +43,24 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
 
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Order" };
-		return createDeploymentJar("jpa_ee_entityManager.jar", pkgNameWithoutSuffix, (String[]) classes);
 
-	}
-
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args, p);
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
 			displayMap(map);
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
 	@AfterEach
 	public void cleanup() throws Exception {
-		logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+		logTrace( "cleanup complete, calling super.cleanup");
 		super.cleanup();
 	}
 
@@ -85,28 +77,28 @@ public class Client extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			logger.log(Logger.Level.INFO, "Test UNSYNCHRONIZED");
+			logMsg( "Test UNSYNCHRONIZED");
 			EntityManager em1 = getEntityManagerFactory().createEntityManager(SynchronizationType.UNSYNCHRONIZED, map);
 			if (em1 != null) {
-				logger.log(Logger.Level.TRACE, "Received non-null EntityManager");
+				logTrace( "Received non-null EntityManager");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Received null EntityManager");
+				logErr( "Received null EntityManager");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Test SYNCHRONIZED");
+			logMsg( "Test SYNCHRONIZED");
 			EntityManager em2 = getEntityManagerFactory().createEntityManager(SynchronizationType.SYNCHRONIZED, map);
 			if (em2 != null) {
-				logger.log(Logger.Level.TRACE, "Received non-null EntityManager");
+				logTrace( "Received non-null EntityManager");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Received null EntityManager");
+				logErr( "Received null EntityManager");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("createEntityManagerSynchronizationTypeMapTest failed");
@@ -125,28 +117,28 @@ public class Client extends PMClientBase {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		try {
-			logger.log(Logger.Level.INFO, "Test UNSYNCHRONIZED");
+			logMsg( "Test UNSYNCHRONIZED");
 			EntityManager em1 = getEntityManagerFactory().createEntityManager(SynchronizationType.UNSYNCHRONIZED);
 			if (em1 != null) {
-				logger.log(Logger.Level.TRACE, "Received non-null EntityManager");
+				logTrace( "Received non-null EntityManager");
 				pass1 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Received null EntityManager");
+				logErr( "Received null EntityManager");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		try {
-			logger.log(Logger.Level.INFO, "Test SYNCHRONIZED");
+			logMsg( "Test SYNCHRONIZED");
 			EntityManager em2 = getEntityManagerFactory().createEntityManager(SynchronizationType.SYNCHRONIZED);
 			if (em2 != null) {
-				logger.log(Logger.Level.TRACE, "Received non-null EntityManager");
+				logTrace( "Received non-null EntityManager");
 				pass2 = true;
 			} else {
-				logger.log(Logger.Level.ERROR, "Received null EntityManager");
+				logErr( "Received null EntityManager");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+			logErr( "Received unexpected exception", e);
 		}
 		if (!pass1 || !pass2) {
 			throw new Exception("createEntityManagerSynchronizationTypeTest failed");
@@ -167,12 +159,12 @@ public class Client extends PMClientBase {
 		try {
 
 			getEntityManager().joinTransaction();
-			logger.log(Logger.Level.ERROR, "TransactionRequiredException not thrown");
+			logErr( "TransactionRequiredException not thrown");
 		} catch (TransactionRequiredException e) {
-			logger.log(Logger.Level.TRACE, "TransactionRequiredException Caught as Expected.");
+			logTrace( "TransactionRequiredException Caught as Expected.");
 			pass = true;
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass) {

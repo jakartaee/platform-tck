@@ -4,7 +4,6 @@ ejbcount=1
 ejb0.name=com.sun.ts.tests.common.vehicle.ejb.EJBVehicle
 ejb0.type=session
 ejb0.remoteInterface=com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote
-ejb0.homeInterface=com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome
 ejb0.JNDIName=com_sun_ts_tests_common_vehicle_ejb_EJBVehicle
 ejb0.isReentrant=false
 ejb0.transactionAttribute=TX_REQUIRED

@@ -21,7 +21,7 @@ package com.sun.ts.tests.ejb30.misc.sameejbclass;
 
 import java.io.PrintWriter;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.servlet.common.client.AbstractUrlClient;
 
 public class Client extends AbstractUrlClient {

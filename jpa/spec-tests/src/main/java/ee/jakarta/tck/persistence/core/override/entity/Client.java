@@ -16,45 +16,39 @@
 
 package ee.jakarta.tck.persistence.core.override.entity;
 
-import java.lang.System.Logger;
-import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+
 
 	private final static Long ID = 9l;
 
 	public Client() {
 	}
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] xmlFiles = { ORM_XML };
-		String[] classes = { pkgName + "NameOnlyInAnnotation", pkgName + "NameOnlyInXML", pkgName + "NameOverride",
-				pkgName + "NoEntityAnnotation" };
-		return createDeploymentJar("jpa_core_override_entity.jar", pkgNameWithoutSuffix, classes, xmlFiles);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
+			logErr( "Exception:test failed ", e);
 		}
 	}
 
@@ -78,8 +72,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Table name is specified only in orm.xml and the test is
 	 * performed by retrieving data from that table.
 	 */
-	@Test
-	public void testNameOnlyInXML() throws Exception {
+		public void testNameOnlyInXML() throws Exception {
 
 		getEntityTransaction().begin();
 		NameOnlyInXML entity = new NameOnlyInXML();
@@ -88,9 +81,9 @@ public class Client extends PMClientBase {
 		getEntityManager().flush();
 		try {
 			List result = getEntityManager().createNamedQuery("findAll").getResultList();
-			logger.log(Logger.Level.TRACE, "Result of the entity is " + result.size());
+			logTrace( "Result of the entity is " + result.size());
 			if (result.size() == 1) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("Expected the size to be 1 " + " but it is -" + result.size());
 			}
@@ -122,12 +115,11 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Entity name is specified in the entity using annotation. Test
 	 * is executed by retrieving data from the table.
 	 */
-	@Test
-	public void testNameOnlyInAnnotation() throws Exception {
+		public void testNameOnlyInAnnotation() throws Exception {
 
 		List result = getEntityManager().createQuery("SELECT m FROM NAMEONLYINANNOTATION" + " m").getResultList();
 		if (result.size() == 0) {
-			logger.log(Logger.Level.TRACE, "Test Passed");
+			logTrace( "Test Passed");
 		} else {
 			throw new Exception("Expected the size to be 0 " + " but it is -" + result.size());
 		}
@@ -154,12 +146,11 @@ public class Client extends PMClientBase {
 	 * overriden by another name in orm.xml. Test is executed by retrieving data
 	 * from the overriden table name.
 	 */
-	@Test
-	public void testNameOverride() throws Exception {
+		public void testNameOverride() throws Exception {
 
 		List result = getEntityManager().createQuery("SELECT n FROM NAMEOVERRIDE" + " n").getResultList();
 		if (result.size() == 0) {
-			logger.log(Logger.Level.TRACE, "Test Passed");
+			logTrace( "Test Passed");
 		} else {
 			throw new Exception("Expected the size to be 0 " + " but it is -" + result.size());
 		}
@@ -187,8 +178,7 @@ public class Client extends PMClientBase {
 	 * annotation. Test is performed by select from the entity name that is
 	 * specified in the orm.xml.
 	 */
-	@Test
-	public void testNoEntityAnnotation() throws Exception {
+		public void testNoEntityAnnotation() throws Exception {
 
 		getEntityTransaction().begin();
 		NoEntityAnnotation entity = new NoEntityAnnotation();
@@ -197,9 +187,9 @@ public class Client extends PMClientBase {
 		getEntityManager().flush();
 		try {
 			List result = getEntityManager().createNamedQuery("findAllNoEntityAnnotation").getResultList();
-			logger.log(Logger.Level.TRACE, "Result of the entity is " + result.size());
+			logTrace( "Result of the entity is " + result.size());
 			if (result.size() == 1) {
-				logger.log(Logger.Level.TRACE, "Test Passed");
+				logTrace( "Test Passed");
 			} else {
 				throw new Exception("Expected the size to be 1 " + " but it is -" + result.size());
 			}
@@ -211,20 +201,20 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "Cleanup data");
+			logTrace( "Cleanup data");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
+
 		}
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -234,14 +224,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("DELETE FROM NOENTITYANNOTATION").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

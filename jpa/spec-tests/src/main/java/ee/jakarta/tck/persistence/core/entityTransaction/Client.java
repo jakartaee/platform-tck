@@ -16,57 +16,53 @@
 
 package ee.jakarta.tck.persistence.core.entityTransaction;
 
-import java.lang.System.Logger;
+
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityTransaction;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	Properties props = null;
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = {};
-		return createDeploymentJar("jpa_core_entityTransaction.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		// Nothing to cleanup
 		try {
-			logger.log(Logger.Level.TRACE, "done cleanup, calling super.cleanup");
+			logTrace( "done cleanup, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	/*
@@ -76,8 +72,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Call begin twice and verify IllegalStateException is thrown
 	 */
-	@Test
-	public void beginIllegalStateExceptionTest() throws Exception {
+		public void beginIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			EntityTransaction t = getEntityTransaction();
@@ -85,23 +80,23 @@ public class Client extends PMClientBase {
 			if (t.isActive()) {
 				try {
 					t.begin();
-					logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
+					logErr( "IllegalStateException was not thrown");
 				} catch (IllegalStateException ise) {
-					logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
+					logTrace( "IllegalStateException Caught as Expected.");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "isActive() returned false when a transaction was active");
+				logErr( "isActive() returned false when a transaction was active");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -118,31 +113,30 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Call commit without an active transaction verify
 	 * IllegalStateException is thrown
 	 */
-	@Test
-	public void commitIllegalStateExceptionTest() throws Exception {
+		public void commitIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			EntityTransaction t = getEntityTransaction();
 			if (!t.isActive()) {
 				try {
 					t.commit();
-					logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
+					logErr( "IllegalStateException was not thrown");
 				} catch (IllegalStateException ise) {
-					logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
+					logTrace( "IllegalStateException Caught as Expected.");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "isActive() returened true when no transaction  was active");
+				logErr( "isActive() returened true when no transaction  was active");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -159,31 +153,30 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Call getRollbackOnly without an active transaction verify
 	 * IllegalStateException is thrown
 	 */
-	@Test
-	public void getRollbackOnlyIllegalStateExceptionTest() throws Exception {
+		public void getRollbackOnlyIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			EntityTransaction t = getEntityTransaction();
 			if (!t.isActive()) {
 				try {
 					t.getRollbackOnly();
-					logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
+					logErr( "IllegalStateException was not thrown");
 				} catch (IllegalStateException ise) {
-					logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
+					logTrace( "IllegalStateException Caught as Expected.");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "isActive() returned true when no transaction  was active");
+				logErr( "isActive() returned true when no transaction  was active");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 
@@ -200,8 +193,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Call rollback without an active transaction verify
 	 * IllegalStateException is thrown
 	 */
-	@Test
-	public void rollbackIllegalStateExceptionTest() throws Exception {
+		public void rollbackIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 
 		try {
@@ -209,23 +201,23 @@ public class Client extends PMClientBase {
 			if (!t.isActive()) {
 				try {
 					t.rollback();
-					logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
+					logErr( "IllegalStateException was not thrown");
 				} catch (IllegalStateException ise) {
-					logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
+					logTrace( "IllegalStateException Caught as Expected.");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "isActive() returned true when no transaction  was active");
+				logErr( "isActive() returned true when no transaction  was active");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 		if (!pass) {
@@ -241,31 +233,30 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Call setRollbackOnly without an active transaction verify
 	 * IllegalStateException is thrown
 	 */
-	@Test
-	public void setRollbackOnlyIllegalStateExceptionTest() throws Exception {
+		public void setRollbackOnlyIllegalStateExceptionTest() throws Exception {
 		boolean pass = false;
 		try {
 			EntityTransaction t = getEntityTransaction();
 			if (!t.isActive()) {
 				try {
 					t.setRollbackOnly();
-					logger.log(Logger.Level.ERROR, "IllegalStateException was not thrown");
+					logErr( "IllegalStateException was not thrown");
 				} catch (IllegalStateException ise) {
-					logger.log(Logger.Level.TRACE, "IllegalStateException Caught as Expected.");
+					logTrace( "IllegalStateException Caught as Expected.");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "isActive() returned true when no transaction  was active");
+				logErr( "isActive() returned true when no transaction  was active");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception fe) {
-				logger.log(Logger.Level.ERROR, "Unexpected exception rolling back TX:", fe);
+				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
 

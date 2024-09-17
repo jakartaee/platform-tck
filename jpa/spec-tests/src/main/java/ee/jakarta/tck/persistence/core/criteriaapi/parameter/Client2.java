@@ -16,15 +16,17 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.parameter;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
@@ -38,27 +40,22 @@ import jakarta.persistence.criteria.Root;
 
 public class Client2 extends Client {
 
-	private static final Logger logger = (Logger) System.getLogger(Client2.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client2.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Employee" };
-		return createDeploymentJar("jpa_core_criteriaapi_parameter2.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
-	
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 			getEntityManager();
 			removeTestData();
 			createTestData();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -72,8 +69,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: SELECT e FROM EMPLOYEE e WHERE (1 IN (1, 2))
 	 */
 	@SetupMethod(name = "setupEmployee")
-	@Test
-	public void parameterExpressionInObjectArrayTest() throws Exception {
+		public void parameterExpressionInObjectArrayTest() throws Exception {
 		boolean pass = false;
 		try {
 			List<Integer> expected = new ArrayList<Integer>();
@@ -110,16 +106,16 @@ public class Client2 extends Client {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				logger.log(Logger.Level.TRACE, "actual" + actual);
+				logTrace( "actual" + actual);
 
 				if (expected.equals(actual)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
+					logErr( "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -140,8 +136,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: SELECT e FROM EMPLOYEE e WHERE (1 IN (1, 2))
 	 */
 	@SetupMethod(name = "setupEmployee")
-	@Test
-	public void parameterExpressionInExpressionArrayTest() throws Exception {
+		public void parameterExpressionInExpressionArrayTest() throws Exception {
 		boolean pass = false;
 		try {
 			List<Integer> expected = new ArrayList<Integer>();
@@ -178,16 +173,16 @@ public class Client2 extends Client {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				logger.log(Logger.Level.TRACE, "actual" + actual);
+				logTrace( "actual" + actual);
 
 				if (expected.equals(actual)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
+					logErr( "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -208,8 +203,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: SELECT e FROM EMPLOYEE e WHERE (1 IN (1, 2))
 	 */
 	@SetupMethod(name = "setupEmployee")
-	@Test
-	public void parameterExpressionInCollectionTest() throws Exception {
+		public void parameterExpressionInCollectionTest() throws Exception {
 		boolean pass = false;
 		try {
 			List<Integer> expected = new ArrayList<Integer>();
@@ -248,16 +242,16 @@ public class Client2 extends Client {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				logger.log(Logger.Level.TRACE, "actual" + actual);
+				logTrace( "actual" + actual);
 
 				if (expected.equals(actual)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
+					logErr( "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {
@@ -278,8 +272,7 @@ public class Client2 extends Client {
 	 * @test_Strategy: SELECT e FROM EMPLOYEE e WHERE (1 = 1)
 	 */
 	@SetupMethod(name = "setupEmployee")
-	@Test
-	public void parameterExpressionInExpressionTest() throws Exception {
+		public void parameterExpressionInExpressionTest() throws Exception {
 		boolean pass = false;
 		try {
 			List<Integer> expected = new ArrayList<Integer>();
@@ -316,16 +309,16 @@ public class Client2 extends Client {
 					actual.add(e.getId());
 				}
 				Collections.sort(actual);
-				logger.log(Logger.Level.TRACE, "actual" + actual);
+				logTrace( "actual" + actual);
 
 				if (expected.equals(actual)) {
-					logger.log(Logger.Level.TRACE, "Successfully returned expected results");
+					logTrace( "Successfully returned expected results");
 					pass = true;
 				} else {
-					logger.log(Logger.Level.ERROR, "expected: " + expected + ", actual: " + actual);
+					logErr( "expected: " + expected + ", actual: " + actual);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+				logErr( "Failed to get Non-null Criteria Query");
 			}
 			getEntityTransaction().commit();
 		} finally {

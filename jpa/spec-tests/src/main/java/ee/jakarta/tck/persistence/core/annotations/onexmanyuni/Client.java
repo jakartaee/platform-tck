@@ -16,12 +16,15 @@
 
 package ee.jakarta.tck.persistence.core.annotations.onexmanyuni;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+
+
+
+
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.EntityManager;
@@ -29,7 +32,7 @@ import jakarta.persistence.EntityTransaction;
 
 public class Client extends PMClientBase {
 
-	private static final Logger logger = (Logger) System.getLogger(Client.class.getName());
+	
 
 	final private static long ORDER1_ID = 786l;
 
@@ -57,23 +60,22 @@ public class Client extends PMClientBase {
 
 	public Client() {
 	}
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "Customer1", pkgName + "RetailOrder2" };
-		return createDeploymentJar("jpa_core_annotations_onexmanyuni.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client theTests = new Client();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup");
+
+	
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
+			
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception:test failed ", e);
+			logErr( "Exception:test failed ", e);
 		}
 	}
 
@@ -89,8 +91,7 @@ public class Client extends PMClientBase {
 	 * One-to-Many relationship.
 	 * 
 	 */
-	@Test
-	public void oneXmanyUniJoinColumn() throws Exception {
+		public void oneXmanyUniJoinColumn() throws Exception {
 
 		EntityManager em = getEntityManager();
 		EntityTransaction tx = getEntityTransaction();
@@ -116,7 +117,7 @@ public class Client extends PMClientBase {
 			customer2.addOrder(order3);
 			customer2.addOrder(order4);
 			em.flush();
-			logger.log(Logger.Level.TRACE, "Test Passed");
+			logTrace( "Test Passed");
 		} catch (Exception e) {
 
 			throw new Exception("Test failed" + e);
@@ -146,20 +147,20 @@ public class Client extends PMClientBase {
 		return customer;
 	}
 
-	@AfterEach
+	
 	public void cleanup() throws Exception {
 		try {
-			logger.log(Logger.Level.TRACE, "cleanup");
+			logTrace( "cleanup");
 			removeTestData();
-			logger.log(Logger.Level.TRACE, "cleanup complete, calling super.cleanup");
+			logTrace( "cleanup complete, calling super.cleanup");
 			super.cleanup();
 		} finally {
-			removeTestJarFromCP();
-		}
+
+        }
 	}
 
 	private void removeTestData() {
-		logger.log(Logger.Level.TRACE, "removeTestData");
+		logTrace( "removeTestData");
 		if (getEntityTransaction().isActive()) {
 			getEntityTransaction().rollback();
 		}
@@ -169,14 +170,14 @@ public class Client extends PMClientBase {
 			getEntityManager().createNativeQuery("Delete from RETAILORDER2").executeUpdate();
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception encountered while removing entities:", e);
+			logErr( "Exception encountered while removing entities:", e);
 		} finally {
 			try {
 				if (getEntityTransaction().isActive()) {
 					getEntityTransaction().rollback();
 				}
 			} catch (Exception re) {
-				logger.log(Logger.Level.ERROR, "Unexpected Exception in removeTestData:", re);
+				logErr( "Unexpected Exception in removeTestData:", re);
 			}
 		}
 	}

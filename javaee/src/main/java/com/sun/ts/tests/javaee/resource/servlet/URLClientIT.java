@@ -33,12 +33,32 @@ import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.Filters;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 
+import java.lang.System.Logger;
+
+@Tag("platform")
 @ExtendWith(ArquillianExtension.class)
 public class URLClientIT extends AbstractUrlClient {
+
+  private static final Logger logger = System.getLogger(URLClientIT.class.getName());
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+      logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+      logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
+  }
 
   public URLClientIT() {
     setServletName("TestServlet");
@@ -47,14 +67,17 @@ public class URLClientIT extends AbstractUrlClient {
   /* Run test */
 
   @Deployment(testable = false)
-  public static WebArchive createDeployment() throws IOException {
+  public static EnterpriseArchive createDeployment() throws IOException {
 
-    WebArchive archive = ShrinkWrap.create(WebArchive.class, "javaee_resource_servlet.war");
-    archive.addPackages(true, Filters.exclude(URLClientIT.class, Pojo.class),
-            URLClientIT.class.getPackageName());
-    archive.addClasses(HttpTCKServlet.class, ServletTestUtil.class, Data.class);
-    archive.addAsLibrary(prepackage());
-    return archive;
+    WebArchive webarchive = ShrinkWrap.create(WebArchive.class, "javaee_resource_servlet.war");
+    webarchive.addPackages(true, Filters.exclude(URLClientIT.class, Pojo.class), URLClientIT.class.getPackageName())
+            .addClasses(HttpTCKServlet.class, ServletTestUtil.class, Data.class)
+            .addAsLibrary(prepackage());
+
+    EnterpriseArchive earArchive = ShrinkWrap.create(EnterpriseArchive.class, "javaee_resource_servlet.ear");
+    earArchive.addAsModule(webarchive);
+
+    return earArchive;
 
   }
 

@@ -16,17 +16,18 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder;
 
-import java.lang.System.Logger;
-import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Customer;
 import ee.jakarta.tck.persistence.common.schema30.Product;
-import ee.jakarta.tck.persistence.common.schema30.UtilCustAliasProductData;
 import jakarta.persistence.Tuple;
 import jakarta.persistence.TupleElement;
 import jakarta.persistence.TypedQuery;
@@ -34,17 +35,13 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class Client7 extends UtilCustAliasProductData {
+public class Client7 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client7.class.getName());
 
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client7.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = getSchema30classes();
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaBuilder7.jar", pkgNameWithoutSuffix, classes);
-
+	public static void main(String[] args) {
+		Client7 theTests = new Client7();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -57,7 +54,6 @@ public class Client7 extends UtilCustAliasProductData {
 	 * WHERE (ID = 1)
 	 */
 	@SetupMethod(name = "setupCustAliasProductData")
-	@Test
 	public void tupleGetTupleElementIllegalArgumentExceptionTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -67,10 +63,10 @@ public class Client7 extends UtilCustAliasProductData {
 		getEntityTransaction().begin();
 		CriteriaQuery<Tuple> cquery = cbuilder.createTupleQuery();
 		if (cquery != null) {
-			logger.log(Logger.Level.TRACE, "Obtained Non-null Criteria Query");
+			logTrace( "Obtained Non-null Criteria Query");
 			Root<Customer> customer = cquery.from(Customer.class);
 
-			logger.log(Logger.Level.TRACE, "Execute first Tuple Query");
+			logTrace( "Execute first Tuple Query");
 
 			cquery.multiselect(customer.get("id").alias("ID"), customer.get("name").alias("NAME"));
 
@@ -79,17 +75,17 @@ public class Client7 extends UtilCustAliasProductData {
 			TypedQuery<Tuple> tq = getEntityManager().createQuery(cquery);
 			List<Tuple> result = tq.getResultList();
 
-			logger.log(Logger.Level.TRACE, "Number of Tuples from first query:" + result.size());
+			logTrace( "Number of Tuples from first query:" + result.size());
 			Tuple t1 = result.get(0);
 
-			logger.log(Logger.Level.TRACE, "Tuples Received:" + t1.get(0) + ", " + t1.get(1));
+			logTrace( "Tuples Received:" + t1.get(0) + ", " + t1.get(1));
 
 			// get second Tuple and second TupleElement inorder to trigger
 			// IllegalArgumentException
 			CriteriaQuery<Tuple> cquery1 = cbuilder.createTupleQuery();
 			Root<Product> product = cquery1.from(Product.class);
 
-			logger.log(Logger.Level.TRACE, "Execute second Tuple Query");
+			logTrace( "Execute second Tuple Query");
 
 			cquery1.multiselect(product.get("id").alias("ID"), product.get("quantity").alias("QUANTITY"));
 
@@ -98,21 +94,21 @@ public class Client7 extends UtilCustAliasProductData {
 			TypedQuery<Tuple> tq2 = getEntityManager().createQuery(cquery1);
 			List<Tuple> result2 = tq2.getResultList();
 			Tuple t2 = null;
-			logger.log(Logger.Level.TRACE, "Number of Tuples received from second query:" + result2.size());
+			logTrace( "Number of Tuples received from second query:" + result2.size());
 			try {
 				t2 = result2.get(0);
 				pass1 = true;
 			} catch (Exception e) {
-				logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+				logErr( "Received unexpected exception", e);
 			}
 			if (t2 != null) {
 
-				logger.log(Logger.Level.TRACE, "Tuple Received:" + t2.get(0) + ", " + t2.get(1));
+				logTrace( "Tuple Received:" + t2.get(0) + ", " + t2.get(1));
 
 				List<TupleElement<?>> lte2 = t2.getElements();
 				TupleElement<?> te2 = lte2.get(1);
 
-				logger.log(Logger.Level.TRACE,
+				logTrace(
 						"TupleElement from second query that will be looked up in the Tuple result returned from first query:"
 								+ te2.getAlias());
 				try {
@@ -121,25 +117,25 @@ public class Client7 extends UtilCustAliasProductData {
 					// tuple from the first query using
 					// that tuple element
 					t1.get(te2);
-					logger.log(Logger.Level.ERROR,
+					logErr(
 							"Did not throw IllegalArgumentException when calling Tuple.get with a TupleElement that doesn't exist");
 
 				} catch (IllegalArgumentException iae) {
-					logger.log(Logger.Level.TRACE, "Got expected IllegalArgumentException");
+					logTrace( "Got expected IllegalArgumentException");
 					if (getEntityTransaction().getRollbackOnly() != true) {
 						pass2 = true;
 					} else {
-						logger.log(Logger.Level.ERROR, "Transaction was marked for rollback and should not have been");
+						logErr( "Transaction was marked for rollback and should not have been");
 					}
 				} catch (Exception e) {
-					logger.log(Logger.Level.ERROR, "Received unexpected exception", e);
+					logErr( "Received unexpected exception", e);
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "result2.get(0) returned null");
+				logErr( "result2.get(0) returned null");
 			}
 
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();
@@ -148,4 +144,19 @@ public class Client7 extends UtilCustAliasProductData {
 			throw new Exception("tupleGetTupleElementIllegalArgumentExceptionTest failed");
 		}
 	}
+
+	public void setupCustAliasProductData(String[] args, Properties p) throws Exception {
+		logTrace("setupCustAliasProductData");
+		try {
+			super.setup(args,p);
+			removeTestData();
+			createCustomerData();
+			createProductData();
+			createAliasData();
+		} catch (Exception e) {
+			logErr("Exception: ", e);
+			throw new Exception("setupCustAliasProductData failed:", e);
+		}
+	}
+
 }

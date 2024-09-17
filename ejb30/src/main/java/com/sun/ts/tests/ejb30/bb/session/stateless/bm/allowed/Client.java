@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.bb.session.stateless.bm.allowed;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.common.allowed.AllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.CallbackAllowedIF;
 import com.sun.ts.tests.ejb30.common.allowed.ClientBase;

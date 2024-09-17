@@ -21,7 +21,7 @@ package com.sun.ts.tests.jms.ee.mdb.mdb_exceptT;
 
 import java.util.Properties;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.jms.commonee.Client;
 
 import jakarta.jms.Topic;

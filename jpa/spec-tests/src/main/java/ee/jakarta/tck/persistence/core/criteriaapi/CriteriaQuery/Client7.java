@@ -16,36 +16,31 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.Department;
 import ee.jakarta.tck.persistence.common.schema30.Department_;
-import ee.jakarta.tck.persistence.common.schema30.UtilDepartmentEmployeeData;
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.JoinType;
 import jakarta.persistence.criteria.Root;
 
-public class Client7 extends UtilDepartmentEmployeeData {
+public class Client7 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client7.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client7.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery7.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client7 theTests = new Client7();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
 	/*
@@ -57,8 +52,7 @@ public class Client7 extends UtilDepartmentEmployeeData {
 	 * d.lastNameEmployees WHERE d.id = 1
 	 */
 	@SetupMethod(name = "setupDepartmentEmployeeData")
-	@Test
-	public void resultContainsFetchReference() throws Exception {
+		public void resultContainsFetchReference() throws Exception {
 		boolean pass = false;
 
 		getEntityTransaction().begin();
@@ -81,20 +75,20 @@ public class Client7 extends UtilDepartmentEmployeeData {
 				List<Integer> actual = new ArrayList<Integer>();
 				actual.add(result.get(0).getId());
 				if (!checkEntityPK(actual, expected)) {
-					logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+					logErr( "Did not get expected results. Expected " + expected.size()
 							+ " references, got: " + result.size());
 				} else {
-					logger.log(Logger.Level.TRACE, "Expected results received");
+					logTrace( "Expected results received");
 					pass = true;
 				}
 			} else {
-				logger.log(Logger.Level.ERROR, "More than 1 result got returned:");
+				logErr( "More than 1 result got returned:");
 				for (Department dept : result) {
-					logger.log(Logger.Level.ERROR, "Dept:" + dept.toString());
+					logErr( "Dept:" + dept.toString());
 				}
 			}
 		} else {
-			logger.log(Logger.Level.ERROR, "Failed to get Non-null Criteria Query");
+			logErr( "Failed to get Non-null Criteria Query");
 		}
 
 		getEntityTransaction().commit();

@@ -20,7 +20,7 @@
 
 package com.sun.ts.tests.ejb30.bb.localaccess.statefulclient;
 
-import com.sun.javatest.Status;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.ClientBase;
 import com.sun.ts.tests.ejb30.bb.localaccess.common.TestBeanIF;
 import com.sun.ts.tests.ejb30.common.helper.TLogger;

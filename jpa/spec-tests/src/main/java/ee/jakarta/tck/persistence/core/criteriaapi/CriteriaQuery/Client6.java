@@ -16,37 +16,35 @@
 
 package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery;
 
-import java.lang.System.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.Test;
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.schema30.Util;
+
+
 
 import com.sun.ts.lib.harness.SetupMethod;
 
 import ee.jakarta.tck.persistence.common.schema30.HardwareProduct;
 import ee.jakarta.tck.persistence.common.schema30.Product;
-import ee.jakarta.tck.persistence.common.schema30.UtilProductData;
 import jakarta.persistence.Query;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class Client6 extends UtilProductData {
+public class Client6 extends Util {
 
-	private static final Logger logger = (Logger) System.getLogger(Client6.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-
-		String pkgNameWithoutSuffix = Client6.class.getPackageName();
-		String pkgName = pkgNameWithoutSuffix + ".";
-		String[] classes = { pkgName + "A" };
-		classes = concat(getSchema30classes(), classes);
-
-		return createDeploymentJar("jpa_core_criteriaapi_CriteriaQuery6.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client6 theTests = new Client6();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
+
+
+
 
 	/*
 	 * @testName: typeTest
@@ -58,8 +56,7 @@ public class Client6 extends UtilProductData {
 	 * Select p from Product p where TYPE(p) = HardwareProduct
 	 */
 	@SetupMethod(name = "setupProductData")
-	@Test
-	public void typeTest() throws Exception {
+		public void typeTest() throws Exception {
 		boolean pass = false;
 		List<Integer> expected = new ArrayList<Integer>();
 		for (Product p : hardwareRef) {
@@ -86,16 +83,16 @@ public class Client6 extends UtilProductData {
 			Collections.sort(actual);
 
 			if (!checkEntityPK(actual, expected)) {
-				logger.log(Logger.Level.ERROR, "Did not get expected results. Expected " + expected.size()
+				logErr( "Did not get expected results. Expected " + expected.size()
 						+ " references, got: " + actual.size());
 			} else {
-				logger.log(Logger.Level.TRACE, "Expected results received");
+				logTrace( "Expected results received");
 				pass = true;
 			}
 
 			getEntityTransaction().commit();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Caught exception queryTest47: ", e);
+			logErr( "Caught exception queryTest47: ", e);
 		}
 
 		if (!pass) {

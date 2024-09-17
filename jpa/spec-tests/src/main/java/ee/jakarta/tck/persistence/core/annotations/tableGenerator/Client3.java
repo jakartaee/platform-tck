@@ -16,11 +16,11 @@
 
 package ee.jakarta.tck.persistence.core.annotations.tableGenerator;
 
-import java.lang.System.Logger;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import java.util.Properties;
+
+import com.sun.ts.lib.harness.Status;
 
 public class Client3 extends Client {
 
@@ -29,27 +29,21 @@ public class Client3 extends Client {
 	public Client3() {
 	}
 
-	private static final Logger logger = (Logger) System.getLogger(Client3.class.getName());
-
-	public JavaArchive createDeployment() throws Exception {
-		String pkgNameWithoutSuffix = Client.class.getPackageName();
-		String pkgName = Client.class.getPackageName() + ".";
-		String[] classes = { pkgName + "DataTypes", pkgName + "DataTypes2", pkgName + "DataTypes3",
-				pkgName + "DataTypes4" };
-		return createDeploymentJar("jpa_core_annotations_tableGenerator3.jar", pkgNameWithoutSuffix, classes);
+	public static void main(String[] args) {
+		Client3 theTests = new Client3();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
 	}
 
-	@BeforeEach
-	public void setup3() throws Exception {
-		logger.log(Logger.Level.TRACE, "setup3");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup3");
 		try {
 
-			super.setup();
-			createDeployment();
+			super.setup(args,p);
 			removeTestData();
 			createTestData3();
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Exception: ", e);
+			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
 	}
@@ -62,7 +56,6 @@ public class Client3 extends Client {
 	 * 
 	 * @test_Strategy: use a generator specified on a field
 	 */
-	@Test
 	public void generatorOnFieldTest() throws Exception {
 
 		boolean pass = false;
@@ -70,7 +63,7 @@ public class Client3 extends Client {
 		try {
 			getEntityTransaction().begin();
 			int id = d3.getId();
-			logger.log(Logger.Level.TRACE, "find id: " + id);
+			logTrace( "find id: " + id);
 			DataTypes3 d = getEntityManager().find(DataTypes3.class, id);
 			if (d != null) {
 				if (d.getStringData().equals(d3.getStringData())) {
@@ -79,10 +72,10 @@ public class Client3 extends Client {
 
 				getEntityTransaction().commit();
 			} else {
-				logger.log(Logger.Level.ERROR, "EntityManager.find returned null result");
+				logErr( "EntityManager.find returned null result");
 			}
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 
 		if (!pass)
@@ -97,14 +90,14 @@ public class Client3 extends Client {
 
 			d3 = new DataTypes3();
 			d3.setStringData("testData3");
-			logger.log(Logger.Level.TRACE, "DataType3:" + d3.toString());
+			logTrace( "DataType3:" + d3.toString());
 			getEntityManager().persist(d3);
 
 			getEntityManager().flush();
 			getEntityTransaction().commit();
 
 		} catch (Exception e) {
-			logger.log(Logger.Level.ERROR, "Unexpected exception occurred", e);
+			logErr( "Unexpected exception occurred", e);
 		}
 	}
 
