@@ -25,6 +25,7 @@ import java.io.SequenceInputStream;
 import java.lang.System.Logger;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
@@ -65,15 +66,15 @@ public class LogFileProcessor {
 
 	private static final Logger logger = (Logger) System.getLogger(LogFileProcessor.class.getName());
 
-	public LogFileProcessor() {
-		setup();
+	public LogFileProcessor(Properties props) {
+		setup(props);
 	}
 
 	/**
 	 * setup method
 	 */
-	public void setup() {
-		logFileLocation = System.getProperty("log.file.location");
+	public void setup(Properties props) {
+		logFileLocation = props.getProperty("log.file.location");
 
 		if (logFileLocation == null) {
 			logger.log(Logger.Level.ERROR, "LogFileProcessor setup failed ");

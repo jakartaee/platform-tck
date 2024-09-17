@@ -57,7 +57,7 @@ public class Client2 extends Client {
 			super.setup(args,p);
 			removeTestData();
 			createEmployee2TestData();
-			dataBaseName = System.getProperty("jdbc.db");
+			dataBaseName = p.getProperty("jdbc.db");
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);

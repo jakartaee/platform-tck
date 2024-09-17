@@ -72,7 +72,7 @@ public class Client extends PMClientBase {
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
 			displayMap(map);
-			dataBaseName = System.getProperty("jdbc.db");
+			dataBaseName = p.getProperty("jdbc.db");
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);

@@ -1,5 +1,6 @@
 package ee.jakarta.tck.persistence.ee.entityManagerFactory;
 
+import ee.jakarta.tck.persistence.common.schema30.Util;
 import ee.jakarta.tck.persistence.ee.entityManagerFactory.Client;
 import java.net.URL;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -116,8 +117,8 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.entityMan
             JavaArchive jpa_ee_entityManagerFactory = ShrinkWrap.create(JavaArchive.class, "jpa_ee_entityManagerFactory.jar");
             // The class files
             jpa_ee_entityManagerFactory.addClasses(
-                ee.jakarta.tck.persistence.ee.entityManagerFactory.Order.class
-            );
+                Util.getSchema30classes()
+            ).addClass(Order.class);
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
             if(parURL != null) {

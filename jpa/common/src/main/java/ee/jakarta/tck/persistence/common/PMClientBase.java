@@ -22,12 +22,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -46,23 +43,6 @@ import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 import com.sun.ts.lib.harness.ServiceEETest;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.ByteArrayAsset;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
 
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
 import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
@@ -1110,90 +1090,6 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
             logErr( "Received unexpected exception for path:" + path, ue);
         }
         return sURI;
-    }
-
-    public static final String STANDALONE_PERSISTENCE_XML = "ee/jakarta/tck/persistence/common/template/standalone/persistence.xml";
-    public static final String EE_PERSISTENCE_XML = "ee/jakarta/tck/persistence/common/template/persistence.xml";
-
-    public static final String PERSISTENCE_ELEMENT_TAG = "persistence-unit";
-    public static final String CLASS_ELEMENT_TAG = "class";
-    public static final String MAPPING_ELEMENT_TAG = "mapping-file";
-    public static final String TEMP_DIR = System.getProperty("java.io.tmpdir");
-    public static final String PERSISTENCE_XML = "persistence.xml";
-    public static final String ORM_XML = "orm.xml";
-    public static final String MAPPING_FILE_XML = "myMappingFile.xml";
-
-    public JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes, String persistenceFile,
-                                           String[] xmlFiles) throws Exception {
-
-        JavaArchive archive = ShrinkWrap.create(JavaArchive.class, jarName);
-
-        for (int j = 0; j < classes.length; j++) {
-            archive.addClass(classes[j]);
-        }
-
-        if (persistenceFile.equals(STANDALONE_PERSISTENCE_XML) || persistenceFile.equals(EE_PERSISTENCE_XML)) {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            TransformerFactory tf = TransformerFactory.newInstance();
-            Transformer transformer = tf.newTransformer();
-
-            InputStream xmlStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(persistenceFile);
-            Document document = db.parse(xmlStream);
-            NodeList presistenceElement = document.getElementsByTagName(PERSISTENCE_ELEMENT_TAG);
-            for (int j = 0; j < xmlFiles.length; j++) {
-                if (!ORM_XML.equalsIgnoreCase(xmlFiles[j])) {
-                    for (int i = 0; i < presistenceElement.getLength(); i++) {
-                        Element mappingTag = document.createElement(MAPPING_ELEMENT_TAG);
-                        Text mappingNode = document.createTextNode(xmlFiles[j]);
-                        mappingTag.appendChild(mappingNode);
-                        presistenceElement.item(i).appendChild(mappingTag);
-                    }
-                }
-            }
-            for (int j = 0; j < classes.length; j++) {
-                for (int i = 0; i < presistenceElement.getLength(); i++) {
-                    Element classTag = document.createElement(CLASS_ELEMENT_TAG);
-                    Text classNode = document.createTextNode(classes[j]);
-                    classTag.appendChild(classNode);
-                    presistenceElement.item(i).appendChild(classTag);
-                }
-            }
-            StringWriter writer = new StringWriter();
-            transformer.transform(new DOMSource(document), new StreamResult(writer));
-            archive.addAsManifestResource(new StringAsset(writer.getBuffer().toString()), PERSISTENCE_XML);
-        } else {
-            InputStream xmlFileStream = Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream(packageName.replace('.', '/') + "/" + persistenceFile);
-            archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), PERSISTENCE_XML);
-        }
-        for (int i = 0; i < xmlFiles.length; i++) {
-            if (ORM_XML.equalsIgnoreCase(xmlFiles[i])) {
-                InputStream xmlFileStream = Thread.currentThread().getContextClassLoader()
-                        .getResourceAsStream(packageName.replace('.', '/') + "/" + xmlFiles[i]);
-                archive.addAsManifestResource(new ByteArrayAsset(xmlFileStream), xmlFiles[i]);
-            } else {
-                archive.addAsResource(packageName.replace('.', '/') + "/" + xmlFiles[i], xmlFiles[i]);
-            }
-        }
-
-        if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
-            archive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + jarName), true);
-            ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-            URLClassLoader urlClassLoader = new URLClassLoader(
-                    new URL[]{new File(TEMP_DIR + File.separator + jarName).toURL()}, currentThreadClassLoader);
-            Thread.currentThread().setContextClassLoader(urlClassLoader);
-            testArtifactDeployed = true;
-        }
-
-        return archive;
-
-    }
-
-    public JavaArchive createDeploymentJar(String jarName, String packageName, String[] classes) throws Exception {
-        String xmlFiles[] = {};
-        return createDeploymentJar(jarName, packageName, classes, STANDALONE_PERSISTENCE_XML, xmlFiles);
-
     }
 
     public static String toString(InputStream inStream) throws IOException {
