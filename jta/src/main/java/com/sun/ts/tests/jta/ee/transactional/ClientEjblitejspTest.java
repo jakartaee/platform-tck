@@ -95,8 +95,6 @@ public class ClientEjblitejspTest extends EJBLiteClientBase {
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static WebArchive createDeploymentVehicle() {
-    // public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-
         // War
         // the war with the correct archive name
         WebArchive transactional_ejblitejsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "transactional_ejblitejsp_vehicle_web.war");

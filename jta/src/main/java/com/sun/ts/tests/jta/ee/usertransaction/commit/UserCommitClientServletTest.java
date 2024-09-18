@@ -113,26 +113,7 @@ public class UserCommitClientServletTest extends com.sun.ts.tests.jta.ee.usertra
 
     // Ear
         EnterpriseArchive commit_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "commit_servlet_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
-        commit_servlet_vehicle_ear.addAsModule(commit_servlet_vehicle_web);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/");
-        // if(earResURL != null) {
-        //   commit_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // // The sun-application.xml descriptor
-        // earResURL = UserCommitClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/commit/.ear.sun-application.xml");
-        // if(earResURL != null) {
-        //   commit_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        // }
-        // archiveProcessor.processEarArchive(commit_servlet_vehicle_ear, UserCommitClient.class, earResURL);
- 
+        commit_servlet_vehicle_ear.addAsModule(commit_servlet_vehicle_web); 
         return commit_servlet_vehicle_ear;
     }
 

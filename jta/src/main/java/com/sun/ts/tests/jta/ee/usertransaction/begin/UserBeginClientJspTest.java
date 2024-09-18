@@ -81,20 +81,17 @@ public class UserBeginClientJspTest extends com.sun.ts.tests.jta.ee.usertransact
         // The class files
         begin_jsp_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+        com.sun.ts.tests.common.vehicle.VehicleClient.class,
         com.sun.ts.tests.jta.ee.usertransaction.begin.UserBeginClient.class,
         com.sun.ts.tests.jta.ee.common.Transact.class,
         com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
         com.sun.ts.tests.jta.ee.common.InitFailedException.class,
         com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
-        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-        com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-        com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+        com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.class,
         com.sun.ts.lib.harness.ServiceEETest.class,
-        com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.tests.common.vehicle.VehicleClient.class,
         UserBeginClientJspTest.class
         );
         // The web.xml descriptor
@@ -109,36 +106,17 @@ public class UserBeginClientJspTest extends com.sun.ts.tests.jta.ee.usertransact
         begin_jsp_vehicle_web.addAsWebResource(warResURL, "/jsp_vehicle.jsp");
 
         // The sun-web.xml descriptor
-        warResURL = UserBeginClientJspTest.class.getClassLoader().getResource(packagePath+"/begin_jsp_vehicle_web.war.sun-web.xml");
-        if(warResURL != null) {
-            begin_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-        }
+        // warResURL = UserBeginClientJspTest.class.getClassLoader().getResource(packagePath+"/begin_jsp_vehicle_web.war.sun-web.xml");
+        // if(warResURL != null) {
+        //     begin_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
+        // }
 
 
-        archiveProcessor.processWebArchive(begin_jsp_vehicle_web, UserBeginClientJspTest.class, warResURL);
+        // archiveProcessor.processWebArchive(begin_jsp_vehicle_web, UserBeginClientJspTest.class, warResURL);
 
     // Ear
         EnterpriseArchive begin_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "begin_jsp_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
         begin_jsp_vehicle_ear.addAsModule(begin_jsp_vehicle_web);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserBeginClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/begin/");
-        // if(earResURL != null) {
-        //   begin_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // // The sun-application.xml descriptor
-        // earResURL = UserBeginClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/begin/.ear.sun-application.xml");
-        // if(earResURL != null) {
-        //   begin_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        // }
-        // archiveProcessor.processEarArchive(begin_jsp_vehicle_ear, UserBeginClient.class, earResURL);
-
         return begin_jsp_vehicle_ear;
     }
 

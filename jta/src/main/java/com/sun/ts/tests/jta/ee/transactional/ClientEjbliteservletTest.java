@@ -94,8 +94,6 @@ public class ClientEjbliteservletTest extends EJBLiteClientBase {
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static WebArchive createDeploymentVehicle() {
-    // public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-
         // War
         // the war with the correct archive name
         WebArchive transactional_ejbliteservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "transactional_ejbliteservlet_vehicle_web.war");
@@ -122,8 +120,8 @@ public class ClientEjbliteservletTest extends EJBLiteClientBase {
         com.sun.ts.tests.jta.ee.transactional.Helper.class,
         com.sun.ts.tests.jta.ee.transactional.CTSDontRollbackException.class,
         com.sun.ts.tests.jta.ee.transactional.OneManagedBean.class,
-        EJBLiteServletVehicle.class,
-        HttpServletDelegate.class,
+        com.sun.ts.tests.jta.ee.transactional.EJBLiteServletVehicle.class,
+        com.sun.ts.tests.jta.ee.transactional.HttpServletDelegate.class,
         ClientEjbliteservletTest.class
         );
         // The web.xml descriptor
@@ -136,7 +134,6 @@ public class ClientEjbliteservletTest extends EJBLiteClientBase {
         if(warResURL != null) {
           transactional_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "beans.xml");
         }
-
 
         return transactional_ejbliteservlet_vehicle_web;
       }

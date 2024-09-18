@@ -52,7 +52,6 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
 
     private static final Logger logger = System.getLogger(ClientEjbliteservlet2Test.class.getName());
 
-
     @BeforeEach
     void logStartTest(TestInfo testInfo) {
         logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
@@ -66,6 +65,14 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
     @AfterEach
     public void cleanup() {
       logger.log(Logger.Level.INFO, "cleanup ok");
+    }
+
+    /*
+    * @class.setup_props:
+    * This is needed by the vehicle base classes
+    */
+    public void setup(String[] args, Properties p) throws Exception {
+
     }
 
     private static StringBuilder callRecords = new StringBuilder();
@@ -95,12 +102,9 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static WebArchive createDeploymentVehicle() {
-    // public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-
         // War
         // the war with the correct archive name
         WebArchive transactional_ejbliteservlet2_vehicle_web = ShrinkWrap.create(WebArchive.class, "transactional_ejbliteservlet2_vehicle_web.war");
-        // The class files
         transactional_ejbliteservlet2_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
@@ -110,7 +114,6 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
         com.sun.ts.tests.ejb30.common.lite.NumberEnum.class,
         com.sun.ts.tests.ejb30.common.helper.Helper.class,
         com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-        // com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
         com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
         com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.class,
@@ -124,8 +127,8 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
         com.sun.ts.tests.jta.ee.transactional.Helper.class,
         com.sun.ts.tests.jta.ee.transactional.CTSDontRollbackException.class,
         com.sun.ts.tests.jta.ee.transactional.OneManagedBean.class,
-        EJBLiteServlet2Filter.class,
-        HttpServletDelegate.class,
+        com.sun.ts.tests.jta.ee.transactional.EJBLiteServlet2Filter.class,
+        com.sun.ts.tests.jta.ee.transactional.HttpServletDelegate.class,
         ClientEjbliteservlet2Test.class
         );
         // The web.xml descriptor

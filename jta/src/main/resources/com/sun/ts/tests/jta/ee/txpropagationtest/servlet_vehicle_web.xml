@@ -18,7 +18,7 @@
 -->
 
 <web-app version="5.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd">
-  <display-name>servlet_vehicle</display-name>
+  <display-name>txpropagationtest_servlet_vehicle</display-name>
   <servlet>
     <servlet-name>Servlet_VehicleLogicalName</servlet-name>
     <servlet-class>com.sun.ts.tests.common.vehicle.servlet.ServletVehicle</servlet-class>
