@@ -30,10 +30,8 @@ import jakarta.json.bind.adapter.JsonbAdapter;
 
 public class InjectedListAdapter
     implements JsonbAdapter<List<Animal>, List<AnimalJson>> {
-  // @Inject
-  // TODO: Check why Inject is not working. 
-  // creating object instead of Inject for now.
-  private InjectedAdapter animalAdapter = new InjectedAdapter();
+  @Inject
+  private InjectedAdapter animalAdapter;
 
   @Override
   public List<AnimalJson> adaptToJson(List<Animal> animals) throws Exception {

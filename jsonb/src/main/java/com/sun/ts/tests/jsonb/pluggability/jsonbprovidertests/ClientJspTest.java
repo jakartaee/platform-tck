@@ -57,19 +57,28 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
 
 import com.sun.ts.tests.jsonb.provider.MyJsonbBuilder;
 import com.sun.ts.tests.jsonb.provider.MyJsonbProvider;
-// import com.sun.ts.lib.harness.Status;
-// import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
+import com.sun.ts.lib.harness.ServiceEETest;
 import java.lang.System.Logger;
 
+@Tag("tck-javatest")
+@Tag("jsonb")
+@Tag("platform")
+@Tag("web")
 @ExtendWith(ArquillianExtension.class)
-public class ClientIT { //extends ServiceEETest {
+public class ClientJspTest extends ServiceEETest {
 
-    private static final Logger logger = System.getLogger(ClientIT.class.getName());
+    private static final Logger logger = System.getLogger(ClientJspTest.class.getName());
 
-    private static String packagePath = ClientIT.class.getPackageName().replace(".", "/");
+    static final String VEHICLE_ARCHIVE = "jsonbprovidertests_jsp_vehicle";
+
+    private static String packagePath = ClientJspTest.class.getPackageName().replace(".", "/");
 
     private static final String providerPackagePath = MyJsonbProvider.class.getPackageName().replace(".", "/");
     
@@ -87,25 +96,39 @@ public class ClientIT { //extends ServiceEETest {
         logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
     }
 
-    @Deployment(testable = false)
-    public static WebArchive createServletDeployment() throws IOException {
-    
-      WebArchive warArchive = ShrinkWrap.create(WebArchive.class, "jsonbprovidertests_servlet_vehicle_web.war");
-      warArchive.addClass(ClientIT.class)
+    @TargetsContainer("tck-javatest")
+    @OverProtocol("javatest")
+    @Deployment(name = VEHICLE_ARCHIVE, testable = true)
+    public static EnterpriseArchive createJspDeployment() throws Exception {
+        JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
+         .addClass(MyJsonbBuilder.class)
+         .addClass(MyJsonbProvider.class)
+         .addAsResource(new UrlAsset(MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
+         
+        WebArchive warArchive = ShrinkWrap.create(WebArchive.class, "jsonbprovidertests_jsp_vehicle_web.war");
+        warArchive.addClass(ClientJspTest.class)
         .addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class)
         .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
         .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
         .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
-        .setWebXML(ClientIT.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
+        .addClass(com.sun.ts.lib.harness.EETest.class)
+        .addClass(com.sun.ts.lib.harness.EETest.Fault.class)
+        .addClass(com.sun.ts.lib.harness.EETest.SetupException.class)
+        .addClass(com.sun.ts.lib.harness.ServiceEETest.class)
+        .setWebXML(ClientJspTest.class.getClassLoader().getResource(packagePath+"/jsp_vehicle_web.xml"));
 
-      JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
-        .addClass(MyJsonbBuilder.class)
-        .addClass(MyJsonbProvider.class)
-        .addAsResource(new UrlAsset(MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
+      warArchive.addAsLibrary(jarArchive);
 
-        warArchive.addAsLibrary(jarArchive);
+          // Web content
+      URL resURL = ClientJspTest.class.getResource("/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+      warArchive.addAsWebResource(resURL, "/jsp_vehicle.jsp");
+      resURL = ClientJspTest.class.getResource("/vehicle/jsp/contentRoot/client.html");
+      warArchive.addAsWebResource(resURL, "/client.html");
 
-      return warArchive;
+      EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_jsp_vehicle.ear");
+      ear.addAsModule(warArchive);
+      ear.addAsLibrary(jarArchive);
+      return ear;
 
     }
 
@@ -140,11 +163,20 @@ public class ClientIT { //extends ServiceEETest {
     private static final String MY_JSONBROVIDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbProvider";
     private static final String MY_JSONBBUILDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbBuilder";
 
-    // public static void main(String[] args) {
-    //     Client theTests = new Client();
-    //     Status s = theTests.run(args, System.out, System.err);
-    //     s.exit();
-    // }
+
+    public static void main(String[] args) {
+        ClientJspTest theTests = new ClientJspTest();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
+
+    /*
+     * @class.setup_props:
+     * This is needed by the vehicle base classes
+     */
+    public void setup(String[] args, Properties p) throws Exception {
+
+    }
 
 
     /* Test setup */
@@ -173,6 +205,7 @@ public class ClientIT { //extends ServiceEETest {
      * static JsonbProvider provider()
      */
     @Test
+    @TargetVehicle("jsp")
     public void jsonbProviderTest1() throws Exception {
         try {
             // Load any provider
@@ -191,6 +224,7 @@ public class ClientIT { //extends ServiceEETest {
      * static JsonbProvider provider(String provider)
      */
     @Test
+    @TargetVehicle("jsp")
     public void jsonbProviderTest2() throws Exception {
         boolean pass = true;
         try {
@@ -224,6 +258,7 @@ public class ClientIT { //extends ServiceEETest {
      * @test_Strategy: Test call of provider method with signature: o public JsonbBuilder create()
      */
     @Test
+    @TargetVehicle("jsp")
     public void jsonbProviderTest3() throws Exception {
         try {
             // Load my provider
