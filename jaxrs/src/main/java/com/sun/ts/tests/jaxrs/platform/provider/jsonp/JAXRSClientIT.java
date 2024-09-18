@@ -27,6 +27,7 @@ import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -43,6 +44,9 @@ import org.junit.jupiter.api.AfterEach;
  *                     ts_home;
  */
 @ExtendWith(ArquillianExtension.class)
+@Tag("jaxrs")
+@Tag("platform")
+@Tag("web")
 public class JAXRSClientIT extends JaxrsCommonClient {
 
   private static final long serialVersionUID = 7441792527287072853L;
