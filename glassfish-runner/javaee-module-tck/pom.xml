@@ -27,10 +27,10 @@
     <packaging>jar</packaging>
 
     <properties>
-        <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
-        <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version>
-        <!-- Use JDK21 to run with GF 8.0.0-M5 -->
-        <!-- <glassfish.container.version>8.0.0-M5</glassfish.container.version> -->
+        <!-- Use JDK17 to run with GF 8.0.0-JDK17-M7 -->
+        <glassfish.container.version>8.0.0-JDK17-M7</glassfish.container.version>
+        <!-- Use JDK21 to run with GF 8.0.0-M7 -->
+        <!-- <glassfish.container.version>8.0.0-M7</glassfish.container.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
@@ -105,65 +105,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>1-StopDomain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>2-StartDomain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>start-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>3-EnableTraceRequests</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>set</argument>
-                                <argument>server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>4-StopDomain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <executions>
@@ -178,6 +119,8 @@
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
+                                <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</glassfish.postBootCommands>
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
