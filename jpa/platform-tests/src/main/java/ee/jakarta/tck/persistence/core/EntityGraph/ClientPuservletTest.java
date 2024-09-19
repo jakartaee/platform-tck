@@ -73,6 +73,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.EntityG
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
+            ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
             ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,

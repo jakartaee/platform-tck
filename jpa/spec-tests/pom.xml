@@ -46,6 +46,12 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.map</include>
+                    <include>**/*.txt</include>
+                    <include>**/*.sig*</include>
+                </includes>
             </resource>
         </resources>
         <plugins>

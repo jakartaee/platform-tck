@@ -87,6 +87,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.callba
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
+            System.out.println("xxx /com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml (ee.jakarta.tck.persistence.core.callback.inheritance) = " + resURL);
             if(resURL != null) {
               jpa_core_callback_inheritance_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
