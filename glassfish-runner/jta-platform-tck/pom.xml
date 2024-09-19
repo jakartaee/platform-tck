@@ -311,60 +311,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>004-StopDomain1</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>005-StartDomain1</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>start-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>006-Enable Trace requests</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>set</argument>
-                                <argument>server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>007-StopDomain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>008-StopDatabase</id>
+                        <id>004-StartDatabase</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -372,327 +319,6 @@
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <workingDirectory>${derby.basedir}</workingDirectory>
-                            <arguments>
-                                <argument>stop-database</argument>
-                            </arguments>
-                            <successCodes>
-                                <successCode>0</successCode>
-                                <successCode>1</successCode>
-                            </successCodes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>009-StartDomain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>start-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>010-StartDatabase</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <workingDirectory>${derby.basedir}</workingDirectory>
-                            <arguments>
-                                <argument>start-database</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>011-EnableTraceRequests</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>set</argument>
-                                <argument>server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>012-DeleteUser-j2ee</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>--passwordfile</argument>
-                                <argument>${project.basedir}/j2ee.pass</argument>
-                                <argument>delete-file-user</argument>
-                                <argument>j2ee</argument>
-                            </arguments>
-                            <successCodes>
-                                <successCode>0</successCode>
-                                <successCode>1</successCode>
-                            </successCodes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>013-AddUser-j2ee</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>--passwordfile</argument>
-                                <argument>${project.basedir}/j2ee.pass</argument>
-                                <argument>create-file-user</argument>
-                                <argument>--groups</argument>
-                                <argument>staff:mgr</argument>
-                                <argument>j2ee</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>014-DeleteUser-javajoe</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>--passwordfile</argument>
-                                <argument>${project.basedir}/javajoe.pass</argument>
-                                <argument>delete-file-user</argument>
-                                <argument>javajoe</argument>
-                            </arguments>
-                            <successCodes>
-                                <successCode>0</successCode>
-                                <successCode>1</successCode>
-                            </successCodes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>015-AddUser-javajoe</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>--passwordfile</argument>
-                                <argument>${project.basedir}/javajoe.pass</argument>
-                                <argument>create-file-user</argument>
-                                <argument>--groups</argument>
-                                <argument>guest</argument>
-                                <argument>javajoe</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>016-list-users</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>list-file-users</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>017-Create Connection Pool</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>create-jdbc-connection-pool</argument>
-                                <argument>--restype</argument>
-                                <argument>${restype}</argument>
-                                <argument>--datasourceclassname</argument>
-                                <argument>${datasourceclassname}</argument>
-                                <argument>--property</argument>
-                                <argument>DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1</argument>
-                                <argument>--steadypoolsize</argument>
-                                <argument>${jdbc.steadypoolsize}</argument>
-                                <argument>--maxpoolsize</argument>
-                                <argument>${jdbc.maxpoolsize}</argument>
-                                <argument>${poolName}</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>018-create-jndi</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>create-jdbc-resource</argument>
-                                <argument>--connectionpoolid</argument>
-                                <argument>${poolName}</argument>
-                                <argument>${jndiName}</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-
-                    <!-- <execution>
-                        <id>019-ping-connection-pool</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>ping-connection-pool</argument>
-                                <argument>${poolName}</argument>
-                            </arguments>
-                        </configuration>
-                    </execution> -->
-                    <execution>
-                        <id>020-list-jdbc-connection-pools</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>list-jdbc-connection-pools</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>021-list-jdbc-resources</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>list-jdbc-resources</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>022-stop-domain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <!-- <execution>
-                        <id>023-start-database</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>start-database</argument>
-                            </arguments>
-                        </configuration>
-                    </execution> -->
-
-                    <!-- <execution>
-                        <id>024-Create Connection Pool Resource</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>create-jdbc-resource</argument>
-                                <argument>poolName=cts-derby-pool</argument>
-                                <argument>jdbc/DB1</argument>
-                            </arguments>
-                        </configuration>
-                    </execution> -->
-                </executions>
-            </plugin>
-
-            <!-- <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>1-StopDomain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                            <successCodes>
-                                <successCode>0</successCode>
-                                <successCode>1</successCode>
-                            </successCodes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>2-StopDatabase</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <workingDirectory>${derby.basedir}</workingDirectory>
-                            <arguments>
-                                <argument>stop-database</argument>
-                            </arguments>
-                            <successCodes>
-                                <successCode>0</successCode>
-                                <successCode>1</successCode>
-                            </successCodes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin> -->
-
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>023-start-database</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
                             <arguments>
                                 <argument>start-database</argument>
                             </arguments>
@@ -705,7 +331,7 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>024-initdb</id>
+                        <id>005-initdb</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -721,11 +347,6 @@
                                     <!-- <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.dml.sql"></transaction> -->
                                 </sql>
                             </target>
-                            <!-- <target>
-                                <sql autocommit="true" classpath="${jdbc.classpath}" delimiter="${db.delimiter}" driver="${jdbc.driver}" onerror="continue" password="${jdbc.password}" url="${jdbc.url}" userid="${jdbc.user}">
-                                    <transaction src="${project.build.directory}/../sql/${jdbc.db}/${jdbc.db}.ddl.sql"></transaction>
-                                </sql>
-                            </target> -->
                         </configuration>
                     </execution>
                 </executions>
@@ -756,6 +377,14 @@
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
+                                create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
+                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                                create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                                list-jdbc-connection-pools
+                                list-jdbc-resources
+                                list-file-users</glassfish.postBootCommands>
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
@@ -795,10 +424,10 @@
                                 <include>com/sun/ts/tests/jta/ee/transactional/ClientEjbliteservletTest*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/transactional/ClientEjbliteservlet2Test*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/transactional/ClientEjblitejsfTest*.java</include>
-                                <!-- <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientServletTest*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientServletTest*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientJspTest*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/usertransaction/**/*JspTest*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*ServletTest*.java</include> -->
+                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*ServletTest*.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
@@ -806,6 +435,14 @@
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
+                                create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
+                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                                create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                                list-jdbc-connection-pools
+                                list-jdbc-resources
+                                list-file-users</glassfish.postBootCommands>
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>

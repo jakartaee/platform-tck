@@ -67,13 +67,6 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /*
-    * @class.setup_props:
-    * This is needed by the vehicle base classes
-    */
-    public void setup(String[] args, Properties p) throws Exception {
-
-    }
 
     private static StringBuilder callRecords = new StringBuilder();
 
