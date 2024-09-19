@@ -36,7 +36,7 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class EJBLiteServletVehicle extends ClientEjbliteservletTest 
+public class EJBLiteServletVehicle extends Client 
     implements Servlet, ServletConfig {
     
     private static Logger logger = Logger.getLogger(EJBLiteServletVehicle.class.getName());

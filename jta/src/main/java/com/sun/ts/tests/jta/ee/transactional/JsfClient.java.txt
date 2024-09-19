@@ -35,8 +35,8 @@ import jakarta.transaction.UserTransaction;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped
-public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
-  private static final long serialVersionUID = 1L;
+public class JsfClient extends EJBLiteJsfClientBase {
+
   private static StringBuilder callRecords = new StringBuilder();
 
   @Inject

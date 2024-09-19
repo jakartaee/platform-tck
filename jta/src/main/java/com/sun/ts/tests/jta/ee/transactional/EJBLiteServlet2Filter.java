@@ -32,7 +32,7 @@ import jakarta.servlet.ServletResponse;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-public class EJBLiteServlet2Filter extends ClientEjbliteservlet2Test implements Filter {
+public class EJBLiteServlet2Filter extends Client implements Filter {
     private static Logger logger = Logger.getLogger(EJBLiteServlet2Filter.class.getName());
     private FilterConfig filterConfig;
 

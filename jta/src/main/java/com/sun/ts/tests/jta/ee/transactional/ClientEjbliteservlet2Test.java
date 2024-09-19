@@ -47,7 +47,7 @@ import java.lang.System.Logger;
 @Tag("platform")
 @Tag("web")
 @Tag("tck-javatest")
-public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
+public class ClientEjbliteservlet2Test extends com.sun.ts.tests.jta.ee.transactional.Client {
     static final String VEHICLE_ARCHIVE = "transactional_ejbliteservlet2_vehicle";
 
     private static final Logger logger = System.getLogger(ClientEjbliteservlet2Test.class.getName());
@@ -66,29 +66,6 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
     public void cleanup() {
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
-
-
-    private static StringBuilder callRecords = new StringBuilder();
-
-    @Inject
-    @OneManagedQualifier
-    OneManagedBean one;
-  
-    @Inject
-    TransactionScopedBean tscopedBean;
-  
-    @Resource(lookup = "java:comp/UserTransaction")
-    private UserTransaction ut;
-  
-    public static void main(String[] args) {
-      ClientEjbliteservlet2Test theTests = new ClientEjbliteservlet2Test();
-      com.sun.ts.lib.harness.Status s = theTests.run(args, System.out, System.err);
-      s.exit();
-    }
-  
-    @Inject
-    @TwoManagedQualifier
-    TwoManagedBean two;
   
 
     @TargetsContainer("tck-javatest")
@@ -122,6 +99,7 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
         com.sun.ts.tests.jta.ee.transactional.OneManagedBean.class,
         com.sun.ts.tests.jta.ee.transactional.EJBLiteServlet2Filter.class,
         com.sun.ts.tests.jta.ee.transactional.HttpServletDelegate.class,
+        com.sun.ts.tests.jta.ee.transactional.Client.class,
         ClientEjbliteservlet2Test.class
         );
         // The web.xml descriptor
@@ -156,15 +134,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * must then continue inside this transaction context.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
-    public void txTypeRequired_withoutTransaction() throws Exception {
-  
-      Helper.assertEquals("\n", "txTypeRequired called successfully",
-          one.txTypeRequired(), callRecords);
-      // Helper.getLogger().info(callRecords.toString());
-      appendReason(Helper.compareResult("txTypeRequired called successfully",
-          one.txTypeRequired()));
-  
+    public void txTypeRequired_withoutTransaction() throws Exception {  
+      super.txTypeRequired_withoutTransaction();
     }
   
     /*
@@ -179,20 +152,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * must then continue inside this transaction context.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeRequired_withTransaction() throws Exception {
-      try {
-        ut.begin();
-        Helper.assertEquals(null, "txTypeRequired called successfully",
-            one.txTypeRequired(), callRecords);
-        // Helper.getLogger().info(callRecords.toString());
-        appendReason(Helper.compareResult("txTypeRequired called successfully",
-            one.txTypeRequired()));
-        ut.commit();
-      } catch (Exception e) {
-        Helper.getLogger().log(Level.INFO, null, e);
-        throw new Exception("txTypeRequired_withTransaction failed");
-      }
+      super.txTypeRequired_withTransaction();
     }
   
     /*
@@ -205,15 +168,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * NEVER, an IllegalStateException must be thrown.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeRequired_IllegalStateException() throws Exception {
-  
-      Helper.assertEquals(null, "IllegalStateException",
-          one.txTypeRequiredIllegalStateException(), callRecords);
-      // Helper.getLogger().info(callRecords.toString());
-      appendReason(Helper.compareResult("IllegalStateException",
-          one.txTypeRequiredIllegalStateException()));
-  
+      super.txTypeRequired_IllegalStateException();
     }
   
     /*
@@ -231,14 +189,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * must be resumed.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeRequiresNew() throws Exception {
-  
-      Helper.assertEquals(null, "txTypeRequiresNew called successfully",
-          one.txTypeRequiresNew(), callRecords);
-      // Helper.getLogger().info(callRecords.toString());
-      appendReason(Helper.compareResult("txTypeRequiresNew called successfully",
-          one.txTypeRequiresNew()));
+      super.txTypeRequiresNew();
   
     }
   
@@ -257,20 +211,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * must be resumed.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeRequiresNew_withTransaction() throws Exception {
-      try {
-        ut.begin();
-        Helper.assertEquals(null, "txTypeRequiresNew called successfully",
-            one.txTypeRequiresNew(), callRecords);
-        // Helper.getLogger().info(callRecords.toString());
-        appendReason(Helper.compareResult("txTypeRequiresNew called successfully",
-            one.txTypeRequiresNew()));
-        ut.commit();
-      } catch (Exception e) {
-        Helper.getLogger().log(Level.INFO, null, e);
-        throw new Exception("txTypeRequiresNew_withTransaction failed");
-      }
+      super.txTypeRequiresNew_withTransaction();
     }
   
     /*
@@ -284,36 +228,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * then continue under that context.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeMandatory_withoutTransaction() throws Exception {
-      String result = "TransactionalException not received";
-  
-      try {
-        Helper.getLogger().info(
-            "Invoking OneManagedBean.txTypeManadatory() without a transaction Context");
-        one.txTypeMandatory();
-      } catch (TransactionalException te) {
-        if (te.getCause() instanceof TransactionRequiredException) {
-          result = "Received expected TransactionalException with nested TransactionRequiredException";
-        } else {
-          throw new Exception(
-              "Received TransactionalException without nested TransactionRequiredExecption");
-        }
-  
-      } catch (Exception e) {
-        e.printStackTrace();
-        result = "Received unexcepted Exception :" + e.getMessage();
-      }
-  
-      if (result.equals(
-          "Received expected TransactionalException with nested TransactionRequiredException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(
-            "Received expected TransactionalException with nested TransactionRequiredException");
-      } else {
-        throw new Exception(result);
-      }
-  
+      super.txTypeMandatory_withoutTransaction();
     }
   
     /*
@@ -327,20 +245,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * then continue under that context.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeMandatory_withTransaction() throws Exception {
-      try {
-        ut.begin();
-        Helper.assertEquals(null, "txTypeMandatory called successfully",
-            one.txTypeMandatory(), callRecords);
-        // Helper.getLogger().info(callRecords.toString());
-        appendReason(Helper.compareResult("txTypeMandatory called successfully",
-            one.txTypeMandatory()));
-        ut.commit();
-      } catch (Exception e) {
-        Helper.getLogger().log(Level.INFO, null, e);
-        throw new Exception("txTypeRequiresNew_withTransaction failed");
-      }
+      super.txTypeMandatory_withTransaction();
     }
   
     /*
@@ -353,16 +261,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * must then continue inside this transaction context.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeSupports_withoutTransaction() throws Exception {
-  
-      Helper.assertEquals(null, "txTypeSupports run without active transaction",
-          one.txTypeSupportsWithoutTransaction(), callRecords);
-      // Helper.getLogger().info(callRecords.toString());
-      appendReason(
-          Helper.compareResult("txTypeSupports run without active transaction",
-              one.txTypeSupportsWithoutTransaction()));
-  
+      super.txTypeSupports_withoutTransaction();
     }
   
     /*
@@ -375,20 +277,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * must then continue inside this transaction context.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeSupports_withTransaction() throws Exception {
-      try {
-        ut.begin();
-        Helper.assertEquals(null, "txTypeSupports called successfully",
-            one.txTypeSupports(), callRecords);
-        // Helper.getLogger().info(callRecords.toString());
-        appendReason(Helper.compareResult("txTypeSupports called successfully",
-            one.txTypeSupports()));
-        ut.commit();
-      } catch (Exception e) {
-        Helper.getLogger().log(Level.INFO, null, e);
-        throw new Exception("txTypeSupports failed");
-      }
+      super.txTypeSupports_withTransaction();
     }
   
     /*
@@ -404,16 +296,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * execution has completed.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeNotSupported_withoutTransaction() throws Exception {
-  
-      Helper.assertEquals(null,
-          "txTypeNotSupported run without active transaction",
-          one.txTypeNotSupported(), callRecords);
-      // Helper.getLogger().info(callRecords.toString());
-      appendReason(Helper.compareResult(
-          "txTypeNotSupported run without active transaction",
-          one.txTypeNotSupported()));
+      super.txTypeNotSupported_withoutTransaction();
   
     }
   
@@ -430,22 +316,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * execution has completed.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeNotSupported_withTransaction() throws Exception {
-      try {
-        ut.begin();
-        Helper.assertEquals(null,
-            "txTypeNotSupported run without active transaction",
-            one.txTypeNotSupported(), callRecords);
-        // Helper.getLogger().info(callRecords.toString());
-        appendReason(Helper.compareResult(
-            "txTypeNotSupported run without active transaction",
-            one.txTypeNotSupported()));
-        ut.commit();
-      } catch (Exception e) {
-        Helper.getLogger().log(Level.INFO, null, e);
-        throw new Exception("txTypeSupports failed");
-      }
+      super.txTypeNotSupported_withTransaction();
     }
   
     /*
@@ -458,14 +332,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * nested InvalidTransactionException must be thrown
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeNever_withoutTransaction() throws Exception {
-      Helper.assertEquals(null, "txTypeNever run without active transaction",
-          one.txTypeNever(), callRecords);
-      // Helper.getLogger().info(callRecords.toString());
-      appendReason(Helper.compareResult(
-          "txTypeNever run without active transaction", one.txTypeNever()));
-  
+      super.txTypeNever_withoutTransaction();
     }
   
     /*
@@ -478,38 +348,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * nested InvalidTransactionException must be thrown
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void txTypeNever_withTransaction() throws Exception {
-      String result = "Expected TransactionalException not received";
-  
-      try {
-        Helper.getLogger().info(
-            "Invoking OneManagedBean.txTypeNever() with a transaction Context");
-        ut.begin();
-        one.txTypeNever();
-        ut.commit();
-      } catch (TransactionalException te) {
-  
-        if (te.getCause() instanceof InvalidTransactionException) {
-          result = "Received expected TransactionalException with nested InvalidTransactionException";
-        } else {
-          throw new Exception(
-              "Received expected TransactionalException without nested InvalidTransactionException");
-        }
-  
-      } catch (Exception e) {
-        e.printStackTrace();
-        result = "Received unexcepted Exception :" + e.getMessage();
-      }
-  
-      if (result.equals(
-          "Received expected TransactionalException with nested InvalidTransactionException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(
-            "Received expected TransactionalException with nested InvalidTransactionException");
-      } else {
-        throw new Exception(result);
-      }
+      super.txTypeNever_withTransaction();
     }
   
     /*
@@ -522,55 +364,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * that must not cause the interceptor to mark the transaction for rollback.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void rollbackOnException() throws Exception {
-      String result = "failed to set STATUS_MARKED_ROLLBACK on CTSRollbackException";
-      int status;
-  
-      try {
-        ut.begin();
-        if (ut.getStatus() == Status.STATUS_ACTIVE) {
-          Helper.getLogger()
-              .info("Current Transaction Status is = " + ut.getStatus());
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_ACTIVE = "
-                  + Status.STATUS_ACTIVE);
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_NO_TRANSACTION = "
-                  + Status.STATUS_NO_TRANSACTION);
-          Helper.getLogger().info(
-              "Transaction Status value for Status.STATUS_MARKED_ROLLBACK = "
-                  + Status.STATUS_MARKED_ROLLBACK);
-          Helper.getLogger().info("Calling one.rollbackOnException()");
-          one.rollbackOnException();
-        }
-  
-      } catch (CTSRollbackException ce) {
-        Helper.getLogger().info("Received Expected CTSRollbackException");
-        try {
-  
-          if (ut.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
-            result = "Transaction STATUS_MARKED_ROLLBACK on CTSRollbackException";
-          } else {
-            result = "Transaction Status is set to : " + ut.getStatus();
-  
-          }
-        } catch (SystemException se) {
-          result = "failed to get transaction status";
-        }
-  
-      } catch (Exception e) {
-        result = "Received unexpected exception :" + e.getClass();
-      }
-  
-      if (result
-          .equals("Transaction STATUS_MARKED_ROLLBACK on CTSRollbackException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(result);
-      } else {
-        appendReason(result);
-        throw new Exception(result);
-      }
+      super.rollbackOnException();
   
     }
   
@@ -590,55 +387,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void rollbackOnExceptionTwo() throws Exception {
-      String result = "failed to set STATUS_MARKED_ROLLBACK on CTSRollbackException";
-      int status;
-  
-      try {
-        ut.begin();
-        if (ut.getStatus() == Status.STATUS_ACTIVE) {
-          Helper.getLogger()
-              .info("Current Transaction Status is = " + ut.getStatus());
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_ACTIVE = "
-                  + Status.STATUS_ACTIVE);
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_NO_TRANSACTION = "
-                  + Status.STATUS_NO_TRANSACTION);
-          Helper.getLogger().info(
-              "Transaction Status value for Status.STATUS_MARKED_ROLLBACK = "
-                  + Status.STATUS_MARKED_ROLLBACK);
-          Helper.getLogger().info("Calling one.rollbackOnException()");
-          two.rollbackOnException();
-        }
-  
-      } catch (CTSRollbackException ce) {
-        Helper.getLogger().info("Received Expected CTSRollbackException");
-        try {
-  
-          if (ut.getStatus() == Status.STATUS_MARKED_ROLLBACK) {
-            result = "Transaction STATUS_MARKED_ROLLBACK on CTSRollbackException";
-          } else {
-            result = "Transaction Status is set to : " + ut.getStatus();
-  
-          }
-        } catch (SystemException se) {
-          result = "failed to get transaction status";
-        }
-  
-      } catch (Exception e) {
-        result = "Received unexpected exception :" + e.getClass();
-      }
-  
-      if (result
-          .equals("Transaction STATUS_MARKED_ROLLBACK on CTSRollbackException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(result);
-      } else {
-        appendReason(result);
-        throw new Exception(result);
-      }
+      super.rollbackOnExceptionTwo();
   
     }
   
@@ -652,57 +404,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * that must not cause the interceptor to mark the transaction for rollback.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void dontRollbackOnException() throws Exception {
-      String result = "";
-      int status;
-  
-      try {
-        ut.begin();
-        if (ut.getStatus() == Status.STATUS_ACTIVE) {
-          Helper.getLogger()
-              .info("Current Transaction Status is = " + ut.getStatus());
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_ACTIVE = "
-                  + Status.STATUS_ACTIVE);
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_NO_TRANSACTION = "
-                  + Status.STATUS_NO_TRANSACTION);
-          Helper.getLogger().info(
-              "Transaction Status value for Status.STATUS_MARKED_ROLLBACK = "
-                  + Status.STATUS_MARKED_ROLLBACK);
-          Helper.getLogger().info("Calling one.dontRollbackOnException()");
-          one.dontRollbackOnException();
-        }
-  
-      } catch (CTSDontRollbackException ce) {
-        Helper.getLogger().info("Received Expected CTSDontRollbackException");
-        try {
-  
-          if (ut.getStatus() == Status.STATUS_ACTIVE) {
-            result = "Transaction Status not changed on CTSDontRollbackException";
-          } else {
-            result = "Transaction Status is set to : " + ut.getStatus();
-  
-          }
-        } catch (SystemException se) {
-          result = "failed to get transaction status";
-        }
-  
-      } catch (Exception e) {
-        result = "Received unexpected exception :" + e.getClass();
-        e.printStackTrace();
-      }
-  
-      if (result
-          .equals("Transaction Status not changed on CTSDontRollbackException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(result);
-      } else {
-        appendReason(result);
-        throw new Exception(result);
-      }
-  
+      super.dontRollbackOnException();
     }
   
     /*
@@ -721,56 +426,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void dontRollbackOnExceptionTwo() throws Exception {
-      String result = "";
-      int status;
-  
-      try {
-        ut.begin();
-        if (ut.getStatus() == Status.STATUS_ACTIVE) {
-          Helper.getLogger()
-              .info("Current Transaction Status is = " + ut.getStatus());
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_ACTIVE = "
-                  + Status.STATUS_ACTIVE);
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_NO_TRANSACTION = "
-                  + Status.STATUS_NO_TRANSACTION);
-          Helper.getLogger().info(
-              "Transaction Status value for Status.STATUS_MARKED_ROLLBACK = "
-                  + Status.STATUS_MARKED_ROLLBACK);
-          Helper.getLogger().info("Calling two.dontRollbackOnException()");
-          two.dontRollbackOnException();
-        }
-  
-      } catch (CTSDontRollbackException ce) {
-        Helper.getLogger().info("Received Expected CTSDontRollbackException");
-        try {
-  
-          if (ut.getStatus() == Status.STATUS_ACTIVE) {
-            result = "Transaction Status not changed on CTSDontRollbackException";
-          } else {
-            result = "Transaction Status is set to : " + ut.getStatus();
-  
-          }
-        } catch (SystemException se) {
-          result = "failed to get transaction status";
-        }
-  
-      } catch (Exception e) {
-        result = "Received unexpected exception :" + e.getClass();
-        e.printStackTrace();
-      }
-  
-      if (result
-          .equals("Transaction Status not changed on CTSDontRollbackException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(result);
-      } else {
-        appendReason(result);
-        throw new Exception(result);
-      }
+      super.dontRollbackOnExceptionTwo();
   
     }
   
@@ -788,55 +447,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * specified, dontRollbackOn takes precedence.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void rollbackAndDontRollback() throws Exception {
-      String result = "";
-      int status;
-  
-      try {
-        ut.begin();
-        if (ut.getStatus() == Status.STATUS_ACTIVE) {
-          Helper.getLogger()
-              .info("Current Transaction Status is = " + ut.getStatus());
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_ACTIVE = "
-                  + Status.STATUS_ACTIVE);
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_NO_TRANSACTION = "
-                  + Status.STATUS_NO_TRANSACTION);
-          Helper.getLogger().info(
-              "Transaction Status value for Status.STATUS_MARKED_ROLLBACK = "
-                  + Status.STATUS_MARKED_ROLLBACK);
-          Helper.getLogger().info("Calling one.rollbackAndDontRollback()");
-          one.rollbackAndDontRollback();
-        }
-  
-      } catch (CTSRollbackException ce) {
-        Helper.getLogger().info("Received Expected CTSRollbackException");
-        try {
-  
-          if (ut.getStatus() == Status.STATUS_ACTIVE) {
-            result = "Transaction Status not changed on CTSRollbackException";
-          } else {
-            result = "Transaction Status is set to : " + ut.getStatus();
-  
-          }
-        } catch (SystemException se) {
-          result = "failed to get transaction status";
-        }
-  
-      } catch (Exception e) {
-        result = "Received unexpected exception :" + e.getClass();
-      }
-  
-      if (result
-          .equals("Transaction Status not changed on CTSRollbackException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(result);
-      } else {
-        appendReason(result);
-        throw new Exception(result);
-      }
+      super.rollbackAndDontRollback();
   
     }
   
@@ -857,55 +471,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void rollbackAndDontRollbackTwo() throws Exception {
-      String result = "";
-      int status;
-  
-      try {
-        ut.begin();
-        if (ut.getStatus() == Status.STATUS_ACTIVE) {
-          Helper.getLogger()
-              .info("Current Transaction Status is = " + ut.getStatus());
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_ACTIVE = "
-                  + Status.STATUS_ACTIVE);
-          Helper.getLogger()
-              .info("Transaction Status value for Status.STATUS_NO_TRANSACTION = "
-                  + Status.STATUS_NO_TRANSACTION);
-          Helper.getLogger().info(
-              "Transaction Status value for Status.STATUS_MARKED_ROLLBACK = "
-                  + Status.STATUS_MARKED_ROLLBACK);
-          Helper.getLogger().info("Calling two.rollbackAndDontRollback()");
-          two.rollbackAndDontRollback();
-        }
-  
-      } catch (CTSRollbackException ce) {
-        Helper.getLogger().info("Received Expected CTSRollbackException");
-        try {
-  
-          if (ut.getStatus() == Status.STATUS_ACTIVE) {
-            result = "Transaction Status not changed on CTSRollbackException";
-          } else {
-            result = "Transaction Status is set to : " + ut.getStatus();
-  
-          }
-        } catch (SystemException se) {
-          result = "failed to get transaction status";
-        }
-  
-      } catch (Exception e) {
-        result = "Received unexpected exception :" + e.getClass();
-      }
-  
-      if (result
-          .equals("Transaction Status not changed on CTSRollbackException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(result);
-      } else {
-        appendReason(result);
-        throw new Exception(result);
-      }
+      super.rollbackAndDontRollbackTwo();
   
     }
   
@@ -930,29 +499,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void transactionScopedBean_withoutTransaction() throws Exception {
-  
-      String result = "ContextNotActiveException not received";
-  
-      try {
-        Helper.getLogger().info(
-            "Invoking TransactionScopedBean.test() without a transaction Context");
-        tscopedBean.test();
-      } catch (ContextNotActiveException te) {
-        result = "Received expected ContextNotActiveException";
-  
-      } catch (Exception e) {
-        result = "Received unexcepted Exception :" + e.getClass();
-        e.printStackTrace();
-      }
-  
-      if (result.equals("Received expected ContextNotActiveException")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(result);
-      } else {
-        throw new Exception(result);
-      }
+      super.transactionScopedBean_withoutTransaction();
     }
   
     /*
@@ -975,29 +525,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * active.
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void transactionScopedBean_withTransaction() throws Exception {
-  
-      String result = "";
-  
-      try {
-        ut.begin();
-        Helper.getLogger().info(
-            "Invoking TransactionScopedBean.test() with a transaction Context");
-        result = tscopedBean.test();
-        ut.commit();
-      } catch (Exception e) {
-        result = "Received unexcepted Exception :" + e.getClass();
-        e.printStackTrace();
-      }
-  
-      if (result
-          .equals("TransactionScopedBean.test called with active transaction")) {
-        Helper.getLogger().log(Level.INFO, result);
-        appendReason(result);
-      } else {
-        throw new Exception(result);
-      }
+      super.transactionScopedBean_withTransaction();
     }
   
     /*
@@ -1008,11 +539,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void getInterceptorPriorityForTxTypeRequired() throws Exception {
-      String methodName = "txTypeRequired";
-      List<Integer> priorityList = one.getPriority(methodName);
-      verifyInterceptorPriority(priorityList, "TxType.REQUIRED");
+      super.getInterceptorPriorityForTxTypeRequired();
     }
   
     /*
@@ -1023,11 +553,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void getInterceptorPriorityForTxTypeRequiresNew() throws Exception {
-      String methodName = "txTypeRequiresNew";
-      List<Integer> priorityList = one.getPriority(methodName);
-      verifyInterceptorPriority(priorityList, "TxType.REQUIRES_NEW");
+      super.getInterceptorPriorityForTxTypeRequiresNew();
     }
   
     /*
@@ -1038,11 +567,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void getInterceptorPriorityForTxTypeMandatory() throws Exception {
-      String methodName = "txTypeMandatory";
-      List<Integer> priorityList = one.getPriority(methodName);
-      verifyInterceptorPriority(priorityList, "TxType.MANDATORY");
+      super.getInterceptorPriorityForTxTypeMandatory();
     }
   
     /*
@@ -1053,11 +581,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void getInterceptorPriorityForTxTypeSupports() throws Exception {
-      String methodName = "txTypeSupports";
-      List<Integer> priorityList = one.getPriority(methodName);
-      verifyInterceptorPriority(priorityList, "TxType.SUPPORTS");
+      super.getInterceptorPriorityForTxTypeSupports();
     }
   
     /*
@@ -1068,11 +595,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void getInterceptorPriorityForTxTypeNotSupported() throws Exception {
-      String methodName = "txTypeNotSupported";
-      List<Integer> priorityList = one.getPriority(methodName);
-      verifyInterceptorPriority(priorityList, "TxType.NOT_SUPPORTED");
+      super.getInterceptorPriorityForTxTypeNotSupported();
     }
   
     /*
@@ -1083,11 +609,10 @@ public class ClientEjbliteservlet2Test extends EJBLiteClientBase {
       * 
       */
     @Test
+    @Override
     @TargetVehicle("ejbliteservlet2")
     public void getInterceptorPriorityForTxTypeNever() throws Exception {
-      String methodName = "txTypeNever";
-      List<Integer> priorityList = one.getPriority(methodName);
-      verifyInterceptorPriority(priorityList, "TxType.NEVER");
+      super.getInterceptorPriorityForTxTypeNever();
   
     }
   
