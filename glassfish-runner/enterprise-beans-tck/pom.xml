@@ -31,5 +31,6 @@
 
     <modules>
         <module>enterprise-beans-tck-install</module>
+        <module>enterprise-beans-tck-run</module>
     </modules>
 </project>
