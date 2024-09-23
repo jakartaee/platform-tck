@@ -16,7 +16,7 @@
     <properties>
         <glassfish.container.version>7.0.0-M10</glassfish.container.version>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
-        <jakarta.batch.version>2.1.0</jakarta.batch.version>
+        <jakarta.batch.version>2.1.5</jakarta.batch.version>
     </properties>
 
     <repositories>
