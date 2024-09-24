@@ -46,8 +46,6 @@
         <maven.min.version>3.6.0</maven.min.version>
 
         <!-- Surefire properties -->
-        <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
-        <pushChanges>false</pushChanges>
 
         <skipTests>${maven.test.skip}</skipTests>
         <tck.descriptor.path>${ts.home}/../cts-10-mods/output/classes</tck.descriptor.path>
@@ -297,6 +295,8 @@
 
                         <arquillian.xml>javatest-arquillian.xml</arquillian.xml>
                         <ts.home>${ts.home}</ts.home>
+                        <glassfish.postBootCommands>create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.EmbeddedXADataSource --property DatabaseName="derbyDB;create=true":serverName=localhost:PortNumber=1527:user=cts1:password=cts1 cts-derby-XA-pool
+                            create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer</glassfish.postBootCommands>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
