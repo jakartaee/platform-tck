@@ -46,6 +46,8 @@
         <maven.min.version>3.6.0</maven.min.version>
 
         <!-- Surefire properties -->
+        <maven.test.redirectTestOutputToFile>true</maven.test.redirectTestOutputToFile>
+        <pushChanges>false</pushChanges>
 
         <skipTests>${maven.test.skip}</skipTests>
         <tck.descriptor.path>${ts.home}/../cts-10-mods/output/classes</tck.descriptor.path>
@@ -88,7 +90,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-    </dependencies>
+        </dependencies>
     </dependencyManagement>
 
     <dependencies>
@@ -298,9 +300,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.3.1</version>
                 <configuration>
-                    <dependenciesToScan>
-                        <dependency>jakarta.tck:persistence-platform-tck-tests</dependency>
-                    </dependenciesToScan>
                     <includes>
                         <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                     </includes>
@@ -329,6 +328,9 @@
                         </goals>
                         <phase>test</phase>
                         <configuration>
+                            <dependenciesToScan>
+                                <dependency>jakarta.tck:persistence-platform-tck-tests</dependency>
+                            </dependenciesToScan>
                             <groups>tck-javatest</groups>
                         </configuration>
                     </execution>
