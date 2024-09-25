@@ -47,7 +47,7 @@
         <derby.url>jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true</derby.url>
         <derby.user>cts1</derby.user>
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
-        <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version>
+        <glassfish.container.version>8.0.0-JDK17-M7</glassfish.container.version>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-M1</jakarta.platform.version>
         <jdbc.maxpoolsize>30</jdbc.maxpoolsize>
@@ -222,7 +222,7 @@
                                 create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
                                 create-jms-resource --restype jakarta.jms.TopicConnectionFactory jms/TopicConnectionFactory
                                 create-jms-resource --restype jakarta.jms.ConnectionFactory --property name=cFactory jms/ConnectionFactory
-                                create-custom-resource --restype java.net.URL --factoryclass javax.naming.spi.ObjectFactory --property name=myUrl "http\://webServerHost\:webServerPort"</glassfish.postBootCommands>
+                                list-jndi-entries</glassfish.postBootCommands>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <webServerHome>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</webServerHome>
                                 <webServerHost>localhost</webServerHost>
