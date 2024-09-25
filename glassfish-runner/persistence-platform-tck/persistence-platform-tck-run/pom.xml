@@ -88,7 +88,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-        </dependencies>
+    </dependencies>
     </dependencyManagement>
 
     <dependencies>
@@ -129,48 +129,12 @@
             <artifactId>persistence-platform-tck-spec-tests</artifactId>
             <version>${version.jakarta.tck}</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap</groupId>
-                    <artifactId>shrinkwrap-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.tools</groupId>
-                    <artifactId>sigtest-maven-plugin</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-tests</artifactId>
             <version>${version.jakarta.tck}</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap</groupId>
-                    <artifactId>shrinkwrap-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                    <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.netbeans.tools</groupId>
-                    <artifactId>sigtest-maven-plugin</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -183,13 +147,13 @@
         <!-- The actual TCK containing the tests -->
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>ejb30</artifactId>
+            <artifactId>persistence-platform-tck-spec-tests</artifactId>
             <version>${version.jakarta.tck}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>ejb32</artifactId>
+            <artifactId>persistence-platform-tck-tests</artifactId>
             <version>${version.jakarta.tck}</version>
             <scope>test</scope>
         </dependency>
@@ -334,9 +298,13 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.3.1</version>
                 <configuration>
+                    <dependenciesToScan>
+                        <dependency>jakarta.tck:persistence-platform-tck-tests</dependency>
+                    </dependenciesToScan>
                     <includes>
                         <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                     </includes>
+                    <groups>tck-javatest</groups>
                     <systemPropertyVariables>
                         <glassfish.home>${glassfish.root}/glassfish8</glassfish.home>
                         <!-- 
@@ -354,13 +322,13 @@
                 </configuration>
                 <executions>
                     <execution>
+
                         <id>jpa-javatest</id>
                         <goals>
                             <goal>test</goal>
                         </goals>
                         <phase>test</phase>
                         <configuration>
-                            <dependency>jakarta.tck:persistence-platform-tck-tests</dependency>
                             <groups>tck-javatest</groups>
                         </configuration>
                     </execution>
