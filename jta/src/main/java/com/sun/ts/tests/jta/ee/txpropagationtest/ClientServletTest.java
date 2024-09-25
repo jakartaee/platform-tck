@@ -113,7 +113,7 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
             jta_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
         }
         // Web content
-        archiveProcessor.processWebArchive(jta_servlet_vehicle_web, ClientServletTest.class, warResURL);
+        // archiveProcessor.processWebArchive(jta_servlet_vehicle_web, ClientServletTest.class, warResURL);
 
     // Ejb
         // the jar with the correct archive name
@@ -135,7 +135,7 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
         if(ejbResURL != null) {
             jta_ee_txpropagate2_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
         }
-        archiveProcessor.processEjbArchive(jta_ee_txpropagate2_ejb, ClientServletTest.class, ejbResURL);
+        // archiveProcessor.processEjbArchive(jta_ee_txpropagate2_ejb, ClientServletTest.class, ejbResURL);
 
     // Ear
         EnterpriseArchive jta_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "jta_servlet_vehicle.ear");

@@ -27,8 +27,8 @@
     <res-ref-name>jdbc/DB1</res-ref-name>
     <jndi-name>jdbc/DB1</jndi-name>
     <default-resource-principal>
-      <name>user1</name>
-      <password>password1</password>
+      <name>cts1</name>
+      <password>cts1</password>
     </default-resource-principal>
   </resource-ref>
 </sun-web-app>

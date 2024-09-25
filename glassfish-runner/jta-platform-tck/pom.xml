@@ -54,7 +54,7 @@
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
         <ftable>ctstable2</ftable>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
-        <glassfish.container.version>8.0.0-JDK17-M5</glassfish.container.version>
+        <glassfish.container.version>8.0.0-JDK17-M7</glassfish.container.version>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <!-- Use JDK21 to run with GF 8.0.0-M5 -->
         <!-- <glassfish.container.version>8.0.0-M5</glassfish.container.version> -->
@@ -369,9 +369,9 @@
                             <!-- Select the @Tag("tck-appclient") tests -->
                             <groups>tck-appclient</groups>
                             <includes>
-                                <!-- <include>com/sun/ts/tests/jta/ee/transactional/*Ejb*.java</include>
+                                <include>com/sun/ts/tests/jta/ee/transactional/*Ejb*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/txpropagationtest/*Ejb*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*EjbTest*.java</include> -->
+                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*EjbTest*.java</include>
                             </includes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
@@ -380,7 +380,7 @@
                                 <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                                 create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
                                 create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
-                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
                                 create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
                                 list-jdbc-connection-pools
                                 list-jdbc-resources
@@ -393,16 +393,6 @@
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                                <Driver>${jdbc.driver}</Driver>
-                                <db1>db1</db1>
-                                <user1>cts1</user1>
-                                <password1>cts1</password1>
-                                <db2>db1OnlyUsedIfDriverManagerIsYes</db2>
-                                <user2>cts1</user2>
-                                <password2>cts1</password2>
-                                <DriverManager>no</DriverManager>
-                                <ptable>ctstable1</ptable>
-                                <ftable>ctstable2</ftable>
                             </environmentVariables>
                         </configuration>
                     </execution>
@@ -438,7 +428,7 @@
                                 <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                                 create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
                                 create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
-                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
                                 create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
                                 list-jdbc-connection-pools
                                 list-jdbc-resources
@@ -451,13 +441,6 @@
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                                <Driver>${jdbc.driver}</Driver>
-                                <db1>db1</db1>
-                                <user1>cts1</user1>
-                                <password1>cts1</password1>
-                                <db2>db1OnlyUsedIfDriverManagerIsYes</db2>
-                                <user2>cts1</user2>
-                                <password2>cts1</password2>
                             </environmentVariables>
                         </configuration>
                     </execution>
