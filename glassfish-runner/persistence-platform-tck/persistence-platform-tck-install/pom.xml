@@ -45,14 +45,17 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>download-ejb-tck</id>
+                        <id>download-persistence-platform-tck</id>
                         <goals>
                             <goal>wget</goal>
                         </goals>
                         <phase>generate-resources</phase>
                         <configuration>
                             <excludes>**/extensions.xml</excludes>
-                            <url>https://github.com/jakartaee/platform-tck/archive/refs/heads/main.zip</url>
+                            <url>https://github.com/scottmarlow/jakartaee-tck/archive/refs/heads/derby.dml.sql_3.zip</url>
+                            <!-- url>https://github.com/jakartaee/platform-tck/archive/refs/heads/main.zip</url> -->
+                            <outputDirectory>${project.build.directory}/platform-tck-main</outputDirectory>
+                            <!-- we will download into platform-tck-main/jakartaee-tck-derby.dml.sql_3 which contains the TCK source folders -->
                         </configuration>
                     </execution>
 
@@ -75,19 +78,19 @@
                 <version>3.8.0</version>
                 <executions>
 
-                    <!-- The EJB modules don't install source, so build these separately with the source:jar plugin -->
+                    <!-- The Persistence modules don't install source, so build these separately with the source:jar plugin -->
                     <execution>
-                        <id>ejb_source</id>
+                        <id>persistence_source</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
                             <streamLogs>true</streamLogs>
-                            <projectsDirectory>${project.build.directory}/platform-tck-main</projectsDirectory>
+                            <projectsDirectory>${project.build.directory}/platform-tck-main/jakartaee-tck-derby.dml.sql_3</projectsDirectory>
                             <pomIncludes>
                                 <pomInclude>pom.xml</pomInclude>
                             </pomIncludes>
-                            <goals>clean source:jar install -pl ":ejb30" -pl ":ejb32"</goals>
+                            <goals>--also-make-dependents clean install -pl jpa</goals>
                         </configuration>
                     </execution>
                     <!-- Build and install the platform TCK -->
