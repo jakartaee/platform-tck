@@ -23,7 +23,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>jakarta</groupId>
-    <artifactId>glassfish.jta-platform-tck</artifactId>
+    <artifactId>glassfish.jpa-platform-tck</artifactId>
     <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -38,7 +38,6 @@
         <derby.classes>${derby.home}/lib/derbyclient.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar</derby.classes>
         <derby.classpath>../../lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar</derby.classpath>
         <derby.dataSource>org.apache.derby.jdbc.ClientDataSource</derby.dataSource>
-        <derby.dbHost>127.0.0.1</derby.dbHost>
         <derby.dbName>derbyDB</derby.dbName>
         <derby.dml.file>derby/derby.dml.sql</derby.dml.file>
         <derby.driver>org.apache.derby.jdbc.ClientDriver</derby.driver>
@@ -47,7 +46,7 @@
         <derby.poolName>cts-derby-pool</derby.poolName>
         <derby.port>1527</derby.port>
         <derby.properties>DatabaseName\=\"${derby.dbName}\":user\=${derby.user}:password\=${derby.passwd}:serverName\=${derby.server}:portNumber=${derby.port}</derby.properties>
-        <derby.server>127.0.0.1</derby.server>
+        <derby.server>localhost</derby.server>
         <derby.startup.delay>5</derby.startup.delay>
         <derby.system.home>${derby.home}/databases</derby.system.home>
         <derby.url>jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true</derby.url>
@@ -81,11 +80,13 @@
         <ptable>ctstable1</ptable>
         <restype>javax.sql.DataSource</restype>
         <sql.directory>./sql</sql.directory>
-        <tck.artifactId>jta-tck</tck.artifactId>
+        <tck.artifactId>jpa-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>/jakartaeetck</ts.home>
         <user1>cts1</user1>
         <user2>cts1</user2>
+        <version.jakarta.inject>2.0.1</version.jakarta.inject>
+        <version.jakarta.persistence>3.2.0</version.jakarta.persistence>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
         <version.jakarta.tck.arquillian>1.0.0-M15</version.jakarta.tck.arquillian>
     </properties>
@@ -122,15 +123,33 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>${tck.artifactId}</artifactId>
-            <version>${tck.version}</version>
-        </dependency>
-        <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
             <version>${jakarta.platform.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <version>${version.jakarta.inject}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>${version.jakarta.persistence}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>persistence-platform-tck-spec-tests</artifactId>
+            <version>${version.jakarta.tck}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>persistence-platform-tck-tests</artifactId>
+            <version>${version.jakarta.tck}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
@@ -283,7 +302,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.7.1</version>
                 <executions>
                     <execution>
                         <id>003-copy-protocol-lib</id>
@@ -374,7 +393,7 @@
                                 <include>com/sun/ts/tests/jta/ee/txpropagationtest/*Ejb*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/usertransaction/**/*EjbTest*.java</include>
                             </includes>
-                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            <dependenciesToScan>jakarta.tck:persistence-platform-tck-tests</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
@@ -411,18 +430,14 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
-                                <include>com/sun/ts/tests/jta/ee/transactional/ClientEjblitejspTest*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/transactional/ClientEjbliteservletTest*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/transactional/ClientEjbliteservlet2Test*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/transactional/ClientEjblitejsfTest*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientServletTest*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/txpropagationtest/ClientJspTest*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*JspTest*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*ServletTest*.java</include>
+                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
-                            <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
+                            <dependenciesToScan>
+                                <dependency>jakarta.tck:persistence-platform-tck-tests</dependency>
+                            </dependenciesToScan>
+
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
