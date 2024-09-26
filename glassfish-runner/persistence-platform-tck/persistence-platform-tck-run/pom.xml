@@ -222,6 +222,12 @@
             <version>${version.org.jboss.shrinkwrap.descriptors}</version>
         </dependency>
 
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-lib</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+
         <!--
             The Arquillian connector that starts GlassFish and deploys archives to it.
         -->
