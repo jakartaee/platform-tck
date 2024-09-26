@@ -24,7 +24,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("platform")
-@Tag("web")
 @Tag("tck-appclient")
 
 public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Client {
