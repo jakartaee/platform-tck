@@ -13,7 +13,7 @@
   <group qualifier="glassfish-servers" default="true">
     <container qualifier="tck-javatest" default="true">
         <configuration>
-            <property name="glassFishHome">${glassfish.root}/glassfish8</property>
+            <property name="glassFishHome">target/glassfish8</property>
         </configuration>
         <protocol type="javatest">
             <property name="trace">true</property>
