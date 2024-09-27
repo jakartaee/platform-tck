@@ -34,7 +34,7 @@
     <description>JSP Tests for Jakarta EE Platform</description>
 
     <properties>
-        <jakarta.annotation-api.version>3.0.0-M1</jakarta.annotation-api.version>
+        <jakarta.annotation-api.version>3.0.0</jakarta.annotation-api.version>
         <jakarta.el-api.version>6.0.0-RC1</jakarta.el-api.version>
         <jakarta.mail-api.version>2.1.2</jakarta.mail-api.version>
         <jakarta.servlet-api.version>6.1.0-M2</jakarta.servlet-api.version>
