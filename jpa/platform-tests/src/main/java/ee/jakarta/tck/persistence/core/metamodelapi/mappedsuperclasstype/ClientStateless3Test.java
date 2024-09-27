@@ -94,7 +94,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.metamo
             if(resURL != null) {
               jpa_core_metamodelapi_mappedsuperclasstype_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_core_metamodelapi_mappedsuperclasstype_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+            jpa_core_metamodelapi_mappedsuperclasstype_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_metamodelapi_mappedsuperclasstype_stateless3_vehicle_client, Client.class, resURL);
 

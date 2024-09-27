@@ -143,7 +143,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.annot
             if(resURL != null) {
               jpa_core_annotations_mapkey_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_core_annotations_mapkey_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+            jpa_core_annotations_mapkey_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client1.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_annotations_mapkey_stateless3_vehicle_client, Client1.class, resURL);
 
