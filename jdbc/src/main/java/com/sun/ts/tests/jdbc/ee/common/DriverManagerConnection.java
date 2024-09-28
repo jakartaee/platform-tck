@@ -52,7 +52,12 @@ public class DriverManagerConnection extends ServiceEETest
     TestUtil.logMsg("Successfully loaded the driver class");
 
     TestUtil.logTrace("About to make the DB connection");
+    try {
     con = DriverManager.getConnection(dbName, dbUser, dbPassword);
+    } catch (Exception e) {
+    	e.printStackTrace();
+    	throw e;
+    }
     TestUtil.logMsg("Made the JDBC connection to the DB");
 
     return con;

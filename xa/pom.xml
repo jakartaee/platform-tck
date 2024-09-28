@@ -32,19 +32,94 @@
     <name>XA</name>
     <description>XA</description>
 
+    <properties>
+        <arquillian.junit>1.9.1.Final</arquillian.junit>
+        <jakarta.ee.version>11.0.0-SNAPSHOT</jakarta.ee.version>
+        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <maven.compiler.release>17</maven.compiler.release>
+        <version.jakarta.tck.arquillian>1.0.0-M16</version.jakarta.tck.arquillian>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>libutil</artifactId>
+            <version>${jakarta.ee.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
+            <version>${jakarta.ee.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.ejb</groupId>
             <artifactId>jakarta.ejb-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}.arquillian</groupId>
+            <artifactId>arquillian-protocol-common</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}.arquillian</groupId>
+            <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.mail</groupId>
+            <artifactId>jakarta.mail-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-depchain</artifactId>
+            <version>3.1.4</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-appclient</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>tck-porting-lib</artifactId>
+            <version>${version.jakarta.tck.arquillian}</version>
+        </dependency>
+
+        <!-- Junit5 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <!-- Include the container descriptors in the output artifact -->

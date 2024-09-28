@@ -57,6 +57,7 @@ public class rsSchema extends ServiceEETest {
       dropTab(sTableName, conn);
       TestUtil.logTrace("deleted rows from table " + sTableName);
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Exception encountered deleting rows from  table: "
           + sTableName + ": " + e.getMessage(), e);
     }
@@ -135,6 +136,7 @@ public class rsSchema extends ServiceEETest {
       stmt.executeUpdate(removeString);
       stmt.close();
     } catch (SQLException e) {
+    	e.printStackTrace();
       TestUtil.printStackTrace(e);
 
       throw new RemoteException(e.getMessage());

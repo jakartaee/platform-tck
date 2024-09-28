@@ -47,7 +47,6 @@ public class DataSourceConnection extends ServiceEETest
     TestUtil.logTrace("Looking up the JNDI DataSource names");
     ds1 = (DataSource) jc.lookup("java:comp/env/jdbc/DB1");
     TestUtil.logTrace("ds1: " + ds1.toString());
-
     TestUtil.logTrace("Attempting to make the connection");
     con = ds1.getConnection();
     TestUtil.logTrace("Made the connection via DataSource!");

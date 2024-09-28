@@ -28,8 +28,12 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jdbc.ee.common.DataSourceConnection;
@@ -46,6 +50,9 @@ import com.sun.ts.tests.jdbc.ee.common.JDBCTestMsg;
  * @author
  * @version 1.7, 06/16/99
  */
+@ExtendWith(ArquillianExtension.class)
+@Tag("jdbc")
+@Tag("platform")
 
 public class stmtClient3 extends ServiceEETest implements Serializable {
   private static final String testName = "jdbc.ee.stmt.stmt3";
@@ -111,6 +118,7 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
         logErr("SQL Exception : " + ex.getMessage(), ex);
       }
     } catch (Exception e) {
+    	e.printStackTrace();
       logErr("Setup Failed!");
       TestUtil.printStackTrace(e);
     }
@@ -153,6 +161,7 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
       }
       msg.printTestMsg();
     } catch (Exception e) {
+    	e.printStackTrace();
       msg.printError(e, "Call to setFetchSize is Failed!");
 
     }
@@ -200,6 +209,7 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
       msg.printSQLError(sqle, "Call to setMaxFieldSize is Failed!");
 
     } catch (Exception e) {
+    	e.printStackTrace();
       msg.printError(e, "Call to setMaxFieldSize is Failed!");
 
     }
@@ -245,6 +255,7 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
       }
       msg.printTestMsg();
     } catch (Exception e) {
+    	e.printStackTrace();
       msg.printError(e, "Call to setMaxFieldSize is Failed!");
 
     }
@@ -294,6 +305,7 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
       msg.printSQLError(sqle, "Call to setMaxRows is Failed!");
 
     } catch (Exception e) {
+    	e.printStackTrace();
       msg.printError(e, "Call to setMaxRows is Failed!");
 
     }
@@ -338,6 +350,7 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
       }
       msg.printTestMsg();
     } catch (Exception e) {
+    	e.printStackTrace();
       msg.printError(e, "Call to setMaxRows is Failed!");
 
     }
@@ -383,6 +396,7 @@ public class stmtClient3 extends ServiceEETest implements Serializable {
       }
       msg.printTestMsg();
     } catch (Exception e) {
+    	e.printStackTrace();
       msg.printError(e, "Call to setQueryTimeout is Failed!");
 
     }

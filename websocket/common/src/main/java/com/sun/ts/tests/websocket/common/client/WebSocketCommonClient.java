@@ -56,7 +56,7 @@ import jakarta.websocket.WebSocketContainer;
  */
 @Tag("websocket")
 @Tag("platform")
-@Tag("webprofile")
+@Tag("web")
 
 public abstract class WebSocketCommonClient {
 

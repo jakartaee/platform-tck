@@ -32,8 +32,12 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
 // Merant DataSource class
@@ -52,6 +56,9 @@ import com.sun.ts.tests.jdbc.ee.common.rsSchema;
  * @author
  * @version 1.8, 11/24/00
  */
+@ExtendWith(ArquillianExtension.class)
+@Tag("jdbc")
+@Tag("platform")
 
 public class prepStmtClient7 extends ServiceEETest implements Serializable {
   private static final String testName = "jdbc.ee.prepStmt.prepStmt7";

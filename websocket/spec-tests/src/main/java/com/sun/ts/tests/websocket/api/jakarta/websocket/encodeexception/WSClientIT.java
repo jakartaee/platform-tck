@@ -30,7 +30,7 @@ import jakarta.websocket.EncodeException;
 
 @Tag("websocket")
 @Tag("platform")
-@Tag("webprofile")
+@Tag("web")
 
 public class WSClientIT {
 
