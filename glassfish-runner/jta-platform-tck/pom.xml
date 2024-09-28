@@ -38,7 +38,6 @@
         <derby.classes>${derby.home}/lib/derbyclient.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar</derby.classes>
         <derby.classpath>../../lib/dbprocedures.jar${pathsep}${derby.home}/lib/derbynet.jar${pathsep}${derby.home}/lib/derbyshared.jar${pathsep}${derby.home}/lib/derbytools.jar</derby.classpath>
         <derby.dataSource>org.apache.derby.jdbc.ClientDataSource</derby.dataSource>
-        <derby.dbHost>127.0.0.1</derby.dbHost>
         <derby.dbName>derbyDB</derby.dbName>
         <derby.dml.file>derby/derby.dml.sql</derby.dml.file>
         <derby.driver>org.apache.derby.jdbc.ClientDriver</derby.driver>
@@ -47,7 +46,7 @@
         <derby.poolName>cts-derby-pool</derby.poolName>
         <derby.port>1527</derby.port>
         <derby.properties>DatabaseName\=\"${derby.dbName}\":user\=${derby.user}:password\=${derby.passwd}:serverName\=${derby.server}:portNumber=${derby.port}</derby.properties>
-        <derby.server>127.0.0.1</derby.server>
+        <derby.server>localhost</derby.server>
         <derby.startup.delay>5</derby.startup.delay>
         <derby.system.home>${derby.home}/databases</derby.system.home>
         <derby.url>jdbc:derby://${derby.server}:${derby.port}/${derby.dbName};create=true</derby.url>
