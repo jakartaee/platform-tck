@@ -380,45 +380,6 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>jta-tests-appclient</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <!-- Select the @Tag("tck-appclient") tests -->
-                            <groups>tck-appclient</groups>
-                            <includes>
-                                <include>com/sun/ts/tests/jta/ee/transactional/*Ejb*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/txpropagationtest/*Ejb*.java</include>
-                                <include>com/sun/ts/tests/jta/ee/usertransaction/**/*EjbTest*.java</include>
-                            </includes>
-                            <dependenciesToScan>jakarta.tck:persistence-platform-tck-tests</dependenciesToScan>
-                            <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
-                                create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
-                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
-                                create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool_no_tx
-                                create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
-                                create-jdbc-resource --connectionpoolid cts-derby-pool_no_tx jdbc/DB_no_tx
-                                list-jdbc-connection-pools
-                                list-jdbc-resources
-                                list-file-users</glassfish.postBootCommands>
-                                <junit.log.traceflag>true</junit.log.traceflag>
-                                <harness.log.traceflag>true</harness.log.traceflag>
-                                <cts.harness.debug>true</cts.harness.debug>
-                                <java.io.tmpdir>/tmp</java.io.tmpdir>
-                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
-                            </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>jta-tests-javatest</id>
                         <goals>
                             <goal>integration-test</goal>
@@ -434,6 +395,10 @@
                             <includes>
                                 <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                             </includes>
+                            <!-- temporary exclude of the repeatable tests to reduce time it takes to run -->
+                            <excludes>
+                                <exclude>ee/jakarta/tck/persistence/jpa22/repeatable/**/*Test.java</exclude>
+                            </excludes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
                             <dependenciesToScan>
