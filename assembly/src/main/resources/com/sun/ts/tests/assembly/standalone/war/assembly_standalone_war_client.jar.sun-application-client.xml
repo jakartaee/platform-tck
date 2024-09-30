@@ -21,6 +21,6 @@
 <sun-application-client>
   <resource-ref>
     <res-ref-name>url/myURL</res-ref-name>
-    <jndi-name>http://webServerHost:webServerPort/dep_assembly_standalone_war/test.jsp</jndi-name>
+    <jndi-name>http://localhost:8080/dep_assembly_standalone_war/test.jsp</jndi-name>
   </resource-ref>
 </sun-application-client>
