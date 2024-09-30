@@ -95,6 +95,13 @@ public class Client2 extends Util {
 		}
 	}
 
+	public void cleanupData() throws Exception {
+		logTrace("Cleanup data");
+		removeTestData();
+		cleanup();
+	}
+
+
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {
 		logTrace( "in getResultSetsFromStoredProcedure");
 		boolean results = true;
