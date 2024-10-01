@@ -558,13 +558,13 @@ public abstract class EETest implements Serializable {
                 getSetupMethodName(runMethod) + ", testName:" + sTestCase + ") " +
                 "in test class " + testClass.getName() + "(test class was loaded from: " + testClass.getClassLoader().getName() + ")");
       else
-        TestUtil.logTrace("GOT SETUP METHOD!");
+        TestUtil.logTrace("GOT SETUP METHOD: " + setupMethod.getName() + " for " + testClass.getName());
 
       cleanupMethod = getCleanupMethod(testClass, runMethod);
       if (cleanupMethod == null)
         return Status.failed("Invalid test case name as test cleanupMethod Method ( for " + sTestCase + ") could not be found in " + testClass.getName());
       else
-        TestUtil.logTrace("GOT CLEANUP METHOD!");
+        TestUtil.logTrace("GOT CLEANUP METHOD: " +  cleanupMethod.getName() + " for " + testClass.getName());
       try {
         TestUtil.logTrace("ABOUT TO INVOKE SETUP METHOD!");
         // if new classname is true, use that class name instead of
