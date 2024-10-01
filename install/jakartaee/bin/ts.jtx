@@ -211,6 +211,25 @@ com/sun/ts/tests/jpa/core/annotations/version/Client.java#timestampPropertyTest_
 com/sun/ts/tests/jpa/core/annotations/version/Client.java#timestampPropertyTest_from_stateful3
 com/sun/ts/tests/jpa/core/annotations/version/Client.java#timestampPropertyTest_from_stateless3
 
+# https://github.com/jakartaee/persistence/issues/644 TCK should not redefine table on single table inheritance subclass
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest1_from_appmanaged 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest1_from_appmanagedNoTx 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest1_from_pmservlet 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest1_from_puservlet 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest1_from_stateful3 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest1_from_stateless3 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest2_from_appmanaged 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest2_from_appmanagedNoTx 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest2_from_pmservlet 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest2_from_puservlet 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest2_from_stateful3 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest2_from_stateless3 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest3_from_appmanaged 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest3_from_appmanagedNoTx 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest3_from_pmservlet 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest3_from_puservlet 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest3_from_stateful3 
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest3_from_stateless3 
 
 ################
 # Security API

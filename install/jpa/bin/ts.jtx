@@ -67,3 +67,7 @@ com/sun/ts/tests/jpa/core/annotations/version/Client.java#shortPropertyTest_from
 com/sun/ts/tests/jpa/core/annotations/version/Client.java#timestampFieldTest_from_standalone
 com/sun/ts/tests/jpa/core/annotations/version/Client.java#timestampPropertyTest_from_standalone
 
+# https://github.com/jakartaee/persistence/issues/644 TCK should not redefine table on single table inheritance subclass
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest1_from_standalone
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest2_from_standalone
+com/sun/ts/tests/jpa/core/inheritance/abstractentity/Client.java#abstractEntityTest3_from_standalone
