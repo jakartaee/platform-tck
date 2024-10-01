@@ -531,28 +531,30 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
      */
     protected Properties getPersistenceUnitProperties() {
         Properties jpaProps = new Properties();
-        jpaProps.put(JAVAX_PERSISTENCE_PROVIDER, myProps.get(JAVAX_PERSISTENCE_PROVIDER));
-        jpaProps.put(JAVAX_PERSISTENCE_JDBC_DRIVER, myProps.get(JAVAX_PERSISTENCE_JDBC_DRIVER));
-        jpaProps.put(JAVAX_PERSISTENCE_JDBC_URL, myProps.get(JAVAX_PERSISTENCE_JDBC_URL));
-        jpaProps.put(JAVAX_PERSISTENCE_JDBC_USER, myProps.get(JAVAX_PERSISTENCE_JDBC_USER));
-        jpaProps.put(JAVAX_PERSISTENCE_JDBC_PASSWORD, myProps.get(JAVAX_PERSISTENCE_JDBC_PASSWORD));
-        String provider_specific_props = (String) myProps.get(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES);
+        if(isStandAloneMode()) {
+            jpaProps.put(JAVAX_PERSISTENCE_PROVIDER, myProps.get(JAVAX_PERSISTENCE_PROVIDER));
+            jpaProps.put(JAVAX_PERSISTENCE_JDBC_DRIVER, myProps.get(JAVAX_PERSISTENCE_JDBC_DRIVER));
+            jpaProps.put(JAVAX_PERSISTENCE_JDBC_URL, myProps.get(JAVAX_PERSISTENCE_JDBC_URL));
+            jpaProps.put(JAVAX_PERSISTENCE_JDBC_USER, myProps.get(JAVAX_PERSISTENCE_JDBC_USER));
+            jpaProps.put(JAVAX_PERSISTENCE_JDBC_PASSWORD, myProps.get(JAVAX_PERSISTENCE_JDBC_PASSWORD));
+            String provider_specific_props = (String) myProps.get(JPA_PROVIDER_IMPLEMENTATION_SPECIFIC_PROPERTIES);
 
-        StringTokenizer st = new StringTokenizer(provider_specific_props, ":");
-        while (st.hasMoreTokens()) {
-            StringTokenizer st1 = new StringTokenizer(st.nextToken(), "=");
-            String pspName, pspValue;
-            pspName = pspValue = null;
-            if (st1.hasMoreTokens()) {
-                pspName = st1.nextToken();
-            }
-            if (st1.hasMoreTokens()) {
-                pspValue = st1.nextToken();
-            }
-            jpaProps.put(pspName, pspValue);
+            StringTokenizer st = new StringTokenizer(provider_specific_props, ":");
+            while (st.hasMoreTokens()) {
+                StringTokenizer st1 = new StringTokenizer(st.nextToken(), "=");
+                String pspName, pspValue;
+                pspName = pspValue = null;
+                if (st1.hasMoreTokens()) {
+                    pspName = st1.nextToken();
+                }
+                if (st1.hasMoreTokens()) {
+                    pspValue = st1.nextToken();
+                }
+                jpaProps.put(pspName, pspValue);
 
+            }
+            checkPersistenceUnitProperties(jpaProps);
         }
-        checkPersistenceUnitProperties(jpaProps);
         return jpaProps;
     }
 
