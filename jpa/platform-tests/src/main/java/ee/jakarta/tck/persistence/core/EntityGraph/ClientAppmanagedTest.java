@@ -173,7 +173,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.Entity
             }
 
         // Ear
-            EnterpriseArchive jpa_core_EntityGraph_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_EntityGraph_vehicles.ear");
+            EnterpriseArchive jpa_core_EntityGraph_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_EntityGraph_appmanaged_vehicles.ear");
 
             // Any libraries added to the ear
 
