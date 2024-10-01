@@ -36,7 +36,7 @@ public class Client2 extends Client {
 			clearCache();
 			d1 = null;
 			d1 = getEntityManager().find(DataTypes.class, 1);
-			logMsg( "d1.toString():" + d1.toString());
+			logMsg( "d1.toString():" + d1);
 
 			if (null != d1) {
 				if (d1.getShouldNotPersist() == null) {
