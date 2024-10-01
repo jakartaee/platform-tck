@@ -9,8 +9,8 @@ import jakarta.persistence.TypedQuery;
 public class Client4 extends Client {
 
 
-	public void setup4(String[] args, Properties p) throws Exception {
-		logTrace( "setup3");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
 			super.setup(args,p);

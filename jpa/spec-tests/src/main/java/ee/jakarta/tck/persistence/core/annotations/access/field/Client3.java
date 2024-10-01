@@ -5,8 +5,8 @@ import java.util.Properties;
 public class Client3 extends Client {
 
 
-	public void setup3(String[] args, Properties p) throws Exception {
-		logTrace( "setup3");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
 			super.setup(args,p);
