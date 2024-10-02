@@ -1,6 +1,6 @@
 #
-# Copyright (c) 2009, 2021 Oracle and/or its affiliates and others.
-# All rights reserved.
+# Copyright (c) 2009, 2021 Oracle and/or its affiliates and others. All rights reserved.
+# Copyright (c) 2024 Contributors to the Eclipse Foundation
 #
 # This program and the accompanying materials are made available under the
 # terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,4 +26,8 @@ com/sun/ts/tests/servlet/api/jakarta_servlet_http/cookie/URLClient.java#setMaxAg
 
 # https://github.com/jakartaee/servlet/issues/472 TCK Challenge: doHeadTest shouldn't validate optional payload header fields
 com/sun/ts/tests/servlet/api/jakarta_servlet_http/httpservletrequest/URLClient.java#doHeadTest
+
+# https://github.com/jakartaee/servlet/issues/701 TCK Challenge: setMaxAgeZeroTest() expects different Max-Age between EE10 and EE11
+com/sun/ts/tests/servlet/pluggability/api/jakarta_servlet_http/cookie/URLClient.java#setMaxAgeZeroTest
+com/sun/ts/tests/servlet/api/jakarta_servlet_http/cookie/URLClient.java#setMaxAgeZeroTest
 
