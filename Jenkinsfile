@@ -105,7 +105,7 @@ def generateStandaloneTCKStage(job) {
 pipeline {
   options {
     durabilityHint('PERFORMANCE_OPTIMIZED')
-    buildDiscarder(logRotator(numToKeepStr: '15', artifactDaysToKeepStr: '15'))
+    buildDiscarder(logRotator(numToKeepStr: '15', artifactDaysToKeepStr: '15', artifactNumToKeepStr: '2'))
     timeout(time: 15, unit: 'HOURS')
   }
   agent {
