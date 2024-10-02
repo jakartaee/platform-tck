@@ -31,9 +31,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.netbeans.tools</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>1.6</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.weld.se</groupId>

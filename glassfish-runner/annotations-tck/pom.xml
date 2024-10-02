@@ -60,9 +60,8 @@
             <version>${tck.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.netbeans.tools</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>1.7</version>
         </dependency>
     </dependencies>
 
@@ -123,9 +122,9 @@
             </plugin>
 
             <!-- <plugin>
-                <groupId>org.netbeans.tools</groupId>
+                <groupId>jakarta.tck</groupId>
                 <artifactId>sigtest-maven-plugin</artifactId>
-                <version>1.5</version>
+                <version>2.2</version>
                 <configuration>
                     <sigfile>target/annotations-tck/jakarta.annotation.sig</sigfile>
                     <packages>jakarta.annotation,jakarta.annotation.security,jakarta.annotation.sql,akarta.annotation.Generated,jakarta.annotation.ManagedBean,jakarta.annotation.PostConstruct,jakarta.annotation.PreDestroy,jakarta.annotation.Priority,jakarta.annotation.Resource,jakarta.annotation.Resource$AuthenticationType,jakarta.annotation.Resources,jakarta.annotation.security.DeclareRoles,jakarta.annotation.security.DenyAll,jakarta.annotation.security.PermitAll,jakarta.annotation.security.RolesAllowed,jakarta.annotation.security.RunAs,jakarta.annotation.sql.DataSourceDefinition,jakarta.annotation.sql.DataSourceDefinitions</packages>
