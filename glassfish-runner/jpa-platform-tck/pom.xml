@@ -407,10 +407,6 @@
                             <includes>
                                 <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                             </includes>
-                            <!-- temporary exclude of the repeatable tests to reduce time it takes to run -->
-                            <excludes>
-                                <exclude>ee/jakarta/tck/persistence/jpa22/repeatable/**/*Test.java</exclude>
-                            </excludes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
                             <dependenciesToScan>

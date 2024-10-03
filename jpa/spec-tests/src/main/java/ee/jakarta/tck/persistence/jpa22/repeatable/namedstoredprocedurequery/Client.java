@@ -79,11 +79,11 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	public void cleanupData() throws Exception {
+	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();
-			cleanup();
+			super.cleanup();
 		} finally {
 
         }
