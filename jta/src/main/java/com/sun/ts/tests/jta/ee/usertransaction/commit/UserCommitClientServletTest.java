@@ -53,32 +53,11 @@ public class UserCommitClientServletTest extends com.sun.ts.tests.jta.ee.usertra
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    commit_ejb_vehicle: 
-    commit_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    commit_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    commit_jsp_vehicle: 
-    commit_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    commit_servlet_vehicle: 
-    commit_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/commit/servlet_vehicle_web.xml
-    /com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml
-    Ear:
-
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-    // War
-        // the war with the correct archive name
         WebArchive commit_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "commit_servlet_vehicle_web.war");
-        // The class files
         commit_servlet_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.lib.harness.EETest.Fault.class,
@@ -111,7 +90,6 @@ public class UserCommitClientServletTest extends com.sun.ts.tests.jta.ee.usertra
         // Web content
         archiveProcessor.processWebArchive(commit_servlet_vehicle_web, UserCommitClientServletTest.class, warResURL);
 
-    // Ear
         EnterpriseArchive commit_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "commit_servlet_vehicle.ear");
         commit_servlet_vehicle_ear.addAsModule(commit_servlet_vehicle_web); 
         return commit_servlet_vehicle_ear;

@@ -152,8 +152,7 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
         // The class files
         jta_ee_txpropagate1_ejb.addClasses(
             com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
-            com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class,
-            com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome.class
+            com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class
         );
         // The ejb-jar.xml descriptor
         ejbResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/jta_ee_txpropagate1_ejb.xml");

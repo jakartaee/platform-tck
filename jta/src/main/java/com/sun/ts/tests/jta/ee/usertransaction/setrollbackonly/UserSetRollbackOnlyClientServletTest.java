@@ -53,32 +53,12 @@ public class UserSetRollbackOnlyClientServletTest extends com.sun.ts.tests.jta.e
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    setrollbackonly_ejb_vehicle: 
-    setrollbackonly_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    setrollbackonly_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    setrollbackonly_jsp_vehicle: 
-    setrollbackonly_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    setrollbackonly_servlet_vehicle: 
-    setrollbackonly_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/servlet_vehicle_web.xml
-    /com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml
-    Ear:
-
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-    // War
-        // the war with the correct archive name
+
         WebArchive setrollbackonly_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "setrollbackonly_servlet_vehicle_web.war");
-        // The class files
         setrollbackonly_servlet_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.lib.harness.EETest.Fault.class,
@@ -108,31 +88,11 @@ public class UserSetRollbackOnlyClientServletTest extends com.sun.ts.tests.jta.e
         if(warResURL != null) {
             setrollbackonly_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
         }
-        // Web content
         archiveProcessor.processWebArchive(setrollbackonly_servlet_vehicle_web, UserSetRollbackOnlyClientServletTest.class, warResURL);
 
     // Ear
         EnterpriseArchive setrollbackonly_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "setrollbackonly_servlet_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
         setrollbackonly_servlet_vehicle_ear.addAsModule(setrollbackonly_servlet_vehicle_web);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/");
-        // if(earResURL != null) {
-        //   setrollbackonly_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // // The sun-application.xml descriptor
-        // earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/.ear.sun-application.xml");
-        // if(earResURL != null) {
-        //   setrollbackonly_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        // }
-        // archiveProcessor.processEarArchive(setrollbackonly_servlet_vehicle_ear, UserSetRollbackOnlyClient.class, earResURL);
-    
         return setrollbackonly_servlet_vehicle_ear;
     }
 

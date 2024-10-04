@@ -82,11 +82,11 @@
         <sql.directory>./sql</sql.directory>
         <tck.artifactId>jta-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
-        <ts.home>/jakartaeetck</ts.home>
+        <ts.home>./jakartaeetck/</ts.home>
         <user1>cts1</user1>
         <user2>cts1</user2>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
-        <version.jakarta.tck.arquillian>1.0.0-M15</version.jakarta.tck.arquillian>
+        <version.jakarta.tck.arquillian>1.0.0-M16</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencyManagement>
@@ -192,7 +192,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>1.0.0-M15</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -324,6 +324,21 @@
                             </arguments>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>006-StopDatabase</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <workingDirectory>${derby.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>stop-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
                 </executions>
             </plugin>
             <plugin>

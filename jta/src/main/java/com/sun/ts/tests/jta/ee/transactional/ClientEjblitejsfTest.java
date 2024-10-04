@@ -92,23 +92,13 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
     @TwoManagedQualifier
     TwoManagedBean two;
 
-    /**
-    EE10 Deployment Descriptors:
-    transactional_ejblitejsf_vehicle_web: WEB-INF/beans.xml,WEB-INF/faces-config.xml,WEB-INF/web.xml
 
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/common/vehicle/ejblitejsf/ejblitejsf_vehicle_web.xml
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static WebArchive createDeploymentVehicle() {
     // public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
-    // War
-        // the war with the correct archive name
         WebArchive transactional_ejblitejsf_vehicle_web = ShrinkWrap.create(WebArchive.class, "transactional_ejblitejsf_vehicle_web.war");
         // The class files
         transactional_ejblitejsf_vehicle_web.addClasses(
@@ -141,7 +131,6 @@ public class ClientEjblitejsfTest extends EJBLiteJsfClientBase implements Serial
         if(warResURL != null) {
           transactional_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
         }
-        // The sun-web.xml descriptor
         warResURL = ClientEjblitejsfTest.class.getResource("/vehicle/ejblitejsf/faces-config.xml");
         if(warResURL != null) {
           transactional_ejblitejsf_vehicle_web.addAsWebInfResource(warResURL, "faces-config.xml");
