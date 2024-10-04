@@ -28,7 +28,6 @@ import java.lang.System.Logger;
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
 @Tag("platform")
-@Tag("web")
 @Tag("tck-appclient")
 
 public class UserGetStatusClientEjbTest extends com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient {
@@ -53,35 +52,11 @@ public class UserGetStatusClientEjbTest extends com.sun.ts.tests.jta.ee.usertran
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    getstatus_ejb_vehicle: 
-    getstatus_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    getstatus_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    getstatus_jsp_vehicle: 
-    getstatus_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    getstatus_servlet_vehicle: 
-    getstatus_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    Client:
-
-    /com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml
-    Ejb:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/getstatus/ejb_vehicle_ejb.xml
-    /com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml
-    Ear:
-
-    */
     @TargetsContainer("tck-appclient")
     @OverProtocol("appclient")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-    // Client
-        // the jar with the correct archive name
         JavaArchive getstatus_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "getstatus_ejb_vehicle_client.jar");
-        // The class files
         getstatus_ejb_vehicle_client.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -93,83 +68,64 @@ public class UserGetStatusClientEjbTest extends com.sun.ts.tests.jta.ee.usertran
         com.sun.ts.lib.harness.ServiceEETest.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
+        com.sun.ts.tests.jta.ee.common.Transact.class,
+        com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+        com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+        com.sun.ts.tests.jta.ee.common.InitFailedException.class,
         com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient.class,
         UserGetStatusClientEjbTest.class
         );
         // The application-client.xml descriptor
-        // TODO: replace display-name
-        URL resURL = UserGetStatusClientEjbTest.class.getResource("/vehicle/ejb/ejb_vehicle_client.xml");
+        URL resURL = UserGetStatusClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
         if(resURL != null) {
             getstatus_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
         }
-        // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-        // resURL = UserGetStatusClient.class.getResource("/getstatus_jsp_vehicle_web.war.sun-web.xml");
-        // if(resURL != null) {
-        //   getstatus_ejb_vehicle_client.addAsManifestResource(resURL, "sun-web.xml");
-        // }
+        resURL = UserGetStatusClientEjbTest.class.getClassLoader().getResource(packagePath+"/getstatus_ejb_vehicle_client.jar.sun-application-client.xml");
+        if(resURL != null) {
+          getstatus_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
+        }
         getstatus_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + UserGetStatusClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
         archiveProcessor.processClientArchive(getstatus_ejb_vehicle_client, UserGetStatusClientEjbTest.class, resURL);
 
 
-    // Ejb
-        // the jar with the correct archive name
         JavaArchive getstatus_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "getstatus_ejb_vehicle_ejb.jar");
         // The class files
         getstatus_ejb_vehicle_ejb.addClasses(
             com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClientEjbTest.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.jta.ee.common.Transact.class,
             com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
             com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+            com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
             com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
             com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.lib.harness.EETest.class,
+            com.sun.ts.lib.harness.EETest.Fault.class,
+            com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             UserGetStatusClientEjbTest.class
         );
         // The ejb-jar.xml descriptor
-        URL ejbResURL = UserGetStatusClientEjbTest.class.getResource("/ejb_vehicle_ejb.xml");
+        URL ejbResURL = UserGetStatusClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.xml");
         if(ejbResURL != null) {
             getstatus_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
         }
         // The sun-ejb-jar.xml file
-        ejbResURL = UserGetStatusClientEjbTest.class.getResource("/getstatus_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+        ejbResURL = UserGetStatusClientEjbTest.class.getClassLoader().getResource(packagePath+"/getstatus_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
         if(ejbResURL != null) {
             getstatus_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
         }
         archiveProcessor.processEjbArchive(getstatus_ejb_vehicle_ejb, UserGetStatusClientEjbTest.class, ejbResURL);
 
-    // Ear
         EnterpriseArchive getstatus_ejb_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "getstatus_ejb_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
         getstatus_ejb_vehicle_ear.addAsModule(getstatus_ejb_vehicle_ejb);
         getstatus_ejb_vehicle_ear.addAsModule(getstatus_ejb_vehicle_client);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/");
-        // if(earResURL != null) {
-        //   getstatus_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // // The sun-application.xml descriptor
-        // earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/.ear.sun-application.xml");
-        // if(earResURL != null) {
-        //   getstatus_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        // }
-        // archiveProcessor.processEarArchive(getstatus_ejb_vehicle_ear, UserGetStatusClient.class, earResURL);
-    return getstatus_ejb_vehicle_ear;
+        return getstatus_ejb_vehicle_ear;
     }
 
     @Test

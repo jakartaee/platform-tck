@@ -14,7 +14,7 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
-package org.glassfish.transactions.core.tck;
+package org.glassfish.transactions.tck;
 
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.config.descriptor.api.ExtensionDef;
@@ -78,7 +78,7 @@ public class GlassfishTestArchiveProcessor extends AbstractTestArchiveProcessor 
     @Override
     public void processClientArchive(JavaArchive clientArchive, Class<?> testClass, URL sunXmlURL) {
         String name = clientArchive.getName();
-        addDescriptors(name, clientArchive, testClass);
+        // addDescriptors(name, clientArchive, testClass);
     }
 
     @Override
@@ -100,13 +100,13 @@ public class GlassfishTestArchiveProcessor extends AbstractTestArchiveProcessor 
     @Override
     public void processEarArchive(EnterpriseArchive earArchive, Class<?> testClass, URL sunXmlURL) {
         String name = earArchive.getName();
-        addDescriptors(name, earArchive, testClass);
+        // addDescriptors(name, earArchive, testClass);
     }
 
     @Override
     public void processEjbArchive(JavaArchive ejbArchive, Class<?> testClass, URL sunXmlURL) {
         String name = ejbArchive.getName();
-        addDescriptors(name, ejbArchive, testClass);
+        // addDescriptors(name, ejbArchive, testClass);
     }
 
     protected void addDescriptors(String archiveName, ManifestContainer<?> archive, Class<?> testClass) {
