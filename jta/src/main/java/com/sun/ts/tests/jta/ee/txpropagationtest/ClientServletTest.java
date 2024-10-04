@@ -67,7 +67,6 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.jta.ee.txpropagationtest.Client.class,
         com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class,
-        com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome.class,
         com.sun.ts.lib.harness.EETest.class,
         com.sun.ts.lib.harness.ServiceEETest.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
@@ -92,7 +91,6 @@ public class ClientServletTest extends com.sun.ts.tests.jta.ee.txpropagationtest
         jta_ee_txpropagate2_ejb.addClasses(
             com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
             com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class,
-            com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome.class,
             com.sun.ts.tests.jta.ee.txpropagationtest.DBSupport.class
         );
         // The ejb-jar.xml descriptor
