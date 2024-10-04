@@ -82,8 +82,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.appclient
             JavaArchive ejb3_misc_moduleName_appclientejb_ejb = ShrinkWrap.create(JavaArchive.class, "ejb3_misc_moduleName_appclientejb_ejb.jar");
             // The class files
             ejb3_misc_moduleName_appclientejb_ejb.addClasses(
-                com.sun.ts.tests.ejb30.misc.moduleName.appclientejb.ModuleBean.class,
-                com.sun.ts.tests.ejb30.misc.moduleName.appclientejb.ModuleMBean.class
+                com.sun.ts.tests.ejb30.misc.moduleName.appclientejb.ModuleBean.class
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/moduleName/appclientejb/ejb3_misc_moduleName_appclientejb_ejb.xml");

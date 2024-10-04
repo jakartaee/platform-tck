@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -39,14 +40,6 @@ public class Client extends EETest {
   @EJB
   private static AppResRemoteIF moduleBean;
 
-  // Not to inject ModuleMBean in appclient. Need to figure out if and how it
-  // works.
-  // (remote access to the mbean packaged in ejb jar? double package the mbean
-  // in both
-  // appclient and ejb jar?)
-  // @Resource(lookup="java:app/renamed_appclientejb_ejb/ModuleMBean")
-  // private static AppResRemoteIF moduleMBean;
-
   public static void main(String[] args) {
     Client theTests = new Client();
     Status s = theTests.run(args, System.out, System.err);
@@ -62,14 +55,6 @@ public class Client extends EETest {
   @SuppressWarnings("unused")
   @PostConstruct
   private static void postConstruct() {
-    lookupShouldFail("java:module/ModuleMBean", postConstructRecords);
-    lookupShouldFail(
-        "java:app/ejb3_misc_moduleName_appclientejb_client/ModuleMBean",
-        postConstructRecords);
-    lookupShouldFail(
-        "java:app/ejb3_misc_moduleName_appclientejb_ejb/ModuleMBean",
-        postConstructRecords);
-
     lookupShouldFail("java:module/ModuleBean", postConstructRecords);
     lookupShouldFail(
         "java:app/ejb3_misc_moduleName_appclientejb_client/ModuleBean",
@@ -84,11 +69,9 @@ public class Client extends EETest {
     Helper.getLogger().info(postConstructRecords.toString());
 
     Helper.assertNotEquals(null, null, moduleBean, postConstructRecords);
-    // Helper.assertNotEquals(null, null, moduleMBean, postConstructRecords);
 
     AppResRemoteIF lookupResult = null;
     String[] names = {
-        // "java:app/renamed_appclientejb_ejb/ModuleMBean",
         "java:app/renamed_appclientejb_ejb/ModuleBean",
         "java:global/ejb3_misc_moduleName_appclientejb/renamed_appclientejb_ejb/ModuleBean" };
     for (String name : names) {

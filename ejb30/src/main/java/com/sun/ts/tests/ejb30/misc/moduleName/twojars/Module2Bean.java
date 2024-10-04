@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -26,7 +27,6 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 
-import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 
@@ -35,24 +35,13 @@ public class Module2Bean extends AppResBeanBase implements AppResRemoteIF {
   @EJB
   private AppResRemoteIF module2Bean;
 
-  @Resource
-  private ModuleMBean moduleMBean;
-
   private void nonPostConstruct() {
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleMBean",
-        postConstructRecords);
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleMBean",
-        postConstructRecords);
-
     lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleBean",
         postConstructRecords);
     lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleBean",
         postConstructRecords);
     lookupShouldFail(
         "java:global/ejb3_misc_moduleName_twojars/ejb3_misc_moduleName_twojars_ejb/ModuleBean",
-        postConstructRecords);
-
-    lookupShouldFail("java:app/two_standalone_component_ejb/ModuleMBean",
         postConstructRecords);
 
     lookupShouldFail("java:app/two_standalone_component_ejb/Module2Bean",
@@ -63,11 +52,9 @@ public class Module2Bean extends AppResBeanBase implements AppResRemoteIF {
     Helper.getLogger().info(postConstructRecords.toString());
 
     Helper.assertNotEquals(null, null, module2Bean, postConstructRecords);
-    Helper.assertNotEquals(null, null, moduleMBean, postConstructRecords);
 
     AppResRemoteIF lookupResult = null;
-    String[] names = { "java:module/ModuleMBean", "java:module/Module2Bean",
-        "java:app/renamed2_twojars_ejb/ModuleMBean",
+    String[] names = { "java:module/Module2Bean",
         "java:app/renamed2_twojars_ejb/Module2Bean",
         "java:global/renamed2_twojars_ejb/Module2Bean" };
     for (String name : names) {
@@ -87,11 +74,6 @@ public class Module2Bean extends AppResBeanBase implements AppResRemoteIF {
     value = (String) lookupNoTry(lookup);
     Helper.assertEquals("Check " + lookup, expected, value,
         postConstructRecords);
-
-    Helper.assertEquals("Compare to ModuleName from ModuleMBean", expected,
-        moduleMBean.getModuleName(), postConstructRecords);
-    Helper.assertEquals("Compare to AppName from ModuleMBean", expected,
-        moduleMBean.getAppName(), postConstructRecords);
   }
 
   @Override

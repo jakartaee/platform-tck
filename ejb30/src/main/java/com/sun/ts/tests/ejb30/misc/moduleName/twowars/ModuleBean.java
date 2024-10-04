@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -27,7 +28,6 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResBeanBase;
 import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 
-import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 
@@ -39,16 +39,11 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
   // @EJB(lookup="java:global/renamed2_twowars_web/Module2Bean")
   // private AppResRemoteIF module2Bean;
 
-  @Resource
-  private ModuleMBean moduleMBean;
-
   private void nonPostConstruct() {
     // these steps are the same as TestServlet.nonPostConstruct, since in WAR
     // packaging
     // ejb and web components share the same naming context
 
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twowars_web/ModuleMBean",
-        postConstructRecords);
     lookupShouldFail("java:app/ejb3_misc_moduleName_twowars_web/ModuleBean",
         postConstructRecords);
 
@@ -62,15 +57,13 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
     Helper.getLogger().info(postConstructRecords.toString());
 
     assertNotEquals(null, null, moduleBean, postConstructRecords);
-    assertNotEquals(null, null, moduleMBean, postConstructRecords);
     // assertNotEquals(null, null, module2Bean, postConstructRecords);
 
     AppResRemoteIF lookupResult = null;
     String[] names = {
 
-        "java:module/ModuleMBean", "java:module/ModuleBean",
+        "java:module/ModuleBean",
 
-        "java:app/renamed_twowars_web/ModuleMBean",
         "java:app/renamed_twowars_web/ModuleBean",
 
         "java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean",
