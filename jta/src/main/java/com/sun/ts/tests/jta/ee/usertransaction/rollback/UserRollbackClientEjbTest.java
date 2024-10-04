@@ -28,7 +28,6 @@ import java.lang.System.Logger;
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
 @Tag("platform")
-@Tag("web")
 @Tag("tck-appclient")
 
 public class UserRollbackClientEjbTest extends com.sun.ts.tests.jta.ee.usertransaction.rollback.UserRollbackClient {
@@ -53,27 +52,7 @@ public class UserRollbackClientEjbTest extends com.sun.ts.tests.jta.ee.usertrans
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    rollback_ejb_vehicle: 
-    rollback_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    rollback_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    rollback_jsp_vehicle: 
-    rollback_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    rollback_servlet_vehicle: 
-    rollback_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    Client:
-
-    /com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml
-    Ejb:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/rollback/ejb_vehicle_ejb.xml
-    /com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml
-    Ear:
-
-    */
+    
     @TargetsContainer("tck-appclient")
     @OverProtocol("appclient")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
@@ -93,19 +72,22 @@ public class UserRollbackClientEjbTest extends com.sun.ts.tests.jta.ee.usertrans
         com.sun.ts.lib.harness.ServiceEETest.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
+        com.sun.ts.tests.jta.ee.common.Transact.class,
+        com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
+        com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
+        com.sun.ts.tests.jta.ee.common.InitFailedException.class,
+        UserRollbackClient.class,
         UserRollbackClientEjbTest.class
         );
         // The application-client.xml descriptor
-        //TODO :replace display-name
-        URL resURL = UserRollbackClientEjbTest.class.getResource("/vehicle/ejb/ejb_vehicle_client.xml");
+        URL resURL = UserRollbackClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
         if(resURL != null) {
             rollback_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
         }
-        // // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-        // resURL = UserRollbackClient.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
-        // if(resURL != null) {
-        //   rollback_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-        // }
+        resURL = UserRollbackClientEjbTest.class.getClassLoader().getResource(packagePath+"/rollback_ejb_vehicle_client.jar.sun-application-client.xml");
+        if(resURL != null) {
+          rollback_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
+        }
         rollback_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + UserRollbackClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
         archiveProcessor.processClientArchive(rollback_ejb_vehicle_client, UserRollbackClientEjbTest.class, resURL);
 
@@ -124,23 +106,20 @@ public class UserRollbackClientEjbTest extends com.sun.ts.tests.jta.ee.usertrans
             com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-            com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
             com.sun.ts.tests.jta.ee.usertransaction.rollback.UserRollbackClient.class,
-            com.sun.ts.tests.jta.ee.common.InitFailedException.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             UserRollbackClientEjbTest.class
         );
         // The ejb-jar.xml descriptor
-        URL ejbResURL = UserRollbackClientEjbTest.class.getResource("/ejb_vehicle_ejb.xml");
+        URL ejbResURL = UserRollbackClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.xml");
         if(ejbResURL != null) {
             rollback_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
         }
         // The sun-ejb-jar.xml file
-        ejbResURL = UserRollbackClientEjbTest.class.getResource("/rollback_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+        ejbResURL = UserRollbackClientEjbTest.class.getClassLoader().getResource(packagePath+"/rollback_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
         if(ejbResURL != null) {
             rollback_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
         }
@@ -148,27 +127,9 @@ public class UserRollbackClientEjbTest extends com.sun.ts.tests.jta.ee.usertrans
 
     // Ear
         EnterpriseArchive rollback_ejb_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "rollback_ejb_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
         rollback_ejb_vehicle_ear.addAsModule(rollback_ejb_vehicle_ejb);
         rollback_ejb_vehicle_ear.addAsModule(rollback_ejb_vehicle_client);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/");
-        // if(earResURL != null) {
-        //   rollback_ejb_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // The sun-application.xml descriptor
-        URL earResURL = UserRollbackClientEjbTest.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/rollback_ejb_vehicle_client.jar.sun-application-client");
-        if(earResURL != null) {
-            rollback_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        }
-        archiveProcessor.processEarArchive(rollback_ejb_vehicle_ear, UserRollbackClientEjbTest.class, earResURL);
-    return rollback_ejb_vehicle_ear;
+        return rollback_ejb_vehicle_ear;
     }
 
     @Test
