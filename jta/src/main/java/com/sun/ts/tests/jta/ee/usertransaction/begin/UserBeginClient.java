@@ -45,8 +45,6 @@ import jakarta.transaction.UserTransaction;
 public class UserBeginClient extends ServiceEETest implements Serializable {
   private static final String testName = "jta.ee.usertransaction.begin";
 
-  private static String packagePath = UserBeginClientJspTest.class.getPackageName().replace(".", "/");
-
   private UserTransaction userTransaction = null;
 
   public void setup(String[] args, Properties p) throws Exception {

@@ -29,8 +29,8 @@
     <artifactId>jta-tck</artifactId>
     <packaging>jar</packaging>
 
-    <name>jta</name>
-    <description>jta</description>
+    <name>Jakarta Transactions</name>
+    <description>Jakarta Transactions</description>
 
     <properties>
         <arquillian.junit>1.9.1.Final</arquillian.junit>
@@ -57,8 +57,9 @@
             <artifactId>libutil</artifactId>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
