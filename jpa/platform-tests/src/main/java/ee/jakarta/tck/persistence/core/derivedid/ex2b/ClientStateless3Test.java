@@ -63,7 +63,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.derive
         public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
-            JavaArchive jpa_core_deriverdid_ex2b_stateless3_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_deriverdid_ex2b_stateless3_vehicle_client.jar");
+            JavaArchive jpa_core_deriverdid_ex2b_stateless3_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_deriverdid_ex2b_vehicles_client.jar");
             // The class files
             jpa_core_deriverdid_ex2b_stateless3_vehicle_client.addClasses(
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,

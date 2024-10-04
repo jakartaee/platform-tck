@@ -63,7 +63,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.en
         public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
-            JavaArchive jpa_core_et_cascadeall_manyXmany_appmanagedNoTx_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_et_cascadeall_manyXmany_appmanagedNoTx_vehicle_client.jar");
+            JavaArchive jpa_core_et_cascadeall_manyXmany_appmanagedNoTx_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_et_cascadeall_manyXmany_vehicles_client.jar");
             // The class files
             jpa_core_et_cascadeall_manyXmany_appmanagedNoTx_vehicle_client.addClasses(
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,

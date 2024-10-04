@@ -52,7 +52,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
         public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
-            JavaArchive pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client = ShrinkWrap.create(JavaArchive.class, "pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.jar");
+            JavaArchive pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client = ShrinkWrap.create(JavaArchive.class, "pluggability_contracts_resource_local_vehicles_client.jar");
             // The class files
             pluggability_contracts_resource_local_appmanagedNoTx_vehicle_client.addClasses(
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
