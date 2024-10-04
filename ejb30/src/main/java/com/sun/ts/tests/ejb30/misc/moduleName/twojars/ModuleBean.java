@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -35,9 +36,6 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
   @EJB
   private AppResRemoteIF moduleBean;
 
-  @Resource
-  private ModuleMBean moduleMBean;
-
   @Resource(lookup = "java:module/ModuleName")
   private String moduleName;
 
@@ -45,11 +43,6 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
   private String appName;
 
   private void nonPostConstruct() {
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleMBean",
-        postConstructRecords);
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleMBean",
-        postConstructRecords);
-
     lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleBean",
         postConstructRecords);
     lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleBean",
@@ -64,11 +57,9 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
     Helper.getLogger().info(postConstructRecords.toString());
 
     Helper.assertNotEquals(null, null, moduleBean, postConstructRecords);
-    Helper.assertNotEquals(null, null, moduleMBean, postConstructRecords);
 
     AppResRemoteIF lookupResult = null;
-    String[] names = { "java:module/ModuleMBean", "java:module/ModuleBean",
-        "java:app/renamed_twojars_ejb/ModuleMBean",
+    String[] names = { "java:module/ModuleBean",
         "java:app/renamed_twojars_ejb/ModuleBean",
         "java:global/ejb3_misc_moduleName_twojars/renamed_twojars_ejb/ModuleBean",
 
@@ -79,11 +70,6 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
       Helper.assertNotEquals(null, null, lookupResult, postConstructRecords);
       lookupResult = null;
     }
-
-    Helper.assertEquals("Compare to ModuleName from ModuleMBean", moduleName,
-        moduleMBean.getModuleName(), postConstructRecords);
-    Helper.assertEquals("Compare to AppName from ModuleMBean", appName,
-        moduleMBean.getAppName(), postConstructRecords);
   }
 
   @Override

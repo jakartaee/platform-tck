@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -25,10 +26,10 @@ import java.util.Properties;
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import jakarta.jms.JMSConnectionFactory;
 import jakarta.jms.JMSConsumer;
 import jakarta.jms.JMSContext;
@@ -36,7 +37,7 @@ import jakarta.jms.Queue;
 import jakarta.jms.TextMessage;
 import jakarta.jms.Topic;
 
-@ManagedBean(value = "mybean")
+@Named("mybean")
 public class MyManagedBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
