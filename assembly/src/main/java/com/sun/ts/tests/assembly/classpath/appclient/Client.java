@@ -32,17 +32,47 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.assembly.classpath.util.ClassPathUtil;
 
+import java.net.URL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+
+
+import java.lang.System.Logger;
+
+@Tag("assembly")
+@Tag("platform")
+@Tag("tck-javatest")
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   private TSNamingContext nctx = null;
 
   private Properties props = null;
 
-  public static void main(String[] args) {
-    Client theTests = new Client();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
+  // public static void main(String[] args) {
+  //   Client theTests = new Client();
+  //   Status s = theTests.run(args, System.out, System.err);
+  //   s.exit();
+  // }
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -57,6 +87,85 @@ public class Client extends EETest {
     } catch (Exception e) {
       throw new Fault("Client: Setup failed:", e);
     }
+  }
+
+  private static final Logger logger = System.getLogger(Client.class.getName());
+
+  private static String packagePath = Client.class.getPackageName().replace(".", "/");
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
+  }
+
+  public Client() throws Exception {
+  }
+
+  static final String VEHICLE_ARCHIVE = "assembly_classpath_appclient";
+
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")
+  @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+  public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+
+    JavaArchive direct_classpath_util = ShrinkWrap.create(JavaArchive.class, "direct_classpath_util.jar");
+    direct_classpath_util.addClass(com.sun.ts.tests.assembly.classpath.util.ClassPathUtil.class);
+    URL resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
+    if (resURL != null) {
+      direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
+    }
+
+    direct_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+        "MANIFEST.MF");
+    archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
+
+    JavaArchive indirect_classpath_util = ShrinkWrap.create(JavaArchive.class, "indirect_classpath_util.jar");
+    indirect_classpath_util.addClass(com.sun.ts.tests.assembly.classpath.util.IndirectClassPathUtil.class);
+    resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
+    if (resURL != null) {
+      indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
+    }
+    indirect_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+        "MANIFEST.MF");
+    archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
+
+    JavaArchive assembly_classpath_appclient_client = ShrinkWrap.create(JavaArchive.class,
+        "assembly_classpath_appclient_client.jar");
+    assembly_classpath_appclient_client.addClasses(
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.tests.assembly.classpath.appclient.Client.class);
+    // The application-client.xml descriptor
+    resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_classpath_appclient_client.xml");
+    if (resURL != null) {
+      assembly_classpath_appclient_client.addAsManifestResource(resURL, "application-client.xml");
+    }
+    assembly_classpath_appclient_client
+        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processClientArchive(assembly_classpath_appclient_client, Client.class, resURL);
+
+
+    EnterpriseArchive assembly_classpath_appclient_ear = ShrinkWrap.create(EnterpriseArchive.class,
+        "assembly_classpath_appclient.ear");
+    assembly_classpath_appclient_ear.addAsLibrary(direct_classpath_util);
+    assembly_classpath_appclient_ear.addAsLibrary(indirect_classpath_util);
+    assembly_classpath_appclient_ear.addAsModule(assembly_classpath_appclient_client);
+
+    URL earResURL = Client.class.getClassLoader().getResource(packagePath + "/application.xml");
+    if (earResURL != null) {
+      assembly_classpath_appclient_ear.addAsManifestResource(earResURL, "application.xml");
+    }
+    assembly_classpath_appclient_ear
+        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processEarArchive(assembly_classpath_appclient_ear, Client.class, earResURL);
+
+    return assembly_classpath_appclient_ear;
   }
 
   /**
@@ -86,11 +195,12 @@ public class Client extends EETest {
    *                 logical classpath of the application client.
    *
    */
+  @Test
   public void testDirectLibrary() throws Fault {
     ClassPathUtil util = null;
 
     try {
-      logTrace("Client: creating class instance...");
+      logMsg("Client: creating class instance...");
       util = new ClassPathUtil();
       util.testDirectLibrary();
     } catch (Exception e) {
@@ -146,11 +256,12 @@ public class Client extends EETest {
    *                 the logical classpath of the application client.
    *
    */
+  @Test
   public void testIndirectLibrary() throws Fault {
     ClassPathUtil util = null;
 
     try {
-      logTrace("Client: creating class instance...");
+      logMsg("Client: creating class instance...");
       util = new ClassPathUtil();
       util.testIndirectLibrary();
     } catch (Exception e) {
