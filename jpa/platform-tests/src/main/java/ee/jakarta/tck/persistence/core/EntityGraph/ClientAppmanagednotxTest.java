@@ -1,5 +1,7 @@
 package ee.jakarta.tck.persistence.core.EntityGraph;
 
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 import ee.jakarta.tck.persistence.core.EntityGraph.Client;
 import java.net.URL;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -32,6 +34,17 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.EntityGraph.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_EntityGraph_appmanagedNoTx_vehicle";
+
+    public static void main(String[] args) {
+      ClientAppmanagednotxTest theTests = new ClientAppmanagednotxTest();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
+
+    public void setup(String[] args, Properties p) throws Fault {
+        super.setup(args, p);
+    }
+  
 
         /**
         EE10 Deployment Descriptors:
@@ -82,6 +95,9 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.En
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
+            ee.jakarta.tck.persistence.core.EntityGraph.Employee3.class,
+            ee.jakarta.tck.persistence.core.EntityGraph.Department.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The application-client.xml descriptor
@@ -112,6 +128,8 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.En
                 com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
                 ee.jakarta.tck.persistence.common.PMClientBase.class,
                 ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
+                ee.jakarta.tck.persistence.core.EntityGraph.Employee3.class,
+                ee.jakarta.tck.persistence.core.EntityGraph.Department.class,
                 com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
                 com.sun.ts.lib.harness.EETest.class,

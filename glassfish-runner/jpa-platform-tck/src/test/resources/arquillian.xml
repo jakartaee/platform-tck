@@ -7,7 +7,7 @@
         <property name="deploymentExportPath">target/deployments</property>
   </engine>
   <extension qualifier="glassfish-descriptors">
-    <property name="descriptorDir">${ts.home}/dist/</property>
+    <property name="descriptorDir">target/</property>
   </extension>
 
   <group qualifier="glassfish-servers" default="true">
@@ -18,7 +18,7 @@
         <protocol type="javatest">
             <property name="trace">true</property>
             <property name="workDir">/tmp</property>
-            <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
+            <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
             <property name="tsSqlStmtFile">sql/derby/derby.dml.sql</property>
         </protocol>
     </container>
