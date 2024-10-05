@@ -141,12 +141,6 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>common</artifactId>
-            <version>${version.jakarta.tck}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-common</artifactId>
             <version>${version.jakarta.tck}</version>
             <scope>test</scope>
