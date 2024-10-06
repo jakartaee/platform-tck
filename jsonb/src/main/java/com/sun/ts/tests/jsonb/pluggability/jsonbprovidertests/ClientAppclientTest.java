@@ -60,6 +60,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 
 import com.sun.ts.tests.jsonb.provider.MyJsonbBuilder;
 import com.sun.ts.tests.jsonb.provider.MyJsonbProvider;
@@ -99,34 +100,40 @@ public class ClientAppclientTest extends ServiceEETest {
     @TargetsContainer("tck-appclient")
     @OverProtocol("appclient")
     @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-    public static EnterpriseArchive createAppclientDeployment() throws Exception {
+    public static EnterpriseArchive createAppclientDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) throws Exception {
     
-        JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
+        JavaArchive jsonb_alternate_provider_jar = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
         .addClass(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class)
         .addClass(com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class)
         .addAsResource(new UrlAsset(com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");    
 
+
         JavaArchive jsonbprovidertests_appclient_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonbprovidertests_appclient_vehicle_client.jar");
-        jsonbprovidertests_appclient_vehicle_client.addClass(ClientAppclientTest.class)
-          .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
-          .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
-          .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
-          .addClass(com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class)
-          .addClass(com.sun.ts.lib.harness.EETest.class)
-          .addClass(com.sun.ts.lib.harness.EETest.Fault.class)
-          .addClass(com.sun.ts.lib.harness.EETest.SetupException.class)
-          .addClass(com.sun.ts.lib.harness.ServiceEETest.class);
+        jsonbprovidertests_appclient_vehicle_client.addClasses(
+          com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+          com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+          com.sun.ts.tests.common.vehicle.VehicleClient.class,
+          com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+          com.sun.ts.lib.harness.EETest.class,
+          com.sun.ts.lib.harness.EETest.Fault.class,
+          com.sun.ts.lib.harness.EETest.SetupException.class,
+          com.sun.ts.lib.harness.ServiceEETest.class,
+          com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
+          com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
+          ClientAppclientTest.class
+          );
         
         URL resURL = ClientAppclientTest.class.getClassLoader().getResource(packagePath+"/appclient_vehicle_client.xml");
         if(resURL != null) {
             jsonbprovidertests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
         }
         jsonbprovidertests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
-    
-        EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_appclient_vehicle.ear");
-        ear.addAsModule(jsonbprovidertests_appclient_vehicle_client);
-        ear.addAsLibrary(jarArchive);
-        return ear;
+
+        EnterpriseArchive jsonbprovidertests_appclient_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_appclient_vehicle.ear");
+        jsonbprovidertests_appclient_vehicle_ear.addAsModule(jsonbprovidertests_appclient_vehicle_client);
+        jsonbprovidertests_appclient_vehicle_ear.addAsLibrary(jsonb_alternate_provider_jar);
+
+        return jsonbprovidertests_appclient_vehicle_ear;
 
     }
 
@@ -161,15 +168,22 @@ public class ClientAppclientTest extends ServiceEETest {
     private static final String MY_JSONBROVIDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbProvider";
     private static final String MY_JSONBBUILDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbBuilder";
 
-    // public static void main(String[] args) {
-    //     Client theTests = new Client();
-    //     Status s = theTests.run(args, System.out, System.err);
-    //     s.exit();
-    // }
+    public static void main(String[] args) {
+        ClientAppclientTest theTests = new ClientAppclientTest();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
 
     /* Test setup */
-
+    /*
+     * @class.setup_props:
+     * This is needed by the vehicle base classes
+     */
+    public void setup(String[] args, Properties p) throws Exception {
+        // super.setup();
+    }
+    
     /*
      * @class.setup_props:
      */
