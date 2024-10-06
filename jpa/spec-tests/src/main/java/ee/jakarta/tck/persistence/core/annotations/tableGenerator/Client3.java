@@ -36,7 +36,7 @@ public class Client3 extends Client {
 	}
 
 	public void setup(String[] args, Properties p) throws Exception {
-		logTrace( "setup3");
+		logTrace( "setup");
 		try {
 
 			super.setup(args,p);

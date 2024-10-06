@@ -1944,10 +1944,10 @@ public abstract class Util extends PMClientBase {
          }
  	}
 
-	public void setupOrderData() throws Exception {
+	public void setupOrderData(String[] args, Properties p) throws Exception {
          logTrace("setupOrderData");
          try {
-                 super.setup();
+                 super.setup(args,p);
                  removeTestData();
                  createCustomerData();
                  createProductData();

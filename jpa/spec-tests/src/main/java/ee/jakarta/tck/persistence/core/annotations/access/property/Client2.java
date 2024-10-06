@@ -4,8 +4,8 @@ import java.util.Properties;
 
 public class Client2 extends Client {
 	
-	public void setup2(String[] args, Properties p) throws Exception {
-		logTrace( "setup2");
+	public void setup(String[] args, Properties p) throws Exception {
+		logTrace( "setup");
 		try {
 
 			super.setup(args,p);
@@ -36,7 +36,7 @@ public class Client2 extends Client {
 			clearCache();
 			d1 = null;
 			d1 = getEntityManager().find(DataTypes.class, 1);
-			logMsg( "d1.toString():" + d1.toString());
+			logMsg( "d1.toString():" + d1);
 
 			if (null != d1) {
 				if (d1.getShouldNotPersist() == null) {

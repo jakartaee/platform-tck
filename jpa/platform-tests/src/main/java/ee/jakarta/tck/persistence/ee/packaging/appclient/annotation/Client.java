@@ -22,11 +22,11 @@ package ee.jakarta.tck.persistence.ee.packaging.appclient.annotation;
 
 
 
-import com.sun.ts.lib.harness.EETest;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Properties;
 
+import com.sun.ts.lib.harness.EETest;
+
+import com.sun.ts.lib.harness.Status;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -49,9 +49,15 @@ public class Client extends EETest {
 	 * @class.setup_props:
 	 */
 
-	@BeforeEach
-	public void setup() throws Exception {
+	public static void main(String[] args) {
+  		Client theTests = new Client();
+  		Status s = theTests.run(args, System.out, System.err);
+  		s.exit();
+	}
+
+	public void setup(String[] args, Properties p) throws Exception {
 		try {
+
 			if (emf != null) {
 				em = emf.createEntityManager();
 			} else {
@@ -97,7 +103,6 @@ public class Client extends EETest {
 	 * Create entities, persist them, then find.
 	 *
 	 */
-	@Test
 	public void test1() throws Exception {
 
 		logTrace( "Begin test1");
@@ -158,7 +163,7 @@ public class Client extends EETest {
 		}
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		logTrace( "cleanup");
 		removeTestData();

@@ -27,7 +27,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 @Tag("persistence")
 @Tag("platform")
-@Tag("web")
 @Tag("tck-appclient")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -64,7 +63,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.Store
         public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
-            JavaArchive jpa_core_StoredProcedureQuery_stateless3_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_StoredProcedureQuery_stateless3_vehicle_client.jar");
+            JavaArchive jpa_core_StoredProcedureQuery_stateless3_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_StoredProcedureQuery_vehicles_client.jar");
             // The class files
             jpa_core_StoredProcedureQuery_stateless3_vehicle_client.addClasses(
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -96,7 +95,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.Store
             if(resURL != null) {
               jpa_core_StoredProcedureQuery_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_core_StoredProcedureQuery_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+            jpa_core_StoredProcedureQuery_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client1.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_StoredProcedureQuery_stateless3_vehicle_client, Client1.class, resURL);
 

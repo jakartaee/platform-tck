@@ -19,10 +19,6 @@ package ee.jakarta.tck.persistence.ee.entityManagerFactory;
 
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.core.entityManagerFactory.Order;
@@ -40,10 +36,10 @@ public class Client extends PMClientBase {
 	}
 
 
-	public void setup() throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
-			super.setup();
+			super.setup(args,p);
 			removeTestData();
 			createOrderTestData();
 		} catch (Exception e) {
@@ -68,7 +64,7 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Create an EntityManagerFactory via String
 	 */
-	@Test
+
 	public void createEntityManagerFactoryStringTest() throws Exception {
 		boolean pass = false;
 

@@ -90,7 +90,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityM
               jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -100,8 +100,8 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityM
                 JavaArchive jpa_core_entityManagerFactoryCloseException_lib = ShrinkWrap.create(JavaArchive.class, "jpa_core_entityManagerFactoryCloseException.jar");
 
                 // The resources
-                        libURL = Client.class.getResource("/persistence.xml");
-                        jpa_core_entityManagerFactoryCloseException_lib.addAsResource(libURL, "/persistence.xml");
+                        libURL = Client.class.getResource("persistence.xml");
+                        jpa_core_entityManagerFactoryCloseException_lib.addAsResource(libURL, "persistence.xml");
 
                 jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsLibrary(jpa_core_entityManagerFactoryCloseException_lib);
 
