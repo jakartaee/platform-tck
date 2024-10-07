@@ -95,6 +95,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.S
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class,
+            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client1.class,
             Client1AppmanagednotxTest.class
             );
             // The application-client.xml descriptor

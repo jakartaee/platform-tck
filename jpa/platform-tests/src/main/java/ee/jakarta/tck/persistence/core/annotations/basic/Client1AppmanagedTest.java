@@ -21,6 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 
@@ -33,6 +35,11 @@ import tck.arquillian.protocol.common.TargetVehicle;
 public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.annotations.basic.Client1 {
     static final String VEHICLE_ARCHIVE = "jpa_core_annotations_basic_appmanaged_vehicle";
 
+    public static void main(String[] args) {
+      Client1AppmanagedTest theTests = new Client1AppmanagedTest();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
         /**
         EE10 Deployment Descriptors:
         jpa_core_annotations_basic: META-INF/persistence.xml,META-INF/persistence.xml
@@ -83,7 +90,9 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.annot
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.annotations.basic.Client.class
+            ee.jakarta.tck.persistence.core.annotations.basic.Client.class,
+            ee.jakarta.tck.persistence.core.annotations.basic.Client1.class,
+            Client1AppmanagedTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");

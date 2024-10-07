@@ -96,6 +96,7 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.Stored
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class,
+            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client1.class,
             Client1Stateful3Test.class
             );
             // The application-client.xml descriptor
