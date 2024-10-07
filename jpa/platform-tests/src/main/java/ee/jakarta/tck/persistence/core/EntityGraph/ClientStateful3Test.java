@@ -21,7 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -32,6 +33,21 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.EntityGraph.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_EntityGraph_stateful3_vehicle";
+
+    public static void main(String[] args) {
+      ClientStateful3Test theTests = new ClientStateful3Test();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
+
+    public void setup(String[] args, Properties p) throws Fault {
+      try {
+        super.setup(args, p);
+      } catch (Exception e) {
+        logErr("Exception: ", e);
+        throw new Fault("Setup failed:", e);
+      }
+    }
 
         /**
         EE10 Deployment Descriptors:

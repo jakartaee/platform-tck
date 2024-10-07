@@ -85,6 +85,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.Entity
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             ee.jakarta.tck.persistence.core.EntityGraph.Employee3.class,
+            ee.jakarta.tck.persistence.core.EntityGraph.Department.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The application-client.xml descriptor

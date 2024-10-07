@@ -21,7 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -33,6 +34,16 @@ import tck.arquillian.protocol.common.TargetVehicle;
 public class Client4AppmanagedTest extends ee.jakarta.tck.persistence.core.annotations.access.field.Client4 {
     static final String VEHICLE_ARCHIVE = "jpa_core_annotations_access_field_appmanaged_vehicle";
 
+    public static void main(String[] args) {
+        Client4AppmanagedTest theTests = new Client4AppmanagedTest();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+      }
+  
+      public void setup(String[] args, Properties p) throws Exception {
+          super.setup(args, p);
+      }
+  
         /**
         EE10 Deployment Descriptors:
         jpa_core_annotations_access_field: META-INF/persistence.xml
