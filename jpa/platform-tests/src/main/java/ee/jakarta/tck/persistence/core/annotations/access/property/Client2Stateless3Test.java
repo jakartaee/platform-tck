@@ -93,6 +93,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.annot
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.access.property.Client.class,
             ee.jakarta.tck.persistence.core.annotations.access.property.Client2.class,
+            ee.jakarta.tck.persistence.core.annotations.access.property.DataTypes.class,
             Client2Stateless3Test.class
             );
             // The application-client.xml descriptor

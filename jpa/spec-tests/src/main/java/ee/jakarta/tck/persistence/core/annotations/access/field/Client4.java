@@ -3,10 +3,17 @@ package ee.jakarta.tck.persistence.core.annotations.access.field;
 
 import java.util.GregorianCalendar;
 import java.util.Properties;
+import com.sun.ts.lib.harness.Status;
 
 import jakarta.persistence.TypedQuery;
 
 public class Client4 extends Client {
+
+	public static void main(String[] args) {
+        Client4 theTests = new Client4();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+    }
 
 
 	public void setup(String[] args, Properties p) throws Exception {

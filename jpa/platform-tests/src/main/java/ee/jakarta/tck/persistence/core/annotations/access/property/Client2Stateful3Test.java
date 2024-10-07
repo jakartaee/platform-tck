@@ -91,6 +91,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.annotations.access.property.DataTypes2.class,
             ee.jakarta.tck.persistence.core.annotations.access.property.Client.class,
             ee.jakarta.tck.persistence.core.annotations.access.property.Client2.class,
             ee.jakarta.tck.persistence.core.annotations.access.property.DataTypes.class,

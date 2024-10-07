@@ -23,7 +23,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -98,7 +98,8 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.En
             ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
             ee.jakarta.tck.persistence.core.EntityGraph.Employee3.class,
             ee.jakarta.tck.persistence.core.EntityGraph.Department.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ClientAppmanagednotxTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
