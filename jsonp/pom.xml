@@ -38,7 +38,6 @@
         <jakarta.json.bind-api.version>3.0.1</jakarta.json.bind-api.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
-        <version.jakarta.tck.arquillian>1.0.0-M15</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencies>
@@ -83,27 +82,27 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
     </dependencies>
 
