@@ -92,7 +92,6 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.versio
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.versioning.Client.class,
-            ClientStateless3Test.class,
             ClientStateless3Test.class
             );
             // The application-client.xml descriptor

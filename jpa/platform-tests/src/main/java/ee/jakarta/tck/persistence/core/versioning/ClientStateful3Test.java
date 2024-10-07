@@ -35,7 +35,7 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.version
     static final String VEHICLE_ARCHIVE = "jpa_core_versioning_stateful3_vehicle";
 
     public static void main(String[] args) {
-      ClientStateless3Test theTests = new ClientStateless3Test();
+      ClientStateful3Test theTests = new ClientStateful3Test();
       Status s = theTests.run(args, System.out, System.err);
       s.exit();
     }
