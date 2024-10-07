@@ -88,7 +88,7 @@
         <version.jakarta.inject>2.0.1</version.jakarta.inject>
         <version.jakarta.persistence>3.2.0</version.jakarta.persistence>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
-        <version.jakarta.tck.arquillian>1.0.0-M16</version.jakarta.tck.arquillian>
+        <version.jakarta.tck.arquillian>1.0.0-M17</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencyManagement>
@@ -462,7 +462,6 @@
                         <phase>process-resources</phase>
                         <configuration>
                             <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
-                            <workingDirectory>${derby.basedir}</workingDirectory>
                             <arguments>
                                 <argument>start-database</argument>
                             </arguments>
