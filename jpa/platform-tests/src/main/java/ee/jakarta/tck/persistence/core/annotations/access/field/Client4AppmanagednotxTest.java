@@ -95,6 +95,7 @@ public class Client4AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.access.field.Client.class,
+            ee.jakarta.tck.persistence.core.annotations.access.field.Client4.class,
             Client4AppmanagednotxTest.class
             );
             // The application-client.xml descriptor

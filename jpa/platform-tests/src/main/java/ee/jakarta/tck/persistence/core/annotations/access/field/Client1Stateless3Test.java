@@ -95,6 +95,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.annot
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.access.field.Client.class,
+            ee.jakarta.tck.persistence.core.annotations.access.field.Client1.class,
             Client1Stateless3Test.class
             );
             // The application-client.xml descriptor
@@ -134,7 +135,8 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.annot
                 com.sun.ts.lib.harness.EETest.SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-                ee.jakarta.tck.persistence.core.annotations.access.field.Client.class
+                ee.jakarta.tck.persistence.core.annotations.access.field.Client.class,
+                Client1Stateless3Test.class
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client1.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.xml");

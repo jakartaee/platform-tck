@@ -21,7 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -32,6 +33,17 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.inheritance.abstractentity.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_inheritance_abstractentity_appmanagedNoTx_vehicle";
+
+    public static void main(String[] args) {
+      ClientAppmanagednotxTest theTests = new ClientAppmanagednotxTest();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
+
+    public void setup(String[] args, Properties p) throws Exception {
+        super.setup(args, p);
+    }
+
 
         /**
         EE10 Deployment Descriptors:
@@ -82,7 +94,8 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.in
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ClientAppmanagednotxTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");

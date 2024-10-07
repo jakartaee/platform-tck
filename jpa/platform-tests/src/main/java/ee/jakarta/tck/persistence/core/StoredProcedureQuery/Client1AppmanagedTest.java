@@ -134,7 +134,8 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.Store
                 com.sun.ts.lib.harness.EETest.SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-                ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class
+                ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class,
+                Client1AppmanagedTest.class
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client1.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");

@@ -134,7 +134,8 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.S
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class,
-                ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class
+                ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class,
+                Client2AppmanagednotxTest.class
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client2.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");
