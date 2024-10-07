@@ -94,6 +94,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.annot
             ee.jakarta.tck.persistence.core.annotations.access.property.Client.class,
             ee.jakarta.tck.persistence.core.annotations.access.property.Client2.class,
             ee.jakarta.tck.persistence.core.annotations.access.property.DataTypes.class,
+            ee.jakarta.tck.persistence.core.annotations.access.property.DataTypes2.class,
             Client2Stateless3Test.class
             );
             // The application-client.xml descriptor
