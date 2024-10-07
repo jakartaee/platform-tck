@@ -21,7 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -33,6 +34,16 @@ import tck.arquillian.protocol.common.TargetVehicle;
 public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.annotations.access.field.Client1 {
     static final String VEHICLE_ARCHIVE = "jpa_core_annotations_access_field_appmanagedNoTx_vehicle";
 
+    public static void main(String[] args) {
+        Client1AppmanagednotxTest theTests = new Client1AppmanagednotxTest();
+        Status s = theTests.run(args, System.out, System.err);
+        s.exit();
+      }
+  
+      public void setup(String[] args, Properties p) throws Exception {
+          super.setup(args, p);
+      }
+  
         /**
         EE10 Deployment Descriptors:
         jpa_core_annotations_access_field: META-INF/persistence.xml
@@ -83,7 +94,11 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.annotations.access.field.Client.class
+            ee.jakarta.tck.persistence.core.annotations.access.field.DataTypes.class,
+            ee.jakarta.tck.persistence.core.annotations.access.field.DataTypes2.class,
+            ee.jakarta.tck.persistence.core.annotations.access.field.Client.class,
+            ee.jakarta.tck.persistence.core.annotations.access.field.Client1.class,
+            Client1AppmanagednotxTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
@@ -122,7 +137,8 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class,
-                ee.jakarta.tck.persistence.core.annotations.access.field.Client.class
+                ee.jakarta.tck.persistence.core.annotations.access.field.Client.class,
+                Client1AppmanagednotxTest.class
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client1.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");

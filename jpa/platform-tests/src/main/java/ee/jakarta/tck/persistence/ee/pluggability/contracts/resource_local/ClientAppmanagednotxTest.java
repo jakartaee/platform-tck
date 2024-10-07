@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -28,6 +28,12 @@ import tck.arquillian.protocol.common.TargetVehicle;
 
 public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Client {
     static final String VEHICLE_ARCHIVE = "pluggability_contracts_resource_local_appmanagedNoTx_vehicle";
+
+    public static void main(String[] args) {
+      ClientAppmanagednotxTest theTests = new ClientAppmanagednotxTest();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
 
         /**
         EE10 Deployment Descriptors:
@@ -71,7 +77,9 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.ee.plug
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Client.class,
+            ClientAppmanagednotxTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");

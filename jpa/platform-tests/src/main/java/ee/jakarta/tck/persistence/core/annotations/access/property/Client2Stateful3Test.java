@@ -21,6 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 
@@ -32,6 +34,12 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annotations.access.property.Client2 {
     static final String VEHICLE_ARCHIVE = "jpa_core_annotations_access_property_stateful3_vehicle";
+
+    public static void main(String[] args) {
+      Client2Stateful3Test theTests = new Client2Stateful3Test();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
 
         /**
         EE10 Deployment Descriptors:
@@ -83,7 +91,11 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.annotations.access.property.Client.class
+            ee.jakarta.tck.persistence.core.annotations.access.property.DataTypes2.class,
+            ee.jakarta.tck.persistence.core.annotations.access.property.Client.class,
+            ee.jakarta.tck.persistence.core.annotations.access.property.Client2.class,
+            ee.jakarta.tck.persistence.core.annotations.access.property.DataTypes.class,
+            Client2Stateful3Test.class
             );
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");

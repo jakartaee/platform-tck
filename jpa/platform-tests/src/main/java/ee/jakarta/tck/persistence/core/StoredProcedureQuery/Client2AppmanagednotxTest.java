@@ -21,7 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -32,6 +33,16 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client2 {
     static final String VEHICLE_ARCHIVE = "jpa_core_StoredProcedureQuery_appmanagedNoTx_vehicle";
+
+    public static void main(String[] args) {
+      Client2AppmanagednotxTest theTests = new Client2AppmanagednotxTest();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
+
+    public void setup(String[] args, Properties p) throws Exception {
+        super.setup(args, p);
+    }
 
         /**
         EE10 Deployment Descriptors:
@@ -83,7 +94,10 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.S
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class
+            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Employee.class,
+            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class,
+            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client2.class,
+            Client2AppmanagednotxTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
@@ -122,7 +136,8 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.S
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class,
-                ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class
+                ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class,
+                Client2AppmanagednotxTest.class
             );
             // The ejb-jar.xml descriptor
             URL ejbResURL1 = Client2.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");

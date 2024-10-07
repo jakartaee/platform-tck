@@ -1,9 +1,16 @@
 package ee.jakarta.tck.persistence.core.annotations.access.property;
 
 import java.util.Properties;
+import com.sun.ts.lib.harness.Status;
 
 public class Client2 extends Client {
 	
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	  }
+
 	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setup");
 		try {
