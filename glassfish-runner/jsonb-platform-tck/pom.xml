@@ -39,7 +39,6 @@
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>/jakartaeetck</ts.home>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
-        <version.jakarta.tck.arquillian>1.0.0-M15</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencyManagement>
@@ -114,7 +113,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
@@ -141,7 +140,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -168,17 +167,17 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>${version.jakarta.tck.arquillian}</version>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>
@@ -245,7 +244,7 @@
                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>
-                                    <version>${version.jakarta.tck.arquillian}</version>
+                                    <version>${project.version}</version>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/protocol</outputDirectory>
