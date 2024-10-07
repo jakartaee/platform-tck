@@ -87,7 +87,18 @@ public abstract class ServiceEETest extends EETest {
   public Status run(String[] argv, Properties p) {
     Status status = null;
     boolean inTestHarness = TestUtil.iWhereAreWe == TestUtil.VM_HARNESS;
-    boolean isVehicleClient = this instanceof com.sun.ts.tests.common.vehicle.VehicleClient;
+    boolean isVehicleClient = false;
+    URL thisURL = getClass().getProtectionDomain().getCodeSource().getLocation();
+    TestUtil.logTrace("in ServiceEETest.run(), this URL is:  " + thisURL);
+    try {
+      Class<?> vcClass = getClass().getClassLoader().loadClass("com.sun.ts.tests.common.vehicle.VehicleClient");
+      URL vcClassURL = vcClass.getProtectionDomain().getCodeSource().getLocation();
+      TestUtil.logTrace("VehicleClient URL is:  " + vcClassURL);
+      isVehicleClient = vcClass.isAssignableFrom(getClass());
+      TestUtil.logTrace("VehicleClient URL is:  " + vcClassURL);
+    } catch (ClassNotFoundException e) {
+      TestUtil.logTrace("VehicleClient class not found, so not a vehicle client.");
+    }
     if (inTestHarness && isVehicleClient) {
       TestUtil.logTrace("in ServiceEETest.run() method");
       String sVehicle = TestUtil.getProperty(p, "vehicle");
