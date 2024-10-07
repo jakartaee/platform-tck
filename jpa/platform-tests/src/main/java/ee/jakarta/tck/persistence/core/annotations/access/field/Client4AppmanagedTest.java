@@ -83,7 +83,8 @@ public class Client4AppmanagedTest extends ee.jakarta.tck.persistence.core.annot
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.annotations.access.field.Client.class
+            ee.jakarta.tck.persistence.core.annotations.access.field.Client.class,
+            Client4AppmanagedTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client4.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
