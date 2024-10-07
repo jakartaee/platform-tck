@@ -24,18 +24,16 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.Properties;
-import java.net.URL;
 import com.sun.ts.tests.jsonp.api.common.JsonPTest;
 import com.sun.ts.tests.jsonp.api.common.TestResult;
 import com.sun.ts.lib.harness.ServiceEETest;
-
 import jakarta.json.JsonPatch;
+import java.net.URL;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 
@@ -60,13 +58,13 @@ import java.lang.System.Logger;
  * RFC 6902: JavaScript Object Notation (JSON) Patch compatibility tests.<br>
  * {@see <a href="https://tools.ietf.org/html/rfc6902">RFC 6902</a>}.
  */
-@Tag("tck-appclient")
+@Tag("tck-javatest")
 @ExtendWith(ArquillianExtension.class)
-public class PatchAppclientTestsIT extends ServiceEETest {
+public class PatchServletTest extends ServiceEETest {
 
-  private static final Logger logger = System.getLogger(PatchAppclientTestsIT.class.getName());
+  private static final Logger logger = System.getLogger(PatchServletTest.class.getName());
 
-  private static String packagePath = PatchAppclientTestsIT.class.getPackageName().replace(".", "/");
+  private static String packagePath = PatchServletTest.class.getPackageName().replace(".", "/");
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
@@ -84,41 +82,44 @@ public class PatchAppclientTestsIT extends ServiceEETest {
   }
 
 
-  static final String VEHICLE_ARCHIVE = "patchtests_appclient_vehicle";
+  static final String VEHICLE_ARCHIVE = "patchtests_servlet_vehicle";
   
-  @TargetsContainer("tck-appclient")
-  @OverProtocol("appclient")
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createAppclientDeployment() throws IOException {
+  public static EnterpriseArchive createServletDeployment() throws IOException {
   
-    JavaArchive patchtests_appclient_vehicle_client = ShrinkWrap.create(JavaArchive.class, "patchtests_appclient_vehicle_client.jar");
-    patchtests_appclient_vehicle_client.addClass(PatchAppclientTestsIT.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
-      .addClass(com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class)
-      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Data.class)
-      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedReader.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedWriter.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class)
-      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Data.class)
-      .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedReader.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyBufferedWriter.class)
-      .addClass(com.sun.ts.tests.jsonp.common.MyJsonLocation.class);
+    WebArchive patchtests_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "patchtests_servlet_vehicle_web.war");
+    patchtests_servlet_vehicle_web.addClass(PatchServletTest.class)
+    .addClass(CommonOperation.class)
+    .addClass(PatchCreate.class)
+    .addClass(com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class)
+    .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
+    .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
+    .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
+    .addClass(com.sun.ts.lib.harness.EETest.class)
+    .addClass(com.sun.ts.lib.harness.RemoteStatus.class)
+    .addClass(com.sun.ts.lib.harness.Status.class)
+    .addClass(com.sun.ts.lib.harness.ServiceEETest.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.ArrayBuilder.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.JsonAssert.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.JsonIO.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.JsonPTest.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.JsonValueType.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.MergeRFCObject.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.ObjectBuilder.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.PointerRFCObject.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.SimpleValues.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.TestFail.class)
+    .addClass(com.sun.ts.tests.jsonp.api.common.TestResult.class)
+    .addClass(com.sun.ts.tests.jsonp.common.JSONP_Util.class);
 
-    URL resURL = PatchAppclientTestsIT.class.getClassLoader().getResource(packagePath+"/appclient_vehicle_client.xml");
-    if(resURL != null) {
-      patchtests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-    }
-    patchtests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + PatchAppclientTestsIT.class.getName() + "\n"), "MANIFEST.MF");
+    URL webXML = PatchServletTest.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml");
+    patchtests_servlet_vehicle_web.setWebXML(webXML);
 
+    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
+    ear.addAsModule(patchtests_servlet_vehicle_web);
 
-
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_appclient_vehicle.ear");
-    ear.addAsModule(patchtests_appclient_vehicle_client);
     return ear;
 
   }
@@ -147,7 +148,7 @@ public class PatchAppclientTestsIT extends ServiceEETest {
    * @test_Strategy: Tests JsonPatch API factory methods added in JSON-P 1.1.
    */
   @Test
-  @TargetVehicle("appclient")
+  @TargetVehicle("servlet")
   public void jsonCreatePatch11Test() throws Exception {
     PatchCreate createTest = new PatchCreate();
     final TestResult result = createTest.test();

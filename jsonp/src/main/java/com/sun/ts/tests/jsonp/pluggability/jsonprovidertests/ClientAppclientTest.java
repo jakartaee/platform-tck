@@ -79,18 +79,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
-import org.jboss.arquillian.test.api.ArquillianResource;
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 
 import java.lang.System.Logger;
 
 @Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
-public class ClientEjbIT extends ServiceEETest {
+public class ClientAppclientTest extends ServiceEETest {
 
-  private static final Logger logger = System.getLogger(ClientEjbIT.class.getName());
+  private static final Logger logger = System.getLogger(ClientAppclientTest.class.getName());
 
-  private static String packagePath = ClientEjbIT.class.getPackageName().replace(".", "/");
+  private static String packagePath = ClientAppclientTest.class.getPackageName().replace(".", "/");
 
   public final String TEMP_DIR = System.getProperty("java.io.tmpdir", "/tmp");
 
@@ -121,97 +119,63 @@ public class ClientEjbIT extends ServiceEETest {
 
   }
 
-  static final String VEHICLE_ARCHIVE = "jsonprovidertests_ejb_vehicle";
+  static final String VEHICLE_ARCHIVE = "jsonprovidertests_appclient_vehicle";
   
   @TargetsContainer("tck-appclient")
   @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createEjbDeployment() throws Exception {
+  public static EnterpriseArchive createAppclientDeployment() throws Exception {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
-    
-    JavaArchive jsonp_alternate_provider = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGeneratorFactory.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonParser.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonParserFactory.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonProvider.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonReader.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonWriter.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)     
+  
+    JavaArchive jsonprovidertests_appclient_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_appclient_vehicle_client.jar");
+    jsonprovidertests_appclient_vehicle_client.addClasses(
+      com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+      com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+      com.sun.ts.tests.common.vehicle.VehicleClient.class,
+      com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+      com.sun.ts.tests.jsonp.common.JSONP_Data.class,
+      com.sun.ts.tests.jsonp.common.JSONP_Util.class,
+      com.sun.ts.tests.jsonp.common.MyBufferedReader.class,
+      com.sun.ts.tests.jsonp.common.MyBufferedWriter.class,
+      com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class,
+      com.sun.ts.tests.jsonp.common.MyJsonLocation.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonProvider.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class,
+      ClientAppclientTest.class
+      );
+
+    URL jsonURL = ClientAppclientTest.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonArrayWithAllTypesOfData.json");
+    jsonprovidertests_appclient_vehicle_client.addAsResource(jsonURL, "classes/jsonArrayWithAllTypesOfData.json");
+    jsonURL = ClientAppclientTest.class.getClassLoader().getResource("com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/jsonObjectWithAllTypesOfData.json");
+    jsonprovidertests_appclient_vehicle_client.addAsResource(jsonURL, "classes/jsonObjectWithAllTypesOfData.json");
+
+    URL resURL = ClientAppclientTest.class.getClassLoader().getResource(packagePath+"/appclient_vehicle_client.xml");
+    if(resURL != null) {
+      jsonprovidertests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+    }
+    jsonprovidertests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
+
+
+    JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
+      .addClasses(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonGeneratorFactory.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonParser.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonParserFactory.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonProvider.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonReader.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonWriter.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)     
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
 
-    JavaArchive jsonprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_client.jar");
-    // The class files
-    jsonprovidertests_ejb_vehicle_client.addClasses(
-        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-        com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-        com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
-        com.sun.ts.tests.common.vehicle.VehicleClient.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-        // com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.ServiceEETest.class
-    );
+    EnterpriseArchive jsonprovidertests_appclient_vehicle_client_ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_appclient_vehicle.ear");
+    jsonprovidertests_appclient_vehicle_client_ear.addAsModule(jsonprovidertests_appclient_vehicle_client);
+    jsonprovidertests_appclient_vehicle_client_ear.addAsManifestResource(new StringAsset("Main-Class: " + ClientAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
+    jsonprovidertests_appclient_vehicle_client_ear.addAsLibrary(jarArchive);
 
-    URL resURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
-    if(resURL != null) {
-      jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-    }
-    jsonprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbIT.class.getName() + "\n"), "MANIFEST.MF");
-    // archiveProcessor.processClientArchive(jsonprovidertests_ejb_vehicle_client, ClientEjbIT.class, resURL);
-
-
-    JavaArchive jsonprovidertests_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_ejb.jar");
-    // The class files
-    jsonprovidertests_ejb_vehicle_ejb.addClasses(
-        com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
-        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-        com.sun.ts.tests.common.vehicle.VehicleClient.class,
-        // com.sun.ts.tests.common.vehicle.ejb.EJBVehicleHome.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
-        com.sun.ts.tests.jsonp.common.JSONP_Data.class,
-        com.sun.ts.tests.jsonp.common.JSONP_Util.class,
-        com.sun.ts.tests.jsonp.common.MyBufferedInputStream.class,
-        com.sun.ts.tests.jsonp.common.MyBufferedReader.class,
-        com.sun.ts.tests.jsonp.common.MyBufferedWriter.class,
-        com.sun.ts.tests.jsonp.common.MyJsonLocation.class,
-        ClientEjbIT.class       
-    );
-    // The ejb-jar.xml descriptor
-    URL ejbResURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.xml");
-    if(ejbResURL != null) {
-      jsonprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-    }
-
-    URL jsonURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/jsonArrayWithAllTypesOfData.json");
-    jsonprovidertests_ejb_vehicle_ejb.addAsResource(jsonURL, "/jsonArrayWithAllTypesOfData.json");
-    jsonURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/jsonObjectWithAllTypesOfData.json");
-    jsonprovidertests_ejb_vehicle_ejb.addAsResource(jsonURL, "/jsonObjectWithAllTypesOfData.json");
-
-    // The sun-ejb-jar.xml file need to be added or should this be in in the vendor Arquillian extension?
-    ejbResURL = ClientEjbIT.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-    if(ejbResURL != null) {
-      jsonprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-    }
-    // archiveProcessor.processEjbArchive(jsonprovidertests_ejb_vehicle_ejb, ClientEjbIT.class, ejbResURL);
-
-
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_ejb_vehicle.ear");
-    ear.addAsModule(jsonprovidertests_ejb_vehicle_client);
-    ear.addAsModule(jsonprovidertests_ejb_vehicle_ejb);
-    ear.addAsLibrary(jsonp_alternate_provider);
-    return ear;
+    return jsonprovidertests_appclient_vehicle_client_ear;
 
   }
 
@@ -229,15 +193,15 @@ public class ClientEjbIT extends ServiceEETest {
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
 
     JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonGeneratorFactory.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonParser.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonParserFactory.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonProvider.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonReader.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonWriter.class)
-      .addClass(com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)    
+      .addClasses(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonGeneratorFactory.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonParser.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonParserFactory.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonProvider.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonReader.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonWriter.class,
+      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
     jarArchive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar"), true);
@@ -256,11 +220,11 @@ public class ClientEjbIT extends ServiceEETest {
 
   private String providerPath = null;
 
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) {
+    ClientAppclientTest theTests = new ClientAppclientTest();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /* Test setup */
 
@@ -268,9 +232,9 @@ public class ClientEjbIT extends ServiceEETest {
      * @class.setup_props:
      * This is needed by the vehicle base classes
      */
-  public void setup(String[] args, Properties p) throws Exception {
+    public void setup(String[] args, Properties p) throws Exception {
 
-  }
+    }
 
   /* Tests */
 
@@ -283,7 +247,7 @@ public class ClientEjbIT extends ServiceEETest {
    * static JsonProvider provider()
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest1() throws Exception {
     boolean pass = true;
     try {
@@ -320,7 +284,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonGenerator createGenerator(Writer)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest2() throws Exception {
     boolean pass = true;
     String expString = "public JsonGenerator createGenerator(Writer)";
@@ -351,7 +315,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonGenerator createGenerator(OutputStream)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest3() throws Exception {
     boolean pass = true;
     String expString = "public JsonGenerator createGenerator(OutputStream)";
@@ -383,7 +347,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonParser createParser(Reader)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest4() throws Exception {
     boolean pass = true;
     String expString = "public JsonParser createParser(Reader)";
@@ -409,7 +373,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonParser createParser(InputStream)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest5() throws Exception {
     boolean pass = true;
     String expString = "public JsonParser createParser(InputStream)";
@@ -436,7 +400,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonParserFactory createParserFactory(Map<String, ?>)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest6() throws Exception {
     boolean pass = true;
     String expString = "public JsonParserFactory createParserFactory(Map<String, ?>)";
@@ -463,7 +427,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonParserFactory createParserFactory(Map<String, ?>)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest7() throws Exception {
     boolean pass = true;
     String expString = "public JsonParserFactory createParserFactory(Map<String, ?>)";
@@ -490,7 +454,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest8() throws Exception {
     boolean pass = true;
     String expString = "public JsonGeneratorFactory createGeneratorFactory(Map<String, ?>)";
@@ -517,7 +481,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonWriterFactory createWriterFactory(Map<String, ?>)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest9() throws Exception {
     boolean pass = true;
     String expString = "public JsonWriterFactory createWriterFactory(Map<String, ?>)";
@@ -546,7 +510,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonException.
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest10() throws Exception {
     boolean pass = true;
     String expString = "public JsonParser createParser(InputStream)";
@@ -573,7 +537,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonArrayBuilder createArrayBuilder()
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest11() throws Exception {
     boolean pass = true;
     String expString = "public JsonArrayBuilder createArrayBuilder()";
@@ -599,7 +563,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonObjectBuilder createObjectBuilder()
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest12() throws Exception {
     boolean pass = true;
     String expString = "public JsonObjectBuilder createObjectBuilder()";
@@ -625,7 +589,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonBuilderFactory createBuilderFactory(Map<String, ?>)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest13() throws Exception {
     boolean pass = true;
     String expString = "public JsonBuilderFactory createBuilderFactory(Map<String, ?>)";
@@ -652,7 +616,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonReader createReader(Reader)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest14() throws Exception {
     boolean pass = true;
     String expString = "public JsonReader createReader(Reader)";
@@ -678,7 +642,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonReader createReader(InputStream)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest15() throws Exception {
     boolean pass = true;
     String expString = "public JsonReader createReader(InputStream)";
@@ -705,7 +669,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonWriter createWriter(Writer)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest16() throws Exception {
     boolean pass = true;
     String expString = "public JsonWriter createWriter(Writer)";
@@ -731,7 +695,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonWriter createWriter(OutputStream)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest17() throws Exception {
     boolean pass = true;
     String expString = "public JsonWriter createWriter(OutputStream)";
@@ -757,7 +721,7 @@ public class ClientEjbIT extends ServiceEETest {
    * JsonReaderFactory createReaderFactory(Map<String, ?>)
    */
   @Test
-  @TargetVehicle("ejb")
+  @TargetVehicle("appclient")
   public void jsonProviderTest18() throws Exception {
     boolean pass = true;
     String expString = "public JsonReaderFactory createReaderFactory(Map<String, ?>)";
