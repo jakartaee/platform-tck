@@ -21,7 +21,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 @ExtendWith(ArquillianExtension.class)
@@ -32,6 +33,12 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.annotations.access.mappedsc.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_anno_access_mappedsc_stateless3_vehicle";
+
+    public static void main(String[] args) {
+      ClientStateless3Test theTests = new ClientStateless3Test();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
 
         /**
         EE10 Deployment Descriptors:
