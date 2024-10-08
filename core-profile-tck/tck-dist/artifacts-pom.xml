@@ -183,8 +183,8 @@
               <artifactId>common-annotations</artifactId>
               <version>${project.version}</version>
               <packaging>sig</packaging>
-              <classifier>sigtest-jdk11</classifier>
-              <file>common-annotations-${project.version}-sigtest-jdk11.sig</file>
+              <classifier>sigtest</classifier>
+              <file>common-annotations-${project.version}-sigtest.sig</file>
               <generatePom>false</generatePom>
             </configuration>
           </execution>
