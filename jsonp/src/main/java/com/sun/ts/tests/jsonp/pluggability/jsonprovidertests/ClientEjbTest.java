@@ -116,7 +116,7 @@ public class ClientEjbTest extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    removeProviderJarFromCP();
+    // removeProviderJarFromCP();
     MyJsonProvider.clearCalls();
     MyJsonGenerator.clearCalls();
     logger.log(Logger.Level.INFO, "cleanup ok");
@@ -141,8 +141,12 @@ public class ClientEjbTest extends ServiceEETest {
       com.sun.ts.tests.jsonp.provider.MyJsonReader.class,
       com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class,
       com.sun.ts.tests.jsonp.provider.MyJsonWriter.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class) 
+      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class,
+      com.sun.ts.tests.jsonp.common.JSONP_Util.class,
+      ClientEjbTest.class) 
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
+    jsonp_alternate_provider.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+
 
     jsonp_alternate_provider.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar"), true);
 
@@ -227,7 +231,10 @@ public class ClientEjbTest extends ServiceEETest {
     EnterpriseArchive jsonprovidertests_ejb_vehicle_client_ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_ejb_vehicle.ear");
     jsonprovidertests_ejb_vehicle_client_ear.addAsModule(jsonprovidertests_ejb_vehicle_client);
     jsonprovidertests_ejb_vehicle_client_ear.addAsModule(jsonprovidertests_ejb_vehicle_ejb);
+    jsonprovidertests_ejb_vehicle_client_ear.addAsModule(jsonp_alternate_provider);
     jsonprovidertests_ejb_vehicle_client_ear.addAsLibrary(jsonp_alternate_provider);
+    jsonprovidertests_ejb_vehicle_client_ear.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+
     return jsonprovidertests_ejb_vehicle_client_ear;
 
   }

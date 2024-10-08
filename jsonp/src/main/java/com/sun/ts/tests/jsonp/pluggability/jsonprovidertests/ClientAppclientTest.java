@@ -92,20 +92,20 @@ public class ClientAppclientTest extends ServiceEETest {
 
   private static String packagePath = ClientAppclientTest.class.getPackageName().replace(".", "/");
 
-  public final String TEMP_DIR = System.getProperty("java.io.tmpdir", "/tmp");
+  public static final String TEMP_DIR = System.getProperty("java.io.tmpdir", "/tmp");
 
-  private boolean providerJarDeployed = false;
+  private static boolean providerJarDeployed = false;
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) throws Exception {
       logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
   }
 
-  @BeforeEach
-  public void setup() throws Exception {
-    createProviderJar();
-    logger.log(Logger.Level.INFO, "setup ok");
-  }
+  // @BeforeEach
+  // public void setup() throws Exception {
+  //   createProviderJar();
+  //   logger.log(Logger.Level.INFO, "setup ok");
+  // }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) throws Exception {
@@ -114,7 +114,7 @@ public class ClientAppclientTest extends ServiceEETest {
 
   @AfterEach
   public void cleanup() throws Exception {
-    removeProviderJarFromCP();
+    // removeProviderJarFromCP();
     MyJsonProvider.clearCalls();
     MyJsonGenerator.clearCalls();
     logger.log(Logger.Level.INFO, "cleanup ok");
@@ -159,7 +159,7 @@ public class ClientAppclientTest extends ServiceEETest {
     jsonprovidertests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
 
 
-    JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
+    JavaArchive jsonp_alternate_provider = ShrinkWrap.create(JavaArchive.class, "jsonp_alternate_provider.jar")
       .addClasses(com.sun.ts.tests.jsonp.provider.MyJsonGenerator.class,
       com.sun.ts.tests.jsonp.provider.MyJsonGeneratorFactory.class,
       com.sun.ts.tests.jsonp.provider.MyJsonParser.class,
@@ -168,14 +168,28 @@ public class ClientAppclientTest extends ServiceEETest {
       com.sun.ts.tests.jsonp.provider.MyJsonReader.class,
       com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class,
       com.sun.ts.tests.jsonp.provider.MyJsonWriter.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)     
+      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class,
+      com.sun.ts.tests.jsonp.common.JSONP_Util.class,
+      ClientAppclientTest.class)     
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
+      jsonp_alternate_provider.addAsManifestResource(new StringAsset("Main-Class: " + ClientAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
+
+      jsonp_alternate_provider.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar"), true);
+
+      ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
+      URLClassLoader urlClassLoader = new URLClassLoader(
+          new URL[] { new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar").toURL() },
+          currentThreadClassLoader);
+      Thread.currentThread().setContextClassLoader(urlClassLoader);
+      providerJarDeployed = true;
+  
 
 
     EnterpriseArchive jsonprovidertests_appclient_vehicle_client_ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_appclient_vehicle.ear");
     jsonprovidertests_appclient_vehicle_client_ear.addAsModule(jsonprovidertests_appclient_vehicle_client);
     jsonprovidertests_appclient_vehicle_client_ear.addAsManifestResource(new StringAsset("Main-Class: " + ClientAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
-    jsonprovidertests_appclient_vehicle_client_ear.addAsLibrary(jarArchive);
+    jsonprovidertests_appclient_vehicle_client_ear.addAsLibrary(jsonp_alternate_provider);
+    jsonprovidertests_appclient_vehicle_client_ear.addAsModule(jsonp_alternate_provider);
 
     return jsonprovidertests_appclient_vehicle_client_ear;
 
@@ -235,7 +249,8 @@ public class ClientAppclientTest extends ServiceEETest {
      * This is needed by the vehicle base classes
      */
     public void setup(String[] args, Properties p) throws Exception {
-
+      // createProviderJar();
+      logger.log(Logger.Level.INFO, "setup ok");
     }
 
   /* Tests */
