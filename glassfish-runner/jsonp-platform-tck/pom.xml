@@ -41,7 +41,7 @@
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>/jakartaeetck</ts.home>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
-        <version.jakarta.tck.arquillian>1.0.0-M16</version.jakarta.tck.arquillian>
+        <version.jakarta.tck.arquillian>1.0.0-M17</version.jakarta.tck.arquillian>
     </properties>
 
     <dependencyManagement>
@@ -50,6 +50,20 @@
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
                 <version>${junit.jupiter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.junit}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-build</artifactId>
+                <version>${arquillian.junit}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -159,7 +173,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>1.0.0-M15</version>
+            <version>${version.jakarta.tck.arquillian}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.jboss.shrinkwrap.resolver</groupId>
@@ -417,9 +431,9 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <!-- <additionalClasspathElements>
+                            <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/parsson.jar</additionalClasspathElement>
-                            </additionalClasspathElements> -->
+                            </additionalClasspathElements>
                             <includes>
                                 <include>com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/**Test.java</include>
                             </includes>
@@ -436,6 +450,13 @@
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
+                            <properties>
+                                <configurationParameters>junit.jupiter.extensions.autodetection.enabled = true
+                                    junit.platform.output.capture.stderr = true
+                                    junit.platform.output.capture.stdout = true
+                                    junit.platform.reporting.open.xml.enabled = true
+                                    junit.platform.reporting.output.dir = target/junit5-reports</configurationParameters>
+                            </properties>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                             </environmentVariables>

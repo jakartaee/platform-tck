@@ -92,7 +92,7 @@ public class PatchEjbTest extends ServiceEETest {
   @TargetsContainer("tck-appclient")
   @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createEjbDeployment() throws Exception {
+  public static EnterpriseArchive createEjbDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) throws Exception {
 
     JavaArchive patchtests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "patchtests_ejb_vehicle_client.jar");
     patchtests_ejb_vehicle_client.addClasses(
@@ -106,6 +106,8 @@ public class PatchEjbTest extends ServiceEETest {
         com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.lib.harness.ServiceEETest.class,
+        CommonOperation.class,
+        PatchCreate.class,
         PatchEjbTest.class
     );
 

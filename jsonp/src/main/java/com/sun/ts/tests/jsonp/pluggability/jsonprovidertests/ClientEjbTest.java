@@ -167,6 +167,10 @@ public class ClientEjbTest extends ServiceEETest {
       jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
     jsonprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+    resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.jar.sun-application-client.xml");
+    if(resURL != null) {
+      jsonprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
+    }
     archiveProcessor.processClientArchive(jsonprovidertests_ejb_vehicle_client, ClientEjbTest.class, resURL);
 
 
@@ -211,11 +215,11 @@ public class ClientEjbTest extends ServiceEETest {
     archiveProcessor.processEjbArchive(jsonprovidertests_ejb_vehicle_ejb, ClientEjbTest.class, ejbResURL);
 
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_ejb_vehicle.ear");
-    ear.addAsModule(jsonprovidertests_ejb_vehicle_client);
-    ear.addAsModule(jsonprovidertests_ejb_vehicle_ejb);
-    ear.addAsLibrary(jsonp_alternate_provider);
-    return ear;
+    EnterpriseArchive jsonprovidertests_ejb_vehicle_client_ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_ejb_vehicle.ear");
+    jsonprovidertests_ejb_vehicle_client_ear.addAsModule(jsonprovidertests_ejb_vehicle_client);
+    jsonprovidertests_ejb_vehicle_client_ear.addAsModule(jsonprovidertests_ejb_vehicle_ejb);
+    jsonprovidertests_ejb_vehicle_client_ear.addAsLibrary(jsonp_alternate_provider);
+    return jsonprovidertests_ejb_vehicle_client_ear;
 
   }
 
