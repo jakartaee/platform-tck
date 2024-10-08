@@ -4,7 +4,7 @@
 
 While the Jakarta Core Profile TCK is rigorous about enforcing an implementation's conformance to the Jakarta Core Profile specification, it's reasonable to assume that an implementor may discover new and/or better ways to validate the assertions.
 The appeals process is defined by the Jakarta EE
-link:$$https://jakarta.ee/committees/specification/tckprocess/$$[Jakarta EE TCK Process 1.2]
+link:$$https://jakarta.ee/committees/specification/tckprocess/$$[Jakarta EE TCK Process {tck-process-version}]
 
 
 === What challenges to the TCK may be submitted?
@@ -24,8 +24,8 @@ The challenges will be addressed in a timely fashion by the platform dev team.
 
 === How accepted challenges to the TCK are managed?
 The worflow for TCK challenges is outlined in
-link:$$https://jakarta.ee/committees/specification/tckprocess/$$[Jakarta EE TCK Process 1.2].
+link:$$https://jakarta.ee/committees/specification/tckprocess/$$[Jakarta EE TCK Process {tck-process-version}].
 
-Periodically, an updated TCK will be released, containing tests altered due to challenges - no new tests will be added. Implementations are required to pass the updated TCK. This release stream is named 10.0.x, where x will be incremented.
+Periodically, an updated TCK will be released, containing tests altered due to challenges - no new tests will be added. Implementations are required to pass the updated TCK. This release stream is named {revnumber}.x, where x will be incremented.
 
 

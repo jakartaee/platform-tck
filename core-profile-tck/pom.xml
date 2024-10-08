@@ -80,24 +80,24 @@
         <annotations.api.version>3.0.0</annotations.api.version>
         <apache.httpclient.version>3.1</apache.httpclient.version>
 
-        <cdi.api.version>4.0.0</cdi.api.version>
-        <cdi.tck.version>4.0.6</cdi.tck.version>
+        <cdi.api.version>4.1.0</cdi.api.version>
+        <cdi.tck.version>4.1.0</cdi.tck.version>
         <!-- Required for distribution build, should be overriden for each build -->
         <core.tck.version>${project.version}</core.tck.version>
-        <el.api.version>5.0.0</el.api.version>
+        <el.api.version>6.0.0</el.api.version>
         <inject.api.version>2.0.1</inject.api.version>
         <inject.tck.version>2.0.2</inject.tck.version>
-        <interceptors.api.version>2.1.0</interceptors.api.version>
+        <interceptors.api.version>2.2.0</interceptors.api.version>
         <jsonb.api.version>3.0.0</jsonb.api.version>
         <jsonp.api.version>2.1.0</jsonp.api.version>
         <junit.version>5.8.2</junit.version>
         <maven.compiler.release>17</maven.compiler.release>
-        <rest.api.version>3.1.0</rest.api.version>
-        <rest.tck.version>3.1.1</rest.tck.version>
+        <rest.api.version>4.0.0</rest.api.version>
+        <rest.tck.version>4.0.0</rest.tck.version>
 
         <!-- Test tools/dependencies -->
-        <testng.version>7.4.0</testng.version>
-        <weld.version>5.0.1.Final</weld.version>
+        <testng.version>7.10.2</testng.version>
+        <weld.version>6.0.0.Beta4</weld.version>
     </properties>
 
     <!-- Dependency management -->

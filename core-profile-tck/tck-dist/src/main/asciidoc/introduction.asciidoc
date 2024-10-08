@@ -183,14 +183,14 @@ binary Conformance Tests supplied as part of the Test Suite must be used to cert
 
 *CORE_PROFILE-10* In addition to the instructions and requirements the Core Profile TCK, each Product must pass the following standalone TCKs for the following technologies:
 
-* Jakarta Contexts and Dependency Injection, Lite https://jakarta.ee/specifications/cdi[CDI 4.0].
+* Jakarta Contexts and Dependency Injection, Lite https://jakarta.ee/specifications/cdi[CDI {cdi-version}].
 ** This TCK includes compatibility and signature tests for Jakarta  Jakarta Interceptors.
 ** The Jakarta Contexts and Dependency Injection Language Model TCK included in the CDI distribution.
-* Jakarta Dependency Injection https://jakarta.ee/specifications/dependency-injection/2.0/[DI 2.0]
-* Jakarta JSON Binding https://jakarta.ee/specifications/jsonb/3.0/[JSON-B 3.0]
-* Jakarta JSON Processing https://jakarta.ee/specifications/jsonp/2.1/[JSON-B 2.1]
-* Jakarta RESTful Web Services https://jakarta.ee/specifications/restful-ws/3.1/[Rest 3.1]
-* Signature tests for Jakarta Common Annotations https://jakarta.ee/specifications/annotations/2.1/[Annotations 2.1.1]
+* Jakarta Dependency Injection https://jakarta.ee/specifications/dependency-injection/{di-version}/[DI {di-version}]
+* Jakarta JSON Binding https://jakarta.ee/specifications/jsonb/{jsonb-version}/[JSON-B {jsonb-version}]
+* Jakarta JSON Processing https://jakarta.ee/specifications/jsonp/{jsonp-version}/[JSON-B {jsonp-version}]
+* Jakarta RESTful Web Services https://jakarta.ee/specifications/restful-ws/{rest-version}/[Rest {rest-version}]
+* Signature tests for Jakarta Common Annotations https://jakarta.ee/specifications/annotations/{annotations-version}/[Annotations {annotations-version}]
 
 === About the Jakarta Core Profile TCK
 
@@ -211,11 +211,11 @@ This section lists the applicable requirements and specifications for the Jakart
 
 *  *Jakarta Contexts and Dependency Injection API* - The Java API defined in the CDI specification and provided by the compatible implementation.
 
-*  *Testing platform* - The Jakarta Core Profile TCK requires version 1.7.0.Alpha10 of the Arquillian (http://arquillian.org) and an Arquillian container implementation that can deploy ShrinkWrap `WebArchives` of the test contents. The TCK test suite is based on Junit 5.8.2 (http://junit.org).
+*  *Testing platform* - The Jakarta Core Profile TCK requires version {arquillian-version} of the Arquillian (http://arquillian.org) and an Arquillian container implementation that can deploy ShrinkWrap `WebArchives` of the test contents. The TCK test suite is based on Junit {junit-version} (http://junit.org).
 
-*  *Porting Package* - An implementation of SPIs that are required for the test suite to run the in-container tests and at times extend the Jakarta Core Profile 4.0 API to provide extra information to the TCK.
+*  *Porting Package* - An implementation of SPIs that are required for the test suite to run the in-container tests and at times extend the Jakarta Core Profile {ee-version} API to provide extra information to the TCK.
 
-*  *Compatible implementation* - A compatible implementation runtime for compatibility testing of the Jakarta Platform Enterprise Edition Core Profile 10.
+*  *Compatible implementation* - A compatible implementation runtime for compatibility testing of the Jakarta Platform Enterprise Edition Core Profile {revmajor}.
 
 *  *Jarkarta Container and Dependency Injection (CDI)* - CDI builds on Jakarta Annotations and Jakarta Interceptors, and the standalone CDI TCK provides signature and unit testing for those component specifications. Passing the CDI TCK is sufficient for validation of compatibility of Jakarta Annotations and Jakarta Interceptors.
 
@@ -227,11 +227,11 @@ This section lists the applicable requirements and specifications for the Jakart
 
 The Core Profile TCK includes the following components:
 
-*  *Arquillian 1.7.0.Alpha10*
+*  *Arquillian {arquillian-version}*
 
-*  *Junit 5.8.2*
+*  *Junit {junit-version}*
 
-*  *TestNG 7.4.x*
+*  *TestNG {testng-version}*
 
 *  *Porting Package SPIs* - Extensions to the CDI SPIs to allow testing of a container.
 
@@ -241,5 +241,5 @@ The Core Profile TCK includes the following components:
 
 The Core Profile TCK has been tested on following platforms:
 
-*  WildFly 27 Preview using Eclipse Temurin Java SE 11 and Eclipse Temurin Java SE 17 on Linux based operating systems.
+*  WildFly 34 Preview using Eclipse Temurin Java SE 17 and Eclipse Temurin Java SE 21 on Linux based operating systems.
 
