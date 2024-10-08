@@ -60,6 +60,9 @@ import java.lang.System.Logger;
  * {@see <a href="https://tools.ietf.org/html/rfc6902">RFC 6902</a>}.
  */
 @Tag("tck-javatest")
+@Tag("platform")
+@Tag("web")
+@Tag("jsonp")
 @ExtendWith(ArquillianExtension.class)
 public class PatchJspTest extends ServiceEETest {
 

@@ -64,6 +64,8 @@ import java.lang.System.Logger;
  * {@see <a href="https://tools.ietf.org/html/rfc6902">RFC 6902</a>}.
  */
 @Tag("tck-appclient")
+@Tag("platform")
+@Tag("jsonp")
 @ExtendWith(ArquillianExtension.class)
 public class PatchEjbTest extends ServiceEETest {
 
@@ -121,7 +123,6 @@ public class PatchEjbTest extends ServiceEETest {
     }
     patchtests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + PatchEjbTest.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processClientArchive(patchtests_ejb_vehicle_client, PatchEjbTest.class, resURL);
-    System.out.println("Alwin patchtests_ejb_vehicle_client"+patchtests_ejb_vehicle_client.toString(true));
 
 
 
@@ -164,7 +165,6 @@ public class PatchEjbTest extends ServiceEETest {
       patchtests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
     archiveProcessor.processEjbArchive(patchtests_ejb_vehicle_ejb, PatchEjbTest.class, ejbResURL);
-    System.out.println("Alwin patchtests_ejb_vehicle_ejb"+patchtests_ejb_vehicle_ejb.toString(true));
 
 
     EnterpriseArchive patchtests_ejb_vehicle_client_ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_ejb_vehicle.ear");

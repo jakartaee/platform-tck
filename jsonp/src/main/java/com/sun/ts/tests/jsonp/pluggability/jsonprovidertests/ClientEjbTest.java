@@ -85,6 +85,8 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import java.lang.System.Logger;
 
 @Tag("tck-appclient")
+@Tag("platform")
+@Tag("jsonp")
 @ExtendWith(ArquillianExtension.class)
 public class ClientEjbTest extends ServiceEETest {
 
@@ -92,20 +94,20 @@ public class ClientEjbTest extends ServiceEETest {
 
   private static String packagePath = ClientEjbTest.class.getPackageName().replace(".", "/");
 
-  public final String TEMP_DIR = System.getProperty("java.io.tmpdir", "/tmp");
+  public static final String TEMP_DIR = System.getProperty("java.io.tmpdir", "/tmp");
 
-  private boolean providerJarDeployed = false;
+  private static boolean providerJarDeployed = false;
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) throws Exception {
       logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
   }
 
-  @BeforeEach
-  public void setup() throws Exception {
-    createProviderJar();
-    logger.log(Logger.Level.INFO, "setup ok");
-  }
+  // @BeforeEach
+  // public void setup() throws Exception {
+  //   createProviderJar();
+  //   logger.log(Logger.Level.INFO, "setup ok");
+  // }
 
   @AfterEach
   void logFinishTest(TestInfo testInfo) throws Exception {
@@ -142,9 +144,18 @@ public class ClientEjbTest extends ServiceEETest {
       com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class) 
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
+    jsonp_alternate_provider.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar"), true);
+
+    ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
+    URLClassLoader urlClassLoader = new URLClassLoader(
+        new URL[] { new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar").toURL() },
+        currentThreadClassLoader);
+    Thread.currentThread().setContextClassLoader(urlClassLoader);
+    providerJarDeployed = true;
+  
+  
 
     JavaArchive jsonprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_client.jar");
-    // The class files
     jsonprovidertests_ejb_vehicle_client.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -175,7 +186,6 @@ public class ClientEjbTest extends ServiceEETest {
 
 
     JavaArchive jsonprovidertests_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jsonprovidertests_ejb_vehicle_ejb.jar");
-    // The class files
     jsonprovidertests_ejb_vehicle_ejb.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
@@ -201,7 +211,6 @@ public class ClientEjbTest extends ServiceEETest {
     if(ejbResURL != null) {
       jsonprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
     }
-
     URL jsonURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/jsonArrayWithAllTypesOfData.json");
     jsonprovidertests_ejb_vehicle_ejb.addAsResource(jsonURL, "/jsonArrayWithAllTypesOfData.json");
     jsonURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/jsonObjectWithAllTypesOfData.json");
@@ -228,7 +237,7 @@ public class ClientEjbTest extends ServiceEETest {
 			URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
 			Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
 			currentThreadClassLoader.close();
-			providerJarDeployed = false;
+			// providerJarDeployed = false;
 		}
 	}
 
@@ -245,7 +254,7 @@ public class ClientEjbTest extends ServiceEETest {
       com.sun.ts.tests.jsonp.provider.MyJsonReader.class,
       com.sun.ts.tests.jsonp.provider.MyJsonReaderFactory.class,
       com.sun.ts.tests.jsonp.provider.MyJsonWriter.class,
-      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class) 
+      com.sun.ts.tests.jsonp.provider.MyJsonWriterFactory.class)
       .addAsResource(new UrlAsset(MyJsonProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.spi.JsonProvider")), "META-INF/services/jakarta.json.spi.JsonProvider");
 
     jarArchive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonp_alternate_provider.jar"), true);
@@ -272,12 +281,13 @@ public class ClientEjbTest extends ServiceEETest {
 
   /* Test setup */
 
-    /*
-     * @class.setup_props:
-     * This is needed by the vehicle base classes
-     */
+  /*
+    * @class.setup_props:
+    * This is needed by the vehicle base classes
+    */
   public void setup(String[] args, Properties p) throws Exception {
-
+    // createProviderJar();
+    logger.log(Logger.Level.INFO, "setup ok");
   }
 
   /* Tests */

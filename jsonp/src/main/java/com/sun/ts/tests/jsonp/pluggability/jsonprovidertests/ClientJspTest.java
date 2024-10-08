@@ -83,6 +83,9 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 import java.lang.System.Logger;
 
 @Tag("tck-javatest")
+@Tag("platform")
+@Tag("web")
+@Tag("jsonp")
 @ExtendWith(ArquillianExtension.class)
 public class ClientJspTest extends ServiceEETest {
 
