@@ -103,9 +103,11 @@ public class ClientAppclientTest extends ServiceEETest {
     public static EnterpriseArchive createAppclientDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) throws Exception {
     
         JavaArchive jsonb_alternate_provider_jar = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
-        .addClass(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class)
-        .addClass(com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class)
+        .addClasses(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
+        com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
+        ClientAppclientTest.class)
         .addAsResource(new UrlAsset(com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");    
+        jsonb_alternate_provider_jar.addAsManifestResource(new StringAsset("Main-Class: " + ClientAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
 
 
         JavaArchive jsonbprovidertests_appclient_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonbprovidertests_appclient_vehicle_client.jar");
@@ -118,8 +120,6 @@ public class ClientAppclientTest extends ServiceEETest {
           com.sun.ts.lib.harness.EETest.Fault.class,
           com.sun.ts.lib.harness.EETest.SetupException.class,
           com.sun.ts.lib.harness.ServiceEETest.class,
-          com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
-          com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
           ClientAppclientTest.class
           );
         
@@ -132,6 +132,7 @@ public class ClientAppclientTest extends ServiceEETest {
         EnterpriseArchive jsonbprovidertests_appclient_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_appclient_vehicle.ear");
         jsonbprovidertests_appclient_vehicle_ear.addAsModule(jsonbprovidertests_appclient_vehicle_client);
         jsonbprovidertests_appclient_vehicle_ear.addAsLibrary(jsonb_alternate_provider_jar);
+        jsonbprovidertests_appclient_vehicle_ear.addAsModule(jsonb_alternate_provider_jar);
 
         return jsonbprovidertests_appclient_vehicle_ear;
 
@@ -149,8 +150,8 @@ public class ClientAppclientTest extends ServiceEETest {
 	public void createProviderJar() throws Exception {
         
         JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
-            .addClass(MyJsonbBuilder.class)
-            .addClass(MyJsonbProvider.class)
+            .addClasses(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
+            com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class)
             .addAsResource(new UrlAsset(MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
 
         jarArchive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonb_alternate_provider.jar"), true);

@@ -104,8 +104,11 @@ public class ClientEjbTest extends ServiceEETest {
 
         JavaArchive jsonb_alternate_provider = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
             .addClasses(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
-            com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class)
+            com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
+            ClientEjbTest.class)
             .addAsResource(new UrlAsset(com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
+        jsonb_alternate_provider.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+
 
         JavaArchive jsonbprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonbprovidertests_ejb_vehicle_client.jar");
         jsonbprovidertests_ejb_vehicle_client.addClasses(
@@ -170,6 +173,7 @@ public class ClientEjbTest extends ServiceEETest {
         jsonbprovidertests_ejb_vehicle_ear.addAsModule(jsonbprovidertests_ejb_vehicle_client);
         jsonbprovidertests_ejb_vehicle_ear.addAsModule(jsonbprovidertests_ejb_vehicle_ejb);
         jsonbprovidertests_ejb_vehicle_ear.addAsLibrary(jsonb_alternate_provider);
+        jsonbprovidertests_ejb_vehicle_ear.addAsModule(jsonb_alternate_provider);
         
         return jsonbprovidertests_ejb_vehicle_ear;
 
