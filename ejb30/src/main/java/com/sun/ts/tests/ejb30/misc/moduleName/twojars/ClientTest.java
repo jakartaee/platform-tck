@@ -82,7 +82,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twojars.C
             JavaArchive ejb3_misc_moduleName_twojars_ejb = ShrinkWrap.create(JavaArchive.class, "ejb3_misc_moduleName_twojars_ejb.jar");
             // The class files
             ejb3_misc_moduleName_twojars_ejb.addClasses(
-                com.sun.ts.tests.ejb30.misc.moduleName.twojars.ModuleMBean.class,
                 com.sun.ts.tests.ejb30.misc.moduleName.twojars.ModuleBean.class
             );
             // The ejb-jar.xml descriptor
