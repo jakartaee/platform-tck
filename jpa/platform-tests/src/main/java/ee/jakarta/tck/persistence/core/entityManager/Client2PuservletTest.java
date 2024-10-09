@@ -109,6 +109,7 @@ public class Client2PuservletTest extends ee.jakarta.tck.persistence.core.entity
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
+            com.sun.ts.lib.harness.Status.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.entityManager.Client2.class,

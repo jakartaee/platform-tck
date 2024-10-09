@@ -79,7 +79,7 @@ public class Client2 extends Util {
 			map.putAll(getEntityManager().getProperties());
 			map.put("foo", "bar");
 			displayMap(map);
-			dataBaseName = System.getProperty("jdbc.db");
+			dataBaseName = p.getProperty("jdbc.db");
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
@@ -94,6 +94,13 @@ public class Client2 extends Util {
 
 		}
 	}
+
+	public void cleanupData() throws Exception {
+		logTrace("Cleanup data");
+		removeTestData();
+		cleanup();
+	}
+
 
 	public List<List> getResultSetsFromStoredProcedure(StoredProcedureQuery spq) {
 		logTrace( "in getResultSetsFromStoredProcedure");

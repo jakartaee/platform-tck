@@ -22,9 +22,9 @@ sigtest-maven-plugin in the TCK runner as below.
 
 =======================================================================
 <plugin>
-    <groupId>org.netbeans.tools</groupId>
+    <groupId>jakarta.tck</groupId>
     <artifactId>sigtest-maven-plugin</artifactId>
-    <version>1.5</version>
+    <version>2.2</version>
     <configuration>
         <sigfile>path-to-sig-file-provided-with-TCK</sigfile>
         <packages>jakarta.el</packages>

@@ -27,7 +27,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 @Tag("persistence")
 @Tag("platform")
-@Tag("web")
 @Tag("tck-appclient")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -64,7 +63,7 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
         public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
-            JavaArchive jpa_core_criteriaapi_strquery_stateful3_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_strquery_stateful3_vehicle_client.jar");
+            JavaArchive jpa_core_criteriaapi_strquery_stateful3_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_strquery_vehicles_client.jar");
             // The class files
             jpa_core_criteriaapi_strquery_stateful3_vehicle_client.addClasses(
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -84,7 +83,8 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.criteriaapi.strquery.Client3.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The application-client.xml descriptor
             URL resURL = Client3.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
@@ -96,7 +96,7 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             if(resURL != null) {
               jpa_core_criteriaapi_strquery_stateful3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_core_criteriaapi_strquery_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+            jpa_core_criteriaapi_strquery_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client3.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriaapi_strquery_stateful3_vehicle_client, Client3.class, resURL);
 
