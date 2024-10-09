@@ -60,12 +60,15 @@ import java.lang.System.Logger;
  * {@see <a href="https://tools.ietf.org/html/rfc6902">RFC 6902</a>}.
  */
 @Tag("tck-javatest")
+@Tag("platform")
+@Tag("web")
+@Tag("jsonp")
 @ExtendWith(ArquillianExtension.class)
-public class PatchJspTestsIT extends ServiceEETest {
+public class PatchJspTest extends ServiceEETest {
 
-  private static final Logger logger = System.getLogger(PatchJspTestsIT.class.getName());
+  private static final Logger logger = System.getLogger(PatchJspTest.class.getName());
 
-  private static String packagePath = PatchJspTestsIT.class.getPackageName().replace(".", "/");
+  private static String packagePath = PatchJspTest.class.getPackageName().replace(".", "/");
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
@@ -91,7 +94,7 @@ public class PatchJspTestsIT extends ServiceEETest {
   public static EnterpriseArchive createJspDeployment() throws IOException {
   
     WebArchive patchtests_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "patchtests_jsp_vehicle_web.war");
-    patchtests_jsp_vehicle_web.addClass(PatchJspTestsIT.class)
+    patchtests_jsp_vehicle_web.addClass(PatchJspTest.class)
     .addClass(CommonOperation.class)
     .addClass(PatchCreate.class)
     .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
@@ -116,15 +119,15 @@ public class PatchJspTestsIT extends ServiceEETest {
 
 
     // The web.xml descriptor
-    URL warResURL = PatchServletTestsIT.class.getClassLoader().getResource(packagePath+"/jsp_vehicle_web.xml");
+    URL warResURL = PatchJspTest.class.getClassLoader().getResource(packagePath+"/jsp_vehicle_web.xml");
     if(warResURL != null) {
       patchtests_jsp_vehicle_web.setWebXML(warResURL);
     }
 
     // Web content
-    URL resURL = PatchServletTestsIT.class.getResource("/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
+    URL resURL = PatchJspTest.class.getResource("/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
     patchtests_jsp_vehicle_web.addAsWebResource(resURL, "/jsp_vehicle.jsp");
-    resURL = PatchServletTestsIT.class.getResource("/vehicle/jsp/contentRoot/client.html");
+    resURL = PatchJspTest.class.getResource("/vehicle/jsp/contentRoot/client.html");
     patchtests_jsp_vehicle_web.addAsWebResource(resURL, "/client.html");
 
     
