@@ -60,6 +60,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 
 import java.lang.System.Logger;
 
@@ -71,7 +72,6 @@ import java.lang.System.Logger;
 @Tag("tck-appclient")
 @Tag("jsonb")
 @Tag("platform")
-@Tag("web")
 @ExtendWith(ArquillianExtension.class)
 public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
 
@@ -95,9 +95,9 @@ public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
     // logMsg("cleanup ok");
   }
 
-  private static final Logger logger = System.getLogger(SerializersCustomizationCDIServletTest.class.getName());
+  private static final Logger logger = System.getLogger(SerializersCustomizationCDIEjbTest.class.getName());
 
-  private static String packagePath = SerializersCustomizationCDIServletTest.class.getPackageName().replace(".", "/");
+  private static String packagePath = SerializersCustomizationCDIEjbTest.class.getPackageName().replace(".", "/");
 
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
@@ -112,20 +112,32 @@ public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
   @TargetsContainer("tck-appclient")
   @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-  public static EnterpriseArchive createDeploymentVehicle() {
+  public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
     JavaArchive jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.jar");
-    jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addClass(SerializersCustomizationCDIEjbTest.class)
-        .addClass(com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class)
-        .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
-        .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
-        .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
-        .addClass(com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class)
-        .addClass(com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class)
-        .addClass(com.sun.ts.lib.harness.EETest.class)
-        .addClass(com.sun.ts.lib.harness.EETest.Fault.class)
-        .addClass(com.sun.ts.lib.harness.EETest.SetupException.class)
-        .addClass(com.sun.ts.lib.harness.ServiceEETest.class);
+    jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addClasses(
+        com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+        com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+        com.sun.ts.tests.common.vehicle.VehicleClient.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
+        com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.lib.harness.ServiceEETest.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalSerializer.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListSerializer.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListDeserializerInjected.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializerInjected.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializer.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.AnimalShelterWithInjectedSerializer.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog.class,
+        SerializersCustomizationCDIEjbTest.class
+        );
 
     URL resURL = SerializersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
     if(resURL != null) {
@@ -133,15 +145,15 @@ public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
     }
     jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + SerializersCustomizationCDIEjbTest.class.getName() + "\n"), "MANIFEST.MF");
 
-    // resURL = AdaptersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.jar.sun-application-client.xml");
-    // if(resURL != null) {
-    //     jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addAsManifestResource(resURL, "sun-ejb-jar.xml");
-    // }
-    // archiveProcessor.processEjbArchive(jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client, SerializersCustomizationCDIEjbTest.class, resURL);
+    resURL = SerializersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.jar.sun-application-client.xml");
+    if(resURL != null) {
+        jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
+    }
+
+    archiveProcessor.processClientArchive(jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client, SerializersCustomizationCDIEjbTest.class, resURL);
 
 
     JavaArchive jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb.jar");
-    // The class files
     jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
@@ -152,15 +164,17 @@ public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
         com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.lib.harness.ServiceEETest.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalIdentifier.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedAdapter.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.AnimalShelterInjectedAdapter.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat.class,
-        com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalSerializer.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListSerializer.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListDeserializerInjected.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializerInjected.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializer.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog.class,
+        com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.AnimalShelterWithInjectedSerializer.class,
         SerializersCustomizationCDIEjbTest.class
     );
 
@@ -169,19 +183,17 @@ public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
     if(ejbResURL != null) {
       jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
     }
-
     URL warResURL = SerializersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/beans.xml");
     if(warResURL != null) {
       jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb.addAsManifestResource(warResURL, "beans.xml");
     }
 
-
     // The sun-ejb-jar.xml file need to be added or should this be in in the vendor Arquillian extension?
-    // ejbResURL = SerializersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-    // if(ejbResURL != null) {
-    //     jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-    // }
-    // archiveProcessor.processEjbArchive(jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb, SerializersCustomizationCDIEjbTest.class, ejbResURL);
+    ejbResURL = SerializersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+    if(ejbResURL != null) {
+        jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+    }
+    archiveProcessor.processEjbArchive(jsonb_cdi_customizedmapping_serializers_ejb_vehicle_ejb, SerializersCustomizationCDIEjbTest.class, ejbResURL);
 
     EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_serializers_ejb_vehicle.ear");
     ear.addAsModule(jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client);
