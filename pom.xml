@@ -733,8 +733,6 @@
                             <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
                             <!-- Sort properties -->
                             <sortProperties>true</sortProperties>
-                            <!-- Sort modules -->
-                            <sortModules>true</sortModules>
                             <!-- Sort plugin executions -->
                             <sortExecutions>true</sortExecutions>
                         </sortPom>
@@ -747,6 +745,21 @@
                             <goal>check</goal>
                         </goals>
                         <phase>validate</phase>
+                        <configuration>
+                            <pom combine.children="append">
+                                <sortPom combine.children="append">
+                                    <nrOfIndentSpace>4</nrOfIndentSpace>
+                                    <!-- default see https://github.com/Ekryd/sortpom/wiki/PredefinedSortOrderProfiles -->
+                                    <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                                    <!-- Sort properties -->
+                                    <sortProperties>true</sortProperties>
+                                    <!-- Sort modules -->
+                                    <sortModules>true</sortModules>
+                                    <!-- Sort plugin executions -->
+                                    <sortExecutions>true</sortExecutions>
+                                </sortPom>
+                            </pom>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
