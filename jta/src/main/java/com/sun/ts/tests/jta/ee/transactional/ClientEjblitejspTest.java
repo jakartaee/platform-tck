@@ -72,10 +72,7 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.jta.ee.transactional.
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static WebArchive createDeploymentVehicle() {
-        // War
-        // the war with the correct archive name
         WebArchive transactional_ejblitejsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "transactional_ejblitejsp_vehicle_web.war");
-        // The class files
         transactional_ejblitejsp_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,

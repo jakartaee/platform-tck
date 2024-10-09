@@ -77,6 +77,7 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.class,
+            com.sun.ts.lib.harness.Status.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.tests.common.vehicle.pmservlet.PMServletVehicle.class,
@@ -84,7 +85,7 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.criter
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The web.xml descriptor
             URL warResURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
             if(warResURL != null) {

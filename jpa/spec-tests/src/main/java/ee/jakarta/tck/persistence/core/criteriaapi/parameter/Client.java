@@ -21,6 +21,8 @@ package ee.jakarta.tck.persistence.core.criteriaapi.parameter;
 
 
 
+import java.util.Properties;
+
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public abstract class Client extends PMClientBase {
@@ -76,6 +78,18 @@ public abstract class Client extends PMClientBase {
 				logErr( "Unexpected exception rolling back TX:", fe);
 			}
 		}
+	}
+
+	public void setupEmployee(String[] args, Properties p) throws Exception {
+	   logTrace("setupEmployee");
+	   try {
+		 super.setup(args, p);
+		 removeTestData();
+		 createTestData();
+	   } catch (Exception e) {
+		 logErr("Exception: ", e);
+		 throw new Exception("setupEmployee failed:", e);
+	   }
 	}
 
 	protected void removeTestData() {

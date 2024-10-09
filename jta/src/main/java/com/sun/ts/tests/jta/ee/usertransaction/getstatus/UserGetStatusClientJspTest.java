@@ -53,32 +53,11 @@ public class UserGetStatusClientJspTest extends com.sun.ts.tests.jta.ee.usertran
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    getstatus_ejb_vehicle: 
-    getstatus_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    getstatus_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    getstatus_jsp_vehicle: 
-    getstatus_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    getstatus_servlet_vehicle: 
-    getstatus_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/getstatus/jsp_vehicle_web.xml
-    /com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml
-    Ear:
-
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-    // War
-        // the war with the correct archive name
         WebArchive getstatus_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "getstatus_jsp_vehicle_web.war");
-        // The class files
         getstatus_jsp_vehicle_web.addClasses(
         com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -117,28 +96,8 @@ public class UserGetStatusClientJspTest extends com.sun.ts.tests.jta.ee.usertran
         archiveProcessor.processWebArchive(getstatus_jsp_vehicle_web, UserGetStatusClientJspTest.class, warResURL);
 
 
-    // Ear
         EnterpriseArchive getstatus_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "getstatus_jsp_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
         getstatus_jsp_vehicle_ear.addAsModule(getstatus_jsp_vehicle_web);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/");
-        // if(earResURL != null) {
-        //   getstatus_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // // The sun-application.xml descriptor
-        // earResURL = UserGetStatusClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/getstatus/.ear.sun-application.xml");
-        // if(earResURL != null) {
-        //   getstatus_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        // }
-        // archiveProcessor.processEarArchive(getstatus_jsp_vehicle_ear, UserGetStatusClient.class, earResURL);
-    
         return getstatus_jsp_vehicle_ear;
     }
 

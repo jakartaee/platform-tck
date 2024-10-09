@@ -23,7 +23,7 @@
     https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
   version="3.2">
     <persistence-unit name="CTS-EM" transaction-type="JTA">
-        <provider>com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.PersistenceProvider</provider>
+        <provider>ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.PersistenceProvider</provider>
         <jta-data-source>jdbc/DB1</jta-data-source>
         <mapping-file>META-INF/myMappingFile1.xml</mapping-file>
         <mapping-file>META-INF/myMappingFile2.xml</mapping-file>
@@ -38,7 +38,7 @@
         </properties>
     </persistence-unit>
     <persistence-unit name="CTS-EM2" transaction-type="JTA">
-        <provider>com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.PersistenceProvider</provider>
+        <provider>ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.PersistenceProvider</provider>
         <jta-data-source>jdbc/DB1</jta-data-source>
         <mapping-file>META-INF/myMappingFile1.xml</mapping-file>
         <mapping-file>META-INF/myMappingFile2.xml</mapping-file>

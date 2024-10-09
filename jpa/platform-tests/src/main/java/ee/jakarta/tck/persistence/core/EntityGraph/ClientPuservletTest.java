@@ -73,6 +73,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.EntityG
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
+            ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
             com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
             ee.jakarta.tck.persistence.core.EntityGraph.Client.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
@@ -90,7 +91,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.EntityG
               jpa_core_EntityGraph_puservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               jpa_core_EntityGraph_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }

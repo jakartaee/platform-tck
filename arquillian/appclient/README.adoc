@@ -1,0 +1,6 @@
+= Jakarta EE 11 AppClient Protocol
+
+This is an Arquillian protocol used by the TCK appclient vehicle tests to
+run a Jakarta EE Application Client based test. The logic in the handling of
+the protocol as output to the console of the appclient process is based on how
+the CTS version of the Jakarta TCK in EE 10 behaves.

@@ -59,7 +59,6 @@
       <ejb-ref>
         <ejb-ref-name>ejb/MyEjbReference</ejb-ref-name>
         <ejb-ref-type>Session</ejb-ref-type>
-        <home>com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanHome</home>
         <remote>com.sun.ts.tests.jta.ee.txpropagationtest.TxBean</remote>
       </ejb-ref>
       <resource-ref>

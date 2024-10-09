@@ -89,7 +89,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packa
               jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -128,8 +128,8 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packa
 
 
                 // The resources
-                        libURL = Client.class.getResource("/persistence.xml");
-                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "/persistence.xml");
+                        libURL = Client.class.getResource("persistence.xml");
+                        jpa_ee_packaging_jar_lib.addAsResource(libURL, "persistence.xml");
                         libURL = Client.class.getResource("/orm.xml");
                         jpa_ee_packaging_jar_lib.addAsResource(libURL, "/orm.xml");
                         libURL = Client.class.getResource("/myMappingFile.xml");

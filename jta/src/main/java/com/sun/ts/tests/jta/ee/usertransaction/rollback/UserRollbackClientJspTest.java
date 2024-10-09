@@ -53,32 +53,12 @@ public class UserRollbackClientJspTest extends com.sun.ts.tests.jta.ee.usertrans
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    rollback_ejb_vehicle: 
-    rollback_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    rollback_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    rollback_jsp_vehicle: 
-    rollback_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    rollback_servlet_vehicle: 
-    rollback_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/rollback/jsp_vehicle_web.xml
-    /com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml
-    Ear:
-
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-    // War
-        // the war with the correct archive name
+
         WebArchive rollback_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "rollback_jsp_vehicle_web.war");
-        // The class files
         rollback_jsp_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.lib.harness.EETest.Fault.class,
@@ -118,26 +98,7 @@ public class UserRollbackClientJspTest extends com.sun.ts.tests.jta.ee.usertrans
 
     // Ear
         EnterpriseArchive rollback_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "rollback_jsp_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
         rollback_jsp_vehicle_ear.addAsModule(rollback_jsp_vehicle_web);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/");
-        // if(earResURL != null) {
-        //   rollback_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // // The sun-application.xml descriptor
-        // earResURL = UserRollbackClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/rollback/.ear.sun-application.xml");
-        // if(earResURL != null) {
-        //   rollback_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        // }
-        // archiveProcessor.processEarArchive(rollback_jsp_vehicle_ear, UserRollbackClient.class, earResURL);
-    
         return rollback_jsp_vehicle_ear;
     }
 

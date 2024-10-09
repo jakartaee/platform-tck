@@ -62,7 +62,7 @@ public class Client extends PMClientBase {
 		try {
 			logTrace( "Cleanup data");
 			removeTestData();
-			cleanup();
+			super.cleanup();
 		} finally {
 
         }

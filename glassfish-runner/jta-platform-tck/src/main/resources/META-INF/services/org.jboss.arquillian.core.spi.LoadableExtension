@@ -1,1 +1,1 @@
-org.glassfish.transactions.core.tck.GlassfishLoadableExtension
+org.glassfish.transactions.tck.GlassfishLoadableExtension

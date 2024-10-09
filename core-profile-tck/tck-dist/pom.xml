@@ -57,7 +57,7 @@
             <groupId>jakarta.ee.tck.coreprofile</groupId>
             <artifactId>common-annotations</artifactId>
             <version>${project.version}</version>
-            <classifier>sigtest-jdk11</classifier>
+            <classifier>sigtest</classifier>
             <type>sig</type>
         </dependency>
         <dependency>

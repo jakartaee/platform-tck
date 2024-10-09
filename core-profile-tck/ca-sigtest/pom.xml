@@ -23,6 +23,11 @@
     <name>Common Annotations Signature Gen for Core Profile TCK</name>
     <description>This module contains is run to generate the signature test file</description>
 
+    <properties>
+        <sigtest.file.name>common-annotations-api.sig</sigtest.file.name>
+        <sigtest.path>${project.basedir}/src/main/resources/${sigtest.file.name}</sigtest.path>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>jakarta.annotation</groupId>
@@ -47,9 +52,9 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>src/main/resources/common-annotations-api-jdk11.sig</file>
+                                    <file>${sigtest.path}</file>
                                     <type>sig</type>
-                                    <classifier>sigtest-jdk11</classifier>
+                                    <classifier>sigtest</classifier>
                                 </artifact>
                             </artifacts>
                         </configuration>
@@ -99,15 +104,16 @@
                         </executions>
                     </plugin>
                     <plugin>
-                        <groupId>org.netbeans.tools</groupId>
+                        <groupId>jakarta.tck</groupId>
                         <artifactId>sigtest-maven-plugin</artifactId>
                         <configuration>
-                            <classes>${project.build.directory}/ca-api</classes>
+                            <classes>${project.build.directory}/ca-api/</classes>
                             <packages>jakarta.annotation,
                 jakarta.annotation.security,
                 jakarta.annotation.sql</packages>
                             <attach>false</attach>
-                            <sigfile>${project.build.directory}/common-annotations-api-jdk11.sig</sigfile>
+                            <sigfile>${sigtest.path}</sigfile>
+                            <release>${maven.compiler.release}</release>
                         </configuration>
                         <executions>
                             <execution>

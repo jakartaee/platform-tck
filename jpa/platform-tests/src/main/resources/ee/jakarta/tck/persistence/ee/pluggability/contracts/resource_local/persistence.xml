@@ -23,7 +23,7 @@
     https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
   version="3.2">
     <persistence-unit name="CTS-EM-NOTX" transaction-type="RESOURCE_LOCAL">
-        <provider>com.sun.ts.tests.jpa.common.pluggability.altprovider.implementation.PersistenceProvider</provider>
+        <provider>ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.PersistenceProvider</provider>
         <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
         <mapping-file>META-INF/myMappingFile1.xml</mapping-file>
         <mapping-file>META-INF/myMappingFile2.xml</mapping-file>
