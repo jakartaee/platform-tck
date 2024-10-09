@@ -6,25 +6,34 @@ This chapter explains how to obtain the TCK and supporting software and provides
 
 === Obtaining the Software
 
-You can obtain a release of the Jakarta Core Profile TCK project from the link:$$https://download.eclipse.org/jakartaee/platform/$$[Jakarta EE download site]. The release stream for Jakarta Profile TCK is named _10.0.x_. The Jakarta Core Profile TCK is distributed as a ZIP file, which contains the TCK artifacts (the test suite binary and source, test suite configuration file) in the `artifacts` directory, and documentation in `doc` directory.
+You can obtain a release of the Jakarta Core Profile TCK project from the link:$$https://download.eclipse.org/jakartaee/platform/$$[Jakarta EE download site]. The release stream for Jakarta Profile TCK is named _{revnumber}.x_. The Jakarta Core Profile TCK is distributed as a ZIP file, which contains the TCK artifacts (the test suite binary and source, test suite configuration file) in the `artifacts` directory, and documentation in `doc` directory.
 
-You can also download the current source code from link:$$https://github.com/eclipse-ee4j/jakartaee-tck/core-profile-tck$$[GitHub repository].
+This is the distribution that must be used for compatibility certification requests
 
-Executing the TCK requires a Jakarta EE 10 or newer runtime environment (i.e., application server), to which the test artifacts are deployed and the individual tests are invoked. The TCK does not depend on any particular Jakarta EE implementation.
+==== Obtaining the Software from Repositories/Source
 
-Naturally, to execute Java programs, you must have a Java SE runtime environment. The TCK requires Java SE 11 or newer, which you can obtain from the link:$$http://www.oracle.com/technetwork/java/index.html$$[Java Software] website.
+You may obtain the software from a public repository like Maven Central, or you can also download the current source code from link:$$https://github.com/eclipse-ee4j/jakartaee-tck/core-profile-tck$$[GitHub repository] and build the distribution locally.
+
+These sources of the TCK cannot be used for compatibility certification requests.
+
+=== Jakarta EE {revmajor} Runtime
+Executing the TCK requires a Jakarta EE {revmajor} or newer runtime environment (i.e., application server), to which the test artifacts are deployed and the individual tests are invoked. The TCK does not depend on any particular Jakarta EE implementation.
+
+=== Java SE
+
+Naturally, to execute Java programs, you must have a Java SE runtime environment. The TCK requires Java SE 17 or newer, which you can obtain from the link:$$http://www.oracle.com/technetwork/java/index.html$$[Java Software] or the link:$$https://adoptium.net/temurin/releases/$$[Eclipse Temurin] websites.
 
 === The TCK Environment
 
 The TCK requires the following software to be installed:
 
-* Java SE 11 or newer
+* Java SE 17 or newer
 
-* Maven 3.6 or newer
+* Maven 3.9 or newer
 
-* A Jakarta EE 10 implementation (e.g., WildFly 27.x)
+* A Jakarta EE {revmajor} implementation (e.g., WildFly 34.x)
 
-You should refer to EE 10 implementation instructions for how to install the runtime environment.
+You should refer to EE {revmajor} implementation instructions for how to install the runtime environment.
 
 Unzipping the Jakarta Core Profile TCK archive will create a `core-profile-tck-x.y.z` root folder which contains the TCK contents. To complete the installation, cd into the `artifacts` directory and install the standalone TCKs and Core Profile TCK artifacts using the maven `pom.xml` file. From that directory run:
 

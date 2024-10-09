@@ -1,5 +1,18 @@
 = Technology Compatibility Kit Reference Guide for Jakarta Core Profile
-
+:annotations-version: 3.0
+:arquillian-version: 1.9.2.Final
+:cdi-version: 4.1
+:di-version: 2.0
+:ee-version: 11
+:interceptors-version: 2.2
+:jsonb-version: 3.0
+:jsonp-version: 2.1
+:junit-version: 10.0.2
+:rest-version: 4.0
+:revnumber: 11.0
+:revmajor: 11
+:tck-process-version: 1.4.1
+:testng-version: 7.9.x
 
 [preface]
 == Preface
@@ -7,7 +20,7 @@ This guide describes how to download, install, configure, and run the
 Technology Compatibility Kit (TCK) used to verify the compatibility of an implementation of the Jakarta Core Profile.
 
 The Core Profile TCK is built atop Junit5 framework and Arquillian platform. The Core Profile TCK uses 
-the Arquillian version _1.7.0.Alpha10_ to execute the test suite.
+the Arquillian version _{arquillian-version}_ to execute the test suite.
 
 The Core Profile TCK is provided under link:$$http://www.apache.org/licenses/LICENSE-2.0$$[Apache Public License 2.0].
 
@@ -18,18 +31,18 @@ This guide is for implementors of the Jakarta Core Profile {revnumber} technolog
 
 === Before You Read This Book
 
-Before reading this guide, you should familiarize yourself with the Jakarta EE programming model, specifically the Jakarta Restful Webservices 3.1 and the Jakarta Contexts and Dependency Injection 4.0 specifications. A good resource for the Jakarta EE programming model is the link:$$http://jakarta.ee$$[Jakarta EE] web site.
+Before reading this guide, you should familiarize yourself with the Jakarta EE programming model, specifically the Jakarta Restful Webservices {rest-version} and the Jakarta Contexts and Dependency Injection {cdi-version} specifications. A good resource for the Jakarta EE programming model is the link:$$http://jakarta.ee$$[Jakarta EE] web site.
 
 The Core Profile TCK is based on the following Jakarta technologies:
 
-* Jakarta EE Core Profile https://jakarta.ee/specifications/coreprofile/10/[Core Profile 10.0]
-* Jakarta Annotations https://jakarta.ee/specifications/annotations/2.1/[Annotations 2.1]
-* Jakarta Contexts and Dependency Injection Lite https://jakarta.ee/specifications/cdi[CDI 4.0].
-* Jakarta Dependency Injection https://jakarta.ee/specifications/dependency-injection/2.0/[DI 2.0]
-* Jakarta Interceptors https://jakarta.ee/specifications/interceptors/2.1/[Interceptors 2.1]
-* Jakarta JSON Binding https://jakarta.ee/specifications/jsonb/3.0/[JSON-B 3.0]
-* Jakarta JSON Processing https://jakarta.ee/specifications/jsonp/2.1/[JSON-B 2.1]
-* Jakarta RESTful Web Services https://jakarta.ee/specifications/restful-ws/3.1/[Rest 3.1]
+* Jakarta EE Core Profile https://jakarta.ee/specifications/coreprofile/{ee-version}/[Core Profile {ee-version}]
+* Jakarta Annotations https://jakarta.ee/specifications/annotations/{annotations-version}/[Annotations {annotations-version}]
+* Jakarta Contexts and Dependency Injection Lite https://jakarta.ee/specifications/cdi[CDI {cdi-version}].
+* Jakarta Dependency Injection https://jakarta.ee/specifications/dependency-injection/{di-version}/[DI {di-version}]
+* Jakarta Interceptors https://jakarta.ee/specifications/interceptors/{interceptors-version}/[Interceptors {interceptors-version}]
+* Jakarta JSON Binding https://jakarta.ee/specifications/jsonb/{jsonb-version}/[JSON-B {jsonb-version}]
+* Jakarta JSON Processing https://jakarta.ee/specifications/jsonp/{jsonp-version}/[JSON-P {jsonp-version}]
+* Jakarta RESTful Web Services https://jakarta.ee/specifications/restful-ws/{rest-version}/[Rest {rest-version}]
 
 
 Before running the tests in the Core Profile TCK, optionally read and become familiar with the Arquillian testing platform. A good starting point could be  a series of link:$$http://arquillian.org/guides/$$[Arquillian Guides].
