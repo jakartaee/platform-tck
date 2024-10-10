@@ -1,5 +1,11 @@
 = Jakarta Core Profile TCK Release notes
 
+== Version 11.0.0-M2
+* Fix the artifacts-pom.xml failing to be updated for the new EE 11 component TCKs
+
+== Version 11.0.0-M1
+* Initial milestone test release of the Jakarta Core Profile TCK for EE 11
+
 == Version 10.0.1
 
 Adds bug fixes for two Core Profile TCK challenges:

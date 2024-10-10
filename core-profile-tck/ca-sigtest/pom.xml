@@ -15,7 +15,7 @@
     <parent>
         <groupId>jakarta.tck.coreprofile</groupId>
         <artifactId>core-tck-parent</artifactId>
-        <version>11.0.0-M1</version>
+        <version>11.0.0-M2</version>
     </parent>
     <artifactId>common-annotations</artifactId>
 

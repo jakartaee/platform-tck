@@ -21,7 +21,7 @@
 
     <groupId>jakarta.tck.coreprofile</groupId>
     <artifactId>core-tck-parent</artifactId>
-    <version>11.0.0-M1</version>
+    <version>11.0.0-M2</version>
     <packaging>pom</packaging>
     <name>Jakarta Core TCK</name>
 
@@ -88,14 +88,16 @@
         <cdi.tck.version>4.1.0</cdi.tck.version>
         <jakarta.interceptor-api.version>2.2.0</jakarta.interceptor-api.version>
 
-        <!-- Required for distribution build, should be overriden for each build -->
+        <!-- Required for distribution build, should be overriden for each build. -->
         <core.tck.version>${project.version}</core.tck.version>
         <el.api.version>6.0.0</el.api.version>
         <inject.api.version>2.0.1</inject.api.version>
         <inject.tck.version>2.0.2</inject.tck.version>
         <interceptors.api.version>2.2.0</interceptors.api.version>
         <jsonb.api.version>3.0.0</jsonb.api.version>
+        <jsonb.tck.version>3.0.0</jsonb.tck.version>
         <jsonp.api.version>2.1.0</jsonp.api.version>
+        <jsonp.tck.version>2.1.0</jsonp.tck.version>
         <junit.version>5.8.2</junit.version>
         <maven.compiler.release>17</maven.compiler.release>
         <rest.api.version>4.0.0</rest.api.version>
