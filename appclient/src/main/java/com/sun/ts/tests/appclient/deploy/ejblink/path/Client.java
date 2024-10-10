@@ -20,13 +20,32 @@
 
 package com.sun.ts.tests.appclient.deploy.ejblink.path;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+
+
+
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   private static final String prefix = "java:comp/env/ejb/";
@@ -50,6 +69,87 @@ public class Client extends EETest {
     Status s = theTests.run(args, System.out, System.err);
     s.exit();
   }
+  
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")	
+ 
+	@Deployment(testable = false)
+	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
+	  
+	  EnterpriseArchive ear = null;
+	  	try {
+		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_client.jar");
+		ejbClient.addPackages(true, "com.sun.ts.tests.appclient.deploy.ejblink.path");
+		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+
+		// The appclient-client descriptor
+		URL appClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_path_client.xml");
+		if (appClientUrl != null) {
+			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		// The sun appclient-client descriptor
+		URL sunAppClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_path_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
+		
+		ejbClient.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejblink.path.Client" + "\n"),
+				"MANIFEST.MF");
+
+
+		JavaArchive ejb1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_jar1_ejb.jar");
+		ejb1.addPackages(true, Client.class.getPackage());
+		ejb1.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
+
+		URL resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar1_ejb.jar.sun-ejb-jar.xml");
+
+		if (resURL != null) {
+			ejb1.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+		}
+
+		resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar1_ejb.xml");
+
+		if (resURL != null) {
+			ejb1.addAsManifestResource(resURL, "ejb-jar.xml");
+		}
+		
+		
+		
+		JavaArchive ejb2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_path_jar2_ejb.jar");
+		ejb2.addPackages(true, Client.class.getPackage());
+		ejb2.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
+
+		resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar2_ejb.jar.sun-ejb-jar.xml");
+
+		if (resURL != null) {
+			ejb2.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+		}
+
+		resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/path/appclient_dep_ejblink_path_jar2_ejb.xml");
+
+		if (resURL != null) {
+			ejb2.addAsManifestResource(resURL, "ejb-jar.xml");
+		}
+
+
+		ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejblink_path.ear");
+		ear.addAsModule(ejbClient);
+		ear.addAsModule(ejb1);
+		ear.addAsModule(ejb2);
+	  	}catch(Exception e) {
+	  		e.printStackTrace();
+	  	}
+		return ear;
+	};
+
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -58,16 +158,15 @@ public class Client extends EETest {
    * @class.testArgs: -ap tssql.stmt
    *
    */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Exception("Setup failed:", e);
-    }
-  }
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
+		try {
+			nctx = new TSNamingContext();
+			logMsg("[Client] Setup succeed (got naming context).");
+		} catch (Exception e) {
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
   /**
    * @testName: testScope
@@ -87,6 +186,7 @@ public class Client extends EETest {
    *                 identities (as reported by the String env. entry) match the
    *                 ones specified in the DD.
    */
+  @Test
   public void testScope() throws Exception {
     ReferencedBean bean1 = null;
     ReferencedBean2 bean2 = null;

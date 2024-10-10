@@ -33,7 +33,7 @@
   </resource-ref>
   <resource-ref>
     <res-ref-name>url/URL</res-ref-name>
-    <jndi-name>http://webServerHost:webServerPort/appclient_dep_resref_single_jsp_web/test.jsp</jndi-name>
+    <jndi-name>http://localhost:8080/appclient_dep_resref_single_jsp_web/test.jsp</jndi-name>
   </resource-ref>
   <resource-ref>
     <res-ref-name>jms/myQueueConnectionFactory</res-ref-name>
