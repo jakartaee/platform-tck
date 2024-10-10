@@ -86,7 +86,9 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.Entity
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             ee.jakarta.tck.persistence.core.EntityGraph.Employee3.class,
             ee.jakarta.tck.persistence.core.EntityGraph.Department.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            Client.class,
+            ClientAppmanagedTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");

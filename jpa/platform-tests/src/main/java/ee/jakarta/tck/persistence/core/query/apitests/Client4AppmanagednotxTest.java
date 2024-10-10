@@ -78,7 +78,9 @@ public class Client4AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            Client4.class,
+            Client4AppmanagednotxTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client4.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");

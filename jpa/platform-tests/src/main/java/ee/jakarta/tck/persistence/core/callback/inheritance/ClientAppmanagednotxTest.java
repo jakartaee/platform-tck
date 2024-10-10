@@ -89,6 +89,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.ca
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.callback.common.EntityCallbackClientBase.class,
             ee.jakarta.tck.persistence.core.callback.inheritance.Client.class,
             ClientAppmanagednotxTest.class
             );
