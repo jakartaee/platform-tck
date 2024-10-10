@@ -83,7 +83,9 @@ public class Client3AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.annotations.tableGenerator.Client.class
+            ee.jakarta.tck.persistence.core.annotations.tableGenerator.Client.class,
+            Client3.class,
+            Client3AppmanagednotxTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client3.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");

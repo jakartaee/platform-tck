@@ -83,7 +83,9 @@ public class Client4Stateless3Test extends ee.jakarta.tck.persistence.core.types
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.types.generator.Client.class
+            ee.jakarta.tck.persistence.core.types.generator.Client.class,
+            Client4.class,
+            Client4Stateless3Test.class
             );
             // The application-client.xml descriptor
             URL resURL = Client4.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
