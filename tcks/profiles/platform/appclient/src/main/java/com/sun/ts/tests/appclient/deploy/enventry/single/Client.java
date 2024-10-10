@@ -20,13 +20,30 @@
 
 package com.sun.ts.tests.appclient.deploy.enventry.single;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.enventry.single.TestCode;
 
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   private TSNamingContext nctx = null;
@@ -38,6 +55,36 @@ public class Client extends EETest {
     Status s = theTests.run(args, System.out, System.err);
     s.exit();
   }
+  
+  
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")	
+
+	@Deployment(testable = false)
+	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
+		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_enventry_single_client.jar");
+		ejbClient.addPackages(true, Client.class.getPackage());
+		ejbClient.addClasses(Client.class, TestCode.class);
+		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+
+		// The appclient-client descriptor
+		URL appClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/enventry/single/appclient_dep_enventry_single_client.xml");
+		if (appClientUrl != null) {
+			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		
+		ejbClient.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.enventry.single.Client" + "\n"),
+				"MANIFEST.MF");
+
+
+		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_enventry_single.ear");
+		ear.addAsModule(ejbClient);
+		return ear;
+	};
+
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -64,6 +111,7 @@ public class Client extends EETest {
    *                 its runtime value match the DD value.
    *
    */
+  @Test
   public void testString() throws Exception {
     boolean pass;
 
@@ -87,6 +135,7 @@ public class Client extends EETest {
    *                 its runtime value match the DD value.
    *
    */
+  @Test
   public void testBoolean() throws Exception {
     boolean pass;
 
@@ -110,6 +159,7 @@ public class Client extends EETest {
    *                 its runtime value match the DD value.
    *
    */
+  @Test
   public void testByte() throws Exception {
     boolean pass;
 
@@ -133,6 +183,7 @@ public class Client extends EETest {
    *                 its runtime value match the DD value.
    *
    */
+  @Test
   public void testShort() throws Exception {
     boolean pass;
 
@@ -156,6 +207,7 @@ public class Client extends EETest {
    *                 its runtime value match the DD value.
    *
    */
+  @Test
   public void testInteger() throws Exception {
     boolean pass;
 
@@ -179,6 +231,7 @@ public class Client extends EETest {
    *                 its runtime value match the DD value.
    *
    */
+  @Test
   public void testLong() throws Exception {
     boolean pass;
 
@@ -202,6 +255,7 @@ public class Client extends EETest {
    *                 its runtime value match the DD value.
    *
    */
+  @Test
   public void testFloat() throws Exception {
     boolean pass;
 
@@ -225,6 +279,7 @@ public class Client extends EETest {
    *                 its runtime value match the DD value.
    *
    */
+  @Test
   public void testDouble() throws Exception {
     boolean pass;
     Double value;
@@ -249,6 +304,7 @@ public class Client extends EETest {
    *                 check that their runtime value match their DD value.
    *
    */
+  @Test
   public void testAll() throws Exception {
     try {
       logTrace("[Client] testAll() : starting...");
