@@ -20,9 +20,17 @@ package ee.jakarta.tck.persistence.core.annotations.basic;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Properties;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 public class Client2 extends Client {
+
+	public static void main(String[] args) {
+		Client2 theTests = new Client2();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	}
+  
 	
 	public Client2() {
 	}
