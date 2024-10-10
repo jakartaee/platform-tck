@@ -13,7 +13,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>jakarta.ee.tck.coreprofile</groupId>
+  <groupId>jakarta.tck.coreprofile</groupId>
   <artifactId>core-profile-tck-dependencies</artifactId>
   <packaging>pom</packaging>
   <!-- This is set to project release version during assembly -->
@@ -44,41 +44,41 @@
               <target>
                 <mkdir dir="downloads/tcks"/>
                 <!-- download file -->
-                <get src="https://download.eclipse.org/jakartaee/jsonp/2.1/jakarta-jsonp-tck-2.1.0.zip"
+                <get src="https://download.eclipse.org/jakartaee/jsonp/2.1/jakarta-jsonp-tck-${jsonp.tck.version}.zip"
 
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/jsonb/3.0/jakarta-jsonb-tck-3.0.0.zip"
+                <get src="https://download.eclipse.org/jakartaee/jsonb/3.0/jakarta-jsonb-tck-${jsonb.tck.version}.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/restful-ws/3.1/jakarta-restful-ws-tck-3.1.1.zip"
+                <get src="https://download.eclipse.org/jakartaee/restful-ws/4.0/jakarta-restful-ws-tck-${rest.tck.version}.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/cdi/4.0/cdi-tck-${cdi.tck.dist.version}-dist.zip"
+                <get src="https://download.eclipse.org/jakartaee/cdi/4.1/cdi-tck-${cdi.tck.dist.version}-dist.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <get src="https://download.eclipse.org/jakartaee/dependency-injection/2.0/jakarta.inject-tck-2.0.2-bin.zip"
+                <get src="https://download.eclipse.org/jakartaee/dependency-injection/2.0/jakarta.inject-tck-${inject.tck.version}-bin.zip"
                      dest="downloads/tcks/"
                      verbose="false"
                      usetimestamp="true"/>
-                <unzip src="downloads/tcks/jakarta-jsonp-tck-2.1.0.zip" dest="downloads/tcks/" />
-                <unzip src="downloads/tcks/jakarta-jsonb-tck-3.0.0.zip" dest="downloads/tcks/" />
-                <unzip src="downloads/tcks/jakarta-restful-ws-tck-3.1.1.zip" dest="downloads/tcks/rest-tck" />
+                <unzip src="downloads/tcks/jakarta-jsonp-tck-${jsonp.tck.version}.zip" dest="downloads/tcks/" />
+                <unzip src="downloads/tcks/jakarta-jsonb-tck-${jsonb.tck.version}.zip" dest="downloads/tcks/" />
+                <unzip src="downloads/tcks/jakarta-restful-ws-tck-${rest.tck.version}.zip" dest="downloads/tcks/rest-tck" />
                 <unzip src="downloads/tcks/cdi-tck-${cdi.tck.dist.version}-dist.zip" dest="downloads/tcks/" />
-                <unzip src="downloads/tcks/jakarta.inject-tck-2.0.2-bin.zip" dest="downloads/tcks/" />
+                <unzip src="downloads/tcks/jakarta.inject-tck-${inject.tck.version}-bin.zip" dest="downloads/tcks/" />
 
 
                 <exec executable="/bin/bash" dir="downloads/tcks/jsonp-tck/artifacts">
                   <arg value="artifact-install.sh"/>
-                  <arg value="2.1.0" />
+                  <arg value="${jsonp.tck.version}" />
                 </exec>
                 <exec executable="/bin/bash" dir="downloads/tcks/jsonb-tck/artifacts">
                   <arg value="artifact-install.sh"/>
-                  <arg value="3.0.0" />
+                  <arg value="${jsonb.tck.version}" />
                 </exec>
                 <exec executable="mvn" dir="downloads/tcks/cdi-tck-${cdi.tck.dist.version}/artifacts">
                   <arg value="install"/>
@@ -100,7 +100,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <groupId>jakarta.tck.coreprofile</groupId>
               <artifactId>core-tck-parent</artifactId>
               <version>${project.version}</version>
               <packaging>pom</packaging>
@@ -116,7 +116,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <groupId>jakarta.tck.coreprofile</groupId>
               <artifactId>core-tck-jsonp-extension</artifactId>
               <version>${project.version}</version>
               <packaging>jar</packaging>
@@ -132,7 +132,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <groupId>jakarta.tck.coreprofile</groupId>
               <artifactId>core-profile-tck-impl</artifactId>
               <version>${project.version}</version>
               <packaging>jar</packaging>
@@ -148,7 +148,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <groupId>jakarta.tck.coreprofile</groupId>
               <artifactId>cdi-lite-tck-suite</artifactId>
               <version>${project.version}</version>
               <packaging>jar</packaging>
@@ -163,7 +163,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <groupId>jakarta.tck.coreprofile</groupId>
               <artifactId>cdi-lite-tck-suite</artifactId>
               <version>${project.version}</version>
               <packaging>xml</packaging>
@@ -179,7 +179,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <groupId>jakarta.tck.coreprofile</groupId>
               <artifactId>common-annotations</artifactId>
               <version>${project.version}</version>
               <packaging>sig</packaging>
@@ -198,9 +198,9 @@
             <configuration>
               <groupId>jakarta.ws.rs</groupId>
               <artifactId>jakarta-restful-ws-tck</artifactId>
-              <version>3.1.1</version>
+              <version>${rest.tck.version}</version>
               <packaging>jar</packaging>
-              <file>downloads/tcks/rest-tck/jakarta-restful-ws-tck-3.1.1.jar</file>
+              <file>downloads/tcks/rest-tck/restful-ws-tck/artifacts/jakarta-restful-ws-tck-${rest.tck.version}.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
@@ -211,7 +211,7 @@
             </goals>
             <phase>prepare-package</phase>
             <configuration>
-              <groupId>jakarta.ee.tck.coreprofile</groupId>
+              <groupId>jakarta.tck.coreprofile</groupId>
               <artifactId>rest-tck-suite</artifactId>
               <version>${project.version}</version>
               <file>rest-tck-suite-${project.version}.jar</file>
@@ -228,9 +228,9 @@
             <configuration>
               <groupId>jakarta.inject</groupId>
               <artifactId>jakarta.inject-tck</artifactId>
-              <version>2.0.2</version>
+              <version>${inject.tck.version}</version>
               <packaging>jar</packaging>
-              <file>downloads/tcks/jakarta.inject-tck-2.0.2/jakarta.inject-tck-2.0.2.jar</file>
+              <file>downloads/tcks/jakarta.inject-tck-${inject.tck.version}/jakarta.inject-tck-${inject.tck.version}.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
@@ -246,8 +246,8 @@
               <artifactId>cdi-tck-core-impl</artifactId>
               <version>${cdi.tck.dist.version}</version>
               <packaging>sig</packaging>
-              <classifier>sigtest-jdk11</classifier>
-              <file>downloads/tcks/cdi-tck-${cdi.tck.dist.version}/artifacts/cdi-tck-core-impl-${cdi.tck.dist.version}-sigtest-jdk11.sig</file>
+              <classifier>sigtest-jdk17</classifier>
+              <file>downloads/tcks/cdi-tck-${cdi.tck.dist.version}/artifacts/cdi-tck-core-impl-${cdi.tck.dist.version}-sigtest-jdk17.sig</file>
               <generatePom>false</generatePom>
             </configuration>
           </execution>

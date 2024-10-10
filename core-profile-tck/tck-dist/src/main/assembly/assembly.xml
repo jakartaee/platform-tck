@@ -30,7 +30,7 @@
 
       <!-- A maven pom.xml to install the TCK artifacts into a local maven repo -->
       <file>
-         <source>artifacts-pom.xml</source>
+         <source>src/main/resources/artifacts-pom.xml</source>
          <destName>pom.xml</destName>
          <outputDirectory>artifacts</outputDirectory>
          <filtered>true</filtered>
@@ -70,12 +70,12 @@
    <dependencySets>
       <dependencySet>
          <includes>
-            <include>jakarta.ee.tck.coreprofile:core-tck-parent</include>
-            <include>jakarta.ee.tck.coreprofile:common-annotations</include>
-            <include>jakarta.ee.tck.coreprofile:cdi-lite-tck-suite</include>
-            <include>jakarta.ee.tck.coreprofile:rest-tck-suite</include>
-            <include>jakarta.ee.tck.coreprofile:core-profile-tck-impl</include>
-            <include>jakarta.ee.tck.coreprofile:core-tck-jsonp-extension</include>
+            <include>jakarta.tck.coreprofile:core-tck-parent</include>
+            <include>jakarta.tck.coreprofile:common-annotations</include>
+            <include>jakarta.tck.coreprofile:cdi-lite-tck-suite</include>
+            <include>jakarta.tck.coreprofile:rest-tck-suite</include>
+            <include>jakarta.tck.coreprofile:core-profile-tck-impl</include>
+            <include>jakarta.tck.coreprofile:core-tck-jsonp-extension</include>
          </includes>
          <useTransitiveDependencies>true</useTransitiveDependencies>
          <outputDirectory>artifacts</outputDirectory>
