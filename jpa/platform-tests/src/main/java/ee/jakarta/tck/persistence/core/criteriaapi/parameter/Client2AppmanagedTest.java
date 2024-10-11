@@ -97,6 +97,7 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client2.class,
+            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class,
             Client2AppmanagedTest.class
             );
             // The application-client.xml descriptor

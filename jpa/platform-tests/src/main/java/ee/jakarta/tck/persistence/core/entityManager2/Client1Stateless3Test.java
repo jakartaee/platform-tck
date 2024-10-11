@@ -85,6 +85,8 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.entit
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.entityManager2.Employee.class,
+            ee.jakarta.tck.persistence.core.entityManager2.Order.class,
             ee.jakarta.tck.persistence.core.entityManager2.Client1.class,
             Client1Stateless3Test.class
             );

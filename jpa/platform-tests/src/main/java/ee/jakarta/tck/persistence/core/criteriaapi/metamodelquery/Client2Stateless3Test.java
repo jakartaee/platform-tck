@@ -96,8 +96,8 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            Client1.class,
-            Client1AppmanagednotxTest.class
+            Client2.class,
+            Client2Stateless3Test.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");

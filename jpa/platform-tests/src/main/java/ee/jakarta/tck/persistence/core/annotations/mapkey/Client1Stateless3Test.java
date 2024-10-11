@@ -138,6 +138,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.annot
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.mapkey.Department.class,
+            ee.jakarta.tck.persistence.core.annotations.mapkey.Employee.class,
             ee.jakarta.tck.persistence.core.annotations.mapkey.Client.class,
             ee.jakarta.tck.persistence.core.annotations.mapkey.Client1.class,
             Client1Stateless3Test.class

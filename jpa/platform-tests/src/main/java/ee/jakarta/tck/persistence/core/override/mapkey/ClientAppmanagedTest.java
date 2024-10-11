@@ -84,6 +84,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.overri
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.mapkeycolumn.Employee.class,
+            ee.jakarta.tck.persistence.core.annotations.mapkeycolumn.Department.class,
             Client.class,
             ClientAppmanagedTest.class
             );

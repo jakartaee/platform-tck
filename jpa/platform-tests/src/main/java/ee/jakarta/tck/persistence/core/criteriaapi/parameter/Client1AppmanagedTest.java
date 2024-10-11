@@ -84,6 +84,7 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class,
+            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class,
             Client1.class,
             Client1AppmanagedTest.class
             );
