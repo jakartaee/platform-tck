@@ -24,6 +24,7 @@
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.9</version>
+        <relativePath></relativePath>
     </parent>
     <groupId>jakarta.tck</groupId>
     <artifactId>websocket-tck</artifactId>
