@@ -1,5 +1,8 @@
 = Jakarta Core Profile TCK Release notes
 
+== Version 11.0.0-M3
+* Update component specification API and TCK versions to the latest service releases
+
 == Version 11.0.0-M2
 * Fix the artifacts-pom.xml failing to be updated for the new EE 11 component TCKs
 
