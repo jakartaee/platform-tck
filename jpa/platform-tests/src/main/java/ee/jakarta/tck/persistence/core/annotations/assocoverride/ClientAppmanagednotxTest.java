@@ -93,6 +93,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.an
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.assocoverride.Employee.class,
             ee.jakarta.tck.persistence.core.annotations.assocoverride.PartTimeEmployee.class,
+            ee.jakarta.tck.persistence.core.annotations.assocoverride.Address.class,
             ee.jakarta.tck.persistence.core.annotations.assocoverride.Client.class,
             ClientAppmanagednotxTest.class
             );

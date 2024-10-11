@@ -85,6 +85,7 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.annotat
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.mapkeycolumn.Employee.class,
             ee.jakarta.tck.persistence.core.annotations.mapkeycolumn.Department.class,
+            ee.jakarta.tck.persistence.core.annotations.mapkeycolumn.Department2.class,
             Client.class,
             ClientStateful3Test.class
             );
