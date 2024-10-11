@@ -83,6 +83,8 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.inherit
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            ee.jakarta.tck.persistence.core.inheritance.abstractentity.FullTimeEmployee.class,
+            ee.jakarta.tck.persistence.core.inheritance.abstractentity.Employee.class,
             Client.class,
             ClientStateful3Test.class
             );
