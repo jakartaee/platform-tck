@@ -128,7 +128,7 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.entit
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.entityManager.Client2.class,
             Client2AppmanagedTest.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(resURL != null) {

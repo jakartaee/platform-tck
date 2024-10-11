@@ -96,6 +96,7 @@ public class Client2Stateless3Test extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class,
+            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class,
             Client2.class,
             Client2Stateless3Test.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());;
