@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -30,7 +31,6 @@ import com.sun.ts.tests.ejb30.assembly.appres.common.AppResRemoteIF;
 import com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 
-import jakarta.annotation.Resource;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -44,17 +44,12 @@ public class TestServlet2 extends TestServletBase {
 
   // See comments in TestServlet
 
-  @Resource
-  private ModuleMBean moduleMBean;
-
   // @EJB(lookup="java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean")
   // private AppResRemoteIF moduleBean;
 
   private void nonPostConstruct() {
     postConstructRecords = new StringBuilder();
 
-    lookupShouldFail("java:app/two_standalone_component_web/ModuleMBean",
-        postConstructRecords);
     lookupShouldFail("java:app/two_standalone_component_web/Module2Bean",
         postConstructRecords);
 
@@ -68,15 +63,13 @@ public class TestServlet2 extends TestServletBase {
     Helper.getLogger().info(postConstructRecords.toString());
 
     // assertNotEquals(null, null, moduleBean, postConstructRecords);
-    assertNotEquals(null, null, moduleMBean, postConstructRecords);
     assertNotEquals(null, null, module2Bean, postConstructRecords);
 
     AppResRemoteIF lookupResult = null;
     String[] names = {
 
-        "java:module/ModuleMBean", "java:module/Module2Bean",
+        "java:module/Module2Bean",
 
-        "java:app/renamed2_twowars_web/ModuleMBean",
         "java:app/renamed2_twowars_web/Module2Bean",
 
         "java:global/ejb3_misc_moduleName_twowars/renamed_twowars_web/ModuleBean",

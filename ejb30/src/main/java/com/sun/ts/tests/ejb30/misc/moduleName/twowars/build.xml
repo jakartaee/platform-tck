@@ -2,6 +2,7 @@
 <!--
 
     Copyright (c) 2018 Oracle and/or its affiliates. All rights reserved.
+    Copyright (c) 2024 Contributors to the Eclipse Foundation
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -37,7 +38,6 @@ com/sun/ts/tests/ejb30/assembly/appres/common/AppResBeanBase.class
     
   <property name="war.classes" value="
     com/sun/ts/tests/ejb30/misc/moduleName/twowars/ModuleBean.class,
-    com/sun/ts/tests/ejb30/misc/moduleName/twowars/ModuleMBean.class,
   com/sun/ts/tests/servlet/common/servlets/HttpTCKServlet.class,
   com/sun/ts/tests/servlet/common/util/Data.class,
   com/sun/ts/tests/ejb30/assembly/appres/common/TestServletBase.class,
@@ -49,8 +49,7 @@ com/sun/ts/tests/ejb30/assembly/appres/common/AppResBeanBase.class
   com/sun/ts/tests/servlet/common/util/Data.class,
   com/sun/ts/tests/ejb30/assembly/appres/common/TestServletBase.class,
   com/sun/ts/tests/ejb30/misc/moduleName/twowars/TestServlet2.class,
-    com/sun/ts/tests/ejb30/misc/moduleName/twowars/Module2Bean.class,
-    com/sun/ts/tests/ejb30/misc/moduleName/twowars/ModuleMBean.class"
+    com/sun/ts/tests/ejb30/misc/moduleName/twowars/Module2Bean.class"
   />
     
   <target name="-postcompile" description="Post dependency target for the compile target">

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2022 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -76,12 +77,6 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     @EJB
     private DataSourceIF dataSourceBean;
     
-    @Resource
-    private DataSourceMBean dataSourceMBean;
-    
-    @Resource
-    private DataSourceRepeatableBean dataSourceRBean;
-    
     @Resource(lookup="java:comp/env/jsfcompds")
     private DataSource jsfcompds;
     
@@ -94,12 +89,6 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
     @Resource(lookup="java:comp/env/defaultds2")
     private DataSource defaultds2;
     
-    @Resource(lookup="java:module/env/moduleds")
-    private DataSource moduleds;
-  
-    @Resource(lookup="java:module/env/moduleds2")
-    private DataSource moduleds2;
-    
     @SuppressWarnings("unused")
     @PostConstruct
     private void postConstruct() {
@@ -107,9 +96,8 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
         Helper.getLogger().info("In postConstruct of " + this);
         
         verifyDataSource(getReasonBuffer(), c, "java:comp/env/defaultds", "java:comp/env/defaultds2", 
-                                               "java:comp/env/jsfcompds", "java:comp/env/jsfcompds2",
-                                               "java:module/env/moduleds", "java:module/env/moduleds2");
-        verifyDataSource(getReasonBuffer(), c, defaultds, defaultds2, jsfcompds, jsfcompds2, moduleds, moduleds2);
+                                               "java:comp/env/jsfcompds", "java:comp/env/jsfcompds2");
+        verifyDataSource(getReasonBuffer(), c, defaultds, defaultds2, jsfcompds, jsfcompds2);
 
         verifyDataSource(getReasonBuffer(), c, jsfcompds, jsfcompds2);
     }
@@ -130,24 +118,6 @@ public class JsfClient extends EJBLiteJsfClientBase implements Serializable {
      */
     public void postConstructRecordsEJB() {
         appendReason(dataSourceBean.getPostConstructRecords());
-    }
-    
-    /*
-     * @testName: postConstructRecordsMBean
-     * @test_Strategy: look up the data sources declared with annotation in managed bean, 
-     * and verify the injected datasource inside its PostConstruct method.
-     */
-    public void postConstructRecordsMBean() {
-        appendReason(dataSourceMBean.getPostConstructRecords());
-    }
-    
-    /*
-     * @testName: postConstructRecordsMBeanRepeatable
-     * @test_Strategy: look up the data sources declared with repeatable annotation in managed bean, 
-     * and verify the injected datasource inside its PostConstruct method.
-     */
-    public void postConstructRecordsMBeanRepeatable() {
-        appendReason(dataSourceRBean.getPostConstructRecords());
     }
     
     /*
