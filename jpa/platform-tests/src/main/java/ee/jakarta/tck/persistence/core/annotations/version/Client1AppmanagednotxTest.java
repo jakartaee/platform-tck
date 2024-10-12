@@ -106,7 +106,7 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_annotations_version_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_annotations_version_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_annotations_version_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client1.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -248,6 +248,5 @@ public class Client1AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
         public void integerPropertyTest() throws java.lang.Exception {
             super.integerPropertyTest();
         }
-
 
 }
