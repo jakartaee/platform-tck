@@ -94,7 +94,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.query.
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_query_parameter_stateful3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_query_parameter_stateful3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_query_parameter_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client2.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -222,6 +222,5 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.query.
         public void parameterNamedParameterTwiceTest() throws java.lang.Exception {
             super.parameterNamedParameterTwiceTest();
         }
-
 
 }
