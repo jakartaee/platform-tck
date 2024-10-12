@@ -274,25 +274,40 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <!-- common configuration shared by all executions -->
+                <configuration>
+                    <driver>org.apache.derby.jdbc.ClientDriver</driver>
+                    <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
+                    <username>CTS1</username>
+                    <password>CTS1</password>
+                    <autocommit>true</autocommit>
+                    <delimiter>;</delimiter>
+                    <onError>continue</onError>
+                </configuration>
+                <dependencies>
+                    <!-- specify the dependent jdbc driver here -->
+                    <dependency>
+                        <groupId>org.apache.derby</groupId>
+                        <artifactId>derbyclient</artifactId>
+                        <version>10.15.2.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.derby</groupId>
+                        <artifactId>derbytools</artifactId>
+                        <version>10.15.2.0</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
-                        <id>initdb</id>
+                        <id>sql-cli</id>
                         <goals>
-                            <goal>run</goal>
+                            <goal>execute</goal>
                         </goals>
                         <phase>pre-integration-test</phase>
                         <configuration>
-                            <target>
-                                <path id="jdbc.classpath">
-                                    <pathelement path="${jdbc.driver.classes}"></pathelement>
-                                    <path refid="maven.runtime.classpath"></path>
-                                </path>
-                                <sql autocommit="true" classpathref="jdbc.classpath" delimiter="${db.delimiter}" driver="${jdbc.driver}" onerror="continue" password="${jdbc.password}" url="${jdbc.url}" userid="${jdbc.user}">
-                                    <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sql"></transaction>
-                                </sql>
-                            </target>
+                            <sqlCommand>CREATE SCHEMA CTS1 AUTHORIZATION CTS1;</sqlCommand>
                         </configuration>
                     </execution>
                 </executions>

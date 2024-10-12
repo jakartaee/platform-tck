@@ -36,7 +36,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.tests.jdbc.ee.batchUpdate.batchUpdateClientJSP;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -83,7 +82,7 @@ public class dbMetaClient12JSP extends dbMetaClient12 implements Serializable {
      	archive.addAsWebInfResource(sunJSPUrl, "sun-web.xml");
      }
      // Call the archive processor
-     archiveProcessor.processWebArchive(archive, batchUpdateClientJSP.class, sunJSPUrl);
+     archiveProcessor.processWebArchive(archive, dbMetaClient12JSP.class, sunJSPUrl);
 
 		archive.addAsWebInfResource(dbMetaClient12JSP.class.getPackage(), "jsp_vehicle_web.xml", "web.xml");
 		

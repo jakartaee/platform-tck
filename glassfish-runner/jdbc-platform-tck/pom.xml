@@ -30,34 +30,12 @@
     <packaging>jar</packaging>
     <properties>
         <arquillian.core.version>1.9.1.Final</arquillian.core.version>
-        <connectionpoolid>cts-derby-pool</connectionpoolid>
-        <datasourceclassname>org.apache.derby.jdbc.ClientDataSource</datasourceclassname>
-        <db.delimiter>;</db.delimiter>
-        <derby.dbName>derbyDB</derby.dbName>
-        <derby.passwd>cts1</derby.passwd>
-        <derby.port>1527</derby.port>
-        <derby.server>localhost</derby.server>
-        <derby.user>cts1</derby.user>
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
         <glassfish.home>${project.build.directory}/glassfish7</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
-        <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
         <jdbc.db>derby</jdbc.db>
-        <jdbc.driver>org.apache.derby.jdbc.ClientDriver</jdbc.driver>
-        <jdbc.driver.classes>${javadb.lib}/derbyclient.jar:${javadb.lib}/derbyshared.jar:${javadb.lib}/derbytools.jar</jdbc.driver.classes>
-        <jdbc.maxpoolsize>64</jdbc.maxpoolsize>
-        <jdbc.password>cts1</jdbc.password>
-        <jdbc.steadypoolsize>32</jdbc.steadypoolsize>
-        <jdbc.url>jdbc:derby://localhost:1527/derbyDB;create=true</jdbc.url>
-        <jdbc.user>cts1</jdbc.user>
-        <jndiName>jdbc/DB1</jndiName>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <pool.properties>DatabaseName=${derby.dbName}:user=${derby.user}:password=${derby.passwd}:serverName=${derby.server}:portNumber=${derby.port}</pool.properties>
-        <poolName>cts-derby-pool</poolName>
-        <restype>javax.sql.DataSource</restype>
         <sql.directory>./sql</sql.directory>
-        <tck.artifactId>jakarta.tck.jdbc</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
     </properties>
     <dependencyManagement>
@@ -95,19 +73,7 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>jdbc</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>dbprocedures</artifactId>
-            <version>3.2.0</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>jakarta.persistence</groupId>
-                    <artifactId>jakarta.persistence-api</artifactId>
-                </exclusion>
-            </exclusions>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
@@ -155,16 +121,6 @@
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <version>1.6</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbytools</artifactId>
-            <version>10.15.2.0</version>
         </dependency>
     </dependencies>
     <build>
@@ -237,20 +193,6 @@
                                     <destFileName>jdbc-tck.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
-                                    <groupId>org.apache.derby</groupId>
-                                    <artifactId>derbyclient</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>derbyclient.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.apache.derby</groupId>
-                                    <artifactId>derbytools</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>derbytools.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>
                                     <overWrite>true</overWrite>
@@ -280,112 +222,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>2-start-domain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>start-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>3-start-database</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>start-database</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>4-create-jdbc-pool</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>create-jdbc-connection-pool</argument>
-                                <argument>--restype</argument>
-                                <argument>${restype}</argument>
-                                <argument>--datasourceclassname</argument>
-                                <argument>${datasourceclassname}</argument>
-                                <argument>--property</argument>
-                                <argument>${pool.properties}</argument>
-                                <argument>--steadypoolsize</argument>
-                                <argument>${jdbc.steadypoolsize}</argument>
-                                <argument>--maxpoolsize</argument>
-                                <argument>${jdbc.maxpoolsize}</argument>
-                                <argument>${poolName}</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>5-create-jndi</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>create-jdbc-resource</argument>
-                                <argument>--connectionpoolid</argument>
-                                <argument>${poolName}</argument>
-                                <argument>${jndiName}</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>6-list-jdbc-connection-pools</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>list-jdbc-connection-pools</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>7-list-jdbc-resources</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>list-jdbc-resources</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>8-stop-domain</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <executable>${exec.asadmin}</executable>
-                            <arguments>
-                                <argument>stop-domain</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>9-start-database</id>
+                        <id>2-start-database</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -400,55 +237,46 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <!-- common configuration shared by all executions -->
+                <configuration>
+                    <driver>org.apache.derby.jdbc.ClientDriver</driver>
+                    <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
+                    <username>CTS1</username>
+                    <password>CTS1</password>
+                    <autocommit>true</autocommit>
+                    <delimiter>;</delimiter>
+                    <onError>continue</onError>
+                </configuration>
+                <dependencies>
+                    <!-- specify the dependent jdbc driver here -->
+                    <dependency>
+                        <groupId>org.apache.derby</groupId>
+                        <artifactId>derbyclient</artifactId>
+                        <version>10.15.2.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.derby</groupId>
+                        <artifactId>derbytools</artifactId>
+                        <version>10.15.2.0</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
-                        <id>initdb</id>
+                        <id>sql-cli</id>
                         <goals>
-                            <goal>run</goal>
+                            <goal>execute</goal>
                         </goals>
                         <phase>pre-integration-test</phase>
                         <configuration>
-                            <target>
-                                <path id="jdbc.classpath">
-                                    <pathelement path="${jdbc.driver.classes}"></pathelement>
-                                    <path refid="maven.runtime.classpath"></path>
-                                </path>
-                                <sql autocommit="true" classpathref="jdbc.classpath" delimiter="${db.delimiter}" driver="${jdbc.driver}" onerror="continue" password="${jdbc.password}" url="${jdbc.url}" userid="${jdbc.user}">
-                                    <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sql"></transaction>
-                                    <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sprocs.sql"></transaction>
-                                </sql>
-                                <sql autocommit="true" classpath="${jdbc.classpath}" delimiter="${db.delimiter}" driver="${jdbc.driver}" onerror="continue" password="${jdbc.password}" url="${jdbc.url}" userid="${jdbc.user}">CALL sqlj.remove_jar('CTS1.dbprocedures', 0);
-                 CALL sqlj.install_jar('${glassfish.lib.dir}/jdbc-tck.jar', 'CTS1.dbprocedures', 0);
-                 CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.dbprocedures');</sql>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>unpack</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.container.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
+                            <srcFiles>
+                                <srcFile>${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sql</srcFile>
+                                <srcFile>${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sprocs.sql</srcFile>
+                            </srcFiles>
+                            <sqlCommand>CREATE SCHEMA CTS1 AUTHORIZATION CTS1;
+CALL sqlj.install_jar('${glassfish.lib.dir}/jdbc-tck.jar', 'CTS1.CS_Procs', 0);
+CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS_Procs');</sqlCommand>
                         </configuration>
                     </execution>
                 </executions>

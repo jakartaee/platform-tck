@@ -121,6 +121,8 @@ public class dateTimeClient2AppClient extends dateTimeClient2 implements Seriali
    * get the String representation of that Time object. Check whether it is same
    * as equivalent String Value in property file.
    */
+	@Test
+	@TargetVehicle("appclient")
   public void testTime02() throws Exception {
 	  super.testTime02();
   }

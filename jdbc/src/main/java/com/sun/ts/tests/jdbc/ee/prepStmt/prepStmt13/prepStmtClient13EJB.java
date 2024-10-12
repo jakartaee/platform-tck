@@ -36,7 +36,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.tests.jdbc.ee.prepStmt.prepStmt12.prepStmtClient12EJB;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;

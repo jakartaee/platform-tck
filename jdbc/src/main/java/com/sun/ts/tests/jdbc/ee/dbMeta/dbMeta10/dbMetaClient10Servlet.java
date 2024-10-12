@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.tests.jdbc.ee.batchUpdate.batchUpdateClientServlet;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -76,7 +75,7 @@ if(sunServletUrl != null) {
 	archive.addAsWebInfResource(sunServletUrl, "sun-web.xml");
 }
 // Call the archive processor
-archiveProcessor.processWebArchive(archive, batchUpdateClientServlet.class, sunServletUrl);
+archiveProcessor.processWebArchive(archive, dbMetaClient10Servlet.class, sunServletUrl);
 		
 		return archive;
 	};

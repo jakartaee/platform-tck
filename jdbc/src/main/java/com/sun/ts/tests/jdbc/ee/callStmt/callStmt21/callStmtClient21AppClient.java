@@ -445,6 +445,8 @@ public class callStmtClient21AppClient extends callStmtClient21 implements Seria
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("appclient")
   public void testRegisterOutParameter45() throws Exception {
 	  super.testRegisterOutParameter45();
   }
@@ -464,6 +466,8 @@ public class callStmtClient21AppClient extends callStmtClient21 implements Seria
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("appclient")
   public void testRegisterOutParameter46() throws Exception {
 	  super.testRegisterOutParameter46();
   }
@@ -483,6 +487,8 @@ public class callStmtClient21AppClient extends callStmtClient21 implements Seria
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("appclient")
   public void testRegisterOutParameter47() throws Exception {
 	  super.testRegisterOutParameter47();
   }
@@ -502,6 +508,8 @@ public class callStmtClient21AppClient extends callStmtClient21 implements Seria
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("appclient")
   public void testRegisterOutParameter48() throws Exception {
 	  super.testRegisterOutParameter48();
   }
