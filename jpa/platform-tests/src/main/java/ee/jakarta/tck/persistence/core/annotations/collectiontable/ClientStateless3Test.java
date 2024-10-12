@@ -102,7 +102,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.annota
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_annotations_collectiontable_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_annotations_collectiontable_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_annotations_collectiontable_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -210,6 +210,5 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.annota
         public void collectionTable1() throws java.lang.Exception {
             super.collectionTable1();
         }
-
 
 }

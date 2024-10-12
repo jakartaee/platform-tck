@@ -98,7 +98,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.entit
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_entityManager2_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_entityManager2_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_entityManager2_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client1.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -410,6 +410,5 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.entit
         public void entityManagerMethodsRuntimeExceptionsCauseRollback32Test() throws java.lang.Exception {
             super.entityManagerMethodsRuntimeExceptionsCauseRollback32Test();
         }
-
 
 }

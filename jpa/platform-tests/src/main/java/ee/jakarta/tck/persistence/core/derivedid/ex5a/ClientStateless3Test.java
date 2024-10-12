@@ -102,7 +102,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.derive
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_deriverdid_ex5a_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_deriverdid_ex5a_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_deriverdid_ex5a_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -211,6 +211,5 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.derive
         public void DIDTest() throws java.lang.Exception {
             super.DIDTest();
         }
-
 
 }
