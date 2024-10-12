@@ -87,7 +87,6 @@ public abstract class ServiceEETest extends EETest {
   public Status run(String[] argv, Properties p) {
     Status status = null;
     boolean inTestHarness = TestUtil.iWhereAreWe == TestUtil.VM_HARNESS;
-    TestUtil.logTrace("Check if called from within test process, inTestHarness= " + inTestHarness);
     boolean isVehicleClient = false;
     URL thisURL = getClass().getProtectionDomain().getCodeSource().getLocation();
     TestUtil.logTrace("in ServiceEETest.run(), this URL is:  " + thisURL);
@@ -96,17 +95,7 @@ public abstract class ServiceEETest extends EETest {
       URL vcClassURL = vcClass.getProtectionDomain().getCodeSource().getLocation();
       TestUtil.logTrace("VehicleClient URL is:  " + vcClassURL);
       isVehicleClient = vcClass.isAssignableFrom(getClass());
-      TestUtil.logTrace("VehicleClient class check if is vehicle class =  " +
-              (isVehicleClient? "yes, is a com.sun.ts.tests.common.vehicle.VehicleClient"
-                      : "no, is not com.sun.ts.tests.common.vehicle.VehicleClient class"));
-      if (inTestHarness && !isVehicleClient) {
-        String sVehicle = TestUtil.getProperty(p, "vehicle");
-        if("stateless3".equals(sVehicle) || "stateful3".equals(sVehicle)
-        || "appmanaged".equals(sVehicle) || "appmanagedNoTx".equals(sVehicle)) {
-          isVehicleClient = true;
-          TestUtil.logTrace("Using appclient vehicle so set is vehicle client to true");
-        }
-      }
+      TestUtil.logTrace("VehicleClient URL is:  " + vcClassURL);
     } catch (ClassNotFoundException e) {
       TestUtil.logTrace("VehicleClient class not found, so not a vehicle client.");
     }

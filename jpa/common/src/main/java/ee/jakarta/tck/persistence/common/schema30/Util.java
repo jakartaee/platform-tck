@@ -1857,31 +1857,6 @@ public abstract class Util extends PMClientBase {
 		}
 	}
 
-	public void setup(String[] args, Properties p) throws Exception {
-		logTrace("PMClientBase.setup");
-		myProps = p;
-
-		persistenceUnitName = p.getProperty(PERSISTENCE_UNIT_NAME_PROP);
-		logTrace("Persistence Unit Name =" + persistenceUnitName);
-		secondPersistenceUnitName = p
-				.getProperty(SECOND_PERSISTENCE_UNIT_NAME_PROP);
-		logTrace("Second Persistence Unit Name =" + secondPersistenceUnitName);
-		if (JAKARTA_EE.equalsIgnoreCase(p.getProperty(MODE_PROP))) {
-			logTrace(MODE_PROP + " is set to " + p.getProperty(MODE_PROP)
-					+ ", so tests are running in JakartaEE environment.");
-		} else if (STANDALONE_MODE.equalsIgnoreCase(p.getProperty(MODE_PROP))) {
-			logTrace(MODE_PROP + " is set to " + p.getProperty(MODE_PROP)
-					+ ", so tests are running in J2SE environment standalone mode."
-					+ PERSISTENCE_UNIT_NAME_PROP + " is set to " + persistenceUnitName);
-		} else {
-			logMsg("WARNING: " + MODE_PROP + " is set to " + p.getProperty(MODE_PROP)
-					+ ", an invalid value.");
-		}
-
-		cachingSupported = Boolean.parseBoolean(
-				p.getProperty(PERSISTENCE_SECOND_LEVEL_CACHING_SUPPORTED, "true"));
-		displayProperties(p);
-	}
 
 	public void setupProductData(String[] args, Properties p) throws Exception {
 		logTrace("setupProductData");
