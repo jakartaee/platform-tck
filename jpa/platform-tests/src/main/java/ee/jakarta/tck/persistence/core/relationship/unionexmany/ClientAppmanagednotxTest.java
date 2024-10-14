@@ -131,7 +131,7 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.re
                 ee.jakarta.tck.persistence.core.relationship.unionexmany.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");
+            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_relationship_unionexmany_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }

@@ -123,7 +123,7 @@ public class Client2AppmanagednotxTest extends ee.jakarta.tck.persistence.core.q
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client2.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");
+            URL ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_query_parameter_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
