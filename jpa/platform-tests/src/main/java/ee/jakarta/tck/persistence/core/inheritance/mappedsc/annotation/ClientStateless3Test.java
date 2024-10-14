@@ -138,7 +138,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.inheri
               jpa_core_inherit_msc_annotation_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client.class.getResource("/vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_inherit_msc_annotation_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
