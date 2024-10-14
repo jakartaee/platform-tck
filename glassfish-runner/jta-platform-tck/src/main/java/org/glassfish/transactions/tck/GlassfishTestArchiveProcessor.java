@@ -84,7 +84,7 @@ public class GlassfishTestArchiveProcessor extends AbstractTestArchiveProcessor 
     @Override
     public void processWebArchive(WebArchive webArchive, Class<?> testClass, URL sunXmlURL) {
         String name = webArchive.getName();
-        addDescriptors(name, webArchive, testClass);
+        // addDescriptors(name, webArchive, testClass);
     }
 
     @Override
