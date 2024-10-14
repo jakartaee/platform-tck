@@ -130,7 +130,7 @@ public class PatchAppclientTest extends ServiceEETest {
 
     EnterpriseArchive patchtests_appclient_vehicle_client_ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_appclient_vehicle.ear");
     patchtests_appclient_vehicle_client_ear.addAsModule(patchtests_appclient_vehicle_client);
-    patchtests_appclient_vehicle_client_ear.addAsManifestResource(new StringAsset("Main-Class: " + PatchAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
+    // patchtests_appclient_vehicle_client_ear.addAsManifestResource(new StringAsset("Main-Class: " + PatchAppclientTest.class.getName() + "\n"), "MANIFEST.MF");
 
     return patchtests_appclient_vehicle_client_ear;
 
