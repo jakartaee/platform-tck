@@ -126,7 +126,7 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
                 ee.jakarta.tck.persistence.core.criteriaapi.CriteriaBuilder.Client3.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client3.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
+            URL ejbResURL1 = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_criteriapia_CriteriaBuilder_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }

@@ -125,7 +125,7 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.core.metamod
                 ee.jakarta.tck.persistence.core.metamodelapi.attribute.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/vehicle/stateful3/stateful3_vehicle_ejb.xml");
+            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_metamodelapi_attribute_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }

@@ -137,7 +137,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.entity
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client2.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
+            URL ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_entityManagerFactory_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }

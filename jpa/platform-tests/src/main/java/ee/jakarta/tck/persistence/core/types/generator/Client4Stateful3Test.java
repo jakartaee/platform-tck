@@ -127,7 +127,7 @@ public class Client4Stateful3Test extends ee.jakarta.tck.persistence.core.types.
                 ee.jakarta.tck.persistence.core.types.generator.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client4.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
+            URL ejbResURL1 = Client4.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_types_generator_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
