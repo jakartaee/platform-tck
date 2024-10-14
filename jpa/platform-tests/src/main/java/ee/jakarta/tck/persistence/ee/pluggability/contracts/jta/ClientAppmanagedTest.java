@@ -123,7 +123,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
               jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }

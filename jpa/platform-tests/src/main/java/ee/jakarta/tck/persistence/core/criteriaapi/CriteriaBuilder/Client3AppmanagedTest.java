@@ -132,7 +132,7 @@ public class Client3AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
               jpa_core_criteriapia_CriteriaBuilder_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client3.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_criteriapia_CriteriaBuilder_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
