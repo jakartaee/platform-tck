@@ -123,7 +123,7 @@ public class ClientStateful3Test extends ee.jakarta.tck.persistence.ee.pluggabil
               jpa_ee_pluggability_contracts_jta_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               jpa_ee_pluggability_contracts_jta_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
