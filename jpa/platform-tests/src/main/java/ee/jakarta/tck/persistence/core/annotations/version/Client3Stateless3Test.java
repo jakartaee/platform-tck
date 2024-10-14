@@ -127,7 +127,7 @@ public class Client3Stateless3Test extends ee.jakarta.tck.persistence.core.annot
                 ee.jakarta.tck.persistence.core.annotations.version.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client3.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.xml");
+            URL ejbResURL1 = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_annotations_version_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }

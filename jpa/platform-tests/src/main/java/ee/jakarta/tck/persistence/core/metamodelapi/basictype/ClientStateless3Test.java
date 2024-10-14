@@ -133,7 +133,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.metamo
                 ee.jakarta.tck.persistence.core.metamodelapi.basictype.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/vehicle/stateless3/stateless3_vehicle_ejb.xml");
+            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_metamodelapi_basictype_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
