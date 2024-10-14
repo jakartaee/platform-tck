@@ -110,6 +110,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testAddBatch01() throws Exception {
+		super.testAddBatch01();
   }
 
   /*
@@ -123,7 +124,10 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
    * array of Integer of length 3.
    *
    */
+	@Test
+	@TargetVehicle("appclient")
   public void testAddBatch02() throws Exception {
+		super.testAddBatch02();
   }
 
   /*
@@ -139,6 +143,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testAddBatch03() throws Exception {
+		super.testAddBatch03();
   }
 
   /*
@@ -156,6 +161,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testClearBatch01() throws Exception {
+		super.testClearBatch01();
   }
 
   /*
@@ -173,6 +179,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testClearBatch02() throws Exception {
+		super.testClearBatch02();
   }
 
   /*
@@ -191,6 +198,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testClearBatch03() throws Exception {
+		super.testClearBatch03();
   }
 
   /*
@@ -207,6 +215,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch01() throws Exception {
+		super.testExecuteBatch01();
   }
 
   /*
@@ -221,6 +230,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch02() throws Exception {
+		super.testExecuteBatch02();
   }
 
   /*
@@ -237,6 +247,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch03() throws Exception {
+		super.testExecuteBatch03();
   }
 
   /*
@@ -252,6 +263,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch04() throws Exception {
+		super.testExecuteBatch04();
   }
 
   /*
@@ -267,6 +279,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch05() throws Exception {
+		super.testExecuteBatch05();
   }
 
   /*
@@ -282,6 +295,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch06() throws Exception {
+		super.testExecuteBatch06();
   }
 
   /*
@@ -297,6 +311,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch07() throws Exception {
+		super.testExecuteBatch07();
   }
 
   /*
@@ -312,6 +327,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch08() throws Exception {
+		super.testExecuteBatch08();
   }
 
   /*
@@ -326,6 +342,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch09() throws Exception {
+		super.testExecuteBatch09();
   }
 
   /*
@@ -342,6 +359,7 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testExecuteBatch12() throws Exception {
+		super.testExecuteBatch12();
   }
 
   /*
@@ -360,5 +378,6 @@ public class batchUpdateClientAppClient extends batchUpdateClient implements Ser
 	@Test
 	@TargetVehicle("appclient")
   public void testContinueBatch01() throws Exception {
+		super.testContinueBatch01();
   }
 }

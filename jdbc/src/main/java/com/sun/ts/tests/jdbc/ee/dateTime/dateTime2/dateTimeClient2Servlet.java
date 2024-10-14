@@ -113,6 +113,8 @@ archiveProcessor.processWebArchive(archive, dateTimeClient2Servlet.class, sunSer
    * get the String representation of that Time object. Check whether it is same
    * as equivalent String Value in property file.
    */
+	@Test
+	@TargetVehicle("jsp")
   public void testTime02() throws Exception {
 	  super.testTime02();
   }

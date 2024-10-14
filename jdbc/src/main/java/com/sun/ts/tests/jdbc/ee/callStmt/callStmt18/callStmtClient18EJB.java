@@ -36,7 +36,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.tests.jdbc.ee.callStmt.callStmt15.callStmtClient15EJB;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -97,7 +96,7 @@ public class callStmtClient18EJB extends callStmtClient18 implements Serializabl
 			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
 		}
 
-		resURL = callStmtClient15EJB.class.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt18/ejb_vehicle_ejb.xml");
+		resURL = callStmtClient18EJB.class.getResource("/com/sun/ts/tests/jdbc/ee/callStmt/callStmt18/ejb_vehicle_ejb.xml");
 
 		if (resURL != null) {
 			ejb.addAsManifestResource(resURL, "ejb-jar.xml");

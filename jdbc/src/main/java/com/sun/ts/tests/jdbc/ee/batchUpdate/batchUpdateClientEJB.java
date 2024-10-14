@@ -142,6 +142,8 @@ public class batchUpdateClientEJB extends batchUpdateClient implements Serializa
    * array of Integer of length 3.
    *
    */
+	@Test
+	@TargetVehicle("ejb")
   public void testAddBatch02() throws Exception {
 	  super.testAddBatch02();
   }

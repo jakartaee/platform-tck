@@ -61,8 +61,6 @@ import com.sun.ts.tests.jdbc.ee.common.rsSchema;
 @ExtendWith(ArquillianExtension.class)
 @Tag("jdbc")
 @Tag("platform")
-@Tag("web_profile")
-@Tag("tck-javatest")
 
 public class callStmtClient11 extends ServiceEETest implements Serializable {
   private static final String testName = "jdbc.ee.callStmt.callStmt11";

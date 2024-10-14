@@ -125,6 +125,8 @@ public class dateTimeClient2JSP extends dateTimeClient2 implements Serializable 
    * get the String representation of that Time object. Check whether it is same
    * as equivalent String Value in property file.
    */
+	@Test
+	@TargetVehicle("jsp")
   public void testTime02() throws Exception {
 	  super.testTime02();
   }

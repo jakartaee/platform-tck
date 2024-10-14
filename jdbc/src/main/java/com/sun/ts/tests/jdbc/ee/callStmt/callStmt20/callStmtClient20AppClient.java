@@ -111,6 +111,7 @@ public class callStmtClient20AppClient extends callStmtClient20 implements Seria
 	@Test
 	@TargetVehicle("appclient")
   public void testRegisterOutParameter09() throws Exception {
+		super.testRegisterOutParameter09();
   }
 
   /*

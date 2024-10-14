@@ -176,6 +176,8 @@ public class dbMetaClient3AppClient extends dbMetaClient3 implements Serializabl
    * It should return a boolean value; either true or false.
    *
    */
+	@Test
+	@TargetVehicle("appclient")
   public void testSupportsConvert07() throws Exception {
 	  super.testSupportsConvert07();
   }
@@ -208,6 +210,8 @@ public class dbMetaClient3AppClient extends dbMetaClient3 implements Serializabl
    * object. It should return a boolean value; either true or false.
    *
    */
+	@Test
+	@TargetVehicle("appclient")
   public void testSupportsConvert09() throws Exception {
 	  super.testSupportsConvert09();
   }

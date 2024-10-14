@@ -438,6 +438,8 @@ archiveProcessor.processWebArchive(archive, callStmtClient21Servlet.class, sunSe
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("servlet")
   public void testRegisterOutParameter45() throws Exception {
 	  super.testRegisterOutParameter45();
   }
@@ -457,6 +459,8 @@ archiveProcessor.processWebArchive(archive, callStmtClient21Servlet.class, sunSe
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("servlet")
   public void testRegisterOutParameter46() throws Exception {
 	  super.testRegisterOutParameter46();
   }
@@ -476,6 +480,8 @@ archiveProcessor.processWebArchive(archive, callStmtClient21Servlet.class, sunSe
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("servlet")
   public void testRegisterOutParameter47() throws Exception {
 	  super.testRegisterOutParameter47();
   }
@@ -495,6 +501,8 @@ archiveProcessor.processWebArchive(archive, callStmtClient21Servlet.class, sunSe
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("servlet")
   public void testRegisterOutParameter48() throws Exception {
 	  super.testRegisterOutParameter48();
   }
