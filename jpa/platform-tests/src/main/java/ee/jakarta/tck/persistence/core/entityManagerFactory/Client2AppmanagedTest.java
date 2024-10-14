@@ -148,7 +148,7 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.entit
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client2.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            URL ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_entityManagerFactory_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }

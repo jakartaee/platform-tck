@@ -128,7 +128,7 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
                 ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client1.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            URL ejbResURL1 = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(ejbResURL1 != null) {
               jpa_core_criteriaapi_parameter_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }

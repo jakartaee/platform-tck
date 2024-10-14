@@ -118,7 +118,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.ee.pluggabi
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(ejbResURL != null) {
               jpa_ee_pluggability_contracts_jta_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
