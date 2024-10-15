@@ -105,6 +105,11 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.sched
             ejb30_timer_schedule_auto_attr_mdb_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/sun-ejb-jar.xml");
         }
         
+        warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/timer/schedule/auto/attr/mdb/ejb30_timer_schedule_auto_attr_mdb_ejbliteservlet_vehicle_web.war.sun-ejb-jar.xml");
+        if (warResURL != null) {
+            ejb30_timer_schedule_auto_attr_mdb_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/sun-ejb-jar.xml");
+        }
+        
         warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml");
         if (warResURL != null) {
             ejb30_timer_schedule_auto_attr_mdb_ejbliteservlet_vehicle_web.addAsWebResource(warResURL,
