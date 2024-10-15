@@ -161,7 +161,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.warmbean.
               ejb3_assembly_appres_warmbean_ear.addAsManifestResource(earResURL, "application.xml");
             }
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/warmbean/application.ear.sun-application.xml");
+            earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/assembly/appres/warmbean/ejb3_assembly_appres_warmbean.ear.sun-application.xml");
             if(earResURL != null) {
               ejb3_assembly_appres_warmbean_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }
