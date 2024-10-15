@@ -142,6 +142,8 @@ public class dateTimeClient2EJB extends dateTimeClient2 implements Serializable 
    * get the String representation of that Time object. Check whether it is same
    * as equivalent String Value in property file.
    */
+	@Test
+	@TargetVehicle("ejb")
   public void testTime02() throws Exception {
 	  super.testTime02();
   }

@@ -180,6 +180,8 @@ public class dbMetaClient3JSP extends dbMetaClient3 implements Serializable {
    * It should return a boolean value; either true or false.
    *
    */
+	@Test
+	@TargetVehicle("jsp")
   public void testSupportsConvert07() throws Exception {
 	  super.testSupportsConvert07();
   }
@@ -212,6 +214,8 @@ public class dbMetaClient3JSP extends dbMetaClient3 implements Serializable {
    * object. It should return a boolean value; either true or false.
    *
    */
+	@Test
+	@TargetVehicle("jsp")
   public void testSupportsConvert09() throws Exception {
 	  super.testSupportsConvert09();
   }

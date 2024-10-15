@@ -130,6 +130,7 @@ public class callStmtClient20EJB extends callStmtClient20 implements Serializabl
 	@Test
 	@TargetVehicle("ejb")
   public void testRegisterOutParameter09() throws Exception {
+		super.testRegisterOutParameter09();
   }
 
   /*

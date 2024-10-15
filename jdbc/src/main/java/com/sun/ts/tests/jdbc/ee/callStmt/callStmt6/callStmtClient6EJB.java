@@ -311,7 +311,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * Both of them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetBigDecimal04() throws Exception {
 		super.testSetBigDecimal04();
   }
@@ -332,7 +332,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetBoolean01() throws Exception {
 		super.testSetBoolean01();
   }
@@ -353,7 +353,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetBoolean02() throws Exception {
 		super.testSetBoolean02();
   }
@@ -374,7 +374,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetByte01() throws Exception {
 		super.testSetByte01();
   }
@@ -395,7 +395,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetByte02() throws Exception {
 		super.testSetByte02();
   }
@@ -414,7 +414,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * the tssql.stmt file. Both of them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetShort01() throws Exception {
 		super.testSetShort01();
   }
@@ -433,7 +433,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * the tssql.stmt file. Both of them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetShort02() throws Exception {
 		super.testSetShort02();
   }
@@ -452,7 +452,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * the tssql.stmt file. Both of them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetInt01() throws Exception {
 		super.testSetInt01();
   }
@@ -471,7 +471,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * the tssql.stmt file. Both of them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetInt02() throws Exception {
 		super.testSetInt02();
   }
@@ -490,7 +490,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * the tssql.stmt file. Both of them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetLong01() throws Exception {
 		super.testSetLong01();
   }
@@ -509,7 +509,7 @@ public class callStmtClient6EJB extends callStmtClient6 implements Serializable 
    * the tssql.stmt file. Both of them should be equal.
    */
 	@Test
-	@TargetVehicle("appclient")
+	@TargetVehicle("ejb")
   public void testSetLong02() throws Exception {
 		super.testSetLong02();
   }

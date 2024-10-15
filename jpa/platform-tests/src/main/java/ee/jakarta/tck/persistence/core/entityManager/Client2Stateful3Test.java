@@ -117,7 +117,7 @@ public class Client2Stateful3Test extends ee.jakarta.tck.persistence.core.entity
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             Client2.class,
             Client2Stateful3Test.class
-            );
+            ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(resURL != null) {

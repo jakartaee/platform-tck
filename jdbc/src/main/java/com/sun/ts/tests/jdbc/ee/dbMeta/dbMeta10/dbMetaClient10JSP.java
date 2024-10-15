@@ -36,7 +36,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.lib.harness.Status;
-import com.sun.ts.tests.jdbc.ee.batchUpdate.batchUpdateClientJSP;
 
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
@@ -76,7 +75,7 @@ public class dbMetaClient10JSP extends dbMetaClient10 implements Serializable {
 		archive.addClasses(dbMetaClient10JSP.class, dbMetaClient10.class);
 		
 	       // The jsp descriptor
-     URL jspUrl = batchUpdateClientJSP.class.getResource("jsp_vehicle_web.xml");
+     URL jspUrl = dbMetaClient10JSP.class.getResource("jsp_vehicle_web.xml");
      if(jspUrl != null) {
      	archive.addAsWebInfResource(jspUrl, "web.xml");
      }

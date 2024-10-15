@@ -86,6 +86,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
             ee.jakarta.tck.persistence.core.annotations.assocoverride.Client.class,
             ee.jakarta.tck.persistence.core.annotations.assocoverride.Employee.class,
             ee.jakarta.tck.persistence.core.annotations.assocoverride.PartTimeEmployee.class,
+            ee.jakarta.tck.persistence.core.annotations.assocoverride.Address.class,
             ClientAppmanagedTest.class
             );
             // The application-client.xml descriptor
@@ -96,7 +97,7 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_annotations_assocoverride_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_annotations_assocoverride_appmanaged_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_annotations_assocoverride_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor

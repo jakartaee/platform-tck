@@ -137,7 +137,7 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
     /**
      * Persistence unit name.
      */
-    private String persistenceUnitName;
+    protected String persistenceUnitName;
 
     protected String secondPersistenceUnitName;
 

@@ -128,8 +128,9 @@
         <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <shrinkwrap.api.version>2.0.0-beta-1</shrinkwrap.api.version>
-        <shrinkwrap.version>3.3.1</shrinkwrap.version>
+        <shrinkwrap.api.version>2.0.0-beta-2</shrinkwrap.api.version>
+        <shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
+        <shrinkwrap.resolver.version>3.3.1</shrinkwrap.resolver.version>
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
         <!-- Jakarta WebSocket -->
@@ -377,20 +378,30 @@
 
             <dependency>
                 <groupId>org.jboss.shrinkwrap</groupId>
-                <artifactId>shrinkwrap-api</artifactId>
+                <artifactId>shrinkwrap-bom</artifactId>
                 <version>${shrinkwrap.api.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                <artifactId>shrinkwrap-descriptors-bom</artifactId>
+                <version>${shrinkwrap.descriptors.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                <version>${shrinkwrap.version}</version>
+                <version>${shrinkwrap.resolver.version}</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-                <version>${shrinkwrap.version}</version>
+                <version>${shrinkwrap.resolver.version}</version>
             </dependency>
 
             <dependency>

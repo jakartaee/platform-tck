@@ -133,7 +133,9 @@ public class Client1Stateful3Test extends ee.jakarta.tck.persistence.core.annota
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.mapkey.Department.class,
             ee.jakarta.tck.persistence.core.annotations.mapkey.Client.class,
-            ee.jakarta.tck.persistence.core.annotations.mapkey.Client1.class
+            ee.jakarta.tck.persistence.core.annotations.mapkey.Client1.class,
+            ee.jakarta.tck.persistence.core.annotations.mapkey.Employee.class,
+            Client1Stateful3Test.class
             );
             // The application-client.xml descriptor
             URL resURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");

@@ -91,6 +91,9 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.annota
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
             ee.jakarta.tck.persistence.core.annotations.access.mappedsc.FullTimeEmployee.class,
+            ee.jakarta.tck.persistence.core.annotations.access.mappedsc.PartTimeEmployee.class,
+            ee.jakarta.tck.persistence.core.annotations.access.mappedsc.Employee.class,
+            ee.jakarta.tck.persistence.core.annotations.access.mappedsc.AbstractPersonnel.class,
             ee.jakarta.tck.persistence.core.annotations.access.mappedsc.Client.class,
             ClientStateless3Test.class
             );
@@ -102,7 +105,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.annota
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_anno_access_mappedsc_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_anno_access_mappedsc_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_anno_access_mappedsc_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor

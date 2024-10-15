@@ -108,6 +108,17 @@ public class PatchEjbTest extends ServiceEETest {
         com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.lib.harness.ServiceEETest.class,
+        com.sun.ts.tests.jsonp.api.common.ArrayBuilder.class,
+        com.sun.ts.tests.jsonp.api.common.JsonAssert.class,
+        com.sun.ts.tests.jsonp.api.common.JsonIO.class,
+        com.sun.ts.tests.jsonp.api.common.JsonPTest.class,
+        com.sun.ts.tests.jsonp.api.common.JsonValueType.class,
+        com.sun.ts.tests.jsonp.api.common.MergeRFCObject.class,
+        com.sun.ts.tests.jsonp.api.common.ObjectBuilder.class,
+        com.sun.ts.tests.jsonp.api.common.PointerRFCObject.class,
+        com.sun.ts.tests.jsonp.api.common.SimpleValues.class,
+        com.sun.ts.tests.jsonp.api.common.TestFail.class,
+        com.sun.ts.tests.jsonp.api.common.TestResult.class,
         CommonOperation.class,
         PatchCreate.class,
         PatchEjbTest.class
@@ -158,7 +169,7 @@ public class PatchEjbTest extends ServiceEETest {
     if(ejbResURL != null) {
       patchtests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
     }
-    patchtests_ejb_vehicle_ejb.addAsManifestResource(new StringAsset("Main-Class: " + PatchEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+    // patchtests_ejb_vehicle_ejb.addAsManifestResource(new StringAsset("Main-Class: " + PatchEjbTest.class.getName() + "\n"), "MANIFEST.MF");
 
     ejbResURL = PatchEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
     if(ejbResURL != null) {
@@ -168,7 +179,7 @@ public class PatchEjbTest extends ServiceEETest {
 
 
     EnterpriseArchive patchtests_ejb_vehicle_client_ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_ejb_vehicle.ear");
-    patchtests_ejb_vehicle_client_ear.addAsManifestResource(new StringAsset("Main-Class: " + PatchEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+    // patchtests_ejb_vehicle_client_ear.addAsManifestResource(new StringAsset("Main-Class: " + PatchEjbTest.class.getName() + "\n"), "MANIFEST.MF");
     patchtests_ejb_vehicle_client_ear.addAsModule(patchtests_ejb_vehicle_client);
     patchtests_ejb_vehicle_client_ear.addAsModule(patchtests_ejb_vehicle_ejb);
     return patchtests_ejb_vehicle_client_ear;

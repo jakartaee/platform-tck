@@ -168,6 +168,8 @@ archiveProcessor.processWebArchive(archive, dbMetaClient3Servlet.class, sunServl
    * It should return a boolean value; either true or false.
    *
    */
+	@Test
+	@TargetVehicle("servlet")
   public void testSupportsConvert07() throws Exception {
 	  super.testSupportsConvert07();
   }
@@ -200,6 +202,8 @@ archiveProcessor.processWebArchive(archive, dbMetaClient3Servlet.class, sunServl
    * object. It should return a boolean value; either true or false.
    *
    */
+	@Test
+	@TargetVehicle("servlet")
   public void testSupportsConvert09() throws Exception {
 	  super.testSupportsConvert09();
   }

@@ -448,6 +448,8 @@ public class callStmtClient21JSP extends callStmtClient21 implements Serializabl
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("jsp")
   public void testRegisterOutParameter45() throws Exception {
 	  super.testRegisterOutParameter45();
   }
@@ -467,6 +469,8 @@ public class callStmtClient21JSP extends callStmtClient21 implements Serializabl
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("jsp")
   public void testRegisterOutParameter46() throws Exception {
 	  super.testRegisterOutParameter46();
   }
@@ -486,6 +490,8 @@ public class callStmtClient21JSP extends callStmtClient21 implements Serializabl
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("jsp")
   public void testRegisterOutParameter47() throws Exception {
 	  super.testRegisterOutParameter47();
   }
@@ -505,6 +511,8 @@ public class callStmtClient21JSP extends callStmtClient21 implements Serializabl
    * Procedure)
    *
    */
+	@Test
+	@TargetVehicle("jsp")
   public void testRegisterOutParameter48() throws Exception {
 	  super.testRegisterOutParameter48();
   }

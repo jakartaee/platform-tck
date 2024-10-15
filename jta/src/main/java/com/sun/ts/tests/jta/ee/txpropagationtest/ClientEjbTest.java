@@ -24,7 +24,8 @@ import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
 import java.lang.System.Logger;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
@@ -36,6 +37,13 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
     private static String packagePath = ClientEjbTest.class.getPackageName().replace(".", "/");
 
     private static final Logger logger = System.getLogger(ClientEjbTest.class.getName());
+
+    public static void main(String args[]) {
+      ClientEjbTest tests = new ClientEjbTest();
+      Status s = tests.run(args, System.out, System.err);
+      s.exit();
+    }
+  
 
     @BeforeEach
     void logStartTest(TestInfo testInfo) {
@@ -82,7 +90,8 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
         if(resURL != null) {
           jta_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
         }
-        jta_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+        jta_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"),
+				"MANIFEST.MF");
         archiveProcessor.processClientArchive(jta_ejb_vehicle_client, ClientEjbTest.class, resURL);
 
 
@@ -114,8 +123,6 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
         if(ejbResURL != null) {
           jta_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
         }
-        jta_ejb_vehicle_ejb.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
-
         archiveProcessor.processEjbArchive(jta_ejb_vehicle_ejb, ClientEjbTest.class, ejbResURL);
 
 
@@ -124,6 +131,7 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
         jta_ee_txpropagate1_ejb.addClasses(
             com.sun.ts.tests.jta.ee.txpropagationtest.TxBean.class,
             com.sun.ts.tests.jta.ee.txpropagationtest.TxBeanEJB.class
+            
         );
         // The ejb-jar.xml descriptor
         URL ejbJarResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/jta_ee_txpropagate1_ejb.xml");
@@ -135,7 +143,6 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
         if(ejbJarResURL != null) {
           jta_ee_txpropagate1_ejb.addAsManifestResource(ejbJarResURL, "sun-ejb-jar.xml");
         }
-        jta_ee_txpropagate1_ejb.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
         archiveProcessor.processEjbArchive(jta_ee_txpropagate1_ejb, ClientEjbTest.class, ejbJarResURL);
 
 
@@ -143,7 +150,6 @@ public class ClientEjbTest extends com.sun.ts.tests.jta.ee.txpropagationtest.Cli
         jta_ejb_vehicle_ear.addAsModule(jta_ee_txpropagate1_ejb);
         jta_ejb_vehicle_ear.addAsModule(jta_ejb_vehicle_ejb);
         jta_ejb_vehicle_ear.addAsModule(jta_ejb_vehicle_client);
-        jta_ejb_vehicle_ear.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
 
         return jta_ejb_vehicle_ear;
     }

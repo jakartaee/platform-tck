@@ -24,9 +24,9 @@ package com.sun.ts.tests.ejb30.bb.localaccess.webclient;
 //import jakarta.transaction.UserTransaction;
 
 public class TestServlet extends TestServletSuper {
-  // @Resource(name="removeThis")
-  // private UserTransaction removeThis;
-  //
-  // @Override
-  // protected Object getInjectedFieldInSubclass() { return removeThis;}
+    // @Resource(name="removeThis")
+    // private UserTransaction removeThis;
+    //
+    // @Override
+    // protected Object getInjectedFieldInSubclass() { return removeThis;}
 }

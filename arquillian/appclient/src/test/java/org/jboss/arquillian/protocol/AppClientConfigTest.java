@@ -3,9 +3,9 @@ package org.jboss.arquillian.protocol;
 import org.jboss.arquillian.config.impl.extension.ConfigurationRegistrar;
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.container.test.impl.MapObject;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import tck.arquillian.protocol.appclient.AppClientProtocolConfiguration;
-import org.junit.Assert;
-import org.junit.Test;
 
 import java.io.File;
 import java.util.Map;
@@ -25,10 +25,11 @@ public class AppClientConfigTest {
         System.setProperty(ConfigurationRegistrar.ARQUILLIAN_XML_PROPERTY, "appclient1-arquillian.xml");
         ConfigurationRegistrar registrar = new ConfigurationRegistrar();
         ArquillianDescriptor descriptor = registrar.loadConfiguration();
-        Assert.assertNotNull(descriptor);
-        Assert.assertNotNull(descriptor.defaultProtocol("appclient"));
+        
+        Assertions.assertNotNull(descriptor);
+        Assertions.assertNotNull(descriptor.defaultProtocol("appclient"));
         String type = descriptor.defaultProtocol("appclient").getType();
-        Assert.assertEquals("appclient", type);
+        Assertions.assertEquals("appclient", type);
 
         Map<String, String> props = descriptor.defaultProtocol("appclient").getProperties();
 
@@ -36,26 +37,26 @@ public class AppClientConfigTest {
         MapObject.populate(config, props);
 
         // Raw strings
-        Assert.assertEquals("-p;/home/jakartaeetck/bin/xml/../../tmp/tstest.jte", config.getClientCmdLineString());
+        Assertions.assertEquals("-p;/home/jakartaeetck/bin/xml/../../tmp/tstest.jte", config.getClientCmdLineString());
         String expectedEnv = "JAVA_OPTS=-Djboss.modules.system.pkgs=com.sun.ts.lib,com.sun.javatest;CLASSPATH=${project.build.directory}/appclient/javatest.jar:${project.build.directory}/appclient/libutil.jar:${project.build.directory}/appclient/libcommon.jar";
-        Assert.assertEquals(expectedEnv, config.getClientEnvString());
-        Assert.assertTrue(config.isRunClient());
-        Assert.assertEquals(".", config.getClientDir());
+        Assertions.assertEquals(expectedEnv, config.getClientEnvString());
+        Assertions.assertTrue(config.isRunClient());
+        Assertions.assertEquals(".", config.getClientDir());
 
         // Parsed strings
         String[] args = config.clientCmdLineAsArray();
-        Assert.assertEquals(2, args.length);
-        Assert.assertEquals("-p", args[0]);
-        Assert.assertEquals("/home/jakartaeetck/bin/xml/../../tmp/tstest.jte", args[1]);
+        Assertions.assertEquals(2, args.length);
+        Assertions.assertEquals("-p", args[0]);
+        Assertions.assertEquals("/home/jakartaeetck/bin/xml/../../tmp/tstest.jte", args[1]);
 
         String[] envp = config.clientEnvAsArray();
-        Assert.assertEquals(2, envp.length);
-        Assert.assertTrue(envp[0].startsWith("JAVA_OPTS="));
-        Assert.assertEquals("-Djboss.modules.system.pkgs=com.sun.ts.lib,com.sun.javatest", envp[0].substring(10));
-        Assert.assertTrue(envp[1].startsWith("CLASSPATH="));
+        Assertions.assertEquals(2, envp.length);
+        Assertions.assertTrue(envp[0].startsWith("JAVA_OPTS="));
+        Assertions.assertEquals("-Djboss.modules.system.pkgs=com.sun.ts.lib,com.sun.javatest", envp[0].substring(10));
+        Assertions.assertTrue(envp[1].startsWith("CLASSPATH="));
         String expectedCP = "${project.build.directory}/appclient/javatest.jar:${project.build.directory}/appclient/libutil.jar:${project.build.directory}/appclient/libcommon.jar";
-        Assert.assertEquals(expectedCP, envp[1].substring(10));
+        Assertions.assertEquals(expectedCP, envp[1].substring(10));
         File expectedDir = new File(".");
-        Assert.assertEquals(expectedDir, config.clientDirAsFile());
+        Assertions.assertEquals(expectedDir, config.clientDirAsFile());
     }
 }
