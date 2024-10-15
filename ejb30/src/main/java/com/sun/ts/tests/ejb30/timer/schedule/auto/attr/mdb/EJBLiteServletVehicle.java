@@ -36,61 +36,59 @@ import jakarta.servlet.ServletConfig;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class EJBLiteServletVehicle extends Client 
-    implements Servlet, ServletConfig {
-    
+public class EJBLiteServletVehicle extends Client implements Servlet, ServletConfig {
+
     private static Logger logger = Logger.getLogger(EJBLiteServletVehicle.class.getName());
-    
+
     private HttpServletDelegate delegate = new HttpServletDelegate();
 
     public void init(ServletConfig config) throws ServletException {
-	   delegate.init(config);
+        delegate.init(config);
     }
 
     public ServletConfig getServletConfig() {
-	   return delegate.getServletConfig();
+        return delegate.getServletConfig();
     }
 
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
-       delegate.service(request, response);
-        
-       setInjectionSupported(true);
-       String tn = request.getParameter("testName");
-       logger.fine("EJBLiteServletVehicle processing request testName=" + tn);
-       setTestName(tn);
-       setModuleName(getServletContext().getContextPath());
-       String sta = getStatus();  //to trigger the test run
+        delegate.service(request, response);
 
-       PrintWriter pw = response.getWriter();
-       pw.println(sta + " " + getReason());
-       cleanup();  //need to reset all fields since servlet instances are shared
-	
+        setInjectionSupported(true);
+        String tn = request.getParameter("testName");
+        logger.fine("EJBLiteServletVehicle processing request testName=" + tn);
+        setTestName(tn);
+        setModuleName(getServletContext().getContextPath());
+        String sta = getStatus(); // to trigger the test run
+
+        PrintWriter pw = response.getWriter();
+        pw.println(sta + " " + getReason());
+        cleanup(); // need to reset all fields since servlet instances are shared
+
     }
 
     public String getServletInfo() {
-	return delegate.getServletInfo();
+        return delegate.getServletInfo();
     }
 
     public void destroy() {
-	delegate.destroy();
-	delegate = null;
+        delegate.destroy();
+        delegate = null;
     }
 
     public String getServletName() {
-	return delegate.getServletName();
+        return delegate.getServletName();
     }
 
     public ServletContext getServletContext() {
-	return delegate.getServletContext();
+        return delegate.getServletContext();
     }
 
     public String getInitParameter(String arg0) {
-	return delegate.getInitParameter(arg0);
+        return delegate.getInitParameter(arg0);
     }
 
     public Enumeration<String> getInitParameterNames() {
-	return delegate.getInitParameterNames();
+        return delegate.getInitParameterNames();
     }
-    
- 
+
 }
