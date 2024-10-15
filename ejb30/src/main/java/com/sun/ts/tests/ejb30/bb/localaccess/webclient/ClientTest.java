@@ -63,7 +63,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.localaccess.webclient.
                 com.sun.ts.tests.ejb30.bb.localaccess.common.Constants.class);
         
         // The web.xml descriptor
-        URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/bb/localaccess/webclient/localaccess_webclient_web.xml");
+        URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/localaccess/webclient/localaccess_webclient_web.xml");
         if (warResURL != null) {
             localaccess_webclient_web.addAsWebInfResource(warResURL, "web.xml");
         }
@@ -72,14 +72,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.bb.localaccess.webclient.
         warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/localaccess/webclient/localaccess_webclient_web.war.sun-web.xml");
         if (warResURL != null) {
             localaccess_webclient_web.addAsWebInfResource(warResURL, "sun-web.xml");
-        }
-
-        // Any libraries added to the war
-
-        // Web content
-        warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/localaccess/webclient/localaccess_webclient_web.xml");
-        if (warResURL != null) {
-            localaccess_webclient_web.addAsWebResource(warResURL, "//localaccess_webclient_web.xml");
         }
 
         // Call the archive processor
