@@ -51,7 +51,8 @@ import tck.arquillian.protocol.common.TargetVehicle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.lang.System.Logger;
 
@@ -59,6 +60,7 @@ import java.lang.System.Logger;
 @Tag("platform")
 @Tag("tck-javatest")
 @ExtendWith(ArquillianExtension.class)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client extends EETest {
 
   /** Name we use to lookup the URL */
@@ -71,11 +73,11 @@ public class Client extends EETest {
 
   private TSNamingContext nctx = null;
 
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) throws Exception {
+    Client theTests = new Client();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -153,9 +155,7 @@ public class Client extends EETest {
     return assembly_compat_standalone_war_compat9_10_ear;
   }
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "assembly_compat_standalone_war_compat9_10_component_web", order = 1)
+  @Deployment(name = "assembly_compat_standalone_war_compat9_10_component_web", order = 1, testable = false)
   public static WebArchive createWarDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
     WebArchive assembly_compat_standalone_war_compat9_10_component_web = ShrinkWrap.create(WebArchive.class,
@@ -201,6 +201,7 @@ public class Client extends EETest {
    *
    */
   @Test
+  @OperateOnDeployment("assembly_compat_standalone_war_compat9_10")
   public void testStandaloneWar() throws Fault {
     boolean pass = false;
     String value;

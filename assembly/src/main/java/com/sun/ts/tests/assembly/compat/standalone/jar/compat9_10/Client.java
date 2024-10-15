@@ -48,7 +48,8 @@ import tck.arquillian.protocol.common.TargetVehicle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.lang.System.Logger;
 
@@ -56,6 +57,7 @@ import java.lang.System.Logger;
 @Tag("platform")
 @Tag("tck-javatest")
 @ExtendWith(ArquillianExtension.class)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client extends EETest {
   /** JNDI Name we use to lookup the bean */
   public static final String lookupName = "java:comp/env/ejb/TestBean";
@@ -64,11 +66,11 @@ public class Client extends EETest {
 
   private Properties props = null;
 
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) throws Exception {
+    Client theTests = new Client();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -135,6 +137,7 @@ public class Client extends EETest {
     archiveProcessor.processClientArchive(assembly_compat_standalone_jar_compat9_10_client, Client.class, resURL);
 
 
+    
     EnterpriseArchive assembly_compat_standalone_jar_compat9_10_ear = ShrinkWrap.create(EnterpriseArchive.class,
         "assembly_compat_standalone_jar_compat9_10_ear.ear");
         assembly_compat_standalone_jar_compat9_10_ear.addAsModule(assembly_compat_standalone_jar_compat9_10_client);
@@ -142,15 +145,13 @@ public class Client extends EETest {
     if (earResURL != null) {
       assembly_compat_standalone_jar_compat9_10_ear.addAsManifestResource(earResURL, "application.xml");
     }
-    assembly_compat_standalone_jar_compat9_10_ear
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // assembly_compat_standalone_jar_compat9_10_ear
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEarArchive(assembly_compat_standalone_jar_compat9_10_ear, Client.class, earResURL);
     return assembly_compat_standalone_jar_compat9_10_ear;
   }
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "assembly_compat_standalone_jar_compat9_10_component_ejb", order = 1)
+  @Deployment(name = "assembly_compat_standalone_jar_compat9_10_component_ejb", order = 1, testable = false)
   public static JavaArchive createEjbDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
     JavaArchive assembly_compat_standalone_jar_compat9_10_component_ejb = ShrinkWrap.create(JavaArchive.class,
@@ -170,8 +171,8 @@ public class Client extends EETest {
     if(resURL != null) {
       assembly_compat_standalone_jar_compat9_10_component_ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
     }
-    assembly_compat_standalone_jar_compat9_10_component_ejb
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // assembly_compat_standalone_jar_compat9_10_component_ejb
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_compat_standalone_jar_compat9_10_component_ejb, Client.class, resURL);
 
     return assembly_compat_standalone_jar_compat9_10_component_ejb;
@@ -195,6 +196,7 @@ public class Client extends EETest {
    *                 on the referenced bean at runtime.
    */
   @Test
+  @OperateOnDeployment("assembly_classpath_ejb")
   public void testStandaloneJar() throws Fault {
     TestBean bean;
     boolean pass;

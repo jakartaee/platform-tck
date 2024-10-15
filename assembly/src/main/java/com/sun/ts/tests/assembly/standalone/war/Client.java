@@ -51,7 +51,8 @@ import tck.arquillian.protocol.common.TargetVehicle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.lang.System.Logger;
 
@@ -59,6 +60,7 @@ import java.lang.System.Logger;
 @Tag("platform")
 @Tag("tck-javatest")
 @ExtendWith(ArquillianExtension.class)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client extends EETest {
 
   /** Name we use to lookup the URL */
@@ -71,11 +73,11 @@ public class Client extends EETest {
 
   private TSNamingContext nctx = null;
 
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) {
+    Client theTests = new Client();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -111,7 +113,7 @@ public class Client extends EETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-  public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+  public static EnterpriseArchive createEarDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
     JavaArchive assembly_standalone_war_client = ShrinkWrap.create(JavaArchive.class,
         "assembly_standalone_war_client.jar");
@@ -193,6 +195,7 @@ public class Client extends EETest {
    *
    */
   @Test
+  @OperateOnDeployment("assembly_standalone_war")
   public void testStandaloneWar() throws Fault {
     boolean pass = false;
     String value;

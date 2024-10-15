@@ -74,11 +74,11 @@ public class Client extends EETest {
 
   private TSNamingContext nctx = null;
 
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) {
+    Client theTests = new Client();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -112,9 +112,6 @@ public class Client extends EETest {
   }
 
 
-  public Client() throws Exception {
-  }
-
   static final String VEHICLE_ARCHIVE = "assembly_altDD_client";
 
   @TargetsContainer("tck-javatest")
@@ -135,8 +132,6 @@ public class Client extends EETest {
     assembly_altDD_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
         "MANIFEST.MF");
 
-    // // The sun-application-client.xml file need to be added or should this be in
-    // in the vendor Arquillian extension?
     resURL = Client.class.getClassLoader()
         .getResource(packagePath + "/assembly_altDD_client.jar.sun-application-client.xml");
     if (resURL != null) {
@@ -145,7 +140,6 @@ public class Client extends EETest {
     archiveProcessor.processClientArchive(assembly_altDD_client, Client.class, resURL);
 
     JavaArchive assembly_altDD_ejb = ShrinkWrap.create(JavaArchive.class, "assembly_altDD_ejb.jar");
-    // The class files
     assembly_altDD_ejb.addClasses(
         com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class,
         com.sun.ts.lib.util.RemoteLoggingInitException.class,
@@ -158,7 +152,6 @@ public class Client extends EETest {
     if (ejbResURL != null) {
       assembly_altDD_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
     }
-    // // The sun-ejb-jar.xml file
     ejbResURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_altDD_ejb.jar.sun-ejb-jar.xml");
     if (ejbResURL != null) {
       assembly_altDD_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
@@ -168,7 +161,7 @@ public class Client extends EETest {
 
     archiveProcessor.processEjbArchive(assembly_altDD_ejb, Client.class, ejbResURL);
 
-    // Ear
+
     EnterpriseArchive assembly_altDD_ear = ShrinkWrap.create(EnterpriseArchive.class, "assembly_altDD.ear");
     assembly_altDD_ear.addAsModule(assembly_altDD_client);
     assembly_altDD_ear.addAsModule(assembly_altDD_ejb);

@@ -75,11 +75,11 @@ public class Client extends EETest {
 
   private Properties props = null;
 
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) throws Exception {
+    Client theTests = new Client();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -141,8 +141,8 @@ public class Client extends EETest {
       assembly_compat_cocktail_compat9_10_jar1_ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
     }
 
-    assembly_compat_cocktail_compat9_10_jar1_ejb.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-        "MANIFEST.MF");
+    // assembly_compat_cocktail_compat9_10_jar1_ejb.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+    //     "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_compat_cocktail_compat9_10_jar1_ejb, Client.class, resURL);
     
     JavaArchive assembly_compat_cocktail_compat9_10_jar2_ejb = ShrinkWrap.create(JavaArchive.class, "assembly_compat_cocktail_compat9_10_jar2_ejb.jar");
@@ -163,8 +163,8 @@ public class Client extends EETest {
       assembly_compat_cocktail_compat9_10_jar2_ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
     }
 
-    assembly_compat_cocktail_compat9_10_jar2_ejb.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-        "MANIFEST.MF");
+    // assembly_compat_cocktail_compat9_10_jar2_ejb.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+    //     "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_compat_cocktail_compat9_10_jar1_ejb, Client.class, resURL);
 
 
@@ -175,7 +175,7 @@ public class Client extends EETest {
         com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.tests.assembly.classpath.appclient.Client.class,
+        com.sun.ts.tests.assembly.compat.cocktail.compat9_10.Client.class,
         com.sun.ts.tests.assembly.compat.cocktail.compat9_10.ReferencedBean.class,
         com.sun.ts.tests.assembly.compat.cocktail.compat9_10.ReferencedBeanEJB.class,   
         com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode.class,
@@ -196,13 +196,13 @@ public class Client extends EETest {
     archiveProcessor.processClientArchive(assembly_compat_cocktail_compat9_10_client, Client.class, resURL);
 
 
-    JavaArchive assembly_compat_cocktail_compat14_50_another_client = ShrinkWrap.create(JavaArchive.class,
-        "assembly_compat_cocktail_compat14_50_another_client.jar");
-        assembly_compat_cocktail_compat14_50_another_client.addClasses(
+    JavaArchive assembly_compat_cocktail_compat9_10_another_client = ShrinkWrap.create(JavaArchive.class,
+        "assembly_compat_cocktail_compat9_10_another_client.jar");
+        assembly_compat_cocktail_compat9_10_another_client.addClasses(
         com.sun.ts.lib.harness.EETest.Fault.class,
         com.sun.ts.lib.harness.EETest.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.tests.assembly.classpath.appclient.Client.class,
+        com.sun.ts.tests.assembly.compat.cocktail.compat9_10.Client.class,
         com.sun.ts.tests.assembly.compat.cocktail.compat9_10.ReferencedBean.class,
         com.sun.ts.tests.assembly.compat.cocktail.compat9_10.ReferencedBeanEJB.class,   
         com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode.class,
@@ -212,29 +212,29 @@ public class Client extends EETest {
     // The application-client.xml descriptor
     resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_compat_cocktail_compat9_10_another_client.xml");
     if (resURL != null) {
-      assembly_compat_cocktail_compat14_50_another_client.addAsManifestResource(resURL, "application-client.xml");
+      assembly_compat_cocktail_compat9_10_another_client.addAsManifestResource(resURL, "application-client.xml");
     }
     resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_compat_cocktail_compat9_10_another_client.jar.sun-application-client.xml");
     if (resURL != null) {
-      assembly_compat_cocktail_compat14_50_another_client.addAsManifestResource(resURL, "sun-application-client.xml");
+      assembly_compat_cocktail_compat9_10_another_client.addAsManifestResource(resURL, "sun-application-client.xml");
     }
-    assembly_compat_cocktail_compat14_50_another_client
+    assembly_compat_cocktail_compat9_10_another_client
         .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
-    archiveProcessor.processClientArchive(assembly_compat_cocktail_compat14_50_another_client, Client.class, resURL);
+    archiveProcessor.processClientArchive(assembly_compat_cocktail_compat9_10_another_client, Client.class, resURL);
 
     EnterpriseArchive assembly_compat_cocktail_compat9_10 = ShrinkWrap.create(EnterpriseArchive.class,
         "assembly_compat_cocktail_compat9_10.ear");
         assembly_compat_cocktail_compat9_10.addAsModule(assembly_compat_cocktail_compat9_10_jar1_ejb);
         assembly_compat_cocktail_compat9_10.addAsModule(assembly_compat_cocktail_compat9_10_jar2_ejb);
         assembly_compat_cocktail_compat9_10.addAsModule(assembly_compat_cocktail_compat9_10_client);
-        assembly_compat_cocktail_compat9_10.addAsModule(assembly_compat_cocktail_compat14_50_another_client);
+        assembly_compat_cocktail_compat9_10.addAsModule(assembly_compat_cocktail_compat9_10_another_client);
 
     URL earResURL = Client.class.getClassLoader().getResource(packagePath + "/application.xml");
     if (earResURL != null) {
       assembly_compat_cocktail_compat9_10.addAsManifestResource(earResURL, "application.xml");
     }
-    assembly_compat_cocktail_compat9_10
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // assembly_compat_cocktail_compat9_10
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEarArchive(assembly_compat_cocktail_compat9_10, Client.class, earResURL);
 
     return assembly_compat_cocktail_compat9_10;

@@ -9,7 +9,6 @@
 
   <extension qualifier="glassfish-descriptors">
     <property name="descriptorDir">target</property>
-    <!-- <property name="descriptorDir">jakartaeetck/dist/</property> -->
   </extension>
 
   <group qualifier="glassfish-servers" default="true">

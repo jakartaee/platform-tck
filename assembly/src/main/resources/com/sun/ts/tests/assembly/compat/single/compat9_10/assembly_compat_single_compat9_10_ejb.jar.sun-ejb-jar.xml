@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 EJB 3.0//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_3_0-0.dtd">
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Application Server 9.0 EJB 3.0//EN" "sun-ejb-jar_3_0-0.dtd">
 <!--
 
     Copyright (c) 2018, 2024 Oracle and/or its affiliates. All rights reserved.

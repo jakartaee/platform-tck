@@ -49,7 +49,8 @@ import tck.arquillian.protocol.common.TargetVehicle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestInfo;
-
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import java.lang.System.Logger;
 
@@ -57,6 +58,7 @@ import java.lang.System.Logger;
 @Tag("platform")
 @Tag("tck-javatest")
 @ExtendWith(ArquillianExtension.class)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client extends EETest {
   /** JNDI Name we use to lookup the bean */
   public static final String lookupName = "java:comp/env/ejb/TestBean";
@@ -65,11 +67,11 @@ public class Client extends EETest {
 
   private Properties props = null;
 
-  // public static void main(String[] args) {
-  //   Client theTests = new Client();
-  //   Status s = theTests.run(args, System.out, System.err);
-  //   s.exit();
-  // }
+  public static void main(String[] args) throws Exception {
+    Client theTests = new Client();
+    Status s = theTests.run(args, System.out, System.err);
+    s.exit();
+  }
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -102,11 +104,7 @@ public class Client extends EETest {
     logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
-  public Client() throws Exception {
-
-  }
-
-  static final String VEHICLE_ARCHIVE = "assembly_classpath_ejb";
+  static final String VEHICLE_ARCHIVE = "assembly_standalone_jar";
 
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
@@ -150,9 +148,7 @@ public class Client extends EETest {
     return assembly_standalone_jar_ear;
   }
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = "assembly_standalone_jar_component_ejb", order = 1)
+  @Deployment(name = "assembly_standalone_jar_component_ejb", order = 1, testable = false)
   public static JavaArchive createEjbDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
     JavaArchive assembly_standalone_jar_component_ejb = ShrinkWrap.create(JavaArchive.class,
@@ -199,6 +195,7 @@ public class Client extends EETest {
    *                 on the referenced bean at runtime.
    */
   @Test
+  @OperateOnDeployment("assembly_standalone_jar")
   public void testStandaloneJar() throws Fault {
     TestBean bean;
     boolean pass = false;
