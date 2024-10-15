@@ -103,6 +103,11 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.bb.session.stat
         if (warResURL != null) {
             bb_stateful_timeout_annotated_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/ejblitejsp_vehicle.jsp");
         }
+        
+        warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/bb/session/stateful/timeout/annotated/bb_stateful_timeout_annotated_ejblitejsp_vehicle_web.war.sun-ejb-jar.xml");
+        if (warResURL != null) {
+            bb_stateful_timeout_annotated_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/sun-ejb-jar.xml");
+        }
 
         // Call the archive processor
         archiveProcessor.processWebArchive(bb_stateful_timeout_annotated_ejblitejsp_vehicle_web, Client.class, warResURL);
