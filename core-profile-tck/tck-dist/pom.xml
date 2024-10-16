@@ -15,7 +15,7 @@
     <parent>
         <groupId>jakarta.tck.coreprofile</groupId>
         <artifactId>core-tck-parent</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>11.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -115,7 +115,7 @@
                                 <tck-version>${project.version}</tck-version>
                                 <revnumber>10.0</revnumber>
                                 <revmajor>10</revmajor>
-                                <toc></toc>
+                                <toc />
                             </attributes>
                         </configuration>
                     </execution>
@@ -136,7 +136,7 @@
                                 <tck-version>${project.version}</tck-version>
                                 <revnumber>10.0</revnumber>
                                 <revmajor>10</revmajor>
-                                <toc></toc>
+                                <toc />
                             </attributes>
                         </configuration>
                     </execution>
