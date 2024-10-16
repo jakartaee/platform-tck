@@ -38,6 +38,7 @@ import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 
 import com.sun.ts.lib.util.BASE64Encoder;
 import com.sun.ts.tests.common.webclient.TestFailureException;
@@ -53,6 +54,10 @@ import jakarta.websocket.WebSocketContainer;
 /**
  * The common client that contains common methods
  */
+@Tag("websocket")
+@Tag("platform")
+@Tag("web")
+
 public abstract class WebSocketCommonClient {
 
 	private static final Logger logger = System.getLogger(WebSocketCommonClient.class.getName());

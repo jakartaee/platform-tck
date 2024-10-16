@@ -46,6 +46,12 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.map</include>
+                    <include>**/*.txt</include>
+                    <include>**/*.sig*</include>
+                </includes>
             </resource>
         </resources>
         <plugins>
@@ -176,7 +182,7 @@
         <profile>
             <id>mysql</id>
             <properties>
-                <mysql.jdbc.version>8.2.0</mysql.jdbc.version>
+                <mysql.jdbc.version>9.0.0</mysql.jdbc.version>
             </properties>
             <dependencies>
                 <dependency>
@@ -202,7 +208,7 @@
         <profile>
             <id>postgresql</id>
             <properties>
-                <postgresql.jdbc.version>42.6.2</postgresql.jdbc.version>
+                <postgresql.jdbc.version>42.7.4</postgresql.jdbc.version>
             </properties>
             <dependencies>
                 <dependency>

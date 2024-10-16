@@ -35,6 +35,7 @@
 
     <modules>
         <module>appclient</module>
+        <module>arquillian</module>
         <module>assembly</module>
         <module>common</module>
         <module>connector</module>
@@ -81,7 +82,7 @@
     <properties>
         <ant.version>1.10.11</ant.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
-        <arquillian.jakarta.tck.version>1.0.0-M16</arquillian.jakarta.tck.version>
+        <arquillian.jakarta.tck.version>${project.version}</arquillian.jakarta.tck.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
         <!-- CDI -->
         <cdi-api.version>4.0.0</cdi-api.version>
@@ -127,8 +128,9 @@
         <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <shrinkwrap.api.version>2.0.0-beta-1</shrinkwrap.api.version>
-        <shrinkwrap.version>3.3.0</shrinkwrap.version>
+        <shrinkwrap.api.version>2.0.0-beta-2</shrinkwrap.api.version>
+        <shrinkwrap.descriptors.version>2.0.0</shrinkwrap.descriptors.version>
+        <shrinkwrap.resolver.version>3.3.1</shrinkwrap.resolver.version>
         <slf4j.version>2.0.0</slf4j.version>
         <surefire.failIfNoSpecifiedTests>false</surefire.failIfNoSpecifiedTests>
         <!-- Jakarta WebSocket -->
@@ -376,20 +378,30 @@
 
             <dependency>
                 <groupId>org.jboss.shrinkwrap</groupId>
-                <artifactId>shrinkwrap-api</artifactId>
+                <artifactId>shrinkwrap-bom</artifactId>
                 <version>${shrinkwrap.api.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                <artifactId>shrinkwrap-descriptors-bom</artifactId>
+                <version>${shrinkwrap.descriptors.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                <version>${shrinkwrap.version}</version>
+                <version>${shrinkwrap.resolver.version}</version>
                 <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-                <version>${shrinkwrap.version}</version>
+                <version>${shrinkwrap.resolver.version}</version>
             </dependency>
 
             <dependency>
@@ -410,7 +422,7 @@
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.10.0</version>
+                <version>2.16.1</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -552,6 +564,11 @@
                 <artifactId>jboss-rmi-api_1.0_spec</artifactId>
                 <version>1.0.6.Final</version>
             </dependency>
+            <dependency>
+                <groupId>jakarta.tck</groupId>
+                <artifactId>sigtest-maven-plugin</artifactId>
+                <version>2.2</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
@@ -609,7 +626,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
-                    <version>3.3.0</version>
+                    <version>3.8.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -622,9 +639,9 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.netbeans.tools</groupId>
+                    <groupId>jakarta.tck</groupId>
                     <artifactId>sigtest-maven-plugin</artifactId>
-                    <version>1.5</version>
+                    <version>2.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -668,7 +685,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.2.2</version>
+                    <version>3.4.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -727,8 +744,6 @@
                             <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
                             <!-- Sort properties -->
                             <sortProperties>true</sortProperties>
-                            <!-- Sort modules -->
-                            <sortModules>true</sortModules>
                             <!-- Sort plugin executions -->
                             <sortExecutions>true</sortExecutions>
                         </sortPom>
@@ -741,6 +756,21 @@
                             <goal>check</goal>
                         </goals>
                         <phase>validate</phase>
+                        <configuration>
+                            <pom combine.children="append">
+                                <sortPom combine.children="append">
+                                    <nrOfIndentSpace>4</nrOfIndentSpace>
+                                    <!-- default see https://github.com/Ekryd/sortpom/wiki/PredefinedSortOrderProfiles -->
+                                    <predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+                                    <!-- Sort properties -->
+                                    <sortProperties>true</sortProperties>
+                                    <!-- Sort modules -->
+                                    <sortModules>true</sortModules>
+                                    <!-- Sort plugin executions -->
+                                    <sortExecutions>true</sortExecutions>
+                                </sortPom>
+                            </pom>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

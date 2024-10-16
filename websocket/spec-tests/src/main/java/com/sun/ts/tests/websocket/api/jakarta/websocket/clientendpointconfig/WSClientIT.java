@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.sun.ts.tests.websocket.common.TCKExtension;
@@ -36,6 +37,10 @@ import jakarta.websocket.Decoder;
 import jakarta.websocket.Encoder;
 import jakarta.websocket.Extension;
 import jakarta.websocket.HandshakeResponse;
+
+@Tag("websocket")
+@Tag("platform")
+@Tag("web")
 
 public class WSClientIT {
 

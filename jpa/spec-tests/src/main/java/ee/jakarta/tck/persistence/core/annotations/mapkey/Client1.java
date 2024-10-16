@@ -39,7 +39,7 @@ public class Client1 extends Client {
 		s.exit();
 	}
 
-	public void setupCreateTestData(String args[], Properties p) throws Exception {
+	public void setup(String args[], Properties p) throws Exception {
 		logTrace( "setup");
 		try {
 			super.setup(args,p);

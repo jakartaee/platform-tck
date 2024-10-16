@@ -57,7 +57,7 @@
       </resource-ref>
       <resource-ref>
         <res-ref-name>myUrl</res-ref-name>
-        <jndi-name>http://webServerHost:webServerPort</jndi-name>
+        <jndi-name>http://localhost:8080</jndi-name>
       </resource-ref>
     <message-destination-ref>
       <message-destination-ref-name>myQueue</message-destination-ref-name>

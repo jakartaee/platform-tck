@@ -35,13 +35,13 @@ public class Spouse implements java.io.Serializable {
 	// Instance variables
 	private String id;
 
-	private String first;
+	private String firstName;
 
-	private String maiden;
+	private String maidenName;
 
-	private String last;
+	private String lastName;
 
-	private String sNumber;
+	private String socialSecurityNumber;
 
 	private Info info;
 
@@ -52,19 +52,19 @@ public class Spouse implements java.io.Serializable {
 
 	public Spouse(String v1, String v2, String v3, String v4, String v5, Info v6) {
 		id = v1;
-		first = v2;
-		maiden = v3;
-		last = v4;
-		sNumber = v5;
+		firstName = v2;
+		maidenName = v3;
+		lastName = v4;
+		socialSecurityNumber = v5;
 		info = v6;
 	}
 
 	public Spouse(String v1, String v2, String v3, String v4, String v5, Info v6, Customer v7) {
 		id = v1;
-		first = v2;
-		maiden = v3;
-		last = v4;
-		sNumber = v5;
+		firstName = v2;
+		maidenName = v3;
+		lastName = v4;
+		socialSecurityNumber = v5;
 		info = v6;
 		customer = v7;
 	}
@@ -83,38 +83,38 @@ public class Spouse implements java.io.Serializable {
 
 	@Column(name = "FIRSTNAME")
 	public String getFirstName() {
-		return first;
+		return firstName;
 	}
 
 	public void setFirstName(String v) {
-		first = v;
+		firstName = v;
 	}
 
 	@Column(name = "MAIDENNAME")
 	public String getMaidenName() {
-		return maiden;
+		return maidenName;
 	}
 
 	public void setMaidenName(String v) {
-		maiden = v;
+		maidenName = v;
 	}
 
 	@Column(name = "LASTNAME")
 	public String getLastName() {
-		return last;
+		return lastName;
 	}
 
 	public void setLastName(String v) {
-		last = v;
+		lastName = v;
 	}
 
 	@Column(name = "SOCSECNUM")
 	public String getSocialSecurityNumber() {
-		return sNumber;
+		return socialSecurityNumber;
 	}
 
 	public void setSocialSecurityNumber(String v) {
-		sNumber = v;
+		socialSecurityNumber = v;
 	}
 
 	// 1X1

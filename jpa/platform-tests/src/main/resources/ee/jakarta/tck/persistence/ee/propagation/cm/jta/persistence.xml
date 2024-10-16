@@ -16,18 +16,20 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-
-<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
-    https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
-  version="3.2">
-    <persistence-unit name="CTS-JTA-UNIT" transaction-type="JTA">
-        <description>Persistence Unit for CTS EE Package Tests</description>
-        <jta-data-source>jdbc/DB1</jta-data-source>
-    </persistence-unit>
-    <persistence-unit name="CTS-JTA-UNIT2" transaction-type="JTA">
-        <description>Persistence Unit for CTS EE Package Tests</description>
-        <jta-data-source>jdbc/DB1</jta-data-source>
-    </persistence-unit>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence     https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd" version="3.0">
+  <persistence-unit name="CTS-JTA-UNIT" transaction-type="JTA">
+    <description>Persistence Unit for CTS EE Package Tests</description>
+    <jta-data-source>jdbc/DB1</jta-data-source>
+    <class>ee.jakarta.tck.persistence.ee.common.A</class>
+    <class>ee.jakarta.tck.persistence.ee.common.Account</class>
+    <class>ee.jakarta.tck.persistence.ee.common.B</class>
+  </persistence-unit>
+  <persistence-unit name="CTS-JTA-UNIT2" transaction-type="JTA">
+    <description>Persistence Unit for CTS EE Package Tests</description>
+    <jta-data-source>jdbc/DB1</jta-data-source>
+    <class>ee.jakarta.tck.persistence.ee.common.A</class>
+    <class>ee.jakarta.tck.persistence.ee.common.Account</class>
+    <class>ee.jakarta.tck.persistence.ee.common.B</class>
+  </persistence-unit>
 </persistence>
+

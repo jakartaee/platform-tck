@@ -22,8 +22,12 @@ package com.sun.ts.tests.javamail.ee.internetaddress;
 import java.io.Serializable;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
 
@@ -32,6 +36,10 @@ import jakarta.mail.internet.ContentType;
 import jakarta.mail.internet.HeaderTokenizer;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.ParameterList;
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("mail")
+@Tag("platform")
 
 public class internetaddress_Test extends ServiceEETest
     implements Serializable {
@@ -66,16 +74,7 @@ public class internetaddress_Test extends ServiceEETest
 
   public String value = "ggere, /tmp/mail.out, +mailbox, ~user/mailbox, ~/mailbox, /PN=x400.address/PRMD=ibmmail/ADMD=ibmx400/C=us/@mhs-mci.ebay, C'est bien moche <paris@france>, Mad Genius <george@boole>, two@weeks (It Will Take), /tmp/mail.out, laborious (But Bug Free), cannot@waste (My, Intellectual, Cycles), users:get,what,they,deserve;, it (takes, no (time, at) all), if@you (could, see (almost, as, (badly, you) would) agree), famous <French@physicists>, it@is (brilliant (genius, and) superb), confused (about, being, french)";
 
-  // Harness requirements
-
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    internetaddress_Test theTests = new internetaddress_Test();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
-  /* Test setup: */
+   /* Test setup: */
   /*
    * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
    * javamail.password ;mailuser1; smtp.port; imap.port;
@@ -91,6 +90,8 @@ public class internetaddress_Test extends ServiceEETest
       String host = TestUtil.getProperty("javamail.server");
       String user = TestUtil.getProperty("javamail.username");
       String password = TestUtil.getProperty("javamail.password");
+      String mailbox = TestUtil.getProperty("javamail.mailbox");
+      String rootPath = TestUtil.getProperty("javamail.root.path");
 
       String smtpPortStr = TestUtil.getProperty("smtp.port");
       int smtpPort = Integer.parseInt(smtpPortStr);
@@ -259,15 +260,15 @@ public class internetaddress_Test extends ServiceEETest
   } // end of testgetPersonal()
 
   /*
-   * @testName: contentType_Test
+   * @testName: contentTypeTest
    * 
    * @assertion_ids: JavaEE:SPEC:235;
    * 
    * @test_Strategy:
    * 
-   * derived from javamail suite setContent_Test
+   * derived from javamail suite setContentTest
    */
-  public void contentType_Test() throws Exception {
+  public void contentTypeTest() throws Exception {
 
     TestUtil.logMsg(
         "\nTesting class ContentType: ContentType(void|String|ParameterList)\n");
@@ -344,7 +345,7 @@ public class internetaddress_Test extends ServiceEETest
   }
 
   /*
-   * @testName: next_Test
+   * @testName: nextTest
    * 
    * @assertion_ids: JavaEE:SPEC:235;
    * 
@@ -356,9 +357,9 @@ public class internetaddress_Test extends ServiceEETest
    * HeaderTokenizer.Token next() <p>
    * 
    * 
-   * derived from javamail suite next_Test
+   * derived from javamail suite nextTest
    */
-  public void next_Test() throws Exception {
+  public void nextTest() throws Exception {
 
     TestUtil.logMsg("\nTesting class HeaderTokenizer: next()\n");
 
@@ -492,7 +493,7 @@ public class internetaddress_Test extends ServiceEETest
    * 
    * derived from javamail suite combineSegments_Test
    */
-  public void combineSegments_Test() throws Exception {
+  public void combineSegmentsTest() throws Exception {
 
     String pattern = ";i18set=ISO-8859-1;charset=us-acii;abc=xyz";
 

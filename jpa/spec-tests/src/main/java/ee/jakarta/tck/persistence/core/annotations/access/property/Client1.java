@@ -19,6 +19,7 @@ package ee.jakarta.tck.persistence.core.annotations.access.property;
 
 import java.util.Arrays;
 import java.util.Properties;
+import com.sun.ts.lib.harness.Status;
 
 
 
@@ -28,6 +29,11 @@ import ee.jakarta.tck.persistence.core.types.common.Grade;
 
 public class Client1 extends Client {
 
+	public static void main(String[] args) {
+		Client1 theTests = new Client1();
+		Status s = theTests.run(args, System.out, System.err);
+		s.exit();
+	  }
 
 	public Client1() {
 	}

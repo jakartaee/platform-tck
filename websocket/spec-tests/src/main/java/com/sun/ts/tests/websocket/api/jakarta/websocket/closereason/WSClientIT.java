@@ -22,11 +22,16 @@ package com.sun.ts.tests.websocket.api.jakarta.websocket.closereason;
 
 import java.lang.System.Logger;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.CloseReason.CloseCode;
 import jakarta.websocket.CloseReason.CloseCodes;
+
+@Tag("websocket")
+@Tag("platform")
+@Tag("web")
 
 public class WSClientIT {
 

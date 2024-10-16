@@ -21,11 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 
 import jakarta.persistence.EntityManager;
@@ -43,6 +39,11 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
+	public static void main(String[] args) {
+  		Client theTests = new Client();
+  		Status s = theTests.run(args, System.out, System.err);
+  		s.exit();
+	}
 
 
 	public void setup(String[] args, Properties p) throws Exception {
@@ -58,7 +59,6 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@AfterEach
 	public void cleanup() throws Exception {
 		logTrace( "cleanup complete, calling super.cleanup");
 		super.cleanup();
@@ -72,7 +72,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Create an EntityManagerFactory via SynchronizationType,Map
 	 */
-	@Test
 	public void createEntityManagerSynchronizationTypeMapTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -112,7 +111,6 @@ public class Client extends PMClientBase {
 	 * 
 	 * @test_Strategy: Create an EntityManagerFactory via SynchronizationType
 	 */
-	@Test
 	public void createEntityManagerSynchronizationTypeTest() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
@@ -153,7 +151,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Call EntityManager.joinTransaction() method when no
 	 * transaction exists
 	 */
-	@Test
 	public void joinTransactionTransactionRequiredExceptionTest() throws Exception {
 		boolean pass = false;
 		try {

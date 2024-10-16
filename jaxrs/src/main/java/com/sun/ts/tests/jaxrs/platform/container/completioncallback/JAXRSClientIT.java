@@ -43,6 +43,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,6 +59,9 @@ import org.junit.jupiter.api.AfterEach;
  * Servlet 2.5 spec by default
  */
 @ExtendWith(ArquillianExtension.class)
+@Tag("jaxrs")
+@Tag("platform")
+@Tag("web")
 public class JAXRSClientIT extends JaxrsCommonClient {
 
   private static final long serialVersionUID = -234268814434213796L;

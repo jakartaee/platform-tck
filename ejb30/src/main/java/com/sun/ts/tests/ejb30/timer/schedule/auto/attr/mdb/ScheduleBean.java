@@ -24,12 +24,10 @@ import jakarta.ejb.MessageDriven;
 import jakarta.jms.MessageListener;
 
 @MessageDriven(name = "ScheduleBean", description = "ScheduleBean MDB", activationConfig = {
-    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
-public class ScheduleBean extends
-    com.sun.ts.tests.ejb30.timer.schedule.auto.attr.stateless.ScheduleBeanBase3
-    implements MessageListener {
+        @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "jakarta.jms.Queue") })
+public class ScheduleBean extends com.sun.ts.tests.ejb30.timer.schedule.auto.attr.stateless.ScheduleBeanBase3 implements MessageListener {
 
-  public void onMessage(jakarta.jms.Message msg) {
-  }
+    public void onMessage(jakarta.jms.Message msg) {
+    }
 
 }

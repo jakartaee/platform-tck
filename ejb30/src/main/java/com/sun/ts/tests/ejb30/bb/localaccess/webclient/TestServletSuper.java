@@ -39,88 +39,79 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.UserTransaction;
 
 public class TestServletSuper extends HttpTCKServlet {
-  protected Object getInjectedFieldInSubclass() {
-    return "";
-  }
-
-  protected int postConstructCallsCount;
-
-  @Resource(name = "ut")
-  private UserTransaction ut;
-
-  @EJB
-  private TestBeanIF testBean;
-
-  @PostConstruct
-  private void postConstruct() {
-    TLogger.log("In PostConstruct method of " + this);
-    postConstructCallsCount++;
-  }
-
-  @PreDestroy
-  private void preDestroy() {
-    TLogger.log("In PreDestroy method of " + this);
-    postConstructCallsCount = 0;
-  }
-
-  public void injectedIntoTestServletSuperEvenNoAnnotationInTestServlet(
-      HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    if (ut != null) {
-      pw.println(
-          Data.PASSED + " field correctly injected into TestServletSuper "
-              + "even when TestServlet itself contains no annotation: " + ut);
-    } else {
-      pw.println(Data.FAILED + " field not injected into TestServletSuper "
-          + "when TestServlet itself contains no annotation");
-      if (!"".equals(getInjectedFieldInSubclass())) {
-        pw.println("The field injected into TestServlet: "
-            + getInjectedFieldInSubclass());
-      }
-    }
-  }
-
-  public void postConstructCalledInTestServletSuperEvenNoAnnotationInTestServlet(
-      HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    if (postConstructCallsCount == 1) {
-      pw.println(Data.PASSED + " PostConstruct in TestServletSuper called once "
-          + "even when TestServlet itself contains no annotation: " + ut);
-    } else {
-      pw.println(
-          Data.FAILED + " PostConstruct in TestServletSuper not called once "
-              + "when TestServlet itself contains no annotation. "
-              + "postConstructCallsCount is " + postConstructCallsCount);
-    }
-  }
-
-  public void passByValueTest(HttpServletRequest request,
-      HttpServletResponse response) throws ServletException, IOException {
-    PrintWriter pw = response.getWriter();
-    String[] args = new String[] { Constants.CLIENT_MSG };
-    String expected = args[0];
-    try {
-      testBean.passByValueTest(args);
-    } catch (TestFailedException ex) {
-      throw new ServletException(ex);
-    }
-    String actual = args[0];
-    if (expected.equals(actual)) {
-      pw.println(Data.PASSED
-          + " Got the expected result: the array element modified in remote bean is not visible in servlet client.");
-    } else {
-      pw.println(Data.FAILED + " Expecting '" + expected + "', but actual '"
-          + actual + "'");
+    protected Object getInjectedFieldInSubclass() {
+        return "";
     }
 
-    StringBuffer sb = new StringBuffer("param StringBuffer");
-    StringBuffer returnedSb = testBean.passByValueTest3(sb);
-    if (sb == returnedSb) {
-      pw.println(Data.FAILED + " Expecting not equal, but actual equal: " + sb);
-    } else {
-      pw.println(Data.PASSED + " Got expected param != ret");
+    protected int postConstructCallsCount;
+
+    @Resource(name = "ut")
+    private UserTransaction ut;
+
+    @EJB
+    private TestBeanIF testBean;
+
+    @PostConstruct
+    private void postConstruct() {
+        TLogger.log("In PostConstruct method of " + this);
+        postConstructCallsCount++;
     }
-  }
+
+    @PreDestroy
+    private void preDestroy() {
+        TLogger.log("In PreDestroy method of " + this);
+        postConstructCallsCount = 0;
+    }
+
+    public void injectedIntoTestServletSuperEvenNoAnnotationInTestServlet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        if (ut != null) {
+            pw.println(Data.PASSED + " field correctly injected into TestServletSuper "
+                    + "even when TestServlet itself contains no annotation: " + ut);
+        } else {
+            pw.println(Data.FAILED + " field not injected into TestServletSuper " + "when TestServlet itself contains no annotation");
+            if (!"".equals(getInjectedFieldInSubclass())) {
+                pw.println("The field injected into TestServlet: " + getInjectedFieldInSubclass());
+            }
+        }
+    }
+
+    public void postConstructCalledInTestServletSuperEvenNoAnnotationInTestServlet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        if (postConstructCallsCount == 1) {
+            pw.println(Data.PASSED + " PostConstruct in TestServletSuper called once "
+                    + "even when TestServlet itself contains no annotation: " + ut);
+        } else {
+            pw.println(Data.FAILED + " PostConstruct in TestServletSuper not called once "
+                    + "when TestServlet itself contains no annotation. " + "postConstructCallsCount is " + postConstructCallsCount);
+        }
+    }
+
+    public void passByValueTest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter pw = response.getWriter();
+        String[] args = new String[] { Constants.CLIENT_MSG };
+        String expected = args[0];
+        try {
+            testBean.passByValueTest(args);
+        } catch (TestFailedException ex) {
+            throw new ServletException(ex);
+        }
+        String actual = args[0];
+        if (expected.equals(actual)) {
+            pw.println(
+                    Data.PASSED + " Got the expected result: the array element modified in remote bean is not visible in servlet client.");
+        } else {
+            pw.println(Data.FAILED + " Expecting '" + expected + "', but actual '" + actual + "'");
+        }
+
+        StringBuffer sb = new StringBuffer("param StringBuffer");
+        StringBuffer returnedSb = testBean.passByValueTest3(sb);
+        if (sb == returnedSb) {
+            pw.println(Data.FAILED + " Expecting not equal, but actual equal: " + sb);
+        } else {
+            pw.println(Data.PASSED + " Got expected param != ret");
+        }
+    }
 }

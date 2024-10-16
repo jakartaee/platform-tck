@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <!-- Model Version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent -->
+    <parent>
+        <groupId>jakarta.tck</groupId>
+        <artifactId>project</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- Artifact Configuration -->
+    <groupId>jakarta.tck</groupId>
+    <artifactId>tck.arquillian.parent</artifactId>
+    <packaging>pom</packaging>
+    <name>Arquillian Jakarta TCK Parent</name>
+    <description>Protocols and testenrichers for Jakarta TCKs</description>
+
+    <modules>
+        <module>appclient</module>
+        <module>common</module>
+        <module>javatest</module>
+        <module>porting-lib</module>
+        <module>protocol-lib</module>
+    </modules>
+
+    <scm>
+        <connection>scm:git:https://github.com/eclipse-ee4j/jakartaee-tck-tools</connection>
+        <developerConnection>scm:git:https://github.com/eclipse-ee4j/jakartaee-tck-tools</developerConnection>
+        <tag>master</tag>
+        <url>https://github.com/eclipse-ee4j/jakartaee-tck-tools/tools/arquillian</url>
+    </scm>
+
+    <!-- Properties -->
+    <properties>
+
+        <maven.compiler.release>17</maven.compiler.release>
+        <!-- Versioning -->
+        <version.arquillian_core>1.9.1.Final</version.arquillian_core>
+    </properties>
+
+</project>

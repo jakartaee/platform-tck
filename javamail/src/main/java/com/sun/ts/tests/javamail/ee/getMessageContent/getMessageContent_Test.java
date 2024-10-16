@@ -18,8 +18,12 @@ package com.sun.ts.tests.javamail.ee.getMessageContent;
 
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
@@ -29,6 +33,10 @@ import jakarta.mail.Folder;
 import jakarta.mail.Message;
 import jakarta.mail.Session;
 import jakarta.mail.Store;
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("mail")
+@Tag("platform")
 
 public class getMessageContent_Test extends ServiceEETest {
 
@@ -45,13 +53,8 @@ public class getMessageContent_Test extends ServiceEETest {
   private Status status;
 
   private String rootPath;
-
-  public static void main(String[] args) {
-    getMessageContent_Test theTests = new getMessageContent_Test();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
-
+  
+ 
   /* Test setup: */
   /*
    * @class.setup_props: javamail.protocol; javamail.server; javamail.username;
@@ -111,7 +114,6 @@ public class getMessageContent_Test extends ServiceEETest {
    * @test_Strategy: getMessageContent test
    */
   // derived from javamail suite getMessageContent_Test
-
   public void test1() throws Exception {
 
     try {

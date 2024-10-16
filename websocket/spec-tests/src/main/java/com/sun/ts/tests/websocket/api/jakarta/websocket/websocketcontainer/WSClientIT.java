@@ -24,12 +24,17 @@ import java.lang.System.Logger;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import jakarta.websocket.ContainerProvider;
 import jakarta.websocket.Extension;
 import jakarta.websocket.Extension.Parameter;
 import jakarta.websocket.WebSocketContainer;
+
+@Tag("websocket")
+@Tag("platform")
+@Tag("web")
 
 public class WSClientIT {
 

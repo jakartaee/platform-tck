@@ -27,7 +27,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 @Tag("persistence")
 @Tag("platform")
-@Tag("web")
 @Tag("tck-appclient")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -64,7 +63,7 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
         public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
-            JavaArchive jpa_core_criteriaapi_parameter_appmanaged_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_parameter_appmanaged_vehicle_client.jar");
+            JavaArchive jpa_core_criteriaapi_parameter_appmanaged_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_parameter_vehicles_client.jar");
             // The class files
             jpa_core_criteriaapi_parameter_appmanaged_vehicle_client.addClasses(
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -84,7 +83,10 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class
+            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Client.class,
+            ee.jakarta.tck.persistence.core.criteriaapi.parameter.Employee.class,
+            Client1.class,
+            Client1AppmanagedTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
@@ -96,7 +98,7 @@ public class Client1AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             if(resURL != null) {
               jpa_core_criteriaapi_parameter_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            jpa_core_criteriaapi_parameter_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+            jpa_core_criteriaapi_parameter_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client1.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriaapi_parameter_appmanaged_vehicle_client, Client1.class, resURL);
 
