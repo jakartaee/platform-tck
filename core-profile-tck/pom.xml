@@ -26,7 +26,7 @@
     <name>Jakarta Core TCK</name>
 
     <!-- Metadata -->
-    <url>https://github.com/eclipse-ee4j/jakartaee-tck</url>
+    <url>https://github.com/jakartaee/jakartaee-tck</url>
 
     <inceptionYear>2008</inceptionYear>
 
@@ -56,6 +56,13 @@
         </developer>
 
     </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:jakartaee/platform-tck.git</connection>
+        <developerConnection>scm:git:git@github.com:jakartaee/platform-tck.git</developerConnection>
+        <url>https://github.com/jakartaee/platform-tck</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <modules>
         <module>ca-sigtest</module>
