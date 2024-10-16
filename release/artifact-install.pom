@@ -125,10 +125,10 @@
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>el-tck</artifactId>
+                            <artifactId>el-platform-tck</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>el-tck-${project.version}.jar</file>
+                            <file>el-platform-tck-${project.version}.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
