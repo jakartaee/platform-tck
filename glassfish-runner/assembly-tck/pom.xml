@@ -301,9 +301,10 @@
                         </goals>
                         <configuration>
                             <groups>tck-javatest</groups>
-                            <!-- <additionalClasspathElements>
+                            <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                            </additionalClasspathElements> -->
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/gf-client.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
                             <includes>
                                 <include>com/sun/ts/tests/assembly/altDD/Client.java</include>
                                 <include>com/sun/ts/tests/assembly/classpath/appclient/Client.java</include>
@@ -324,9 +325,11 @@
                                 create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
                                 list-file-users</glassfish.postBootCommands>
                                 <!-- <java.naming.factory.initial>foo</java.naming.factory.initial> -->
+                                <!-- <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial> -->
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
+                                <project.basedir>${project.basedir}</project.basedir>
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
