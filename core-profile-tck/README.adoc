@@ -2,11 +2,11 @@
 
 This is the repository for the Jakarta Core Profile TCK
 
-## Sources in GIT
+== Sources in GIT
 
 Main branch contains the work-in-progress on Jakarta Core Profile TCK 10.0
 
-### Source Layout
+=== Source Layout
 
 * .github - the GitHub actions configuration
 * cdi-tck-suite - the TestNG suite.xml file artifact for the set of CDI Lite tests one needs to pass for the Core Profile TCK
@@ -18,11 +18,11 @@ Main branch contains the work-in-progress on Jakarta Core Profile TCK 10.0
 Version 2.0. When distributed as a final TCK the bundled license is the https://www.eclipse.org/legal/tck.php[Eclipse Foundation Technology Compatibility Kit License].
 * README.adoc - this doc
 
-## Checklist for updating the TCK
+== Checklist for updating the TCK
 * update the EE api versions in the pom.xml
 * update the EE tck versions in the pom.xml
 * set the release version in the pom.xml in all modules
 
-## Staging the TCK
-https://ci.eclipse.org/jakartaee-tck/job/10/job/jakarta-coreprofile-tck-build/
-TBD: should be moved to the https://ci.eclipse.org/jakartaee-tck/job/11/ jobs?
+== Staging the TCK
+The following CI job stages the TCK to the downloads area and the Jakarta staging repository:
+https://ci.eclipse.org/jakartaee-tck/job/11/job/jakarta-core-profile-tck-maven-central/
