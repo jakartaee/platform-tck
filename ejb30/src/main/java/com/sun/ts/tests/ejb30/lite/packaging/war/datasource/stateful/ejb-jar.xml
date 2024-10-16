@@ -28,8 +28,7 @@
         <class-name>org.apache.derby.jdbc.ClientDataSource</class-name>
         <server-name>localhost</server-name>
         <port-number>1527</port-number>
-        <database-name>derbyDB</database-name>
-        <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
+        <database-name>derbyDB;create=true</database-name>
         <user>cts1</user>
         <password>cts1</password>
 
@@ -58,8 +57,7 @@
         <class-name>org.apache.derby.jdbc.ClientDataSource</class-name>
         <server-name>localhost</server-name>
         <port-number>1527</port-number>
-        <database-name>derbyDB</database-name>
-        <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
+        <database-name>derbyDB;create=true</database-name>
         <user>cts1</user>
         <password>cts1</password>
 
@@ -88,8 +86,7 @@
         <class-name>org.apache.derby.jdbc.ClientDataSource</class-name>
         <server-name>localhost</server-name>
         <port-number>1527</port-number>
-        <database-name>derbyDB</database-name>
-        <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
+        <database-name>derbyDB;create=true</database-name>
         <user>cts1</user>
         <password>cts1</password>
 
