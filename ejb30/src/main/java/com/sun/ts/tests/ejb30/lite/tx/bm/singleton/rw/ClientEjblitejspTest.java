@@ -93,6 +93,11 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.ejb30.lite.tx.bm.sing
             if(warResURL != null) {
               ejblite_tx_bm_singleton_rw_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
+            // The persistence.xml descriptor
+            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/lite/tx/cm/common/persistence.xml");
+            if(warResURL != null) {
+                ejblite_tx_bm_singleton_rw_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "classes/META-INF/persistence.xml");
+            }
 
             // Any libraries added to the war
 
