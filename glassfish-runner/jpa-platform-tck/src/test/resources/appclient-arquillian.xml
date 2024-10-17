@@ -15,6 +15,7 @@
     <container qualifier="tck-appclient" default="true">
         <configuration>
             <property name="glassFishHome">target/glassfish8</property>
+            <property name="allowConnectingToRunningServer">true</property>
         </configuration>
         <protocol type="appclient" default="true">
             <property name="runClient">true</property>
