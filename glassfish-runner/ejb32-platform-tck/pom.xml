@@ -513,6 +513,8 @@
                                 create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
                                 create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
                                 create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                                create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-XA-pool
+                                create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer
                                 list-jdbc-connection-pools
                                 list-jdbc-resources
                                 list-file-users</glassfish.postBootCommands>
@@ -555,6 +557,8 @@
                                 create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
                                 create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
                                 create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                                create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-XA-pool
+                                create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer
                                 list-jdbc-connection-pools
                                 list-jdbc-resources
                                 list-file-users</glassfish.postBootCommands>
