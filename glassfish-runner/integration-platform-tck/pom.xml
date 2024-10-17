@@ -426,6 +426,66 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>004-StartDatabase</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <workingDirectory>${derby.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>006-StopDatabase</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                        <configuration>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
+                            <workingDirectory>${derby.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>stop-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>005-initdb</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <!-- <path id="jdbc.classpath">
+                                    <pathelement path="${jdbc.driver.classes}"></pathelement>
+                                    <path refid="maven.runtime.classpath"></path>
+                                </path> -->
+                                <sql autocommit="true" classpath="${jdbc.classpath}" delimiter="${db.delimiter}" driver="${jdbc.driver}" onerror="continue" password="${jdbc.password}" url="${jdbc.url}" userid="${jdbc.user}">
+                                    <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sql"></transaction>
+                                    <!-- <transaction src="${sql.directory}/${jdbc.db}/${jdbc.db}.dml.sql"></transaction> -->
+                                </sql>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
@@ -440,8 +500,10 @@
                         </goals>
                         <configuration>
                             <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/lib/runtime.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.directory}/../../lib/glassfishporting.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
@@ -466,7 +528,6 @@
                                 <cts.harness.debug>true</cts.harness.debug>
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
-                                <!-- <porting.ts.HttpsURLConnection.class.1>com.sun.ts.lib.implementation.sun.javaee.SunRIHttpsURLConnection</porting.ts.HttpsURLConnection.class.1> -->
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
