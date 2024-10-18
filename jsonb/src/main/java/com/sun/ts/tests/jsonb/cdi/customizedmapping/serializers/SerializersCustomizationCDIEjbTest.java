@@ -70,29 +70,14 @@ import java.lang.System.Logger;
  * @executeClass com.sun.ts.tests.jsonb.customizedmapping.serializers.SerializersCustomizationTest
  **/
 @Tag("tck-appclient")
-@Tag("jsonb")
-@Tag("platform")
-@ExtendWith(ArquillianExtension.class)
-public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
-
-  private static final long serialVersionUID = 10L;
+public class SerializersCustomizationCDIEjbTest extends SerializersCustomizationCDITest {
 
   static final String VEHICLE_ARCHIVE = "jsonb_cdi_customizedmapping_serializers_servlet_vehicle";
-
-  private final Jsonb jsonb = JsonbBuilder.create();
 
   public static void main(String[] args) {
     SerializersCustomizationCDIEjbTest t = new SerializersCustomizationCDIEjbTest();
     Status s = t.run(args, System.out, System.err);
     s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
-    // logMsg("setup ok");
-  }
-
-  public void cleanup() throws Exception {
-    // logMsg("cleanup ok");
   }
 
   private static final Logger logger = System.getLogger(SerializersCustomizationCDIEjbTest.class.getName());
@@ -136,14 +121,15 @@ public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
         com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal.class,
         com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat.class,
         com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog.class,
-        SerializersCustomizationCDIEjbTest.class
+        SerializersCustomizationCDIEjbTest.class,
+        SerializersCustomizationCDITest.class
         );
 
     URL resURL = SerializersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
     if(resURL != null) {
       jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + SerializersCustomizationCDIEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+    jsonb_cdi_customizedmapping_serializers_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
 
     resURL = SerializersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.jar.sun-application-client.xml");
     if(resURL != null) {
@@ -175,7 +161,8 @@ public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
         com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat.class,
         com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog.class,
         com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.AnimalShelterWithInjectedSerializer.class,
-        SerializersCustomizationCDIEjbTest.class
+        SerializersCustomizationCDIEjbTest.class,
+        SerializersCustomizationCDITest.class
     );
 
     // The ejb-jar.xml descriptor
@@ -215,30 +202,7 @@ public class SerializersCustomizationCDIEjbTest extends ServiceEETest {
   @Test
   @TargetVehicle("ejb")
   public void testCDISupport() throws Exception {
-    AnimalShelterWithInjectedSerializer animalShelter = new AnimalShelterWithInjectedSerializer();
-    animalShelter.addAnimal(new Cat(5, "Garfield", 10.5f, true, true));
-    animalShelter.addAnimal(new Dog(3, "Milo", 5.5f, false, true));
-    animalShelter.addAnimal(new Animal(6, "Tweety", 0.5f, false));
-
-    String jsonString = jsonb.toJson(animalShelter);
-    if (!jsonString.matches("\\{\\s*\"animals\"\\s*:\\s*\\[\\s*"
-        + "\\{\\s*\"type\"\\s*:\\s*\"cat\"\\s*,\\s*\"cuddly\"\\s*:\\s*true\\s*,\\s*\"age\"\\s*:\\s*5\\s*,\\s*\"furry\"\\s*:\\s*true\\s*,\\s*\"name\"\\s*:\\s*\"Garfield\"\\s*,\\s*\"weight\"\\s*:\\s*10.5\\s*}\\s*,\\s*"
-        + "\\{\\s*\"type\"\\s*:\\s*\"dog\"\\s*,\\s*\"barking\"\\s*:\\s*true\\s*,\\s*\"age\"\\s*:\\s*3\\s*,\\s*\"furry\"\\s*:\\s*false\\s*,\\s*\"name\"\\s*:\\s*\"Milo\"\\s*,\\s*\"weight\"\\s*:\\s*5.5\\s*}\\s*,\\s*"
-        + "\\{\\s*\"type\"\\s*:\\s*\"animal\"\\s*,\\s*\"age\"\\s*:\\s*6\\s*,\\s*\"furry\"\\s*:\\s*false\\s*,\\s*\"name\"\\s*:\\s*\"Tweety\"\\s*,\\s*\"weight\"\\s*:\\s*0.5\\s*}\\s*"
-        + "]\\s*}")) {
-      throw new Exception(
-          "Failed to correctly marshall complex type hierarchy using a serializer configured using JsonbTypeSerializer annotation and a deserializer with a CDI managed field configured using JsonbTypeDeserializer annotation.");
-    }
-
-    AnimalShelterWithInjectedSerializer unmarshalledObject = jsonb
-        .fromJson("{ \"animals\" : [ "
-            + "{ \"type\" : \"cat\", \"cuddly\" : true, \"age\" : 5, \"furry\" : true, \"name\" : \"Garfield\" , \"weight\" : 10.5}, "
-            + "{ \"type\" : \"dog\", \"barking\" : true, \"age\" : 3, \"furry\" : false, \"name\" : \"Milo\", \"weight\" : 5.5}, "
-            + "{ \"type\" : \"animal\", \"age\" : 6, \"furry\" : false, \"name\" : \"Tweety\", \"weight\" : 0.5}"
-            + " ] }", AnimalShelterWithInjectedSerializer.class);
-    if (!animalShelter.equals(unmarshalledObject)) {
-      throw new Exception(
-          "Failed to correctly unmarshall complex type hierarchy using a serializer configured using JsonbTypeSerializer annotation and a deserializer with a CDI managed field configured using JsonbTypeDeserializer annotation.");
-    }
+    super.testCDISupport();
   }
+
 }
