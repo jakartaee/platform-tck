@@ -76,9 +76,7 @@ import java.lang.System.Logger;
 @Tag("jsonb")
 @Tag("platform")
 @ExtendWith(ArquillianExtension.class)
-public class AdaptersCustomizationCDIEjbTest extends ServiceEETest {
-
-  private static final long serialVersionUID = 10L;
+public class AdaptersCustomizationCDIEjbTest extends AdaptersCustomizationCDITest {
 
   static final String VEHICLE_ARCHIVE = "jsonb_cdi_customizedmapping_adapters_ejb_vehicle";
 
@@ -90,27 +88,9 @@ public class AdaptersCustomizationCDIEjbTest extends ServiceEETest {
     s.exit();
   }
 
-  public void setup(String[] args, Properties p) throws Exception {
-    // logMsg("setup ok");
-  }
-
-  public void cleanup() throws Exception {
-    // logMsg("cleanup ok");
-  }
-
   private static final Logger logger = System.getLogger(AdaptersCustomizationCDIEjbTest.class.getName());
 
   private static String packagePath = AdaptersCustomizationCDIEjbTest.class.getPackageName().replace(".", "/");
-
-  @BeforeEach
-  void logStartTest(TestInfo testInfo) {
-      logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
-  }
-
-  @AfterEach
-  void logFinishTest(TestInfo testInfo) {
-      logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
-  }
 
   @TargetsContainer("tck-appclient")
   @OverProtocol("appclient")
@@ -138,14 +118,16 @@ public class AdaptersCustomizationCDIEjbTest extends ServiceEETest {
         com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.class,
         com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedAdapter.class,
         com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.InjectedListAdapter.class,
-        AdaptersCustomizationCDIEjbTest.class
+        AdaptersCustomizationCDIEjbTest.class,
+        AdaptersCustomizationCDITest.class
         );
 
     URL resURL = AdaptersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
     if(resURL != null) {
       jsonb_cdi_customizedmapping_adapters_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    jsonb_cdi_customizedmapping_adapters_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + AdaptersCustomizationCDIEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+    jsonb_cdi_customizedmapping_adapters_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+
 
     resURL = AdaptersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.jar.sun-application-client.xml");
     if(resURL != null) {
@@ -174,14 +156,15 @@ public class AdaptersCustomizationCDIEjbTest extends ServiceEETest {
         com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.AnimalShelterInjectedAdapter.class,
         com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat.class,
         com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog.class,
-        AdaptersCustomizationCDIEjbTest.class
+        AdaptersCustomizationCDIEjbTest.class,
+        AdaptersCustomizationCDITest.class
     );
 
     // The ejb-jar.xml descriptor
     URL ejbResURL = AdaptersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.xml");
     if(ejbResURL != null) {
       jsonb_cdi_customizedmapping_adapters_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
-    }
+    } 
     ejbResURL = AdaptersCustomizationCDIEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
     if(ejbResURL != null) {
       jsonb_cdi_customizedmapping_adapters_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
@@ -192,11 +175,11 @@ public class AdaptersCustomizationCDIEjbTest extends ServiceEETest {
     }
     archiveProcessor.processEjbArchive(jsonb_cdi_customizedmapping_adapters_ejb_vehicle_ejb, AdaptersCustomizationCDIEjbTest.class, ejbResURL);
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_adapters_ejb_vehicle.ear");
-    ear.addAsModule(jsonb_cdi_customizedmapping_adapters_ejb_vehicle_client);
-    ear.addAsModule(jsonb_cdi_customizedmapping_adapters_ejb_vehicle_ejb);
+    EnterpriseArchive jsonb_cdi_customizedmapping_adapters_ejb_vehicle = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_adapters_ejb_vehicle.ear");
+    jsonb_cdi_customizedmapping_adapters_ejb_vehicle.addAsModule(jsonb_cdi_customizedmapping_adapters_ejb_vehicle_client);
+    jsonb_cdi_customizedmapping_adapters_ejb_vehicle.addAsModule(jsonb_cdi_customizedmapping_adapters_ejb_vehicle_ejb);
     
-    return ear;
+    return jsonb_cdi_customizedmapping_adapters_ejb_vehicle;
 
   }
 
@@ -210,30 +193,6 @@ public class AdaptersCustomizationCDIEjbTest extends ServiceEETest {
   @Test
   @TargetVehicle("ejb")
   public void testCDISupport() throws Exception {
-    AnimalShelterInjectedAdapter animalShelter = new AnimalShelterInjectedAdapter();
-    animalShelter.addAnimal(new Cat(5, "Garfield", 10.5f, true, true));
-    animalShelter.addAnimal(new Dog(3, "Milo", 5.5f, false, true));
-    animalShelter.addAnimal(new Animal(6, "Tweety", 0.5f, false));
-
-    String jsonString = jsonb.toJson(animalShelter);
-    if (!jsonString.matches("\\{\\s*\"animals\"\\s*:\\s*\\[\\s*"
-        + "\\{\\s*\"age\"\\s*:\\s*5\\s*,\\s*\"cuddly\"\\s*:\\s*true\\s*,\\s*\"furry\"\\s*:\\s*true\\s*,\\s*\"name\"\\s*:\\s*\"Garfield\"\\s*,\\s*\"type\"\\s*:\\s*\"CAT\"\\s*,\\s*\"weight\"\\s*:\\s*10.5\\s*}\\s*,\\s*"
-        + "\\{\\s*\"age\"\\s*:\\s*3\\s*,\\s*\"barking\"\\s*:\\s*true\\s*,\\s*\"furry\"\\s*:\\s*false\\s*,\\s*\"name\"\\s*:\\s*\"Milo\"\\s*,\\s*\"type\"\\s*:\\s*\"DOG\"\\s*,\\s*\"weight\"\\s*:\\s*5.5\\s*}\\s*,\\s*"
-        + "\\{\\s*\"age\"\\s*:\\s*6\\s*,\\s*\"furry\"\\s*:\\s*false\\s*,\\s*\"name\"\\s*:\\s*\"Tweety\"\\s*,\\s*\"type\"\\s*:\\s*\"GENERIC\"\\s*,\\s*\"weight\"\\s*:\\s*0.5\\s*}\\s*"
-        + "]\\s*}")) {
-      throw new Exception(
-          "Failed to correctly marshall complex type hierarchy using an adapter with a CDI managed field configured using JsonbTypeAdapter annotation to a simpler class.");
-    }
-
-    AnimalShelterInjectedAdapter unmarshalledObject = jsonb
-        .fromJson("{ \"animals\" : [ "
-            + "{ \"age\" : 5, \"cuddly\" : true, \"furry\" : true, \"name\" : \"Garfield\" , \"type\" : \"CAT\", \"weight\" : 10.5}, "
-            + "{ \"age\" : 3, \"barking\" : true, \"furry\" : false, \"name\" : \"Milo\", \"type\" : \"DOG\", \"weight\" : 5.5}, "
-            + "{ \"age\" : 6, \"furry\" : false, \"name\" : \"Tweety\", \"type\" : \"GENERIC\", \"weight\" : 0.5}"
-            + " ] }", AnimalShelterInjectedAdapter.class);
-    if (!animalShelter.equals(unmarshalledObject)) {
-      throw new Exception(
-          "Failed to correctly unmarshall complex type hierarchy using an adapter with a CDI managed field configured using JsonbTypeAdapter annotation to a simpler class.");
-    }
+    super.testCDISupport();
   }
 }

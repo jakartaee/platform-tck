@@ -60,6 +60,7 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import tck.arquillian.protocol.common.TargetVehicle;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 
 import java.lang.System.Logger;
 
@@ -68,78 +69,22 @@ import java.lang.System.Logger;
  * @sources SerializersCustomizationTest.java
  * @executeClass com.sun.ts.tests.jsonb.customizedmapping.serializers.SerializersCustomizationTest
  **/
-@Tag("tck-javatest")
-@Tag("jsonb")
-@Tag("platform")
-@Tag("web")
-@ExtendWith(ArquillianExtension.class)
-public class SerializersCustomizationCDIServletTest extends SerializersCustomizationCDITest {
-
-  private static final long serialVersionUID = 10L;
-
-  static final String VEHICLE_ARCHIVE = "jsonb_cdi_customizedmapping_serializers_servlet_vehicle";
+public class SerializersCustomizationCDITest extends ServiceEETest {
 
   private final Jsonb jsonb = JsonbBuilder.create();
 
   public static void main(String[] args) {
-    SerializersCustomizationCDIServletTest t = new SerializersCustomizationCDIServletTest();
+    SerializersCustomizationCDITest t = new SerializersCustomizationCDITest();
     Status s = t.run(args, System.out, System.err);
     s.exit();
   }
 
-  private static final Logger logger = System.getLogger(SerializersCustomizationCDIServletTest.class.getName());
-
-  private static String packagePath = SerializersCustomizationCDIServletTest.class.getPackageName().replace(".", "/");
-
-  @BeforeEach
-  void logStartTest(TestInfo testInfo) {
-      logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
+  public void setup(String[] args, Properties p) throws Exception {
+    // logMsg("setup ok");
   }
 
-  @AfterEach
-  void logFinishTest(TestInfo testInfo) {
-      logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
-  }
-
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
-  @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createServletDeployment() throws Exception {
-  
-    WebArchive war = ShrinkWrap.create(WebArchive.class, "jsonb_cdi_customizedmapping_serializers_servlet_vehicle_web.war");
-    war.addClasses(SerializersCustomizationCDIServletTest.class,
-      com.sun.ts.tests.common.vehicle.servlet.ServletVehicle.class,
-      com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-      com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-      com.sun.ts.tests.common.vehicle.VehicleClient.class,
-      com.sun.ts.lib.harness.EETest.class,
-      com.sun.ts.lib.harness.EETest.SetupException.class,      
-      com.sun.ts.lib.harness.EETest.Fault.class,      
-      com.sun.ts.lib.harness.ServiceEETest.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializer.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializerInjected.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListDeserializerInjected.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListSerializer.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalSerializer.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.AnimalShelterWithInjectedSerializer.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat.class,
-      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog.class,
-      SerializersCustomizationCDITest.class);
-      
-
-    war.setWebXML(SerializersCustomizationCDIServletTest.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml"));
-    URL warResURL = SerializersCustomizationCDIServletTest.class.getClassLoader().getResource(packagePath+"/beans.xml");
-    if(warResURL != null) {
-      war.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
-    }
-
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_serializers_servlet_vehicle.ear");
-    ear.addAsModule(war);
-    return ear;
-
+  public void cleanup() throws Exception {
+    // logMsg("cleanup ok");
   }
 
 
@@ -151,8 +96,6 @@ public class SerializersCustomizationCDIServletTest extends SerializersCustomiza
    * @test_Strategy: Assert that CDI injection is supported in serializers and
    * deserializers
    */
-  @Test
-  @TargetVehicle("servlet")
   public void testCDISupport() throws Exception {
     AnimalShelterWithInjectedSerializer animalShelter = new AnimalShelterWithInjectedSerializer();
     animalShelter.addAnimal(new Cat(5, "Garfield", 10.5f, true, true));
