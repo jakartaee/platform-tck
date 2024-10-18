@@ -102,7 +102,7 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.annot
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_annotations_tableGenerator_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_annotations_tableGenerator_stateless3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_annotations_tableGenerator_stateless3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client1.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -134,12 +134,12 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.annot
                 ee.jakarta.tck.persistence.core.annotations.tableGenerator.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client1.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.xml");
+            URL ejbResURL1 = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
             if(ejbResURL1 != null) {
-              jpa_core_annotations_tableGenerator_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
+//              jpa_core_annotations_tableGenerator_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client1.class.getResource("//vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_annotations_tableGenerator_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
@@ -213,6 +213,5 @@ public class Client1Stateless3Test extends ee.jakarta.tck.persistence.core.annot
         public void generatorOnEntityTest() throws java.lang.Exception {
             super.generatorOnEntityTest();
         }
-
 
 }
