@@ -69,9 +69,6 @@ import java.lang.System.Logger;
  * @sources SerializersCustomizationTest.java
  * @executeClass com.sun.ts.tests.jsonb.customizedmapping.serializers.SerializersCustomizationTest
  **/
-@Tag("jsonb")
-@Tag("platform")
-@ExtendWith(ArquillianExtension.class)
 public class SerializersCustomizationCDITest extends ServiceEETest {
 
   private final Jsonb jsonb = JsonbBuilder.create();

@@ -73,6 +73,9 @@ import java.lang.System.Logger;
  */
 
 @Tag("tck-appclient")
+@Tag("jsonb")
+@Tag("platform")
+@ExtendWith(ArquillianExtension.class)
 public class AdaptersCustomizationCDIEjbTest extends AdaptersCustomizationCDITest {
 
   static final String VEHICLE_ARCHIVE = "jsonb_cdi_customizedmapping_adapters_ejb_vehicle";

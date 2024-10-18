@@ -73,12 +73,7 @@ import java.lang.System.Logger;
  * @class.setup_props: webServerHost; webServerPort; ts_home;
  */
 
-@Tag("jsonb")
-@Tag("platform")
-@ExtendWith(ArquillianExtension.class)
 public class AdaptersCustomizationCDITest extends ServiceEETest {
-
-  private static final long serialVersionUID = 10L;
 
   private final Jsonb jsonb = JsonbBuilder.create();
 

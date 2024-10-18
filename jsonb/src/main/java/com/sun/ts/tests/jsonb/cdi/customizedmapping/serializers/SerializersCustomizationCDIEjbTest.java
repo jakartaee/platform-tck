@@ -70,6 +70,9 @@ import java.lang.System.Logger;
  * @executeClass com.sun.ts.tests.jsonb.customizedmapping.serializers.SerializersCustomizationTest
  **/
 @Tag("tck-appclient")
+@Tag("jsonb")
+@Tag("platform")
+@ExtendWith(ArquillianExtension.class)
 public class SerializersCustomizationCDIEjbTest extends SerializersCustomizationCDITest {
 
   static final String VEHICLE_ARCHIVE = "jsonb_cdi_customizedmapping_serializers_servlet_vehicle";
