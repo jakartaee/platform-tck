@@ -75,12 +75,12 @@ public class BytesMsgQueueTestsJspTest extends com.sun.ts.tests.jms.core.bytesMs
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            URL warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgQueue/jsp_vehicle_web.xml");
             if(warResURL != null) {
               bytesMsgQueue_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = BytesMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgQueue/bytesMsgQueue_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               bytesMsgQueue_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -88,14 +88,14 @@ public class BytesMsgQueueTestsJspTest extends com.sun.ts.tests.jms.core.bytesMs
             // Any libraries added to the war
 
             // Web content
-            warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              bytesMsgQueue_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
-            warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgQueue/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              bytesMsgQueue_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
+            // warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            // if(warResURL != null) {
+            //   bytesMsgQueue_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
+            // }
+            // warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgQueue/jsp_vehicle_web.xml");
+            // if(warResURL != null) {
+            //   bytesMsgQueue_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
+            // }
             warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
             if(warResURL != null) {
               bytesMsgQueue_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
@@ -119,14 +119,14 @@ public class BytesMsgQueueTestsJspTest extends com.sun.ts.tests.jms.core.bytesMs
 
 
             // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = BytesMsgQueueTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              bytesMsgQueue_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(bytesMsgQueue_jsp_vehicle_ear, BytesMsgQueueTests.class, earResURL);
+            // URL earResURL = null;
+            // // The sun-application.xml descriptor
+            // earResURL = BytesMsgQueueTests.class.getResource("/.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   bytesMsgQueue_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
+            // // Call the archive processor
+            // archiveProcessor.processEarArchive(bytesMsgQueue_jsp_vehicle_ear, BytesMsgQueueTests.class, earResURL);
         return bytesMsgQueue_jsp_vehicle_ear;
         }
 

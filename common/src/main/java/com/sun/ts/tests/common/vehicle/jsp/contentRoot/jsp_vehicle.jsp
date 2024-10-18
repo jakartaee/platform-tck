@@ -23,7 +23,6 @@
 <%@ page import="java.io.*" %>
 <%@ page import="com.sun.ts.lib.util.*" %>
 <%@ page import="com.sun.ts.lib.harness.*" %>
-<%@ page import="com.sun.ts.lib.porting.*" %>
 <%@ page import="com.sun.ts.lib.harness.Status" %>
 <%@ page session="false" %>
 
