@@ -19,8 +19,8 @@
 -->
 
 <sun-application-client>
-  <ejb-ref>
-    <ejb-ref-name>ejb/TestBean</ejb-ref-name>
-    <jndi-name/>
-  </ejb-ref>
+  <resource-ref>
+    <res-ref-name>url/myURL</res-ref-name>
+    <jndi-name>http://localhost:8080/dep_assembly_standalone_war/test.jsp</jndi-name>
+  </resource-ref>
 </sun-application-client>
