@@ -76,14 +76,14 @@ public class StreamMsgQueueTestsAppclientTest extends com.sun.ts.tests.jms.core.
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = StreamMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = StreamMsgQueueTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               streamMsgQueue_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = StreamMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = StreamMsgQueueTests.class.getResource("streamMsgQueue_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              streamMsgQueue_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              streamMsgQueue_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             streamMsgQueue_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + StreamMsgQueueTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -99,15 +99,6 @@ public class StreamMsgQueueTestsAppclientTest extends com.sun.ts.tests.jms.core.
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = StreamMsgQueueTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              streamMsgQueue_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(streamMsgQueue_appclient_vehicle_ear, StreamMsgQueueTests.class, earResURL);
         return streamMsgQueue_appclient_vehicle_ear;
         }
 

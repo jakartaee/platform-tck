@@ -699,7 +699,8 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
-                                <include>com/sun/ts/tests/jms/**/*Test*.java</include>
+                                <!-- <include>com/sun/ts/tests/jms/**/*Test.java</include> -->
+                                <include>com/sun/ts/tests/jms/**/*AppclientTest.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-appclient") tests -->
                             <groups>tck-appclient</groups>
@@ -724,7 +725,8 @@
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
-                                <arquillian.xml>arquillian.xml</arquillian.xml>
+                                <project.basedir>${project.basedir}</project.basedir>
+                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>

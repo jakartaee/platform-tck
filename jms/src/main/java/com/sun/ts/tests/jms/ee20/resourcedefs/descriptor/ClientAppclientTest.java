@@ -79,10 +79,10 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.
             URL resURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/xml/appclient_vehicle_client.xml");
             resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            // if(resURL != null) {
+            //   resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            // }
             resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(resourcedefs_descriptor_appclient_vehicle_client, Client.class, resURL);
@@ -97,10 +97,6 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // Call the archive processor
-            archiveProcessor.processEarArchive(resourcedefs_descriptor_appclient_vehicle_ear, Client.class, earResURL);
         return resourcedefs_descriptor_appclient_vehicle_ear;
         }
 

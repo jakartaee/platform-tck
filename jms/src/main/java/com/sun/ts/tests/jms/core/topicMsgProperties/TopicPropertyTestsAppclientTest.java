@@ -76,14 +76,14 @@ public class TopicPropertyTestsAppclientTest extends com.sun.ts.tests.jms.core.t
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = TopicPropertyTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = TopicPropertyTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               topicMsgProperties_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = TopicPropertyTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = TopicPropertyTests.class.getResource("topicMsgProperties_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              topicMsgProperties_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              topicMsgProperties_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             topicMsgProperties_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + TopicPropertyTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -99,15 +99,6 @@ public class TopicPropertyTestsAppclientTest extends com.sun.ts.tests.jms.core.t
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = TopicPropertyTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              topicMsgProperties_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(topicMsgProperties_appclient_vehicle_ear, TopicPropertyTests.class, earResURL);
         return topicMsgProperties_appclient_vehicle_ear;
         }
 

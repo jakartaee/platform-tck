@@ -76,14 +76,14 @@ public class QueueConnectionTestsAppclientTest extends com.sun.ts.tests.jms.core
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = QueueConnectionTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = QueueConnectionTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               queueConnection_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = QueueConnectionTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = QueueConnectionTests.class.getResource("queueConnection_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              queueConnection_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              queueConnection_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             queueConnection_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + QueueConnectionTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -99,15 +99,6 @@ public class QueueConnectionTestsAppclientTest extends com.sun.ts.tests.jms.core
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = QueueConnectionTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              queueConnection_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(queueConnection_appclient_vehicle_ear, QueueConnectionTests.class, earResURL);
         return queueConnection_appclient_vehicle_ear;
         }
 

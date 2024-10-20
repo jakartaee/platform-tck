@@ -89,14 +89,14 @@ public class ClosedQueueSessionTestsAppclientTest extends com.sun.ts.tests.jms.c
             );
 
             // The application-client.xml descriptor
-            URL resURL = ClosedQueueSessionTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = ClosedQueueSessionTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               closedQueueSession_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = ClosedQueueSessionTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = ClosedQueueSessionTests.class.getResource("closedQueueSession_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              closedQueueSession_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              closedQueueSession_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             closedQueueSession_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClosedQueueSessionTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -112,15 +112,6 @@ public class ClosedQueueSessionTestsAppclientTest extends com.sun.ts.tests.jms.c
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ClosedQueueSessionTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              closedQueueSession_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(closedQueueSession_appclient_vehicle_ear, ClosedQueueSessionTests.class, earResURL);
         return closedQueueSession_appclient_vehicle_ear;
         }
 

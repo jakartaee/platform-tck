@@ -79,7 +79,7 @@ public class TransactionTestsServletTest extends com.sun.ts.tests.jms.ee.ejbweb.
               transaction_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = TransactionTests.class.getResource("/com/sun/ts/tests/jms/ee/ejbweb/xa/transaction_servlet_vehicle_web.war.sun-web");
+            warResURL = TransactionTests.class.getResource("/com/sun/ts/tests/jms/ee/ejbweb/xa/transaction_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               transaction_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
