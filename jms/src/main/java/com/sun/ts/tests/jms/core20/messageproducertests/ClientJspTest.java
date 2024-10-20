@@ -76,12 +76,12 @@ public class ClientJspTest extends com.sun.ts.tests.jms.core20.messageproducerte
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("jsp_vehicle_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/messageproducertests/jsp_vehicle_web.xml");
             if(warResURL != null) {
               messageproducertests_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("messageproducertests_jsp_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/messageproducertests/messageproducertests_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               messageproducertests_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
@@ -111,15 +111,6 @@ public class ClientJspTest extends com.sun.ts.tests.jms.core20.messageproducerte
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              messageproducertests_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(messageproducertests_jsp_vehicle_ear, Client.class, earResURL);
         return messageproducertests_jsp_vehicle_ear;
         }
 

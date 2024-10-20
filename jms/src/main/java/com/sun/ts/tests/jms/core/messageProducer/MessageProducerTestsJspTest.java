@@ -75,27 +75,16 @@ public class MessageProducerTestsJspTest extends com.sun.ts.tests.jms.core.messa
             com.sun.ts.tests.jms.core.messageProducer.MessageProducerTests.class
             );
             // The web.xml descriptor
-            URL warResURL = MessageProducerTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            URL warResURL = MessageProducerTests.class.getResource("/com/sun/ts/tests/jms/core/messageProducer/jsp_vehicle_web.xml");
             if(warResURL != null) {
               messageProducer_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = MessageProducerTests.class.getResource("//com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = MessageProducerTests.class.getResource("/com/sun/ts/tests/jms/core/messageProducer/messageProducer_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               messageProducer_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = MessageProducerTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              messageProducer_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
-            warResURL = MessageProducerTests.class.getResource("/com/sun/ts/tests/jms/core/messageProducer/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              messageProducer_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
             warResURL = MessageProducerTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
             if(warResURL != null) {
               messageProducer_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
@@ -118,15 +107,6 @@ public class MessageProducerTestsJspTest extends com.sun.ts.tests.jms.core.messa
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = MessageProducerTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              messageProducer_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(messageProducer_jsp_vehicle_ear, MessageProducerTests.class, earResURL);
         return messageProducer_jsp_vehicle_ear;
         }
 

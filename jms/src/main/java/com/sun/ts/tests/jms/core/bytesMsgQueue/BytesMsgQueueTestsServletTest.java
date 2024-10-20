@@ -86,17 +86,6 @@ public class BytesMsgQueueTestsServletTest extends com.sun.ts.tests.jms.core.byt
               bytesMsgQueue_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // // Web content
-            // warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
-            // if(warResURL != null) {
-            //   bytesMsgQueue_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            // }
-            // warResURL = BytesMsgQueueTests.class.getResource("/com/sun/ts/tests/jms/core/bytesMsgQueue/servlet_vehicle_web.xml");
-            // if(warResURL != null) {
-            //   bytesMsgQueue_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            // }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(bytesMsgQueue_servlet_vehicle_web, BytesMsgQueueTests.class, warResURL);
@@ -111,15 +100,6 @@ public class BytesMsgQueueTestsServletTest extends com.sun.ts.tests.jms.core.byt
 
 
 
-            // The application.xml descriptor
-            // URL earResURL = null;
-            // // The sun-application.xml descriptor
-            // earResURL = BytesMsgQueueTests.class.getResource("/.ear.sun-application.xml");
-            // if(earResURL != null) {
-            //   bytesMsgQueue_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            // }
-            // // Call the archive processor
-            // archiveProcessor.processEarArchive(bytesMsgQueue_servlet_vehicle_ear, BytesMsgQueueTests.class, earResURL);
         return bytesMsgQueue_servlet_vehicle_ear;
         }
 

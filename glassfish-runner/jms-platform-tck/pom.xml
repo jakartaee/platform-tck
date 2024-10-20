@@ -455,6 +455,82 @@
                         </configuration>
                     </execution>
                     <execution>
+                        <id>09-StopDomain1</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-domain</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>10-StartDomain1</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-domain</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>11-create-jms-template</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--host</argument>
+                                <argument>localhost</argument>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
+                                <argument>--interactive=false</argument>
+                                <argument>--echo=true</argument>
+                                <argument>multimode</argument>
+                                <argument>--file</argument>
+                                <argument>${project.basedir}/create.jms.template</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>12-StopDomain1</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-domain</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+
+                        </configuration>
+                    </execution>
+
+                    <execution>
                         <id>002-StopDatabase</id>
                         <goals>
                             <goal>exec</goal>
@@ -468,6 +544,7 @@
                             </arguments>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
 
@@ -477,7 +554,7 @@
                 <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>001-initdb</id>
+                        <id>01-initdb</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -503,129 +580,7 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.0.0</version>
                 <executions>
-                    <execution>
-                        <id>02-create.tck.jms.objects</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <echo message="Create JMS Queue MY_QUEUE in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l MY_QUEUE -o imqDestinationName=MY_QUEUE -t q"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue MY_QUEUE2 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l MY_QUEUE2 -o imqDestinationName=MY_QUEUE2 -t q"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue testQ0 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l testQ0 -o imqDestinationName=testQ0 -t q"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue testQ1 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l testQ1 -o imqDestinationName=testQ1 -t q"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue testQ2 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l testQ2 -o imqDestinationName=testQ2 -t q"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue testQueue2 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l testQueue2 -o imqDestinationName=testQueue2 -t q"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue Q2 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l Q2 -o imqDestinationName=Q2 -t q"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Topic MY_TOPIC in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l MY_TOPIC -o imqDestinationName=MY_TOPIC -t t"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Topic MY_TOPIC2 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l MY_TOPIC2 -o imqDestinationName=MY_TOPIC2 -t t"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue testT0 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l testT0 -o imqDestinationName=testT0 -t t"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue testT1 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l testT1 -o imqDestinationName=testT1 -t t"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS Queue testT2 in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l testT2 -o imqDestinationName=testT2 -t t"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS ConnectionFactory MyConnectionFactory in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l MyConnectionFactory -t cf"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS ConnectionFactory MyQueueConnectionFactory in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l MyQueueConnectionFactory -t qf"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS ConnectionFactory MyTopicConnectionFactory in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l MyTopicConnectionFactory -t tf"></arg>
-                                    <arg line="-j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                                <echo message="Create JMS ConnectionFactory DURABLE_SUB_CONNECTION_FACTORY in JMS RI or OpenMQ object store via (imqobjmgr) ....."></echo>
-                                <exec executable="${exec.imqobjmgr}">
-                                    <env key="IMQ_JAVAHOME" value="${java.home}"></env>
-                                    <arg line="${exec.imqobjmgr.part2}"></arg>
-                                    <arg line="-f add -l DURABLE_SUB_CONNECTION_FACTORY -o imqConfiguredClientID=cts"></arg>
-                                    <arg line="-t tf -j ${jndi.factory.initial} -j ${jndi.provider.url}"></arg>
-                                </exec>
-                            </target>
-                        </configuration>
-                    </execution>
+
                     <execution>
                         <id>04-encodeAdminPassword</id>
                         <goals>
@@ -717,6 +672,7 @@
                             </target>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
 
@@ -728,7 +684,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>messaging-tests-javatest</id>
+                        <id>messaging-tests-appclient</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
@@ -746,12 +702,10 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
-                                <!-- <include>com/sun/ts/tests/jms/core/bytesMsgQueue/BytesMsgQueueTestsJspTest.java</include>
-                                <include>com/sun/ts/tests/jms/core/bytesMsgQueue/BytesMsgQueueTestsServletTest.java</include> -->
-                                <include>com/sun/ts/tests/jms/**/*Test.java</include>
+                                <include>com/sun/ts/tests/jms/**/*Test*.java</include>
                             </includes>
-                            <!-- Select the @Tag("tck-javatest") tests -->
-                            <groups>tck-javatest</groups>
+                            <!-- Select the @Tag("tck-appclient") tests -->
+                            <groups>tck-appclient</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
@@ -781,7 +735,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>messaging-tests-appclient</id>
+                        <id>messaging-tests-javatest</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
@@ -799,10 +753,14 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
-                                <include>com/sun/ts/tests/jms/**/*Test.java</include>
+                                <!-- <include>com/sun/ts/tests/jms/core/**/*Jsp*.java</include>
+                                <include>com/sun/ts/tests/jms/core/**/*Servlet*.java</include>
+                                <include>com/sun/ts/tests/jms/core20/**/*Servlet*.java</include>
+                                <include>com/sun/ts/tests/jms/core20/**/*Jsp*.java</include> -->
+                                <include>com/sun/ts/tests/jms/**/*Test*.java</include>
                             </includes>
-                            <!-- Select the @Tag("tck-appclient") tests -->
-                            <groups>tck-appclient</groups>
+                            <!-- Select the @Tag("tck-javatest") tests -->
+                            <groups>tck-javatest</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>

@@ -74,27 +74,16 @@ public class TransactionTestsServletTest extends com.sun.ts.tests.jms.ee.ejbweb.
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = TransactionTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+            URL warResURL = TransactionTests.class.getResource("/com/sun/ts/tests/jms/ee/ejbweb/xa/servlet_vehicle_web.xml");
             if(warResURL != null) {
               transaction_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = TransactionTests.class.getResource("//com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = TransactionTests.class.getResource("/com/sun/ts/tests/jms/ee/ejbweb/xa/transaction_servlet_vehicle_web.war.sun-web");
             if(warResURL != null) {
               transaction_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = TransactionTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              transaction_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
-            warResURL = TransactionTests.class.getResource("/com/sun/ts/tests/jms/ee/ejbweb/xa/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              transaction_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(transaction_servlet_vehicle_web, TransactionTests.class, warResURL);
@@ -108,16 +97,6 @@ public class TransactionTestsServletTest extends com.sun.ts.tests.jms.ee.ejbweb.
             transaction_servlet_vehicle_ear.addAsModule(transaction_servlet_vehicle_web);
 
 
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = TransactionTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              transaction_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(transaction_servlet_vehicle_ear, TransactionTests.class, earResURL);
         return transaction_servlet_vehicle_ear;
         }
 
