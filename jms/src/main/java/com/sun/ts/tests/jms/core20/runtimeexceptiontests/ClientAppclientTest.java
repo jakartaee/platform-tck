@@ -78,11 +78,11 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.core20.runtimeexce
             if(resURL != null) {
               runtimeexceptiontests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              runtimeexceptiontests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
+            // resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            // if(resURL != null) {
+            //   runtimeexceptiontests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+            // }
             runtimeexceptiontests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(runtimeexceptiontests_appclient_vehicle_client, Client.class, resURL);
@@ -97,15 +97,6 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.core20.runtimeexce
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              runtimeexceptiontests_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(runtimeexceptiontests_appclient_vehicle_ear, Client.class, earResURL);
         return runtimeexceptiontests_appclient_vehicle_ear;
         }
 
