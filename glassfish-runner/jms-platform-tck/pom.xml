@@ -29,7 +29,7 @@
 
     <properties>
         <admin.pass>admin</admin.pass>
-        <admin.pass.file>/tmp/ripassword</admin.pass.file>
+        <admin.pass.file>${project.build.directory}/ripassword</admin.pass.file>
         <admin.pass.file.encoded>${admin.pass.file}.encoded</admin.pass.file.encoded>
         <admin.user>admin</admin.user>
         <arquillian.junit>1.9.1.Final</arquillian.junit>
@@ -580,9 +580,24 @@
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>3.0.0</version>
                 <executions>
-
                     <execution>
-                        <id>04-encodeAdminPassword</id>
+                        <id>04-init</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <delete failonerror="false" file="${admin.pass.file}"></delete>
+                                <delete dir="${jndi.fs.dir}" failonerror="false"></delete>
+                                <mkdir dir="${jndi.fs.dir}"></mkdir>
+                                <echo message="Echoing: imq.imqcmd.password=${admin.pass} &gt;${admin.pass.file}"></echo>
+                                <echo file="${admin.pass.file}" message="imq.imqcmd.password=${admin.pass}"></echo>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>05-encodeAdminPassword</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
@@ -596,22 +611,6 @@
                                     <arg line="encode -f -src ${admin.pass.file} -target ${admin.pass.file.encoded}"></arg>
                                 </exec>
                                 <move file="${admin.pass.file.encoded}" overwrite="true" tofile="${admin.pass.file}"></move>
-                            </target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>05-init</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <delete failonerror="false" file="${admin.pass.file}"></delete>
-                                <delete dir="${jndi.fs.dir}" failonerror="false"></delete>
-                                <mkdir dir="${jndi.fs.dir}"></mkdir>
-                                <echo message="Echoing: imq.imqcmd.password=${admin.pass} &gt;${admin.pass.file}"></echo>
-                                <echo file="${admin.pass.file}" message="imq.imqcmd.password=${admin.pass}"></echo>
                             </target>
                         </configuration>
                     </execution>
@@ -672,10 +671,8 @@
                             </target>
                         </configuration>
                     </execution>
-
                 </executions>
             </plugin>
-
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.0</version>
