@@ -28,7 +28,6 @@ public interface GetResourceIF {
    * same package of the requesting java class.
    */
   public static final String RESOURCE_NAME = "cts-ejb3-test-5.1.1-beta.txt";
-
   public static final String RESOURCE_CONTENT = RESOURCE_NAME;
 
   /**
@@ -39,15 +38,12 @@ public interface GetResourceIF {
    * namespace and content.
    */
   public static final String RESOURCE_NAME_AT_ROOT = "/cts-ejb3-test-5.1.1-beta.txt";
-
   public static final String RESOURCE_CONTENT_AT_ROOT = "/";
 
   public static final String EAR_LIB_RESOURCE_NAME = "cts-ejb3-test-5.1.1-beta-ear-lib.txt";
-
   public static final String EAR_LIB_RESOURCE_CONTENT = EAR_LIB_RESOURCE_NAME;
 
   public static final String EAR_LIB_RESOURCE_NAME_AT_ROOT = "/cts-ejb3-test-5.1.1-beta-ear-lib.txt";
-
   public static final String EAR_LIB_RESOURCE_CONTENT_AT_ROOT = "/lib";
 
   void getResourceNullParam() throws TestFailedException;
