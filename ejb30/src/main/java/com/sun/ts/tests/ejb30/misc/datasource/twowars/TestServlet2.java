@@ -40,30 +40,30 @@ import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTes
 @WebServlet(urlPatterns = "/TestServlet2", loadOnStartup = 1)
 
 @DataSourceDefinitions({
-    @DataSourceDefinition(name="java:app/env/servlet2/appds",
-            className="org.apache.derby.jdbc.ClientDataSource",
-            portNumber=1527,
-            serverName="localhost",
-            databaseName="derbyDB",
-            user="cts1",
-            password="cts1",
-            properties={}),
-            
-    @DataSourceDefinition(name="java:global/env/ts/datasource/servlet2/globalds",
-            className="org.apache.derby.jdbc.ClientDataSource",
-            portNumber=1527,
-            serverName="localhost",
-            databaseName="derbyDB",
-            user="cts1",
-            password="cts1",
-            properties={})
-    })
+        @DataSourceDefinition(
+            name = "java:app/env/servlet2/appds",
+            className = "org.apache.derby.jdbc.ClientDataSource",
+            portNumber = 1527, serverName = "localhost",
+            databaseName = "derbyDB",
+            user = "cts1",
+            password = "cts1",
+            properties = {}),
+
+        @DataSourceDefinition(
+            name = "java:global/env/ts/datasource/servlet2/globalds",
+            className = "org.apache.derby.jdbc.ClientDataSource",
+            portNumber = 1527,
+            serverName = "localhost",
+            databaseName = "derbyDB",
+            user = "cts1",
+            password = "cts1",
+            properties = {}) })
 
 public class TestServlet2 extends TestServletBase {
 
-    @EJB(lookup="java:global/ejb3_misc_datasource_twowars/ejb3_misc_datasource_twowars_ejb/DataSourceBean")
+    @EJB(lookup = "java:global/ejb3_misc_datasource_twowars/ejb3_misc_datasource_twowars_ejb/DataSourceBean")
     private AppResRemoteIF dataSourceBean;
-    
+
     private void nonPostConstruct() {
         postConstructRecords = new StringBuilder();
         ServiceLocator.lookupShouldFail("java:app/datasource/twowars/ejb/appds", getPostConstructRecords());
@@ -71,17 +71,16 @@ public class TestServlet2 extends TestServletBase {
         ServiceLocator.lookupShouldFail("java:comp/env/defaultdsservlet", getPostConstructRecords());
         ServiceLocator.lookupShouldFail("java:module/env/moduledsservlet", getPostConstructRecords());
         ServiceLocator.lookupShouldFail("java:app/env/servlet/appds", getPostConstructRecords());
-        Helper.getLogger().info(getPostConstructRecords().toString());
         
+        Helper.getLogger().info(getPostConstructRecords().toString());
+
         DataSourceTest.verifyDataSource(postConstructRecords, false, 
-                "java:global/env/ts/datasource/servlet/globalds",
-                "java:app/env/servlet2/appds",
-                "java:global/env/ts/datasource/servlet2/globalds"
-                );
+            "java:global/env/ts/datasource/servlet/globalds",
+            "java:app/env/servlet2/appds", 
+            "java:global/env/ts/datasource/servlet2/globalds");
     }
 
-    public void servletPostConstruct2(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void servletPostConstruct2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         nonPostConstruct();
         verifyRecords(request, response, postConstructRecords);
         verifyRecords(request, response, dataSourceBean.getPostConstructRecords());
