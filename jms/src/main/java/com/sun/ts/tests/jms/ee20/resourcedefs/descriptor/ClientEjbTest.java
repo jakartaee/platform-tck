@@ -82,8 +82,11 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.ee20.resourcedefs.descri
             com.sun.ts.tests.jms.ee20.resourcedefs.descriptor.Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("xml/appclient_vehicle_client.xml");
-            resourcedefs_descriptor_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
+            if(resURL != null) {
+                resourcedefs_descriptor_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+            }
+            
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             // resURL = Client.class.getResource("ejb_vehicle_client.jar.sun-application-client.xml");
             // if(resURL != null) {
@@ -112,7 +115,7 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.ee20.resourcedefs.descri
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/xml/ejb_vehicle_ejb.xml");
+            URL ejbResURL = Client.class.getResource("xml/ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               resourcedefs_descriptor_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }

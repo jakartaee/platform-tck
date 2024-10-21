@@ -19,34 +19,34 @@
 
 <application-client version="10" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd">
   <description>TS app client vehicle</description>
-  <display-name>appclient_vehicle_client</display-name>
+  <display-name>resourcedefs_descriptor_appclient_vehicle_client</display-name>
   <jms-connection-factory>
       <description>Define ConnectionFactory AppClientMyTestConnectionFactory</description>
       <name>java:global/AppClientMyTestConnectionFactory</name>
       <interface-name>jakarta.jms.ConnectionFactory</interface-name>
-      <user>cts1</user>
-      <password>cts1</password>
+      <user>j2ee</user>
+      <password>j2ee</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define QueueConnectionFactory AppClientMyTestQueueConnectionFactory</description>
       <name>java:app/AppClientMyTestQueueConnectionFactory</name>
       <interface-name>jakarta.jms.QueueConnectionFactory</interface-name>
-      <user>cts1</user>
-      <password>cts1</password>
+      <user>j2ee</user>
+      <password>j2ee</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define TopicConnectionFactory AppClientMyTestTopicConnectionFactory</description>
       <name>java:module/AppClientMyTestTopicConnectionFactory</name>
       <interface-name>jakarta.jms.TopicConnectionFactory</interface-name>
-      <user>cts1</user>
-      <password>cts1</password>
+      <user>j2ee</user>
+      <password>j2ee</password>
   </jms-connection-factory>
   <jms-connection-factory>
       <description>Define Durbale TopicConnectionFactory AppClientMyTestDurableTopicConnectionFactory</description>
       <name>java:comp/env/jms/AppClientMyTestDurableTopicConnectionFactory</name>
       <interface-name>jakarta.jms.TopicConnectionFactory</interface-name>
-      <user>cts1</user>
-      <password>cts1</password>
+      <user>j2ee</user>
+      <password>j2ee</password>
       <client-id>MyClientID</client-id>
       <property>
 	<name>Property1</name>
