@@ -67,14 +67,14 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.mdb.mdb_msgPropsT.MDBCli
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = MDBClient.class.getResource("com/sun/ts/tests/jms/ee/mdb/mdb_msgPropsT/mdb_msgPropsT_client.xml");
+            URL resURL = MDBClient.class.getResource("mdb_msgPropsT_client.xml");
             if(resURL != null) {
               mdb_msgPropsT_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = MDBClient.class.getResource("/com/sun/ts/tests/jms/ee/mdb/mdb_msgPropsT/mdb_msgPropsT_client.jar.sun-application-client.xml");
+            resURL = MDBClient.class.getResource("mdb_msgPropsT_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              mdb_msgPropsT_client.addAsManifestResource(resURL, "application-client.xml");
+              mdb_msgPropsT_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             mdb_msgPropsT_client.addAsManifestResource(new StringAsset("Main-Class: " + MDBClient.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -91,12 +91,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.mdb.mdb_msgPropsT.MDBCli
                 com.sun.ts.tests.jms.ee.mdb.mdb_msgPropsT.MsgBeanMsgTestPropsT.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = MDBClient.class.getResource("/com/sun/ts/tests/jms/ee/mdb/mdb_msgPropsT/mdb_msgPropsT_ejb.xml");
+            URL ejbResURL = MDBClient.class.getResource("mdb_msgPropsT_ejb.xml");
             if(ejbResURL != null) {
               mdb_msgPropsT_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = MDBClient.class.getResource("/com/sun/ts/tests/jms/ee/mdb/mdb_msgPropsT/mdb_msgPropsT_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = MDBClient.class.getResource("mdb_msgPropsT_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               mdb_msgPropsT_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -114,15 +114,7 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.mdb.mdb_msgPropsT.MDBCli
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = MDBClient.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              mdb_msgPropsT_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(mdb_msgPropsT_ear, MDBClient.class, earResURL);
+
         return mdb_msgPropsT_ear;
         }
 
