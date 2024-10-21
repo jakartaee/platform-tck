@@ -75,23 +75,24 @@ public class MapMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.mapMsgQue
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-                                          com.sun.ts.tests.jms.core.mapMsgQueue.MapMsgQueueTests.class,
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.jms.core.mapMsgQueue.MapMsgQueueTests.class
             );
             // The application-client.xml descriptor
             URL resURL = MapMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
             if(resURL != null) {
               mapMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = MapMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = MapMsgQueueTests.class.getResource("mapMsgQueue_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              mapMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              mapMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            mapMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + MapMsgQueueTests.class.getName() + "\n"), "MANIFEST.MF");
+            //mapMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + MapMsgQueueTests.class.getName() + "\n"), "MANIFEST.MF");
+            mapMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(mapMsgQueue_ejb_vehicle_client, MapMsgQueueTests.class, resURL);
 
@@ -114,12 +115,12 @@ public class MapMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.mapMsgQue
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = MapMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
+            URL ejbResURL = MapMsgQueueTests.class.getResource("ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               mapMsgQueue_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = MapMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = MapMsgQueueTests.class.getResource("mapMsgQueue_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               mapMsgQueue_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -137,15 +138,6 @@ public class MapMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.mapMsgQue
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = MapMsgQueueTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              mapMsgQueue_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(mapMsgQueue_ejb_vehicle_ear, MapMsgQueueTests.class, earResURL);
         return mapMsgQueue_ejb_vehicle_ear;
         }
 

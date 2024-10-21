@@ -79,19 +79,21 @@ public class ClosedTopicPublisherTestsEjbTest extends com.sun.ts.tests.jms.core.
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.jms.core.closedTopicPublisher.ClosedTopicPublisherTests.class,
                                           com.sun.ts.tests.jms.common.MessageTestImpl.class
             );
             // The application-client.xml descriptor
             URL resURL = ClosedTopicPublisherTests.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
             if(resURL != null) {
               closedTopicPublisher_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = ClosedTopicPublisherTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = ClosedTopicPublisherTests.class.getResource("closedTopicPublisher_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              closedTopicPublisher_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              closedTopicPublisher_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            closedTopicPublisher_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClosedTopicPublisherTests.class.getName() + "\n"), "MANIFEST.MF");
+            //closedTopicPublisher_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClosedTopicPublisherTests.class.getName() + "\n"), "MANIFEST.MF");
+            closedTopicPublisher_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(closedTopicPublisher_ejb_vehicle_client, ClosedTopicPublisherTests.class, resURL);
 
@@ -115,12 +117,12 @@ public class ClosedTopicPublisherTestsEjbTest extends com.sun.ts.tests.jms.core.
                                               com.sun.ts.tests.jms.common.MessageTestImpl.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = ClosedTopicPublisherTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
+            URL ejbResURL = ClosedTopicPublisherTests.class.getResource("ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               closedTopicPublisher_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = ClosedTopicPublisherTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = ClosedTopicPublisherTests.class.getResource("closedTopicPublisher_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               closedTopicPublisher_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -138,15 +140,6 @@ public class ClosedTopicPublisherTestsEjbTest extends com.sun.ts.tests.jms.core.
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ClosedTopicPublisherTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              closedTopicPublisher_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(closedTopicPublisher_ejb_vehicle_ear, ClosedTopicPublisherTests.class, earResURL);
         return closedTopicPublisher_ejb_vehicle_ear;
         }
 

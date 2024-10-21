@@ -75,27 +75,16 @@ public class TopicTestsJspTest extends com.sun.ts.tests.jms.core.topictests.Topi
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = TopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            URL warResURL = TopicTests.class.getResource("/com/sun/ts/tests/jms/core/topictests/jsp_vehicle_web.xml");
             if(warResURL != null) {
               topictests_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = TopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = TopicTests.class.getResource("/com/sun/ts/tests/jms/core/topictests/topictests_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               topictests_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = TopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              topictests_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
-            warResURL = TopicTests.class.getResource("/com/sun/ts/tests/jms/core/topictests/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              topictests_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
             warResURL = TopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
             if(warResURL != null) {
               topictests_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
@@ -118,15 +107,6 @@ public class TopicTestsJspTest extends com.sun.ts.tests.jms.core.topictests.Topi
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = TopicTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              topictests_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(topictests_jsp_vehicle_ear, TopicTests.class, earResURL);
         return topictests_jsp_vehicle_ear;
         }
 

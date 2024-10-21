@@ -69,14 +69,14 @@ public class QueueConnTestsAppclientTest extends com.sun.ts.tests.jms.core.appcl
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = QueueConnTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = QueueConnTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               queueconn_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = QueueConnTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = QueueConnTests.class.getResource("queueconn_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              queueconn_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              queueconn_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             queueconn_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + QueueConnTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -92,15 +92,6 @@ public class QueueConnTestsAppclientTest extends com.sun.ts.tests.jms.core.appcl
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = QueueConnTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              queueconn_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(queueconn_appclient_vehicle_ear, QueueConnTests.class, earResURL);
         return queueconn_appclient_vehicle_ear;
         }
 

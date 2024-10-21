@@ -69,14 +69,14 @@ public class TxTopicTestsAppclientTest extends com.sun.ts.tests.jms.core.appclie
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = TxTopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = TxTopicTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               txTopicTests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = TxTopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = TxTopicTests.class.getResource("txTopicTests_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              txTopicTests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              txTopicTests_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             txTopicTests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + TxTopicTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -92,15 +92,6 @@ public class TxTopicTestsAppclientTest extends com.sun.ts.tests.jms.core.appclie
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = TxTopicTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              txTopicTests_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(txTopicTests_appclient_vehicle_ear, TxTopicTests.class, earResURL);
         return txTopicTests_appclient_vehicle_ear;
         }
 

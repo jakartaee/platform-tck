@@ -76,14 +76,14 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.core20.jmsconsumer
             com.sun.ts.tests.jms.core20.jmsconsumertests.Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = Client.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               jmsconsumertests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("jmsconsumertests_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jmsconsumertests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jmsconsumertests_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jmsconsumertests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -99,15 +99,6 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.core20.jmsconsumer
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jmsconsumertests_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jmsconsumertests_appclient_vehicle_ear, Client.class, earResURL);
         return jmsconsumertests_appclient_vehicle_ear;
         }
 

@@ -76,14 +76,14 @@ public class ClosedQueueReceiverTestsAppclientTest extends com.sun.ts.tests.jms.
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = ClosedQueueReceiverTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = ClosedQueueReceiverTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               closedQueueReceiver_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = ClosedQueueReceiverTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = ClosedQueueReceiverTests.class.getResource("closedQueueReceiver_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              closedQueueReceiver_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              closedQueueReceiver_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             closedQueueReceiver_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClosedQueueReceiverTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -99,15 +99,6 @@ public class ClosedQueueReceiverTestsAppclientTest extends com.sun.ts.tests.jms.
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ClosedQueueReceiverTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              closedQueueReceiver_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(closedQueueReceiver_appclient_vehicle_ear, ClosedQueueReceiverTests.class, earResURL);
         return closedQueueReceiver_appclient_vehicle_ear;
         }
 

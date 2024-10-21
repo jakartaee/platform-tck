@@ -76,14 +76,14 @@ public class TopicHeaderTestsAppclientTest extends com.sun.ts.tests.jms.core.top
             com.sun.ts.tests.jms.core.topicMsgHeaders.TopicHeaderTests.class
             );
             // The application-client.xml descriptor
-            URL resURL = TopicHeaderTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = TopicHeaderTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               topicMsgHeaders_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = TopicHeaderTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = TopicHeaderTests.class.getResource("topicMsgHeaders_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              topicMsgHeaders_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              topicMsgHeaders_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             topicMsgHeaders_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + TopicHeaderTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -99,15 +99,6 @@ public class TopicHeaderTestsAppclientTest extends com.sun.ts.tests.jms.core.top
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = TopicHeaderTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              topicMsgHeaders_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(topicMsgHeaders_appclient_vehicle_ear, TopicHeaderTests.class, earResURL);
         return topicMsgHeaders_appclient_vehicle_ear;
         }
 

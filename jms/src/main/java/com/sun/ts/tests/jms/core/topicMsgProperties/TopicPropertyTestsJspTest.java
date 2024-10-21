@@ -75,27 +75,16 @@ public class TopicPropertyTestsJspTest extends com.sun.ts.tests.jms.core.topicMs
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = TopicPropertyTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            URL warResURL = TopicPropertyTests.class.getResource("/com/sun/ts/tests/jms/core/topicMsgProperties/jsp_vehicle_web.xml");
             if(warResURL != null) {
               topicMsgProperties_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = TopicPropertyTests.class.getResource("//com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = TopicPropertyTests.class.getResource("/com/sun/ts/tests/jms/core/topicMsgProperties/topicMsgProperties_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               topicMsgProperties_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = TopicPropertyTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              topicMsgProperties_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
-            warResURL = TopicPropertyTests.class.getResource("/com/sun/ts/tests/jms/core/topicMsgProperties/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              topicMsgProperties_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
             warResURL = TopicPropertyTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
             if(warResURL != null) {
               topicMsgProperties_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
@@ -118,15 +107,6 @@ public class TopicPropertyTestsJspTest extends com.sun.ts.tests.jms.core.topicMs
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = TopicPropertyTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              topicMsgProperties_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(topicMsgProperties_jsp_vehicle_ear, TopicPropertyTests.class, earResURL);
         return topicMsgProperties_jsp_vehicle_ear;
         }
 

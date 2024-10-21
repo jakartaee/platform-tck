@@ -76,7 +76,8 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.core20.runtimeexceptiont
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.jms.core20.runtimeexceptiontests.Client.class
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
@@ -84,11 +85,12 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.core20.runtimeexceptiont
               runtimeexceptiontests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("runtimeexceptiontests_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              runtimeexceptiontests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              runtimeexceptiontests_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            runtimeexceptiontests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // runtimeexceptiontests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            runtimeexceptiontests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(runtimeexceptiontests_ejb_vehicle_client, Client.class, resURL);
 
@@ -109,12 +111,12 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.core20.runtimeexceptiont
                 com.sun.ts.tests.jms.core20.runtimeexceptiontests.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
+            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               runtimeexceptiontests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("runtimeexceptiontests_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               runtimeexceptiontests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -132,15 +134,6 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.core20.runtimeexceptiont
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              runtimeexceptiontests_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(runtimeexceptiontests_ejb_vehicle_ear, Client.class, earResURL);
         return runtimeexceptiontests_ejb_vehicle_ear;
         }
 

@@ -79,14 +79,14 @@ public class ClosedTopicConnectionTestsAppclientTest extends com.sun.ts.tests.jm
             );
 
             // The application-client.xml descriptor
-            URL resURL = ClosedTopicConnectionTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = ClosedTopicConnectionTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               closedTopicConnection_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = ClosedTopicConnectionTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = ClosedTopicConnectionTests.class.getResource("closedTopicConnection_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              closedTopicConnection_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              closedTopicConnection_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             closedTopicConnection_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClosedTopicConnectionTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -102,15 +102,6 @@ public class ClosedTopicConnectionTestsAppclientTest extends com.sun.ts.tests.jm
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ClosedTopicConnectionTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              closedTopicConnection_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(closedTopicConnection_appclient_vehicle_ear, ClosedTopicConnectionTests.class, earResURL);
         return closedTopicConnection_appclient_vehicle_ear;
         }
 
