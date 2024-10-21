@@ -67,7 +67,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.metadataComplete.war
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/ejb30/misc/metadataComplete/warejb/misc_metadataComplete_warejb_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/metadataComplete/warejb/misc_metadataComplete_warejb_web.xml");
             if(warResURL != null) {
               misc_metadataComplete_warejb_web.addAsWebInfResource(warResURL, "web.xml");
             }
@@ -75,14 +75,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.metadataComplete.war
             warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/metadataComplete/warejb/misc_metadataComplete_warejb_web.war.sun-web.xml");
             if(warResURL != null) {
               misc_metadataComplete_warejb_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
-
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/misc/metadataComplete/warejb/misc_metadataComplete_warejb_web.xml");
-            if(warResURL != null) {
-              misc_metadataComplete_warejb_web.addAsWebResource(warResURL, "//misc_metadataComplete_warejb_web.xml");
             }
 
            // Call the archive processor
