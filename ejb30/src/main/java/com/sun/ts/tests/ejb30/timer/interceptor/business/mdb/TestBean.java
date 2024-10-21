@@ -33,35 +33,34 @@ import jakarta.jms.QueueConnectionFactory;
 @ExcludeDefaultInterceptors
 @ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class TestBean {
-  @Resource(name = "sendQueue")
-  private Queue sendQueue;
+    @Resource(name = "sendQueue")
+    private Queue sendQueue;
 
-  @Resource(name = "queueConnectionFactory")
-  private QueueConnectionFactory queueConnectionFactory;
+    @Resource(name = "queueConnectionFactory")
+    private QueueConnectionFactory queueConnectionFactory;
 
-  // This field will be updated by BusinessTimerBean,
-  // after which its value is retrieved by Client class (the caller
-  // of this class.
-  private String replyFromMDB;
+    // This field will be updated by BusinessTimerBean,
+    // after which its value is retrieved by Client class (the caller
+    // of this class.
+    private String replyFromMDB;
 
-  public void messageFromSingletonBeanToMDB(String testName) {
-    MessageSenderBean.sendMessage(queueConnectionFactory, sendQueue, testName,
-        0);
-  }
-
-  public String getReplyFromMDB() throws InterruptedException {
-    synchronized (this) {
-      while (replyFromMDB == null) {
-        wait();
-      }
+    public void messageFromSingletonBeanToMDB(String testName) {
+        MessageSenderBean.sendMessage(queueConnectionFactory, sendQueue, testName, 0);
     }
-    return replyFromMDB;
-  }
 
-  public void setReplyFromMDB(String reply) {
-    synchronized (this) {
-      this.replyFromMDB = reply;
-      notify();
+    public String getReplyFromMDB() throws InterruptedException {
+        synchronized (this) {
+            while (replyFromMDB == null) {
+                wait();
+            }
+        }
+        return replyFromMDB;
     }
-  }
+
+    public void setReplyFromMDB(String reply) {
+        synchronized (this) {
+            this.replyFromMDB = reply;
+            notify();
+        }
+    }
 }

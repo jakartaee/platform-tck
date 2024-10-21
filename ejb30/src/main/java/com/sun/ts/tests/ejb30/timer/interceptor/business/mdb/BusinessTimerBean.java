@@ -39,45 +39,46 @@ import jakarta.jms.MessageListener;
 
 @MessageDriven
 @Interceptors({ Interceptor2.class })
-public class BusinessTimerBean extends BusinessTimerBeanBase
-    implements MessageListener {
-  @EJB(beanInterface = TestBean.class, beanName = "TestBean")
-  private TestBean testBean;
+public class BusinessTimerBean extends BusinessTimerBeanBase implements MessageListener {
 
-  @SuppressWarnings("unused")
-  @AroundInvoke
-  private Object aroundInvoke(InvocationContext inv) throws Exception {
-    TimerUtil.createMillisecondLaterTimer(timerService,
-        "BusinessTimerBean.aroundInvoke");
-    return inv.proceed();
-  }
+    @EJB(beanInterface = TestBean.class, beanName = "TestBean")
+    private TestBean testBean;
 
-  @Interceptors(Interceptor3.class)
-  public void onMessage(Message msg) {
-    Helper.getLogger().info("In onMessage method of " + this);
-    String testName = MessageSenderBean.getTestName(msg);
-
-    if ("messageFromSingletonBeanToMDB".equals(testName)) {
-      testBean.setReplyFromMDB(testName);
-      return;
+    @SuppressWarnings("unused")
+    @AroundInvoke
+    private Object aroundInvoke(InvocationContext inv) throws Exception {
+        TimerUtil.createMillisecondLaterTimer(timerService, "BusinessTimerBean.aroundInvoke");
+        return inv.proceed();
     }
-    super.createMillisecondLaterTimer(testName);
-  }
 
-  @Override
-  public Timer createMillisecondLaterTimer(String name) {
-    return null;
-  }
+    @Override
+    @Interceptors(Interceptor3.class)
+    public void onMessage(Message msg) {
+        Helper.getLogger().info("In onMessage method of " + this);
+        String testName = MessageSenderBean.getTestName(msg);
 
-  @SuppressWarnings("unused")
-  @PostConstruct
-  private void postConstruct() {
-    Helper.getLogger().info("In PostConstruct of " + this);
-  }
+        if ("messageFromSingletonBeanToMDB".equals(testName)) {
+            testBean.setReplyFromMDB(testName);
+            return;
+        }
 
-  @SuppressWarnings("unused")
-  @PreDestroy
-  private void preDestroy() {
-    Helper.getLogger().info("In PreDestroy of " + this);
-  }
+        super.createMillisecondLaterTimer(testName);
+    }
+
+    @Override
+    public Timer createMillisecondLaterTimer(String name) {
+        return null;
+    }
+
+    @SuppressWarnings("unused")
+    @PostConstruct
+    private void postConstruct() {
+        Helper.getLogger().info("In PostConstruct of " + this);
+    }
+
+    @SuppressWarnings("unused")
+    @PreDestroy
+    private void preDestroy() {
+        Helper.getLogger().info("In PreDestroy of " + this);
+    }
 }
