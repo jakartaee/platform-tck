@@ -699,8 +699,7 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
-                                <!-- <include>com/sun/ts/tests/jms/**/*Test.java</include> -->
-                                <include>com/sun/ts/tests/jms/**/*AppclientTest.java</include>
+                                <include>com/sun/ts/tests/jms/**/*Test*.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-appclient") tests -->
                             <groups>tck-appclient</groups>
@@ -752,10 +751,6 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/mq/lib/fscontext.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <includes>
-                                <!-- <include>com/sun/ts/tests/jms/core/**/*Jsp*.java</include>
-                                <include>com/sun/ts/tests/jms/core/**/*Servlet*.java</include>
-                                <include>com/sun/ts/tests/jms/core20/**/*Servlet*.java</include>
-                                <include>com/sun/ts/tests/jms/core20/**/*Jsp*.java</include> -->
                                 <include>com/sun/ts/tests/jms/**/*Test*.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->

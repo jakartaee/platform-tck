@@ -78,17 +78,19 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.ee20.resourcedefs.descri
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.jms.ee20.resourcedefs.descriptor.Client.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/xml/appclient_vehicle_client.xml");
+            URL resURL = Client.class.getResource("xml/appclient_vehicle_client.xml");
             resourcedefs_descriptor_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
-            if(resURL != null) {
-              resourcedefs_descriptor_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            resourcedefs_descriptor_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            // resURL = Client.class.getResource("ejb_vehicle_client.jar.sun-application-client.xml");
+            // if(resURL != null) {
+            //   resourcedefs_descriptor_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            // }
+            // resourcedefs_descriptor_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            resourcedefs_descriptor_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(resourcedefs_descriptor_ejb_vehicle_client, Client.class, resURL);
 
@@ -114,11 +116,11 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.ee20.resourcedefs.descri
             if(ejbResURL != null) {
               resourcedefs_descriptor_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
-            // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL != null) {
-              resourcedefs_descriptor_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
-            }
+            // // The sun-ejb-jar.xml file
+            // ejbResURL = Client.class.getResource("ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            // if(ejbResURL != null) {
+            //   resourcedefs_descriptor_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+            // }
             // Call the archive processor
             archiveProcessor.processEjbArchive(resourcedefs_descriptor_ejb_vehicle_ejb, Client.class, ejbResURL);
 

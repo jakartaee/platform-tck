@@ -75,7 +75,7 @@ public class ClientJspTest extends com.sun.ts.tests.jms.ee20.resourcedefs.descri
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/descriptor/xml/jsp_vehicle_web.xml");
+            URL warResURL = Client.class.getResource("xml/jsp_vehicle_web.xml");
             resourcedefs_descriptor_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             // The sun-web.xml descriptor
             // warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");

@@ -75,7 +75,7 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.ejb.sessionQtests.Client
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/jms/ee/ejb/sessionQtests/jms_ejb_sessionQtests_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jms_ejb_sessionQtests_client.addAsManifestResource(resURL, "application-client.xml");
+              jms_ejb_sessionQtests_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jms_ejb_sessionQtests_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
