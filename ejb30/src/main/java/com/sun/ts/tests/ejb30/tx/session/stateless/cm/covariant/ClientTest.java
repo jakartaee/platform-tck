@@ -34,7 +34,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant.Client {
     /**
         EE10 Deployment Descriptors:
-        tx_stateless_covariant: 
+        tx_stateless_covariant:
         tx_stateless_covariant_ejb: jar.sun-ejb-jar.xml
         tx_stateless_covariant_web: WEB-INF/web.xml
 
@@ -78,7 +78,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.c
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/covariant/tx_stateless_covariant_web.xml");
             if(warResURL != null) {
-              tx_stateless_covariant_web.addAsWebResource(warResURL, "//tx_stateless_covariant_web.xml");
+              tx_stateless_covariant_web.addAsWebInfResource(warResURL, "web.xml");
             }
 
            // Call the archive processor
@@ -130,10 +130,11 @@ public class ClientTest extends com.sun.ts.tests.ejb30.tx.session.stateless.cm.c
 
 
             // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/covariant/");
+            URL earResURL = Client.class.getResource("application.xml");
             if(earResURL != null) {
               tx_stateless_covariant_ear.addAsManifestResource(earResURL, "application.xml");
             }
+
             // The sun-application.xml descriptor
             earResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/tx/session/stateless/cm/covariant/.ear.sun-application.xml");
             if(earResURL != null) {
