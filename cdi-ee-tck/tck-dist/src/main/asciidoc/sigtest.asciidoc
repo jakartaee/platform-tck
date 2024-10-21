@@ -1,0 +1,5 @@
+[[sigtest]]
+
+== Signature Test Requirements
+
+The signature test requirements are found in the Jakarta CDI TCK. There are no additional signature tests required for the CDI EE TCK.

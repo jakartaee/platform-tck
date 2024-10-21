@@ -24,11 +24,11 @@ The https://github.com/jakartaee/cdi/wiki/Eclipse-CI-Release-Jobs page describes
 
 ## Sources in GIT
 
-Master branch contains the CDI TCK 4.0
+Master branch contains the CDI EE TCK 4.1
 
 ### Source Layout
 
-* dist-build - assembly project to create the distribution zip - TBD
+* tck-dist - assembly project to create the distribution zip - TBD
 * doc - the TCK user guide source - TBD
 * src - The set of tests that depend on web and full platform containers
 * README.md - this doc

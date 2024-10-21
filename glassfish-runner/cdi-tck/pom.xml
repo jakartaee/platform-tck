@@ -33,6 +33,7 @@
     <properties>
 
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
+        <cdi.ee.tck.version>11.0.0-SNAPSHOT</cdi.ee.tck.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
         <!-- Note M6 still has some failures, future M7 passes all -->
@@ -222,6 +223,23 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- The CDI EE TCK testsuite -->
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>cdi-tck-ee-impl</artifactId>
+            <version>${cdi.ee.tck.version}</version>
+            <type>xml</type>
+            <classifier>suite</classifier>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>cdi-tck-ee-impl</artifactId>
+            <version>${cdi.ee.tck.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>

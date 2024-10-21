@@ -1,0 +1,16 @@
+= Executing and Debugging Tests
+
+[partintro]
+--
+In this part you learn how to execute the CDI TCK on the Weld compatible implementation.
+First, you are walked through the steps necessary to execute the test suite on Weld. Then you
+discover how to modify the TCK runner to execute the test suite on your own implementation.
+Finally, you learn how to debug tests from the test suite in Eclipse. 
+
+--
+
+
+include::sigtest.asciidoc[]
+
+include::executing.asciidoc[]
+

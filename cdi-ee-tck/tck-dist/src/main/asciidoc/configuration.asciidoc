@@ -1,0 +1,231 @@
+[[configuration]]
+
+== Configuration
+
+This chapter lays out how to configure the TCK Harness by specifying the SPI implementation classes, defining the target container connection information, and various other switches. You then learn how to setup a TCK runner project that executes the TCK test suite, putting these settings into practice.
+
+[[tck-properties]]
+
+
+=== TCK Properties
+
+System properties and/or the resource META-INF/cdi-tck.properties, a Java properties file, are used to configure the TCK.
+
+You should set the following required properties:
+
+.Required TCK Configuration Properties
+[options="header"]
+|===============
+|Property = Example Value|Description
+|+org.jboss.cdi.tck.libraryDirectory=/path/to/extra/libraries+|
+                     The directory containing extra JARs to be placed in
+                     the test archive library directory such as the porting package
+                     implementation.
+|+org.jboss.cdi.tck.cdiLiteMode=true+| Enable the CDI Lite mode. When enabled, none of the org.jboss.cdi.tck.test* properties below related to Jakarta EE tests are required.
+|+org.jboss.cdi.tck.testDataSource=java:jboss/datasources/ExampleDS+|
+                     A few TCK tests work with Jakarta Persistence services and require a data source to be provided.
+                     This property defines JNDI name of such resource. Required for the tests within the _persistence_ test group.
+
+|+org.jboss.cdi.tck.testJmsConnectionFactory=java:/ConnectionFactory+|
+                    The JNDI name of the JMS test ConnectionFactory. Required for the tests within the _jms_ test group.
+
+|+org.jboss.cdi.tck.testJmsQueue=java:/queue/test+|
+                    The JNDI name of the JMS test Queue. Required for the tests within the _jms_ test group.
+
+|+org.jboss.cdi.tck.testJmsTopic=java:/topic/test+|
+                    The JNDI name of the JMS test Topic. Required for the tests within the _jms_ test group.
+
+
+|===============
+
+
+.Optional TCK Configuration Properties
+[options="header"]
+|===============
+|Property = Example Value|Description
+|+org.jboss.cdi.tck.testTimeoutFactor=200+|
+                    Tests use this percentage value to adjust the final timeout (e.g. when waiting for some async processing) so that it's possible to configure timeouts according to the testing runtime performance and throughput.
+                    The value must be an integer greater than zero. The default value is 100% - i.e. timeouts will remain the same.
+
+
+|===============
+
+
+[[arquillian-settings]]
+
+
+=== Arquillian settings
+
+The Arquillian testing platform will look for configuration settings in a file named _arquillian.xml_ in the root of your classpath. If it exists it will be auto loaded, else default values will be used. This file is not a requirement however it's very useful for container configuration. See an example configuration for JBoss TCK runner:
+
+[source, console]
+----
+        weld/jboss-tck-runner/src/test/wildfly8/arquillian.xml
+----
+
+[[porting-package]]
+
+
+=== The Porting Package
+
+The CDI TCK relies on an implementation of the porting package to function. There are times when the tests need to tap directly into the CDI implementation to manipulate behavior or verify results. The porting package is Java package named "org.jboss.cdi.tck.spi" and includes a set of SPIs that provide the TCK with this level of access without tying the tests to a given implementation.
+
+The SPI classes in the CDI TCK are as follows: 
+
+*  +org.jboss.cdi.tck.spi.Beans+
+*  +org.jboss.cdi.tck.spi.Contexts+
+*  +org.jboss.cdi.tck.spi.EL+
+
+Please consult the JavaDoc for these interfaces for the implementation requirements.
+
+
+=== Using the CDI TCK with the Jakarta EE Core Profile
+You can configure the CDI TCK to just run tests related to the CDI Lite specification appropriate for the Jakarta EE Core Profile by excluding TestNG groups _javaee-full_, _se_, e.g. via a maven-surefire-plugin configuration like:
+
+[source.XML, xml]
+----
+      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <excludedGroups>cdi-full,se</excludedGroups>
+              <dependenciesToScan>
+                <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
+              </dependenciesToScan>
+            </configuration>
+       </plugin>
+----
+
+=== Using the CDI TCK with the Jakarta EE Web Profile
+
+You can configure the CDI TCK to just run tests appropriate to the Jakarta EE Web Profile by excluding TestNG group _javaee-full_,_se_ e.g. via a maven-surefire-plugin configuration like:
+
+[source.XML, xml]
+----
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <excludedGroups>javaee-full,se</excludedGroups>
+              <dependenciesToScan>
+                <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
+                <dependency>jakarta.enterprise:cdi-tck-web-impl</dependency>
+              </dependenciesToScan>
+            </configuration>
+       </plugin>
+----
+
+=== Using the CDI TCK with the Jakarta EE Full Platform
+
+You can configure the CDI TCK to just run tests appropriate to the Jakarta EE Full Platform by excluding TestNG group _se_ e.g. via a maven-surefire-plugin configuration like:
+
+[source.XML, xml]
+----
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <excludedGroups>se</excludedGroups>
+              <dependenciesToScan>
+                <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
+                <dependency>jakarta.enterprise:cdi-tck-web-impl</dependency>
+              </dependenciesToScan>
+            </configuration>
+       </plugin>
+----
+
+=== Using the CDI TCK with the Java SE
+
+You can configure the CDI TCK to just run tests appropriate to the Java SE runtime by including the TestNG group _se_ and _arquillian_, e.g. via a maven-surefire-plugin configuration like:
+
+[source.XML, xml]
+----
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <groups>se,arquillian</groups>
+              <dependenciesToScan>
+                <dependency>jakarta.enterprise:cdi-tck-core-impl</dependency>
+              </dependenciesToScan>
+            </configuration>
+       </plugin>
+----
+
+[NOTE]
+====
+The _arquillian_ group specification is needed due to an issue open issue with how the Arquillian TestNG integration behaves: https://github.com/arquillian/arquillian-core/issues/395[ARQ-395]
+====
+
+=== Configuring TestNG to execute the TCK
+
+The CDI TCK is built atop Arquillian and TestNG, and it's TestNG that is responsible for selecting the tests to execute, the order of execution, and reporting the results. Detailed TestNG documentation can be found at link:$$http://testng.org/doc/documentation-main.html$$[testng.org].
+
+Certain TestNG configuration file must be run by TestNG (described by the TestNG documentation as "with a +testng.xml+ file") unmodified for an implementation to pass the TCK. The TCK distribution contains the configuration file accurate at the date of the release - +artifacts/cdi-tck-impl-suite.xml+. However this artifact may not be up to date due to unresolved challenges or pending releases. Therefore a canonical configuration file exists. This file is located in the CDI TCK source code repository at _$$${CORRESPONDING_BRANCH_ROOT}/impl/src/main/resources/tck-tests.xml$$_.
+
+
+[NOTE]
+====
+The canonical configuration file for CDI TCK is located at https://github.com/jakartaee/platform-tck/blob/main/cdi-ee-tck/tck/src/main/resources/tck-tests.xml.
+====
+
+This file also allows tests to be excluded from a run:
+
+[source.XML, xml]
+----
+<suite name="CDI TCK" verbose="0" configfailurepolicy="continue">
+   <test name="CDI TCK">
+      ...
+      <classes>
+         <class name="org.jboss.cdi.tck.tests.context.application.ApplicationContextTest">
+            <methods>
+               <exclude name="testApplicationScopeActiveDuringServiceMethod"/>
+            </methods>
+         </class>
+      </classes>
+      ...
+   </test>
+</suite>
+----
+
+
+TestNG provides extensive reporting information. Depending on the build tool or IDE you use, the reporting will take a different format. Please consult the TestNG documentation and the tool documentation for more information.
+
+
+=== Configuring your build environment to execute the TCK
+
+It's beyond the scope of this guide to describe in how to set up your build environment to run the TCK. The TestNG documentation provides extensive information on launching TestNG using the Java, Ant, Eclipse or IntelliJ IDEA.
+
+
+
+=== Configuring your application server to execute the TCK
+
+The TCK makes use of the Java 1.4 keyword +assert+; you must ensure that the JVM used to run the application server is started with assertions enabled. See link:$$http://docs.oracle.com/javase/7/docs/technotes/guides/language/assert.html#enable-disable$$[Programming With Assertions] for more information on how to enable assertions.
+
+Tests within the _jms_ test group require some basic Java Message Service configuration. A connection factory, a queue destination for PTP messaging domain and a topic destination for pub/sub messaging domain must be available via JNDI lookup. The corresponding JNDI names are specified with configuration properties - see <<tck-properties>>.
+
+Tests within the _persistence_ test group require basic data source configuration. The data source has to be valid and JTA-based. The JNDI name of the DataSource is specified with configuration property - see <<tck-properties>>.
+
+Tests within the _installedLib_ test group require the CDI TCK +cdi-tck-ext-lib+ artifact to be installed as a library (see also Jakarta EE 10 specification, section EE.10.2.2 "Installed Libraries").
+
+Tests within the _systemProperties_ test group require the following system properties to be set:
+
+[options="header"]
+|===============
+|Name|Value
+|+cdiTckExcludeDummy+|+true+
+
+|===============
+
+Tests within the _security_ test group require the following mapping of roles to principals:
+
+[options="header"]
+|===============
+|Principal|Group
+|+student+|+student+
+|+alarm+|+alarm+, +student+
+|+printer+|+printer+|
+
+|===============
+
+Tests within _SE_ test groups require execution in a separate JVM instance with isolated classpath including all required dependencies.

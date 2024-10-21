@@ -25,7 +25,8 @@
     <maven.compiler.release>17</maven.compiler.release>
     <testng.version>7.9.0</testng.version>
     <jboss.test.audit.version>2.0.0.Final</jboss.test.audit.version>
-    <arquillian.version>1.8.0.Final</arquillian.version>
+    <arquillian.version>1.9.1.Final</arquillian.version>
+    <arquillian.jakarta.version>10.0.0.Final</arquillian.jakarta.version>
     <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
     <arquillian.weld.version>4.0.0.Final</arquillian.weld.version>
     <apache.httpclient.version>3.1</apache.httpclient.version>
@@ -33,13 +34,13 @@
     <interceptors.version>2.2.0</interceptors.version>
     <selenium.version>4.7.2</selenium.version>
     <xmlunit.version>2.9.1</xmlunit.version>
-    <weld.version>6.0.0.Beta1</weld.version>
-    <weld.api.version>6.0.Beta2</weld.api.version>
+    <weld.version>6.0.0.Beta4</weld.version>
+    <weld.api.version>6.0.Beta5</weld.api.version>
     <surefire.version>3.2.5</surefire.version>
     <log4j.version>1.2.17</log4j.version>
     <glassfish.el.version>5.0.0-M1</glassfish.el.version>
-    <wildfly.version>32.0.0.Final</wildfly.version>
-    <wildfly.arquillian.version>5.1.0.Beta3</wildfly.arquillian.version>
+    <wildfly.version>34.0.0.Final</wildfly.version>
+    <wildfly.arquillian.version>5.1.0.Beta6</wildfly.arquillian.version>
     <wildfly.maven.plugin.version>5.0.0.Final</wildfly.maven.plugin.version>
     <jboss.home>${project.build.directory}/wildfly</jboss.home>
 
@@ -167,7 +168,7 @@
     <dependency>
       <groupId>org.jboss.arquillian.protocol</groupId>
       <artifactId>arquillian-protocol-servlet-jakarta</artifactId>
-      <version>${arquillian.version}</version>
+      <version>${arquillian.jakarta.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -176,11 +177,11 @@
       <version>2.6</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
+    <!--dependency>
       <groupId>org.wildfly.arquillian</groupId>
       <artifactId>wildfly-arquillian-common</artifactId>
       <version>${wildfly.arquillian.version}</version>
-    </dependency>
+    </dependency-->
   </dependencies>
 
   <build>
@@ -200,7 +201,7 @@
               <includeArtifactIds>weld-porting-package-tck</includeArtifactIds>
               <stripVersion>true</stripVersion>
               <overWriteReleases>true</overWriteReleases>
-              <outputDirectory>../target/dependency/lib</outputDirectory>
+              <outputDirectory>target/dependency/lib</outputDirectory>
             </configuration>
           </execution>
         </executions>
@@ -616,24 +617,15 @@
           <scope>test</scope>
         </dependency>
         <dependency>
+          <groupId>org.jboss.arquillian.core</groupId>
+          <artifactId>arquillian-core-spi</artifactId>
+          <version>${arquillian.version}</version>
+        </dependency>
+        <dependency>
           <groupId>org.wildfly.arquillian</groupId>
           <artifactId>wildfly-arquillian-container-managed</artifactId>
           <version>${wildfly.arquillian.version}</version>
           <scope>test</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>org.jboss.arquillian.core</groupId>
-              <artifactId>arquillian-core-spi</artifactId>
-            </exclusion>
-            <exclusion>
-              <groupId>org.jboss.arquillian.core</groupId>
-              <artifactId>arquillian-core-api</artifactId>
-            </exclusion>
-            <exclusion>
-              <groupId>org.jboss.logmanager</groupId>
-              <artifactId>log4j-jboss-logmanager</artifactId>
-            </exclusion>
-          </exclusions>
         </dependency>
         <dependency>
           <groupId>log4j</groupId>
@@ -693,7 +685,7 @@
               <systemPropertyVariables>
                 <!-- Silencing the broken code in getActiveConfiguration(),
                     see https://github.com/arquillian/arquillian/blob/master/impl-base/src/main/java/org/jboss/arquillian/impl/client/container/ContainerRegistryCreator.java -->
-                <arquillian.launch>wildfly-32</arquillian.launch>
+                <arquillian.launch>wildfly-34</arquillian.launch>
                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                 <!-- Specified system properties are not
                     available during in-container test execution -->

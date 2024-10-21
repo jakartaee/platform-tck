@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.2.0 https://maven.apache.org/xsd/assembly-2.2.0.xsd">
+   <id>dist</id>
+   <baseDirectory>cdi-tck-ee-${project.version}</baseDirectory>
+   <formats>
+      <format>zip</format>
+   </formats>
+
+   <!-- The files section is used for individual files and those files that need filter applied -->
+   <files>
+      <!-- This is the license to use in the dist -->
+      <file>
+         <source>${license.file}</source>
+         <destName>LICENSE</destName>
+      </file>
+      <!-- The dist root README-->
+      <file>
+         <source>README.adoc</source>
+         <destName>README.adoc</destName>
+      </file>
+      <!-- The root artifact-install.pom gets installed as /artifacts/pom.xml in the dist to allow one to install
+            the CDI TCK contents and dependencies from the dist.
+      -->
+      <file>
+         <source>artifact-install.pom</source>
+         <outputDirectory>artifacts</outputDirectory>
+         <destName>pom.xml</destName>
+         <filtered>true</filtered>
+      </file>
+
+   </files>
+
+   <!-- The fileSets are for bulk copying that does not need filtering -->
+   <fileSets>
+      <!-- The sample runners directory -->
+      <fileSet>
+         <directory>../runners</directory>
+         <outputDirectory>/runners</outputDirectory>
+      </fileSet>
+      <!-- The user guide -->
+      <fileSet>
+         <directory>${project.build.directory}</directory>
+         <outputDirectory>/doc</outputDirectory>
+         <includes>
+            <include>generated-docs-html/**</include>
+            <include>generated-docs-pdf/**</include>
+         </includes>
+      </fileSet>
+   </fileSets>
+
+   <dependencySets>
+      <dependencySet>
+         <includes>
+            <include>jakarta.tck:cdi-tck-ee-parent:pom</include>
+            <include>jakarta.tck:cdi-tck-ee-impl</include>
+         </includes>
+         <useTransitiveDependencies>true</useTransitiveDependencies>
+         <outputDirectory>artifacts</outputDirectory>
+         <useProjectArtifact>false</useProjectArtifact>
+      </dependencySet>
+   </dependencySets>
+
+</assembly>
