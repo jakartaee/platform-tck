@@ -111,7 +111,7 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.core20.runtimeexceptiont
                 com.sun.ts.tests.jms.core20.runtimeexceptiontests.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("ejb_vehicle_ejb.xml");
+            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               runtimeexceptiontests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
@@ -134,15 +134,6 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.core20.runtimeexceptiont
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              runtimeexceptiontests_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(runtimeexceptiontests_ejb_vehicle_ear, Client.class, earResURL);
         return runtimeexceptiontests_ejb_vehicle_ear;
         }
 

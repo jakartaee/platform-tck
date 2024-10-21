@@ -137,15 +137,6 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.core20.connectionfactory
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              connectionfactorytests_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(connectionfactorytests_ejb_vehicle_ear, Client.class, earResURL);
         return connectionfactorytests_ejb_vehicle_ear;
         }
 
