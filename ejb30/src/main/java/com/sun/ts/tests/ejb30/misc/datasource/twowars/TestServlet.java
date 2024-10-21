@@ -96,7 +96,6 @@ import com.sun.ts.tests.ejb30.lite.packaging.war.datasource.common.DataSourceTes
             password="cts1",
             properties={})
     })
-
 public class TestServlet extends TestServletBase {
 
     @EJB(beanName="DataSourceBean")
@@ -108,26 +107,20 @@ public class TestServlet extends TestServletBase {
         Helper.getLogger().info(getPostConstructRecords().toString());
         
         DataSourceTest.verifyDataSource(postConstructRecords, false, 
-                //"java:app/datasource/twowars/ejb/appds",
-                //"java:global/env/ts/datasource/servlet2/globalds",
-                
-                "java:comp/env/compdsservlet",
-                "java:comp/env/defaultdsservlet",
-                "java:module/env/moduledsservlet",
-                "java:app/env/servlet/appds",
-                "java:global/env/ts/datasource/servlet/globalds"
-                );
+            "java:comp/env/compdsservlet",
+            "java:comp/env/defaultdsservlet",
+            "java:module/env/moduledsservlet",
+            "java:app/env/servlet/appds",
+            "java:global/env/ts/datasource/servlet/globalds");
     }
 
-    public void servletPostConstruct(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void servletPostConstruct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         nonPostConstruct();
         verifyRecords(request, response, postConstructRecords);
     }
 
 
-    public void ejbPostConstruct(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void ejbPostConstruct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         verifyRecords(request, response, dataSourceBean.getPostConstructRecords());
     }
 }
