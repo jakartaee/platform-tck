@@ -397,7 +397,7 @@
                                     <artifactId>${tck.artifactId}</artifactId>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                                    <destFileName>jta-tck.jar</destFileName>
+                                    <destFileName>integration-tck.jar</destFileName>
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>org.apache.derby</groupId>
@@ -419,6 +419,33 @@
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/lib</outputDirectory>
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack-certificates</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>generate-test-resources</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>libutil</artifactId>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <includes>**/**cts_cert,**/**clientcert.jks,**/**clientcert.p12</includes>
                                 </artifactItem>
                             </artifactItems>
                         </configuration>
@@ -499,12 +526,18 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
+                            <argLine>-Djava.protocol.handler.pkgs=javax.net.ssl
+                                -Djavax.net.ssl.keyStore=${project.build.directory}/certificates/clientcert.jks
+                                -Djavax.net.ssl.keyStorePassword=changeit
+                                -Djavax.net.ssl.trustStore=${project.build.directory}/${glassfish.toplevel.dir}/glassfish/domains/domain1/config/cacerts.jks</argLine>
                             <additionalClasspathElements>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/lib/runtime.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/security.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/security-ee.jar</additionalClasspathElement>
+                                <!-- <additionalClasspathElement>${project.directory}/glassfishporting.jar</additionalClasspathElement> -->
                             </additionalClasspathElements>
                             <includes>
                                 <include>com/sun/ts/tests/integration/**/*Test*.java</include>
@@ -547,12 +580,6 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
             </properties>
         </profile>
     </profiles>
