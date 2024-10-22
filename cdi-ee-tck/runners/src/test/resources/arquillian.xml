@@ -8,7 +8,7 @@
         <!-- property name="deploymentExportPath">target/</property-->
     </engine>
 
-    <container qualifier="wildfly-32" default="true">
+    <container qualifier="wildfly-34" default="true">
         <configuration>
             <!-- This config file includes embedded JMS broker -->
             <property name="serverConfig">standalone-full.xml</property>

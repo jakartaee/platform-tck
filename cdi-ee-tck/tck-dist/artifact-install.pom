@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) "2022" Red Hat and others
+  ~
+  ~ This program and the accompanying materials are made available under the
+  ~ Apache Software License 2.0 which is available at:
+  ~ https://www.apache.org/licenses/LICENSE-2.0.
+  ~
+  ~ SPDX-License-Identifier: Apache-2.0
+  ~
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>jakarta.tck</groupId>
+  <artifactId>cdi-ee-tck-artifacts</artifactId>
+  <packaging>pom</packaging>
+  <!-- This is set to project release version during assembly -->
+  <version>${project.version}</version>
+  <name>Jakarta CDI EE TCK Artifacts</name>
+
+  <build>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.0.0-M1</version>
+        <executions>
+          <execution>
+            <id>install-tck-parent</id>
+            <phase>package</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>jakarta.tck</groupId>
+              <artifactId>cdi-tck-ee-parent</artifactId>
+              <version>${project.version}</version>
+              <packaging>pom</packaging>
+              <file>cdi-tck-parent-${project.version}.pom</file>
+              <generatePom>false</generatePom>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>install-cdi-tck-api</id>
+            <phase>package</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>jakarta.enterprise</groupId>
+              <artifactId>cdi-tck-api</artifactId>
+              <version>${project.version}</version>
+              <packaging>jar</packaging>
+              <file>cdi-tck-api-${project.version}.jar</file>
+              <javadoc>cdi-tck-api-${project.version}-javadoc.jar</javadoc>
+              <sources>cdi-tck-api-${project.version}-sources.jar</sources>
+              <generatePom>true</generatePom>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>install-cdi-tck-ext-lib</id>
+            <phase>package</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>jakarta.enterprise</groupId>
+              <artifactId>cdi-tck-ext-lib</artifactId>
+              <version>${project.version}</version>
+              <packaging>jar</packaging>
+              <file>cdi-tck-ext-lib-${project.version}.jar</file>
+              <generatePom>true</generatePom>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>install-cdi-ee-tck-impl</id>
+            <phase>package</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>jakarta.tck</groupId>
+              <artifactId>cdi-tck-ee-impl</artifactId>
+              <version>${project.version}</version>
+              <packaging>jar</packaging>
+              <file>cdi-ee-tck-impl-${project.version}.jar</file>
+              <generatePom>true</generatePom>
+            </configuration>
+          </execution>
+          <execution>
+            <id>install-cdi-ee-tck-suite</id>
+            <phase>package</phase>
+            <goals>
+              <goal>install-file</goal>
+            </goals>
+            <configuration>
+              <groupId>jakarta.tck</groupId>
+              <artifactId>cdi-tck-ee-impl</artifactId>
+              <version>${project.version}</version>
+              <packaging>xml</packaging>
+              <classifier>suite</classifier>
+              <file>cdi-tck-ee-impl-${project.version}-suite.xml</file>
+              <generatePom>false</generatePom>
+            </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

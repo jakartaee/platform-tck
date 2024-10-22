@@ -1,0 +1,65 @@
+= Jakarta CDI EE TCK
+
+Jakarta Contexts and Dependency Injection (CDI) is a Jakarta standard for dependency injection and contextual lifecycle management. This is the TCK for CDI EE, which validates CDI in the Web Profile and Full Platform.
+
+This distribution, as a whole, is licensed under the terms of the Apache Public License, while the final distribution used for compatibility testing is under the EFTL. The bundled LICENSE file will dictate which license applies to the TCK distribution.
+
+This distribution consists of:
+
+artifacts/
+
+ – TCK binaries and sources, packaged as jars
+ – specification audit (source and report)
+ – TestNG suite.xml file for running the TCK
+ - pom.xml to install the TCK artifacts into local maven repository
+
+doc/
+
+ – A detailed reference guide for the current version of TCK in both pdf and html formats
+
+lib/
+
+ – Maven project to get all TCK dependencies
+
+runners/
+
+ – maven-based TCK runner for WildFly
+
+
+== Software Requirements
+
+* A Java SE 17 runtime
+* Maven 3.6.x +
+
+== Installation
+
+To install the zip file distribution of TCK into local repository:
+
+* unzip/untar the distribution file to create a cdi-tck-x.y.z directory.
+* Use the artifacts/pom.xml file to install the TCK artifacts into a local maven repo.
+* Read the doc/cdi-tck-reference-guide.pdf for setup against your compatible implementation
+
+Note that you can also simply consume CDI-TCK artifacts from Maven Central.
+
+== Running against Wildfly / Weld
+
+Configuration:
+
+* download Wildfly https://wildfly.org/downloads/[server in respective version] and unzip to create
+a wildfly-{$version}.Final directory
+* Set the JBOSS_HOME environment variable to the path of the wildfly-{$version}.Final directory
+
+Install dependencies into WildFly:
+
+* Run `mvn clean package -Pupdate-jboss-as -f jboss-as/pom.xml` to install weld jars into wildfly-{$version}.Final
+* Run `mvn package -f jboss-as/pom.xml` to install TCK ext lib into wildfly-{$version}.Final (needed for 4 tests)
+
+Run the tests:
+
+* Run incontainer, full EE set [1800+ tests]
+ `mvn clean verify -Dincontainer -f jboss-tck-runner/pom.xml`
+
+== Where to file challenges
+
+Challenges and bug reports should be filed against the TCK project issue tracker at
+https://github.com/eclipse-ee4j/cdi-tck/issues[https://github.com/eclipse-ee4j/cdi-tck/issues]

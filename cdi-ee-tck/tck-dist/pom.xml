@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <parent>
+      <groupId>jakarta.tck</groupId>
+      <artifactId>cdi-tck-ee-parent</artifactId>
+      <version>11.0.0-SNAPSHOT</version>
+      <relativePath>../pom.xml</relativePath>
+   </parent>
+
+   <artifactId>cdi-ee-tck-dist</artifactId>
+   <packaging>pom</packaging>
+   <name>CDI EE TCK Distribution</name>
+
+   <properties>
+      <license.file>apl.txt</license.file>
+      <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
+      <asciidoctorj.pdf.version>1.6.2</asciidoctorj.pdf.version>
+      <pdf.name>cdi-tck-reference-guide.pdf</pdf.name>
+      <revnumber>11.0.0-SNAPSHOT</revnumber>
+   </properties>
+
+   <dependencies>
+      <dependency>
+         <groupId>jakarta.tck</groupId>
+         <artifactId>cdi-tck-ee-parent</artifactId>
+         <version>${project.version}</version>
+         <type>pom</type>
+      </dependency>
+      <!-- core impl -->
+      <dependency>
+         <groupId>jakarta.tck</groupId>
+         <artifactId>cdi-tck-ee-impl</artifactId>
+         <version>${project.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>jakarta.tck</groupId>
+         <artifactId>cdi-tck-ee-impl</artifactId>
+         <version>${project.version}</version>
+         <classifier>sources</classifier>
+      </dependency>
+      <dependency>
+         <groupId>jakarta.tck</groupId>
+         <artifactId>cdi-tck-ee-impl</artifactId>
+         <version>${project.version}</version>
+         <classifier>suite</classifier>
+         <type>xml</type>
+      </dependency>
+
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.asciidoctor</groupId>
+            <artifactId>asciidoctor-maven-plugin</artifactId>
+            <version>${asciidoctor.maven.plugin.version}</version>
+            <dependencies>
+               <dependency>
+                  <groupId>org.asciidoctor</groupId>
+                  <artifactId>asciidoctorj-pdf</artifactId>
+                  <version>${asciidoctorj.pdf.version}</version>
+               </dependency>
+            </dependencies>
+            <configuration>
+               <sourceDirectory>src/main/asciidoc</sourceDirectory>
+               <sourceDocumentName>cdi-tck-reference-guide.asciidoc</sourceDocumentName>
+               <!-- Attributes common to all output formats -->
+               <attributes>
+                  <sourcedir>${project.build.sourceDirectory}</sourcedir>
+               </attributes>
+            </configuration>
+            <executions>
+               <execution>
+                  <id>generate-pdf-doc-custom-theme</id>
+                  <phase>generate-resources</phase>
+                  <goals>
+                     <goal>process-asciidoc</goal>
+                  </goals>
+                  <configuration>
+                     <doctype>book</doctype>
+                     <backend>pdf</backend>
+                     <outputDirectory>${project.build.directory}/generated-docs-pdf</outputDirectory>
+                     <outputFile>cdi-tck-reference-guide.pdf</outputFile>
+                     <attributes>
+                        <revnumber>${revnumber}</revnumber>
+                        <imagesdir>images</imagesdir>
+                        <pdf-stylesdir>${project.basedir}/src/main/style</pdf-stylesdir>
+                        <pdf-style>cditck</pdf-style>
+                        <source-highlighter>coderay</source-highlighter>
+                        <icons>font</icons>
+                        <pagenums />
+                        <toc />
+                        <idprefix />
+                        <idseparator>-</idseparator>
+                     </attributes>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>asciidoc-to-html</id>
+                  <phase>generate-resources</phase>
+                  <goals>
+                     <goal>process-asciidoc</goal>
+                  </goals>
+                  <configuration>
+                     <backend>html5</backend>
+                     <outputDirectory>${project.build.directory}/generated-docs-html</outputDirectory>
+                     <outputFile>cdi-tck-reference-guide.html</outputFile>
+                     <attributes>
+                        <revnumber>${revnumber}</revnumber>
+                        <source-highlighter>coderay</source-highlighter>
+                        <!--embedAssets>true</embedAssets-->
+                        <imagesdir>${project.basedir}/src/main/asciidoc/images</imagesdir>
+                        <toc>left</toc>
+                        <icons>font</icons>
+                        <sectanchors>true</sectanchors>
+                        <stylesheet>${project.basedir}/src/main/style/css/cditck.css</stylesheet>
+                        <!-- set the idprefix to blank -->
+                        <idprefix />
+                        <idseparator>-</idseparator>
+                        <docinfo1>true</docinfo1>
+                     </attributes>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+
+         <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>distribution</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>single</goal>
+                  </goals>
+                  <configuration>
+                     <descriptors>
+                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                     </descriptors>
+                     <finalName>cdi-ee-tck-${project.version}</finalName>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+</project>
