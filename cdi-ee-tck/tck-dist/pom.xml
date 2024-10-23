@@ -22,6 +22,17 @@
 
    <dependencies>
       <dependency>
+         <groupId>jakarta.enterprise</groupId>
+         <artifactId>cdi-tck-api</artifactId>
+         <version>${cdi.core.tck.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>jakarta.enterprise</groupId>
+         <artifactId>cdi-tck-ext-lib</artifactId>
+         <version>${cdi.core.tck.version}</version>
+      </dependency>
+
+      <dependency>
          <groupId>jakarta.tck</groupId>
          <artifactId>cdi-tck-ee-parent</artifactId>
          <version>${project.version}</version>

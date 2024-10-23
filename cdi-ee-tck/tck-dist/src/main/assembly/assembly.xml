@@ -55,6 +55,8 @@
          <includes>
             <include>jakarta.tck:cdi-tck-ee-parent:pom</include>
             <include>jakarta.tck:cdi-tck-ee-impl</include>
+            <include>jakarta.enterprise:cdi-tck-api</include>
+            <include>jakarta.enterprise:cdi-tck-ext-lib</include>
          </includes>
          <useTransitiveDependencies>true</useTransitiveDependencies>
          <outputDirectory>artifacts</outputDirectory>
