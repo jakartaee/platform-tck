@@ -81,11 +81,13 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.
                 resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            // resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
-            // if(resURL != null) {
-            //   resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            // }
-            resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            resURL = Client.class.getResource("appclient_vehicle_client.jar.sun-application-client.xml");
+            if(resURL != null) {
+              resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            }
+            // resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+            resourcedefs_descriptor_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+
             // Call the archive processor
             archiveProcessor.processClientArchive(resourcedefs_descriptor_appclient_vehicle_client, Client.class, resURL);
 
