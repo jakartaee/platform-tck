@@ -38,7 +38,7 @@
               <artifactId>cdi-tck-ee-parent</artifactId>
               <version>${project.version}</version>
               <packaging>pom</packaging>
-              <file>cdi-tck-parent-${project.version}.pom</file>
+              <file>cdi-tck-ee-parent-${project.version}.pom</file>
               <generatePom>false</generatePom>
             </configuration>
           </execution>
@@ -52,11 +52,9 @@
             <configuration>
               <groupId>jakarta.enterprise</groupId>
               <artifactId>cdi-tck-api</artifactId>
-              <version>${project.version}</version>
+              <version>${cdi.}</version>
               <packaging>jar</packaging>
-              <file>cdi-tck-api-${project.version}.jar</file>
-              <javadoc>cdi-tck-api-${project.version}-javadoc.jar</javadoc>
-              <sources>cdi-tck-api-${project.version}-sources.jar</sources>
+              <file>cdi-tck-api-${cdi.core.tck.version}.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
@@ -70,9 +68,9 @@
             <configuration>
               <groupId>jakarta.enterprise</groupId>
               <artifactId>cdi-tck-ext-lib</artifactId>
-              <version>${project.version}</version>
+              <version>${cdi.core.tck.version}</version>
               <packaging>jar</packaging>
-              <file>cdi-tck-ext-lib-${project.version}.jar</file>
+              <file>cdi-tck-ext-lib-${cdi.core.tck.version}.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
@@ -88,7 +86,7 @@
               <artifactId>cdi-tck-ee-impl</artifactId>
               <version>${project.version}</version>
               <packaging>jar</packaging>
-              <file>cdi-ee-tck-impl-${project.version}.jar</file>
+              <file>cdi-tck-ee-impl-${project.version}.jar</file>
               <generatePom>true</generatePom>
             </configuration>
           </execution>
