@@ -52,7 +52,7 @@
             <configuration>
               <groupId>jakarta.enterprise</groupId>
               <artifactId>cdi-tck-api</artifactId>
-              <version>${cdi.}</version>
+              <version>${cdi.core.tck.version}</version>
               <packaging>jar</packaging>
               <file>cdi-tck-api-${cdi.core.tck.version}.jar</file>
               <generatePom>true</generatePom>

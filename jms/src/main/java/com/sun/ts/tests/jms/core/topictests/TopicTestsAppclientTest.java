@@ -76,14 +76,14 @@ public class TopicTestsAppclientTest extends com.sun.ts.tests.jms.core.topictest
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = TopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = TopicTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               topictests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = TopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = TopicTests.class.getResource("topictests_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              topictests_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              topictests_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             topictests_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + TopicTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -99,15 +99,6 @@ public class TopicTestsAppclientTest extends com.sun.ts.tests.jms.core.topictest
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = TopicTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              topictests_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(topictests_appclient_vehicle_ear, TopicTests.class, earResURL);
         return topictests_appclient_vehicle_ear;
         }
 

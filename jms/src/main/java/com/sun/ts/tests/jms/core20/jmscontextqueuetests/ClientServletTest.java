@@ -76,26 +76,14 @@ public class ClientServletTest extends com.sun.ts.tests.jms.core20.jmscontextque
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+            URL warResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/jmscontextqueuetests/servlet_vehicle_web.xml");
             if(warResURL != null) {
               jmscontextqueuetests_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/jmscontextqueuetests/jmscontextqueuetests_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               jmscontextqueuetests_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
-
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jmscontextqueuetests_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jms/core20/jmscontextqueuetests/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jmscontextqueuetests_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
             }
 
            // Call the archive processor
@@ -111,15 +99,6 @@ public class ClientServletTest extends com.sun.ts.tests.jms.core20.jmscontextque
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jmscontextqueuetests_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jmscontextqueuetests_servlet_vehicle_ear, Client.class, earResURL);
         return jmscontextqueuetests_servlet_vehicle_ear;
         }
 

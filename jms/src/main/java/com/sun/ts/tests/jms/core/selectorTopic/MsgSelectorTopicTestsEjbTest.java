@@ -78,19 +78,21 @@ public class MsgSelectorTopicTestsEjbTest extends com.sun.ts.tests.jms.core.sele
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.jms.core.selectorTopic.MsgSelectorTopicTests.class
             );
             // The application-client.xml descriptor
             URL resURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
             if(resURL != null) {
               selectorTopic_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = MsgSelectorTopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = MsgSelectorTopicTests.class.getResource("selectorTopic_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              selectorTopic_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              selectorTopic_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            selectorTopic_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + MsgSelectorTopicTests.class.getName() + "\n"), "MANIFEST.MF");
+            //selectorTopic_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + MsgSelectorTopicTests.class.getName() + "\n"), "MANIFEST.MF");
+            selectorTopic_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(selectorTopic_ejb_vehicle_client, MsgSelectorTopicTests.class, resURL);
 
@@ -112,12 +114,12 @@ public class MsgSelectorTopicTestsEjbTest extends com.sun.ts.tests.jms.core.sele
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = MsgSelectorTopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
+            URL ejbResURL = MsgSelectorTopicTests.class.getResource("ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               selectorTopic_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = MsgSelectorTopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = MsgSelectorTopicTests.class.getResource("selectorTopic_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               selectorTopic_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -135,15 +137,6 @@ public class MsgSelectorTopicTestsEjbTest extends com.sun.ts.tests.jms.core.sele
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = MsgSelectorTopicTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              selectorTopic_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(selectorTopic_ejb_vehicle_ear, MsgSelectorTopicTests.class, earResURL);
         return selectorTopic_ejb_vehicle_ear;
         }
 

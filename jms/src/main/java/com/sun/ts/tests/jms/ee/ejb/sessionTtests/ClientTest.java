@@ -67,14 +67,14 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.ejb.sessionTtests.Client
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/jms/ee/ejb/sessionTtests/jms_ejb_sessionTtests_client.xml");
-            if(resURL != null) {
-              jms_ejb_sessionTtests_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            // if(resURL != null) {
+            //   jms_ejb_sessionTtests_client.addAsManifestResource(resURL, "application-client.xml");
+            // }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/jms/ee/ejb/sessionTtests/jms_ejb_sessionTtests_client.jar.sun-application-client.xml");
+            URL resURL = Client.class.getResource("/com/sun/ts/tests/jms/ee/ejb/sessionTtests/jms_ejb_sessionTtests_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jms_ejb_sessionTtests_client.addAsManifestResource(resURL, "application-client.xml");
+              jms_ejb_sessionTtests_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jms_ejb_sessionTtests_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -112,15 +112,6 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.ejb.sessionTtests.Client
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jms_ejb_sessionTtests_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jms_ejb_sessionTtests_ear, Client.class, earResURL);
         return jms_ejb_sessionTtests_ear;
         }
 

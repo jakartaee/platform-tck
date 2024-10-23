@@ -75,27 +75,16 @@ public class MsgSelectorTopicTestsJspTest extends com.sun.ts.tests.jms.core.sele
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            URL warResURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/jms/core/selectorTopic/jsp_vehicle_web.xml");
             if(warResURL != null) {
               selectorTopic_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = MsgSelectorTopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/jms/core/selectorTopic/selectorTopic_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               selectorTopic_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              selectorTopic_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
-            warResURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/jms/core/selectorTopic/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              selectorTopic_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
             warResURL = MsgSelectorTopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
             if(warResURL != null) {
               selectorTopic_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
@@ -118,15 +107,6 @@ public class MsgSelectorTopicTestsJspTest extends com.sun.ts.tests.jms.core.sele
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = MsgSelectorTopicTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              selectorTopic_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(selectorTopic_jsp_vehicle_ear, MsgSelectorTopicTests.class, earResURL);
         return selectorTopic_jsp_vehicle_ear;
         }
 

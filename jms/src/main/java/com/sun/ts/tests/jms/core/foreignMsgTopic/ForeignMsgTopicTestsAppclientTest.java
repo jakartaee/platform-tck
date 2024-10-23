@@ -82,14 +82,14 @@ public class ForeignMsgTopicTestsAppclientTest extends com.sun.ts.tests.jms.core
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = ForeignMsgTopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            URL resURL = ForeignMsgTopicTests.class.getResource("appclient_vehicle_client.xml");
             if(resURL != null) {
               foreignMsgTopic_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = ForeignMsgTopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.jar.sun-application-client.xml");
+            resURL = ForeignMsgTopicTests.class.getResource("foreignMsgTopic_appclient_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              foreignMsgTopic_appclient_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              foreignMsgTopic_appclient_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             foreignMsgTopic_appclient_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ForeignMsgTopicTests.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -105,15 +105,6 @@ public class ForeignMsgTopicTestsAppclientTest extends com.sun.ts.tests.jms.core
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ForeignMsgTopicTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              foreignMsgTopic_appclient_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(foreignMsgTopic_appclient_vehicle_ear, ForeignMsgTopicTests.class, earResURL);
         return foreignMsgTopic_appclient_vehicle_ear;
         }
 

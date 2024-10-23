@@ -88,26 +88,14 @@ public class ForeignMsgTopicTestsServletTest extends com.sun.ts.tests.jms.core.f
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = ForeignMsgTopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+            URL warResURL = ForeignMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/foreignMsgTopic/servlet_vehicle_web.xml");
             if(warResURL != null) {
               foreignMsgTopic_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = ForeignMsgTopicTests.class.getResource("//com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = ForeignMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/foreignMsgTopic/foreignMsgTopic_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               foreignMsgTopic_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
-
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = ForeignMsgTopicTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              foreignMsgTopic_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
-            warResURL = ForeignMsgTopicTests.class.getResource("/com/sun/ts/tests/jms/core/foreignMsgTopic/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              foreignMsgTopic_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
             }
 
            // Call the archive processor
@@ -123,15 +111,6 @@ public class ForeignMsgTopicTestsServletTest extends com.sun.ts.tests.jms.core.f
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ForeignMsgTopicTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              foreignMsgTopic_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(foreignMsgTopic_servlet_vehicle_ear, ForeignMsgTopicTests.class, earResURL);
         return foreignMsgTopic_servlet_vehicle_ear;
         }
 

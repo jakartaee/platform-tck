@@ -84,27 +84,16 @@ public class QueueTestsServletTest extends com.sun.ts.tests.jms.core.queuetests.
             com.sun.ts.tests.jms.common.SessionThread.class
             );
             // The web.xml descriptor
-            URL warResURL = QueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+            URL warResURL = QueueTests.class.getResource("/com/sun/ts/tests/jms/core/queuetests/servlet_vehicle_web.xml");
             if(warResURL != null) {
               queuetests_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = QueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = QueueTests.class.getResource("/com/sun/ts/tests/jms/core/queuetests/queuetests_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               queuetests_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = QueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              queuetests_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
-            warResURL = QueueTests.class.getResource("/com/sun/ts/tests/jms/core/queuetests/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              queuetests_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(queuetests_servlet_vehicle_web, QueueTests.class, warResURL);
@@ -119,15 +108,6 @@ public class QueueTestsServletTest extends com.sun.ts.tests.jms.core.queuetests.
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = QueueTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              queuetests_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(queuetests_servlet_vehicle_ear, QueueTests.class, earResURL);
         return queuetests_servlet_vehicle_ear;
         }
 
