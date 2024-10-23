@@ -22,16 +22,19 @@ package com.sun.ts.tests.ejb30.common.covariant;
 
 public class FuzzyBeanBase implements FuzzyRemoteIF, FuzzyLocalIF {
 
-  public String getMessage() {
-    return "A String, not Object, is returned";
-  }
+    @Override
+    public String getMessage() {
+        return "A String, not Object, is returned";
+    }
 
-  public String[] getMessages() {
-    return new String[] { "A String array, not Object array, is returned" };
-  }
+    @Override
+    public String[] getMessages() {
+        return new String[] { "A String array, not Object array, is returned" };
+    }
 
-  public Number[] getNumbers() {
-    return new Double[] { 8D };
-  }
+    @Override
+    public Number[] getNumbers() {
+        return new Double[] { 8D };
+    }
 
 }
