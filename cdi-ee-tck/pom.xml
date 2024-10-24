@@ -1,16 +1,15 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.9</version>
-        <relativePath/>
+        <relativePath />
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>jakarta.tck</groupId>
     <artifactId>cdi-tck-ee-parent</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.0.M1</version>
     <packaging>pom</packaging>
     <name>CDI EE Integration TCK Parent</name>
 
@@ -18,7 +17,7 @@
         <connection>scm:git:git@github.com:jakartaee/platform-tck.git</connection>
         <developerConnection>scm:git:git@github.com:jakartaee/platform-tck.git</developerConnection>
         <url>https://github.com/jakartaee/platform-tck</url>
-        <tag>11.0.0-SNAPSHOT</tag>
+        <tag>cdi-tck-ee-11.0.0.M1</tag>
     </scm>
 
     <properties>
