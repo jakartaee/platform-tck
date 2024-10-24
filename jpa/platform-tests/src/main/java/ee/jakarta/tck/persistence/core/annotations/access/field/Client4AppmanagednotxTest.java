@@ -140,12 +140,12 @@ public class Client4AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
                 ee.jakarta.tck.persistence.core.annotations.access.field.Client.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client4.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.xml");
+            URL ejbResURL1 = Client4.class.getResource("//com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
             if(ejbResURL1 != null) {
-              jpa_core_annotations_access_field_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
+//              jpa_core_annotations_access_field_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client4.class.getResource("//vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client4.class.getResource("//com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_annotations_access_field_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
@@ -309,6 +309,5 @@ public class Client4AppmanagednotxTest extends ee.jakarta.tck.persistence.core.a
         public void testExtractDateTimeSecond() throws java.lang.Exception {
             super.testExtractDateTimeSecond();
         }
-
 
 }
