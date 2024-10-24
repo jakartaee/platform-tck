@@ -38,8 +38,8 @@ import jakarta.jms.ResourceAllocationException;
 import jakarta.jms.TransactionInProgressException;
 import jakarta.jms.TransactionRolledBackException;
 
-public class ExceptionTest extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core.exceptiontests.ExceptionTest";
+public class ExceptionTests extends ServiceEETest {
+  private static final String testName = "com.sun.ts.tests.jms.core.exceptiontests.ExceptionTests";
 
   private static final String testDir = System.getProperty("user.dir");
 
@@ -51,9 +51,8 @@ public class ExceptionTest extends ServiceEETest {
    * @param args
    */
   public static void main(String[] args) {
-    ExceptionTest theTests = new ExceptionTest();
+    ExceptionTests theTests = new ExceptionTests();
     Status s = theTests.run(args, System.out, System.err);
-
     s.exit();
   }
 

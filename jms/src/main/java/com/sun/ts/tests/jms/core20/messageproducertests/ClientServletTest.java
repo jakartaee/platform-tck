@@ -260,6 +260,13 @@ public class ClientServletTest extends com.sun.ts.tests.jms.core20.messageproduc
         @Test
         @Override
         @TargetVehicle("servlet")
+        public void topicInvalidDestinationExceptionTests() throws java.lang.Exception {
+            super.topicInvalidDestinationExceptionTests();
+        }
+
+        @Test
+        @Override
+        @TargetVehicle("servlet")
         public void topicUnsupportedOperationExceptionTests() throws java.lang.Exception {
             super.topicUnsupportedOperationExceptionTests();
         }

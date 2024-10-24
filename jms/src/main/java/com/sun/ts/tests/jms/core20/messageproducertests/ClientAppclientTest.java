@@ -260,6 +260,13 @@ public class ClientAppclientTest extends com.sun.ts.tests.jms.core20.messageprod
         @Test
         @Override
         @TargetVehicle("appclient")
+        public void topicInvalidDestinationExceptionTests() throws java.lang.Exception {
+            super.topicInvalidDestinationExceptionTests();
+        }
+        
+        @Test
+        @Override
+        @TargetVehicle("appclient")
         public void topicUnsupportedOperationExceptionTests() throws java.lang.Exception {
             super.topicUnsupportedOperationExceptionTests();
         }

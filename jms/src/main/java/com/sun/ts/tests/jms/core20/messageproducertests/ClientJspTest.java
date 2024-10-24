@@ -268,6 +268,14 @@ public class ClientJspTest extends com.sun.ts.tests.jms.core20.messageproducerte
             super.topicSetGetPriorityTest();
         }
 
+
+        @Test
+        @Override
+        @TargetVehicle("jsp")
+        public void topicInvalidDestinationExceptionTests() throws java.lang.Exception {
+            super.topicInvalidDestinationExceptionTests();
+        }
+
         @Test
         @Override
         @TargetVehicle("jsp")
