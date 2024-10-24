@@ -3,7 +3,7 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>cdi-tck-ee-parent</artifactId>
-        <version>11.0.0.M1</version>
+        <version>11.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cdi-tck-ee-impl</artifactId>
