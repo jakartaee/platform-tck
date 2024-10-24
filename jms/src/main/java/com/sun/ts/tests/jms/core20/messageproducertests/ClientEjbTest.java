@@ -304,6 +304,14 @@ public class ClientEjbTest extends com.sun.ts.tests.jms.core20.messageproducerte
             super.topicSetGetPriorityTest();
         }
 
+
+        @Test
+        @Override
+        @TargetVehicle("ejb")
+        public void topicInvalidDestinationExceptionTests() throws java.lang.Exception {
+            super.topicInvalidDestinationExceptionTests();
+        }
+
         @Test
         @Override
         @TargetVehicle("ejb")

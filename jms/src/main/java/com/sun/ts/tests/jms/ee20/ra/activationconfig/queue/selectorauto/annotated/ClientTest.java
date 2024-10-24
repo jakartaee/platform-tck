@@ -69,14 +69,14 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.ra.activationconfig.qu
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/jms/ee20/ra/activationconfig/queue/selectorauto/annotated/queue_selectorauto_annotated_client.xml");
+            URL resURL = Client.class.getResource("queue_selectorauto_annotated_client.xml");
             if(resURL != null) {
               queue_selectorauto_annotated_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/queue/selectorauto/annotated/queue_selectorauto_annotated_client.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("queue_selectorauto_annotated_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              queue_selectorauto_annotated_client.addAsManifestResource(resURL, "application-client.xml");
+              queue_selectorauto_annotated_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             queue_selectorauto_annotated_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -95,12 +95,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.ra.activationconfig.qu
                 com.sun.ts.tests.jms.ee20.ra.common.messaging.Constants.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/queue/selectorauto/annotated/queue_selectorauto_annotated_ejb.xml");
+            URL ejbResURL = Client.class.getResource("queue_selectorauto_annotated_ejb.xml");
             if(ejbResURL != null) {
               queue_selectorauto_annotated_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/ra/activationconfig/queue/selectorauto/annotated/queue_selectorauto_annotated_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("queue_selectorauto_annotated_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               queue_selectorauto_annotated_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }

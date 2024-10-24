@@ -17,13 +17,14 @@
 /*
  * $Id$
  */
-package com.sun.ts.tests.jms.core.messageTopic;
+package com.sun.ts.tests.jms.core.messageQueue;
 
 import java.util.ArrayList;
 import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jms.common.JmsTool;
 
 import jakarta.jms.BytesMessage;
@@ -33,8 +34,8 @@ import jakarta.jms.ObjectMessage;
 import jakarta.jms.StreamMessage;
 import jakarta.jms.TextMessage;
 
-public class MessageTopicTest extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core.messageTopic.MessageTopicTest";
+public class MessageQueueTests extends ServiceEETest {
+  private static final String testName = "com.sun.ts.tests.jms.core.messageQueue.MessageQueueTests";
 
   private static final String testDir = System.getProperty("user.dir");
 
@@ -55,6 +56,8 @@ public class MessageTopicTest extends ServiceEETest {
 
   String mode;
 
+  ArrayList queues = null;
+
   ArrayList connections = null;
 
   /* Run test in standalone mode */
@@ -65,7 +68,7 @@ public class MessageTopicTest extends ServiceEETest {
    * @param args
    */
   public static void main(String[] args) {
-    MessageTopicTest theTests = new MessageTopicTest();
+    MessageQueueTests theTests = new MessageQueueTests();
     Status s = theTests.run(args, System.out, System.err);
 
     s.exit();
@@ -105,13 +108,16 @@ public class MessageTopicTest extends ServiceEETest {
         throw new Exception("'user' in ts.jte must not be null");
       }
       if (password == null) {
-        throw new Exception("'password' in ts.jte must not be null");
+        throw new Exception("'numProducers' in ts.jte must not be null");
       }
       if (mode == null) {
         throw new Exception("'platform.mode' in ts.jte must not be null");
       }
+      queues = new ArrayList(2);
+      connections = new ArrayList(5);
 
     } catch (Exception e) {
+      TestUtil.printStackTrace(e);
       throw new Exception("Setup failed!", e);
     }
   }
@@ -131,9 +137,11 @@ public class MessageTopicTest extends ServiceEETest {
     try {
       if (tool != null) {
         logMsg("Cleanup: Closing Queue and Topic Connections");
-        tool.closeAllConnections(connections);
+        tool.doClientQueueTestCleanup(connections, queues);
       }
+
     } catch (Exception e) {
+      TestUtil.printStackTrace(e);
       logErr("An error occurred while cleaning");
       throw new Exception("Cleanup failed!", e);
     }
@@ -142,10 +150,11 @@ public class MessageTopicTest extends ServiceEETest {
   /* Tests */
 
   /*
-   * @testName: msgClearBodyTopicTest
+   * @testName: msgClearBodyQueueTest
    * 
    * @assertion_ids: JMS:SPEC:71; JMS:SPEC:72; JMS:JAVADOC:431; JMS:JAVADOC:473;
-   * JMS:JAVADOC:449; JMS:SPEC:178; JMS:JAVADOC:291;
+   * JMS:JAVADOC:449; JMS:SPEC:178; JMS:JAVADOC:291; JMS:JAVADOC:680;
+   * JMS:JAVADOC:744;
    * 
    * @test_Strategy: For each type of message, create and send a message Send
    * and receive single Text, map, bytes, stream, and object message call
@@ -153,7 +162,7 @@ public class MessageTopicTest extends ServiceEETest {
    * effected by clearBody. Write to the message again 3.11
    */
 
-  public void msgClearBodyTopicTest() throws Exception {
+  public void msgClearBodyQueueTest() throws Exception {
     boolean pass = true;
     byte bValue = 127;
     byte bValue2 = 22;
@@ -171,20 +180,20 @@ public class MessageTopicTest extends ServiceEETest {
       ObjectMessage messageSentObjectMsg = null;
       ObjectMessage messageReceivedObjectMsg = null;
 
-      // set up test tool for Topic
-      tool = new JmsTool(JmsTool.TOPIC, user, password, mode);
-      tool.getDefaultTopicConnection().start();
+      // set up test tool for Queue
+      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+      tool.getDefaultQueueConnection().start();
 
-      // send and receive Object message to Topic
-      logTrace("Send ObjectMessage to Topic.");
-      messageSentObjectMsg = tool.getDefaultTopicSession()
+      // send and receive Object message to Queue
+      logTrace("Send ObjectMessage to Queue.");
+      messageSentObjectMsg = tool.getDefaultQueueSession()
           .createObjectMessage();
       messageSentObjectMsg.setObject("Initial message");
       messageSentObjectMsg.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "msgClearBodyTopicTest");
-      tool.getDefaultTopicPublisher().publish(messageSentObjectMsg);
-      messageReceivedObjectMsg = (ObjectMessage) tool
-          .getDefaultTopicSubscriber().receive(timeout);
+          "msgClearBodyQueueTest");
+      tool.getDefaultQueueSender().send(messageSentObjectMsg);
+      messageReceivedObjectMsg = (ObjectMessage) tool.getDefaultQueueReceiver()
+          .receive(timeout);
       try {
         logTrace("Testing Object message");
         logTrace("read 1st contents");
@@ -202,10 +211,10 @@ public class MessageTopicTest extends ServiceEETest {
 
         // properties should not have been deleted by the clearBody method.
         if (messageSentObjectMsg.getStringProperty("COM_SUN_JMS_TESTNAME")
-            .equals("msgClearBodyTopicTest")) {
+            .equals("msgClearBodyQueueTest")) {
           logTrace("Pass: Object properties read ok after clearBody called");
         } else {
-          logErr("Fail: Object properties cleared after clearBody called");
+          logMsg("Fail: Object properties cleared after clearBody called");
           pass = false;
         }
         logTrace("write 2nd contents");
@@ -215,22 +224,23 @@ public class MessageTopicTest extends ServiceEETest {
             .equals("new stuff here!!!!!!")) {
           logTrace("Pass:");
         } else {
-          logErr("Fail: ");
+          logMsg("Fail: ");
           pass = false;
         }
       } catch (Exception e) {
-        logErr("Error: unexpected exception: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: " + e.getClass().getName() + " was thrown");
         pass = false;
       }
 
-      // send and receive map message to Topic
-      logTrace("Send MapMessage to Topic.");
-      messageSentMapMessage = tool.getDefaultTopicSession().createMapMessage();
+      // send and receive map message to Queue
+      logTrace("Send MapMessage to Queue.");
+      messageSentMapMessage = tool.getDefaultQueueSession().createMapMessage();
       messageSentMapMessage.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "msgClearBodyTopicTest");
+          "msgClearBodyQueueTest");
       messageSentMapMessage.setString("aString", "Initial message");
-      tool.getDefaultTopicPublisher().publish(messageSentMapMessage);
-      messageReceivedMapMessage = (MapMessage) tool.getDefaultTopicSubscriber()
+      tool.getDefaultQueueSender().send(messageSentMapMessage);
+      messageReceivedMapMessage = (MapMessage) tool.getDefaultQueueReceiver()
           .receive(timeout);
       try {
         logTrace("Test for MapMessage ");
@@ -249,10 +259,10 @@ public class MessageTopicTest extends ServiceEETest {
 
         // properties should not have been deleted by the clearBody method.
         if (messageReceivedMapMessage.getStringProperty("COM_SUN_JMS_TESTNAME")
-            .equals("msgClearBodyTopicTest")) {
+            .equals("msgClearBodyQueueTest")) {
           logTrace("Pass: Map properties read ok after clearBody called");
         } else {
-          logErr("Fail: Map properties cleared after clearBody called");
+          logMsg("Fail: Map properties cleared after clearBody called");
           pass = false;
         }
         logTrace("write 2nd contents");
@@ -262,24 +272,25 @@ public class MessageTopicTest extends ServiceEETest {
             .equals("new stuff !!!!!")) {
           logTrace("PASS:");
         } else {
-          logErr("FAIL:");
+          logMsg("FAIL:");
           pass = false;
         }
       } catch (Exception e) {
-        logErr("Error: unexpected exception: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: " + e.getClass().getName() + " was thrown");
         pass = false;
       }
 
-      // send and receive bytes message to Topic
-      logTrace("Send BytesMessage to Topic.");
-      messageSentBytesMessage = tool.getDefaultTopicSession()
+      // send and receive bytes message to Queue
+      logTrace("Send BytesMessage to Queue.");
+      messageSentBytesMessage = tool.getDefaultQueueSession()
           .createBytesMessage();
       messageSentBytesMessage.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "msgClearBodyTopicTest");
+          "msgClearBodyQueueTest");
       messageSentBytesMessage.writeByte(bValue);
-      tool.getDefaultTopicPublisher().publish(messageSentBytesMessage);
+      tool.getDefaultQueueSender().send(messageSentBytesMessage);
       messageReceivedBytesMessage = (BytesMessage) tool
-          .getDefaultTopicSubscriber().receive(timeout);
+          .getDefaultQueueReceiver().receive(timeout);
       try {
         logTrace("Test BytesMessage ");
         logTrace("read 1st contents");
@@ -291,22 +302,25 @@ public class MessageTopicTest extends ServiceEETest {
         try {
           byte b = messageReceivedBytesMessage.readByte();
 
-          logErr("Fail: MessageNotReadableException not thrown as expected");
+          logTrace("Fail: MessageNotReadableException not thrown as expected");
           pass = false;
-        } catch (jakarta.jms.MessageNotReadableException e) {
-          logTrace("Pass: MessageNotReadableException thrown as expected");
-        } catch (Exception ee) {
-          logErr("Error: Unexpected exception: ", ee);
-          pass = false;
+        } catch (Exception e) {
+          if (e instanceof jakarta.jms.MessageNotReadableException) {
+            logTrace("Pass: MessageEOFException thrown as expected");
+          } else {
+            logMsg("Error: Unexpected exception " + e.getClass().getName()
+                + " was thrown");
+            pass = false;
+          }
         }
 
         // properties should not have been deleted by the clearBody method.
         if (messageReceivedBytesMessage
             .getStringProperty("COM_SUN_JMS_TESTNAME")
-            .equals("msgClearBodyTopicTest")) {
+            .equals("msgClearBodyQueueTest")) {
           logTrace("Pass: Bytes msg properties read ok after clearBody called");
         } else {
-          logErr("Fail: Bytes msg properties cleared after clearBody called");
+          logMsg("Fail: Bytes msg properties cleared after clearBody called");
           pass = false;
         }
         logTrace("write 2nd contents");
@@ -316,25 +330,26 @@ public class MessageTopicTest extends ServiceEETest {
         if (messageReceivedBytesMessage.readByte() == bValue2) {
           logTrace("Pass:");
         } else {
-          logErr("Fail:");
+          logMsg("Fail:");
           pass = false;
         }
       } catch (Exception e) {
-        logErr("Error: unexpected exception: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: " + e.getClass().getName() + " was thrown");
         pass = false;
       }
 
       // Send and receive a StreamMessage
       logTrace("sending a Stream message");
-      messageSentStreamMessage = tool.getDefaultTopicSession()
+      messageSentStreamMessage = tool.getDefaultQueueSession()
           .createStreamMessage();
       messageSentStreamMessage.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "msgClearBodyTopicTest");
+          "msgClearBodyQueueTest");
       messageSentStreamMessage.writeString("Testing...");
       logTrace("Sending message");
-      tool.getDefaultTopicPublisher().publish(messageSentStreamMessage);
+      tool.getDefaultQueueSender().send(messageSentStreamMessage);
       messageReceivedStreamMessage = (StreamMessage) tool
-          .getDefaultTopicSubscriber().receive(timeout);
+          .getDefaultQueueReceiver().receive(timeout);
       try {
         logTrace("Test StreamMessage ");
         logTrace("read 1st contents");
@@ -346,23 +361,26 @@ public class MessageTopicTest extends ServiceEETest {
         try {
           String s = messageReceivedStreamMessage.readString();
 
-          logErr("Fail: MessageNotReadableException should have been thrown");
+          logMsg("Fail: MessageNotReadableException should have been thrown");
           pass = false;
-        } catch (jakarta.jms.MessageNotReadableException e) {
-          logTrace("Pass: MessageNotReadableException thrown as expected");
-        } catch (Exception ee) {
-          logErr("Error: Unexpected exception: ", ee);
-          pass = false;
+        } catch (Exception e) {
+          if (e instanceof jakarta.jms.MessageNotReadableException) {
+            logTrace("Pass: MessageNotReadableException thrown as expected");
+          } else {
+            logMsg("Error: Unexpected exception " + e.getClass().getName()
+                + " was thrown");
+            pass = false;
+          }
         }
 
         // properties should not have been deleted by the clearBody method.
         if (messageReceivedStreamMessage
             .getStringProperty("COM_SUN_JMS_TESTNAME")
-            .equals("msgClearBodyTopicTest")) {
+            .equals("msgClearBodyQueueTest")) {
           logTrace(
               "Pass: Stream msg properties read ok after clearBody called");
         } else {
-          logErr("Fail: Stream msg properties cleared after clearBody called");
+          logMsg("Fail: Stream msg properties cleared after clearBody called");
           pass = false;
         }
         logTrace("write 2nd contents");
@@ -372,21 +390,22 @@ public class MessageTopicTest extends ServiceEETest {
         if (messageReceivedStreamMessage.readString().equals("new data")) {
           logTrace("Pass:");
         } else {
-          logErr("Fail:");
+          logMsg("Fail:");
         }
       } catch (Exception e) {
-        logErr("Error: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: " + e.getClass().getName() + " was thrown");
         pass = false;
       }
 
       // Text Message
-      messageSent = tool.getDefaultTopicSession().createTextMessage();
+      messageSent = tool.getDefaultQueueSession().createTextMessage();
       messageSent.setText("sending a Text message");
       messageSent.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "msgClearBodyTopicTest");
+          "msgClearBodyQueueTest");
       logTrace("sending a Text message");
-      tool.getDefaultTopicPublisher().publish(messageSent);
-      messageReceived = (TextMessage) tool.getDefaultTopicSubscriber()
+      tool.getDefaultQueueSender().send(messageSent);
+      messageReceived = (TextMessage) tool.getDefaultQueueReceiver()
           .receive(timeout);
       try {
         logTrace("Test TextMessage ");
@@ -405,10 +424,10 @@ public class MessageTopicTest extends ServiceEETest {
 
         // properties should not have been deleted by the clearBody method.
         if (messageReceived.getStringProperty("COM_SUN_JMS_TESTNAME")
-            .equals("msgClearBodyTopicTest")) {
+            .equals("msgClearBodyQueueTest")) {
           logTrace("Pass: Text properties read ok after clearBody called");
         } else {
-          logErr("Fail: Text properties cleared after clearBody called");
+          logMsg("Fail: Text properties cleared after clearBody called");
           pass = false;
         }
         logTrace("write and read 2nd contents");
@@ -416,32 +435,35 @@ public class MessageTopicTest extends ServiceEETest {
         if (messageReceived.getText().equals("new data")) {
           logTrace("Pass:");
         } else {
-          logErr("Fail:");
+          logMsg("Fail:");
           pass = false;
         }
       } catch (Exception e) {
-        logErr("Error: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: " + e.getClass().getName() + " was thrown");
         pass = false;
       }
       if (!pass) {
         throw new Exception("Error: clearBody test failure");
       }
     } catch (Exception e) {
-      throw new Exception("msgClearBodyTopicTest", e);
+      TestUtil.printStackTrace(e);
+      throw new Exception("msgClearBodyQueueTest");
     }
   }
 
   /*
-   * @testName: msgResetTopicTest
+   * @testName: msgResetQueueTest
    * 
-   * @assertion_ids: JMS:JAVADOC:174; JMS:JAVADOC:584;
-   *
+   * @assertion_ids: JMS:JAVADOC:174; JMS:JAVADOC:584; JMS:JAVADOC:760;
+   * JMS:JAVADOC:705;
+   * 
    * @test_Strategy: create a stream message and a byte message. write to the
    * message body, call the reset method, try to write to the body expect a
    * MessageNotWriteableException to be thrown.
    */
 
-  public void msgResetTopicTest() throws Exception {
+  public void msgResetQueueTest() throws Exception {
     boolean pass = true;
     int nInt = 1000;
 
@@ -449,75 +471,77 @@ public class MessageTopicTest extends ServiceEETest {
       StreamMessage messageSentStreamMessage = null;
       BytesMessage messageSentBytesMessage = null;
 
-      // set up test tool for Topic
-      tool = new JmsTool(JmsTool.TOPIC, user, password, mode);
-      tool.getDefaultTopicConnection().start();
+      // set up test tool for Queue
+      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+      tool.getDefaultQueueConnection().start();
 
       // StreamMessage
       try {
         logTrace("creating a Stream message");
-        messageSentStreamMessage = tool.getDefaultTopicSession()
+        messageSentStreamMessage = tool.getDefaultQueueSession()
             .createStreamMessage();
         messageSentStreamMessage.setStringProperty("COM_SUN_JMS_TESTNAME",
-            "msgResetTopicTest");
+            "msgResetQueueTest1");
 
         // write to the message
         messageSentStreamMessage.writeString("Testing...");
         logMsg("reset stream message -  now  should be in readonly mode");
         messageSentStreamMessage.reset();
         messageSentStreamMessage.writeString("new data");
-        logErr(
+        logMsg(
             "Fail: message did not throw MessageNotWriteable exception as expected");
         pass = false;
       } catch (MessageNotWriteableException nw) {
         logTrace("Pass: MessageNotWriteable thrown as expected");
       } catch (Exception e) {
-        logErr("Error: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: " + e.getClass().getName() + " was thrown");
         pass = false;
       }
 
       // BytesMessage
       try {
         logTrace("creating a Byte message");
-        messageSentBytesMessage = tool.getDefaultTopicSession()
+        messageSentBytesMessage = tool.getDefaultQueueSession()
             .createBytesMessage();
         messageSentBytesMessage.setStringProperty("COM_SUN_JMS_TESTNAME",
-            "msgResetTopicTest");
+            "msgResetQueueTest2");
 
         // write to the message
         messageSentBytesMessage.writeInt(nInt);
         logMsg("reset Byte message -  now  should be in readonly mode");
         messageSentBytesMessage.reset();
         messageSentBytesMessage.writeInt(nInt);
-        logErr(
+        logMsg(
             "Fail: message did not throw MessageNotWriteable exception as expected");
         pass = false;
       } catch (MessageNotWriteableException nw) {
         logTrace("Pass: MessageNotWriteable thrown as expected");
       } catch (Exception e) {
-        logErr("Error: unexpected exception: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: " + e.getClass().getName() + " was thrown");
         pass = false;
       }
       if (!pass) {
-        throw new Exception("Error: msgResetTopicTest test failure");
+        throw new Exception("Error: msgResetQueueTest test failure");
       }
     } catch (Exception e) {
-      throw new Exception("msgResetTopicTest", e);
+      TestUtil.printStackTrace(e);
+      throw new Exception("msgResetQueueTest");
     }
   }
 
   /*
-   * @testName: readNullCharNotValidTopicTest
+   * @testName: readNullCharNotValidQueueTest
    * 
    * @assertion_ids: JMS:SPEC:79; JMS:JAVADOC:134; JMS:JAVADOC:439;
    * 
    * @test_Strategy: Write a null string to a MapMessage and then a
-   * StreamMessage. Attempt to read the null value as a char. Verify that a
-   * NullPointerException is thrown.
+   * StreamMessage. Attempt to read the null value as a char.
    * 
    */
 
-  public void readNullCharNotValidTopicTest() throws Exception {
+  public void readNullCharNotValidQueueTest() throws Exception {
     try {
       StreamMessage messageSent = null;
       StreamMessage messageReceived = null;
@@ -526,13 +550,13 @@ public class MessageTopicTest extends ServiceEETest {
       char c;
       boolean pass = true;
 
-      // set up test tool for Topic
-      tool = new JmsTool(JmsTool.TOPIC, user, password, mode);
-      tool.getDefaultTopicConnection().start();
+      // set up test tool for Queue
+      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+      tool.getDefaultQueueConnection().start();
       logTrace("Creating 1 message");
-      messageSent = tool.getDefaultTopicSession().createStreamMessage();
+      messageSent = tool.getDefaultQueueSession().createStreamMessage();
       messageSent.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "readNullCharNotValidTopicTest");
+          "readNullCharNotValidQueueTest");
 
       // -----------------------------------------------------------------------------
       // Stream Message
@@ -541,66 +565,71 @@ public class MessageTopicTest extends ServiceEETest {
           "Write a null string to the stream message object with StreamMessage.writeString");
       messageSent.writeString(null);
       logTrace(" Send the message");
-      tool.getDefaultTopicPublisher().publish(messageSent);
-      messageReceived = (StreamMessage) tool.getDefaultTopicSubscriber()
+      tool.getDefaultQueueSender().send(messageSent);
+      messageReceived = (StreamMessage) tool.getDefaultQueueReceiver()
           .receive(timeout);
       logTrace("Use readChar to read a null  ");
       try {
         messageReceived.readChar();
-        logErr("Fail: NullPointerException was not thrown");
+        logTrace("Fail: NullPointerException was not thrown");
         pass = false;
       } catch (java.lang.NullPointerException e) {
         logTrace("Pass: NullPointerException thrown as expected");
       } catch (Exception e) {
-        logErr("Error: Unexpected exception: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: Unexpected exception " + e.getClass().getName()
+            + " was thrown");
         pass = false;
       }
 
       // -----------------------------------------------------------------------------
       // Map Message
       // -----------------------------------------------------------------------------
-      mapSent = tool.getDefaultTopicSession().createMapMessage();
+      mapSent = tool.getDefaultQueueSession().createMapMessage();
       mapSent.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "readNullCharNotValidTopicTest");
+          "readNullCharNotValidQueueTest");
       logTrace(
           "Write a null string to the map message object with mapMessage.setString");
       mapSent.setString("WriteANull", null);
       logTrace(" Send the message");
-      tool.getDefaultTopicPublisher().publish(mapSent);
-      mapReceived = (MapMessage) tool.getDefaultTopicSubscriber()
+      tool.getDefaultQueueSender().send(mapSent);
+      mapReceived = (MapMessage) tool.getDefaultQueueReceiver()
           .receive(timeout);
       logTrace("Use readChar to read a null  ");
       try {
         mapReceived.getChar("WriteANull");
-        logErr("Fail: NullPointerException was not thrown");
+        logMsg("Fail: NullPointerException was not thrown");
         pass = false;
       } catch (java.lang.NullPointerException e) {
         logTrace("Pass: NullPointerException thrown as expected");
       } catch (Exception e) {
-        logErr("Error: Unexpected exception: ", e);
+        TestUtil.printStackTrace(e);
+        logMsg("Error: Unexpected exception " + e.getClass().getName()
+            + " was thrown");
         pass = false;
       }
       if (!pass) {
         throw new Exception("Error: failures occurred during tests");
       }
     } catch (Exception e) {
-      throw new Exception("readNullCharNotValidTopicTest", e);
+      TestUtil.printStackTrace(e);
+      throw new Exception("readNullCharNotValidQueueTest", e);
     }
   }
 
   /*
-   * @testName: messageTIllegalarg
+   * @testName: messageQIllegalarg
    *
    * @assertion_ids: JMS:JAVADOC:775; JMS:JAVADOC:777; JMS:JAVADOC:779;
    * JMS:JAVADOC:781; JMS:JAVADOC:783; JMS:JAVADOC:785; JMS:JAVADOC:787;
    * JMS:JAVADOC:789; JMS:JAVADOC:791;
-   *
+   * 
    * @test_Strategy: Create a TextMessage. Write to the message using each type
    * of setProperty method and as an object with null String as name. Verify
    * that IllegalArgumentException thrown.
    */
 
-  public void messageTIllegalarg() throws Exception {
+  public void messageQIllegalarg() throws Exception {
     try {
       TextMessage messageSent = null;
       boolean pass = true;
@@ -613,13 +642,13 @@ public class MessageTopicTest extends ServiceEETest {
       double dValue = -0.0;
       String ssValue = "abc";
 
-      // set up test tool for Topic
-      tool = new JmsTool(JmsTool.TOPIC, user, password, mode);
-      tool.getDefaultTopicConnection().start();
+      // set up test tool for Queue
+      tool = new JmsTool(JmsTool.QUEUE, user, password, mode);
+      tool.getDefaultQueueConnection().start();
       logTrace("Creating 1 message");
-      messageSent = tool.getDefaultTopicSession().createTextMessage();
+      messageSent = tool.getDefaultQueueSession().createTextMessage();
       messageSent.setStringProperty("COM_SUN_JMS_TESTNAME",
-          "messageTIllegalarg");
+          "messageQIllegalarg");
 
       // -----------------------------------------------------------------------------
 
@@ -704,7 +733,8 @@ public class MessageTopicTest extends ServiceEETest {
         logMsg("Got Expected IllegalArgumentException with setObjectProperty");
       }
     } catch (Exception e) {
-      throw new Exception("messageTIllegalarg", e);
+      TestUtil.printStackTrace(e);
+      throw new Exception("messageQIllegalarg", e);
     }
   }
 

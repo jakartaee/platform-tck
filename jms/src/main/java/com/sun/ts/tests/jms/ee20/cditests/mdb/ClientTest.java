@@ -65,15 +65,16 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("");
-            if(resURL != null) {
-              cditestsmdb_client.addAsManifestResource(resURL, "application-client.xml");
-            } 
+            // URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            // if(resURL != null) {
+            //   cditestsmdb_client.addAsManifestResource(resURL, "application-client.xml");
+            // } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
-            if(resURL != null) {
-              cditestsmdb_client.addAsManifestResource(resURL, "sun-application-client.xml");
-            }
+            // resURL = Client.class.getResource("");
+            // if(resURL != null) {
+            //   cditestsmdb_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            // }
+            URL resURL = null;
             cditestsmdb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(cditestsmdb_client, Client.class, resURL);
@@ -97,6 +98,11 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             if(ejbResURL != null) {
               cditestsmdb_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/resources/beans.xml");
+            if(ejbResURL != null) {
+              cditestsmdb_ejb.addAsManifestResource(ejbResURL, "beans.xml");
+            }
+
             // Call the archive processor
             archiveProcessor.processEjbArchive(cditestsmdb_ejb, Client.class, ejbResURL);
 

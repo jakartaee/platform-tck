@@ -27,7 +27,6 @@
 <%@ page import="javax.naming.*" %>
 <%@ page import="jakarta.jms.*" %>
 <%@ page import="com.sun.ts.lib.util.*" %>
-<%@ page import="com.sun.ts.lib.porting.*" %>
 <%@ page import="com.sun.ts.tests.jms.ee20.resourcedefs.annotations.MyBean" %>
 <%@ page session="false" %>
 

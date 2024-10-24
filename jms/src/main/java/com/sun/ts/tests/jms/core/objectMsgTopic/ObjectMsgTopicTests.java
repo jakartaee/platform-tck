@@ -29,8 +29,8 @@ import com.sun.ts.tests.jms.common.JmsTool;
 
 import jakarta.jms.ObjectMessage;
 
-public class ObjectMsgTopicTest extends ServiceEETest {
-  private static final String testName = "com.sun.ts.tests.jms.core.objectMsgTopic.ObjectMsgTopicTest";
+public class ObjectMsgTopicTests extends ServiceEETest {
+  private static final String testName = "com.sun.ts.tests.jms.core.objectMsgTopic.ObjectMsgTopicTests";
 
   private static final String testDir = System.getProperty("user.dir");
 
@@ -61,7 +61,7 @@ public class ObjectMsgTopicTest extends ServiceEETest {
    * @param args
    */
   public static void main(String[] args) {
-    ObjectMsgTopicTest theTests = new ObjectMsgTopicTest();
+    ObjectMsgTopicTests theTests = new ObjectMsgTopicTests();
     Status s = theTests.run(args, System.out, System.err);
 
     s.exit();
