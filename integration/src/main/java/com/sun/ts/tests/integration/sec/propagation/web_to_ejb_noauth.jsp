@@ -26,7 +26,6 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="javax.sql.*" %>
 <%@ page import="com.sun.ts.lib.util.*" %>
-<%@ page import="com.sun.ts.lib.porting.*" %>
 <%@ page import="com.sun.ts.tests.integration.sec.propagation.*" %>
 
 <html>
