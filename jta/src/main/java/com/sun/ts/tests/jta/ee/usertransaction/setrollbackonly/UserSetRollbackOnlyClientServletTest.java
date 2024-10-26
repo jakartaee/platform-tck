@@ -56,7 +56,7 @@ public class UserSetRollbackOnlyClientServletTest extends com.sun.ts.tests.jta.e
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
         WebArchive setrollbackonly_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "setrollbackonly_servlet_vehicle_web.war");
         setrollbackonly_servlet_vehicle_web.addClasses(
@@ -90,10 +90,11 @@ public class UserSetRollbackOnlyClientServletTest extends com.sun.ts.tests.jta.e
         }
         archiveProcessor.processWebArchive(setrollbackonly_servlet_vehicle_web, UserSetRollbackOnlyClientServletTest.class, warResURL);
 
+        return setrollbackonly_servlet_vehicle_web;
     // Ear
-        EnterpriseArchive setrollbackonly_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "setrollbackonly_servlet_vehicle.ear");
-        setrollbackonly_servlet_vehicle_ear.addAsModule(setrollbackonly_servlet_vehicle_web);
-        return setrollbackonly_servlet_vehicle_ear;
+        // EnterpriseArchive setrollbackonly_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "setrollbackonly_servlet_vehicle.ear");
+        // setrollbackonly_servlet_vehicle_ear.addAsModule(setrollbackonly_servlet_vehicle_web);
+        // return setrollbackonly_servlet_vehicle_ear;
     }
 
     @Test

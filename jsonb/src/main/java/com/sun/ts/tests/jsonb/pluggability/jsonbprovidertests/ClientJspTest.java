@@ -99,7 +99,7 @@ public class ClientJspTest extends ServiceEETest {
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-    public static EnterpriseArchive createJspDeployment() throws Exception {
+    public static WebArchive createJspDeployment() throws Exception {
         JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
          .addClass(MyJsonbBuilder.class)
          .addClass(MyJsonbProvider.class)
@@ -125,10 +125,11 @@ public class ClientJspTest extends ServiceEETest {
       resURL = ClientJspTest.class.getResource("/vehicle/jsp/contentRoot/client.html");
       warArchive.addAsWebResource(resURL, "/client.html");
 
-      EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_jsp_vehicle.ear");
-      ear.addAsModule(warArchive);
-      ear.addAsLibrary(jarArchive);
-      return ear;
+      return warArchive;
+    //   EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_jsp_vehicle.ear");
+    //   ear.addAsModule(warArchive);
+    //   ear.addAsLibrary(jarArchive);
+    //   return ear;
 
     }
 

@@ -91,7 +91,7 @@ public class PatchJspTest extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createJspDeployment() throws IOException {
+  public static WebArchive createJspDeployment() throws IOException {
   
     WebArchive patchtests_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "patchtests_jsp_vehicle_web.war");
     patchtests_jsp_vehicle_web.addClass(PatchJspTest.class)
@@ -130,11 +130,11 @@ public class PatchJspTest extends ServiceEETest {
     resURL = PatchJspTest.class.getResource("/vehicle/jsp/contentRoot/client.html");
     patchtests_jsp_vehicle_web.addAsWebResource(resURL, "/client.html");
 
-    
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_jsp_vehicle.ear");
-    ear.addAsModule(patchtests_jsp_vehicle_web);
+    return patchtests_jsp_vehicle_web;
+    // EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_jsp_vehicle.ear");
+    // ear.addAsModule(patchtests_jsp_vehicle_web);
 
-    return ear;
+    // return ear;
 
   }
 

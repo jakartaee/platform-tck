@@ -56,7 +56,7 @@ public class UserBeginClientJspTest extends com.sun.ts.tests.jta.ee.usertransact
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive begin_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "begin_jsp_vehicle_web.war");
         begin_jsp_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -90,9 +90,10 @@ public class UserBeginClientJspTest extends com.sun.ts.tests.jta.ee.usertransact
         }
         archiveProcessor.processWebArchive(begin_jsp_vehicle_web, UserBeginClientJspTest.class, warResURL);
 
-        EnterpriseArchive begin_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "begin_jsp_vehicle.ear");
-        begin_jsp_vehicle_ear.addAsModule(begin_jsp_vehicle_web);
-        return begin_jsp_vehicle_ear;
+        return begin_jsp_vehicle_web;
+        // EnterpriseArchive begin_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "begin_jsp_vehicle.ear");
+        // begin_jsp_vehicle_ear.addAsModule(begin_jsp_vehicle_web);
+        // return begin_jsp_vehicle_ear;
     }
 
     @Test

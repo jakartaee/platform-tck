@@ -171,7 +171,7 @@
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
-            <version>i${project.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -265,12 +265,10 @@
                             </additionalClasspathElements>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <includes>
-                                <include>**/ELClientServletTest*</include>
-                                <include>**/ELClientJspTest*</include>
-                                <include>**/ELClientTest*</include>
+                                <include>com/sun/ts/tests/el/**/*</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
-                            <groups>tck-javatest</groups>
+                            <groups>${groups}</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
@@ -300,6 +298,14 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <groups>platform</groups>
+            </properties>
+        </profile>
+        <profile>
+            <id>web</id>
+            <properties>
+                <glassfish-artifact-id>web</glassfish-artifact-id>
+                <groups>web</groups>
             </properties>
         </profile>
     </profiles>

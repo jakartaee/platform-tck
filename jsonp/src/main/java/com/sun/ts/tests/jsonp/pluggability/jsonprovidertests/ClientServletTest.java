@@ -127,7 +127,7 @@ public class ClientServletTest extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createServletDeployment() throws Exception {
+  public static WebArchive createServletDeployment() throws Exception {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
   
@@ -167,10 +167,11 @@ public class ClientServletTest extends ServiceEETest {
 
     jsonprovidertests_servlet_vehicle_web.addAsLibrary(jarArchive);
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_servlet_vehicle.ear");
-    ear.addAsModule(jsonprovidertests_servlet_vehicle_web);
-    ear.addAsLibrary(jarArchive);
-    return ear;
+    return jsonprovidertests_servlet_vehicle_web;
+    // EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_servlet_vehicle.ear");
+    // ear.addAsModule(jsonprovidertests_servlet_vehicle_web);
+    // ear.addAsLibrary(jarArchive);
+    // return ear;
 
   }
 

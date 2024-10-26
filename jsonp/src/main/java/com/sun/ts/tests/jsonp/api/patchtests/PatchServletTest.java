@@ -90,7 +90,7 @@ public class PatchServletTest extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createServletDeployment() throws IOException {
+  public static WebArchive createServletDeployment() throws IOException {
   
     WebArchive patchtests_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "patchtests_servlet_vehicle_web.war");
     patchtests_servlet_vehicle_web.addClass(PatchServletTest.class)
@@ -120,10 +120,11 @@ public class PatchServletTest extends ServiceEETest {
     URL webXML = PatchServletTest.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml");
     patchtests_servlet_vehicle_web.setWebXML(webXML);
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
-    ear.addAsModule(patchtests_servlet_vehicle_web);
+    return patchtests_servlet_vehicle_web;
+    // EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "patchtests_servlet_vehicle.ear");
+    // ear.addAsModule(patchtests_servlet_vehicle_web);
 
-    return ear;
+    // return ear;
 
   }
 

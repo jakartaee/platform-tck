@@ -104,7 +104,7 @@ public class SerializersCustomizationCDIServletTest extends SerializersCustomiza
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createServletDeployment() throws Exception {
+  public static WebArchive createServletDeployment() throws Exception {
   
     WebArchive war = ShrinkWrap.create(WebArchive.class, "jsonb_cdi_customizedmapping_serializers_servlet_vehicle_web.war");
     war.addClasses(SerializersCustomizationCDIServletTest.class,
@@ -136,9 +136,10 @@ public class SerializersCustomizationCDIServletTest extends SerializersCustomiza
       war.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
     }
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_serializers_servlet_vehicle.ear");
-    ear.addAsModule(war);
-    return ear;
+    return war;
+    // EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_serializers_servlet_vehicle.ear");
+    // ear.addAsModule(war);
+    // return ear;
 
   }
 
