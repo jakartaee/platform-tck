@@ -422,12 +422,12 @@
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.5.1</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.surefire</groupId>
                         <artifactId>surefire-testng</artifactId>
-                        <version>3.3.0</version>
+                        <version>3.5.1</version>
                     </dependency>
                 </dependencies>
                 <executions>
