@@ -99,7 +99,7 @@ public class ClientServletTest extends ServiceEETest {
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-    public static EnterpriseArchive createServletDeployment() throws Exception {
+    public static WebArchive createServletDeployment() throws Exception {
     
       WebArchive warArchive = ShrinkWrap.create(WebArchive.class, "jsonbprovidertests_servlet_vehicle_web.war");
       warArchive.addClass(ClientServletTest.class)
@@ -120,10 +120,11 @@ public class ClientServletTest extends ServiceEETest {
 
       warArchive.addAsLibrary(jarArchive);
 
-      EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_servlet_vehicle.ear");
-      ear.addAsModule(warArchive);
-      ear.addAsLibrary(jarArchive);
-      return ear;
+      return warArchive;
+    //   EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_servlet_vehicle.ear");
+    //   ear.addAsModule(warArchive);
+    //   ear.addAsLibrary(jarArchive);
+    //   return ear;
 
     }
 

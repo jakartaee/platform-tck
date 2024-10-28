@@ -56,7 +56,7 @@ public class UserGetStatusClientServletTest extends com.sun.ts.tests.jta.ee.user
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive getstatus_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "getstatus_servlet_vehicle_web.war");
         getstatus_servlet_vehicle_web.addClasses(
         com.sun.ts.tests.jta.ee.usertransaction.getstatus.UserGetStatusClient.class,
@@ -89,10 +89,11 @@ public class UserGetStatusClientServletTest extends com.sun.ts.tests.jta.ee.user
         }
         archiveProcessor.processWebArchive(getstatus_servlet_vehicle_web, UserGetStatusClientServletTest.class, warResURL);
 
+        return getstatus_servlet_vehicle_web;
 
-        EnterpriseArchive getstatus_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "getstatus_servlet_vehicle.ear");
-        getstatus_servlet_vehicle_ear.addAsModule(getstatus_servlet_vehicle_web);
-        return getstatus_servlet_vehicle_ear;
+        // EnterpriseArchive getstatus_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "getstatus_servlet_vehicle.ear");
+        // getstatus_servlet_vehicle_ear.addAsModule(getstatus_servlet_vehicle_web);
+        // return getstatus_servlet_vehicle_ear;
     }
 
     @Test

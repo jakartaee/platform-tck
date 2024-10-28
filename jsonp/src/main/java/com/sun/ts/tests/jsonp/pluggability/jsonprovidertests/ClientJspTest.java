@@ -127,7 +127,7 @@ public class ClientJspTest extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createJspDeployment() throws Exception {
+  public static WebArchive createJspDeployment() throws Exception {
 
     String providerPackagePath = MyJsonProvider.class.getPackageName().replace(".", "/");
   
@@ -179,12 +179,14 @@ public class ClientJspTest extends ServiceEETest {
     resURL = ClientJspTest.class.getResource("/vehicle/jsp/contentRoot/client.html");
     jsonprovidertests_jsp_vehicle_web.addAsWebResource(resURL, "/client.html");
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_jsp_vehicle.ear");
 
-    ear.addAsModule(jsonprovidertests_jsp_vehicle_web);
-    ear.addAsLibrary(jarArchive);
+    return jsonprovidertests_jsp_vehicle_web;
+    // EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonprovidertests_jsp_vehicle.ear");
 
-    return ear;
+    // ear.addAsModule(jsonprovidertests_jsp_vehicle_web);
+    // ear.addAsLibrary(jarArchive);
+
+    // return ear;
 
   }
 

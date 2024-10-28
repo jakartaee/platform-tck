@@ -100,7 +100,7 @@ public class SerializersCustomizationCDIJspTest extends SerializersCustomization
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createServletDeployment() throws Exception {
+  public static WebArchive createServletDeployment() throws Exception {
   
     WebArchive jsonb_cdi_customizedmapping_serializers_jsp_vehicle = ShrinkWrap.create(WebArchive.class, "jsonb_cdi_customizedmapping_serializers_jsp_vehicle_web.war");
     jsonb_cdi_customizedmapping_serializers_jsp_vehicle.addClasses(SerializersCustomizationCDIJspTest.class,
@@ -136,9 +136,10 @@ public class SerializersCustomizationCDIJspTest extends SerializersCustomization
     resURL = SerializersCustomizationCDIJspTest.class.getResource("/vehicle/jsp/contentRoot/client.html");
     jsonb_cdi_customizedmapping_serializers_jsp_vehicle.addAsWebResource(resURL, "/client.html");    
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_serializers_jsp_vehicle.ear");
-    ear.addAsModule(jsonb_cdi_customizedmapping_serializers_jsp_vehicle);
-    return ear;
+    return jsonb_cdi_customizedmapping_serializers_jsp_vehicle;
+    // EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_serializers_jsp_vehicle.ear");
+    // ear.addAsModule(jsonb_cdi_customizedmapping_serializers_jsp_vehicle);
+    // return ear;
 
   }
 

@@ -56,7 +56,7 @@ public class UserSetTransactionTimeoutClientJspTest extends com.sun.ts.tests.jta
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive settransactiontimeout_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "settransactiontimeout_jsp_vehicle_web.war");
         settransactiontimeout_jsp_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -92,9 +92,10 @@ public class UserSetTransactionTimeoutClientJspTest extends com.sun.ts.tests.jta
         }        
         archiveProcessor.processWebArchive(settransactiontimeout_jsp_vehicle_web, UserSetTransactionTimeoutClientJspTest.class, warResURL);
 
-        EnterpriseArchive settransactiontimeout_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "settransactiontimeout_jsp_vehicle.ear");
-        settransactiontimeout_jsp_vehicle_ear.addAsModule(settransactiontimeout_jsp_vehicle_web);
-        return settransactiontimeout_jsp_vehicle_ear;
+        return settransactiontimeout_jsp_vehicle_web;
+        // EnterpriseArchive settransactiontimeout_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "settransactiontimeout_jsp_vehicle.ear");
+        // settransactiontimeout_jsp_vehicle_ear.addAsModule(settransactiontimeout_jsp_vehicle_web);
+        // return settransactiontimeout_jsp_vehicle_ear;
     }
 
     @Test

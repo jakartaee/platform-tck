@@ -56,7 +56,7 @@ public class UserRollbackClientServletTest extends com.sun.ts.tests.jta.ee.usert
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive rollback_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "rollback_servlet_vehicle_web.war");
         rollback_servlet_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -89,9 +89,10 @@ public class UserRollbackClientServletTest extends com.sun.ts.tests.jta.ee.usert
         }
         archiveProcessor.processWebArchive(rollback_servlet_vehicle_web, UserRollbackClientServletTest.class, warResURL);
 
-        EnterpriseArchive rollback_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "rollback_servlet_vehicle.ear");
-        rollback_servlet_vehicle_ear.addAsModule(rollback_servlet_vehicle_web);
-        return rollback_servlet_vehicle_ear;
+        return rollback_servlet_vehicle_web;
+        // EnterpriseArchive rollback_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "rollback_servlet_vehicle.ear");
+        // rollback_servlet_vehicle_ear.addAsModule(rollback_servlet_vehicle_web);
+        // return rollback_servlet_vehicle_ear;
     }
 
     @Test

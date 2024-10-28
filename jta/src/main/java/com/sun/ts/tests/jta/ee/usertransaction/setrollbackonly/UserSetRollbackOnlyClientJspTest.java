@@ -74,7 +74,7 @@ public class UserSetRollbackOnlyClientJspTest extends com.sun.ts.tests.jta.ee.us
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
     // War
         // the war with the correct archive name
         WebArchive setrollbackonly_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "setrollbackonly_jsp_vehicle_web.war");
@@ -115,29 +115,11 @@ public class UserSetRollbackOnlyClientJspTest extends com.sun.ts.tests.jta.ee.us
         }
         archiveProcessor.processWebArchive(setrollbackonly_jsp_vehicle_web, UserSetRollbackOnlyClientJspTest.class, warResURL);
 
+        return setrollbackonly_jsp_vehicle_web;
     // Ear
-        EnterpriseArchive setrollbackonly_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "setrollbackonly_jsp_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
-        setrollbackonly_jsp_vehicle_ear.addAsModule(setrollbackonly_jsp_vehicle_web);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/");
-        // if(earResURL != null) {
-        //   setrollbackonly_jsp_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // // The sun-application.xml descriptor
-        // earResURL = UserSetRollbackOnlyClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/setrollbackonly/.ear.sun-application.xml");
-        // if(earResURL != null) {
-        //   setrollbackonly_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        // }
-        // archiveProcessor.processEarArchive(setrollbackonly_jsp_vehicle_ear, UserSetRollbackOnlyClient.class, earResURL);
-    
-        return setrollbackonly_jsp_vehicle_ear;
+        // EnterpriseArchive setrollbackonly_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "setrollbackonly_jsp_vehicle.ear");
+        // setrollbackonly_jsp_vehicle_ear.addAsModule(setrollbackonly_jsp_vehicle_web);
+        // return setrollbackonly_jsp_vehicle_ear;
     }
 
     @Test

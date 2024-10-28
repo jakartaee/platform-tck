@@ -56,7 +56,7 @@ public class UserCommitClientServletTest extends com.sun.ts.tests.jta.ee.usertra
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive commit_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "commit_servlet_vehicle_web.war");
         commit_servlet_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -90,9 +90,10 @@ public class UserCommitClientServletTest extends com.sun.ts.tests.jta.ee.usertra
         // Web content
         archiveProcessor.processWebArchive(commit_servlet_vehicle_web, UserCommitClientServletTest.class, warResURL);
 
-        EnterpriseArchive commit_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "commit_servlet_vehicle.ear");
-        commit_servlet_vehicle_ear.addAsModule(commit_servlet_vehicle_web); 
-        return commit_servlet_vehicle_ear;
+        return commit_servlet_vehicle_web;
+        // EnterpriseArchive commit_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "commit_servlet_vehicle.ear");
+        // commit_servlet_vehicle_ear.addAsModule(commit_servlet_vehicle_web); 
+        // return commit_servlet_vehicle_ear;
     }
 
     @Test

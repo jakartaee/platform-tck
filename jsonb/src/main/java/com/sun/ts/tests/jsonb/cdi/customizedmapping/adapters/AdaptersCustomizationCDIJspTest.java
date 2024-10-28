@@ -104,7 +104,7 @@ public class AdaptersCustomizationCDIJspTest extends AdaptersCustomizationCDITes
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createServletDeployment() throws IOException {
+  public static WebArchive createServletDeployment() throws IOException {
   
     WebArchive jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.war");
     jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.addClass(AdaptersCustomizationCDIJspTest.class)
@@ -139,10 +139,11 @@ public class AdaptersCustomizationCDIJspTest extends AdaptersCustomizationCDITes
     if(warResURL != null) {
       jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/beans.xml");
     }
+    return jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web;
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_adapters_jsp_vehicle.ear");
-    ear.addAsModule(jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web);
-    return ear;
+    // EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_adapters_jsp_vehicle.ear");
+    // ear.addAsModule(jsonb_cdi_customizedmapping_adapters_jsp_vehicle_web);
+    // return ear;
 
   }
 

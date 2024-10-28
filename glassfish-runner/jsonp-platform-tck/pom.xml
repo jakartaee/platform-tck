@@ -482,7 +482,7 @@
                                 <include>com/sun/ts/tests/jsonp/pluggability/jsonprovidertests/**Test.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
-                            <groups>tck-javatest</groups>
+                            <groups>${javatest-testGroups}</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
@@ -511,12 +511,14 @@
             </activation>
             <properties>
                 <glassfish-artifact-id>glassfish</glassfish-artifact-id>
+                <javatest-testGroups>tck-javatest</javatest-testGroups>
             </properties>
         </profile>
         <profile>
             <id>web</id>
             <properties>
                 <glassfish-artifact-id>web</glassfish-artifact-id>
+                <javatest-testGroups>web</javatest-testGroups>
             </properties>
         </profile>
     </profiles>
