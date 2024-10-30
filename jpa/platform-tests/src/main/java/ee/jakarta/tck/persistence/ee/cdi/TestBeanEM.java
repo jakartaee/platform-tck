@@ -14,9 +14,11 @@ public class TestBeanEM {
     Logger logger = Logger.getLogger(TestBeanEM.class.getName());
 
     //@PersistenceUnit(unitName = "CTS-EM")
+    @CtsEmQualifier
     @Inject
     private EntityManager em1;
     //@PersistenceUnit(unitName = "CTS-EM-NOTX")
+    @CtsEmNoTxQualifier
     @Inject
     private EntityManager em2;
 
