@@ -58,7 +58,7 @@ import java.lang.System.Logger;
 
 @Tag("assembly")
 @Tag("platform")
-@Tag("tck-javatest")
+@Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client extends EETest {
@@ -96,8 +96,6 @@ public class Client extends EETest {
 
   private static final Logger logger = System.getLogger(Client.class.getName());
 
-  private static String packagePath = Client.class.getPackageName().replace(".", "/");
-
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
     logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
@@ -110,8 +108,8 @@ public class Client extends EETest {
 
   static final String VEHICLE_ARCHIVE = "assembly_standalone_war";
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
   public static EnterpriseArchive createEarDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
@@ -123,11 +121,11 @@ public class Client extends EETest {
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.tests.assembly.standalone.war.Client.class);
     // The application-client.xml descriptor
-    URL resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_standalone_war_client.xml");
+    URL resURL = Client.class.getResource("assembly_standalone_war_client.xml");
     if (resURL != null) {
       assembly_standalone_war_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    resURL = Client.class.getClassLoader().getResource(packagePath+"/assembly_standalone_war_client.jar.sun-application-client.xml");
+    resURL = Client.class.getResource("assembly_standalone_war_client.jar.sun-application-client.xml");
     if(resURL != null) {
       assembly_standalone_war_client.addAsManifestResource(resURL, "sun-application-client.xml");
     }
@@ -156,16 +154,16 @@ public class Client extends EETest {
         com.sun.ts.tests.common.web.WebUtil.class, 
         com.sun.ts.tests.common.web.JSPBeanWrapper.class);
     // The application-client.xml descriptor
-    URL resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_standalone_war_component_web.xml");
+    URL resURL = Client.class.getResource("assembly_standalone_war_component_web.xml");
     if (resURL != null) {
       assembly_standalone_war_component_web.addAsWebInfResource(resURL, "web.xml");
     }
-    URL jspURL = Client.class.getClassLoader().getResource(packagePath+"/webFiles/test.jsp");
+    URL jspURL = Client.class.getResource("webFiles/test.jsp");
     if(jspURL != null) {
       assembly_standalone_war_component_web.addAsWebResource(resURL, "test.jsp");
     }
 
-    resURL = Client.class.getClassLoader().getResource(packagePath+"/assembly_standalone_war_component_web.war.sun-web.xml");
+    resURL = Client.class.getResource("assembly_standalone_war_component_web.war.sun-web.xml");
     if(resURL != null) {
       assembly_standalone_war_component_web.addAsWebInfResource(resURL, "sun-web.xml");
     }

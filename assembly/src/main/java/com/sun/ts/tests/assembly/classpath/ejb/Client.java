@@ -54,7 +54,7 @@ import java.lang.System.Logger;
 
 @Tag("assembly")
 @Tag("platform")
-@Tag("tck-javatest")
+@Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
@@ -88,24 +88,11 @@ public class Client extends EETest {
     }
   }
 
-  private static final Logger logger = System.getLogger(Client.class.getName());
-
-  private static String packagePath = Client.class.getPackageName().replace(".", "/");
-
-  @BeforeEach
-  void logStartTest(TestInfo testInfo) {
-    logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
-  }
-
-  @AfterEach
-  void logFinishTest(TestInfo testInfo) {
-    logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
-  }
 
   static final String VEHICLE_ARCHIVE = "assembly_classpath_ejb";
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
   public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
@@ -139,11 +126,11 @@ public class Client extends EETest {
         com.sun.ts.tests.assembly.classpath.ejb.TestBean.class,
         com.sun.ts.tests.assembly.classpath.ejb.TestBeanEJB.class,
         com.sun.ts.tests.assembly.classpath.ejb.Client.class);
-    resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_classpath_ejb_client.xml");
+    resURL = Client.class.getResource("assembly_classpath_ejb_client.xml");
     if (resURL != null) {
       assembly_classpath_ejb_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    resURL = Client.class.getClassLoader().getResource(packagePath+"/assembly_classpath_ejb_client.jar.sun-application-client.xml");
+    resURL = Client.class.getResource("assembly_classpath_ejb_client.jar.sun-application-client.xml");
     if(resURL != null) {
       assembly_classpath_ejb_client.addAsManifestResource(resURL, "sun-application-client.xml");
     }
@@ -160,11 +147,11 @@ public class Client extends EETest {
         com.sun.ts.lib.util.RemoteLoggingInitException.class,
         com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class
         );
-    URL ejbResURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_classpath_ejb_ejb.xml");
+    URL ejbResURL = Client.class.getResource("assembly_classpath_ejb_ejb.xml");
     if (ejbResURL != null) {
       assembly_classpath_ejb_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
     }
-    ejbResURL = Client.class.getClassLoader().getResource(packagePath+"/assembly_classpath_ejb_ejb.jar.sun-ejb-jar.xml");
+    ejbResURL = Client.class.getResource("assembly_classpath_ejb_ejb.jar.sun-ejb-jar.xml");
     if(ejbResURL != null) {
       assembly_classpath_ejb_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
@@ -179,7 +166,7 @@ public class Client extends EETest {
         assembly_classpath_ejb_ear.addAsModule(assembly_classpath_ejb_client);
         assembly_classpath_ejb_ear.addAsModule(assembly_classpath_ejb_ejb);
 
-    URL earResURL = Client.class.getClassLoader().getResource(packagePath + "/application.xml");
+    URL earResURL = Client.class.getResource("application.xml");
     if (earResURL != null) {
       assembly_classpath_ejb_ear.addAsManifestResource(earResURL, "application.xml");
     }

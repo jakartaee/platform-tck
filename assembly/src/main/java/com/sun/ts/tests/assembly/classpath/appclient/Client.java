@@ -60,7 +60,7 @@ import java.lang.System.Logger;
 
 @Tag("assembly")
 @Tag("platform")
-@Tag("tck-javatest")
+@Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
@@ -89,27 +89,11 @@ public class Client extends EETest {
     }
   }
 
-  private static final Logger logger = System.getLogger(Client.class.getName());
-
-  private static String packagePath = Client.class.getPackageName().replace(".", "/");
-
-  @BeforeEach
-  void logStartTest(TestInfo testInfo) {
-    logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
-  }
-
-  @AfterEach
-  void logFinishTest(TestInfo testInfo) {
-    logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
-  }
-
-  public Client() throws Exception {
-  }
 
   static final String VEHICLE_ARCHIVE = "assembly_classpath_appclient";
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
   public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
@@ -120,8 +104,8 @@ public class Client extends EETest {
       direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     }
 
-    direct_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-        "MANIFEST.MF");
+    // direct_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+    //     "MANIFEST.MF");
     archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
 
     JavaArchive indirect_classpath_util = ShrinkWrap.create(JavaArchive.class, "indirect_classpath_util.jar");
@@ -130,8 +114,8 @@ public class Client extends EETest {
     if (resURL != null) {
       indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     }
-    indirect_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-        "MANIFEST.MF");
+    // indirect_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+    //     "MANIFEST.MF");
     archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
 
     JavaArchive assembly_classpath_appclient_client = ShrinkWrap.create(JavaArchive.class,
@@ -142,12 +126,12 @@ public class Client extends EETest {
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.tests.assembly.classpath.appclient.Client.class);
     // The application-client.xml descriptor
-    resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_classpath_appclient_client.xml");
+    resURL = Client.class.getResource("assembly_classpath_appclient_client.xml");
     if (resURL != null) {
       assembly_classpath_appclient_client.addAsManifestResource(resURL, "application-client.xml");
     }
     assembly_classpath_appclient_client
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n" + "Class-Path: libs/direct_classpath_util.jar"+ "\n"), "MANIFEST.MF");
     archiveProcessor.processClientArchive(assembly_classpath_appclient_client, Client.class, resURL);
 
 
@@ -157,12 +141,12 @@ public class Client extends EETest {
     assembly_classpath_appclient_ear.addAsLibrary(indirect_classpath_util);
     assembly_classpath_appclient_ear.addAsModule(assembly_classpath_appclient_client);
 
-    URL earResURL = Client.class.getClassLoader().getResource(packagePath + "/application.xml");
+    URL earResURL = Client.class.getResource("application.xml");
     if (earResURL != null) {
       assembly_classpath_appclient_ear.addAsManifestResource(earResURL, "application.xml");
     }
-    assembly_classpath_appclient_ear
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // assembly_classpath_appclient_ear
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEarArchive(assembly_classpath_appclient_ear, Client.class, earResURL);
 
     return assembly_classpath_appclient_ear;

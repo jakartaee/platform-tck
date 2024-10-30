@@ -56,7 +56,7 @@ import java.lang.System.Logger;
 
 @Tag("assembly")
 @Tag("platform")
-@Tag("tck-javatest")
+@Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client extends EETest {
@@ -90,24 +90,11 @@ public class Client extends EETest {
     }
   }
 
-  private static final Logger logger = System.getLogger(Client.class.getName());
-
-  private static String packagePath = Client.class.getPackageName().replace(".", "/");
-
-  @BeforeEach
-  void logStartTest(TestInfo testInfo) {
-    logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
-  }
-
-  @AfterEach
-  void logFinishTest(TestInfo testInfo) {
-    logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
-  }
 
   static final String VEHICLE_ARCHIVE = "assembly_standalone_jar";
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
   public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
@@ -120,11 +107,11 @@ public class Client extends EETest {
         com.sun.ts.tests.assembly.standalone.jar.TestBean.class,
         com.sun.ts.tests.assembly.standalone.jar.Client.class);
     // The application-client.xml descriptor
-    URL resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_standalone_jar_client.xml");
+    URL resURL = Client.class.getResource("assembly_standalone_jar_client.xml");
     if (resURL != null) {
       assembly_standalone_jar_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    resURL = Client.class.getClassLoader().getResource(packagePath+"/assembly_standalone_jar_client.jar.sun-application-client.xml");
+    resURL = Client.class.getResource("assembly_standalone_jar_client.jar.sun-application-client.xml");
     if(resURL != null) {
       assembly_standalone_jar_client.addAsManifestResource(resURL, "sun-application-client.xml");
     }
@@ -137,12 +124,12 @@ public class Client extends EETest {
         "assembly_standalone_jar_ear.ear");
         assembly_standalone_jar_ear.addAsModule(assembly_standalone_jar_client);
     
-    URL earResURL = Client.class.getClassLoader().getResource(packagePath + "/application.xml");
-    if (earResURL != null) {
-      assembly_standalone_jar_ear.addAsManifestResource(earResURL, "application.xml");
-    }
-    assembly_standalone_jar_ear
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // URL earResURL = Client.class.getResource("application.xml");
+    // if (earResURL != null) {
+    //   assembly_standalone_jar_ear.addAsManifestResource(earResURL, "application.xml");
+    // }
+    // assembly_standalone_jar_ear
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     // archiveProcessor.processEarArchive(assembly_standalone_jar_ear, Client.class, earResURL);
 
     return assembly_standalone_jar_ear;
@@ -160,16 +147,16 @@ public class Client extends EETest {
         com.sun.ts.lib.util.RemoteLoggingInitException.class,
         com.sun.ts.tests.assembly.standalone.jar.Client.class);
     // The application-client.xml descriptor
-    URL resURL = Client.class.getClassLoader().getResource(packagePath + "/assembly_standalone_jar_component_ejb.xml");
+    URL resURL = Client.class.getResource("assembly_standalone_jar_component_ejb.xml");
     if (resURL != null) {
       assembly_standalone_jar_component_ejb.addAsManifestResource(resURL, "ejb-jar.xml");
     }
-    resURL = Client.class.getClassLoader().getResource(packagePath+"/assembly_standalone_jar_component_ejb.jar.sun-ejb-jar.xml");
+    resURL = Client.class.getResource("assembly_standalone_jar_component_ejb.jar.sun-ejb-jar.xml");
     if(resURL != null) {
       assembly_standalone_jar_component_ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
     }
-    assembly_standalone_jar_component_ejb
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // assembly_standalone_jar_component_ejb
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processClientArchive(assembly_standalone_jar_component_ejb, Client.class, resURL);
 
     return assembly_standalone_jar_component_ejb;

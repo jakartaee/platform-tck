@@ -58,7 +58,7 @@ import java.lang.System.Logger;
 
 @Tag("assembly")
 @Tag("platform")
-@Tag("tck-javatest")
+@Tag("tck-appclient")
 @ExtendWith(ArquillianExtension.class)
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client extends EETest {
@@ -96,8 +96,6 @@ public class Client extends EETest {
 
   private static final Logger logger = System.getLogger(Client.class.getName());
 
-  private static String packagePath = Client.class.getPackageName().replace(".", "/");
-
   @BeforeEach
   void logStartTest(TestInfo testInfo) {
     logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
@@ -114,8 +112,8 @@ public class Client extends EETest {
 
   static final String VEHICLE_ARCHIVE = "assembly_compat_standalone_war_compat9_10";
 
-  @TargetsContainer("tck-javatest")
-  @OverProtocol("javatest")
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
   public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
@@ -127,11 +125,11 @@ public class Client extends EETest {
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.tests.assembly.compat.standalone.war.compat9_10.Client.class);
     // The application-client.xml descriptor
-    URL resURL = Client.class.getClassLoader().getResource(packagePath + "/application-client.xml");
+    URL resURL = Client.class.getResource("application-client.xml");
     if (resURL != null) {
       assembly_compat_standalone_war_compat9_10_client.addAsManifestResource(resURL, "application-client.xml");
     }
-    resURL = Client.class.getClassLoader().getResource(packagePath+"/assembly_compat_standalone_war_compat9_10_client.jar.sun-application-client.xml");
+    resURL = Client.class.getResource("assembly_compat_standalone_war_compat9_10_client.jar.sun-application-client.xml");
     if(resURL != null) {
       assembly_compat_standalone_war_compat9_10_client.addAsManifestResource(resURL, "sun-application-client.xml");
     }
@@ -144,7 +142,7 @@ public class Client extends EETest {
         "assembly_compat_standalone_war_compat9_10.ear");
         assembly_compat_standalone_war_compat9_10_ear.addAsModule(assembly_compat_standalone_war_compat9_10_client);
     
-        URL earResURL = Client.class.getClassLoader().getResource(packagePath + "/application.xml");
+        URL earResURL = Client.class.getResource("application.xml");
         if (earResURL != null) {
           assembly_compat_standalone_war_compat9_10_ear.addAsManifestResource(earResURL, "application.xml");
         }
@@ -161,17 +159,17 @@ public class Client extends EETest {
     WebArchive assembly_compat_standalone_war_compat9_10_component_web = ShrinkWrap.create(WebArchive.class,
         "assembly_compat_standalone_war_compat9_10_component_web.war");
     // The application-client.xml descriptor
-    URL resURL = Client.class.getClassLoader().getResource(packagePath + "/web.xml");
+    URL resURL = Client.class.getResource("web.xml");
     if (resURL != null) {
       assembly_compat_standalone_war_compat9_10_component_web.addAsWebInfResource(resURL, "web.xml");
     }
-    URL jspURL = Client.class.getClassLoader().getResource(packagePath+"/test.jsp");
+    URL jspURL = Client.class.getResource("test.jsp");
     if(jspURL != null) {
       assembly_compat_standalone_war_compat9_10_component_web.addAsWebResource(resURL, "test.jsp");
     }
 
 
-    resURL = Client.class.getClassLoader().getResource(packagePath+"/assembly_compat_standalone_war_compat9_10_component_web.war.sun-web.xml");
+    resURL = Client.class.getResource("assembly_compat_standalone_war_compat9_10_component_web.war.sun-web.xml");
     if(resURL != null) {
       assembly_compat_standalone_war_compat9_10_component_web.addAsWebInfResource(resURL, "sun-web.xml");
     }
