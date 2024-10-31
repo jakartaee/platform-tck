@@ -48,7 +48,7 @@ public class ELClientTest extends ServiceEETest {
 
   private static final Logger logger = System.getLogger(ELClientTest.class.getName());
 
-  private Properties testProps;
+  private Properties testProps = System.getProperties();
 
   public static void main(String[] args) {
     ELClientTest theTests = new ELClientTest();
