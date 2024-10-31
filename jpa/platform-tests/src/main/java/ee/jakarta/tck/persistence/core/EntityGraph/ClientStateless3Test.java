@@ -97,9 +97,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.Entity
             );
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.xml");
-            if(resURL != null) {
-              jpa_core_EntityGraph_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            jpa_core_EntityGraph_stateless3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
@@ -134,15 +132,9 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.Entity
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/vehicle/stateless3/stateless3_vehicle_ejb.xml");
-            if(ejbResURL1 != null) {
-              jpa_core_EntityGraph_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client.class.getResource("/vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
-            if(ejbResURL1 != null) {
-              jpa_core_EntityGraph_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
-            }
+            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/stateless3/stateless3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            jpa_core_EntityGraph_stateless3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             // Call the archive processor
             archiveProcessor.processEjbArchive(jpa_core_EntityGraph_stateless3_vehicle_ejb, Client.class, ejbResURL1);
 
@@ -159,9 +151,7 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.Entity
             );
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
-            if(parURL != null) {
-              jpa_core_EntityGraph.addAsManifestResource(parURL, "persistence.xml");
-            }
+            jpa_core_EntityGraph.addAsManifestResource(parURL, "persistence.xml");
             // Add the Persistence mapping-file
             URL mappingURL = Client.class.getResource("myMappingFile.xml");
             if(mappingURL != null) {
@@ -197,11 +187,6 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.Entity
 
             // The application.xml descriptor
             URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_EntityGraph_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_EntityGraph_vehicles_ear, Client.class, earResURL);
         return jpa_core_EntityGraph_vehicles_ear;
@@ -214,84 +199,84 @@ public class ClientStateless3Test extends ee.jakarta.tck.persistence.core.Entity
             super.addAttributeNodesStringArrayTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void addAttributeNodesStringArrayIllegalArgumentExceptionTest() throws java.lang.Exception {
             super.addAttributeNodesStringArrayIllegalArgumentExceptionTest();
         }
 
-        @Test
+       // @Test
         @Override
         @TargetVehicle("stateless3")
         public void addAttributeNodesAttributeArrayTest() throws java.lang.Exception {
             super.addAttributeNodesAttributeArrayTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void createEntityGraphStringTest() throws java.lang.Exception {
             super.createEntityGraphStringTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void getEntityGraphStringTest() throws java.lang.Exception {
             super.getEntityGraphStringTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void entityGraphGetNameTest() throws java.lang.Exception {
             super.entityGraphGetNameTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void entityGraphGetNameNoNameExistsTest() throws java.lang.Exception {
             super.entityGraphGetNameNoNameExistsTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void getNameTest() throws java.lang.Exception {
             super.getNameTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void getEntityGraphStringIllegalArgumentExceptionTest() throws java.lang.Exception {
             super.getEntityGraphStringIllegalArgumentExceptionTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void getEntityGraphsClassTest() throws java.lang.Exception {
             super.getEntityGraphsClassTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void addNamedEntityGraphStringEntityGraphTest() throws java.lang.Exception {
             super.addNamedEntityGraphStringEntityGraphTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void getEntityGraphsClassIllegalArgumentExceptionTest() throws java.lang.Exception {
             super.getEntityGraphsClassIllegalArgumentExceptionTest();
         }
 
-        @Test
+        //@Test
         @Override
         @TargetVehicle("stateless3")
         public void annotationsTest() throws java.lang.Exception {

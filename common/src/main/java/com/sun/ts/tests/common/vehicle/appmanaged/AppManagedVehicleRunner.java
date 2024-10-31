@@ -27,15 +27,26 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
+import javax.naming.InitialContext;
+import javax.naming.NameClassPair;
+import javax.naming.NamingEnumeration;
+import javax.naming.NamingException;
+
 public class AppManagedVehicleRunner implements VehicleRunnable {
   public static final String APPMANAGED_REF_NAME = "java:comp/env/ejb/AppManagedVehicleBean";
 
   public Status run(String[] args, Properties props) {
     Status sTestStatus = null;
     try {
-      TSNamingContext jc = new TSNamingContext();
-      AppManagedVehicleIF bean = (AppManagedVehicleIF) jc
-          .lookup(APPMANAGED_REF_NAME);
+      AppManagedVehicleIF bean=null;
+      try {
+        TSNamingContext jc = new TSNamingContext();
+        bean = (AppManagedVehicleIF) jc.lookup(APPMANAGED_REF_NAME);
+        } catch (Exception e) {
+        e.printStackTrace();
+        TSNamingContext.dumpJndi("", new InitialContext());
+        throw e;
+      }
       TestUtil.logTrace(
           "application-managed JTA runner looked up vehicle: " + bean);
       sTestStatus = (bean.runTest(args, props)).toStatus();
@@ -46,4 +57,5 @@ public class AppManagedVehicleRunner implements VehicleRunnable {
     }
     return sTestStatus;
   }
+
 }

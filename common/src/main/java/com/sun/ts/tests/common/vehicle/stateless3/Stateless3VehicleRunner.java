@@ -27,6 +27,9 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 public class Stateless3VehicleRunner implements VehicleRunnable {
 
   public static final String STATELESS3_REF_NAME = "java:comp/env/ejb/Stateless3VehicleBean";
@@ -37,8 +40,16 @@ public class Stateless3VehicleRunner implements VehicleRunnable {
     String refName = beanType.getName();
     try {
       TSNamingContext jc = new TSNamingContext();
-      Stateless3VehicleIF bean = (Stateless3VehicleIF) jc
-          .lookup(STATELESS3_REF_NAME);
+      Stateless3VehicleIF bean = null;
+      try {
+        bean = (Stateless3VehicleIF) jc.lookup(STATELESS3_REF_NAME);
+      } catch (NamingException e) {
+
+        TestUtil.logErr("NamingException looking up vehicle: " + refName, e);
+        TestUtil.logErr("TSNamingContext.CS: " + TSNamingContext.class.getProtectionDomain().getCodeSource());
+        TSNamingContext.dumpJndi("", new InitialContext());
+        throw e;
+      }
       TestUtil.logTrace("stateless3 runner looked up vehicle: " + bean);
       props.put("persistence.unit.name", "CTS-EM");
       sTestStatus = (bean.runTest(args, props)).toStatus();

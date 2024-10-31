@@ -27,6 +27,8 @@ import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
+import javax.naming.InitialContext;
+
 public class AppManagedNoTxVehicleRunner implements VehicleRunnable {
   public static final String APPMANAGEDNOTX_REF_NAME = "java:comp/env/ejb/AppManagedNoTxVehicleBean";
 
@@ -34,8 +36,14 @@ public class AppManagedNoTxVehicleRunner implements VehicleRunnable {
     Status sTestStatus = null;
     try {
       TSNamingContext jc = new TSNamingContext();
-      AppManagedNoTxVehicleIF bean = (AppManagedNoTxVehicleIF) jc
-          .lookup(APPMANAGEDNOTX_REF_NAME);
+      AppManagedNoTxVehicleIF bean = null;
+      try {
+        bean = (AppManagedNoTxVehicleIF) jc.lookup(APPMANAGEDNOTX_REF_NAME);
+      } catch (Exception e) {
+        e.printStackTrace();
+        TSNamingContext.dumpJndi("", new InitialContext());
+        throw e;
+      }
       TestUtil.logTrace(
           "application-managed resource-local runner looked up vehicle: "
               + bean);

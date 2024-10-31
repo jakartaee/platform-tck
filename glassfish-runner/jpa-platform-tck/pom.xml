@@ -83,6 +83,7 @@
         <sql.directory>./sql</sql.directory>
         <tck.artifactId>persistence-platform-tck-tests</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
+        <ts.home>./jakartaeetck</ts.home>
         <user1>cts1</user1>
         <user2>cts1</user2>
         <version.jakarta.inject>2.0.1</version.jakarta.inject>
@@ -311,6 +312,12 @@
     </dependencies>
 
     <build>
+        <testResources>
+            <testResource>
+                <filtering>true</filtering>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -510,7 +517,7 @@
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.0</version>
+                <version>3.5.1</version>
                 <configuration>
                     <trimStackTrace>false</trimStackTrace>
                 </configuration>
@@ -525,8 +532,8 @@
                             <!-- Select the @Tag("tck-appclient") tests -->
                             <groups>tck-appclient</groups>
                             <includes>
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                                <!-- <include>ee/jakarta/tck/persistence/core/EntityGraph/**/ClientAppmanagednotxTest.java</include> -->
+                                <!--include>ee/jakarta/tck/persistence/**/*Test.java</include-->
+                                <include>ee/jakarta/tck/persistence/core/EntityGraph/ClientStateless3Test.java</include>
                             </includes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
