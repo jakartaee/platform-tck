@@ -78,10 +78,10 @@ public class TSNamingContext implements TSNamingContextInterface, Serializable {
     }
   }
   public static void dumpTreeEntry(InitialContext jc, NamingEnumeration<NameClassPair> list, String s) throws NamingException {
-    System.out.printf("\n1. AppManagedVehicleRunner jndi dump walking down tree branch name = %s\n", s);
+    System.out.printf("\n1. jndi dump walking down tree branch name = '%s'\n", s);
     while (list.hasMore()) {
       NameClassPair ncp = list.next();
-      System.out.printf("2. AppManagedVehicleRunner jndi dump (show name  classname pair): %s\n", ncp.toString());
+      System.out.printf("2. jndi dump (show name  classname pair): '%s'\n", ncp.toString());
       if (s.isEmpty()) {
         dumpJndi(ncp.getName(), jc);
       } else {

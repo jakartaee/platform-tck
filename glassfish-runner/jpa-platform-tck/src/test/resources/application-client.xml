@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application-client xmlns="https://jakarta.ee/xml/ns/jakartaee"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    version="10" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/application-client_10.xsd">
+    <display-name>stateless_vehicle_client</display-name>
+    <ejb-ref>
+        <ejb-ref-name>ejb/StatelessVehicleBean</ejb-ref-name>
+        <ejb-ref-type>Session</ejb-ref-type>
+        <remote>ejb.VehicleIF</remote>
+        <ejb-link>StatelessVehicleBean</ejb-link>
+    </ejb-ref>
+</application-client>
