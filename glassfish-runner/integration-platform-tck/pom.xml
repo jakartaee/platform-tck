@@ -537,7 +537,6 @@
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/security.jar</additionalClasspathElement>
                                 <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/security-ee.jar</additionalClasspathElement>
-                                <!-- <additionalClasspathElement>${project.directory}/glassfishporting.jar</additionalClasspathElement> -->
                             </additionalClasspathElements>
                             <includes>
                                 <include>com/sun/ts/tests/integration/**/*Test*.java</include>
@@ -549,6 +548,9 @@
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                                set server-config.network-config.network-listeners.network-listener.http-listener-2.enabled=true
+                                set server-config.network-config.network-listeners.network-listener.http-listener-2.port=1044
+                                set server-config.network-config.network-listeners.network-listener.http-listener-1.port=8080
                                 create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
                                 create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
                                 create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
@@ -574,7 +576,7 @@
 
     <profiles>
         <profile>
-            <id>full</id>
+            <id>platform</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>

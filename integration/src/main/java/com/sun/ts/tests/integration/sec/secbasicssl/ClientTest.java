@@ -89,7 +89,7 @@ public class ClientTest extends com.sun.ts.tests.integration.sec.secbasicssl.Cli
             // The component jars built by the package target
             integration_sec_secbasicssl_ear.addAsModule(integration_sec_secbasicssl_web);
             URL earResURL = Client.class.getResource("integration_sec_secbasicssl.ear.sun-application.xml");
-            integration_sec_secbasicssl_web.addAsWebInfResource(earResURL, "sun-application.xml");
+            integration_sec_secbasicssl_ear.addAsManifestResource(earResURL, "sun-application.xml");
 
 
 
