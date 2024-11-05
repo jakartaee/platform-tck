@@ -104,11 +104,13 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.En
             // The application-client.xml descriptor
             URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
             if(resURL != null) {
+                System.out.println("xxx adding ./jpa/spec-tests/src/main/resources/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml client container xml");
               jpa_core_EntityGraph_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("/com/sun/ts/tests/common/sunxml/sun-application-client.xml");
             if(resURL != null) {
+              System.out.println("xxx /com/sun/ts/tests/common/sunxml/sun-application-client.xml added as sun-application-client.xml" );
               jpa_core_EntityGraph_appmanagedNoTx_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_EntityGraph_appmanagedNoTx_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
@@ -142,12 +144,13 @@ public class ClientAppmanagednotxTest extends ee.jakarta.tck.persistence.core.En
                 com.sun.ts.tests.common.vehicle.appmanagedNoTx.AppManagedNoTxVehicleBean.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
-            if(ejbResURL1 != null) {
+            // URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_client.xml");
+            // ^ is a application-client_10.xsd
+            // if(ejbResURL1 != null) {
 //              jpa_core_EntityGraph_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
-            }
-            // The sun-ejb-jar.xml file
-            ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
+            //}
+            // The sun-ejb-jar.xml file http://www.sun.com/software/appserver/dtds/sun-ejb-jar_3_0-0.dtd
+            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanagedNoTx/appmanagedNoTx_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_EntityGraph_appmanagedNoTx_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
