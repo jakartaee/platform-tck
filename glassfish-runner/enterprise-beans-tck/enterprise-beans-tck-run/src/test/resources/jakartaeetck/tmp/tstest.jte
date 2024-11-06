@@ -1,5 +1,5 @@
-#Properties for test: aroundTimeoutMethod2
-#Fri Sep 20 17:53:53 CEST 2024
+#Properties for test: persistCoffeeCreateTimerRollbackStateless
+#Wed Nov 06 14:52:04 CET 2024
 Driver=DriverOnlyUsedIfDriverManagerIsYes
 DriverManager=no
 authpassword=javajoe
@@ -54,17 +54,17 @@ rapassword2=cts2
 rauser1=cts1
 rauser2=cts2
 securedWebServicePort=1044
-service_eetest.vehicles=ejblitejsp
+service_eetest.vehicles=ejbliteservlet2
 sigTestClasspath=${s1as.modules}/glassfish-corba-omgapi.jar${pathsep}${s1as.modules}/glassfish-corba-orb.jar${pathsep}${s1as.modules}/jakarta.enterprise.cdi-api.jar${pathsep}${s1as.modules}/jakarta.json-api.jar${pathsep}${s1as.modules}/jakarta.json.bind-api.jar${pathsep}${s1as.modules}/jakarta.batch-api.jar${pathsep}${s1as.modules}/jakarta.interceptor-api.jar${pathsep}${s1as.modules}/stax2-api.jar${pathsep}${s1as.modules}/jakarta.enterprise.concurrent-api.jar${pathsep}${s1as.modules}/jakarta.websocket-api.jar${pathsep}${s1as.modules}/jakarta.websocket-client-api.jar${pathsep}${s1as.modules}/jakarta.jms-api.jar${pathsep}${s1as.modules}/jakarta.faces.jar${pathsep}${s1as.modules}/jakarta.validation-api.jar${pathsep}${s1as.modules}/jakarta.annotation-api.jar${pathsep}${s1as.modules}/jakarta.xml.bind-api.jar${pathsep}${s1as.modules}/webservices-api-osgi.jar${pathsep}${pathsep}${s1as.modules}/jakarta.ws.rs-api.jar${pathsep}${s1as.modules}/weld-osgi-bundle.jar${pathsep}${s1as.modules}/jakarta.ejb-api.jar${pathsep}${s1as.modules}/jakarta.mail-api.jar${pathsep}${s1as.modules}/jakarta.persistence-api.jar${pathsep}${s1as.modules}/jakarta.resource-api.jar${pathsep}${s1as.modules}/jakarta.authorization-api.jar${pathsep}${s1as.modules}/jakarta.authentication-api.jar${pathsep}${s1as.modules}/jakarta.servlet-api.jar${pathsep}${s1as.modules}/jakarta.inject-api.jar${pathsep}${s1as.modules}/jakarta.el-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp-api.jar${pathsep}${s1as.modules}/jakarta.servlet.jsp.jstl-api.jar${pathsep}${jtaJarClasspath}${pathsep}${s1as.modules}/jakarta.security.enterprise-api.jar${pathsep}${s1as.modules}/jakarta.activation-api.jar${pathsep}${jimage.dir}/java.base${pathsep}${jimage.dir}/java.rmi${pathsep}${jimage.dir}/java.sql${pathsep}${jimage.dir}/java.naming
 smtp.port=25
-test_classname=com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated.Client
+test_classname=com.sun.ts.tests.ejb32.lite.timer.basic.xa.Client
 transport_protocol=smtp
 ts_home=dummy
 user=j2ee
 user1=cts1
 varbinarySize=48
-vehicle=ejblitejsp
-vehicle_archive_name=ejb32_lite_timer_interceptor_aroundtimeout_singleton_annotated_ejblitejsp_vehicle_web
+vehicle=ejbliteservlet2
+vehicle_archive_name=ejb32_lite_timer_basic_xa_ejbliteservlet2_vehicle_web
 webServerHost=localhost
 webServerPort=8080
 whitebox-anno_no_md=java\:comp/env/eis/whitebox-anno_no_md
