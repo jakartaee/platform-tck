@@ -39,8 +39,6 @@
         <module>assembly</module>
         <module>common</module>
         <module>connector</module>
-        <!-- not needed anymore -->
-        <!--        <module>docker</module>-->
         <module>core-profile-tck</module>
         <module>ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
@@ -63,10 +61,8 @@
         <module>jstl</module>
         <module>jta</module>
         <module>libutil</module>
-        <!--        <module>glassfishtck</module>-->
         <module>runtime</module>
         <module>samples</module>
-        <module>servlet</module>
         <module>signaturetest</module>
         <module>tsharness</module>
         <module>user_guides</module>
