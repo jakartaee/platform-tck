@@ -135,12 +135,12 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client.class.getResource("/vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            URL ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(ejbResURL1 != null) {
-              jpa_core_annotations_collectiontable_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
+//              jpa_core_annotations_collectiontable_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client.class.getResource("/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_annotations_collectiontable_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
@@ -212,6 +212,5 @@ public class ClientAppmanagedTest extends ee.jakarta.tck.persistence.core.annota
         public void collectionTable1() throws java.lang.Exception {
             super.collectionTable1();
         }
-
 
 }

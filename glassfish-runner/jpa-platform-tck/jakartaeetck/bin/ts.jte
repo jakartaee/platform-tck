@@ -197,7 +197,7 @@ javaee.level=full
 # @orb.port    The port number the vendor implementation is listening
 #              to for service requests.
 ########################################################################
-javaee.home=/Users/alwjosep/Documents/jakartaee-tck/glassfish-runner/jpa-platform-tck/target/glassfish8
+javaee.home=/home/smarlow/tck/platformtck/glassfish-runner/jpa-platform-tck/target/glassfish8
 orb.host=localhost
 orb.port=4848
 
@@ -1429,7 +1429,7 @@ optional.tech.packages.to.ignore=jakarta.xml.bind
 ########################################################################
 harness.temp.directory=${ts.home}/tmp
 harness.log.port=2000
-harness.log.traceflag=false
+harness.log.traceflag=true
 harness.executeMode=0
 harness.socket.retry.count=10
 harness.log.delayseconds=1

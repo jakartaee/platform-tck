@@ -39,7 +39,7 @@
         <module>jsonb-tck</module>
         <module>jsonp-tck</module>
         <module>pages-tck</module>
-        <module>persistence-tck</module>
+        <module>jpa-platform-tck</module>
         <module>servlet-tck</module>
     </modules>
 
