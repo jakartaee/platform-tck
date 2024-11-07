@@ -8,5 +8,6 @@
         <ejb-ref-type>Session</ejb-ref-type>
         <remote>ejb.VehicleIF</remote>
         <ejb-link>StatelessVehicleBean</ejb-link>
+        <lookup-name>java:global/jpa_core_EntityGraph_vehicles/jpa_core_EntityGraph_stateless_vehicle_ejb/StatelessVehicleBean</lookup-name>
     </ejb-ref>
 </application-client>
