@@ -293,12 +293,6 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>servlet</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>signaturetest</artifactId>
                 <version>${project.version}</version>
             </dependency>
