@@ -199,6 +199,20 @@
             <version>2.1</version>
             <scope>test</scope>
         </dependency>
+
+        <!-- 
+           For a couple of tests like:
+           com.sun.ts.tests.ejb30.tx.session.stateful.web.ClientTest
+           com.sun.ts.tests.ejb30.tx.session.stateless.cm.generics.ClientTest
+           com.sun.ts.tests.ejb30.tx.session.stateless.cm.inheritance.annotated.ClientTest
+           ... 
+        -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
