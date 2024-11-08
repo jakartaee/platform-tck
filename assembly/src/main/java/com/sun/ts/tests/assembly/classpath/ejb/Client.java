@@ -26,6 +26,36 @@ import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 
+import java.net.URL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+
+
+import java.lang.System.Logger;
+
+@Tag("assembly")
+@Tag("platform")
+@Tag("tck-appclient")
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   /** JNDI Name we use to lookup the bean */
@@ -58,6 +88,95 @@ public class Client extends EETest {
     }
   }
 
+
+  static final String VEHICLE_ARCHIVE = "assembly_classpath_ejb";
+
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
+  @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+  public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+
+    JavaArchive direct_classpath_util = ShrinkWrap.create(JavaArchive.class, "direct_classpath_util.jar");
+    direct_classpath_util.addClass(com.sun.ts.tests.assembly.classpath.util.ClassPathUtil.class);
+    URL resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
+    if (resURL != null) {
+      direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
+    }
+    // direct_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+    //     "MANIFEST.MF");
+    archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
+
+    JavaArchive indirect_classpath_util = ShrinkWrap.create(JavaArchive.class, "indirect_classpath_util.jar");
+    indirect_classpath_util.addClass(com.sun.ts.tests.assembly.classpath.util.IndirectClassPathUtil.class);
+    resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
+    if (resURL != null) {
+      indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
+    }
+    // indirect_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+    //     "MANIFEST.MF");
+    archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
+
+
+    JavaArchive assembly_classpath_ejb_client = ShrinkWrap.create(JavaArchive.class,
+        "assembly_classpath_ejb_client.jar");
+        assembly_classpath_ejb_client.addClasses(
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.tests.assembly.classpath.ejb.TestBean.class,
+        com.sun.ts.tests.assembly.classpath.ejb.TestBeanEJB.class,
+        com.sun.ts.tests.assembly.classpath.ejb.Client.class);
+    resURL = Client.class.getResource("assembly_classpath_ejb_client.xml");
+    if (resURL != null) {
+      assembly_classpath_ejb_client.addAsManifestResource(resURL, "application-client.xml");
+    }
+    resURL = Client.class.getResource("assembly_classpath_ejb_client.jar.sun-application-client.xml");
+    if(resURL != null) {
+      assembly_classpath_ejb_client.addAsManifestResource(resURL, "sun-application-client.xml");
+    }
+    assembly_classpath_ejb_client
+        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processClientArchive(assembly_classpath_ejb_client, Client.class, resURL);
+
+
+    JavaArchive assembly_classpath_ejb_ejb = ShrinkWrap.create(JavaArchive.class,
+        "assembly_classpath_ejb_ejb.jar");
+        assembly_classpath_ejb_ejb.addClasses(
+        com.sun.ts.tests.assembly.classpath.ejb.TestBean.class,
+        com.sun.ts.tests.assembly.classpath.ejb.TestBeanEJB.class,
+        com.sun.ts.lib.util.RemoteLoggingInitException.class,
+        com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class
+        );
+    URL ejbResURL = Client.class.getResource("assembly_classpath_ejb_ejb.xml");
+    if (ejbResURL != null) {
+      assembly_classpath_ejb_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+    }
+    ejbResURL = Client.class.getResource("assembly_classpath_ejb_ejb.jar.sun-ejb-jar.xml");
+    if(ejbResURL != null) {
+      assembly_classpath_ejb_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+    }
+    // assembly_classpath_ejb_ejb
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processEjbArchive(assembly_classpath_ejb_ejb, Client.class, ejbResURL);
+
+    EnterpriseArchive assembly_classpath_ejb_ear = ShrinkWrap.create(EnterpriseArchive.class,
+        "assembly_classpath_ejb.ear");
+        assembly_classpath_ejb_ear.addAsLibrary(direct_classpath_util);
+        assembly_classpath_ejb_ear.addAsLibrary(indirect_classpath_util);
+        assembly_classpath_ejb_ear.addAsModule(assembly_classpath_ejb_client);
+        assembly_classpath_ejb_ear.addAsModule(assembly_classpath_ejb_ejb);
+
+    URL earResURL = Client.class.getResource("application.xml");
+    if (earResURL != null) {
+      assembly_classpath_ejb_ear.addAsManifestResource(earResURL, "application.xml");
+    }
+    // assembly_classpath_ejb_ear
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processEarArchive(assembly_classpath_ejb_ear, Client.class, earResURL);
+
+    return assembly_classpath_ejb_ear;
+  }
+
   /**
    * @testName: testDirectLibrary
    *
@@ -84,6 +203,7 @@ public class Client extends EETest {
    *                 of the EJB.
    *
    */
+  @Test
   public void testDirectLibrary() throws Fault {
     TestBean bean;
     boolean pass;
@@ -145,6 +265,7 @@ public class Client extends EETest {
    *                 logical classpath of the EJB.
    *
    */
+  @Test
   public void testIndirectLibrary() throws Fault {
     TestBean bean;
     boolean pass;
