@@ -22,6 +22,11 @@ package com.sun.ts.tests.common.vehicle.appmanaged;
 
 import java.util.Properties;
 
+import javax.naming.InitialContext;
+import javax.naming.NameClassPair;
+import javax.naming.NamingEnumeration;
+import javax.naming.NamingException;
+
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
@@ -33,9 +38,15 @@ public class AppManagedVehicleRunner implements VehicleRunnable {
   public Status run(String[] args, Properties props) {
     Status sTestStatus = null;
     try {
-      TSNamingContext jc = new TSNamingContext();
-      AppManagedVehicleIF bean = (AppManagedVehicleIF) jc
-          .lookup(APPMANAGED_REF_NAME);
+      AppManagedVehicleIF bean=null;
+      TSNamingContext jc = new TSNamingContext(props);
+      try {
+         bean = (AppManagedVehicleIF) jc
+                .lookup(APPMANAGED_REF_NAME);
+      } catch (Exception e) {
+        e.printStackTrace();
+        dumpJndi("", new InitialContext());
+      }
       TestUtil.logTrace(
           "application-managed JTA runner looked up vehicle: " + bean);
       sTestStatus = (bean.runTest(args, props)).toStatus();
@@ -46,4 +57,24 @@ public class AppManagedVehicleRunner implements VehicleRunnable {
     }
     return sTestStatus;
   }
+
+  private void dumpJndi(String s,InitialContext jc ) {
+    try {
+            dumpTreeEntry(jc, jc.list(s), s);
+        } catch (Exception ignore) {
+        }
+    }
+  private void dumpTreeEntry(InitialContext jc, NamingEnumeration<NameClassPair> list, String s) throws NamingException {
+      System.out.println("\n1. AppManagedVehicleRunner jndi dump walking down tree branch name = " + s);
+      while (list.hasMore()) {
+          NameClassPair ncp = list.next();
+          System.out.println("2. AppManagedVehicleRunner jndi dump (show name + classname pair): " + ncp.toString());
+          if (s.length() == 0) {
+              dumpJndi(ncp.getName(), jc);
+          } else {
+              dumpJndi(s + "/" + ncp.getName(), jc);
+          }
+      }
+  }
+
 }

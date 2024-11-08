@@ -53,32 +53,11 @@ public class UserBeginClientJspTest extends com.sun.ts.tests.jta.ee.usertransact
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    begin_ejb_vehicle: 
-    begin_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    begin_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    begin_jsp_vehicle: 
-    begin_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    begin_servlet_vehicle: 
-    begin_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/begin/jsp_vehicle_web.xml
-    /com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml
-    Ear:
-
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-    // War
-        // the war with the correct archive name
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive begin_jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "begin_jsp_vehicle_web.war");
-        // The class files
         begin_jsp_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
@@ -105,19 +84,16 @@ public class UserBeginClientJspTest extends com.sun.ts.tests.jta.ee.usertransact
         warResURL = UserBeginClientJspTest.class.getResource("/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
         begin_jsp_vehicle_web.addAsWebResource(warResURL, "/jsp_vehicle.jsp");
 
-        // The sun-web.xml descriptor
-        // warResURL = UserBeginClientJspTest.class.getClassLoader().getResource(packagePath+"/begin_jsp_vehicle_web.war.sun-web.xml");
-        // if(warResURL != null) {
-        //     begin_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-        // }
+        warResURL = UserBeginClientJspTest.class.getClassLoader().getResource(packagePath+"/begin_jsp_vehicle_web.war.sun-web.xml");
+        if(warResURL != null) {
+            begin_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
+        }
+        archiveProcessor.processWebArchive(begin_jsp_vehicle_web, UserBeginClientJspTest.class, warResURL);
 
-
-        // archiveProcessor.processWebArchive(begin_jsp_vehicle_web, UserBeginClientJspTest.class, warResURL);
-
-    // Ear
-        EnterpriseArchive begin_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "begin_jsp_vehicle.ear");
-        begin_jsp_vehicle_ear.addAsModule(begin_jsp_vehicle_web);
-        return begin_jsp_vehicle_ear;
+        return begin_jsp_vehicle_web;
+        // EnterpriseArchive begin_jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "begin_jsp_vehicle.ear");
+        // begin_jsp_vehicle_ear.addAsModule(begin_jsp_vehicle_web);
+        // return begin_jsp_vehicle_ear;
     }
 
     @Test

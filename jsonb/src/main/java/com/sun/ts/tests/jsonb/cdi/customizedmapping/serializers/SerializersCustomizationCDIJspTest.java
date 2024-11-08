@@ -73,24 +73,14 @@ import java.lang.System.Logger;
 @Tag("platform")
 @Tag("web")
 @ExtendWith(ArquillianExtension.class)
-public class SerializersCustomizationCDIJspTest extends ServiceEETest {
+public class SerializersCustomizationCDIJspTest extends SerializersCustomizationCDITest {
 
   static final String VEHICLE_ARCHIVE = "jsonb_cdi_customizedmapping_serializers_jsp_vehicle";
-
-  private final Jsonb jsonb = JsonbBuilder.create();
 
   public static void main(String[] args) {
     SerializersCustomizationCDIJspTest t = new SerializersCustomizationCDIJspTest();
     Status s = t.run(args, System.out, System.err);
     s.exit();
-  }
-
-  public void setup(String[] args, Properties p) throws Exception {
-    // logMsg("setup ok");
-  }
-
-  public void cleanup() throws Exception {
-    // logMsg("cleanup ok");
   }
 
   private static final Logger logger = System.getLogger(SerializersCustomizationCDIJspTest.class.getName());
@@ -110,28 +100,29 @@ public class SerializersCustomizationCDIJspTest extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, testable = true)
-  public static EnterpriseArchive createServletDeployment() throws Exception {
+  public static WebArchive createServletDeployment() throws Exception {
   
     WebArchive jsonb_cdi_customizedmapping_serializers_jsp_vehicle = ShrinkWrap.create(WebArchive.class, "jsonb_cdi_customizedmapping_serializers_jsp_vehicle_web.war");
-    jsonb_cdi_customizedmapping_serializers_jsp_vehicle.addClass(SerializersCustomizationCDIJspTest.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleRunnable.class)
-      .addClass(com.sun.ts.tests.common.vehicle.VehicleClient.class)
-      .addClass(com.sun.ts.lib.harness.EETest.class)
-      .addClass(com.sun.ts.lib.harness.EETest.SetupException.class)      
-      .addClass(com.sun.ts.lib.harness.EETest.Fault.class)      
-      .addClass(com.sun.ts.lib.harness.ServiceEETest.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializer.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializerInjected.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListDeserializerInjected.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListSerializer.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalSerializer.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.AnimalShelterWithInjectedSerializer.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat.class)
-      .addClass(com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog.class);
+    jsonb_cdi_customizedmapping_serializers_jsp_vehicle.addClasses(SerializersCustomizationCDIJspTest.class,
+      com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+      com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+      com.sun.ts.tests.common.vehicle.VehicleClient.class,
+      com.sun.ts.lib.harness.EETest.class,
+      com.sun.ts.lib.harness.EETest.SetupException.class,      
+      com.sun.ts.lib.harness.EETest.Fault.class,      
+      com.sun.ts.lib.harness.ServiceEETest.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalBuilder.TYPE.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializer.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalDeserializerInjected.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListDeserializerInjected.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalListSerializer.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer.AnimalSerializer.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.AnimalShelterWithInjectedSerializer.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat.class,
+      com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog.class,
+      SerializersCustomizationCDITest.class);
 
     jsonb_cdi_customizedmapping_serializers_jsp_vehicle.setWebXML(SerializersCustomizationCDIJspTest.class.getClassLoader().getResource(packagePath+"/jsp_vehicle_web.xml"));
     URL warResURL = SerializersCustomizationCDIJspTest.class.getClassLoader().getResource(packagePath+"/beans.xml");
@@ -145,9 +136,10 @@ public class SerializersCustomizationCDIJspTest extends ServiceEETest {
     resURL = SerializersCustomizationCDIJspTest.class.getResource("/vehicle/jsp/contentRoot/client.html");
     jsonb_cdi_customizedmapping_serializers_jsp_vehicle.addAsWebResource(resURL, "/client.html");    
 
-    EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_serializers_jsp_vehicle.ear");
-    ear.addAsModule(jsonb_cdi_customizedmapping_serializers_jsp_vehicle);
-    return ear;
+    return jsonb_cdi_customizedmapping_serializers_jsp_vehicle;
+    // EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonb_cdi_customizedmapping_serializers_jsp_vehicle.ear");
+    // ear.addAsModule(jsonb_cdi_customizedmapping_serializers_jsp_vehicle);
+    // return ear;
 
   }
 
@@ -163,30 +155,6 @@ public class SerializersCustomizationCDIJspTest extends ServiceEETest {
   @Test
   @TargetVehicle("jsp")
   public void testCDISupport() throws Exception {
-    AnimalShelterWithInjectedSerializer animalShelter = new AnimalShelterWithInjectedSerializer();
-    animalShelter.addAnimal(new Cat(5, "Garfield", 10.5f, true, true));
-    animalShelter.addAnimal(new Dog(3, "Milo", 5.5f, false, true));
-    animalShelter.addAnimal(new Animal(6, "Tweety", 0.5f, false));
-
-    String jsonString = jsonb.toJson(animalShelter);
-    if (!jsonString.matches("\\{\\s*\"animals\"\\s*:\\s*\\[\\s*"
-        + "\\{\\s*\"type\"\\s*:\\s*\"cat\"\\s*,\\s*\"cuddly\"\\s*:\\s*true\\s*,\\s*\"age\"\\s*:\\s*5\\s*,\\s*\"furry\"\\s*:\\s*true\\s*,\\s*\"name\"\\s*:\\s*\"Garfield\"\\s*,\\s*\"weight\"\\s*:\\s*10.5\\s*}\\s*,\\s*"
-        + "\\{\\s*\"type\"\\s*:\\s*\"dog\"\\s*,\\s*\"barking\"\\s*:\\s*true\\s*,\\s*\"age\"\\s*:\\s*3\\s*,\\s*\"furry\"\\s*:\\s*false\\s*,\\s*\"name\"\\s*:\\s*\"Milo\"\\s*,\\s*\"weight\"\\s*:\\s*5.5\\s*}\\s*,\\s*"
-        + "\\{\\s*\"type\"\\s*:\\s*\"animal\"\\s*,\\s*\"age\"\\s*:\\s*6\\s*,\\s*\"furry\"\\s*:\\s*false\\s*,\\s*\"name\"\\s*:\\s*\"Tweety\"\\s*,\\s*\"weight\"\\s*:\\s*0.5\\s*}\\s*"
-        + "]\\s*}")) {
-      throw new Exception(
-          "Failed to correctly marshall complex type hierarchy using a serializer configured using JsonbTypeSerializer annotation and a deserializer with a CDI managed field configured using JsonbTypeDeserializer annotation.");
-    }
-
-    AnimalShelterWithInjectedSerializer unmarshalledObject = jsonb
-        .fromJson("{ \"animals\" : [ "
-            + "{ \"type\" : \"cat\", \"cuddly\" : true, \"age\" : 5, \"furry\" : true, \"name\" : \"Garfield\" , \"weight\" : 10.5}, "
-            + "{ \"type\" : \"dog\", \"barking\" : true, \"age\" : 3, \"furry\" : false, \"name\" : \"Milo\", \"weight\" : 5.5}, "
-            + "{ \"type\" : \"animal\", \"age\" : 6, \"furry\" : false, \"name\" : \"Tweety\", \"weight\" : 0.5}"
-            + " ] }", AnimalShelterWithInjectedSerializer.class);
-    if (!animalShelter.equals(unmarshalledObject)) {
-      throw new Exception(
-          "Failed to correctly unmarshall complex type hierarchy using a serializer configured using JsonbTypeSerializer annotation and a deserializer with a CDI managed field configured using JsonbTypeDeserializer annotation.");
-    }
+    super.testCDISupport();
   }
 }

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -36,19 +37,9 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
   @EJB
   private AppResRemoteIF moduleBean;
 
-  @Resource
-  private ModuleMBean moduleMBean;
-
   @SuppressWarnings("unused")
   @PostConstruct
   private void postConstruct() {
-    lookupShouldFail(
-        "java:app/ejb3_misc_moduleName_appclientejb_client/ModuleMBean",
-        postConstructRecords);
-    lookupShouldFail(
-        "java:app/ejb3_misc_moduleName_appclientejb_ejb/ModuleMBean",
-        postConstructRecords);
-
     lookupShouldFail(
         "java:app/ejb3_misc_moduleName_appclientejb_client/ModuleBean",
         postConstructRecords);
@@ -62,11 +53,9 @@ public class ModuleBean extends AppResBeanBase implements AppResRemoteIF {
     Helper.getLogger().info(postConstructRecords.toString());
 
     Helper.assertNotEquals(null, null, moduleBean, postConstructRecords);
-    Helper.assertNotEquals(null, null, moduleMBean, postConstructRecords);
 
     AppResRemoteIF lookupResult = null;
-    String[] names = { "java:module/ModuleMBean", "java:module/ModuleBean",
-        "java:app/renamed_appclientejb_ejb/ModuleMBean",
+    String[] names = { "java:module/ModuleBean",
         "java:app/renamed_appclientejb_ejb/ModuleBean",
         "java:global/ejb3_misc_moduleName_appclientejb/renamed_appclientejb_ejb/ModuleBean" };
     for (String name : names) {

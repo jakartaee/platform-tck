@@ -46,8 +46,7 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
                 com.sun.ts.tests.servlet.common.util.Data.class,
                 com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase.class,
                 com.sun.ts.tests.ejb30.misc.moduleName.twowars.TestServlet2.class,
-                com.sun.ts.tests.ejb30.misc.moduleName.twowars.Module2Bean.class,
-                com.sun.ts.tests.ejb30.misc.moduleName.twowars.ModuleMBean.class
+                com.sun.ts.tests.ejb30.misc.moduleName.twowars.Module2Bean.class
         );
         URL warResURL = Client.class.getResource("two_standalone_component_web.xml");
         two_standalone_component_web.addAsWebInfResource(warResURL, "web.xml");
@@ -82,7 +81,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.misc.moduleName.twowars.C
             com.sun.ts.tests.servlet.common.servlets.HttpTCKServlet.class,
             com.sun.ts.tests.ejb30.misc.moduleName.twowars.TestServlet.class,
             com.sun.ts.tests.ejb30.assembly.appres.common.TestServletBase.class,
-            com.sun.ts.tests.ejb30.misc.moduleName.twowars.ModuleMBean.class,
             com.sun.ts.tests.servlet.common.util.Data.class
             );
             // The web.xml descriptor

@@ -78,19 +78,21 @@ public class ObjectMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.object
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.jms.core.objectMsgQueue.ObjectMsgQueueTests.class
             );
             // The application-client.xml descriptor
             URL resURL = ObjectMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
             if(resURL != null) {
               objectMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = ObjectMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = ObjectMsgQueueTests.class.getResource("objectMsgQueue_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              objectMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              objectMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            objectMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ObjectMsgQueueTests.class.getName() + "\n"), "MANIFEST.MF");
+            //objectMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ObjectMsgQueueTests.class.getName() + "\n"), "MANIFEST.MF");
+            objectMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(objectMsgQueue_ejb_vehicle_client, ObjectMsgQueueTests.class, resURL);
 
@@ -112,12 +114,12 @@ public class ObjectMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.object
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = ObjectMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
+            URL ejbResURL = ObjectMsgQueueTests.class.getResource("ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               objectMsgQueue_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = ObjectMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = ObjectMsgQueueTests.class.getResource("objectMsgQueue_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               objectMsgQueue_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -135,15 +137,6 @@ public class ObjectMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.object
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ObjectMsgQueueTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              objectMsgQueue_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(objectMsgQueue_ejb_vehicle_ear, ObjectMsgQueueTests.class, earResURL);
         return objectMsgQueue_ejb_vehicle_ear;
         }
 

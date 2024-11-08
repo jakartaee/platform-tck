@@ -13,9 +13,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>jakarta.ee.tck.coreprofile</groupId>
+        <groupId>jakarta.tck.coreprofile</groupId>
         <artifactId>core-tck-parent</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>11.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -25,59 +25,59 @@
 
     <properties>
         <asciidoctor.maven.plugin.version>3.0.0</asciidoctor.maven.plugin.version>
-        <asciidoctorj.pdf.version>1.6.2</asciidoctorj.pdf.version>
-        <asciidoctorj.version>2.5.3</asciidoctorj.version>
+        <asciidoctorj.pdf.version>2.3.18</asciidoctorj.pdf.version>
+        <asciidoctorj.version>3.0.0</asciidoctorj.version>
         <guide.name>core-profile-tck-reference-guide</guide.name>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>core-tck-parent</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
         </dependency>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>cdi-lite-tck-suite</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>cdi-lite-tck-suite</artifactId>
             <version>${project.version}</version>
             <type>xml</type>
         </dependency>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>rest-tck-suite</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>common-annotations</artifactId>
             <version>${project.version}</version>
-            <classifier>sigtest-jdk11</classifier>
+            <classifier>sigtest</classifier>
             <type>sig</type>
         </dependency>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>core-profile-tck-impl</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>core-profile-tck-impl</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>core-tck-jsonp-extension</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakarta.ee.tck.coreprofile</groupId>
+            <groupId>jakarta.tck.coreprofile</groupId>
             <artifactId>core-tck-jsonp-extension</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
@@ -108,7 +108,6 @@
                             <backend>html5</backend>
                             <sourceDirectory>src/main/asciidoc</sourceDirectory>
                             <sourceDocumentName>tck-reference-guide.asciidoc</sourceDocumentName>
-                            <headerFooter>true</headerFooter>
                             <outputFile>${project.build.directory}/generated-docs/${guide.name}.html</outputFile>
                             <attributes>
                                 <docinfo>true</docinfo>
@@ -116,7 +115,7 @@
                                 <tck-version>${project.version}</tck-version>
                                 <revnumber>10.0</revnumber>
                                 <revmajor>10</revmajor>
-                                <toc></toc>
+                                <toc />
                             </attributes>
                         </configuration>
                     </execution>
@@ -131,14 +130,13 @@
                             <sourceDirectory>src/main/asciidoc</sourceDirectory>
                             <sourceDocumentName>tck-reference-guide.asciidoc</sourceDocumentName>
                             <outputFile>${project.build.directory}/generated-docs/${guide.name}.pdf</outputFile>
-                            <headerFooter>true</headerFooter>
                             <attributes>
                                 <docinfo>true</docinfo>
                                 <experimental>true</experimental>
                                 <tck-version>${project.version}</tck-version>
                                 <revnumber>10.0</revnumber>
                                 <revmajor>10</revmajor>
-                                <toc></toc>
+                                <toc />
                             </attributes>
                         </configuration>
                     </execution>

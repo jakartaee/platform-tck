@@ -21,18 +21,28 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
-
+import com.sun.ts.lib.harness.Status;
+import java.util.Properties;
 
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("persistence")
 @Tag("platform")
-@Tag("web")
 @Tag("tck-appclient")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client2 {
     static final String VEHICLE_ARCHIVE = "jpa_core_StoredProcedureQuery_appmanaged_vehicle";
+
+    public static void main(String[] args) {
+      Client2AppmanagedTest theTests = new Client2AppmanagedTest();
+      Status s = theTests.run(args, System.out, System.err);
+      s.exit();
+    }
+
+    public void setup(String[] args, Properties p) throws Exception {
+        super.setup(args, p);
+    }
 
         /**
         EE10 Deployment Descriptors:
@@ -64,7 +74,7 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.Store
         public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
-            JavaArchive jpa_core_StoredProcedureQuery_appmanaged_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_StoredProcedureQuery_appmanaged_vehicle_client.jar");
+            JavaArchive jpa_core_StoredProcedureQuery_appmanaged_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_StoredProcedureQuery_vehicles_client.jar");
             // The class files
             jpa_core_StoredProcedureQuery_appmanaged_vehicle_client.addClasses(
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -84,7 +94,9 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.Store
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
             com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class
+            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class,
+            ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client2.class,
+            Client2AppmanagedTest.class
             );
             // The application-client.xml descriptor
             URL resURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
@@ -94,9 +106,9 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.Store
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_StoredProcedureQuery_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_StoredProcedureQuery_appmanaged_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_StoredProcedureQuery_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+            jpa_core_StoredProcedureQuery_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client2.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_StoredProcedureQuery_appmanaged_vehicle_client, Client2.class, resURL);
 
@@ -123,15 +135,16 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.Store
                 com.sun.ts.lib.harness.EETest.SetupException.class,
                 com.sun.ts.tests.common.vehicle.VehicleClient.class,
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
-                ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class
+                ee.jakarta.tck.persistence.core.StoredProcedureQuery.Client.class,
+                Client2AppmanagedTest.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client2.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            URL ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(ejbResURL1 != null) {
-              jpa_core_StoredProcedureQuery_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
+//              jpa_core_StoredProcedureQuery_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client2.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_StoredProcedureQuery_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
@@ -225,6 +238,5 @@ public class Client2AppmanagedTest extends ee.jakarta.tck.persistence.core.Store
         public void setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest() throws java.lang.Exception {
             super.setParameterParameterCalendarTemporalTypeIllegalArgumentExceptionTest();
         }
-
 
 }

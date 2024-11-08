@@ -53,32 +53,11 @@ public class UserBeginClientServletTest extends com.sun.ts.tests.jta.ee.usertran
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    begin_ejb_vehicle: 
-    begin_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    begin_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    begin_jsp_vehicle: 
-    begin_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    begin_servlet_vehicle: 
-    begin_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/begin/servlet_vehicle_web.xml
-    /com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml
-    Ear:
-
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-    // War
-        // the war with the correct archive name
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive begin_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "begin_servlet_vehicle_web.war");
-        // The class files
         begin_servlet_vehicle_web.addClasses(
         com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
         com.sun.ts.lib.harness.EETest.Fault.class,
@@ -89,11 +68,8 @@ public class UserBeginClientServletTest extends com.sun.ts.tests.jta.ee.usertran
         com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
         com.sun.ts.tests.jta.ee.usertransaction.begin.UserBeginClient.class,
         com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-        com.sun.ts.tests.jta.ee.common.InvalidStatusException.class,
-        com.sun.ts.tests.jta.ee.common.InitFailedException.class,
         com.sun.ts.lib.harness.EETest.class,
         com.sun.ts.lib.harness.ServiceEETest.class,
-        com.sun.ts.tests.jta.ee.common.TransactionStatus.class,
         com.sun.ts.lib.harness.EETest.SetupException.class,
         com.sun.ts.tests.common.vehicle.VehicleClient.class,
         UserBeginClientServletTest.class
@@ -101,20 +77,19 @@ public class UserBeginClientServletTest extends com.sun.ts.tests.jta.ee.usertran
         // The web.xml descriptor
         URL warResURL = UserBeginClientServletTest.class.getClassLoader().getResource(packagePath+"/servlet_vehicle_web.xml");
         if(warResURL != null) {
-            begin_servlet_vehicle_web.setWebXML(warResURL);
+            begin_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
         }
         // The sun-web.xml descriptor
         warResURL = UserBeginClientServletTest.class.getClassLoader().getResource(packagePath+"/begin_servlet_vehicle_web.war.sun-web.xml");
         if(warResURL != null) {
             begin_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
         }
-        // Web content
         archiveProcessor.processWebArchive(begin_servlet_vehicle_web, UserBeginClientServletTest.class, warResURL);
 
-    // Ear
-        EnterpriseArchive begin_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "begin_servlet_vehicle.ear");
-        begin_servlet_vehicle_ear.addAsModule(begin_servlet_vehicle_web); 
-        return begin_servlet_vehicle_ear;
+        return begin_servlet_vehicle_web;
+        // EnterpriseArchive begin_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "begin_servlet_vehicle.ear");
+        // begin_servlet_vehicle_ear.addAsModule(begin_servlet_vehicle_web); 
+        // return begin_servlet_vehicle_ear;
     }
 
     @Test

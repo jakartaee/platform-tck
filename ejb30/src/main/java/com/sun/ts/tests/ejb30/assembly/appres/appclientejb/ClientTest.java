@@ -79,7 +79,6 @@ public class ClientTest extends com.sun.ts.tests.ejb30.assembly.appres.appclient
             JavaArchive ejb3_assembly_appres_appclientejb_client = ShrinkWrap.create(JavaArchive.class, "ejb3_assembly_appres_appclientejb_client.jar");
             // The class files
             ejb3_assembly_appres_appclientejb_client.addClasses(
-            com.sun.ts.tests.ejb30.assembly.appres.common.AppResManagedBean.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.ejb30.assembly.appres.appclientejb.Client.class,
             com.sun.ts.lib.harness.EETest.class,

@@ -65,15 +65,16 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("");
-            if(resURL != null) {
-              cditestsmdb_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // URL resURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/appclient/appclient_vehicle_client.xml");
+            // if(resURL != null) {
+            //   cditestsmdb_client.addAsManifestResource(resURL, "application-client.xml");
+            // } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
-            if(resURL != null) {
-              cditestsmdb_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // resURL = Client.class.getResource("");
+            // if(resURL != null) {
+            //   cditestsmdb_client.addAsManifestResource(resURL, "sun-application-client.xml");
+            // }
+            URL resURL = null;
             cditestsmdb_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(cditestsmdb_client, Client.class, resURL);
@@ -88,15 +89,20 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
                 com.sun.ts.tests.jms.ee20.cditests.mdb.EjbClient.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/mdb/cditestsmdb_ejb.xml");
+            URL ejbResURL = Client.class.getResource("cditestsmdb_ejb.xml");
             if(ejbResURL != null) {
               cditestsmdb_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/mdb/cditestsmdb_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("cditestsmdb_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               cditestsmdb_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
+            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/resources/beans.xml");
+            if(ejbResURL != null) {
+              cditestsmdb_ejb.addAsManifestResource(ejbResURL, "beans.xml");
+            }
+
             // Call the archive processor
             archiveProcessor.processEjbArchive(cditestsmdb_ejb, Client.class, ejbResURL);
 
@@ -113,15 +119,15 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.mdb.Client {
 
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("/./application.xml");
+            earResURL = Client.class.getResource("application.xml.clientear");
             if(earResURL != null) {
               cditestsmdb_ear.addAsManifestResource(earResURL, "application.xml");
             }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/./application.ear.sun-application.xml");
-            if(earResURL != null) {
-              cditestsmdb_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+            // // The sun-application.xml descriptor
+            // earResURL = Client.class.getResource("/./application.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   cditestsmdb_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
             // Call the archive processor
             archiveProcessor.processEarArchive(cditestsmdb_ear, Client.class, earResURL);
         return cditestsmdb_ear;

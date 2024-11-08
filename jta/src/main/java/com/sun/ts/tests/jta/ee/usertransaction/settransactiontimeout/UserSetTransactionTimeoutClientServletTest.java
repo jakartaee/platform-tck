@@ -53,28 +53,10 @@ public class UserSetTransactionTimeoutClientServletTest extends com.sun.ts.tests
       logger.log(Logger.Level.INFO, "cleanup ok");
     }
 
-    /**
-    EE10 Deployment Descriptors:
-    settransactiontimeout_ejb_vehicle: 
-    settransactiontimeout_ejb_vehicle_client: META-INF/application-client.xml,jar.sun-application-client.xml
-    settransactiontimeout_ejb_vehicle_ejb: META-INF/ejb-jar.xml,jar.sun-ejb-jar.xml
-    settransactiontimeout_jsp_vehicle: 
-    settransactiontimeout_jsp_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-    settransactiontimeout_servlet_vehicle: 
-    settransactiontimeout_servlet_vehicle_web: WEB-INF/web.xml,war.sun-web.xml
-
-    Found Descriptors:
-    War:
-
-    /com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/servlet_vehicle_web.xml
-    /com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml
-    Ear:
-
-    */
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
     // War
         // the war with the correct archive name
         WebArchive settransactiontimeout_servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "settransactiontimeout_servlet_vehicle_web.war");
@@ -103,37 +85,16 @@ public class UserSetTransactionTimeoutClientServletTest extends com.sun.ts.tests
         if(warResURL != null) {
             settransactiontimeout_servlet_vehicle_web.setWebXML(warResURL);
         }
-        // The sun-web.xml descriptor
         warResURL = UserSetTransactionTimeoutClientServletTest.class.getClassLoader().getResource(packagePath+"/settransactiontimeout_servlet_vehicle_web.war.sun-web.xml");
         if(warResURL != null) {
             settransactiontimeout_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
         }
-        // Web content
         archiveProcessor.processWebArchive(settransactiontimeout_servlet_vehicle_web, UserSetTransactionTimeoutClientServletTest.class, warResURL);
 
-    // Ear
-        EnterpriseArchive settransactiontimeout_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "settransactiontimeout_servlet_vehicle.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
-        settransactiontimeout_servlet_vehicle_ear.addAsModule(settransactiontimeout_servlet_vehicle_web);
-
-
-
-        // // The application.xml descriptor
-        // URL earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/");
-        // if(earResURL != null) {
-        //   settransactiontimeout_servlet_vehicle_ear.addAsManifestResource(earResURL, "application.xml");
-        // }
-        // // The sun-application.xml descriptor
-        // earResURL = UserSetTransactionTimeoutClient.class.getResource("/com/sun/ts/tests/jta/ee/usertransaction/settransactiontimeout/.ear.sun-application.xml");
-        // if(earResURL != null) {
-        //   settransactiontimeout_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        // }
-        // archiveProcessor.processEarArchive(settransactiontimeout_servlet_vehicle_ear, UserSetTransactionTimeoutClient.class, earResURL);
-    
-        return settransactiontimeout_servlet_vehicle_ear;
+        return settransactiontimeout_servlet_vehicle_web;
+        // EnterpriseArchive settransactiontimeout_servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "settransactiontimeout_servlet_vehicle.ear");
+        // settransactiontimeout_servlet_vehicle_ear.addAsModule(settransactiontimeout_servlet_vehicle_web);
+        // return settransactiontimeout_servlet_vehicle_ear;
     }
 
     @Test

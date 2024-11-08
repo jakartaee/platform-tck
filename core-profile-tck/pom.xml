@@ -11,26 +11,27 @@
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>jakarta.tck</groupId>
+        <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>1.0.9</version>
+        <relativePath />
     </parent>
 
-    <groupId>jakarta.ee.tck.coreprofile</groupId>
+    <groupId>jakarta.tck.coreprofile</groupId>
     <artifactId>core-tck-parent</artifactId>
+    <version>11.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Jakarta Core TCK</name>
 
     <!-- Metadata -->
-    <url>https://github.com/eclipse-ee4j/jakartaee-tck</url>
+    <url>https://github.com/jakartaee/jakartaee-tck</url>
 
     <inceptionYear>2008</inceptionYear>
 
     <organization>
         <name>Jakarta Core Profile TCK</name>
-        <url>https://github.com/eclipse-ee4j/jakartaee-tck</url>
+        <url>https://github.com/jakartaee/platform-tck.git</url>
     </organization>
 
     <licenses>
@@ -55,6 +56,13 @@
 
     </developers>
 
+    <scm>
+        <connection>scm:git:git@github.com:jakartaee/platform-tck.git</connection>
+        <developerConnection>scm:git:git@github.com:jakartaee/platform-tck.git</developerConnection>
+        <url>https://github.com/jakartaee/platform-tck</url>
+        <tag>11.0.0</tag>
+    </scm>
+
     <modules>
         <module>ca-sigtest</module>
         <module>cdi-tck-suite</module>
@@ -66,7 +74,7 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/eclipse-ee4j/jakartaee-tck/issues</url>
+        <url>https://github.com/jakartaee/platform-tck/issues</url>
     </issueManagement>
 
     <ciManagement>
@@ -75,29 +83,36 @@
     </ciManagement>
 
     <properties>
+        <arquillian.version>1.9.1.Final</arquillian.version>
+        <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
 
         <!-- Jakarta EE APIs Core -->
-        <annotations.api.version>2.1.1</annotations.api.version>
+        <annotations.api.version>3.0.0</annotations.api.version>
         <apache.httpclient.version>3.1</apache.httpclient.version>
 
-        <cdi.api.version>4.0.0</cdi.api.version>
-        <cdi.tck.version>4.0.6</cdi.tck.version>
-        <!-- Required for distribution build, should be overriden for each build -->
+        <cdi.api.version>4.1.0</cdi.api.version>
+        <cdi.tck.version>4.1.0</cdi.tck.version>
+        <jakarta.interceptor-api.version>2.2.0</jakarta.interceptor-api.version>
+
+        <!-- Required for distribution build, should be overriden for each build. -->
         <core.tck.version>${project.version}</core.tck.version>
-        <el.api.version>5.0.0</el.api.version>
+        <el.api.version>6.0.1</el.api.version>
         <inject.api.version>2.0.1</inject.api.version>
         <inject.tck.version>2.0.2</inject.tck.version>
-        <interceptors.api.version>2.1.0</interceptors.api.version>
-        <jsonb.api.version>3.0.0</jsonb.api.version>
-        <jsonp.api.version>2.1.0</jsonp.api.version>
+        <interceptors.api.version>2.2.0</interceptors.api.version>
+        <jsonb.api.version>3.0.1</jsonb.api.version>
+        <jsonb.tck.version>3.0.0</jsonb.tck.version>
+        <jsonp.api.version>2.1.3</jsonp.api.version>
+        <jsonp.tck.version>2.1.1</jsonp.tck.version>
         <junit.version>5.8.2</junit.version>
-        <maven.compiler.release>11</maven.compiler.release>
-        <rest.api.version>3.1.0</rest.api.version>
-        <rest.tck.version>3.1.1</rest.tck.version>
+        <maven.compiler.release>17</maven.compiler.release>
+        <rest.api.version>4.0.0</rest.api.version>
+        <rest.tck.version>4.0.1</rest.tck.version>
 
         <!-- Test tools/dependencies -->
-        <testng.version>7.4.0</testng.version>
-        <weld.version>5.0.1.Final</weld.version>
+        <testng.version>7.10.2</testng.version>
+        <shrinkwrap.version>3.2.1</shrinkwrap.version>
+        <weld.version>6.0.0.Beta4</weld.version>
     </properties>
 
     <!-- Dependency management -->
@@ -150,6 +165,13 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
+                <version>${shrinkwrap.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>org.jboss.arquillian.container</groupId>
@@ -167,17 +189,143 @@
                 <artifactId>arquillian-junit5-container</artifactId>
                 <version>${arquillian.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.enterprise</groupId>
+                <artifactId>jakarta.enterprise.cdi-api</artifactId>
+                <version>${cdi.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.interceptor</groupId>
+                <artifactId>jakarta.interceptor-api</artifactId>
+                <version>${jakarta.interceptor-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${annotations.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.inject</groupId>
+                <artifactId>jakarta.inject-api</artifactId>
+                <version>${inject.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.json</groupId>
+                <artifactId>jakarta.json-api</artifactId>
+                <version>${jsonp.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.json.bind</groupId>
+                <artifactId>jakarta.json.bind-api</artifactId>
+                <version>${jsonb.api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.ws.rs</groupId>
+                <artifactId>jakarta.ws.rs-api</artifactId>
+                <version>${rest.api.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
     <build>
-        <plugins>
-            <!-- do not publish this artifact to Maven repositories -->
-            <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.12.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.8.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>jakarta.tck</groupId>
+                    <artifactId>sigtest-maven-plugin</artifactId>
+                    <version>2.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <configuration>
+                        <doclint>none</doclint>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <environmentVariables>
+                            <AS_JAVA>${java.home}</AS_JAVA>
+                            <JAVA_HOME>${java.home}</JAVA_HOME>
+                        </environmentVariables>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.0.0-M1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.4.2</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.mortbay.jetty</groupId>
+                    <artifactId>tck-extract-tests-maven-plugin</artifactId>
+                    <version>1.2.0-SNAPSHOT</version>
+                    <configuration>
+                        <tckTestsFile>${project.build.outputDirectory}/META-INF/tck-tests.txt</tckTestsFile>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 </project>

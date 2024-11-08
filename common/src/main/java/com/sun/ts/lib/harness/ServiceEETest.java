@@ -87,14 +87,36 @@ public abstract class ServiceEETest extends EETest {
   public Status run(String[] argv, Properties p) {
     Status status = null;
     boolean inTestHarness = TestUtil.iWhereAreWe == TestUtil.VM_HARNESS;
-    boolean isVehicleClient = this instanceof com.sun.ts.tests.common.vehicle.VehicleClient;
+    TestUtil.logTrace("Check if called from within test process, inTestHarness= " + inTestHarness);
+    boolean isVehicleClient = false;
+    URL thisURL = getClass().getProtectionDomain().getCodeSource().getLocation();
+    TestUtil.logTrace("in ServiceEETest.run(), this URL is:  " + thisURL);
+    try {
+      Class<?> vcClass = getClass().getClassLoader().loadClass("com.sun.ts.tests.common.vehicle.VehicleClient");
+      URL vcClassURL = vcClass.getProtectionDomain().getCodeSource().getLocation();
+      TestUtil.logTrace("VehicleClient URL is:  " + vcClassURL);
+      isVehicleClient = vcClass.isAssignableFrom(getClass());
+      TestUtil.logTrace("VehicleClient class check if is vehicle class =  " +
+              (isVehicleClient? "yes, is a com.sun.ts.tests.common.vehicle.VehicleClient"
+                      : "no, is not com.sun.ts.tests.common.vehicle.VehicleClient class"));
+      if (inTestHarness && !isVehicleClient) {
+        String sVehicle = TestUtil.getProperty(p, "vehicle");
+        if("stateless3".equals(sVehicle) || "stateful3".equals(sVehicle)
+        || "appmanaged".equals(sVehicle) || "appmanagedNoTx".equals(sVehicle)) {
+          isVehicleClient = true;
+          TestUtil.logTrace("Using appclient vehicle so set is vehicle client to true");
+        }
+      }
+    } catch (ClassNotFoundException e) {
+      TestUtil.logTrace("VehicleClient class not found, so not a vehicle client.");
+    }
     if (inTestHarness && isVehicleClient) {
       TestUtil.logTrace("in ServiceEETest.run() method");
       String sVehicle = TestUtil.getProperty(p, "vehicle");
       String className = this.getClass().getName();
       // use this name for the context root or jndi name to eliminate
       // naming conflicts for apps deployed at the same time
-      String sVehicleEarName = TestUtil.getProperty(p, "vehicle_ear_name");
+      // comment out unused: String sVehicleEarName = TestUtil.getProperty(p, "vehicle_ear_name");
       TestUtil.logTrace("Vehicle to be used for this test is:  " + sVehicle);
       // call to the Deliverable to run in deliverable specific vehicles
       // This should never be called on the server, so there is

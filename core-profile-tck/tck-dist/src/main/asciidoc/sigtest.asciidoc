@@ -8,6 +8,6 @@ The Core Profile specification has no API artifact other than the utility api ja
 
 === Running the Component Specification Signature Tests
 
-Each required component TCK describes how to run its signature tests. The JSON-P, JSON-B and Restful standalone TCKs include a test that sets up and runs the signature tests as part of the Junit 5 tests. Running those standalone TCKs generates the signature test results.
+Each required component TCK describes how to run its signature tests. The Annotations, JSON-P, JSON-B and Restful standalone TCKs include a test that sets up and runs the signature tests as part of the Junit 5 tests. Running those standalone TCKs generates the signature test results.
 
 The CDI TCK includes a pom file to execute the signature tests. See the CDI TCK user guide for how to run those tests.

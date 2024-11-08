@@ -1083,7 +1083,8 @@ public class Client extends ServiceEETest {
    * the send and recv of data:
    *
    * MessageProducer.send(Destination, Message) MessageConsumer.receive(timeout)
-   */ public void topicSendAndRecvTest1() throws Exception {
+   */ 
+  public void topicSendAndRecvTest1() throws Exception {
     boolean pass = true;
     String message = "Where are you!";
     try {

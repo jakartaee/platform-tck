@@ -72,7 +72,6 @@ public class ForeignMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.forei
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
                                 com.sun.ts.tests.jms.common.ObjectMessageTestImpl.class,
-            com.sun.ts.tests.jms.core.foreignMsgQueue.ForeignMsgQueueTests.class,
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
                                 com.sun.ts.tests.jms.common.JmsTool.class,
                                 com.sun.ts.tests.jms.common.BytesMessageTestImpl.class,
@@ -85,19 +84,21 @@ public class ForeignMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.forei
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.jms.core.foreignMsgQueue.ForeignMsgQueueTests.class
             );
             // The application-client.xml descriptor
             URL resURL = ForeignMsgQueueTests.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
             if(resURL != null) {
               foreignMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = ForeignMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = ForeignMsgQueueTests.class.getResource("foreignMsgQueue_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              foreignMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              foreignMsgQueue_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            foreignMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ForeignMsgQueueTests.class.getName() + "\n"), "MANIFEST.MF");
+            //foreignMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ForeignMsgQueueTests.class.getName() + "\n"), "MANIFEST.MF");
+            foreignMsgQueue_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(foreignMsgQueue_ejb_vehicle_client, ForeignMsgQueueTests.class, resURL);
 
@@ -132,12 +133,12 @@ public class ForeignMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.forei
                 com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = ForeignMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
+            URL ejbResURL = ForeignMsgQueueTests.class.getResource("ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               foreignMsgQueue_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = ForeignMsgQueueTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = ForeignMsgQueueTests.class.getResource("foreignMsgQueue_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               foreignMsgQueue_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -155,15 +156,6 @@ public class ForeignMsgQueueTestsEjbTest extends com.sun.ts.tests.jms.core.forei
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ForeignMsgQueueTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              foreignMsgQueue_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(foreignMsgQueue_ejb_vehicle_ear, ForeignMsgQueueTests.class, earResURL);
         return foreignMsgQueue_ejb_vehicle_ear;
         }
 

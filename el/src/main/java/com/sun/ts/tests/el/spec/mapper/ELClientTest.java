@@ -61,7 +61,7 @@ public class ELClientTest extends ServiceEETest {
       logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
   }
 
-  Properties testProps;
+  Properties testProps = System.getProperties();
 
   public static void main(String[] args) {
     ELClientTest theTests = new ELClientTest();

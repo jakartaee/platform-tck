@@ -1,0 +1,34 @@
+[[appeals-process]]
+
+== Appeals Process
+
+While the CDI TCK is rigorous about enforcing an implementation's conformance to the Jakarta CDI specification, it's reasonable to assume that an implementor may discover new and/or better ways to validate the assertions.
+The appeals process is defined by the Jakarta EE
+link:$$https://jakarta.ee/committees/specification/tckprocess/$$[Jakarta EE TCK Process 1.0]
+
+
+=== What challenges to the TCK may be submitted?
+
+Any test case (e.g., test class, +@Test+ method), test case configuration (e.g., beans.xml), test beans, annotations and other resources may be challenged by an appeal. 
+
+What is generally not challengeable are the assertions made by the specification. The specification document is controlled by a separate process and challenges to it should be handled by the Maintenance Lead or by sending an e-mail to link:$$mailto:cdi-dev@eclipse.org$$
+
+=== How these challenges are submitted?
+
+To submit a challenge, a new issue should be created in the link:$$https://github.com/jakartaee/platform-tck$$[CDI specification project] using the label challenge. Any communication regarding the issue should be pursed in the comments of the filed issue for accurate record.
+
+=== How and by whom challenges are addressed?
+
+The challenges will be addressed in a timely fashion by the TCK Lead, as designated by Specification Lead, Red Hat Inc. or his/her designate. The appellant can also monitor the process by following the issue report filed in the link:$$https://github.com/jakartaee/platform-tck$$[Platform TCK project] issues.
+
+The current TCK Lead is listed on the link:$$https://jakarta.ee/specifications/cdi$$[CDI Project Summary Page] on Jakarta EE.
+
+
+=== How accepted challenges to the TCK are managed?
+The worflow for TCK challenges is outlined in
+link:$$https://jakarta.ee/committees/specification/tckprocess/$$[Jakarta EE TCK Process 1.0].
+
+Periodically, an updated TCK will be released, containing tests altered due to challenges - no new tests will be added. Implementations are required to pass the updated TCK. This release stream is numbered 11.0.x, where x will be incremented.
+
+Additionally, new tests will be added to the TCK improving coverage of the specification. We encourage implementations to pass this TCK, however it is not required. This release stream is named 3.y.z where y &gt;= 1.
+

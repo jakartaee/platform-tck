@@ -59,7 +59,7 @@ public class Client1 extends Client {
         super.setup(args,p);
         removeTestData();
         createEmployeeTestData();
-        dataBaseName = System.getProperty("jdbc.db");
+        dataBaseName = p.getProperty("jdbc.db");
 
     }
     public static void main(String[] args) {

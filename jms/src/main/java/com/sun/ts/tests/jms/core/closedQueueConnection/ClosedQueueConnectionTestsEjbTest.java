@@ -79,19 +79,21 @@ public class ClosedQueueConnectionTestsEjbTest extends com.sun.ts.tests.jms.core
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-                                          com.sun.ts.tests.jms.common.MessageTestImpl.class
+            com.sun.ts.tests.jms.common.MessageTestImpl.class,
+            com.sun.ts.tests.jms.core.closedQueueConnection.ClosedQueueConnectionTests.class
             );
             // The application-client.xml descriptor
             URL resURL = ClosedQueueConnectionTests.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
             if(resURL != null) {
               closedQueueConnection_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            } 
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = ClosedQueueConnectionTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = ClosedQueueConnectionTests.class.getResource("closedQueueConnection_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              closedQueueConnection_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              closedQueueConnection_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            closedQueueConnection_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClosedQueueConnectionTests.class.getName() + "\n"), "MANIFEST.MF");
+            //closedQueueConnection_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClosedQueueConnectionTests.class.getName() + "\n"), "MANIFEST.MF");
+            closedQueueConnection_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(closedQueueConnection_ejb_vehicle_client, ClosedQueueConnectionTests.class, resURL);
 
@@ -115,12 +117,12 @@ public class ClosedQueueConnectionTestsEjbTest extends com.sun.ts.tests.jms.core
                                               com.sun.ts.tests.jms.common.MessageTestImpl.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = ClosedQueueConnectionTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.xml");
+            URL ejbResURL = ClosedQueueConnectionTests.class.getResource("ejb_vehicle_ejb.xml");
             if(ejbResURL != null) {
               closedQueueConnection_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = ClosedQueueConnectionTests.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = ClosedQueueConnectionTests.class.getResource("closedQueueConnection_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               closedQueueConnection_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -138,15 +140,6 @@ public class ClosedQueueConnectionTestsEjbTest extends com.sun.ts.tests.jms.core
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = ClosedQueueConnectionTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              closedQueueConnection_ejb_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(closedQueueConnection_ejb_vehicle_ear, ClosedQueueConnectionTests.class, earResURL);
         return closedQueueConnection_ejb_vehicle_ear;
         }
 

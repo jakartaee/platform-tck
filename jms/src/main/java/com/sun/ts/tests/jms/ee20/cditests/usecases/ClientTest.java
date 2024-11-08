@@ -68,15 +68,16 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
             com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean2IF.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("");
-            if(resURL != null) {
-              cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
-            }
-            // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
-            if(resURL != null) {
-              cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
-            }
+            // URL resURL = Client.class.getResource("");
+            // if(resURL != null) {
+            //   cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
+            // }
+            // // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
+            // resURL = Client.class.getResource("/.jar.sun-application-client.xml");
+            // if(resURL != null) {
+            //   cditestsusecases_client.addAsManifestResource(resURL, "application-client.xml");
+            // }
+            URL resURL = null;
             cditestsusecases_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(cditestsusecases_client, Client.class, resURL);
@@ -96,12 +97,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
                 com.sun.ts.tests.jms.ee20.cditests.usecases.CMBean2IF.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/usecases/cditestsusecases_ejb.xml");
+            URL ejbResURL = Client.class.getResource("cditestsusecases_ejb.xml");
             if(ejbResURL != null) {
               cditestsusecases_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/cditests/usecases/cditestsusecases_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("cditestsusecases_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               cditestsusecases_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -121,15 +122,15 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.cditests.usecases.Clie
 
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("/./application.xml");
+            earResURL = Client.class.getResource("application.xml.clientear");
             if(earResURL != null) {
               cditestsusecases_ear.addAsManifestResource(earResURL, "application.xml");
             }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/./application.ear.sun-application.xml");
-            if(earResURL != null) {
-              cditestsusecases_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+            // // The sun-application.xml descriptor
+            // earResURL = Client.class.getResource("application.ear.sun-application.xml");
+            // if(earResURL != null) {
+            //   cditestsusecases_ear.addAsManifestResource(earResURL, "sun-application.xml");
+            // }
             // Call the archive processor
             archiveProcessor.processEarArchive(cditestsusecases_ear, Client.class, earResURL);
         return cditestsusecases_ear;

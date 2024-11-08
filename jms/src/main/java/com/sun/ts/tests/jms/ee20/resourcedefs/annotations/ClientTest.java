@@ -78,11 +78,11 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.annotatio
             // Web content
             warResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/annotations/JspClient.jsp");
             if(warResURL != null) {
-              resourcedefs_annotations_web.addAsWebResource(warResURL, "//JspClient.jsp");
+              resourcedefs_annotations_web.addAsWebResource(warResURL, "/JspClient.jsp");
             }
             warResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/annotations/index.html");
             if(warResURL != null) {
-              resourcedefs_annotations_web.addAsWebResource(warResURL, "//index.html");
+              resourcedefs_annotations_web.addAsWebResource(warResURL, "/index.html");
             }
 
            // Call the archive processor
@@ -100,14 +100,14 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.annotatio
             com.sun.ts.lib.harness.EETest.SetupException.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("");
+            URL resURL = Client.class.getResource("application-client.xml");
             if(resURL != null) {
               resourcedefs_annotations_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("sun-application-client.xml");
             if(resURL != null) {
-              resourcedefs_annotations_client.addAsManifestResource(resURL, "application-client.xml");
+              resourcedefs_annotations_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             resourcedefs_annotations_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -122,12 +122,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.annotatio
                 com.sun.ts.tests.jms.ee20.resourcedefs.annotations.EjbClientIF.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/annotations/resourcedefs_annotations_ejb.xml");
+            URL ejbResURL = Client.class.getResource("resourcedefs_annotations_ejb.xml");
             if(ejbResURL != null) {
               resourcedefs_annotations_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL = Client.class.getResource("/com/sun/ts/tests/jms/ee20/resourcedefs/annotations/resourcedefs_annotations_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL = Client.class.getResource("resourcedefs_annotations_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL != null) {
               resourcedefs_annotations_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
             }
@@ -148,12 +148,12 @@ public class ClientTest extends com.sun.ts.tests.jms.ee20.resourcedefs.annotatio
 
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("/./application.xml");
+            earResURL = Client.class.getResource("application.xml.clientear");
             if(earResURL != null) {
               resourcedefs_annotations_ear.addAsManifestResource(earResURL, "application.xml");
             }
             // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/./application.ear.sun-application.xml");
+            earResURL = Client.class.getResource("application.ear.sun-application.xml");
             if(earResURL != null) {
               resourcedefs_annotations_ear.addAsManifestResource(earResURL, "sun-application.xml");
             }

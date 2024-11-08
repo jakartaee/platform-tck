@@ -40,31 +40,28 @@ public class EJBLiteJSPTag extends Client implements SimpleTag {
     private JspFragment jspBody;
 
     /**
-     * Called by the container to invoke this tag. 
-     * The implementation of this method is provided by the tag library developer,
-     * and handles all tag processing, body iteration, etc.
+     * Called by the container to invoke this tag. The implementation of this method is provided by the tag library
+     * developer, and handles all tag processing, body iteration, etc.
      */
     public void doTag() throws JspException {
-	JspWriter out = getJspContext().getOut();
-	setModuleName(
-		((PageContext) getJspContext()).getServletContext().getContextPath() );
-	String sta = getStatus();  //to trigger the test run
-	getJspContext().setAttribute("statusAndReason", sta + " " + getReason());
-	JspFragment f = getJspBody();
-	if (f != null) {
-	    try {
-		f.invoke(out);
-	    } catch (IOException e) {
-		throw new JspException(e);
-	    }
-	}
+        JspWriter out = getJspContext().getOut();
+        setModuleName(((PageContext) getJspContext()).getServletContext().getContextPath());
+        String sta = getStatus(); // to trigger the test run
+        getJspContext().setAttribute("statusAndReason", sta + " " + getReason());
+        JspFragment f = getJspBody();
+        if (f != null) {
+            try {
+                f.invoke(out);
+            } catch (IOException e) {
+                throw new JspException(e);
+            }
+        }
     }
 
     /**
      * Sets the parent of this tag, for collaboration purposes.
      * <p>
-     * The container invokes this method only if this tag invocation is
-     * nested within another tag invocation.
+     * The container invokes this method only if this tag invocation is nested within another tag invocation.
      *
      * @param parent the tag that encloses this tag
      */
@@ -82,9 +79,8 @@ public class EJBLiteJSPTag extends Client implements SimpleTag {
     }
 
     /**
-     * Stores the provided JSP context in the private jspContext field.
-     * Subclasses can access the <code>JspContext</code> via 
-     * <code>getJspContext()</code>.
+     * Stores the provided JSP context in the private jspContext field. Subclasses can access the <code>JspContext</code>
+     * via <code>getJspContext()</code>.
      * 
      * @param pc the page context for this invocation
      * @see SimpleTag#setJspContext
@@ -94,8 +90,7 @@ public class EJBLiteJSPTag extends Client implements SimpleTag {
     }
 
     /**
-     * Returns the page context passed in by the container via 
-     * setJspContext.
+     * Returns the page context passed in by the container via setJspContext.
      *
      * @return the page context for this invocation
      */
@@ -103,12 +98,11 @@ public class EJBLiteJSPTag extends Client implements SimpleTag {
         return this.jspContext;
     }
 
-    /** 
+    /**
      * Stores the provided JspFragment.
      *
-     * @param jspBody The fragment encapsulating the body of this tag.
-     *     If the action element is empty in the page, this method is 
-     *     not called at all.
+     * @param jspBody The fragment encapsulating the body of this tag. If the action element is empty in the page, this
+     * method is not called at all.
      * @see SimpleTag#setJspBody
      */
     public void setJspBody(JspFragment jspBody) {
@@ -118,8 +112,7 @@ public class EJBLiteJSPTag extends Client implements SimpleTag {
     /**
      * Returns the body passed in by the container via setJspBody.
      *
-     * @return the fragment encapsulating the body of this tag, or
-     *    null if the action element is empty in the page.
+     * @return the fragment encapsulating the body of this tag, or null if the action element is empty in the page.
      */
     protected JspFragment getJspBody() {
         return this.jspBody;

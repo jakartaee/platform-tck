@@ -112,9 +112,9 @@ slashes as a path separator instead.
 [source,oac_no_warn]
 ----
       <dependency>
-            <groupId>org.netbeans.tools</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>sigtest-maven-plugin</artifactId>
-            <version>1.4</version>
+            <version>2.2</version>
         </dependency>
 ----
 +

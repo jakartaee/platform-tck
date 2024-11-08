@@ -1,0 +1,22 @@
+= Getting Acquainted with the TCK
+
+[partintro]
+--
+The CDI TCK must be used to ensure that your implementation conforms to the CDI specification. This part introduces the TCK, gives some background about its purpose, states the requirements for passing the TCK and outlines the appeals process. 
+
+In this part you will learn where to obtain the CDI TCK and supporting software. You are then presented with recommendations of how to organize and configure the software so that you are ready to execute the TCK. 
+
+Finally, it discusses the reporting provided by the TCK. 
+
+--
+
+
+include::introduction.asciidoc[]
+
+include::appeals-process.asciidoc[]
+
+include::installation.asciidoc[]
+
+include::configuration.asciidoc[]
+
+include::reporting.asciidoc[]

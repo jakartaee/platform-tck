@@ -68,10 +68,8 @@ public class fpopulate {
     for (optind = 0; optind < argv.length; optind++) {
       if (argv[optind].equals("-s")) {
         srcdir = argv[++optind];
-        System.out.println("srcdir = " + srcdir);
       } else if (argv[optind].equals("-d")) {
         dstURL = argv[++optind];
-        System.out.println("destinationURL = " + dstURL);
       } else if (argv[optind].equals("-D")) {
         debug = true;
       } else if (argv[optind].equals("-f")) {

@@ -31,7 +31,10 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
@@ -52,6 +55,9 @@ import com.sun.ts.tests.jdbc.ee.common.rsSchema;
  * @author
  * @version 1.7, 06/16/99
  */
+@ExtendWith(ArquillianExtension.class)
+@Tag("jdbc")
+@Tag("platform")
 
 public class callStmtClient9 extends ServiceEETest implements Serializable {
   private static final String testName = "jdbc.ee.callStmt.callStmt9";
@@ -82,12 +88,6 @@ public class callStmtClient9 extends ServiceEETest implements Serializable {
   private Statement stmt = null;
   // private ResultSet rs = null;
 
-  /* Run test in standalone mode */
-  public static void main(String[] args) {
-    callStmtClient9 theTests = new callStmtClient9();
-    Status s = theTests.run(args, System.out, System.err);
-    s.exit();
-  }
 
   /* Test setup: */
   /*

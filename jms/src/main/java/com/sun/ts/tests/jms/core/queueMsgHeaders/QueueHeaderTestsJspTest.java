@@ -75,27 +75,16 @@ public class QueueHeaderTestsJspTest extends com.sun.ts.tests.jms.core.queueMsgH
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
+            URL warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/jms/core/queueMsgHeaders/jsp_vehicle_web.xml");
             if(warResURL != null) {
               queueMsgHeaders_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = QueueHeaderTests.class.getResource("//com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.war.sun-web.xml");
+            warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/jms/core/queueMsgHeaders/queueMsgHeaders_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               queueMsgHeaders_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              queueMsgHeaders_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
-            warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/jms/core/queueMsgHeaders/jsp_vehicle_web.xml");
-            if(warResURL != null) {
-              queueMsgHeaders_jsp_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/jsp_vehicle_web.xml");
-            }
             warResURL = QueueHeaderTests.class.getResource("/com/sun/ts/tests/common/vehicle/jsp/contentRoot/client.html");
             if(warResURL != null) {
               queueMsgHeaders_jsp_vehicle_web.addAsWebResource(warResURL, "/client.html");
@@ -118,15 +107,6 @@ public class QueueHeaderTestsJspTest extends com.sun.ts.tests.jms.core.queueMsgH
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = QueueHeaderTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              queueMsgHeaders_jsp_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(queueMsgHeaders_jsp_vehicle_ear, QueueHeaderTests.class, earResURL);
         return queueMsgHeaders_jsp_vehicle_ear;
         }
 

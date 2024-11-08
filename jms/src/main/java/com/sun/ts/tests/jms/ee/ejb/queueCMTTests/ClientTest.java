@@ -68,14 +68,14 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.ejb.queueCMTTests.Client
             com.sun.ts.tests.jms.commonee.Tests.class
             );
             // The application-client.xml descriptor
-            URL resURL = Client.class.getResource("com/sun/ts/tests/jms/ee/ejb/queueCMTTests/jms_ejb_queueCMTTests_client.xml");
+            URL resURL = Client.class.getResource("jms_ejb_queueCMTTests_client.xml");
             if(resURL != null) {
               jms_ejb_queueCMTTests_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = Client.class.getResource("/com/sun/ts/tests/jms/ee/ejb/queueCMTTests/jms_ejb_queueCMTTests_client.jar.sun-application-client.xml");
+            resURL = Client.class.getResource("jms_ejb_queueCMTTests_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jms_ejb_queueCMTTests_client.addAsManifestResource(resURL, "application-client.xml");
+              jms_ejb_queueCMTTests_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jms_ejb_queueCMTTests_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -113,15 +113,6 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.ejb.queueCMTTests.Client
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jms_ejb_queueCMTTests_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jms_ejb_queueCMTTests_ear, Client.class, earResURL);
         return jms_ejb_queueCMTTests_ear;
         }
 

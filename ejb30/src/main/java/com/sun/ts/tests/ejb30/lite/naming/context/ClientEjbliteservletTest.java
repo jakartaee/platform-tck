@@ -88,6 +88,11 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.lite.naming
             if(warResURL != null) {
               ejblite_naming_context_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
+            // The ejb-jar.xml descriptor
+            warResURL = Client.class.getResource("ejb-jar.xml");
+            if(warResURL != null) {
+              ejblite_naming_context_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "ejb-jar.xml");
+            }
 
             // Any libraries added to the war
 

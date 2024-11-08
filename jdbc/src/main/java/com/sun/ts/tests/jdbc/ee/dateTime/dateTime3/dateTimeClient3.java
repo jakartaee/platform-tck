@@ -26,8 +26,12 @@ import java.util.Calendar;
 import java.util.Properties;
 import java.util.TimeZone;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.tests.jdbc.ee.common.JDBCTestMsg;
 
@@ -40,6 +44,9 @@ import com.sun.ts.tests.jdbc.ee.common.JDBCTestMsg;
  * @author  
  * @version 1.7, 06/16/99
  */
+@ExtendWith(ArquillianExtension.class)
+@Tag("jdbc")
+@Tag("platform")
 
 public class dateTimeClient3 extends ServiceEETest implements Serializable {
   private static final String testName = "jdbc.ee.dateTime.dateTime3";

@@ -22,7 +22,7 @@ package com.sun.ts.tests.ejb30.common.covariant;
 
 import jakarta.ejb.Remote;
 
-@Remote()
+@Remote
 public interface FuzzyRemoteIF extends FuzzyCommonIF {
 
 }

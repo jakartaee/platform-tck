@@ -91,7 +91,7 @@ public class ELClientServletTest extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-  public static EnterpriseArchive createDeploymentVehicle() throws IOException {
+  public static WebArchive createDeploymentVehicle() throws IOException {
 
     WebArchive servlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "conditionaloperator_servlet_vehicle_web.war");
   
@@ -137,9 +137,12 @@ public class ELClientServletTest extends ServiceEETest {
     String webXml = editWebXmlString(inStream, VEHICLE_ARCHIVE);
     servlet_vehicle_web.setWebXML(new StringAsset(webXml));
 
+    return servlet_vehicle_web;
+    /*
     EnterpriseArchive servlet_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "conditionaloperator_servlet_vehicle.ear");
     servlet_vehicle_ear.addAsModule(servlet_vehicle_web);
     return servlet_vehicle_ear;
+    */
 
   }
 

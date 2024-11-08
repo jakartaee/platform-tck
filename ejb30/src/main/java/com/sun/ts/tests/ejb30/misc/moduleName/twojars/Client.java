@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2007, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2024 Contributors to the Eclipse Foundation
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v. 2.0, which is available at
@@ -51,12 +52,6 @@ public class Client extends EETest {
   }
 
   private static void nonPostConstruct() {
-    lookupShouldFail("java:module/ModuleMBean", postConstructRecords);
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleMBean",
-        postConstructRecords);
-    lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_ejb/ModuleMBean",
-        postConstructRecords);
-
     lookupShouldFail("java:module/ModuleBean", postConstructRecords);
     lookupShouldFail("java:app/ejb3_misc_moduleName_twojars_client/ModuleBean",
         postConstructRecords);

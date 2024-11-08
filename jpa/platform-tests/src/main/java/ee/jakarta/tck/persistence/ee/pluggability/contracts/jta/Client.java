@@ -23,14 +23,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerFactoryImpl;
 import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerImpl;
 import ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor;
+
+import com.sun.ts.lib.harness.Status;
 
 import jakarta.persistence.SharedCacheMode;
 import jakarta.persistence.ValidationMode;
@@ -59,11 +57,16 @@ public class Client extends PMClientBase {
 	/*
 	 * @class.setup_props: log.file.location;
 	 */
-	@BeforeEach
-	public void setup() throws Exception {
+	public static void main(String[] args) {
+  		Client theTests = new Client();
+  		Status s = theTests.run(args, System.out, System.err);
+  		s.exit();
+	}
+
+	public void setup(String[] args,Properties props) throws Exception {
 		logTrace( "setup");
-		super.setup();
-		logProcessor = new LogFileProcessor();
+		super.setup(args,props);
+		logProcessor = new LogFileProcessor(props);
 
 		if (logProcessor.fetchLog()) {
 			currentSeqNum = logProcessor.getCurrentSequenceNumber();
@@ -81,7 +84,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
 	public void createEMF() throws Exception {
 		String expected[] = {
 				LOGMESSAGE_PREFIX + "Called createContainerEntityManagerFactory(PersistenceUnitInfo, Map)" };
@@ -99,7 +101,6 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
 	public void getPersistenceProviderClassName() throws Exception {
 		boolean pass1 = false;
 
@@ -130,7 +131,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getPersistenceUnitNameTest() throws Exception {
 		boolean pass1 = false;
 
@@ -171,7 +172,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getTransactionType() throws Exception {
 		boolean pass1 = false;
 
@@ -204,7 +205,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getManagedClassNames() throws Exception {
 		boolean pass1 = false;
 		List<String> expected = new ArrayList<String>();
@@ -245,7 +246,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getJarFileUrls() throws Exception {
 		boolean pass1 = false;
 
@@ -283,7 +284,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getPersistenceUnitRootUrl() throws Exception {
 		boolean pass1 = false;
 
@@ -314,7 +315,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getPersistenceXMLSchemaVersion() throws Exception {
 		boolean pass1 = false;
 
@@ -345,7 +346,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getProperties() throws Exception {
 		boolean pass1 = true;
 
@@ -406,7 +407,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getSharedCacheMode() throws Exception {
 		boolean pass1 = false;
 
@@ -437,7 +438,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getValidationMode() throws Exception {
 		boolean pass1 = false;
 
@@ -467,7 +468,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getClassLoader() throws Exception {
 		boolean pass1 = false;
 		getClassObjects();
@@ -495,7 +496,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getNewTempClassLoader() throws Exception {
 		boolean pass1 = false;
 		getClassObjects();
@@ -523,7 +524,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getMappingFileNames() throws Exception {
 		boolean pass1 = false;
 		List<String> expected = new ArrayList<String>();
@@ -567,7 +568,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getJtaDataSource() throws Exception {
 
 		boolean pass1 = false;
@@ -595,7 +596,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void excludeUnlistedClasses() throws Exception {
 		boolean pass1 = false;
 
@@ -623,7 +624,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void getProviderUtil() throws Exception {
 
 		String expected[] = { LOGMESSAGE_PREFIX + "Called getProviderUtil()" };
@@ -642,7 +643,7 @@ public class Client extends PMClientBase {
 	 * @test_Strategy: Specify a third Party Persistence Provider through
 	 *                 persistence.xml file
 	 */
-	@Test
+	
 	public void isLoaded() throws Exception {
 
 		String expected[] = { LOGMESSAGE_PREFIX + "Called isLoaded()" };
@@ -664,7 +665,7 @@ public class Client extends PMClientBase {
 		puInfo = emfImpl.puInfo;
 	}
 
-	@AfterEach
+
 	public void cleanup() throws Exception {
 		logTrace( "cleanup");
 		logTrace( "calling super.cleanup");

@@ -7,6 +7,10 @@
     <property name="deploymentExportPath">target/</property>
   </engine>
 
+  <extension qualifier="glassfish-descriptors">
+        <property name="descriptorDir">target</property>
+  </extension>
+
   <group qualifier="glassfish-servers" default="true">
     <container qualifier="tck-javatest" default="true">
         <configuration>
@@ -15,7 +19,13 @@
         <protocol type="javatest">
             <property name="trace">true</property>
             <property name="workDir">/tmp</property>
-            <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
+            <property name="runClient">true</property>
+            <property name="runAsVehicle">true</property>
+            <property name="clientEarDir">target/appclient</property>
+            <property name="unpackClientEar">true</property>
+            <property name="clientDir">${project.basedir}</property>
+            <property name="tsJteFile">jakartaeetck/bin/ts.jte</property>
+            <property name="clientTimeout">20000</property>
         </protocol>
     </container>
   </group>

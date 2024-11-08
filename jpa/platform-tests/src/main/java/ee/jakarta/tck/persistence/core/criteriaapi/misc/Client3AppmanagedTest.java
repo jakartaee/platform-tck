@@ -27,7 +27,6 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @ExtendWith(ArquillianExtension.class)
 @Tag("persistence")
 @Tag("platform")
-@Tag("web")
 @Tag("tck-appclient")
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
@@ -64,7 +63,7 @@ public class Client3AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
         public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // Client
             // the jar with the correct archive name
-            JavaArchive jpa_core_criteriaapi_misc_appmanaged_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_misc_appmanaged_vehicle_client.jar");
+            JavaArchive jpa_core_criteriaapi_misc_appmanaged_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jpa_core_criteriaapi_misc_vehicles_client.jar");
             // The class files
             jpa_core_criteriaapi_misc_appmanaged_vehicle_client.addClasses(
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
@@ -76,6 +75,7 @@ public class Client3AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
             ee.jakarta.tck.persistence.common.PMClientBase.class,
             ee.jakarta.tck.persistence.common.schema30.Util.class,
+            com.sun.ts.lib.harness.Status.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.appmanaged.AppManagedVehicleRunner.class,
             com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper.class,
@@ -84,7 +84,9 @@ public class Client3AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
             com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
+            com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class,
+            Client3.class,
+            Client3AppmanagedTest.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The application-client.xml descriptor
             URL resURL = Client3.class.getResource("/com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
@@ -94,9 +96,9 @@ public class Client3AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_criteriaapi_misc_appmanaged_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_criteriaapi_misc_appmanaged_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
-            jpa_core_criteriaapi_misc_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
+            jpa_core_criteriaapi_misc_appmanaged_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client3.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
             archiveProcessor.processClientArchive(jpa_core_criteriaapi_misc_appmanaged_vehicle_client, Client3.class, resURL);
 
@@ -126,12 +128,12 @@ public class Client3AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
                 com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client3.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.xml");
+            URL ejbResURL1 = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_client.xml");
             if(ejbResURL1 != null) {
-              jpa_core_criteriaapi_misc_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
+//              jpa_core_criteriaapi_misc_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client3.class.getResource("//vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/appmanaged/appmanaged_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_criteriaapi_misc_appmanaged_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
@@ -278,6 +280,5 @@ public class Client3AppmanagedTest extends ee.jakarta.tck.persistence.core.crite
         public void subqueryGroupByListTest() throws java.lang.Exception {
             super.subqueryGroupByListTest();
         }
-
 
 }

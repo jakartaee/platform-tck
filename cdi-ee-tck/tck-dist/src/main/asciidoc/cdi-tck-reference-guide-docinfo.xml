@@ -1,0 +1,87 @@
+<info>
+<title>Technology Compatibility Kit Reference Guide for Jakarta Contexts and Dependency Injection 4.1 in a Jakarta Enterprise Environment</title>
+<subtitle>
+ Project Lead: Red Hat Inc.
+</subtitle>
+<authorgroup>
+    <author>
+        <firstname>Scott</firstname>
+        <surname>Stark</surname>
+        <affiliation>
+            <jobtitle>Jakarta Contexts and Dependency Injection (CDI) 4.1 specification lead</jobtitle>
+        </affiliation>
+    </author>
+    <author>
+        <firstname>Matej</firstname>
+        <surname>Novotny</surname>
+        <affiliation>
+            <jobtitle>Jakarta Contexts and Dependency Injection (CDI) 4.1 specification lead</jobtitle>
+        </affiliation>
+    </author>
+    <author>
+        <firstname>Antoine</firstname>
+        <surname>Sabot-Durand</surname>
+        <affiliation>
+            <jobtitle>Jakarta Contexts and Dependency Injection (CDI) 4.0 specification lead</jobtitle>
+        </affiliation>
+    </author>
+   <author>
+      <firstname>Pete</firstname>
+      <surname>Muir</surname>
+      <affiliation>
+             <jobtitle>JSR 346: Contexts and Dependency Injection (CDI) for Java EE 1.1 specification lead</jobtitle>
+      </affiliation>
+   </author>
+   <author>
+      <firstname>Gavin</firstname>
+      <surname>King</surname>
+      <affiliation>
+             <jobtitle>JSR 299: Contexts and Dependency Injection (CDI) for Java EE 1.0 specification lead</jobtitle>
+      </affiliation>
+   </author>
+   <author>
+      <firstname>Martin</firstname>
+      <surname>Kouba</surname>
+      <affiliation>
+             <jobtitle>Former CDI TCK lead</jobtitle>
+      </affiliation>
+   </author>
+   <author>
+      <firstname>Tomas</firstname>
+      <surname>Remes</surname>
+      <affiliation>
+             <jobtitle>CDI TCK lead</jobtitle>
+      </affiliation>
+   </author>
+   <author>
+      <firstname>David</firstname>
+      <surname>Allen</surname>
+      <affiliation>
+             <jobtitle>CDI TCK developer</jobtitle>
+      </affiliation>
+   </author>
+<!--
+vim:et:ts=3:sw=3:tw=120
+-->
+</authorgroup>
+<copyright>
+   <holder>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+	http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and limitations under the License.</holder>
+   <year>2012-2021 Red Hat Inc., and individual contributors listed as authors.</year>
+</copyright>
+  <revhistory>
+    <revision>
+      <revnumber>4.1</revnumber>
+      <date>2021-12-13</date>
+      <authorinitials>SMS</authorinitials>
+    </revision>
+    <revision>
+      <revnumber>4.0</revnumber>
+      <date>2020-07-30</date>
+      <authorinitials>AS</authorinitials>
+      <authorinitials>SMS</authorinitials>
+    </revision>
+  </revhistory>
+</info>

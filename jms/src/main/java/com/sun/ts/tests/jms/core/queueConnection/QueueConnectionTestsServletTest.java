@@ -76,27 +76,16 @@ public class QueueConnectionTestsServletTest extends com.sun.ts.tests.jms.core.q
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = QueueConnectionTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
+            URL warResURL = QueueConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/queueConnection/servlet_vehicle_web.xml");
             if(warResURL != null) {
               queueConnection_servlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = QueueConnectionTests.class.getResource("//com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.war.sun-web.xml");
+            warResURL = QueueConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/queueConnection/queueConnection_servlet_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               queueConnection_servlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = QueueConnectionTests.class.getResource("/com/sun/ts/tests/common/vehicle/servlet/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              queueConnection_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
-            warResURL = QueueConnectionTests.class.getResource("/com/sun/ts/tests/jms/core/queueConnection/servlet_vehicle_web.xml");
-            if(warResURL != null) {
-              queueConnection_servlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/servlet_vehicle_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(queueConnection_servlet_vehicle_web, QueueConnectionTests.class, warResURL);
@@ -111,15 +100,6 @@ public class QueueConnectionTestsServletTest extends com.sun.ts.tests.jms.core.q
 
 
 
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = QueueConnectionTests.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              queueConnection_servlet_vehicle_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(queueConnection_servlet_vehicle_ear, QueueConnectionTests.class, earResURL);
         return queueConnection_servlet_vehicle_ear;
         }
 

@@ -70,7 +70,7 @@ public class ELClientJspTest extends ServiceEETest {
   @TargetsContainer("tck-javatest")
   @OverProtocol("javatest")
   @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-  public static EnterpriseArchive createDeploymentVehicle() throws IOException {
+  public static WebArchive createDeploymentVehicle() throws IOException {
 
     WebArchive jsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "recordelresolver_jsp_vehicle_web.war");
   
@@ -101,9 +101,12 @@ public class ELClientJspTest extends ServiceEETest {
     warResURL = ELClientJspTest.class.getResource("/vehicle/jsp/contentRoot/jsp_vehicle.jsp");
     jsp_vehicle_web.addAsWebResource(warResURL, "/jsp_vehicle.jsp");
 
+    return jsp_vehicle_web;
+    /*
     EnterpriseArchive jsp_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "recordelresolver_jsp_vehicle.ear");
     jsp_vehicle_ear.addAsModule(jsp_vehicle_web);
     return jsp_vehicle_ear;
+    */
 
   }
 

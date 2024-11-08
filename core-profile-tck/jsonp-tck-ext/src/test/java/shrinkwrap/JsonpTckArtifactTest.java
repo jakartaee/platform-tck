@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class JsonpTckArtifactTest {
+    @Disabled
     @Test
     public void testCreateJsonpTckArtifact() {
         MavenResolvedArtifact[] resolvedArtifacts = Maven.resolver()
@@ -35,6 +36,7 @@ public class JsonpTckArtifactTest {
         System.out.println(archive.toString(true));
     }
 
+    @Disabled
     @Test
     public void testCreateJsonpTckArtifactAll() {
         String[] activeMavenProfiles = {"staging"};

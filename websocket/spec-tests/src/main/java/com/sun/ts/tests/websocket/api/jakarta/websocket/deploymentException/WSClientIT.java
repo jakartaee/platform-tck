@@ -29,7 +29,7 @@ import jakarta.websocket.DeploymentException;
 
 @Tag("websocket")
 @Tag("platform")
-@Tag("webprofile")
+@Tag("web")
 
 public class WSClientIT {
 

@@ -23,8 +23,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.javamail.ee.common.MailTestUtil;
 
@@ -36,6 +40,10 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
+
+@ExtendWith(ArquillianExtension.class)
+@Tag("mail")
+@Tag("platform")
 
 public class multipart_Test extends ServiceEETest implements Serializable {
   static String msgText1 = "This is a message body.\nHere's line two.";
@@ -84,9 +92,12 @@ public class multipart_Test extends ServiceEETest implements Serializable {
       if (transport_protocol.length() == 0)
         throw new Exception("Invalid transport_protocol");
 
+      String protocol = TestUtil.getProperty("javamail.protocol");
+      host = TestUtil.getProperty("javamail.server");
       user = TestUtil.getProperty("javamail.username");
       password = TestUtil.getProperty("javamail.password");
-      host = TestUtil.getProperty("javamail.server");
+      String mailbox = TestUtil.getProperty("javamail.mailbox");
+      String rootPath = TestUtil.getProperty("javamail.root.path");
 
       String smtpPortStr = TestUtil.getProperty("smtp.port");
       int smtpPort = Integer.parseInt(smtpPortStr);

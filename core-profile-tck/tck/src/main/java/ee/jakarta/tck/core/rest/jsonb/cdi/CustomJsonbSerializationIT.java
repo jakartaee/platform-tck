@@ -35,6 +35,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -65,6 +66,7 @@ public class CustomJsonbSerializationIT {
                 .addClass(SomeMessage.class)
                 .addClass(Utils.class)
                 .addClass(JaxRsActivator.class)
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource(new StringAsset(pubKeyString), "key.pub");
         ;
         System.out.printf("test archive: %s\n", archive.toString(true));

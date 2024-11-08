@@ -29,8 +29,12 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContextInterface;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.jdbc.ee.common.DataSourceConnection;
@@ -45,6 +49,10 @@ import com.sun.ts.tests.jdbc.ee.common.dbSchema;
  * @author
  * @version 1.0, 16/09/2002
  */
+@ExtendWith(ArquillianExtension.class)
+@Tag("jdbc")
+@Tag("platform")
+
 
 public class dbMetaClient12 extends ServiceEETest implements Serializable {
   private static final String testName = "jdbc.ee.dbMeta.dbMeta12";

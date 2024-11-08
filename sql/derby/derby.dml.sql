@@ -18,7 +18,7 @@ Dbschema_Concur_Delete=delete from concurrencetable
 # SQL Statements for creating procedures in side the test.
 #******************************************************************
 
-UpdCoffee_Proc=create method alias UpdCoffee_Proc for com.sun.ts.lib.tests.jdbc.CS_Procs.UpdCoffee_Proc
+UpdCoffee_Proc=create method alias UpdCoffee_Proc for ee.jakarta.tck.persistence.storedprocedures.CS_Procs.UpdCoffee_Proc
 
 #******************************************************************
 # SQL Statements for deleting tables for appropriate JDBC Datatypes

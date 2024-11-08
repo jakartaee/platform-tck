@@ -22,8 +22,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
 
-
-
 @ExtendWith(ArquillianExtension.class)
 @Tag("platform")
 @Tag("ejb_mdb_optional")
@@ -34,26 +32,29 @@ import tck.arquillian.protocol.common.TargetVehicle;
 public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.interceptor.business.mdb.Client {
     static final String VEHICLE_ARCHIVE = "ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle";
 
-        /**
-        EE10 Deployment Descriptors:
-        ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web: WEB-INF/ejb-jar.xml,WEB-INF/web.xml,war.sun-ejb-jar.xml,war.sun-web.xml
-
-        Found Descriptors:
-        War:
-
-        /com/sun/ts/tests/ejb30/timer/interceptor/business/mdb/ejbliteservlet_vehicle_web.xml
-        /com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml
-        */
-        @TargetsContainer("tck-javatest")
-        @OverProtocol("javatest")
-        @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    /**
+     * EE10 Deployment Descriptors: ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web:
+     * WEB-INF/ejb-jar.xml,
+     * WEB-INF/web.xml,
+     * war.sun-ejb-jar.xml,
+     * war.sun-web.xml
+     *
+     * Found Descriptors: War:
+     *
+     * /com/sun/ts/tests/ejb30/timer/interceptor/business/mdb/ejbliteservlet_vehicle_web.xml
+     * /com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml
+     */
+    @TargetsContainer("tck-javatest")
+    @OverProtocol("javatest")
+    @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
         // War
-            // the war with the correct archive name
-            WebArchive ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.war");
-            // The class files
-            ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addClasses(
+        // the war with the correct archive name
+        WebArchive ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.war");
+
+        // The class files
+        ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addClasses(
             com.sun.ts.tests.ejb30.timer.interceptor.business.common.Interceptor3.class,
             com.sun.ts.lib.harness.EETest.Fault.class,
             com.sun.ts.tests.ejb30.timer.interceptor.business.mdb.Client.class,
@@ -86,54 +87,50 @@ public class ClientEjbliteservletTest extends com.sun.ts.tests.ejb30.timer.inter
             com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase.class,
             com.sun.ts.tests.ejb30.timer.interceptor.business.mdb.EJBLiteServletVehicle.class,
             com.sun.ts.tests.ejb30.timer.common.TimerUtil.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class
-            );
-            // The web.xml descriptor
-            URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
-            }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/ejbliteservlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
+            com.sun.ts.lib.harness.EETest.SetupException.class);
 
-            // Any libraries added to the war
+        // The web.xml descriptor
+        URL warResURL = Client.class.getResource("ejbliteservlet_vehicle_web.xml");
+        if (warResURL != null) {
+            ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
+        }
 
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/timer/interceptor/business/mdb/ejb-jar.xml");
-            if(warResURL != null) {
-              ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejb-jar.xml");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/ejbliteservlet/ejbliteservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet_vehicle_web.xml");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/timer/interceptor/business/mdb/ejbliteservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejbliteservlet_vehicle_web.xml");
-            }
+        // The sun-web.xml descriptor
+        warResURL = Client.class.getResource("ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.war.sun-web.xml");
+        if (warResURL != null) {
+            ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
+        }
 
-           // Call the archive processor
-           archiveProcessor.processWebArchive(ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web, Client.class, warResURL);
+        // The ejb-jar.xml descriptor
+        warResURL = Client.class.getResource("/com/sun/ts/tests/ejb30/timer/interceptor/business/mdb/ejb-jar.xml");
+        if (warResURL != null) {
+            ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/ejb-jar.xml");
+        }
+
+        // The ejb-jar.xml descriptor
+        warResURL = Client.class.getResource("ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.war.sun-ejb-jar.xml");
+        if (warResURL != null) {
+            ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/sun-ejb-jar.xml");
+        }
+
+        // Call the archive processor
+        archiveProcessor.processWebArchive(ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web, Client.class, warResURL);
 
         return ejb30_timer_interceptor_business_mdb_ejbliteservlet_vehicle_web;
-        }
+    }
 
-        @Test
-        @Override
-        @TargetVehicle("ejbliteservlet")
-        public void aroundInvokeMethods() {
-            super.aroundInvokeMethods();
-        }
+    @Test
+    @Override
+    @TargetVehicle("ejbliteservlet")
+    public void aroundInvokeMethods() {
+        super.aroundInvokeMethods();
+    }
 
-        @Test
-        @Override
-        @TargetVehicle("ejbliteservlet")
-        public void messageFromSingletonBeanToMDB() throws java.lang.InterruptedException {
-            super.messageFromSingletonBeanToMDB();
-        }
-
+    @Test
+    @Override
+    @TargetVehicle("ejbliteservlet")
+    public void messageFromSingletonBeanToMDB() throws java.lang.InterruptedException {
+        super.messageFromSingletonBeanToMDB();
+    }
 
 }
