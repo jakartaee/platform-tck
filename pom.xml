@@ -150,7 +150,7 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>assembly</artifactId>
+                <artifactId>assembly-tck</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
