@@ -40,7 +40,7 @@
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <tck.artifactId>assembly-tck</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
-        <ts.home>/jakartaeetck</ts.home>
+        <ts.home>./jakartaeetck</ts.home>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
         <version.jakarta.tck.arquillian>1.0.0-M17</version.jakarta.tck.arquillian>
     </properties>
@@ -224,6 +224,12 @@
     </dependencies>
 
     <build>
+        <testResources>
+            <testResource>
+                <filtering>true</filtering>
+                <directory>src/test/resources</directory>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
