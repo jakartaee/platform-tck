@@ -46,6 +46,7 @@
                 -DwebServerHost.2=localhost \
                 -DwebServerPort.2=8080 \
                 -Ddeliverable.class=com.sun.ts.lib.deliverable.cts.CTSDeliverable \
+                -Djava.util.logging.config.file=jakartaeetck/logging.properties \
                 -jar \
                 ${clientEarDir}/${clientAppArchive}
             </property>

@@ -99,7 +99,7 @@ if.existing.work.report.dirs=auto
 #
 # Note that javatest.timeout.factor can be a positive real number, such as 1.5
 ########################################################################
-javatest.timeout.factor=1
+javatest.timeout.factor=2.0
 
 ########################################################################
 ## Level of Vendor Java EE Implementation
@@ -1668,18 +1668,6 @@ EJBServer2TxInteropEnabled=true
 ## JNDI name bindings.  You should not change these.  The TSDeploymentInterface
 ## will pass these values as a properties object.  See the SunRIDeployment.java
 ## file for usage patterns.
-whitebox-tx=java:comp/env/eis/whitebox-tx
-whitebox-notx=java:comp/env/eis/whitebox-notx
-whitebox-xa=java:comp/env/eis/whitebox-xa
-whitebox-tx-param=java:comp/env/eis/whitebox-tx-param
-whitebox-notx-param=java:comp/env/eis/whitebox-notx-param
-whitebox-xa-param=java:comp/env/eis/whitebox-xa-param
-whitebox-anno_no_md=java:comp/env/eis/whitebox-anno_no_md
-whitebox-ibanno_no_md=java:comp/env/eis/whitebox-ibanno_no_md
-whitebox-mixedmode=java:comp/env/eis/whitebox-mixedmode
-whitebox-multianno=java:comp/env/eis/whitebox-multianno
-whitebox-mdcomplete=java:comp/env/eis/whitebox-mdcomplete
-whitebox-permissiondd=java:comp/env/eis/whitebox-permissiondd
 
 ## Embedded resource adapter property 
 whitebox-embed=java:comp/env/eis/ejb_Deployment_whitebox-tx.rar
