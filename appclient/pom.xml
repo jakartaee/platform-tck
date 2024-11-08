@@ -47,7 +47,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>assembly</artifactId>
+            <artifactId>assembly-tck</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.ejb</groupId>
