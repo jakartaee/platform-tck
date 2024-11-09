@@ -16,9 +16,7 @@
 
 package com.sun.ts.lib.util.sec.security.util;
 
-import java.io.FilePermission;
 import java.awt.AWTPermission;
-import java.util.PropertyPermission;
 import java.lang.RuntimePermission;
 import java.net.SocketPermission;
 import java.net.NetPermission;

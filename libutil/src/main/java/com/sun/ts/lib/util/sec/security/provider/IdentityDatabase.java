@@ -379,12 +379,6 @@ public class IdentityDatabase extends IdentityScope implements Serializable {
   }
 
   void localCheck(String directive) {
-    SecurityManager security = System.getSecurityManager();
-    if (security != null) {
-      directive = this.getClass().getName() + "." + directive + "."
-          + localFullName();
-      security.checkSecurityAccess(directive);
-    }
   }
 
   /**
