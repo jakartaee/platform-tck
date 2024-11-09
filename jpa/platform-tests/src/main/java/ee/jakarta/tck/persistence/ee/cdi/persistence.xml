@@ -29,6 +29,7 @@
   </persistence-unit>
   <persistence-unit name="CTS-EM2" transaction-type="JTA">
     <description>Persistence Unit for CTS Vehicle Tests</description>
+    <qualifier>ee.jakarta.tck.persistence.ee.cdi.CtsEmQualifier</qualifier>
     <jta-data-source>jdbc/DB1</jta-data-source>
     <class>ee.jakarta.tck.persistence.ee.entityManager.Order</class>
   </persistence-unit>
@@ -36,7 +37,6 @@
     <description>The persistence.xml file may be used to designate
                   more than one persistence unit within the same scope.
                   Persistence Unit for Application Managed Resource Local</description>
-    <qualifier>ee.jakarta.tck.persistence.ee.cdi.CtsEmNoTxQualifier</qualifier>
     <non-jta-data-source>jdbc/DB_no_tx</non-jta-data-source>
     <class>ee.jakarta.tck.persistence.ee.entityManager.Order</class>
   </persistence-unit>

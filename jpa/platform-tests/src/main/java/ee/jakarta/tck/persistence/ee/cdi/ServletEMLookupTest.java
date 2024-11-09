@@ -27,9 +27,9 @@ public class ServletEMLookupTest {
     @ArquillianResource
     URL contextPath;
 
-    @Deployment(name = "rest-em-lookup", testable = false)
+    @Deployment(name = "jpa-cdi-em-inject", testable = false)
     public static WebArchive deployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
-        WebArchive war = ShrinkWrap.create(WebArchive.class, "rest-em-lookup.war")
+        WebArchive war = ShrinkWrap.create(WebArchive.class)
                 .addClasses(CtsEmQualifier.class, CtsEmNoTxQualifier.class, JaxRsActivator.class,
                         TestBeanEM.class, RestEndpoint.class);
 

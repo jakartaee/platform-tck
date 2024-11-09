@@ -332,6 +332,17 @@
             <artifactId>derbytools</artifactId>
             <version>10.15.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.main.deployment</groupId>
+            <artifactId>dol</artifactId>
+            <version>${glassfish.container.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>persistence-platform-tck-tests</artifactId>
+            <version>11.0.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -616,6 +627,8 @@
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>rest-arquillian.xml</arquillian.xml>
+                                <glassfish.debug>true</glassfish.debug>
+                                <glassfish.suspend>false</glassfish.suspend>
                             </systemPropertyVariables>
                             <environmentVariables>
                                 <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>

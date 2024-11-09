@@ -3,6 +3,7 @@ package ee.jakarta.tck.persistence.ee.cdi;
 import jakarta.inject.Inject;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 import java.util.logging.Logger;
 
@@ -13,12 +14,12 @@ import java.util.logging.Logger;
 public class TestBeanEM {
     Logger logger = Logger.getLogger(TestBeanEM.class.getName());
 
-    //@PersistenceUnit(unitName = "CTS-EM")
-    @CtsEmQualifier
-    @Inject
+    @PersistenceContext(unitName = "CTS-EM")
+    //@CtsEmQualifier
+    //@Inject
     private EntityManager em1;
-    //@PersistenceUnit(unitName = "CTS-EM-NOTX")
-    @CtsEmNoTxQualifier
+    //@PersistenceContext(unitName = "CTS-EM2")
+    @CtsEmQualifier
     @Inject
     private EntityManager em2;
 
