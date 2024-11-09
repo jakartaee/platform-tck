@@ -62,9 +62,6 @@ public class AutoDeploymentServer extends UnicastRemoteObject
         sPort = args[1];
     }
 
-    // SetSecurityManager
-    System.setSecurityManager(new RMISecurityManager());
-
     // Create a new instance
     try {
       deploymentServer = new AutoDeploymentServer();
