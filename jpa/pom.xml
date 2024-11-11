@@ -93,7 +93,7 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-api</artifactId>
-            <version>1.8.0.Final</version>
+            <version>1.9.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
