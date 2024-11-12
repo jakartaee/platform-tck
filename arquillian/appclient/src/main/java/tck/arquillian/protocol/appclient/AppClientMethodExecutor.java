@@ -61,6 +61,8 @@ public class AppClientMethodExecutor implements ContainerMethodExecutor {
     @Override
     public TestResult invoke(TestMethodExecutor testMethodExecutor) {
         TestResult result = TestResult.passed();
+        String appArchiveName = null;
+        String vehicleArchiveName = null;
 
         // Run the appclient for the test if required
         String testMethod = testMethodExecutor.getMethodName();
@@ -68,8 +70,8 @@ public class AppClientMethodExecutor implements ContainerMethodExecutor {
             log.info("Running appClient for: " + testMethod);
             try {
                 Deployment deployment = deploymentInstance.get();
-                String appArchiveName = appClientArchiveName.get().name();
-                String vehicleArchiveName = TsTestPropsBuilder.vehicleArchiveName(deployment);
+                appArchiveName = appClientArchiveName.get().name();
+                vehicleArchiveName = TsTestPropsBuilder.vehicleArchiveName(deployment);
                 String[] additionalAgrs = TsTestPropsBuilder.runArgs(config, deployment, testMethodExecutor);
                 appClient.run(vehicleArchiveName, appArchiveName, additionalAgrs);
             } catch (Exception ex) {
@@ -81,13 +83,13 @@ public class AppClientMethodExecutor implements ContainerMethodExecutor {
         }
         String[] lines = appClient.readAll(config.getClientTimeout());
 
-        log.info(String.format("AppClient(%s) readAll returned %d lines\n", testMethod, lines.length));
+        log.fine(String.format("AppClient(%s) readAll returned %d lines\n", testMethod, lines.length));
         boolean sawStatus = false;
         MainStatus status = MainStatus.NOT_RUN;
         String reason = "None";
         String description = "None";
         for (String line : lines) {
-            System.out.println(line);
+            log.finer(line);
             if (line.contains("STATUS:")) {
                 sawStatus = true;
                 description = line;
@@ -117,6 +119,7 @@ public class AppClientMethodExecutor implements ContainerMethodExecutor {
                     break;
             }
             result.addDescription(description);
+            log.info(result.toString() + ": " + description + ": " + vehicleArchiveName + ": " + appArchiveName);
         }
 
         return result;
