@@ -14,9 +14,9 @@ import java.util.logging.Logger;
 public class TestBeanEM {
     Logger logger = Logger.getLogger(TestBeanEM.class.getName());
 
-    @PersistenceContext(unitName = "CTS-EM")
-    //@CtsEmQualifier
-    //@Inject
+    //@PersistenceContext(unitName = "CTS-EM")
+    @CtsEmQualifier
+    @Inject
     private EntityManager em1;
     //@PersistenceContext(unitName = "CTS-EM2")
     @CtsEmQualifier
