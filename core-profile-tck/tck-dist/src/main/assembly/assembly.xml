@@ -21,7 +21,7 @@
    <files>
       <!-- This is the final EFTL license -->
       <file>
-         <source>EFTL.txt</source>
+         <source>EFTL.adoc</source>
          <destName>LICENSE</destName>
       </file>
       <file>
@@ -46,7 +46,10 @@
       </file>
    </files>
    <fileSets>
-      <!-- The compatible implementation tck runner examples -->
+      <!-- The compatible implementation tck runner examples. The content of the examples directory
+            is now included in the tck dist during the release build by cloning example runner
+            repos. Submodules are no longer used.
+       -->
       <fileSet>
          <directory>${project.parent.basedir}/examples</directory>
          <outputDirectory>examples</outputDirectory>
