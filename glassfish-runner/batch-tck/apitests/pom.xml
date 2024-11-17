@@ -144,7 +144,7 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>glassfish</artifactId>
-                                    <version>${glassfish.container.version}</version>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

@@ -54,11 +54,11 @@
         <exec.asadmin>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</exec.asadmin>
         <ftable>ctstable2</ftable>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
-        <glassfish.container.version>8.0.0-JDK17-M7</glassfish.container.version>
+        <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <!-- Use JDK21 to run with GF 8.0.0-M5 -->
-        <!-- <glassfish.container.version>8.0.0-M5</glassfish.container.version> -->
+        <!-- <glassfish.version>8.0.0-M5</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
@@ -154,7 +154,7 @@
         <dependency>
             <groupId>org.glassfish.main.common</groupId>
             <artifactId>simple-glassfish-api</artifactId>
-            <version>${glassfish.container.version}</version>
+            <version>${glassfish.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
@@ -303,7 +303,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.container.version}</version>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
