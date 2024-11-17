@@ -30,7 +30,7 @@ public class ServletEMLookupTest {
     @Deployment(name = "jpa-cdi-em-inject", testable = false)
     public static WebArchive deployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive war = ShrinkWrap.create(WebArchive.class)
-                .addClasses(CtsEmQualifier.class, CtsEmNoTxQualifier.class, JaxRsActivator.class,
+                .addClasses(CtsEmQualifier.class, CtsEm2Qualifier.class, CtsEmNoTxQualifier.class, JaxRsActivator.class,
                         TestBeanEM.class, RestEndpoint.class);
 
         // Par
