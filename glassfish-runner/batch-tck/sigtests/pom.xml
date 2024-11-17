@@ -14,7 +14,7 @@
     <artifactId>glassfish.batch-tck.sigtests</artifactId>
 
     <properties>
-        <glassfish.container.version>7.0.0-M10</glassfish.container.version>
+        <glassfish.version>7.0.0-M10</glassfish.version>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
         <jakarta.batch.version>2.1.5</jakarta.batch.version>
     </properties>
@@ -52,7 +52,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>glassfish</artifactId>
-                                    <version>${glassfish.container.version}</version>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

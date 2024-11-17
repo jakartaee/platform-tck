@@ -28,9 +28,9 @@
 
     <properties>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M7 -->
-        <glassfish.container.version>8.0.0-JDK17-M7</glassfish.container.version>
+        <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <!-- Use JDK21 to run with GF 8.0.0-M7 -->
-        <!-- <glassfish.container.version>8.0.0-M7</glassfish.container.version> -->
+        <!-- <glassfish.version>8.0.0-M7</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
@@ -94,7 +94,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.container.version}</version>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
