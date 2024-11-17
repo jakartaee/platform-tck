@@ -89,7 +89,6 @@ public class Client extends EETest {
     }
   }
 
-
   static final String VEHICLE_ARCHIVE = "assembly_classpath_appclient";
 
   @TargetsContainer("tck-appclient")
@@ -98,25 +97,25 @@ public class Client extends EETest {
   public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
     JavaArchive direct_classpath_util = ShrinkWrap.create(JavaArchive.class, "direct_classpath_util.jar");
-    direct_classpath_util.addClass(com.sun.ts.tests.assembly.classpath.util.ClassPathUtil.class);
+    direct_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.ClassPathUtil.class,
+    Client.class);
     URL resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
     if (resURL != null) {
       direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     }
+    direct_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
 
-    // direct_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-    //     "MANIFEST.MF");
-    archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
 
     JavaArchive indirect_classpath_util = ShrinkWrap.create(JavaArchive.class, "indirect_classpath_util.jar");
-    indirect_classpath_util.addClass(com.sun.ts.tests.assembly.classpath.util.IndirectClassPathUtil.class);
+    indirect_classpath_util.addClasses(com.sun.ts.tests.assembly.classpath.util.IndirectClassPathUtil.class,
+    Client.class);
     resURL = Client.class.getResource("/util/META-INF/ejb-jar.xml");
     if (resURL != null) {
       indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     }
-    // indirect_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
-    //     "MANIFEST.MF");
-    archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
+    indirect_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
 
     JavaArchive assembly_classpath_appclient_client = ShrinkWrap.create(JavaArchive.class,
         "assembly_classpath_appclient_client.jar");
@@ -140,13 +139,13 @@ public class Client extends EETest {
     assembly_classpath_appclient_ear.addAsLibrary(direct_classpath_util);
     assembly_classpath_appclient_ear.addAsLibrary(indirect_classpath_util);
     assembly_classpath_appclient_ear.addAsModule(assembly_classpath_appclient_client);
+    assembly_classpath_appclient_ear.addAsModule(indirect_classpath_util);
+    assembly_classpath_appclient_ear.addAsModule(direct_classpath_util);
 
     URL earResURL = Client.class.getResource("application.xml");
     if (earResURL != null) {
       assembly_classpath_appclient_ear.addAsManifestResource(earResURL, "application.xml");
     }
-    // assembly_classpath_appclient_ear
-    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEarArchive(assembly_classpath_appclient_ear, Client.class, earResURL);
 
     return assembly_classpath_appclient_ear;
