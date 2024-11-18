@@ -27,11 +27,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 /**
- * A base class that uses the {@link Runtime#exec(String[], String[], File)} method to launch a Jakarta EE appclient.
- * Vendors override this class to provide implementations of:
- * {@link #getAppClientCommand()} - the command line expected to invoke your Application Client main
- * {@link #getAppClientEnv()} - optional environment variables that should be provided when running the Application client
- * {@link #getAppClientDir()} - optional directory from which the appclient process should run
+ * A class that uses the {@link Runtime#exec(String[], String[], File)} method to launch a Jakarta EE appclient.
+ * Vendors configure the appclient via the {@link AppClientProtocolConfiguration} class using the
+ * protocol element of the arquillian.xml file.
  */
 public class AppClientCmd {
     private static final Logger LOGGER = Logger.getLogger(AppClientCmd.class.getName());
@@ -47,6 +45,7 @@ public class AppClientCmd {
     private String[] clientEnvp = null;
     private File clientDir = null;
     private String clientEarDir;
+    private String clientEarLibClasspath;
     private CompletableFuture<Process> onExit;
 
 
@@ -59,6 +58,7 @@ public class AppClientCmd {
         clientEnvp = config.clientEnvAsArray();
         clientDir = config.clientDirAsFile();
         clientEarDir = config.getClientEarDir();
+        clientEarLibClasspath = config.clientEarLibClasspath();
     }
 
     public boolean waitForExit(long timeout, TimeUnit units) throws InterruptedException {
@@ -114,7 +114,6 @@ public class AppClientCmd {
         
         ArrayList<String> cmdList = new ArrayList<String>();
 
-
         // Need to replace any property refs on command line
         File earDir = new File(clientEarDir);
         if(earDir.isAbsolute()) {
@@ -135,21 +134,32 @@ public class AppClientCmd {
                 arg = arg.replaceAll("\\$\\{clientAppArchive}", clientAppArchive);
                 cmdLine[n] = arg;
             }
-
+            if(arg.contains("${clientEarLibClasspath}")) {
+                arg = arg.replaceAll("\\$\\{clientEarLibClasspath}", clientEarLibClasspath);
+                cmdLine[n] = arg;
+            }
+        }
+        // Replace any ${clientEarLibClasspath} in the client ENV
+        for(int n = 0; n < clientEnvp.length; n++) {
+            String env = clientEnvp[n];
+            if(env.contains("${clientEarLibClasspath}")) {
+                String env2 = env.replaceAll("\\$\\{clientEarLibClasspath}", clientEarLibClasspath);
+                LOGGER.info("Replaced clientEarLibClasspath in "+env2);
+                clientEnvp[n] = env2;
+            }
         }
 
+        // Split the command line into individual arguments based on spaces
         for (int n = 0; n < cmdLine.length; n ++) {
-            String arg = cmdLine[n];
             cmdList.addAll(Arrays.asList(cmdLine[n].split(" ")));
         }
 
+        // Add any additional args
         if (additionalArgs != null) {
             String[] newCmdLine = new String[cmdLine.length + additionalArgs.length];
             System.arraycopy(cmdLine, 0, newCmdLine, 0, cmdLine.length);
             System.arraycopy(additionalArgs, 0, newCmdLine, cmdLine.length, additionalArgs.length);
-            cmdLine = newCmdLine;
             cmdList.addAll(Arrays.asList(additionalArgs));
-
         }
 
         appClientProcess = Runtime.getRuntime().exec(cmdList.toArray(new String[0]), clientEnvp, clientDir);
