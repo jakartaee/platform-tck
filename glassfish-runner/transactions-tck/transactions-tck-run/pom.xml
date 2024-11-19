@@ -323,8 +323,6 @@
                                 <glassfish.home>${glassfish.home}</glassfish.home>
 
                                 <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
-                                create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
                                 create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
                                 create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
                                 list-jdbc-connection-pools
