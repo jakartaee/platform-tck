@@ -22,7 +22,7 @@
     <parent>
         <groupId>org.glassfish</groupId>
         <artifactId>transactions-tck</artifactId>
-        <version>4.0.0-SNAPSHOT</version>
+        <version>11.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>transactions-tck-install</artifactId>
