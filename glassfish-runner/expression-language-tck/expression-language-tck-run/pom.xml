@@ -114,7 +114,7 @@
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.5.2</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>
