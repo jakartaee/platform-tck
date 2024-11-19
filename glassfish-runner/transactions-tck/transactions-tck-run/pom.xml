@@ -19,7 +19,7 @@
 
     <parent>
         <groupId>org.glassfish</groupId>
-        <artifactId>standalone-tck</artifactId>
+        <artifactId>transactions-tck</artifactId>
         <version>11.0.0-SNAPSHOT</version>
     </parent>
 
