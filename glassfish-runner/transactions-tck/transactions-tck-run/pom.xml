@@ -72,6 +72,11 @@
             <artifactId>jta-tck</artifactId>
             <version>${tck.version}</version>
         </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>ejb30</artifactId>
+            <version>${tck.version}</version>
+        </dependency>
 
         <!-- Junit5 -->
         <dependency>
@@ -102,8 +107,6 @@
             <version>1.7</version>
             <scope>test</scope>
         </dependency>
-
-        
 
         <!--
             The Arquillian protocol to use the application client container for testing
@@ -154,7 +157,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        
+
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
@@ -208,6 +211,8 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <artifactItems>
+
+                                <!-- The application client container needs these two dependencies -->
                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>tck-porting-lib</artifactId>
@@ -222,6 +227,11 @@
                                     <outputDirectory>${project.build.directory}/lib</outputDirectory>
                                     <destFileName>arquillian-protocol-lib.jar</destFileName>
                                 </artifactItem>
+
+                                <!-- 
+                                    AppClientDeploymentPackager needs this on the Eclipse CI since it can't fully resolve
+                                    jakarta.tck.arquillian:arquillian-protocol-lib in code for some reason.
+                                -->
                                 <artifactItem>
                                     <groupId>jakarta.tck.arquillian</groupId>
                                     <artifactId>arquillian-protocol-lib</artifactId>
