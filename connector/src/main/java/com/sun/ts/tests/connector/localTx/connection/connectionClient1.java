@@ -79,14 +79,15 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
     logMsg("Using: " + whitebox_tx_param);
 
     // For application level sign on
-    uname = p.getProperty("rauser1");
+    uname  = p.getProperty("rauser1");
     password = p.getProperty("rapassword1");
-
+    
     // Construct our DBSupport object. This object performs interactions
     // on a table, based on the properties object supplied.
     try {
       dbutil = new DBSupport();
     } catch (Exception e) {
+    e.printStackTrace();
       TestUtil.printStackTrace(e);
       TestUtil.logErr("###", e);
       throw new Exception(
@@ -99,6 +100,7 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
       ds1 = (TSDataSource) nctx.lookup(whitebox_tx);
       ds2 = (TSDataSource) nctx.lookup(whitebox_tx_param);
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.printStackTrace(e);
       TestUtil.logErr("####", e);
       TestUtil.logMsg("Exception during JNDI lookup: " + e.getMessage());
@@ -120,13 +122,14 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
    *
    */
   public void testGetConnection1() throws Exception {
-
+	  
     // Get connection object using no parameters. Container managed
     // signon.
     try {
       con = ds1.getConnection();
       TestUtil.logMsg("Got connection from the DataSource.");
     } catch (Exception e) {
+      e.printStackTrace();
       TestUtil.logErr("Exception caught on creating connection.", e);
       TestUtil.printStackTrace(e);
       TestUtil.logErr("###", e);
@@ -141,6 +144,7 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
       dbutil.insertIntoTable(con);
       TestUtil.logMsg("Values inserted into table!");
     } catch (Exception sqle) {
+      sqle.printStackTrace();
       TestUtil.logErr("Exception inserting into table.", sqle);
       TestUtil.printStackTrace(sqle);
       throw new Exception(sqle.getMessage());
@@ -151,6 +155,7 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
       dbutil.dropTable(con);
       TestUtil.logMsg("Table has been dropped!");
     } catch (Exception sqle) {
+      sqle.printStackTrace();
       TestUtil.logErr("Exception dropping table.", sqle);
       TestUtil.printStackTrace(sqle);
       throw new Exception(sqle.getMessage());
@@ -172,7 +177,7 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
    *
    */
   public void testgetConnectionWithParameter1() throws Exception {
-
+	  
     Vector log = null;
     boolean b1 = false;
     boolean b2 = false;
@@ -188,6 +193,7 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
       log = ds2.getLog();
       TestUtil.logTrace("Got connection.");
     } catch (Exception sqle) {
+    	sqle.printStackTrace();
       TestUtil.logMsg("Exception caught on creating connection:");
       TestUtil.printStackTrace(sqle);
       throw new Exception(sqle.getMessage());
@@ -224,6 +230,7 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
       dbutil.insertIntoTable(con);
       TestUtil.logMsg("Values inserted into table!");
     } catch (Exception sqle) {
+    	sqle.printStackTrace();
       TestUtil.logMsg("Exception inserting into table.");
       TestUtil.printStackTrace(sqle);
       throw new Exception(sqle.getMessage());
@@ -234,6 +241,7 @@ public class connectionClient1 extends ServiceEETest implements Serializable {
       dbutil.dropTable(con);
       TestUtil.logMsg("Table has been dropped!");
     } catch (Exception sqle) {
+    	sqle.printStackTrace();
       TestUtil.logMsg("Exception dropping table.");
       TestUtil.printStackTrace(sqle);
       throw new Exception(sqle.getMessage());
