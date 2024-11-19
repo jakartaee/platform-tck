@@ -104,7 +104,7 @@ public class TsTestPropsBuilder {
 
     /**
      * Get the deployment vehicle archive name from the deployment archive. This needs to be a vehicle deployment
-     * for the result to be value.
+     * for the result to be valid.
      * @param deployment - current test deployment
      * @return base vehicle archive name
      */

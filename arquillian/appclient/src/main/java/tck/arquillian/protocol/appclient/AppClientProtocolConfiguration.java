@@ -1,5 +1,6 @@
 package tck.arquillian.protocol.appclient;
 
+import org.jboss.arquillian.container.spi.client.deployment.Deployment;
 import org.jboss.arquillian.container.test.spi.client.protocol.ProtocolConfiguration;
 import tck.arquillian.protocol.common.ProtocolCommonConfig;
 
@@ -117,7 +118,12 @@ public class AppClientProtocolConfiguration implements ProtocolConfiguration, Pr
      * the parsed command line array elements are trimmed of leading and trailing whitespace.
      * The command line should be filtered against the ts.jte file if it contains any property references. In addition
      * to ts.jte property references, the command line can contain ${clientEarDir} which will be replaced with the
-     * #clientEarDir value. Any ${vehicleArchiveName} ref will be replaced with the vehicleArchiveName passed to the
+     * #clientEarDir value. Any ${vehicleArchiveName} ref will be replaced with the vehicle archive name extracted by
+     * {@link tck.arquillian.protocol.common.TsTestPropsBuilder#vehicleArchiveName(Deployment)}.
+     * Any ${clientAppArchive} ref will be replaced with the clientAppArchive extracted by the
+     * {@link AppClientDeploymentPackager} processing of the target appclient ear.
+     * Any ${clientEarLibClasspath} ref will be replaced with the classpath of the client ear lib directory if
+     * {@link #unpackClientEar} is true and the clientEarDir/lib directory exists.
      * @param clientCmdLineString
      */
     public void setClientCmdLineString(String clientCmdLineString) {
@@ -146,6 +152,12 @@ public class AppClientProtocolConfiguration implements ProtocolConfiguration, Pr
     public String getClientEarDir() {
         return clientEarDir;
     }
+    /**
+     * Set the directory to extract the final appclient ear test artifact. The default is "target/appclient".
+     * Any ${clientEarDir} ref in the {@link #clientCmdLineString} will be replaced with the clientEarDir
+     * value.
+     * @param clientEarDir
+     */
     public void setClientEarDir(String clientEarDir) {
         this.clientEarDir = clientEarDir;
     }
@@ -186,6 +198,26 @@ public class AppClientProtocolConfiguration implements ProtocolConfiguration, Pr
             dir = new File(clientDir);
         }
         return dir;
+    }
+
+    /**
+     * If #unpackClientEar is true, and clientEarDir/lib exists, then this method returns the contents
+     * of the clientEarDir/lib as a classpath string
+     * @return a classpath string for the client ear lib directory
+     */
+    public String clientEarLibClasspath() {
+        StringBuilder cp = new StringBuilder();
+        File libDir = new File(clientEarDir, "lib");
+        if (unpackClientEar && libDir.exists()) {
+            File[] jars = libDir.listFiles();
+            for (File jar : jars) {
+                if (!cp.isEmpty()) {
+                    cp.append(File.pathSeparator);
+                }
+                cp.append(jar.getAbsolutePath());
+            }
+        }
+        return cp.toString();
     }
 
     /**
