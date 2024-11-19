@@ -32,9 +32,9 @@
 
     <properties>
         <cdi.ee.tck.version>11.0.0-SNAPSHOT</cdi.ee.tck.version>
+        <cdi.ee.tck.version>11.0.0-SNAPSHOT</cdi.ee.tck.version>
 
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
-        <cdi.ee.tck.version>11.0.0-SNAPSHOT</cdi.ee.tck.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
         <!-- Note M6 still has some failures, future M7 passes all -->
