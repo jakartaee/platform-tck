@@ -23,15 +23,13 @@
         <version>11.0.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>jakarta</groupId>
-    <artifactId>glassfish.jta-platform-tck</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>transactions-tck-run</artifactId>
 
     <properties>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-JDK17-M8</glassfish.version>
+        <glassfish.version>8.0.0-M8</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
 
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
@@ -60,6 +58,22 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <!-- Jakarta EE APIs -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>${jakarta.platform.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- The actual TCK containing the tests -->
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>jta-tck</artifactId>
+            <version>${tck.version}</version>
+        </dependency>
+
+        <!-- Junit5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -69,77 +83,33 @@
             <artifactId>junit-vintage-engine</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>jta-tck</artifactId>
-            <version>${tck.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>${jakarta.platform.version}</version>
-            <scope>provided</scope>
-        </dependency>
 
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-spi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-spi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.core</groupId>
-            <artifactId>arquillian-core-spi</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.test</groupId>
-            <artifactId>arquillian-test-impl-base</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-core</artifactId>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-spi</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-core</artifactId>
-        </dependency>
+
+        <!--
+            The Arquillian connector that starts GlassFish and deploys archives to it.
+        -->
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <version>1.7</version>
             <scope>test</scope>
         </dependency>
+
+        <!--
+            The Arquillian protocol to use the application client container for testing
+        -->
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
             <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-api</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap.resolver</groupId>
-            <artifactId>shrinkwrap-resolver-spi-maven</artifactId>
-            <version>3.2.0</version>
         </dependency>
 
         <dependency>
@@ -179,33 +149,6 @@
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>runtime</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>dbprocedures</artifactId>
-            <version>3.2.0</version>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>jakarta.persistence</groupId>
-                    <artifactId>jakarta.persistence-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
 
     <build>
@@ -233,7 +176,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>004-copy-lib</id>
+                        <id>002-copy-lib</id>
                         <goals>
                             <goal>copy</goal>
                         </goals>
@@ -271,13 +214,14 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
+                            <dependenciesToScan>jakarta.tck:jta-tck</dependenciesToScan>
                             <!-- Select the @Tag("tck-appclient") tests -->
                             <groups>tck-appclient</groups>
                             <includes>
                                 <include>com/sun/ts/tests/jta/ee/txpropagationtest/*Ejb*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/usertransaction/**/*EjbTest*.java</include>
                             </includes>
-                            <dependenciesToScan>jakarta.tck:jta-tck</dependenciesToScan>
+
                             <systemPropertyVariables>
                                 <ts.home>${ts.home}</ts.home>
 
@@ -289,8 +233,6 @@
 
                                 <glassfish.home>${glassfish.home}</glassfish.home>
                                 <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
-                                create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
-                                create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
                                 create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
                                 create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
                                 list-jdbc-connection-pools
@@ -310,12 +252,9 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${glassfish.home}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${glassfish.home}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
+                            <dependenciesToScan>jakarta.tck:jta-tck</dependenciesToScan>
+                            <!-- Select the @Tag("tck-javatest") tests -->
+                            <groups>${javatest-testGroups}</groups>
                             <includes>
                                 <include>com/sun/ts/tests/jta/ee/transactional/ClientEjblitejspTest*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/transactional/ClientEjbliteservletTest*.java</include>
@@ -326,9 +265,7 @@
                                 <include>com/sun/ts/tests/jta/ee/usertransaction/**/*JspTest*.java</include>
                                 <include>com/sun/ts/tests/jta/ee/usertransaction/**/*ServletTest*.java</include>
                             </includes>
-                            <!-- Select the @Tag("tck-javatest") tests -->
-                            <groups>${javatest-testGroups}</groups>
-                            <dependenciesToScan>jakarta.tck:jta-tck</dependenciesToScan>
+
                             <systemPropertyVariables>
                                 <glassfish.enableDerby>true</glassfish.enableDerby>
                                 <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true</glassfish.derbyDatabaseName>

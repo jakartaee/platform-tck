@@ -14,8 +14,8 @@
     <artifactId>glassfish.batch-tck.sigtests</artifactId>
 
     <properties>
-        <glassfish.version>7.0.0-M10</glassfish.version>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
+        <glassfish.version>7.0.0-M10</glassfish.version>
         <jakarta.batch.version>2.1.5</jakarta.batch.version>
     </properties>
 
