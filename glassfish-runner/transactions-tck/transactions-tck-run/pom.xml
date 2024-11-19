@@ -102,6 +102,18 @@
             <version>1.7</version>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-api-maven</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+            <artifactId>shrinkwrap-descriptors-impl-base</artifactId>
+            <version>2.0.0</version>
+        </dependency>
 
         <!--
             The Arquillian protocol to use the application client container for testing
