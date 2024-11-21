@@ -117,7 +117,6 @@
                         <configuration>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
                                 <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true</glassfish.postBootCommands>
@@ -125,9 +124,6 @@
                                 <harness.log.traceflag>true</harness.log.traceflag>
                                 <cts.harness.debug>true</cts.harness.debug>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>

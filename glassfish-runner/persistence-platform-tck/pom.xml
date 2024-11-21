@@ -536,7 +536,6 @@
                             </includes>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                                 create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
@@ -555,9 +554,6 @@
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                     <execution>
@@ -583,7 +579,6 @@
                             </dependenciesToScan>
 
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
                                 create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
@@ -601,9 +596,6 @@
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>

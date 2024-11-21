@@ -711,9 +711,6 @@
                                 <include>**/*Servlet*.*</include>
                                 <include>**/*JSP*.*</include>
                             </includes>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>
@@ -746,9 +743,6 @@
                             <includes>
                                 <include>**/*EJB*.*</include>
                             </includes>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>

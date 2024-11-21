@@ -541,7 +541,6 @@
                             </additionalClasspathElements>
                             <dependenciesToScan>jakartatck:jms-tck</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <user>j2ee</user>
                                 <password>j2ee</password>
                                 <authuser>javajoe</authuser>
@@ -553,9 +552,6 @@
                                 <vehicle>standalone</vehicle>
                                 <user.dir>/tmp</user.dir>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>

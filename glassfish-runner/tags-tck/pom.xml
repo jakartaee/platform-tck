@@ -411,7 +411,6 @@
                             <groups>${testGroups}</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <webServerHome>${project.build.directory}/${glassfish.toplevel.dir}/glassfish</webServerHome>
                                 <impl.vi>glassfish</impl.vi>
@@ -435,9 +434,6 @@
                                 <cts.harness.debug>true</cts.harness.debug>
                                 <porting.ts.url.class.1>com.sun.ts.tests.jstl.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>

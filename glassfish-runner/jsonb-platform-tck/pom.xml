@@ -397,7 +397,6 @@
                             <groups>tck-appclient</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
@@ -406,9 +405,6 @@
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                     <execution>
@@ -430,7 +426,6 @@
                             <groups>${javatest-testGroups}</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
@@ -438,9 +433,6 @@
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                     <execution>
@@ -462,7 +454,6 @@
                             <groups>tck-appclient</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
@@ -471,9 +462,6 @@
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                     <execution>
@@ -494,7 +482,6 @@
                             <groups>tck-javatest</groups>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <junit.log.traceflag>true</junit.log.traceflag>
                                 <harness.log.traceflag>true</harness.log.traceflag>
@@ -502,9 +489,6 @@
                                 <java.io.tmpdir>/tmp</java.io.tmpdir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
                 </executions>
