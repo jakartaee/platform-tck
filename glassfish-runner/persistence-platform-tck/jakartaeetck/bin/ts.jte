@@ -359,7 +359,7 @@ vi.domain=${vi.domain.dir}/${vi.domain.name}
 vi.asenv.loc=${javaee.home}/config
 vi.imqbin.loc=${javaee.home}/../mq/bin
 vi.lib=${javaee.home}/server/lib
-vi.log.file.location=${vi.domain}/logs
+vi.log.file.location=/tmp
 vi.modules=${javaee.home}/modules
 vi.imq.share.lib=${javaee.home}/../mq/lib
 vi.jvm.options=-Doracle.jdbc.J2EE13Compliant=true:-Xmx4096m:-Dj2eelogin.name=${user}:-Dj2eelogin.password=${password}:-Deislogin.name=${user1}:-Deislogin.password=${password1}:-Dtest.ejb.stateful.timeout.wait.seconds=${test.ejb.stateful.timeout.wait.seconds}:-DwebServerPort.2=${webServerPort.2}:-DwebServerHost.2=${webServerHost.2}:-Dcsiv2.save.log.file=${harness.log.traceflag}:-Djavax.xml.accessExternalStylesheet=all:-Djavax.xml.accessExternalDTD=file,http
