@@ -177,7 +177,6 @@
                             </additionalClasspathElements>
                             <dependenciesToScan>jakarta.tck:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <glassfish.maxHeapSize>2048m</glassfish.maxHeapSize>
                                 <glassfish.postBootCommands>create-file-user --groups staff:mgr:DIRECTOR --passwordfile ${project.build.directory}/../j2ee.pass j2ee
@@ -193,9 +192,6 @@
                                 <authpassword>javajoe</authpassword>
                                 <porting.ts.url.class.1>com.sun.ts.tests.jaxrs.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
                             </systemPropertyVariables>
-                            <environmentVariables>
-                                <GLASSFISH_HOME>${project.build.directory}/${glassfish.toplevel.dir}</GLASSFISH_HOME>
-                            </environmentVariables>
                         </configuration>
                     </execution>
 
