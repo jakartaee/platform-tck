@@ -64,13 +64,13 @@
         <exec.imqusermgr>${ri.home}/bin/imqusermgr</exec.imqusermgr>
         <exec.imqusermgr.part2></exec.imqusermgr.part2>
         <ftable>ctstable2</ftable>
-        <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
-        <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <!-- Use JDK21 to run with GF 8.0.0-M5 -->
         <!-- <glassfish.version>8.0.0-M5</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
+        <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
+        <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <imqbin.loc>${s1as.imqbin.loc}</imqbin.loc>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
@@ -94,10 +94,13 @@
         <pathsep>:</pathsep>
         <pool.properties>${derby.properties}</pool.properties>
         <poolName>${derby.poolName}</poolName>
+        <propName>SupportsXA=true:ProviderIntegrationMode=javabean:ConnectionFactoryClassName=com.sun.messaging.ConnectionFactory:CommonSetterMethodName=setProperty:UserName=guest:Password=guest:QueueConnectionFactoryClassName=com.sun.messaging.QueueConnectionFactory:TopicConnectionFactoryClassName=com.sun.messaging.TopicConnectionFactory:QueueClassName=com.sun.messaging.Queue:TopicClassName=com.sun.messaging.Topic:LogLevel=info:UserName=guest:Password=guest:XAQueueConnectionFactoryClassName=com.sun.messaging.XAQueueConnectionFactory:XATopicConnectionFactoryClassName=com.sun.messaging.XATopicConnectionFactory:XAConnectionFactoryClassName=com.sun.messaging.XAConnectionFactory</propName>
         <ptable>ctstable1</ptable>
         <restype>javax.sql.DataSource</restype>
         <ri.home>${project.build.directory}/${glassfish.toplevel.dir}/mq</ri.home>
+        <s1as.imq.share.lib>${javaee.home}/../mq/lib</s1as.imq.share.lib>
         <s1as.imqbin.loc>${javaee.home}/../mq/bin</s1as.imqbin.loc>
+        <s1as.lib>${javaee.home}/lib</s1as.lib>
         <sql.directory>./sql</sql.directory>
         <tck.artifactId>jms</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
@@ -106,7 +109,6 @@
         <user2>cts1</user2>
         <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -441,7 +443,24 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>001-StartDatabase</id>
+                        <id>001-StartDomain</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-domain</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>002-StartDatabase</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -509,10 +528,40 @@
                                 <argument>--file</argument>
                                 <argument>${project.basedir}/create.jms.template</argument>
                             </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>12-StopDomain1</id>
+                        <id>12-createJMSRAtemplate</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--host</argument>
+                                <argument>localhost</argument>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
+                                <argument>--echo=true</argument>
+                                <argument>multimode</argument>
+                                <argument>--file</argument>
+                                <argument>${project.basedir}/create.jmsra.template</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>13-StopDomain1</id>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -671,8 +720,45 @@
                             </target>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>09-copy.mq.jars</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <copy file="${s1as.imq.share.lib}/imq.jar" overwrite="yes" todir="${s1as.lib}"></copy>
+                                <copy file="${s1as.imq.share.lib}/imqutil.jar" overwrite="yes" todir="${s1as.lib}"></copy>
+                                <copy file="${s1as.imq.share.lib}/imqjmx.jar" overwrite="yes" todir="${s1as.lib}"></copy>
+                                <copy file="${s1as.imq.share.lib}/imqbroker.jar" overwrite="yes" todir="${s1as.lib}"></copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>10-create-resource-adapter-config</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <echo message="create-resource-adapter-config jmsra"></echo>
+                                <exec executable="${exec.asadmin}">
+                                    <arg line=" --user admin"></arg>
+                                    <arg line=" --passwordfile ${project.basedir}/j2ee.pass"></arg>
+                                    <arg line=" --host localhost"></arg>
+                                    <arg line=" --port 4848"></arg>
+                                    <arg line=" create-resource-adapter-config"></arg>
+                                    <arg line=" --property ${propName}"></arg>
+                                    <arg line=" jmsra"></arg>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.0</version>
@@ -729,6 +815,7 @@
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
+
                     <execution>
                         <id>messaging-tests-javatest</id>
                         <goals>
@@ -776,6 +863,7 @@
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
         </plugins>

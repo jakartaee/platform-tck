@@ -19,7 +19,7 @@
 -->
 
 <sun-ejb-jar>
-  <disable-nonportable-jndi-names>true</disable-nonportable-jndi-names>
+  <!-- <disable-nonportable-jndi-names>true</disable-nonportable-jndi-names> -->
   <enterprise-beans>
     <unique-id>0</unique-id>
     <ejb>
