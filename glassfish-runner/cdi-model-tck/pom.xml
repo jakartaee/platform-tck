@@ -17,7 +17,7 @@
         <cdi.tck-4-0.version>4.1.0</cdi.tck-4-0.version>
         <glassfish.home>${glassfish.root}/glassfish7</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>7.0.0-M10</glassfish.version>
+        <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <weld.version>5.1.2.Final</weld.version>
