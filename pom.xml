@@ -81,7 +81,7 @@
         <arquillian.jakarta.tck.version>${project.version}</arquillian.jakarta.tck.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
         <!-- CDI -->
-        <cdi-api.version>4.0.0</cdi-api.version>
+        <cdi-api.version>4.1.0</cdi-api.version>
         <!-- Jakarta Concurrency -->
         <concurrent-api.version>3.1.1</concurrent-api.version>
         <!-- Jakarta Persistence -->
