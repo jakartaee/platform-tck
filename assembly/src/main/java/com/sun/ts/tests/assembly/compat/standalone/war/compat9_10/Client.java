@@ -147,9 +147,6 @@ public class Client extends EETest {
           assembly_compat_standalone_war_compat9_10_ear.addAsManifestResource(earResURL, "application.xml");
         }
     
-        assembly_compat_standalone_war_compat9_10_ear
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
-
     return assembly_compat_standalone_war_compat9_10_ear;
   }
 
@@ -165,7 +162,7 @@ public class Client extends EETest {
     }
     URL jspURL = Client.class.getResource("test.jsp");
     if(jspURL != null) {
-      assembly_compat_standalone_war_compat9_10_component_web.addAsWebResource(resURL, "test.jsp");
+      assembly_compat_standalone_war_compat9_10_component_web.addAsWebResource(jspURL, "test.jsp");
     }
 
 
@@ -173,8 +170,6 @@ public class Client extends EETest {
     if(resURL != null) {
       assembly_compat_standalone_war_compat9_10_component_web.addAsWebInfResource(resURL, "sun-web.xml");
     }
-    assembly_compat_standalone_war_compat9_10_component_web
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processWebArchive(assembly_compat_standalone_war_compat9_10_component_web, Client.class, resURL);
 
     return assembly_compat_standalone_war_compat9_10_component_web;
