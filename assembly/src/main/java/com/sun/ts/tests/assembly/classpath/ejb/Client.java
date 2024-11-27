@@ -103,7 +103,6 @@ public class Client extends EETest {
     if (resURL != null) {
       direct_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     }
-    direct_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     // archiveProcessor.processEjbArchive(direct_classpath_util, Client.class, resURL);
 
     JavaArchive indirect_classpath_util = ShrinkWrap.create(JavaArchive.class, "indirect_classpath_util.jar");
@@ -113,7 +112,6 @@ public class Client extends EETest {
     if (resURL != null) {
       indirect_classpath_util.addAsManifestResource(resURL, "ejb-jar.xml");
     }
-    indirect_classpath_util.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     // archiveProcessor.processEjbArchive(indirect_classpath_util, Client.class, resURL);
 
 
@@ -155,8 +153,6 @@ public class Client extends EETest {
     if(ejbResURL != null) {
       assembly_classpath_ejb_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
     }
-    assembly_classpath_ejb_ejb
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEjbArchive(assembly_classpath_ejb_ejb, Client.class, ejbResURL);
 
     EnterpriseArchive assembly_classpath_ejb_ear = ShrinkWrap.create(EnterpriseArchive.class,
@@ -173,8 +169,6 @@ public class Client extends EETest {
     if (earResURL != null) {
       assembly_classpath_ejb_ear.addAsManifestResource(earResURL, "application.xml");
     }
-    assembly_classpath_ejb_ear
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     archiveProcessor.processEarArchive(assembly_classpath_ejb_ear, Client.class, earResURL);
 
     return assembly_classpath_ejb_ear;

@@ -159,6 +159,9 @@ public class Client extends EETest {
         com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.TestBeanEJB.class,
         com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class,
         com.sun.ts.lib.util.RemoteLoggingInitException.class,
+        com.sun.ts.lib.util.TSNamingContext.class,
+        com.sun.ts.lib.util.TestUtil.class,
+        com.sun.ts.lib.util.TestReportInfo.class,
         com.sun.ts.tests.assembly.compat.standalone.jar.compat9_10.Client.class);
     // The application-client.xml descriptor
     URL resURL = Client.class.getResource("ejb-jar.xml");

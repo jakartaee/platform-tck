@@ -138,8 +138,6 @@ public class Client extends EETest {
     EnterpriseArchive assembly_standalone_war_ear = ShrinkWrap.create(EnterpriseArchive.class,
         "assembly_standalone_war.ear");
         assembly_standalone_war_ear.addAsModule(assembly_standalone_war_client);
-    assembly_standalone_war_ear
-        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
     // archiveProcessor.processEarArchive(assembly_standalone_war_ear, Client.class, resURL);
 
     return assembly_standalone_war_ear;
@@ -160,7 +158,7 @@ public class Client extends EETest {
     }
     URL jspURL = Client.class.getResource("webFiles/test.jsp");
     if(jspURL != null) {
-      assembly_standalone_war_component_web.addAsWebResource(resURL, "test.jsp");
+      assembly_standalone_war_component_web.addAsWebResource(jspURL, "test.jsp");
     }
 
     resURL = Client.class.getResource("assembly_standalone_war_component_web.war.sun-web.xml");

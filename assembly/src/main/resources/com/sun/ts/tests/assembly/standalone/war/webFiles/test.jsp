@@ -17,8 +17,6 @@
 --%>
 
 <%@ page import="java.util.*" %>
-<%@ page import="com.sun.ts.lib.util.*" %>
-<%@ page import="com.sun.ts.lib.porting.*" %>
 
 <%
     StringBuffer lep = new StringBuffer();
