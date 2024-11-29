@@ -47,7 +47,7 @@
         <arquillian.version>1.9.1.Final</arquillian.version>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
-        <glassfish.version>7.0.0</glassfish.version>
+        <glassfish.version>8.0.0-JDK17-M7</glassfish.version>
         <jakarta.rest.version>3.1.0</jakarta.rest.version>
         <json.tck.version>2.1.0</json.tck.version>
         <jsonb.tck.version>3.0.0</jsonb.tck.version>
