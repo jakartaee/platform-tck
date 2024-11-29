@@ -69,6 +69,7 @@ public class securityClient1EjbTest extends com.sun.ts.tests.connector.localTx.s
             JavaArchive localTx_security_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "localTx_security_ejb_vehicle_client.jar");
             // The class files
             localTx_security_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.localTx.security.securityClient1.class,		
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,

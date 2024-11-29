@@ -21,6 +21,9 @@
 package com.sun.ts.tests.connector.localTx.msginflow;
 
 import java.io.Serializable;
+import java.io.StringWriter;
+import java.io.PrintWriter;
+
 import java.util.Properties;
 import java.util.Vector;
 
@@ -104,7 +107,9 @@ public class MDBClient extends ServiceEETest implements Serializable {
       ds1 = (TSDataSource) nctx.lookup(whitebox_tx);
       ds2 = (TSDataSource) nctx.lookup(whitebox_tx_param);
       ds3 = (TSDataSource) nctx.lookup(whitebox_ibanno_no_md);
+      
     } catch (Exception e) {
+      e.printStackTrace();
       TestUtil.printStackTrace(e);
       TestUtil.logMsg("Exception during JNDI lookup: " + e.getMessage());
     }
@@ -137,7 +142,10 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds1.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+      TestUtil.logTrace("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -149,6 +157,8 @@ public class MDBClient extends ServiceEETest implements Serializable {
 
     for (int i = 0; i < log.size(); i++) {
       String str = (String) log.elementAt(i);
+      TestUtil.logTrace("^^^^^^^^^^^^^^^^^^^^^^^^^^^" + str);
+
       if (str.startsWith(toCheck1)) {
         b1 = true;
       }
@@ -189,7 +199,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds1.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -259,7 +273,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds1.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -310,7 +328,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds1.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -361,7 +383,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds1.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -412,7 +438,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds3.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -463,7 +493,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds3.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -517,7 +551,12 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds1.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -601,7 +640,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds1.getStateLog();
       TestUtil.logTrace("Got State LOG!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception caught on creating connection:");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -814,7 +857,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       dbutil.insertIntoTable(con);
       TestUtil.logMsg("Values inserted into table!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception inserting into table.");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
 
@@ -823,7 +870,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       dbutil.dropTable(con);
       TestUtil.logMsg("Table has been dropped!");
     } catch (Exception sqle) {
-      TestUtil.logMsg("Exception dropping table.");
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
       throw new Exception(sqle.getMessage(), sqle);
     }
     TestUtil.logMsg("Exception dropping table.");
@@ -861,6 +912,11 @@ public class MDBClient extends ServiceEETest implements Serializable {
       log = ds1.getStateLog();
       TestUtil.logTrace("Got connection.");
     } catch (Exception sqle) {
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
 
       throw new Exception(sqle.getMessage(), sqle);
     }
@@ -900,6 +956,12 @@ public class MDBClient extends ServiceEETest implements Serializable {
       dbutil.dropTable(con);
       TestUtil.logMsg("Table has been dropped!");
     } catch (Exception sqle) {
+    	StringWriter sw = new StringWriter();
+    	sqle.printStackTrace(new PrintWriter(sw));
+    	String exceptionAsString = sw.toString();
+
+      TestUtil.logMsg("Exception caught on creating connection:" + exceptionAsString);
+
       TestUtil.logMsg("Exception dropping table.");
       throw new Exception(sqle.getMessage(), sqle);
     }

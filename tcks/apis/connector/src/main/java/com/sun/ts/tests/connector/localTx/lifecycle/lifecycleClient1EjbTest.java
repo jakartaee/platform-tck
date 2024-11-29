@@ -69,6 +69,7 @@ public class lifecycleClient1EjbTest extends com.sun.ts.tests.connector.localTx.
             JavaArchive localTx_lifecycle_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "localTx_lifecycle_ejb_vehicle_client.jar");
             // The class files
             localTx_lifecycle_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.localTx.lifecycle.lifecycleClient1.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
@@ -79,7 +80,8 @@ public class lifecycleClient1EjbTest extends com.sun.ts.tests.connector.localTx.
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.connector.localTx.lifecycle.lifecycleClient1.class
             );
             // The application-client.xml descriptor
             URL resURL = lifecycleClient1.class.getResource("localTx_lifecycle_ejb_vehicle_client.xml");

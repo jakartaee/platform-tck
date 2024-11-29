@@ -69,6 +69,7 @@ public class eventClient1EjbTest extends com.sun.ts.tests.connector.xa.event.eve
             JavaArchive xa_event_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "xa_event_ejb_vehicle_client.jar");
             // The class files
             xa_event_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.xa.event.eventClient1.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,

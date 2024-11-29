@@ -64,6 +64,7 @@ public class ClientEjbTest extends com.sun.ts.tests.connector.permissiondd.Clien
             JavaArchive permissiondd_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "permissiondd_ejb_vehicle_client.jar");
             // The class files
             permissiondd_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.permissiondd.Client.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,

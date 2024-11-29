@@ -75,12 +75,12 @@ public class securityClient1JspTest extends com.sun.ts.tests.connector.noTx.secu
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = securityClient1.class.getResource("transinflow_jsp_vehicle_web.xml");
+            URL warResURL = securityClient1.class.getResource("security_jsp_vehicle_web.xml");
             if(warResURL != null) {
               security_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = securityClient1.class.getResource("transinflow_jsp_vehicle_web.war.sun-web.xml");
+            warResURL = securityClient1.class.getResource("security_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               security_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }

@@ -87,6 +87,7 @@ public class connectionClient1EjbTest extends com.sun.ts.tests.connector.noTx.co
             JavaArchive connection_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "connection_ejb_vehicle_client.jar");
             // The class files
             connection_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.noTx.connection.connectionClient1.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,

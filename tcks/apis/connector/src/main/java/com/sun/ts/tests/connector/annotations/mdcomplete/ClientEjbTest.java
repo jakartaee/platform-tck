@@ -69,6 +69,7 @@ public class ClientEjbTest extends com.sun.ts.tests.connector.annotations.mdcomp
             JavaArchive mdcomplete_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "mdcomplete_ejb_vehicle_client.jar");
             // The class files
             mdcomplete_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.annotations.mdcomplete.Client.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
@@ -89,7 +90,7 @@ public class ClientEjbTest extends com.sun.ts.tests.connector.annotations.mdcomp
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              mdcomplete_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              mdcomplete_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             mdcomplete_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: com.sun.ts.tests.common.vehicle.VehicleClient\n"), "MANIFEST.MF");
             // Call the archive processor

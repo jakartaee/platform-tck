@@ -518,6 +518,10 @@
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-tx</argument>
+                                <argument>--user</argument>
+                                <argument>${admin.user}</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${password.file}</argument>
                                 <argument>--property</argument>
                                 <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>

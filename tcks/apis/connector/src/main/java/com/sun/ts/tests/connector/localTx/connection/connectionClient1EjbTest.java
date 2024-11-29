@@ -69,6 +69,7 @@ public class connectionClient1EjbTest extends com.sun.ts.tests.connector.localTx
             JavaArchive localTx_conn_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "localTx_conn_ejb_vehicle_client.jar");
             // The class files
             localTx_conn_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.localTx.connection.connectionClient1.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
@@ -82,12 +83,12 @@ public class connectionClient1EjbTest extends com.sun.ts.tests.connector.localTx
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The application-client.xml descriptor
-            URL resURL = connectionClient1.class.getResource("/com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.xml");
+            URL resURL = connectionClient1.class.getResource("localTx_conn_ejb_vehicle_client.xml");
             if(resURL != null) {
               localTx_conn_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
-            resURL = connectionClient1.class.getResource("//com/sun/ts/tests/common/vehicle/ejb/ejb_vehicle_client.jar.sun-application-client.xml");
+            resURL = connectionClient1.class.getResource("localTx_conn_ejb_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
               localTx_conn_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
             }
@@ -113,12 +114,12 @@ public class connectionClient1EjbTest extends com.sun.ts.tests.connector.localTx
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = connectionClient1.class.getResource("/ejb_vehicle_ejb.xml");
+            URL ejbResURL1 = connectionClient1.class.getResource("localTx_conn_ejb_vehicle_ejb.xml");
             if(ejbResURL1 != null) {
               localTx_conn_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = connectionClient1.class.getResource("/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = connectionClient1.class.getResource("localTx_conn_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               localTx_conn_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
