@@ -454,22 +454,24 @@ else
   ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
 fi
 
+ENABLE_RERUN="${ENABLE_RERUN=true}"
+if [ "$ENABLE_RERUN" -eq true ]; then
+  cd "$TS_HOME/bin";
+  # Check if there are any failures in the test. If so, re-run those tests.
+  FAILED_COUNT=0
+  ERROR_COUNT=0
+  FAILED_COUNT=$(cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Failed.' | wc -l)
+  ERROR_COUNT=$(cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Error.' | wc -l)
+  if [[ $FAILED_COUNT -gt 0 || $ERROR_COUNT -gt 0 ]]; then
+    echo "One or more tests failed. Failure count:$FAILED_COUNT/Error count:$ERROR_COUNT"
+    echo "Re-running only the failed, error tests"
+    if [ -z "$KEYWORDS" ]; then
+      ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+    else
+      ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+    fi
 
-cd "$TS_HOME/bin";
-# Check if there are any failures in the test. If so, re-run those tests.
-FAILED_COUNT=0
-ERROR_COUNT=0
-FAILED_COUNT=$(cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Failed.' | wc -l)
-ERROR_COUNT=$(cat ${JT_REPORT_DIR}/${TEST_SUITE}/text/summary.txt | grep 'Error.' | wc -l)
-if [[ $FAILED_COUNT -gt 0 || $ERROR_COUNT -gt 0 ]]; then
-  echo "One or more tests failed. Failure count:$FAILED_COUNT/Error count:$ERROR_COUNT"
-  echo "Re-running only the failed, error tests"
-  if [ -z "$KEYWORDS" ]; then
-    ant -f xml/impl/glassfish/s1as.xml run.cts -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
-  else
-    ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Drun.client.args="-DpriorStatus=fail,error"  -DbuildJwsJaxws=false -Dtest.areas="${test_suite}"
+    # Generate combined report for both the runs.
+    ant -Dreport.for=com/sun/ts/tests/$test_suite -Dreport.dir="${JT_REPORT_DIR}/${TEST_SUITE}" -Dwork.dir="${JT_WORK_DIR}/${TEST_SUITE}" report
   fi
-
-  # Generate combined report for both the runs.
-  ant -Dreport.for=com/sun/ts/tests/$test_suite -Dreport.dir="${JT_REPORT_DIR}/${TEST_SUITE}" -Dwork.dir="${JT_WORK_DIR}/${TEST_SUITE}" report
 fi
