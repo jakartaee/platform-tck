@@ -169,6 +169,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
 		windir=${windir} \
 		SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
+        --module-path ${J2EE_HOME}/lib/bootstrap --add-modules ALL-MODULE-PATH \
 		-Djava.security.policy="${bin.dir}/harness.policy" \
 		-Djava.security.manager \
 		-Ddeliverable.class=${deliverable.class} \
