@@ -455,7 +455,7 @@ else
 fi
 
 ENABLE_RERUN="${ENABLE_RERUN=true}"
-if [ "$ENABLE_RERUN" -eq true ]; then
+if [ "$ENABLE_RERUN" -eq "true" ]; then
   cd "$TS_HOME/bin";
   # Check if there are any failures in the test. If so, re-run those tests.
   FAILED_COUNT=0
