@@ -454,8 +454,8 @@ else
   ant -f xml/impl/glassfish/s1as.xml run.cts -Dkeywords=\"${KEYWORDS}\" -Dant.opts="${CTS_ANT_OPTS} ${ANT_OPTS}" -Dtest.areas="${test_suite}"
 fi
 
-ENABLE_RERUN="${ENABLE_RERUN=true}"
-if [ "$ENABLE_RERUN" -eq "true" ]; then
+ENABLE_RERUN=${ENABLE_RERUN:=true}
+if [ "$ENABLE_RERUN" = "true" ]; then
   cd "$TS_HOME/bin";
   # Check if there are any failures in the test. If so, re-run those tests.
   FAILED_COUNT=0
