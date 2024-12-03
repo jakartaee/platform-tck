@@ -1133,6 +1133,7 @@ command.testExecute=com.sun.ts.lib.harness.ExecTSTestCmd \
         SYSTEMROOT=${SYSTEMROOT} \
         PATH="${javaee.home}/nativelib" \
         ${JAVA_HOME}/bin/java \
+        --module-path ${javaee.home}/lib/bootstrap --add-modules ALL-MODULE-PATH \
         ${JVMOPTS_RUNTESTCOMMAND} \
         -Xss2048k \
         -Dcts.tmp=$harness.temp.directory \
@@ -1172,6 +1173,7 @@ command.testExecuteAppClient= \
         APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${javaee.home}/lib/jpa_alternate_provider.jar${pathsep}${ts.home}/lib/tssv.jar${pathsep}${javaee.home}/modules/weld-osgi-bundle.jar${pathsep}${javaee.home}/modules/jakarta.enterprise.cdi-api.jar \
         TZ=${tz} \
         ${JAVA_HOME}/bin/java \
+        --module-path ${javaee.home}/lib/bootstrap --add-modules ALL-MODULE-PATH \
         ${JVMOPTS_RUNTESTCOMMAND} \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader  \
         -Djava.security.policy=${javaee.home}/lib/appclient/client.policy \
@@ -1243,6 +1245,7 @@ command.testExecuteEjbEmbed=com.sun.ts.lib.harness.ExecTSTestCmd \
         windir=${windir} \
         SYSTEMROOT=${SYSTEMROOT} \
         ${JAVA_HOME}/bin/java \
+        --module-path ${javaee.home}/lib/bootstrap --add-modules ALL-MODULE-PATH \
         ${JVMOPTS_RUNTESTCOMMAND} \
         -Dcts.tmp=$harness.temp.directory \
         -Djava.util.logging.config.file=${TS_HOME}/bin/client-logging.properties \
@@ -1263,6 +1266,7 @@ command.testExecuteAppClient2= \
         APPCPATH=${ts.home}/lib/tsharness.jar${pathsep}${ts.home}/lib/cts.jar${pathsep}${ts.home}/lib/glassfishporting.jar${pathsep}${ts.home}/lib/riinterceptors.jar \
 	TZ=${tz} \
         ${RI_JAVA_HOME}/bin/java \
+        --module-path ${javaee.home.ri}/lib/bootstrap --add-modules ALL-MODULE-PATH \
         ${JVMOPTS_RUNTESTCOMMAND} \
         -Djava.system.class.loader=org.glassfish.appclient.client.acc.agent.ACCAgentClassLoader \
         -Djava.security.policy=${javaee.home.ri}/lib/appclient/client.policy \
