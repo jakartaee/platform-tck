@@ -77,6 +77,15 @@
             <artifactId>arquillian-protocol-common</artifactId>
             <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
+        <!-- For the CDI integration tests -->
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+        </dependency>
 
     </dependencies>
     <build>

@@ -205,7 +205,13 @@
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.6</version>
+            <version>1.7</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces.arquillian</groupId>
+            <artifactId>glassfish-client-ee11</artifactId>
+            <version>1.7.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -519,7 +525,27 @@
                 <version>3.5.0</version>
                 <configuration>
                     <trimStackTrace>false</trimStackTrace>
+                    <dependenciesToScan>jakarta.tck:persistence-platform-tck-tests</dependenciesToScan>
+
+                    <systemPropertyVariables>
+                        <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                        <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                            create-file-user --groups guest --passwordfile ${project.basedir}/javajoe.pass javajoe
+                            create-file-user --groups staff:mgr --passwordfile ${project.basedir}/j2ee.pass j2ee
+                            create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1:connectionAttributes="create=true" --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool
+                            create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property DatabaseName=derbyDB:serverName=localhost:PortNumber=1527:User=cts1:Password=cts1 --steadypoolsize 32 --maxpoolsize 64 cts-derby-pool_no_tx
+                            create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                            create-jdbc-resource --connectionpoolid cts-derby-pool_no_tx jdbc/DB_no_tx
+                            list-jdbc-connection-pools
+                            list-jdbc-resources
+                            list-file-users</glassfish.postBootCommands>
+                        <junit.log.traceflag>true</junit.log.traceflag>
+                        <harness.log.traceflag>true</harness.log.traceflag>
+                        <cts.harness.debug>true</cts.harness.debug>
+                        <project.basedir>${project.basedir}</project.basedir>
+                    </systemPropertyVariables>
                 </configuration>
+
                 <executions>
                     <execution>
                         <id>jpa-tests-appclient</id>
@@ -556,6 +582,24 @@
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
+
+                    <execution>
+                        <id>jpa-tests-cdi</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include>
+                            </includes>
+
+                            <systemPropertyVariables>
+                                <arquillian.xml>rest-arquillian.xml</arquillian.xml>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+
                     <execution>
                         <id>jta-tests-javatest</id>
                         <goals>
