@@ -39,20 +39,20 @@
         <module>jsonb-tck</module>
         <module>jsonp-tck</module>
         <module>pages-tck</module>
-        <module>persistence-tck</module>
+        <module>persistence-platform-tck</module>
         <module>servlet-tck</module>
     </modules>
 
     <properties>
+        <arquillian.version>1.9.1.Final</arquillian.version>
         <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-        <glassfish.container.version>7.0.0</glassfish.container.version>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
+        <glassfish.version>7.0.0</glassfish.version>
         <jakarta.rest.version>3.1.0</jakarta.rest.version>
         <json.tck.version>2.1.0</json.tck.version>
         <jsonb.tck.version>3.0.0</jsonb.tck.version>
         <maven.compiler.source>11</maven.compiler.source>
         <tck.artifactId>jakarta-restful-ws-tck</tck.artifactId>
-        <arquillian.version>1.9.1.Final</arquillian.version>
     </properties>
 
     <dependencyManagement>
@@ -66,7 +66,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-            
 
     <repositories>
         <repository>

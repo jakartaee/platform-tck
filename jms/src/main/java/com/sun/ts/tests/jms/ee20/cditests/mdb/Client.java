@@ -22,7 +22,6 @@ import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.porting.TSURL;
 import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.ejb.EJB;
@@ -34,8 +33,6 @@ public class Client extends EETest {
   private static final String HOSTNAME = "localhost";
 
   private static final int PORTNUM = 8000;
-
-  private TSURL ctsurl = new TSURL();
 
   private Properties props = null;
 

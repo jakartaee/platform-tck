@@ -32,14 +32,14 @@
         <derby.lib>${glassfish.home}/javadb/lib</derby.lib>
         <glassfish.home>${glassfish.root}/glassfish${glassfish.version.main}</glassfish.home>
         <glassfish.root>${project.build.directory}</glassfish.root>
-        <glassfish.version>8.0.0-M7</glassfish.version>
+        <glassfish.version>8.0.0-M8</glassfish.version>
         <glassfish.version.main>8</glassfish.version.main>
 
         <!-- Require at least Java 17 to compile -->
         <maven.compiler.release>17</maven.compiler.release>
+        <tck.jte.path>${ts.home}/bin/ts.jte</tck.jte.path>
 
         <!-- TCK Paths -->
-        <tck.jte.path>${ts.home}/bin/xml/../../tmp/tstest.jte</tck.jte.path>
         <ts.home>${basedir}/src/test/resources/jakartaeetck</ts.home>
 
         <version.jakarta.ejb>4.0.1</version.jakarta.ejb>
@@ -73,6 +73,13 @@
 
     <dependencies>
         <!-- Jakarta EE APIs -->
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>11.0.0-M4</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>jakarta.ejb</groupId>
             <artifactId>jakarta.ejb-api</artifactId>
@@ -146,10 +153,12 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-engine</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
@@ -158,8 +167,14 @@
         </dependency>
 
         <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-spi</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -174,7 +189,7 @@
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
-            <version>1.6</version>
+            <version>1.7</version>
             <scope>test</scope>
         </dependency>
 
@@ -182,6 +197,20 @@
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>2.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 
+           For a couple of tests like:
+           com.sun.ts.tests.ejb30.tx.session.stateful.web.ClientTest
+           com.sun.ts.tests.ejb30.tx.session.stateless.cm.generics.ClientTest
+           com.sun.ts.tests.ejb30.tx.session.stateless.cm.inheritance.annotated.ClientTest
+           ... 
+        -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -242,47 +271,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>004-StartDatabase</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <phase>test-compile</phase>
-                        <configuration>
-                            <executable>${glassfish.home}/glassfish/bin/asadmin</executable>
-                            <arguments>
-                                <argument>start-database</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>005-initdb</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>test-compile</phase>
-                        <configuration>
-                            <target>
-                                <sql autocommit="true" classpath="${derby.lib}/derbyclient.jar:${derby.lib}/derbyshared.jar:${derby.lib}/derbytools.jar" delimiter=";" driver="org.apache.derby.jdbc.ClientDriver" onerror="continue" password="cts1" url="jdbc:derby://localhost:1527/${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true" userid="cts1">
-                                    <transaction src="${project.build.directory}/test-classes/derby.ddl.sql"></transaction>
-                                </sql>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.3.1</version>
@@ -292,27 +280,40 @@
                         <include>**/*TestCase.java</include>
                         <include>**/*TestSuite.java</include>
                     </includes>
+                    <excludes>
+                        <exclude>com.sun.ts.tests.ejb30.assembly.initorder.warejb.ClientTest</exclude>
+                        <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjblitejspTest</exclude>
+                        <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservlet2Test</exclude>
+                        <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservletTest</exclude>
+                        <exclude>com.sun.ts.tests.ejb30.misc.datasource.twowars.ClientTest</exclude>
+                        <exclude>com.sun.ts.tests.ejb30.misc.moduleName.twowars.ClientTest</exclude>
+                        <exclude>com.sun.ts.tests.ejb30.misc.moduleName.conflict.ClientTest</exclude>
+                        <exclude>com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant.ClientTest</exclude>
+                    </excludes>
+
                     <systemPropertyVariables>
                         <glassfish.home>${glassfish.home}</glassfish.home>
+                        <glassfish.httpPort>8080</glassfish.httpPort>
                         <arquillian.xml>javatest-arquillian.xml</arquillian.xml>
                         <ts.home>${ts.home}</ts.home>
-                        <glassfish.postBootCommands>create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 cts-derby-XA-pool
-                            create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer</glassfish.postBootCommands>
+
+                        <glassfish.enableDerby>true</glassfish.enableDerby>
+                        <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true</glassfish.derbyDatabaseName>
+                        <glassfish.derbySQLFile>${project.build.directory}/test-classes/derby.ddl.sql</glassfish.derbySQLFile>
+                        <glassfish.derbyUser>cts1</glassfish.derbyUser>
+                        <glassfish.derbyPasswordFile>${project.build.directory}/test-classes/password.txt</glassfish.derbyPasswordFile>
+
+                        <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
+                            create-jdbc-connection-pool --restype javax.sql.XADataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 cts-derby-XA-pool
+                            create-jdbc-connection-pool --restype javax.sql.DataSource --datasourceclassname org.apache.derby.jdbc.ClientDataSource --property databaseName=${glassfish.home}/glassfish/domains/domain1/config/derbyDB:serverName=localhost:portNumber=1527:user=cts1:password=cts1 cts-derby-pool
+                            create-jdbc-resource --connectionpoolid cts-derby-XA-pool jdbc/DBTimer
+                            create-jdbc-resource --connectionpoolid cts-derby-pool jdbc/DB1
+                            create-jms-resource --restype jakarta.jms.QueueConnectionFactory jms/QueueConnectionFactory
+                            create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=MDB_QUEUE MDB_QUEUE
+                            create-jms-resource --restype jakarta.jms.Queue --property imqDestinationName=MDB_QUEUE_REPLY MDB_QUEUE_REPLY
+                            list-jdbc-resources</glassfish.postBootCommands>
                     </systemPropertyVariables>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>001-ejb-javatest</id>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <phase>test</phase>
-                        <configuration>
-                            <dependenciesToScan>jakarta.tck:ejb32</dependenciesToScan>
-                            <groups>tck-javatest</groups>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -329,5 +330,216 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <profile>
+            <id>ejb30</id>
+
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>001-ejb-30-javatest</id>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <dependenciesToScan>jakarta.tck:ejb30</dependenciesToScan>
+                                    <groups>tck-javatest</groups>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>ejb32</id>
+
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <id>001-ejb-30-javatest</id>
+                                <goals>
+                                    <goal>test</goal>
+                                </goals>
+                                <phase>test</phase>
+                                <configuration>
+                                    <dependenciesToScan>jakarta.tck:ejb32</dependenciesToScan>
+                                    <groups>tck-javatest</groups>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>exclude-timeout</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <!-- These take about 1 hour each: move to profile
+                            and/or look at reducing timeout settings -->
+                            <excludes>
+                                <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.annotated.ClientEjblitejspTest</exclude>
+                                <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.descriptor.ClientEjblitejspTest</exclude>
+                                <exclude>com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated.ClientEjblitejspTest</exclude>
+                                <exclude>com.sun.ts.tests.ejb30.lite.stateful.timeout.descriptor.ClientEjblitejspTest</exclude>
+                            </excludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>timeout1</id>
+
+            <properties>
+                <glassfish.root>${project.build.directory}/timeout1</glassfish.root>
+                <tck.jte.path>${ts.home}/bin/ts9081.jte</tck.jte.path>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <test>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.annotated.ClientEjblitejspTest</test>
+                            <systemPropertyVariables>
+                                <glassfish.httpPort>9081</glassfish.httpPort>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>timeout2</id>
+
+            <properties>
+                <glassfish.root>${project.build.directory}/timeout2</glassfish.root>
+                <tck.jte.path>${ts.home}/bin/ts9082.jte</tck.jte.path>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <test>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.descriptor.ClientEjblitejspTest</test>
+                            <systemPropertyVariables>
+                                <glassfish.httpPort>9082</glassfish.httpPort>
+                                <glassfish.enableDerby>false</glassfish.enableDerby>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>timeout3</id>
+
+            <properties>
+                <glassfish.root>${project.build.directory}/timeout3</glassfish.root>
+                <tck.jte.path>${ts.home}/bin/ts9083.jte</tck.jte.path>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <test>com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated.ClientEjblitejspTest</test>
+                            <systemPropertyVariables>
+                                <glassfish.httpPort>9083</glassfish.httpPort>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>timeout4</id>
+
+            <properties>
+                <glassfish.root>${project.build.directory}/timeout4</glassfish.root>
+                <tck.jte.path>${ts.home}/bin/ts9084.jte</tck.jte.path>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <test>com.sun.ts.tests.ejb30.lite.stateful.timeout.descriptor.ClientEjblitejspTest</test>
+                            <systemPropertyVariables>
+                                <glassfish.httpPort>9084</glassfish.httpPort>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>failures</id>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <test>com.sun.ts.tests.ejb30.assembly.initorder.warejb.ClientTest,
+                                com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjblitejspTest,
+                                com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservlet2Test,
+                                com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservletTest,
+                                com.sun.ts.tests.ejb30.misc.datasource.twowars.ClientTest,
+                                com.sun.ts.tests.ejb30.misc.moduleName.twowars.ClientTest,
+                                com.sun.ts.tests.ejb30.misc.moduleName.conflict.ClientTest,
+                                com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant.ClientTest,</test>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
 
 </project>

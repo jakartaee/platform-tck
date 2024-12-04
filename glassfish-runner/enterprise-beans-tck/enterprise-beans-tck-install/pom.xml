@@ -38,7 +38,7 @@
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.9.0</version>
+                <version>1.11.0</version>
                 <configuration>
                     <unpack>true</unpack>
                     <outputDirectory>${project.build.directory}</outputDirectory>
@@ -75,27 +75,13 @@
                 <version>3.8.0</version>
                 <executions>
 
-                    <!-- The EJB modules don't install source, so build these separately with the source:jar plugin -->
-                    <execution>
-                        <id>ejb_source</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <streamLogs>true</streamLogs>
-                            <projectsDirectory>${project.build.directory}/platform-tck-main</projectsDirectory>
-                            <pomIncludes>
-                                <pomInclude>pom.xml</pomInclude>
-                            </pomIncludes>
-                            <goals>clean source:jar install -pl ":ejb30" -pl ":ejb32"</goals>
-                        </configuration>
-                    </execution>
                     <!-- Build and install the platform TCK -->
                     <execution>
                         <id>tck_full_build</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
+                        <phase>generate-resources</phase>
                         <configuration>
                             <streamLogs>true</streamLogs>
                             <projectsDirectory>${project.build.directory}/platform-tck-main</projectsDirectory>
@@ -106,12 +92,29 @@
                         </configuration>
                     </execution>
 
+                    <execution>
+                        <id>ejb_source</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <streamLogs>true</streamLogs>
+                            <projectsDirectory>${project.build.directory}/platform-tck-main</projectsDirectory>
+                            <pomIncludes>
+                                <pomInclude>pom.xml</pomInclude>
+                            </pomIncludes>
+                            <goals>clean source:jar install -pl ":ejb30" -pl ":ejb32"</goals>
+                        </configuration>
+                    </execution>
+
                     <!-- Build and install the Arquillian tools for the TCK -->
                     <execution>
                         <id>tools_build</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
+                        <phase>process-resources</phase>
                         <configuration>
                             <streamLogs>true</streamLogs>
                             <projectsDirectory>${project.build.directory}/jakartaee-tck-tools-master/arquillian</projectsDirectory>

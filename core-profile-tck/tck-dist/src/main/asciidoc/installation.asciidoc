@@ -31,7 +31,7 @@ The TCK requires the following software to be installed:
 
 * Maven 3.9 or newer
 
-* A Jakarta EE {revmajor} implementation (e.g., WildFly 34.x)
+* A Jakarta EE {revmajor} implementation (e.g., WildFly 34.x, Open Liberty 24.x)
 
 You should refer to EE {revmajor} implementation instructions for how to install the runtime environment.
 

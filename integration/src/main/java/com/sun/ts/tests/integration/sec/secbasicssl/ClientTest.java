@@ -54,8 +54,8 @@ public class ClientTest extends com.sun.ts.tests.integration.sec.secbasicssl.Cli
             URL warResURL = Client.class.getResource("integration_sec_secbasicssl_web.xml");
             integration_sec_secbasicssl_web.addAsWebInfResource(warResURL, "web.xml");
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("integration_sec_secbasicssl_web.war.sun-web.xml");
-            integration_sec_secbasicssl_web.addAsWebInfResource(warResURL, "sun-web.xml");
+            // warResURL = Client.class.getResource("integration_sec_secbasicssl_web.war.sun-web.xml");
+            // integration_sec_secbasicssl_web.addAsWebInfResource(warResURL, "sun-web.xml");
 
             // Any libraries added to the war
 
@@ -70,7 +70,7 @@ public class ClientTest extends com.sun.ts.tests.integration.sec.secbasicssl.Cli
             integration_sec_secbasicssl_web.addAsWebResource(warResURL, "/rolereverse.jsp");
             warResURL = Client.class.getResource("webApiRemoteUser1.jsp");
             integration_sec_secbasicssl_web.addAsWebResource(warResURL, "/webApiRemoteUser1.jsp");
-            warResURL = Client.class.getResource("/com/sun/ts/tests/integration/sec/secbasicssl/webNoAuthz.jsp");
+            warResURL = Client.class.getResource("webNoAuthz.jsp");
             integration_sec_secbasicssl_web.addAsWebResource(warResURL, "/webNoAuthz.jsp");
             warResURL = Client.class.getResource("webNotInRole.jsp");
             integration_sec_secbasicssl_web.addAsWebResource(warResURL, "/webNotInRole.jsp");
@@ -88,11 +88,14 @@ public class ClientTest extends com.sun.ts.tests.integration.sec.secbasicssl.Cli
 
             // The component jars built by the package target
             integration_sec_secbasicssl_ear.addAsModule(integration_sec_secbasicssl_web);
+            URL earResURL = Client.class.getResource("integration_sec_secbasicssl.ear.sun-application.xml");
+            integration_sec_secbasicssl_ear.addAsManifestResource(earResURL, "sun-application.xml");
+
 
 
 
             // The application.xml descriptor
-            URL earResURL = null;
+            earResURL = null;
             // Call the archive processor
             archiveProcessor.processEarArchive(integration_sec_secbasicssl_ear, Client.class, earResURL);
         return integration_sec_secbasicssl_ear;

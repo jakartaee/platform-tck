@@ -27,16 +27,11 @@
 
     <container qualifier="tck-javatest" default="true">
         <configuration>
-            <property name="jbossHome">${jboss.home}</property>
-            <property name="jbossArguments">-y=${project.build.testOutputDirectory}/wildfly-tck-min.yml:${project.build.testOutputDirectory}/derby.yml</property>
-            <!--property name="javaVmArguments">-Djboss.modules.system.pkgs=com.sun.ts.lib,com.sun.ts</property-->
-            <property name="javaVmArguments"><!-- -agentlib:jdwp=transport=dt_socket,address=8787,server=y,suspend=y --></property>
-            <property name="serverConfig">${wildfly.standalone.config}</property>
             <property name="allowConnectingToRunningServer">true</property>
         </configuration>
         <protocol type="javatest">
             <property name="workDir">${ts.home}/tmp</property>
-            <property name="tsJteFile">${ts.home}/bin/ts.jte</property>
+            <property name="tsJteFile">${tck.jte.path}</property>
             <property name="tsSqlStmtFile">${ts.home}/bin/tssql.stmt</property>
             <property name="trace">true</property>
         </protocol>

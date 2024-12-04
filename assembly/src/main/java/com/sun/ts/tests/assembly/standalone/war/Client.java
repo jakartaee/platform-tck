@@ -29,6 +29,38 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
+import java.net.URL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestMethodOrder;
+
+import java.lang.System.Logger;
+
+@Tag("assembly")
+@Tag("platform")
+@Tag("tck-appclient")
+@ExtendWith(ArquillianExtension.class)
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class Client extends EETest {
 
   /** Name we use to lookup the URL */
@@ -62,6 +94,86 @@ public class Client extends EETest {
     }
   }
 
+  private static final Logger logger = System.getLogger(Client.class.getName());
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
+  }
+
+  static final String VEHICLE_ARCHIVE = "assembly_standalone_war";
+
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
+  @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+  public static EnterpriseArchive createEarDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+
+    JavaArchive assembly_standalone_war_client = ShrinkWrap.create(JavaArchive.class,
+        "assembly_standalone_war_client.jar");
+        assembly_standalone_war_client.addClasses(
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.tests.assembly.standalone.war.Client.class);
+    // The application-client.xml descriptor
+    URL resURL = Client.class.getResource("assembly_standalone_war_client.xml");
+    if (resURL != null) {
+      assembly_standalone_war_client.addAsManifestResource(resURL, "application-client.xml");
+    }
+    resURL = Client.class.getResource("assembly_standalone_war_client.jar.sun-application-client.xml");
+    if(resURL != null) {
+      assembly_standalone_war_client.addAsManifestResource(resURL, "sun-application-client.xml");
+    }
+    assembly_standalone_war_client
+        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processClientArchive(assembly_standalone_war_client, Client.class, resURL);
+
+
+
+    EnterpriseArchive assembly_standalone_war_ear = ShrinkWrap.create(EnterpriseArchive.class,
+        "assembly_standalone_war.ear");
+        assembly_standalone_war_ear.addAsModule(assembly_standalone_war_client);
+    assembly_standalone_war_ear
+        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // archiveProcessor.processEarArchive(assembly_standalone_war_ear, Client.class, resURL);
+
+    return assembly_standalone_war_ear;
+  }
+
+  @Deployment(name = "assembly_standalone_war_component_web", order = 1, testable = false)
+  public static WebArchive createWarDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+
+    WebArchive assembly_standalone_war_component_web = ShrinkWrap.create(WebArchive.class,
+        "assembly_standalone_war_component_web.war");
+        assembly_standalone_war_component_web.addClasses(
+        com.sun.ts.tests.common.web.WebUtil.class, 
+        com.sun.ts.tests.common.web.JSPBeanWrapper.class);
+    // The application-client.xml descriptor
+    URL resURL = Client.class.getResource("assembly_standalone_war_component_web.xml");
+    if (resURL != null) {
+      assembly_standalone_war_component_web.addAsWebInfResource(resURL, "web.xml");
+    }
+    URL jspURL = Client.class.getResource("webFiles/test.jsp");
+    if(jspURL != null) {
+      assembly_standalone_war_component_web.addAsWebResource(resURL, "test.jsp");
+    }
+
+    resURL = Client.class.getResource("assembly_standalone_war_component_web.war.sun-web.xml");
+    if(resURL != null) {
+      assembly_standalone_war_component_web.addAsWebInfResource(resURL, "sun-web.xml");
+    }
+    assembly_standalone_war_component_web
+        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processWebArchive(assembly_standalone_war_component_web, Client.class, resURL);
+
+    return assembly_standalone_war_component_web;
+  }
+
   /**
    * @testName: testStandaloneWar
    *
@@ -80,6 +192,8 @@ public class Client extends EETest {
    *                 runtime.
    *
    */
+  @Test
+  @OperateOnDeployment("assembly_standalone_war")
   public void testStandaloneWar() throws Fault {
     boolean pass = false;
     String value;

@@ -32,9 +32,9 @@
 
     <properties>
         <cdi.ee.tck.version>11.0.0-SNAPSHOT</cdi.ee.tck.version>
+        <cdi.ee.tck.version>11.0.0-SNAPSHOT</cdi.ee.tck.version>
 
         <cdi.tck-4-1.version>4.1.0</cdi.tck-4-1.version>
-        <cdi.ee.tck.version>11.0.0-SNAPSHOT</cdi.ee.tck.version>
         <glassfish.root>${project.build.directory}</glassfish.root>
 
         <!-- Note M6 still has some failures, future M7 passes all -->
@@ -422,12 +422,12 @@
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.5.2</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.apache.maven.surefire</groupId>
                         <artifactId>surefire-testng</artifactId>
-                        <version>3.3.0</version>
+                        <version>3.5.2</version>
                     </dependency>
                 </dependencies>
                 <executions>

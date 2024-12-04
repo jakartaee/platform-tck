@@ -116,9 +116,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.entityMan
             // the jar with the correct archive name
             JavaArchive jpa_ee_entityManagerFactory = ShrinkWrap.create(JavaArchive.class, "jpa_ee_entityManagerFactory.jar");
             // The class files
-            jpa_ee_entityManagerFactory.addClasses(
-                Util.getSchema30classes()
-            ).addClass(Order.class);
+            jpa_ee_entityManagerFactory.addClasses(Order.class);
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
             if(parURL != null) {

@@ -13,7 +13,7 @@ The various TCKs will have properties or configuration variables that need to be
 
 [NOTE]
 ====
-The JSON-B standalone TCK configuration example includes running the the tests with the system property `java.locale.providers` set to COMPAT. This addresses a known inconsistency in a test when run under both Java SE 11 and Java SE 17.
+The JSON-B standalone TCK configuration example includes running the the tests with the system property `java.locale.providers` set to COMPAT. This addresses a known inconsistency in a test when run under both Java SE 17 and Java SE 21.
 ====
 
 [NOTE]
@@ -34,7 +34,7 @@ In the WildFly runner example these are set to `unused`. These properties are va
 Refer to the configuration section of the CDI, RESTful, JSON-P and JSON-B standalone TCK user guides for configuration specific to each TCK. The `examples` directory in the TCK distribution illustrates sample configuration setup using Maven.
 
 ==== Jakarta RESTful TCK Configuration
-The Jakarta Core Profile TCK provides a JUnit 5 suite runner that excludes the tests tagged with `xml_binding`, `servlet` and `security` as these specifications are not part of the Core Profile. The examples/wf-core-tck-runner/rest-tck project contains a pom.xml that configure surefire to run the `ee.jakarta.tck.coreprofile.rs.CoreProfileRestTCKSuite` class which configures the Core Profile RESTful TCK test suite.
+The Jakarta Core Profile TCK provides a JUnit 5 suite runner that excludes the tests tagged with `xml_binding`, `servlet` and `security` as these specifications are not part of the Core Profile. The https://github.com/wildfly/wildfly-tck-runners/tree/main/core-profile/rest-tck project contains a pom.xml that configure surefire to run the `ee.jakarta.tck.coreprofile.rs.CoreProfileRestTCKSuite` class which configures the Core Profile RESTful TCK test suite.
 
 
 [NOTE]

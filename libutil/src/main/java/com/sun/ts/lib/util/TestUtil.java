@@ -1111,23 +1111,6 @@ class Acceptor extends Thread {
   }
 }
 
-class TestReportInfo implements Serializable {
-  public int iDebugLevel = TestUtil.NORMAL_OUTPUT_LEVEL;
-
-  public String sOutput = ""; // Constants.EMPTY_STRING;
-
-  public Throwable exception = null;
-
-  public int iStream = TestUtil.OUTPUT_STREAM;
-
-  public TestReportInfo(String output, int stream, int level, Throwable e) {
-    if (sOutput != null)
-      sOutput = output;
-    iDebugLevel = level;
-    exception = e;
-    iStream = stream;
-  }
-}
 
 class SocketReader extends Thread {
   private Socket outputSocket = null;

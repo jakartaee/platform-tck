@@ -71,6 +71,7 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
     try {
       dbutil = new DBSupport();
     } catch (Exception e) {
+    	e.printStackTrace();
       throw new Exception(
           "Exception constructing DBSupport object: " + e.getMessage(), e);
     }
@@ -80,6 +81,7 @@ public class workmgtClient1 extends ServiceEETest implements Serializable {
       ncxa = new TSNamingContext();
       ds1 = (TSDataSource) ncxa.lookup(whitebox_xa);
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.printStackTrace(e);
       TestUtil.logMsg("Exception during JNDI lookup: " + e.getMessage());
     }

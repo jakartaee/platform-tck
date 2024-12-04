@@ -45,6 +45,7 @@ public class TSConnectionImpl implements TSConnection {
           .logAPI("TSConnectionImpl.getConnection", "", "");
       return ctscon;
     } catch (Exception ex) {
+      ex.printStackTrace();
       ex.getMessage();
       return null;
     }
@@ -62,6 +63,7 @@ public class TSConnectionImpl implements TSConnection {
           .logAPI("TSConnectionImpl.getConnection", "", "");
       return ctscon;
     } catch (Exception ex) {
+    	ex.printStackTrace();
       ex.getMessage();
       return null;
     }

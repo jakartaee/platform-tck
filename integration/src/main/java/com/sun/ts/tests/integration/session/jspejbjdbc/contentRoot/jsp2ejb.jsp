@@ -25,7 +25,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.sun.ts.tests.integration.session.jspejbjdbc.*" %>
 <%@ page import="com.sun.ts.lib.util.*" %>
-<%@ page import="com.sun.ts.lib.porting.*" %>
  
 <%
     String TELLERNAME = "joe";

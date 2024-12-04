@@ -24,6 +24,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,8 @@ public class ApplicationContextIT {
 
         archive.addClass(SimpleApplicationBean.class)
                 .addClass(ApplicationResource.class)
-                .addClass(JaxRsActivator.class);
+                .addClass(JaxRsActivator.class)
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         System.out.printf("test archive: %s\n", archive.toString(true));
         archive.as(ZipExporter.class).exportTo(new File("/tmp/" + archive.getName()), true);
         return archive;

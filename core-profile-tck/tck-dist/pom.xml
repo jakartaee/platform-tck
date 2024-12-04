@@ -24,10 +24,12 @@
     <name>Jakarta Core Profile TCK Distribution</name>
 
     <properties>
-        <asciidoctor.maven.plugin.version>3.0.0</asciidoctor.maven.plugin.version>
+        <asciidoctor.maven.plugin.version>3.1.0</asciidoctor.maven.plugin.version>
         <asciidoctorj.pdf.version>2.3.18</asciidoctorj.pdf.version>
         <asciidoctorj.version>3.0.0</asciidoctorj.version>
         <guide.name>core-profile-tck-reference-guide</guide.name>
+        <revnumber>11.0</revnumber>
+        <revmajor>11</revmajor>
     </properties>
 
     <dependencies>
@@ -113,8 +115,8 @@
                                 <docinfo>true</docinfo>
                                 <experimental>true</experimental>
                                 <tck-version>${project.version}</tck-version>
-                                <revnumber>10.0</revnumber>
-                                <revmajor>10</revmajor>
+                                <revnumber>${revnumber}</revnumber>
+                                <revmajor>${revmajor}</revmajor>
                                 <toc />
                             </attributes>
                         </configuration>
@@ -134,8 +136,8 @@
                                 <docinfo>true</docinfo>
                                 <experimental>true</experimental>
                                 <tck-version>${project.version}</tck-version>
-                                <revnumber>10.0</revnumber>
-                                <revmajor>10</revmajor>
+                                <revnumber>${revnumber}</revnumber>
+                                <revmajor>${revmajor}</revmajor>
                                 <toc />
                             </attributes>
                         </configuration>
