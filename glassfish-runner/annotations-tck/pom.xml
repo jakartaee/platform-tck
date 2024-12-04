@@ -29,7 +29,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <glassfish.container.version>8.0.0-M1</glassfish.container.version>
+        <glassfish.version>8.0.0-M1</glassfish.version>
         <glassfish.toplevel.dir>glassfish7</glassfish.toplevel.dir>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <tck.artifactId>jakarta-annotations-tck</tck.artifactId>
@@ -110,7 +110,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.container.version}</version>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>

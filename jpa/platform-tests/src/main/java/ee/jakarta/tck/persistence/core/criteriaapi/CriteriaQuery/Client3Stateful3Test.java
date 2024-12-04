@@ -94,7 +94,7 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
             // The sun-application-client.xml file need to be added or should this be in in the vendor Arquillian extension?
             resURL = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.jar.sun-application-client.xml");
             if(resURL != null) {
-              jpa_core_criteriaapi_CriteriaQuery_stateful3_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
+              jpa_core_criteriaapi_CriteriaQuery_stateful3_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
             }
             jpa_core_criteriaapi_CriteriaQuery_stateful3_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + Client3.class.getName() + "\n"), "MANIFEST.MF");
             // Call the archive processor
@@ -127,12 +127,12 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
                 ee.jakarta.tck.persistence.core.criteriaapi.CriteriaQuery.Client3.class
             ).addClasses(ee.jakarta.tck.persistence.common.schema30.Util.getSchema30classes());
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = Client3.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.xml");
+            URL ejbResURL1 = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_client.xml");
             if(ejbResURL1 != null) {
-              jpa_core_criteriaapi_CriteriaQuery_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
+//              jpa_core_criteriaapi_CriteriaQuery_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = Client3.class.getResource("//vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = Client3.class.getResource("//com/sun/ts/tests/common/vehicle/stateful3/stateful3_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               jpa_core_criteriaapi_CriteriaQuery_stateful3_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }
@@ -336,6 +336,5 @@ public class Client3Stateful3Test extends ee.jakarta.tck.persistence.core.criter
         public void modifiedQueryTest() throws java.lang.Exception {
             super.modifiedQueryTest();
         }
-
 
 }

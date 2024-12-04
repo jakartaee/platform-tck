@@ -4,7 +4,7 @@ This is the repository for the Jakarta Core Profile TCK
 
 == Sources in GIT
 
-Main branch contains the work-in-progress on Jakarta Core Profile TCK 10.0
+Main branch contains the work-in-progress on Jakarta Core Profile TCK 11.0
 
 === Source Layout
 

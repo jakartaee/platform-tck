@@ -39,8 +39,6 @@
         <module>assembly</module>
         <module>common</module>
         <module>connector</module>
-        <!-- not needed anymore -->
-        <!--        <module>docker</module>-->
         <module>core-profile-tck</module>
         <module>ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
@@ -63,10 +61,8 @@
         <module>jstl</module>
         <module>jta</module>
         <module>libutil</module>
-        <!--        <module>glassfishtck</module>-->
         <module>runtime</module>
         <module>samples</module>
-        <module>servlet</module>
         <module>signaturetest</module>
         <module>tsharness</module>
         <module>user_guides</module>
@@ -154,7 +150,7 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>assembly</artifactId>
+                <artifactId>assembly-tck</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -292,12 +288,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>samples</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>servlet</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -611,7 +601,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.12.1</version>
+                    <version>3.13.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -621,7 +611,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>3.0.0</version>
+                    <version>3.5.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -631,7 +621,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.5.3</version>
+                    <version>3.1.1</version>
                     <configuration>
                         <mavenExecutorId>forked-path</mavenExecutorId>
                         <preparationGoals>clean install</preparationGoals>

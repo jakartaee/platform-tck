@@ -19,6 +19,8 @@ public class TsTestPropsBuilder {
     // Property names passed from the ts.jte file to the tstest.jte file
     // Parsed from the test @class.setup_props: values + additional seen to be used by harness
     static String[] tsJtePropNames = {
+            "s1as",
+            "s1as.modules",
             "Driver",
             "authpassword",
             "authuser",
@@ -102,7 +104,7 @@ public class TsTestPropsBuilder {
 
     /**
      * Get the deployment vehicle archive name from the deployment archive. This needs to be a vehicle deployment
-     * for the result to be value.
+     * for the result to be valid.
      * @param deployment - current test deployment
      * @return base vehicle archive name
      */

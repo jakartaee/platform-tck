@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.sun.ts.tests.assembly.classpath.appclient.Client
+Class-Path: libs/direct_classpath_util.jar
+

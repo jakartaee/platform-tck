@@ -404,46 +404,8 @@ public class URLClassPath {
    * check failure. Called by java.net.URLClassLoader.
    */
   public URL checkURL(URL url) {
-    try {
-      check(url);
-    } catch (Exception e) {
-      return null;
-    }
 
     return url;
-  }
-
-  /*
-   * Check whether the resource URL should be returned. Throw exception on
-   * failure. Called internally within this file.
-   */
-  static void check(URL url) throws IOException {
-    SecurityManager security = System.getSecurityManager();
-    if (security != null) {
-      URLConnection urlConnection = url.openConnection();
-      Permission perm = urlConnection.getPermission();
-      if (perm != null) {
-        try {
-          security.checkPermission(perm);
-        } catch (SecurityException se) {
-          // fallback to checkRead/checkConnect for pre 1.2
-          // security managers
-          if ((perm instanceof java.io.FilePermission)
-              && perm.getActions().indexOf("read") != -1) {
-            security.checkRead(perm.getName());
-          } else if ((perm instanceof java.net.SocketPermission)
-              && perm.getActions().indexOf("connect") != -1) {
-            URL locUrl = url;
-            if (urlConnection instanceof JarURLConnection) {
-              locUrl = ((JarURLConnection) urlConnection).getJarFileURL();
-            }
-            security.checkConnect(locUrl.getHost(), locUrl.getPort());
-          } else {
-            throw se;
-          }
-        }
-      }
-    }
   }
 
   /**
@@ -476,9 +438,6 @@ public class URLClassPath {
       }
 
       try {
-        if (check) {
-          URLClassPath.check(url);
-        }
 
         /*
          * For a HTTP connection we use the HEAD method to check if the resource
@@ -511,9 +470,6 @@ public class URLClassPath {
       }
       final URLConnection uc;
       try {
-        if (check) {
-          URLClassPath.check(url);
-        }
         uc = url.openConnection();
         InputStream in = uc.getInputStream();
       } catch (Exception e) {
@@ -700,15 +656,10 @@ public class URLClassPath {
       final URL url;
       try {
         url = new URL(getBaseURL(), ParseUtil.encodePath(name, false));
-        if (check) {
-          URLClassPath.check(url);
-        }
       } catch (MalformedURLException e) {
         return null;
         // throw new IllegalArgumentException("name");
       } catch (IOException e) {
-        return null;
-      } catch (AccessControlException e) {
         return null;
       }
 
@@ -1013,8 +964,6 @@ public class URLClassPath {
           return null;
         }
 
-        if (check)
-          URLClassPath.check(url);
         final File file = new File(dir, name.replace('/', File.separatorChar));
         if (file.exists()) {
           return new Resource() {

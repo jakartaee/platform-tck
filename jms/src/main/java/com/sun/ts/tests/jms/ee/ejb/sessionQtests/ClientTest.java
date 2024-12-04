@@ -21,6 +21,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
+import org.junit.jupiter.api.Order;
 
 
 
@@ -31,7 +32,7 @@ import tck.arquillian.protocol.common.TargetVehicle;
 @Tag("web_optional")
 @Tag("tck-appclient")
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ClientTest extends com.sun.ts.tests.jms.ee.ejb.sessionQtests.Client {
     /**
         EE10 Deployment Descriptors:
@@ -118,15 +119,16 @@ public class ClientTest extends com.sun.ts.tests.jms.ee.ejb.sessionQtests.Client
 
         @Test
         @Override
+        @Order(1)
         public void simpleSendReceiveQueueTest() throws java.lang.Exception {
             super.simpleSendReceiveQueueTest();
         }
 
         @Test
         @Override
+        @Order(2)
         public void selectorAndBrowserTests() throws java.lang.Exception {
             super.selectorAndBrowserTests();
         }
-
 
 }

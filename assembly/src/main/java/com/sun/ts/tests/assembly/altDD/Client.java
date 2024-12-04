@@ -27,6 +27,36 @@ import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
+import java.net.URL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+
+
+import java.lang.System.Logger;
+
+@Tag("assembly")
+@Tag("platform")
+@Tag("tck-appclient")
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   private static final String prefix = "java:comp/env/";
@@ -58,13 +88,84 @@ public class Client extends EETest {
     try {
       this.props = props;
 
-      logTrace("[Client] Getting Naming Context...");
+      logMsg("[Client] Getting Naming Context...");
       nctx = new TSNamingContext();
-      logTrace("[Client] Setup completed!");
+      logMsg("[Client] Setup completed!");
     } catch (Exception e) {
       logErr("[Client] Failed to obtain Naming Context:" + e);
       throw new Fault("[Client] Setup failed:" + e, e);
     }
+  }
+
+
+  static final String VEHICLE_ARCHIVE = "assembly_altDD_client";
+
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
+  @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+  public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    JavaArchive assembly_altDD_client = ShrinkWrap.create(JavaArchive.class, "assembly_altDD_client.jar");
+    assembly_altDD_client.addClasses(
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.tests.assembly.altDD.Client.class,
+        com.sun.ts.tests.assembly.altDD.PainterBean.class);
+    URL resURL = Client.class.getResource("assembly_altDD_client.xml");
+    if (resURL != null) {
+      assembly_altDD_client.addAsManifestResource(resURL, "application-client.xml");
+    }
+    assembly_altDD_client.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+        "MANIFEST.MF");
+
+    resURL = Client.class.getResource("assembly_altDD_client.jar.sun-application-client.xml");
+    if (resURL != null) {
+      assembly_altDD_client.addAsManifestResource(resURL, "sun-application-client.xml");
+    }
+    archiveProcessor.processClientArchive(assembly_altDD_client, Client.class, resURL);
+
+    JavaArchive assembly_altDD_ejb = ShrinkWrap.create(JavaArchive.class, "assembly_altDD_ejb.jar");
+    assembly_altDD_ejb.addClasses(
+        com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class,
+        com.sun.ts.lib.util.RemoteLoggingInitException.class,
+        com.sun.ts.tests.assembly.util.shared.ejbref.common.ReferencedBeanCode.class,
+        com.sun.ts.tests.assembly.altDD.Client.class,
+        com.sun.ts.tests.assembly.altDD.PainterBean.class,
+        com.sun.ts.tests.assembly.altDD.PainterBeanEJB.class);
+    // The ejb-jar.xml descriptor
+    URL ejbResURL = Client.class.getResource("assembly_altDD_ejb.xml");
+    if (ejbResURL != null) {
+      assembly_altDD_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+    }
+    ejbResURL = Client.class.getResource("assembly_altDD_ejb.jar.sun-ejb-jar.xml");
+    if (ejbResURL != null) {
+      assembly_altDD_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+    }
+    assembly_altDD_ejb.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+        "MANIFEST.MF");
+
+    archiveProcessor.processEjbArchive(assembly_altDD_ejb, Client.class, ejbResURL);
+
+
+    EnterpriseArchive assembly_altDD_ear = ShrinkWrap.create(EnterpriseArchive.class, "assembly_altDD.ear");
+    assembly_altDD_ear.addAsModule(assembly_altDD_client);
+    assembly_altDD_ear.addAsModule(assembly_altDD_ejb);
+
+    URL earResURL = Client.class.getResource("altDD_client.xml");
+    assembly_altDD_ear.add(new UrlAsset(earResURL), "altDD_client.xml");
+    earResURL = Client.class.getResource("altDD_ejb.xml");
+    assembly_altDD_ear.add(new UrlAsset(earResURL), "altDD_ejb.xml");
+
+    earResURL = Client.class.getResource("application.xml");
+    if (earResURL != null) {
+      assembly_altDD_ear.addAsManifestResource(earResURL, "application.xml");
+    }
+    assembly_altDD_ear.addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"),
+        "MANIFEST.MF");
+
+    archiveProcessor.processEarArchive(assembly_altDD_ear, Client.class, earResURL);
+
+    return assembly_altDD_ear;
   }
 
   /**
@@ -96,12 +197,14 @@ public class Client extends EETest {
    *                 - The runtime value is 'France', validating the use of DD4
    *                 at deployment time.
    */
+  @Test
   public void testAppClient() throws Fault {
     String entryValue;
     boolean pass = false;
 
     try {
       logTrace("[Client] Looking up " + entryLookup);
+
       entryValue = (String) nctx.lookup(entryLookup);
 
       pass = entryValue.equals(entryNameRef);
@@ -163,6 +266,7 @@ public class Client extends EETest {
    *                 - The returned value is 'Matisse', validating the use of
    *                 DD3 at deployment time.
    */
+  @Test
   public void testEJB() throws Fault {
     PainterBean bean = null;
     String nameValue;
@@ -172,6 +276,7 @@ public class Client extends EETest {
       logTrace("[Client] Looking up " + beanLookup);
       bean = (PainterBean) nctx.lookup(beanLookup, PainterBean.class);
       bean.createNamingContext();
+      
       bean.initLogging(props);
 
       logTrace("[Client] Checking referenced EJB...");

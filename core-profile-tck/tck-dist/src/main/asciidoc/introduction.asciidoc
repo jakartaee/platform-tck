@@ -207,7 +207,7 @@ The test archives are built with ShrinkWrap, a Java API for creating archives. S
 
 This section lists the applicable requirements and specifications for the Jakarta Core Profile TCK.
 
-*  *Specification requirements* - Software requirements for a Jakarta Core Profile implementation include a Java SE 11 or newer compatible runtime.
+*  *Specification requirements* - Software requirements for a Jakarta Core Profile implementation include a Java SE 17 or newer compatible runtime.
 
 *  *Jakarta Contexts and Dependency Injection API* - The Java API defined in the CDI specification and provided by the compatible implementation.
 
@@ -242,4 +242,5 @@ The Core Profile TCK includes the following components:
 The Core Profile TCK has been tested on following platforms:
 
 *  WildFly 34 Preview using Eclipse Temurin Java SE 17 and Eclipse Temurin Java SE 21 on Linux based operating systems.
+* Open Liberty 24 Beta using IBM Semeru Runtime Certified Edition 17 and 21 on Linux based operating systems.
 

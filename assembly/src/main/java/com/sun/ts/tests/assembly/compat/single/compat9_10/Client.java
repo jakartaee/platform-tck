@@ -26,6 +26,36 @@ import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.EETest;
 import com.sun.ts.lib.util.TSNamingContext;
 
+import java.net.URL;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OperateOnDeployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.asset.UrlAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
+
+
+import java.lang.System.Logger;
+
+@Tag("assembly")
+@Tag("platform")
+@Tag("tck-appclient")
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   /** JNDI Name we use to lookup the bean */
@@ -58,6 +88,90 @@ public class Client extends EETest {
     }
   }
 
+  private static final Logger logger = System.getLogger(Client.class.getName());
+
+  @BeforeEach
+  void logStartTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
+  }
+
+  @AfterEach
+  void logFinishTest(TestInfo testInfo) {
+    logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
+  }
+
+  static final String VEHICLE_ARCHIVE = "assembly_compat_single_compat9_10";
+
+  @TargetsContainer("tck-appclient")
+  @OverProtocol("appclient")
+  @Deployment(name = VEHICLE_ARCHIVE, order = 2)
+  public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+
+    JavaArchive assembly_compat_single_compat9_10_client = ShrinkWrap.create(JavaArchive.class,
+        "assembly_compat_single_compat9_10_client.jar");
+    assembly_compat_single_compat9_10_client.addClasses(
+        com.sun.ts.lib.harness.EETest.Fault.class,
+        com.sun.ts.lib.harness.EETest.class,
+        com.sun.ts.lib.harness.EETest.SetupException.class,
+        com.sun.ts.tests.assembly.compat.single.compat9_10.TestBean.class,
+        com.sun.ts.tests.assembly.compat.single.compat9_10.TestBeanEJB.class,
+        com.sun.ts.tests.assembly.compat.single.compat9_10.Client.class,
+        com.sun.ts.lib.util.RemoteLoggingInitException.class,
+        com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class);
+
+    URL resURL = Client.class.getResource("application-client.xml");
+    if (resURL != null) {
+      assembly_compat_single_compat9_10_client.addAsManifestResource(resURL, "application-client.xml");
+    }
+    resURL = Client.class.getClassLoader()
+        .getResource("assembly_compat_single_compat9_10_client.jar.sun-application-client.xml");
+    if (resURL != null) {
+      assembly_compat_single_compat9_10_client.addAsManifestResource(resURL, "sun-application-client.xml");
+    }
+    assembly_compat_single_compat9_10_client
+        .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processClientArchive(assembly_compat_single_compat9_10_client, Client.class, resURL);
+
+    JavaArchive assembly_compat_single_compat9_10_ejb = ShrinkWrap.create(JavaArchive.class,
+        "assembly_compat_single_compat9_10_ejb.jar");
+    assembly_compat_single_compat9_10_ejb.addClasses(
+        // com.sun.ts.tests.assembly.classpath.ejb.TestBean.class,
+        // com.sun.ts.tests.assembly.classpath.ejb.TestBeanEJB.class,
+        com.sun.ts.tests.assembly.compat.single.compat9_10.TestBean.class,
+        com.sun.ts.tests.assembly.compat.single.compat9_10.TestBeanEJB.class,
+        com.sun.ts.lib.util.RemoteLoggingInitException.class,
+        com.sun.ts.tests.common.ejb.wrappers.Stateless3xWrapper.class
+    );
+    // The application-client.xml descriptor
+    URL ejbResURL = Client.class.getResource("ejb-jar.xml");
+    if (ejbResURL != null) {
+      assembly_compat_single_compat9_10_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
+    }
+    ejbResURL = Client.class.getClassLoader()
+        .getResource("assembly_compat_single_compat9_10_ejb.jar.sun-ejb-jar.xml");
+    if (ejbResURL != null) {
+      assembly_compat_single_compat9_10_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
+    }
+    // assembly_compat_single_compat9_10_ejb
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    archiveProcessor.processEjbArchive(assembly_compat_single_compat9_10_ejb, Client.class, ejbResURL);
+
+    EnterpriseArchive assembly_compat_single_compat9_10_ear = ShrinkWrap.create(EnterpriseArchive.class,
+        "assembly_compat_single_compat9_10.ear");
+    assembly_compat_single_compat9_10_ear.addAsModule(assembly_compat_single_compat9_10_client);
+    assembly_compat_single_compat9_10_ear.addAsModule(assembly_compat_single_compat9_10_ejb);
+
+    // URL earResURL = Client.class.getResource("application.xml");
+    // if (earResURL != null) {
+    //   assembly_compat_single_compat9_10_ear.addAsManifestResource(earResURL, "application.xml");
+    // }
+    // assembly_compat_single_compat9_10_ear
+    //     .addAsManifestResource(new StringAsset("Main-Class: " + Client.class.getName() + "\n"), "MANIFEST.MF");
+    // archiveProcessor.processEarArchive(assembly_compat_single_compat9_10_ear, Client.class, earResURL);
+
+    return assembly_compat_single_compat9_10_ear;
+  }
+
   /**
    * @testName: test9Compat
    *
@@ -72,6 +186,7 @@ public class Client extends EETest {
    *                 client can create a bean instance - the application client
    *                 can invoke a business method on that instance
    */
+  @Test
   public void test9Compat() throws Fault {
     TestBean bean;
     boolean pass;

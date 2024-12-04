@@ -36,7 +36,7 @@
             
             Note M6 still has some failures, future M7 passes all
         -->
-        <glassfish.container.version>8.0.0-M6</glassfish.container.version>
+        <glassfish.version>8.0.0-M6</glassfish.version>
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
     </properties>
 
@@ -101,7 +101,7 @@
                                 <artifactItem>
                                     <groupId>org.glassfish.main.distributions</groupId>
                                     <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.container.version}</version>
+                                    <version>${glassfish.version}</version>
                                     <type>zip</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
@@ -114,7 +114,7 @@
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.3.0</version>
+                <version>3.5.2</version>
                 <executions>
                     <execution>
                         <id>gf-tests</id>

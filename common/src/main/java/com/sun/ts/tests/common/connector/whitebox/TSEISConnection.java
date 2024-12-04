@@ -200,6 +200,7 @@ public class TSEISConnection implements TSConnection {
         return null;
       }
     } catch (Exception ex) {
+    	ex.printStackTrace();
       return null;
     }
   }
