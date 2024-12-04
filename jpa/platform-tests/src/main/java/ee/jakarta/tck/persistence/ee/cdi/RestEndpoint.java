@@ -7,17 +7,24 @@ import jakarta.ws.rs.Path;
 /**
  * Called by test client using the arquillian rest protocol
  */
-@Path("/cdi-jpa")
+@Path("/cdi-persistence")
 public class RestEndpoint {
+
     @Inject
     TestBeanEM testBean;
 
     @GET
-    @Path("/injectEmUsingQualifier")
-    public String injectEmUsingQualifier() throws Exception {
-        testBean.injectEmUsingQualifier();
+    @Path("/injectEntityManagerUsingQualifier")
+    public String injectEntityManagerUsingQualifier() throws Exception {
+        testBean.injectEntityManagerUsingQualifier();
         return "PASSED";
     }
 
+    @GET
+    @Path("/injectEntityManagerFactoryUsingQualifier")
+    public String injectEntityManagerFactoryUsingQualifier() throws Exception {
+        testBean.injectEntityManagerFactoryUsingQualifier();
+        return "PASSED";
+    }
 
 }
