@@ -13,6 +13,9 @@ public class RestEndpoint {
     @Inject
     TestBeanEM testBean;
 
+    @Inject
+    TestBeanUtilities testBeanUtilities;
+
     @GET
     @Path("/injectEntityManagerUsingQualifier")
     public String injectEntityManagerUsingQualifier() throws Exception {
@@ -24,6 +27,13 @@ public class RestEndpoint {
     @Path("/injectEntityManagerFactoryUsingQualifier")
     public String injectEntityManagerFactoryUsingQualifier() throws Exception {
         testBean.injectEntityManagerFactoryUsingQualifier();
+        return "PASSED";
+    }
+
+    @GET
+    @Path("/injectUtilitiesUsingQualifier")
+    public String injectUtilitiesUsingQualifier() throws Exception {
+        testBeanUtilities.injectUtilitiesUsingQualifier();
         return "PASSED";
     }
 
