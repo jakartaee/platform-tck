@@ -33,12 +33,13 @@ public class ServletEMLookupTest {
     public static WebArchive deployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         WebArchive war = ShrinkWrap.create(WebArchive.class)
                                    .addClasses(
+                                       RestActivator.class,
+                                       RestEndpoint.class,
+                                       TestBeanEM.class,
+                                       TestBeanUtilities.class,
                                        CtsEmQualifier.class,
                                        CtsEm2Qualifier.class,
-                                       CtsEmNoTxQualifier.class,
-                                       RestActivator.class,
-                                       TestBeanEM.class,
-                                       RestEndpoint.class);
+                                       CtsEmNoTxQualifier.class);
 
         // Par
         // the jar with the correct archive name
@@ -100,6 +101,27 @@ public class ServletEMLookupTest {
             ClientBuilder.newBuilder()
                          .build()
                          .target(contextPath.toURI().resolve("rest/cdi-persistence/injectEntityManagerFactoryUsingQualifier"))
+                         .request(APPLICATION_JSON_TYPE)
+                         .get()) {
+
+            assertEquals(200, response.getStatus());
+        }
+    }
+
+    /*
+     * @testName: injectUtilitiesUsingQualifier
+     *
+     * @assertion_ids: PERSISTENCE:JAVADOC:3318; PERSISTENCE:SPEC:1801;
+     * PERSISTENCE:SPEC:1804; PERSISTENCE:SPEC:1883.2;
+     *
+     * @test_Strategy: Inject an EntityManager using a qualifier and injection
+     */
+    @Test
+    public void injectUtilitiesUsingQualifier() throws Exception {
+        try (Response response =
+            ClientBuilder.newBuilder()
+                         .build()
+                         .target(contextPath.toURI().resolve("rest/cdi-persistence/injectUtilitiesUsingQualifier"))
                          .request(APPLICATION_JSON_TYPE)
                          .get()) {
 
