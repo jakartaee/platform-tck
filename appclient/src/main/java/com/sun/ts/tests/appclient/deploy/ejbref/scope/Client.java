@@ -20,13 +20,31 @@
 
 package com.sun.ts.tests.appclient.deploy.ejbref.scope;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+
+
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   private static final String prefix = "java:comp/env/ejb/";
@@ -46,6 +64,86 @@ public class Client extends EETest {
     Status s = theTests.run(args, System.out, System.err);
     s.exit();
   }
+  
+  
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")	
+ 
+	@Deployment(testable = true)
+	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
+		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_scope_client.jar");
+		ejbClient1.addPackages(true, Client.class.getPackage());
+		ejbClient1.addPackages(true, "com.sun.ts.lib.harness");
+
+		// The appclient-client descriptor
+		URL appClientUrl = Client.class.getResource(
+				"com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_scope_client.xml");
+		if (appClientUrl != null) {
+			ejbClient1.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		// The sun appclient-client descriptor
+		URL sunAppClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejbref/single/appclient_dep_ejbref_scope_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			ejbClient1.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
+
+		ejbClient1.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejbref.scope.Client" + "\n"),
+				"MANIFEST.MF");
+
+		
+		JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_scope_client_another.jar");
+		ejbClient2.addPackages(true, Client.class.getPackage());
+		ejbClient2.addPackages(true, "com.sun.ts.lib.harness");
+
+		// The appclient-client descriptor
+		appClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_scope_another_client.xml");
+		if (appClientUrl != null) {
+			ejbClient2.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		// The sun appclient-client descriptor
+		sunAppClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_scope_another_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			ejbClient2.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
+		
+		ejbClient2.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejbref.scope.Client" + "\n"),
+				"MANIFEST.MF");
+
+
+		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_scope_ejb.jar");
+		ejb.addPackages(false, "com.sun.ts.tests.assembly.util.refbean");
+		ejb.addPackages(false, "com.sun.ts.tests.assembly.util.shared.ejbref.common");
+		ejb.addPackages(true, "com.sun.ts.tests.common.dao.coffee");
+		ejb.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
+		ejb.addClasses(ReferencedBean.class, ReferencedBeanEJB.class);
+
+		URL resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_scope_ejb.jar.sun-ejb-jar.xml");
+
+		if (resURL != null) {
+			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+		}
+
+		resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_scope_ejb.xml");
+
+		if (resURL != null) {
+			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
+		}
+
+		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejbref_scope.ear");
+		ear.addAsModule(ejbClient1);
+		ear.addAsModule(ejbClient2);
+		ear.addAsModule(ejb);
+		return ear;
+	};
+
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -54,16 +152,16 @@ public class Client extends EETest {
    * @class.testArgs: -ap tssql.stmt
    *
    */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
 
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Exception("Setup failed:", e);
-    }
-  }
+		try {
+			nctx = new TSNamingContext();
+			logMsg("[Client] Setup succeed (got naming context).");
+		} catch (Exception e) {
+			throw new Exception("Setup failed:", e);
+		}
+	}
 
   /**
    * @testName: testScope
@@ -90,6 +188,7 @@ public class Client extends EETest {
    *                 the application client DD (validates that this EJB
    *                 reference is resolved correctly).
    */
+  @Test
   public void testScope() throws Exception {
     ReferencedBean bean = null;
     String beanName;

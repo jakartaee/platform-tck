@@ -20,13 +20,30 @@
 
 package com.sun.ts.tests.appclient.deploy.ejbref.casesens;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   private static final String prefix = "java:comp/env/ejb/";
@@ -50,6 +67,61 @@ public class Client extends EETest {
     Status s = theTests.run(args, System.out, System.err);
     s.exit();
   }
+  
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")	
+ 
+	@Deployment(testable = true)
+	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
+		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_casesens_client.jar");
+		ejbClient.addPackages(true, Client.class.getPackage());
+		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+		
+
+		// The appclient-client descriptor
+		URL appClientUrl = Client.class.getResource(
+				"com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_client.xml");
+		if (appClientUrl != null) {
+			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		// The sun appclient-client descriptor
+		URL sunAppClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejbref/single/appclient_dep_ejbref_casesens_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
+
+		ejbClient.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejbref.casesens.Client" + "\n"),
+				"MANIFEST.MF");
+
+		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejbref_casesens_ejb.jar");
+		ejb.addPackages(false, "com.sun.ts.tests.assembly.util.refbean");
+		ejb.addPackages(false, "com.sun.ts.tests.assembly.util.shared.ejbref.common");
+		ejb.addPackages(true, Client.class.getPackage());
+
+
+		URL resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_ejb.jar.sun-ejb-jar.xml");
+
+		if (resURL != null) {
+			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+		}
+
+		resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejbref/scope/appclient_dep_ejbref_casesens_ejb.xml");
+
+		if (resURL != null) {
+			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
+		}
+
+		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejbref_scope.ear");
+		ear.addAsModule(ejbClient);
+		ear.addAsModule(ejb);
+		return ear;
+	};
+
 
   /**
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -84,6 +156,7 @@ public class Client extends EETest {
    *                 are distinct and match the ones specified in the DD
    *                 (validates that the EJB reference are resolved correctly).
    */
+  @Test
   public void testCaseSensitivity() throws Exception {
     ReferencedBean bean1 = null;
     ReferencedBean bean2 = null;
