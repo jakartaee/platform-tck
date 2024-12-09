@@ -21,6 +21,7 @@ import org.jboss.arquillian.test.spi.TestResult;
 import tck.arquillian.protocol.common.TsTestPropsBuilder;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AppClientMethodExecutor implements ContainerMethodExecutor {
@@ -61,15 +62,17 @@ public class AppClientMethodExecutor implements ContainerMethodExecutor {
     @Override
     public TestResult invoke(TestMethodExecutor testMethodExecutor) {
         TestResult result = TestResult.passed();
+        String appArchiveName = null;
+        String vehicleArchiveName = null;
 
         // Run the appclient for the test if required
         String testMethod = testMethodExecutor.getMethodName();
         if (config.isRunClient()) {
-            log.info("Running appClient for: " + testMethod);
+            log.fine("Running appClient for: " + testMethod);
             try {
                 Deployment deployment = deploymentInstance.get();
-                String appArchiveName = appClientArchiveName.get().name();
-                String vehicleArchiveName = TsTestPropsBuilder.vehicleArchiveName(deployment);
+                appArchiveName = appClientArchiveName.get().name();
+                vehicleArchiveName = TsTestPropsBuilder.vehicleArchiveName(deployment);
                 String[] additionalAgrs = TsTestPropsBuilder.runArgs(config, deployment, testMethodExecutor);
                 appClient.run(vehicleArchiveName, appArchiveName, additionalAgrs);
             } catch (Exception ex) {
@@ -77,17 +80,17 @@ public class AppClientMethodExecutor implements ContainerMethodExecutor {
                 return result;
             }
         } else {
-            log.info("Not running appClient for: " + testMethod);
+            log.fine("Not running appClient for %s: " + testMethod);
         }
         String[] lines = appClient.readAll(config.getClientTimeout());
 
-        log.info(String.format("AppClient(%s) readAll returned %d lines\n", testMethod, lines.length));
+        log.fine(String.format("AppClient(%s) readAll returned %d lines\n", testMethod, lines.length));
         boolean sawStatus = false;
         MainStatus status = MainStatus.NOT_RUN;
         String reason = "None";
         String description = "None";
         for (String line : lines) {
-            System.out.println(line);
+            log.finer(line);
             if (line.contains("STATUS:")) {
                 sawStatus = true;
                 description = line;
@@ -117,6 +120,7 @@ public class AppClientMethodExecutor implements ContainerMethodExecutor {
                     break;
             }
             result.addDescription(description);
+            log.log(Level.FINE, String.format("[%s] %s : %s", result.getStatus(), description, result));
         }
 
         return result;
