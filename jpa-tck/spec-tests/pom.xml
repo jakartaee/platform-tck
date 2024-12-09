@@ -149,7 +149,7 @@
         <profile>
             <id>derby</id>
             <properties>
-                <derby.jdbc.version>10.15.2.0</derby.jdbc.version>
+                <derby.jdbc.version>10.17.1.0</derby.jdbc.version>
             </properties>
             <dependencies>
                 <dependency>
