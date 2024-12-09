@@ -39,7 +39,7 @@
         <jakarta.json.bind-api.version>3.0.1</jakarta.json.bind-api.version>
         <jakarta.validation-api.version>3.1.0-M2</jakarta.validation-api.version>
         <jakarta.ws.rs-api.version>4.0.0</jakarta.ws.rs-api.version>
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <junit.jupiter.version>5.11.3</junit.jupiter.version>
     </properties>
 
     <dependencies>
