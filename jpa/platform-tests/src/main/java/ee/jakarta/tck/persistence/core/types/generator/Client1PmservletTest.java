@@ -1,16 +1,12 @@
 package ee.jakarta.tck.persistence.core.types.generator;
 
-import ee.jakarta.tck.persistence.core.types.generator.Client1;
 import java.net.URL;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -90,27 +86,11 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.types.
             if(warResURL != null) {
               jpa_core_types_generator_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              jpa_core_types_generator_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
 
-            // Web content
-            warResURL = Client1.class.getResource("/com/sun/ts/tests/jpa/core/types/generator/jpa_core_types_generator.jar");
-            if(warResURL != null) {
-              jpa_core_types_generator_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_types_generator.jar");
-            }
-            warResURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jpa_core_types_generator_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
-            }
-
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_types_generator_pmservlet_vehicle_web, Client1.class, warResURL);
-
 
         // Par
             // the jar with the correct archive name
@@ -123,29 +103,11 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.types.
                 ee.jakarta.tck.persistence.core.types.generator.DataTypes4.class
             );
             // The persistence.xml descriptor
-            URL parURL = Client1.class.getResource("persistence.xml");
+            URL parURL = Client1.class.getResource("/ee/jakarta/tck/persistence/common/template/persistence.xml");
             if(parURL != null) {
               jpa_core_types_generator.addAsManifestResource(parURL, "persistence.xml");
             }
-            // Add the Persistence mapping-file
-            URL mappingURL = Client1.class.getResource("myMappingFile.xml");
-            if(mappingURL != null) {
-              jpa_core_types_generator.addAsResource(mappingURL, "myMappingFile.xml");
-            }
-            mappingURL = Client1.class.getResource("myMappingFile1.xml");
-            if(mappingURL != null) {
-              jpa_core_types_generator.addAsResource(mappingURL, "myMappingFile1.xml");
-            }
-            mappingURL = Client1.class.getResource("myMappingFile2.xml");
-            if(mappingURL != null) {
-              jpa_core_types_generator.addAsResource(mappingURL, "myMappingFile2.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processParArchive(jpa_core_types_generator, Client1.class, parURL);
-            parURL = Client1.class.getResource("orm.xml");
-            if(parURL != null) {
-              jpa_core_types_generator.addAsManifestResource(parURL, "orm.xml");
-            }
+
 
         // Ear
             EnterpriseArchive jpa_core_types_generator_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_types_generator_vehicles.ear");
@@ -161,11 +123,6 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.types.
 
             // The application.xml descriptor
             URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client1.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_types_generator_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
             // Call the archive processor
             archiveProcessor.processEarArchive(jpa_core_types_generator_vehicles_ear, Client1.class, earResURL);
         return jpa_core_types_generator_vehicles_ear;

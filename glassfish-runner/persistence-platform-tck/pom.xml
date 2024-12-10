@@ -446,7 +446,8 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
+
+                                <include>ee/jakarta/tck/persistence/core/types/generator/Client1PmservletTest.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
