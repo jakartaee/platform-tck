@@ -61,6 +61,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void test1() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "test1");
 		invoke();
 	}
