@@ -58,27 +58,13 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
             ee.jakarta.tck.persistence.ee.packaging.web.standalone.ServletTest.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.xml");
-            if(warResURL != null) {
-              jpa_ee_packaging_web_standalone_component_web.addAsWebInfResource(warResURL, "web.xml");
-            }
+            URL warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.xml");
+            jpa_ee_packaging_web_standalone_component_web.addAsWebInfResource(warResURL, "web.xml");
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.war.sun-web.xml");
-            if(warResURL != null) {
-              jpa_ee_packaging_web_standalone_component_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
+            warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.war.sun-web.xml");
+            jpa_ee_packaging_web_standalone_component_web.addAsWebInfResource(warResURL, "sun-web.xml");
 
             // Any libraries added to the war
-
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone_component_web.xml");
-            if(warResURL != null) {
-              jpa_ee_packaging_web_standalone_component_web.addAsWebResource(warResURL, "//jpa_ee_packaging_web_standalone_component_web.xml");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/standalone/jpa_ee_packaging_web_standalone.jar");
-            if(warResURL != null) {
-              jpa_ee_packaging_web_standalone_component_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_ee_packaging_web_standalone.jar");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_ee_packaging_web_standalone_component_web, Client.class, warResURL);
@@ -92,29 +78,12 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.stan
                 ee.jakarta.tck.persistence.ee.common.Account.class
             );
             // The persistence.xml descriptor
-            URL parURL = Client.class.getResource("persistence.xml");
-            if(parURL != null) {
-              jpa_ee_packaging_web_standalone.addAsManifestResource(parURL, "persistence.xml");
-            }
-            // Add the Persistence mapping-file
-            URL mappingURL = Client.class.getResource("myMappingFile.xml");
-            if(mappingURL != null) {
-              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile.xml");
-            }
-            mappingURL = Client.class.getResource("myMappingFile1.xml");
-            if(mappingURL != null) {
-              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile1.xml");
-            }
-            mappingURL = Client.class.getResource("myMappingFile2.xml");
-            if(mappingURL != null) {
-              jpa_ee_packaging_web_standalone.addAsResource(mappingURL, "myMappingFile2.xml");
-            }
+            URL parURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/standalone/persistence.xml");
+            jpa_ee_packaging_web_standalone.addAsManifestResource(parURL, "persistence.xml");
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_packaging_web_standalone, Client.class, parURL);
-            parURL = Client.class.getResource("orm.xml");
-            if(parURL != null) {
-              jpa_ee_packaging_web_standalone.addAsManifestResource(parURL, "orm.xml");
-            }
+
+            jpa_ee_packaging_web_standalone_component_web.addAsLibrary(jpa_ee_packaging_web_standalone);
 
         return jpa_ee_packaging_web_standalone_component_web;
         }

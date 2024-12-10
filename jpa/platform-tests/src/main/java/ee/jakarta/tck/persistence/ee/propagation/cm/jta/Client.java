@@ -95,6 +95,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void test1a() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "test1a");
 		invoke();
 	}
@@ -119,6 +121,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void test2() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "test2");
 		invoke();
 	}
@@ -142,6 +146,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void test3() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "test3");
 		invoke();
 	}
@@ -158,6 +164,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void getTransactionIllegalStateException() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "getTransactionIllegalStateException");
 		invoke();
 	}
@@ -174,6 +182,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void closeObjectTransactionRequiredExceptionTest() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "closeObjectTransactionRequiredExceptionTest");
 		invoke();
 	}
@@ -190,6 +200,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void mergeObjectTransactionRequiredExceptionTest() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "mergeObjectTransactionRequiredExceptionTest");
 		invoke();
 	}
@@ -206,6 +218,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void persistObjectTransactionRequiredExceptionTest() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "persistObjectTransactionRequiredExceptionTest");
 		invoke();
 	}
@@ -222,6 +236,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void refreshObjectTransactionRequiredExceptionTest() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "refreshObjectTransactionRequiredExceptionTest");
 		invoke();
 	}
@@ -238,6 +254,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void refreshObjectMapTransactionRequiredExceptionTest() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "refreshObjectMapTransactionRequiredExceptionTest");
 		invoke();
 	}
@@ -254,6 +272,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void refreshObjectLockModeTypeTransactionRequiredExceptionTest() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "refreshObjectLockModeTypeTransactionRequiredExceptionTest");
 		invoke();
 	}
@@ -270,6 +290,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void refreshObjectLockModeTypeMapTransactionRequiredExceptionTest() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "refreshObjectLockModeTypeMapTransactionRequiredExceptionTest");
 		invoke();
 	}
@@ -286,6 +308,8 @@ public class Client extends AbstractUrlClient {
 	 */
 	@Test
 	public void removeObjectTransactionRequiredExceptionTest() throws Exception {
+		setServletName(SERVLET_NAME);
+		setContextRoot(CONTEXT_ROOT);
 		TEST_PROPS.setProperty(APITEST, "removeObjectTransactionRequiredExceptionTest");
 		invoke();
 	}

@@ -61,24 +61,16 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
             ee.jakarta.tck.persistence.ee.common.Account.class
             );
             // The web.xml descriptor
-            URL warResURL = Client.class.getResource("com/sun/ts/tests/jpa/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.xml");
-            if(warResURL != null) {
-              jpa_ee_packaging_web_scope_web.addAsWebInfResource(warResURL, "web.xml");
-            }
+            URL warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.xml");
+            jpa_ee_packaging_web_scope_web.addAsWebInfResource(warResURL, "web.xml");
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.war.sun-web.xml");
-            if(warResURL != null) {
-              jpa_ee_packaging_web_scope_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
+            warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.war.sun-web.xml");
+            jpa_ee_packaging_web_scope_web.addAsWebInfResource(warResURL, "sun-web.xml");
 
             // Any libraries added to the war
 
             // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/jpa_ee_packaging_web_scope_web.xml");
-            if(warResURL != null) {
-              jpa_ee_packaging_web_scope_web.addAsWebResource(warResURL, "//jpa_ee_packaging_web_scope_web.xml");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/persistence.xml");
+            warResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/scope/persistence.xml");
             if(warResURL != null) {
               jpa_ee_packaging_web_scope_web.addAsWebResource(warResURL, "/WEB-INF/classes/META-INF/persistence.xml");
             }
@@ -99,15 +91,8 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
 
             // The application.xml descriptor
             URL earResURL = null;
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/application.xml");
-            if(earResURL != null) {
-              jpa_ee_packaging_web_scope_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/packaging/web/scope/application.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_ee_packaging_web_scope_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
+            earResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/scope/application.xml");
+            jpa_ee_packaging_web_scope_ear.addAsManifestResource(earResURL, "application.xml");
             // Call the archive processor
             archiveProcessor.processEarArchive(jpa_ee_packaging_web_scope_ear, Client.class, earResURL);
         return jpa_ee_packaging_web_scope_ear;
