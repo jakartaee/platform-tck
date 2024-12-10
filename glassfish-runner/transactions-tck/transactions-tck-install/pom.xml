@@ -101,7 +101,7 @@
                             <pomIncludes>
                                 <pomInclude>pom.xml</pomInclude>
                             </pomIncludes>
-                            <goals>clean source:jar install</goals>
+                            <goals>clean source:jar install -DskipTests</goals>
                         </configuration>
                     </execution>
                 </executions>
