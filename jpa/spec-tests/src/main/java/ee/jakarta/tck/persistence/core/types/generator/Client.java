@@ -35,18 +35,6 @@ public class Client extends PMClientBase {
 	public Client() {
 	}
 
-	protected void createSequenceGenerator() {
-		try {
-			getEntityTransaction().begin();
-			getEntityManager().createNativeQuery("CREATE SEQUENCE SEQGENERATOR START WITH 10").executeUpdate();
-			getEntityTransaction().commit();
-		} catch (Exception e) {
-			logErr( "Exception encountered while creating seq:", e);
-		}
-
-	}
-
-
 	public void cleanup() throws Exception {
 		try {
 			logTrace( "Cleanup data");

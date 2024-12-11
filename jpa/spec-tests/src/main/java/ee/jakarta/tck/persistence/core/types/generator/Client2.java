@@ -45,12 +45,11 @@ public class Client2 extends Client {
 		try {
 
 			super.setup(args,p);
-			String s = System.getProperty("db.supports.sequence");
+      String s = p.getProperty("db.supports.sequence");
 			if (s != null) {
 				supports_sequence = Boolean.parseBoolean(s);
 				logMsg( "db.supports.sequence:" + supports_sequence);
 				if (supports_sequence) {
-					createSequenceGenerator();
 					removeTestData();
 					createDataTypes2Data();
 				}
