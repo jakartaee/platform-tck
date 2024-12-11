@@ -2097,7 +2097,7 @@ ts.standard.deployment.server.classpath=${ant.jars}:${pathsep}${ts.run.classpath
 
 harness.deployment.server.port=2002
 
-java.naming.factory.initial=foo
+java.naming.factory.initial=com.sun.enterprise.naming.impl.SerialInitContextFactory
 org.omg.CORBA.ORBClass=foo
 undeploy_redeploy_apps=${UNDEPLOY_REDEPLOY_FLAG}
 

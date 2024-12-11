@@ -86,23 +86,9 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.query.
             if(warResURL != null) {
               jpa_core_query_flushmode_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              jpa_core_query_flushmode_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
 
-            // Web content
-            warResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/query/flushmode/jpa_core_query_flushmode.jar");
-            if(warResURL != null) {
-              jpa_core_query_flushmode_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_query_flushmode.jar");
-            }
-            warResURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jpa_core_query_flushmode_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
-            }
 
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_query_flushmode_pmservlet_vehicle_web, Client2.class, warResURL);
@@ -137,25 +123,10 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.query.
             if(parURL != null) {
               jpa_core_query_flushmode.addAsManifestResource(parURL, "persistence.xml");
             }
-            // Add the Persistence mapping-file
-            URL mappingURL = Client2.class.getResource("myMappingFile.xml");
-            if(mappingURL != null) {
-              jpa_core_query_flushmode.addAsResource(mappingURL, "myMappingFile.xml");
-            }
-            mappingURL = Client2.class.getResource("myMappingFile1.xml");
-            if(mappingURL != null) {
-              jpa_core_query_flushmode.addAsResource(mappingURL, "myMappingFile1.xml");
-            }
-            mappingURL = Client2.class.getResource("myMappingFile2.xml");
-            if(mappingURL != null) {
-              jpa_core_query_flushmode.addAsResource(mappingURL, "myMappingFile2.xml");
-            }
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_query_flushmode, Client2.class, parURL);
-            parURL = Client2.class.getResource("orm.xml");
-            if(parURL != null) {
-              jpa_core_query_flushmode.addAsManifestResource(parURL, "orm.xml");
-            }
+
+            jpa_core_query_flushmode_pmservlet_vehicle_web.addAsLibrary(jpa_core_query_flushmode);
 
         // Ear
             EnterpriseArchive jpa_core_query_flushmode_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_query_flushmode_vehicles.ear");

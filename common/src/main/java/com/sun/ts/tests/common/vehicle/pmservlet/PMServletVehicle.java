@@ -40,6 +40,9 @@ import jakarta.persistence.PersistenceContexts;
 import jakarta.persistence.PersistenceUnit;
 import jakarta.transaction.UserTransaction;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 @PersistenceContexts({
     @PersistenceContext(name = "persistence/CTS-EM", unitName = "CTS-EM"),
     @PersistenceContext(name = "persistence/CTS-EM2", unitName = "CTS-EM2") })
@@ -114,9 +117,13 @@ public class PMServletVehicle extends ServletVehicle {
         System.out.println("Test running in pmservlet vehicle failed");
       }
     } catch (Throwable e) {
-      sTestStatus = new RemoteStatus(
-          Status.failed("Test running in pmservlet vehicle failed"));
-      e.printStackTrace();
+      StringBuilder sb = new StringBuilder();
+        sb.append("Test running in pmservlet vehicle failed: ");
+      StringWriter sw = new StringWriter();
+      e.printStackTrace(new PrintWriter(sw));
+      sb.append(sw.toString());
+      sTestStatus = new RemoteStatus(Status.failed(sb.toString()));
+      TestUtil.logErr("Test running in pmservlet vehicle failed", e);
     }
 
     return sTestStatus;

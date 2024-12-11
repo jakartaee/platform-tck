@@ -23,6 +23,7 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 
 import java.util.List;
 
+import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 
@@ -47,6 +48,7 @@ public class Client3 extends Util {
 	 * 
 	 * @test_Strategy:
 	 */
+	@SetupMethod(name = "setupProductData")
 		public void secondaryTablesValueTest() throws Exception {
 		boolean pass = false;
 
