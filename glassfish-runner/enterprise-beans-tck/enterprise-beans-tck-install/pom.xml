@@ -53,17 +53,7 @@
                         <configuration>
                             <excludes>**/extensions.xml</excludes>
                             <url>https://github.com/jakartaee/platform-tck/archive/refs/heads/main.zip</url>
-                        </configuration>
-                    </execution>
-
-                    <execution>
-                        <id>download-tck-tools</id>
-                        <goals>
-                            <goal>wget</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <url>https://github.com/eclipse-ee4j/jakartaee-tck-tools/archive/refs/heads/master.zip</url>
+                            <skipCache>true</skipCache>
                         </configuration>
                     </execution>
                 </executions>
@@ -105,23 +95,6 @@
                                 <pomInclude>pom.xml</pomInclude>
                             </pomIncludes>
                             <goals>clean source:jar install -pl ":ejb30" -pl ":ejb32"</goals>
-                        </configuration>
-                    </execution>
-
-                    <!-- Build and install the Arquillian tools for the TCK -->
-                    <execution>
-                        <id>tools_build</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <streamLogs>true</streamLogs>
-                            <projectsDirectory>${project.build.directory}/jakartaee-tck-tools-master/arquillian</projectsDirectory>
-                            <pomIncludes>
-                                <pomInclude>pom.xml</pomInclude>
-                            </pomIncludes>
-                            <goals>clean source:jar install</goals>
                         </configuration>
                     </execution>
                 </executions>
