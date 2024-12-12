@@ -368,6 +368,7 @@
                                     <dependenciesToScan>jakarta.tck:ejb30</dependenciesToScan>
                                     <groups>tck-javatest</groups>
                                     <excludes>
+                                        <!-- These tests for various reasons fail -->
                                         <exclude>com.sun.ts.tests.ejb30.assembly.initorder.warejb.ClientTest</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjblitejspTest</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.lite.singleton.concurrency.container.annotated.ClientEjbliteservlet2Test</exclude>
@@ -376,6 +377,36 @@
                                         <exclude>com.sun.ts.tests.ejb30.misc.moduleName.twowars.ClientTest</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.misc.moduleName.conflict.ClientTest</exclude>
                                         <exclude>com.sun.ts.tests.ejb30.tx.session.stateless.cm.covariant.ClientTest</exclude>
+
+                                        <!-- These take about 1 hour each: look at reducing timeout settings -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.annotated.ClientEjblitejspTest</exclude>
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.descriptor.ClientEjblitejspTest</exclude>
+                                        <exclude>com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated.ClientEjblitejspTest</exclude>
+                                        <exclude>com.sun.ts.tests.ejb30.lite.stateful.timeout.descriptor.ClientEjblitejspTest</exclude>
+
+                                        <!-- [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 93.35 s -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjblitejspTest</exclude>
+
+                                        <!-- [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 91.29 s -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservlet2Test</exclude>
+
+                                        <!-- [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 91.20 s -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservletTest</exclude>
+
+                                        <!-- [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 91.23 s -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.JsfClientEjblitejsfTest</exclude>
+
+                                        <!-- [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 141.3 s -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjblitejspTest</exclude>
+
+                                        <!-- [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 141.2 s -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjbliteservlet2Test</exclude>
+
+                                        <!-- [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 141.2 s -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjbliteservletTest</exclude>
+
+                                        <!-- [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 141.3 s -->
+                                        <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.JsfClientEjblitejsfTest</exclude>
                                     </excludes>
                                 </configuration>
                             </execution>
@@ -435,6 +466,9 @@
                                 <exclude>com.sun.ts.tests.ejb30.lite.stateful.timeout.annotated.ClientEjblitejspTest</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.lite.stateful.timeout.descriptor.ClientEjblitejspTest</exclude>
 
+                                <!-- [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 93.35 s -->
+                                <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjblitejspTest</exclude>
+
                                 <!-- [INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 91.29 s -->
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservlet2Test</exclude>
 
@@ -480,6 +514,9 @@
             </build>
         </profile>
 
+        <!-- [INFO] Tests run: 315, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  05:29 min
+        -->
         <profile>
             <id>ejb30_bb</id>
             <build>
@@ -493,6 +530,7 @@
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservlet2Test</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservletTest</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.JsfClientEjblitejsfTest</exclude>
+                                <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjblitejspTest</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjblitejspTest</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjbliteservlet2Test</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjbliteservletTest</exclude>
@@ -743,6 +781,7 @@
                             <test>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservlet2Test,
                                   com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservletTest
                                   com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.JsfClientEjblitejsfTest,
+                                  com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjblitejspTest,
                                   com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjblitejspTest,
                                   com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjbliteservlet2Test,
                                   com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.metadata.annotated.ClientEjbliteservletTest,
