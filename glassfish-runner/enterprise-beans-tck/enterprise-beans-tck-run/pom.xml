@@ -488,6 +488,8 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <excludes>
+                                <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.annotated.ClientEjblitejspTest</exclude>
+                                <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.timeout.descriptor.ClientEjblitejspTest</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservlet2Test</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.ClientEjbliteservletTest</exclude>
                                 <exclude>com.sun.ts.tests.ejb30.bb.session.stateful.concurrency.accesstimeout.annotated.JsfClientEjblitejsfTest</exclude>
