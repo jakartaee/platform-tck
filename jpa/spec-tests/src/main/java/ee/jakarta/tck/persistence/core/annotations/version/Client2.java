@@ -33,7 +33,7 @@ public class Client2 extends Client {
 		s.exit();
 	}
 
-	public void setupShortData(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupShortData");
 		try {
 			super.setup(args,p);

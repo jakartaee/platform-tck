@@ -35,8 +35,7 @@ public class Client4 extends Client {
 		s.exit();
 	}
 
-
-	public void setupTimestampData(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupTimestampData");
 		try {
 			super.setup(args,p);

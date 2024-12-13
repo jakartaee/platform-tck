@@ -33,7 +33,7 @@ public class Client3 extends Client {
 		s.exit();
 	}
 
-	public void setupLongData(String[] args, Properties p) throws Exception {
+	public void setup(String[] args, Properties p) throws Exception {
 		logTrace( "setupLongData");
 		try {
 			super.setup(args,p);

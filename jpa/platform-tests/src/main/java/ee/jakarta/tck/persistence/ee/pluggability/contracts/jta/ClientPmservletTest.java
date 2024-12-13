@@ -96,11 +96,14 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
                 }
                 // Call the archive processor
                 archiveProcessor.processParArchive(jpa_ee_pluggability_contracts_jta, Client.class, parURL);
-                // The orm.xml file
+                // The orm.xml and mapping files
                 parURL = Client.class.getResource("orm.xml");
-                if(parURL != null) {
-                  jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "orm.xml");
-                }
+                jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "orm.xml");
+                parURL = Client.class.getResource("myMappingFile1.xml");
+                jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "myMappingFile1.xml");
+                parURL = Client.class.getResource("myMappingFile2.xml");
+                jpa_ee_pluggability_contracts_jta.addAsManifestResource(parURL, "myMappingFile2.xml");
+
             JavaArchive jpa_alternate_provider = ShrinkWrap.create(JavaArchive.class,"jpa_alternate_provider.jar");
             jpa_alternate_provider.addClasses(
                     ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.CacheImpl.class,

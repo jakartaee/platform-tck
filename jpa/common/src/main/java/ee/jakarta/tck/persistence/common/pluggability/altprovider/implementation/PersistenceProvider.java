@@ -44,7 +44,7 @@ public class PersistenceProvider
 	protected TSLogger logger;
 
 	public PersistenceProvider() {
-		// logger = TSLogger.getInstance();
+		callLogger("PersistenceProvider.ctor");
 	}
 
 	private void callLogger(String s) {
