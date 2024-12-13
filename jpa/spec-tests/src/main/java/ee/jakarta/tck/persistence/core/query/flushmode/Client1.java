@@ -23,6 +23,7 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 
 import java.util.List;
 
+import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 
@@ -60,7 +61,8 @@ public class Client1 extends Util {
 	 * updated name.*
 	 *
 	 */
-		public void flushModeTest1() throws Exception {
+	@SetupMethod(name = "setupCustomerData")
+	public void flushModeTest1() throws Exception {
 		boolean pass1 = false;
 		boolean pass2 = false;
 		boolean pass3 = false;

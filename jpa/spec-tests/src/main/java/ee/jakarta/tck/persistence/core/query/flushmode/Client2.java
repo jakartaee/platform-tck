@@ -24,6 +24,7 @@ package ee.jakarta.tck.persistence.core.query.flushmode;
 import java.util.List;
 import java.util.Vector;
 
+import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 
@@ -56,6 +57,7 @@ public class Client2 extends Util {
 	 * customer used in the setCustomer call.
 	 * 
 	 */
+		@SetupMethod(name = "setupOrderData")
 		public void flushModeTest2() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -99,7 +101,8 @@ public class Client2 extends Util {
 	 * updates the name of a customer. It then executes an EJBQL query selecting
 	 * orders where the related customer has the updated name.
 	 */
-		public void flushModeTest3() throws Exception {
+	@SetupMethod(name = "setupOrderData")
+	public void flushModeTest3() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 		List o;
@@ -143,7 +146,8 @@ public class Client2 extends Util {
 	 * name of the new spouse.
 	 *
 	 */
-		public void flushModeTest4() throws Exception {
+	@SetupMethod(name = "setupOrderData")
+	public void flushModeTest4() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -190,7 +194,8 @@ public class Client2 extends Util {
 	 * selecting orders where the related spouse of the related customer has the
 	 * updated name.
 	 */
-		public void flushModeTest5() throws Exception {
+	@SetupMethod(name = "setupOrderData")
+	public void flushModeTest5() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -232,7 +237,8 @@ public class Client2 extends Util {
 	 * executes an EJBQL query selecting customers having an order with the removed
 	 * number.
 	 */
-		public void flushModeTest6() throws Exception {
+	@SetupMethod(name = "setupOrderData")
+	public void flushModeTest6() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
 
@@ -282,7 +288,8 @@ public class Client2 extends Util {
 	 * executes an EJBQL query selecting a spouse whose customer has an order with
 	 * an credit card having the new number.
 	 */
-		public void flushModeTest7() throws Exception {
+	@SetupMethod(name = "setupOrderData")
+	public void flushModeTest7() throws Exception {
 		boolean pass = false;
 		String[] expected = new String[1];
 		expected[0] = "2";

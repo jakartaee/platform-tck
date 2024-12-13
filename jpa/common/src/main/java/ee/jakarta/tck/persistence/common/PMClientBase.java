@@ -181,6 +181,10 @@ abstract public class PMClientBase extends ServiceEETest implements UseEntityMan
         if (JAKARTA_EE.equalsIgnoreCase(mode)) {
             logTrace(MODE_PROP + " is set to " + mode
                     + ", so tests are running in JakartaEE environment.");
+            // Propagate all properties to the system properties
+            for (String name : p.stringPropertyNames()) {
+                System.setProperty(name, p.getProperty(name));
+            }
         } else if (STANDALONE_MODE.equalsIgnoreCase(mode)) {
             logTrace(MODE_PROP + " is set to " + mode
                     + ", so tests are running in J2SE environment standalone mode."

@@ -90,11 +90,6 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.annota
             if(warResURL != null) {
               jpa_core_annotations_version_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client1.class.getResource("//com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              jpa_core_annotations_version_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
             // Any libraries added to the war
 
@@ -102,10 +97,6 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.annota
             warResURL = Client1.class.getResource("/com/sun/ts/tests/jpa/core/annotations/version/jpa_core_annotations_version.jar");
             if(warResURL != null) {
               jpa_core_annotations_version_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_annotations_version.jar");
-            }
-            warResURL = Client1.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jpa_core_annotations_version_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
             }
 
            // Call the archive processor
