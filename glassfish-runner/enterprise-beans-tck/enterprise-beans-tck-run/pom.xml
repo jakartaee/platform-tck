@@ -495,6 +495,10 @@
                 </plugins>
             </build>
         </profile>
+        
+        
+        
+        <!-- Enterprise Beans 3.0 tests -->
 
         <profile>
             <id>ejb30_assembly_misc_tx</id>
@@ -545,6 +549,9 @@
             </build>
         </profile>
 
+        <!-- [INFO] Tests run: 176, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  51:40 min 
+        -->
         <profile>
             <id>ejb30_timer</id>
             <build>
@@ -655,8 +662,9 @@
             </build>
         </profile>
 
+        
         <!-- [INFO] Tests run: 61, Failures: 0, Errors: 0, Skipped: 0
-              [INFO] Total time:  23:19 min
+             [INFO] Total time:  23:19 min
         -->
         <profile>
             <id>ejb30_lite_stateful_concurrency</id>
@@ -673,6 +681,209 @@
                 </plugins>
             </build>
         </profile>
+        
+        
+        
+        
+        <!-- Enterprise Beans 3.2 tests -->
+
+        <!-- 
+            [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+            [INFO] Total time:  29.532 s
+        -->
+        <profile>
+            <id>ejb32_nonlite</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.mdb.**.*Test</include>
+                                <include>com.sun.ts.tests.ejb32.relaxedclientview.**.*Test</include>
+                                <include>com.sun.ts.tests.ejb32.timer.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- [INFO] Tests run: 40, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  21:36 min 
+        -->
+        <profile>
+            <id>ejb32_lite_timer_basic</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.basic.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- 
+            [INFO] Tests run: 60, Failures: 0, Errors: 0, Skipped: 0
+            [INFO] Total time:  08:03 min
+        -->
+        <profile>
+            <id>ejb32_lite_timer_interceptor</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.interceptor.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- 
+            [INFO] Tests run: 36, Failures: 0, Errors: 0, Skipped: 0
+            [INFO] Total time:  16:18 min
+        -->
+        <profile>
+            <id>ejb32_lite_timer_schedule_auto</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.schedule.auto.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- [INFO] Tests run: 16, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  12:19 min
+             
+             [INFO] Tests run: 168, Failures: 0, Errors: 0, Skipped: 0 
+             [INFO] Total time:  08:59 min
+             
+             [INFO] Tests run: 32, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  08:49 min
+        -->
+        <profile>
+            <id>ejb32_lite_timer_schedule_descriptor_expression_lifecycle</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.schedule.descriptor.**.*Test</include>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.schedule.expression.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- [INFO] Tests run: 160, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  40:42 min 
+        -->
+        <profile>
+            <id>ejb32_lite_timer_schedule_expire</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.schedule.expire.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!--  [INFO] Tests run: 52, Failures: 0, Errors: 0, Skipped: 0
+              [INFO] Total time:  33:39 min
+        -->
+        <profile>
+            <id>ejb32_lite_timer_schedule_tx</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.schedule.tx.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- [INFO] Tests run: 52, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  33:40 min 
+        -->
+        <profile>
+            <id>ejb32_lite_timer_schedule_txnonpersistent</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.schedule.txnonpersistent.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- [INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  04:40 min
+             
+             [INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  45.973 s
+             
+             [INFO] Tests run: 36, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  01:53 min
+             
+             - - - - -
+             
+             [INFO] Tests run: 64, Failures: 0, Errors: 0, Skipped: 0
+             [INFO] Total time:  06:29 min
+         -->
+        <profile>
+            <id>ejb32_lite_timer_schedule_tz_service_timerconfig</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <includes>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.schedule.tz.**.*Test</include>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.service.**.*Test</include>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.timerconfig.**.*Test</include>
+                            </includes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        
 
         <profile>
             <id>timeout1</id>
