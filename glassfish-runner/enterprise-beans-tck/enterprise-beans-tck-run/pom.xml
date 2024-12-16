@@ -787,6 +787,7 @@
                             <includes>
                                 <include>com.sun.ts.tests.ejb32.lite.timer.schedule.descriptor.**.*Test</include>
                                 <include>com.sun.ts.tests.ejb32.lite.timer.schedule.expression.**.*Test</include>
+                                <include>com.sun.ts.tests.ejb32.lite.timer.schedule.lifecycle.**.*Test</include>
                             </includes>
                         </configuration>
                     </plugin>
