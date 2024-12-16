@@ -495,9 +495,7 @@
                 </plugins>
             </build>
         </profile>
-        
-        
-        
+
         <!-- Enterprise Beans 3.0 tests -->
 
         <profile>
@@ -662,7 +660,6 @@
             </build>
         </profile>
 
-        
         <!-- [INFO] Tests run: 61, Failures: 0, Errors: 0, Skipped: 0
              [INFO] Total time:  23:19 min
         -->
@@ -681,10 +678,7 @@
                 </plugins>
             </build>
         </profile>
-        
-        
-        
-        
+
         <!-- Enterprise Beans 3.2 tests -->
 
         <!-- 
@@ -883,8 +877,6 @@
                 </plugins>
             </build>
         </profile>
-
-        
 
         <profile>
             <id>timeout1</id>
