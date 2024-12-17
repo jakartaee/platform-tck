@@ -76,7 +76,7 @@
     </modules>
 
     <properties>
-        <ant.version>1.10.11</ant.version>
+        <ant.version>1.10.15</ant.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
         <arquillian.jakarta.tck.version>${project.version}</arquillian.jakarta.tck.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
