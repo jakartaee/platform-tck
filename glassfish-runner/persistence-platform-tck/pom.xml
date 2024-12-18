@@ -35,8 +35,10 @@
         <!-- <glassfish.version>8.0.0-M5</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
-        <glassfish.version>8.0.0-SNAPSHOT</glassfish.version>
+        <glassfish.version>8.0.0-JDK17-M5</glassfish.version>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
+        <jdbc.classpath>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyshared.jar:${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</jdbc.classpath>
+        <jdbc.url>jdbc:derby://localhost:1527/derbyDB;create=true</jdbc.url>
 
         <junit.jupiter.version>5.11.3</junit.jupiter.version>
         <tck.artifactId>persistence-platform-tck-tests</tck.artifactId>
@@ -379,7 +381,7 @@
                         </goals>
                         <phase>pre-integration-test</phase>
                         <configuration>
-                            <executable>target/glassfish8/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
                                 <argument>start-database</argument>
                             </arguments>
@@ -393,7 +395,7 @@
                         </goals>
                         <phase>post-integration-test</phase>
                         <configuration>
-                            <executable>target/glassfish8/glassfish/bin/asadmin</executable>
+                            <executable>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/bin/asadmin</executable>
                             <arguments>
                                 <argument>stop-database</argument>
                             </arguments>
@@ -418,17 +420,18 @@
                         <phase>pre-integration-test</phase>
                         <configuration>
                             <target>
-                                <path id="jdbc.classpath">
+                                <!-- <path id="jdbc.classpath">
                                     <pathelement path="target/glassfish8/javadb/lib/derbyclient.jar"></pathelement>
                                     <path refid="maven.runtime.classpath"></path>
-                                </path>
-                                <sql autocommit="true" classpathref="jdbc.classpath" delimiter=";" driver="org.apache.derby.jdbc.ClientDriver" onerror="continue" password="cts1" url="jdbc:derby://localhost:1527/derbyDB" userid="cts1">
-                                    <transaction src="sql/derby/derby.ddl.persistence.sql"></transaction>
+                                </path> -->
+                                <sql autocommit="true" classpath="${jdbc.classpath}" delimiter=";" driver="org.apache.derby.jdbc.ClientDriver" onerror="continue" password="cts1" url="${jdbc.url}" userid="cts1">
                                     <transaction src="sql/derby/derby.ddl.persistence.sprocs.sql"></transaction>
+                                    <transaction src="sql/derby/derby.ddl.sql"></transaction>
                                 </sql>
                             </target>
                         </configuration>
                     </execution>
+
                 </executions>
             </plugin>
 
@@ -440,11 +443,11 @@
                     <dependenciesToScan>jakarta.tck:persistence-platform-tck-tests</dependenciesToScan>
 
                     <systemPropertyVariables>
-                        <glassfish.enableDerby>true</glassfish.enableDerby>
+                        <!-- <glassfish.enableDerby>true</glassfish.enableDerby>
                         <glassfish.derbyDatabaseName>${glassfish.home}/glassfish/domains/domain1/config/derbyDB;create=true</glassfish.derbyDatabaseName>
                         <glassfish.derbySQLFile>${basedir}/sql/derby/derby.ddl.sql</glassfish.derbySQLFile>
                         <glassfish.derbyUser>cts1</glassfish.derbyUser>
-                        <glassfish.derbyPasswordFile>${basedir}/sql/derby/password.txt</glassfish.derbyPasswordFile>
+                        <glassfish.derbyPasswordFile>${basedir}/sql/derby/password.txt</glassfish.derbyPasswordFile> -->
 
                         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                         <glassfish.postBootCommands>set server-config.network-config.protocols.protocol.http-listener-1.http.trace-enabled=true
