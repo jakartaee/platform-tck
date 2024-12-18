@@ -75,7 +75,9 @@ public class Client extends PMClientBase {
 
 		super.setup(args, p);
 		removeTestData();
+        logTrace("removeTestData done");
 		createEmployeeTestData();
+        logTrace("createEmployeeTestData done");
 		dataBaseName = p.getProperty("jdbc.db");
 	}
 

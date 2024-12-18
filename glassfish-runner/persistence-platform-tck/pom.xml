@@ -369,6 +369,70 @@
             </plugin>
 
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>start-database</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>target/glassfish8/glassfish/bin/asadmin</executable>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>stop-database-final</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                        <configuration>
+                            <executable>target/glassfish8/glassfish/bin/asadmin</executable>
+                            <arguments>
+                                <argument>stop-database</argument>
+                            </arguments>
+                            <successCodes>
+                                <successCode>0</successCode>
+                                <successCode>1</successCode>
+                            </successCodes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>initdb</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <path id="jdbc.classpath">
+                                    <pathelement path="target/glassfish8/javadb/lib/derbyclient.jar"></pathelement>
+                                    <path refid="maven.runtime.classpath"></path>
+                                </path>
+                                <sql autocommit="true" classpathref="jdbc.classpath" delimiter=";" driver="org.apache.derby.jdbc.ClientDriver" onerror="continue" password="cts1" url="jdbc:derby://localhost:1527/derbyDB" userid="cts1">
+                                    <transaction src="sql/derby/derby.ddl.persistence.sql"></transaction>
+                                    <transaction src="sql/derby/derby.ddl.persistence.sprocs.sql"></transaction>
+                                </sql>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.0</version>
                 <configuration>
@@ -447,7 +511,8 @@
                         <configuration>
                             <includes>
 
-                                <include>ee/jakarta/tck/persistence/core/types/generator/Client1PmservletTest.java</include>
+                                <include>ee/jakarta/tck/persistence/core/StoredProcedureQuery/Client1PmservletTest.java</include>
+                                <!--include>ee/jakarta/tck/persistence/**/*Test.java</include-->
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
