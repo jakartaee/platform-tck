@@ -423,7 +423,7 @@
                                     <path refid="maven.runtime.classpath"></path>
                                 </path>
                                 <sql autocommit="true" classpathref="jdbc.classpath" delimiter=";" driver="org.apache.derby.jdbc.ClientDriver" onerror="continue" password="cts1" url="jdbc:derby://localhost:1527/derbyDB" userid="cts1">
-                                    <transaction src="sql/derby/derby.ddl.persistence.sql"></transaction>
+                                    <transaction src="sql/derby/derby.ddl.sql"></transaction>
                                     <transaction src="sql/derby/derby.ddl.persistence.sprocs.sql"></transaction>
                                 </sql>
                             </target>
