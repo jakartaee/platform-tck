@@ -1364,6 +1364,7 @@ public class Client extends ServiceEETest {
           consumer.close();
         if (consumer2 != null)
           consumer2.close();
+        cleanupSubscription(consumer2, context2, durableSubscriptionName);
       } catch (Exception e) {
         TestUtil.logErr("Caught unexpected exception: " + e);
       }
