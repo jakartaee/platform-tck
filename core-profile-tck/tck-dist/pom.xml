@@ -25,7 +25,7 @@
 
     <properties>
         <asciidoctor.maven.plugin.version>3.1.0</asciidoctor.maven.plugin.version>
-        <asciidoctorj.pdf.version>2.3.18</asciidoctorj.pdf.version>
+        <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
         <asciidoctorj.version>3.0.0</asciidoctorj.version>
         <guide.name>core-profile-tck-reference-guide</guide.name>
         <revnumber>11.0</revnumber>
