@@ -21,17 +21,13 @@
 
     <parent>
         <groupId>org.glassfish</groupId>
-        <artifactId>enterprise-beans-tck</artifactId>
+        <artifactId>tags-tck</artifactId>
         <version>4.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>enterprise-beans-tck-install</artifactId>
+    <artifactId>tags-tck-install</artifactId>
     <packaging>pom</packaging>
-    <name>TCK: Install Jakarta Enterprise-beans TCK</name>
-
-    <properties>
-        <tck.test.ejb.version>6.1.0</tck.test.ejb.version>
-    </properties>
+    <name>TCK: Install Jakarta tags TCK</name>
 
     <build>
         <plugins>
@@ -45,7 +41,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>download-ejb-tck</id>
+                        <id>download-tags-tck</id>
                         <goals>
                             <goal>wget</goal>
                         </goals>
@@ -65,7 +61,7 @@
                 <version>3.8.0</version>
                 <executions>
                     <execution>
-                        <id>ejb_source</id>
+                        <id>tags_tck_compile</id>
                         <goals>
                             <goal>run</goal>
                         </goals>
