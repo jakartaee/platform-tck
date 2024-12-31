@@ -34,33 +34,35 @@
     <description>project</description>
 
     <modules>
-        <module>appclient</module>
         <module>arquillian</module>
-        <module>assembly</module>
-        <module>connector</module>
-        <module>core-profile-tck</module>
-        <module>ejb30</module>
+        <module>signaturetest</module>
+        <module>tcks/apis/connector</module>
+        <module>tcks/apis/ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
         <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
-        <module>ejb32</module>
-        <module>el</module>
-        <module>el-tck</module>
-        <module>integration</module>
-        <module>javaee</module>
-        <module>javamail</module>
-        <module>jaxrs</module>
-        <module>jdbc</module>
-        <module>jms</module>
-        <module>jms-tck</module>
-        <module>jpa</module>
-        <module>jpa-tck</module>
-        <module>jsonb</module>
-        <module>jsonp</module>
-        <module>jsp</module>
-        <module>jstl</module>
-        <module>jta</module>
-        <module>samples</module>
-        <module>signaturetest</module>
+        <module>tcks/apis/ejb32</module>
+        <module>tcks/apis/el</module>
+        <module>tcks/apis/el-tck</module>
+        <module>tcks/apis/javamail</module>
+        <module>tcks/apis/jaxrs</module>
+        <module>tcks/apis/jms</module>
+        <module>tcks/apis/jms-tck</module>
+        <module>tcks/apis/jpa</module>
+        <module>tcks/apis/jpa-tck</module>
+        <module>tcks/apis/jsonb</module>
+        <module>tcks/apis/jsonp</module>
+        <module>tcks/apis/jsp</module>
+        <module>tcks/apis/jstl</module>
+        <module>tcks/apis/jta</module>
+        <module>tcks/apis/websocket</module>
+        <module>tcks/profiles/core-profile-tck</module>
+        <module>tcks/profiles/platform/appclient</module>
+        <module>tcks/profiles/platform/assembly</module>
+        <module>tcks/profiles/platform/integration</module>
+        <module>tcks/profiles/platform/javaee</module>
+        <module>tcks/profiles/platform/jdbc</module>
+        <module>tcks/profiles/platform/samples</module>
+        <module>tcks/profiles/platform/xa</module>
         <module>tools</module>
         <module>tsharness</module>
         <module>user_guides</module>
@@ -68,9 +70,6 @@
         <module>webartifacts/jsp</module>
         <module>webartifacts/jstl</module>
         <module>webartifacts/servlet</module>
-        <module>websocket</module>
-        <module>xa</module>
-
     </modules>
 
     <properties>
