@@ -17,28 +17,35 @@
     SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>jakarta.tck</groupId>
+        <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>1.0.9</version>
+        <relativePath />
     </parent>
 
+    <groupId>jakarta.tck</groupId>
     <artifactId>libutil</artifactId>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>lib util</name>
     <description>contains com.sun.ts.lib.util</description>
+    <url>https://github.com/jakartaee/platform-tck</url>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.ant</groupId>
             <artifactId>ant</artifactId>
+            <version>1.10.11</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.spec.javax.rmi</groupId>
             <artifactId>jboss-rmi-api_1.0_spec</artifactId>
+            <version>1.0.6.Final</version>
         </dependency>
         <dependency>
             <groupId>org.apache.derby</groupId>
@@ -47,4 +54,30 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <!-- Restricts the Java version to 17 -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <release>17</release>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
