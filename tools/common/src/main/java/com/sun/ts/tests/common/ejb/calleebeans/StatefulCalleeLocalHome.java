@@ -27,8 +27,7 @@ import jakarta.ejb.EJBLocalHome;
 
 public interface StatefulCalleeLocalHome extends EJBLocalHome {
 
-  public StatefulCalleeLocal create(Properties p, SimpleArgument arg)
-      throws CreateException;
+    public StatefulCalleeLocal create(Properties p, SimpleArgument arg) throws CreateException;
 
-  public StatefulCalleeLocal create(Properties p) throws CreateException;
+    public StatefulCalleeLocal create(Properties p) throws CreateException;
 }

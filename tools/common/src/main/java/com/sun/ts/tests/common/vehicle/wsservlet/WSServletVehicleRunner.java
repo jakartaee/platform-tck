@@ -25,12 +25,12 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.web.WebVehicleRunner;
 
 public class WSServletVehicleRunner extends WebVehicleRunner {
-  protected Status run() {
-    // run in a wsservlet
-    sTestStatus = runWebVehicleTest(sVehicle);
+    protected Status run() {
+        // run in a wsservlet
+        sTestStatus = runWebVehicleTest(sVehicle);
 
-    TestUtil.logMsg("Test: returning from running in a wsservlet vehicle");
+        TestUtil.logMsg("Test: returning from running in a wsservlet vehicle");
 
-    return sTestStatus;
-  }// run
+        return sTestStatus;
+    }// run
 }

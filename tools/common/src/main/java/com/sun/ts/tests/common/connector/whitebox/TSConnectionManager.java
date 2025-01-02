@@ -34,15 +34,14 @@ import jakarta.resource.spi.ManagedConnectionFactory;
  */
 public class TSConnectionManager implements ConnectionManager, Serializable {
 
-  public TSConnectionManager() {
-  }
+    public TSConnectionManager() {
+    }
 
-  @Override
-  public Object allocateConnection(ManagedConnectionFactory mcf,
-      ConnectionRequestInfo info) throws ResourceException {
+    @Override
+    public Object allocateConnection(ManagedConnectionFactory mcf, ConnectionRequestInfo info) throws ResourceException {
 
-    ManagedConnection mc = mcf.createManagedConnection(null, info);
+        ManagedConnection mc = mcf.createManagedConnection(null, info);
 
-    return mc.getConnection(null, info);
-  }
+        return mc.getConnection(null, info);
+    }
 }

@@ -29,43 +29,40 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class EJBVehicleRunner implements VehicleRunnable {
-  public Status run(String[] argv, Properties p) {
+    public Status run(String[] argv, Properties p) {
 
-    Status sTestStatus = Status.passed("");
-    String username = TestUtil.getProperty(p, "user");
-    String password = TestUtil.getProperty(p, "password");
+        Status sTestStatus = Status.passed("");
+        String username = TestUtil.getProperty(p, "user");
+        String password = TestUtil.getProperty(p, "password");
 
-    String isSecuredEjbClientValue = TestUtil.getProperty(p, "secured.ejb.vehicle.client");
-    boolean isSecuredEjbClient = (isSecuredEjbClientValue != null);
-    TestUtil.logTrace("%%%%%%% isSecuredEjbClient = " + isSecuredEjbClient);
+        String isSecuredEjbClientValue = TestUtil.getProperty(p, "secured.ejb.vehicle.client");
+        boolean isSecuredEjbClient = (isSecuredEjbClientValue != null);
+        TestUtil.logTrace("%%%%%%% isSecuredEjbClient = " + isSecuredEjbClient);
 
-    if (isSecuredEjbClient) {
-      try {
-        TestUtil.logTrace("Test login in appclient for user " + username
-            + " password " + password);
-        TSLoginContext loginContext = new TSLoginContext();
-        loginContext.login(username, password);
-      } catch (Exception e) {
-        TestUtil.logErr("login failed", e);
-        sTestStatus = Status.failed("Test login in appclient failed for user "
-            + username + " password " + password);
-      }
+        if (isSecuredEjbClient) {
+            try {
+                TestUtil.logTrace("Test login in appclient for user " + username + " password " + password);
+                TSLoginContext loginContext = new TSLoginContext();
+                loginContext.login(username, password);
+            } catch (Exception e) {
+                TestUtil.logErr("login failed", e);
+                sTestStatus = Status.failed("Test login in appclient failed for user " + username + " password " + password);
+            }
+        }
+
+        String sEJBVehicleJndiName = "";
+        EJBVehicleRemote ref = null;
+        try {
+            TSNamingContext jc = new TSNamingContext();
+            sEJBVehicleJndiName = "java:comp/env/ejb/EJBVehicle";
+            ref = (EJBVehicleRemote) jc.lookup(sEJBVehicleJndiName, EJBVehicleRemote.class);
+            ref.initialize(argv, p);
+            TestUtil.logTrace("in ejbvehicle: initialize ok; call runTest()");
+            sTestStatus = (ref.runTest()).toStatus();
+        } catch (Exception e) {
+            TestUtil.logErr("Test failed", e);
+            sTestStatus = Status.failed("Test run in ejb vehicle failed");
+        }
+        return sTestStatus;
     }
-
-    String sEJBVehicleJndiName = "";
-    EJBVehicleRemote ref = null;
-    try {
-      TSNamingContext jc = new TSNamingContext();
-      sEJBVehicleJndiName = "java:comp/env/ejb/EJBVehicle";
-      ref = (EJBVehicleRemote) jc.lookup(sEJBVehicleJndiName,
-          EJBVehicleRemote.class);
-      ref.initialize(argv, p);
-      TestUtil.logTrace("in ejbvehicle: initialize ok; call runTest()");
-      sTestStatus = (ref.runTest()).toStatus();
-    } catch (Exception e) {
-      TestUtil.logErr("Test failed", e);
-      sTestStatus = Status.failed("Test run in ejb vehicle failed");
-    }
-    return sTestStatus;
-  }
 }

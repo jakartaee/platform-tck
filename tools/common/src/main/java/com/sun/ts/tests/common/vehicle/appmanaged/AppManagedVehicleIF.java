@@ -20,7 +20,6 @@
 
 package com.sun.ts.tests.common.vehicle.appmanaged;
 
-public interface AppManagedVehicleIF
-    extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF {
+public interface AppManagedVehicleIF extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF {
 
 }

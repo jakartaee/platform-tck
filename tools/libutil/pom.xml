@@ -36,6 +36,11 @@
     <description>contains com.sun.ts.lib.util</description>
     <url>https://github.com/jakartaee/platform-tck</url>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.ant</groupId>

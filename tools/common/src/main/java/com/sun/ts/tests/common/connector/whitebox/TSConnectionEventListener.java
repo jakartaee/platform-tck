@@ -30,156 +30,135 @@ import jakarta.resource.spi.ManagedConnection;
 
 public class TSConnectionEventListener implements ConnectionEventListener {
 
-  private Vector listeners;
+    private Vector listeners;
 
-  private ManagedConnection mcon;
+    private ManagedConnection mcon;
 
-  /*
-   * @name TSConnectionEventListener
-   * 
-   * @desc TSConnectionEventListener constructor
-   * 
-   * @param ManagedConnection mcon
-   */
+    /*
+     * @name TSConnectionEventListener
+     * 
+     * @desc TSConnectionEventListener constructor
+     * 
+     * @param ManagedConnection mcon
+     */
 
-  public TSConnectionEventListener(ManagedConnection mcon) {
-    listeners = new Vector();
-    ConnectorStatus.getConnectorStatus()
-        .logAPI("TSConnectionEventListener.constructor", "mcon", "");
-    this.mcon = mcon;
-  }
-
-  /*
-   * @name sendEvent
-   * 
-   * @desc send event notifications
-   * 
-   * @param int eventType, Exception ex, Object connectionHandle
-   */
-  public void sendEvent(int eventType, Exception ex, Object connectionHandle) {
-    Vector list = (Vector) listeners.clone();
-    ConnectionEvent ce = null;
-    if (ex == null) {
-      ce = new ConnectionEvent(mcon, eventType);
-    } else {
-      ce = new ConnectionEvent(mcon, eventType, ex);
+    public TSConnectionEventListener(ManagedConnection mcon) {
+        listeners = new Vector();
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.constructor", "mcon", "");
+        this.mcon = mcon;
     }
-    if (connectionHandle != null) {
-      ce.setConnectionHandle(connectionHandle);
+
+    /*
+     * @name sendEvent
+     * 
+     * @desc send event notifications
+     * 
+     * @param int eventType, Exception ex, Object connectionHandle
+     */
+    public void sendEvent(int eventType, Exception ex, Object connectionHandle) {
+        Vector list = (Vector) listeners.clone();
+        ConnectionEvent ce = null;
+        if (ex == null) {
+            ce = new ConnectionEvent(mcon, eventType);
+        } else {
+            ce = new ConnectionEvent(mcon, eventType, ex);
+        }
+        if (connectionHandle != null) {
+            ce.setConnectionHandle(connectionHandle);
+        }
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            ConnectionEventListener l = (ConnectionEventListener) list.elementAt(i);
+            switch (eventType) {
+            case ConnectionEvent.CONNECTION_CLOSED:
+                l.connectionClosed(ce);
+                ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.sendEvent", "CONNECTION_CLOSED", "");
+                System.out.println("TSConnectionEventListener.sendEvent:CONNECTION_CLOSED");
+                break;
+            case ConnectionEvent.LOCAL_TRANSACTION_STARTED:
+                l.localTransactionStarted(ce);
+                ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_STARTED", "");
+                break;
+            case ConnectionEvent.LOCAL_TRANSACTION_COMMITTED:
+                l.localTransactionCommitted(ce);
+                ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_COMMITED", "");
+                break;
+            case ConnectionEvent.LOCAL_TRANSACTION_ROLLEDBACK:
+                l.localTransactionRolledback(ce);
+                ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_ROLLEDBACK", "");
+                break;
+            case ConnectionEvent.CONNECTION_ERROR_OCCURRED:
+                l.connectionErrorOccurred(ce);
+                ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.sendEvent", "CONNECTION_ERROR_OCCURED", "");
+                break;
+            default:
+                throw new IllegalArgumentException("Illegal eventType: " + eventType);
+            }
+        }
     }
-    int size = list.size();
-    for (int i = 0; i < size; i++) {
-      ConnectionEventListener l = (ConnectionEventListener) list.elementAt(i);
-      switch (eventType) {
-      case ConnectionEvent.CONNECTION_CLOSED:
-        l.connectionClosed(ce);
-        ConnectorStatus.getConnectorStatus().logAPI(
-            "TSConnectionEventListener.sendEvent", "CONNECTION_CLOSED", "");
-        System.out
-            .println("TSConnectionEventListener.sendEvent:CONNECTION_CLOSED");
-        break;
-      case ConnectionEvent.LOCAL_TRANSACTION_STARTED:
-        l.localTransactionStarted(ce);
-        ConnectorStatus.getConnectorStatus().logAPI(
-            "TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_STARTED",
-            "");
-        break;
-      case ConnectionEvent.LOCAL_TRANSACTION_COMMITTED:
-        l.localTransactionCommitted(ce);
-        ConnectorStatus.getConnectorStatus().logAPI(
-            "TSConnectionEventListener.sendEvent", "LOCAL_TRANSACTION_COMMITED",
-            "");
-        break;
-      case ConnectionEvent.LOCAL_TRANSACTION_ROLLEDBACK:
-        l.localTransactionRolledback(ce);
-        ConnectorStatus.getConnectorStatus().logAPI(
-            "TSConnectionEventListener.sendEvent",
-            "LOCAL_TRANSACTION_ROLLEDBACK", "");
-        break;
-      case ConnectionEvent.CONNECTION_ERROR_OCCURRED:
-        l.connectionErrorOccurred(ce);
-        ConnectorStatus.getConnectorStatus().logAPI(
-            "TSConnectionEventListener.sendEvent", "CONNECTION_ERROR_OCCURED",
-            "");
-        break;
-      default:
-        throw new IllegalArgumentException("Illegal eventType: " + eventType);
-      }
+
+    public void localTransactionRolledback(ConnectionEvent event) {
+
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.localTransactionRolledBack", "", "");
+        System.out.println("TSConnectionEventListener.localTransactionRolledback");
     }
-  }
 
-  public void localTransactionRolledback(ConnectionEvent event) {
+    public void localTransactionCommitted(ConnectionEvent event) {
 
-    ConnectorStatus.getConnectorStatus()
-        .logAPI("TSConnectionEventListener.localTransactionRolledBack", "", "");
-    System.out.println("TSConnectionEventListener.localTransactionRolledback");
-  }
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.localTransactionCommitted", "", "");
+        System.out.println("TSConnectionEventListener.localTransactionCommited");
+    }
 
-  public void localTransactionCommitted(ConnectionEvent event) {
+    public void localTransactionStarted(ConnectionEvent event) {
 
-    ConnectorStatus.getConnectorStatus()
-        .logAPI("TSConnectionEventListener.localTransactionCommitted", "", "");
-    System.out.println("TSConnectionEventListener.localTransactionCommited");
-  }
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.localTransactionStarted", "", "");
+        System.out.println("TSConnectionEventListener.localTransactionStarted");
+    }
 
-  public void localTransactionStarted(ConnectionEvent event) {
+    /*
+     * @name addConnectorListener
+     * 
+     * @desc add a connector event listener
+     * 
+     * @param ConnectionEventListener
+     */
+    public void addConnectorListener(ConnectionEventListener l) {
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.addConnectorListener", "connectionEventListener", "");
+        listeners.addElement(l);
+    }
 
-    ConnectorStatus.getConnectorStatus()
-        .logAPI("TSConnectionEventListener.localTransactionStarted", "", "");
-    System.out.println("TSConnectionEventListener.localTransactionStarted");
-  }
+    /*
+     * @name removeConnectorListener
+     * 
+     * @desc remove a connector event listener
+     * 
+     * @param ConnectionEventListener
+     */
+    public void removeConnectorListener(ConnectionEventListener l) {
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionEventListener.removeConnectorListener", "connectionEventListener", "");
+        listeners.removeElement(l);
+    }
 
-  /*
-   * @name addConnectorListener
-   * 
-   * @desc add a connector event listener
-   * 
-   * @param ConnectionEventListener
-   */
-  public void addConnectorListener(ConnectionEventListener l) {
-    ConnectorStatus.getConnectorStatus().logAPI(
-        "TSConnectionEventListener.addConnectorListener",
-        "connectionEventListener", "");
-    listeners.addElement(l);
-  }
+    /*
+     * @name connectionClosed
+     * 
+     * @desc
+     * 
+     * @param ConnectionEvent
+     */
+    public void connectionClosed(ConnectionEvent event) {
+        // do nothing. The event is sent by the TSEISConnection wrapper
+    }
 
-  /*
-   * @name removeConnectorListener
-   * 
-   * @desc remove a connector event listener
-   * 
-   * @param ConnectionEventListener
-   */
-  public void removeConnectorListener(ConnectionEventListener l) {
-    ConnectorStatus.getConnectorStatus().logAPI(
-        "TSConnectionEventListener.removeConnectorListener",
-        "connectionEventListener", "");
-    listeners.removeElement(l);
-  }
-
-  /*
-   * @name connectionClosed
-   * 
-   * @desc
-   * 
-   * @param ConnectionEvent
-   */
-  public void connectionClosed(ConnectionEvent event) {
-    // do nothing. The event is sent by the TSEISConnection wrapper
-  }
-
-  /*
-   * @name connectionErrorOccured
-   * 
-   * @desc add a connector event listener
-   * 
-   * @param ConnectionEvent
-   */
-  public void connectionErrorOccurred(ConnectionEvent event) {
-    ConnectorStatus.getConnectorStatus().logAPI(
-        "TSEISConnectionEventListener.connectionErrorOccured",
-        "connectionEvent", "");
-    sendEvent(ConnectionEvent.CONNECTION_ERROR_OCCURRED, event.getException(),
-        null);
-  }
+    /*
+     * @name connectionErrorOccured
+     * 
+     * @desc add a connector event listener
+     * 
+     * @param ConnectionEvent
+     */
+    public void connectionErrorOccurred(ConnectionEvent event) {
+        ConnectorStatus.getConnectorStatus().logAPI("TSEISConnectionEventListener.connectionErrorOccured", "connectionEvent", "");
+        sendEvent(ConnectionEvent.CONNECTION_ERROR_OCCURRED, event.getException(), null);
+    }
 }

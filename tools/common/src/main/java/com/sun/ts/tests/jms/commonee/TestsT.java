@@ -25,13 +25,13 @@ import jakarta.ejb.Remote;
 
 @Remote
 public interface TestsT {
-  public void initLogging(Properties p);
+    public void initLogging(Properties p);
 
-  public void remove();
+    public void remove();
 
-  public void sendTextMessage_CT(String testname, String text);
+    public void sendTextMessage_CT(String testname, String text);
 
-  public String receiveTextMessage_CT();
+    public String receiveTextMessage_CT();
 
-  public void common_T_setup();
+    public void common_T_setup();
 }

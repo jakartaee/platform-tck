@@ -1,6 +1,5 @@
 package com.sun.ts.lib.harness;
 
-
 public class Status {
     /**
      * A return code indicating that the test was executed and was successful.
@@ -10,25 +9,22 @@ public class Status {
      */
     public static final int PASSED = 0;
     /**
-     * A return code indicating that the test was executed but the test
-     * reported that it failed.
+     * A return code indicating that the test was executed but the test reported that it failed.
      *
      * @see #failed
      * @see #getType
      */
     public static final int FAILED = 1;
     /**
-     * A return code indicating that the test was not run because some error
-     * occurred before the test could even be attempted. This is generally
-     * a more serious error than FAILED.
+     * A return code indicating that the test was not run because some error occurred before the test could even be
+     * attempted. This is generally a more serious error than FAILED.
      *
      * @see #getType
      */
     public static final int ERROR = 2;
     /**
-     * A return code indicating that the test has not yet been run in this context.
-     * (More specifically, no status file has been recorded for this test in the
-     * current work directory.)  This is for the internal use of the harness only.
+     * A return code indicating that the test has not yet been run in this context. (More specifically, no status file has
+     * been recorded for this test in the current work directory.) This is for the internal use of the harness only.
      *
      * @see #getType
      */
@@ -38,18 +34,15 @@ public class Status {
      */
     public static final int NUM_STATES = 4;
     /**
-     * A string used to prefix the status when it is written to System.err
-     * by {@link #exit}.
+     * A string used to prefix the status when it is written to System.err by {@link #exit}.
      */
     public static final String EXIT_PREFIX = "STATUS:";
     /**
-     * Exit codes used by TestStatus.exit corresponding to
-     * PASSED, FAILED, ERROR, NOT_RUN.
-     * The only values that should normally be returned from a test
-     * are the first three; the other value is provided for completeness.
-     * Note: The assignment is historical and cannot easily be changed.
+     * Exit codes used by TestStatus.exit corresponding to PASSED, FAILED, ERROR, NOT_RUN. The only values that should
+     * normally be returned from a test are the first three; the other value is provided for completeness. Note: The
+     * assignment is historical and cannot easily be changed.
      */
-    public static final int[] exitCodes = {95, 97, 98, 99};
+    public static final int[] exitCodes = { 95, 97, 98, 99 };
     /**
      * Prefix signaling that string is encoded
      */
@@ -64,11 +57,7 @@ public class Status {
     private static final String ENC_SEPARATOR = " ";
     private static String[] texts = {
             // correspond to PASSED, FAILED, ERROR, NOT_RUN
-            "Passed.",
-            "Failed.",
-            "Error.",
-            "Not run."
-    };
+            "Passed.", "Failed.", "Error.", "Not run." };
     private final int type;
     private final String reason;
 
@@ -95,14 +84,12 @@ public class Status {
     }
 
     /**
-     * Create a TestStatus object.  See {@link #passed}, {@link #failed}, {@link #error}
-     * etc. for more convenient factory methods to create TestStatus objects.
+     * Create a TestStatus object. See {@link #passed}, {@link #failed}, {@link #error} etc. for more convenient factory
+     * methods to create TestStatus objects.
      *
-     * @param type   The type code for the TestStatus object.
-     * @param reason A short string to store in the status. Unprintable
-     *               characters (i.e. outside the range 040C to 177C) in the string are
-     *               replaced by a space.  All whitespace runs are reduced to a single
-     *               whitespace.
+     * @param type The type code for the TestStatus object.
+     * @param reason A short string to store in the status. Unprintable characters (i.e. outside the range 040C to 177C) in
+     * the string are replaced by a space. All whitespace runs are reduced to a single whitespace.
      * @throws IllegalArgumentException if the specified type is invalid.
      */
     public Status(int type, String reason) {
@@ -110,19 +97,10 @@ public class Status {
             throw new IllegalArgumentException(String.valueOf(type));
         }
         /*
-         // if we find any bad characters in the reason string (e.g. newline)
-         // we rewrite the string replacing all such characters with a space.
-         for (int i = 0; i < reason.length(); i++) {
-         if (!isPrintable(reason.charAt(i))) {
-         StringBuffer r = new StringBuffer(reason.length());
-         for (int j = 0; j < reason.length(); j++) {
-         char c = reason.charAt(j);
-         r.append(isPrintable(c) ? c : ' ');
-         }
-         reason = r.toString();
-         break;
-         }
-         }
+         * // if we find any bad characters in the reason string (e.g. newline) // we rewrite the string replacing all such
+         * characters with a space. for (int i = 0; i < reason.length(); i++) { if (!isPrintable(reason.charAt(i))) {
+         * StringBuffer r = new StringBuffer(reason.length()); for (int j = 0; j < reason.length(); j++) { char c =
+         * reason.charAt(j); r.append(isPrintable(c) ? c : ' '); } reason = r.toString(); break; } }
          */
         this.type = type;
         this.reason = normalize(reason);
@@ -139,9 +117,8 @@ public class Status {
     }
 
     /**
-     * Create a TestStatus to indicate the unsuccessful outcome of a test:
-     * i.e. the test completed, but the test determined that what was being tested
-     * did not pass the test.
+     * Create a TestStatus to indicate the unsuccessful outcome of a test: i.e. the test completed, but the test determined
+     * that what was being tested did not pass the test.
      *
      * @param reason A short string describing why the test failed.
      * @return a TestStatus to indicate the unsuccessful outcome of a test.
@@ -151,9 +128,8 @@ public class Status {
     }
 
     /**
-     * Create a TestStatus to indicate that an error occurred while trying to run a test:
-     * i.e. the test did not complete for some reason, and so it could not determine
-     * whether what was being tested passed or failed.
+     * Create a TestStatus to indicate that an error occurred while trying to run a test: i.e. the test did not complete for
+     * some reason, and so it could not determine whether what was being tested passed or failed.
      *
      * @param reason A short string describing the error that occurred.
      * @return a TestStatus to indicate the error outcome of a test.
@@ -163,10 +139,8 @@ public class Status {
     }
 
     /**
-     * Create a TestStatus to indicate that the test was not run because under
-     * the conditions given it was not applicable.  This method is retained
-     * for backwards compatibility only; the resultant object is of FAILED
-     * type.
+     * Create a TestStatus to indicate that the test was not run because under the conditions given it was not applicable.
+     * This method is retained for backwards compatibility only; the resultant object is of FAILED type.
      *
      * @param reason A short string describing why the test was not applicable.
      * @return a TestStatus to indicate that a test failed because it was not applicable
@@ -180,7 +154,7 @@ public class Status {
     /**
      * Create a TestStatus to indicate that the test has not yet been run.
      *
-     * @param reason A short string indicating why the test has not yet been  run.
+     * @param reason A short string indicating why the test has not yet been run.
      */
     static Status notRun(String reason) {
         return new Status(NOT_RUN, reason);
@@ -189,8 +163,7 @@ public class Status {
     /**
      * Parse a string-form of a TestStatus.
      *
-     * @param s a string containing the string form of a TestStatus
-     *          as generated by {@link #toString}
+     * @param s a string containing the string form of a TestStatus as generated by {@link #toString}
      * @return the corresponding TestStatus, or null if it could not be parsed successfully
      * @see #exit
      */
@@ -203,8 +176,7 @@ public class Status {
     }
 
     /**
-     * Translate the type number to a descriptive string.
-     * For example, type 0 corresponds to the "Passed." string.
+     * Translate the type number to a descriptive string. For example, type 0 corresponds to the "Passed." string.
      *
      * @param typeNum A number between zero and NUM_STATES
      * @return null if the given integer was out of range, otherwise an appropriate string.
@@ -217,7 +189,7 @@ public class Status {
         }
     }
 
-    //-----internal routines----------------------------------------------------
+    // -----internal routines----------------------------------------------------
     // equivalent to msg.trim().replaceAll("\\s+", " ");
     private static String normalize(String msg) {
         boolean ok = true;
@@ -265,11 +237,11 @@ public class Status {
     }
 
     /**
-     * Encodes strings containing non-ascii characters, where all characters
-     * are replaced with with their Unicode code. Encoded string will have
-     * the certain prefix and suffix to be distinguished from non-encode one.
-     * Strings of ASCII chars only are encoded into themselves.<br>
+     * Encodes strings containing non-ascii characters, where all characters are replaced with with their Unicode code.
+     * Encoded string will have the certain prefix and suffix to be distinguished from non-encode one. Strings of ASCII
+     * chars only are encoded into themselves.<br>
      * Example:
+     * 
      * <pre>
      * System.out.println(TestStatus.encode("X \u01AB")); // Encoded 58 20 1AB
      * System.out.println(TestStatus.encode("Abc1")); // Abc1
@@ -308,8 +280,7 @@ public class Status {
      * Decodes string encoded by encode(String) method.
      *
      * @param str - string to decode
-     * @return Decoded string or the same string if encoded prefix/suffix
-     * were found
+     * @return Decoded string or the same string if encoded prefix/suffix were found
      * @see #encode(java.lang.String)
      */
     public static String decode(String str) {
@@ -322,8 +293,7 @@ public class Status {
         }
 
         // identify encoded part
-        String encoded = str.substring(ind + ENC_PREFFIX.length(),
-                str.length() - ENC_SUFFFIX.length());
+        String encoded = str.substring(ind + ENC_PREFFIX.length(), str.length() - ENC_SUFFFIX.length());
 
         StringBuilder sb = new StringBuilder();
         sb.append(str.substring(0, ind));
@@ -341,7 +311,7 @@ public class Status {
         return sb.toString();
     }
 
-    //----------Data members----------------------------------------------------
+    // ----------Data members----------------------------------------------------
 
     private static String encodeChar(char c) {
         return Integer.toString((int) c, 16);
@@ -423,9 +393,8 @@ public class Status {
      * Return a new TestStatus object with a possibly augmented reason field.
      *
      * @param aux if not null and not empty, it will be combined with the original reason.
-     * @return if <em>aux</em> is null or empty, the result will be the same as this object;
-     * otherwise, it will be a new object combining the original status reason and the
-     * additional information in <em>aux</em>.
+     * @return if <em>aux</em> is null or empty, the result will be the same as this object; otherwise, it will be a new
+     * object combining the original status reason and the additional information in <em>aux</em>.
      */
     public Status augment(String aux) {
         if (aux == null || aux.isEmpty()) {
@@ -439,9 +408,8 @@ public class Status {
      * Return a new TestStatus object with a possibly augmented reason field.
      *
      * @param aux a TestStatus to combine with this object
-     * @return if <em>aux</em> is null, the result will be the same as this object;
-     * otherwise, it will be a new object combining the original status reason and the
-     * additional information in <em>aux</em>.
+     * @return if <em>aux</em> is null, the result will be the same as this object; otherwise, it will be a new object
+     * combining the original status reason and the additional information in <em>aux</em>.
      */
     public Status augment(Status aux) {
         return aux == null ? this : augment(aux.reason);
@@ -462,18 +430,15 @@ public class Status {
     }
 
     /**
-     * Convenience exit() function for the main() of tests to exit in such a
-     * way that the status passes up across process boundaries without losing
-     * information (ie exit codes don't give the associated text of the status
-     * and return codes when exceptions are thrown could cause unintended
-     * results). <p>
+     * Convenience exit() function for the main() of tests to exit in such a way that the status passes up across process
+     * boundaries without losing information (ie exit codes don't give the associated text of the status and return codes
+     * when exceptions are thrown could cause unintended results).
      * <p>
-     * An identifying marker is written to the error stream, which the script
-     * running the test watches for as the last output before returning,
-     * followed by the type and reason
      * <p>
-     * The method does not return.  It calls System.exit with a value
-     * dependent on the type.
+     * An identifying marker is written to the error stream, which the script running the test watches for as the last
+     * output before returning, followed by the type and reason
+     * <p>
+     * The method does not return. It calls System.exit with a value dependent on the type.
      */
     public void exit() {
         if (System.err != null) {

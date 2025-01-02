@@ -29,112 +29,110 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
 abstract public class EJB3ShareBaseBean implements EJB3ShareIF {
-  public static final String FINDER_TEST_NAME_KEY = "testName";
+    public static final String FINDER_TEST_NAME_KEY = "testName";
 
-  public static final String STATELESS3 = "stateless3";
+    public static final String STATELESS3 = "stateless3";
 
-  public static final String STATEFUL3 = "stateful3";
+    public static final String STATEFUL3 = "stateful3";
 
-  public static final String APPMANAGED = "appmanaged";
+    public static final String APPMANAGED = "appmanaged";
 
-  public static final String APPMANAGEDNOTX = "appmanagedNoTx";
+    public static final String APPMANAGEDNOTX = "appmanagedNoTx";
 
-  protected EntityManager entityManager;
+    protected EntityManager entityManager;
 
-  protected EntityManagerFactory entityManagerFactory;
+    protected EntityManagerFactory entityManagerFactory;
 
-  protected SessionContext sessionContext;
+    protected SessionContext sessionContext;
 
-  protected abstract String getVehicleType();
+    protected abstract String getVehicleType();
 
-  protected EJB3ShareBaseBean() {
-    super();
-  }
-
-  // ================== business methods ====================================
-  public RemoteStatus runTest(String[] args, Properties props) {
-
-    try {
-      TestUtil.init(props);
-    } catch (Exception e) {
-      TestUtil.logErr("initLogging failed in " + getVehicleType() + " vehicle.",
-          e);
+    protected EJB3ShareBaseBean() {
+        super();
     }
 
-    String testName = getTestName(props);
-    System.out.println(
-        "===== Starting " + testName + " in " + getVehicleType() + " =====");
-    RemoteStatus sTestStatus = null;
+    // ================== business methods ====================================
+    public RemoteStatus runTest(String[] args, Properties props) {
 
-    try {
-      // create an instance of the test client and run here
-      String testClassName = TestUtil.getProperty(props, "test_classname");
-      Class c = Class.forName(testClassName);
-      EETest testClient = (EETest) c.newInstance();
+        try {
+            TestUtil.init(props);
+        } catch (Exception e) {
+            TestUtil.logErr("initLogging failed in " + getVehicleType() + " vehicle.", e);
+        }
 
-      initClient(testClient);
-      sTestStatus = new RemoteStatus(testClient.run(args, props));
-      if (sTestStatus.getType() == Status.PASSED)
-        TestUtil.logMsg(testName + " in vehicle passed");
-    } catch (Throwable e) {
-      String fail = testName + " in vehicle failed";
-      // e.printStackTrace();
-      TestUtil.logErr(fail, e);
-      sTestStatus = new RemoteStatus(Status.failed(fail));
-    }
-    return sTestStatus;
-  }
+        String testName = getTestName(props);
+        System.out.println("===== Starting " + testName + " in " + getVehicleType() + " =====");
+        RemoteStatus sTestStatus = null;
 
-  protected String getTestName(Properties props) {
-    String testName = TestUtil.getProperty(props, FINDER_TEST_NAME_KEY);
-    if (testName == null) {
-      testName = "test";
-    }
-    return testName;
-  }
+        try {
+            // create an instance of the test client and run here
+            String testClassName = TestUtil.getProperty(props, "test_classname");
+            Class c = Class.forName(testClassName);
+            EETest testClient = (EETest) c.newInstance();
 
-  private void initClient(EETest testClient) {
-    if (testClient instanceof UseEntityManager) {
-      EntityManager em = getEntityManager();
-      if (em == null) {
-        throw new IllegalStateException("EntityManager is null");
-      }
-      UseEntityManager client2 = (UseEntityManager) testClient;
-      EntityTransaction et = getEntityTransaction();
-      client2.setEntityManager(em);
-      client2.setEntityTransaction(et);
-      client2.setInContainer(true);
+            initClient(testClient);
+            sTestStatus = new RemoteStatus(testClient.run(args, props));
+            if (sTestStatus.getType() == Status.PASSED)
+                TestUtil.logMsg(testName + " in vehicle passed");
+        } catch (Throwable e) {
+            String fail = testName + " in vehicle failed";
+            // e.printStackTrace();
+            TestUtil.logErr(fail, e);
+            sTestStatus = new RemoteStatus(Status.failed(fail));
+        }
+        return sTestStatus;
     }
 
-    if (testClient instanceof UseEntityManagerFactory) {
-      EntityManagerFactory emf = getEntityManagerFactory();
-      if (emf != null) {
-        UseEntityManagerFactory client2 = (UseEntityManagerFactory) testClient;
-        client2.setEntityManagerFactory(emf);
-      }
+    protected String getTestName(Properties props) {
+        String testName = TestUtil.getProperty(props, FINDER_TEST_NAME_KEY);
+        if (testName == null) {
+            testName = "test";
+        }
+        return testName;
     }
 
-  }
+    private void initClient(EETest testClient) {
+        if (testClient instanceof UseEntityManager) {
+            EntityManager em = getEntityManager();
+            if (em == null) {
+                throw new IllegalStateException("EntityManager is null");
+            }
+            UseEntityManager client2 = (UseEntityManager) testClient;
+            EntityTransaction et = getEntityTransaction();
+            client2.setEntityManager(em);
+            client2.setEntityTransaction(et);
+            client2.setInContainer(true);
+        }
 
-  public SessionContext getSessionContext() {
-    return sessionContext;
-  }
+        if (testClient instanceof UseEntityManagerFactory) {
+            EntityManagerFactory emf = getEntityManagerFactory();
+            if (emf != null) {
+                UseEntityManagerFactory client2 = (UseEntityManagerFactory) testClient;
+                client2.setEntityManagerFactory(emf);
+            }
+        }
 
-  abstract public void setSessionContext(SessionContext sessionContext);
+    }
 
-  public EntityManager getEntityManager() {
-    return entityManager;
-  }
+    public SessionContext getSessionContext() {
+        return sessionContext;
+    }
 
-  public EntityManagerFactory getEntityManagerFactory() {
-    return entityManagerFactory;
-  }
+    abstract public void setSessionContext(SessionContext sessionContext);
 
-  public void setEntityManagerFactory(EntityManagerFactory emf) {
-    // do nothing this gets overridden in subclass
-  }
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 
-  abstract protected EntityTransaction getEntityTransaction();
+    public EntityManagerFactory getEntityManagerFactory() {
+        return entityManagerFactory;
+    }
 
-  abstract public void setEntityManager(EntityManager entityManager);
+    public void setEntityManagerFactory(EntityManagerFactory emf) {
+        // do nothing this gets overridden in subclass
+    }
+
+    abstract protected EntityTransaction getEntityTransaction();
+
+    abstract public void setEntityManager(EntityManager entityManager);
 }

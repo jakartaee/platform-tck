@@ -26,17 +26,17 @@ import jakarta.ejb.Remote;
 
 @Remote
 public interface MDB_T_Test {
-  boolean askMDBToRunATest(String typeOfTest);
+    boolean askMDBToRunATest(String typeOfTest);
 
-  boolean askMDBToSendAMessage(String messageType);
+    boolean askMDBToSendAMessage(String messageType);
 
-  boolean checkOnResponse(String prop);
+    boolean checkOnResponse(String prop);
 
-  boolean isThereSomethingInTheQueue();
+    boolean isThereSomethingInTheQueue();
 
-  void setup(Properties p);
+    void setup(Properties p);
 
-  void cleanTheQueue();
+    void cleanTheQueue();
 
-  void remove();
+    void remove();
 }

@@ -23,20 +23,19 @@ package com.sun.ts.tests.jms.common;
 import jakarta.jms.JMSException;
 import jakarta.jms.TextMessage;
 
-public class TextMessageTestImpl extends MessageTestImpl
-    implements TextMessage {
-  private String text;
+public class TextMessageTestImpl extends MessageTestImpl implements TextMessage {
+    private String text;
 
-  public TextMessageTestImpl() {
-    super();
-  }
+    public TextMessageTestImpl() {
+        super();
+    }
 
-  public void setText(String string) throws JMSException {
-    text = string;
-  }
+    public void setText(String string) throws JMSException {
+        text = string;
+    }
 
-  public String getText() throws JMSException {
-    return text;
-  }
+    public String getText() throws JMSException {
+        return text;
+    }
 
 }

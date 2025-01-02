@@ -30,84 +30,81 @@ import jakarta.resource.spi.work.WorkManager;
  * This tests the association between the resource adapter instance and the 
  * Work instance before the exection of the Work instance has been started
  */
-public class WorkAndAssocImpl extends WorkImpl
-    implements ResourceAdapterAssociation {
-  private int count = 0;
+public class WorkAndAssocImpl extends WorkImpl implements ResourceAdapterAssociation {
+    private int count = 0;
 
-  protected String callingClassName = "WorkAndAssocImpl";
+    protected String callingClassName = "WorkAndAssocImpl";
 
-  private ResourceAdapter resourceAdapter;
+    private ResourceAdapter resourceAdapter;
 
-  public WorkAndAssocImpl(WorkManager wm) {
-    super(wm, "WorkAndAssocImpl");
-  }
-
-  public void run() {
-
-    // do check for setResourceAdapter call
-    checkAssociation();
-
-    try {
-      ConnectorStatus.getConnectorStatus().logState("WorkAndAssocImpl.run");
-      debug("WorkAndAssocImpl.run");
-    } catch (Exception ex) {
+    public WorkAndAssocImpl(WorkManager wm) {
+        super(wm, "WorkAndAssocImpl");
     }
 
-  }
+    public void run() {
 
-  /*
-   * @name setResourceAdapter
-   * 
-   * @desc sets the Resource Adapter for this work instance
-   * 
-   * @return
-   * 
-   * @exception ResourceException
-   */
-  public void setResourceAdapter(ResourceAdapter ra) throws ResourceException {
-    count++;
-    String newStr1 = "WorkAndAssocImpl setResourceAdapter " + count;
-    debug(newStr1);
-    ConnectorStatus.getConnectorStatus().logState(newStr1);
-    this.resourceAdapter = ra;
-  }
+        // do check for setResourceAdapter call
+        checkAssociation();
 
-  /*
-   * @name getResourceAdapter
-   * 
-   * @desc gets the Resource Adapter for this work instance
-   * 
-   * @return Object
-   * 
-   * @exception ResourceException
-   */
-  public ResourceAdapter getResourceAdapter() {
-    return resourceAdapter;
-  }
+        try {
+            ConnectorStatus.getConnectorStatus().logState("WorkAndAssocImpl.run");
+            debug("WorkAndAssocImpl.run");
+        } catch (Exception ex) {
+        }
 
-  /*
-   * This method is used to assist in the verification process of assertion
-   * Connector:SPEC:245 This method must be called befor the work instances
-   * 'run' method is called. This method checks if the setResourceAdapter()
-   * method was called and if so, then this method logs a message to indicate
-   * that it was called prior to the 'run' method of the run method.
-   */
-  public void checkAssociation() {
-    Vector vLog = ConnectorStatus.getConnectorStatus().getStateLogVector();
-    String toCheck1 = "WorkAndAssocImpl setResourceAdapter 1";
-
-    for (int i = 0; i < vLog.size(); i++) {
-      String str = (String) vLog.elementAt(i);
-      if (str.startsWith(toCheck1)) {
-        String str2 = "LocalTx - association exists between RA and work";
-        ConnectorStatus.getConnectorStatus().logState(str2);
-        break;
-      }
     }
-  }
 
-  private void debug(String str) {
-    Debug.trace(str);
-  }
+    /*
+     * @name setResourceAdapter
+     * 
+     * @desc sets the Resource Adapter for this work instance
+     * 
+     * @return
+     * 
+     * @exception ResourceException
+     */
+    public void setResourceAdapter(ResourceAdapter ra) throws ResourceException {
+        count++;
+        String newStr1 = "WorkAndAssocImpl setResourceAdapter " + count;
+        debug(newStr1);
+        ConnectorStatus.getConnectorStatus().logState(newStr1);
+        this.resourceAdapter = ra;
+    }
+
+    /*
+     * @name getResourceAdapter
+     * 
+     * @desc gets the Resource Adapter for this work instance
+     * 
+     * @return Object
+     * 
+     * @exception ResourceException
+     */
+    public ResourceAdapter getResourceAdapter() {
+        return resourceAdapter;
+    }
+
+    /*
+     * This method is used to assist in the verification process of assertion Connector:SPEC:245 This method must be called
+     * befor the work instances 'run' method is called. This method checks if the setResourceAdapter() method was called and
+     * if so, then this method logs a message to indicate that it was called prior to the 'run' method of the run method.
+     */
+    public void checkAssociation() {
+        Vector vLog = ConnectorStatus.getConnectorStatus().getStateLogVector();
+        String toCheck1 = "WorkAndAssocImpl setResourceAdapter 1";
+
+        for (int i = 0; i < vLog.size(); i++) {
+            String str = (String) vLog.elementAt(i);
+            if (str.startsWith(toCheck1)) {
+                String str2 = "LocalTx - association exists between RA and work";
+                ConnectorStatus.getConnectorStatus().logState(str2);
+                break;
+            }
+        }
+    }
+
+    private void debug(String str) {
+        Debug.trace(str);
+    }
 
 }

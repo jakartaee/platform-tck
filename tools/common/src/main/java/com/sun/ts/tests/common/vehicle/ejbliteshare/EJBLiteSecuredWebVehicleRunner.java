@@ -31,63 +31,59 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class EJBLiteSecuredWebVehicleRunner implements VehicleRunnable {
-  private final static Logger logger = Logger
-      .getLogger(EJBLiteSecuredWebVehicleRunner.class.getName());
+    private final static Logger logger = Logger.getLogger(EJBLiteSecuredWebVehicleRunner.class.getName());
 
-  protected String getServletPath(String vehicle) {
-    return "/" + vehicle + "_vehicle.jsp";
-  }
-
-  public Status run(String[] argv, Properties p) {
-    String testName = TestUtil.getProperty(p, "testName");
-    String vehicle = TestUtil.getProperty(p, "vehicle");
-    String contextRoot = TestUtil.getProperty(p, "vehicle_archive_name");
-    String queryString = "?testName=" + testName;
-    String requestUrl = "/" + contextRoot + getServletPath(vehicle)
-        + queryString;
-
-    String username = TestUtil.getProperty(p, "user");
-    String password = TestUtil.getProperty(p, "password");
-
-    TSURL ctsURL = new TSURL();
-    URL url = null;
-    HttpURLConnection connection = null;
-    int statusCode = Status.NOT_RUN;
-    String response = null;
-    try {
-      url = ctsURL.getURL("http", TestUtil.getProperty(p, "webServerHost"),
-          Integer.parseInt(TestUtil.getProperty(p, "webServerPort")), requestUrl);
-
-      // Encode authData
-      String authData = username + ":" + password;
-
-      BASE64Encoder encoder = new BASE64Encoder();
-
-      String encodedAuthData = encoder.encode(authData.getBytes());
-
-      connection = (HttpURLConnection) url.openConnection();
-      connection.setRequestMethod("GET");
-      connection.setUseCaches(false);
-
-      // set request property
-      connection.setRequestProperty("Authorization",
-          "Basic " + encodedAuthData.trim());
-
-      logger.info("Connecting " + url.toExternalForm());
-      connection.connect();
-
-      response = TestUtil.getResponse(connection).trim();
-      if (response.indexOf(TEST_PASSED) >= 0) {
-        statusCode = Status.PASSED;
-      } else {
-        statusCode = Status.FAILED;
-      }
-    } catch (IOException e) {
-      statusCode = Status.FAILED;
-      response = "Failed to connect to the test webapp."
-          + TestUtil.printStackTraceToString(e);
+    protected String getServletPath(String vehicle) {
+        return "/" + vehicle + "_vehicle.jsp";
     }
-    return new ReasonableStatus(statusCode, response);
-  }
+
+    public Status run(String[] argv, Properties p) {
+        String testName = TestUtil.getProperty(p, "testName");
+        String vehicle = TestUtil.getProperty(p, "vehicle");
+        String contextRoot = TestUtil.getProperty(p, "vehicle_archive_name");
+        String queryString = "?testName=" + testName;
+        String requestUrl = "/" + contextRoot + getServletPath(vehicle) + queryString;
+
+        String username = TestUtil.getProperty(p, "user");
+        String password = TestUtil.getProperty(p, "password");
+
+        TSURL ctsURL = new TSURL();
+        URL url = null;
+        HttpURLConnection connection = null;
+        int statusCode = Status.NOT_RUN;
+        String response = null;
+        try {
+            url = ctsURL.getURL("http", TestUtil.getProperty(p, "webServerHost"),
+                    Integer.parseInt(TestUtil.getProperty(p, "webServerPort")), requestUrl);
+
+            // Encode authData
+            String authData = username + ":" + password;
+
+            BASE64Encoder encoder = new BASE64Encoder();
+
+            String encodedAuthData = encoder.encode(authData.getBytes());
+
+            connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setUseCaches(false);
+
+            // set request property
+            connection.setRequestProperty("Authorization", "Basic " + encodedAuthData.trim());
+
+            logger.info("Connecting " + url.toExternalForm());
+            connection.connect();
+
+            response = TestUtil.getResponse(connection).trim();
+            if (response.indexOf(TEST_PASSED) >= 0) {
+                statusCode = Status.PASSED;
+            } else {
+                statusCode = Status.FAILED;
+            }
+        } catch (IOException e) {
+            statusCode = Status.FAILED;
+            response = "Failed to connect to the test webapp." + TestUtil.printStackTraceToString(e);
+        }
+        return new ReasonableStatus(statusCode, response);
+    }
 
 }

@@ -21,18 +21,18 @@
 package com.sun.ts.lib.porting;
 
 public class TSJMSAdminException extends java.lang.Exception {
-  public TSJMSAdminException() {
-    super();
-  }
+    public TSJMSAdminException() {
+        super();
+    }
 
-  public TSJMSAdminException(String s) {
-    super(s);
-    System.out.println(s);
-  }
+    public TSJMSAdminException(String s) {
+        super(s);
+        System.out.println(s);
+    }
 
-  public TSJMSAdminException(String s, Throwable e) {
-    super(s);
-    System.out.println(s);
-    e.printStackTrace();
-  }
+    public TSJMSAdminException(String s, Throwable e) {
+        super(s);
+        System.out.println(s);
+        e.printStackTrace();
+    }
 }

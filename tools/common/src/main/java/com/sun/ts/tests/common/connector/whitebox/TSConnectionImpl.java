@@ -27,169 +27,156 @@ import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 
 public class TSConnectionImpl implements TSConnection {
 
-  private boolean inuse = false;
+    private boolean inuse = false;
 
-  private boolean autocommit = true;
+    private boolean autocommit = true;
 
-  private Hashtable tempTable = new Hashtable();
+    private Hashtable tempTable = new Hashtable();
 
-  public TSConnectionImpl() {
+    public TSConnectionImpl() {
 
-  }
-
-  public TSConnection getConnection() throws Exception {
-    try {
-
-      TSConnection ctscon = TSeis.getTSeis().getConnection();
-      ConnectorStatus.getConnectorStatus()
-          .logAPI("TSConnectionImpl.getConnection", "", "");
-      return ctscon;
-    } catch (Exception ex) {
-      ex.printStackTrace();
-      ex.getMessage();
-      return null;
     }
-  }
 
-  public TSConnection getConnection(String user, char[] passwd)
-      throws Exception {
-    try {
+    public TSConnection getConnection() throws Exception {
+        try {
 
-      System.out.println("TSConnectionImpl.getConnection(u,p):  user=" + user
-          + " passwd = " + passwd);
-
-      TSConnection ctscon = TSeis.getTSeis().getConnection(user, passwd);
-      ConnectorStatus.getConnectorStatus()
-          .logAPI("TSConnectionImpl.getConnection", "", "");
-      return ctscon;
-    } catch (Exception ex) {
-    	ex.printStackTrace();
-      ex.getMessage();
-      return null;
+            TSConnection ctscon = TSeis.getTSeis().getConnection();
+            ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.getConnection", "", "");
+            return ctscon;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            ex.getMessage();
+            return null;
+        }
     }
-  }
 
-  public synchronized boolean lease() {
-    if (inuse) {
-      return false;
-    } else {
-      inuse = true;
-      return true;
+    public TSConnection getConnection(String user, char[] passwd) throws Exception {
+        try {
+
+            System.out.println("TSConnectionImpl.getConnection(u,p):  user=" + user + " passwd = " + passwd);
+
+            TSConnection ctscon = TSeis.getTSeis().getConnection(user, passwd);
+            ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.getConnection", "", "");
+            return ctscon;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            ex.getMessage();
+            return null;
+        }
     }
-  }
 
-  protected void expireLease() {
-    inuse = false;
-  }
-
-  @Override
-  public void insert(String key, String value) throws Exception {
-    try {
-      ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.insert", "",
-          "");
-      TSeis.getTSeis().insert(key, value, this);
-      System.out.println("TSConnectionImpl.insert");
-    } catch (Exception ex) {
-      throw ex;
+    public synchronized boolean lease() {
+        if (inuse) {
+            return false;
+        } else {
+            inuse = true;
+            return true;
+        }
     }
-  }
 
-  @Override
-  public void delete(String str) throws Exception {
-    try {
-      ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.delete", "",
-          "");
-      TSeis.getTSeis().delete(str, this);
-      System.out.println("TSConnectionImpl.delete");
-    } catch (Exception ex) {
-      throw ex;
+    protected void expireLease() {
+        inuse = false;
     }
-  }
 
-  @Override
-  public void update(String key, String value) throws Exception {
-    try {
-      ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.update", "",
-          "");
-      TSeis.getTSeis().update(key, value, this);
-      System.out.println("TSConnectionImpl.update");
-    } catch (Exception ex) {
-      throw ex;
+    @Override
+    public void insert(String key, String value) throws Exception {
+        try {
+            ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.insert", "", "");
+            TSeis.getTSeis().insert(key, value, this);
+            System.out.println("TSConnectionImpl.insert");
+        } catch (Exception ex) {
+            throw ex;
+        }
     }
-  }
 
-  @Override
-  public Hashtable getTempTable() {
-    return tempTable;
-  }
+    @Override
+    public void delete(String str) throws Exception {
+        try {
+            ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.delete", "", "");
+            TSeis.getTSeis().delete(str, this);
+            System.out.println("TSConnectionImpl.delete");
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
 
-  public boolean inUse() throws Exception {
-    return inuse;
-  }
+    @Override
+    public void update(String key, String value) throws Exception {
+        try {
+            ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.update", "", "");
+            TSeis.getTSeis().update(key, value, this);
+            System.out.println("TSConnectionImpl.update");
+        } catch (Exception ex) {
+            throw ex;
+        }
+    }
 
-  @Override
-  public void setAutoCommit(boolean flag) {
-    autocommit = flag;
-  }
+    @Override
+    public Hashtable getTempTable() {
+        return tempTable;
+    }
 
-  @Override
-  public boolean getAutoCommit() {
-    return autocommit;
-  }
+    public boolean inUse() throws Exception {
+        return inuse;
+    }
 
-  @Override
-  public void dropTable() throws Exception {
+    @Override
+    public void setAutoCommit(boolean flag) {
+        autocommit = flag;
+    }
 
-    ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.dropTable",
-        "", "");
-    TSeis.getTSeis().dropTable();
-    tempTable.clear();
-  }
+    @Override
+    public boolean getAutoCommit() {
+        return autocommit;
+    }
 
-  @Override
-  public void begin() throws Exception {
+    @Override
+    public void dropTable() throws Exception {
 
-    ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.begin", "",
-        "");
-    TSeis.getTSeis().begin();
-  }
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.dropTable", "", "");
+        TSeis.getTSeis().dropTable();
+        tempTable.clear();
+    }
 
-  @Override
-  public void rollback() {
+    @Override
+    public void begin() throws Exception {
 
-    ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.rollback", "",
-        "");
-    tempTable.clear();
-  }
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.begin", "", "");
+        TSeis.getTSeis().begin();
+    }
 
-  @Override
-  public void commit() throws Exception {
-    ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.commit", "",
-        "");
-    TSeis.getTSeis().commit(this);
-    tempTable.clear();
-  }
+    @Override
+    public void rollback() {
 
-  @Override
-  public void close() throws Exception {
-    TSeis.getTSeis().returnConnection(this);
-    System.out.println("TSConnectionImpl.close");
-  }
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.rollback", "", "");
+        tempTable.clear();
+    }
 
-  @Override
-  public Vector readData() throws Exception {
-    Vector table = TSeis.getTSeis().readData();
-    ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.readData", "",
-        "");
-    return table;
-  }
+    @Override
+    public void commit() throws Exception {
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.commit", "", "");
+        TSeis.getTSeis().commit(this);
+        tempTable.clear();
+    }
 
-  @Override
-  public String readValue(String key) throws Exception {
-    String value = TSeis.getTSeis().readValue(key, this);
-    ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.readValue",
-        "", "");
-    return value;
-  }
+    @Override
+    public void close() throws Exception {
+        TSeis.getTSeis().returnConnection(this);
+        System.out.println("TSConnectionImpl.close");
+    }
+
+    @Override
+    public Vector readData() throws Exception {
+        Vector table = TSeis.getTSeis().readData();
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.readData", "", "");
+        return table;
+    }
+
+    @Override
+    public String readValue(String key) throws Exception {
+        String value = TSeis.getTSeis().readValue(key, this);
+        ConnectorStatus.getConnectorStatus().logAPI("TSConnectionImpl.readValue", "", "");
+        return value;
+    }
 
 }

@@ -36,16 +36,23 @@
     <description>COMMON</description>
     <url>https://github.com/jakartaee/platform-tck</url>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
+        <jakarta.tck.tools.version>11.0.0-SNAPSHOT</jakarta.tck.tools.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>runtime</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
+            <version>${jakarta.tck.tools.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>libutil</artifactId>
-            <version>11.0.0-SNAPSHOT</version>
+            <version>${jakarta.tck.tools.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-httpclient</groupId>

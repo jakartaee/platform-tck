@@ -29,43 +29,41 @@ import com.sun.ts.lib.util.TestUtil;
 import jakarta.ejb.EJBException;
 
 /**
- * Stateless wrapper that provides common methods for a Stateless
- * Session bean. This class is intended to be subclassed by the final
- * bean class that will provide the test logic (business methods).
+ * Stateless wrapper that provides common methods for a Stateless Session bean. This class is intended to be subclassed
+ * by the final bean class that will provide the test logic (business methods).
  */
 public class Stateless3xWrapper {
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  /*
-   * Business methods.
-   */
+    /*
+     * Business methods.
+     */
 
-  /**
-   * Initialize TS logging.
-   *
-   * @param props
-   *          TS properties need by TestUtil
-   *
-   */
-  public void initLogging(Properties props) {
-    try {
-      TestUtil.logTrace("[Stateless3xWrapper] initLogging()");
-      TestUtil.init(props);
-      TestUtil.logTrace("[Stateless3xWrapper] initLogging OK.");
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.logMsg("initLogging failed.");
-      throw new EJBException(e.getMessage());
+    /**
+     * Initialize TS logging.
+     *
+     * @param props TS properties need by TestUtil
+     *
+     */
+    public void initLogging(Properties props) {
+        try {
+            TestUtil.logTrace("[Stateless3xWrapper] initLogging()");
+            TestUtil.init(props);
+            TestUtil.logTrace("[Stateless3xWrapper] initLogging OK.");
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.logMsg("initLogging failed.");
+            throw new EJBException(e.getMessage());
+        }
     }
-  }
 
-  public void createNamingContext() {
-    TestUtil.logTrace("[Stateless3xWrapper] createNamingContext()");
+    public void createNamingContext() {
+        TestUtil.logTrace("[Stateless3xWrapper] createNamingContext()");
 
-    try {
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      TestUtil.logErr("[Stateless3xWrapper] Cannot create Naming Context: " + e);
+        try {
+            nctx = new TSNamingContext();
+        } catch (Exception e) {
+            TestUtil.logErr("[Stateless3xWrapper] Cannot create Naming Context: " + e);
+        }
     }
-  }
 }

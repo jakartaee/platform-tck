@@ -24,99 +24,99 @@ import jakarta.resource.spi.ConnectionRequestInfo;
 
 public class TSConnectionRequestInfo implements ConnectionRequestInfo {
 
-  private String user;
+    private String user;
 
-  private String password;
+    private String password;
 
-  /*
-   * @name TSConnectionRequestInfo
-   * 
-   * @desc TSConnectionRequestInfo constructor
-   * 
-   * @param String, String
-   */
-  public TSConnectionRequestInfo(String user, String password) {
-    this.user = user;
-    this.password = password;
-  }
-
-  /*
-   * @name getUser
-   * 
-   * @desc Gets the user name
-   * 
-   * @return String
-   */
-  public String getUser() {
-    return user;
-  }
-
-  /*
-   * @name getPassword
-   * 
-   * @desc Gets the Password
-   * 
-   * @return String
-   */
-  public String getPassword() {
-    return password;
-  }
-
-  /*
-   * @name equals
-   * 
-   * @desc Compares the given object with ConnectionRequestInfo.
-   * 
-   * @param Object
-   * 
-   * @return boolean
-   */
-  @Override
-  public boolean equals(Object obj) {
-
-    if ((obj == null) || !(obj instanceof TSConnectionRequestInfo)) {
-      return false;
-    }
-    if (obj == this) {
-      return true;
+    /*
+     * @name TSConnectionRequestInfo
+     * 
+     * @desc TSConnectionRequestInfo constructor
+     * 
+     * @param String, String
+     */
+    public TSConnectionRequestInfo(String user, String password) {
+        this.user = user;
+        this.password = password;
     }
 
-    TSConnectionRequestInfo that = (TSConnectionRequestInfo) obj;
-
-    if (!Util.isEqual(this.password, that.getPassword()))
-      return false;
-
-    if (!Util.isEqual(this.user, that.getUser()))
-      return false;
-
-    return true;
-  }
-
-  /*
-   * @name hashCode
-   * 
-   * @desc Returns the Object hashcode.
-   * 
-   * @return int
-   */
-  @Override
-  public int hashCode() {
-    return this.getClass().getName().hashCode();
-  }
-
-  /*
-   * @name isEqual
-   * 
-   * @desc Compares two Objects.
-   * 
-   * @return boolean
-   */
-  private boolean isEqual(Object o1, Object o2) {
-    if (o1 == null) {
-      return (o2 == null);
-    } else {
-      return o1.equals(o2);
+    /*
+     * @name getUser
+     * 
+     * @desc Gets the user name
+     * 
+     * @return String
+     */
+    public String getUser() {
+        return user;
     }
-  }
+
+    /*
+     * @name getPassword
+     * 
+     * @desc Gets the Password
+     * 
+     * @return String
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /*
+     * @name equals
+     * 
+     * @desc Compares the given object with ConnectionRequestInfo.
+     * 
+     * @param Object
+     * 
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object obj) {
+
+        if ((obj == null) || !(obj instanceof TSConnectionRequestInfo)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+
+        TSConnectionRequestInfo that = (TSConnectionRequestInfo) obj;
+
+        if (!Util.isEqual(this.password, that.getPassword()))
+            return false;
+
+        if (!Util.isEqual(this.user, that.getUser()))
+            return false;
+
+        return true;
+    }
+
+    /*
+     * @name hashCode
+     * 
+     * @desc Returns the Object hashcode.
+     * 
+     * @return int
+     */
+    @Override
+    public int hashCode() {
+        return this.getClass().getName().hashCode();
+    }
+
+    /*
+     * @name isEqual
+     * 
+     * @desc Compares two Objects.
+     * 
+     * @return boolean
+     */
+    private boolean isEqual(Object o1, Object o2) {
+        if (o1 == null) {
+            return (o2 == null);
+        } else {
+            return o1.equals(o2);
+        }
+    }
 
 }

@@ -43,89 +43,88 @@ import jakarta.transaction.UserTransaction;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-@PersistenceContexts({
-    @PersistenceContext(name = "persistence/CTS-EM", unitName = "CTS-EM"),
-    @PersistenceContext(name = "persistence/CTS-EM2", unitName = "CTS-EM2") })
+@PersistenceContexts({ @PersistenceContext(name = "persistence/CTS-EM", unitName = "CTS-EM"),
+        @PersistenceContext(name = "persistence/CTS-EM2", unitName = "CTS-EM2") })
 public class PMServletVehicle extends ServletVehicle {
 
-  private static final String EM_LOOKUP_NAME = "java:comp/env/persistence/CTS-EM";
+    private static final String EM_LOOKUP_NAME = "java:comp/env/persistence/CTS-EM";
 
-  private UserTransaction ut;
+    private UserTransaction ut;
 
-  @PersistenceUnit(unitName = "CTS-EM")
-  EntityManagerFactory emf;
+    @PersistenceUnit(unitName = "CTS-EM")
+    EntityManagerFactory emf;
 
-  public EntityTransaction getEntityTransaction() {
-    try {
-      TSNamingContext nctx = new TSNamingContext();
-      ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
-    } catch (Exception e) {
-      TestUtil.logMsg("Naming service exception: " + e.getMessage());
-      e.printStackTrace();
-    }
-    return new UserTransactionWrapper(ut);
-  }
-
-  private Object lookup(String lookupName) throws IllegalStateException {
-    Object result = null;
-    try {
-      Context context = new InitialContext();
-      result = context.lookup(lookupName);
-    } catch (NamingException e) {
-      throw new IllegalStateException("Failed to lookup:" + lookupName, e);
-    }
-    return result;
-  }
-
-  protected RemoteStatus runTest() {
-    properties.put("persistence.unit.name", "CTS-EM");
-
-    RemoteStatus sTestStatus = new RemoteStatus(Status.passed(""));
-
-    try {
-      // call EETest impl's run method
-      if (testObj instanceof UseEntityManager) {
-
-        // lookup EntityManager for each http request,
-        // so it's not shared by multiple threads
-        EntityManager em = (EntityManager) lookup(EM_LOOKUP_NAME);
-
-        if (em == null) {
-          throw new IllegalStateException("EntityManager is null");
+    public EntityTransaction getEntityTransaction() {
+        try {
+            TSNamingContext nctx = new TSNamingContext();
+            ut = (UserTransaction) nctx.lookup("java:comp/UserTransaction");
+        } catch (Exception e) {
+            TestUtil.logMsg("Naming service exception: " + e.getMessage());
+            e.printStackTrace();
         }
-        UseEntityManager client2 = (UseEntityManager) testObj;
-        EntityTransaction et = getEntityTransaction();
-        client2.setEntityManager(em);
-        client2.setEntityTransaction(et);
-        client2.setInContainer(true);
-      }
-
-      if (testObj instanceof UseEntityManagerFactory) {
-
-        if (emf == null) {
-          throw new IllegalStateException("EntityManagerFactory is null");
-        }
-        UseEntityManagerFactory client2 = (UseEntityManagerFactory) testObj;
-        client2.setEntityManagerFactory(emf);
-      }
-
-      sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
-
-      if (sTestStatus.getType() == Status.PASSED) {
-        System.out.println("Test running in pmservlet vehicle passed");
-      } else {
-        System.out.println("Test running in pmservlet vehicle failed");
-      }
-    } catch (Throwable e) {
-      StringBuilder sb = new StringBuilder();
-        sb.append("Test running in pmservlet vehicle failed: ");
-      StringWriter sw = new StringWriter();
-      e.printStackTrace(new PrintWriter(sw));
-      sb.append(sw.toString());
-      sTestStatus = new RemoteStatus(Status.failed(sb.toString()));
-      TestUtil.logErr("Test running in pmservlet vehicle failed", e);
+        return new UserTransactionWrapper(ut);
     }
 
-    return sTestStatus;
-  }
+    private Object lookup(String lookupName) throws IllegalStateException {
+        Object result = null;
+        try {
+            Context context = new InitialContext();
+            result = context.lookup(lookupName);
+        } catch (NamingException e) {
+            throw new IllegalStateException("Failed to lookup:" + lookupName, e);
+        }
+        return result;
+    }
+
+    protected RemoteStatus runTest() {
+        properties.put("persistence.unit.name", "CTS-EM");
+
+        RemoteStatus sTestStatus = new RemoteStatus(Status.passed(""));
+
+        try {
+            // call EETest impl's run method
+            if (testObj instanceof UseEntityManager) {
+
+                // lookup EntityManager for each http request,
+                // so it's not shared by multiple threads
+                EntityManager em = (EntityManager) lookup(EM_LOOKUP_NAME);
+
+                if (em == null) {
+                    throw new IllegalStateException("EntityManager is null");
+                }
+                UseEntityManager client2 = (UseEntityManager) testObj;
+                EntityTransaction et = getEntityTransaction();
+                client2.setEntityManager(em);
+                client2.setEntityTransaction(et);
+                client2.setInContainer(true);
+            }
+
+            if (testObj instanceof UseEntityManagerFactory) {
+
+                if (emf == null) {
+                    throw new IllegalStateException("EntityManagerFactory is null");
+                }
+                UseEntityManagerFactory client2 = (UseEntityManagerFactory) testObj;
+                client2.setEntityManagerFactory(emf);
+            }
+
+            sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
+
+            if (sTestStatus.getType() == Status.PASSED) {
+                System.out.println("Test running in pmservlet vehicle passed");
+            } else {
+                System.out.println("Test running in pmservlet vehicle failed");
+            }
+        } catch (Throwable e) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("Test running in pmservlet vehicle failed: ");
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            sb.append(sw.toString());
+            sTestStatus = new RemoteStatus(Status.failed(sb.toString()));
+            TestUtil.logErr("Test running in pmservlet vehicle failed", e);
+        }
+
+        return sTestStatus;
+    }
 }

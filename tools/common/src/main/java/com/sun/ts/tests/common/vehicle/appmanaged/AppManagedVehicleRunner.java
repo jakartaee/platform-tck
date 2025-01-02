@@ -33,48 +33,46 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class AppManagedVehicleRunner implements VehicleRunnable {
-  public static final String APPMANAGED_REF_NAME = "java:comp/env/ejb/AppManagedVehicleBean";
+    public static final String APPMANAGED_REF_NAME = "java:comp/env/ejb/AppManagedVehicleBean";
 
-  public Status run(String[] args, Properties props) {
-    Status sTestStatus = null;
-    try {
-      AppManagedVehicleIF bean=null;
-      TSNamingContext jc = new TSNamingContext(props);
-      try {
-         bean = (AppManagedVehicleIF) jc
-                .lookup(APPMANAGED_REF_NAME);
-      } catch (Exception e) {
-        e.printStackTrace();
-        dumpJndi("", new InitialContext());
-      }
-      TestUtil.logTrace(
-          "application-managed JTA runner looked up vehicle: " + bean);
-      sTestStatus = (bean.runTest(args, props)).toStatus();
-    } catch (Exception e) {
-      TestUtil.logErr("Test failed.", e);
-      sTestStatus = Status
-          .failed("Test run in application-managed JTA vehicle failed.");
+    public Status run(String[] args, Properties props) {
+        Status sTestStatus = null;
+        try {
+            AppManagedVehicleIF bean = null;
+            TSNamingContext jc = new TSNamingContext(props);
+            try {
+                bean = (AppManagedVehicleIF) jc.lookup(APPMANAGED_REF_NAME);
+            } catch (Exception e) {
+                e.printStackTrace();
+                dumpJndi("", new InitialContext());
+            }
+            TestUtil.logTrace("application-managed JTA runner looked up vehicle: " + bean);
+            sTestStatus = (bean.runTest(args, props)).toStatus();
+        } catch (Exception e) {
+            TestUtil.logErr("Test failed.", e);
+            sTestStatus = Status.failed("Test run in application-managed JTA vehicle failed.");
+        }
+        return sTestStatus;
     }
-    return sTestStatus;
-  }
 
-  private void dumpJndi(String s,InitialContext jc ) {
-    try {
+    private void dumpJndi(String s, InitialContext jc) {
+        try {
             dumpTreeEntry(jc, jc.list(s), s);
         } catch (Exception ignore) {
         }
     }
-  private void dumpTreeEntry(InitialContext jc, NamingEnumeration<NameClassPair> list, String s) throws NamingException {
-      System.out.println("\n1. AppManagedVehicleRunner jndi dump walking down tree branch name = " + s);
-      while (list.hasMore()) {
-          NameClassPair ncp = list.next();
-          System.out.println("2. AppManagedVehicleRunner jndi dump (show name + classname pair): " + ncp.toString());
-          if (s.length() == 0) {
-              dumpJndi(ncp.getName(), jc);
-          } else {
-              dumpJndi(s + "/" + ncp.getName(), jc);
-          }
-      }
-  }
+
+    private void dumpTreeEntry(InitialContext jc, NamingEnumeration<NameClassPair> list, String s) throws NamingException {
+        System.out.println("\n1. AppManagedVehicleRunner jndi dump walking down tree branch name = " + s);
+        while (list.hasMore()) {
+            NameClassPair ncp = list.next();
+            System.out.println("2. AppManagedVehicleRunner jndi dump (show name + classname pair): " + ncp.toString());
+            if (s.length() == 0) {
+                dumpJndi(ncp.getName(), jc);
+            } else {
+                dumpJndi(s + "/" + ncp.getName(), jc);
+            }
+        }
+    }
 
 }

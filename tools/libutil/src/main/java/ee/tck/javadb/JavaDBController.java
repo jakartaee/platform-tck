@@ -48,6 +48,7 @@ public class JavaDBController {
 
     /**
      * Use the provided values for the JavaDBController
+     * 
      * @param dbName
      * @param server
      * @param port
@@ -64,6 +65,7 @@ public class JavaDBController {
 
     /**
      * Load the JavaDBController settings from the tsJte file
+     * 
      * @param tsJte
      * @throws IOException
      */
@@ -76,13 +78,15 @@ public class JavaDBController {
         this.user = user;
         this.passwd = passwd;
     }
-    public void startJavaDB(Path derbyHome) throws Exception{
+
+    public void startJavaDB(Path derbyHome) throws Exception {
         System.setProperty("derby.system.home", derbyHome.toString());
         InetAddress inetAddress = InetAddress.getByName(server);
         NetworkServerControl server = new NetworkServerControl(inetAddress, port);
         server.start(null);
     }
-    public void stopJavaDB() throws Exception{
+
+    public void stopJavaDB() throws Exception {
         InetAddress inetAddress = InetAddress.getByName(server);
         NetworkServerControl server = new NetworkServerControl(inetAddress, port);
         server.shutdown();
@@ -90,30 +94,31 @@ public class JavaDBController {
 
     /**
      * Check if the JavaDB server is running
+     * 
      * @return true if the server is running and , false otherwise
      */
     public boolean isJavaDBRunning() {
         java.util.Properties props = new java.util.Properties();
-        String dbURL = "jdbc:derby://" + server + ":" + port + "/" + dbName + ";user=" + user + ";password=" + passwd+ ";create=true";
+        String dbURL = "jdbc:derby://" + server + ":" + port + "/" + dbName + ";user=" + user + ";password=" + passwd + ";create=true";
         props.setProperty("user", user);
         props.setProperty("password", passwd);
         boolean isRunning = false;
-        try(Connection conn = DriverManager.getConnection(dbURL, props)) {
-            /*interact with Derby*/
+        try (Connection conn = DriverManager.getConnection(dbURL, props)) {
+            /* interact with Derby */
             isRunning = conn.isValid(0);
             try (Statement s = conn.createStatement()) {
                 try (ResultSet rs = s.executeQuery("values user")) {
                 } catch (Exception e) {
                     isRunning = false;
-                    //e.printStackTrace();
+                    // e.printStackTrace();
                 }
             } catch (Exception e) {
                 isRunning = false;
-                //e.printStackTrace();
+                // e.printStackTrace();
             }
         } catch (Exception e) {
             isRunning = false;
-            //e.printStackTrace();
+            // e.printStackTrace();
         }
         return isRunning;
     }

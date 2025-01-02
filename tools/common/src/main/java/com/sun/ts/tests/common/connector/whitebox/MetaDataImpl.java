@@ -28,107 +28,105 @@ import jakarta.resource.spi.security.PasswordCredential;
 
 public class MetaDataImpl implements ManagedConnectionMetaData {
 
-  private TSManagedConnection mc;
+    private TSManagedConnection mc;
 
-  public MetaDataImpl(TSManagedConnection mc) {
-    this.mc = mc;
-  }
-
-  /*
-   * @name getEISProductName
-   * 
-   * @desc Gets product name of underlying EIS.
-   * 
-   * @return String
-   * 
-   * @exception ResourceException
-   */
-  @Override
-  public String getEISProductName() throws ResourceException {
-    try {
-      String str = "Simple TS EIS";
-      return str;
-    } catch (Exception ex) {
-      ResourceException re = new EISSystemException(ex.getMessage());
-      re.initCause(ex);
-      throw re;
-    }
-  }
-
-  /*
-   * @name getEISProductVersion
-   * 
-   * @desc Gets product version of underlying EIS.
-   * 
-   * @return String
-   * 
-   * @exception ResourceException
-   */
-  @Override
-  public String getEISProductVersion() throws ResourceException {
-    try {
-      String str = "1.0";
-      return str;
-    } catch (Exception ex) {
-      ResourceException re = new EISSystemException(ex.getMessage());
-      re.initCause(ex);
-      throw re;
-    }
-  }
-
-  /*
-   * @name getMaxConnections
-   * 
-   * @desc Returns maximum limit on number of active concurrent connections that
-   * an EIS instance can support across client processes.
-   * 
-   * @return int
-   * 
-   * @exception ResourceException
-   */
-  @Override
-  public int getMaxConnections() throws ResourceException {
-    try {
-      int i = 0;
-      return i;
-    } catch (Exception ex) {
-      ResourceException re = new EISSystemException(ex.getMessage());
-      re.initCause(ex);
-      throw re;
-    }
-  }
-
-  /*
-   * @name getUserName
-   * 
-   * @desc Return name of the user currently associated with ManagedConnection
-   * instance. The returned username corresponds to the resource principal under
-   * whose security context the connection to the EIS instance has been
-   * established.
-   *
-   * @return String
-   * 
-   * @exception ResourceException
-   */
-  @Override
-  public String getUserName() throws ResourceException {
-    if (mc.isDestroyed()) {
-      throw new IllegalStateException("ManagedConnection has been destroyed");
+    public MetaDataImpl(TSManagedConnection mc) {
+        this.mc = mc;
     }
 
-    PasswordCredential pc = null;
-    String str = null;
-
-    pc = mc.getPasswordCredential();
-    if (pc != null) {
-      str = pc.getUserName();
+    /*
+     * @name getEISProductName
+     * 
+     * @desc Gets product name of underlying EIS.
+     * 
+     * @return String
+     * 
+     * @exception ResourceException
+     */
+    @Override
+    public String getEISProductName() throws ResourceException {
+        try {
+            String str = "Simple TS EIS";
+            return str;
+        } catch (Exception ex) {
+            ResourceException re = new EISSystemException(ex.getMessage());
+            re.initCause(ex);
+            throw re;
+        }
     }
 
-    if (pc != null && str != null && !str.equals(""))
-      return str;
-    else
-      return null;
+    /*
+     * @name getEISProductVersion
+     * 
+     * @desc Gets product version of underlying EIS.
+     * 
+     * @return String
+     * 
+     * @exception ResourceException
+     */
+    @Override
+    public String getEISProductVersion() throws ResourceException {
+        try {
+            String str = "1.0";
+            return str;
+        } catch (Exception ex) {
+            ResourceException re = new EISSystemException(ex.getMessage());
+            re.initCause(ex);
+            throw re;
+        }
+    }
 
-  }
+    /*
+     * @name getMaxConnections
+     * 
+     * @desc Returns maximum limit on number of active concurrent connections that an EIS instance can support across client
+     * processes.
+     * 
+     * @return int
+     * 
+     * @exception ResourceException
+     */
+    @Override
+    public int getMaxConnections() throws ResourceException {
+        try {
+            int i = 0;
+            return i;
+        } catch (Exception ex) {
+            ResourceException re = new EISSystemException(ex.getMessage());
+            re.initCause(ex);
+            throw re;
+        }
+    }
+
+    /*
+     * @name getUserName
+     * 
+     * @desc Return name of the user currently associated with ManagedConnection instance. The returned username corresponds
+     * to the resource principal under whose security context the connection to the EIS instance has been established.
+     *
+     * @return String
+     * 
+     * @exception ResourceException
+     */
+    @Override
+    public String getUserName() throws ResourceException {
+        if (mc.isDestroyed()) {
+            throw new IllegalStateException("ManagedConnection has been destroyed");
+        }
+
+        PasswordCredential pc = null;
+        String str = null;
+
+        pc = mc.getPasswordCredential();
+        if (pc != null) {
+            str = pc.getUserName();
+        }
+
+        if (pc != null && str != null && !str.equals(""))
+            return str;
+        else
+            return null;
+
+    }
 
 }

@@ -22,39 +22,38 @@ package com.sun.ts.tests.common.vehicle.ejbliteshare;
 import com.sun.ts.lib.harness.Status;
 
 /**
- * This class is used to work around javatest bugs/features: javatest Status
- * constructor replaces all unprintable chars with one single space, making any
- * multi-line reason unreadable; javatest Status does not have an overrideable
+ * This class is used to work around javatest bugs/features: javatest Status constructor replaces all unprintable chars
+ * with one single space, making any multi-line reason unreadable; javatest Status does not have an overrideable
  * setReason method.
  */
 public class ReasonableStatus extends Status {
-  private String reason;
+    private String reason;
 
-  public ReasonableStatus(int c, String r) {
-    super(c, "");
-    reason = r;
+    public ReasonableStatus(int c, String r) {
+        super(c, "");
+        reason = r;
 
-    // print the status reason to console, regardless of same.jvm value.
-    // If it were printed inside exit() method, it will not be called when
-    // same.jvm is enabled (e.g., with -Dsame.jvm=true from command line)
-    System.out.println(reason);
-  }
+        // print the status reason to console, regardless of same.jvm value.
+        // If it were printed inside exit() method, it will not be called when
+        // same.jvm is enabled (e.g., with -Dsame.jvm=true from command line)
+        System.out.println(reason);
+    }
 
-  @Override
-  public String getReason() {
-    return reason;
-  }
+    @Override
+    public String getReason() {
+        return reason;
+    }
 
-  // In same.jvm mode, when this method is overridden, the test status is
-  // printed
-  // three times in jtr report file. When not overridden, only the status
-  // withou
-  // detailed reason (only pass/fail/notrun, etc) is included in jtr file.
-  //
-  // It does not affect different jvm mode.
-  // It does not affect test output on the console.
-  // @Override
-  // public String toString() {
-  // return String.format("%s; %s", super.toString(), reason);
-  // }
+    // In same.jvm mode, when this method is overridden, the test status is
+    // printed
+    // three times in jtr report file. When not overridden, only the status
+    // withou
+    // detailed reason (only pass/fail/notrun, etc) is included in jtr file.
+    //
+    // It does not affect different jvm mode.
+    // It does not affect test output on the console.
+    // @Override
+    // public String toString() {
+    // return String.format("%s; %s", super.toString(), reason);
+    // }
 }

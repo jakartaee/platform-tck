@@ -28,10 +28,8 @@ import jakarta.ejb.EJBHome;
 
 public interface StatefulCalleeHome extends EJBHome {
 
-  public StatefulCallee create(Properties p)
-      throws RemoteException, CreateException;
+    public StatefulCallee create(Properties p) throws RemoteException, CreateException;
 
-  public StatefulCallee create(Properties p, SimpleArgument arg)
-      throws RemoteException, CreateException;
+    public StatefulCallee create(Properties p, SimpleArgument arg) throws RemoteException, CreateException;
 
 }

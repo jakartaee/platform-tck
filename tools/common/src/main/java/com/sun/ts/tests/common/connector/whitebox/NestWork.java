@@ -38,51 +38,51 @@ import jakarta.resource.spi.work.WorkContextProvider;
  */
 public class NestWork implements Work, WorkContextProvider {
 
-  private List<WorkContext> contextsList = new ArrayList<WorkContext>();
+    private List<WorkContext> contextsList = new ArrayList<WorkContext>();
 
-  private String name = "NestWork.name";
+    private String name = "NestWork.name";
 
-  private String description = "NestWork.description";
+    private String description = "NestWork.description";
 
-  public NestWork() {
-    ConnectorStatus.getConnectorStatus().logState("NestWork.constructor");
-  }
-
-  @Override
-  public List<WorkContext> getWorkContexts() {
-    return contextsList;
-  }
-
-  public void setWorkContexts(List<WorkContext> val) {
-    contextsList = val;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void addWorkContext(WorkContext ic) {
-    contextsList.add(ic);
-  }
-
-  public boolean hasContextEntry() {
-    if (contextsList.isEmpty()) {
-      return false;
-    } else {
-      return true;
+    public NestWork() {
+        ConnectorStatus.getConnectorStatus().logState("NestWork.constructor");
     }
-  }
 
-  @Override
-  public void release() {
-  }
+    @Override
+    public List<WorkContext> getWorkContexts() {
+        return contextsList;
+    }
 
-  public void run() {
-    ConnectorStatus.getConnectorStatus().logState("NestWork.run");
-  }
+    public void setWorkContexts(List<WorkContext> val) {
+        contextsList = val;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void addWorkContext(WorkContext ic) {
+        contextsList.add(ic);
+    }
+
+    public boolean hasContextEntry() {
+        if (contextsList.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void release() {
+    }
+
+    public void run() {
+        ConnectorStatus.getConnectorStatus().logState("NestWork.run");
+    }
 
 }

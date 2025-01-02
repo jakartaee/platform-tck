@@ -77,77 +77,73 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class ContentTypeHandler implements Handler {
 
-  private static Handler handler = new ContentTypeHandler();
+    private static Handler handler = new ContentTypeHandler();
 
-  /**
-   * Creates new ContentTypeHandler
-   */
-  private ContentTypeHandler() {
-  }
-
-  /*
-   * public methods
-   * ========================================================================
-   */
-
-  /**
-   * Returns an instance of this handler.
-   */
-  public static Handler getInstance() {
-    return handler;
-  }
-
-  /**
-   * Invokes handler logic.
-   * 
-   * @param configuredHeader
-   *          the user configured header
-   * @param responseHeader
-   *          the response header from the server
-   * @return True if the passed match, otherwise false
-   */
-  public boolean invoke(Header configuredHeader, Header responseHeader) {
-    boolean ret = false;
-    TestUtil.logTrace("[ContentTypeHandler] ContentTypeHandler invoked.");
-    String configVal = configuredHeader.getValue().trim();
-    String responseVal = responseHeader.getValue().trim();
-    int colIdx = configVal.indexOf(';');
-    if (colIdx < 0) {
-      // Info we're interested in : type/subtype
-
-      // check response Content-Type header to see what format
-      // it's in.
-      int rColIdx = responseVal.indexOf(';');
-      if (rColIdx < 0) {
-        // Type and subtype, i.e. type/subtype are to be compared
-        // case insensitively.
-        if (configVal.equalsIgnoreCase(responseVal)) {
-          ret = true;
-        }
-      } else {
-        if (configVal.equalsIgnoreCase(responseVal.substring(0, rColIdx))) {
-          ret = true;
-        }
-      }
-    } else {
-      // Info we're interested in : type/subtype; parameter=value
-
-      int rColIdx = responseVal.indexOf(';');
-      if (rColIdx > -1) {
-        String confTypeSubType = configVal.substring(0, colIdx).trim();
-        String responseTypeSubType = responseVal.substring(0, rColIdx).trim();
-        String confParameter = configVal.substring(colIdx + 1).trim();
-        String responseParameter = (responseVal.substring(rColIdx + 1).trim())
-            .replaceAll(" ", "");
-        // compare type/subtype in a case insensitive manner
-        if (confTypeSubType.equalsIgnoreCase(responseTypeSubType)) {
-          // next validate the parameter in a case insensitive manner
-          if (confParameter.equalsIgnoreCase(responseParameter)) {
-            ret = true;
-          }
-        }
-      }
+    /**
+     * Creates new ContentTypeHandler
+     */
+    private ContentTypeHandler() {
     }
-    return ret;
-  }
+
+    /*
+     * public methods ========================================================================
+     */
+
+    /**
+     * Returns an instance of this handler.
+     */
+    public static Handler getInstance() {
+        return handler;
+    }
+
+    /**
+     * Invokes handler logic.
+     * 
+     * @param configuredHeader the user configured header
+     * @param responseHeader the response header from the server
+     * @return True if the passed match, otherwise false
+     */
+    public boolean invoke(Header configuredHeader, Header responseHeader) {
+        boolean ret = false;
+        TestUtil.logTrace("[ContentTypeHandler] ContentTypeHandler invoked.");
+        String configVal = configuredHeader.getValue().trim();
+        String responseVal = responseHeader.getValue().trim();
+        int colIdx = configVal.indexOf(';');
+        if (colIdx < 0) {
+            // Info we're interested in : type/subtype
+
+            // check response Content-Type header to see what format
+            // it's in.
+            int rColIdx = responseVal.indexOf(';');
+            if (rColIdx < 0) {
+                // Type and subtype, i.e. type/subtype are to be compared
+                // case insensitively.
+                if (configVal.equalsIgnoreCase(responseVal)) {
+                    ret = true;
+                }
+            } else {
+                if (configVal.equalsIgnoreCase(responseVal.substring(0, rColIdx))) {
+                    ret = true;
+                }
+            }
+        } else {
+            // Info we're interested in : type/subtype; parameter=value
+
+            int rColIdx = responseVal.indexOf(';');
+            if (rColIdx > -1) {
+                String confTypeSubType = configVal.substring(0, colIdx).trim();
+                String responseTypeSubType = responseVal.substring(0, rColIdx).trim();
+                String confParameter = configVal.substring(colIdx + 1).trim();
+                String responseParameter = (responseVal.substring(rColIdx + 1).trim()).replaceAll(" ", "");
+                // compare type/subtype in a case insensitive manner
+                if (confTypeSubType.equalsIgnoreCase(responseTypeSubType)) {
+                    // next validate the parameter in a case insensitive manner
+                    if (confParameter.equalsIgnoreCase(responseParameter)) {
+                        ret = true;
+                    }
+                }
+            }
+        }
+        return ret;
+    }
 }

@@ -36,66 +36,63 @@ import jakarta.resource.spi.ResourceAdapter;
  *
  */
 @Activation(messageListeners = { jakarta.resource.spi.work.WorkListener.class })
-public class IBAnnoActivationSpecParent
-    implements ActivationSpec, java.io.Serializable {
+public class IBAnnoActivationSpecParent implements ActivationSpec, java.io.Serializable {
 
-  private String annoDestinationName;
+    private String annoDestinationName;
 
-  private String annoDestinationType;
+    private String annoDestinationType;
 
-  @ConfigProperty()
-  protected String propName = "IBAnnoConfigPropVal";
+    @ConfigProperty()
+    protected String propName = "IBAnnoConfigPropVal";
 
-  private ResourceAdapter resourceAdapter;
+    private ResourceAdapter resourceAdapter;
 
-  /**
-   * Default constructor.
-   */
-  public IBAnnoActivationSpecParent() {
-    Debug.trace("IBAnnoActivationSpecParent.constructor");
-  }
+    /**
+     * Default constructor.
+     */
+    public IBAnnoActivationSpecParent() {
+        Debug.trace("IBAnnoActivationSpecParent.constructor");
+    }
 
-  public String getAnnoDestinationName() {
-    Debug.trace("IBAnnoActivationSpecParent.getAnnoDestinationName :"
-        + this.annoDestinationName);
-    return this.annoDestinationName;
-  }
+    public String getAnnoDestinationName() {
+        Debug.trace("IBAnnoActivationSpecParent.getAnnoDestinationName :" + this.annoDestinationName);
+        return this.annoDestinationName;
+    }
 
-  public void setAnnoDestinationName(String name) {
-    this.annoDestinationName = name;
-    Debug.trace("IBAnnoActivationSpecParent.setAnnoDestinationName :" + name);
-  }
+    public void setAnnoDestinationName(String name) {
+        this.annoDestinationName = name;
+        Debug.trace("IBAnnoActivationSpecParent.setAnnoDestinationName :" + name);
+    }
 
-  public String getAnnoDestinationType() {
-    Debug.trace("IBAnnoActivationSpecParent.getDestinationType :"
-        + this.annoDestinationType);
-    return this.annoDestinationType;
-  }
+    public String getAnnoDestinationType() {
+        Debug.trace("IBAnnoActivationSpecParent.getDestinationType :" + this.annoDestinationType);
+        return this.annoDestinationType;
+    }
 
-  public void setAnnoDestinationType(String type) {
-    Debug.trace("IBAnnoActivationSpecParent.setAnnoDestinationType :" + type);
-    this.annoDestinationType = type;
-  }
+    public void setAnnoDestinationType(String type) {
+        Debug.trace("IBAnnoActivationSpecParent.setAnnoDestinationType :" + type);
+        this.annoDestinationType = type;
+    }
 
-  public ResourceAdapter getResourceAdapter() {
-    return this.resourceAdapter;
-  }
+    public ResourceAdapter getResourceAdapter() {
+        return this.resourceAdapter;
+    }
 
-  public void setResourceAdapter(ResourceAdapter ra) {
-    Debug.trace("IBAnnoActivationSpecParent.setResourceAdatper called");
-    this.resourceAdapter = ra;
-  }
+    public void setResourceAdapter(ResourceAdapter ra) {
+        Debug.trace("IBAnnoActivationSpecParent.setResourceAdatper called");
+        this.resourceAdapter = ra;
+    }
 
-  public void validate() throws InvalidPropertyException {
-    Debug.trace("IBAnnoActivationSpecParent.validate called");
-  }
+    public void validate() throws InvalidPropertyException {
+        Debug.trace("IBAnnoActivationSpecParent.validate called");
+    }
 
-  public void setPropName(String name) {
-    propName = name;
-  }
+    public void setPropName(String name) {
+        propName = name;
+    }
 
-  public String getPropName() {
-    return propName;
-  }
+    public String getPropName() {
+        return propName;
+    }
 
 }

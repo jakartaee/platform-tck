@@ -75,39 +75,35 @@ import com.sun.ts.lib.util.TestUtil;
  */
 public class WWWAuthenticateHandler implements Handler {
 
-  private static Handler handler = new WWWAuthenticateHandler();
+    private static Handler handler = new WWWAuthenticateHandler();
 
-  /**
-   * Creates new ContentTypeHandler
-   */
-  private WWWAuthenticateHandler() {
-  }
+    /**
+     * Creates new ContentTypeHandler
+     */
+    private WWWAuthenticateHandler() {
+    }
 
-  /*
-   * public methods
-   * ========================================================================
-   */
+    /*
+     * public methods ========================================================================
+     */
 
-  /**
-   * Returns an instance of this handler.
-   */
-  public static Handler getInstance() {
-    return handler;
-  }
+    /**
+     * Returns an instance of this handler.
+     */
+    public static Handler getInstance() {
+        return handler;
+    }
 
-  /**
-   * Invokes handler logic.
-   * 
-   * @param configuredHeader
-   *          the user configured header
-   * @param responseHeader
-   *          the response header from the server
-   * @return True if the passed match, otherwise false
-   */
-  public boolean invoke(Header configuredHeader, Header responseHeader) {
+    /**
+     * Invokes handler logic.
+     * 
+     * @param configuredHeader the user configured header
+     * @param responseHeader the response header from the server
+     * @return True if the passed match, otherwise false
+     */
+    public boolean invoke(Header configuredHeader, Header responseHeader) {
 
-    TestUtil
-        .logTrace("[WWWAuthenticateHandler] WWAuthenticateHandler invoked.");
-    return true;
-  }
+        TestUtil.logTrace("[WWWAuthenticateHandler] WWAuthenticateHandler invoked.");
+        return true;
+    }
 }

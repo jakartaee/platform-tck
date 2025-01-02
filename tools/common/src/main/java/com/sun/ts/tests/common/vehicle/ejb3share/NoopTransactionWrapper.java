@@ -24,36 +24,36 @@ import jakarta.persistence.EntityTransaction;
 
 final public class NoopTransactionWrapper implements EntityTransaction {
 
-  public NoopTransactionWrapper() {
-  }
+    public NoopTransactionWrapper() {
+    }
 
-  public void rollback() {
-  }
+    public void rollback() {
+    }
 
-  public boolean isActive() {
-    return true;
-  }
+    public boolean isActive() {
+        return true;
+    }
 
-  @Override
-  public void setTimeout(Integer timeout) {
+    @Override
+    public void setTimeout(Integer timeout) {
 
-  }
+    }
 
-  @Override
-  public Integer getTimeout() {
-    return null;
-  }
+    @Override
+    public Integer getTimeout() {
+        return null;
+    }
 
-  public void commit() {
-  }
+    public void commit() {
+    }
 
-  public void begin() {
-  }
+    public void begin() {
+    }
 
-  public void setRollbackOnly() {
-  }
+    public void setRollbackOnly() {
+    }
 
-  public boolean getRollbackOnly() {
-    return false;
-  }
+    public boolean getRollbackOnly() {
+        return false;
+    }
 }

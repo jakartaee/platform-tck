@@ -24,13 +24,12 @@ import com.sun.ts.lib.util.TestUtil;
  *  This should lookup and invoke the vehicle in the container (if there is one).
  */
 public class ConnectorServletVehicleRunner extends ConnectorVehicleRunner {
-  protected Status run() {
-    // run in a connectorservlet
-    sTestStatus = runWebVehicleTest(sVehicle);
+    protected Status run() {
+        // run in a connectorservlet
+        sTestStatus = runWebVehicleTest(sVehicle);
 
-    TestUtil
-        .logMsg("Test: returning from running in a connectorservlet vehicle");
+        TestUtil.logMsg("Test: returning from running in a connectorservlet vehicle");
 
-    return sTestStatus;
-  }// run
+        return sTestStatus;
+    }// run
 }

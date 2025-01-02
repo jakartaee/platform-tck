@@ -39,60 +39,57 @@ import jakarta.persistence.PersistenceUnit;
 
 @Stateful(name = "Stateful3VehicleBean")
 @Remote({ Stateful3VehicleIF.class })
-public class Stateful3VehicleBean
-    extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
-    implements Stateful3VehicleIF, java.io.Serializable {
+public class Stateful3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
+        implements Stateful3VehicleIF, java.io.Serializable {
 
-  @PersistenceUnit(name = "STATEFUL3EMF", unitName = "CTS-EM")
-  EntityManagerFactory emf;
+    @PersistenceUnit(name = "STATEFUL3EMF", unitName = "CTS-EM")
+    EntityManagerFactory emf;
 
-  public Stateful3VehicleBean() {
-    super();
-  }
-
-  protected String getVehicleType() {
-    return STATEFUL3;
-  }
-
-  @PostConstruct
-  public void init() {
-    try {
-      System.out.println("In PostContruct");
-      EntityManagerFactory emf = (EntityManagerFactory) sessionContext
-          .lookup("STATEFUL3EMF");
-      setEntityManagerFactory(emf);
-    } catch (Exception e) {
-      System.out.println("ERROR: "
-          + " In PostConstruct: Exception caught while setting EntityManagerFactory");
-      e.printStackTrace();
+    public Stateful3VehicleBean() {
+        super();
     }
-  }
 
-  // ================== business methods ====================================
-  @Remove
-  public RemoteStatus runTest(String[] args, Properties props) {
-    RemoteStatus retValue;
-    props.put("persistence.unit.name", "CTS-EM");
-    retValue = super.runTest(args, props);
-    return retValue;
-  }
-  /////////////////////////////////////////////////////////////////////////
+    protected String getVehicleType() {
+        return STATEFUL3;
+    }
 
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
+    @PostConstruct
+    public void init() {
+        try {
+            System.out.println("In PostContruct");
+            EntityManagerFactory emf = (EntityManagerFactory) sessionContext.lookup("STATEFUL3EMF");
+            setEntityManagerFactory(emf);
+        } catch (Exception e) {
+            System.out.println("ERROR: " + " In PostConstruct: Exception caught while setting EntityManagerFactory");
+            e.printStackTrace();
+        }
+    }
 
-  @PersistenceContext(unitName = "CTS-EM")
-  public void setEntityManager(EntityManager entityManager) {
-    this.entityManager = entityManager;
-  }
+    // ================== business methods ====================================
+    @Remove
+    public RemoteStatus runTest(String[] args, Properties props) {
+        RemoteStatus retValue;
+        props.put("persistence.unit.name", "CTS-EM");
+        retValue = super.runTest(args, props);
+        return retValue;
+    }
+    /////////////////////////////////////////////////////////////////////////
 
-  public void setEntityManagerFactory(EntityManagerFactory emf) {
-    this.entityManagerFactory = emf;
-  }
+    @Resource
+    public void setSessionContext(SessionContext sessionContext) {
+        this.sessionContext = sessionContext;
+    }
 
-  protected EntityTransaction getEntityTransaction() {
-    return new NoopTransactionWrapper();
-  }
+    @PersistenceContext(unitName = "CTS-EM")
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public void setEntityManagerFactory(EntityManagerFactory emf) {
+        this.entityManagerFactory = emf;
+    }
+
+    protected EntityTransaction getEntityTransaction() {
+        return new NoopTransactionWrapper();
+    }
 }

@@ -36,203 +36,195 @@ import jakarta.resource.spi.work.WorkContextProvider;
 
 public class IBAnnoMessageWork implements Work, WorkContextProvider {
 
-  private String name;
+    private String name;
 
-  private boolean stop = false;
+    private boolean stop = false;
 
-  private MessageEndpointFactory factory;
+    private MessageEndpointFactory factory;
 
-  private XAMessageXAResource msgxa = new XAMessageXAResource();
+    private XAMessageXAResource msgxa = new XAMessageXAResource();
 
-  private MessageEndpoint ep2;
+    private MessageEndpoint ep2;
 
-  private List<WorkContext> contextsList = new ArrayList<WorkContext>();
+    private List<WorkContext> contextsList = new ArrayList<WorkContext>();
 
-  public IBAnnoMessageWork(String name, MessageEndpointFactory factory) {
-    this.factory = factory;
-    this.name = name;
+    public IBAnnoMessageWork(String name, MessageEndpointFactory factory) {
+        this.factory = factory;
+        this.name = name;
 
-    Debug.trace("IBAnnoMessageWork constructor");
-  }
+        Debug.trace("IBAnnoMessageWork constructor");
+    }
 
-  public void run() {
+    public void run() {
 
-    while (!stop) {
-      try {
+        while (!stop) {
+            try {
 
-        // Createing ep and ep1 for comparison
-        MessageEndpoint ep1 = factory.createEndpoint(null);
-        ep2 = factory.createEndpoint(null);
+                // Createing ep and ep1 for comparison
+                MessageEndpoint ep1 = factory.createEndpoint(null);
+                ep2 = factory.createEndpoint(null);
 
-        // creating xaep to check if the message delivery is transacted.
-        MessageEndpoint xaep = factory.createEndpoint(msgxa);
+                // creating xaep to check if the message delivery is transacted.
+                MessageEndpoint xaep = factory.createEndpoint(msgxa);
 
-        if (!ep2.equals(ep1)) {
-          Debug.trace("IBAnnoMessageWork XA Unique MessageEndpoint returned");
+                if (!ep2.equals(ep1)) {
+                    Debug.trace("IBAnnoMessageWork XA Unique MessageEndpoint returned");
+                }
+
+                chkMessageEndpointImpl(ep1);
+
+                Method onMessage = getOnMessageMethod();
+                ep1.beforeDelivery(onMessage);
+                ((TSMessageListenerInterface) ep1).onMessage("IBAnnoMessageWork XA Message To MDB");
+                ep1.afterDelivery();
+
+                Method onMessagexa = getOnMessageMethod();
+                xaep.beforeDelivery(onMessagexa);
+                ((TSMessageListenerInterface) xaep).onMessage("IBAnnoMessageWork XA Non Transacted Message To MDB1");
+                xaep.afterDelivery();
+
+                boolean de = factory.isDeliveryTransacted(onMessagexa);
+
+                callSysExp();
+                callAppExp();
+
+                if (!de) {
+                    Debug.trace("IBAnnoMessageWork XA MDB1 delivery is not transacted");
+                } else {
+                    Debug.trace("IBAnnoMessageWork XA MDB1 delivery is transacted");
+                }
+
+                break;
+
+            } catch (AppException ex) {
+                ex.printStackTrace();
+
+            } catch (UnavailableException ex) {
+                try {
+                    Thread.currentThread().sleep(3000);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } catch (NoSuchMethodException ns) {
+                ns.printStackTrace();
+
+            } catch (ResourceException re) {
+                re.printStackTrace();
+            }
         }
 
-        chkMessageEndpointImpl(ep1);
+    }
 
-        Method onMessage = getOnMessageMethod();
-        ep1.beforeDelivery(onMessage);
-        ((TSMessageListenerInterface) ep1)
-            .onMessage("IBAnnoMessageWork XA Message To MDB");
-        ep1.afterDelivery();
+    public void callSysExp() {
 
-        Method onMessagexa = getOnMessageMethod();
-        xaep.beforeDelivery(onMessagexa);
-        ((TSMessageListenerInterface) xaep)
-            .onMessage("IBAnnoMessageWork XA Non Transacted Message To MDB1");
-        xaep.afterDelivery();
-
-        boolean de = factory.isDeliveryTransacted(onMessagexa);
-
-        callSysExp();
-        callAppExp();
-
-        if (!de) {
-          Debug.trace("IBAnnoMessageWork XA MDB1 delivery is not transacted");
-        } else {
-          Debug.trace("IBAnnoMessageWork XA MDB1 delivery is transacted");
-        }
-
-        break;
-
-      } catch (AppException ex) {
-        ex.printStackTrace();
-
-      } catch (UnavailableException ex) {
         try {
-          Thread.currentThread().sleep(3000);
+            Debug.trace(" in  IBAnnoMessageWork.callSysExp()");
+            Method onMessage = getOnMessageMethod();
+            ep2.beforeDelivery(onMessage);
+            ((TSMessageListenerInterface) ep2).onMessage("Throw SysException from IBAnnoMessageWork");
+
+        } catch (NoSuchMethodException e) {
+            System.out.println("IBAnnoMessageWork: NoSuchMethodException");
+            e.getMessage();
+            e.printStackTrace();
+        } catch (UnavailableException e) {
+            System.out.println("IBAnnoMessageWork: UnavailableException");
+            e.printStackTrace();
+        } catch (ResourceException re) {
+            System.out.println("IBAnnoMessageWork: ResourceException");
+            re.printStackTrace();
+        } catch (AppException ae) {
+            System.out.println("IBAnnoMessageWork: AppException");
+            ae.printStackTrace();
         } catch (Exception e) {
-          e.printStackTrace();
+            // if we are in here, we will assume that our exception was of type ejb
+            // but we
+            // should not code only to ejb as the messaging could be POJO's and not
+            // ejb....
+            System.out.println("EJBException thrown by NotSupported MDB");
+            ConnectorStatus.getConnectorStatus().logState("EJBException thrown by NotSupported");
+            e.printStackTrace();
+        } finally {
+            try {
+                // this ensures that before and
+                // after delivery calls are properly matched.
+                ep2.afterDelivery();
+            } catch (ResourceException re2) {
+                re2.printStackTrace();
+            }
+        }
+    }
+
+    public void callAppExp() {
+
+        try {
+            Debug.trace(" in  IBAnnoMessageWork.callAppExp()");
+            Method onMessage = getOnMessageMethod();
+            ep2.beforeDelivery(onMessage);
+            ((TSMessageListenerInterface) ep2).onMessage("Throw AppException from IBAnnoMessageWork");
+
+        } catch (AppException ejbe) {
+            System.out.println("AppException thrown by NotSupported MDB");
+            ConnectorStatus.getConnectorStatus().logState("AppException thrown by NotSupported");
+
+        } catch (NoSuchMethodException ns) {
+            ns.printStackTrace();
+
+        } catch (ResourceException re) {
+            re.printStackTrace();
+
+        } finally {
+            try {
+                // this ensures that before and
+                // after delivery calls are properly matched.
+                ep2.afterDelivery();
+            } catch (ResourceException re2) {
+                re2.printStackTrace();
+            }
+        }
+    }
+
+    public Method getOnMessageMethod() {
+
+        Method onMessageMethod = null;
+        try {
+            Class msgListenerClass = TSMessageListenerInterface.class;
+            Class[] paramTypes = { java.lang.String.class };
+            onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        return onMessageMethod;
+    }
+
+    private void chkMessageEndpointImpl(MessageEndpoint ep) {
+        if ((ep instanceof MessageEndpoint) && (ep instanceof TSMessageListenerInterface)) {
+            Debug.trace("IBANNO XA MessageEndpoint interface implemented");
+            Debug.trace("IBANNO XA TSMessageListener interface implemented");
+        } else {
+            Debug.trace("IBANNO XA MessageEndpoint and TSMessageListenerInterface not implemented");
         }
 
-      } catch (NoSuchMethodException ns) {
-        ns.printStackTrace();
-
-      } catch (ResourceException re) {
-        re.printStackTrace();
-      }
     }
 
-  }
-
-  public void callSysExp() {
-
-    try {
-      Debug.trace(" in  IBAnnoMessageWork.callSysExp()");
-      Method onMessage = getOnMessageMethod();
-      ep2.beforeDelivery(onMessage);
-      ((TSMessageListenerInterface) ep2)
-          .onMessage("Throw SysException from IBAnnoMessageWork");
-
-    } catch (NoSuchMethodException e) {
-      System.out.println("IBAnnoMessageWork: NoSuchMethodException");
-      e.getMessage();
-      e.printStackTrace();
-    } catch (UnavailableException e) {
-      System.out.println("IBAnnoMessageWork: UnavailableException");
-      e.printStackTrace();
-    } catch (ResourceException re) {
-      System.out.println("IBAnnoMessageWork: ResourceException");
-      re.printStackTrace();
-    } catch (AppException ae) {
-      System.out.println("IBAnnoMessageWork: AppException");
-      ae.printStackTrace();
-    } catch (Exception e) {
-      // if we are in here, we will assume that our exception was of type ejb
-      // but we
-      // should not code only to ejb as the messaging could be POJO's and not
-      // ejb....
-      System.out.println("EJBException thrown by NotSupported MDB");
-      ConnectorStatus.getConnectorStatus()
-          .logState("EJBException thrown by NotSupported");
-      e.printStackTrace();
-    } finally {
-      try {
-        // this ensures that before and
-        // after delivery calls are properly matched.
-        ep2.afterDelivery();
-      } catch (ResourceException re2) {
-        re2.printStackTrace();
-      }
-    }
-  }
-
-  public void callAppExp() {
-
-    try {
-      Debug.trace(" in  IBAnnoMessageWork.callAppExp()");
-      Method onMessage = getOnMessageMethod();
-      ep2.beforeDelivery(onMessage);
-      ((TSMessageListenerInterface) ep2)
-          .onMessage("Throw AppException from IBAnnoMessageWork");
-
-    } catch (AppException ejbe) {
-      System.out.println("AppException thrown by NotSupported MDB");
-      ConnectorStatus.getConnectorStatus()
-          .logState("AppException thrown by NotSupported");
-
-    } catch (NoSuchMethodException ns) {
-      ns.printStackTrace();
-
-    } catch (ResourceException re) {
-      re.printStackTrace();
-
-    } finally {
-      try {
-        // this ensures that before and
-        // after delivery calls are properly matched.
-        ep2.afterDelivery();
-      } catch (ResourceException re2) {
-        re2.printStackTrace();
-      }
-    }
-  }
-
-  public Method getOnMessageMethod() {
-
-    Method onMessageMethod = null;
-    try {
-      Class msgListenerClass = TSMessageListenerInterface.class;
-      Class[] paramTypes = { java.lang.String.class };
-      onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
-    } catch (NoSuchMethodException ex) {
-      ex.printStackTrace();
-    }
-    return onMessageMethod;
-  }
-
-  private void chkMessageEndpointImpl(MessageEndpoint ep) {
-    if ((ep instanceof MessageEndpoint)
-        && (ep instanceof TSMessageListenerInterface)) {
-      Debug.trace("IBANNO XA MessageEndpoint interface implemented");
-      Debug.trace("IBANNO XA TSMessageListener interface implemented");
-    } else {
-      Debug.trace(
-          "IBANNO XA MessageEndpoint and TSMessageListenerInterface not implemented");
+    public List<WorkContext> getWorkContexts() {
+        return contextsList;
     }
 
-  }
+    public void addWorkContext(WorkContext ic) {
+        contextsList.add(ic);
+    }
 
-  public List<WorkContext> getWorkContexts() {
-    return contextsList;
-  }
+    public void release() {
+    }
 
-  public void addWorkContext(WorkContext ic) {
-    contextsList.add(ic);
-  }
+    public void stop() {
+        this.stop = true;
+    }
 
-  public void release() {
-  }
-
-  public void stop() {
-    this.stop = true;
-  }
-
-  public String toString() {
-    return name;
-  }
+    public String toString() {
+        return name;
+    }
 
 }

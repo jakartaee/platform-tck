@@ -19,8 +19,7 @@ package com.sun.ts.lib.util.sec.misc;
 import java.lang.LinkageError;
 
 /**
- * Thrown if the URLClassLoader finds the INDEX.LIST file of a jar file contains
- * incorrect information.
+ * Thrown if the URLClassLoader finds the INDEX.LIST file of a jar file contains incorrect information.
  *
  * @author Zhenghua Li
  * @since 1.3
@@ -28,21 +27,19 @@ import java.lang.LinkageError;
 
 public class InvalidJarIndexException extends RuntimeException {
 
-  /**
-   * Constructs an <code>InvalidJarIndexException</code> with no detail message.
-   */
-  public InvalidJarIndexException() {
-    super();
-  }
+    /**
+     * Constructs an <code>InvalidJarIndexException</code> with no detail message.
+     */
+    public InvalidJarIndexException() {
+        super();
+    }
 
-  /**
-   * Constructs an <code>InvalidJarIndexException</code> with the specified
-   * detail message.
-   *
-   * @param s
-   *          the detail message.
-   */
-  public InvalidJarIndexException(String s) {
-    super(s);
-  }
+    /**
+     * Constructs an <code>InvalidJarIndexException</code> with the specified detail message.
+     *
+     * @param s the detail message.
+     */
+    public InvalidJarIndexException(String s) {
+        super(s);
+    }
 }

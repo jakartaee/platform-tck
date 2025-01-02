@@ -47,219 +47,208 @@ import jakarta.jms.TopicSubscriber;
 @Remote(TestsT.class)
 public class TestsTEJB implements TestsT {
 
-  @Resource
-  private SessionContext sessionContext;
+    @Resource
+    private SessionContext sessionContext;
 
-  private Properties harnessProps = null;
+    private Properties harnessProps = null;
 
-  private TSNamingContext nctx = null;
+    private TSNamingContext nctx = null;
 
-  private transient Destination testDestination = null;
+    private transient Destination testDestination = null;
 
-  private transient ConnectionFactory cf = null;
+    private transient ConnectionFactory cf = null;
 
-  private transient Connection conn = null;
+    private transient Connection conn = null;
 
-  private transient Connection connr = null;
+    private transient Connection connr = null;
 
-  private static final String TESTTOPICNAME = "java:comp/env/jms/MY_TOPIC";
+    private static final String TESTTOPICNAME = "java:comp/env/jms/MY_TOPIC";
 
-  private static final String DURABLETOPICCONNECTIONFACTORY = "java:comp/env/jms/DURABLE_SUB_CONNECTION_FACTORY";
+    private static final String DURABLETOPICCONNECTIONFACTORY = "java:comp/env/jms/DURABLE_SUB_CONNECTION_FACTORY";
 
-  private String name = "ctssub";
+    private String name = "ctssub";
 
-  private String username = null;
+    private String username = null;
 
-  private String password = null;
+    private String password = null;
 
-  private long timeout;
+    private long timeout;
 
-  public TestsTEJB() {
-    TestUtil.logTrace("TestsTEJB => default constructor called");
-  }
-
-  public void initLogging(Properties p) {
-    TestUtil.logTrace("initLogging");
-    harnessProps = p;
-    try {
-      TestUtil.logMsg("initialize remote logging");
-      TestUtil.init(p);
-      timeout = Long.parseLong(TestUtil.getProperty(harnessProps, "jms_timeout"));
-      username = TestUtil.getProperty(harnessProps, "user");
-      password = TestUtil.getProperty(harnessProps, "password");
-      // check props for errors
-      if (timeout < 1) {
-        throw new EJBException(
-            "'jms_timeout' (milliseconds) in ts.jte must be > 0");
-      }
-      if (username == null) {
-        throw new EJBException("'user' in ts.jte must be null");
-      }
-      if (password == null) {
-        throw new EJBException("'password' in ts.jte must be null");
-      }
-      if (sessionContext == null) {
-        throw new EJBException("@Resource injection failed");
-      }
-    } catch (RemoteLoggingInitException e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("initLogging: Failed!", e);
+    public TestsTEJB() {
+        TestUtil.logTrace("TestsTEJB => default constructor called");
     }
-  }
 
-  @PostConstruct
-  public void postConstruct() {
-    TestUtil.logTrace("postConstruct");
-    try {
-      TestUtil.logMsg("obtain naming context");
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("unable to obtain naming context");
-    }
-  }
-
-  @PostActivate
-  public void activate() {
-    TestUtil.logTrace("activate");
-    try {
-      TestUtil.logTrace(
-          "Getting ConnectionFactory " + DURABLETOPICCONNECTIONFACTORY);
-      cf = (ConnectionFactory) nctx.lookup(DURABLETOPICCONNECTIONFACTORY);
-
-      TestUtil.logTrace("Getting Destination " + TESTTOPICNAME);
-      testDestination = (Destination) nctx.lookup(TESTTOPICNAME);
-
-    } catch (Exception ex) {
-      TestUtil.logErr("Unexpected Exception in Activate: ", ex);
-    }
-  }
-
-  @PrePassivate
-  public void passivate() {
-    TestUtil.logTrace("passivate");
-    testDestination = null;
-    cf = null;
-    conn = null;
-    connr = null;
-  }
-
-  @Remove
-  public void remove() {
-    TestUtil.logTrace("remove");
-  }
-
-  private void common_T() throws Exception {
-
-    TestUtil
-        .logTrace("Getting ConnectionFactory " + DURABLETOPICCONNECTIONFACTORY);
-    cf = (ConnectionFactory) nctx.lookup(DURABLETOPICCONNECTIONFACTORY);
-
-    TestUtil.logTrace("Getting Destination " + TESTTOPICNAME);
-    testDestination = (Destination) nctx.lookup(TESTTOPICNAME);
-
-  }
-
-  public void common_T_setup() {
-    try {
-      common_T();
-
-      connr = cf.createConnection(username, password);
-
-      Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
-      TopicSubscriber recr = sessr
-          .createDurableSubscriber((Topic) testDestination, name);
-      recr.close();
-    } catch (Exception el) {
-      TestUtil.printStackTrace(el);
-      TestUtil.logErr("Failed to set up Consumer for Topic", el);
-    } finally {
-      try {
-        connr.close();
-      } catch (Exception e) {
-        TestUtil.logErr("Exception closing receiving Connection:", e);
-      }
-    }
-  }
-
-  public void sendTextMessage_CT(String TestName, String message) {
-    try {
-      // get ConnectionFactory and Connection
-      common_T();
-
-      // create default connection
-      TestUtil.logTrace("Creating Connection with  username, " + username
-          + " password, " + password);
-      conn = cf.createConnection(username, password);
-      // create default Session
-      TestUtil.logTrace("Creating Session");
-      Session sess = conn.createSession(true, Session.AUTO_ACKNOWLEDGE);
-
-      // create default consumer/producer
-      TestUtil.logTrace("Creating messageProducer");
-      MessageProducer sender = sess.createProducer(testDestination);
-
-      TestUtil.logMsg("Creating 1 message");
-      TextMessage messageSent = sess.createTextMessage();
-      messageSent.setText(message);
-      messageSent.setStringProperty("COM_SUN_JMS_TESTNAME", TestName);
-      TestUtil.logMsg("Sending message");
-      sender.send(messageSent);
-      sender.close();
-
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to send a Message in sendTextMessage_CQ");
-      TestUtil.printStackTrace(e);
-    } finally {
-      if (conn != null) {
+    public void initLogging(Properties p) {
+        TestUtil.logTrace("initLogging");
+        harnessProps = p;
         try {
-          TestUtil.logTrace("Closing Connection in sendTextMessage_CT");
-          conn.close();
-        } catch (Exception ce) {
-          TestUtil.logErr(
-              "Error closing conn in sendTextMessage_CQ" + ce.getMessage(), ce);
+            TestUtil.logMsg("initialize remote logging");
+            TestUtil.init(p);
+            timeout = Long.parseLong(TestUtil.getProperty(harnessProps, "jms_timeout"));
+            username = TestUtil.getProperty(harnessProps, "user");
+            password = TestUtil.getProperty(harnessProps, "password");
+            // check props for errors
+            if (timeout < 1) {
+                throw new EJBException("'jms_timeout' (milliseconds) in ts.jte must be > 0");
+            }
+            if (username == null) {
+                throw new EJBException("'user' in ts.jte must be null");
+            }
+            if (password == null) {
+                throw new EJBException("'password' in ts.jte must be null");
+            }
+            if (sessionContext == null) {
+                throw new EJBException("@Resource injection failed");
+            }
+        } catch (RemoteLoggingInitException e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("initLogging: Failed!", e);
         }
-      }
     }
-  }
 
-  public String receiveTextMessage_CT() {
-    TextMessage receivedM = null;
-    String tmp = null;
-
-    try {
-      // create default connection
-      TestUtil.logTrace("Creating Connection with  username, " + username
-          + " password, " + password);
-      connr = cf.createConnection(username, password);
-
-      connr.start();
-      Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
-      TopicSubscriber recr = sessr
-          .createDurableSubscriber((Topic) testDestination, name);
-      receivedM = (TextMessage) recr.receive(timeout);
-      recr.close();
-
-      if (receivedM != null)
-        tmp = receivedM.getText();
-      else
-        return null;
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to receive a message in receiveTextMessage_CT: ",
-          e);
-      throw new EJBException(e);
-    } finally {
-      if (connr != null) {
+    @PostConstruct
+    public void postConstruct() {
+        TestUtil.logTrace("postConstruct");
         try {
-          TestUtil.logTrace("Closing Connection in receiveTextMessage_CT");
-          connr.close();
-        } catch (Exception ce) {
-          TestUtil.logErr(
-              "Error closing conn in receiveTextMessage_CT" + ce.getMessage(),
-              ce);
+            TestUtil.logMsg("obtain naming context");
+            nctx = new TSNamingContext();
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            throw new EJBException("unable to obtain naming context");
         }
-      }
     }
-    return tmp;
-  }
+
+    @PostActivate
+    public void activate() {
+        TestUtil.logTrace("activate");
+        try {
+            TestUtil.logTrace("Getting ConnectionFactory " + DURABLETOPICCONNECTIONFACTORY);
+            cf = (ConnectionFactory) nctx.lookup(DURABLETOPICCONNECTIONFACTORY);
+
+            TestUtil.logTrace("Getting Destination " + TESTTOPICNAME);
+            testDestination = (Destination) nctx.lookup(TESTTOPICNAME);
+
+        } catch (Exception ex) {
+            TestUtil.logErr("Unexpected Exception in Activate: ", ex);
+        }
+    }
+
+    @PrePassivate
+    public void passivate() {
+        TestUtil.logTrace("passivate");
+        testDestination = null;
+        cf = null;
+        conn = null;
+        connr = null;
+    }
+
+    @Remove
+    public void remove() {
+        TestUtil.logTrace("remove");
+    }
+
+    private void common_T() throws Exception {
+
+        TestUtil.logTrace("Getting ConnectionFactory " + DURABLETOPICCONNECTIONFACTORY);
+        cf = (ConnectionFactory) nctx.lookup(DURABLETOPICCONNECTIONFACTORY);
+
+        TestUtil.logTrace("Getting Destination " + TESTTOPICNAME);
+        testDestination = (Destination) nctx.lookup(TESTTOPICNAME);
+
+    }
+
+    public void common_T_setup() {
+        try {
+            common_T();
+
+            connr = cf.createConnection(username, password);
+
+            Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
+            TopicSubscriber recr = sessr.createDurableSubscriber((Topic) testDestination, name);
+            recr.close();
+        } catch (Exception el) {
+            TestUtil.printStackTrace(el);
+            TestUtil.logErr("Failed to set up Consumer for Topic", el);
+        } finally {
+            try {
+                connr.close();
+            } catch (Exception e) {
+                TestUtil.logErr("Exception closing receiving Connection:", e);
+            }
+        }
+    }
+
+    public void sendTextMessage_CT(String TestName, String message) {
+        try {
+            // get ConnectionFactory and Connection
+            common_T();
+
+            // create default connection
+            TestUtil.logTrace("Creating Connection with  username, " + username + " password, " + password);
+            conn = cf.createConnection(username, password);
+            // create default Session
+            TestUtil.logTrace("Creating Session");
+            Session sess = conn.createSession(true, Session.AUTO_ACKNOWLEDGE);
+
+            // create default consumer/producer
+            TestUtil.logTrace("Creating messageProducer");
+            MessageProducer sender = sess.createProducer(testDestination);
+
+            TestUtil.logMsg("Creating 1 message");
+            TextMessage messageSent = sess.createTextMessage();
+            messageSent.setText(message);
+            messageSent.setStringProperty("COM_SUN_JMS_TESTNAME", TestName);
+            TestUtil.logMsg("Sending message");
+            sender.send(messageSent);
+            sender.close();
+
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to send a Message in sendTextMessage_CQ");
+            TestUtil.printStackTrace(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    TestUtil.logTrace("Closing Connection in sendTextMessage_CT");
+                    conn.close();
+                } catch (Exception ce) {
+                    TestUtil.logErr("Error closing conn in sendTextMessage_CQ" + ce.getMessage(), ce);
+                }
+            }
+        }
+    }
+
+    public String receiveTextMessage_CT() {
+        TextMessage receivedM = null;
+        String tmp = null;
+
+        try {
+            // create default connection
+            TestUtil.logTrace("Creating Connection with  username, " + username + " password, " + password);
+            connr = cf.createConnection(username, password);
+
+            connr.start();
+            Session sessr = connr.createSession(true, Session.AUTO_ACKNOWLEDGE);
+            TopicSubscriber recr = sessr.createDurableSubscriber((Topic) testDestination, name);
+            receivedM = (TextMessage) recr.receive(timeout);
+            recr.close();
+
+            if (receivedM != null)
+                tmp = receivedM.getText();
+            else
+                return null;
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to receive a message in receiveTextMessage_CT: ", e);
+            throw new EJBException(e);
+        } finally {
+            if (connr != null) {
+                try {
+                    TestUtil.logTrace("Closing Connection in receiveTextMessage_CT");
+                    connr.close();
+                } catch (Exception ce) {
+                    TestUtil.logErr("Error closing conn in receiveTextMessage_CT" + ce.getMessage(), ce);
+                }
+            }
+        }
+        return tmp;
+    }
 }

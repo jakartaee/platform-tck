@@ -23,50 +23,50 @@ package com.sun.ts.tests.common.vehicle.ejb3share;
 import jakarta.persistence.EntityTransaction;
 
 final public class EntityTransactionWrapper implements EntityTransaction {
-  private EntityTransaction delegate;
+    private EntityTransaction delegate;
 
-  public EntityTransactionWrapper() {
-  }
+    public EntityTransactionWrapper() {
+    }
 
-  public EntityTransactionWrapper(EntityTransaction delegate) {
-    this.delegate = delegate;
-  }
+    public EntityTransactionWrapper(EntityTransaction delegate) {
+        this.delegate = delegate;
+    }
 
-  public void setDelegate(EntityTransaction delegate) {
-    this.delegate = delegate;
-  }
+    public void setDelegate(EntityTransaction delegate) {
+        this.delegate = delegate;
+    }
 
-  public void rollback() {
-    delegate.rollback();
-  }
+    public void rollback() {
+        delegate.rollback();
+    }
 
-  public boolean isActive() {
-    return delegate.isActive();
-  }
+    public boolean isActive() {
+        return delegate.isActive();
+    }
 
-  @Override
-  public void setTimeout(Integer timeout) {
-    delegate.setTimeout(timeout);
-  }
+    @Override
+    public void setTimeout(Integer timeout) {
+        delegate.setTimeout(timeout);
+    }
 
-  @Override
-  public Integer getTimeout() {
-    return delegate.getTimeout();
-  }
+    @Override
+    public Integer getTimeout() {
+        return delegate.getTimeout();
+    }
 
-  public void commit() {
-    delegate.commit();
-  }
+    public void commit() {
+        delegate.commit();
+    }
 
-  public void begin() {
-    delegate.begin();
-  }
+    public void begin() {
+        delegate.begin();
+    }
 
-  public void setRollbackOnly() {
-    delegate.setRollbackOnly();
-  }
+    public void setRollbackOnly() {
+        delegate.setRollbackOnly();
+    }
 
-  public boolean getRollbackOnly() {
-    return delegate.getRollbackOnly();
-  }
+    public boolean getRollbackOnly() {
+        return delegate.getRollbackOnly();
+    }
 }

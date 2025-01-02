@@ -25,7 +25,7 @@ import java.util.Properties;
 import com.sun.ts.lib.harness.RemoteStatus;
 
 public interface WSEJBVehicleRemote {
-  public RemoteStatus runTest();
+    public RemoteStatus runTest();
 
-  public void initialize(String[] args, Properties p);
+    public void initialize(String[] args, Properties p);
 }

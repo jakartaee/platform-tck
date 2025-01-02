@@ -18,6 +18,6 @@ package com.sun.ts.lib.util.sec.nio.ch;
 
 public interface Interruptible {
 
-  public void interrupt();
+    public void interrupt();
 
 }

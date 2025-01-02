@@ -41,117 +41,114 @@ import jakarta.jms.TextMessage;
 
 public class ParentMsgBeanNoTx implements MessageDrivenBean, MessageListener {
 
-  // properties object needed for logging,
-  // get this from the message object passed into
-  // the onMessage method.
-  protected java.util.Properties p = null;
+    // properties object needed for logging,
+    // get this from the message object passed into
+    // the onMessage method.
+    protected java.util.Properties p = null;
 
-  protected TSNamingContext context = null;
+    protected TSNamingContext context = null;
 
-  protected MessageDrivenContext mdc = null;
+    protected MessageDrivenContext mdc = null;
 
-  // JMS PTP
-  protected QueueConnectionFactory qFactory;
+    // JMS PTP
+    protected QueueConnectionFactory qFactory;
 
-  protected QueueConnection qConnection = null;
+    protected QueueConnection qConnection = null;
 
-  protected Queue queueR = null;
+    protected Queue queueR = null;
 
-  protected Queue queue = null;
+    protected Queue queue = null;
 
-  protected QueueSender mSender = null;
+    protected QueueSender mSender = null;
 
-  protected boolean result = false;
+    protected boolean result = false;
 
-  public ParentMsgBeanNoTx() {
-    TestUtil.logTrace("@MsgBean()!");
-  };
+    public ParentMsgBeanNoTx() {
+        TestUtil.logTrace("@MsgBean()!");
+    };
 
-  public void ejbCreate() {
-    TestUtil.logTrace("@EJBCreate()!");
+    public void ejbCreate() {
+        TestUtil.logTrace("@EJBCreate()!");
 
-    try {
-
-      context = new TSNamingContext();
-      qFactory = (QueueConnectionFactory) context
-          .lookup("java:comp/env/jms/MyQueueConnectionFactory");
-      queueR = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      throw new EJBException("MDB ejbCreate Error", e);
-    }
-  }
-
-  public void setMessageDrivenContext(MessageDrivenContext mdc) {
-    TestUtil.logTrace("@MsgBean:setMessageDrivenContext()!");
-    this.mdc = mdc;
-  }
-
-  public void ejbRemove() {
-    TestUtil.logTrace("@ejbRemove()");
-  }
-
-  public void onMessage(Message msg) {
-    QueueSession qSession = null;
-    TextMessage messageSent = null;
-    String testName = null;
-    String hostname = null;
-    String traceflag = null;
-    String logport = null;
-
-    p = new Properties();
-    try {
-      // because a jms property name cannot contain '.' the
-      // following properties are a special case
-      hostname = msg.getStringProperty("harnesshost");
-      traceflag = msg.getStringProperty("harnesslogtraceflag");
-      logport = msg.getStringProperty("harnesslogport");
-      p.put("harness.host", hostname);
-      p.put("harness.log.traceflag", traceflag);
-      p.put("harness.log.port", logport);
-
-      // now pull out the rest of the properties from the message
-      Enumeration e = msg.getPropertyNames();
-      String key = null;
-      while (e.hasMoreElements()) {
-        key = (String) e.nextElement();
-        p.put(key, msg.getStringProperty(key));
-      }
-
-      testName = msg.getStringProperty("COM_SUN_JMS_TESTNAME");
-      qConnection = qFactory.createQueueConnection();
-      if (qConnection == null)
-        throw new EJBException("MDB connection Error!");
-
-      qSession = qConnection.createQueueSession(false,
-          Session.AUTO_ACKNOWLEDGE);
-
-      // Diagnostic - pull out after testing
-      // for (Enumeration enum = p.propertyNames(); enum.hasMoreElements();){
-      // System.out.println(enum.nextElement());
-      // }
-      TestUtil.init(p);
-      TestUtil.logTrace("will run TestCase: " + testName);
-      runTests(msg, qSession, testName, p);
-
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-    } finally {
-      if (qConnection != null) {
         try {
-          qConnection.close();
+
+            context = new TSNamingContext();
+            qFactory = (QueueConnectionFactory) context.lookup("java:comp/env/jms/MyQueueConnectionFactory");
+            queueR = (Queue) context.lookup("java:comp/env/jms/MDB_QUEUE_REPLY");
         } catch (Exception e) {
-          TestUtil.printStackTrace(e);
+            TestUtil.printStackTrace(e);
+            throw new EJBException("MDB ejbCreate Error", e);
         }
-      }
     }
 
-  }
+    public void setMessageDrivenContext(MessageDrivenContext mdc) {
+        TestUtil.logTrace("@MsgBean:setMessageDrivenContext()!");
+        this.mdc = mdc;
+    }
 
-  protected void runTests(Message msg, QueueSession qSession, String testName,
-      java.util.Properties p) {
-    TestUtil.logTrace("ParentMsgBeanNoTx - runTests");
+    public void ejbRemove() {
+        TestUtil.logTrace("@ejbRemove()");
+    }
 
-  }
+    public void onMessage(Message msg) {
+        QueueSession qSession = null;
+        TextMessage messageSent = null;
+        String testName = null;
+        String hostname = null;
+        String traceflag = null;
+        String logport = null;
+
+        p = new Properties();
+        try {
+            // because a jms property name cannot contain '.' the
+            // following properties are a special case
+            hostname = msg.getStringProperty("harnesshost");
+            traceflag = msg.getStringProperty("harnesslogtraceflag");
+            logport = msg.getStringProperty("harnesslogport");
+            p.put("harness.host", hostname);
+            p.put("harness.log.traceflag", traceflag);
+            p.put("harness.log.port", logport);
+
+            // now pull out the rest of the properties from the message
+            Enumeration e = msg.getPropertyNames();
+            String key = null;
+            while (e.hasMoreElements()) {
+                key = (String) e.nextElement();
+                p.put(key, msg.getStringProperty(key));
+            }
+
+            testName = msg.getStringProperty("COM_SUN_JMS_TESTNAME");
+            qConnection = qFactory.createQueueConnection();
+            if (qConnection == null)
+                throw new EJBException("MDB connection Error!");
+
+            qSession = qConnection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
+
+            // Diagnostic - pull out after testing
+            // for (Enumeration enum = p.propertyNames(); enum.hasMoreElements();){
+            // System.out.println(enum.nextElement());
+            // }
+            TestUtil.init(p);
+            TestUtil.logTrace("will run TestCase: " + testName);
+            runTests(msg, qSession, testName, p);
+
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+        } finally {
+            if (qConnection != null) {
+                try {
+                    qConnection.close();
+                } catch (Exception e) {
+                    TestUtil.printStackTrace(e);
+                }
+            }
+        }
+
+    }
+
+    protected void runTests(Message msg, QueueSession qSession, String testName, java.util.Properties p) {
+        TestUtil.logTrace("ParentMsgBeanNoTx - runTests");
+
+    }
 
 }

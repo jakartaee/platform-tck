@@ -38,258 +38,243 @@ import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkManager;
 
 public class XAResourceAdapterImpl implements ResourceAdapter, Serializable {
-  // IMPORTANT: for compliance, if you add non-transient member data
-  // here, be sure to add respective entry to equals() method below.
+    // IMPORTANT: for compliance, if you add non-transient member data
+    // here, be sure to add respective entry to equals() method below.
 
-  private transient TestWorkManager twm;
+    private transient TestWorkManager twm;
 
-  private transient TestBootstrapContext tbs;
+    private transient TestBootstrapContext tbs;
 
-  private transient LocalTxMessageListener ml;
+    private transient LocalTxMessageListener ml;
 
-  private String RAName; // value from ra's xml file
+    private String RAName; // value from ra's xml file
 
-  private Boolean useSecurityMapping = null; // value from ra's xml file
+    private Boolean useSecurityMapping = null; // value from ra's xml file
 
-  private int counter = 0;
+    private int counter = 0;
 
-  private transient javax.transaction.xa.XAResource xaresource;
+    private transient javax.transaction.xa.XAResource xaresource;
 
-  private transient LocalTxMessageWork2 work3;
+    private transient LocalTxMessageWork2 work3;
 
-  private transient WorkManager wm;
+    private transient WorkManager wm;
 
-  private int mefcount = 0;
+    private int mefcount = 0;
 
-  private transient MessageEndpointFactory mef1;
+    private transient MessageEndpointFactory mef1;
 
-  private transient MessageEndpointFactory mef2;
+    private transient MessageEndpointFactory mef2;
 
-  private transient BootstrapContext bsc;
+    private transient BootstrapContext bsc;
 
-  public XAResourceAdapterImpl() {
-    ConnectorStatus.getConnectorStatus()
-        .logState("XAResourceAdapterImpl Constructor ");
-    System.out.println("XAResourceAdapterImpl Constructor ");
-  }
-
-  public void start(final BootstrapContext bsc)
-      throws ResourceAdapterInternalException {
-    // setup network endpoints
-    counter++;
-    this.bsc = bsc;
-    System.out.println("XAResourceAdapter Started " + counter);
-    String str1 = new String("XAResourceAdapter Started " + counter);
-    ConnectorStatus.getConnectorStatus().logState(str1);
-
-    // get WorkManager reference
-
-    WorkManager wm = null;
-
-    if (bsc != null) {
-      ConnectorStatus.getConnectorStatus()
-          .logState("XAResourceAdapter BootstrapContext Not Null ");
-      wm = bsc.getWorkManager();
-    } else {
-      ConnectorStatus.getConnectorStatus()
-          .logState("ERROR - XAResourceAdapter BootstrapContext is Null ");
+    public XAResourceAdapterImpl() {
+        ConnectorStatus.getConnectorStatus().logState("XAResourceAdapterImpl Constructor ");
+        System.out.println("XAResourceAdapterImpl Constructor ");
     }
 
-    if (wm != null) {
-      ConnectorStatus.getConnectorStatus()
-          .logState("XAResourceAdapter WorkManager Not Null ");
-    } else {
-      ConnectorStatus.getConnectorStatus()
-          .logState("WARNING XAResourceAdapter WorkManager is Null ");
-    }
+    public void start(final BootstrapContext bsc) throws ResourceAdapterInternalException {
+        // setup network endpoints
+        counter++;
+        this.bsc = bsc;
+        System.out.println("XAResourceAdapter Started " + counter);
+        String str1 = new String("XAResourceAdapter Started " + counter);
+        ConnectorStatus.getConnectorStatus().logState(str1);
 
-    try {
-      checkAssociation();
-      bsc.getWorkManager().startWork(new Work() {
-        public void run() {
-          myStart(bsc);
+        // get WorkManager reference
+
+        WorkManager wm = null;
+
+        if (bsc != null) {
+            ConnectorStatus.getConnectorStatus().logState("XAResourceAdapter BootstrapContext Not Null ");
+            wm = bsc.getWorkManager();
+        } else {
+            ConnectorStatus.getConnectorStatus().logState("ERROR - XAResourceAdapter BootstrapContext is Null ");
         }
 
-        public void release() {
+        if (wm != null) {
+            ConnectorStatus.getConnectorStatus().logState("XAResourceAdapter WorkManager Not Null ");
+        } else {
+            ConnectorStatus.getConnectorStatus().logState("WARNING XAResourceAdapter WorkManager is Null ");
         }
 
-      });
-    } catch (jakarta.resource.spi.work.WorkException we) {
-      throw new ResourceAdapterInternalException();
+        try {
+            checkAssociation();
+            bsc.getWorkManager().startWork(new Work() {
+                public void run() {
+                    myStart(bsc);
+                }
+
+                public void release() {
+                }
+
+            });
+        } catch (jakarta.resource.spi.work.WorkException we) {
+            throw new ResourceAdapterInternalException();
+        }
+
     }
 
-  }
+    private void myStart(final BootstrapContext ctx) {
+        wm = ctx.getWorkManager();
+        // Create TestWorkManager object
+        twm = new TestWorkManager(ctx);
+        if (this.useSecurityMapping.booleanValue() == true) {
+            // values from our RA xml file indicate we want to establish Case 2
+            // security for the RA. This means we need security mappings.
+            Debug.trace(" XAResourceAdapterImpl ; calling setUseSecurityMapping(true)");
+            twm.setUseSecurityMapping(true);
+        } else {
+            // use Case 1 security thus do NO mapping of identities
+            Debug.trace(" XAResourceAdapterImpl ; calling setUseSecurityMapping(false)");
+            twm.setUseSecurityMapping(false);
+        }
+        twm.runTests();
 
-  private void myStart(final BootstrapContext ctx) {
-    wm = ctx.getWorkManager();
-    // Create TestWorkManager object
-    twm = new TestWorkManager(ctx);
-    if (this.useSecurityMapping.booleanValue() == true) {
-      // values from our RA xml file indicate we want to establish Case 2
-      // security for the RA. This means we need security mappings.
-      Debug.trace(
-          " XAResourceAdapterImpl ; calling setUseSecurityMapping(true)");
-      twm.setUseSecurityMapping(true);
-    } else {
-      // use Case 1 security thus do NO mapping of identities
-      Debug.trace(
-          " XAResourceAdapterImpl ; calling setUseSecurityMapping(false)");
-      twm.setUseSecurityMapping(false);
-    }
-    twm.runTests();
-
-    // Create TestBootstrap object
-    tbs = new TestBootstrapContext(ctx);
-    tbs.runTests();
-  }
-
-  public void stop() {
-    // Set the TestWorkManager to null upon resource adapter shutdown.
-    // twm = null;
-    if (work3 != null) {
-      work3.stop();
+        // Create TestBootstrap object
+        tbs = new TestBootstrapContext(ctx);
+        tbs.runTests();
     }
 
-  }
+    public void stop() {
+        // Set the TestWorkManager to null upon resource adapter shutdown.
+        // twm = null;
+        if (work3 != null) {
+            work3.stop();
+        }
 
-  public void endpointActivation(MessageEndpointFactory mef,
-      ActivationSpec as) {
-  }
-
-  public void endpointDeactivation(MessageEndpointFactory mef,
-      ActivationSpec as) {
-
-  }
-
-  public XAResource[] getXAResources(ActivationSpec[] as) {
-    return null;
-  }
-
-  private Method getOnMessageMethod() {
-
-    Method onMessageMethod = null;
-    try {
-      Class msgListenerClass = TSMessageListenerInterface.class;
-      Class[] paramTypes = { java.lang.String.class };
-      onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
-
-    } catch (NoSuchMethodException ex) {
-      ex.printStackTrace();
-    }
-    return onMessageMethod;
-  }
-
-  private void chkUniqueMessageEndpointFactory() {
-    if ((mef1 != null) && (!mef1.equals(mef2))) {
-      Debug.trace("XA MessageEndpointFactory is Unique");
-      Debug.trace("XA MessageEndpointFactory equals implemented correctly");
-    }
-  }
-
-  /*
-   * This method is used to assist in the verification process of assertion
-   * Connector:SPEC:245 This method must be called befor the work instances
-   * 'run' method is called. This method checks if the setResourceAdapter()
-   * method was called and if so, then this method logs a message to indicate
-   * that it was called prior to the 'run' method of the run method.
-   */
-  public void checkAssociation() {
-    Vector vLog = ConnectorStatus.getConnectorStatus().getStateLogVector();
-    String toCheck1 = "XAManagedConnectionFactory setResourceAdapter 1";
-
-    for (int i = 0; i < vLog.size(); i++) {
-      String str = (String) vLog.elementAt(i);
-      if (str.startsWith(toCheck1)) {
-        ConnectorStatus.getConnectorStatus().logState(
-            "XAResourceAdapter - association exists between RA and work");
-        break;
-      }
     }
 
-  }
-
-  /*
-   * @name equals
-   * 
-   * @desc compares this object with the given object.
-   * 
-   * @param Object obj
-   * 
-   * @return boolean
-   */
-  public boolean equals(Object obj) {
-
-    if ((obj == null) || !(obj instanceof XAResourceAdapterImpl)) {
-      return false;
-    }
-    if (obj == this) {
-      return true;
+    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {
     }
 
-    XAResourceAdapterImpl that = (XAResourceAdapterImpl) obj;
+    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {
 
-    if (this.counter != that.getCounter()) {
-      return false;
     }
 
-    if (this.mefcount != that.getMefcount()) {
-      return false;
+    public XAResource[] getXAResources(ActivationSpec[] as) {
+        return null;
     }
 
-    if (!Util.isEqual(this.RAName, that.getRAName()))
-      return false;
+    private Method getOnMessageMethod() {
 
-    if (this.getUseSecurityMapping().booleanValue() != that
-        .getUseSecurityMapping().booleanValue()) {
-      return false;
+        Method onMessageMethod = null;
+        try {
+            Class msgListenerClass = TSMessageListenerInterface.class;
+            Class[] paramTypes = { java.lang.String.class };
+            onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
+
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        return onMessageMethod;
     }
 
-    return true;
-  }
+    private void chkUniqueMessageEndpointFactory() {
+        if ((mef1 != null) && (!mef1.equals(mef2))) {
+            Debug.trace("XA MessageEndpointFactory is Unique");
+            Debug.trace("XA MessageEndpointFactory equals implemented correctly");
+        }
+    }
 
-  /*
-   * @name hashCode
-   * 
-   * @desc gets the hashcode for this object.
-   * 
-   * @return int
-   */
-  public int hashCode() {
-    return this.getClass().getName().hashCode();
-  }
+    /*
+     * This method is used to assist in the verification process of assertion Connector:SPEC:245 This method must be called
+     * befor the work instances 'run' method is called. This method checks if the setResourceAdapter() method was called and
+     * if so, then this method logs a message to indicate that it was called prior to the 'run' method of the run method.
+     */
+    public void checkAssociation() {
+        Vector vLog = ConnectorStatus.getConnectorStatus().getStateLogVector();
+        String toCheck1 = "XAManagedConnectionFactory setResourceAdapter 1";
 
-  public void setRAName(String name) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("XAResourceAdapter.setRAName");
-    this.RAName = name;
-  }
+        for (int i = 0; i < vLog.size(); i++) {
+            String str = (String) vLog.elementAt(i);
+            if (str.startsWith(toCheck1)) {
+                ConnectorStatus.getConnectorStatus().logState("XAResourceAdapter - association exists between RA and work");
+                break;
+            }
+        }
 
-  public String getRAName() {
-    Debug.trace("XAResourceAdapter.getRAName");
-    return RAName;
-  }
+    }
 
-  public void setUseSecurityMapping(Boolean val) {
-    this.useSecurityMapping = val;
-  }
+    /*
+     * @name equals
+     * 
+     * @desc compares this object with the given object.
+     * 
+     * @param Object obj
+     * 
+     * @return boolean
+     */
+    public boolean equals(Object obj) {
 
-  public Boolean getUseSecurityMapping() {
-    return this.useSecurityMapping;
-  }
+        if ((obj == null) || !(obj instanceof XAResourceAdapterImpl)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
 
-  public void setCounter(int val) {
-    this.counter = val;
-  }
+        XAResourceAdapterImpl that = (XAResourceAdapterImpl) obj;
 
-  public int getCounter() {
-    return this.counter;
-  }
+        if (this.counter != that.getCounter()) {
+            return false;
+        }
 
-  public void setMefcount(int val) {
-    this.mefcount = val;
-  }
+        if (this.mefcount != that.getMefcount()) {
+            return false;
+        }
 
-  public int getMefcount() {
-    return this.mefcount;
-  }
+        if (!Util.isEqual(this.RAName, that.getRAName()))
+            return false;
+
+        if (this.getUseSecurityMapping().booleanValue() != that.getUseSecurityMapping().booleanValue()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /*
+     * @name hashCode
+     * 
+     * @desc gets the hashcode for this object.
+     * 
+     * @return int
+     */
+    public int hashCode() {
+        return this.getClass().getName().hashCode();
+    }
+
+    public void setRAName(String name) {
+        ConnectorStatus.getConnectorStatus().logState("XAResourceAdapter.setRAName");
+        this.RAName = name;
+    }
+
+    public String getRAName() {
+        Debug.trace("XAResourceAdapter.getRAName");
+        return RAName;
+    }
+
+    public void setUseSecurityMapping(Boolean val) {
+        this.useSecurityMapping = val;
+    }
+
+    public Boolean getUseSecurityMapping() {
+        return this.useSecurityMapping;
+    }
+
+    public void setCounter(int val) {
+        this.counter = val;
+    }
+
+    public int getCounter() {
+        return this.counter;
+    }
+
+    public void setMefcount(int val) {
+        this.mefcount = val;
+    }
+
+    public int getMefcount() {
+        return this.mefcount;
+    }
 }

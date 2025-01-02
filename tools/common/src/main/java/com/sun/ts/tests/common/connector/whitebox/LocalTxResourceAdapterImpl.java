@@ -39,416 +39,396 @@ import jakarta.resource.spi.work.ExecutionContext;
 import jakarta.resource.spi.work.Work;
 import jakarta.resource.spi.work.WorkManager;
 
-public class LocalTxResourceAdapterImpl
-    implements ResourceAdapter, Serializable {
-  /**
-  * 
-  */
-  private static final long serialVersionUID = 1L;
-  // IMPORTANT: for compliance, if you add non-transient member data
-  // here, be sure to add respective entry to equals() method below.
+public class LocalTxResourceAdapterImpl implements ResourceAdapter, Serializable {
+    /**
+    * 
+    */
+    private static final long serialVersionUID = 1L;
+    // IMPORTANT: for compliance, if you add non-transient member data
+    // here, be sure to add respective entry to equals() method below.
 
-  private transient TestWorkManager twm;
+    private transient TestWorkManager twm;
 
-  private transient TestBootstrapContext tbs;
+    private transient TestBootstrapContext tbs;
 
-  private transient LocalTxMessageListener ml;
+    private transient LocalTxMessageListener ml;
 
-  private String RAName; // value from ra's xml file
+    private String RAName; // value from ra's xml file
 
-  private Boolean useSecurityMapping = null; // value from ra's xml file
+    private Boolean useSecurityMapping = null; // value from ra's xml file
 
-  private int counter = 0;
+    private int counter = 0;
 
-  private transient LocalTxMessageWork work1;
+    private transient LocalTxMessageWork work1;
 
-  private transient LocalTxMessageWork1 work2;
+    private transient LocalTxMessageWork1 work2;
 
-  private transient LocalTxMessageWork2 work3;
+    private transient LocalTxMessageWork2 work3;
 
-  private transient WorkManager wm;
+    private transient WorkManager wm;
 
-  private int mefcount = 0;
+    private int mefcount = 0;
 
-  private transient MessageEndpointFactory mef1;
+    private transient MessageEndpointFactory mef1;
 
-  private transient MessageEndpointFactory mef2;
+    private transient MessageEndpointFactory mef2;
 
-  private transient BootstrapContext bsc;
+    private transient BootstrapContext bsc;
 
-  private String sicUser = ""; // this should correspond to ts.jte's 'user'
-                               // property
+    private String sicUser = ""; // this should correspond to ts.jte's 'user'
+                                 // property
 
-  private String sicPwd = ""; // this should correspond to ts.jte's 'password'
-                              // property
+    private String sicPwd = ""; // this should correspond to ts.jte's 'password'
+                                // property
 
-  private String eisUser = ""; // this should correspond to ts.jte's 'user1'
-                               // property
+    private String eisUser = ""; // this should correspond to ts.jte's 'user1'
+                                 // property
 
-  private String eisPwd = ""; // this should correspond to ts.jte's 'password'
-                              // property
+    private String eisPwd = ""; // this should correspond to ts.jte's 'password'
+                                // property
 
-  public LocalTxResourceAdapterImpl() {
-    ConnectorStatus.getConnectorStatus()
-        .logState("LocalTxResourceAdapterImpl Constructor ");
-    Debug.trace("LocalTxResourceAdapterImpl Constructor ");
+    public LocalTxResourceAdapterImpl() {
+        ConnectorStatus.getConnectorStatus().logState("LocalTxResourceAdapterImpl Constructor ");
+        Debug.trace("LocalTxResourceAdapterImpl Constructor ");
 
-    this.sicUser = TestUtil.getSystemProperty("j2eelogin.name");
-    this.sicPwd = TestUtil.getSystemProperty("j2eelogin.password");
-    this.eisUser = TestUtil.getSystemProperty("eislogin.name");
-    this.eisPwd = TestUtil.getSystemProperty("eislogin.password");
-  }
-
-  @Override
-  public void start(final BootstrapContext bsc)
-      throws ResourceAdapterInternalException {
-    // setup network endpoints
-    counter++;
-    this.bsc = bsc;
-    Debug.trace("LocalTxResourceAdapter Started " + counter);
-    String str1 = "LocalTxResourceAdapter Started " + counter;
-    ConnectorStatus.getConnectorStatus().logState(str1);
-
-    // get WorkManager reference
-
-    wm = bsc.getWorkManager();
-
-    if (bsc != null) {
-      ConnectorStatus.getConnectorStatus()
-          .logState("LocalTxResourceAdapter BootstrapContext Not Null ");
+        this.sicUser = TestUtil.getSystemProperty("j2eelogin.name");
+        this.sicPwd = TestUtil.getSystemProperty("j2eelogin.password");
+        this.eisUser = TestUtil.getSystemProperty("eislogin.name");
+        this.eisPwd = TestUtil.getSystemProperty("eislogin.password");
     }
 
-    if (wm != null) {
-      ConnectorStatus.getConnectorStatus()
-          .logState("LocalTxResourceAdapter WorkManager Not Null ");
+    @Override
+    public void start(final BootstrapContext bsc) throws ResourceAdapterInternalException {
+        // setup network endpoints
+        counter++;
+        this.bsc = bsc;
+        Debug.trace("LocalTxResourceAdapter Started " + counter);
+        String str1 = "LocalTxResourceAdapter Started " + counter;
+        ConnectorStatus.getConnectorStatus().logState(str1);
 
-      if (wm instanceof DistributableWorkManager) {
-        Debug.trace("wm supports DistributableWorkManager");
-        ConnectorStatus.getConnectorStatus()
-            .logState("wm supports DistributableWorkManager");
-      } else {
-        Debug.trace("wm Does NOT support DistributableWorkManager");
-        ConnectorStatus.getConnectorStatus()
-            .logState("wm Does NOT support DistributableWorkManager");
-      }
+        // get WorkManager reference
 
-    }
-    try {
-      bsc.getWorkManager().startWork(new Work() {
-        public void run() {
-          myStart(bsc);
+        wm = bsc.getWorkManager();
+
+        if (bsc != null) {
+            ConnectorStatus.getConnectorStatus().logState("LocalTxResourceAdapter BootstrapContext Not Null ");
         }
 
-        public void release() {
+        if (wm != null) {
+            ConnectorStatus.getConnectorStatus().logState("LocalTxResourceAdapter WorkManager Not Null ");
+
+            if (wm instanceof DistributableWorkManager) {
+                Debug.trace("wm supports DistributableWorkManager");
+                ConnectorStatus.getConnectorStatus().logState("wm supports DistributableWorkManager");
+            } else {
+                Debug.trace("wm Does NOT support DistributableWorkManager");
+                ConnectorStatus.getConnectorStatus().logState("wm Does NOT support DistributableWorkManager");
+            }
+
+        }
+        try {
+            bsc.getWorkManager().startWork(new Work() {
+                public void run() {
+                    myStart(bsc);
+                }
+
+                public void release() {
+                }
+
+            });
+        } catch (jakarta.resource.spi.work.WorkException we) {
+            throw new ResourceAdapterInternalException();
         }
 
-      });
-    } catch (jakarta.resource.spi.work.WorkException we) {
-      throw new ResourceAdapterInternalException();
     }
 
-  }
+    private void myStart(final BootstrapContext ctx) {
+        wm = ctx.getWorkManager();
+        // Create TestWorkManager object
+        twm = new TestWorkManager(ctx);
+        if (this.useSecurityMapping.booleanValue() == true) {
+            // values from our RA xml file indicate we want to establish Case 2
+            // security for the RA. This means we need security mappings.
+            Debug.trace(" LocalTxResourceAdapterImpl ; calling setUseSecurityMapping(true)");
+            ConnectorStatus.getConnectorStatus().logState(" LocalTxResourceAdapterImpl ; calling setUseSecurityMapping(true)");
+            twm.setUseSecurityMapping(true);
+        } else {
+            // use Case 1 security thus do NO mapping of identities
+            Debug.trace(" LocalTxResourceAdapterImpl ; calling setUseSecurityMapping(false)");
+            ConnectorStatus.getConnectorStatus().logState(" LocalTxResourceAdapterImpl ; calling setUseSecurityMapping(false)");
+            twm.setUseSecurityMapping(false);
+        }
+        twm.runTests();
 
-  private void myStart(final BootstrapContext ctx) {
-    wm = ctx.getWorkManager();
-    // Create TestWorkManager object
-    twm = new TestWorkManager(ctx);
-    if (this.useSecurityMapping.booleanValue() == true) {
-      // values from our RA xml file indicate we want to establish Case 2
-      // security for the RA. This means we need security mappings.
-      Debug.trace(
-          " LocalTxResourceAdapterImpl ; calling setUseSecurityMapping(true)");
-      ConnectorStatus.getConnectorStatus().logState(
-          " LocalTxResourceAdapterImpl ; calling setUseSecurityMapping(true)");
-      twm.setUseSecurityMapping(true);
-    } else {
-      // use Case 1 security thus do NO mapping of identities
-      Debug.trace(
-          " LocalTxResourceAdapterImpl ; calling setUseSecurityMapping(false)");
-      ConnectorStatus.getConnectorStatus().logState(
-          " LocalTxResourceAdapterImpl ; calling setUseSecurityMapping(false)");
-      twm.setUseSecurityMapping(false);
-    }
-    twm.runTests();
-
-    // Create TestBootstrap object
-    tbs = new TestBootstrapContext(ctx);
-    tbs.runTests();
-  }
-
-  @Override
-  public void stop() {
-    // Set the TestWorkManager to null upon resource adapter shutdown.
-
-    if (work1 != null) {
-      work1.stop();
-    }
-    if (work2 != null) {
-      work2.stop();
+        // Create TestBootstrap object
+        tbs = new TestBootstrapContext(ctx);
+        tbs.runTests();
     }
 
-    if (work3 != null) {
-      work3.stop();
-    }
-  }
+    @Override
+    public void stop() {
+        // Set the TestWorkManager to null upon resource adapter shutdown.
 
-  @Override
-  public void endpointActivation(MessageEndpointFactory mef,
-      ActivationSpec as) {
-    try {
-      mefcount++;
-
-      // check if endpointActivation has been called
-      Debug.trace("LocalTxResourceAdapter.endpointActivation called");
-      Method onMessagexa = getOnMessageMethod();
-      boolean de = mef.isDeliveryTransacted(onMessagexa);
-
-      // For MDB with Not Supported transaction attribute
-      if (!de) {
-        mef1 = mef;
-        String destinationName = ((LocalTxActivationSpec) as)
-            .getDestinationName();
-        Debug.trace("LocalTxResourceAdapter preparing work1");
-
-        if (mef1 != null) {
-          Debug.trace("mef1 is not null");
+        if (work1 != null) {
+            work1.stop();
+        }
+        if (work2 != null) {
+            work2.stop();
         }
 
-        work1 = new LocalTxMessageWork(destinationName, mef1);
-        work1.setBootstrapContext(bsc);
+        if (work3 != null) {
+            work3.stop();
+        }
+    }
 
-        // perform some msging to test SIC
-        TSSecurityContext sic = new TSSecurityContextWithListener(sicUser,
-            sicPwd, eisUser, this.useSecurityMapping.booleanValue());
-        work1.addWorkContext(sic);
+    @Override
+    public void endpointActivation(MessageEndpointFactory mef, ActivationSpec as) {
+        try {
+            mefcount++;
 
-        Debug.trace("LocalTxResourceAdapter work1 created");
-        wm.scheduleWork(work1, WorkManager.INDEFINITE, null, null);
-        Debug.trace("LocalTxResourceAdapter work1 scheduled");
-      } else // For MDB with Required transaction attribute
-      {
-        // Endpoint requires a tranaction but no incoming transaction
-        mef2 = mef;
-        Debug.trace("LocalTxResourceAdapter preparing work2");
-        String destinationName = ((LocalTxActivationSpec) as)
-            .getDestinationName();
-        Debug.trace("Before Destination name");
-        Debug.trace("Destination name is " + destinationName);
+            // check if endpointActivation has been called
+            Debug.trace("LocalTxResourceAdapter.endpointActivation called");
+            Method onMessagexa = getOnMessageMethod();
+            boolean de = mef.isDeliveryTransacted(onMessagexa);
 
-        if (mef2 != null) {
-          Debug.trace("mef2 is not null");
+            // For MDB with Not Supported transaction attribute
+            if (!de) {
+                mef1 = mef;
+                String destinationName = ((LocalTxActivationSpec) as).getDestinationName();
+                Debug.trace("LocalTxResourceAdapter preparing work1");
+
+                if (mef1 != null) {
+                    Debug.trace("mef1 is not null");
+                }
+
+                work1 = new LocalTxMessageWork(destinationName, mef1);
+                work1.setBootstrapContext(bsc);
+
+                // perform some msging to test SIC
+                TSSecurityContext sic = new TSSecurityContextWithListener(sicUser, sicPwd, eisUser, this.useSecurityMapping.booleanValue());
+                work1.addWorkContext(sic);
+
+                Debug.trace("LocalTxResourceAdapter work1 created");
+                wm.scheduleWork(work1, WorkManager.INDEFINITE, null, null);
+                Debug.trace("LocalTxResourceAdapter work1 scheduled");
+            } else // For MDB with Required transaction attribute
+            {
+                // Endpoint requires a tranaction but no incoming transaction
+                mef2 = mef;
+                Debug.trace("LocalTxResourceAdapter preparing work2");
+                String destinationName = ((LocalTxActivationSpec) as).getDestinationName();
+                Debug.trace("Before Destination name");
+                Debug.trace("Destination name is " + destinationName);
+
+                if (mef2 != null) {
+                    Debug.trace("mef2 is not null");
+                }
+
+                work2 = new LocalTxMessageWork1(destinationName, mef2);
+
+                Debug.trace("LocalTxResourceAdapter work2 created");
+                wm.scheduleWork(work2, WorkManager.INDEFINITE, null, null);
+                Debug.trace("LocalTxResourceAdapter work2 scheduled");
+
+                // Endpoint requires a tranaction and there is an incoming transaction
+                work3 = new LocalTxMessageWork2(destinationName, mef2);
+                XidImpl myid = new XidImpl();
+                ExecutionContext ec = new ExecutionContext();
+                int idcount = myid.getFormatId();
+                Debug.trace("XID getting used [ " + idcount + " ]");
+                ec.setXid(myid);
+                ml = new LocalTxMessageListener(myid, this.bsc);
+                wm.scheduleWork(work3, WorkManager.INDEFINITE, ec, ml);
+            }
+
+            if (mefcount == 2) {
+                chkUniqueMessageEndpointFactory();
+            }
+
+        } catch (Throwable ex) {
+            ex.printStackTrace();
         }
 
-        work2 = new LocalTxMessageWork1(destinationName, mef2);
-
-        Debug.trace("LocalTxResourceAdapter work2 created");
-        wm.scheduleWork(work2, WorkManager.INDEFINITE, null, null);
-        Debug.trace("LocalTxResourceAdapter work2 scheduled");
-
-        // Endpoint requires a tranaction and there is an incoming transaction
-        work3 = new LocalTxMessageWork2(destinationName, mef2);
-        XidImpl myid = new XidImpl();
-        ExecutionContext ec = new ExecutionContext();
-        int idcount = myid.getFormatId();
-        Debug.trace("XID getting used [ " + idcount + " ]");
-        ec.setXid(myid);
-        ml = new LocalTxMessageListener(myid, this.bsc);
-        wm.scheduleWork(work3, WorkManager.INDEFINITE, ec, ml);
-      }
-
-      if (mefcount == 2) {
-        chkUniqueMessageEndpointFactory();
-      }
-
-    } catch (Throwable ex) {
-      ex.printStackTrace();
     }
 
-  }
-
-  @Override
-  public XAResource[] getXAResources(ActivationSpec[] as) {
-    return null;
-  }
-
-  private Method getOnMessageMethod() {
-
-    Method onMessageMethod = null;
-    try {
-      Class msgListenerClass = TSMessageListenerInterface.class;
-      Class[] paramTypes = { java.lang.String.class };
-      onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
-
-    } catch (NoSuchMethodException ex) {
-      ex.printStackTrace();
-    }
-    return onMessageMethod;
-  }
-
-  private void chkUniqueMessageEndpointFactory() {
-    if ((mef1 != null) && (!mef1.equals(mef2))) {
-      ConnectorStatus.getConnectorStatus()
-          .logState("LocalTx MessageEndpointFactory is Unique");
-
-      // Also checking if the equals on the MEF is implemented correctly.
-      // Normally MEF equals should not be over ridden but if it is
-      // it should be implemented correctly.
-      ConnectorStatus.getConnectorStatus().logState(
-          "LocalTx MessageEndpointFactory equals implemented correctly");
-    }
-  }
-
-  @Override
-  public void endpointDeactivation(MessageEndpointFactory mef,
-      ActivationSpec as) {
-    mefcount--;
-
-    if ((mef1 != null) && (mef1.equals(mef))) {
-      mef1 = null;
-
-    } else if ((mef2 != null) && (mef2.equals(mef))) {
-      mef2 = null;
-
-    } else {
-      // possible issue so dump some debugging/trace info
-      String str = "WARNING:  LocalTxResourceAdapterImpl.endpointDeactivation():  ";
-      str += "unexpected MEF passed in";
-      Debug.trace(str);
-      if (mef == null) {
-        Debug.trace("NULL MEF passed into endpointDeactivation()");
-      } else {
-        Debug.trace("Unrecognize mef passed into endpointDeactivation()");
-      }
-    }
-  }
-
-  /*
-   * @name equals
-   * 
-   * @desc compares this object with the given object.
-   * 
-   * @param Object obj
-   * 
-   * @return boolean
-   */
-  public boolean equals(Object obj) {
-
-    if ((obj == null) || !(obj instanceof LocalTxResourceAdapterImpl)) {
-      return false;
-    }
-    if (obj == this) {
-      return true;
+    @Override
+    public XAResource[] getXAResources(ActivationSpec[] as) {
+        return null;
     }
 
-    LocalTxResourceAdapterImpl that = (LocalTxResourceAdapterImpl) obj;
+    private Method getOnMessageMethod() {
 
-    if (this.counter != that.getCounter()) {
-      return false;
+        Method onMessageMethod = null;
+        try {
+            Class msgListenerClass = TSMessageListenerInterface.class;
+            Class[] paramTypes = { java.lang.String.class };
+            onMessageMethod = msgListenerClass.getMethod("onMessage", paramTypes);
+
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        }
+        return onMessageMethod;
     }
 
-    if (this.mefcount != that.getMefcount()) {
-      return false;
+    private void chkUniqueMessageEndpointFactory() {
+        if ((mef1 != null) && (!mef1.equals(mef2))) {
+            ConnectorStatus.getConnectorStatus().logState("LocalTx MessageEndpointFactory is Unique");
+
+            // Also checking if the equals on the MEF is implemented correctly.
+            // Normally MEF equals should not be over ridden but if it is
+            // it should be implemented correctly.
+            ConnectorStatus.getConnectorStatus().logState("LocalTx MessageEndpointFactory equals implemented correctly");
+        }
     }
 
-    if (!Util.isEqual(this.sicUser, that.getSicUser()))
-      return false;
+    @Override
+    public void endpointDeactivation(MessageEndpointFactory mef, ActivationSpec as) {
+        mefcount--;
 
-    if (!Util.isEqual(this.sicPwd, that.getSicPwd()))
-      return false;
+        if ((mef1 != null) && (mef1.equals(mef))) {
+            mef1 = null;
 
-    if (!Util.isEqual(this.eisUser, that.getEisUser()))
-      return false;
+        } else if ((mef2 != null) && (mef2.equals(mef))) {
+            mef2 = null;
 
-    if (!Util.isEqual(this.eisPwd, that.getEisPwd()))
-      return false;
-
-    if (!Util.isEqual(this.RAName, that.getRAName()))
-      return false;
-
-    if (this.getUseSecurityMapping().booleanValue() != that
-        .getUseSecurityMapping().booleanValue()) {
-      return false;
+        } else {
+            // possible issue so dump some debugging/trace info
+            String str = "WARNING:  LocalTxResourceAdapterImpl.endpointDeactivation():  ";
+            str += "unexpected MEF passed in";
+            Debug.trace(str);
+            if (mef == null) {
+                Debug.trace("NULL MEF passed into endpointDeactivation()");
+            } else {
+                Debug.trace("Unrecognize mef passed into endpointDeactivation()");
+            }
+        }
     }
 
-    return true;
-  }
+    /*
+     * @name equals
+     * 
+     * @desc compares this object with the given object.
+     * 
+     * @param Object obj
+     * 
+     * @return boolean
+     */
+    public boolean equals(Object obj) {
 
-  /*
-   * @name hashCode
-   * 
-   * @desc gets the hashcode for this object.
-   * 
-   * @return int
-   */
-  public int hashCode() {
-    return this.getClass().getName().hashCode();
-  }
+        if ((obj == null) || !(obj instanceof LocalTxResourceAdapterImpl)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
 
-  public void setRAName(String name) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("LocalTxResourceAdapter.setRAName");
-    this.RAName = name;
-  }
+        LocalTxResourceAdapterImpl that = (LocalTxResourceAdapterImpl) obj;
 
-  public String getRAName() {
-    Debug.trace("LocalTxResourceAdapter.getRAName");
-    return RAName;
-  }
+        if (this.counter != that.getCounter()) {
+            return false;
+        }
 
-  public void setUseSecurityMapping(Boolean val) {
-    this.useSecurityMapping = val;
-  }
+        if (this.mefcount != that.getMefcount()) {
+            return false;
+        }
 
-  public Boolean getUseSecurityMapping() {
-    return this.useSecurityMapping;
-  }
+        if (!Util.isEqual(this.sicUser, that.getSicUser()))
+            return false;
 
-  public void setCounter(int val) {
-    this.counter = val;
-  }
+        if (!Util.isEqual(this.sicPwd, that.getSicPwd()))
+            return false;
 
-  public int getCounter() {
-    return this.counter;
-  }
+        if (!Util.isEqual(this.eisUser, that.getEisUser()))
+            return false;
 
-  public void setMefcount(int val) {
-    this.mefcount = val;
-  }
+        if (!Util.isEqual(this.eisPwd, that.getEisPwd()))
+            return false;
 
-  public int getMefcount() {
-    return this.mefcount;
-  }
+        if (!Util.isEqual(this.RAName, that.getRAName()))
+            return false;
 
-  public void setSicUser(String val) {
-    this.sicUser = val;
-  }
+        if (this.getUseSecurityMapping().booleanValue() != that.getUseSecurityMapping().booleanValue()) {
+            return false;
+        }
 
-  public String getSicUser() {
-    return this.sicUser;
-  }
+        return true;
+    }
 
-  public void setSicPwd(String val) {
-    this.sicPwd = val;
-  }
+    /*
+     * @name hashCode
+     * 
+     * @desc gets the hashcode for this object.
+     * 
+     * @return int
+     */
+    public int hashCode() {
+        return this.getClass().getName().hashCode();
+    }
 
-  public String getSicPwd() {
-    return this.sicPwd;
-  }
+    public void setRAName(String name) {
+        ConnectorStatus.getConnectorStatus().logState("LocalTxResourceAdapter.setRAName");
+        this.RAName = name;
+    }
 
-  public void setEisUser(String val) {
-    this.eisUser = val;
-  }
+    public String getRAName() {
+        Debug.trace("LocalTxResourceAdapter.getRAName");
+        return RAName;
+    }
 
-  public String getEisUser() {
-    return this.eisUser;
-  }
+    public void setUseSecurityMapping(Boolean val) {
+        this.useSecurityMapping = val;
+    }
 
-  public void setEisPwd(String val) {
-    this.eisPwd = val;
-  }
+    public Boolean getUseSecurityMapping() {
+        return this.useSecurityMapping;
+    }
 
-  public String getEisPwd() {
-    return this.eisPwd;
-  }
+    public void setCounter(int val) {
+        this.counter = val;
+    }
+
+    public int getCounter() {
+        return this.counter;
+    }
+
+    public void setMefcount(int val) {
+        this.mefcount = val;
+    }
+
+    public int getMefcount() {
+        return this.mefcount;
+    }
+
+    public void setSicUser(String val) {
+        this.sicUser = val;
+    }
+
+    public String getSicUser() {
+        return this.sicUser;
+    }
+
+    public void setSicPwd(String val) {
+        this.sicPwd = val;
+    }
+
+    public String getSicPwd() {
+        return this.sicPwd;
+    }
+
+    public void setEisUser(String val) {
+        this.eisUser = val;
+    }
+
+    public String getEisUser() {
+        return this.eisUser;
+    }
+
+    public void setEisPwd(String val) {
+        this.eisPwd = val;
+    }
+
+    public String getEisPwd() {
+        return this.eisPwd;
+    }
 
 }

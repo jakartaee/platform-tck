@@ -27,60 +27,59 @@ import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
 
 public class WorkImpl implements Work {
-  protected WorkManager wm;
+    protected WorkManager wm;
 
-  protected String callingClassName = "WorkImpl";
+    protected String callingClassName = "WorkImpl";
 
-  public WorkImpl(WorkManager wm) {
-    this.wm = wm;
+    public WorkImpl(WorkManager wm) {
+        this.wm = wm;
 
-    String str = callingClassName + ".constructor";
-    ConnectorStatus.getConnectorStatus().logAPI(str, "", "");
-    debug(str);
-  }
-
-  public WorkImpl(WorkManager wm, String strCallingClassName) {
-    this.wm = wm;
-    callingClassName = strCallingClassName;
-
-    String str = callingClassName + ".constructor";
-    ConnectorStatus.getConnectorStatus().logAPI(str, "", "");
-    debug(str);
-  }
-
-  public void release() {
-    String str = callingClassName + ".release";
-    ConnectorStatus.getConnectorStatus().logAPI(str, "", "");
-    debug(str);
-  }
-
-  public void run() {
-    try {
-      String str = callingClassName + ".run";
-      ConnectorStatus.getConnectorStatus().logAPI(str, "", "");
-      debug(str);
-      NestWork nw = new NestWork();
-      wm.doWork(nw);
-    } catch (WorkException we) {
-      debug("got WorkException in  WorkImpl.run(): " + we.getMessage());
+        String str = callingClassName + ".constructor";
+        ConnectorStatus.getConnectorStatus().logAPI(str, "", "");
+        debug(str);
     }
-  }
 
-  /*
-   * this sets the name of the calling class so that we can be sure proper
-   * logging info is dumped out.
-   *
-   */
-  public void setCallingClassName(String str) {
-    this.callingClassName = str;
-  }
+    public WorkImpl(WorkManager wm, String strCallingClassName) {
+        this.wm = wm;
+        callingClassName = strCallingClassName;
 
-  public String getCallingClassName() {
-    return this.callingClassName;
-  }
+        String str = callingClassName + ".constructor";
+        ConnectorStatus.getConnectorStatus().logAPI(str, "", "");
+        debug(str);
+    }
 
-  private void debug(String str) {
-    Debug.trace(str);
-  }
+    public void release() {
+        String str = callingClassName + ".release";
+        ConnectorStatus.getConnectorStatus().logAPI(str, "", "");
+        debug(str);
+    }
+
+    public void run() {
+        try {
+            String str = callingClassName + ".run";
+            ConnectorStatus.getConnectorStatus().logAPI(str, "", "");
+            debug(str);
+            NestWork nw = new NestWork();
+            wm.doWork(nw);
+        } catch (WorkException we) {
+            debug("got WorkException in  WorkImpl.run(): " + we.getMessage());
+        }
+    }
+
+    /*
+     * this sets the name of the calling class so that we can be sure proper logging info is dumped out.
+     *
+     */
+    public void setCallingClassName(String str) {
+        this.callingClassName = str;
+    }
+
+    public String getCallingClassName() {
+        return this.callingClassName;
+    }
+
+    private void debug(String str) {
+        Debug.trace(str);
+    }
 
 }

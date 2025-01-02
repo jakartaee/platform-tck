@@ -29,19 +29,15 @@ import com.sun.ts.tests.common.taglibsig.TagLibraryDescriptor;
  */
 public interface Validator {
 
-  /**
-   * <p>
-   * Performs validations (specific to the particular implementation) of two
-   * {@link TagLibraryDescriptor} instances.
-   * </p>
-   * 
-   * @param control
-   *          - the <code>control</code> TagLibraryDescriptor
-   * @param underTest
-   *          - the TagLibraryDescriptor that we are validating for correctness
-   * @return
-   */
-  public List validate(TagLibraryDescriptor control,
-      TagLibraryDescriptor underTest);
+    /**
+     * <p>
+     * Performs validations (specific to the particular implementation) of two {@link TagLibraryDescriptor} instances.
+     * </p>
+     * 
+     * @param control - the <code>control</code> TagLibraryDescriptor
+     * @param underTest - the TagLibraryDescriptor that we are validating for correctness
+     * @return
+     */
+    public List validate(TagLibraryDescriptor control, TagLibraryDescriptor underTest);
 
 }

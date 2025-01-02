@@ -39,256 +39,247 @@ import javax.transaction.xa.Xid;
  */
 public class TSXaTransaction {
 
-  /** No Transaction . Default status **/
-  static final int NOTRANSACTION = 0;
+    /** No Transaction . Default status **/
+    static final int NOTRANSACTION = 0;
 
-  /** Status indicating that Transaction has started **/
-  static final int STARTED = 1;
+    /** Status indicating that Transaction has started **/
+    static final int STARTED = 1;
 
-  /** Status indicating that Transaction has been suspended **/
-  static final int SUSPENDED = 2;
+    /** Status indicating that Transaction has been suspended **/
+    static final int SUSPENDED = 2;
 
-  /** Status indicating that Transaction has been ended with a failure **/
-  static final int ENDFAILED = 3;
+    /** Status indicating that Transaction has been ended with a failure **/
+    static final int ENDFAILED = 3;
 
-  /** Status indicating that Transaction has been ended with a success **/
-  static final int ENDSUCCESSFUL = 4;
+    /** Status indicating that Transaction has been ended with a success **/
+    static final int ENDSUCCESSFUL = 4;
 
-  /** Status indicating that Transaction has been prepared **/
-  static final int PREPARED = 5;
+    /** Status indicating that Transaction has been prepared **/
+    static final int PREPARED = 5;
 
-  /** Field storing the status values **/
-  private int status = 0;
+    /** Field storing the status values **/
+    private int status = 0;
 
-  /** Connections involved in one transaction branch. Specifications doesnt **/
-  /** stop from having more than one connection in global transaction **/
-  private Hashtable connections = new Hashtable();
+    /** Connections involved in one transaction branch. Specifications doesnt **/
+    /** stop from having more than one connection in global transaction **/
+    private Hashtable connections = new Hashtable();
 
-  /** Id of the transaction **/
-  private Xid xid;
+    /** Id of the transaction **/
+    private Xid xid;
 
-  /**
-   * Creates a new Global Transaction object.
-   *
-   * @param id
-   *          Global Transaction Identifier.
-   */
-  public TSXaTransaction(Xid id) {
-    this.xid = id;
-  }
-
-  /**
-   * Adds the connection to this transaction.
-   *
-   * @param con
-   *          Connection involved in the transaction branch.
-   */
-  public void addConnection(TSConnection con) {
-    connections.put(con, "");
-  }
-
-  /**
-   * Return the connections involved as a hashtable.
-   * 
-   * @return Connections.
-   */
-  Hashtable getConnections() {
-    return connections;
-  }
-
-  /**
-   * Sets the Status of the transaction.
-   *
-   * @param Status
-   *          of the transaction
-   */
-  public void setStatus(int status) {
-    this.status = status;
-  }
-
-  /**
-   * Get the status of the transaction.
-   * 
-   * @return Status of the transaction.
-   */
-  public int getStatus() {
-    return this.status;
-  }
-
-  /**
-   * Prepare the transaction.
-   * 
-   * @return The Vote of this branch in this transaction.
-   * @throws XAException
-   *           If prepare fails.
-   */
-  public int prepare() throws XAException {
-    System.out.println("TsXaTransaction.prepare");
-    Hashtable ht = prepareTempTable();
-
-    Enumeration e = ht.keys();
-    while (e.hasMoreElements()) {
-      System.out.println("TSXaTransaction.prepare.inTheLoop");
-      String key = (String) e.nextElement();
-      DataElement de = (DataElement) ht.get(key);
-
-      if (de.getStatus() == DataElement.INSERTED) {
-        try {
-          TSeis.getTSeis().prepareInsert(de, xid);
-        } catch (TSEISException ex) {
-          throw new XAException(XAException.XA_RBROLLBACK);
-        }
-      }
-      if (de.getStatus() == DataElement.UPDATED
-          || de.getStatus() == DataElement.DELETED) {
-        System.out.println("TSXaTransaction.prepare.updatePrepare");
-        try {
-          TSeis.getTSeis().prepareChange(de, xid);
-        } catch (TSEISException ex) {
-          throw new XAException(XAException.XA_RBROLLBACK);
-        }
-      }
+    /**
+     * Creates a new Global Transaction object.
+     *
+     * @param id Global Transaction Identifier.
+     */
+    public TSXaTransaction(Xid id) {
+        this.xid = id;
     }
-    return XAResource.XA_OK;
-  }
 
-  // Creates one temp table for the transaction.
-  private Hashtable prepareTempTable() {
-    System.out.println("TSXaTransaction.prepareTempTable");
-    Hashtable temptable = new Hashtable();
+    /**
+     * Adds the connection to this transaction.
+     *
+     * @param con Connection involved in the transaction branch.
+     */
+    public void addConnection(TSConnection con) {
+        connections.put(con, "");
+    }
 
-    Enumeration e = connections.keys();
+    /**
+     * Return the connections involved as a hashtable.
+     * 
+     * @return Connections.
+     */
+    Hashtable getConnections() {
+        return connections;
+    }
 
-    while (e.hasMoreElements()) {
-      System.out.println("TSXaTransaction.prepareTempTable.inTheLoop");
-      TSConnection con = (TSConnection) e.nextElement();
-      Hashtable temp = con.getTempTable();
+    /**
+     * Sets the Status of the transaction.
+     *
+     * @param Status of the transaction
+     */
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
-      Enumeration e1 = temp.keys();
-      while (e1.hasMoreElements()) {
-        String key = (String) e1.nextElement();
-        DataElement de = (DataElement) temp.get(key);
+    /**
+     * Get the status of the transaction.
+     * 
+     * @return Status of the transaction.
+     */
+    public int getStatus() {
+        return this.status;
+    }
 
-        if (temptable.containsKey(key)) {
-          DataElement de1 = (DataElement) temptable.get(key);
-          // Latest version should be used
-          if (de.getVersion() >= de1.getVersion()) {
-            temptable.put(key, de);
-          }
+    /**
+     * Prepare the transaction.
+     * 
+     * @return The Vote of this branch in this transaction.
+     * @throws XAException If prepare fails.
+     */
+    public int prepare() throws XAException {
+        System.out.println("TsXaTransaction.prepare");
+        Hashtable ht = prepareTempTable();
+
+        Enumeration e = ht.keys();
+        while (e.hasMoreElements()) {
+            System.out.println("TSXaTransaction.prepare.inTheLoop");
+            String key = (String) e.nextElement();
+            DataElement de = (DataElement) ht.get(key);
+
+            if (de.getStatus() == DataElement.INSERTED) {
+                try {
+                    TSeis.getTSeis().prepareInsert(de, xid);
+                } catch (TSEISException ex) {
+                    throw new XAException(XAException.XA_RBROLLBACK);
+                }
+            }
+            if (de.getStatus() == DataElement.UPDATED || de.getStatus() == DataElement.DELETED) {
+                System.out.println("TSXaTransaction.prepare.updatePrepare");
+                try {
+                    TSeis.getTSeis().prepareChange(de, xid);
+                } catch (TSEISException ex) {
+                    throw new XAException(XAException.XA_RBROLLBACK);
+                }
+            }
+        }
+        return XAResource.XA_OK;
+    }
+
+    // Creates one temp table for the transaction.
+    private Hashtable prepareTempTable() {
+        System.out.println("TSXaTransaction.prepareTempTable");
+        Hashtable temptable = new Hashtable();
+
+        Enumeration e = connections.keys();
+
+        while (e.hasMoreElements()) {
+            System.out.println("TSXaTransaction.prepareTempTable.inTheLoop");
+            TSConnection con = (TSConnection) e.nextElement();
+            Hashtable temp = con.getTempTable();
+
+            Enumeration e1 = temp.keys();
+            while (e1.hasMoreElements()) {
+                String key = (String) e1.nextElement();
+                DataElement de = (DataElement) temp.get(key);
+
+                if (temptable.containsKey(key)) {
+                    DataElement de1 = (DataElement) temptable.get(key);
+                    // Latest version should be used
+                    if (de.getVersion() >= de1.getVersion()) {
+                        temptable.put(key, de);
+                    }
+                } else {
+                    temptable.put(key, de);
+                }
+            }
+            con.rollback();
+        }
+
+        return temptable;
+    }
+
+    /**
+     * Commits this Transaction.
+     * 
+     * @param Boolean indicating, whether it is a single-phase or 2-phase commit.
+     * @throws XAException If commit fails.
+     */
+    public void commit(boolean onePhase) throws XAException {
+        System.out.println("TsXaTransaction.commit." + onePhase);
+        if (onePhase) {
+            Hashtable ht = prepareTempTable();
+
+            Enumeration e = ht.keys();
+            while (e.hasMoreElements()) {
+                String key = (String) e.nextElement();
+                DataElement de = (DataElement) ht.get(key);
+
+                if (de.getStatus() == DataElement.INSERTED) {
+                    try {
+                        TSeis.getTSeis().actualInsert(de);
+                    } catch (TSEISException ex) {
+                        throw new XAException(XAException.XA_RBROLLBACK);
+                    }
+                }
+                if (de.getStatus() == DataElement.UPDATED) {
+                    try {
+                        TSeis.getTSeis().actualUpdate(de);
+                    } catch (TSEISException ex) {
+                        throw new XAException(XAException.XA_RBROLLBACK);
+                    }
+                }
+                if (de.getStatus() == DataElement.DELETED) {
+                    try {
+                        TSeis.getTSeis().actualDelete(de.getKey());
+                    } catch (TSEISException ex) {
+                        throw new XAException(XAException.XA_RBROLLBACK);
+                    }
+                }
+            }
         } else {
-          temptable.put(key, de);
+            TSeis.getTSeis().commit(xid);
         }
-      }
-      con.rollback();
     }
 
-    return temptable;
-  }
-
-  /**
-   * Commits this Transaction.
-   * 
-   * @param Boolean
-   *          indicating, whether it is a single-phase or 2-phase commit.
-   * @throws XAException
-   *           If commit fails.
-   */
-  public void commit(boolean onePhase) throws XAException {
-    System.out.println("TsXaTransaction.commit." + onePhase);
-    if (onePhase) {
-      Hashtable ht = prepareTempTable();
-
-      Enumeration e = ht.keys();
-      while (e.hasMoreElements()) {
-        String key = (String) e.nextElement();
-        DataElement de = (DataElement) ht.get(key);
-
-        if (de.getStatus() == DataElement.INSERTED) {
-          try {
-            TSeis.getTSeis().actualInsert(de);
-          } catch (TSEISException ex) {
-            throw new XAException(XAException.XA_RBROLLBACK);
-          }
-        }
-        if (de.getStatus() == DataElement.UPDATED) {
-          try {
-            TSeis.getTSeis().actualUpdate(de);
-          } catch (TSEISException ex) {
-            throw new XAException(XAException.XA_RBROLLBACK);
-          }
-        }
-        if (de.getStatus() == DataElement.DELETED) {
-          try {
-            TSeis.getTSeis().actualDelete(de.getKey());
-          } catch (TSEISException ex) {
-            throw new XAException(XAException.XA_RBROLLBACK);
-          }
-        }
-      }
-    } else {
-      TSeis.getTSeis().commit(xid);
-    }
-  }
-
-  /**
-   * Rolls back the transaction
-   */
-  public void rollback() {
-    if (status == PREPARED) {
-      TSeis.getTSeis().rollback(xid);
-    } else {
-      Enumeration e = connections.keys();
-
-      while (e.hasMoreElements()) {
-        TSConnection con = (TSConnection) e.nextElement();
-        con.rollback();
-      }
-    }
-  }
-
-  /**
-   * Check for the key in the transaction. If it is not readable return null.
-   *
-   * @param elementkey
-   *          Key to be read.
-   * @return DataElement object.
-   * @throws TSEISException
-   *           In case, read fails.
-   */
-  public DataElement read(String elementkey) throws TSEISException {
-    Hashtable temptable = new Hashtable();
-    Enumeration e = connections.keys();
-
-    while (e.hasMoreElements()) {
-      TSConnection con = (TSConnection) e.nextElement();
-      Hashtable temp = con.getTempTable();
-
-      Enumeration e1 = temp.keys();
-      while (e1.hasMoreElements()) {
-        String key = (String) e1.nextElement();
-        DataElement de = (DataElement) temp.get(key);
-
-        if (temptable.containsKey(key)) {
-          DataElement de1 = (DataElement) temptable.get(key);
-          // Latest version should be used
-          if (de.getVersion() >= de1.getVersion()) {
-            temptable.put(key, de);
-          }
+    /**
+     * Rolls back the transaction
+     */
+    public void rollback() {
+        if (status == PREPARED) {
+            TSeis.getTSeis().rollback(xid);
         } else {
-          temptable.put(key, de);
+            Enumeration e = connections.keys();
+
+            while (e.hasMoreElements()) {
+                TSConnection con = (TSConnection) e.nextElement();
+                con.rollback();
+            }
         }
-      }
     }
 
-    if (temptable.containsKey(elementkey)) {
-      DataElement de = (DataElement) temptable.get(elementkey);
-      if (de.getStatus() == DataElement.DELETED) {
-        throw new TSEISException("Data deleted");
-      } else {
-        return de;
-      }
-    } else {
-      return null;
+    /**
+     * Check for the key in the transaction. If it is not readable return null.
+     *
+     * @param elementkey Key to be read.
+     * @return DataElement object.
+     * @throws TSEISException In case, read fails.
+     */
+    public DataElement read(String elementkey) throws TSEISException {
+        Hashtable temptable = new Hashtable();
+        Enumeration e = connections.keys();
+
+        while (e.hasMoreElements()) {
+            TSConnection con = (TSConnection) e.nextElement();
+            Hashtable temp = con.getTempTable();
+
+            Enumeration e1 = temp.keys();
+            while (e1.hasMoreElements()) {
+                String key = (String) e1.nextElement();
+                DataElement de = (DataElement) temp.get(key);
+
+                if (temptable.containsKey(key)) {
+                    DataElement de1 = (DataElement) temptable.get(key);
+                    // Latest version should be used
+                    if (de.getVersion() >= de1.getVersion()) {
+                        temptable.put(key, de);
+                    }
+                } else {
+                    temptable.put(key, de);
+                }
+            }
+        }
+
+        if (temptable.containsKey(elementkey)) {
+            DataElement de = (DataElement) temptable.get(elementkey);
+            if (de.getStatus() == DataElement.DELETED) {
+                throw new TSEISException("Data deleted");
+            } else {
+                return de;
+            }
+        } else {
+            return null;
+        }
     }
-  }
 }

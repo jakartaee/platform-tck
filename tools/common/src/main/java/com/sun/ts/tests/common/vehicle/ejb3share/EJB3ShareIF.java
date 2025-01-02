@@ -25,5 +25,5 @@ import java.util.Properties;
 import com.sun.ts.lib.harness.RemoteStatus;
 
 public interface EJB3ShareIF {
-  public RemoteStatus runTest(String[] args, Properties props);
+    public RemoteStatus runTest(String[] args, Properties props);
 }

@@ -28,23 +28,19 @@ import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 public class AppManagedNoTxVehicleRunner implements VehicleRunnable {
-  public static final String APPMANAGEDNOTX_REF_NAME = "java:comp/env/ejb/AppManagedNoTxVehicleBean";
+    public static final String APPMANAGEDNOTX_REF_NAME = "java:comp/env/ejb/AppManagedNoTxVehicleBean";
 
-  public Status run(String[] args, Properties props) {
-    Status sTestStatus = null;
-    try {
-        TSNamingContext jc = new TSNamingContext();
-        AppManagedNoTxVehicleIF bean = (AppManagedNoTxVehicleIF) jc
-            .lookup(APPMANAGEDNOTX_REF_NAME);
-        TestUtil.logTrace(
-            "application-managed resource-local runner looked up vehicle: "
-                + bean);
-      sTestStatus = (bean.runTest(args, props)).toStatus();
-    } catch (Exception e) {
-      TestUtil.logErr("Test failed.", e);
-      sTestStatus = Status.failed(
-          "Test run in application-managed resource-local vehicle failed.");
+    public Status run(String[] args, Properties props) {
+        Status sTestStatus = null;
+        try {
+            TSNamingContext jc = new TSNamingContext();
+            AppManagedNoTxVehicleIF bean = (AppManagedNoTxVehicleIF) jc.lookup(APPMANAGEDNOTX_REF_NAME);
+            TestUtil.logTrace("application-managed resource-local runner looked up vehicle: " + bean);
+            sTestStatus = (bean.runTest(args, props)).toStatus();
+        } catch (Exception e) {
+            TestUtil.logErr("Test failed.", e);
+            sTestStatus = Status.failed("Test run in application-managed resource-local vehicle failed.");
+        }
+        return sTestStatus;
     }
-    return sTestStatus;
-  }
 }
