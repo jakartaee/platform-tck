@@ -26,7 +26,7 @@
 
     <groupId>jakarta.tck</groupId>
     <artifactId>tools</artifactId>
-    <version>11.0.0-SNAPSHOT</version>
+    <version>11.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <description>This module contains the 4 libs that most TCK tests need (depend on)</description>
