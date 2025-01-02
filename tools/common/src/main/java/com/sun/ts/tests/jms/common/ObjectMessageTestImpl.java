@@ -34,46 +34,45 @@ import jakarta.jms.ObjectMessage;
  * @author
  * @version 1.2, 09/26/00
  */
-public class ObjectMessageTestImpl extends MessageTestImpl
-    implements ObjectMessage {
-  private Serializable object;
+public class ObjectMessageTestImpl extends MessageTestImpl implements ObjectMessage {
+    private Serializable object;
 
-  /**
-   * Class Constructor.
-   * 
-   * 
-   * @see
-   */
-  public ObjectMessageTestImpl() {
-    super();
-  }
+    /**
+     * Class Constructor.
+     * 
+     * 
+     * @see
+     */
+    public ObjectMessageTestImpl() {
+        super();
+    }
 
-  /**
-   * Method Declaration.
-   * 
-   * 
-   * @param object
-   *
-   * @exception JMSException
-   *
-   * @see
-   */
-  public void setObject(Serializable object) throws JMSException {
-    this.object = object;
-  }
+    /**
+     * Method Declaration.
+     * 
+     * 
+     * @param object
+     *
+     * @exception JMSException
+     *
+     * @see
+     */
+    public void setObject(Serializable object) throws JMSException {
+        this.object = object;
+    }
 
-  /**
-   * Method Declaration.
-   * 
-   * 
-   * @return
-   *
-   * @exception JMSException
-   *
-   * @see
-   */
-  public Serializable getObject() throws JMSException {
-    return object;
-  }
+    /**
+     * Method Declaration.
+     * 
+     * 
+     * @return
+     *
+     * @exception JMSException
+     *
+     * @see
+     */
+    public Serializable getObject() throws JMSException {
+        return object;
+    }
 
 }

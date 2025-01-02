@@ -17,5 +17,5 @@
 package com.sun.ts.lib.util.sec.misc;
 
 public interface JavaIODeleteOnExitAccess extends Runnable {
-  public void run();
+    public void run();
 }

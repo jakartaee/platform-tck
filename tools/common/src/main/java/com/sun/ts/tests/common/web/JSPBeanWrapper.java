@@ -33,27 +33,26 @@ import jakarta.servlet.http.HttpServletRequest;
  */
 public class JSPBeanWrapper implements java.io.Serializable {
 
-  protected TSNamingContext nctx = null;
+    protected TSNamingContext nctx = null;
 
-  /** No args constructor */
-  public JSPBeanWrapper() {
-    try {
-      WebUtil.logMsg("[JSPBeanWrapper] Getting Naming Context");
-      nctx = new TSNamingContext();
-    } catch (Exception e) {
-      WebUtil.logErr("[JSPBeanWrapper] Unexpected exception", e);
+    /** No args constructor */
+    public JSPBeanWrapper() {
+        try {
+            WebUtil.logMsg("[JSPBeanWrapper] Getting Naming Context");
+            nctx = new TSNamingContext();
+        } catch (Exception e) {
+            WebUtil.logErr("[JSPBeanWrapper] Unexpected exception", e);
+        }
     }
-  }
 
-  public String executeTest(HttpServletRequest request)
-      throws ServletException {
+    public String executeTest(HttpServletRequest request) throws ServletException {
 
-    Properties resultProps;
+        Properties resultProps;
 
-    WebUtil.logTrace("[JSPBeanWrapper] executeTest()");
-    resultProps = WebUtil.executeTest(this, request);
+        WebUtil.logTrace("[JSPBeanWrapper] executeTest()");
+        resultProps = WebUtil.executeTest(this, request);
 
-    return WebUtil.propsToString(resultProps);
-  }
+        return WebUtil.propsToString(resultProps);
+    }
 
 }

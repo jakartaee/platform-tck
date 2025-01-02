@@ -26,6 +26,6 @@ import jakarta.ejb.EJBLocalObject;
 
 public interface StatefulCalleeLocal extends EJBLocalObject {
 
-  public void call(Properties props, SimpleArgument arg);
+    public void call(Properties props, SimpleArgument arg);
 
 }

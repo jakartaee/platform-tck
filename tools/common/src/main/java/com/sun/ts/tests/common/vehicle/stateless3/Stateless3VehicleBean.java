@@ -39,52 +39,47 @@ import jakarta.persistence.PersistenceUnit;
 @PersistenceContext(name = "STATELESS3EM", unitName = "CTS-EM")
 @Remote({ Stateless3VehicleIF.class })
 @TransactionManagement(TransactionManagementType.BEAN)
-public class Stateless3VehicleBean
-    extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
-    implements Stateless3VehicleIF {
+public class Stateless3VehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean implements Stateless3VehicleIF {
 
-  @PersistenceUnit(name = "STATELESS3EMF", unitName = "CTS-EM")
-  EntityManagerFactory emf;
+    @PersistenceUnit(name = "STATELESS3EMF", unitName = "CTS-EM")
+    EntityManagerFactory emf;
 
-  public Stateless3VehicleBean() {
-    super();
-  }
-
-  protected String getVehicleType() {
-    return STATELESS3;
-  }
-
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
-
-  @PostConstruct
-  public void init() {
-    try {
-      System.out.println("In PostContruct");
-      EntityManager entityManager = (EntityManager) sessionContext
-          .lookup("STATELESS3EM");
-      EntityManagerFactory emf = (EntityManagerFactory) sessionContext
-          .lookup("STATELESS3EMF");
-      setEntityManager(entityManager);
-      setEntityManagerFactory(emf);
-    } catch (Exception e) {
-      System.out.println("ERROR: "
-          + " In PostConstruct: Exception caught while setting EntityManager");
-      e.printStackTrace();
+    public Stateless3VehicleBean() {
+        super();
     }
-  }
 
-  public void setEntityManager(EntityManager entityManager) {
-    this.entityManager = entityManager;
-  }
+    protected String getVehicleType() {
+        return STATELESS3;
+    }
 
-  public void setEntityManagerFactory(EntityManagerFactory emf) {
-    this.entityManagerFactory = emf;
-  }
+    @Resource
+    public void setSessionContext(SessionContext sessionContext) {
+        this.sessionContext = sessionContext;
+    }
 
-  protected EntityTransaction getEntityTransaction() {
-    return new UserTransactionWrapper(sessionContext.getUserTransaction());
-  }
+    @PostConstruct
+    public void init() {
+        try {
+            System.out.println("In PostContruct");
+            EntityManager entityManager = (EntityManager) sessionContext.lookup("STATELESS3EM");
+            EntityManagerFactory emf = (EntityManagerFactory) sessionContext.lookup("STATELESS3EMF");
+            setEntityManager(entityManager);
+            setEntityManagerFactory(emf);
+        } catch (Exception e) {
+            System.out.println("ERROR: " + " In PostConstruct: Exception caught while setting EntityManager");
+            e.printStackTrace();
+        }
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public void setEntityManagerFactory(EntityManagerFactory emf) {
+        this.entityManagerFactory = emf;
+    }
+
+    protected EntityTransaction getEntityTransaction() {
+        return new UserTransactionWrapper(sessionContext.getUserTransaction());
+    }
 }

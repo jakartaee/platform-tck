@@ -26,46 +26,41 @@ import jakarta.resource.spi.work.WorkEvent;
 import jakarta.resource.spi.work.WorkListener;
 
 public class WorkListenerImpl implements WorkListener {
-  private String uidStr = null;
+    private String uidStr = null;
 
-  public void workAccepted(WorkEvent e) {
-    if (uidStr == null) {
-      ConnectorStatus.getConnectorStatus()
-          .logState("WorkListenerImpl.workAccepted");
-    } else {
-      ConnectorStatus.getConnectorStatus()
-          .logState("WorkListenerImpl.workAccepted for:" + uidStr);
+    public void workAccepted(WorkEvent e) {
+        if (uidStr == null) {
+            ConnectorStatus.getConnectorStatus().logState("WorkListenerImpl.workAccepted");
+        } else {
+            ConnectorStatus.getConnectorStatus().logState("WorkListenerImpl.workAccepted for:" + uidStr);
+        }
+        debug("WorkListenerImpl.workAccepted");
     }
-    debug("WorkListenerImpl.workAccepted");
-  }
 
-  public void workRejected(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("WorkListenerImpl.workRejected");
-    debug("WorkListenerImpl.workRejected");
-  }
+    public void workRejected(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("WorkListenerImpl.workRejected");
+        debug("WorkListenerImpl.workRejected");
+    }
 
-  public void workStarted(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("WorkListenerImpl.workStarted");
-    debug("WorkListenerImpl.workStarted");
-  }
+    public void workStarted(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("WorkListenerImpl.workStarted");
+        debug("WorkListenerImpl.workStarted");
+    }
 
-  public void workCompleted(WorkEvent e) {
-    ConnectorStatus.getConnectorStatus()
-        .logState("WorkListenerImpl.workCompleted");
-    debug("WorkListenerImpl.workCompleted");
-  }
+    public void workCompleted(WorkEvent e) {
+        ConnectorStatus.getConnectorStatus().logState("WorkListenerImpl.workCompleted");
+        debug("WorkListenerImpl.workCompleted");
+    }
 
-  public void setUidStr(String val) {
-    this.uidStr = val;
-  }
+    public void setUidStr(String val) {
+        this.uidStr = val;
+    }
 
-  public String getUidStr() {
-    return this.uidStr;
-  }
+    public String getUidStr() {
+        return this.uidStr;
+    }
 
-  private void debug(String str) {
-    Debug.trace(str);
-  }
+    private void debug(String str) {
+        Debug.trace(str);
+    }
 }

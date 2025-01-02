@@ -22,5 +22,5 @@ package com.sun.ts.tests.common.connector.util;
 
 public interface TSMessageListenerInterface {
 
-  public void onMessage(String message) throws AppException;
+    public void onMessage(String message) throws AppException;
 }

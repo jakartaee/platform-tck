@@ -25,141 +25,128 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- * This configuration class defines the {@link Validator} names that will be
- * used to perform the validation of the TaglibraryDescriptor objects. This
- * class is used exclusively by the {@link ValidatorFactory}, which will take
- * the names contained within and create {@link Validator} instances.
+ * This configuration class defines the {@link Validator} names that will be used to perform the validation of the
+ * TaglibraryDescriptor objects. This class is used exclusively by the {@link ValidatorFactory}, which will take the
+ * names contained within and create {@link Validator} instances.
  */
 
 public class ValidationConfiguration {
 
-  /*
-   * All standard Validators will be listed here.
-   */
-  public static final String URI_VALIDATOR = "URIValidator";
+    /*
+     * All standard Validators will be listed here.
+     */
+    public static final String URI_VALIDATOR = "URIValidator";
 
-  /*
-   * Package name for standard validator implementations.
-   */
-  private static final String VALIDATOR_PACKAGE = "com.sun.ts.tests.common.taglibsig.validation.";
+    /*
+     * Package name for standard validator implementations.
+     */
+    private static final String VALIDATOR_PACKAGE = "com.sun.ts.tests.common.taglibsig.validation.";
 
-  /*
-   * All standard validators will be stored in here as well. This is used by the
-   * initValidators() method.
-   */
-  private static final String[] VALIDATORS = { URI_VALIDATOR };
+    /*
+     * All standard validators will be stored in here as well. This is used by the initValidators() method.
+     */
+    private static final String[] VALIDATORS = { URI_VALIDATOR };
 
-  /*
-   * Map of all Validator's and their implementing class.
-   */
-  private static final Map KNOWN_VALIDATORS = new HashMap();
+    /*
+     * Map of all Validator's and their implementing class.
+     */
+    private static final Map KNOWN_VALIDATORS = new HashMap();
 
-  static {
-    // init the standard validator map
-    initValidators();
-  }
-
-  /*
-   * Map containing the Validators the end-user is interested in.
-   */
-  private Map configuredValidatorMap;
-
-  /**
-   * Constructs a new <code>ValidationConfiguation</code> instance.
-   */
-  public ValidationConfiguration() {
-    configuredValidatorMap = new HashMap();
-  }
-
-  /**
-   * <p>
-   * Adds the name of a {@link Validator} implementation to this configuration.
-   * The name must be a known name (i.e. be a constant name defined by this
-   * class), or a {@link Validator} will not be added. If a non-standard
-   * validator is required, use <code>addValidator(String, String)</code>
-   * instead.
-   * </p>
-   *
-   * @param validatorName
-   *          - Validator name
-   */
-  public void addValidator(String validatorName) {
-    String className = (String) KNOWN_VALIDATORS.get(validatorName);
-    if (className != null)
-      configuredValidatorMap.put(validatorName, className);
-  }
-
-  /**
-   * <p>
-   * Adds a custom {@link Validator} name to the current configuration.
-   * </p>
-   * 
-   * @param validatorName
-   *          - Validator name
-   * @param validatorClass
-   *          - The class name of this {@link Validator}
-   */
-  public void addValidator(String validatorName, String validatorClass) {
-    configuredValidatorMap.put(validatorName, validatorClass);
-  }
-
-  /**
-   * <p>
-   * Removes the specified {@link Validator} name from the current
-   * configuration.
-   * </p>
-   * 
-   * @param validatorName
-   *          - Validator name
-   */
-  public void removeValidator(String validatorName) {
-    configuredValidatorMap.remove(validatorName);
-  }
-
-  /**
-   * <p>
-   * Returns an Iterator of the {@link Validator} names in the current
-   * configuration.
-   * </p>
-   * 
-   * @return Iterator of this configuration's {@link Validator} names
-   */
-  public Iterator getValidatorNames() {
-    return configuredValidatorMap.keySet().iterator();
-  }
-
-  /**
-   * <p>
-   * Returns the name of the {@link Validator} implementation class.
-   * </p>
-   * 
-   * @param validatorName
-   *          - Validator name
-   * @return The name of the {@link Validator} implementation class.
-   */
-  public String getValidatorClass(String validatorName) {
-    return (String) configuredValidatorMap.get(validatorName);
-  }
-
-  /**
-   * <p>
-   * True if {@link Validator} names have been added to the current
-   * configuration, otherwise false.
-   * </p>
-   * 
-   * @return True if {@link Validator} names have been added to the current
-   *         configuration, otherwise false.
-   */
-  public boolean hasBeenConfigured() {
-    if (configuredValidatorMap.size() > 0)
-      return true;
-    return false;
-  }
-
-  // Initialize all standard validators.
-  private static void initValidators() {
-    for (int i = 0; i < VALIDATORS.length; i++) {
-      KNOWN_VALIDATORS.put(VALIDATORS[i], VALIDATOR_PACKAGE + VALIDATORS[i]);
+    static {
+        // init the standard validator map
+        initValidators();
     }
-  }
+
+    /*
+     * Map containing the Validators the end-user is interested in.
+     */
+    private Map configuredValidatorMap;
+
+    /**
+     * Constructs a new <code>ValidationConfiguation</code> instance.
+     */
+    public ValidationConfiguration() {
+        configuredValidatorMap = new HashMap();
+    }
+
+    /**
+     * <p>
+     * Adds the name of a {@link Validator} implementation to this configuration. The name must be a known name (i.e. be a
+     * constant name defined by this class), or a {@link Validator} will not be added. If a non-standard validator is
+     * required, use <code>addValidator(String, String)</code> instead.
+     * </p>
+     *
+     * @param validatorName - Validator name
+     */
+    public void addValidator(String validatorName) {
+        String className = (String) KNOWN_VALIDATORS.get(validatorName);
+        if (className != null)
+            configuredValidatorMap.put(validatorName, className);
+    }
+
+    /**
+     * <p>
+     * Adds a custom {@link Validator} name to the current configuration.
+     * </p>
+     * 
+     * @param validatorName - Validator name
+     * @param validatorClass - The class name of this {@link Validator}
+     */
+    public void addValidator(String validatorName, String validatorClass) {
+        configuredValidatorMap.put(validatorName, validatorClass);
+    }
+
+    /**
+     * <p>
+     * Removes the specified {@link Validator} name from the current configuration.
+     * </p>
+     * 
+     * @param validatorName - Validator name
+     */
+    public void removeValidator(String validatorName) {
+        configuredValidatorMap.remove(validatorName);
+    }
+
+    /**
+     * <p>
+     * Returns an Iterator of the {@link Validator} names in the current configuration.
+     * </p>
+     * 
+     * @return Iterator of this configuration's {@link Validator} names
+     */
+    public Iterator getValidatorNames() {
+        return configuredValidatorMap.keySet().iterator();
+    }
+
+    /**
+     * <p>
+     * Returns the name of the {@link Validator} implementation class.
+     * </p>
+     * 
+     * @param validatorName - Validator name
+     * @return The name of the {@link Validator} implementation class.
+     */
+    public String getValidatorClass(String validatorName) {
+        return (String) configuredValidatorMap.get(validatorName);
+    }
+
+    /**
+     * <p>
+     * True if {@link Validator} names have been added to the current configuration, otherwise false.
+     * </p>
+     * 
+     * @return True if {@link Validator} names have been added to the current configuration, otherwise false.
+     */
+    public boolean hasBeenConfigured() {
+        if (configuredValidatorMap.size() > 0)
+            return true;
+        return false;
+    }
+
+    // Initialize all standard validators.
+    private static void initValidators() {
+        for (int i = 0; i < VALIDATORS.length; i++) {
+            KNOWN_VALIDATORS.put(VALIDATORS[i], VALIDATOR_PACKAGE + VALIDATORS[i]);
+        }
+    }
 }

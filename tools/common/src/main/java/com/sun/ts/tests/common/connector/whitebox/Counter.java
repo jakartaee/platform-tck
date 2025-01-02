@@ -34,68 +34,63 @@ package com.sun.ts.tests.common.connector.whitebox;
  */
 public class Counter {
 
-  public enum Action {
-    INCREMENT, DECREMENT, DO_NOTHING
-  };
+    public enum Action {
+        INCREMENT, DECREMENT, DO_NOTHING
+    };
 
-  private static int count = 0;
+    private static int count = 0;
 
-  private static Action action = Action.DO_NOTHING;
+    private static Action action = Action.DO_NOTHING;
 
-  public Counter() {
-  }
-
-  /*
-   * We are forcing the users to explicitly indicate if they want to increment,
-   * decrement, or do nothing. The reasoning is to ensure that the user knows
-   * exactly what they are doing when using this class/method.
-   *
-   * Since the primary use of this class/method is to record the current count
-   * (usually during a work context notification call) we expect the users to
-   * call this as: getCount(Counter.INCREMENT) so that the count is incremented
-   * each time its called/used. The other Action types are only there for
-   * completeness but no current use of them is expected.
-   *
-   */
-  public int getCount(Action val) {
-
-    Counter.action = val;
-
-    if (action == Action.INCREMENT) {
-      count++;
-    } else if (action == Action.DECREMENT) {
-      // this is allowed - but not likely so offer caution
-      debug(
-          "CAUTION:  user invoked Counter(Action.DECREMENT) - verify this is correct.");
-      count--;
-    } else if (action == Action.DO_NOTHING) {
-      // this is allowed - but not likely so offer caution
-      debug(
-          "CAUTION:  user invoked Counter(Action.NOTHING) - verify this is correct.");
+    public Counter() {
     }
 
-    return count;
-  }
+    /*
+     * We are forcing the users to explicitly indicate if they want to increment, decrement, or do nothing. The reasoning is
+     * to ensure that the user knows exactly what they are doing when using this class/method.
+     *
+     * Since the primary use of this class/method is to record the current count (usually during a work context notification
+     * call) we expect the users to call this as: getCount(Counter.INCREMENT) so that the count is incremented each time its
+     * called/used. The other Action types are only there for completeness but no current use of them is expected.
+     *
+     */
+    public int getCount(Action val) {
 
-  public void setCount(int val) {
-    count = val;
-  }
+        Counter.action = val;
 
-  public int increment() {
-    return count++;
-  }
+        if (action == Action.INCREMENT) {
+            count++;
+        } else if (action == Action.DECREMENT) {
+            // this is allowed - but not likely so offer caution
+            debug("CAUTION:  user invoked Counter(Action.DECREMENT) - verify this is correct.");
+            count--;
+        } else if (action == Action.DO_NOTHING) {
+            // this is allowed - but not likely so offer caution
+            debug("CAUTION:  user invoked Counter(Action.NOTHING) - verify this is correct.");
+        }
 
-  public int decrement() {
-    return count--;
-  }
+        return count;
+    }
 
-  public static void resetCount() {
-    count = 0;
-    action = Action.DO_NOTHING;
-  }
+    public void setCount(int val) {
+        count = val;
+    }
 
-  private void debug(String str) {
-    Debug.trace(str);
-  }
+    public int increment() {
+        return count++;
+    }
+
+    public int decrement() {
+        return count--;
+    }
+
+    public static void resetCount() {
+        count = 0;
+        action = Action.DO_NOTHING;
+    }
+
+    private void debug(String str) {
+        Debug.trace(str);
+    }
 
 }

@@ -26,56 +26,56 @@ package com.sun.ts.tests.common.taglibsig;
 
 public class AttributeEntry {
 
-  public static final String NO_ATTRIBUTE_NAME = "no attribute name";
+    public static final String NO_ATTRIBUTE_NAME = "no attribute name";
 
-  private String name = NO_ATTRIBUTE_NAME;
+    private String name = NO_ATTRIBUTE_NAME;
 
-  private String type = "java.lang.String";
+    private String type = "java.lang.String";
 
-  private String rtexpr = "false";
+    private String rtexpr = "false";
 
-  private String required = "false";
+    private String required = "false";
 
-  public AttributeEntry() {
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    if (name != null) {
-      this.name = name;
+    public AttributeEntry() {
     }
-  }
 
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    if (type != null) {
-      this.type = type;
+    public String getName() {
+        return name;
     }
-  }
 
-  public String getRtexpr() {
-    return rtexpr;
-  }
-
-  public void setRtexpr(String rtexpr) {
-    if (rtexpr != null) {
-      this.rtexpr = rtexpr;
+    public void setName(String name) {
+        if (name != null) {
+            this.name = name;
+        }
     }
-  }
 
-  public String getRequired() {
-    return required;
-  }
-
-  public void setRequired(String required) {
-    if (required != null) {
-      this.required = required;
+    public String getType() {
+        return type;
     }
-  }
+
+    public void setType(String type) {
+        if (type != null) {
+            this.type = type;
+        }
+    }
+
+    public String getRtexpr() {
+        return rtexpr;
+    }
+
+    public void setRtexpr(String rtexpr) {
+        if (rtexpr != null) {
+            this.rtexpr = rtexpr;
+        }
+    }
+
+    public String getRequired() {
+        return required;
+    }
+
+    public void setRequired(String required) {
+        if (required != null) {
+            this.required = required;
+        }
+    }
 }

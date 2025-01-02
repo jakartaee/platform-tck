@@ -31,102 +31,97 @@ import jakarta.resource.spi.work.WorkException;
 import jakarta.resource.spi.work.WorkManager;
 
 public class IBAnnoWorkManager {
-  private BootstrapContext bsc = null;
+    private BootstrapContext bsc = null;
 
-  private WorkManager wmgr;
+    private WorkManager wmgr;
 
-  private Xid myxid;
+    private Xid myxid;
 
-  private Xid mynestxid;
+    private Xid mynestxid;
 
-  public IBAnnoWorkManager(BootstrapContext val) {
-    debug("enterred constructor");
-    this.bsc = val;
-    this.wmgr = bsc.getWorkManager();
+    public IBAnnoWorkManager(BootstrapContext val) {
+        debug("enterred constructor");
+        this.bsc = val;
+        this.wmgr = bsc.getWorkManager();
 
-    debug("leaving constructor");
-  }
-
-  public void runTests() {
-    debug("enterred runTests");
-    doWork();
-    doTCWork();
-    debug("leaving runTests");
-  }
-
-  public void doWork() {
-    debug("enterred doWork");
-
-    try {
-      WorkImpl workimpl = new WorkImpl(wmgr);
-
-      ExecutionContext ec = new ExecutionContext();
-      WorkListenerImpl wl = new WorkListenerImpl();
-      wmgr.doWork(workimpl, 5000, ec, wl);
-      ConnectorStatus.getConnectorStatus()
-          .logState("IBAnnoWorkManager Work Object Submitted");
-      debug("IBAnnoWorkManager Work Object Submitted");
-    } catch (WorkException we) {
-      System.out.println(
-          "IBAnnoWorkManager WorkException thrown is " + we.getMessage());
-    } catch (Exception ex) {
-      System.out
-          .println("IBAnnoWorkManager Exception thrown is " + ex.getMessage());
+        debug("leaving constructor");
     }
 
-    debug("leaving doWork");
-  }
-
-  private TransactionContext startTx() {
-    TransactionContext tc = new TransactionContext();
-    try {
-      Xid xid = new XidImpl();
-      tc.setXid(xid);
-      tc.setTransactionTimeout(5 * 1000); // 5 seconds
-    } catch (Exception ex) {
-      Debug.printDebugStack(ex);
+    public void runTests() {
+        debug("enterred runTests");
+        doWork();
+        doTCWork();
+        debug("leaving runTests");
     }
-    return tc;
-  }
 
-  /*
-   * This will be used to help verify assertion Connector:SPEC:55 from the
-   * annotation point of view.
-   */
-  public void doTCWork() {
-    try {
-      WorkImpl workimpl = new WorkImpl(wmgr);
-      TransactionContext tc = startTx();
+    public void doWork() {
+        debug("enterred doWork");
 
-      Debug.trace("Creating IBAnnoMessageListener");
-      XidImpl myid = new XidImpl();
-      IBAnnoMessageListener wl = new IBAnnoMessageListener(myid, this.bsc);
-      wmgr.doWork(workimpl, 5000, tc, wl);
-      ConnectorStatus.getConnectorStatus()
-          .logState("TransactionContext Work Object Submitted");
-    } catch (WorkException we) {
-      Debug.trace("TestWorkManager Exception thrown is " + we.getMessage());
+        try {
+            WorkImpl workimpl = new WorkImpl(wmgr);
+
+            ExecutionContext ec = new ExecutionContext();
+            WorkListenerImpl wl = new WorkListenerImpl();
+            wmgr.doWork(workimpl, 5000, ec, wl);
+            ConnectorStatus.getConnectorStatus().logState("IBAnnoWorkManager Work Object Submitted");
+            debug("IBAnnoWorkManager Work Object Submitted");
+        } catch (WorkException we) {
+            System.out.println("IBAnnoWorkManager WorkException thrown is " + we.getMessage());
+        } catch (Exception ex) {
+            System.out.println("IBAnnoWorkManager Exception thrown is " + ex.getMessage());
+        }
+
+        debug("leaving doWork");
     }
-  }
 
-  public void setXid(Xid xid) {
-    this.myxid = xid;
-  }
+    private TransactionContext startTx() {
+        TransactionContext tc = new TransactionContext();
+        try {
+            Xid xid = new XidImpl();
+            tc.setXid(xid);
+            tc.setTransactionTimeout(5 * 1000); // 5 seconds
+        } catch (Exception ex) {
+            Debug.printDebugStack(ex);
+        }
+        return tc;
+    }
 
-  public Xid getXid() {
-    return this.myxid;
-  }
+    /*
+     * This will be used to help verify assertion Connector:SPEC:55 from the annotation point of view.
+     */
+    public void doTCWork() {
+        try {
+            WorkImpl workimpl = new WorkImpl(wmgr);
+            TransactionContext tc = startTx();
 
-  public void setNestXid(Xid xid) {
-    this.mynestxid = xid;
-  }
+            Debug.trace("Creating IBAnnoMessageListener");
+            XidImpl myid = new XidImpl();
+            IBAnnoMessageListener wl = new IBAnnoMessageListener(myid, this.bsc);
+            wmgr.doWork(workimpl, 5000, tc, wl);
+            ConnectorStatus.getConnectorStatus().logState("TransactionContext Work Object Submitted");
+        } catch (WorkException we) {
+            Debug.trace("TestWorkManager Exception thrown is " + we.getMessage());
+        }
+    }
 
-  public Xid getNestXid() {
-    return this.mynestxid;
-  }
+    public void setXid(Xid xid) {
+        this.myxid = xid;
+    }
 
-  public void debug(String out) {
-    Debug.trace("IBAnnoWorkManager:  " + out);
-  }
+    public Xid getXid() {
+        return this.myxid;
+    }
+
+    public void setNestXid(Xid xid) {
+        this.mynestxid = xid;
+    }
+
+    public Xid getNestXid() {
+        return this.mynestxid;
+    }
+
+    public void debug(String out) {
+        Debug.trace("IBAnnoWorkManager:  " + out);
+    }
 
 }

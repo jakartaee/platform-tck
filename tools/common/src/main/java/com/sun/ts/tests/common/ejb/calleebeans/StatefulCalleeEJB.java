@@ -29,36 +29,34 @@ import jakarta.ejb.CreateException;
 
 public class StatefulCalleeEJB extends StatefulWrapper {
 
-  /** Modify arg and call StatefulWrapper create method */
-  public void ejbCreate(Properties p, SimpleArgument arg)
-      throws CreateException {
+    /** Modify arg and call StatefulWrapper create method */
+    public void ejbCreate(Properties p, SimpleArgument arg) throws CreateException {
 
-    try {
-      TestUtil.init(p);
-      TestUtil.logTrace("[StatefulCallee] ejbCreate()");
-      super.ejbCreate(p);
-      logArgStatus("create input", arg);
-      arg.modify();
-      logArgStatus("create output", arg);
-    } catch (Exception e) {
-      TestUtil.logErr("[StatefulCallee] Caught exception: ", e);
-      throw new CreateException(e.getMessage());
+        try {
+            TestUtil.init(p);
+            TestUtil.logTrace("[StatefulCallee] ejbCreate()");
+            super.ejbCreate(p);
+            logArgStatus("create input", arg);
+            arg.modify();
+            logArgStatus("create output", arg);
+        } catch (Exception e) {
+            TestUtil.logErr("[StatefulCallee] Caught exception: ", e);
+            throw new CreateException(e.getMessage());
+        }
     }
-  }
 
-  public void ejbPostCreate(Properties p, SimpleArgument arg)
-      throws CreateException {
-    TestUtil.logTrace("[StatefulCallee] ejbPostCreate()");
-  }
+    public void ejbPostCreate(Properties p, SimpleArgument arg) throws CreateException {
+        TestUtil.logTrace("[StatefulCallee] ejbPostCreate()");
+    }
 
-  public void call(Properties props, SimpleArgument arg) {
-    logArgStatus("input", arg);
-    arg.modify();
-    logArgStatus("output", arg);
-  }
+    public void call(Properties props, SimpleArgument arg) {
+        logArgStatus("input", arg);
+        arg.modify();
+        logArgStatus("output", arg);
+    }
 
-  public void logArgStatus(String msg, SimpleArgument arg) {
-    TestUtil.logTrace("[StatefulCallee] " + msg + " arg = " + arg.getValue());
-  }
+    public void logArgStatus(String msg, SimpleArgument arg) {
+        TestUtil.logTrace("[StatefulCallee] " + msg + " arg = " + arg.getValue());
+    }
 
 }

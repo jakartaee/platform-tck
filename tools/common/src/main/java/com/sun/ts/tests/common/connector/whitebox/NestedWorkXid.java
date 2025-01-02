@@ -26,22 +26,20 @@ import jakarta.resource.spi.work.Work;
 
 public class NestedWorkXid implements Work {
 
-  public NestedWorkXid() {
-    ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid.constructor", "",
-        "");
-    System.out.println("NestedWorkXid.constructor");
-  }
+    public NestedWorkXid() {
+        ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid.constructor", "", "");
+        System.out.println("NestedWorkXid.constructor");
+    }
 
-  @Override
-  public void release() {
-    ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid.release", "",
-        "");
-    System.out.println("NestedWorkXid.release");
-  }
+    @Override
+    public void release() {
+        ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid.release", "", "");
+        System.out.println("NestedWorkXid.release");
+    }
 
-  public void run() {
-    ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid.run", "", "");
-    System.out.println("NestedWorkXid.run");
-  }
+    public void run() {
+        ConnectorStatus.getConnectorStatus().logAPI("NestedWorkXid.run", "", "");
+        System.out.println("NestedWorkXid.run");
+    }
 
 }

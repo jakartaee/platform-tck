@@ -26,8 +26,8 @@ import jakarta.resource.Referenceable;
 
 public interface TSConnectionFactory extends Referenceable, Serializable {
 
-  public TSConnection getConnection() throws Exception;
+    public TSConnection getConnection() throws Exception;
 
-  public TSConnection getConnection(String usr, String passwd) throws Exception;
+    public TSConnection getConnection(String usr, String passwd) throws Exception;
 
 }

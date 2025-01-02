@@ -30,57 +30,56 @@ import com.sun.ts.lib.util.TestUtil;
 import jakarta.ejb.EJBException;
 
 public class EJBVehicle {
-  private EETest testObj;
+    private EETest testObj;
 
-  private Properties properties;
+    private Properties properties;
 
-  private String[] arguments;
+    private String[] arguments;
 
-  public void initialize(String[] args, Properties p) {
-    // Initialize TestUtil Reporting
-    try {
-      TestUtil.init(p);
-    } catch (Exception e) {
-      TestUtil.logErr("initLogging failed in ejb vehicle.", e);
-      throw new EJBException();
+    public void initialize(String[] args, Properties p) {
+        // Initialize TestUtil Reporting
+        try {
+            TestUtil.init(p);
+        } catch (Exception e) {
+            TestUtil.logErr("initLogging failed in ejb vehicle.", e);
+            throw new EJBException();
+        }
+
+        arguments = args;
+        properties = p;
+
+        // create an instance of the test client
+        try {
+            String testClassName = TestUtil.getProperty(properties, "test_classname");
+            Class c = Class.forName(testClassName);
+            testObj = (EETest) c.newInstance();
+        } catch (Exception e) {
+            TestUtil.logErr("Failed to create the EETest instance in the vehicle", e);
+            throw new EJBException();
+        }
+        TestUtil.logTrace("initialize");
     }
 
-    arguments = args;
-    properties = p;
+    // the run method that we call here will either throw
+    // an exception (failed), or return void (pass)
+    public RemoteStatus runTest() {
+        RemoteStatus sTestStatus = new RemoteStatus(Status.passed(""));
 
-    // create an instance of the test client
-    try {
-      String testClassName = TestUtil.getProperty(properties, "test_classname");
-      Class c = Class.forName(testClassName);
-      testObj = (EETest) c.newInstance();
-    } catch (Exception e) {
-      TestUtil.logErr("Failed to create the EETest instance in the vehicle", e);
-      throw new EJBException();
+        TestUtil.logTrace("in runTest()");
+
+        try {
+            // call EETest impl's run method
+            sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
+
+            if (sTestStatus.getType() == Status.PASSED)
+                TestUtil.logMsg("Test running in ejb vehicle passed");
+            else
+                TestUtil.logMsg("Test running in ejb vehicle failed");
+        } catch (Throwable e) {
+            e.printStackTrace();
+            TestUtil.logErr("Test running in ejb vehicle failed", e);
+            sTestStatus = new RemoteStatus(Status.failed("Test running in ejb vehicle failed"));
+        }
+        return sTestStatus;
     }
-    TestUtil.logTrace("initialize");
-  }
-
-  // the run method that we call here will either throw
-  // an exception (failed), or return void (pass)
-  public RemoteStatus runTest() {
-    RemoteStatus sTestStatus = new RemoteStatus(Status.passed(""));
-
-    TestUtil.logTrace("in runTest()");
-
-    try {
-      // call EETest impl's run method
-      sTestStatus = new RemoteStatus(testObj.run(arguments, properties));
-
-      if (sTestStatus.getType() == Status.PASSED)
-        TestUtil.logMsg("Test running in ejb vehicle passed");
-      else
-        TestUtil.logMsg("Test running in ejb vehicle failed");
-    } catch (Throwable e) {
-      e.printStackTrace();
-      TestUtil.logErr("Test running in ejb vehicle failed", e);
-      sTestStatus = new RemoteStatus(
-          Status.failed("Test running in ejb vehicle failed"));
-    }
-    return sTestStatus;
-  }
 }

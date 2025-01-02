@@ -20,45 +20,46 @@
 
 package com.sun.ts.lib.porting;
 
-import jakarta.jms.*;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueConnectionFactory;
+import jakarta.jms.Topic;
+import jakarta.jms.TopicConnectionFactory;
 
 /**
- * This is the TSJMSObjectsInterface. An implementation of this interface must
- * be provided by each JMS implementation to support their own implementation of
- * getting administered objects.
+ * This is the TSJMSObjectsInterface. An implementation of this interface must be provided by each JMS implementation to
+ * support their own implementation of getting administered objects.
  *
  */
 public interface TSJMSObjectsInterface {
-  /**
-   * This method allows JMS implementation to get Queue
-   */
+    /**
+     * This method allows JMS implementation to get Queue
+     */
 
-  public Queue getQueue(String name) throws Exception;
+    public Queue getQueue(String name) throws Exception;
 
-  /**
-   * This method allows JMS implementation to get Topic
-   */
+    /**
+     * This method allows JMS implementation to get Topic
+     */
 
-  public Topic getTopic(String name) throws Exception;
+    public Topic getTopic(String name) throws Exception;
 
-  /**
-   * This method allows JMS implementation to get TopicConnectionFactory
-   */
+    /**
+     * This method allows JMS implementation to get TopicConnectionFactory
+     */
 
-  public TopicConnectionFactory getTopicConnectionFactory(String name)
-      throws Exception;
+    public TopicConnectionFactory getTopicConnectionFactory(String name) throws Exception;
 
-  /**
-   * This method allows JMS implementation to get QueueConnectionFactory
-   */
+    /**
+     * This method allows JMS implementation to get QueueConnectionFactory
+     */
 
-  public QueueConnectionFactory getQueueConnectionFactory(String name)
-      throws Exception;
+    public QueueConnectionFactory getQueueConnectionFactory(String name) throws Exception;
 
-  /**
-   * This method allows JMS implementation to get ConnectionFactory
-   */
+    /**
+     * This method allows JMS implementation to get ConnectionFactory
+     */
 
-  public ConnectionFactory getConnectionFactory(String name) throws Exception;
+    public ConnectionFactory getConnectionFactory(String name) throws Exception;
 
 }

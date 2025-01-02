@@ -21,28 +21,25 @@ import com.sun.ts.lib.util.sec.reflect.annotation.AnnotationType;
 import com.sun.ts.lib.util.sec.nio.ch.Interruptible;
 
 public interface JavaLangAccess {
-  /** Return the constant pool for a class. */
-  ConstantPool getConstantPool(Class klass);
+    /** Return the constant pool for a class. */
+    ConstantPool getConstantPool(Class klass);
 
-  /**
-   * Set the AnnotationType instance corresponding to this class. (This method
-   * only applies to annotation types.)
-   */
-  void setAnnotationType(Class klass, AnnotationType annotationType);
+    /**
+     * Set the AnnotationType instance corresponding to this class. (This method only applies to annotation types.)
+     */
+    void setAnnotationType(Class klass, AnnotationType annotationType);
 
-  /**
-   * Get the AnnotationType instance corresponding to this class. (This method
-   * only applies to annotation types.)
-   */
-  AnnotationType getAnnotationType(Class klass);
+    /**
+     * Get the AnnotationType instance corresponding to this class. (This method only applies to annotation types.)
+     */
+    AnnotationType getAnnotationType(Class klass);
 
-  /**
-   * Returns the elements of an enum class or null if the Class object does not
-   * represent an enum type; the result is uncloned, cached, and shared by all
-   * callers.
-   */
-  <E extends Enum<E>> E[] getEnumConstantsShared(Class<E> klass);
+    /**
+     * Returns the elements of an enum class or null if the Class object does not represent an enum type; the result is
+     * uncloned, cached, and shared by all callers.
+     */
+    <E extends Enum<E>> E[] getEnumConstantsShared(Class<E> klass);
 
-  /** Set thread's blocker field. */
-  void blockedOn(Thread t, Interruptible b);
+    /** Set thread's blocker field. */
+    void blockedOn(Thread t, Interruptible b);
 }

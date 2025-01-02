@@ -20,29 +20,27 @@ import com.sun.ts.tests.common.connector.util.ConnectorStatus;
 
 import jakarta.resource.spi.work.WorkContextLifecycleListener;
 
-public class TSSecurityContextWithListener extends TSSecurityContext
-    implements WorkContextLifecycleListener {
+public class TSSecurityContextWithListener extends TSSecurityContext implements WorkContextLifecycleListener {
 
-  public TSSecurityContextWithListener(String userName, String password,
-      String principalName, boolean translationRequired) {
-    super(userName, password, principalName, translationRequired);
-    debug("TSSecurityContextWithListener:  constructor");
-  }
+    public TSSecurityContextWithListener(String userName, String password, String principalName, boolean translationRequired) {
+        super(userName, password, principalName, translationRequired);
+        debug("TSSecurityContextWithListener:  constructor");
+    }
 
-  @Override
-  public void contextSetupComplete() {
-    debug("Context setup completed " + this.toString());
-    ConnectorStatus.getConnectorStatus().logState("Context setup completed");
-  }
+    @Override
+    public void contextSetupComplete() {
+        debug("Context setup completed " + this.toString());
+        ConnectorStatus.getConnectorStatus().logState("Context setup completed");
+    }
 
-  @Override
-  public void contextSetupFailed(String string) {
-    debug("Context setup failed with the following message : " + string
-        + " for security-inflow-context " + "   errorCode=" + this.toString());
-  }
+    @Override
+    public void contextSetupFailed(String string) {
+        debug("Context setup failed with the following message : " + string + " for security-inflow-context " + "   errorCode="
+                + this.toString());
+    }
 
-  public void debug(String message) {
-    Debug.trace(message);
-  }
+    public void debug(String message) {
+        Debug.trace(message);
+    }
 
 }

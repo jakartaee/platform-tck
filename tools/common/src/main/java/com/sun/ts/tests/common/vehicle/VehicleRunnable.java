@@ -25,5 +25,5 @@ import java.util.Properties;
 import com.sun.ts.lib.harness.Status;
 
 public interface VehicleRunnable {
-  public Status run(String[] argv, Properties p);
+    public Status run(String[] argv, Properties p);
 }

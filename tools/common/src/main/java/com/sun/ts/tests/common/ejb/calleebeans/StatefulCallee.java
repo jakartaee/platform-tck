@@ -27,6 +27,6 @@ import jakarta.ejb.EJBObject;
 
 public interface StatefulCallee extends EJBObject {
 
-  public void call(Properties props, SimpleArgument arg) throws RemoteException;
+    public void call(Properties props, SimpleArgument arg) throws RemoteException;
 
 }

@@ -26,14 +26,13 @@ import jakarta.resource.spi.ConnectionEventListener;
 
 public interface TSXAConnection {
 
-  public TSConnection getConnection() throws Exception;
+    public TSConnection getConnection() throws Exception;
 
-  public TSConnection getConnection(String usr, char[] password)
-      throws Exception;
+    public TSConnection getConnection(String usr, char[] password) throws Exception;
 
-  public XAResource getXAResource(TSManagedConnection mc) throws Exception;
+    public XAResource getXAResource(TSManagedConnection mc) throws Exception;
 
-  public void close() throws Exception;
+    public void close() throws Exception;
 
-  public void addConnectionEventListener(ConnectionEventListener cel);
+    public void addConnectionEventListener(ConnectionEventListener cel);
 }

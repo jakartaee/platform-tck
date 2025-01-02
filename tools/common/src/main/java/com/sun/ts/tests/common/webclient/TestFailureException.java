@@ -25,57 +25,50 @@ package com.sun.ts.tests.common.webclient;
  */
 public class TestFailureException extends java.lang.Exception {
 
-  private static final long serialVersionUID = -4651996590051941456L;
+    private static final long serialVersionUID = -4651996590051941456L;
 
-  /**
-   * Creates a new instance of <code>TestFailureException</code> without a
-   * detailed message.
-   */
-  public TestFailureException() {
-  }
+    /**
+     * Creates a new instance of <code>TestFailureException</code> without a detailed message.
+     */
+    public TestFailureException() {
+    }
 
-  /**
-   * Creates a new instance of <code>TestFailureException</code> containing the
-   * root cause of the test failure.
-   * 
-   * @param t
-   *          - root cause
-   */
-  public TestFailureException(Throwable t) {
-    super(t);
-  }
+    /**
+     * Creates a new instance of <code>TestFailureException</code> containing the root cause of the test failure.
+     * 
+     * @param t - root cause
+     */
+    public TestFailureException(Throwable t) {
+        super(t);
+    }
 
-  /**
-   * Creates a new instance of <code>TestFailureException</code> with the
-   * specified detail message.
-   * 
-   * @param msg
-   *          - the detail message.
-   */
-  public TestFailureException(String msg) {
-    super(msg);
-  }
+    /**
+     * Creates a new instance of <code>TestFailureException</code> with the specified detail message.
+     * 
+     * @param msg - the detail message.
+     */
+    public TestFailureException(String msg) {
+        super(msg);
+    }
 
-  /**
-   * Creates a new instance of <code>TestFailureException</code> with the
-   * specified detail message, and the root cause of the test failure
-   * 
-   * @param msg
-   *          - the detail message
-   * @param t
-   *          - root cause
-   */
-  public TestFailureException(String msg, Throwable t) {
-    super(msg, t);
-  }
+    /**
+     * Creates a new instance of <code>TestFailureException</code> with the specified detail message, and the root cause of
+     * the test failure
+     * 
+     * @param msg - the detail message
+     * @param t - root cause
+     */
+    public TestFailureException(String msg, Throwable t) {
+        super(msg, t);
+    }
 
-  /**
-   * Returns, if any, the root cause of this Exception.
-   * 
-   * @return the root cause of this exception, or null
-   */
-  public Throwable getRootCause() {
-    return getCause();
-  }
+    /**
+     * Returns, if any, the root cause of this Exception.
+     * 
+     * @return the root cause of this exception, or null
+     */
+    public Throwable getRootCause() {
+        return getCause();
+    }
 
 }

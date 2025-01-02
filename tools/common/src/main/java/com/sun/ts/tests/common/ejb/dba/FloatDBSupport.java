@@ -34,135 +34,132 @@ import jakarta.ejb.CreateException;
  */
 public class FloatDBSupport extends DBSupport implements java.io.Serializable {
 
-  /** Name of the property whose value is the DB table name */
-  protected static final String floatTablePrefix = "floatPKTable";
+    /** Name of the property whose value is the DB table name */
+    protected static final String floatTablePrefix = "floatPKTable";
 
-  PreparedStatement pStmt = null;
+    PreparedStatement pStmt = null;
 
-  ResultSet result = null;
+    ResultSet result = null;
 
-  /*
-   * Cached data
-   */
-  protected float cofID = 0; /* Coffee ID (Primary Key) */
+    /*
+     * Cached data
+     */
+    protected float cofID = 0; /* Coffee ID (Primary Key) */
 
-  protected String cofName = null; /* Coffee Name */
+    protected String cofName = null; /* Coffee Name */
 
-  protected float cofPrice = 0; /* Coffee Price */
+    protected float cofPrice = 0; /* Coffee Price */
 
-  /**
-   * Create a new DBSupport object. If called from an EJB or a Web component,
-   * you must make sure to call TestUtil.init() before creating a new DBSupport
-   * object.
-   */
-  public FloatDBSupport() throws Exception {
-    super(floatTablePrefix);
-  }
-
-  public static void initTable(Properties props) throws Exception {
-    DBSupport.initTable(floatTablePrefix, props);
-  }
-
-  public boolean keyExists(float pkey) throws SQLException {
-    try {
-      TestUtil.logTrace("[FloatDBSupport] keyExists(" + pkey + ")");
-
-      getDBConnection();
-      pStmt = getStmt("Select_PK");
-      pStmt.setFloat(1, pkey);
-      result = pStmt.executeQuery();
-
-      return result.next();
-    } catch (SQLException e) {
-      throw new SQLException("SQL Exception in keyExists: " + e);
-    } finally {
-      closeStmt(pStmt, result);
-    }
-  }
-
-  public void createNewRow(float cofID, String cofName, float cofPrice)
-      throws CreateException, SQLException {
-
-    try {
-      TestUtil.logTrace("[FloatDBSupport] createNewRow(" + cofID + ", "
-          + cofName + ", " + cofPrice + ")");
-
-      pStmt = getStmt("Insert");
-      pStmt.setFloat(1, cofID);
-      pStmt.setString(2, cofName);
-      pStmt.setFloat(3, cofPrice);
-      TestUtil.logTrace("[FloatDBSupport] Execute stmt" + pStmt);
-      if (1 != pStmt.executeUpdate()) {
-        throw new CreateException("INSERT failed in createNewRow");
-      } else {
-        /* Keep cached state */
-        this.cofID = cofID;
-        this.cofName = cofName;
-        this.cofPrice = cofPrice;
-      }
-    } catch (SQLException e) {
-      TestUtil.printStackTrace(e);
-      throw new SQLException("SQL Exception in createNewRow" + e);
-    } finally {
-      closeStmt(pStmt, null);
+    /**
+     * Create a new DBSupport object. If called from an EJB or a Web component, you must make sure to call TestUtil.init()
+     * before creating a new DBSupport object.
+     */
+    public FloatDBSupport() throws Exception {
+        super(floatTablePrefix);
     }
 
-    TestUtil.logTrace("[FloatDBSupport] New row created !");
-  }
-
-  public float loadPrice(float pkey) throws SQLException {
-
-    try {
-      TestUtil.logTrace("[FloatDBSupport] loadPrice(" + pkey + ")");
-
-      pStmt = getStmt("Select_Price");
-      pStmt.setFloat(1, pkey);
-      result = pStmt.executeQuery();
-      if (!result.next()) {
-        throw new SQLException("No record for PK = " + pkey);
-      }
-
-      return result.getFloat(1);
-    } catch (SQLException e) {
-      throw new SQLException("SQLException in loadPrice(): " + e);
-    } finally {
-      closeStmt(pStmt, result);
+    public static void initTable(Properties props) throws Exception {
+        DBSupport.initTable(floatTablePrefix, props);
     }
-  }
 
-  public void storePrice(float pkey, float cofPrice) throws SQLException {
+    public boolean keyExists(float pkey) throws SQLException {
+        try {
+            TestUtil.logTrace("[FloatDBSupport] keyExists(" + pkey + ")");
 
-    try {
-      TestUtil.logTrace("[FloatDBSupport] storePrice()");
-      pStmt = getStmt("Update");
-      pStmt.setFloat(1, cofPrice);
-      pStmt.setFloat(2, pkey);
-      if (1 != pStmt.executeUpdate()) {
-        throw new SQLException("SQL UPDATE failed in storePrice");
-      }
+            getDBConnection();
+            pStmt = getStmt("Select_PK");
+            pStmt.setFloat(1, pkey);
+            result = pStmt.executeQuery();
 
-      this.cofPrice = cofPrice;
-    } catch (SQLException e) {
-      throw new SQLException("SQLException in storePrice(): " + e);
-    } finally {
-      closeStmt(pStmt, null);
+            return result.next();
+        } catch (SQLException e) {
+            throw new SQLException("SQL Exception in keyExists: " + e);
+        } finally {
+            closeStmt(pStmt, result);
+        }
     }
-  }
 
-  public void removeRow(float pkey) throws SQLException {
+    public void createNewRow(float cofID, String cofName, float cofPrice) throws CreateException, SQLException {
 
-    try {
-      TestUtil.logTrace("[FloatDBSupport] removeRow()");
-      pStmt = getStmt("Delete");
-      pStmt.setFloat(1, pkey);
-      if (1 != pStmt.executeUpdate()) {
-        throw new SQLException("DELETE failed in removeRow");
-      }
-    } catch (SQLException e) {
-      throw new SQLException("SQLException in removeRow(): " + e);
-    } finally {
-      closeStmt(pStmt, null);
+        try {
+            TestUtil.logTrace("[FloatDBSupport] createNewRow(" + cofID + ", " + cofName + ", " + cofPrice + ")");
+
+            pStmt = getStmt("Insert");
+            pStmt.setFloat(1, cofID);
+            pStmt.setString(2, cofName);
+            pStmt.setFloat(3, cofPrice);
+            TestUtil.logTrace("[FloatDBSupport] Execute stmt" + pStmt);
+            if (1 != pStmt.executeUpdate()) {
+                throw new CreateException("INSERT failed in createNewRow");
+            } else {
+                /* Keep cached state */
+                this.cofID = cofID;
+                this.cofName = cofName;
+                this.cofPrice = cofPrice;
+            }
+        } catch (SQLException e) {
+            TestUtil.printStackTrace(e);
+            throw new SQLException("SQL Exception in createNewRow" + e);
+        } finally {
+            closeStmt(pStmt, null);
+        }
+
+        TestUtil.logTrace("[FloatDBSupport] New row created !");
     }
-  }
+
+    public float loadPrice(float pkey) throws SQLException {
+
+        try {
+            TestUtil.logTrace("[FloatDBSupport] loadPrice(" + pkey + ")");
+
+            pStmt = getStmt("Select_Price");
+            pStmt.setFloat(1, pkey);
+            result = pStmt.executeQuery();
+            if (!result.next()) {
+                throw new SQLException("No record for PK = " + pkey);
+            }
+
+            return result.getFloat(1);
+        } catch (SQLException e) {
+            throw new SQLException("SQLException in loadPrice(): " + e);
+        } finally {
+            closeStmt(pStmt, result);
+        }
+    }
+
+    public void storePrice(float pkey, float cofPrice) throws SQLException {
+
+        try {
+            TestUtil.logTrace("[FloatDBSupport] storePrice()");
+            pStmt = getStmt("Update");
+            pStmt.setFloat(1, cofPrice);
+            pStmt.setFloat(2, pkey);
+            if (1 != pStmt.executeUpdate()) {
+                throw new SQLException("SQL UPDATE failed in storePrice");
+            }
+
+            this.cofPrice = cofPrice;
+        } catch (SQLException e) {
+            throw new SQLException("SQLException in storePrice(): " + e);
+        } finally {
+            closeStmt(pStmt, null);
+        }
+    }
+
+    public void removeRow(float pkey) throws SQLException {
+
+        try {
+            TestUtil.logTrace("[FloatDBSupport] removeRow()");
+            pStmt = getStmt("Delete");
+            pStmt.setFloat(1, pkey);
+            if (1 != pStmt.executeUpdate()) {
+                throw new SQLException("DELETE failed in removeRow");
+            }
+        } catch (SQLException e) {
+            throw new SQLException("SQLException in removeRow(): " + e);
+        } finally {
+            closeStmt(pStmt, null);
+        }
+    }
 
 }

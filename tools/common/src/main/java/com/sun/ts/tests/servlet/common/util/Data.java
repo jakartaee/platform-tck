@@ -60,7 +60,7 @@ package com.sun.ts.tests.servlet.common.util;
 // TODO REMOVE
 public final class Data {
 
-  public static final String PASSED = "Test PASSED";
+    public static final String PASSED = "Test PASSED";
 
-  public static final String FAILED = "Test FAILED";
+    public static final String FAILED = "Test FAILED";
 }

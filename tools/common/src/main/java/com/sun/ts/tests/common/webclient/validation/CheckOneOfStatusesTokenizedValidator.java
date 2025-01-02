@@ -19,9 +19,8 @@ package com.sun.ts.tests.common.webclient.validation;
 import java.io.IOException;
 
 /**
- * Sometimes it is not clear what result one should get, there might be more two
- * or more possibilities. This strategy checks the response contains at least
- * one of the given statuses.
+ * Sometimes it is not clear what result one should get, there might be more two or more possibilities. This strategy
+ * checks the response contains at least one of the given statuses.
  * 
  * The statuses are supposed to be separated by "|" character
  * 
@@ -29,20 +28,18 @@ import java.io.IOException;
  */
 public class CheckOneOfStatusesTokenizedValidator extends TokenizedValidator {
 
-  /**
-   * When WebTestCase contains more expected response codes it always means to
-   * check one of them is present; if present, other statuses are dropped. Super
-   * class method is called to get the logging messages
-   */
-  @Override
-  protected boolean checkStatusCode() throws IOException {
-    String responseCode = _res.getStatusCode();
-    String caseCodes = _case.getStatusCode();
+    /**
+     * When WebTestCase contains more expected response codes it always means to check one of them is present; if present,
+     * other statuses are dropped. Super class method is called to get the logging messages
+     */
+    @Override
+    protected boolean checkStatusCode() throws IOException {
+        String responseCode = _res.getStatusCode();
+        String caseCodes = _case.getStatusCode();
 
-    if (caseCodes != null && caseCodes.charAt(0) != '!'
-        && caseCodes.contains("|") && caseCodes.contains(responseCode))
-      _case.setExpectedStatusCode(responseCode);
-    return super.checkStatusCode();
-  }
+        if (caseCodes != null && caseCodes.charAt(0) != '!' && caseCodes.contains("|") && caseCodes.contains(responseCode))
+            _case.setExpectedStatusCode(responseCode);
+        return super.checkStatusCode();
+    }
 
 }

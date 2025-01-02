@@ -26,21 +26,20 @@ import jakarta.resource.spi.work.Work;
 
 public class ScheduleWork implements Work {
 
-  public ScheduleWork() {
+    public ScheduleWork() {
 
-    ConnectorStatus.getConnectorStatus().logAPI("ScheduleWork.constructor", "",
-        "");
-    System.out.println("ScheduleWork.constructor");
-  }
+        ConnectorStatus.getConnectorStatus().logAPI("ScheduleWork.constructor", "", "");
+        System.out.println("ScheduleWork.constructor");
+    }
 
-  @Override
-  public void release() {
-    ConnectorStatus.getConnectorStatus().logAPI("ScheduleWork.release", "", "");
-    System.out.println("ScheduleWork.release");
-  }
+    @Override
+    public void release() {
+        ConnectorStatus.getConnectorStatus().logAPI("ScheduleWork.release", "", "");
+        System.out.println("ScheduleWork.release");
+    }
 
-  public void run() {
-    ConnectorStatus.getConnectorStatus().logAPI("ScheduleWork.run", "", "");
-  }
+    public void run() {
+        ConnectorStatus.getConnectorStatus().logAPI("ScheduleWork.run", "", "");
+    }
 
 }

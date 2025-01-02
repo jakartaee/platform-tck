@@ -24,162 +24,161 @@
 
 package com.sun.ts.lib.porting;
 
-import com.sun.ts.lib.util.*;
-import java.io.*;
-import java.net.*;
+import com.sun.ts.lib.util.TestUtil;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 /**
  * TSHttpsURLConnection provides the HTTPS specific featurs
  *
  */
 public class TSHttpsURLConnection implements TSHttpsURLConnectionInterface {
-  private TSHttpsURLConnectionInterface tsHttpsURLConnection = null;
+    private TSHttpsURLConnectionInterface tsHttpsURLConnection = null;
 
-  private String sClass = "porting.ts.HttpsURLConnection.class.1";
+    private String sClass = "porting.ts.HttpsURLConnection.class.1";
 
-  /**
-   * Instantiates the class defined in porting.ts.HttpsURLConnection.class.1
-   */
-  public TSHttpsURLConnection() {
+    /**
+     * Instantiates the class defined in porting.ts.HttpsURLConnection.class.1
+     */
+    public TSHttpsURLConnection() {
 
-    if (tsHttpsURLConnection == null) {
-      try {
+        if (tsHttpsURLConnection == null) {
+            try {
 
-        Class c = Class.forName(TestUtil.getProperty(sClass));
+                Class c = Class.forName(TestUtil.getProperty(sClass));
 
-        tsHttpsURLConnection = (TSHttpsURLConnectionInterface) c.newInstance();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
-  }
-
-  /**
-   * Instantiates the class defined by sClass
-   * 
-   * @param sClass
-   *          - this class is used to instantiate implementation specific
-   *          HttpsURLConnection class
-   */
-  public TSHttpsURLConnection(String sClass) {
-
-    if (tsHttpsURLConnection == null) {
-      try {
-
-        Class c = Class.forName(TestUtil.getProperty(sClass));
-
-        tsHttpsURLConnection = (TSHttpsURLConnectionInterface) c.newInstance();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+                tsHttpsURLConnection = (TSHttpsURLConnectionInterface) c.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
-  }
+    /**
+     * Instantiates the class defined by sClass
+     *
+     * @param sClass - this class is used to instantiate implementation specific HttpsURLConnection class
+     */
+    public TSHttpsURLConnection(String sClass) {
 
-  /**
-   * Sets the value of the doInput field for this Connection
-   *
-   * @param doInput
-   *          - the new value (the default is false)
-   */
-  public void setDoInput(boolean doInput) {
-    tsHttpsURLConnection.setDoInput(doInput);
-  }
+        if (tsHttpsURLConnection == null) {
+            try {
 
-  /**
-   * Sets the value of the doOutput field for this Connection
-   *
-   * @param doOutput
-   *          - the new value (the default is false)
-   */
-  public void setDoOutput(boolean doOutput) {
-    tsHttpsURLConnection.setDoOutput(doOutput);
-  }
+                Class c = Class.forName(TestUtil.getProperty(sClass));
 
-  /**
-   * Sets the value of the useCaches field for this Connection If the UseCaches
-   * flag on the connection is true, the connection is allowed to use whatever
-   * caches it can. If false, caches are to be ignored. The default value is set
-   * to true
-   *
-   * @param usecaches
-   *          - the new value (the default is true)
-   */
-  public void setUseCaches(boolean usecaches) {
-    tsHttpsURLConnection.setUseCaches(usecaches);
-  }
+                tsHttpsURLConnection = (TSHttpsURLConnectionInterface) c.newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
-  /**
-   * Sets the general request property. If a property with the key already
-   * exists, overwrite its value with the new value.
-   *
-   * @param key
-   *          - the keyword by which the request is known
-   * @param value
-   *          - the value associated with it
-   */
-  public void setRequestProperty(String key, String value) {
-    tsHttpsURLConnection.setRequestProperty(key, value);
-  }
+    }
 
-  /**
-   * Returns the value of the named header field. If called on a connection that
-   * sets the same header multiple times only the last value is returned.
-   * 
-   * @param name
-   *          - the name of the header field.
-   * @return String - the value of the named header field, or null if there is
-   *         no such field in the header.
-   */
-  public String getHeaderField(String name) {
-    return tsHttpsURLConnection.getHeaderField(name);
-  }
+    /**
+     * Sets the value of the doInput field for this Connection
+     *
+     * @param doInput - the new value (the default is false)
+     */
+    @Override
+    public void setDoInput(boolean doInput) {
+        tsHttpsURLConnection.setDoInput(doInput);
+    }
 
-  /**
-   * Returns the value for the nth header field. It returns null if there are
-   * fewer than n fields
-   *
-   * @param num
-   *          - Integer num
-   * @return String - returns the value of the nth header field
-   */
-  public String getHeaderField(int num) {
-    return tsHttpsURLConnection.getHeaderField(num);
-  }
+    /**
+     * Sets the value of the doOutput field for this Connection
+     *
+     * @param doOutput - the new value (the default is false)
+     */
+    @Override
+    public void setDoOutput(boolean doOutput) {
+        tsHttpsURLConnection.setDoOutput(doOutput);
+    }
 
-  /**
-   * Disconnect connection
-   */
-  public void disconnect() {
-    tsHttpsURLConnection.disconnect();
-  }
+    /**
+     * Sets the value of the useCaches field for this Connection If the UseCaches flag on the connection is true, the
+     * connection is allowed to use whatever caches it can. If false, caches are to be ignored. The default value is set to
+     * true
+     *
+     * @param usecaches - the new value (the default is true)
+     */
+    @Override
+    public void setUseCaches(boolean usecaches) {
+        tsHttpsURLConnection.setUseCaches(usecaches);
+    }
 
-  /**
-   * Returns an input stream that reads from the open connection
-   *
-   * @return InputStream - inputStream
-   */
-  public InputStream getInputStream() throws IOException {
-    return tsHttpsURLConnection.getInputStream();
-  }
+    /**
+     * Sets the general request property. If a property with the key already exists, overwrite its value with the new value.
+     *
+     * @param key - the keyword by which the request is known
+     * @param value - the value associated with it
+     */
+    @Override
+    public void setRequestProperty(String key, String value) {
+        tsHttpsURLConnection.setRequestProperty(key, value);
+    }
 
-  /**
-   * Returns an Output stream that writes to the open connection
-   *
-   * @return OutputStream - outputStream
-   */
-  public OutputStream getOutputStream() throws IOException {
-    return tsHttpsURLConnection.getOutputStream();
-  }
+    /**
+     * Returns the value of the named header field. If called on a connection that sets the same header multiple times only
+     * the last value is returned.
+     *
+     * @param name - the name of the header field.
+     * @return String - the value of the named header field, or null if there is no such field in the header.
+     */
+    @Override
+    public String getHeaderField(String name) {
+        return tsHttpsURLConnection.getHeaderField(name);
+    }
 
-  /**
-   * Initializes HttpsURLConnection
-   *
-   * @param url
-   *          url used to open HttpsURLConnection
-   */
-  public void init(URL url) throws IOException {
-    tsHttpsURLConnection.init(url);
-  }
+    /**
+     * Returns the value for the nth header field. It returns null if there are fewer than n fields
+     *
+     * @param num - Integer num
+     * @return String - returns the value of the nth header field
+     */
+    @Override
+    public String getHeaderField(int num) {
+        return tsHttpsURLConnection.getHeaderField(num);
+    }
+
+    /**
+     * Disconnect connection
+     */
+    @Override
+    public void disconnect() {
+        tsHttpsURLConnection.disconnect();
+    }
+
+    /**
+     * Returns an input stream that reads from the open connection
+     *
+     * @return InputStream - inputStream
+     */
+    @Override
+    public InputStream getInputStream() throws IOException {
+        return tsHttpsURLConnection.getInputStream();
+    }
+
+    /**
+     * Returns an Output stream that writes to the open connection
+     *
+     * @return OutputStream - outputStream
+     */
+    @Override
+    public OutputStream getOutputStream() throws IOException {
+        return tsHttpsURLConnection.getOutputStream();
+    }
+
+    /**
+     * Initializes HttpsURLConnection
+     *
+     * @param url url used to open HttpsURLConnection
+     */
+    @Override
+    public void init(URL url) throws IOException {
+        tsHttpsURLConnection.init(url);
+    }
 
 }

@@ -37,57 +37,56 @@ import jakarta.persistence.PersistenceUnit;
 
 @Stateful(name = "AppManagedVehicleBean")
 @Remote({ AppManagedVehicleIF.class })
-public class AppManagedVehicleBean
-    extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
-    implements AppManagedVehicleIF, java.io.Serializable {
+public class AppManagedVehicleBean extends com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean
+        implements AppManagedVehicleIF, java.io.Serializable {
 
-  public AppManagedVehicleBean() {
-    super();
-  }
-
-  protected String getVehicleType() {
-    return APPMANAGED;
-  }
-
-  private EntityManagerFactory emf;
-
-  // ================== business methods ====================================
-  @Remove
-  public RemoteStatus runTest(String[] args, Properties props) {
-    props.put("persistence.unit.name", "CTS-EM");
-    try {
-      setEntityManager(emf.createEntityManager());
-      RemoteStatus retValue;
-      retValue = super.runTest(args, props);
-      return retValue;
-    } finally {
-      try {
-        if (getEntityManager().isOpen()) {
-          getEntityManager().close();
-        }
-      } catch (Exception e) {
-        System.out.println("Exception caught during em.close()" + e);
-      }
+    public AppManagedVehicleBean() {
+        super();
     }
-  }
-  /////////////////////////////////////////////////////////////////////////
 
-  @Resource
-  public void setSessionContext(SessionContext sessionContext) {
-    this.sessionContext = sessionContext;
-  }
+    protected String getVehicleType() {
+        return APPMANAGED;
+    }
 
-  @PersistenceUnit(unitName = "CTS-EM")
-  public void setEntityManagerFactory(EntityManagerFactory emf) {
-    this.emf = emf;
-    this.entityManagerFactory = emf;
-  }
+    private EntityManagerFactory emf;
 
-  public void setEntityManager(EntityManager entityManager) {
-    this.entityManager = entityManager;
-  }
+    // ================== business methods ====================================
+    @Remove
+    public RemoteStatus runTest(String[] args, Properties props) {
+        props.put("persistence.unit.name", "CTS-EM");
+        try {
+            setEntityManager(emf.createEntityManager());
+            RemoteStatus retValue;
+            retValue = super.runTest(args, props);
+            return retValue;
+        } finally {
+            try {
+                if (getEntityManager().isOpen()) {
+                    getEntityManager().close();
+                }
+            } catch (Exception e) {
+                System.out.println("Exception caught during em.close()" + e);
+            }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////
 
-  protected EntityTransaction getEntityTransaction() {
-    return new NoopTransactionWrapper();
-  }
+    @Resource
+    public void setSessionContext(SessionContext sessionContext) {
+        this.sessionContext = sessionContext;
+    }
+
+    @PersistenceUnit(unitName = "CTS-EM")
+    public void setEntityManagerFactory(EntityManagerFactory emf) {
+        this.emf = emf;
+        this.entityManagerFactory = emf;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    protected EntityTransaction getEntityTransaction() {
+        return new NoopTransactionWrapper();
+    }
 }

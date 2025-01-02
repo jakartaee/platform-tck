@@ -23,44 +23,42 @@ import com.sun.ts.lib.util.TestUtil;
 
 import jakarta.jms.Message;
 
-public class SerialTestMessageListenerImpl
-    implements jakarta.jms.MessageListener {
-  public boolean inUse = false;
+public class SerialTestMessageListenerImpl implements jakarta.jms.MessageListener {
+    public boolean inUse = false;
 
-  public boolean testFailed = false;
+    public boolean testFailed = false;
 
-  public DoneLatch monitor = new DoneLatch();
+    public DoneLatch monitor = new DoneLatch();
 
-  public void onMessage(Message m) {
+    public void onMessage(Message m) {
 
-    // first check for concurrent usage
-    if (inUse == true) {
-      TestUtil.logMsg("Error -- concurrent use of MessageListener");
-      testFailed = true;
-    }
-
-    // set flag, then check for final message
-    inUse = true;
-    TestUtil.logMsg("*MessageListener: onMessage() called. "
-        + "Forcing other message listeners to wait.");
-    try {
-      if (m.getBooleanProperty("COM_SUN_JMS_TEST_LASTMESSAGE") == true) {
-        TestUtil.logMsg("*MessageListener: Received final message");
-        monitor.allDone();
-      } else {
-
-        // wait to force next onMessage() to wait
-        for (int i = 0; i < 10000; i++) {
+        // first check for concurrent usage
+        if (inUse == true) {
+            TestUtil.logMsg("Error -- concurrent use of MessageListener");
+            testFailed = true;
         }
-      }
-    } catch (Exception e) {
-      TestUtil.printStackTrace(e);
-      TestUtil.logErr("Failure in message listener: " + e.getMessage());
-      testFailed = true;
-    }
 
-    // unset flag
-    inUse = false;
-  }
+        // set flag, then check for final message
+        inUse = true;
+        TestUtil.logMsg("*MessageListener: onMessage() called. " + "Forcing other message listeners to wait.");
+        try {
+            if (m.getBooleanProperty("COM_SUN_JMS_TEST_LASTMESSAGE") == true) {
+                TestUtil.logMsg("*MessageListener: Received final message");
+                monitor.allDone();
+            } else {
+
+                // wait to force next onMessage() to wait
+                for (int i = 0; i < 10000; i++) {
+                }
+            }
+        } catch (Exception e) {
+            TestUtil.printStackTrace(e);
+            TestUtil.logErr("Failure in message listener: " + e.getMessage());
+            testFailed = true;
+        }
+
+        // unset flag
+        inUse = false;
+    }
 
 }

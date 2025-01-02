@@ -32,43 +32,39 @@ import java.util.Properties;
  */
 public class TSNamingContext implements TSNamingContextInterface, Serializable {
 
-  Properties props = null;
+    Properties props = null;
 
-  public TSNamingContext() throws Exception {
-  }
-
-  public TSNamingContext(Properties pp) throws Exception {
-    if (pp != null) {
-      props = pp;
+    public TSNamingContext() throws Exception {
     }
-  }
 
-  /**
-   * Provides lookup of an object.
-   *
-   * @param s
-   *          object name to lookup
-   * @param c
-   *          object class to narrow to if remote object if null no narrow is
-   *          performed.
-   */
-  public Object lookup(String s, Class c) throws Exception {
-    Object o = lookup(s);
-    return  (c != null && c.isAssignableFrom(o.getClass())) ? c.cast(o):null;
-  }
-
-  /**
-   * Provides lookup of an object.
-   *
-   * @param s
-   *          object name to lookup
-   */
-  public Object lookup(String s) throws Exception {
-    if (props != null) {
-      return new InitialContext(props).lookup(s);
-    } else {
-      return new InitialContext().lookup(s);
+    public TSNamingContext(Properties pp) throws Exception {
+        if (pp != null) {
+            props = pp;
+        }
     }
-  }
+
+    /**
+     * Provides lookup of an object.
+     *
+     * @param s object name to lookup
+     * @param c object class to narrow to if remote object if null no narrow is performed.
+     */
+    public Object lookup(String s, Class c) throws Exception {
+        Object o = lookup(s);
+        return (c != null && c.isAssignableFrom(o.getClass())) ? c.cast(o) : null;
+    }
+
+    /**
+     * Provides lookup of an object.
+     *
+     * @param s object name to lookup
+     */
+    public Object lookup(String s) throws Exception {
+        if (props != null) {
+            return new InitialContext(props).lookup(s);
+        } else {
+            return new InitialContext().lookup(s);
+        }
+    }
 
 }

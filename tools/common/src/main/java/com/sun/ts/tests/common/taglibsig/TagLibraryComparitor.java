@@ -29,69 +29,59 @@ import com.sun.ts.tests.common.taglibsig.validation.Validator;
 import com.sun.ts.tests.common.taglibsig.validation.ValidatorFactory;
 
 /**
- * Provides the ability to compare two TagLibraryDescriptor objects and return
- * any differences found.
+ * Provides the ability to compare two TagLibraryDescriptor objects and return any differences found.
  */
 public class TagLibraryComparitor {
 
-  // The current configuration for this TagLibraryComparitory.
-  ValidationConfiguration configuration;
+    // The current configuration for this TagLibraryComparitory.
+    ValidationConfiguration configuration;
 
-  /**
-   * <p>
-   * Constructs a new TagLibraryComparitor that will use the provided
-   * {@link ValidationConfiguration} to perform its comparison.
-   * </p>
-   * 
-   * @param configuration
-   *          - ValidationConfiguration
-   */
-  public TagLibraryComparitor(ValidationConfiguration configuration) {
-    this.configuration = configuration;
-  }
-
-  /**
-   * <p>
-   * Sets a new {@link ValidationConfiguration} to use when performing
-   * comparisons.
-   * </p>
-   * 
-   * @param configuration
-   *          - ValidationConfiguration
-   */
-  public void setConfiguration(ValidationConfiguration configuration) {
-    this.configuration = configuration;
-  }
-
-  /**
-   * <p>
-   * Performs a comparison of two {@link TagLibraryDescriptor} objects using the
-   * configured {@link ValidationConfiguration}.
-   * 
-   * @param control
-   *          - the <code>control</code> TagLibraryDescriptor
-   * @param underTest
-   *          - the TagLibraryDescriptor that we are validating for correctness
-   * @return an empty array if no differences are found
-   * @throws IllegalStateException
-   *           if the provided ValidationConfiguration is null, or has not be
-   *           configured.
-   */
-  public String[] compare(TagLibraryDescriptor control,
-      TagLibraryDescriptor underTest) {
-    List messages = new ArrayList();
-
-    if (configuration != null && configuration.hasBeenConfigured()) {
-      for (Iterator i = configuration.getValidatorNames(); i.hasNext();) {
-        Validator validator = ValidatorFactory
-            .getValidator(configuration.getValidatorClass((String) i.next()));
-        if (validator != null) {
-          messages.addAll(validator.validate(control, underTest));
-        }
-      }
-    } else {
-      throw new IllegalStateException("No Configuration Available...");
+    /**
+     * <p>
+     * Constructs a new TagLibraryComparitor that will use the provided {@link ValidationConfiguration} to perform its
+     * comparison.
+     * </p>
+     * 
+     * @param configuration - ValidationConfiguration
+     */
+    public TagLibraryComparitor(ValidationConfiguration configuration) {
+        this.configuration = configuration;
     }
-    return (String[]) messages.toArray(new String[messages.size()]);
-  }
+
+    /**
+     * <p>
+     * Sets a new {@link ValidationConfiguration} to use when performing comparisons.
+     * </p>
+     * 
+     * @param configuration - ValidationConfiguration
+     */
+    public void setConfiguration(ValidationConfiguration configuration) {
+        this.configuration = configuration;
+    }
+
+    /**
+     * <p>
+     * Performs a comparison of two {@link TagLibraryDescriptor} objects using the configured
+     * {@link ValidationConfiguration}.
+     * 
+     * @param control - the <code>control</code> TagLibraryDescriptor
+     * @param underTest - the TagLibraryDescriptor that we are validating for correctness
+     * @return an empty array if no differences are found
+     * @throws IllegalStateException if the provided ValidationConfiguration is null, or has not be configured.
+     */
+    public String[] compare(TagLibraryDescriptor control, TagLibraryDescriptor underTest) {
+        List messages = new ArrayList();
+
+        if (configuration != null && configuration.hasBeenConfigured()) {
+            for (Iterator i = configuration.getValidatorNames(); i.hasNext();) {
+                Validator validator = ValidatorFactory.getValidator(configuration.getValidatorClass((String) i.next()));
+                if (validator != null) {
+                    messages.addAll(validator.validate(control, underTest));
+                }
+            }
+        } else {
+            throw new IllegalStateException("No Configuration Available...");
+        }
+        return (String[]) messages.toArray(new String[messages.size()]);
+    }
 }

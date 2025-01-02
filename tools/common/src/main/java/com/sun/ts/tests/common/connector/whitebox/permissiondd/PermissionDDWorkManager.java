@@ -33,142 +33,130 @@ import jakarta.resource.spi.BootstrapContext;
 import jakarta.resource.spi.work.WorkManager;
 
 public class PermissionDDWorkManager {
-  private BootstrapContext bsc = null;
+    private BootstrapContext bsc = null;
 
-  private WorkManager wmgr;
+    private WorkManager wmgr;
 
-  private Xid myxid;
+    private Xid myxid;
 
-  private Xid mynestxid;
+    private Xid mynestxid;
 
-  public PermissionDDWorkManager(BootstrapContext val) {
-    debug("enterred constructor");
-    this.bsc = val;
-    this.wmgr = bsc.getWorkManager();
+    public PermissionDDWorkManager(BootstrapContext val) {
+        debug("enterred constructor");
+        this.bsc = val;
+        this.wmgr = bsc.getWorkManager();
 
-    debug("leaving constructor");
-  }
-
-  public void runTests() {
-    debug("enterred runTests");
-
-    validateRequiredPermSet();
-    validateRestrictedLocalPerm();
-
-    // doWork();
-    // doTCWork();
-    // submitNestedXidWork();
-    debug("leaving runTests");
-  }
-
-  public void validateRequiredPermSet() {
-    try {
-      RuntimePermission rtperm = new RuntimePermission("loadLibrary.*");
-      doCheckPermission(rtperm);
-      debug("validateRequiredPermSet():  valid perm for: " + rtperm.toString());
-
-      RuntimePermission rtperm2 = new RuntimePermission("queuePrintJob");
-      doCheckPermission(rtperm2);
-      debug(
-          "validateRequiredPermSet():  valid perm for: " + rtperm2.toString());
-
-      SocketPermission socperm = new SocketPermission("*", "connect");
-      doCheckPermission(socperm);
-      debug(
-          "validateRequiredPermSet():  valid perm for: " + socperm.toString());
-
-      FilePermission fperm = new FilePermission("*", "read");
-      doCheckPermission(fperm);
-      debug("validateRequiredPermSet():  valid perm for: " + fperm.toString());
-
-      PropertyPermission pperm = new PropertyPermission("*", "read");
-      doCheckPermission(pperm);
-      debug("validateRequiredPermSet():  valid perm for: " + pperm.toString());
-
-      // if we have perms we should get here
-      debug("SUCCESS:  validateRequiredPermSet passed.");
-      ConnectorStatus.getConnectorStatus()
-          .logState("SUCCESS:  validateRequiredPermSet passed.");
-    } catch (AccessControlException ex) {
-      debug(
-          "FAILURE:  validateRequiredPermSet throwing AccessControlException.");
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateRequiredPermSet throwing AccessControlException.");
-      Debug.printDebugStack(ex);
-    } catch (Exception ex) {
-      debug("FAILURE:  validateRequiredPermSet had unexpected Exception.");
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateRequiredPermSet had unexpected Exception.");
-      Debug.printDebugStack(ex);
+        debug("leaving constructor");
     }
 
-    debug("returning from validateRequiredPermSet()");
-    return;
-  }
+    public void runTests() {
+        debug("enterred runTests");
 
-  public void validateRestrictedLocalPerm() {
-    try {
-      // call a priviledged method
-      PropertyPermission readPropertyPerm = new PropertyPermission(
-          "TestPropertyPerm", "read");
+        validateRequiredPermSet();
+        validateRestrictedLocalPerm();
 
-      try {
-        doCheckPermission(readPropertyPerm);
-        // should get here
-        debug(
-            "SUCCESS:  validateRestrictedLocalPerm() has grant for read of TestPropertyPerm");
-      } catch (AccessControlException ex) {
-        // should not get here.
-        debug(
-            "FAILURE:  validateRestrictedLocalPerm() threw unexpected exception for read of TestPropertyPerm.");
-        ConnectorStatus.getConnectorStatus().logState(
-            "FAILURE:  validateRestrictedLocalPerm() threw AccessControlException.");
-        Debug.printDebugStack(ex);
+        // doWork();
+        // doTCWork();
+        // submitNestedXidWork();
+        debug("leaving runTests");
+    }
+
+    public void validateRequiredPermSet() {
+        try {
+            RuntimePermission rtperm = new RuntimePermission("loadLibrary.*");
+            doCheckPermission(rtperm);
+            debug("validateRequiredPermSet():  valid perm for: " + rtperm.toString());
+
+            RuntimePermission rtperm2 = new RuntimePermission("queuePrintJob");
+            doCheckPermission(rtperm2);
+            debug("validateRequiredPermSet():  valid perm for: " + rtperm2.toString());
+
+            SocketPermission socperm = new SocketPermission("*", "connect");
+            doCheckPermission(socperm);
+            debug("validateRequiredPermSet():  valid perm for: " + socperm.toString());
+
+            FilePermission fperm = new FilePermission("*", "read");
+            doCheckPermission(fperm);
+            debug("validateRequiredPermSet():  valid perm for: " + fperm.toString());
+
+            PropertyPermission pperm = new PropertyPermission("*", "read");
+            doCheckPermission(pperm);
+            debug("validateRequiredPermSet():  valid perm for: " + pperm.toString());
+
+            // if we have perms we should get here
+            debug("SUCCESS:  validateRequiredPermSet passed.");
+            ConnectorStatus.getConnectorStatus().logState("SUCCESS:  validateRequiredPermSet passed.");
+        } catch (AccessControlException ex) {
+            debug("FAILURE:  validateRequiredPermSet throwing AccessControlException.");
+            ConnectorStatus.getConnectorStatus().logState("FAILURE:  validateRequiredPermSet throwing AccessControlException.");
+            Debug.printDebugStack(ex);
+        } catch (Exception ex) {
+            debug("FAILURE:  validateRequiredPermSet had unexpected Exception.");
+            ConnectorStatus.getConnectorStatus().logState("FAILURE:  validateRequiredPermSet had unexpected Exception.");
+            Debug.printDebugStack(ex);
+        }
+
+        debug("returning from validateRequiredPermSet()");
         return;
-      }
-      debug("SUCCESS:  validateRestrictedLocalPerm passed.");
-      ConnectorStatus.getConnectorStatus()
-          .logState("SUCCESS:  validateRestrictedLocalPerm passed.");
-
-    } catch (Exception ex) {
-      debug("FAILURE:  validateRestrictedLocalPerm had unexpected exception.");
-      ConnectorStatus.getConnectorStatus().logState(
-          "FAILURE:  validateRestrictedLocalPerm had unexpected exception.");
-      Debug.printDebugStack(ex);
     }
 
-    debug("returning from validateRestrictedLocalPerm()");
-    return;
-  }
+    public void validateRestrictedLocalPerm() {
+        try {
+            // call a priviledged method
+            PropertyPermission readPropertyPerm = new PropertyPermission("TestPropertyPerm", "read");
 
-  public void doCheckPermission(Permission pp) throws Exception {
-    final Permission perm = pp;
-    AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
-      public Void run() throws AccessControlException {
-        AccessController.checkPermission(perm);
-        return null;
-      }
-    });
-  }
+            try {
+                doCheckPermission(readPropertyPerm);
+                // should get here
+                debug("SUCCESS:  validateRestrictedLocalPerm() has grant for read of TestPropertyPerm");
+            } catch (AccessControlException ex) {
+                // should not get here.
+                debug("FAILURE:  validateRestrictedLocalPerm() threw unexpected exception for read of TestPropertyPerm.");
+                ConnectorStatus.getConnectorStatus().logState("FAILURE:  validateRestrictedLocalPerm() threw AccessControlException.");
+                Debug.printDebugStack(ex);
+                return;
+            }
+            debug("SUCCESS:  validateRestrictedLocalPerm passed.");
+            ConnectorStatus.getConnectorStatus().logState("SUCCESS:  validateRestrictedLocalPerm passed.");
 
-  public void setXid(Xid xid) {
-    this.myxid = xid;
-  }
+        } catch (Exception ex) {
+            debug("FAILURE:  validateRestrictedLocalPerm had unexpected exception.");
+            ConnectorStatus.getConnectorStatus().logState("FAILURE:  validateRestrictedLocalPerm had unexpected exception.");
+            Debug.printDebugStack(ex);
+        }
 
-  public Xid getXid() {
-    return this.myxid;
-  }
+        debug("returning from validateRestrictedLocalPerm()");
+        return;
+    }
 
-  public void setNestXid(Xid xid) {
-    this.mynestxid = xid;
-  }
+    public void doCheckPermission(Permission pp) throws Exception {
+        final Permission perm = pp;
+        AccessController.doPrivileged(new PrivilegedExceptionAction<Void>() {
+            public Void run() throws AccessControlException {
+                AccessController.checkPermission(perm);
+                return null;
+            }
+        });
+    }
 
-  public Xid getNestXid() {
-    return this.mynestxid;
-  }
+    public void setXid(Xid xid) {
+        this.myxid = xid;
+    }
 
-  public void debug(String out) {
-    Debug.trace("PermissionDDWorkManager:  " + out);
-  }
+    public Xid getXid() {
+        return this.myxid;
+    }
+
+    public void setNestXid(Xid xid) {
+        this.mynestxid = xid;
+    }
+
+    public Xid getNestXid() {
+        return this.mynestxid;
+    }
+
+    public void debug(String out) {
+        Debug.trace("PermissionDDWorkManager:  " + out);
+    }
 
 }

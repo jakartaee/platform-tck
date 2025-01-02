@@ -22,32 +22,29 @@ import com.sun.ts.lib.harness.Status;
 import com.sun.ts.tests.common.vehicle.VehicleRunnable;
 
 /**
- * This class is to be modified and rebuilt by any vendor needing to build their
- * own custom vehicles. This should only be used as allowed on a case by case
- * basis and must be explicitly stated as a viable option in the TCK user guide.
+ * This class is to be modified and rebuilt by any vendor needing to build their own custom vehicles. This should only
+ * be used as allowed on a case by case basis and must be explicitly stated as a viable option in the TCK user guide.
  *
- * This class should be edited, compiled, and packaged as needed for the
- * environment it is to be used in. This vehicle will be recognized as the
- * "customvehicle" and it will be necessary to make appropriate changes to the
+ * This class should be edited, compiled, and packaged as needed for the environment it is to be used in. This vehicle
+ * will be recognized as the "customvehicle" and it will be necessary to make appropriate changes to the
  * TS_HOME/src/vehicle.properties file to indicate the use of this vehicle.
  *
- * It is suggested that you use other vehicles as a model for implementing this.
- * Additional information for using this class should be referenced in the TCK
- * user guides for those technologies that support the definition and use of a
+ * It is suggested that you use other vehicles as a model for implementing this. Additional information for using this
+ * class should be referenced in the TCK user guides for those technologies that support the definition and use of a
  * custom vehicle.
  *
  */
 public class CustomVehicleRunner implements VehicleRunnable {
 
-  protected final String sVehicle = "customvehicle";
+    protected final String sVehicle = "customvehicle";
 
-  public Status run(String[] argv, Properties p) {
+    public Status run(String[] argv, Properties p) {
 
-    // XXXX: implement your code to wrap and execute each test here
-    // such that each test will run in a customvehicle and return
-    // the result from each test.
+        // XXXX: implement your code to wrap and execute each test here
+        // such that each test will run in a customvehicle and return
+        // the result from each test.
 
-    return Status.failed("not implemented yet.");
-  }
+        return Status.failed("not implemented yet.");
+    }
 
 }

@@ -23,89 +23,88 @@ package com.sun.ts.tests.common.connector.util;
 import java.util.Vector;
 
 /**
- * Implementation class of Log interface, to be used as a verification mechanism
- * for connector tests. This class is implemented as a Singleton. The TS
- * whitebox resource adapter writes the log, and the TS test reads the log. The
+ * Implementation class of Log interface, to be used as a verification mechanism for connector tests. This class is
+ * implemented as a Singleton. The TS whitebox resource adapter writes the log, and the TS test reads the log. The
  * whitebox will return an instance of this log to the calling test.
  */
 public class ConnectorStatus implements Log {
 
-  private static ConnectorStatus status = new ConnectorStatus();
+    private static ConnectorStatus status = new ConnectorStatus();
 
-  private Vector log = new Vector();
+    private Vector log = new Vector();
 
-  private Vector statelog = new Vector();
+    private Vector statelog = new Vector();
 
-  private boolean logFlag = false;
+    private boolean logFlag = false;
 
-  /**
-   * Singleton constructor
-   */
-  private ConnectorStatus() {
-  }
+    /**
+     * Singleton constructor
+     */
+    private ConnectorStatus() {
+    }
 
-  /**
-   * Singleton accessor
-   */
-  public static ConnectorStatus getConnectorStatus() {
-    return status;
-  }
+    /**
+     * Singleton accessor
+     */
+    public static ConnectorStatus getConnectorStatus() {
+        return status;
+    }
 
-  // --------------------------
-  // Log method implementations
-  // --------------------------
+    // --------------------------
+    // Log method implementations
+    // --------------------------
 
-  /**
-   * Adds elements to the log. This is called by the Resource Adapter.
-   *
-   */
-  public void logAPI(String raAPI, String inParams, String outParams) {
-    String logString = new String(raAPI + ":" + inParams + ":" + outParams);
-    if (logFlag)
-      log.addElement(logString);
-  }
+    /**
+     * Adds elements to the log. This is called by the Resource Adapter.
+     *
+     */
+    public void logAPI(String raAPI, String inParams, String outParams) {
+        String logString = new String(raAPI + ":" + inParams + ":" + outParams);
+        if (logFlag)
+            log.addElement(logString);
+    }
 
-  /**
-   * Adds elements to the State log. This is called by the Resource Adapter.
-   *
-   */
-  public void logState(String state) {
-    statelog.addElement(state);
-  }
+    /**
+     * Adds elements to the State log. This is called by the Resource Adapter.
+     *
+     */
+    public void logState(String state) {
+        statelog.addElement(state);
+    }
 
-  /**
-   * Purges the log store
-   */
-  public void purge() {
-    log.clear();
-  }
+    /**
+     * Purges the log store
+     */
+    public void purge() {
+        log.clear();
+    }
 
-  /**
-   * Purges the log store
-   */
-  public void purgeStateLog() {
-    statelog.clear();
-  }
+    /**
+     * Purges the log store
+     */
+    public void purgeStateLog() {
+        statelog.clear();
+    }
 
-  /**
-   * Retrieves the entire log as a String
-   */
-  public Vector getLogVector() {
-    return log;
-  }
+    /**
+     * Retrieves the entire log as a String
+     */
+    public Vector getLogVector() {
+        return log;
+    }
 
-  /**
-   * Retrieves the entire log as a String
-   */
-  public Vector getStateLogVector() {
-    return statelog;
-  }
+    /**
+     * Retrieves the entire log as a String
+     */
+    public Vector getStateLogVector() {
+        return statelog;
+    }
 
-  /**
-   * Sets the logging to true/false
-   */
-  public void setLogFlag(boolean b) {
-    logFlag = b;
-  }
+    /**
+     * Sets the logging to true/false
+     */
+    public void setLogFlag(boolean b) {
+        logFlag = b;
+    }
 
 }

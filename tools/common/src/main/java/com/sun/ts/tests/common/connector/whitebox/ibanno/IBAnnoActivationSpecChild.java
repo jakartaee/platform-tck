@@ -32,67 +32,63 @@ import jakarta.resource.spi.ResourceAdapterAssociation;
  * Connector:SPEC:282.  Since this implements ResourceAdaperAssociation, we should
  * see that the setResourceAdapter() class gets called.
  */
-@Activation(messageListeners = {
-    com.sun.ts.tests.common.connector.util.TSMessageListenerInterface.class })
-public class IBAnnoActivationSpecChild extends IBAnnoActivationSpecParent
-    implements ResourceAdapterAssociation, ActivationSpec {
+@Activation(messageListeners = { com.sun.ts.tests.common.connector.util.TSMessageListenerInterface.class })
+public class IBAnnoActivationSpecChild extends IBAnnoActivationSpecParent implements ResourceAdapterAssociation, ActivationSpec {
 
-  private String annoDestinationName;
+    private String annoDestinationName;
 
-  private String annoDestinationType;
+    private String annoDestinationType;
 
-  private ResourceAdapter resourceAdapter;
+    private ResourceAdapter resourceAdapter;
 
-  /**
-   * Default constructor.
-   */
-  public IBAnnoActivationSpecChild() {
-    Debug.trace("IBAnnoActivationSpecChild.constructor");
-  }
+    /**
+     * Default constructor.
+     */
+    public IBAnnoActivationSpecChild() {
+        Debug.trace("IBAnnoActivationSpecChild.constructor");
+    }
 
-  public String getAnnoDestinationName() {
-    Debug.trace("IBAnnoActivationSpecChild.getAnnoDestinationName :"
-        + this.annoDestinationName);
-    return this.annoDestinationName;
-  }
+    public String getAnnoDestinationName() {
+        Debug.trace("IBAnnoActivationSpecChild.getAnnoDestinationName :" + this.annoDestinationName);
+        return this.annoDestinationName;
+    }
 
-  public void setAnnoDestinationName(String name) {
-    this.annoDestinationName = name;
-    Debug.trace("IBAnnoActivationSpecChild.setAnnoDestinationName :" + name);
-  }
+    public void setAnnoDestinationName(String name) {
+        this.annoDestinationName = name;
+        Debug.trace("IBAnnoActivationSpecChild.setAnnoDestinationName :" + name);
+    }
 
-  public String getAnnoDestinationType() {
-    Debug.trace("IBAnnoActivationSpecChild.getDestinationType :"
-        + this.annoDestinationType);
-    return this.annoDestinationType;
-  }
+    public String getAnnoDestinationType() {
+        Debug.trace("IBAnnoActivationSpecChild.getDestinationType :" + this.annoDestinationType);
+        return this.annoDestinationType;
+    }
 
-  public void setAnnoDestinationType(String type) {
-    Debug.trace("IBAnnoActivationSpecChild.setAnnoDestinationType :" + type);
-    this.annoDestinationType = type;
-  }
+    public void setAnnoDestinationType(String type) {
+        Debug.trace("IBAnnoActivationSpecChild.setAnnoDestinationType :" + type);
+        this.annoDestinationType = type;
+    }
 
-  public ResourceAdapter getResourceAdapter() {
-    return this.resourceAdapter;
-  }
+    public ResourceAdapter getResourceAdapter() {
+        return this.resourceAdapter;
+    }
 
-  public void setResourceAdapter(ResourceAdapter ra) {
-    String str = "IBAnnoActivationSpecChild.setResourceAdatper called";
-    ConnectorStatus.getConnectorStatus().logState(str);
-    Debug.trace(str);
-    this.resourceAdapter = ra;
-  }
+    public void setResourceAdapter(ResourceAdapter ra) {
+        String str = "IBAnnoActivationSpecChild.setResourceAdatper called";
+        ConnectorStatus.getConnectorStatus().logState(str);
+        Debug.trace(str);
+        this.resourceAdapter = ra;
+    }
 
-  public void validate() throws InvalidPropertyException {
-    Debug.trace("IBAnnoActivationSpecChild.validate called");
-  }
+    public void validate() throws InvalidPropertyException {
+        Debug.trace("IBAnnoActivationSpecChild.validate called");
+    }
 
-  public void setPropName(String name) {
-    propName = name;
-  }
+    public void setPropName(String name) {
+        propName = name;
+    }
 
-  public String getPropName() {
-    return propName;
-  }
+    public String getPropName() {
+        return propName;
+    }
 
 }

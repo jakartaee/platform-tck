@@ -25,24 +25,20 @@ import java.util.*;
 import java.net.*;
 import java.text.SimpleDateFormat;
 
-
-
-
 public class TestReportInfo implements Serializable {
-  public int iDebugLevel = TestUtil.NORMAL_OUTPUT_LEVEL;
+    public int iDebugLevel = TestUtil.NORMAL_OUTPUT_LEVEL;
 
-  public String sOutput = ""; // Constants.EMPTY_STRING;
+    public String sOutput = ""; // Constants.EMPTY_STRING;
 
-  public Throwable exception = null;
+    public Throwable exception = null;
 
-  public int iStream = TestUtil.OUTPUT_STREAM;
+    public int iStream = TestUtil.OUTPUT_STREAM;
 
-  public TestReportInfo(String output, int stream, int level, Throwable e) {
-    if (sOutput != null)
-      sOutput = output;
-    iDebugLevel = level;
-    exception = e;
-    iStream = stream;
-  }
+    public TestReportInfo(String output, int stream, int level, Throwable e) {
+        if (sOutput != null)
+            sOutput = output;
+        iDebugLevel = level;
+        exception = e;
+        iStream = stream;
+    }
 }
-
