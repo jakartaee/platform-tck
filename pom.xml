@@ -37,23 +37,23 @@
         <module>arquillian</module>
         <module>signaturetest</module>
         <module>tcks/apis/connector</module>
-        <module>tcks/apis/ejb30</module>
+        <module>tcks/apis/enterprise-beans/ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
         <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
-        <module>tcks/apis/ejb32</module>
-        <module>tcks/apis/el</module>
-        <module>tcks/apis/el-tck</module>
+        <module>tcks/apis/enterprise-beans/ejb32</module>
+        <module>tcks/apis/expression-language/expression-language-inside-container</module>
+        <module>tcks/apis/expression-language/expression-language-outside-container</module>
         <module>tcks/apis/javamail</module>
-        <module>tcks/apis/jaxrs</module>
-        <module>tcks/apis/jms</module>
-        <module>tcks/apis/jms-tck</module>
-        <module>tcks/apis/jpa</module>
-        <module>tcks/apis/jpa-tck</module>
         <module>tcks/apis/jsonb</module>
         <module>tcks/apis/jsonp</module>
-        <module>tcks/apis/jsp</module>
-        <module>tcks/apis/jstl</module>
-        <module>tcks/apis/jta</module>
+        <module>tcks/apis/messaging/messaging-inside-container</module>
+        <module>tcks/apis/messaging/messaging-outside-container</module>
+        <module>tcks/apis/pages</module>
+        <module>tcks/apis/persistence/persistence-inside-container</module>
+        <module>tcks/apis/persistence/persistence-outside-container</module>
+        <module>tcks/apis/rest</module>
+        <module>tcks/apis/tags</module>
+        <module>tcks/apis/transactions</module>
         <module>tcks/apis/websocket</module>
         <module>tcks/profiles/core-profile-tck</module>
         <module>tcks/profiles/platform/appclient</module>

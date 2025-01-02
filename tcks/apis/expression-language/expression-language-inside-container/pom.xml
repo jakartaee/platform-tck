@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2021  Contributors to the Eclipse Foundation
-    All rights reserved.
+    Copyright (c) 2021  Contributors to the Eclipse Foundation.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -24,14 +23,20 @@
         <groupId>jakarta.tck</groupId>
         <artifactId>project</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../../../pom.xml</relativePath>
+        <relativePath>../../../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>jms</artifactId>
+    <artifactId>el-platform-tck</artifactId>
     <packaging>jar</packaging>
 
-    <name>JMS EE</name>
-    <description>JMS EE Integration Tests</description>
+    <name>el</name>
+    <description>Expression Language EE Tests</description>
+
+    <properties>
+        <arquillian.junit>1.9.1.Final</arquillian.junit>
+        <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
+        <junit.jupiter.version>5.11.3</junit.jupiter.version>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -43,37 +48,14 @@
             <artifactId>common</artifactId>
         </dependency>
         <dependency>
-            <groupId>jakarta.jms</groupId>
-            <artifactId>jakarta.jms-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.inject</groupId>
-            <artifactId>jakarta.inject-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.ejb</groupId>
-            <artifactId>jakarta.ejb-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.annotation</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
+            <groupId>jakarta.el</groupId>
+            <artifactId>jakarta.el-api</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap</groupId>
-            <artifactId>shrinkwrap-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-api</artifactId>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-appclient</artifactId>
+            <version>${arquillian.jakarta.tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -82,22 +64,40 @@
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-javatest</artifactId>
+            <version>${arquillian.jakarta.tck.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
+            <artifactId>arquillian-protocol-lib</artifactId>
+            <version>${arquillian.jakarta.tck.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>tck-porting-lib</artifactId>
+            <version>${arquillian.jakarta.tck.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-core</artifactId>
+            <version>${arquillian.junit}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-core</artifactId>
         </dependency>
     </dependencies>
+
     <build>
-        <!-- Include the container descriptors in the output artifact -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <excludes>
-                    <exclude>**/build.xml</exclude>
-                </excludes>
-            </resource>
-        </resources>
         <plugins>
             <!-- do not publish this artifact to Maven repositories -->
             <plugin>
@@ -108,4 +108,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

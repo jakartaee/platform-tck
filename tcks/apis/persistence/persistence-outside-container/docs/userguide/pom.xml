@@ -23,7 +23,7 @@
         <groupId>jakarta.tck</groupId>
         <artifactId>jakarta.tck.user-guide</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../../../../../user_guides/parent/pom.xml</relativePath>
+        <relativePath>../../../../../../user_guides/parent/pom.xml</relativePath>
     </parent>
 
     <groupId>jakarta.persistence</groupId>
