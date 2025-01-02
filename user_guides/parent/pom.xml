@@ -32,7 +32,7 @@
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide Parent for TCK Documentation</name>
 
     <properties>
-        <asciidoctorj.diagram.version>2.3.0</asciidoctorj.diagram.version>
+        <asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
         <asciidoctorj.maven.plugin.version>3.1.0</asciidoctorj.maven.plugin.version>
         <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
 
