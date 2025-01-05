@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2021, 2024 Contributors to the Eclipse Foundation. All rights reserved.
+    Copyright (c) 2021, 2025 Contributors to the Eclipse Foundation. All rights reserved.
 
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
@@ -21,21 +21,28 @@
 
     <parent>
         <groupId>org.glassfish</groupId>
-        <artifactId>tags-tck</artifactId>
-        <version>4.0.0-SNAPSHOT</version>
+        <artifactId>standalone-tck</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>tags-tck-install</artifactId>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta tags TCK</name>
 
+    <properties>
+        <tck.test.tags.file>jakarta-tags-tck-${tck.test.tags.version}.zip</tck.test.tags.file>
+        <tck.test.tags.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.tags.file}</tck.test.tags.url>
+        <tck.test.tags.version>11.0.0-M2</tck.test.tags.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.11.0</version>
+                <version>1.9.0</version>
                 <configuration>
+                    <url>${tck.test.tags.url}</url>
                     <unpack>true</unpack>
                     <outputDirectory>${project.build.directory}</outputDirectory>
                 </configuration>
@@ -46,37 +53,31 @@
                             <goal>wget</goal>
                         </goals>
                         <phase>generate-resources</phase>
-                        <configuration>
-                            <excludes>**/extensions.xml</excludes>
-                            <url>https://github.com/jakartaee/platform-tck/archive/refs/heads/main.zip</url>
-                            <skipCache>true</skipCache>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-invoker-plugin</artifactId>
-                <version>3.8.0</version>
+                <artifactId>maven-install-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>tags_tck_compile</id>
+                        <id>install-tags-tck-pom</id>
                         <goals>
-                            <goal>run</goal>
+                            <goal>install-file</goal>
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <streamLogs>true</streamLogs>
-                            <projectsDirectory>${project.build.directory}/platform-tck-main</projectsDirectory>
-                            <pomIncludes>
-                                <pomInclude>pom.xml</pomInclude>
-                            </pomIncludes>
-                            <goals>clean install -pl ":jakarta-tags-tck" -am</goals>
+                            <file>${project.build.directory}/jakarta-tags-tck-${tck.test.tags.version}.jar</file>
+                            <sources>${project.build.directory}/jakarta-tags-tck-${tck.test.tags.version}-sources.jar</sources>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>tags-tck</artifactId>
+                            <version>${tck.test.tags.version}</version>
+                            <packaging>jar</packaging>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
         </plugins>
     </build>
 
