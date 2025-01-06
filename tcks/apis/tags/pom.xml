@@ -55,7 +55,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         
-        <jakarta.tck.tools.version>11.0.0-M2</jakarta.tck.tools.version>
+        <jakarta.tck.tools.version>11.0.0-SNAPSHOT</jakarta.tck.tools.version>
     </properties>
 
     <dependencies>
