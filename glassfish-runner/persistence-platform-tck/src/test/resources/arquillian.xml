@@ -14,6 +14,8 @@
     <container qualifier="tck-javatest" default="true">
         <configuration>
             <property name="glassFishHome">target/glassfish8</property>
+            <property name="debug">true</property>
+            <property name="suspend">false</property>
         </configuration>
         <protocol type="javatest">
             <property name="trace">true</property>

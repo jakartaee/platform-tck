@@ -1,0 +1,80 @@
+/*
+ * Copyright (c) 2009, 2020 Oracle and/or its affiliates. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v. 2.0, which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * This Source Code may also be made available under the following Secondary
+ * Licenses when the conditions for such availability set forth in the
+ * Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+ * version 2 with the GNU Classpath Exception, which is available at
+ * https://www.gnu.org/software/classpath/license.html.
+ *
+ * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+ */
+
+package com.sun.ts.tests.common.connector.whitebox.mixedmode;
+
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.common.connector.whitebox.Debug;
+import com.sun.ts.tests.common.connector.whitebox.WorkImpl;
+import com.sun.ts.tests.common.connector.whitebox.WorkListenerImpl;
+
+import jakarta.resource.spi.BootstrapContext;
+import jakarta.resource.spi.work.ExecutionContext;
+import jakarta.resource.spi.work.WorkException;
+import jakarta.resource.spi.work.WorkManager;
+
+public class PMDWorkManager {
+    private BootstrapContext bsc = null;
+
+    private WorkManager wmgr;
+
+    private String sicUser = "";
+
+    private String sicPwd = "";
+
+    private String eisUser = "";
+
+    public PMDWorkManager(BootstrapContext val) {
+        debug("enterred constructor");
+        this.bsc = val;
+        this.wmgr = bsc.getWorkManager();
+
+        this.sicUser = TestUtil.getSystemProperty("j2eelogin.name");
+        this.sicPwd = TestUtil.getSystemProperty("j2eelogin.password");
+        this.eisUser = TestUtil.getSystemProperty("eislogin.name");
+        debug("leaving constructor");
+    }
+
+    public void runTests() {
+        debug("enterred runTests");
+        doWork();
+        debug("leaving runTests");
+    }
+
+    public void doWork() {
+        debug("enterred doWork");
+
+        try {
+            WorkImpl workimpl = new WorkImpl(wmgr);
+
+            ExecutionContext ec = new ExecutionContext();
+            WorkListenerImpl wl = new WorkListenerImpl();
+            wmgr.doWork(workimpl, 5000, ec, wl);
+            debug("PMDWorkManager Work Object Submitted");
+        } catch (WorkException we) {
+            System.out.println("PMDWorkManager WorkException thrown is " + we.getMessage());
+        } catch (Exception ex) {
+            System.out.println("PMDWorkManager Exception thrown is " + ex.getMessage());
+        }
+
+        debug("leaving doWork");
+    }
+
+    public void debug(String out) {
+        Debug.trace("PMDWorkManager:  " + out);
+    }
+
+}

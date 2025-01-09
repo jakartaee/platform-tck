@@ -34,49 +34,45 @@
     <description>project</description>
 
     <modules>
-        <module>appclient</module>
         <module>arquillian</module>
-        <module>assembly</module>
-        <module>common</module>
-        <module>connector</module>
-        <module>core-profile-tck</module>
-        <module>ejb30</module>
+        <module>tcks/apis/connector</module>
+        <module>tcks/apis/enterprise-beans/ejb30</module>
         <!-- PENDING: Additional action necessary to expurgate WebServices content. -->
         <!-- https://github.com/jakartaee/platform-tck/issues/1387 -->
-        <module>ejb32</module>
-        <module>el</module>
-        <module>el-tck</module>
-        <module>integration</module>
-        <module>javaee</module>
-        <module>javamail</module>
-        <module>jaxrs</module>
-        <module>jdbc</module>
-        <module>jms</module>
-        <module>jms-tck</module>
-        <module>jpa</module>
-        <module>jpa-tck</module>
-        <module>jsonb</module>
-        <module>jsonp</module>
-        <module>jsp</module>
-        <module>jstl</module>
-        <module>jta</module>
-        <module>libutil</module>
-        <module>runtime</module>
-        <module>samples</module>
-        <module>signaturetest</module>
+        <module>tcks/apis/enterprise-beans/ejb32</module>
+        <module>tcks/apis/expression-language/expression-language-inside-container</module>
+        <module>tcks/apis/expression-language/expression-language-outside-container</module>
+        <module>tcks/apis/javamail</module>
+        <module>tcks/apis/jsonb</module>
+        <module>tcks/apis/jsonp</module>
+        <module>tcks/apis/messaging/messaging-inside-container</module>
+        <module>tcks/apis/messaging/messaging-outside-container</module>
+        <module>tcks/apis/pages</module>
+        <module>tcks/apis/persistence/persistence-inside-container</module>
+        <module>tcks/apis/persistence/persistence-outside-container</module>
+        <module>tcks/apis/rest</module>
+        <module>tcks/apis/tags</module>
+        <module>tcks/apis/transactions</module>
+        <module>tcks/apis/websocket</module>
+        <module>tcks/profiles/core-profile-tck</module>
+        <module>tcks/profiles/platform/appclient</module>
+        <module>tcks/profiles/platform/assembly</module>
+        <module>tcks/profiles/platform/integration</module>
+        <module>tcks/profiles/platform/javaee</module>
+        <module>tcks/profiles/platform/jdbc</module>
+        <module>tcks/profiles/platform/samples</module>
+        <module>tcks/profiles/platform/xa</module>
+        <module>tools</module>
         <module>tsharness</module>
         <module>user_guides</module>
         <module>webartifacts/jsf</module>
         <module>webartifacts/jsp</module>
         <module>webartifacts/jstl</module>
         <module>webartifacts/servlet</module>
-        <module>websocket</module>
-        <module>xa</module>
-
     </modules>
 
     <properties>
-        <ant.version>1.10.11</ant.version>
+        <ant.version>1.10.15</ant.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
         <arquillian.jakarta.tck.version>${project.version}</arquillian.jakarta.tck.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
