@@ -19,8 +19,10 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaUpdate;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 
 
@@ -50,7 +52,17 @@ public class Client extends Util {
 		s.exit();
 	}
 
-
+	public void setup(String[] args, Properties p) throws Exception {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup(args, p);
+			removeTestData();
+			createProductData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Fault("Setup failed:", e);
+		}
+	}
 
 	/*
 	 * @testName: fromClassGetRootSetStringObjectTest
