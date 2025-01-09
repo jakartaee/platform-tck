@@ -20,8 +20,10 @@ package ee.jakarta.tck.persistence.core.criteriaapi.CriteriaDelete;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Properties;
 
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.common.schema30.Util;
 
 
@@ -45,7 +47,17 @@ public class Client extends Util {
 		Status s = theTests.run(args, System.out, System.err);
 		s.exit();
 	}
-
+	public void setup(String[] args, Properties p) throws Fault {
+		TestUtil.logTrace("setup");
+		try {
+			super.setup(args, p);
+			removeTestData();
+			createProductData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Fault("setup failed:", e);
+		}
+	}
 	/*
 	 * @testName: fromClassTest
 	 * 
