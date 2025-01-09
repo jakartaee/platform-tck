@@ -20,7 +20,10 @@ package ee.jakarta.tck.persistence.core.query.parameter;
 import java.util.List;
 import java.util.Properties;
 
+import com.sun.ts.lib.harness.CleanupMethod;
+import com.sun.ts.lib.harness.SetupMethod;
 import com.sun.ts.lib.harness.Status;
+import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.common.PMClientBase;
 import jakarta.persistence.Query;
 
@@ -43,11 +46,25 @@ public class Client2 extends PMClientBase {
 		logTrace( "setupEmployee");
 		try {
 			super.setup(args,p);
-			createEmployeeData();
+			getEntityManager();
 		} catch (Exception e) {
 			logErr( "Exception: ", e);
 			throw new Exception("Setup failed:", e);
 		}
+	}
+	public void setupEmployee(String[] args, Properties p) throws Fault {
+		TestUtil.logTrace("setupEmployee");
+		try {
+			super.setup(args, p);
+			createEmployeeData();
+		} catch (Exception e) {
+			TestUtil.logErr("Exception: ", e);
+			throw new Fault("Setup failed:", e);
+		}
+	}
+	public void cleanup() throws Exception {
+		TestUtil.logTrace("calling super.cleanup");
+		super.cleanup();
 	}
 
 	/*
@@ -59,7 +76,8 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create a query with a having clause with a positional
 	 * parameter and retrieve information about the parameter.
 	 */
-	
+	@SetupMethod(name = "setupEmployee")
+	@CleanupMethod(name = "cleanupEmployee")
 	public void parameterPositionalTest() throws Exception {
 		boolean pass = false;
 		List result;
@@ -98,7 +116,8 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create an update query with a positional parameter and
 	 * retrieve information about the parameter.
 	 */
-	
+	@SetupMethod(name = "setupEmployee")
+	@CleanupMethod(name = "cleanupEmployee")
 	public void parameterUpdateTest() throws Exception {
 		boolean pass = false;
 		String expectedPKs[];
@@ -141,7 +160,8 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create a query with a name parameter using different cases
 	 * and retrieve information about the parameter.
 	 */
-	
+	@SetupMethod(name = "setupEmployee")
+	@CleanupMethod(name = "cleanupEmployee")
 	public void parameterCaseTest() throws Exception {
 		boolean pass = false;
 		List result;
@@ -179,7 +199,8 @@ public class Client2 extends PMClientBase {
 	 * @test_Strategy: Create a query using a name parameter twice and retrieve
 	 * information about the parameter.
 	 */
-	
+	@SetupMethod(name = "setupEmployee")
+	@CleanupMethod(name = "cleanupEmployee")
 	public void parameterNamedParameterTwiceTest() throws Exception {
 		boolean pass = false;
 		List result;

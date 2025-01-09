@@ -59,7 +59,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.criteri
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_core_criteriapia_CriteriaDelete_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_core_criteriapia_CriteriaDelete_pmservlet_vehicle_web.war");
@@ -155,51 +155,16 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.criteri
             );
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
-            if(parURL != null) {
-              jpa_core_criteriapia_CriteriaDelete.addAsManifestResource(parURL, "persistence.xml");
-            }
-            // Add the Persistence mapping-file
-            URL mappingURL = Client.class.getResource("myMappingFile.xml");
-            if(mappingURL != null) {
-              jpa_core_criteriapia_CriteriaDelete.addAsResource(mappingURL, "myMappingFile.xml");
-            }
-            mappingURL = Client.class.getResource("myMappingFile1.xml");
-            if(mappingURL != null) {
-              jpa_core_criteriapia_CriteriaDelete.addAsResource(mappingURL, "myMappingFile1.xml");
-            }
-            mappingURL = Client.class.getResource("myMappingFile2.xml");
-            if(mappingURL != null) {
-              jpa_core_criteriapia_CriteriaDelete.addAsResource(mappingURL, "myMappingFile2.xml");
-            }
+            jpa_core_criteriapia_CriteriaDelete.addAsManifestResource(parURL, "persistence.xml");
+
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_criteriapia_CriteriaDelete, Client.class, parURL);
             parURL = Client.class.getResource("orm.xml");
             if(parURL != null) {
               jpa_core_criteriapia_CriteriaDelete.addAsManifestResource(parURL, "orm.xml");
             }
-
-        // Ear
-            EnterpriseArchive jpa_core_criteriapia_CriteriaDelete_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_criteriapia_CriteriaDelete_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_core_criteriapia_CriteriaDelete_vehicles_ear.addAsModule(jpa_core_criteriapia_CriteriaDelete_pmservlet_vehicle_web);
-
-            jpa_core_criteriapia_CriteriaDelete_vehicles_ear.addAsLibrary(jpa_core_criteriapia_CriteriaDelete);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_criteriapia_CriteriaDelete_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_core_criteriapia_CriteriaDelete_vehicles_ear, Client.class, earResURL);
-        return jpa_core_criteriapia_CriteriaDelete_vehicles_ear;
+            jpa_core_criteriapia_CriteriaDelete_pmservlet_vehicle_web.addAsLibrary(jpa_core_criteriapia_CriteriaDelete);
+        return jpa_core_criteriapia_CriteriaDelete_pmservlet_vehicle_web;
         }
 
         @Test

@@ -2,6 +2,8 @@ package ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local;
 
 import ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Client;
 import java.net.URL;
+
+import ee.jakarta.tck.persistence.jpa.ee.packaging.jar.C;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
@@ -48,7 +50,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive pluggability_contracts_resource_local_puservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "pluggability_contracts_resource_local_puservlet_vehicle_web.war");
@@ -75,77 +77,48 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.ee.pluggabil
             );
             // The web.xml descriptor
             URL warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              pluggability_contracts_resource_local_puservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
-            }
+            pluggability_contracts_resource_local_puservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              pluggability_contracts_resource_local_puservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/pluggability/contracts/resource_local/pluggability_contracts_resource_local.jar");
-            if(warResURL != null) {
-              pluggability_contracts_resource_local_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/pluggability_contracts_resource_local.jar");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/puservlet/puservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              pluggability_contracts_resource_local_puservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/puservlet_vehicle_web.xml");
-            }
-
+            warResURL = null;
            // Call the archive processor
            archiveProcessor.processWebArchive(pluggability_contracts_resource_local_puservlet_vehicle_web, Client.class, warResURL);
 
         // Par
-            // the jar with the correct archive name
-            JavaArchive pluggability_contracts_resource_local = ShrinkWrap.create(JavaArchive.class, "pluggability_contracts_resource_local.jar");
-            // The class files
-            pluggability_contracts_resource_local.addClasses(
-                ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Order4.class,
-                ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Order.class,
-                ee.jakarta.tck.persistence.common.pluggability.util.LogRecordEntry.class,
-                ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Order3.class,
-                ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Order2.class,
-                ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor.class
-            );
-            // The persistence.xml descriptor
-            URL parURL = Client.class.getResource("persistence.xml");
-            if(parURL != null) {
-              pluggability_contracts_resource_local.addAsManifestResource(parURL, "persistence.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processParArchive(pluggability_contracts_resource_local, Client.class, parURL);
-            // The orm.xml file
-            parURL = Client.class.getResource("orm.xml");
-            if(parURL != null) {
-              pluggability_contracts_resource_local.addAsManifestResource(parURL, "orm.xml");
-            }
+        JavaArchive pluggability_contracts_resource_local = ShrinkWrap.create(JavaArchive.class, "pluggability_contracts_resource_local.jar");
+        // The class files
+        pluggability_contracts_resource_local.addClasses(
+            ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Order4.class,
+            ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Order.class,
+            ee.jakarta.tck.persistence.common.pluggability.util.LogRecordEntry.class,
+            ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Order3.class,
+            ee.jakarta.tck.persistence.ee.pluggability.contracts.resource_local.Order2.class,
+            ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor.class
+        );
+        // The persistence.xml descriptor
+        URL parURL = Client.class.getResource("persistence.xml");
+        if(parURL != null) {
+          pluggability_contracts_resource_local.addAsManifestResource(parURL, "persistence.xml");
+        }
+        // Call the archive processor
+        archiveProcessor.processParArchive(pluggability_contracts_resource_local, Client.class, parURL);
+        // The orm.xml file
+        parURL = Client.class.getResource("orm.xml");
+        pluggability_contracts_resource_local.addAsManifestResource(parURL, "orm.xml");
+        // Mapping files
+        parURL = Client.class.getResource("myMappingFile1.xml");
+        pluggability_contracts_resource_local.addAsManifestResource(parURL, "myMappingFile1.xml");
+        parURL = Client.class.getResource("myMappingFile2.xml");
+        pluggability_contracts_resource_local.addAsManifestResource(parURL, "myMappingFile2.xml");
+        pluggability_contracts_resource_local_puservlet_vehicle_web.addAsLibrary(pluggability_contracts_resource_local);
 
-        // Ear
-            EnterpriseArchive pluggability_contracts_resource_local_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "pluggability_contracts_resource_local_vehicles.ear");
+        // jpa_alternate_provider.jar
+        JavaArchive jpa_alternate_provider = ShrinkWrap.create(JavaArchive.class, "jpa_alternate_provider.jar");
+        jpa_alternate_provider.addPackage("ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation");
+        parURL = Client.class.getResource("/ee/jakarta/tck/persistence/common/pluggability/altprovider/METAINF/services/jakarta.persistence.spi.PersistenceProvider");
+        jpa_alternate_provider.addAsServiceProvider(jakarta.persistence.spi.PersistenceProvider.class, ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.PersistenceProvider.class);
+        pluggability_contracts_resource_local_puservlet_vehicle_web.addAsLibrary(jpa_alternate_provider);
 
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            pluggability_contracts_resource_local_vehicles_ear.addAsModule(pluggability_contracts_resource_local_puservlet_vehicle_web);
-
-            pluggability_contracts_resource_local_vehicles_ear.addAsLibrary(pluggability_contracts_resource_local);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/pluggability/contracts/resource_local/");
-            if(earResURL != null) {
-              pluggability_contracts_resource_local_vehicles_ear.addAsManifestResource(earResURL, "application.xml");
-            }
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/com/sun/ts/tests/jpa/ee/pluggability/contracts/resource_local/.ear.sun-application.xml");
-            if(earResURL != null) {
-              pluggability_contracts_resource_local_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(pluggability_contracts_resource_local_vehicles_ear, Client.class, earResURL);
-        return pluggability_contracts_resource_local_vehicles_ear;
+        return pluggability_contracts_resource_local_puservlet_vehicle_web;
         }
 
         @Test
