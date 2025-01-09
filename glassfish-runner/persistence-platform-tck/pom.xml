@@ -547,8 +547,8 @@
                         <configuration>
                             <includes>
 
-                                <include>ee/jakarta/tck/persistence/core/StoredProcedureQuery/Client1PmservletTest.java</include>
-                                <!--include>ee/jakarta/tck/persistence/**/*Test.java</include-->
+                                <!-- <include>ee/jakarta/tck/persistence/core/StoredProcedureQuery/Client1PmservletTest.java</include -->
+                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                             </includes>
                             <!-- Select the @Tag("tck-javatest") tests -->
                             <groups>tck-javatest</groups>
