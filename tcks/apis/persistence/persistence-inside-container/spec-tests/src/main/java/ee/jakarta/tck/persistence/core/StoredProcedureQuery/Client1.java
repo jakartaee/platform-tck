@@ -57,8 +57,8 @@ public class Client1 extends Client {
         logTrace( "setup");
 
         super.setup(args,p);
-        removeTestData();
-        createEmployeeTestData();
+        //removeTestData();
+        //createEmployeeTestData();
         dataBaseName = p.getProperty("jdbc.db");
 
     }
