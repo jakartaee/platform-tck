@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-    <!-- Model Version -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Parent -->
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>tck.arquillian.parent</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <!-- Artifact Configuration -->
     <groupId>jakarta.tck.arquillian</groupId>
     <artifactId>arquillian-protocol-javatest</artifactId>
+
     <name>Arquillian Protocol JavaTest</name>
     <description>Protocol handler for communicating JavaTest CTS Vehicles</description>
 
-    <!-- Properties -->
-    <properties>
-        <!-- Versioning -->
-        <ee.tck.version>11.0.0-SNAPSHOT</ee.tck.version>
-        <!-- There are post SE 11 language features used -->
-        <maven.compiler.release>17</maven.compiler.release>
-    </properties>
-
-    <!-- Dependencies -->
     <dependencies>
-
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-common</artifactId>
@@ -56,7 +43,6 @@
         <dependency>
             <groupId>org.jboss.shrinkwrap.descriptors</groupId>
             <artifactId>shrinkwrap-descriptors-spi</artifactId>
-            <version>${shrinkwrap.descriptors.version}</version>
             <scope>compile</scope>
         </dependency>
 
