@@ -67,7 +67,7 @@
         <version.jakarta.servlet>5.0.0</version.jakarta.servlet>
         <version.jakarta.tck>11.0.0-M2</version.jakarta.tck>
         <version.ejb.tck>4.0.0-M1</version.ejb.tck>
-        <version.jakarta.tck.arquillian>1.0.0-SNAPSHOT</version.jakarta.tck.arquillian>
+        <version.jakarta.tck.arquillian>11.0.0-M1</version.jakarta.tck.arquillian>
 
     </properties>
 
