@@ -113,7 +113,6 @@ public class ClientPmservletTest extends Client {
 
         return jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web;
         }
-    }
 
     @Test
     @Override
