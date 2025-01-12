@@ -453,6 +453,8 @@
                                 <include>ee/jakarta/tck/persistence/ee/cdi/*Test.java</include>
                             </includes>
 
+                            <skipITs>${cdi.skip}</skipITs>
+
                             <systemPropertyVariables>
                                 <arquillian.xml>rest-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>

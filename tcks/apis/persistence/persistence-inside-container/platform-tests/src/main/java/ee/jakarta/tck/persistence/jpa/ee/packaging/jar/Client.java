@@ -33,7 +33,8 @@ public class Client extends PMClientBase {
 	/*
 	 * @class.setup_props:
 	 */
-	@BeforeEach
+	@Override
+    @BeforeEach
 	public void setup() throws Exception {
 		logTrace( "setup");
 		try {
@@ -47,9 +48,9 @@ public class Client extends PMClientBase {
 
 	/*
 	 * @testName: JarFileElementsTest
-	 * 
+	 *
 	 * @assertion_ids: PERSISTENCE:SPEC:957
-	 * 
+	 *
 	 * @test_Strategy: With the above archive (jar-file elements), deploy, create
 	 * entities persist, then find.
 	 *
@@ -64,11 +65,13 @@ public class Client extends PMClientBase {
 			getEntityManager().persist(a);
 			logTrace( "persisted order " + a.toString());
 		}
+
 		for (int i = 1 + count; i <= count + count; i++) {
 			C c = new C(Integer.toString(i), "name_" + Integer.toString(i), i);
 			getEntityManager().persist(c);
 			logTrace( "persisted order " + c.toString());
 		}
+
 		for (int i = 1; i <= count; i++) {
 			B b = new B(Integer.toString(i), "name_" + Integer.toString(i), i);
 			getEntityManager().persist(b);
@@ -87,6 +90,7 @@ public class Client extends PMClientBase {
 				pass = false;
 			}
 		}
+
 		for (int i = 1 + count; i <= count + count; i++) {
 			C c = getEntityManager().find(C.class, Integer.toString(i));
 			if (c != null) {
@@ -96,6 +100,7 @@ public class Client extends PMClientBase {
 				pass = false;
 			}
 		}
+
 		for (int i = 1; i <= count; i++) {
 			B b = getEntityManager().find(B.class, Integer.toString(i));
 			if (b != null) {
@@ -110,7 +115,8 @@ public class Client extends PMClientBase {
 		}
 	}
 
-	@BeforeEach
+	@Override
+    @BeforeEach
 	public void cleanup() throws Exception {
 		logTrace( "cleanup");
 		removeTestData();
