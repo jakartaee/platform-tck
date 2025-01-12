@@ -467,7 +467,7 @@
                         </goals>
                         <configuration>
                             <includes>
-                                <include>ee/jakarta/tck/persistence/core/StoredProcedureQuery/Client1PmservletTest.java</include>
+                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
                             </includes>
                             <groups>tck-javatest</groups>
 
