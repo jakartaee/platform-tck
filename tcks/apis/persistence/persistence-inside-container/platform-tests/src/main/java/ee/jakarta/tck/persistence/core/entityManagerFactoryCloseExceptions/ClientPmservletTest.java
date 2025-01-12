@@ -59,7 +59,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityM
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.war");
@@ -89,53 +89,17 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityM
             if(warResURL != null) {
               jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
-            // The sun-web.xml descriptor
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
 
-            // Any libraries added to the war
-                URL libURL;
-                JavaArchive jpa_core_entityManagerFactoryCloseException_lib = ShrinkWrap.create(JavaArchive.class, "jpa_core_entityManagerFactoryCloseException.jar");
-
-                // The resources
-                        libURL = Client.class.getResource("persistence.xml");
-                        jpa_core_entityManagerFactoryCloseException_lib.addAsResource(libURL, "persistence.xml");
-
-                jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsLibrary(jpa_core_entityManagerFactoryCloseException_lib);
-
-
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
-            }
+            // Par
+            JavaArchive jpa_core_entityManagerFactoryCloseException_lib = ShrinkWrap.create(JavaArchive.class, "jpa_core_entityManagerFactoryCloseException.jar");
+            URL parURL = Client.class.getResource("/ee/jakarta/tck/persistence/common/template/persistence.xml");
+            jpa_core_entityManagerFactoryCloseException_lib.addAsManifestResource(parURL, "persistence.xml");
+            jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web.addAsLibrary(jpa_core_entityManagerFactoryCloseException_lib);
 
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web, Client.class, warResURL);
 
-
-        // Ear
-            EnterpriseArchive jpa_core_entityManagerFactoryCloseException_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_entityManagerFactoryCloseException_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_core_entityManagerFactoryCloseException_vehicles_ear.addAsModule(jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_entityManagerFactoryCloseException_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_core_entityManagerFactoryCloseException_vehicles_ear, Client.class, earResURL);
-        return jpa_core_entityManagerFactoryCloseException_vehicles_ear;
+        return jpa_core_entityManagerFactoryCloseException_pmservlet_vehicle_web;
         }
 
         @Test
