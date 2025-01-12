@@ -65,7 +65,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packa
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-    public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+    public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
         // the war with the correct archive name
         WebArchive jpa_ee_packaging_jar_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class,
@@ -137,36 +137,11 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa.ee.packa
 
         jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsLibrary(jpa_ee_packaging_jar_lib);
 
-        // Web content
-        warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
-        if (warResURL != null) {
-            jpa_ee_packaging_jar_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
-        }
 
         // Call the archive processor
         archiveProcessor.processWebArchive(jpa_ee_packaging_jar_pmservlet_vehicle_web, Client.class, warResURL);
 
-        // Ear
-        EnterpriseArchive jpa_ee_packaging_jar_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class,
-                "jpa_ee_packaging_jar_vehicles.ear");
-
-        // Any libraries added to the ear
-
-        // The component jars built by the package target
-        jpa_ee_packaging_jar_vehicles_ear.addAsModule(jpa_ee_packaging_jar_pmservlet_vehicle_web);
-
-        // The application.xml descriptor
-        URL earResURL = null;
-
-        // The sun-application.xml descriptor
-        earResURL = Client.class.getResource("/.ear.sun-application.xml");
-        if (earResURL != null) {
-            jpa_ee_packaging_jar_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-        }
-        // Call the archive processor
-        archiveProcessor.processEarArchive(jpa_ee_packaging_jar_vehicles_ear, Client.class, earResURL);
-
-        return jpa_ee_packaging_jar_vehicles_ear;
+        return jpa_ee_packaging_jar_pmservlet_vehicle_web;
     }
 
     @Test

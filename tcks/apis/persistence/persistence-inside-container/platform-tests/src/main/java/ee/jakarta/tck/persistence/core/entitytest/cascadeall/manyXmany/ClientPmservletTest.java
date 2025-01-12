@@ -59,7 +59,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityt
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web.war");
@@ -95,18 +95,6 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityt
               jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }
 
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = Client.class.getResource("/com/sun/ts/tests/jpa/core/entitytest/cascadeall/manyXmany/jpa_core_et_cascadeall_manyXmany.jar");
-            if(warResURL != null) {
-              jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_et_cascadeall_manyXmany.jar");
-            }
-            warResURL = Client.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
-            }
-
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web, Client.class, warResURL);
 
@@ -121,51 +109,11 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityt
             );
             // The persistence.xml descriptor
             URL parURL = Client.class.getResource("persistence.xml");
-            if(parURL != null) {
-              jpa_core_et_cascadeall_manyXmany.addAsManifestResource(parURL, "persistence.xml");
-            }
-            // Add the Persistence mapping-file
-            URL mappingURL = Client.class.getResource("myMappingFile.xml");
-            if(mappingURL != null) {
-              jpa_core_et_cascadeall_manyXmany.addAsResource(mappingURL, "myMappingFile.xml");
-            }
-            mappingURL = Client.class.getResource("myMappingFile1.xml");
-            if(mappingURL != null) {
-              jpa_core_et_cascadeall_manyXmany.addAsResource(mappingURL, "myMappingFile1.xml");
-            }
-            mappingURL = Client.class.getResource("myMappingFile2.xml");
-            if(mappingURL != null) {
-              jpa_core_et_cascadeall_manyXmany.addAsResource(mappingURL, "myMappingFile2.xml");
-            }
-            // Call the archive processor
+            jpa_core_et_cascadeall_manyXmany.addAsManifestResource(parURL, "persistence.xml");
             archiveProcessor.processParArchive(jpa_core_et_cascadeall_manyXmany, Client.class, parURL);
-            parURL = Client.class.getResource("orm.xml");
-            if(parURL != null) {
-              jpa_core_et_cascadeall_manyXmany.addAsManifestResource(parURL, "orm.xml");
-            }
+            jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web.addAsLibrary(jpa_core_et_cascadeall_manyXmany);
 
-        // Ear
-            EnterpriseArchive jpa_core_et_cascadeall_manyXmany_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_et_cascadeall_manyXmany_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_core_et_cascadeall_manyXmany_vehicles_ear.addAsModule(jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web);
-
-            jpa_core_et_cascadeall_manyXmany_vehicles_ear.addAsLibrary(jpa_core_et_cascadeall_manyXmany);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_et_cascadeall_manyXmany_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_core_et_cascadeall_manyXmany_vehicles_ear, Client.class, earResURL);
-        return jpa_core_et_cascadeall_manyXmany_vehicles_ear;
+        return jpa_core_et_cascadeall_manyXmany_pmservlet_vehicle_web;
         }
 
         @Test
