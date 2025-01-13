@@ -62,6 +62,7 @@ public class TestCode {
 
       pass = bean.isTestStatelessInternal();
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("TestBean: Caught exception: " + e, e);
       pass = false;
     }
@@ -83,6 +84,7 @@ public class TestCode {
 
       pass = true;
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr(
           "TestBean: Exception in " + "testStatelessExternal(): " + e, e);
       pass = false;
@@ -101,6 +103,7 @@ public class TestCode {
       pass = ssfInternalBeanRef1.isTestStatefulInternal();
 
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("Caught exception: " + e, e);
       pass = false;
     }
@@ -118,6 +121,7 @@ public class TestCode {
           StatefulExternal.class);
       pass = ssfExternalBeanRef1.isTestStatefulExternal();
     } catch (Exception e) {
+    	e.printStackTrace();
       TestUtil.logErr("TestBean: Got exception: " + e, e);
       pass = false;
     }

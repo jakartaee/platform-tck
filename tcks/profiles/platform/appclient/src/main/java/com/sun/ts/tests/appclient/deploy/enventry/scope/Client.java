@@ -20,13 +20,31 @@
 
 package com.sun.ts.tests.appclient.deploy.enventry.scope;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.tests.assembly.util.shared.enventry.scope.TestCode;
 
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+
+
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   /** Env. entry name for JNDI lookup */
@@ -44,6 +62,52 @@ public class Client extends EETest {
     Status s = theTests.run(args, System.out, System.err);
     s.exit();
   }
+  
+  
+  @TargetsContainer("tck-javatest")
+  @OverProtocol("javatest")	
+
+	@Deployment(testable = false)
+	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
+		JavaArchive ejbClient1 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_enventry_scope_another_client.jar");
+		ejbClient1.addClasses(Client.class, TestCode.class);
+		ejbClient1.addPackages(true, "com.sun.ts.lib.harness");
+
+		// The appclient-client descriptor
+		URL appClientUrl = Client.class.getResource(
+				"com/sun/ts/tests/appclient/deploy/enventry/scope/appclient_dep_enventry_scope_another_client.xml");
+		if (appClientUrl != null) {
+			ejbClient1.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		
+		ejbClient1.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.enventry.scope.Client" + "\n"),
+				"MANIFEST.MF");
+
+
+		JavaArchive ejbClient2 = ShrinkWrap.create(JavaArchive.class, "appclient_dep_enventry_scope_client.jar");
+		ejbClient2.addClasses(Client.class, TestCode.class);
+		ejbClient2.addPackages(true, "com.sun.ts.lib.harness");
+
+		URL resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/enventry/scope/appclient_dep_enventry_scope_client.xml");
+
+		if (resURL != null) {
+			ejbClient2.addAsManifestResource(resURL, "application-client.xml");
+		}
+		
+		ejbClient2.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.enventry.scope.Client" + "\n"),
+				"MANIFEST.MF");
+
+
+		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_enventry_scope.ear");
+		ear.addAsModule(ejbClient1);
+		ear.addAsModule(ejbClient2);
+		return ear;
+	};
+
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -76,6 +140,7 @@ public class Client extends EETest {
    *                 entry correspond to the one declared in the Deployment
    *                 Descriptor.
    */
+  @Test
   public void testScope() throws Exception {
     boolean pass;
 
