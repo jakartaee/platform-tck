@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+    Copyright (c) 2024, 2025 Contributors to the Eclipse Foundation.
     Copyright (c) 2024 Oracle and/or its affiliates. All rights reserved.
+    
     This program and the accompanying materials are made available under the
     terms of the Eclipse Public License v. 2.0, which is available at
     http://www.eclipse.org/legal/epl-2.0.
@@ -17,9 +19,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.glassfish</groupId>
-        <artifactId>standalone-tck</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.9</version>
+        <relativePath />
     </parent>
 
     <groupId>jakarta</groupId>
@@ -27,24 +30,27 @@
     <version>11.0.0-SNAPSHOT</version>
 
     <properties>
+        <!-- Require at least Java 17 to compile -->
+        <maven.compiler.release>17</maven.compiler.release>
+        
         <arquillian.junit>1.9.1.Final</arquillian.junit>
 
         <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <!-- Use JDK21 to run with GF 8.0.0-M5 -->
-        <!-- <glassfish.version>8.0.0-M5</glassfish.version> -->
+        <!-- Use JDK21 to run with GF 8.0.0-M9 -->
+        <!-- <glassfish.version>8.0.0-M9</glassfish.version> -->
         <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <!-- Use JDK17 to run with GF 8.0.0-JDK17-M5 -->
         <glassfish.version>8.0.0-JDK17-M9</glassfish.version>
         <jakarta.platform.version>11.0.0-M2</jakarta.platform.version>
 
         <junit.jupiter.version>5.11.3</junit.jupiter.version>
-        <tck.artifactId>persistence-platform-tck-tests</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
         <ts.home>./jakartaeetck</ts.home>
         <version.jakarta.inject>2.0.1.MR</version.jakarta.inject>
         <version.jakarta.persistence>3.2.0</version.jakarta.persistence>
-        <version.jakarta.tck>11.0.0-SNAPSHOT</version.jakarta.tck>
+        <version.jakarta.tck>11.0.0-M2</version.jakarta.tck>
+        <version.persistence.tck>11.0.0-SNAPSHOT</version.persistence.tck>
     </properties>
 
     <dependencyManagement>
@@ -66,7 +72,7 @@
             <dependency>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>3.2.5</version>
+                <version>3.5.2</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -94,35 +100,37 @@
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-common</artifactId>
-            <version>${version.jakarta.tck}</version>
+            <version>${version.persistence.tck}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-spec-tests</artifactId>
-            <version>${version.jakarta.tck}</version>
+            <version>${version.persistence.tck}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>persistence-platform-tck-tests</artifactId>
-            <version>${version.jakarta.tck}</version>
+            <version>${version.persistence.tck}</version>
             <scope>test</scope>
         </dependency>
+        
+        <!-- TCK tools dependencies (the TCK above depends on these-->
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${project.version}</version>
+            <version>${version.jakarta.tck}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>libutil</artifactId>
-            <version>${project.version}</version>
+            <version>${version.jakarta.tck}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>runtime</artifactId>
-            <version>${project.version}</version>
+            <version>${version.jakarta.tck}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -141,12 +149,10 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.junit.vintage</groupId>
             <artifactId>junit-vintage-engine</artifactId>
-            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -154,37 +160,30 @@
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-container-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.core</groupId>
             <artifactId>arquillian-core-spi</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.test</groupId>
             <artifactId>arquillian-test-impl-base</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-core</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
-            <version>${arquillian.junit}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
@@ -281,7 +280,6 @@
                 <directory>src/main/resources</directory>
             </resource>
         </resources>
-
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -364,7 +362,7 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
-                                    <artifactId>${tck.artifactId}</artifactId>
+                                    <artifactId>persistence-platform-tck-tests</artifactId>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/lib</outputDirectory>
                                     <destFileName>persistence-platform-tck-tests.jar</destFileName>
@@ -422,26 +420,6 @@
                 </configuration>
 
                 <executions>
-                    <!-- 
-                    <execution>
-                        <id>jpa-tests-appclient</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                        <configuration>
-                            <includes>
-                                <include>ee/jakarta/tck/persistence/**/*Test.java</include>
-                            </includes>
-                            <groups>tck-appclient</groups>
-
-                            <systemPropertyVariables>
-                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
-                            </systemPropertyVariables>
-                        </configuration>
-                    </execution>
-                    -->
-
                     <execution>
                         <id>jpa-tests-cdi</id>
                         <goals>
@@ -483,8 +461,8 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.5.2</version>
                 <configuration>
                     <linkXRef>false</linkXRef>
                 </configuration>
@@ -529,7 +507,6 @@
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>3.5.0</version>
-
                         <executions>
                             <execution>
                                 <id>jpa-tests-appclient</id>
