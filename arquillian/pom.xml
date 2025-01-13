@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-    <!-- Model Version -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"><!-- Model Version -->
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Parent -->
     <parent>
-        <groupId>jakarta.tck</groupId>
+        <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>1.0.9</version>
+        <relativePath />
     </parent>
 
     <!-- Artifact Configuration -->
     <groupId>jakarta.tck</groupId>
     <artifactId>tck.arquillian.parent</artifactId>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <name>Arquillian Jakarta TCK Parent</name>
     <description>Protocols and testenrichers for Jakarta TCKs</description>
 
@@ -27,18 +27,62 @@
     </modules>
 
     <scm>
-        <connection>scm:git:https://github.com/eclipse-ee4j/jakartaee-tck-tools</connection>
-        <developerConnection>scm:git:https://github.com/eclipse-ee4j/jakartaee-tck-tools</developerConnection>
+        <connection>scm:git:https://github.com/jakartaee/platform-tck</connection>
+        <developerConnection>scm:git:https://github.com/jakartaee/platform-tck</developerConnection>
         <tag>master</tag>
-        <url>https://github.com/eclipse-ee4j/jakartaee-tck-tools/tools/arquillian</url>
+        <url>http://github.com/jakartaee/platform-tck</url>
     </scm>
 
-    <!-- Properties -->
     <properties>
-
         <maven.compiler.release>17</maven.compiler.release>
-        <!-- Versioning -->
-        <version.arquillian_core>1.9.1.Final</version.arquillian_core>
+        <ee.tck.version>11.0.0-SNAPSHOT</ee.tck.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.9.1.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.jboss.shrinkwrap</groupId>
+                <artifactId>shrinkwrap-bom</artifactId>
+                <version>2.0.0-beta-2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                <artifactId>shrinkwrap-descriptors-bom</artifactId>
+                <version>2.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            
+             <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-depchain</artifactId>
+                <version>3.1.1</version>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+                <version>3.1.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.11.3</version>
+        </dependency>
+    </dependencies>
 </project>

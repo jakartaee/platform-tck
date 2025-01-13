@@ -28,8 +28,8 @@
         <res-ref-name>eis/whitebox-notx</res-ref-name>
         <jndi-name>eis/whitebox-notx</jndi-name>
         <default-resource-principal>
-          <name>rauser1</name>
-          <password>rapassword1</password>
+          <name>cts1</name>
+          <password>cts1</password>
         </default-resource-principal>
       </resource-ref>
       <resource-ref>

@@ -69,6 +69,7 @@ public class lifecycleClient1EjbTest extends com.sun.ts.tests.connector.xa.lifec
             JavaArchive xa_lifecycle_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "xa_lifecycle_ejb_vehicle_client.jar");
             // The class files
             xa_lifecycle_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.xa.lifecycle.lifecycleClient1.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,

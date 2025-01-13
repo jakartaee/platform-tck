@@ -59,7 +59,7 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.query.
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_core_query_parameter_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_core_query_parameter_pmservlet_vehicle_web.war");
@@ -86,30 +86,10 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.query.
             );
             // The web.xml descriptor
             URL warResURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jpa_core_query_parameter_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
-            }
-            // The sun-web.xml descriptor
-            warResURL = Client2.class.getResource("//com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.war.sun-web.xml");
-            if(warResURL != null) {
-              jpa_core_query_parameter_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
-            }
-
-            // Any libraries added to the war
-
-            // Web content
-            warResURL = Client2.class.getResource("/com/sun/ts/tests/jpa/core/query/parameter/jpa_core_query_parameter.jar");
-            if(warResURL != null) {
-              jpa_core_query_parameter_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/lib/jpa_core_query_parameter.jar");
-            }
-            warResURL = Client2.class.getResource("/com/sun/ts/tests/common/vehicle/pmservlet/pmservlet_vehicle_web.xml");
-            if(warResURL != null) {
-              jpa_core_query_parameter_pmservlet_vehicle_web.addAsWebResource(warResURL, "/WEB-INF/pmservlet_vehicle_web.xml");
-            }
+            jpa_core_query_parameter_pmservlet_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
 
            // Call the archive processor
            archiveProcessor.processWebArchive(jpa_core_query_parameter_pmservlet_vehicle_web, Client2.class, warResURL);
-
 
         // Par
             // the jar with the correct archive name
@@ -120,51 +100,12 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.query.
             );
             // The persistence.xml descriptor
             URL parURL = Client2.class.getResource("persistence.xml");
-            if(parURL != null) {
-              jpa_core_query_parameter.addAsManifestResource(parURL, "persistence.xml");
-            }
-            // Add the Persistence mapping-file
-            URL mappingURL = Client2.class.getResource("myMappingFile.xml");
-            if(mappingURL != null) {
-              jpa_core_query_parameter.addAsResource(mappingURL, "myMappingFile.xml");
-            }
-            mappingURL = Client2.class.getResource("myMappingFile1.xml");
-            if(mappingURL != null) {
-              jpa_core_query_parameter.addAsResource(mappingURL, "myMappingFile1.xml");
-            }
-            mappingURL = Client2.class.getResource("myMappingFile2.xml");
-            if(mappingURL != null) {
-              jpa_core_query_parameter.addAsResource(mappingURL, "myMappingFile2.xml");
-            }
+            jpa_core_query_parameter.addAsManifestResource(parURL, "persistence.xml");
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_core_query_parameter, Client2.class, parURL);
-            parURL = Client2.class.getResource("orm.xml");
-            if(parURL != null) {
-              jpa_core_query_parameter.addAsManifestResource(parURL, "orm.xml");
-            }
+            jpa_core_query_parameter_pmservlet_vehicle_web.addAsLibrary(jpa_core_query_parameter);
 
-        // Ear
-            EnterpriseArchive jpa_core_query_parameter_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_query_parameter_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_core_query_parameter_vehicles_ear.addAsModule(jpa_core_query_parameter_pmservlet_vehicle_web);
-
-            jpa_core_query_parameter_vehicles_ear.addAsLibrary(jpa_core_query_parameter);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client2.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_query_parameter_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_core_query_parameter_vehicles_ear, Client2.class, earResURL);
-        return jpa_core_query_parameter_vehicles_ear;
+         return jpa_core_query_parameter_pmservlet_vehicle_web;
         }
 
         @Test

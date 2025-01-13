@@ -69,6 +69,7 @@ public class annotationClientEjbTest extends com.sun.ts.tests.connector.annotati
             JavaArchive annotations_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "annotations_ejb_vehicle_client.jar");
             // The class files
             annotations_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.annotations.anno.annotationClient.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
@@ -118,7 +119,7 @@ public class annotationClientEjbTest extends com.sun.ts.tests.connector.annotati
               annotations_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = annotationClient.class.getResource("annotations_jsp_vehicle_web.war.sun-web.xml");
+            ejbResURL1 = annotationClient.class.getResource("annotations_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               annotations_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }

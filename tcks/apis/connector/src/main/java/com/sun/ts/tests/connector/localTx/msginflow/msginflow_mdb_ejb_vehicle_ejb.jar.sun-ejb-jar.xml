@@ -28,24 +28,24 @@
         <res-ref-name>eis/whitebox-tx</res-ref-name>
         <jndi-name>eis/whitebox-tx</jndi-name>
         <default-resource-principal>
-          <name>rauser1</name>
-          <password>rapassword1</password>
+          <name>cts1</name>
+          <password>cts1</password>
         </default-resource-principal>
       </resource-ref>
       <resource-ref>
         <res-ref-name>eis/whitebox-ibanno_no_md</res-ref-name>
         <jndi-name>eis/whitebox-ibanno_no_md</jndi-name>
         <default-resource-principal>
-          <name>rauser1</name>
-          <password>rapassword1</password>
+          <name>cts1</name>
+          <password>cts1</password>
         </default-resource-principal>
       </resource-ref>
       <resource-ref>
         <res-ref-name>eis/whitebox-tx-param</res-ref-name>
         <jndi-name>eis/whitebox-tx-param</jndi-name>
         <default-resource-principal>
-          <name>rauser1</name>
-          <password>rapassword1</password>
+          <name>cts1</name>
+          <password>cts1</password>
         </default-resource-principal>
       </resource-ref>
       <pass-by-reference>false</pass-by-reference>

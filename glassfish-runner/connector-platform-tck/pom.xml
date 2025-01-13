@@ -41,6 +41,7 @@
 
         <!-- glassfish properties -->
         <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
+        <glassfish.container.version>7.0.0</glassfish.container.version>
         <glassfish.home>${project.build.directory}/glassfish7</glassfish.home>
         <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
         <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
@@ -56,11 +57,20 @@
         <jdbc.user>cts1</jdbc.user>
 
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <rapassword1>cts1</rapassword1>
-        <rauser1>cts1</rauser1>
+        <rapassword1>rapassword1</rapassword1>
+        <rauser1>rauser1</rauser1>
         <sql.directory>./sql</sql.directory>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
+
         <version.jakarta.tck.arquillian>1.0.0-M17</version.jakarta.tck.arquillian>
+
+        <!-- XA properties -->
+        <xa.datasource.class>org.apache.derby.jdbc.ClientXADataSource</xa.datasource.class>
+        <xa.maxpoolsize>64</xa.maxpoolsize>
+        <xa.poolName>cts-derby-XA-pool</xa.poolName>
+        <xa.properties>serverName=${derby.server}:portNumber=${derby.port}:user=${derby.user}:password=${derby.passwd}:DatabaseName=${derby.dbName}:connectionAttributes=";create\=true;"</xa.properties>
+        <xa.restype>javax.sql.XADataSource</xa.restype>
+        <xa.steadypoolsize>32</xa.steadypoolsize>
 
     </properties>
     <dependencyManagement>
@@ -202,6 +212,13 @@
                                 </artifactItem>
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
+                                    <artifactId>connector</artifactId>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
+                                    <destFileName>connector.jar</destFileName>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
                                     <artifactId>libutil</artifactId>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${glassfish.lib.dir}</outputDirectory>
@@ -229,6 +246,88 @@
                                     <destFileName>protocol.jar</destFileName>
                                 </artifactItem>
                             </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>1-start-database</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <!-- common configuration shared by all executions -->
+                <configuration>
+                    <driver>org.apache.derby.jdbc.ClientDriver</driver>
+                    <url>jdbc:derby://localhost:1527/derbyDB;create=true</url>
+                    <username>CTS1</username>
+                    <password>CTS1</password>
+                    <autocommit>true</autocommit>
+                    <delimiter>;</delimiter>
+                    <onError>continue</onError>
+                </configuration>
+                <dependencies>
+                    <!-- specify the dependent jdbc driver here -->
+                    <dependency>
+                        <groupId>org.apache.derby</groupId>
+                        <artifactId>derbyclient</artifactId>
+                        <version>10.15.2.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.derby</groupId>
+                        <artifactId>derbytools</artifactId>
+                        <version>10.15.2.0</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>sql-cli</id>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <sqlCommand>CREATE SCHEMA CTS1 AUTHORIZATION CTS1;</sqlCommand>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resource-one</id>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <outputDirectory>${glassfish.lib.dir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}</directory>
+                                    <includes>
+                                        <include>*.jar</include>
+                                    </includes>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>
@@ -281,6 +380,19 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
                     <execution>
+                        <id>10-start-database</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-database</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
                         <id>11-stop-domain</id>
                         <goals>
                             <goal>exec</goal>
@@ -316,7 +428,7 @@
                             <executable>${exec.asadmin}</executable>
                             <arguments>
                                 <argument>create-jvm-options</argument>
-                                <argument>-Dwhitebox-tx-map=${rauser1}=${user}:-Dwhitebox-tx-param-map=${rauser1}=${user}:-Dwhitebox-notx-map=${rauser1}=${user}:-Dwhitebox-notx-param-map=${rauser1}=${user}:-Dwhitebox-xa-map=${rauser1}=${user}:-Dwhitebox-xa-param-map=${rauser1}=${user}</argument>
+                                <argument>-Dwhitebox-tx-map=cts1=j2ee:-Dwhitebox-tx-param-map=cts1=j2ee:-Dwhitebox-notx-map=cts1=j2ee:-Dwhitebox-notx-param-map=cts1=j2ee:-Dwhitebox-xa-map=cts1=j2ee:-Dwhitebox-xa-param-map=cts1=j2ee:-Djava.security.manager:-Dj2eelogin.password=cts1:-Dj2eelogin.name=j2ee:-Dj2eelogin.password=j2ee:-Deislogin.name=cts1:-Deislogin.password=cts1</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -331,7 +443,7 @@
                             <arguments>
                                 <argument>create-file-user</argument>
                                 <argument>--groups</argument>
-                                <argument>staff:mgr:DIRECTOR</argument>
+                                <argument>staff:mgr</argument>
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/j2ee.pass</argument>
                                 <argument>j2ee</argument>
@@ -349,10 +461,109 @@
                             <arguments>
                                 <argument>create-file-user</argument>
                                 <argument>--groups</argument>
-                                <argument>guest:OTHERROLE</argument>
+                                <argument>guest</argument>
                                 <argument>--passwordfile</argument>
                                 <argument>${project.basedir}/javajoe.pass</argument>
                                 <argument>javajoe</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>18-create-xa-jdbc-pool</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>create-jdbc-connection-pool</argument>
+                                <argument>--restype</argument>
+                                <argument>${xa.restype}</argument>
+                                <argument>--datasourceclassname</argument>
+                                <argument>${xa.datasource.class}</argument>
+                                <argument>--property</argument>
+                                <argument>${xa.properties}</argument>
+                                <argument>--steadypoolsize</argument>
+                                <argument>${xa.steadypoolsize}</argument>
+                                <argument>--maxpoolsize</argument>
+                                <argument>${xa.maxpoolsize}</argument>
+                                <argument>${xa.poolName}</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>19-create-jndi</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>create-jdbc-resource</argument>
+                                <argument>--connectionpoolid</argument>
+                                <argument>${xa.poolName}</argument>
+                                <argument>eis/JDBCwhitebox-xa</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>20-create-jndi</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>create-jdbc-resource</argument>
+                                <argument>--connectionpoolid</argument>
+                                <argument>${xa.poolName}</argument>
+                                <argument>eis/JDBCwhitebox-tx</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>21-create-jndi</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>create-jdbc-resource</argument>
+                                <argument>--connectionpoolid</argument>
+                                <argument>${xa.poolName}</argument>
+                                <argument>eis/JDBCwhitebox-notx</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>22-list-jdbc-connection-pools</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>list-jdbc-connection-pools</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>23-ping-connection-pool</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>ping-connection-pool</argument>
+                                <argument>${xa.poolName}</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -365,6 +576,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/whitebox-tx.rar</argument>
                             </arguments>
@@ -379,14 +594,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-tx</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-tx-pool</argument>
+                                <argument>cts-connector-pool-whitebox-tx-pool.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -399,9 +618,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-tx-pool</argument>
+                                <argument>cts-connector-pool-whitebox-tx-pool.rar</argument>
                                 <argument>eis/whitebox-tx</argument>
                             </arguments>
                         </configuration>
@@ -415,6 +638,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/whitebox-xa.rar</argument>
                             </arguments>
@@ -429,14 +656,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-xa</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-xa-pool</argument>
+                                <argument>cts-connector-pool-whitebox-xa-pool.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -449,9 +680,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-xa-pool</argument>
+                                <argument>cts-connector-pool-whitebox-xa-pool.rar</argument>
                                 <argument>eis/whitebox-xa</argument>
                             </arguments>
                         </configuration>
@@ -465,6 +700,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/whitebox-notx.rar</argument>
                             </arguments>
@@ -479,14 +718,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-notx</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-notx-pool</argument>
+                                <argument>cts-connector-pool-whitebox-notx-pool.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -499,9 +742,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-notx-pool</argument>
+                                <argument>cts-connector-pool-whitebox-notx-pool.rar</argument>
                                 <argument>eis/whitebox-notx</argument>
                             </arguments>
                         </configuration>
@@ -515,6 +762,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/mdcomplete/whitebox-mdcomplete.rar</argument>
                             </arguments>
@@ -529,14 +780,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-mdcomplete</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-mdcomplete-pool</argument>
+                                <argument>cts-connector-pool-whitebox-mdcomplete-pool.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -549,9 +804,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-mdcomplete-pool</argument>
+                                <argument>cts-connector-pool-whitebox-mdcomplete-pool.rar</argument>
                                 <argument>eis/whitebox-mdcomplete</argument>
                             </arguments>
                         </configuration>
@@ -565,6 +824,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/annotated/whitebox-anno_no_md.rar</argument>
                             </arguments>
@@ -579,14 +842,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-anno_no_md</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-anno_no_md-pool</argument>
+                                <argument>cts-connector-pool-whitebox-anno_no_md-pool.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -599,9 +866,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-anno_no_md-pool</argument>
+                                <argument>cts-connector-pool-whitebox-anno_no_md-pool.rar</argument>
                                 <argument>eis/whitebox-anno_no_md</argument>
                             </arguments>
                         </configuration>
@@ -615,6 +886,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/mixedmode/whitebox-mixedmode.rar</argument>
                             </arguments>
@@ -629,14 +904,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-mixedmode</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-mixedmode-pool</argument>
+                                <argument>cts-connector-pool-whitebox-mixedmode-pool.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -649,9 +928,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-mixedmode-pool</argument>
+                                <argument>cts-connector-pool-whitebox-mixedmode-pool.rar</argument>
                                 <argument>eis/whitebox-mixedmode</argument>
                             </arguments>
                         </configuration>
@@ -665,6 +948,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/multianno/whitebox-multianno.rar</argument>
                             </arguments>
@@ -679,14 +966,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-multianno</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-multianno-pool</argument>
+                                <argument>cts-connector-pool-whitebox-multianno.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -699,9 +990,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-multianno-pool</argument>
+                                <argument>cts-connector-pool-whitebox-multianno.rar</argument>
                                 <argument>eis/whitebox-multianno</argument>
                             </arguments>
                         </configuration>
@@ -715,6 +1010,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/whitebox-tx-param.rar</argument>
                             </arguments>
@@ -729,14 +1028,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-tx-param</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-tx-param-pool</argument>
+                                <argument>cts-connector-pool-whitebox-tx-param.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -749,9 +1052,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-tx-param-pool</argument>
+                                <argument>cts-connector-pool-whitebox-tx-param.rar</argument>
                                 <argument>eis/whitebox-tx-param</argument>
                             </arguments>
                         </configuration>
@@ -765,6 +1072,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/whitebox-notx-param.rar</argument>
                             </arguments>
@@ -779,14 +1090,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-notx-param</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-notx-param-pool</argument>
+                                <argument>cts-connector-pool-whitebox-notx-param.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -799,9 +1114,13 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-notx-param-pool</argument>
+                                <argument>cts-connector-pool-whitebox-notx-param.rar</argument>
                                 <argument>eis/whitebox-notx-param</argument>
                             </arguments>
                         </configuration>
@@ -815,6 +1134,10 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>deploy</argument>
                                 <argument>${project.basedir}/connectors/whitebox/whitebox-xa-param.rar</argument>
                             </arguments>
@@ -829,14 +1152,18 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-xa-param</argument>
                                 <argument>--property</argument>
-                                <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
                                 <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
-                                <argument>whitebox-xa-param-pool</argument>
+                                <argument>cts-connector-pool-whitebox-xa-param.rar</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -849,10 +1176,228 @@
                         <configuration>
                             <executable>${exec.asadmin}</executable>
                             <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
                                 <argument>create-connector-resource</argument>
                                 <argument>--poolname</argument>
-                                <argument>whitebox-xa-param-pool</argument>
+                                <argument>cts-connector-pool-whitebox-xa-param.rar</argument>
                                 <argument>eis/whitebox-xa-param</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>54-deploy-whitebox-permissiondd-connector</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>deploy</argument>
+                                <argument>${project.basedir}/connectors/whitebox/permissiondd/whitebox-permissiondd.rar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>55-create-whitebox-permissiondd-connector-pool</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>create-connector-connection-pool</argument>
+                                <argument>--raname</argument>
+                                <argument>whitebox-permissiondd</argument>
+                                <argument>--property</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>--connectiondefinition</argument>
+                                <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
+                                <argument>cts-connector-pool-whitebox-permissiondd.rar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>56-create-whitebox-permissiondd-jndi</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>create-connector-resource</argument>
+                                <argument>--poolname</argument>
+                                <argument>cts-connector-pool-whitebox-permissiondd.rar</argument>
+                                <argument>eis/whitebox-permissiondd</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>57-deploy-whitebox-ibanno_no_md-connector</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>deploy</argument>
+                                <argument>${project.basedir}/connectors/whitebox/ibanno/whitebox-ibanno_no_md.rar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>58-create-whitebox-ibanno_no_md-connector-pool</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>create-connector-connection-pool</argument>
+                                <argument>--raname</argument>
+                                <argument>whitebox-ibanno_no_md</argument>
+                                <argument>--property</argument>
+                                <argument>eisPrincipalName=j2ee:userName=j2ee:password=j2ee:TSRValue=comp/TransactionSynchronizationRegistry</argument>
+                                <argument>--connectiondefinition</argument>
+                                <argument>com.sun.ts.tests.common.connector.whitebox.TSConnectionFactory</argument>
+                                <argument>cts-connector-pool-whitebox-ibanno_no_md.rar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>59-create-whitebox-ibanno_no_md-jndi</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/admin.pass</argument>
+                                <argument>create-connector-resource</argument>
+                                <argument>--poolname</argument>
+                                <argument>cts-connector-pool-whitebox-ibanno_no_md.rar</argument>
+                                <argument>eis/whitebox-ibanno_no_md</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>60-list-connector-resource</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>list-connector-resources</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>61-list-jndi-entries</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>list-jndi-entries</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>62-create-jms-resource</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
+                                <argument>create-jms-resource</argument>
+                                <argument>--restype</argument>
+                                <argument>jakarta.jms.QueueConnectionFactory</argument>
+                                <argument>jms/QueueConnectionFactory</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>63-create-jms-resource</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
+                                <argument>create-jms-resource</argument>
+                                <argument>--restype</argument>
+                                <argument>jakarta.jms.Queue</argument>
+                                <argument>--property</argument>
+                                <argument>imqDestinationName=MDB_QUEUE_REPLY</argument>
+                                <argument>MDB_QUEUE</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>64-create-jms-resource</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--user</argument>
+                                <argument>admin</argument>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
+                                <argument>create-jms-resource</argument>
+                                <argument>--restype</argument>
+                                <argument>jakarta.jms.Queue</argument>
+                                <argument>--property</argument>
+                                <argument>imqDestinationName=MDB_QUEUE_REPLY</argument>
+                                <argument>MDB_QUEUE_REPLY</argument>
                             </arguments>
                         </configuration>
                     </execution>
@@ -891,13 +1436,21 @@
                             </additionalClasspathElements>
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
+                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
                                 <ts.home>${env.TS_HOME}</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
+                                <j2eelogin.name>cts1</j2eelogin.name>
+                                <j2eelogin.password>cts1</j2eelogin.password>
+                                <java.security.manager></java.security.manager>
+                                <user>cts1</user>
+                                <password>cts1</password>
+                                <authuser>cts1</authuser>
+                                <authpassword>cts1</authpassword>
                             </systemPropertyVariables>
                             <includes>
-                                <include>**/*Servlet*Test*.*</include>
-                                <include>**/*Jsp*Test*.*</include>
+                                <include>**/*-Servlet*Test*.*</include>
+                                <include>**/*MDB*Jsp*Test*.*</include>
                             </includes>
                         </configuration>
                     </execution>
@@ -927,9 +1480,16 @@
                                 <ts.home>${env.TS_HOME}</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                <j2eelogin.name>cts1</j2eelogin.name>
+                                <j2eelogin.password>cts1</j2eelogin.password>
+                                <java.security.manager></java.security.manager>
+                                <user>cts1</user>
+                                <password>cts1</password>
+                                <authuser>cts1</authuser>
+                                <authpassword>cts1</authpassword>
                             </systemPropertyVariables>
                             <includes>
-                                <include>**/*EJB*Test.*</include>
+                                <include>**/*-Ejb*Test.*</include>
                             </includes>
                         </configuration>
                     </execution>

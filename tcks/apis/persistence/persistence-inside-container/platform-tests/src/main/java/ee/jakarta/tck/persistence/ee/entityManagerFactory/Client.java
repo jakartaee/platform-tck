@@ -19,9 +19,7 @@ package ee.jakarta.tck.persistence.ee.entityManagerFactory;
 
 import java.util.Properties;
 
-
 import ee.jakarta.tck.persistence.common.PMClientBase;
-import ee.jakarta.tck.persistence.core.entityManagerFactory.Order;
 
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;

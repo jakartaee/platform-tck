@@ -79,7 +79,8 @@ public class securityClient1EjbTest extends com.sun.ts.tests.connector.xa.securi
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.connector.xa.security.securityClient1.class
             );
             // The application-client.xml descriptor
             URL resURL = securityClient1.class.getResource("xa_security_ejb_vehicle_client.xml");

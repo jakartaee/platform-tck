@@ -69,6 +69,7 @@ public class lifecycleClient1EjbTest extends com.sun.ts.tests.connector.noTx.lif
             JavaArchive lifecycle_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "lifecycle_ejb_vehicle_client.jar");
             // The class files
             lifecycle_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.noTx.lifecycle.lifecycleClient1.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
@@ -113,12 +114,12 @@ public class lifecycleClient1EjbTest extends com.sun.ts.tests.connector.noTx.lif
                 com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class
             );
             // The ejb-jar.xml descriptor
-            URL ejbResURL1 = lifecycleClient1.class.getResource("/ejb_vehicle_ejb.xml");
+            URL ejbResURL1 = lifecycleClient1.class.getResource("lifecycle_ejb_vehicle_ejb.xml");
             if(ejbResURL1 != null) {
               lifecycle_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "ejb-jar.xml");
             }
             // The sun-ejb-jar.xml file
-            ejbResURL1 = lifecycleClient1.class.getResource("/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+            ejbResURL1 = lifecycleClient1.class.getResource("lifecycle_ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
             if(ejbResURL1 != null) {
               lifecycle_ejb_vehicle_ejb.addAsManifestResource(ejbResURL1, "sun-ejb-jar.xml");
             }

@@ -20,13 +20,37 @@
 
 package com.sun.ts.tests.appclient.deploy.ejblink.casesens;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 import java.util.Properties;
 
-import com.sun.ts.lib.harness.Status;
+import javax.naming.Context;
+
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import com.sun.ts.lib.harness.EETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
+import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+import tck.arquillian.protocol.common.TargetVehicle;
+
+
+
+@ExtendWith(ArquillianExtension.class)
 public class Client extends EETest {
 
   private static final String prefix = "java:comp/env/ejb/";
@@ -50,6 +74,67 @@ public class Client extends EETest {
     Status s = theTests.run(args, System.out, System.err);
     s.exit();
   }
+  
+  
+  @TargetsContainer("javatest")
+	@Deployment(testable = false)
+	public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor)
+			throws IOException {
+		JavaArchive ejbClient = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_casesens_client.jar");
+		ejbClient.addPackages(true, Client.class.getPackage());
+		ejbClient.addPackages(true, "com.sun.ts.lib.harness");
+
+		// The appclient-client descriptor
+		URL appClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_casesens_client.xml");
+		if (appClientUrl != null) {
+			ejbClient.addAsManifestResource(appClientUrl, "application-client.xml");
+		}
+		// The sun appclient-client descriptor
+		URL sunAppClientUrl = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_casesens_client.jar.sun-application-client.xml");
+		if (sunAppClientUrl != null) {
+			ejbClient.addAsManifestResource(sunAppClientUrl, "sun-application-client.xml");
+		}
+		
+		ejbClient.addAsManifestResource(
+				new StringAsset("Main-Class: " + "com.sun.ts.tests.appclient.deploy.ejblink.casesens.Client" + "\n"),
+				"MANIFEST.MF");
+
+
+		System.out.println(ejbClient.toString(true));
+		JavaArchive ejb = ShrinkWrap.create(JavaArchive.class, "appclient_dep_ejblink_casesens_ejb.jar");
+		ejb.addClasses(CaseBean.class, CaseBeanEJB.class);
+		ejb.addPackages(true, "com.sun.ts.tests.assembly.util.shared.ejbref.common");
+		ejb.addPackages(true, "com.sun.ts.tests.common.ejb.wrappers");
+
+		URL resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_casesens_ejb.jar.sun-ejb-jar.xml");
+
+		if (resURL != null) {
+			ejb.addAsManifestResource(resURL, "sun-ejb-jar.xml");
+		}
+
+		resURL = Client.class.getResource(
+				"/com/sun/ts/tests/appclient/deploy/ejblink/casesens/appclient_dep_ejblink_casesens_ejb.xml");
+
+		if (resURL != null) {
+			ejb.addAsManifestResource(resURL, "ejb-jar.xml");
+		}
+		
+		System.out.println("##################################");
+		
+		System.out.println(ejb.toString(true));
+
+
+		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "appclient_dep_ejblink_casesens.ear");
+		ear.addAsModule(ejbClient);
+		ear.addAsModule(ejb);
+		ear.as(ZipExporter.class).exportTo(
+			    new File("/tmp/ejb.ear"), true);
+
+		return ear;
+	};
 
   /*
    * @class.setup_props: org.omg.CORBA.ORBClass; java.naming.factory.initial;
@@ -58,16 +143,15 @@ public class Client extends EETest {
    * @class.testArgs: -ap tssql.stmt
    *
    */
-  public void setup(String[] args, Properties props) throws Exception {
-    this.props = props;
-
-    try {
-      nctx = new TSNamingContext();
-      logMsg("[Client] Setup succeed (got naming context).");
-    } catch (Exception e) {
-      throw new Exception("[Client] Setup failed:", e);
-    }
-  }
+	public void setup(String[] args, Properties props) throws Exception {
+		this.props = props;
+		try {
+			nctx = new TSNamingContext();
+			logMsg("[Client] Setup succeed (got naming context).");
+		} catch (Exception e) {
+			throw new Exception("[Client] Setup failed:", e);
+		}
+	}
 
   /**
    * @testName: testCaseSensitivity
@@ -85,13 +169,14 @@ public class Client extends EETest {
    *                 match the references specified in the DD (validates that
    *                 the EJB references were resolved correctly).
    */
+	@Test
   public void testCaseSensitivity() throws Exception {
     CaseBean bean1 = null;
     CaseBean bean2 = null;
     String bean1Name;
     String bean2Name;
     boolean pass = false;
-
+   
     try {
       TestUtil.logTrace("[Client] Looking up '" + bean1Lookup + "'...");
       bean1 = (CaseBean) nctx.lookup(bean1Lookup, CaseBean.class);

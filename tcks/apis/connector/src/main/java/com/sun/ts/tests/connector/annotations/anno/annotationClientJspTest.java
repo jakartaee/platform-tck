@@ -75,7 +75,7 @@ public class annotationClientJspTest extends com.sun.ts.tests.connector.annotati
             com.sun.ts.tests.common.vehicle.VehicleClient.class
             );
             // The web.xml descriptor
-            URL warResURL = annotationClient.class.getResource("annotations_ejb_vehicle_ejb.xml");
+            URL warResURL = annotationClient.class.getResource("annotations_jsp_vehicle_web.xml");
             if(warResURL != null) {
               annotations_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
