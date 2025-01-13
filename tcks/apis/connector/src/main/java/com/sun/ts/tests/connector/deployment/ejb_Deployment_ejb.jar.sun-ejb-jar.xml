@@ -28,8 +28,8 @@
         <res-ref-name>eis/ejb_Deployment_whitebox-tx.rar</res-ref-name>
         <jndi-name>eis/ejb_Deployment_whitebox-tx.rar</jndi-name>
         <default-resource-principal>
-          <name>rauser1</name>
-          <password>rapassword1</password>
+          <name>cts1</name>
+          <password>cts1</password>
         </default-resource-principal>
       </resource-ref>
       <pass-by-reference>false</pass-by-reference>

@@ -79,7 +79,7 @@ public class transinflowClient1JspTest extends com.sun.ts.tests.connector.localT
               localTx_transinflow_jsp_vehicle_web.addAsWebInfResource(warResURL, "web.xml");
             }
             // The sun-web.xml descriptor
-            warResURL = transinflowClient1.class.getResource("transinflow_servlet_vehicle_servlet.xml");
+            warResURL = transinflowClient1.class.getResource("transinflow_jsp_vehicle_web.war.sun-web.xml");
             if(warResURL != null) {
               localTx_transinflow_jsp_vehicle_web.addAsWebInfResource(warResURL, "sun-web.xml");
             }

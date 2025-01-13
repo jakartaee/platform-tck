@@ -67,6 +67,7 @@ public class transinflowClient1EjbTest extends com.sun.ts.tests.connector.localT
             JavaArchive localTx_transinflow_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "localTx_transinflow_ejb_vehicle_client.jar");
             // The class files
             localTx_transinflow_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.localTx.transinflow.transinflowClient1.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,

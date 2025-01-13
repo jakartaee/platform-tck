@@ -79,7 +79,8 @@ public class paClientEjbTest extends com.sun.ts.tests.connector.annotations.part
             com.sun.ts.lib.harness.EETest.class,
             com.sun.ts.lib.harness.ServiceEETest.class,
             com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class
+            com.sun.ts.tests.common.vehicle.VehicleClient.class,
+            com.sun.ts.tests.connector.annotations.partialanno.paClient.class
             );
             // The application-client.xml descriptor
             URL resURL = paClient.class.getResource("mdcomplete_ejb_vehicle_client.xml");

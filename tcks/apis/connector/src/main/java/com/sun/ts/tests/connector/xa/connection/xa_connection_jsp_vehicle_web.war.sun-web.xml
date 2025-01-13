@@ -23,8 +23,8 @@
     <res-ref-name>eis/whitebox-xa</res-ref-name>
     <jndi-name>eis/whitebox-xa</jndi-name>
     <default-resource-principal>
-      <name>rauser1</name>
-      <password>rapassword1</password>
+      <name>cts1</name>
+      <password>cts1</password>
     </default-resource-principal>
   </resource-ref>
   <resource-ref>

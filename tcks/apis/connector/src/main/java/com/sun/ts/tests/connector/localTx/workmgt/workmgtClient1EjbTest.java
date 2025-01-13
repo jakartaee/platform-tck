@@ -69,6 +69,7 @@ public class workmgtClient1EjbTest extends com.sun.ts.tests.connector.localTx.wo
             JavaArchive localTx_workmgt_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "localTx_workmgt_ejb_vehicle_client.jar");
             // The class files
             localTx_workmgt_ejb_vehicle_client.addClasses(
+            com.sun.ts.tests.connector.localTx.workmgt.workmgtClient1.class,		
             com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
             com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
             com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
