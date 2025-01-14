@@ -16,11 +16,8 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.tx;
 
-import java.util.logging.Level;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.TransactionManagement;
@@ -29,6 +26,8 @@ import jakarta.transaction.NotSupportedException;
 import jakarta.transaction.Status;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
+
+import java.util.logging.Level;
 
 @Stateless
 @TransactionManagement(TransactionManagementType.BEAN)

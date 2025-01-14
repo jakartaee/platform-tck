@@ -18,8 +18,8 @@ package com.sun.ts.tests.ejb32.lite.timer.interceptor.business.stateless;
 
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.BusinessTimerBeanBase;
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.JsfClientBase;
-
 import jakarta.ejb.EJB;
+
 import java.io.Serializable;
 
 @jakarta.inject.Named("client")

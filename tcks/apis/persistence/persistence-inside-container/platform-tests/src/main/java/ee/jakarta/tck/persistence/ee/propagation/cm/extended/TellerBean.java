@@ -21,13 +21,8 @@
 package ee.jakarta.tck.persistence.ee.propagation.cm.extended;
 
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import ee.jakarta.tck.persistence.ee.common.A;
 import ee.jakarta.tck.persistence.ee.common.Account;
 import ee.jakarta.tck.persistence.ee.common.B;
@@ -39,6 +34,10 @@ import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceContextType;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Properties;
 
 @Stateful(name = "TellerBean")
 @Local({ Teller.class })

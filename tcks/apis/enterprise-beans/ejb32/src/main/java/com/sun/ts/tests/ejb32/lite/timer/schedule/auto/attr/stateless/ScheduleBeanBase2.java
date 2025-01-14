@@ -19,7 +19,6 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.auto.attr.stateless;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.Schedule;
 import jakarta.ejb.Timer;
 

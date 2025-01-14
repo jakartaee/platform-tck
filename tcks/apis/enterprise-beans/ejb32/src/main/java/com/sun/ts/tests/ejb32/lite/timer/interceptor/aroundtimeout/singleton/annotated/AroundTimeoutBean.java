@@ -20,7 +20,6 @@ import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeo
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor3;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor4;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.InterceptorBase;
-
 import jakarta.ejb.Singleton;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.Interceptors;

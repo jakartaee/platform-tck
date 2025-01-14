@@ -21,16 +21,8 @@
 
 package com.sun.ts.tests.el.common.util;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.math.MathContext;
-import java.math.RoundingMode;
-import java.util.Enumeration;
-import java.util.Hashtable;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
@@ -39,6 +31,13 @@ import jakarta.el.MethodExpression;
 import jakarta.el.PropertyNotFoundException;
 import jakarta.el.PropertyNotWritableException;
 import jakarta.el.ValueExpression;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 public final class ExprEval {
 

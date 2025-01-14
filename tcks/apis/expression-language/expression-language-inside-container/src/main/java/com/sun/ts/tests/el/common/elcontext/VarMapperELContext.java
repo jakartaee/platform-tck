@@ -20,16 +20,15 @@
  */
 package com.sun.ts.tests.el.common.elcontext;
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
-
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;
 import jakarta.el.VariableMapper;
+
+import java.util.Properties;
 
 /**
  * This ELContext provides a VariableELResolver to enable the setting and

@@ -21,15 +21,8 @@
 package ee.jakarta.tck.persistence.ee.propagation.am;
 
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import ee.jakarta.tck.persistence.ee.common.Account;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
@@ -41,6 +34,12 @@ import jakarta.ejb.TransactionManagementType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceUnit;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 @Stateless(name = "Stateless3Bean")
 @Remote({ Stateless3IF.class })

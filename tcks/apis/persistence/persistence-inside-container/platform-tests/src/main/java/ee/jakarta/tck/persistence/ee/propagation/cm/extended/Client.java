@@ -21,14 +21,13 @@
 package ee.jakarta.tck.persistence.ee.propagation.cm.extended;
 
 
-import java.util.Properties;
-
 import com.sun.ts.lib.harness.EETest;
+import jakarta.ejb.EJB;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import jakarta.ejb.EJB;
+import java.util.Properties;
 
 public class Client extends EETest {
 

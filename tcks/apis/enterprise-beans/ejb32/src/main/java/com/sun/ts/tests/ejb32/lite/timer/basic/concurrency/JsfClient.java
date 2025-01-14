@@ -16,17 +16,16 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.concurrency;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+import jakarta.ejb.EJB;
+
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteJsfClientBase;
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
-import jakarta.ejb.EJB;
-import java.io.Serializable;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped

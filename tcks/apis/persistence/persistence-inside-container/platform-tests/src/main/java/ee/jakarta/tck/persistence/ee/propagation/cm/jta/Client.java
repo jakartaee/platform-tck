@@ -21,10 +21,8 @@
 package ee.jakarta.tck.persistence.ee.propagation.cm.jta;
 
 
-
-import org.junit.jupiter.api.Test;
-
 import ee.jakarta.tck.persistence.ee.util.AbstractUrlClient;
+import org.junit.jupiter.api.Test;
 
 public class Client extends AbstractUrlClient {
 

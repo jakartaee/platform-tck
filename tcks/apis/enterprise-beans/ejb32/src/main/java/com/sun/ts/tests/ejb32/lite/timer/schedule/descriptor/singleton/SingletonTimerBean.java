@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.descriptor.singleton;
 
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-
 import jakarta.ejb.Singleton;
 
 /**

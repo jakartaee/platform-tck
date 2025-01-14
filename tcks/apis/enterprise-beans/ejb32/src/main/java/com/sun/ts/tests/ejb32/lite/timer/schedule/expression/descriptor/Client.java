@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.expression.descriptor;
 
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;

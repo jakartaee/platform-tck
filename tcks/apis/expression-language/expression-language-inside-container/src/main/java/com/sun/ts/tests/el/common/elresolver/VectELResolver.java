@@ -21,12 +21,12 @@
 
 package com.sun.ts.tests.el.common.elresolver;
 
-import java.util.Iterator;
-import java.util.Vector;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
+
+import java.util.Iterator;
+import java.util.Vector;
 
 /* This simple EL Resolver resolves only method expressions of
    the form ${vect.methodName}, where 'vect' is resolved to java.util.Vector

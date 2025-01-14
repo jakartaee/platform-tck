@@ -20,49 +20,16 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters;
 
-import java.util.Properties;
-import java.util.stream.Collectors;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.net.URL;
-
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.AnimalShelterInjectedAdapter;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat;
+import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.lib.harness.Status;
-import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.AnimalShelterInjectedAdapter;
-import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
-import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat;
-import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog;
-
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
-import org.jboss.arquillian.test.api.ArquillianResource;
-import tck.arquillian.protocol.common.TargetVehicle;
-import org.jboss.arquillian.container.test.api.OverProtocol;
-import org.jboss.arquillian.container.test.api.TargetsContainer;
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-
-import java.lang.System.Logger;
+import java.util.Properties;
 
 /**
  * @test

@@ -25,7 +25,6 @@ import com.sun.ts.tests.el.common.elresolver.EmployeeELResolver;
 import com.sun.ts.tests.el.common.elresolver.VariableELResolver;
 import com.sun.ts.tests.el.common.elresolver.VectELResolver;
 import com.sun.ts.tests.el.common.util.ResolverType;
-
 import jakarta.el.CompositeELResolver;
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;

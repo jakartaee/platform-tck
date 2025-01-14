@@ -18,9 +18,9 @@ package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.an
 
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.JsfClientBase;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
+
 import java.io.Serializable;
 
 @jakarta.inject.Named("client")

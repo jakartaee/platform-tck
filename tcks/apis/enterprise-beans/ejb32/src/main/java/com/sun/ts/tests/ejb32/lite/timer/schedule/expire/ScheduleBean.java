@@ -16,16 +16,15 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.expire;
 
-import java.util.Collection;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
-
 import jakarta.ejb.NoMoreTimeoutsException;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
+
+import java.util.Collection;
 
 @Singleton
 public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {

@@ -20,15 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.propagation.cm.jta;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import com.sun.ts.lib.util.TSNamingContext;
-
 import com.sun.ts.lib.util.TestUtil;
 import ee.jakarta.tck.persistence.ee.common.Account;
 import ee.jakarta.tck.persistence.ee.util.Data;
@@ -44,6 +36,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Status;
 import jakarta.transaction.UserTransaction;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @PersistenceContexts({ @PersistenceContext(name = "persistence/cmpropagation", unitName = "CTS-JTA-UNIT"),
 		@PersistenceContext(name = "persistence/cmpropagation2", unitName = "CTS-JTA-UNIT2") })

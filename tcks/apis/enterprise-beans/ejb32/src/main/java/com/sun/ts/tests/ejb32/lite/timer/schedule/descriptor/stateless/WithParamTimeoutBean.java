@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.descriptor.stateless;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.schedule.descriptor.common.TimeoutParamIF;
-
 import jakarta.ejb.Stateless;
 import jakarta.ejb.Timer;
 

@@ -16,12 +16,11 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
+import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
+import jakarta.ejb.Timer;
+
 import java.io.Serializable;
 import java.util.Date;
-
-import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
-import jakarta.ejb.Timer;
 
 public interface TimerIF {
   String accessTimers() throws TestFailedException;

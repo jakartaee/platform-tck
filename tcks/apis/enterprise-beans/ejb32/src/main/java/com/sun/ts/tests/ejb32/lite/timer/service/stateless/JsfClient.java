@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.service.stateless;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb32.timer.service.common.JsfClientBase;
+
+import java.util.Properties;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped

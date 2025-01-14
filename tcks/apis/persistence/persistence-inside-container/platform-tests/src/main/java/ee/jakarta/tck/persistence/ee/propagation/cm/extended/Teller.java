@@ -20,10 +20,10 @@
 
 package ee.jakarta.tck.persistence.ee.propagation.cm.extended;
 
-import java.util.Properties;
-
 import ee.jakarta.tck.persistence.ee.common.Account;
 import ee.jakarta.tck.persistence.ee.common.B;
+
+import java.util.Properties;
 
 public interface Teller {
 	public double balance(final int acct);

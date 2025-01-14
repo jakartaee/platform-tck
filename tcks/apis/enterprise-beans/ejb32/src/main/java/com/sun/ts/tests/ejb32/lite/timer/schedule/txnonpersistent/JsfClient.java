@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb32.lite.timer.schedule.txnonpersistent;
 
 import com.sun.ts.tests.ejb32.lite.timer.schedule.tx.JsfClientBase;
 import com.sun.ts.tests.ejb32.lite.timer.schedule.tx.ScheduleTxBeanBase;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.TimerConfig;
 

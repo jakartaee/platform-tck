@@ -17,12 +17,11 @@
 package ee.jakarta.tck.persistence.ee.entityManagerFactory;
 
 
-import java.util.Properties;
-
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
+import java.util.Properties;
 
 public class Client extends PMClientBase {
 

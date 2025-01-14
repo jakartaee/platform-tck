@@ -16,13 +16,12 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
-import java.lang.reflect.Method;
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
-
 import jakarta.interceptor.AroundConstruct;
 import jakarta.interceptor.InvocationContext;
+
+import java.lang.reflect.Method;
+import java.util.logging.Level;
 
 public class Interceptor10 extends InterceptorBase {
 

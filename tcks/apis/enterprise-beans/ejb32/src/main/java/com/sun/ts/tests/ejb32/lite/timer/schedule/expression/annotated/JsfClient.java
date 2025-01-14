@@ -17,7 +17,6 @@
 package com.sun.ts.tests.ejb32.lite.timer.schedule.expression.annotated;
 
 import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
-
 import jakarta.ejb.EJB;
 
 @jakarta.inject.Named("client")

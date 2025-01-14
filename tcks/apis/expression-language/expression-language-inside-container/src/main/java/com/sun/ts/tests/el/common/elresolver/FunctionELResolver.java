@@ -21,13 +21,12 @@
 
 package com.sun.ts.tests.el.common.elresolver;
 
-import java.util.Iterator;
-
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
+
+import java.util.Iterator;
 
 /* This ELResolver resolves only functions mapped by the TCKFunctionMapper.
  * It does not allow variables to be set.

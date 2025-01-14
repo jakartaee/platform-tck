@@ -17,7 +17,6 @@
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
-
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.TimerConfig;

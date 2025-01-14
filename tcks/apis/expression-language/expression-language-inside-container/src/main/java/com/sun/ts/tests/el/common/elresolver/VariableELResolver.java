@@ -21,13 +21,13 @@
 
 package com.sun.ts.tests.el.common.elresolver;
 
-import java.beans.FeatureDescriptor;
-import java.util.Hashtable;
-import java.util.Iterator;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELException;
 import jakarta.el.ELResolver;
+
+import java.beans.FeatureDescriptor;
+import java.util.Hashtable;
+import java.util.Iterator;
 
 public class VariableELResolver extends ELResolver {
 

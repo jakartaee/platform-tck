@@ -20,11 +20,10 @@
  */
 package com.sun.ts.tests.el.common.util;
 
+import com.sun.ts.lib.util.TestUtil;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import com.sun.ts.lib.harness.EETest.Fault;
-import com.sun.ts.lib.util.TestUtil;
 
 public final class ELTestUtil {
 

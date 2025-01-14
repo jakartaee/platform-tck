@@ -20,16 +20,15 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
-
 import jakarta.inject.Inject;
 import jakarta.json.bind.serializer.DeserializationContext;
 import jakarta.json.bind.serializer.JsonbDeserializer;
 import jakarta.json.stream.JsonParser;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AnimalListDeserializerInjected
     implements JsonbDeserializer<List<Animal>> {

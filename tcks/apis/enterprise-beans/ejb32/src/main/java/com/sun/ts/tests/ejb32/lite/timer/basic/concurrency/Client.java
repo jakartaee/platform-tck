@@ -16,16 +16,15 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.concurrency;
 
+import com.sun.ts.lib.util.TestUtil;
+import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
+import jakarta.ejb.EJB;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
-
-import com.sun.ts.lib.util.TestUtil;
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
-import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
-import jakarta.ejb.EJB;
 
 public class Client extends EJBLiteClientBase {
   private static final int THREAD_COUNT = 100;

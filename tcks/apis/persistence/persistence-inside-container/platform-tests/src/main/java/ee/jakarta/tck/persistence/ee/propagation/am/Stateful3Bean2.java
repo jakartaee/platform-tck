@@ -17,13 +17,9 @@
 package ee.jakarta.tck.persistence.ee.propagation.am;
 
 
-import java.math.BigInteger;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
@@ -34,6 +30,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.PersistenceUnit;
 import jakarta.persistence.PersistenceUnits;
+
+import java.math.BigInteger;
+import java.util.Properties;
 
 @PersistenceUnits({ @PersistenceUnit(name = "persistence/cau", unitName = "CTS-APPMANAGED-UNIT"),
 		@PersistenceUnit(name = "persistence/cau2", unitName = "CTS-APPMANAGED-UNIT2") })

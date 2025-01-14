@@ -21,12 +21,8 @@
 package ee.jakarta.tck.persistence.ee.propagation.am;
 
 
-import java.math.BigInteger;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
@@ -37,6 +33,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.OptimisticLockException;
 import jakarta.persistence.PersistenceUnit;
+
+import java.math.BigInteger;
+import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
 @Remote({ Stateful3IF.class })

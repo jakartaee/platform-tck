@@ -21,11 +21,7 @@
 package ee.jakarta.tck.persistence.ee.propagation.cm.jta;
 
 
-import java.util.Iterator;
-import java.util.List;
-
 import com.sun.ts.lib.util.TestUtil;
-
 import ee.jakarta.tck.persistence.ee.common.Account;
 import jakarta.annotation.Resource;
 import jakarta.ejb.EJBException;
@@ -35,6 +31,9 @@ import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceContextType;
+
+import java.util.Iterator;
+import java.util.List;
 
 @Stateful(name = "TellerBean2")
 @Local({ Teller.class })
