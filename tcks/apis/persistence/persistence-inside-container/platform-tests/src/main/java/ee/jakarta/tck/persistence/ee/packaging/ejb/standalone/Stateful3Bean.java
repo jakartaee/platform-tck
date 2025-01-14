@@ -21,11 +21,8 @@
 package ee.jakarta.tck.persistence.ee.packaging.ejb.standalone;
 
 
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TestUtil;
-
 import ee.jakarta.tck.persistence.ee.common.B;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -34,6 +31,8 @@ import jakarta.ejb.Remote;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateful;
 import jakarta.persistence.EntityManager;
+
+import java.util.Properties;
 
 @Stateful(name = "Stateful3Bean")
 @Remote({ Stateful3IF.class })

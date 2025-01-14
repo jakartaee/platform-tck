@@ -20,21 +20,17 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.lifecycle;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Enumeration;
-import java.util.Iterator;
 import jakarta.servlet.Servlet;
-import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.logging.Logger;
-import java.util.logging.Level;
-import jakarta.servlet.ServletConfig;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 public class EJBLiteServletVehicle extends Client 
     implements Servlet, ServletConfig {

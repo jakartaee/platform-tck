@@ -16,19 +16,18 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.timerconfig;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
 import com.sun.ts.tests.ejb30.timer.common.ScheduleValues;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped

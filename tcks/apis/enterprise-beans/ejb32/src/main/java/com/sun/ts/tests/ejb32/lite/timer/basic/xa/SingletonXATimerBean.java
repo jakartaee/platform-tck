@@ -16,18 +16,17 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.xa;
 
-import java.util.Date;
-import java.util.logging.Level;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.lite.tx.cm.common.CoffeeUtil;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
-
 import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
 import jakarta.transaction.UserTransaction;
+
+import java.util.Date;
+import java.util.logging.Level;
 
 @Singleton
 @TransactionManagement(TransactionManagementType.BEAN)

@@ -16,9 +16,9 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.service.stateless;
 
-import java.util.Properties;
-
 import com.sun.ts.tests.ejb32.timer.service.common.ClientBase;
+
+import java.util.Properties;
 
 public class Client extends ClientBase {
   /*

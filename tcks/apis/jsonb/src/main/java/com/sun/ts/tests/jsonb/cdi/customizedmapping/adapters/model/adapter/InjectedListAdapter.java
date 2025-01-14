@@ -20,13 +20,12 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
-
 import jakarta.inject.Inject;
 import jakarta.json.bind.adapter.JsonbAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class InjectedListAdapter
     implements JsonbAdapter<List<Animal>, List<AnimalJson>> {

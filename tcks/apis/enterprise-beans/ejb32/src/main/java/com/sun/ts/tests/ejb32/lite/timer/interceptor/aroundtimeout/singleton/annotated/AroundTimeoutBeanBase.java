@@ -16,20 +16,19 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.annotated;
 
-import java.util.Arrays;
-import java.util.Map;
-
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.AroundTimeoutIF;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor5;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.Interceptor6;
 import com.sun.ts.tests.ejb30.timer.interceptor.aroundtimeout.common.InterceptorBase;
-
 import jakarta.ejb.Timeout;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundTimeout;
 import jakarta.interceptor.Interceptors;
 import jakarta.interceptor.InvocationContext;
+
+import java.util.Arrays;
+import java.util.Map;
 
 public class AroundTimeoutBeanBase extends TimerBeanBaseWithoutTimeOutMethod
     implements AroundTimeoutIF {

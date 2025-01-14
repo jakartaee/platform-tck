@@ -16,21 +16,12 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.expire;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
-import java.util.TimeZone;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.common.ScheduleValues;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 import jakarta.ejb.NoMoreTimeoutsException;
@@ -38,6 +29,13 @@ import jakarta.ejb.NoSuchObjectLocalException;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
+import java.util.TimeZone;
 
 /**
  * Some tests use 2100 as a test calendar:

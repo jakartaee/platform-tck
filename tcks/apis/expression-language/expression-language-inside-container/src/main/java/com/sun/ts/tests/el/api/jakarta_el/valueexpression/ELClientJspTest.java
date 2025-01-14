@@ -17,52 +17,46 @@
 
 package com.sun.ts.tests.el.api.jakarta_el.valueexpression;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Properties;
-
-import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.common.el.api.expression.ExpressionTest;
 import com.sun.ts.tests.el.common.elcontext.BareBonesELContext;
 import com.sun.ts.tests.el.common.elcontext.SimpleELContext;
 import com.sun.ts.tests.el.common.elcontext.VRContext;
 import com.sun.ts.tests.el.common.util.ELTestUtil;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
 import jakarta.el.ExpressionFactory;
 import jakarta.el.PropertyNotFoundException;
 import jakarta.el.ValueExpression;
 import jakarta.el.ValueReference;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.stream.Collectors;
-
-import java.net.URL;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import tck.arquillian.protocol.common.TargetVehicle;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import tck.arquillian.protocol.common.TargetVehicle;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.System.Logger;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.Properties;
+import java.util.stream.Collectors;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("el")

@@ -23,7 +23,6 @@ package com.sun.ts.tests.el.common.elcontext;
 
 import com.sun.ts.tests.el.common.elresolver.FunctionELResolver;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
-
 import jakarta.el.ELContext;
 import jakarta.el.ELResolver;
 import jakarta.el.FunctionMapper;

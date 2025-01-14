@@ -16,18 +16,6 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.expression.annotated;
 
-import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.DAY_OF_MONTH;
-import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.DAY_OF_WEEK;
-import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.HOUR;
-import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.MINUTE;
-import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.MONTH;
-import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.SECOND;
-import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.YEAR;
-
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType;
@@ -35,7 +23,6 @@ import com.sun.ts.tests.ejb30.timer.common.ScheduleValues;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Stateless;
 import jakarta.ejb.Timeout;
@@ -43,6 +30,18 @@ import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.DAY_OF_MONTH;
+import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.DAY_OF_WEEK;
+import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.HOUR;
+import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.MINUTE;
+import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.MONTH;
+import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.SECOND;
+import static com.sun.ts.tests.ejb30.timer.common.ScheduleAttributeType.YEAR;
 
 @Stateless
 public class ScheduleBean extends TimerBeanBaseWithoutTimeOutMethod {

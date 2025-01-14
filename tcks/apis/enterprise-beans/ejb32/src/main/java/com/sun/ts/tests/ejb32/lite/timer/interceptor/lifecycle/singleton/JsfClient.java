@@ -17,8 +17,8 @@
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.lifecycle.singleton;
 
 import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
-
 import jakarta.ejb.EJB;
+
 import java.io.Serializable;
 
 @jakarta.inject.Named("client")

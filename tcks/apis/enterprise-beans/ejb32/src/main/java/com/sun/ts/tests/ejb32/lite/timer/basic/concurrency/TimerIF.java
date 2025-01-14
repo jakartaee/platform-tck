@@ -16,10 +16,10 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.concurrency;
 
+import jakarta.ejb.Timer;
+
 import java.util.Date;
 import java.util.concurrent.Future;
-
-import jakarta.ejb.Timer;
 
 public interface TimerIF {
   public void cancelAllTimers();

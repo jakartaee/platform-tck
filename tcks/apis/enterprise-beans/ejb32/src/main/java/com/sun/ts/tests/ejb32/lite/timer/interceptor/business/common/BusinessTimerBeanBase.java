@@ -18,7 +18,6 @@ package com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common;
 
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 

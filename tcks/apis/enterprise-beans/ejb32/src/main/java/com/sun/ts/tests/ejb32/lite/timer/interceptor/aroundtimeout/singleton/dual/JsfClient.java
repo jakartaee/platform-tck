@@ -17,6 +17,7 @@
 package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.dual;
 
 import jakarta.ejb.EJB;
+
 import java.io.Serializable;
 
 @jakarta.inject.Named("client")

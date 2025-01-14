@@ -17,11 +17,9 @@
 package ee.jakarta.tck.persistence.jpa.ee.packaging.jar;
 
 
-
+import ee.jakarta.tck.persistence.common.PMClientBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import ee.jakarta.tck.persistence.common.PMClientBase;
 
 public class Client extends PMClientBase {
 

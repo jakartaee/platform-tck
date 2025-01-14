@@ -1,22 +1,5 @@
 package ee.jakarta.tck.persistence.core.entityManagerFactoryCloseExceptions;
 
-import com.sun.ts.lib.harness.EETest;
-import com.sun.ts.lib.harness.ServiceEETest;
-import com.sun.ts.tests.common.vehicle.VehicleClient;
-import com.sun.ts.tests.common.vehicle.VehicleRunnable;
-import com.sun.ts.tests.common.vehicle.VehicleRunnerFactory;
-import com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareBaseBean;
-import com.sun.ts.tests.common.vehicle.ejb3share.EJB3ShareIF;
-import com.sun.ts.tests.common.vehicle.ejb3share.EntityTransactionWrapper;
-import com.sun.ts.tests.common.vehicle.ejb3share.NoopTransactionWrapper;
-import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManager;
-import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
-import com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper;
-import com.sun.ts.tests.common.vehicle.pmservlet.PMServletVehicle;
-import com.sun.ts.tests.common.vehicle.servlet.ServletVehicle;
-
-import java.net.URL;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
@@ -30,10 +13,10 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import ee.jakarta.tck.persistence.common.PMClientBase;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
+
+import java.net.URL;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("persistence")

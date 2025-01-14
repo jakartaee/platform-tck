@@ -21,27 +21,25 @@
 
 package com.sun.ts.tests.el.spec.mapper;
 
-import java.util.Properties;
-
-import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.el.common.elcontext.FuncMapperELContext;
 import com.sun.ts.tests.el.common.elcontext.VarMapperELContext;
 import com.sun.ts.tests.el.common.functionmapper.TCKFunctionMapper;
 import com.sun.ts.tests.el.common.util.ExprEval;
-
 import jakarta.el.ELException;
 import jakarta.el.ExpressionFactory;
 import jakarta.el.ValueExpression;
 import jakarta.el.VariableMapper;
-
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
+
 import java.lang.System.Logger;
+import java.util.Properties;
 
 @Tag("el")
 @Tag("platform")

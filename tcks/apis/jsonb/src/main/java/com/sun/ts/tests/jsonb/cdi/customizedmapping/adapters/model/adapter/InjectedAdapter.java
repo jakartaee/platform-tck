@@ -16,16 +16,15 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter;
 
-import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.CAT;
-import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.DOG;
-import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.GENERIC;
-
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Animal;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Cat;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.Dog;
-
 import jakarta.inject.Inject;
 import jakarta.json.bind.adapter.JsonbAdapter;
+
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.CAT;
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.DOG;
+import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.GENERIC;
 
 public class InjectedAdapter implements JsonbAdapter<Animal, AnimalJson> {
   @Inject

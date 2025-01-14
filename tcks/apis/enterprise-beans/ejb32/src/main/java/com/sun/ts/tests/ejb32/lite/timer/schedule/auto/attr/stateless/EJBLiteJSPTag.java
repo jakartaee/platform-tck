@@ -21,12 +21,13 @@
 package com.sun.ts.tests.ejb32.lite.timer.schedule.auto.attr.stateless;
 
 import jakarta.servlet.jsp.JspContext;
-import jakarta.servlet.jsp.JspWriter;
 import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspWriter;
+import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.JspFragment;
 import jakarta.servlet.jsp.tagext.JspTag;
-import jakarta.servlet.jsp.PageContext;
 import jakarta.servlet.jsp.tagext.SimpleTag;
+
 import java.io.IOException;
 
 public class EJBLiteJSPTag extends Client implements SimpleTag {

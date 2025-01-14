@@ -17,16 +17,15 @@
 package ee.jakarta.tck.persistence.ee.entityManager;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
 import com.sun.ts.lib.harness.Status;
 import ee.jakarta.tck.persistence.common.PMClientBase;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.SynchronizationType;
 import jakarta.persistence.TransactionRequiredException;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class Client extends PMClientBase {
 

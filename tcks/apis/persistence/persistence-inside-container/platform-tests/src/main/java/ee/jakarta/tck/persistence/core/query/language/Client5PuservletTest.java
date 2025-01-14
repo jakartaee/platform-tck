@@ -1,17 +1,11 @@
 package ee.jakarta.tck.persistence.core.query.language;
 
-import ee.jakarta.tck.persistence.core.query.language.Client5;
-import java.net.URL;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
@@ -21,6 +15,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
+
+import java.net.URL;
 
 
 
@@ -59,7 +55,7 @@ public class Client5PuservletTest extends ee.jakarta.tck.persistence.core.query.
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_core_query_language_puservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_core_query_language_puservlet_vehicle_web.war");
@@ -161,28 +157,8 @@ public class Client5PuservletTest extends ee.jakarta.tck.persistence.core.query.
               jpa_core_query_language.addAsManifestResource(parURL, "orm.xml");
             }
 
-        // Ear
-            EnterpriseArchive jpa_core_query_language_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_query_language_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_core_query_language_vehicles_ear.addAsModule(jpa_core_query_language_puservlet_vehicle_web);
-
-            jpa_core_query_language_vehicles_ear.addAsLibrary(jpa_core_query_language);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client5.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_query_language_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_core_query_language_vehicles_ear, Client5.class, earResURL);
-        return jpa_core_query_language_vehicles_ear;
+            jpa_core_query_language_puservlet_vehicle_web.addAsLibrary(jpa_core_query_language);
+            return jpa_core_query_language_puservlet_vehicle_web;
         }
 
         @Test

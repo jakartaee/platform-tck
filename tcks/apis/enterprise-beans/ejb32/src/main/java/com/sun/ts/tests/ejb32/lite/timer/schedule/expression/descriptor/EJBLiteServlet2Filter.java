@@ -20,17 +20,18 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.expression.descriptor;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.ServletResponse;
-import java.util.logging.Logger;
+import jakarta.servlet.http.HttpServletRequest;
+
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EJBLiteServlet2Filter extends Client implements Filter {
     private static Logger logger = Logger.getLogger(EJBLiteServlet2Filter.class.getName());

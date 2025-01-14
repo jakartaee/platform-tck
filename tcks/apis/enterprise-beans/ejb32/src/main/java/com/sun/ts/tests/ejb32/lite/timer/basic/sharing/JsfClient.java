@@ -16,20 +16,19 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Properties;
-import java.util.Vector;
-
 import com.sun.ts.lib.util.TestUtil;
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.Timer;
+
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Properties;
+import java.util.Vector;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped

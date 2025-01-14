@@ -16,16 +16,15 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.sharing;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.Date;
-
 import com.sun.ts.tests.ejb30.common.helper.TestFailedException;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBaseWithoutTimeOutMethod;
-
 import jakarta.ejb.TimedObject;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
 
 abstract public class SharingTimerBeanBase
     extends TimerBeanBaseWithoutTimeOutMethod implements TimerIF, TimedObject {

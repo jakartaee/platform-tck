@@ -20,13 +20,7 @@
 
 package ee.jakarta.tck.persistence.ee.packaging.web.standalone;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.sun.ts.lib.util.TSNamingContext;
-
 import ee.jakarta.tck.persistence.ee.common.Account;
 import ee.jakarta.tck.persistence.ee.util.Data;
 import ee.jakarta.tck.persistence.ee.util.HttpTCKServlet;
@@ -37,6 +31,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Status;
 import jakarta.transaction.UserTransaction;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ServletTest extends HttpTCKServlet {
 

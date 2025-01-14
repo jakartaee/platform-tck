@@ -16,18 +16,10 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.concurrency;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.common.helper.ServiceLocator;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.annotation.Resource;
@@ -47,6 +39,13 @@ import jakarta.ejb.TimerConfig;
 import jakarta.ejb.TimerService;
 import jakarta.ejb.TransactionManagement;
 import jakarta.ejb.TransactionManagementType;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 @TransactionManagement(TransactionManagementType.BEAN)
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)

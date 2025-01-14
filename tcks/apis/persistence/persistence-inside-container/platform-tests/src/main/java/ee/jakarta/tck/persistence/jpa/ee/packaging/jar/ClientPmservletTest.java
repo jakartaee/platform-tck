@@ -14,16 +14,13 @@ import com.sun.ts.tests.common.vehicle.ejb3share.UseEntityManagerFactory;
 import com.sun.ts.tests.common.vehicle.ejb3share.UserTransactionWrapper;
 import com.sun.ts.tests.common.vehicle.pmservlet.PMServletVehicle;
 import com.sun.ts.tests.common.vehicle.servlet.ServletVehicle;
-
-import java.net.URL;
-
+import ee.jakarta.tck.persistence.common.PMClientBase;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.OverProtocol;
 import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
@@ -31,10 +28,10 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import ee.jakarta.tck.persistence.common.PMClientBase;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
 import tck.arquillian.protocol.common.TargetVehicle;
+
+import java.net.URL;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("persistence")

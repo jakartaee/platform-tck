@@ -20,7 +20,6 @@ import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.BusinessTimerBeanBase;
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.Interceptor2;
 import com.sun.ts.tests.ejb32.lite.timer.interceptor.business.common.Interceptor3;
-
 import jakarta.ejb.Stateless;
 import jakarta.ejb.Timer;
 import jakarta.interceptor.AroundInvoke;

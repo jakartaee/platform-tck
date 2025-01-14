@@ -16,15 +16,14 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.basic.xa;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import com.sun.ts.tests.ejb30.timer.common.JsfClientBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.EJB;
+
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 @jakarta.inject.Named("client")
 @jakarta.enterprise.context.RequestScoped

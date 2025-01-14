@@ -21,16 +21,13 @@
 package ee.jakarta.tck.persistence.ee.packaging.appclient.descriptor;
 
 
-
 import com.sun.ts.lib.harness.EETest;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
 import com.sun.ts.lib.util.TSNamingContext;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 public class Client extends EETest {
 

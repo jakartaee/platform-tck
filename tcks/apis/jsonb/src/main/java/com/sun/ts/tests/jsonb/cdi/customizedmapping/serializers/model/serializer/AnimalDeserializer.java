@@ -20,15 +20,14 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer;
 
-import java.lang.reflect.Type;
-
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog;
-
 import jakarta.json.bind.serializer.DeserializationContext;
 import jakarta.json.bind.serializer.JsonbDeserializer;
 import jakarta.json.stream.JsonParser;
+
+import java.lang.reflect.Type;
 
 public class AnimalDeserializer implements JsonbDeserializer<Animal> {
   public Animal deserialize(JsonParser jsonParser,

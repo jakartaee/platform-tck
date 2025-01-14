@@ -17,23 +17,21 @@
 package ee.jakarta.tck.persistence.ee.pluggability.contracts.jta;
 
 
+import com.sun.ts.lib.harness.Status;
+import ee.jakarta.tck.persistence.common.PMClientBase;
+import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerFactoryImpl;
+import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerImpl;
+import ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor;
+import jakarta.persistence.SharedCacheMode;
+import jakarta.persistence.ValidationMode;
+import jakarta.persistence.spi.PersistenceUnitInfo;
+import jakarta.persistence.spi.PersistenceUnitTransactionType;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-
-import ee.jakarta.tck.persistence.common.PMClientBase;
-import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerFactoryImpl;
-import ee.jakarta.tck.persistence.common.pluggability.altprovider.implementation.EntityManagerImpl;
-import ee.jakarta.tck.persistence.common.pluggability.util.LogFileProcessor;
-
-import com.sun.ts.lib.harness.Status;
-
-import jakarta.persistence.SharedCacheMode;
-import jakarta.persistence.ValidationMode;
-import jakarta.persistence.spi.PersistenceUnitInfo;
-import jakarta.persistence.spi.PersistenceUnitTransactionType;
 
 public class Client extends PMClientBase {
 

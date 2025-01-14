@@ -1,10 +1,8 @@
 package ee.jakarta.tck.persistence.ee.cdi;
 
+import ee.jakarta.tck.persistence.ee.entityManager.Order;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.core.Response;
-
-import java.net.URL;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -13,9 +11,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
-import ee.jakarta.tck.persistence.ee.entityManager.Order;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
+
+import java.net.URL;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON_TYPE;
 import static org.junit.jupiter.api.Assertions.assertEquals;

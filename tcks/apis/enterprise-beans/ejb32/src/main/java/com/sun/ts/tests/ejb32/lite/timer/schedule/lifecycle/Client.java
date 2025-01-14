@@ -16,23 +16,22 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.lifecycle;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.ClientBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerInfo;
-
 import jakarta.ejb.EJB;
 import jakarta.ejb.NoSuchObjectLocalException;
 import jakarta.ejb.ScheduleExpression;
 import jakarta.ejb.Timer;
 import jakarta.ejb.TimerConfig;
 import jakarta.ejb.TimerHandle;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class Client extends ClientBase {
 

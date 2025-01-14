@@ -21,14 +21,9 @@
 package ee.jakarta.tck.persistence.ee.packaging.ejb.resource_local;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
 import com.sun.ts.lib.util.RemoteLoggingInitException;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
-
 import ee.jakarta.tck.persistence.ee.common.A;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -41,6 +36,10 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.RollbackException;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 @Stateless(name = "Stateless3Bean")
 @Remote({ Stateless3IF.class })

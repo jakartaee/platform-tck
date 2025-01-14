@@ -16,14 +16,13 @@
 
  package com.sun.ts.tests.ejb32.lite.timer.interceptor.aroundtimeout.singleton.dual;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+import java.util.logging.Logger;
 
 public class HttpServletDelegate extends HttpServlet {
 

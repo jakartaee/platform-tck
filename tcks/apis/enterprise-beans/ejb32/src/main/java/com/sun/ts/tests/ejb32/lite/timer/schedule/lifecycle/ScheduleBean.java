@@ -16,16 +16,9 @@
 
 package com.sun.ts.tests.ejb32.lite.timer.schedule.lifecycle;
 
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-
-import org.apache.commons.lang3.time.DateUtils;
-
 import com.sun.ts.tests.ejb30.common.helper.Helper;
 import com.sun.ts.tests.ejb30.timer.common.TimerBeanBase;
 import com.sun.ts.tests.ejb30.timer.common.TimerUtil;
-
 import jakarta.ejb.NoSuchObjectLocalException;
 import jakarta.ejb.Schedule;
 import jakarta.ejb.ScheduleExpression;
@@ -36,6 +29,11 @@ import jakarta.ejb.TimerConfig;
 import jakarta.ejb.TimerHandle;
 import jakarta.ejb.TransactionAttribute;
 import jakarta.ejb.TransactionAttributeType;
+import org.apache.commons.lang3.time.DateUtils;
+
+import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 
 @Stateless
 public class ScheduleBean extends TimerBeanBase {

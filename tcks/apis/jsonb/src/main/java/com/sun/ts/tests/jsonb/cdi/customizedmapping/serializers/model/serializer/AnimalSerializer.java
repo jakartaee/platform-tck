@@ -21,13 +21,12 @@
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer;
 
 
-import jakarta.json.bind.serializer.JsonbSerializer;
-import jakarta.json.bind.serializer.SerializationContext;
-import jakarta.json.stream.JsonGenerator;
-
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog;
+import jakarta.json.bind.serializer.JsonbSerializer;
+import jakarta.json.bind.serializer.SerializationContext;
+import jakarta.json.stream.JsonGenerator;
 
 public class AnimalSerializer implements JsonbSerializer<Animal> {
   public void serialize(Animal animal, JsonGenerator jsonGenerator,
