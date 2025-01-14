@@ -55,7 +55,7 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.types.
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_core_types_generator_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_core_types_generator_pmservlet_vehicle_web.war");
@@ -109,23 +109,8 @@ public class Client1PmservletTest extends ee.jakarta.tck.persistence.core.types.
             }
 
 
-        // Ear
-            EnterpriseArchive jpa_core_types_generator_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_types_generator_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_core_types_generator_vehicles_ear.addAsModule(jpa_core_types_generator_pmservlet_vehicle_web);
-
-            jpa_core_types_generator_vehicles_ear.addAsLibrary(jpa_core_types_generator);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_core_types_generator_vehicles_ear, Client1.class, earResURL);
-        return jpa_core_types_generator_vehicles_ear;
+            jpa_core_types_generator_pmservlet_vehicle_web.addAsLibrary(jpa_core_types_generator);
+            return jpa_core_types_generator_pmservlet_vehicle_web;
         }
 
         @Test

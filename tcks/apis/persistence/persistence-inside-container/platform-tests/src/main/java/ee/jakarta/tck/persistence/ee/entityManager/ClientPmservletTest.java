@@ -68,7 +68,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.entityMan
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_ee_entityManager_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_ee_entityManager_pmservlet_vehicle_web.war");
@@ -152,28 +152,8 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.ee.entityMan
               jpa_ee_entityManager.addAsManifestResource(parURL, "orm.xml");
             }
 
-        // Ear
-            EnterpriseArchive jpa_ee_entityManager_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_entityManager_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_ee_entityManager_vehicles_ear.addAsModule(jpa_ee_entityManager_pmservlet_vehicle_web);
-
-            jpa_ee_entityManager_vehicles_ear.addAsLibrary(jpa_ee_entityManager);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_ee_entityManager_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_ee_entityManager_vehicles_ear, Client.class, earResURL);
-        return jpa_ee_entityManager_vehicles_ear;
+            jpa_ee_entityManager_pmservlet_vehicle_web.addAsLibrary(jpa_ee_entityManager);
+            return jpa_ee_entityManager_pmservlet_vehicle_web;
         }
 
         @Test

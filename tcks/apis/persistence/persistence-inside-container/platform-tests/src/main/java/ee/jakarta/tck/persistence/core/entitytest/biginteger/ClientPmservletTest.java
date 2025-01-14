@@ -59,7 +59,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityt
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_core_entitytest_biginteger_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_core_entitytest_biginteger_pmservlet_vehicle_web.war");
@@ -143,28 +143,8 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.core.entityt
               jpa_core_entitytest_biginteger.addAsManifestResource(parURL, "orm.xml");
             }
 
-        // Ear
-            EnterpriseArchive jpa_core_entitytest_biginteger_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_entitytest_biginteger_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_core_entitytest_biginteger_vehicles_ear.addAsModule(jpa_core_entitytest_biginteger_pmservlet_vehicle_web);
-
-            jpa_core_entitytest_biginteger_vehicles_ear.addAsLibrary(jpa_core_entitytest_biginteger);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_entitytest_biginteger_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_core_entitytest_biginteger_vehicles_ear, Client.class, earResURL);
-        return jpa_core_entitytest_biginteger_vehicles_ear;
+            jpa_core_entitytest_biginteger_pmservlet_vehicle_web.addAsLibrary(jpa_core_entitytest_biginteger);
+            return jpa_core_entitytest_biginteger_pmservlet_vehicle_web;
         }
 
         @Test

@@ -59,7 +59,7 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa22.repeat
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_jpa22_repeatable_mapkeyjoincolumn_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_jpa22_repeatable_mapkeyjoincolumn_pmservlet_vehicle_web.war");
@@ -145,28 +145,8 @@ public class ClientPmservletTest extends ee.jakarta.tck.persistence.jpa22.repeat
               jpa_jpa22_repeatable_mapkeyjoincolumn.addAsManifestResource(parURL, "orm.xml");
             }
 
-        // Ear
-            EnterpriseArchive jpa_jpa22_repeatable_mapkeyjoincolumn_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_jpa22_repeatable_mapkeyjoincolumn_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_jpa22_repeatable_mapkeyjoincolumn_vehicles_ear.addAsModule(jpa_jpa22_repeatable_mapkeyjoincolumn_pmservlet_vehicle_web);
-
-            jpa_jpa22_repeatable_mapkeyjoincolumn_vehicles_ear.addAsLibrary(jpa_jpa22_repeatable_mapkeyjoincolumn);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_jpa22_repeatable_mapkeyjoincolumn_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_jpa22_repeatable_mapkeyjoincolumn_vehicles_ear, Client.class, earResURL);
-        return jpa_jpa22_repeatable_mapkeyjoincolumn_vehicles_ear;
+            jpa_jpa22_repeatable_mapkeyjoincolumn_pmservlet_vehicle_web.addAsLibrary(jpa_jpa22_repeatable_mapkeyjoincolumn);
+            return jpa_jpa22_repeatable_mapkeyjoincolumn_pmservlet_vehicle_web;
         }
 
         @Test
