@@ -71,7 +71,6 @@ import java.lang.System.Logger;
 @Tag("tck-appclient")
 @Tag("jsonb")
 @Tag("platform")
-@Tag("web")
 @ExtendWith(ArquillianExtension.class)
 public class ClientEjbTest extends ServiceEETest {
 
