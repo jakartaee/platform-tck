@@ -47,7 +47,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = "jpa_ee_propagation_cm_jta", order = 2)
-        public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_ee_propagation_cm_jta_web = ShrinkWrap.create(WebArchive.class, "jpa_ee_propagation_cm_jta_web.war");
@@ -109,27 +109,9 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.propagation.cm.jta
             // Call the archive processor
             archiveProcessor.processParArchive(jpa_ee_propagation_cm_jta, Client.class, parURL);
 
-        // Ear
-            EnterpriseArchive jpa_ee_propagation_cm_jta_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_propagation_cm_jta.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_ee_propagation_cm_jta_ear.addAsModule(jpa_ee_propagation_cm_jta_ejb);
-            jpa_ee_propagation_cm_jta_ear.addAsModule(jpa_ee_propagation_cm_jta_web);
-            jpa_ee_propagation_cm_jta_ear.addAsModule(jpa_ee_propagation_cm_jta_web);
-
-            jpa_ee_propagation_cm_jta_ear.addAsLibrary(jpa_ee_propagation_cm_jta);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            earResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/propagation/cm/jta/application.xml");
-            jpa_ee_propagation_cm_jta_ear.addAsManifestResource(earResURL, "application.xml");
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_ee_propagation_cm_jta_ear, Client.class, earResURL);
-        return jpa_ee_propagation_cm_jta_ear;
+            jpa_ee_propagation_cm_jta_web.addAsLibrary(jpa_ee_propagation_cm_jta);
+            jpa_ee_propagation_cm_jta_web.addAsLibrary(jpa_ee_propagation_cm_jta_ejb);
+        return jpa_ee_propagation_cm_jta_web;
         }
 
         @Test

@@ -44,7 +44,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = "jpa_ee_packaging_web_scope", order = 2)
-        public static EnterpriseArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeployment(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_ee_packaging_web_scope_web = ShrinkWrap.create(WebArchive.class, "jpa_ee_packaging_web_scope_web.war");
@@ -74,23 +74,7 @@ public class ClientTest extends ee.jakarta.tck.persistence.ee.packaging.web.scop
            archiveProcessor.processWebArchive(jpa_ee_packaging_web_scope_web, Client.class, warResURL);
 
 
-        // Ear
-            EnterpriseArchive jpa_ee_packaging_web_scope_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_ee_packaging_web_scope.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_ee_packaging_web_scope_ear.addAsModule(jpa_ee_packaging_web_scope_web);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            earResURL = Client.class.getResource("/ee/jakarta/tck/persistence/ee/packaging/web/scope/application.xml");
-            jpa_ee_packaging_web_scope_ear.addAsManifestResource(earResURL, "application.xml");
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_ee_packaging_web_scope_ear, Client.class, earResURL);
-        return jpa_ee_packaging_web_scope_ear;
+        return jpa_ee_packaging_web_scope_web;
         }
 
         @Test

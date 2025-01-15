@@ -6,7 +6,6 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
@@ -88,7 +87,7 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.entity
         @TargetsContainer("tck-javatest")
         @OverProtocol("javatest")
         @Deployment(name = VEHICLE_ARCHIVE, order = 2)
-        public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
+        public static WebArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
         // War
             // the war with the correct archive name
             WebArchive jpa_core_entityManager_pmservlet_vehicle_web = ShrinkWrap.create(WebArchive.class, "jpa_core_entityManager_pmservlet_vehicle_web.war");
@@ -174,28 +173,8 @@ public class Client2PmservletTest extends ee.jakarta.tck.persistence.core.entity
               jpa_core_entityManager.addAsManifestResource(parURL, "orm.xml");
             }
 
-        // Ear
-            EnterpriseArchive jpa_core_entityManager_vehicles_ear = ShrinkWrap.create(EnterpriseArchive.class, "jpa_core_entityManager_vehicles.ear");
-
-            // Any libraries added to the ear
-
-            // The component jars built by the package target
-            jpa_core_entityManager_vehicles_ear.addAsModule(jpa_core_entityManager_pmservlet_vehicle_web);
-
-            jpa_core_entityManager_vehicles_ear.addAsLibrary(jpa_core_entityManager);
-
-
-
-            // The application.xml descriptor
-            URL earResURL = null;
-            // The sun-application.xml descriptor
-            earResURL = Client2.class.getResource("/.ear.sun-application.xml");
-            if(earResURL != null) {
-              jpa_core_entityManager_vehicles_ear.addAsManifestResource(earResURL, "sun-application.xml");
-            }
-            // Call the archive processor
-            archiveProcessor.processEarArchive(jpa_core_entityManager_vehicles_ear, Client2.class, earResURL);
-        return jpa_core_entityManager_vehicles_ear;
+            jpa_core_entityManager_pmservlet_vehicle_web.addAsLibrary(jpa_core_entityManager);
+            return jpa_core_entityManager_pmservlet_vehicle_web;
         }
 
         @Test

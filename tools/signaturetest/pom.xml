@@ -36,6 +36,7 @@
     <url>https://github.com/jakartaee/platform-tck</url>
     
     <properties>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         
