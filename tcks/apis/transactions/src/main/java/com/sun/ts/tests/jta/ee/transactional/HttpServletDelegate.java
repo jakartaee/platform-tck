@@ -14,35 +14,31 @@
  * SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
  */
 
- package com.sun.ts.tests.jta.ee.transactional;
+package com.sun.ts.tests.jta.ee.transactional;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import java.util.logging.Logger;
-import java.util.logging.Level;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
+import java.util.logging.Logger;
+
 public class HttpServletDelegate extends HttpServlet {
 
-    private static Logger logger = Logger.getLogger(HttpServletDelegate.class.getName()); 
+    private static Logger logger = Logger.getLogger(HttpServletDelegate.class.getName());
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-	    throws ServletException, IOException {
-	    processRequest(request, response);
-	}
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-	    throws ServletException, IOException {
-	    processRequest(request, response);
-	}
-	
-	private void processRequest(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	    response.setContentType("text/plain");
-	}
-  }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/plain");
+    }
+}

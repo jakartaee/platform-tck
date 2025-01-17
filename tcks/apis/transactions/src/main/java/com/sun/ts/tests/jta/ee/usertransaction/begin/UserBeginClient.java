@@ -20,10 +20,6 @@
 
 package com.sun.ts.tests.jta.ee.usertransaction.begin;
 
-import java.io.Serializable;
-// General Java Package Imports
-import java.util.Properties;
-
 import com.sun.ts.lib.harness.ServiceEETest;
 // Common Utilities
 import com.sun.ts.tests.jta.ee.common.Transact;
@@ -34,171 +30,162 @@ import jakarta.transaction.SystemException;
 // Test Specific Imports.
 import jakarta.transaction.UserTransaction;
 
+import java.io.Serializable;
+// General Java Package Imports
+import java.util.Properties;
+
 /**
- * The UserBeginClient class tests begin() method of UserTransaction interface
- * using Sun's J2EE Reference Implementation.
- * 
+ * The UserBeginClient class tests begin() method of UserTransaction interface using Sun's J2EE Reference
+ * Implementation.
+ *
  * @author P.Sandani Basha
  * @version 1.0.1, 09/17/99
  */
 
 public class UserBeginClient extends ServiceEETest implements Serializable {
-  private static final String testName = "jta.ee.usertransaction.begin";
+    private static final String testName = "jta.ee.usertransaction.begin";
 
-  private UserTransaction userTransaction = null;
+    private UserTransaction userTransaction;
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
-      // Initializes the Environment
-      Transact.init();
-      logTrace("Test environment initialized");
-
-      // Gets the User Transaction
-      userTransaction = (UserTransaction) Transact.nctx
-          .lookup("java:comp/UserTransaction");
-
-      if (userTransaction == null) {
-        logErr("Unable to get User Transaction"
-            + " Instance : Could not proceed with" + " tests");
-        throw new Exception("couldnt proceed further");
-      } else if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
-        userTransaction.rollback();
-      }
-    } catch (Exception exception) {
-      logErr("Setup Failed!");
-      logTrace("Unable to get User Transaction Instance :"
-          + " Could not proceed with tests");
-      throw new Exception("Setup Failed", exception);
-    }
-
-  }// End of setup
-
-  public static void main(String args[]) {
-    UserBeginClient userBeginClientInst = new UserBeginClient();
-    com.sun.ts.lib.harness.Status s = userBeginClientInst.run(args, System.out,
-        System.err);
-    s.exit();
-
-  }// End of main
-
-  // Beginning of TestCases
-
-  /**
-   * @testName: testUserBegin001
-   * @assertion_ids: JTA:JAVADOC:21
-   * @test_Strategy: Check the status of UserTransaction before calling begin()
-   *                 and check the status of UserTransaction after calling
-   *                 begin()
-   */
-
-  public void testUserBegin001() throws Exception {
-    // TestCase id :- 4.1.1
-
-    try {
-      // Gets the Status of the UserTransaction before
-      // calling begin()
-      int beforeBegin = userTransaction.getStatus();
-
-      if (beforeBegin == Status.STATUS_NO_TRANSACTION) {
-        logMsg(
-            "The Status of the UserTransaction is" + " STATUS_NO_TRANSACTION");
-      } else {
-        throw new Exception(
-            "Failed to return the status" + " STATUS_NO_TRANSACTION");
-      }
-
-      // Starts a Global Transaction & associates with
-      // Current Thread.
-      userTransaction.begin();
-      logMsg("UserTransaction Started");
-
-      // Gets the Status of the UserTransaction after
-      // calling begin()
-      int afterBegin = userTransaction.getStatus();
-
-      if (afterBegin == Status.STATUS_ACTIVE) {
-        logMsg("The Status of the UserTransaction is" + " STATUS_ACTIVE");
-      } else {
-        throw new Exception("Failed to return the status" + " STATUS_ACTIVE");
-      }
-    } catch (IllegalStateException illegalState) {
-      logErr("Exception " + illegalState.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed",
-          illegalState);
-    } catch (SystemException system) {
-      logErr("Exception " + system.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed", system);
-    } catch (Exception exception) {
-      logErr("Exception " + exception.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed",
-          exception);
-    }
-
-  }// End of testUserBegin001
-
-  /**
-   * @testName: testUserBegin002
-   * @assertion_ids: JTA:JAVADOC:22
-   * @test_Strategy: Start the User Transaction and again call the begin()
-   *                 method on User Transaction
-   */
-
-  public void testUserBegin002() throws Exception {
-    // TestCase id :- 4.1.2
-
-    try {
-      // Starts a Global Transaction & associates with
-      // Current Thread.
-      userTransaction.begin();
-      logMsg("UserTransaction Started");
-
-      logMsg("Trying to start UserTransaction again");
-      // Begins the UserTransaction again
-      userTransaction.begin();// should throw
-      // NotSupportedException
-
-      throw new Exception("NotSupportedException was not thrown" + " as Expected");
-    } catch (NotSupportedException notSupported) {
-      logMsg("Release Doesn't Support NESTED TRANSACTIONS");
-      logMsg("NotSupportedException was caught as" + " Expected !!");
-    } catch (SystemException system) {
-      logErr("Exception " + system.toString() + " was caught");
-      throw new Exception("NotSupportedException was not thrown" + " as Expected",
-          system);
-    } catch (Exception exception) {
-      logErr("Exception " + exception.toString() + " was caught");
-      throw new Exception("NotSupportedException was not thrown" + " as Expected",
-          exception);
-    }
-
-  }// End of testtestUserBegin002
-
-  public void cleanup() throws Exception {
-    try {
-      // Frees Current Thread, from Transaction
-      Transact.free();
-      try {
-        userTransaction.rollback();
-      } catch (Exception exception) {
-        throw new Exception(exception.getCause());
-      }
-      int retries = 1;
-      while ((userTransaction.getStatus() != Status.STATUS_NO_TRANSACTION)
-          && (retries <= 5)) {
-        logMsg("cleanup(): retry # " + retries);
+    public void setup(String[] args, Properties p) throws Exception {
         try {
-          Thread.sleep(1000);
-        } catch (Exception e) {
-          throw new Exception(e.getCause());
-        }
-        retries++;
-      }
-      logMsg("Cleanup ok;");
-    } catch (Exception exception) {
-      logErr("Cleanup Failed", exception);
-      logTrace("Could not clean the environment");
-    }
+            // Initializes the Environment
+            Transact.init();
+            logTrace("Test environment initialized");
 
-  }// End of cleanup
+            // Gets the User Transaction
+            userTransaction = (UserTransaction) Transact.nctx.lookup("java:comp/UserTransaction");
+
+            if (userTransaction == null) {
+                logErr("Unable to get User Transaction" + " Instance : Could not proceed with" + " tests");
+                throw new Exception("couldnt proceed further");
+            } else if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
+                userTransaction.rollback();
+            }
+        } catch (Exception exception) {
+            logErr("Setup Failed!");
+            logTrace("Unable to get User Transaction Instance :" + " Could not proceed with tests");
+            throw new Exception("Setup Failed", exception);
+        }
+
+    }// End of setup
+
+    public static void main(String args[]) {
+        UserBeginClient userBeginClientInst = new UserBeginClient();
+        com.sun.ts.lib.harness.Status s = userBeginClientInst.run(args, System.out, System.err);
+        s.exit();
+
+    }// End of main
+
+    // Beginning of TestCases
+
+    /**
+     * @testName: testUserBegin001
+     * @assertion_ids: JTA:JAVADOC:21
+     * @test_Strategy: Check the status of UserTransaction before calling begin() and check the status of UserTransaction
+     * after calling begin()
+     */
+
+    public void testUserBegin001() throws Exception {
+        // TestCase id :- 4.1.1
+
+        try {
+            // Gets the Status of the UserTransaction before
+            // calling begin()
+            int beforeBegin = userTransaction.getStatus();
+
+            if (beforeBegin == Status.STATUS_NO_TRANSACTION) {
+                logMsg("The Status of the UserTransaction is" + " STATUS_NO_TRANSACTION");
+            } else {
+                throw new Exception("Failed to return the status" + " STATUS_NO_TRANSACTION");
+            }
+
+            // Starts a Global Transaction & associates with
+            // Current Thread.
+            userTransaction.begin();
+            logMsg("UserTransaction Started");
+
+            // Gets the Status of the UserTransaction after
+            // calling begin()
+            int afterBegin = userTransaction.getStatus();
+
+            if (afterBegin == Status.STATUS_ACTIVE) {
+                logMsg("The Status of the UserTransaction is" + " STATUS_ACTIVE");
+            } else {
+                throw new Exception("Failed to return the status" + " STATUS_ACTIVE");
+            }
+        } catch (IllegalStateException illegalState) {
+            logErr("Exception " + illegalState.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", illegalState);
+        } catch (SystemException system) {
+            logErr("Exception " + system.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", system);
+        } catch (Exception exception) {
+            logErr("Exception " + exception.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", exception);
+        }
+
+    }// End of testUserBegin001
+
+    /**
+     * @testName: testUserBegin002
+     * @assertion_ids: JTA:JAVADOC:22
+     * @test_Strategy: Start the User Transaction and again call the begin() method on User Transaction
+     */
+
+    public void testUserBegin002() throws Exception {
+        // TestCase id :- 4.1.2
+
+        try {
+            // Starts a Global Transaction & associates with
+            // Current Thread.
+            userTransaction.begin();
+            logMsg("UserTransaction Started");
+
+            logMsg("Trying to start UserTransaction again");
+            // Begins the UserTransaction again
+            userTransaction.begin();// should throw
+            // NotSupportedException
+
+            throw new Exception("NotSupportedException was not thrown" + " as Expected");
+        } catch (NotSupportedException notSupported) {
+            logMsg("Release Doesn't Support NESTED TRANSACTIONS");
+            logMsg("NotSupportedException was caught as" + " Expected !!");
+        } catch (SystemException system) {
+            logErr("Exception " + system.toString() + " was caught");
+            throw new Exception("NotSupportedException was not thrown" + " as Expected", system);
+        } catch (Exception exception) {
+            logErr("Exception " + exception.toString() + " was caught");
+            throw new Exception("NotSupportedException was not thrown" + " as Expected", exception);
+        }
+
+    }// End of testtestUserBegin002
+
+    public void cleanup() throws Exception {
+        try {
+            // Frees Current Thread, from Transaction
+            Transact.free();
+            try {
+                userTransaction.rollback();
+            } catch (Exception exception) {
+                throw new Exception(exception.getCause());
+            }
+            int retries = 1;
+            while ((userTransaction.getStatus() != Status.STATUS_NO_TRANSACTION) && (retries <= 5)) {
+                logMsg("cleanup(): retry # " + retries);
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                    throw new Exception(e.getCause());
+                }
+                retries++;
+            }
+            logMsg("Cleanup ok;");
+        } catch (Exception exception) {
+            logErr("Cleanup Failed", exception);
+            logTrace("Could not clean the environment");
+        }
+
+    }// End of cleanup
 
 }// End of UserBeginClient

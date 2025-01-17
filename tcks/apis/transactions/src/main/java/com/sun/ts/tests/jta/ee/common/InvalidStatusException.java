@@ -2,11 +2,10 @@ package com.sun.ts.tests.jta.ee.common;
 
 public class InvalidStatusException extends Exception {
     InvalidStatusException() {
-      super();
+        super();
     }
-  
+
     InvalidStatusException(String msg) {
-      super(msg);
+        super(msg);
     }
-  }// End of InvalidStatusException
-  
+}// End of InvalidStatusException

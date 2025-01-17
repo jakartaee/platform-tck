@@ -25,47 +25,44 @@ import com.sun.ts.lib.harness.ServiceEETest;
 import com.sun.ts.lib.util.TSNamingContext;
 import com.sun.ts.lib.util.TestUtil;
 
-
 public class Transact extends ServiceEETest implements TransactionStatus {
-  public static TSNamingContext nctx = null;
+    public static TSNamingContext nctx = null;
 
-  public Transact() {
-  }
-
-  private static void prepareTM() throws Exception {
-    // Gets Naming Context
-    nctx = new TSNamingContext();
-
-  }
-
-  public static final String getStatusString(int status)
-      throws InvalidStatusException {
-    try {
-      return TransactionStatus.transStatusArray[status];
-    } catch (ArrayIndexOutOfBoundsException arryIndex) {
-      TestUtil.printStackTrace(arryIndex);
-      throw new InvalidStatusException();
+    public Transact() {
     }
-  }// End of getStatusString
 
-  // This will be called at the start of every test.
-  public static void init() throws InitFailedException {
-    try {
-      prepareTM();
-    } catch (Exception exception) {
-      TestUtil.printStackTrace(exception);
-      throw new InitFailedException("Test Environment Init" + " Failed ");
-    }
-  }// End of init
+    private static void prepareTM() throws Exception {
+        // Gets Naming Context
+        nctx = new TSNamingContext();
 
-  // This will be called in the cleanup method of Every Test
-  // so this version eats the exception.
-  public static void free() {
-    try {
-      // Does nothing for now ...
-    } catch (Exception exception) {
-      TestUtil.logErr("Fail to free the environment", exception);
     }
-  }
+
+    public static final String getStatusString(int status) throws InvalidStatusException {
+        try {
+            return TransactionStatus.transStatusArray[status];
+        } catch (ArrayIndexOutOfBoundsException arryIndex) {
+            TestUtil.printStackTrace(arryIndex);
+            throw new InvalidStatusException();
+        }
+    }// End of getStatusString
+
+    // This will be called at the start of every test.
+    public static void init() throws InitFailedException {
+        try {
+            prepareTM();
+        } catch (Exception exception) {
+            TestUtil.printStackTrace(exception);
+            throw new InitFailedException("Test Environment Init" + " Failed ");
+        }
+    }// End of init
+
+    // This will be called in the cleanup method of Every Test
+    // so this version eats the exception.
+    public static void free() {
+        try {
+            // Does nothing for now ...
+        } catch (Exception exception) {
+            TestUtil.logErr("Fail to free the environment", exception);
+        }
+    }
 }// End of Transact
-

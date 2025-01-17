@@ -18,8 +18,8 @@ package com.sun.ts.tests.jta.ee.transactional;
 
 public class CTSDontRollbackException extends RuntimeException {
 
-  public CTSDontRollbackException(String message) {
-    super(message);
-  }
+    public CTSDontRollbackException(String message) {
+        super(message);
+    }
 
 }

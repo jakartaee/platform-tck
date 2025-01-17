@@ -16,12 +16,6 @@
 
 package com.sun.ts.tests.jta.ee.transactional;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import jakarta.annotation.Priority;
 import jakarta.annotation.Resource;
 import jakarta.enterprise.inject.spi.BeanManager;
@@ -31,161 +25,159 @@ import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
 import jakarta.transaction.UserTransaction;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @OneManagedQualifier
 public class OneManagedBean {
-  public static final String NAME = "one-managed-bean";
+    public static final String NAME = "one-managed-bean";
 
-  @Resource(lookup = "java:comp/UserTransaction")
-  private UserTransaction ut2;
+    @Resource(lookup = "java:comp/UserTransaction")
+    private UserTransaction ut2;
 
-  @Inject
-  BeanManager beanManager;
+    @Inject
+    BeanManager beanManager;
 
-  private void setMyString(String s) {
-    this.myString = s;
-  }
-
-  String myString;
-
-  public String getName() {
-    return NAME;
-  }
-
-  public OneManagedBean() {
-  }
-
-  @Transactional(value = TxType.REQUIRED)
-  public String txTypeRequired() {
-    String result = "txTypeRequired called successfully";
-    return result;
-  }
-
-  @Transactional(value = TxType.REQUIRED)
-  public String txTypeRequiredIllegalStateException() {
-    String result = "not received IllegalStateException";
-    try {
-      ut2.begin();
-      String var = "do nothing";
-      ut2.commit();
-    } catch (IllegalStateException ise) {
-      result = "IllegalStateException";
-      setMyString(result);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      result = "unexcepted Exception :" + e.getMessage();
-      setMyString(result);
+    private void setMyString(String s) {
+        this.myString = s;
     }
 
-    return result;
-  }
+    String myString;
 
-  @Transactional(value = TxType.REQUIRES_NEW)
-  public String txTypeRequiresNew() {
-    String result = "txTypeRequiresNew called successfully";
-    return result;
-  }
+    public String getName() {
+        return NAME;
+    }
 
-  @Transactional(value = TxType.MANDATORY)
-  public String txTypeMandatory() {
-    String result = "txTypeMandatory called successfully";
-    return result;
-  }
+    public OneManagedBean() {
+    }
 
-  @Transactional(value = TxType.SUPPORTS)
-  public String txTypeSupports() {
-    String result = "txTypeSupports called successfully";
-    return result;
-  }
+    @Transactional(value = TxType.REQUIRED)
+    public String txTypeRequired() {
+        String result = "txTypeRequired called successfully";
+        return result;
+    }
 
-  @Transactional(value = TxType.SUPPORTS)
-  public String txTypeSupportsWithoutTransaction() {
+    @Transactional(value = TxType.REQUIRED)
+    public String txTypeRequiredIllegalStateException() {
+        String result = "not received IllegalStateException";
+        try {
+            ut2.begin();
+            String var = "do nothing";
+            ut2.commit();
+        } catch (IllegalStateException ise) {
+            result = "IllegalStateException";
+            setMyString(result);
 
-    String result = "txTypeSupports run without active transaction";
-    return result;
-  }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = "unexcepted Exception :" + e.getMessage();
+            setMyString(result);
+        }
 
-  @Transactional(value = TxType.NOT_SUPPORTED)
-  public String txTypeNotSupported() {
-    String result = "txTypeNotSupported run without active transaction";
-    return result;
+        return result;
+    }
 
-  }
+    @Transactional(value = TxType.REQUIRES_NEW)
+    public String txTypeRequiresNew() {
+        String result = "txTypeRequiresNew called successfully";
+        return result;
+    }
 
-  @Transactional(value = TxType.NEVER)
-  public String txTypeNever() {
-    String result = "txTypeNever run without active transaction";
-    return result;
-  }
+    @Transactional(value = TxType.MANDATORY)
+    public String txTypeMandatory() {
+        String result = "txTypeMandatory called successfully";
+        return result;
+    }
 
-  @Transactional(rollbackOn = { CTSRollbackException.class })
-  public void rollbackOnException() throws CTSRollbackException {
-    throw new CTSRollbackException("CTSRollbackException");
-  }
+    @Transactional(value = TxType.SUPPORTS)
+    public String txTypeSupports() {
+        String result = "txTypeSupports called successfully";
+        return result;
+    }
 
-  @Transactional(dontRollbackOn = { CTSDontRollbackException.class })
-  public void dontRollbackOnException() throws CTSDontRollbackException {
-    throw new CTSDontRollbackException("CTSDontRollbackException");
-  }
+    @Transactional(value = TxType.SUPPORTS)
+    public String txTypeSupportsWithoutTransaction() {
 
-  @Transactional(rollbackOn = { CTSRollbackException.class }, dontRollbackOn = {
-      CTSRollbackException.class })
-  public void rollbackAndDontRollback() throws CTSRollbackException {
-    throw new CTSRollbackException("CTSRollbackException");
-  }
+        String result = "txTypeSupports run without active transaction";
+        return result;
+    }
 
-  public List<Integer> getPriority(String methodName) {
-    int priorityValue = 0;
-    List<Integer> priorityList = new ArrayList();
-    try {
-      Class bClass = this.getClass();
-      Method m = bClass.getMethod(methodName);
-      Annotation[] annotationArray = m.getAnnotations();
+    @Transactional(value = TxType.NOT_SUPPORTED)
+    public String txTypeNotSupported() {
+        String result = "txTypeNotSupported run without active transaction";
+        return result;
 
-      java.util.List<jakarta.enterprise.inject.spi.Interceptor<?>> interceptorList = beanManager
-          .resolveInterceptors(InterceptionType.AROUND_INVOKE, annotationArray);
+    }
 
-      for (jakarta.enterprise.inject.spi.Interceptor<?> interceptor : interceptorList) {
-        System.out.println("Interceptor Name = " + interceptor.getName());
-        System.out.println("Interceptor toString = " + interceptor.toString());
-        System.out.println(
-            "Interceptor Beanclass = " + interceptor.getBeanClass().getName());
+    @Transactional(value = TxType.NEVER)
+    public String txTypeNever() {
+        String result = "txTypeNever run without active transaction";
+        return result;
+    }
 
-        // Get Priority Annotation from interceptor bean class
-        Annotation annotation = interceptor.getBeanClass()
-            .getAnnotation(Priority.class);
-        if (annotation != null && annotation instanceof Priority) {
-          Priority myPriorityAnnotation = (Priority) annotation;
-          priorityValue = myPriorityAnnotation.value();
-          System.out.println(
-              "Priority value(From Interceptor bean class) = " + priorityValue);
-          priorityList.add(priorityValue);
-        } else {
-          // Get Priority Annotation from Interceptor Bindings
-          Set<Annotation> annotations = interceptor.getInterceptorBindings();
-          System.out
-              .println("InterceptorBindings set size =" + annotations.size());
-          for (Annotation ibAnnotation : annotations) {
-            System.out.println("InterceptorBindings Annototation : "
-                + ibAnnotation.getClass().getName());
-            System.out.println("InterceptorBindings Annototation type : "
-                + ibAnnotation.annotationType());
-            if (ibAnnotation != null && ibAnnotation instanceof Priority) {
-              Priority myPriorityAnnotation = (Priority) ibAnnotation;
-              priorityValue = myPriorityAnnotation.value();
-              System.out.println("Priority value(From Interceptor bindings) = "
-                  + priorityValue);
-              priorityList.add(priorityValue);
+    @Transactional(rollbackOn = { CTSRollbackException.class })
+    public void rollbackOnException() throws CTSRollbackException {
+        throw new CTSRollbackException("CTSRollbackException");
+    }
+
+    @Transactional(dontRollbackOn = { CTSDontRollbackException.class })
+    public void dontRollbackOnException() throws CTSDontRollbackException {
+        throw new CTSDontRollbackException("CTSDontRollbackException");
+    }
+
+    @Transactional(rollbackOn = { CTSRollbackException.class }, dontRollbackOn = { CTSRollbackException.class })
+    public void rollbackAndDontRollback() throws CTSRollbackException {
+        throw new CTSRollbackException("CTSRollbackException");
+    }
+
+    public List<Integer> getPriority(String methodName) {
+        int priorityValue = 0;
+        List<Integer> priorityList = new ArrayList();
+        try {
+            Class bClass = this.getClass();
+            Method m = bClass.getMethod(methodName);
+            Annotation[] annotationArray = m.getAnnotations();
+
+            java.util.List<jakarta.enterprise.inject.spi.Interceptor<?>> interceptorList = beanManager
+                    .resolveInterceptors(InterceptionType.AROUND_INVOKE, annotationArray);
+
+            for (jakarta.enterprise.inject.spi.Interceptor<?> interceptor : interceptorList) {
+                System.out.println("Interceptor Name = " + interceptor.getName());
+                System.out.println("Interceptor toString = " + interceptor.toString());
+                System.out.println("Interceptor Beanclass = " + interceptor.getBeanClass().getName());
+
+                // Get Priority Annotation from interceptor bean class
+                Annotation annotation = interceptor.getBeanClass().getAnnotation(Priority.class);
+                if (annotation != null && annotation instanceof Priority) {
+                    Priority myPriorityAnnotation = (Priority) annotation;
+                    priorityValue = myPriorityAnnotation.value();
+                    System.out.println("Priority value(From Interceptor bean class) = " + priorityValue);
+                    priorityList.add(priorityValue);
+                } else {
+                    // Get Priority Annotation from Interceptor Bindings
+                    Set<Annotation> annotations = interceptor.getInterceptorBindings();
+                    System.out.println("InterceptorBindings set size =" + annotations.size());
+                    for (Annotation ibAnnotation : annotations) {
+                        System.out.println("InterceptorBindings Annototation : " + ibAnnotation.getClass().getName());
+                        System.out.println("InterceptorBindings Annototation type : " + ibAnnotation.annotationType());
+                        if (ibAnnotation != null && ibAnnotation instanceof Priority) {
+                            Priority myPriorityAnnotation = (Priority) ibAnnotation;
+                            priorityValue = myPriorityAnnotation.value();
+                            System.out.println("Priority value(From Interceptor bindings) = " + priorityValue);
+                            priorityList.add(priorityValue);
+                        }
+                    }
+                }
+                if (priorityValue == 0) {
+                    System.out.println("Priority Annotation not found");
+                }
             }
-          }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        if (priorityValue == 0) {
-          System.out.println("Priority Annotation not found");
-        }
-      }
-    } catch (Exception e) {
-      e.printStackTrace();
+        return priorityList;
     }
-    return priorityList;
-  }
 }
