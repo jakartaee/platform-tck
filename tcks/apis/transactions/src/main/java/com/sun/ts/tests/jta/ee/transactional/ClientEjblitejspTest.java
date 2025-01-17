@@ -1,46 +1,27 @@
 package com.sun.ts.tests.jta.ee.transactional;
 
-import java.net.URL;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
-import org.jboss.arquillian.container.test.api.OverProtocol;
-import org.jboss.arquillian.container.test.api.TargetsContainer;
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-import tck.arquillian.protocol.common.TargetVehicle;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestInfo;
+import jakarta.interceptor.Interceptor;
 
+import java.lang.System.Logger;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 
-import com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import jakarta.annotation.Resource;
-import jakarta.enterprise.context.ContextNotActiveException;
-import jakarta.inject.Inject;
-import jakarta.interceptor.Interceptor;
-import jakarta.transaction.InvalidTransactionException;
-import jakarta.transaction.Status;
-import jakarta.transaction.SystemException;
-import jakarta.transaction.TransactionRequiredException;
-import jakarta.transaction.TransactionalException;
-import jakarta.transaction.UserTransaction;
-
-import java.lang.System.Logger;
-
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @ExtendWith(ArquillianExtension.class)
 @Tag("jta")
@@ -56,583 +37,534 @@ public class ClientEjblitejspTest extends com.sun.ts.tests.jta.ee.transactional.
     void logStartTest(TestInfo testInfo) {
         logger.log(Logger.Level.INFO, "STARTING TEST : " + testInfo.getDisplayName());
     }
-  
+
     @AfterEach
     void logFinishTest(TestInfo testInfo) {
         logger.log(Logger.Level.INFO, "FINISHED TEST : " + testInfo.getDisplayName());
     }
 
+    @Override
     @AfterEach
     public void cleanup() {
-      logger.log(Logger.Level.INFO, "cleanup ok");
+        logger.log(Logger.Level.INFO, "cleanup ok");
     }
-  
 
     @TargetsContainer("tck-javatest")
     @OverProtocol("javatest")
     @Deployment(name = VEHICLE_ARCHIVE, order = 2)
     public static WebArchive createDeploymentVehicle() {
         WebArchive transactional_ejblitejsp_vehicle_web = ShrinkWrap.create(WebArchive.class, "transactional_ejblitejsp_vehicle_web.war");
-        transactional_ejblitejsp_vehicle_web.addClasses(
-        com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-        com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-        com.sun.ts.tests.common.vehicle.VehicleClient.class,
-        com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
-        com.sun.ts.tests.common.vehicle.ejbliteshare.ReasonableStatus.class,
-        com.sun.ts.tests.ejb30.common.lite.NumberEnum.class,
-        com.sun.ts.tests.ejb30.common.helper.Helper.class,
-        com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
-        com.sun.ts.tests.ejb30.common.lite.NumberIF.class,
-        com.sun.ts.lib.harness.EETest.Fault.class,
-        com.sun.ts.lib.harness.EETest.class,
-        com.sun.ts.lib.harness.EETest.SetupException.class,
-        com.sun.ts.lib.harness.ServiceEETest.class,
-        com.sun.ts.tests.jta.ee.transactional.OneManagedQualifier.class,
-        com.sun.ts.tests.jta.ee.transactional.TwoManagedQualifier.class,
-        com.sun.ts.tests.jta.ee.transactional.TwoManagedBean.class,
-        com.sun.ts.tests.jta.ee.transactional.CTSRollbackException.class,
-        com.sun.ts.tests.jta.ee.transactional.TransactionScopedBean.class,
-        com.sun.ts.tests.jta.ee.transactional.Helper.class,
-        com.sun.ts.tests.jta.ee.transactional.CTSDontRollbackException.class,
-        com.sun.ts.tests.jta.ee.transactional.EJBLiteJSPTag.class,
-        com.sun.ts.tests.jta.ee.transactional.OneManagedBean.class,
-        HttpServletDelegate.class,
-        com.sun.ts.tests.jta.ee.transactional.Client.class,
-        ClientEjblitejspTest.class
-        );
+        transactional_ejblitejsp_vehicle_web.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+                com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
+                com.sun.ts.tests.common.vehicle.ejbliteshare.EJBLiteClientIF.class,
+                com.sun.ts.tests.common.vehicle.ejbliteshare.ReasonableStatus.class, com.sun.ts.tests.ejb30.common.lite.NumberEnum.class,
+                com.sun.ts.tests.ejb30.common.helper.Helper.class, com.sun.ts.tests.ejb30.common.lite.EJBLiteClientBase.class,
+                com.sun.ts.tests.ejb30.common.lite.NumberIF.class, com.sun.ts.lib.harness.EETest.Fault.class,
+                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.EETest.SetupException.class,
+                com.sun.ts.lib.harness.ServiceEETest.class, com.sun.ts.tests.jta.ee.transactional.OneManagedQualifier.class,
+                com.sun.ts.tests.jta.ee.transactional.TwoManagedQualifier.class, com.sun.ts.tests.jta.ee.transactional.TwoManagedBean.class,
+                com.sun.ts.tests.jta.ee.transactional.CTSRollbackException.class,
+                com.sun.ts.tests.jta.ee.transactional.TransactionScopedBean.class, com.sun.ts.tests.jta.ee.transactional.Helper.class,
+                com.sun.ts.tests.jta.ee.transactional.CTSDontRollbackException.class,
+                com.sun.ts.tests.jta.ee.transactional.EJBLiteJSPTag.class, com.sun.ts.tests.jta.ee.transactional.OneManagedBean.class,
+                HttpServletDelegate.class, com.sun.ts.tests.jta.ee.transactional.Client.class, ClientEjblitejspTest.class);
         // The web.xml descriptor
         URL warResURL = ClientEjblitejspTest.class.getResource("/vehicle/ejblitejsp/ejblitejsp_vehicle.jsp");
-        if(warResURL != null) {
-          transactional_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "ejblitejsp_vehicle.jsp");
+        if (warResURL != null) {
+            transactional_ejblitejsp_vehicle_web.addAsWebResource(warResURL, "ejblitejsp_vehicle.jsp");
         }
 
         warResURL = ClientEjblitejspTest.class.getResource("/vehicle/ejblitejsp/ejblitejsp.tld");
-        if(warResURL != null) {
-          transactional_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "tlds/ejblitejsp.tld");
+        if (warResURL != null) {
+            transactional_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "tlds/ejblitejsp.tld");
         }
 
         warResURL = ClientEjblitejspTest.class.getResource("/vehicle/ejblitejsp/beans.xml");
-        if(warResURL != null) {
-          transactional_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "beans.xml");
+        if (warResURL != null) {
+            transactional_ejblitejsp_vehicle_web.addAsWebInfResource(warResURL, "beans.xml");
         }
 
         return transactional_ejblitejsp_vehicle_web;
-      }
+    }
 
-  
     /*
-      * @testName: txTypeRequired_withoutTransaction
-      * 
-      * @test_Strategy: TxType.REQUIRED: If called outside a transaction context,
-      * the interceptor must begin a new JTA transaction, the managed bean method
-      * execution must then continue inside this transaction context, and the
-      * transaction must be completed by the interceptor.
-      * 
-      * If called inside a transaction context, the managed bean method execution
-      * must then continue inside this transaction context.
-      */
+     * @testName: txTypeRequired_withoutTransaction
+     *
+     * @test_Strategy: TxType.REQUIRED: If called outside a transaction context, the interceptor must begin a new JTA
+     * transaction, the managed bean method execution must then continue inside this transaction context, and the
+     * transaction must be completed by the interceptor.
+     *
+     * If called inside a transaction context, the managed bean method execution must then continue inside this transaction
+     * context.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeRequired_withoutTransaction() throws Exception {
-      super.txTypeRequired_withoutTransaction();
+        super.txTypeRequired_withoutTransaction();
     }
-  
+
     /*
-      * @testName: txTypeRequired_withTransaction
-      * 
-      * @test_Strategy: TxType.REQUIRED: If called outside a transaction context,
-      * the interceptor must begin a new JTA transaction, the managed bean method
-      * execution must then continue inside this transaction context, and the
-      * transaction must be completed by the interceptor.
-      * 
-      * If called inside a transaction context, the managed bean method execution
-      * must then continue inside this transaction context.
-      */
+     * @testName: txTypeRequired_withTransaction
+     *
+     * @test_Strategy: TxType.REQUIRED: If called outside a transaction context, the interceptor must begin a new JTA
+     * transaction, the managed bean method execution must then continue inside this transaction context, and the
+     * transaction must be completed by the interceptor.
+     *
+     * If called inside a transaction context, the managed bean method execution must then continue inside this transaction
+     * context.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeRequired_withTransaction() throws Exception {
-      super.txTypeRequired_withTransaction();
+        super.txTypeRequired_withTransaction();
     }
-  
+
     /*
-      * @testName: txTypeRequired_IllegalStateException
-      * 
-      * @test_Strategy: If an attempt is made to call any method of the
-      * UserTransaction interface from within a bean or method annotated with
-      * 
-      * @Transactional and a Transactional.TxType other than NOT_SUPPORTED or
-      * NEVER, an IllegalStateException must be thrown.
-      */
+     * @testName: txTypeRequired_IllegalStateException
+     *
+     * @test_Strategy: If an attempt is made to call any method of the UserTransaction interface from within a bean or
+     * method annotated with
+     *
+     * @Transactional and a Transactional.TxType other than NOT_SUPPORTED or NEVER, an IllegalStateException must be thrown.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeRequired_IllegalStateException() throws Exception {
-      super.txTypeRequired_IllegalStateException();
+        super.txTypeRequired_IllegalStateException();
     }
-  
+
     /*
-      * @testName: txTypeRequiresNew
-      * 
-      * @test_Strategy: If called outside a transaction context, the interceptor
-      * must begin a new JTA transaction, the managed bean method execution must
-      * then continue inside this transaction context, and the transaction must be
-      * completed by the interceptor.
-      * 
-      * If called inside a transaction context, the current transaction context
-      * must be suspended, a new JTA transaction will begin, the managed bean
-      * method execution must then continue inside this transaction context, the
-      * transaction must be completed, and the previously suspended transaction
-      * must be resumed.
-      */
+     * @testName: txTypeRequiresNew
+     *
+     * @test_Strategy: If called outside a transaction context, the interceptor must begin a new JTA transaction, the
+     * managed bean method execution must then continue inside this transaction context, and the transaction must be
+     * completed by the interceptor.
+     *
+     * If called inside a transaction context, the current transaction context must be suspended, a new JTA transaction will
+     * begin, the managed bean method execution must then continue inside this transaction context, the transaction must be
+     * completed, and the previously suspended transaction must be resumed.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeRequiresNew() throws Exception {
-      super.txTypeRequiresNew();
-  
+        super.txTypeRequiresNew();
+
     }
-  
+
     /*
-      * @testName: txTypeRequiresNew_withTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, the interceptor
-      * must begin a new JTA transaction, the managed bean method execution must
-      * then continue inside this transaction context, and the transaction must be
-      * completed by the interceptor.
-      * 
-      * If called inside a transaction context, the current transaction context
-      * must be suspended, a new JTA transaction will begin, the managed bean
-      * method execution must then continue inside this transaction context, the
-      * transaction must be completed, and the previously suspended transaction
-      * must be resumed.
-      */
+     * @testName: txTypeRequiresNew_withTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, the interceptor must begin a new JTA transaction, the
+     * managed bean method execution must then continue inside this transaction context, and the transaction must be
+     * completed by the interceptor.
+     *
+     * If called inside a transaction context, the current transaction context must be suspended, a new JTA transaction will
+     * begin, the managed bean method execution must then continue inside this transaction context, the transaction must be
+     * completed, and the previously suspended transaction must be resumed.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeRequiresNew_withTransaction() throws Exception {
-      super.txTypeRequiresNew_withTransaction();
+        super.txTypeRequiresNew_withTransaction();
     }
-  
+
     /*
-      * @testName: txTypeMandatory_withoutTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, a
-      * TransactionalException with a nested TransactionRequiredException must be
-      * thrown.
-      * 
-      * If called inside a transaction context, managed bean method execution will
-      * then continue under that context.
-      */
+     * @testName: txTypeMandatory_withoutTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, a TransactionalException with a nested
+     * TransactionRequiredException must be thrown.
+     *
+     * If called inside a transaction context, managed bean method execution will then continue under that context.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeMandatory_withoutTransaction() throws Exception {
-      super.txTypeMandatory_withoutTransaction();
-  
+        super.txTypeMandatory_withoutTransaction();
+
     }
-  
+
     /*
-      * @testName: txTypeMandatory_withTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, a
-      * TransactionalException with a nested TransactionRequiredException must be
-      * thrown.
-      * 
-      * If called inside a transaction context, managed bean method execution will
-      * then continue under that context.
-      */
+     * @testName: txTypeMandatory_withTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, a TransactionalException with a nested
+     * TransactionRequiredException must be thrown.
+     *
+     * If called inside a transaction context, managed bean method execution will then continue under that context.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeMandatory_withTransaction() throws Exception {
-      super.txTypeMandatory_withTransaction();
+        super.txTypeMandatory_withTransaction();
     }
-  
+
     /*
-      * @testName: txTypeSupports_withoutTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, managed bean
-      * method execution must then continue outside a transaction context.
-      * 
-      * If called inside a transaction context, the managed bean method execution
-      * must then continue inside this transaction context.
-      */
+     * @testName: txTypeSupports_withoutTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
+     *
+     * If called inside a transaction context, the managed bean method execution must then continue inside this transaction
+     * context.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeSupports_withoutTransaction() throws Exception {
-      super.txTypeSupports_withoutTransaction();
+        super.txTypeSupports_withoutTransaction();
     }
-  
+
     /*
-      * @testName: txTypeSupports_withTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, managed bean
-      * method execution must then continue outside a transaction context.
-      * 
-      * If called inside a transaction context, the managed bean method execution
-      * must then continue inside this transaction context.
-      */
+     * @testName: txTypeSupports_withTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
+     *
+     * If called inside a transaction context, the managed bean method execution must then continue inside this transaction
+     * context.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeSupports_withTransaction() throws Exception {
-      super.txTypeSupports_withTransaction();
+        super.txTypeSupports_withTransaction();
     }
-  
+
     /*
-      * @testName: txTypeNotSupported_withoutTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, managed bean
-      * method execution must then continue outside a transaction context.
-      * 
-      * If called inside a transaction context, the current transaction context
-      * must be suspended, the managed bean method execution must then continue
-      * outside a transaction context, and the previously suspended transaction
-      * must be resumed by the interceptor that suspended it after the method
-      * execution has completed.
-      */
+     * @testName: txTypeNotSupported_withoutTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
+     *
+     * If called inside a transaction context, the current transaction context must be suspended, the managed bean method
+     * execution must then continue outside a transaction context, and the previously suspended transaction must be resumed
+     * by the interceptor that suspended it after the method execution has completed.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeNotSupported_withoutTransaction() throws Exception {
-      super.txTypeNotSupported_withoutTransaction();
+        super.txTypeNotSupported_withoutTransaction();
     }
-  
+
     /*
-      * @testName: txTypeNotSupported_withTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, managed bean
-      * method execution must then continue outside a transaction context.
-      * 
-      * If called inside a transaction context, the current transaction context
-      * must be suspended, the managed bean method execution must then continue
-      * outside a transaction context, and the previously suspended transaction
-      * must be resumed by the interceptor that suspended it after the method
-      * execution has completed.
-      */
+     * @testName: txTypeNotSupported_withTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
+     *
+     * If called inside a transaction context, the current transaction context must be suspended, the managed bean method
+     * execution must then continue outside a transaction context, and the previously suspended transaction must be resumed
+     * by the interceptor that suspended it after the method execution has completed.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeNotSupported_withTransaction() throws Exception {
-      super.txTypeNotSupported_withTransaction();
+        super.txTypeNotSupported_withTransaction();
     }
-  
+
     /*
-      * @testName: txTypeNever_withoutTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, managed bean
-      * method execution must then continue outside a transaction context.
-      * 
-      * If called inside a transaction context, a TransactionalException with a
-      * nested InvalidTransactionException must be thrown
-      */
+     * @testName: txTypeNever_withoutTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
+     *
+     * If called inside a transaction context, a TransactionalException with a nested InvalidTransactionException must be
+     * thrown
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeNever_withoutTransaction() throws Exception {
-      super.txTypeNever_withoutTransaction();
+        super.txTypeNever_withoutTransaction();
     }
-  
+
     /*
-      * @testName: txTypeNever_withTransaction
-      * 
-      * @test_Strategy: If called outside a transaction context, managed bean
-      * method execution must then continue outside a transaction context.
-      * 
-      * If called inside a transaction context, a TransactionalException with a
-      * nested InvalidTransactionException must be thrown
-      */
+     * @testName: txTypeNever_withTransaction
+     *
+     * @test_Strategy: If called outside a transaction context, managed bean method execution must then continue outside a
+     * transaction context.
+     *
+     * If called inside a transaction context, a TransactionalException with a nested InvalidTransactionException must be
+     * thrown
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void txTypeNever_withTransaction() throws Exception {
-      super.txTypeNever_withTransaction();
+        super.txTypeNever_withTransaction();
     }
-  
+
     /*
-      * @testName: rollbackOnException
-      * 
-      * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-      * that must cause the interceptor to mark the transaction for rollback.
-      * 
-      * Conversely, the dontRollbackOn element can be set to indicate exceptions
-      * that must not cause the interceptor to mark the transaction for rollback.
-      */
+     * @testName: rollbackOnException
+     *
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
+     *
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void rollbackOnException() throws Exception {
-      super.rollbackOnException();
-  
+        super.rollbackOnException();
+
     }
-  
+
     /*
-      * @testName: rollbackOnExceptionTwo
-      * 
-      * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-      * that must cause the interceptor to mark the transaction for rollback.
-      * 
-      * Conversely, the dontRollbackOn element can be set to indicate exceptions
-      * that must not cause the interceptor to mark the transaction for rollback.
-      * 
-      * When a class is specified for either of these elements, the designated
-      * behavior applies to subclasses of that class as well.
-      * 
-      * Note: This test verifies the behavior in SubClass
-      * 
-      */
+     * @testName: rollbackOnExceptionTwo
+     *
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
+     *
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
+     *
+     * When a class is specified for either of these elements, the designated behavior applies to subclasses of that class
+     * as well.
+     *
+     * Note: This test verifies the behavior in SubClass
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void rollbackOnExceptionTwo() throws Exception {
-      super.rollbackOnExceptionTwo();
-  
+        super.rollbackOnExceptionTwo();
+
     }
-  
+
     /*
-      * @testName: dontRollbackOnException
-      * 
-      * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-      * that must cause the interceptor to mark the transaction for rollback.
-      * 
-      * Conversely, the dontRollbackOn element can be set to indicate exceptions
-      * that must not cause the interceptor to mark the transaction for rollback.
-      */
+     * @testName: dontRollbackOnException
+     *
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
+     *
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void dontRollbackOnException() throws Exception {
-      super.dontRollbackOnException();
-  
+        super.dontRollbackOnException();
+
     }
-  
+
     /*
-      * @testName: dontRollbackOnExceptionTwo
-      * 
-      * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-      * that must cause the interceptor to mark the transaction for rollback.
-      * 
-      * Conversely, the dontRollbackOn element can be set to indicate exceptions
-      * that must not cause the interceptor to mark the transaction for rollback.
-      * 
-      * When a class is specified for either of these elements, the designated
-      * behavior applies to subclasses of that class as well.
-      * 
-      * Note: This test verifies the behavior in SubClass
-      * 
-      */
+     * @testName: dontRollbackOnExceptionTwo
+     *
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
+     *
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
+     *
+     * When a class is specified for either of these elements, the designated behavior applies to subclasses of that class
+     * as well.
+     *
+     * Note: This test verifies the behavior in SubClass
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void dontRollbackOnExceptionTwo() throws Exception {
-      super.dontRollbackOnExceptionTwo();
-  
+        super.dontRollbackOnExceptionTwo();
+
     }
-  
+
     /*
-      * @testName: rollbackAndDontRollback
-      * 
-      * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-      * that must cause the interceptor to mark the transaction for rollback.
-      * 
-      * Conversely, the dontRollbackOn element can be set to indicate exceptions
-      * that must not cause the interceptor to mark the transaction for rollback.
-      * 
-      * When a class is specified for either of these elements, the designated
-      * behavior applies to subclasses of that class as well. If both elements are
-      * specified, dontRollbackOn takes precedence.
-      */
+     * @testName: rollbackAndDontRollback
+     *
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
+     *
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
+     *
+     * When a class is specified for either of these elements, the designated behavior applies to subclasses of that class
+     * as well. If both elements are specified, dontRollbackOn takes precedence.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void rollbackAndDontRollback() throws Exception {
-      super.rollbackAndDontRollback();
-  
+        super.rollbackAndDontRollback();
+
     }
-  
+
     /*
-      * @testName: rollbackAndDontRollbackTwo
-      * 
-      * @test_Strategy: The rollbackOn element can be set to indicate exceptions
-      * that must cause the interceptor to mark the transaction for rollback.
-      * 
-      * Conversely, the dontRollbackOn element can be set to indicate exceptions
-      * that must not cause the interceptor to mark the transaction for rollback.
-      * 
-      * When a class is specified for either of these elements, the designated
-      * behavior applies to subclasses of that class as well. If both elements are
-      * specified, dontRollbackOn takes precedence.
-      * 
-      * Note: This test verifies the behavior in SubClass
-      * 
-      */
+     * @testName: rollbackAndDontRollbackTwo
+     *
+     * @test_Strategy: The rollbackOn element can be set to indicate exceptions that must cause the interceptor to mark the
+     * transaction for rollback.
+     *
+     * Conversely, the dontRollbackOn element can be set to indicate exceptions that must not cause the interceptor to mark
+     * the transaction for rollback.
+     *
+     * When a class is specified for either of these elements, the designated behavior applies to subclasses of that class
+     * as well. If both elements are specified, dontRollbackOn takes precedence.
+     *
+     * Note: This test verifies the behavior in SubClass
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void rollbackAndDontRollbackTwo() throws Exception {
-      super.rollbackAndDontRollbackTwo();
-  
+        super.rollbackAndDontRollbackTwo();
+
     }
-  
+
     /*
-      * @testName: transactionScopedBean_withoutTransaction
-      * 
-      * @test_Strategy:
-      * 
-      * The jakarta.transaction.TransactionScoped annotation provides the ability to
-      * specify a standard CDI scope to define bean instances whose lifecycle is
-      * scoped to the currently active JTA transaction.
-      * 
-      * The transaction scope is active when the return from a call to
-      * UserTransaction.getStatus or TransactionManager.getStatus is one of the
-      * following states: Status.STATUS_ACTIVE Status.STATUS_MARKED_ROLLBACK
-      * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING
-      * Status.STATUS_COMMITTING Status.STATUS_ROLLING_BACK
-      *
-      * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
-      * bean with this annotation is used when the transaction context is not
-      * active.
-      * 
-      */
+     * @testName: transactionScopedBean_withoutTransaction
+     *
+     * @test_Strategy:
+     *
+     * The jakarta.transaction.TransactionScoped annotation provides the ability to specify a standard CDI scope to define
+     * bean instances whose lifecycle is scoped to the currently active JTA transaction.
+     *
+     * The transaction scope is active when the return from a call to UserTransaction.getStatus or
+     * TransactionManager.getStatus is one of the following states: Status.STATUS_ACTIVE Status.STATUS_MARKED_ROLLBACK
+     * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING Status.STATUS_COMMITTING
+     * Status.STATUS_ROLLING_BACK
+     *
+     * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a bean with this annotation is used when the
+     * transaction context is not active.
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void transactionScopedBean_withoutTransaction() throws Exception {
-      super.transactionScopedBean_withoutTransaction();
+        super.transactionScopedBean_withoutTransaction();
     }
-  
+
     /*
-      * @testName: transactionScopedBean_withTransaction
-      * 
-      * @test_Strategy:
-      * 
-      * The jakarta.transaction.TransactionScoped annotation provides the ability to
-      * specify a standard CDI scope to define bean instances whose lifecycle is
-      * scoped to the currently active JTA transaction.
-      * 
-      * The transaction scope is active when the return from a call to
-      * UserTransaction.getStatus or TransactionManager.getStatus is one of the
-      * following states: Status.STATUS_ACTIVE Status.STATUS_MARKED_ROLLBACK
-      * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING
-      * Status.STATUS_COMMITTING Status.STATUS_ROLLING_BACK
-      * 
-      * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a
-      * bean with this annotation is used when the transaction context is not
-      * active.
-      */
+     * @testName: transactionScopedBean_withTransaction
+     *
+     * @test_Strategy:
+     *
+     * The jakarta.transaction.TransactionScoped annotation provides the ability to specify a standard CDI scope to define
+     * bean instances whose lifecycle is scoped to the currently active JTA transaction.
+     *
+     * The transaction scope is active when the return from a call to UserTransaction.getStatus or
+     * TransactionManager.getStatus is one of the following states: Status.STATUS_ACTIVE Status.STATUS_MARKED_ROLLBACK
+     * Status.STATUS_PREPARED Status.STATUS_UNKNOWN Status.STATUS_PREPARING Status.STATUS_COMMITTING
+     * Status.STATUS_ROLLING_BACK
+     *
+     * A jakarta.enterprise.context.ContextNotActiveException must be thrown if a bean with this annotation is used when the
+     * transaction context is not active.
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void transactionScopedBean_withTransaction() throws Exception {
-      super.transactionScopedBean_withTransaction();
+        super.transactionScopedBean_withTransaction();
     }
-  
+
     /*
-      * @testName: getInterceptorPriorityForTxTypeRequired
-      * 
-      * @test_Strategy: The Transactional interceptors must have a priority of
-      * Interceptor.Priority.PLATFORM_BEFORE+200
-      * 
-      */
+     * @testName: getInterceptorPriorityForTxTypeRequired
+     *
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void getInterceptorPriorityForTxTypeRequired() throws Exception {
-      super.getInterceptorPriorityForTxTypeRequired();
+        super.getInterceptorPriorityForTxTypeRequired();
     }
-  
+
     /*
-      * @testName: getInterceptorPriorityForTxTypeRequiresNew
-      * 
-      * @test_Strategy: The Transactional interceptors must have a priority of
-      * Interceptor.Priority.PLATFORM_BEFORE+200
-      * 
-      */
+     * @testName: getInterceptorPriorityForTxTypeRequiresNew
+     *
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void getInterceptorPriorityForTxTypeRequiresNew() throws Exception {
-      super.getInterceptorPriorityForTxTypeRequiresNew();
+        super.getInterceptorPriorityForTxTypeRequiresNew();
     }
-  
+
     /*
-      * @testName: getInterceptorPriorityForTxTypeMandatory
-      * 
-      * @test_Strategy: The Transactional interceptors must have a priority of
-      * Interceptor.Priority.PLATFORM_BEFORE+200
-      * 
-      */
+     * @testName: getInterceptorPriorityForTxTypeMandatory
+     *
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void getInterceptorPriorityForTxTypeMandatory() throws Exception {
-      super.getInterceptorPriorityForTxTypeMandatory();
+        super.getInterceptorPriorityForTxTypeMandatory();
     }
-  
+
     /*
-      * @testName: getInterceptorPriorityForTxTypeSupports
-      * 
-      * @test_Strategy: The Transactional interceptors must have a priority of
-      * Interceptor.Priority.PLATFORM_BEFORE+200
-      * 
-      */
+     * @testName: getInterceptorPriorityForTxTypeSupports
+     *
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void getInterceptorPriorityForTxTypeSupports() throws Exception {
-      super.getInterceptorPriorityForTxTypeSupports();
+        super.getInterceptorPriorityForTxTypeSupports();
     }
-  
+
     /*
-      * @testName: getInterceptorPriorityForTxTypeNotSupported
-      * 
-      * @test_Strategy: The Transactional interceptors must have a priority of
-      * Interceptor.Priority.PLATFORM_BEFORE+200
-      * 
-      */
+     * @testName: getInterceptorPriorityForTxTypeNotSupported
+     *
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void getInterceptorPriorityForTxTypeNotSupported() throws Exception {
-      super.getInterceptorPriorityForTxTypeNotSupported();
+        super.getInterceptorPriorityForTxTypeNotSupported();
     }
-  
+
     /*
-      * @testName: getInterceptorPriorityForTxTypeNever
-      * 
-      * @test_Strategy: The Transactional interceptors must have a priority of
-      * Interceptor.Priority.PLATFORM_BEFORE+200
-      * 
-      */
+     * @testName: getInterceptorPriorityForTxTypeNever
+     *
+     * @test_Strategy: The Transactional interceptors must have a priority of Interceptor.Priority.PLATFORM_BEFORE+200
+     *
+     */
     @Test
     @Override
     @TargetVehicle("ejblitejsp")
     public void getInterceptorPriorityForTxTypeNever() throws Exception {
-      super.getInterceptorPriorityForTxTypeNever();
-  
+        super.getInterceptorPriorityForTxTypeNever();
+
     }
-  
-    private void verifyInterceptorPriority(List<Integer> priorityList,
-        String txType) throws Exception {
-      String result = null;
-      if (priorityList.contains(Interceptor.Priority.PLATFORM_BEFORE + 200)) {
-        Helper.getLogger().log(Level.INFO, "Transactional Interceptor for "
-            + txType + " has right interceptor priority");
-        result = "Transactional Interceptor for " + txType
-            + " has right interceptor priority";
-      } else {
-        throw new Exception("Transactional Interceptor for " + txType
-            + " has incorrect interceptor priority : "
-            + Arrays.toString(priorityList.toArray()) + " Excpected value is :"
-            + Interceptor.Priority.PLATFORM_BEFORE + 200);
-      }
-  
-      if (result != null)
-        appendReason(result);
-  
+
+    private void verifyInterceptorPriority(List<Integer> priorityList, String txType) throws Exception {
+        String result = null;
+        if (priorityList.contains(Interceptor.Priority.PLATFORM_BEFORE + 200)) {
+            Helper.getLogger().log(Level.INFO, "Transactional Interceptor for " + txType + " has right interceptor priority");
+            result = "Transactional Interceptor for " + txType + " has right interceptor priority";
+        } else {
+            throw new Exception("Transactional Interceptor for " + txType + " has incorrect interceptor priority : "
+                    + Arrays.toString(priorityList.toArray()) + " Excpected value is :" + Interceptor.Priority.PLATFORM_BEFORE + 200);
+        }
+
+        if (result != null) {
+            appendReason(result);
+        }
+
     }
-      
+
 }

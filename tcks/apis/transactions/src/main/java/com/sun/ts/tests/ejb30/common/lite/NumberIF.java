@@ -21,9 +21,9 @@
 package com.sun.ts.tests.ejb30.common.lite;
 
 public interface NumberIF extends java.io.Serializable {
-  public int add(int toAdd);
+    public int add(int toAdd);
 
-  public NumberIF add(NumberIF toAdd);
+    public NumberIF add(NumberIF toAdd);
 
-  public int getNumber();
+    public int getNumber();
 }

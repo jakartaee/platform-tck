@@ -3,11 +3,10 @@ package com.sun.ts.tests.jta.ee.common;
 public class InitFailedException extends Exception {
 
     InitFailedException() {
-      super();
+        super();
     }
-  
+
     InitFailedException(String msg) {
-      super(msg);
+        super(msg);
     }
-  }// End of InitFailedException
-  
+}// End of InitFailedException

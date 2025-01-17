@@ -20,10 +20,6 @@
 
 package com.sun.ts.tests.jta.ee.usertransaction.rollback;
 
-import java.io.Serializable;
-// General Java Package Imports
-import java.util.Properties;
-
 import com.sun.ts.lib.harness.ServiceEETest;
 // Common Utilities
 import com.sun.ts.tests.jta.ee.common.Transact;
@@ -33,353 +29,335 @@ import jakarta.transaction.SystemException;
 // Test Specific Imports.
 import jakarta.transaction.UserTransaction;
 
+import java.io.Serializable;
+// General Java Package Imports
+import java.util.Properties;
+
 /**
- * The UserRollbackClient class tests rollback() method of UserTransaction
- * interface using Sun's J2EE Reference Implementation.
- * 
+ * The UserRollbackClient class tests rollback() method of UserTransaction interface using Sun's J2EE Reference
+ * Implementation.
+ *
  * @author P.Sandani Basha
  * @version 1.0.1, 09/17/99
  */
 
 public class UserRollbackClient extends ServiceEETest implements Serializable {
-  private static final int SLEEPTIME = 2000;
+    private static final int SLEEPTIME = 2000;
 
-  private static final String testName = "jta.ee.usertransaction.rollback";
+    private static final String testName = "jta.ee.usertransaction.rollback";
 
-  private UserTransaction userTransaction = null;
+    private UserTransaction userTransaction = null;
 
-  public void setup(String[] args, Properties p) throws Exception {
-    try {
-      // Initializes the Environment
-      Transact.init();
-      logTrace("Test environment initialized");
-
-      // Gets the User Transaction
-      userTransaction = (UserTransaction) Transact.nctx
-          .lookup("java:comp/UserTransaction");
-      logMsg("User Transaction object is Obtained");
-
-      if (userTransaction == null) {
-        logErr("Unable to get User Transaction"
-            + " Instance : Could not proceed with" + " tests");
-        throw new Exception("couldnt proceed further");
-      } else if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
-        userTransaction.rollback();
-      }
-    } catch (Exception exception) {
-      logErr("Setup Failed!");
-      logTrace("Unable to get User Transaction Instance :"
-          + " Could not proceed with tests");
-      throw new Exception("Setup Failed", exception);
-    }
-
-  }// End of setup
-
-  public static void main(String args[]) {
-    UserRollbackClient userRollbackClientInst = new UserRollbackClient();
-    com.sun.ts.lib.harness.Status s = userRollbackClientInst.run(args, System.out,
-        System.err);
-    s.exit();
-
-  }// End of main
-
-  // Beginning of TestCases
-
-  /**
-   * @testName: testUserRollback001
-   * @assertion_ids: JTA:JAVADOC:32
-   * @test_Strategy: Without starting the User Transaction call rollback() on
-   *                 User Transaction.
-   */
-
-  public void testUserRollback001() throws Exception {
-    // TestCase id :- 4.4.1
-
-    try {
-      // Checks the Status of transaction associated with
-      // the current thread.
-      if (userTransaction.getStatus() == Status.STATUS_NO_TRANSACTION) {
-        logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
-
-        logMsg("Rolling back the transaction");
-        // Trying to Rollback the transaction.
-        userTransaction.rollback(); // should throw
-        // IllegalStateException.
-        throw new Exception("IllegalStateException not" + " thrown as Expected");
-      } else {
-        throw new Exception(
-            "Failed to return the status" + " STATUS_NO_TRANSACTION");
-      }
-    } catch (IllegalStateException illegalState) {
-      logMsg("IllegalStateException was caught as" + " expected!!");
-    } catch (SystemException system) {
-      logErr("Exception " + system.toString() + " was caught");
-      throw new Exception("IllegalStateException not thrown as" + " Expected",
-          system);
-    } catch (Exception exception) {
-      logErr("Exception " + exception.toString() + " was caught");
-      throw new Exception("IllegalStateException not thrown as" + " Expected",
-          exception);
-    }
-
-  }// End of testUserRollback001
-
-  /**
-   * @testName: testUserRollback002
-   * @assertion_ids: JTA:JAVADOC:31
-   * @test_Strategy: Start the User Transaction.Call rollback() on User
-   *                 Transaction.Check the status of the User Transaction
-   */
-
-  public void testUserRollback002() throws Exception {
-    // TestCase id :- 4.4.2
-
-    try {
-      // Starts a Global Transaction & associates with
-      // Current Thread.
-      userTransaction.begin();
-      logMsg("UserTransaction Started");
-
-      // Checks the Status of transaction associated with
-      // the current thread.
-      if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
-        logMsg("UserTransaction Status is" + " STATUS_ACTIVE");
-        // Rollbacks the UserTransaction.
-        userTransaction.rollback();
-      }
-
-      // Checks the status of transaction associated with
-      // the current thread.
-      if (userTransaction.getStatus() == Status.STATUS_NO_TRANSACTION) {
-        logMsg("UserTransaction Rolledback");
-        logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
-      } else {
-        throw new Exception(
-            "Failed to return the status" + " STATUS_NO_TRANSACTION");
-      }
-    } catch (IllegalStateException illegal) {
-      logErr("Exception " + illegal.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed", illegal);
-    } catch (SecurityException security) {
-      logErr("Exception " + security.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed", security);
-    } catch (SystemException system) {
-      logErr("Exception " + system.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed", system);
-    } catch (Exception exception) {
-      logErr("Exception " + exception.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed",
-          exception);
-    }
-
-  }// End of testUserRollback002
-
-  /**
-   * @testName: testUserRollback003
-   * @assertion_ids: JTA:JAVADOC:32
-   * @test_Strategy: Start the User Transaction.Call commit() on User
-   *                 Transaction.Call rollback() on User Transaction.
-   */
-
-  public void testUserRollback003() throws Exception {
-    // TestCase id :- 4.4.3
-
-    try {
-      // Starts a Global Transaction & associates with
-      // Current Thread.
-      userTransaction.begin();
-      logMsg("UserTransaction Started");
-
-      // Checks the Status of transaction associated with
-      // the current thread
-      if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
-        logMsg("UserTransaction Status is" + " STATUS_ACTIVE");
-        // Commits the transaction.
-        userTransaction.commit();
-      }
-
-      // Checks the Status of the transaction associated with
-      // the current thread
-      if (userTransaction.getStatus() == Status.STATUS_NO_TRANSACTION) {
-        logMsg("UserTransaction Committed");
-        logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
-
-        logMsg("Trying to Rollback UserTransaction");
-        // Tries to Rollback the UserTransaction.
-        userTransaction.rollback(); // should throw
-        // IllegalStateException
-        throw new Exception("IllegalStateException not" + " thrown as Expected");
-      } else {
-        throw new Exception(
-            "Failed to return the status" + " STATUS_NO_TRANSACTION");
-      }
-    } catch (IllegalStateException illegalState) {
-      logMsg("IllegalStateException was caught as" + " expected!!");
-    } catch (SystemException system) {
-      logErr("Exception " + system.toString() + " was caught");
-      throw new Exception("IllegalStateException not thrown as" + " Expected",
-          system);
-    } catch (Exception exception) {
-      logErr("Exception " + exception.toString() + " was caught");
-      throw new Exception("IllegalStateException not thrown as" + " Expected",
-          exception);
-    }
-
-  }// End of testUserRollback003
-
-  /**
-   * @testName: testUserRollback004
-   * @assertion_ids: JTA:JAVADOC:32
-   * @test_Strategy: Start the User Transaction.Call rollback() on User
-   *                 Transaction.Call rollback() again on User Transaction.
-   */
-
-  public void testUserRollback004() throws Exception {
-    // TestCase id :- 4.4.4
-
-    try {
-      // Starts a Global Transaction & associates with
-      // Current Thread.
-      userTransaction.begin();
-      logMsg("UserTransaction Started");
-
-      // Checks the Status of transaction associated with
-      // the current thread
-      if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
-        logMsg("UserTransaction Status is" + " STATUS_ACTIVE");
-        // Rollbacks the transaction.
-        userTransaction.rollback();
-      }
-
-      // Checks the Status of transaction associated with
-      // the current thread
-      if (userTransaction.getStatus() == Status.STATUS_NO_TRANSACTION) {
-        logMsg("UserTransaction Rolled back");
-        logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
-
-        logMsg("Trying to Rollback UserTransaction" + " again");
-        // Tries to Rollback the transaction.
-        userTransaction.rollback(); // should throw
-        // IllegalStateException.
-        throw new Exception("IllegalStateException not" + " thrown as Expected");
-      } else {
-        throw new Exception(
-            "Failed to return the status" + " STATUS_NO_TRANSACTION");
-      }
-    } catch (IllegalStateException illegalState) {
-      logMsg("IllegalStateException was caught as" + " expected!!");
-    } catch (SystemException system) {
-      logErr("Exception " + system.toString() + " was caught");
-      throw new Exception("IllegalStateException not thrown as" + " Expected",
-          system);
-    } catch (Exception exception) {
-      logErr("Exception " + exception.toString() + " was caught");
-      throw new Exception("IllegalStateException not thrown as" + " Expected",
-          exception);
-    }
-
-  }// End of testUserRollback004
-
-  /**
-   * @testName: testUserRollback005
-   * @assertion_ids: JTA:JAVADOC:31
-   * @test_Strategy: Start the User Transaction.Call rollback() on User
-   *                 Transaction.Check the status of the User Transaction.
-   */
-
-  public void testUserRollback005() throws Exception {
-    // TestCase id :- 4.4.5
-
-    try {
-      // Starts a Global Transaction & associates with
-      // Current Thread.
-      userTransaction.begin();
-      logMsg("UserTransaction Started");
-
-      // Checks the Status of transaction associated with
-      // the current thread
-      if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
-        logMsg("UserTransaction Status is" + " STATUS_ACTIVE");
-
-        // Rollbacks the transaction.
-        userTransaction.rollback();
-      }
-
-      int status = userTransaction.getStatus();
-
-      // If unknown, try again
-      if (status == Status.STATUS_UNKNOWN) {
-        int count = 0;
-        do {
-          logTrace("Received STATUS_UNKNOWN." + " Checking status again.");
-          count++;
-          try {
-            Thread.sleep(SLEEPTIME);
-          } catch (Exception e) {
-            throw new Exception(e.getCause());
-          }
-          status = userTransaction.getStatus();
-        } while ((status == Status.STATUS_UNKNOWN) && (count < 5));
-      }
-
-      // Checks the status of transaction associated with
-      // the current thread
-      if (status == Status.STATUS_NO_TRANSACTION) {
-        logMsg("UserTransaction Rolledback");
-        logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
-      } else {
-        throw new Exception(
-            "Failed to return the status" + " STATUS_NO_TRANSACTION");
-      }
-    } catch (IllegalStateException illegalState) {
-      logErr("Exception " + illegalState.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed",
-          illegalState);
-    } catch (SecurityException security) {
-      logErr("Exception " + security.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed", security);
-    } catch (SystemException system) {
-      logErr("Exception " + system.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed", system);
-    } catch (Exception exception) {
-      logErr("Exception " + exception.toString() + " was caught");
-      throw new Exception("UnExpected Exception was caught:" + " Failed",
-          exception);
-    }
-  }// End of testUserRollback005
-
-  public void cleanup() throws Exception {
-    try {
-      // Removing noisy stack trace.
-      if(userTransaction.getStatus() == Status.STATUS_ACTIVE) {
-      // Frees Current Thread, from Transaction
-      Transact.free();
-      try {
-        userTransaction.rollback();
-      } catch (Exception exception) {
-        throw new Exception(exception.getCause());
-      }
-      int retries = 1;
-      while ((userTransaction.getStatus() != Status.STATUS_NO_TRANSACTION)
-          && (retries <= 5)) {
-        logMsg("cleanup(): retry # " + retries);
+    public void setup(String[] args, Properties p) throws Exception {
         try {
-          Thread.sleep(1000);
-        } catch (Exception e) {
-          throw new Exception(e.getCause());
-        }
-        retries++;
-      }
-      logMsg("Cleanup ok;");
-      }
-      else {
-        logMsg("CleanUp not required as Transaction is not in Active state.");
-      }
-    } catch (Exception exception) {
-      logErr("Cleanup Failed", exception);
-      logTrace("Could not clean the environment");
-    }
+            // Initializes the Environment
+            Transact.init();
+            logTrace("Test environment initialized");
 
-  }// End of cleanup
+            // Gets the User Transaction
+            userTransaction = (UserTransaction) Transact.nctx.lookup("java:comp/UserTransaction");
+            logMsg("User Transaction object is Obtained");
+
+            if (userTransaction == null) {
+                logErr("Unable to get User Transaction" + " Instance : Could not proceed with" + " tests");
+                throw new Exception("couldnt proceed further");
+            } else if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
+                userTransaction.rollback();
+            }
+        } catch (Exception exception) {
+            logErr("Setup Failed!");
+            logTrace("Unable to get User Transaction Instance :" + " Could not proceed with tests");
+            throw new Exception("Setup Failed", exception);
+        }
+
+    }// End of setup
+
+    public static void main(String args[]) {
+        UserRollbackClient userRollbackClientInst = new UserRollbackClient();
+        com.sun.ts.lib.harness.Status s = userRollbackClientInst.run(args, System.out, System.err);
+        s.exit();
+
+    }// End of main
+
+    // Beginning of TestCases
+
+    /**
+     * @testName: testUserRollback001
+     * @assertion_ids: JTA:JAVADOC:32
+     * @test_Strategy: Without starting the User Transaction call rollback() on User Transaction.
+     */
+
+    public void testUserRollback001() throws Exception {
+        // TestCase id :- 4.4.1
+
+        try {
+            // Checks the Status of transaction associated with
+            // the current thread.
+            if (userTransaction.getStatus() == Status.STATUS_NO_TRANSACTION) {
+                logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
+
+                logMsg("Rolling back the transaction");
+                // Trying to Rollback the transaction.
+                userTransaction.rollback(); // should throw
+                // IllegalStateException.
+                throw new Exception("IllegalStateException not" + " thrown as Expected");
+            } else {
+                throw new Exception("Failed to return the status" + " STATUS_NO_TRANSACTION");
+            }
+        } catch (IllegalStateException illegalState) {
+            logMsg("IllegalStateException was caught as" + " expected!!");
+        } catch (SystemException system) {
+            logErr("Exception " + system.toString() + " was caught");
+            throw new Exception("IllegalStateException not thrown as" + " Expected", system);
+        } catch (Exception exception) {
+            logErr("Exception " + exception.toString() + " was caught");
+            throw new Exception("IllegalStateException not thrown as" + " Expected", exception);
+        }
+
+    }// End of testUserRollback001
+
+    /**
+     * @testName: testUserRollback002
+     * @assertion_ids: JTA:JAVADOC:31
+     * @test_Strategy: Start the User Transaction.Call rollback() on User Transaction.Check the status of the User
+     * Transaction
+     */
+
+    public void testUserRollback002() throws Exception {
+        // TestCase id :- 4.4.2
+
+        try {
+            // Starts a Global Transaction & associates with
+            // Current Thread.
+            userTransaction.begin();
+            logMsg("UserTransaction Started");
+
+            // Checks the Status of transaction associated with
+            // the current thread.
+            if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
+                logMsg("UserTransaction Status is" + " STATUS_ACTIVE");
+                // Rollbacks the UserTransaction.
+                userTransaction.rollback();
+            }
+
+            // Checks the status of transaction associated with
+            // the current thread.
+            if (userTransaction.getStatus() == Status.STATUS_NO_TRANSACTION) {
+                logMsg("UserTransaction Rolledback");
+                logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
+            } else {
+                throw new Exception("Failed to return the status" + " STATUS_NO_TRANSACTION");
+            }
+        } catch (IllegalStateException illegal) {
+            logErr("Exception " + illegal.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", illegal);
+        } catch (SecurityException security) {
+            logErr("Exception " + security.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", security);
+        } catch (SystemException system) {
+            logErr("Exception " + system.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", system);
+        } catch (Exception exception) {
+            logErr("Exception " + exception.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", exception);
+        }
+
+    }// End of testUserRollback002
+
+    /**
+     * @testName: testUserRollback003
+     * @assertion_ids: JTA:JAVADOC:32
+     * @test_Strategy: Start the User Transaction.Call commit() on User Transaction.Call rollback() on User Transaction.
+     */
+
+    public void testUserRollback003() throws Exception {
+        // TestCase id :- 4.4.3
+
+        try {
+            // Starts a Global Transaction & associates with
+            // Current Thread.
+            userTransaction.begin();
+            logMsg("UserTransaction Started");
+
+            // Checks the Status of transaction associated with
+            // the current thread
+            if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
+                logMsg("UserTransaction Status is" + " STATUS_ACTIVE");
+                // Commits the transaction.
+                userTransaction.commit();
+            }
+
+            // Checks the Status of the transaction associated with
+            // the current thread
+            if (userTransaction.getStatus() == Status.STATUS_NO_TRANSACTION) {
+                logMsg("UserTransaction Committed");
+                logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
+
+                logMsg("Trying to Rollback UserTransaction");
+                // Tries to Rollback the UserTransaction.
+                userTransaction.rollback(); // should throw
+                // IllegalStateException
+                throw new Exception("IllegalStateException not" + " thrown as Expected");
+            } else {
+                throw new Exception("Failed to return the status" + " STATUS_NO_TRANSACTION");
+            }
+        } catch (IllegalStateException illegalState) {
+            logMsg("IllegalStateException was caught as" + " expected!!");
+        } catch (SystemException system) {
+            logErr("Exception " + system.toString() + " was caught");
+            throw new Exception("IllegalStateException not thrown as" + " Expected", system);
+        } catch (Exception exception) {
+            logErr("Exception " + exception.toString() + " was caught");
+            throw new Exception("IllegalStateException not thrown as" + " Expected", exception);
+        }
+
+    }// End of testUserRollback003
+
+    /**
+     * @testName: testUserRollback004
+     * @assertion_ids: JTA:JAVADOC:32
+     * @test_Strategy: Start the User Transaction.Call rollback() on User Transaction.Call rollback() again on User
+     * Transaction.
+     */
+
+    public void testUserRollback004() throws Exception {
+        // TestCase id :- 4.4.4
+
+        try {
+            // Starts a Global Transaction & associates with
+            // Current Thread.
+            userTransaction.begin();
+            logMsg("UserTransaction Started");
+
+            // Checks the Status of transaction associated with
+            // the current thread
+            if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
+                logMsg("UserTransaction Status is" + " STATUS_ACTIVE");
+                // Rollbacks the transaction.
+                userTransaction.rollback();
+            }
+
+            // Checks the Status of transaction associated with
+            // the current thread
+            if (userTransaction.getStatus() == Status.STATUS_NO_TRANSACTION) {
+                logMsg("UserTransaction Rolled back");
+                logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
+
+                logMsg("Trying to Rollback UserTransaction" + " again");
+                // Tries to Rollback the transaction.
+                userTransaction.rollback(); // should throw
+                // IllegalStateException.
+                throw new Exception("IllegalStateException not" + " thrown as Expected");
+            } else {
+                throw new Exception("Failed to return the status" + " STATUS_NO_TRANSACTION");
+            }
+        } catch (IllegalStateException illegalState) {
+            logMsg("IllegalStateException was caught as" + " expected!!");
+        } catch (SystemException system) {
+            logErr("Exception " + system.toString() + " was caught");
+            throw new Exception("IllegalStateException not thrown as" + " Expected", system);
+        } catch (Exception exception) {
+            logErr("Exception " + exception.toString() + " was caught");
+            throw new Exception("IllegalStateException not thrown as" + " Expected", exception);
+        }
+
+    }// End of testUserRollback004
+
+    /**
+     * @testName: testUserRollback005
+     * @assertion_ids: JTA:JAVADOC:31
+     * @test_Strategy: Start the User Transaction.Call rollback() on User Transaction.Check the status of the User
+     * Transaction.
+     */
+
+    public void testUserRollback005() throws Exception {
+        // TestCase id :- 4.4.5
+
+        try {
+            // Starts a Global Transaction & associates with
+            // Current Thread.
+            userTransaction.begin();
+            logMsg("UserTransaction Started");
+
+            // Checks the Status of transaction associated with
+            // the current thread
+            if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
+                logMsg("UserTransaction Status is" + " STATUS_ACTIVE");
+
+                // Rollbacks the transaction.
+                userTransaction.rollback();
+            }
+
+            int status = userTransaction.getStatus();
+
+            // If unknown, try again
+            if (status == Status.STATUS_UNKNOWN) {
+                int count = 0;
+                do {
+                    logTrace("Received STATUS_UNKNOWN." + " Checking status again.");
+                    count++;
+                    try {
+                        Thread.sleep(SLEEPTIME);
+                    } catch (Exception e) {
+                        throw new Exception(e.getCause());
+                    }
+                    status = userTransaction.getStatus();
+                } while ((status == Status.STATUS_UNKNOWN) && (count < 5));
+            }
+
+            // Checks the status of transaction associated with
+            // the current thread
+            if (status == Status.STATUS_NO_TRANSACTION) {
+                logMsg("UserTransaction Rolledback");
+                logMsg("UserTransaction Status is" + " STATUS_NO_TRANSACTION");
+            } else {
+                throw new Exception("Failed to return the status" + " STATUS_NO_TRANSACTION");
+            }
+        } catch (IllegalStateException illegalState) {
+            logErr("Exception " + illegalState.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", illegalState);
+        } catch (SecurityException security) {
+            logErr("Exception " + security.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", security);
+        } catch (SystemException system) {
+            logErr("Exception " + system.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", system);
+        } catch (Exception exception) {
+            logErr("Exception " + exception.toString() + " was caught");
+            throw new Exception("UnExpected Exception was caught:" + " Failed", exception);
+        }
+    }// End of testUserRollback005
+
+    public void cleanup() throws Exception {
+        try {
+            // Removing noisy stack trace.
+            if (userTransaction.getStatus() == Status.STATUS_ACTIVE) {
+                // Frees Current Thread, from Transaction
+                Transact.free();
+                try {
+                    userTransaction.rollback();
+                } catch (Exception exception) {
+                    throw new Exception(exception.getCause());
+                }
+                int retries = 1;
+                while ((userTransaction.getStatus() != Status.STATUS_NO_TRANSACTION) && (retries <= 5)) {
+                    logMsg("cleanup(): retry # " + retries);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (Exception e) {
+                        throw new Exception(e.getCause());
+                    }
+                    retries++;
+                }
+                logMsg("Cleanup ok;");
+            } else {
+                logMsg("CleanUp not required as Transaction is not in Active state.");
+            }
+        } catch (Exception exception) {
+            logErr("Cleanup Failed", exception);
+            logTrace("Could not clean the environment");
+        }
+
+    }// End of cleanup
 
 }// End of UserRollbackClient
