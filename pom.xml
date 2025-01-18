@@ -51,7 +51,6 @@
         <module>tcks/apis/persistence/persistence-inside-container</module>
         <module>tcks/apis/persistence/persistence-outside-container</module>
         <module>tcks/apis/rest</module>
-        <module>tcks/apis/tags</module>
         <module>tcks/apis/transactions</module>
         <module>tcks/apis/websocket</module>
         <module>tcks/profiles/core-profile-tck</module>
