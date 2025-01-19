@@ -22,13 +22,13 @@
     <parent>
         <groupId>jakarta.tck</groupId>
         <artifactId>jakarta.tck.user-guide</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
+        <version>2.2.0</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <groupId>jakarta.websocket</groupId>
     <artifactId>jakarta.websocket-tck-user-guide</artifactId>
-    <version>2.2.0-SNAPSHOT</version>
+    <version>2.2.0</version>
     <packaging>pom</packaging>
 
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta WebSocket for Jakarta EE, Release 2.2</name>
