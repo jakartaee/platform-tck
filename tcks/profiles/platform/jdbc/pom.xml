@@ -34,7 +34,7 @@
     <description>JDBC</description>
 
     <properties>
-        <arquillian.junit>1.9.1.Final</arquillian.junit>
+        <arquillian.junit>1.9.3.Final</arquillian.junit>
         <jakarta.ee.version>11.0.0-SNAPSHOT</jakarta.ee.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <maven.compiler.release>17</maven.compiler.release>
