@@ -16,81 +16,71 @@
 
 package com.sun.ts.tests.jaxrs.lib.implementation.sun.common;
 
-import java.net.*;
-import com.sun.ts.lib.util.*;
-import com.sun.ts.lib.porting.*;
+import com.sun.ts.lib.porting.TSURLInterface;
+import com.sun.ts.lib.util.TestUtil;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 // import com.sun.ts.lib.porting.TSURLInterface;
 // import ee.jakarta.tck.ws.rs.lib.util.TestUtil;
 
 /**
- * This is a J2EE Reference specific implementation of the TSURLInterface which
- * is to be used for J2EE-TS testing. TS tests use this interface to obtain the
- * URL String to use to access a given web component. If a given J2EE Server
- * implmentation requires that URLs be created in a different manner, then this
- * implementation can be replaced.
+ * This is a J2EE Reference specific implementation of the TSURLInterface which is to be used for J2EE-TS testing. TS
+ * tests use this interface to obtain the URL String to use to access a given web component. If a given J2EE Server
+ * implmentation requires that URLs be created in a different manner, then this implementation can be replaced.
  *
  * @author Kyle Grucci
  */
 public class SunRIURL implements TSURLInterface {
-  private URL url = null;
+    private URL url = null;
 
-  /**
-   * This method is called by TS tests to get the URL to use to access a given
-   * web component.
-   *
-   * @param protocol
-   *          - the name of the protocol.
-   * @param host
-   *          - the name of the host.
-   * @param port
-   *          - the port number.
-   * @param file
-   *          - the host file.
-   * @return a valid URL object.
-   */
-  public URL getURL(String protocol, String host, int port, String file)
-      throws MalformedURLException {
-    try {
-      url = new URL(protocol, host, port, file);
-    } catch (MalformedURLException e) {
-      TestUtil.logErr("Failed during URL creation", e);
-      throw e;
+    /**
+     * This method is called by TS tests to get the URL to use to access a given web component.
+     *
+     * @param protocol - the name of the protocol.
+     * @param host - the name of the host.
+     * @param port - the port number.
+     * @param file - the host file.
+     * @return a valid URL object.
+     */
+    @Override
+    public URL getURL(String protocol, String host, int port, String file) throws MalformedURLException {
+        try {
+            url = new URL(protocol, host, port, file);
+        } catch (MalformedURLException e) {
+            TestUtil.logErr("Failed during URL creation", e);
+            throw e;
+        }
+        return url;
     }
-    return url;
-  }
 
-  /**
-   * This method is called by TS tests to get the URL to use to access a given
-   * web component.
-   *
-   * @param protocol
-   *          - the name of the protocol.
-   * @param host
-   *          - the name of the host.
-   * @param port
-   *          - the port number.
-   * @param file
-   *          - the host file.
-   * @return a valid URL as a String.
-   */
-  public String getURLString(String protocol, String host, int port,
-      String file) {
-    if (file.startsWith("/"))
-      return protocol + "://" + host + ":" + port + file;
-    else
-      return protocol + "://" + host + ":" + port + "/" + file;
-  }
+    /**
+     * This method is called by TS tests to get the URL to use to access a given web component.
+     *
+     * @param protocol - the name of the protocol.
+     * @param host - the name of the host.
+     * @param port - the port number.
+     * @param file - the host file.
+     * @return a valid URL as a String.
+     */
+    @Override
+    public String getURLString(String protocol, String host, int port, String file) {
+        if (file.startsWith("/")) {
+            return protocol + "://" + host + ":" + port + file;
+        } else {
+            return protocol + "://" + host + ":" + port + "/" + file;
+        }
+    }
 
-  /**
-   * This method is called by TS tests to get the request string to use to
-   * access a given web component.
-   *
-   * @param request
-   *          - the request file.
-   * @return a valid String object.
-   */
-  public String getRequest(String request) {
-    return request;
-  }
+    /**
+     * This method is called by TS tests to get the request string to use to access a given web component.
+     *
+     * @param request - the request file.
+     * @return a valid String object.
+     */
+    @Override
+    public String getRequest(String request) {
+        return request;
+    }
 }

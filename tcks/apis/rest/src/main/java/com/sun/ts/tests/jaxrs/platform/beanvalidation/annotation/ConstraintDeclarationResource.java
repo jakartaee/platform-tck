@@ -22,14 +22,13 @@ import jakarta.ws.rs.Path;
 @Path("resource/declaration")
 public class ConstraintDeclarationResource {
 
-  @POST
-  @Path("constraintdeclarationexception")
-  // Actually a subclass UnexpectedTypeException is thrown:
-  // jakarta.validation.UnexpectedTypeException: HV000030: No validator could be
-  // found for type: java.lang.String.
-  public String constraintDeclarationException(
-      @ConstraintDeclarationAnnotation String content) {
-    return content;
-  }
+    @POST
+    @Path("constraintdeclarationexception")
+    // Actually a subclass UnexpectedTypeException is thrown:
+    // jakarta.validation.UnexpectedTypeException: HV000030: No validator could be
+    // found for type: java.lang.String.
+    public String constraintDeclarationException(@ConstraintDeclarationAnnotation String content) {
+        return content;
+    }
 
 }

@@ -21,20 +21,15 @@ import com.sun.ts.tests.jaxrs.common.provider.PrintingErrorHandler;
 
 import jakarta.ws.rs.core.MediaType;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-
 import java.io.IOException;
 
-import org.junit.jupiter.api.Test;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
-
 
 /*
  * @class.setup_props: webServerHost;
@@ -42,7 +37,7 @@ import org.junit.jupiter.api.AfterEach;
  *                     ts_home;
  */
 /*
- * These test are in the platform package since async is not available in 
+ * These test are in the platform package since async is not available in
  * Servlet 2.5 spec by default
  */
 @ExtendWith(ArquillianExtension.class)
@@ -51,51 +46,49 @@ import org.junit.jupiter.api.AfterEach;
 @Tag("web")
 public class JAXRSClientIT extends JaxrsCommonClient {
 
-  private static final long serialVersionUID = 8849202370030024015L;
+    private static final long serialVersionUID = 8849202370030024015L;
 
-  public JAXRSClientIT() {
-    setup();
-    setContextRoot("/jaxrs_platform_container_asyncejb_web/resource");
-  }
+    public JAXRSClientIT() {
+        setup();
+        setContextRoot("/jaxrs_platform_container_asyncejb_web/resource");
+    }
 
-  @Deployment(testable = false)
-  public static WebArchive createDeployment() throws IOException {
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() throws IOException {
 
-    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jaxrs_platform_container_asyncejb_web.war");
-    archive.addClasses(Resource.class, 
-    PrintingErrorHandler.class,
-    TSAppConfig.class);
-    archive.addAsWebInfResource(JAXRSClientIT.class.getPackage(), "jaxrs_platform_container_asyncejb_web.xml", "web.xml"); //can use if the web.xml.template doesn't need to be modified.    
-    return archive;
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "jaxrs_platform_container_asyncejb_web.war");
+        archive.addClasses(Resource.class, PrintingErrorHandler.class, TSAppConfig.class);
+        archive.addAsWebInfResource(JAXRSClientIT.class.getPackage(), "jaxrs_platform_container_asyncejb_web.xml", "web.xml"); // can use if
+                                                                                                                               // the
+                                                                                                                               // web.xml.template
+                                                                                                                               // doesn't
+                                                                                                                               // need to be
+                                                                                                                               // modified.
+        return archive;
 
-  }
+    }
 
+    // public static void main(String[] args) {
+    // new JAXRSClient().run(args);
+    // }
 
-  // public static void main(String[] args) {
-  //   new JAXRSClient().run(args);
-  // }
-
-  /*
-   * @testName: asynchronousTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:106;
-   * 
-   * @test_Strategy: When an EJB method is annotated with @Asynchronous, the EJB
-   * container automatically allocates the necessary resources for its
-   * execution.
-   * 
-   * //Check this does not break build
-   */
-  @Test
-  public void asynchronousTest() throws Exception {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "check"));
-    setProperty(Property.REQUEST_HEADERS,
-        buildAccept(MediaType.TEXT_PLAIN_TYPE));
-    invoke();
-    String response = getResponseBody();
-    Long milis = Long.parseLong(response);
-    logMsg(
-        "@Asynchronous did executued longTimeOperation asynchronously, response was",
-        milis, "milis");
-  }
+    /*
+     * @testName: asynchronousTest
+     *
+     * @assertion_ids: JAXRS:SPEC:106;
+     *
+     * @test_Strategy: When an EJB method is annotated with @Asynchronous, the EJB container automatically allocates the
+     * necessary resources for its execution.
+     *
+     * //Check this does not break build
+     */
+    @Test
+    public void asynchronousTest() throws Exception {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "check"));
+        setProperty(Property.REQUEST_HEADERS, buildAccept(MediaType.TEXT_PLAIN_TYPE));
+        invoke();
+        String response = getResponseBody();
+        Long milis = Long.parseLong(response);
+        logMsg("@Asynchronous did executued longTimeOperation asynchronously, response was", milis, "milis");
+    }
 }

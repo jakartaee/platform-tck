@@ -32,52 +32,51 @@ import jakarta.ws.rs.core.UriInfo;
 @Path("/ssb")
 public class StatelessRootResource {
 
-  @Context
-  private UriInfo ui;
+    @Context
+    private UriInfo ui;
 
-  @GET
-  public String get() {
-    return "GET: " + ui.getRequestUri().toASCIIString()
-        + " Hello From Stateless EJB Root";
-  }
+    @GET
+    public String get() {
+        return "GET: " + ui.getRequestUri().toASCIIString() + " Hello From Stateless EJB Root";
+    }
 
-  @EJB
-  StatelessResource r;
+    @EJB
+    StatelessResource r;
 
-  @Path("/sub")
-  public StatelessResource getSub() {
-    return r;
-  }
+    @Path("/sub")
+    public StatelessResource getSub() {
+        return r;
+    }
 
-  @EJB
-  StatelessLocalIF rl;
+    @EJB
+    StatelessLocalIF rl;
 
-  @Path("/localsub")
-  public StatelessLocalIF getLocalSub() {
-    return rl;
-  }
+    @Path("/localsub")
+    public StatelessLocalIF getLocalSub() {
+        return rl;
+    }
 
-  @Path("exception")
-  @GET
-  public String throwException() {
-    throw new EJBException(new WebApplicationException(Status.CREATED));
-  }
+    @Path("exception")
+    @GET
+    public String throwException() {
+        throw new EJBException(new WebApplicationException(Status.CREATED));
+    }
 
-  // <JAXRS:SPEC:53.1,3 ----------------------------------------------->
-  @Context
-  private Application injectedApplication;
+    // <JAXRS:SPEC:53.1,3 ----------------------------------------------->
+    @Context
+    private Application injectedApplication;
 
-  private boolean isJaxrsInjectedPriorToPostConstruct = false;
+    private boolean isJaxrsInjectedPriorToPostConstruct = false;
 
-  @PostConstruct
-  public void postConstruct() {
-    isJaxrsInjectedPriorToPostConstruct = injectedApplication != null;
-  }
+    @PostConstruct
+    public void postConstruct() {
+        isJaxrsInjectedPriorToPostConstruct = injectedApplication != null;
+    }
 
-  @Path("priorroot")
-  @GET
-  public String jaxrsInjectPriorPostConstructOnRootResource() {
-    return String.valueOf(isJaxrsInjectedPriorToPostConstruct);
-  }
-  // </JAXRS:SPEC:53.1,3 ----------------------------------------------->
+    @Path("priorroot")
+    @GET
+    public String jaxrsInjectPriorPostConstructOnRootResource() {
+        return String.valueOf(isJaxrsInjectedPriorToPostConstruct);
+    }
+    // </JAXRS:SPEC:53.1,3 ----------------------------------------------->
 }

@@ -24,45 +24,44 @@ import jakarta.ws.rs.Path;
 @Path("resource")
 public class Resource {
 
-  @POST
-  @Path("notshortnorfive")
-  public String notShortNorFive(@Valid NotShortNorFiveStringBean bean) {
-    return bean.get();
-  }
+    @POST
+    @Path("notshortnorfive")
+    public String notShortNorFive(@Valid NotShortNorFiveStringBean bean) {
+        return bean.get();
+    }
 
-  @POST
-  @Path("returnnotshortnorfive")
-  @Valid
-  public NotShortNorFiveStringBean notShortNorFive(String content) {
-    return new NotShortNorFiveStringBean(content);
-  }
+    @POST
+    @Path("returnnotshortnorfive")
+    @Valid
+    public NotShortNorFiveStringBean notShortNorFive(String content) {
+        return new NotShortNorFiveStringBean(content);
+    }
 
-  @GET
-  @Valid
-  @Path("returnnull")
-  public NotShortNorFiveStringBean returnNull() {
-    return new NotShortNorFiveStringBean(null);
-  }
+    @GET
+    @Valid
+    @Path("returnnull")
+    public NotShortNorFiveStringBean returnNull() {
+        return new NotShortNorFiveStringBean(null);
+    }
 
-  @POST
-  @Path("directannotatedarg")
-  public String directStringArgument(
-      @NotFiveNorShort NotShortNorFiveStringBean content) {
-    return content.get();
-  }
+    @POST
+    @Path("directannotatedarg")
+    public String directStringArgument(@NotFiveNorShort NotShortNorFiveStringBean content) {
+        return content.get();
+    }
 
-  @POST
-  @Path("directannotatedreturn")
-  @NotFiveNorShort
-  public NotShortNorFiveStringBean returnDirectString(String content) {
-    return new NotShortNorFiveStringBean(content);
-  }
+    @POST
+    @Path("directannotatedreturn")
+    @NotFiveNorShort
+    public NotShortNorFiveStringBean returnDirectString(String content) {
+        return new NotShortNorFiveStringBean(content);
+    }
 
-  @GET
-  @Path("directannotatedreturnnull")
-  @NotFiveNorShort
-  public NotShortNorFiveStringBean returnDirectNull() {
-    return new NotShortNorFiveStringBean(null);
-  }
+    @GET
+    @Path("directannotatedreturnnull")
+    @NotFiveNorShort
+    public NotShortNorFiveStringBean returnDirectNull() {
+        return new NotShortNorFiveStringBean(null);
+    }
 
 }

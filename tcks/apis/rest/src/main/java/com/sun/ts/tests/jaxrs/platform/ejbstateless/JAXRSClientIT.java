@@ -16,24 +16,22 @@
 
 package com.sun.ts.tests.jaxrs.platform.ejbstateless;
 
-import java.io.IOException;
-import java.io.InputStream;
 import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
 
 import jakarta.ws.rs.core.Response.Status;
 
-import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
+import java.io.IOException;
+import java.io.InputStream;
 
-import org.junit.jupiter.api.Test;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit5.ArquillianExtension;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
+
 /*
  * @class.setup_props: webServerHost;
  *                     webServerPort;
@@ -45,136 +43,117 @@ import org.junit.jupiter.api.AfterEach;
 @Tag("web")
 public class JAXRSClientIT extends JAXRSCommonClient {
 
-  private static final long serialVersionUID = -96529594720799580L;
+    private static final long serialVersionUID = -96529594720799580L;
 
-  public JAXRSClientIT() {
-    setup();
-    setContextRoot("/jaxrs_platform_ejbstateless_web/ssb");
-  }
+    public JAXRSClientIT() {
+        setup();
+        setContextRoot("/jaxrs_platform_ejbstateless_web/ssb");
+    }
 
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  // public static void main(String[] args) {
-  //   new JAXRSClient().run(args);
-  // }
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() throws IOException {
 
+        InputStream inStream =
+            JAXRSClientIT.class.getClassLoader()
+                         .getResourceAsStream("com/sun/ts/tests/jaxrs/platform/ejbstateless/web.xml.template");
 
-  @Deployment(testable = false)
-  public static WebArchive createDeployment() throws IOException {
+        // Replace the servlet_adaptor in web.xml.template with the System variable set as servlet adaptor
+        String webXml = editWebXmlString(inStream);
 
-    InputStream inStream = JAXRSClientIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jaxrs/platform/ejbstateless/web.xml.template");
-    // Replace the servlet_adaptor in web.xml.template with the System variable set as servlet adaptor
-    String webXml = editWebXmlString(inStream);
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "jaxrs_platform_ejbstateless_web.war");
+        archive.addClasses(TSAppConfig.class, StatelessLocalIF.class, StatelessResource.class, StatelessRootResource.class,
+                StatelessTestBean.class, TestFailedException.class);
 
-    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jaxrs_platform_ejbstateless_web.war");
-    archive.addClasses(
-      TSAppConfig.class, 
-      StatelessLocalIF.class, 
-      StatelessResource.class, 
-      StatelessRootResource.class, 
-      StatelessTestBean.class,
-      TestFailedException.class
-      );
+        archive.setWebXML(new StringAsset(webXml));
 
-    //archive.addAsWebInfResource(new StringAsset(beansXml), "beans.xml");
-    archive.setWebXML(new StringAsset(webXml));
-    //archive.addAsWebInfResource(JAXRSClientIT.class.getPackage(), "web.xml.template", "web.xml"); //can use if the web.xml.template doesn't need to be modified.    
-    
-    return archive;
-  }
-  /* Run test */
-  /*
-   * @testName: test1
-   * 
-   * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
-   * 
-   * @test_Strategy: Client sends a request on a no-interface stateless EJB root
-   * resource located at /ssb; Verify that correct resource method invoked
-   */
-  @Test
-  public void test1() throws Exception {
-    setProperty(REQUEST, buildRequest(Request.GET, ""));
-    setProperty(SEARCH_STRING, "jaxrs_platform_ejbstateless_web|ssb");
-    setProperty(SEARCH_STRING, "Hello|From|Stateless|EJB|Root");
-    invoke();
-  }
+        return archive;
+    }
 
-  /*
-   * @testName: test2
-   * 
-   * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
-   * 
-   * @test_Strategy: Client sends a request on a no-interface stateless EJB root
-   * resource located at /ssb/sub; Verify that correct resource method invoked
-   */
-  @Test
-  public void test2() throws Exception {
-    setProperty(REQUEST, buildRequest(Request.GET, "sub"));
-    setProperty(SEARCH_STRING, "jaxrs_platform_ejbstateless_web|ssb");
-    setProperty(SEARCH_STRING, "Hello|From|Stateless|EJB|Sub");
-    invoke();
-  }
+    /* Run test */
+    /*
+     * @testName: test1
+     *
+     * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
+     *
+     * @test_Strategy: Client sends a request on a no-interface stateless EJB root resource located at /ssb; Verify that
+     * correct resource method invoked
+     */
+    @Test
+    public void test1() throws Exception {
+        setProperty(REQUEST, buildRequest(Request.GET, ""));
+        setProperty(SEARCH_STRING, "jaxrs_platform_ejbstateless_web|ssb");
+        setProperty(SEARCH_STRING, "Hello|From|Stateless|EJB|Root");
+        invoke();
+    }
 
-  /*
-   * @testName: test3
-   * 
-   * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
-   * 
-   * @test_Strategy: Client sends a request on a stateless EJB's local interface
-   * root resource located at /ssb/localsub; Verify that correct resource method
-   * invoked
-   */
-  @Test
-  public void test3() throws Exception {
-    setProperty(REQUEST, buildRequest(Request.GET, "localsub"));
-    setProperty(SEARCH_STRING, "jaxrs_platform_ejbstateless_web|ssb");
-    setProperty(SEARCH_STRING, "localsub|Hello|From|Stateless|Local|EJB|Sub");
-    invoke();
-  }
+    /*
+     * @testName: test2
+     *
+     * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
+     *
+     * @test_Strategy: Client sends a request on a no-interface stateless EJB root resource located at /ssb/sub; Verify that
+     * correct resource method invoked
+     */
+    @Test
+    public void test2() throws Exception {
+        setProperty(REQUEST, buildRequest(Request.GET, "sub"));
+        setProperty(SEARCH_STRING, "jaxrs_platform_ejbstateless_web|ssb");
+        setProperty(SEARCH_STRING, "Hello|From|Stateless|EJB|Sub");
+        invoke();
+    }
 
-  /*
-   * @testName: ejbExceptionTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:52;
-   * 
-   * @test_Strategy: If an Exception-Mapper for a EJBException or subclass is
-   * not included with an application then exceptions thrown by an EJB resource
-   * class or provider method MUST be unwrapped and processed as described in
-   * Section 3.3.4.
-   */
-  @Test
-  public void ejbExceptionTest() throws Exception {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "exception"));
-    setProperty(Property.STATUS_CODE, getStatusCode(Status.CREATED));
-    invoke();
-  }
+    /*
+     * @testName: test3
+     *
+     * @assertion_ids: JAXRS:SPEC:51; JAXRS:SPEC:57;
+     *
+     * @test_Strategy: Client sends a request on a stateless EJB's local interface root resource located at /ssb/localsub;
+     * Verify that correct resource method invoked
+     */
+    @Test
+    public void test3() throws Exception {
+        setProperty(REQUEST, buildRequest(Request.GET, "localsub"));
+        setProperty(SEARCH_STRING, "jaxrs_platform_ejbstateless_web|ssb");
+        setProperty(SEARCH_STRING, "localsub|Hello|From|Stateless|Local|EJB|Sub");
+        invoke();
+    }
 
-  /*
-   * @testName: jaxrsInjectPriorPostConstructOnRootResourceTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1; JAXRS:SPEC:53.3;
-   * 
-   * @test_Strategy: The following additional requirements apply when using EJBs
-   * as resource classes:
-   * 
-   * Field and property injection of JAX-RS resources MUST be performed prior to
-   * the container invoking any
-   * 
-   * @PostConstruct annotated method
-   * 
-   * Implementations MUST NOT require use of @Inject or
-   * 
-   * @Resource to trigger injection of JAX-RS annotated fields or properties.
-   * Implementations MAY support such usage but SHOULD warn users about
-   * non-portability.
-   */
-  @Test
-  public void jaxrsInjectPriorPostConstructOnRootResourceTest() throws Exception {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "priorroot"));
-    setProperty(Property.SEARCH_STRING, String.valueOf(true));
-    invoke();
-  }
+    /*
+     * @testName: ejbExceptionTest
+     *
+     * @assertion_ids: JAXRS:SPEC:52;
+     *
+     * @test_Strategy: If an Exception-Mapper for a EJBException or subclass is not included with an application then
+     * exceptions thrown by an EJB resource class or provider method MUST be unwrapped and processed as described in Section
+     * 3.3.4.
+     */
+    @Test
+    public void ejbExceptionTest() throws Exception {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "exception"));
+        setProperty(Property.STATUS_CODE, getStatusCode(Status.CREATED));
+        invoke();
+    }
+
+    /*
+     * @testName: jaxrsInjectPriorPostConstructOnRootResourceTest
+     *
+     * @assertion_ids: JAXRS:SPEC:53; JAXRS:SPEC:53.1; JAXRS:SPEC:53.3;
+     *
+     * @test_Strategy: The following additional requirements apply when using EJBs as resource classes:
+     *
+     * Field and property injection of JAX-RS resources MUST be performed prior to the container invoking any
+     *
+     * @PostConstruct annotated method
+     *
+     * Implementations MUST NOT require use of @Inject or
+     *
+     * @Resource to trigger injection of JAX-RS annotated fields or properties. Implementations MAY support such usage but
+     * SHOULD warn users about non-portability.
+     */
+    @Test
+    public void jaxrsInjectPriorPostConstructOnRootResourceTest() throws Exception {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "priorroot"));
+        setProperty(Property.SEARCH_STRING, String.valueOf(true));
+        invoke();
+    }
 }

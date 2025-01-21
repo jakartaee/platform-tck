@@ -24,12 +24,11 @@ import jakarta.ws.rs.core.UriInfo;
 @Singleton
 public class SingletonResource {
 
-  @Context
-  private UriInfo ui;
+    @Context
+    private UriInfo ui;
 
-  @GET
-  public String get() {
-    return "GET: " + ui.getRequestUri().toASCIIString()
-        + " Hello From Singleton EJB Sub";
-  }
+    @GET
+    public String get() {
+        return "GET: " + ui.getRequestUri().toASCIIString() + " Hello From Singleton EJB Sub";
+    }
 }

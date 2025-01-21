@@ -22,169 +22,164 @@ import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.container.AsyncResponse;
 
 @Path("resource")
-public class CallbackResource
-    extends com.sun.ts.tests.jaxrs.platform.container.asyncresponse.Resource {
+public class CallbackResource extends com.sun.ts.tests.jaxrs.platform.container.asyncresponse.Resource {
 
-  @GET
-  @Path("register")
-  public String registerObject(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    boolean b = async.register(new SettingCompletionCallback()).isEmpty();
-    addResponse(async, stage);
-    return b ? TRUE : FALSE;
-  }
-
-  @GET
-  @Path("registerclass")
-  public String registerClass(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    boolean b = async.register(SettingCompletionCallback.class).isEmpty();
-    addResponse(async, stage);
-    return b ? TRUE : FALSE;
-  }
-
-  @GET
-  @Path("registerobjects")
-  public String registerObjectObject(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    boolean b = async.register(new SettingCompletionCallback(),
-        new SecondSettingCompletionCallback()).isEmpty();
-    addResponse(async, stage);
-    return b ? TRUE : FALSE;
-  }
-
-  @GET
-  @Path("registerclasses")
-  public String registerClasses(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    boolean b = async.register(SettingCompletionCallback.class,
-        SecondSettingCompletionCallback.class).isEmpty();
-    addResponse(async, stage);
-    return b ? TRUE : FALSE;
-  }
-
-  @GET
-  @Path("registerthrows")
-  public String registerObjectThrowsNpe(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    try {
-      SettingCompletionCallback callback = null;
-      async.register(callback);
-    } catch (NullPointerException e) {
-      return TRUE;
-    } catch (Exception e) {
-      return "Threw " + e.getClass().getName();
+    @GET
+    @Path("register")
+    public String registerObject(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        boolean b = async.register(new SettingCompletionCallback()).isEmpty();
+        addResponse(async, stage);
+        return b ? TRUE : FALSE;
     }
-    return FALSE;
-  }
 
-  @GET
-  @Path("registerclassthrows")
-  public String registerClassThrowsNpe(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    try {
-      Class<SettingCompletionCallback> callback = null;
-      async.register(callback);
-    } catch (NullPointerException e) {
-      return TRUE;
-    } catch (Exception e) {
-      return "Threw " + e.getClass().getName();
+    @GET
+    @Path("registerclass")
+    public String registerClass(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        boolean b = async.register(SettingCompletionCallback.class).isEmpty();
+        addResponse(async, stage);
+        return b ? TRUE : FALSE;
     }
-    return FALSE;
-  }
 
-  @GET
-  @Path("registerobjectsthrows1")
-  public String registerObjectsThrowsNpe1(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    try {
-      SettingCompletionCallback callback = null;
-      async.register(callback, new SecondSettingCompletionCallback());
-    } catch (NullPointerException e) {
-      return TRUE;
-    } catch (Exception e) {
-      return "Threw " + e.getClass().getName();
+    @GET
+    @Path("registerobjects")
+    public String registerObjectObject(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        boolean b = async.register(new SettingCompletionCallback(), new SecondSettingCompletionCallback()).isEmpty();
+        addResponse(async, stage);
+        return b ? TRUE : FALSE;
     }
-    return FALSE;
-  }
 
-  @GET
-  @Path("registerobjectsthrows2")
-  public String registerObjectsThrowsNpe2(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    try {
-      SecondSettingCompletionCallback callback = null;
-      async.register(new SettingCompletionCallback(), callback);
-    } catch (NullPointerException e) {
-      return TRUE;
-    } catch (Exception e) {
-      return "Threw " + e.getClass().getName();
+    @GET
+    @Path("registerclasses")
+    public String registerClasses(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        boolean b = async.register(SettingCompletionCallback.class, SecondSettingCompletionCallback.class).isEmpty();
+        addResponse(async, stage);
+        return b ? TRUE : FALSE;
     }
-    return FALSE;
-  }
 
-  @GET
-  @Path("registerclassesthrows1")
-  public String registerClassesThrowsNpe1(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    try {
-      Class<SettingCompletionCallback> callback = null;
-      async.register(callback, SecondSettingCompletionCallback.class);
-    } catch (NullPointerException e) {
-      return TRUE;
-    } catch (Exception e) {
-      return "Threw " + e.getClass().getName();
+    @GET
+    @Path("registerthrows")
+    public String registerObjectThrowsNpe(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        try {
+            SettingCompletionCallback callback = null;
+            async.register(callback);
+        } catch (NullPointerException e) {
+            return TRUE;
+        } catch (Exception e) {
+            return "Threw " + e.getClass().getName();
+        }
+        return FALSE;
     }
-    return FALSE;
-  }
 
-  @GET
-  @Path("registerclassesthrows2")
-  public String registerClassesThrowsNpe2(@QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    try {
-      Class<SecondSettingCompletionCallback> callback = null;
-      async.register(SettingCompletionCallback.class, callback);
-    } catch (NullPointerException e) {
-      return TRUE;
-    } catch (Exception e) {
-      return "Threw " + e.getClass().getName();
+    @GET
+    @Path("registerclassthrows")
+    public String registerClassThrowsNpe(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        try {
+            Class<SettingCompletionCallback> callback = null;
+            async.register(callback);
+        } catch (NullPointerException e) {
+            return TRUE;
+        } catch (Exception e) {
+            return "Threw " + e.getClass().getName();
+        }
+        return FALSE;
     }
-    return FALSE;
-  }
 
-  @GET
-  @Path("exception")
-  public String throwExceptionOnAsyncResponse(
-      @QueryParam("stage") String stage) {
-    AsyncResponse async = takeAsyncResponse(stage);
-    boolean b = async
-        .resume(new ExceptionThrowingStringBean("throw exception"));
-    addResponse(async, stage);
-    return b ? TRUE : FALSE;
-  }
+    @GET
+    @Path("registerobjectsthrows1")
+    public String registerObjectsThrowsNpe1(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        try {
+            SettingCompletionCallback callback = null;
+            async.register(callback, new SecondSettingCompletionCallback());
+        } catch (NullPointerException e) {
+            return TRUE;
+        } catch (Exception e) {
+            return "Threw " + e.getClass().getName();
+        }
+        return FALSE;
+    }
 
-  @GET
-  @Path("error")
-  public String getErrorValue() {
-    String name = SettingCompletionCallback.getLastThrowableName();
-    return name;
-  }
+    @GET
+    @Path("registerobjectsthrows2")
+    public String registerObjectsThrowsNpe2(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        try {
+            SecondSettingCompletionCallback callback = null;
+            async.register(new SettingCompletionCallback(), callback);
+        } catch (NullPointerException e) {
+            return TRUE;
+        } catch (Exception e) {
+            return "Threw " + e.getClass().getName();
+        }
+        return FALSE;
+    }
 
-  @GET
-  @Path("seconderror")
-  public String getSecondErrorValue() {
-    String name = SecondSettingCompletionCallback.getLastThrowableName();
-    return name;
-  }
+    @GET
+    @Path("registerclassesthrows1")
+    public String registerClassesThrowsNpe1(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        try {
+            Class<SettingCompletionCallback> callback = null;
+            async.register(callback, SecondSettingCompletionCallback.class);
+        } catch (NullPointerException e) {
+            return TRUE;
+        } catch (Exception e) {
+            return "Threw " + e.getClass().getName();
+        }
+        return FALSE;
+    }
 
-  @GET
-  @Path("reset")
-  public void resetErrorValue() {
-    SettingCompletionCallback.resetLastThrowableName();
-    SecondSettingCompletionCallback.resetLastThrowableName();
-  }
+    @GET
+    @Path("registerclassesthrows2")
+    public String registerClassesThrowsNpe2(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        try {
+            Class<SecondSettingCompletionCallback> callback = null;
+            async.register(SettingCompletionCallback.class, callback);
+        } catch (NullPointerException e) {
+            return TRUE;
+        } catch (Exception e) {
+            return "Threw " + e.getClass().getName();
+        }
+        return FALSE;
+    }
 
-  // ////////////////////////////////////////////////////////////////////////
+    @GET
+    @Path("exception")
+    public String throwExceptionOnAsyncResponse(@QueryParam("stage") String stage) {
+        AsyncResponse async = takeAsyncResponse(stage);
+        boolean b = async.resume(new ExceptionThrowingStringBean("throw exception"));
+        addResponse(async, stage);
+        return b ? TRUE : FALSE;
+    }
+
+    @GET
+    @Path("error")
+    public String getErrorValue() {
+        String name = SettingCompletionCallback.getLastThrowableName();
+        return name;
+    }
+
+    @GET
+    @Path("seconderror")
+    public String getSecondErrorValue() {
+        String name = SecondSettingCompletionCallback.getLastThrowableName();
+        return name;
+    }
+
+    @GET
+    @Path("reset")
+    public void resetErrorValue() {
+        SettingCompletionCallback.resetLastThrowableName();
+        SecondSettingCompletionCallback.resetLastThrowableName();
+    }
+
+    // ////////////////////////////////////////////////////////////////////////
 
 }

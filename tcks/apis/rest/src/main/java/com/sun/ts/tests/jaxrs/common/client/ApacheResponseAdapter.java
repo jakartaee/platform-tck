@@ -16,95 +16,100 @@
 
 package com.sun.ts.tests.jaxrs.common.client;
 
+import com.sun.ts.tests.common.webclient.http.HttpResponse;
+
+import jakarta.ws.rs.core.MultivaluedMap;
+
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.httpclient.Header;
 
-import com.sun.ts.tests.common.webclient.http.HttpResponse;
-
-import jakarta.ws.rs.core.MultivaluedMap;
-
 public class ApacheResponseAdapter extends HttpResponse {
 
-  public ApacheResponseAdapter(jakarta.ws.rs.core.Response response, String host,
-      int port) {
-    super(host, port, port == 443, null, null);
-    this.response = response;
-    this.caser = TextCaser.NONE;
-  }
+    private jakarta.ws.rs.core.Response response;
 
-  public ApacheResponseAdapter(jakarta.ws.rs.core.Response response, String host,
-      int port, TextCaser caser) {
-    this(response, host, port);
-    this.caser = caser;
-  }
+    private String entity;
+    private TextCaser caser;
 
-  private jakarta.ws.rs.core.Response response;
-
-  private String entity = null;
-
-  private TextCaser caser = null;
-
-  /**
-   * Returns the HTTP status code returned by the server
-   * 
-   * @return HTTP status code
-   */
-  public String getStatusCode() {
-    return Integer.toString(response.getStatus());
-  }
-
-  @Override
-  public String getResponseBodyAsString() throws IOException {
-    if (entity == null)
-      entity = response.readEntity(String.class);
-    return entity == null ? "" : caser.getCasedText(entity);
-  }
-
-  @Override
-  public String getResponseBodyAsRawString() throws IOException {
-    return getResponseBodyAsString();
-  }
-
-  @Override
-  public String getReasonPhrase() {
-    return response.toString();// getReasonPhrase();
-  }
-
-  @Override
-  public Header[] getResponseHeaders() {
-    List<Header> headers = new LinkedList<Header>();
-    MultivaluedMap<String, Object> mHeaders = response.getMetadata();
-    String[] sHeaders = JaxrsCommonClient.getMetadata(mHeaders);
-    for (String header : sHeaders) {
-      String[] split = header.split(":", 2);
-      headers.add(new Header(split[0], split[1]));
+    public ApacheResponseAdapter(jakarta.ws.rs.core.Response response, String host, int port) {
+        super(host, port, port == 443, null, null);
+        this.response = response;
+        this.caser = TextCaser.NONE;
     }
-    return headers.toArray(new Header[headers.size()]);
-  }
 
-  @Override
-  public Header getResponseHeader(String headerName) {
-    for (Header header : getResponseHeaders())
-      if (header.getName().equals(headerName))
-        return header;
-    return null;
-  }
-
-  @Override
-  public String getResponseEncoding() {
-    String encoding = null;
-    Header header = getResponseHeader("Content-Type");
-    if (header != null) {
-      String headerVal = header.getValue();
-      int idx = headerVal.indexOf(";charset=");
-      if (idx > -1) {
-        // content encoding included in response
-        encoding = headerVal.substring(idx + 9);
-      }
+    public ApacheResponseAdapter(jakarta.ws.rs.core.Response response, String host, int port, TextCaser caser) {
+        this(response, host, port);
+        this.caser = caser;
     }
-    return encoding;
-  }
+
+    /**
+     * Returns the HTTP status code returned by the server
+     *
+     * @return HTTP status code
+     */
+    @Override
+    public String getStatusCode() {
+        return Integer.toString(response.getStatus());
+    }
+
+    @Override
+    public String getResponseBodyAsString() throws IOException {
+        if (entity == null) {
+            entity = response.readEntity(String.class);
+        }
+
+        return entity == null ? "" : caser.getCasedText(entity);
+    }
+
+    @Override
+    public String getResponseBodyAsRawString() throws IOException {
+        return getResponseBodyAsString();
+    }
+
+    @Override
+    public String getReasonPhrase() {
+        return response.toString();// getReasonPhrase();
+    }
+
+    @Override
+    public Header[] getResponseHeaders() {
+        List<Header> headers = new LinkedList<>();
+        MultivaluedMap<String, Object> mHeaders = response.getMetadata();
+        String[] sHeaders = JaxrsCommonClient.getMetadata(mHeaders);
+        for (String header : sHeaders) {
+            String[] split = header.split(":", 2);
+            headers.add(new Header(split[0], split[1]));
+        }
+
+        return headers.toArray(new Header[headers.size()]);
+    }
+
+    @Override
+    public Header getResponseHeader(String headerName) {
+        for (Header header : getResponseHeaders()) {
+            if (header.getName().equals(headerName)) {
+                return header;
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    public String getResponseEncoding() {
+        String encoding = null;
+        Header header = getResponseHeader("Content-Type");
+        if (header != null) {
+            String headerVal = header.getValue();
+            int idx = headerVal.indexOf(";charset=");
+            if (idx > -1) {
+                // content encoding included in response
+                encoding = headerVal.substring(idx + 9);
+            }
+        }
+
+        return encoding;
+    }
 }

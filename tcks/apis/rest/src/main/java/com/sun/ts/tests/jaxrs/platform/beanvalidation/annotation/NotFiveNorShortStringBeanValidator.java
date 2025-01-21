@@ -19,19 +19,18 @@ package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class NotFiveNorShortStringBeanValidator
-    implements ConstraintValidator<NotFiveNorShort, NotShortNorFiveStringBean> {
+public class NotFiveNorShortStringBeanValidator implements ConstraintValidator<NotFiveNorShort, NotShortNorFiveStringBean> {
 
-  @Override
-  public void initialize(NotFiveNorShort arg0) {
-  }
+    @Override
+    public void initialize(NotFiveNorShort arg0) {
+    }
 
-  @Override
-  public boolean isValid(NotShortNorFiveStringBean bean,
-      ConstraintValidatorContext context) {
-    String value = bean.get();
-    if (value == null || value.length() == 5)
-      return false;
-    return true;
-  }
+    @Override
+    public boolean isValid(NotShortNorFiveStringBean bean, ConstraintValidatorContext context) {
+        String value = bean.get();
+        if (value == null || value.length() == 5) {
+            return false;
+        }
+        return true;
+    }
 }

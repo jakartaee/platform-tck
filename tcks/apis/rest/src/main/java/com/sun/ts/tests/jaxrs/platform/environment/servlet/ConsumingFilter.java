@@ -16,8 +16,6 @@
 
 package com.sun.ts.tests.jaxrs.platform.environment.servlet;
 
-import java.io.IOException;
-
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -28,36 +26,38 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.ws.rs.core.MediaType;
 
+import java.io.IOException;
+
 public class ConsumingFilter implements Filter {
 
-  public static final String CONTENTTYPE = MediaType.APPLICATION_FORM_URLENCODED;
+    public static final String CONTENTTYPE = MediaType.APPLICATION_FORM_URLENCODED;
 
-  @Override
-  public void destroy() {
-  }
-
-  @Override
-  public void doFilter(ServletRequest request, ServletResponse response,
-      FilterChain chain) throws IOException, ServletException {
-    String contentType = request.getContentType();
-    if (contentType != null && contentType.equalsIgnoreCase(CONTENTTYPE)) {
-      // read / cache form parameter from request entity
-      String entity = request.getParameterMap().get("entity")[0];
-      if (!"ENTITY".equals(entity)) {
-        // The requested entity should be there
-        ((HttpServletResponse) response).sendError(512, entity);
-      }
-
-      // make sure to consume the request entity stream
-      ServletInputStream in = request.getInputStream();
-      while (-1 != in.read())
-        /* no-op */;
+    @Override
+    public void destroy() {
     }
-    chain.doFilter(request, response);
-  }
 
-  @Override
-  public void init(FilterConfig filterConfig) throws ServletException {
-  }
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        String contentType = request.getContentType();
+        if (contentType != null && contentType.equalsIgnoreCase(CONTENTTYPE)) {
+            // read / cache form parameter from request entity
+            String entity = request.getParameterMap().get("entity")[0];
+            if (!"ENTITY".equals(entity)) {
+                // The requested entity should be there
+                ((HttpServletResponse) response).sendError(512, entity);
+            }
+
+            // make sure to consume the request entity stream
+            ServletInputStream in = request.getInputStream();
+            while (-1 != in.read()) {
+                /* no-op */;
+            }
+        }
+        chain.doFilter(request, response);
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+    }
 
 }

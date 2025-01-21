@@ -21,102 +21,219 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>jakarta.tck</groupId>
+        <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../../../pom.xml</relativePath>
+        <version>1.0.9</version>
+        <relativePath />
     </parent>
 
-    <artifactId>jaxrs-platform-tck</artifactId>
-    <packaging>jar</packaging>
+    <groupId>jakarta.tck</groupId>
+    <artifactId>rest-platform-tck</artifactId>
+    <version>4.0.0-SNAPSHOT</version>
 
-    <name>JAXRS Tests</name>
-    <description>JAXRS Tests for Jakarta EE Platform</description>
+    <name>Jakarta REST Tests</name>
+    <description>Jakarta REST Tests for Jakarta EE Platform</description>
 
     <properties>
-        <jakarta.enterprise.cdi-api.version>4.1.0</jakarta.enterprise.cdi-api.version>
-        <jakarta.inject-api.version>2.0.1.MR</jakarta.inject-api.version>
-        <jakarta.json-api.version>2.1.3</jakarta.json-api.version>
-        <jakarta.json.bind-api.version>3.0.1</jakarta.json.bind-api.version>
-        <jakarta.validation-api.version>3.1.0-M2</jakarta.validation-api.version>
-        <jakarta.ws.rs-api.version>4.0.0</jakarta.ws.rs-api.version>
-        <junit.jupiter.version>5.11.3</junit.jupiter.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        
+        <jakarta.tck.tools.version>11.0.0-M2</jakarta.tck.tools.version>
     </properties>
 
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.11.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.9.3.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
     <dependencies>
+        <!-- Jakarta EE dependencies -->
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.inject</groupId>
-            <artifactId>jakarta.inject-api</artifactId>
-            <version>${jakarta.inject-api.version}</version>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>4.0.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>${jakarta.enterprise.cdi-api.version}</version>
+            <version>4.1.0</version>
         </dependency>
         <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <version>2.0.1.MR</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-            <version>${jakarta.validation-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.ws.rs</groupId>
-            <artifactId>jakarta.ws.rs-api</artifactId>
-            <version>${jakarta.ws.rs-api.version}</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>jakarta.json.bind</groupId>
             <artifactId>jakarta.json.bind-api</artifactId>
-            <version>${jakarta.json.bind-api.version}</version>
+            <version>3.0.1</version>
         </dependency>
         <dependency>
             <groupId>jakarta.json</groupId>
             <artifactId>jakarta.json-api</artifactId>
-            <version>${jakarta.json-api.version}</version>
+            <version>2.1.3</version>
         </dependency>
+        
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.ejb</groupId>
+            <artifactId>jakarta.ejb-api</artifactId>
+            <version>4.0.1</version>
+        </dependency>
+        
+        
+        <!-- Jakarta TCK tools dependencies -->
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>common</artifactId>
+            <version>${jakarta.tck.tools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>runtime</artifactId>
+            <version>${jakarta.tck.tools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>libutil</artifactId>
+            <version>${jakarta.tck.tools.version}</version>
+        </dependency>
+       
+       
+        <!-- JUnit and Arquillian dependencies-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
+            <artifactId>junit-jupiter-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit5</groupId>
             <artifactId>arquillian-junit5-core</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <version>1.11.3</version>
-            <scope>test</scope>
+         <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>2.2</version>
+          <groupId>org.jboss.shrinkwrap</groupId>
+          <artifactId>shrinkwrap-api</artifactId>
+          <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
         </dependency>
     </dependencies>
+    
     <build>
         <plugins>
-            <!-- do not publish this artifact to Maven repositories -->
+            <!-- Sets minimal Maven version to 3.8.6 -->
             <plugin>
-                <artifactId>maven-deploy-plugin</artifactId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.8.6</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
                 <configuration>
-                    <skip>true</skip>
+                    <release>17</release>
                 </configuration>
+            </plugin>
+            
+            <!-- Configure the jar with the sources. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Create Javadoc for API jar -->
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            
+            <!-- Generate a "consumer pom" for the generated jar -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <flattenMode>ossrh</flattenMode>
+                </configuration>
+                <executions>
+                    <!-- enable flattening -->
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <!-- ensure proper cleanup -->
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
+    
 </project>

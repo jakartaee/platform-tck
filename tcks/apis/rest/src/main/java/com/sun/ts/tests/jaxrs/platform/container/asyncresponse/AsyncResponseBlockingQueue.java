@@ -16,17 +16,16 @@
 
 package com.sun.ts.tests.jaxrs.platform.container.asyncresponse;
 
-import java.util.concurrent.ArrayBlockingQueue;
-
 import jakarta.ws.rs.container.AsyncResponse;
 
-public class AsyncResponseBlockingQueue
-    extends ArrayBlockingQueue<AsyncResponse> {
+import java.util.concurrent.ArrayBlockingQueue;
 
-  private static final long serialVersionUID = -2445906740359075621L;
+public class AsyncResponseBlockingQueue extends ArrayBlockingQueue<AsyncResponse> {
 
-  public AsyncResponseBlockingQueue(int capacity) {
-    super(capacity);
-  }
+    private static final long serialVersionUID = -2445906740359075621L;
+
+    public AsyncResponseBlockingQueue(int capacity) {
+        super(capacity);
+    }
 
 }
