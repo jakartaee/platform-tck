@@ -37,3 +37,4 @@ jakartaeetck-bundles/
 wip-find.txt
 
 core-profile-tck/examples/wf-core-tck-runner
+/**/.flattened-pom.xml
