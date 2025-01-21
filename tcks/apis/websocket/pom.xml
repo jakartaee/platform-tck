@@ -43,7 +43,7 @@
     </modules>
 
     <properties>
-        <arquillian.junit>1.9.1.Final</arquillian.junit>
+        <arquillian.junit>1.9.3.Final</arquillian.junit>
         <junit.jupiter.version>5.11.3</junit.jupiter.version>
         <tck.version>${project.version}</tck.version>
         <jakarta.tck.tools.version>11.0.0-M1</jakarta.tck.tools.version>

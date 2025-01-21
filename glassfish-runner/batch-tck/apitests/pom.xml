@@ -60,13 +60,13 @@ Copyright (c) 2022, 2024 Contributors to the Eclipse Foundation
             <dependency>
                 <groupId>org.jboss.arquillian.junit5</groupId>
                 <artifactId>arquillian-junit5-core</artifactId>
-                <version>1.9.1.Final</version>
+                <version>1.9.3.Final</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.arquillian.junit5</groupId>
                 <artifactId>arquillian-junit5-container</artifactId>
-                <version>1.9.1.Final</version>
+                <version>1.9.3.Final</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
