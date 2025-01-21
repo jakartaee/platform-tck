@@ -19,25 +19,21 @@ package com.sun.ts.tests.jaxrs.common;
 /**
  * There were references to the following versions of TCK:
  * <p>
- * 1.0 - The tests that used com.sun.ts.tests.jaxrs.common.JAXRSCommonClient as
- * a superclass.
+ * 1.0 - The tests that used com.sun.ts.tests.jaxrs.common.JAXRSCommonClient as a superclass.
  * </p>
  * <p>
- * 1.1 - The tests that used com.sun.ts.tests.jaxrs.common.JAXRSCommonClient as
- * a superclass.
+ * 1.1 - The tests that used com.sun.ts.tests.jaxrs.common.JAXRSCommonClient as a superclass.
  * </p>
  * <p>
- * 2.0 - The tests that used mainly
- * com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient, sometimes
+ * 2.0 - The tests that used mainly com.sun.ts.tests.jaxrs.common.client.JaxrsCommonClient, sometimes
  * com.sun.ts.tests.jaxrs.common.JAXRSCommonClient as a superclass.
  * </p>
  * <p>
- * 2.0.1 - The code that has been created after JAXRS 2.0 TCK bundle has been
- * built
+ * 2.0.1 - The code that has been created after JAXRS 2.0 TCK bundle has been built
  * </p>
  * <p>
  * 2.1 - The code that has been created for JAXRS 2.1 TCK
- * 
+ *
  * @since 2.0.1
  */
 public interface Version {

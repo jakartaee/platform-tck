@@ -26,19 +26,20 @@ import jakarta.ws.rs.core.UriInfo;
 @Local({ StatelessLocalIF.class })
 public class StatelessTestBean implements StatelessLocalIF {
 
-  public StatelessTestBean() {
-  }
+    public StatelessTestBean() {
+    }
 
-  public void remove() {
-  }
+    @Override
+    public void remove() {
+    }
 
-  @Context
-  private UriInfo ui;
+    @Context
+    private UriInfo ui;
 
-  @GET
-  public String get() {
-    return "GET: " + ui.getRequestUri().toASCIIString()
-        + " Hello From Stateless Local EJB Sub";
-  }
+    @Override
+    @GET
+    public String get() {
+        return "GET: " + ui.getRequestUri().toASCIIString() + " Hello From Stateless Local EJB Sub";
+    }
 
 }

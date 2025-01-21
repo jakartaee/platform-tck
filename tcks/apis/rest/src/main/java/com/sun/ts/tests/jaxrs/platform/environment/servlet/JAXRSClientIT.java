@@ -16,23 +16,19 @@
 
 package com.sun.ts.tests.jaxrs.platform.environment.servlet;
 
+import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.sun.ts.tests.jaxrs.common.JAXRSCommonClient;
-
-import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.arquillian.junit5.ArquillianExtension;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.AfterEach;
 
 /*
  * @class.setup_props: webServerHost;
@@ -45,117 +41,106 @@ import org.junit.jupiter.api.AfterEach;
 @Tag("web")
 public class JAXRSClientIT extends JAXRSCommonClient {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public JAXRSClientIT() {
-    setup();
-    setContextRoot("/jaxrs_platform_environment_servlet_web/resource");
-  }
+    public JAXRSClientIT() {
+        setup();
+        setContextRoot("/jaxrs_platform_environment_servlet_web/resource");
+    }
 
+    @Deployment(testable = false)
+    public static WebArchive createDeployment() throws IOException {
 
-  @Deployment(testable = false)
-  public static WebArchive createDeployment() throws IOException {
+        InputStream inStream =
+            JAXRSClientIT.class.getClassLoader()
+                         .getResourceAsStream("com/sun/ts/tests/jaxrs/platform/environment/servlet/web.xml.template");
 
-    InputStream inStream = JAXRSClientIT.class.getClassLoader().getResourceAsStream("com/sun/ts/tests/jaxrs/platform/environment/servlet/web.xml.template");
-    // Replace the servlet_adaptor in web.xml.template with the System variable set as servlet adaptor
-    String webXml = editWebXmlString(inStream);
+        // Replace the servlet_adaptor in web.xml.template with the System variable set as servlet adaptor
+        String webXml = editWebXmlString(inStream);
 
-    WebArchive archive = ShrinkWrap.create(WebArchive.class, "jaxrs_platform_environment_servlet_web.war");
-    archive.addClasses(
-      TSAppConfig.class, 
-      ConsumingFilter.class, 
-      Resource.class
-      );
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, "jaxrs_platform_environment_servlet_web.war");
+        archive.addClasses(TSAppConfig.class, ConsumingFilter.class, Resource.class);
 
-    //archive.addAsWebInfResource(new StringAsset(beansXml), "beans.xml");
-    archive.setWebXML(new StringAsset(webXml));
-    //archive.addAsWebInfResource(JAXRSClientIT.class.getPackage(), "web.xml.template", "web.xml"); //can use if the web.xml.template doesn't need to be modified.    
-    
-    return archive;
-  }
-  /**
-   * Entry point for different-VM execution. It should delegate to method
-   * run(String[], PrintWriter, PrintWriter), and this method should not contain
-   * any test configuration.
-   */
-  // public static void main(String[] args) {
-  //   new JAXRSClient().run(args);
-  // }
+        archive.setWebXML(new StringAsset(webXml));
 
-  /* Run test */
-  /*
-   * @testName: checkServletExtensionTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:41; JAXRS:SPEC:42;
-   * 
-   * @test_Strategy: The @Context annotation can be used to indicate a
-   * dependency on a Servlet-defined resource.
-   * 
-   * A Servlet-based implementation MUST support injection of the following
-   * Servlet-defined types: ServletConfig, ServletContext, HttpServletRequest
-   * and HttpServletResponse.
-   */
-  @Test
-  public void checkServletExtensionTest() throws Exception {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "context"));
-    setProperty(Property.UNEXPECTED_RESPONSE_MATCH, "is null");
-    invoke();
-  }
+        return archive;
+    }
 
-  /*
-   * @testName: streamReaderRequestEntityTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:43;
-   * 
-   * @test_Strategy: An injected HttpServletRequest allows a resource method to
-   * stream the contents of a request entity.
-   */
-  @Test
-  public void streamReaderRequestEntityTest() throws Exception {
-    setProperty(Property.REQUEST, buildRequest(Request.POST, "streamreader"));
-    setProperty(Property.CONTENT, Resource.class.getName());
-    setProperty(Property.SEARCH_STRING, Resource.class.getName());
-    setProperty(Property.UNEXPECTED_RESPONSE_MATCH, "empty");
-    invoke();
-  }
+    /**
+     * Entry point for different-VM execution. It should delegate to method run(String[], PrintWriter, PrintWriter), and
+     * this method should not contain any test configuration.
+     */
+    // public static void main(String[] args) {
+    // new JAXRSClient().run(args);
+    // }
 
-  /*
-   * @testName: prematureHttpServletResponseTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:44;
-   * 
-   * @test_Strategy: An injected HttpServletResponse allows a resource method to
-   * commit the HTTP response prior to returning. An implementation MUST check
-   * the committed status and only process the return value if the response is
-   * not yet committed.
-   */
-  @Test
-  public void prematureHttpServletResponseTest() throws Exception {
-    setProperty(Property.REQUEST, buildRequest(Request.GET, "premature"));
-    invoke();
-  }
+    /* Run test */
+    /*
+     * @testName: checkServletExtensionTest
+     *
+     * @assertion_ids: JAXRS:SPEC:41; JAXRS:SPEC:42;
+     *
+     * @test_Strategy: The @Context annotation can be used to indicate a dependency on a Servlet-defined resource.
+     *
+     * A Servlet-based implementation MUST support injection of the following Servlet-defined types: ServletConfig,
+     * ServletContext, HttpServletRequest and HttpServletResponse.
+     */
+    @Test
+    public void checkServletExtensionTest() throws Exception {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "context"));
+        setProperty(Property.UNEXPECTED_RESPONSE_MATCH, "is null");
+        invoke();
+    }
 
-  /*
-   * @testName: servletFilterRequestConsumptionTest
-   * 
-   * @assertion_ids: JAXRS:SPEC:45; JAXRS:SPEC:46;
-   * 
-   * @test_Strategy: Servlet filters may trigger consumption of a request body
-   * by accessing request parameters.
-   * 
-   * In a servlet container the @FormParam annotation and the standard entity
-   * provider for application/x-www-form--urlencoded MUST obtain their values
-   * from the servlet request parameters if the request body has already been
-   * consumed.
-   */
-  @Test
-  public void servletFilterRequestConsumptionTest() throws Exception {
-    String content = "ENTITY";
-    setProperty(Property.REQUEST_HEADERS,
-        "Content-type:" + ConsumingFilter.CONTENTTYPE);
-    setProperty(Property.CONTENT, "entity=" + content);
-    setProperty(Property.REQUEST, buildRequest(Request.POST, "consume"));
-    setProperty(Property.SEARCH_STRING, content);
-    invoke();
-  }
+    /*
+     * @testName: streamReaderRequestEntityTest
+     *
+     * @assertion_ids: JAXRS:SPEC:43;
+     *
+     * @test_Strategy: An injected HttpServletRequest allows a resource method to stream the contents of a request entity.
+     */
+    @Test
+    public void streamReaderRequestEntityTest() throws Exception {
+        setProperty(Property.REQUEST, buildRequest(Request.POST, "streamreader"));
+        setProperty(Property.CONTENT, Resource.class.getName());
+        setProperty(Property.SEARCH_STRING, Resource.class.getName());
+        setProperty(Property.UNEXPECTED_RESPONSE_MATCH, "empty");
+        invoke();
+    }
+
+    /*
+     * @testName: prematureHttpServletResponseTest
+     *
+     * @assertion_ids: JAXRS:SPEC:44;
+     *
+     * @test_Strategy: An injected HttpServletResponse allows a resource method to commit the HTTP response prior to
+     * returning. An implementation MUST check the committed status and only process the return value if the response is not
+     * yet committed.
+     */
+    @Test
+    public void prematureHttpServletResponseTest() throws Exception {
+        setProperty(Property.REQUEST, buildRequest(Request.GET, "premature"));
+        invoke();
+    }
+
+    /*
+     * @testName: servletFilterRequestConsumptionTest
+     *
+     * @assertion_ids: JAXRS:SPEC:45; JAXRS:SPEC:46;
+     *
+     * @test_Strategy: Servlet filters may trigger consumption of a request body by accessing request parameters.
+     *
+     * In a servlet container the @FormParam annotation and the standard entity provider for
+     * application/x-www-form--urlencoded MUST obtain their values from the servlet request parameters if the request body
+     * has already been consumed.
+     */
+    @Test
+    public void servletFilterRequestConsumptionTest() throws Exception {
+        String content = "ENTITY";
+        setProperty(Property.REQUEST_HEADERS, "Content-type:" + ConsumingFilter.CONTENTTYPE);
+        setProperty(Property.CONTENT, "entity=" + content);
+        setProperty(Property.REQUEST, buildRequest(Request.POST, "consume"));
+        setProperty(Property.SEARCH_STRING, content);
+        invoke();
+    }
 }

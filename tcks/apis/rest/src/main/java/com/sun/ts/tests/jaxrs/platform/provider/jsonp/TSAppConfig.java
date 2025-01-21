@@ -16,16 +16,17 @@
 
 package com.sun.ts.tests.jaxrs.platform.provider.jsonp;
 
+import jakarta.ws.rs.core.Application;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.ws.rs.core.Application;
-
 public class TSAppConfig extends Application {
 
-  public java.util.Set<java.lang.Class<?>> getClasses() {
-    Set<Class<?>> resources = new HashSet<Class<?>>();
-    resources.add(Resource.class);
-    return resources;
-  }
+    @Override
+    public java.util.Set<java.lang.Class<?>> getClasses() {
+        Set<Class<?>> resources = new HashSet<>();
+        resources.add(Resource.class);
+        return resources;
+    }
 }

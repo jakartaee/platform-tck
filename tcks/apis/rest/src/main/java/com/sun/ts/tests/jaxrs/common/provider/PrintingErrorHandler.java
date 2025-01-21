@@ -16,27 +16,26 @@
 
 package com.sun.ts.tests.jaxrs.common.provider;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.io.Writer;
-
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+
 @Provider
 public class PrintingErrorHandler implements ExceptionMapper<Throwable> {
 
-  @Override
-  public Response toResponse(Throwable throwable) {
-    throwable.printStackTrace();
+    @Override
+    public Response toResponse(Throwable throwable) {
+        throwable.printStackTrace();
 
-    Writer result = new StringWriter();
-    PrintWriter printWriter = new PrintWriter(result);
-    throwable.printStackTrace(printWriter);
-    return Response.status(Status.NOT_ACCEPTABLE).entity(result.toString())
-        .build();
-  }
+        Writer result = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(result);
+        throwable.printStackTrace(printWriter);
+        return Response.status(Status.NOT_ACCEPTABLE).entity(result.toString()).build();
+    }
 
 }

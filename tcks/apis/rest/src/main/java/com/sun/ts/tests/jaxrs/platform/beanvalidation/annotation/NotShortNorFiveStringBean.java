@@ -18,8 +18,8 @@ package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
 @NotFiveNorShort
 public class NotShortNorFiveStringBean extends NotNullOrOneStringBean {
-  public NotShortNorFiveStringBean(String header) {
-    super(header);
-  }
+    public NotShortNorFiveStringBean(String header) {
+        super(header);
+    }
 
 }

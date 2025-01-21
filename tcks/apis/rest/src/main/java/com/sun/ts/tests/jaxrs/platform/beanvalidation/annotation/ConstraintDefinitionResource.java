@@ -24,14 +24,13 @@ import jakarta.ws.rs.Path;
 @Path("resource/definition")
 public class ConstraintDefinitionResource {
 
-  @POST
-  @Path("constraintdefinitionexception")
-  // jakarta.validation.ConstraintDefinitionException: HV000074:
-  // com.sun.ts.tests.jaxrs.spec.beanvalidation.annotation.ConstraintViolationAnnotation
-  // contains Constraint annotation, but does not contain a message parameter.
-  public String constraintDefinitionException(
-      @ConstraintDefinitionAnnotation StringBean content) {
-    return content.get();
-  }
+    @POST
+    @Path("constraintdefinitionexception")
+    // jakarta.validation.ConstraintDefinitionException: HV000074:
+    // com.sun.ts.tests.jaxrs.spec.beanvalidation.annotation.ConstraintViolationAnnotation
+    // contains Constraint annotation, but does not contain a message parameter.
+    public String constraintDefinitionException(@ConstraintDefinitionAnnotation StringBean content) {
+        return content.get();
+    }
 
 }

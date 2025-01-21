@@ -16,23 +16,24 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.sun.ts.tests.jaxrs.common.provider.StringBeanEntityProvider;
 
 import jakarta.ws.rs.core.Application;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class TSAppConfig extends Application {
 
-  public java.util.Set<java.lang.Class<?>> getClasses() {
-    Set<Class<?>> resources = new HashSet<Class<?>>();
-    resources.add(Resource.class);
-    resources.add(ConstraintDeclarationResource.class);
-    resources.add(ConstraintDefinitionResource.class);
-    resources.add(ValidateExecutableResource.class);
-    resources.add(NotShortNorFiveEntityProvider.class);
-    resources.add(StringBeanEntityProvider.class);
-    return resources;
-  }
+    @Override
+    public java.util.Set<java.lang.Class<?>> getClasses() {
+        Set<Class<?>> resources = new HashSet<>();
+        resources.add(Resource.class);
+        resources.add(ConstraintDeclarationResource.class);
+        resources.add(ConstraintDefinitionResource.class);
+        resources.add(ValidateExecutableResource.class);
+        resources.add(NotShortNorFiveEntityProvider.class);
+        resources.add(StringBeanEntityProvider.class);
+        return resources;
+    }
 }

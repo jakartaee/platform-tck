@@ -16,12 +16,6 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Type;
-
 import com.sun.ts.tests.jaxrs.common.util.JaxrsUtil;
 
 import jakarta.ws.rs.WebApplicationException;
@@ -31,46 +25,44 @@ import jakarta.ws.rs.ext.MessageBodyReader;
 import jakarta.ws.rs.ext.MessageBodyWriter;
 import jakarta.ws.rs.ext.Provider;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Type;
+
 @Provider
 public class NotShortNorFiveEntityProvider
-    implements MessageBodyReader<NotShortNorFiveStringBean>,
-    MessageBodyWriter<NotShortNorFiveStringBean> {
+        implements MessageBodyReader<NotShortNorFiveStringBean>, MessageBodyWriter<NotShortNorFiveStringBean> {
 
-  @Override
-  public boolean isReadable(Class<?> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType) {
-    return type == NotShortNorFiveStringBean.class;
-  }
+    @Override
+    public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return type == NotShortNorFiveStringBean.class;
+    }
 
-  @Override
-  public NotShortNorFiveStringBean readFrom(
-      Class<NotShortNorFiveStringBean> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType,
-      MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
-      throws IOException, WebApplicationException {
-    String entity = JaxrsUtil.readFromStream(entityStream);
-    entityStream.close();
-    return new NotShortNorFiveStringBean(entity);
-  }
+    @Override
+    public NotShortNorFiveStringBean readFrom(Class<NotShortNorFiveStringBean> type, Type genericType, Annotation[] annotations,
+            MediaType mediaType, MultivaluedMap<String, String> httpHeaders, InputStream entityStream)
+            throws IOException, WebApplicationException {
+        String entity = JaxrsUtil.readFromStream(entityStream);
+        entityStream.close();
+        return new NotShortNorFiveStringBean(entity);
+    }
 
-  @Override
-  public boolean isWriteable(Class<?> type, Type genericType,
-      Annotation[] annotations, MediaType mediaType) {
-    return isReadable(type, genericType, annotations, mediaType);
-  }
+    @Override
+    public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return isReadable(type, genericType, annotations, mediaType);
+    }
 
-  @Override
-  public long getSize(NotShortNorFiveStringBean t, Class<?> type,
-      Type genericType, Annotation[] annotations, MediaType mediaType) {
-    return t.get().length();
-  }
+    @Override
+    public long getSize(NotShortNorFiveStringBean t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
+        return t.get().length();
+    }
 
-  @Override
-  public void writeTo(NotShortNorFiveStringBean t, Class<?> type,
-      Type genericType, Annotation[] annotations, MediaType mediaType,
-      MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream)
-      throws IOException, WebApplicationException {
-    entityStream.write(t.get().getBytes());
-  }
+    @Override
+    public void writeTo(NotShortNorFiveStringBean t, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType,
+            MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
+        entityStream.write(t.get().getBytes());
+    }
 
 }

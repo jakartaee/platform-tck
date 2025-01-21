@@ -16,23 +16,21 @@
 
 package com.sun.ts.tests.jaxrs.platform.beanvalidation.annotation;
 
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
-
-@Target({ ElementType.TYPE, ElementType.FIELD,
-    java.lang.annotation.ElementType.CONSTRUCTOR, ElementType.PARAMETER,
-    ElementType.METHOD })
+@Target({ ElementType.TYPE, ElementType.FIELD, java.lang.annotation.ElementType.CONSTRUCTOR, ElementType.PARAMETER, ElementType.METHOD })
 @Retention(value = RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = NotNullOrOneStringBeanValidator.class)
 public @interface NotNullOrOne {
-  String message() default "{com.sun.ts.tests.jaxrs.spec.beanvalidation.annotation.NotNullOrOne.message}";
+    String message() default "{com.sun.ts.tests.jaxrs.spec.beanvalidation.annotation.NotNullOrOne.message}";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }
