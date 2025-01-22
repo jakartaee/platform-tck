@@ -36,7 +36,7 @@
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <ejb30.version>4.0.0-SNAPSHOT</ejb30.version>
+        <ejb30.version>${project.version}</ejb30.version>
     </properties>
 
     <dependencies>
