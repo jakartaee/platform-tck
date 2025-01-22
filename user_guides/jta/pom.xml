@@ -21,22 +21,15 @@
 
     <parent>
         <groupId>jakarta.tck</groupId>
-        <artifactId>jakarta.tck.user-guide</artifactId>
+        <artifactId>jakarta.tck-user-guide-parent</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../parent/pom.xml</relativePath>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>jakarta.transaction</groupId>
     <artifactId>jakarta.transaction-tck-user-guide</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>${version.jakarta.transaction-tck-user-guide}</version>
     <packaging>pom</packaging>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guide for Jakarta Transactions for Jakarta EE, Release 2.0 ${project.version}</name>
-
-    <distributionManagement>
-        <site>
-            <url>scm:git:git@github.com:eclipse-ee4j/jakartaee-tck.git</url>
-        </site>
-    </distributionManagement>
 
     <properties>
 
@@ -48,40 +41,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>build-dist</id>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.glassfish.doc</groupId>
-                <artifactId>glassfish-doc-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>generate-book</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <id>generate-toc</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jbake</groupId>
-                <artifactId>jbake-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>build-site</id>
-                        <phase>generate-resources</phase>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.asciidoctor</groupId>
                 <artifactId>asciidoctor-maven-plugin</artifactId>

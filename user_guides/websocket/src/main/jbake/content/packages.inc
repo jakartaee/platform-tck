@@ -1,3 +1,0 @@
-** `jakarta.websocket`
-
-** `jakarta.websocket.server`

@@ -21,6 +21,39 @@
             <filtered>true</filtered>
         </file>
 
+        <!-- User guides -->
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/jta/target/generated-docs/Jakarta-Transactions-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/platform/target/generated-docs/Jakarta-Platform-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/jstl/target/generated-docs/Jakarta-Standard-Tag-Library-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/connector/target/generated-docs/Jakarta-Connectors-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/jms/target/generated-docs/Jakarta-Messaging-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/jsp/target/generated-docs/Jakarta-Server-Pages-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../tcks/apis/websocket/docs/userguide/target/generated-docs/Jakarta-WebSocket-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../tcks/apis/persistence/persistence-outside-container/docs/userguide/target/generated-docs/Jakarta-Persistence-TCK-Users-Guide.pdf</source>
+        </file>
     </files>
     <fileSets>
         <fileSet>
@@ -41,6 +74,7 @@
                 <include>ts.jte</include>
             </includes>
         </fileSet>
+        <!-- User guides -->
     </fileSets>
 
     <dependencySets>
