@@ -43,17 +43,17 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-assembly</id>
+                        <id>install-assembly-tck</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>assembly</artifactId>
+                            <artifactId>assembly-tck</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>assembly-${project.version}.jar</file>
+                            <file>assembly-tck-${project.version}.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
@@ -118,7 +118,7 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-el-tck</id>
+                        <id>install-el-platform-tck</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
@@ -148,17 +148,32 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-javaee</id>
+                        <id>install-javaee-tck</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>javaee</artifactId>
+                            <artifactId>javaee-tck</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>javaee-${project.version}.jar</file>
+                            <file>javaee-tck-${project.version}.jar</file>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-rest-platform-tck</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>jakarta.tck</groupId>
+                            <artifactId>rest-platform-tck</artifactId>
+                            <version>${project.version}</version>
+                            <packaging>jar</packaging>
+                            <file>rest-platform-tck-${project.version}.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
@@ -178,21 +193,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-jaxrs</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>jaxrs</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>jaxrs-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>install-jdbc</id>
                         <phase>package</phase>
                         <goals>
@@ -204,21 +204,6 @@
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
                             <file>jdbc-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-jms</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>jms</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>jms-${project.version}.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
@@ -238,107 +223,62 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-jpa</id>
+                        <id>install-persistence-platform-tck-tests</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>jpa</artifactId>
+                            <artifactId>persistence-platform-tck-tests</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>jpa-${project.version}.jar</file>
+                            <file>persistence-platform-tck-tests-${project.version}.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-jpa-tck</id>
+                        <id>install-jsonb-platform-tck</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>jpa-tck</artifactId>
+                            <artifactId>jsonb-platform-tck</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>jpa-tck-${project.version}.jar</file>
+                            <file>jsonb-platform-tck-${project.version}.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-jsonb</id>
+                        <id>install-pages-platform-tck</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>jsonb</artifactId>
+                            <artifactId>pages-platform-tck</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>jsonb-${project.version}.jar</file>
+                            <file>pages-platform-tck-${project.version}.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-jsonp</id>
+                        <id>install-transactions-tck</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>jsonp</artifactId>
+                            <artifactId>transactions-tck</artifactId>
                             <version>${project.version}</version>
                             <packaging>jar</packaging>
-                            <file>jsonp-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-jsp</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>jsp</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>jsp-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-jstl</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>jstl</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>jstl-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-jta</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>jta</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>jta-${project.version}.jar</file>
+                            <file>transactions-tck-${project.version}.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
@@ -373,36 +313,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-samples</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>samples</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>samples-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-servlet</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>servlet</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>servlet-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>install-signaturetest</id>
                         <phase>package</phase>
                         <goals>
@@ -433,17 +343,17 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-websocket</id>
+                        <id>install-websocket-tck-platform-tests</id>
                         <phase>package</phase>
                         <goals>
                             <goal>install-file</goal>
                         </goals>
                         <configuration>
                             <groupId>jakarta.tck</groupId>
-                            <artifactId>websocket</artifactId>
-                            <version>${project.version}</version>
+                            <artifactId>websocket-tck-platform-tests</artifactId>
+                            <version>2.2.0</version>
                             <packaging>jar</packaging>
-                            <file>websocket-${project.version}.jar</file>
+                            <file>websocket-tck-platform-tests-2.2.0.jar</file>
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
