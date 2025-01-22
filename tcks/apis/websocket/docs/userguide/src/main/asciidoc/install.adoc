@@ -1,12 +1,4 @@
-type=page
-status=published
-title=Installation
-next=config.html
-prev=rules.html
-~~~~~~
 include::attributes.conf[]
-Installation
-============
 
 [[GBFTP]]
 
@@ -41,7 +33,7 @@ install and set up the following software components:
 
 include::req-software.inc[]
 * Java SE {SEversion}
-* Apache Maven {MavenVersion}
+* Any Jupiter API compatible test runner. Eg: Apache Maven {MavenVersion}
 * A CI for {TechnologyShortName} {TechnologyVersion}, one example is {TechnologyRI}
 * {TechnologyShortName} TCK version {TechnologyVersion}, which includes:
 include::tck-packages.inc[]
@@ -55,7 +47,7 @@ http://www.oracle.com/technetwork/java/javase/downloads/index.html.
 Refer to the installation instructions that accompany the software for
 additional information.
 .  Install the Apache Maven {MavenVersion} software, if it is not already installed. +
-Download and install Apache MAven {MavenVersion} software from Apache Maven
+Download and install Apache Maven {MavenVersion} software from Apache Maven
 Project.
 .  Install the {TechnologyShortName} TCK {TechnologyVersion} software.
   a.  Copy or download the {TechnologyShortName} TCK software to your

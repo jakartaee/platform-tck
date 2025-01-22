@@ -1,12 +1,4 @@
-type=page
-status=published
-title=Appendix A: Frequently Asked Questions
-next=rebuild.html
-prev=debug.html
-~~~~~~
 include::attributes.conf[]
-Appendix A: Frequently Asked Questions
-======================================
 
 [[GBFYD]]
 
@@ -28,7 +20,6 @@ A.1 Where do I start to debug a test failure?
 
 See link:debug.html#GBFUV[Chapter 6, "Debugging Test Problems,"] for more
 information.
-
 
 [[GBFYR]][[a.2-how-do-i-restart-a-crashed-test-run]]
 

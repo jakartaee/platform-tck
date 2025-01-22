@@ -1,13 +1,4 @@
-type=page
-status=published
-title=TCK User's Guide for Technology Implementors
-next=preface.html
-prev=toc.html
-~~~~~~
 include::attributes.conf[]
-
-TCK User's Guide for {TechnologyFullName}, Release {TechnologyVersion} for Jakarta EE
-=====================================================================================
 
 [[eclipse-foundation]]
 Eclipse Foundation

@@ -1,12 +1,4 @@
-type=page
-status=published
-title=Preface
-next=intro.html
-prev=title.html
-~~~~~~
 include::attributes.conf[]
-Preface
-=======
 
 [[TCJRS00001]][[GBFTI]]
 

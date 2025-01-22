@@ -1,12 +1,4 @@
-type=page
-status=published
-title=Setup and Configuration
-next=using.html
-prev=install.html
-~~~~~~
 include::attributes.conf[]
-Setup and Configuration
-=======================
 
 [[GBFVV]]
 

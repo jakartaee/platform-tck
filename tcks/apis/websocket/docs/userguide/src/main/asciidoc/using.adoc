@@ -1,12 +1,4 @@
-type=page
-status=published
-title=Executing Tests
-next=debug.html
-prev=config.html
-~~~~~~
 include::attributes.conf[]
-Executing Tests
-===============
 
 [[GBFWO]]
 
@@ -15,7 +7,7 @@ Executing Tests
 5 Executing Tests
 -----------------
 
-The {TechnologyShortName} TCK uses the Junit and Jboss Arquillian
+The {TechnologyShortName} TCK uses the Junit and Jboss Arquillian 
 frameworks to execute the tests.
 
 This chapter includes the following topics:
@@ -28,10 +20,10 @@ This chapter includes the following topics:
 [NOTE]
 =======================================================================
 
-The {TechnologyShortName}  TCK is not depended on any particular build tool to
-run the tests. It will be convenient and advisable to create a
-Apache Maven project to setup and run the TCK. This chapter will
-henceforth use instructions and steps to provide setup with Apache
+The {TechnologyShortName}  TCK is not depended on any particular build tool to 
+run the tests. It will be convenient and advisable to create a 
+Apache Maven project to setup and run the TCK. This chapter will 
+henceforth use instructions and steps to provide setup with Apache 
 Maven as a build tool.
 
 =======================================================================
@@ -46,12 +38,12 @@ endif::rebuild[]
 
 [[GBFUZ]][[starting-test]]
 
-5.1 Starting Test
-~~~~~~~~~~~~~~~~~
+5.1 Starting the tests
+~~~~~~~~~~~~~~~~~~~~~
 
-The {TechnologyShortName} TCK can be run from the command line
+
+The {TechnologyShortName} TCK can be run from the command line 
 in your shell environment by executing the TCK jar.
-
 
 [NOTE]
 =======================================================================
@@ -63,10 +55,11 @@ build tool, which will need to be downloaded separately.
 =======================================================================
 
 
-[[GBFVW]][[to-start-test-in-command-line-mode]]
 
-5.1.1 To Start Test in Command-Line Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[[GBFVW]][[to-start-in-command-line-mode]]
+
+5.1.1 To Start in Command-Line Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 include::using-examples.inc[]
 
@@ -93,6 +86,7 @@ mvn verify -Dit.test={subsetTestDirectoryExample}
 ----
 
 The tests in the directory and its subdirectories are run.
+
 
 [[GCLRR]][[running-the-tck-against-the-ri]]
 

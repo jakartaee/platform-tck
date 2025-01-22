@@ -1,12 +1,4 @@
-type=page
-status=published
-title=Debugging Test Problems
-next=faq.html
-prev=using.html
-~~~~~~
 include::attributes.conf[]
-Debugging Test Problems
-=======================
 
 [[GBFUV]]
 
@@ -23,7 +15,6 @@ This chapter includes the following topics:
 * link:#GBFYP[Overview]
 * link:#GBFVF[Test Information]
 * link:#GBFWI[Configuration Failures]
-
 
 [[GBFYP]][[overview]]
 
@@ -53,7 +44,7 @@ get more debugging information.
 =======================================================================
 
 If a large number of tests failed, you should read
-link:#GBFYF[Configuration Failures] to see if a
+link:#GBFWI[Configuration Failures] to see if a
 configuration issue is the cause of the failures.
 
 
@@ -74,5 +65,6 @@ failure, use the Junit reports generated after running the tests.
 Configuration failures are easily recognized because many tests fail the
 same way. When all your tests begin to fail, you may want to stop the
 run immediately and start viewing individual test output.
+
 
 include::debug-tips.inc[]

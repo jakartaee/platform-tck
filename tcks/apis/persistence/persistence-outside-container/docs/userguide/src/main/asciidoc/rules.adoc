@@ -1,12 +1,4 @@
-type=page
-status=published
-title=Procedure for Certification
-next=install.html
-prev=intro.html
-~~~~~~
 include::attributes.conf[]
-Procedure for Certification
-===========================
 
 [[GBFSN]]
 

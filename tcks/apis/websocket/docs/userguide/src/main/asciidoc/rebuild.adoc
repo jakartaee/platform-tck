@@ -1,12 +1,4 @@
-type=page
-status=published
-title=Appendix B: Rebuild Rules
-prev=faq.html
-~~~~~~
 include::attributes.conf[]
-
-Appendix B: Rebuild Rules
-=========================
 
 
 ifdef::rebuild[]
