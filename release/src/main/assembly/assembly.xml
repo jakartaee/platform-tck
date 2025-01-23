@@ -21,6 +21,39 @@
             <filtered>true</filtered>
         </file>
 
+        <!-- User guides -->
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/jta/target/generated-docs/Jakarta-Transactions-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/platform/target/generated-docs/Jakarta-Platform-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/jstl/target/generated-docs/Jakarta-Standard-Tag-Library-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/connector/target/generated-docs/Jakarta-Connectors-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/jms/target/generated-docs/Jakarta-Messaging-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../user_guides/jsp/target/generated-docs/Jakarta-Server-Pages-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../tcks/apis/websocket/docs/userguide/target/generated-docs/Jakarta-WebSocket-TCK-Users-Guide.pdf</source>
+        </file>
+        <file>
+            <outputDirectory>guides</outputDirectory>
+            <source>../tcks/apis/persistence/persistence-outside-container/docs/userguide/target/generated-docs/Jakarta-Persistence-TCK-Users-Guide.pdf</source>
+        </file>
     </files>
     <fileSets>
         <fileSet>
@@ -41,34 +74,32 @@
                 <include>ts.jte</include>
             </includes>
         </fileSet>
+        <!-- User guides -->
     </fileSets>
 
     <dependencySets>
         <dependencySet>
             <includes>
                 <include>${project.groupId}:appclient</include>
-                <include>${project.groupId}:assembly</include>
+                <include>${project.groupId}:assembly-tck</include>
                 <include>${project.groupId}:common</include>
                 <include>${project.groupId}:connector</include>
                 <include>${project.groupId}:ejb30</include>
                 <include>${project.groupId}:ejb32</include>
                 <include>${project.groupId}:el-platform-tck</include>
                 <include>${project.groupId}:integration</include>
-                <include>${project.groupId}:javaee</include>
+                <include>${project.groupId}:javaee-tck</include>
+                <include>${project.groupId}:rest-platform-tck</include>
                 <include>${project.groupId}:javamail</include>
-                <include>${project.groupId}:jaxrs</include>
                 <include>${project.groupId}:jdbc</include>
                 <include>${project.groupId}:jms-tck</include>
                 <include>${project.groupId}:persistence-platform-tck-tests</include>
-                <include>${project.groupId}:jsonb</include>
-                <include>${project.groupId}:jsonp</include>
-                <include>${project.groupId}:jsp</include>
-                <include>${project.groupId}:jstl</include>
-                <include>${project.groupId}:jta</include>
+                <include>${project.groupId}:jsonb-platform-tck</include>
+                <include>${project.groupId}:jsonb-platform-tck</include>
+                <include>${project.groupId}:pages-platform-tck</include>
+                <include>${project.groupId}:transactions-tck</include>
                 <include>${project.groupId}:libutil</include>
                 <include>${project.groupId}:runtime</include>
-                <include>${project.groupId}:samples</include>
-                <include>${project.groupId}:servlet</include>
                 <include>${project.groupId}:signaturetest</include>
                 <include>${project.groupId}:tsharness</include>
                 <include>${project.groupId}:websocket-tck-platform-tests</include>

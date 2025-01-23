@@ -31,20 +31,136 @@
     <packaging>pom</packaging>
     <name>Eclipse Foundation Technology Compatibility Kit User's Guides for Jakarta EE ${project.version}</name>
 
+    <properties>
+        <asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
+        <asciidoctorj.maven.plugin.version>3.1.0</asciidoctorj.maven.plugin.version>
+        <asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
+
+        <!-- plugin versions -->
+        <asciidoctorj.version>2.5.11</asciidoctorj.version>
+        <doc.pdf>Jakarta-${jakarta.spec.name}-TCK-Users-Guide.pdf</doc.pdf>
+        <freemarker.version>2.3.32</freemarker.version>
+        <!-- the short name of the specification this user guide is for, eg: Platform, JsonB,... -->
+        <jakarta.spec.name>SpecName</jakarta.spec.name>
+
+        <maven.deploy.skip>true</maven.deploy.skip>
+        <maven.site.skip>true</maven.site.skip>
+        <project.build.commonResourcesDirectory>${project.build.directory}/common-resources</project.build.commonResourcesDirectory>
+
+        <!-- status: DRAFT, BETA, etc., or blank for final -->
+        <status>DRAFT</status>
+
+        <ug.resources.version>11.0.0-SNAPSHOT</ug.resources.version>
+        <ug.staging.dir>${project.build.directory}/staging</ug.staging.dir>
+
+        <!-- Component TCK guide versions -->
+        <version.jakarta.resource-tck-user-guide>2.1.0</version.jakarta.resource-tck-user-guide>
+        <version.jakarta.jms-tck-user-guide>3.1.0</version.jakarta.jms-tck-user-guide>
+        <version.jakarta.jstl-tck-user-guide>3.0.0</version.jakarta.jstl-tck-user-guide>
+        <version.jakarta.pages-tck-user-guide>4.0.0</version.jakarta.pages-tck-user-guide>
+        <version.jakarta.transaction-tck-user-guide>2.0.0</version.jakarta.transaction-tck-user-guide>
+    </properties>
+
     <modules>
         <module>connector</module>
         <module>jms</module>
         <module>jsp</module>
         <module>jstl</module>
         <module>jta</module>
-        <module>parent</module>
         <module>platform</module>
     </modules>
     <build>
+        <defaultGoal>package</defaultGoal>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>3.4.1</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-versions</id>
+                            <goals>
+                                <goal>enforce</goal>
+                            </goals>
+                            <phase>none</phase>
+                            <configuration>
+                                <rules>
+                                    <requireJavaVersion>
+                                        <version>[17,)</version>
+                                        <message>You need JDK17 or newer</message>
+                                    </requireJavaVersion>
+                                    <requireMavenVersion>
+                                        <version>[3.9.3,)</version>
+                                        <message>You need Apache Maven 3.9.3 or newer</message>
+                                    </requireMavenVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.asciidoctor</groupId>
+                    <artifactId>asciidoctor-maven-plugin</artifactId>
+                    <version>${asciidoctorj.maven.plugin.version}</version>
+                    <configuration>
+                        <sourceDirectory>src/main/asciidoc</sourceDirectory>
+                        <sourceDocumentName>book.adoc</sourceDocumentName>
+                        <backend>pdf</backend>
+                        <outputFile>${doc.pdf}</outputFile>
+                        <attributes>
+                            <imagesDir>img</imagesDir>
+                            <pdf-theme>${project.build.directory}/generated-docs/theme/jakartaee-theme.yml</pdf-theme>
+                            <title-logo-image>image:jakarta_ee_logo_schooner_color_stacked_default.png[pdfwidth=4.25in,align=right]</title-logo-image>
+                            <doctype>book</doctype>
+                            <status>${status}</status>
+                            <compat-mode></compat-mode>
+                            <data-uri></data-uri>
+                            <icons>font</icons>
+                            <pagenums></pagenums>
+                            <toc></toc>
+                            <icons>font</icons>
+                            <sectanchors>true</sectanchors>
+                            <idprefix></idprefix>
+                            <idseparator>-</idseparator>
+                            <docinfo1>true</docinfo1>
+                            <embedAssets>true</embedAssets>
+                        </attributes>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.asciidoctor</groupId>
+                            <artifactId>asciidoctorj-pdf</artifactId>
+                            <version>${asciidoctorj.pdf.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <id>generate-pdf-doc</id>
+                            <goals>
+                                <goal>process-asciidoc</goal>
+                            </goals>
+                            <phase>none</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <!-- do not publish this artifact to Maven repositories -->
             <plugin>
                 <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
                 <configuration>
                     <skip>true</skip>
                 </configuration>

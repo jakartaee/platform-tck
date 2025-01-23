@@ -27,14 +27,13 @@
     </parent>
 
     <artifactId>pages-extra-tck-install</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TCK: Install Jakarta Pages Platform Extra TCK</name>
 
     <properties>
-        <tck.test.pages-extra.file>jakarta-pages-extra-tck-${tck.test.pages-extra.version}.zip</tck.test.pages-extra.file>
+        <tck.test.pages-extra.file>jakarta-pages-extra-tck-${project.version}.zip</tck.test.pages-extra.file>
         <tck.test.pages-extra.url>https://download.eclipse.org/ee4j/jakartaee-tck/jakartaee11/staged/eftl/${tck.test.pages-extra.file}</tck.test.pages-extra.url>
-        <tck.test.pages-extra.version>4.0.0-M1</tck.test.pages-extra.version>
     </properties>
 
     <build>
@@ -70,11 +69,11 @@
                         </goals>
                         <phase>process-resources</phase>
                         <configuration>
-                            <file>${project.build.directory}/jakarta-pages-extra-tck-${tck.test.pages-extra.version}.jar</file>
-                            <sources>${project.build.directory}/jakarta-pages-extra-tck-${tck.test.pages-extra.version}-sources.jar</sources>
+                            <file>${project.build.directory}/jakarta-pages-extra-tck-${project.version}.jar</file>
+                            <sources>${project.build.directory}/jakarta-pages-extra-tck-${project.version}-sources.jar</sources>
                             <groupId>jakarta.tck</groupId>
                             <artifactId>pages-platform-tck</artifactId>
-                            <version>${tck.test.pages-extra.version}</version>
+                            <version>${project.version}</version>
                             <packaging>jar</packaging>
                         </configuration>
                     </execution>
