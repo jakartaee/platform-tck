@@ -36,6 +36,7 @@
     <properties>
         <arquillian.junit>1.9.3.Final</arquillian.junit>
         <jakarta.ee.version>11.0.0-SNAPSHOT</jakarta.ee.version>
+        <jakarta.tck.sigtest.version>2.4</jakarta.tck.sigtest.version>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
@@ -125,6 +126,11 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>sigtest-maven-plugin</artifactId>
+            <version>${jakarta.tck.sigtest.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <!-- Include the container descriptors in the output artifact -->
