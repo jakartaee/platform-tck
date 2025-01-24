@@ -3,7 +3,7 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.2.0 https://maven.apache.org/xsd/assembly-2.2.0.xsd">
     <id>dist</id>
-    <baseDirectory>platform-tck-${project.version}</baseDirectory>
+    <baseDirectory>jakartaeetck</baseDirectory>
     <formats>
         <format>zip</format>
     </formats>

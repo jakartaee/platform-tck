@@ -24,7 +24,7 @@ Version 11]
 2.1 Certification Overview
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The certification process for Jakarta EE 11.0 consists of the
+The certification process for Jakarta EE {tck_version}.0 consists of the
 following activities:
 
 * Install the appropriate version of the Technology Compatibility Kit
@@ -42,7 +42,7 @@ as required by the Eclipse Foundation TCK License.
 2.2 Compatibility Requirements
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The compatibility requirements for Jakarta EE 11.0 consist of meeting the
+The compatibility requirements for Jakarta EE {tck_version}.0 consist of meeting the
 requirements set forth by the rules and associated definitions contained
 in this section.
 
@@ -402,7 +402,7 @@ when processed by the Runtime, must not cause the functional
 programmatic behavior of the Runtime to vary from the functional
 programmatic behavior of the Runtime in the absence of that comment.
 
-EE21 Compliance testing for Jakarta EE 11.0 consists of running Jakarta EE 11.0
+EE21 Compliance testing for Jakarta EE {tck_version}.0 consists of running Jakarta EE {tck_version}.0
 TCK and the following Technology Compatibility Kits (TCKs). Version details are defined in the Platform EE Specification document (https://jakarta.ee/specifications/platform/11/), see the heading 'Full Jakarta™ EE Product Requirements':
 
 * Jakarta Activation
@@ -422,13 +422,13 @@ TCK and the following Technology Compatibility Kits (TCKs). Version details are 
 * Jakarta XML Binding (If XML Binding is supported)
 
 In addition to the compatibility rules outlined in this TCK User's
-Guide, Jakarta EE 11.0 implementations must also adhere to all of the
+Guide, Jakarta EE {tck_version}.0 implementations must also adhere to all of the
 compatibility rules defined in the User's Guides of the aforementioned
 TCKs.
 
-EE21.1 If the Jakarta EE 11 implementation uses a runtime which has
+EE21.1 If the Jakarta EE {tck_version} implementation uses a runtime which has
 already been validated by the Technology Compatibility Kit,
-the Jakarta EE 11 implementation may use result of such validation
+the Jakarta EE {tck_version} implementation may use result of such validation
 to claim its compliance with the Technology Compatibility Kit.
 
 EE22 Source Code in WSDL-to-Java Output when compiled by a Reference
@@ -535,7 +535,7 @@ the Eclipse Foundation, Jakarta EE Specifications web site at `https://jakarta.e
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following list constitutes the complete list of packages that are
-required for Jakarta EE 11.0:
+required for Jakarta EE {tck_version}.0:
 
 * jakarta.annotation
 * jakarta.annotation.security
@@ -550,7 +550,7 @@ required for Jakarta EE 11.0:
 * jakarta.batch.runtime.context
 * jakarta.decorator
 * jakarta.ejb
-* jakarta.ejb.embeddable (removed from Jakarta EE 11 Platform but still part of Jakarta Enterprise Beans 4.0)
+* jakarta.ejb.embeddable (removed from Jakarta EE {tck_version} Platform but still part of Jakarta Enterprise Beans 4.0)
 * jakarta.ejb.spi
 * jakarta.el
 * jakarta.enterprise.concurrent
