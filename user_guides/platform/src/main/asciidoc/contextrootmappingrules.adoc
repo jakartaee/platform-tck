@@ -21,13 +21,13 @@ E.1 Servlet-Based Web Service Endpoint Context Root Mapping
 This section describes the context root mapping for servlet-based web
 services endpoints and clients. Since most of the application runtime
 and Web runtime deployment descriptor files have been removed in Jakarta EE
-8, the context root mapping for web archives in a Jakarta EE 11 CI becomes
+8, the context root mapping for web archives in a Jakarta EE {tck_version} CI becomes
 the base name of the Web archive file without the file extension. For
 example, the context root for the archive `web-client.war` defaults to
 `web-client`.
 
 This covers the mapping for all servlet-based web services endpoints and
-clients under the Jakarta EE 11 Platform TCK test trees 
+clients under the Jakarta EE {tck_version} Platform TCK test trees
 Jakarta XML Web Services (`jaxws`),
 Jakarta Web Services Metadata (`jws`),
 webservices, webservices12, webservices13].
@@ -83,10 +83,10 @@ E.2 Jakarta Enterprise Bean-Based Web Service Endpoint Context Root Mapping
 This section describes the context root mapping for Jakarta Enterprise Bean-based web
 services endpoints and clients. The context root mapping for Jakarta Enterprise Bean-based
 web services and clients is based on the following mapping rules that
-are used for the Jakarta EE 11 CI.
+are used for the Jakarta EE {tck_version} CI.
 
 The following algorithm describes the context root mapping rules that
-are used by the Jakarta EE 11 Compatible Implementation.
+are used by the Jakarta EE {tck_version} Compatible Implementation.
 
 [source,oac_no_warn]
 ----

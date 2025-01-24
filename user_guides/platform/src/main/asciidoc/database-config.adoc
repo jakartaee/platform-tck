@@ -6,7 +6,7 @@ C Configuring Your Backend Database
 
 This appendix explains how to configure a backend database to use with a
 Jakarta Platform, Enterprise Edition server being tested against the Jakarta
-EE 11 TCK.
+EE {tck_version} TCK.
 
 The topics included in this appendix are as follows:
 
@@ -32,7 +32,7 @@ must be the Jakarta Platform, Enterprise Edition RI with the bundled Apache Derb
 database. See link:config.html#GEWSQ[Jakarta Platform, Enterprise Edition
 Server Configuration Scenarios] for more information.
 
-For the purposes of Jakarta EE 11 Platform TCK testing, all database configuration
+For the purposes of Jakarta EE {tck_version} Platform TCK testing, all database configuration
 properties required by the TCK are made in the `<TS_HOME>/bin/ts.jte`
 file. The TCK `init.<`database> Ant target uses the properties you set
 in `ts.jte` to generate one or more SQL statement files that are in turn
@@ -50,7 +50,7 @@ TCK.
 
 The procedure for configuring your Jakarta Platform, Enterprise Edition
 server for your database is described in
-link:config.html#GEWTQ[Configuring a Jakarta EE 11 Server]. The final step,
+link:config.html#GEWTQ[Configuring a Jakarta EE {tck_version} Server]. The final step,
 initializing your database for TCK by running `init.<`database> target,
 is explained more in the next section.
 
@@ -60,18 +60,18 @@ C.2 The init.<database> Ant Target
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Before your Jakarta Platform, Enterprise Edition server database can be
-tested against the Jakarta EE 11 Platform TCK, the database must be initialized for
+tested against the Jakarta EE {tck_version} Platform TCK, the database must be initialized for
 TCK by means of the Ant `init.<`database> target. For example, the
 `init.javadb` Ant task is used to initialize the Apache Derby database for
 TCK.
 
 This Ant target references database properties in `ts.jte` file and
 database-specific DDL and DML files to generate SQL statement files that
-are read by the Jakarta EE 11 Platform TCK when you start the test suite. The DDL and
+are read by the Jakarta EE {tck_version} Platform TCK when you start the test suite. The DDL and
 DML files are described later in this appendix, in link:#GFKOC[Database
 DDL and DML Files].
 
-The Jakarta EE 11 Platform TCK includes the following database-specific Ant targets:
+The Jakarta EE {tck_version} Platform TCK includes the following database-specific Ant targets:
 
 * `init.cloudscape`
 * `init.db2`
@@ -195,7 +195,7 @@ Apache Derby.
 C.4 Database DDL and DML Files
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For each supported database type, the Jakarta EE 11 Platform TCK includes a set of
+For each supported database type, the Jakarta EE {tck_version} Platform TCK includes a set of
 DDL and DML files in subdirectories off the `<TS_HOME>/sql` directory.
 The `config.vi` and `config.ri` targets use two `ts.jte` properties,
 `db.dml.file` and `db.dml.file.ri` (interop only), to determine the
@@ -207,7 +207,7 @@ configuring and populating database tables as required by the TCK tests,
 and for defining any required primary or foreign key constraints and
 database-specific conmand line terminators.
 
-In addition to the database-specific DML files, the Jakarta EE 11 Platform TCK
+In addition to the database-specific DML files, the Jakarta EE {tck_version} Platform TCK
 includes database-specific DDL files, also in subdirectories off
 `<TS_HOME>/sql`. These DDL files are used by the `init.`database target
 to create and drop database tables and procedures required by the TCK.

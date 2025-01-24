@@ -1,4 +1,8 @@
-= Jakarta EE Platform, Enterprise Edition 11 Test Compatibility Kit User's Guide, Release 11 for Jakarta EE
+
+= Jakarta EE Platform, Enterprise Edition {tck_version} Test Compatibility Kit User's Guide, Release 11 for Jakarta EE
+:tck_version: 11
+:glassfish_version: GlassFish 8.0
+:toc:
 
 include::title.adoc[]
 
@@ -10,7 +14,7 @@ include::rules.adoc[]
 
 include::rules-wp.adoc[]
 
-include::install.adoc[]
+include::install.adoc[tck_version={tck_version},glassfish_version={glassfish_version}]
 
 include::config.adoc[]
 
@@ -29,10 +33,6 @@ include::portingpackage.adoc[]
 include::commonappdeploy.adoc[]
 
 include::database-config.adoc[]
-
-include::ejbql-schema.adoc[]
-
-include::contextrootmappingrules.adoc[]
 
 include::jms-resource-adaptr.adoc[]
 
