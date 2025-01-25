@@ -43,7 +43,7 @@
         
         <jakarta.tck.arquillian.version>11.0.0-M1</jakarta.tck.arquillian.version>
         <jakarta.tck.tools.version>11.0.0-M2</jakarta.tck.tools.version>
-        <tck.version>2.1.0-SNAPSHOT</tck.version>
+        <tck.version>2.1.0-M1</tck.version>
         <ts.home>/jakartaeetck</ts.home>
     </properties>
 
