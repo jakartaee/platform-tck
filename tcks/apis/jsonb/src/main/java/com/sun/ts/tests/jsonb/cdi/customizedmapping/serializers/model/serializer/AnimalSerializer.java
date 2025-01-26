@@ -20,35 +20,35 @@
 
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.serializer;
 
-
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Animal;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Cat;
 import com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model.Dog;
+
 import jakarta.json.bind.serializer.JsonbSerializer;
 import jakarta.json.bind.serializer.SerializationContext;
 import jakarta.json.stream.JsonGenerator;
 
 public class AnimalSerializer implements JsonbSerializer<Animal> {
-  public void serialize(Animal animal, JsonGenerator jsonGenerator,
-      SerializationContext serializationContext) {
-    if (animal != null) {
-      jsonGenerator.writeStartObject();
-      if (Cat.class.isAssignableFrom(animal.getClass())) {
-        jsonGenerator.write("type", "cat");
-        jsonGenerator.write("cuddly", ((Cat) animal).isCuddly());
-      } else if (Dog.class.isAssignableFrom(animal.getClass())) {
-        jsonGenerator.write("type", "dog");
-        jsonGenerator.write("barking", ((Dog) animal).isBarking());
-      } else {
-        jsonGenerator.write("type", "animal");
-      }
-      jsonGenerator.write("age", animal.getAge());
-      jsonGenerator.write("furry", animal.isFurry());
-      jsonGenerator.write("name", animal.getName());
-      jsonGenerator.write("weight", animal.getWeight());
-      jsonGenerator.writeEnd();
-    } else {
-      serializationContext.serialize(null, jsonGenerator);
+    @Override
+    public void serialize(Animal animal, JsonGenerator jsonGenerator, SerializationContext serializationContext) {
+        if (animal != null) {
+            jsonGenerator.writeStartObject();
+            if (Cat.class.isAssignableFrom(animal.getClass())) {
+                jsonGenerator.write("type", "cat");
+                jsonGenerator.write("cuddly", ((Cat) animal).isCuddly());
+            } else if (Dog.class.isAssignableFrom(animal.getClass())) {
+                jsonGenerator.write("type", "dog");
+                jsonGenerator.write("barking", ((Dog) animal).isBarking());
+            } else {
+                jsonGenerator.write("type", "animal");
+            }
+            jsonGenerator.write("age", animal.getAge());
+            jsonGenerator.write("furry", animal.isFurry());
+            jsonGenerator.write("name", animal.getName());
+            jsonGenerator.write("weight", animal.getWeight());
+            jsonGenerator.writeEnd();
+        } else {
+            serializationContext.serialize(null, jsonGenerator);
+        }
     }
-  }
 }

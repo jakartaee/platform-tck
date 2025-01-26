@@ -21,77 +21,77 @@
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter;
 
 public class AnimalJson {
-  public enum TYPE {
-    CAT, DOG, GENERIC
-  }
+    public enum TYPE {
+        CAT, DOG, GENERIC
+    }
 
-  private TYPE type;
+    private TYPE type;
 
-  private int age;
+    private int age;
 
-  private String name;
+    private String name;
 
-  private float weight;
+    private float weight;
 
-  private Boolean furry;
+    private Boolean furry;
 
-  private Boolean cuddly;
+    private Boolean cuddly;
 
-  private Boolean barking;
+    private Boolean barking;
 
-  public TYPE getType() {
-    return type;
-  }
+    public TYPE getType() {
+        return type;
+    }
 
-  public void setType(TYPE type) {
-    this.type = type;
-  }
+    public void setType(TYPE type) {
+        this.type = type;
+    }
 
-  public int getAge() {
-    return age;
-  }
+    public int getAge() {
+        return age;
+    }
 
-  public void setAge(int age) {
-    this.age = age;
-  }
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public float getWeight() {
-    return weight;
-  }
+    public float getWeight() {
+        return weight;
+    }
 
-  public void setWeight(float weight) {
-    this.weight = weight;
-  }
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
 
-  public Boolean isFurry() {
-    return furry;
-  }
+    public Boolean isFurry() {
+        return furry;
+    }
 
-  public void setFurry(Boolean furry) {
-    this.furry = furry;
-  }
+    public void setFurry(Boolean furry) {
+        this.furry = furry;
+    }
 
-  public Boolean isCuddly() {
-    return cuddly;
-  }
+    public Boolean isCuddly() {
+        return cuddly;
+    }
 
-  public void setCuddly(Boolean cuddly) {
-    this.cuddly = cuddly;
-  }
+    public void setCuddly(Boolean cuddly) {
+        this.cuddly = cuddly;
+    }
 
-  public Boolean isBarking() {
-    return barking;
-  }
+    public Boolean isBarking() {
+        return barking;
+    }
 
-  public void setBarking(Boolean barking) {
-    this.barking = barking;
-  }
+    public void setBarking(Boolean barking) {
+        this.barking = barking;
+    }
 }

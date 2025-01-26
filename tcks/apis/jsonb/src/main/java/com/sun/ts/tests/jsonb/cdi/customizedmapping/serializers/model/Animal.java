@@ -21,80 +21,79 @@
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model;
 
 public class Animal {
-  private int age;
+    private int age;
 
-  private String name;
+    private String name;
 
-  private float weight;
+    private float weight;
 
-  private boolean furry;
+    private boolean furry;
 
-  public Animal() {
-  }
+    public Animal() {
+    }
 
-  public Animal(int age, String name, float weight, boolean furry) {
-    this.age = age;
-    this.name = name;
-    this.weight = weight;
-    this.furry = furry;
-  }
+    public Animal(int age, String name, float weight, boolean furry) {
+        this.age = age;
+        this.name = name;
+        this.weight = weight;
+        this.furry = furry;
+    }
 
-  public int getAge() {
-    return age;
-  }
+    public int getAge() {
+        return age;
+    }
 
-  public void setAge(int age) {
-    this.age = age;
-  }
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public float getWeight() {
-    return weight;
-  }
+    public float getWeight() {
+        return weight;
+    }
 
-  public void setWeight(float weight) {
-    this.weight = weight;
-  }
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
 
-  public boolean isFurry() {
-    return furry;
-  }
+    public boolean isFurry() {
+        return furry;
+    }
 
-  public void setFurry(boolean furry) {
-    this.furry = furry;
-  }
+    public void setFurry(boolean furry) {
+        this.furry = furry;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (!(o instanceof Animal))
-      return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Animal)) {
+            return false;
+        }
 
-    Animal animal = (Animal) o;
+        Animal animal = (Animal) o;
 
-    if (age != animal.age)
-      return false;
-    if (Float.compare(animal.weight, weight) != 0)
-      return false;
-    if (furry != animal.furry)
-      return false;
-    return name != null ? name.equals(animal.name) : animal.name == null;
-  }
+        if ((age != animal.age) || (Float.compare(animal.weight, weight) != 0) || (furry != animal.furry)) {
+            return false;
+        }
+        return name != null ? name.equals(animal.name) : animal.name == null;
+    }
 
-  @Override
-  public int hashCode() {
-    int result = age;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(weight) : 0);
-    result = 31 * result + (furry ? 1 : 0);
-    return result;
-  }
+    @Override
+    public int hashCode() {
+        int result = age;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (weight != +0.0f ? Float.floatToIntBits(weight) : 0);
+        result = 31 * result + (furry ? 1 : 0);
+        return result;
+    }
 }
