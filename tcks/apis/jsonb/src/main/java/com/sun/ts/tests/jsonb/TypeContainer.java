@@ -21,7 +21,7 @@
 package com.sun.ts.tests.jsonb;
 
 public interface TypeContainer<T> {
-  T getInstance();
+    T getInstance();
 
-  void setInstance(T instance);
+    void setInstance(T instance);
 }

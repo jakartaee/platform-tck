@@ -19,54 +19,44 @@
  */
 package com.sun.ts.tests.jsonb.pluggability.jsonbprovidertests;
 
+import com.sun.ts.lib.harness.ServiceEETest;
+import com.sun.ts.lib.harness.Status;
+import com.sun.ts.tests.jsonb.provider.MyJsonbBuilder;
+import com.sun.ts.tests.jsonb.provider.MyJsonbProvider;
+
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.json.bind.spi.JsonbProvider;
+
+import java.io.File;
+import java.lang.System.Logger;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.ServiceLoader;
-import java.util.stream.Collectors;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.net.URL;
-import java.net.URLClassLoader;
 
-import jakarta.json.bind.JsonbBuilder;
-import jakarta.json.bind.spi.JsonbProvider;
-import com.sun.ts.tests.jsonb.provider.MyJsonbBuilder;
-import com.sun.ts.tests.jsonb.provider.MyJsonbProvider;
-
-import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.OverProtocol;
+import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.junit5.ArquillianExtension;
-import org.jboss.shrinkwrap.api.Filters;
+import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.asset.UrlAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
-
+import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
-import org.jboss.arquillian.test.api.ArquillianResource;
-import tck.arquillian.protocol.common.TargetVehicle;
-import org.jboss.arquillian.container.test.api.OverProtocol;
-import org.jboss.arquillian.container.test.api.TargetsContainer;
 import tck.arquillian.porting.lib.spi.TestArchiveProcessor;
-
-import com.sun.ts.lib.harness.Status;
-import com.sun.ts.lib.harness.ServiceEETest;
-import java.lang.System.Logger;
+import tck.arquillian.protocol.common.TargetVehicle;
 
 @Tag("tck-appclient")
 @Tag("jsonb")
@@ -81,9 +71,9 @@ public class ClientEjbTest extends ServiceEETest {
     private static String packagePath = ClientEjbTest.class.getPackageName().replace(".", "/");
 
     private static final String providerPackagePath = MyJsonbProvider.class.getPackageName().replace(".", "/");
-    
+
     private boolean providerJarDeployed = false;
-    
+
     public static final String TEMP_DIR = System.getProperty("java.io.tmpdir", "/tmp");
 
     @BeforeEach
@@ -102,110 +92,99 @@ public class ClientEjbTest extends ServiceEETest {
     public static EnterpriseArchive createDeploymentVehicle(@ArquillianResource TestArchiveProcessor archiveProcessor) {
 
         JavaArchive jsonb_alternate_provider = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
-            .addClasses(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
-            com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
-            ClientEjbTest.class)
-            .addAsResource(new UrlAsset(com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
-        jsonb_alternate_provider.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+                .addClasses(com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class, com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
+                        ClientEjbTest.class)
+                .addAsResource(
+                        new UrlAsset(com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class.getClassLoader()
+                                .getResource(providerPackagePath + "/META-INF/services/jakarta.json.bind.spi.JsonbProvider")),
+                        "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
+        jsonb_alternate_provider.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"),
+                "MANIFEST.MF");
 
+        JavaArchive jsonbprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class,
+                "jsonbprovidertests_ejb_vehicle_client.jar");
+        jsonbprovidertests_ejb_vehicle_client.addClasses(com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
+                com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class, com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
+                com.sun.ts.tests.common.vehicle.VehicleClient.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class, com.sun.ts.lib.harness.EETest.class,
+                com.sun.ts.lib.harness.EETest.Fault.class, com.sun.ts.lib.harness.EETest.SetupException.class,
+                com.sun.ts.lib.harness.ServiceEETest.class, com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
+                com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class, ClientEjbTest.class);
 
-        JavaArchive jsonbprovidertests_ejb_vehicle_client = ShrinkWrap.create(JavaArchive.class, "jsonbprovidertests_ejb_vehicle_client.jar");
-        jsonbprovidertests_ejb_vehicle_client.addClasses(
-            com.sun.ts.tests.common.vehicle.EmptyVehicleRunner.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRunner.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
-            com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
-            ClientEjbTest.class
-            );
-
-        URL resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.xml");
-        if(resURL != null) {
+        URL resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_client.xml");
+        if (resURL != null) {
             jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "application-client.xml");
         }
-        jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"), "MANIFEST.MF");
+        jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(new StringAsset("Main-Class: " + ClientEjbTest.class.getName() + "\n"),
+                "MANIFEST.MF");
 
-        resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_client.jar.sun-application-client.xml");
-        if(resURL != null) {
+        resURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_client.jar.sun-application-client.xml");
+        if (resURL != null) {
             jsonbprovidertests_ejb_vehicle_client.addAsManifestResource(resURL, "sun-application-client.xml");
         }
 
         archiveProcessor.processClientArchive(jsonbprovidertests_ejb_vehicle_client, ClientEjbTest.class, resURL);
 
-
         JavaArchive jsonbprovidertests_ejb_vehicle_ejb = ShrinkWrap.create(JavaArchive.class, "jsonbprovidertests_ejb_vehicle_ejb.jar");
-        jsonbprovidertests_ejb_vehicle_ejb.addClasses(
-            com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
-            com.sun.ts.tests.common.vehicle.VehicleRunnable.class,
-            com.sun.ts.tests.common.vehicle.VehicleClient.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class,
-            com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
-            com.sun.ts.lib.harness.EETest.class,
-            com.sun.ts.lib.harness.EETest.Fault.class,
-            com.sun.ts.lib.harness.EETest.SetupException.class,
-            com.sun.ts.lib.harness.ServiceEETest.class,
-            com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class,
-            com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
-            ClientEjbTest.class       
-        );
+        jsonbprovidertests_ejb_vehicle_ejb.addClasses(com.sun.ts.tests.common.vehicle.VehicleRunnerFactory.class,
+                com.sun.ts.tests.common.vehicle.VehicleRunnable.class, com.sun.ts.tests.common.vehicle.VehicleClient.class,
+                com.sun.ts.tests.common.vehicle.ejb.EJBVehicleRemote.class, com.sun.ts.tests.common.vehicle.ejb.EJBVehicle.class,
+                com.sun.ts.lib.harness.EETest.class, com.sun.ts.lib.harness.EETest.Fault.class,
+                com.sun.ts.lib.harness.EETest.SetupException.class, com.sun.ts.lib.harness.ServiceEETest.class,
+                com.sun.ts.tests.jsonb.provider.MyJsonbProvider.class, com.sun.ts.tests.jsonb.provider.MyJsonbBuilder.class,
+                ClientEjbTest.class);
 
         // The ejb-jar.xml descriptor
-        URL ejbResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.xml");
-        if(ejbResURL != null) {
+        URL ejbResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_ejb.xml");
+        if (ejbResURL != null) {
             jsonbprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "ejb-jar.xml");
         }
-        ejbResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath+"/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
-        if(ejbResURL != null) {
+        ejbResURL = ClientEjbTest.class.getClassLoader().getResource(packagePath + "/ejb_vehicle_ejb.jar.sun-ejb-jar.xml");
+        if (ejbResURL != null) {
             jsonbprovidertests_ejb_vehicle_ejb.addAsManifestResource(ejbResURL, "sun-ejb-jar.xml");
         }
 
         archiveProcessor.processEjbArchive(jsonbprovidertests_ejb_vehicle_ejb, ClientEjbTest.class, ejbResURL);
 
-        EnterpriseArchive jsonbprovidertests_ejb_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class, "jsonbprovidertests_ejb_vehicle.ear");
+        EnterpriseArchive jsonbprovidertests_ejb_vehicle_ear = ShrinkWrap.create(EnterpriseArchive.class,
+                "jsonbprovidertests_ejb_vehicle.ear");
         jsonbprovidertests_ejb_vehicle_ear.addAsModule(jsonbprovidertests_ejb_vehicle_client);
         jsonbprovidertests_ejb_vehicle_ear.addAsModule(jsonbprovidertests_ejb_vehicle_ejb);
         jsonbprovidertests_ejb_vehicle_ear.addAsLibrary(jsonb_alternate_provider);
         jsonbprovidertests_ejb_vehicle_ear.addAsModule(jsonb_alternate_provider);
-        
+
         return jsonbprovidertests_ejb_vehicle_ear;
 
     }
 
     public void removeProviderJarFromCP() throws Exception {
-		if (providerJarDeployed) {
-			URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
-			Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
-			currentThreadClassLoader.close();
-			providerJarDeployed = false;
-		}
-	}
+        if (providerJarDeployed) {
+            URLClassLoader currentThreadClassLoader = (URLClassLoader) Thread.currentThread().getContextClassLoader();
+            Thread.currentThread().setContextClassLoader(currentThreadClassLoader.getParent());
+            currentThreadClassLoader.close();
+            providerJarDeployed = false;
+        }
+    }
 
-	public void createProviderJar() throws Exception {
-        
-        JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar")
-            .addClass(MyJsonbBuilder.class)
-            .addClass(MyJsonbProvider.class)
-            .addAsResource(new UrlAsset(MyJsonbProvider.class.getClassLoader().getResource(providerPackagePath+"/META-INF/services/jakarta.json.bind.spi.JsonbProvider")), "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
+    public void createProviderJar() throws Exception {
+
+        JavaArchive jarArchive = ShrinkWrap.create(JavaArchive.class, "jsonb_alternate_provider.jar").addClass(MyJsonbBuilder.class)
+                .addClass(MyJsonbProvider.class).addAsResource(
+                        new UrlAsset(MyJsonbProvider.class.getClassLoader()
+                                .getResource(providerPackagePath + "/META-INF/services/jakarta.json.bind.spi.JsonbProvider")),
+                        "META-INF/services/jakarta.json.bind.spi.JsonbProvider");
 
         jarArchive.as(ZipExporter.class).exportTo(new File(TEMP_DIR + File.separator + "jsonb_alternate_provider.jar"), true);
 
-		ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
-		URLClassLoader urlClassLoader = new URLClassLoader(
-				new URL[] { new File(TEMP_DIR + File.separator + "jsonb_alternate_provider.jar").toURL() },
-				currentThreadClassLoader);
-		Thread.currentThread().setContextClassLoader(urlClassLoader);
+        ClassLoader currentThreadClassLoader = Thread.currentThread().getContextClassLoader();
+        URLClassLoader urlClassLoader = new URLClassLoader(
+                new URL[] { new File(TEMP_DIR + File.separator + "jsonb_alternate_provider.jar").toURL() }, currentThreadClassLoader);
+        Thread.currentThread().setContextClassLoader(urlClassLoader);
 
-		providerJarDeployed = true;
+        providerJarDeployed = true;
 
-	}
-    
+    }
+
     private static final String MY_JSONBROVIDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbProvider";
     private static final String MY_JSONBBUILDER_CLASS = "com.sun.ts.tests.jsonb.provider.MyJsonbBuilder";
 
@@ -215,7 +194,6 @@ public class ClientEjbTest extends ServiceEETest {
         s.exit();
     }
 
-
     /* Test setup */
 
     /*
@@ -223,13 +201,11 @@ public class ClientEjbTest extends ServiceEETest {
      */
 
     /*
-     * @class.setup_props:
-     * This is needed by the vehicle base classes
+     * @class.setup_props: This is needed by the vehicle base classes
      */
     public void setup(String[] args, Properties p) throws Exception {
-        // super.setup(args, p);
     }
-    
+
     @BeforeEach
     public void setup() throws Exception {
         createProviderJar();
@@ -247,8 +223,7 @@ public class ClientEjbTest extends ServiceEETest {
     /*
      * @testName: jsonbProviderTest1
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * static JsonbProvider provider()
+     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonbProvider provider()
      */
     @Test
     @TargetVehicle("ejb")
@@ -266,8 +241,8 @@ public class ClientEjbTest extends ServiceEETest {
     /*
      * @testName: jsonbProviderTest2
      *
-     * @test_Strategy: Test call of SPI provider method with signature: o public
-     * static JsonbProvider provider(String provider)
+     * @test_Strategy: Test call of SPI provider method with signature: o public static JsonbProvider provider(String
+     * provider)
      */
     @Test
     @TargetVehicle("ejb")
@@ -278,24 +253,25 @@ public class ClientEjbTest extends ServiceEETest {
             JsonbProvider provider = JsonbProvider.provider(MY_JSONBROVIDER_CLASS);
             String providerClass = provider.getClass().getName();
             logger.log(Logger.Level.INFO, "provider class=" + providerClass);
-            if (providerClass.equals(MY_JSONBROVIDER_CLASS))
-            logger.log(Logger.Level.INFO, "Current provider is my provider - expected.");
-            else {
+            if (providerClass.equals(MY_JSONBROVIDER_CLASS)) {
+                logger.log(Logger.Level.INFO, "Current provider is my provider - expected.");
+            } else {
                 logger.log(Logger.Level.ERROR, "Current provider is not my provider - unexpected.");
                 pass = false;
                 ServiceLoader<JsonbProvider> loader = ServiceLoader.load(JsonbProvider.class);
                 Iterator<JsonbProvider> it = loader.iterator();
                 List<JsonbProvider> providers = new ArrayList<>();
-                while(it.hasNext()) {
+                while (it.hasNext()) {
                     providers.add(it.next());
                 }
-                logger.log(Logger.Level.INFO, "Providers: "+providers);
+                logger.log(Logger.Level.INFO, "Providers: " + providers);
             }
         } catch (Exception e) {
             throw new Exception("jsonbProviderTest2 Failed: ", e);
         }
-        if (!pass)
+        if (!pass) {
             throw new Exception("jsonbProviderTest2 Failed");
+        }
     }
 
     /*
@@ -311,9 +287,10 @@ public class ClientEjbTest extends ServiceEETest {
             JsonbBuilder builder = JsonbProvider.provider(MY_JSONBROVIDER_CLASS).create();
             String providerClass = builder.getClass().getName();
             logger.log(Logger.Level.INFO, "jsonb builder class=" + providerClass);
-            if (providerClass.equals(MY_JSONBBUILDER_CLASS))
-            logger.log(Logger.Level.INFO, "Current jsonb builder is my builder - expected.");
-            else {
+
+            if (providerClass.equals(MY_JSONBBUILDER_CLASS)) {
+                logger.log(Logger.Level.INFO, "Current jsonb builder is my builder - expected.");
+            } else {
                 logger.log(Logger.Level.ERROR, "Current jsonb builder is not my builder - unexpected.");
                 throw new Exception("jsonbProviderTest3 Failed");
             }

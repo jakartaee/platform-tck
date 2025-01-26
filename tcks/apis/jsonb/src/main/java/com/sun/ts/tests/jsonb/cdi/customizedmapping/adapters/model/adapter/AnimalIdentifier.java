@@ -29,13 +29,13 @@ import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapte
 import static com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model.adapter.AnimalJson.TYPE.GENERIC;
 
 public class AnimalIdentifier {
-  public AnimalJson.TYPE getType(Animal animal) {
-    if (Cat.class.isAssignableFrom(animal.getClass())) {
-      return CAT;
-    } else if (Dog.class.isAssignableFrom(animal.getClass())) {
-      return DOG;
-    } else {
-      return GENERIC;
+    public AnimalJson.TYPE getType(Animal animal) {
+        if (Cat.class.isAssignableFrom(animal.getClass())) {
+            return CAT;
+        } else if (Dog.class.isAssignableFrom(animal.getClass())) {
+            return DOG;
+        } else {
+            return GENERIC;
+        }
     }
-  }
 }

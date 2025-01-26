@@ -21,43 +21,42 @@
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.serializers.model;
 
 public class Dog extends Animal {
-  private boolean barking;
+    private boolean barking;
 
-  public Dog() {
-  }
+    public Dog() {
+    }
 
-  public Dog(int age, String name, float weight, boolean furry,
-      boolean barking) {
-    super(age, name, weight, furry);
-    this.barking = barking;
-  }
+    public Dog(int age, String name, float weight, boolean furry, boolean barking) {
+        super(age, name, weight, furry);
+        this.barking = barking;
+    }
 
-  public boolean isBarking() {
-    return barking;
-  }
+    public boolean isBarking() {
+        return barking;
+    }
 
-  public void setBarking(boolean barking) {
-    this.barking = barking;
-  }
+    public void setBarking(boolean barking) {
+        this.barking = barking;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (!(o instanceof Dog))
-      return false;
-    if (!super.equals(o))
-      return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Dog) || !super.equals(o)) {
+            return false;
+        }
 
-    Dog dog = (Dog) o;
+        Dog dog = (Dog) o;
 
-    return barking == dog.barking;
-  }
+        return barking == dog.barking;
+    }
 
-  @Override
-  public int hashCode() {
-    int result = super.hashCode();
-    result = 31 * result + (barking ? 1 : 0);
-    return result;
-  }
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (barking ? 1 : 0);
+        return result;
+    }
 }

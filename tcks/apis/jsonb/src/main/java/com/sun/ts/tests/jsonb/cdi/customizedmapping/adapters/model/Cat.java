@@ -21,43 +21,42 @@
 package com.sun.ts.tests.jsonb.cdi.customizedmapping.adapters.model;
 
 public class Cat extends Animal {
-  public Cat() {
-  }
+    public Cat() {
+    }
 
-  public Cat(int age, String name, float weight, boolean furry,
-      boolean cuddly) {
-    super(age, name, weight, furry);
-    this.cuddly = cuddly;
-  }
+    public Cat(int age, String name, float weight, boolean furry, boolean cuddly) {
+        super(age, name, weight, furry);
+        this.cuddly = cuddly;
+    }
 
-  private boolean cuddly;
+    private boolean cuddly;
 
-  public boolean isCuddly() {
-    return cuddly;
-  }
+    public boolean isCuddly() {
+        return cuddly;
+    }
 
-  public void setCuddly(boolean cuddly) {
-    this.cuddly = cuddly;
-  }
+    public void setCuddly(boolean cuddly) {
+        this.cuddly = cuddly;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o)
-      return true;
-    if (!(o instanceof Cat))
-      return false;
-    if (!super.equals(o))
-      return false;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Cat) || !super.equals(o)) {
+            return false;
+        }
 
-    Cat cat = (Cat) o;
+        Cat cat = (Cat) o;
 
-    return cuddly == cat.cuddly;
-  }
+        return cuddly == cat.cuddly;
+    }
 
-  @Override
-  public int hashCode() {
-    int result = super.hashCode();
-    result = 31 * result + (cuddly ? 1 : 0);
-    return result;
-  }
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (cuddly ? 1 : 0);
+        return result;
+    }
 }
