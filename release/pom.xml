@@ -108,7 +108,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>jsonb-platform-tck</artifactId>
+            <artifactId>jsonp-platform-tck</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -119,16 +119,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>transactions-tck</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>runtime</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

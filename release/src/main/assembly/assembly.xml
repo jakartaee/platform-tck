@@ -98,8 +98,6 @@
                 <include>${project.groupId}:jsonb-platform-tck</include>
                 <include>${project.groupId}:pages-platform-tck</include>
                 <include>${project.groupId}:transactions-tck</include>
-                <include>${project.groupId}:libutil</include>
-                <include>${project.groupId}:runtime</include>
                 <include>${project.groupId}:signaturetest</include>
                 <include>${project.groupId}:tsharness</include>
                 <include>${project.groupId}:websocket-tck-platform-tests</include>
@@ -117,19 +115,6 @@
             <outputDirectory>/lib</outputDirectory>
             <useProjectArtifact>false</useProjectArtifact>
             <unpack>true</unpack>
-        </dependencySet>
-        <dependencySet>
-            <includes>
-                <include>jakarta.platform:jakarta.jakartaee-tck-user-guide:zip</include>
-            </includes>
-            <unpack>true</unpack>
-            <unpackOptions>
-                <excludes>
-                    <exclude>META-INF/</exclude>
-                </excludes>
-            </unpackOptions>
-            <outputDirectory>doc</outputDirectory>
-            <useProjectArtifact>true</useProjectArtifact>
         </dependencySet>
     </dependencySets>
 

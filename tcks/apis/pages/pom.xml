@@ -101,17 +101,7 @@
             <artifactId>common</artifactId>
             <version>${jakarta.tck.tools.version}</version>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>runtime</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
-        
+
         <!-- JUnit and Arquillian dependencies-->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

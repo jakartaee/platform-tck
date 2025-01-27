@@ -22,9 +22,6 @@ package com.sun.ts.lib.util;
 
 import javax.naming.InitialContext;
 import java.io.Serializable;
-import java.util.*;
-import javax.naming.*;
-import javax.rmi.PortableRemoteObject;
 import java.util.Properties;
 
 /**
