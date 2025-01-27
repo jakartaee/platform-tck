@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
+
    <parent>
       <groupId>jakarta.tck</groupId>
       <artifactId>cdi-tck-ee-parent</artifactId>
@@ -10,9 +11,12 @@
 
    <artifactId>cdi-ee-tck-dist</artifactId>
    <packaging>pom</packaging>
+
    <name>CDI EE TCK Distribution</name>
 
    <properties>
+      <cdi.core.tck.version>4.1.0</cdi.core.tck.version>
+      <tck.version>4.1.0-SNAPSHOT</tck.version>
       <license.file>apl.txt</license.file>
       <asciidoctor.maven.plugin.version>2.2.2</asciidoctor.maven.plugin.version>
       <asciidoctorj.pdf.version>1.6.2</asciidoctorj.pdf.version>
@@ -38,26 +42,28 @@
          <version>${project.version}</version>
          <type>pom</type>
       </dependency>
-      <!-- core impl -->
+      
+      <!-- TCK itself -->
       <dependency>
          <groupId>jakarta.tck</groupId>
          <artifactId>cdi-tck-ee-impl</artifactId>
-         <version>${project.version}</version>
+         <version>${tck.version}</version>
       </dependency>
+      
       <dependency>
          <groupId>jakarta.tck</groupId>
          <artifactId>cdi-tck-ee-impl</artifactId>
-         <version>${project.version}</version>
+         <version>${tck.version}</version>
          <classifier>sources</classifier>
       </dependency>
+      
       <dependency>
          <groupId>jakarta.tck</groupId>
          <artifactId>cdi-tck-ee-impl</artifactId>
-         <version>${project.version}</version>
-         <classifier>suite</classifier>
+         <version>${tck.version}</version>
          <type>xml</type>
+         <classifier>suite</classifier>
       </dependency>
-
    </dependencies>
 
    <build>

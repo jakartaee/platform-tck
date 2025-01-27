@@ -1,176 +1,224 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <groupId>jakarta.tck</groupId>
-        <artifactId>cdi-tck-ee-parent</artifactId>
-        <version>11.0.0-SNAPSHOT</version>
-    </parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.eclipse.ee4j</groupId>
+        <artifactId>project</artifactId>
+        <version>1.0.9</version>
+        <relativePath />
+    </parent>
+
+    <groupId>jakarta.tck</groupId>
     <artifactId>cdi-tck-ee-impl</artifactId>
+    <version>4.1.0-SNAPSHOT</version>
+
     <name>CDI EE Integration TCK Test Suite</name>
     <description>CDI EE Integration TCK tests</description>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.9.3.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>${servlet.api.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.servlet.jsp</groupId>
-            <artifactId>jakarta.servlet.jsp-api</artifactId>
-            <version>${jsp.api.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.transaction</groupId>
-            <artifactId>jakarta.transaction-api</artifactId>
-            <version>${jta.api.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>jakarta.faces</groupId>
-            <artifactId>jakarta.faces-api</artifactId>
-            <version>${jsf.api.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>${jpa.api.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.ws.rs</groupId>
-            <artifactId>jakarta.ws.rs-api</artifactId>
-            <version>${jaxrs.api.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.jms</groupId>
-            <artifactId>jakarta.jms-api</artifactId>
-            <version>${jms.api.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.resource</groupId>
-            <artifactId>jakarta.resource-api</artifactId>
-            <version>${jca.api.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.ejb</groupId>
-            <artifactId>jakarta.ejb-api</artifactId>
-            <version>${ejb.api.version}</version>
-        </dependency>
-
+        <!-- Jakarta EE dependencies -->
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>cdi-tck-core-impl</artifactId>
-            <version>${cdi.core.tck.version}</version>
+            <version>4.1.0</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>${cdi.api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-el-api</artifactId>
-            <version>${cdi.api.version}</version>
+            <version>4.1.0</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>cdi-tck-api</artifactId>
-            <version>${cdi.core.tck.version}</version>
+            <version>4.1.0</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.enterprise</groupId>
             <artifactId>cdi-tck-ext-lib</artifactId>
-            <version>${cdi.core.tck.version}</version>
+            <version>4.1.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.1.0</version>
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.arquillian.testng</groupId>
-            <artifactId>arquillian-testng-container</artifactId>
-            <version>${arquillian.version}</version>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>4.0.0</version>
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>container-se-api</artifactId>
-            <version>${arquillian.container.se.api.version}</version>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>2.0.1</version>
         </dependency>
 
         <dependency>
-            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
-            <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
-            <version>2.0.0</version>
+            <groupId>jakarta.faces</groupId>
+            <artifactId>jakarta.faces-api</artifactId>
+            <version>4.1.2</version>
         </dependency>
 
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.jms</groupId>
+            <artifactId>jakarta.jms-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.resource</groupId>
+            <artifactId>jakarta.resource-api</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.ejb</groupId>
+            <artifactId>jakarta.ejb-api</artifactId>
+            <version>4.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.interceptor</groupId>
             <artifactId>jakarta.interceptor-api</artifactId>
-            <version>${interceptors.api.version}</version>
+            <version>2.2.0</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
-            <version>${annotations.api.version}</version>
+            <version>3.0.0</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
-            <version>${atinject.api.version}</version>
+            <version>2.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>jakarta.el</groupId>
             <artifactId>jakarta.el-api</artifactId>
-            <version>${el.api.version}</version>
+            <version>6.0.1</version>
+            <scope>test</scope>
         </dependency>
-
+        
         <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>${apache.httpclient.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.9.0</version>
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>${selenium.version}</version>
+            <version>4.7.2</version>
         </dependency>
-
+        
         <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.3.1</version>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chromium-driver</artifactId>
+            <version>4.7.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>4.7.2</version>
         </dependency>
 
         <dependency>
             <groupId>net.sourceforge.htmlunit</groupId>
             <artifactId>htmlunit</artifactId>
-            <version>${htmlunit.version}</version>
+            <version>2.50.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-remote-driver</artifactId>
+            <version>4.7.2</version>
+        </dependency>
+        
+         <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-devtools-v108</artifactId>
+            <version>4.7.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
+            <version>4.7.2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.3.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-container-test-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.arquillian.test</groupId>
+            <artifactId>arquillian-test-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+            <artifactId>shrinkwrap-descriptors-api-javaee</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+            <artifactId>shrinkwrap-descriptors-api-base</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+            <version>1.2.6</version>
         </dependency>
 
         <dependency>
@@ -183,7 +231,14 @@
         <dependency>
             <groupId>org.xmlunit</groupId>
             <artifactId>xmlunit-core</artifactId>
-            <version>${xmlunit.version}</version>
+            <version>2.9.1</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>1.4.01</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -191,7 +246,26 @@
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
-
+            <!-- Sets minimal Maven version to 3.8.6 -->
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-maven</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.8.6</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -231,34 +305,66 @@
             </plugin>
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
                 <configuration>
                     <systemPropertyVariables>
                         <!-- Dummy porting package impls -->
-                        <org.jboss.cdi.tck.spi.Beans>org.jboss.cdi.tck.test.porting.DummyBeans
-                        </org.jboss.cdi.tck.spi.Beans>
-                        <org.jboss.cdi.tck.spi.Contexts>org.jboss.cdi.tck.test.porting.DummyContexts
-                        </org.jboss.cdi.tck.spi.Contexts>
-                        <org.jboss.cdi.tck.spi.Contextuals>org.jboss.cdi.tck.test.porting.DummyContextuals
-                        </org.jboss.cdi.tck.spi.Contextuals>
-                        <org.jboss.cdi.tck.spi.CreationalContexts>org.jboss.cdi.tck.test.porting.DummyCreationalContexts
-                        </org.jboss.cdi.tck.spi.CreationalContexts>
+                        <org.jboss.cdi.tck.spi.Beans>org.jboss.cdi.tck.test.porting.DummyBeans</org.jboss.cdi.tck.spi.Beans>
+                        <org.jboss.cdi.tck.spi.Contexts>org.jboss.cdi.tck.test.porting.DummyContexts</org.jboss.cdi.tck.spi.Contexts>
+                        <org.jboss.cdi.tck.spi.Contextuals>org.jboss.cdi.tck.test.porting.DummyContextuals</org.jboss.cdi.tck.spi.Contextuals>
+                        <org.jboss.cdi.tck.spi.CreationalContexts>org.jboss.cdi.tck.test.porting.DummyCreationalContexts</org.jboss.cdi.tck.spi.CreationalContexts>
                         <org.jboss.cdi.tck.spi.EL>org.jboss.cdi.tck.test.porting.DummyEL</org.jboss.cdi.tck.spi.EL>
                         <org.jboss.cdi.tck.libraryDirectory>target/dependency/lib</org.jboss.cdi.tck.libraryDirectory>
                         <org.jboss.cdi.tck.testDataSource>java:jboss/datasources/ExampleDS</org.jboss.cdi.tck.testDataSource>
-
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            
+            <!-- Create Sources for the generated jar -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
                         <goals>
                             <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Create Javadoc for the generated jar -->
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+            
+            <!-- Generate a "consumer pom" for the generated jar -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <flattenMode>ossrh</flattenMode>
+                </configuration>
+                <executions>
+                    <!-- enable flattening -->
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <!-- ensure proper cleanup -->
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -274,23 +380,26 @@
                     <name>!skipTckAudit</name>
                 </property>
             </activation>
+
             <dependencies>
                 <dependency>
                     <groupId>org.jboss.test-audit</groupId>
                     <artifactId>jboss-test-audit-api</artifactId>
-                    <version>${jboss.test.audit.version}</version>
+                    <version>2.0.0.Final</version>
                 </dependency>
                 <dependency>
                     <groupId>org.jboss.test-audit</groupId>
                     <artifactId>jboss-test-audit-impl</artifactId>
-                    <version>${jboss.test.audit.version}</version>
+                    <version>2.0.0.Final</version>
                 </dependency>
             </dependencies>
+
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.13.0</version>
                         <configuration>
                             <!-- this was a really ugly workaround for passing multiple arguments
                                 to the annotation processor tool, see MCOMPILER-75 and MCOMPILER-135 for
@@ -308,9 +417,11 @@
                             <testCompilerArgument>-proc:none</testCompilerArgument>
                         </configuration>
                     </plugin>
+                    
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>3.6.0</version>
                         <executions>
                             <execution>
                                 <id>attach-report-artifacts</id>
@@ -352,9 +463,11 @@
                             </execution>
                         </executions>
                     </plugin>
+                    
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.5.0</version>
                         <executions>
                             <execution>
                                 <phase>generate-sources</phase>
@@ -392,13 +505,10 @@
                                     </arguments>
                                 </configuration>
                             </execution>
-
                         </executions>
                     </plugin>
                 </plugins>
             </build>
         </profile>
-
     </profiles>
-
 </project>

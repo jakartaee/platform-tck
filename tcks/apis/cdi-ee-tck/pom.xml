@@ -1,17 +1,25 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.eclipse.ee4j</groupId>
         <artifactId>project</artifactId>
         <version>1.0.9</version>
         <relativePath />
     </parent>
-    <modelVersion>4.0.0</modelVersion>
+
     <groupId>jakarta.tck</groupId>
     <artifactId>cdi-tck-ee-parent</artifactId>
     <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <name>CDI EE Integration TCK Parent</name>
+
+    <modules>
+        <module>tck</module>
+        <module>tck-dist</module>
+    </modules>
 
     <scm>
         <connection>scm:git:git@github.com:jakartaee/platform-tck.git</connection>
@@ -19,62 +27,4 @@
         <url>https://github.com/jakartaee/platform-tck</url>
         <tag>11.0.0-SNAPSHOT</tag>
     </scm>
-
-    <properties>
-        <maven.compiler.release>17</maven.compiler.release>
-        <testng.version>7.9.0</testng.version>
-        <jboss.test.audit.version>2.0.0.Final</jboss.test.audit.version>
-        <arquillian.version>1.9.1.Final</arquillian.version>
-        <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
-        <apache.httpclient.version>3.1</apache.httpclient.version>
-        <htmlunit.version>2.50.0</htmlunit.version>
-        <selenium.version>4.7.2</selenium.version>
-        <xmlunit.version>2.9.1</xmlunit.version>
-
-        <!-- CDI API -->
-        <cdi.api.version>4.1.0</cdi.api.version>
-        <cdi.core.tck.version>4.1.0</cdi.core.tck.version>
-        <!-- Jakarta EE APIs Core -->
-        <annotations.api.version>3.0.0</annotations.api.version>
-        <interceptors.api.version>2.2.0</interceptors.api.version>
-        <atinject.api.version>2.0.1</atinject.api.version>
-        <el.api.version>6.0.0</el.api.version>
-
-        <!-- Jakarta EE APIs in Web Profile -->
-        <!-- Wave0 -->
-        <jpa.api.version>3.2.0</jpa.api.version>
-        <jms.api.version>3.1.0</jms.api.version>
-        <!-- Wave1 -->
-        <servlet.api.version>6.1.0</servlet.api.version>
-        <!-- Wave2 -->
-        <jsp.api.version>4.0.0</jsp.api.version>
-
-        <!-- Wave4 -->
-        <jaxrs.api.version>3.1.0</jaxrs.api.version>
-        <jta.api.version>2.0.1</jta.api.version>
-
-        <!-- Wave5 -->
-        <ejb.api.version>4.0.1</ejb.api.version>
-        <jca.api.version>2.1.0</jca.api.version>
-
-        <!-- Wave6 -->
-        <jsf.api.version>4.1.0-M2</jsf.api.version>
-    </properties>
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.jboss.arquillian</groupId>
-                <artifactId>arquillian-bom</artifactId>
-                <version>${arquillian.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <modules>
-        <module>tck</module>
-        <module>tck-dist</module>
-    </modules>
 </project>
