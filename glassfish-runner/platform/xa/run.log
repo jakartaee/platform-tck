@@ -1,0 +1,206 @@
+[[1;33mWARNING[m] Cache requires Maven >= 3.9, but version is 3.8.7. Disabling cache.
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] Failed to build parent project for jakarta:glassfish.xa-platform-tck:jar:11.0.0-SNAPSHOT
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for jakarta:glassfish.xa-platform-tck:jar:11.0.0-SNAPSHOT
+[[1;33mWARNING[m] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.codehaus.mojo:exec-maven-plugin @ line 267, column 21
+[[1;33mWARNING[m] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.apache.maven.plugins:maven-failsafe-plugin @ line 620, column 21
+[[1;33mWARNING[m] 'build.plugins.plugin.version' for org.codehaus.mojo:sql-maven-plugin is missing. @ line 198, column 21
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m-----------------< [0;36mjakarta:glassfish.xa-platform-tck[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding glassfish.xa-platform-tck 11.0.0-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-clean-plugin:3.2.0:clean[m [1m(default-clean)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Deleting /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-enforcer-plugin:3.5.0:enforce[m [1m(enforce-maven)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspotless-maven-plugin:2.36.0:check[m [1m(check-spotless-poms)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Index file does not exist. Fallback to an empty index
+[[1;34mINFO[m] Sorting file /tmp/pom6044778162177655007.xml
+[[1;34mINFO[m] Pom file is already sorted, exiting
+[[1;34mINFO[m] Sorting file /tmp/pom2098174275912939995.xml
+[[1;34mINFO[m] Pom file is already sorted, exiting
+[[1;34mINFO[m] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.0.2:copy-resources[m [1m(copy-resource-one)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 1 resource
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.0.2:resources[m [1m(default-resources)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] skip non existing resourceDirectory /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/src/main/resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:compile[m [1m(default-compile)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] No sources to compile
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.0.2:testResources[m [1m(default-testResources)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Using 'UTF-8' encoding to copy filtered resources.
+[[1;34mINFO[m] Copying 4 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:testCompile[m [1m(default-testCompile)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;34mINFO[m] Compiling 2 source files with javac [debug release 17] to target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:3.5.2:test[m [1m(default-test)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:3.4.2:jar[m [1m(default-jar)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;33mWARNING[m] JAR will be empty - no content was marked for inclusion!
+[[1;34mINFO[m] Building jar: /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish.xa-platform-tck-11.0.0-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mcyclonedx-maven-plugin:2.7.9:makeAggregateBom[m [1m(default)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] CycloneDX: Resolving Dependencies
+Downloading from maven-default-http-blocker: http://0.0.0.0/jakarta/tck/common/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] Could not transfer metadata jakarta.tck:common:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/common/11.0.0-SNAPSHOT/maven-metadata.xml
+Downloading from maven-default-http-blocker: http://0.0.0.0/jakarta/tck/runtime/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] Could not transfer metadata jakarta.tck:runtime:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/runtime/11.0.0-SNAPSHOT/maven-metadata.xml
+Downloading from maven-default-http-blocker: http://0.0.0.0/jakarta/tck/arquillian/arquillian-protocol-common/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] Could not transfer metadata jakarta.tck.arquillian:arquillian-protocol-common:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/arquillian/arquillian-protocol-common/11.0.0-SNAPSHOT/maven-metadata.xml
+Downloading from maven-default-http-blocker: http://0.0.0.0/jakarta/tck/tck.arquillian.parent/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] Could not transfer metadata jakarta.tck:tck.arquillian.parent:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/tck.arquillian.parent/11.0.0-SNAPSHOT/maven-metadata.xml
+Downloading from maven-default-http-blocker: http://0.0.0.0/jakarta/tck/arquillian/arquillian-protocol-javatest/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] Could not transfer metadata jakarta.tck.arquillian:arquillian-protocol-javatest:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/arquillian/arquillian-protocol-javatest/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] jakarta.tck:tck.arquillian.parent:11.0.0-SNAPSHOT/maven-metadata.xmlfailed to transfer from http://0.0.0.0/ during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of maven-default-http-blocker has elapsed or updates are forced. Original error: Could not transfer metadata jakarta.tck:tck.arquillian.parent:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/tck.arquillian.parent/11.0.0-SNAPSHOT/maven-metadata.xml
+Downloading from maven-default-http-blocker: http://0.0.0.0/jakarta/tck/arquillian/arquillian-protocol-lib/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] Could not transfer metadata jakarta.tck.arquillian:arquillian-protocol-lib:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/arquillian/arquillian-protocol-lib/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] jakarta.tck:tck.arquillian.parent:11.0.0-SNAPSHOT/maven-metadata.xmlfailed to transfer from http://0.0.0.0/ during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of maven-default-http-blocker has elapsed or updates are forced. Original error: Could not transfer metadata jakarta.tck:tck.arquillian.parent:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/tck.arquillian.parent/11.0.0-SNAPSHOT/maven-metadata.xml
+Downloading from maven-default-http-blocker: http://0.0.0.0/jakarta/tck/arquillian/arquillian-protocol-appclient/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] Could not transfer metadata jakarta.tck.arquillian:arquillian-protocol-appclient:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/arquillian/arquillian-protocol-appclient/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] jakarta.tck:tck.arquillian.parent:11.0.0-SNAPSHOT/maven-metadata.xmlfailed to transfer from http://0.0.0.0/ during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of maven-default-http-blocker has elapsed or updates are forced. Original error: Could not transfer metadata jakarta.tck:tck.arquillian.parent:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/tck.arquillian.parent/11.0.0-SNAPSHOT/maven-metadata.xml
+Downloading from maven-default-http-blocker: http://0.0.0.0/jakarta/tck/arquillian/tck-porting-lib/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;33mWARNING[m] Could not transfer metadata jakarta.tck.arquillian:tck-porting-lib:11.0.0-SNAPSHOT/maven-metadata.xml from/to maven-default-http-blocker (http://0.0.0.0/): transfer failed for http://0.0.0.0/jakarta/tck/arquillian/tck-porting-lib/11.0.0-SNAPSHOT/maven-metadata.xml
+[[1;34mINFO[m] CycloneDX: Creating BOM version 1.4 with 116 component(s)
+[[1;34mINFO[m] CycloneDX: Writing and validating BOM (XML): /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/bom.xml
+[[1;34mINFO[m]            attaching as glassfish.xa-platform-tck-11.0.0-SNAPSHOT-cyclonedx.xml
+[[1;34mINFO[m] CycloneDX: Writing and validating BOM (JSON): /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/bom.json
+[[1;33mWARNING[m] Unknown keyword additionalItems - you should define your own Meta Schema. If the keyword is irrelevant for validation, just use a NonValidationKeyword
+[[1;34mINFO[m]            attaching as glassfish.xa-platform-tck-11.0.0-SNAPSHOT-cyclonedx.json
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.2.0:unpack[m [1m(unpack)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Configured Artifact: org.glassfish.main.distributions:glassfish:8.0.0-JDK17-M7:zip
+[[1;34mINFO[m] Unpacking /home/g/.m2/repository/org/glassfish/main/distributions/glassfish/8.0.0-JDK17-M7/glassfish-8.0.0-JDK17-M7.zip to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target with includes "" and excludes ""
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.2.0:unpack[m [1m(1-unpack)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Configured Artifact: org.glassfish.main.distributions:glassfish:8.0.0-JDK17-M7:zip
+[[1;34mINFO[m] Unpacking /home/g/.m2/repository/org/glassfish/main/distributions/glassfish/8.0.0-JDK17-M7/glassfish-8.0.0-JDK17-M7.zip to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target with includes "" and excludes ""
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-dependency-plugin:3.2.0:copy[m [1m(2-copy-lib)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+[[1;34mINFO[m] Configured Artifact: jakarta.tck.arquillian:arquillian-protocol-lib:?:jar
+[[1;34mINFO[m] Configured Artifact: jakarta.tck:libutil:?:jar
+[[1;34mINFO[m] Configured Artifact: jakarta.tck.arquillian:tck-porting-lib:?:jar
+[[1;34mINFO[m] Configured Artifact: jakarta.tck:runtime:?:jar
+[[1;34mINFO[m] Configured Artifact: org.apache.derby:derbyclient:?:jar
+[[1;34mINFO[m] Configured Artifact: org.apache.derby:derbytools:?:jar
+[[1;34mINFO[m] Configured Artifact: jakarta.tck.arquillian:arquillian-protocol-lib:?:jar
+[[1;34mINFO[m] Copying arquillian-protocol-lib-11.0.0-SNAPSHOT.jar to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/lib/arquillian-protocol-lib.jar
+[[1;34mINFO[m] Copying libutil-11.0.0-SNAPSHOT.jar to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/lib/libutil.jar
+[[1;34mINFO[m] Copying tck-porting-lib-11.0.0-SNAPSHOT.jar to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/lib/tck-porting-lib.jar
+[[1;34mINFO[m] Copying runtime-11.0.0-SNAPSHOT.jar to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/lib/runtime.jar
+[[1;34mINFO[m] Copying derbyclient-10.15.2.0.jar to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/lib/derbyclient.jar
+[[1;34mINFO[m] Copying derbytools-10.15.2.0.jar to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/lib/derbytools.jar
+[[1;34mINFO[m] Copying arquillian-protocol-lib-11.0.0-SNAPSHOT.jar to /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/protocol/protocol.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(1-start-database)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+Database already started on host 0.0.0.0, port 1527.
+Command start-database executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(10-start-database)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+Database already started on host 0.0.0.0, port 1527.
+Command start-database executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(11-stop-domain)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+CLI306: Warning - The server located at /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/domains/domain1 is not running.
+Command stop-domain executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(12-start-domain)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+Waiting for domain1 to start ....
+Waiting finished after 3,593 ms.
+Successfully started the domain : domain1
+domain  Location: /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/domains/domain1
+Log File: /home/g/tck/pt/platform-tck/glassfish-runner/platform/xa-platform-tck/target/glassfish8/glassfish/domains/domain1/logs/server.log
+Admin Port: 4,848
+Command start-domain executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(13-create-jvm-options)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+Created 6 option(s)
+Command create-jvm-options executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(18-create-xa-jdbc-pool)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+JDBC connection pool cts-derby-XA-pool created successfully.
+Command create-jdbc-connection-pool executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(19-create-jndi)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+JDBC resource eis/JDBCwhitebox-xa created successfully.
+Command create-jdbc-resource executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(20-create-jndi)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+JDBC resource eis/JDBCwhitebox-tx created successfully.
+Command create-jdbc-resource executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(21-create-jndi)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+JDBC resource eis/JDBCwhitebox-notx created successfully.
+Command create-jdbc-resource executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(22-list-jdbc-connection-pools)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+__TimerPool
+DerbyPool
+cts-derby-XA-pool
+Command list-jdbc-connection-pools executed successfully.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:3.2.0:exec[m [1m(23-ping-connection-pool)[m @ [36mglassfish.xa-platform-tck[0;1m ---[m
+CLI031: Warning: Option "target" is obsolete and will be ignored.
+CLI031: Warning: Option "target" is obsolete and will be ignored.
+remote failure: Ping Connection Pool failed for org.glassfish.resourcebase.resources.api.PoolInfo@971d0bcf[jndiName=cts-derby-XA-pool, applicationName=null, moduleName=null].
+Connection could not be allocated because: DERBY SQL error: ERRORCODE: 0, SQLSTATE: XJ001, SQLERRMC: java.lang.NullPointerExceptionCannot invoke "org.apache.derby.iapi.services.cache.CacheManager.find(Object)" because "this.containerCache" is nullXJ001.U Please check the server.log for more details.
+Command ping-connection-pool failed.
+[[1;31mERROR[m] Command execution failed.
+[1;31morg.apache.commons.exec.ExecuteException[m: [1;31mProcess exited with an error: 1 (Exit value: 1)[m
+    [1mat[m org.apache.commons.exec.DefaultExecutor.executeInternal ([1mDefaultExecutor.java:355[m)
+    [1mat[m org.apache.commons.exec.DefaultExecutor.execute ([1mDefaultExecutor.java:253[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.executeCommandLine ([1mExecMojo.java:884[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.executeCommandLine ([1mExecMojo.java:844[m)
+    [1mat[m org.codehaus.mojo.exec.ExecMojo.execute ([1mExecMojo.java:450[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo ([1mDefaultBuildPluginManager.java:137[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2 ([1mMojoExecutor.java:370[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.doExecute ([1mMojoExecutor.java:351[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:215[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:171[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:163[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:117[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:81[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:56[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:128[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:298[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:192[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:105[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:960[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:293[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:196[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:77[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:569[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:283[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:226[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:407[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:348[m)
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  18.129 s
+[[1;34mINFO[m] Finished at: 2025-01-23T14:37:56+05:30
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32morg.codehaus.mojo:exec-maven-plugin:3.2.0:exec[m [1m(23-ping-connection-pool)[m on project [36mglassfish.xa-platform-tck[m: [1;31mCommand execution failed.[m: Process exited with an error: 1 (Exit value: 1) -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

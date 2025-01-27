@@ -11,7 +11,7 @@
     
     <groupId>org.jboss.weld</groupId>
     <artifactId>lang-model-tck-runner</artifactId>
-    <version>4.0.5-SNAPSHOT</version>
+    <version>4.0.10</version>
 
     <name>CDI Lite Language Model TCK Runner</name>
 
@@ -215,22 +215,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>javaee-full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>webprofile</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-    </profiles>
-
 </project>

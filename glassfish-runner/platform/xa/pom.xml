@@ -22,14 +22,14 @@
         <groupId>org.glassfish</groupId>
         <artifactId>standalone-tck</artifactId>
         <version>11.0.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
-    <groupId>jakarta</groupId>
+    <groupId>org.glassfish</groupId>
     <artifactId>glassfish.xa-platform-tck</artifactId>
     <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <properties>
-        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
+        <arquillian.version>1.9.1.Final</arquillian.version>
         <connectionpoolid>cts-derby-pool</connectionpoolid>
         <db.delimiter>;</db.delimiter>
 
@@ -39,12 +39,6 @@
         <derby.port>1527</derby.port>
         <derby.server>localhost</derby.server>
         <derby.user>cts1</derby.user>
-
-        <!-- glassfish properties -->
-        <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
-        <glassfish.home>${project.build.directory}/glassfish7</glassfish.home>
-        <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <javadb.lib>${glassfish.home}/javadb/lib</javadb.lib>
 
         <!-- JDBC properties -->
         <jdbc.db>derby</jdbc.db>
@@ -59,7 +53,6 @@
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <rapassword1>cts1</rapassword1>
         <rauser1>cts1</rauser1>
-        <sql.directory>./sql</sql.directory>
         <tck.artifactId>jakarta.tck.jdbc</tck.artifactId>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
 
@@ -84,60 +77,9 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>common</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
-        <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>xa</artifactId>
             <version>11.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian.core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.core.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>tck-porting-lib</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
@@ -145,98 +87,9 @@
             <version>1.6</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbytools</artifactId>
-            <version>10.15.2.0</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>1-unpack</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>2-copy-lib</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>jakarta.tck.arquillian</groupId>
-                                    <artifactId>arquillian-protocol-lib</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>arquillian-protocol-lib.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.tck</groupId>
-                                    <artifactId>common</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>common.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.tck.arquillian</groupId>
-                                    <artifactId>tck-porting-lib</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>tck-porting-lib.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.apache.derby</groupId>
-                                    <artifactId>derbyclient</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>derbyclient.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>org.apache.derby</groupId>
-                                    <artifactId>derbytools</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${glassfish.lib.dir}</outputDirectory>
-                                    <destFileName>derbytools.jar</destFileName>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.tck.arquillian</groupId>
-                                    <artifactId>arquillian-protocol-lib</artifactId>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}/protocol</outputDirectory>
-                                    <destFileName>protocol.jar</destFileName>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -290,7 +143,13 @@
                         </goals>
                         <phase>pre-integration-test</phase>
                         <configuration>
-                            <sqlCommand>CREATE SCHEMA CTS1 AUTHORIZATION CTS1;</sqlCommand>
+                            <srcFiles>
+                                <srcFile>${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sql</srcFile>
+                                <srcFile>${sql.directory}/${jdbc.db}/${jdbc.db}.ddl.sprocs.sql</srcFile>
+                            </srcFiles>
+                            <sqlCommand>CREATE SCHEMA CTS1 AUTHORIZATION CTS1;
+CALL sqlj.install_jar('${glassfish.lib.dir}/jdbc-tck.jar', 'CTS1.CS_Procs', 0);
+CALL SYSCS_UTIL.SYSCS_SET_DATABASE_PROPERTY('derby.database.classpath', 'CTS1.CS_Procs');</sqlCommand>
                         </configuration>
                     </execution>
                 </executions>
@@ -501,10 +360,6 @@
                                 <argument>create-connector-connection-pool</argument>
                                 <argument>--raname</argument>
                                 <argument>whitebox-tx</argument>
-                                <argument>--user</argument>
-                                <argument>${admin.user}</argument>
-                                <argument>--passwordfile</argument>
-                                <argument>${password.file}</argument>
                                 <argument>--property</argument>
                                 <argument>user=cts1:password=cts1:TSRValue=comp/TransactionSynchronizationRegistry</argument>
                                 <argument>--connectiondefinition</argument>
@@ -645,32 +500,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <id>unpack</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <executions>
@@ -683,14 +512,14 @@
                         <configuration>
                             <dependenciesToScan>jakarta.tck:xa</dependenciesToScan>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.javadb.lib}/derbytools.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.javadb.lib}/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.javadb.lib}/derby.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <ts.home>${ts.home}</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
@@ -715,15 +544,15 @@
                         <configuration>
                             <dependenciesToScan>jakarta.tck:xa</dependenciesToScan>
                             <additionalClasspathElements>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbytools.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derbyclient.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/javadb/lib/derby.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/glassfish-naming.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.javadb.lib}/derbytools.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.javadb.lib}/derbyclient.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.javadb.lib}/derby.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <java.naming.factory.initial>${java.naming.factory.initial}</java.naming.factory.initial>
+                                <ts.home>${ts.home}</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
                                 <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
                             </systemPropertyVariables>
@@ -736,21 +565,4 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-    </profiles>
 </project>

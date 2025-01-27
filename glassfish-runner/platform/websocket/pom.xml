@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2023, 2024 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v. 2.0, which is available at
+    http://www.eclipse.org/legal/epl-2.0.
+
+    This Source Code may also be made available under the following Secondary
+    Licenses when the conditions for such availability set forth in the
+    Eclipse Public License v. 2.0 are satisfied: GNU General Public License,
+    version 2 with the GNU Classpath Exception, which is available at
+    https://www.gnu.org/software/classpath/license.html.
+
+    SPDX-License-Identifier: EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.glassfish</groupId>
+        <artifactId>standalone-tck</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+    <groupId>org.glassfish</groupId>
+    <artifactId>glassfish.websocket-platform-tck</artifactId>
+    <version>11.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties></properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>websocket-tck-platform-tests</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.tck</groupId>
+            <artifactId>websocket-tck-spec-tests</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.omnifaces.arquillian</groupId>
+            <artifactId>arquillian-glassfish-server-managed</artifactId>
+            <version>1.6</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>unpack-certificates</id>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <phase>generate-test-resources</phase>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>jakarta.tck</groupId>
+                                    <artifactId>libutil</artifactId>
+                                    <type>jar</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <includes>**/**cts_cert,**/**clientcert.jks,**/**clientcert.p12</includes>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>1-start-domain</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>start-domain</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>2-add-user-j2ee</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/j2ee.pass</argument>
+                                <argument>create-file-user</argument>
+                                <argument>--groups</argument>
+                                <argument>staff:mgr</argument>
+                                <argument>j2ee</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>3-add-user-javajoe</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>--passwordfile</argument>
+                                <argument>${project.basedir}/javajoe.pass</argument>
+                                <argument>create-file-user</argument>
+                                <argument>--groups</argument>
+                                <argument>guest</argument>
+                                <argument>javajoe</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>4-stopdomain</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <executable>${exec.asadmin}</executable>
+                            <arguments>
+                                <argument>stop-domain</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <executions>
+                    <execution>
+                        <id>websocket-platform-tests</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <argLine>-Duser.language=en -Duser.country=US -Djava.locale.providers=COMPAT,CLDR
+                                -Djava.protocol.handler.pkgs=javax.net.ssl
+                                -Djavax.net.ssl.keyStore=${project.build.directory}/certificates/clientcert.jks
+                                -Djavax.net.ssl.keyStorePassword=changeit
+                                -Djavax.net.ssl.trustStore=${project.build.directory}/${glassfish.toplevel.dir}/glassfish/domains/domain1/config/cacerts.jks</argLine>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${glassfish.modules}/jakarta.websocket-api.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/jakarta.websocket-client-api.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/jakarta.servlet-api.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/jakarta.enterprise.cdi-api.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/tyrus-websocket-core.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/tyrus-client.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/tyrus-core.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/tyrus-container-grizzly.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/glassfish-grizzly-extra-all.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/nucleus-grizzly-all.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/tyrus-server.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/tyrus-container-servlet.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/tyrus-container-grizzly-client.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${glassfish.modules}/tyrus-spi.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <dependenciesToScan>jakarta.tck:websocket-tck-platform-tests</dependenciesToScan>
+                            <systemPropertyVariables>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <ws_wait>5</ws_wait>
+                                <lib.name>cts</lib.name>
+                                <user>j2ee</user>
+                                <password>j2ee</password>
+                                <authuser>javajoe</authuser>
+                                <authpassword>javajoe</authpassword>
+                                <porting.ts.url.class.1>com.sun.ts.tests.websocket.lib.implementation.sun.common.SunRIURL</porting.ts.url.class.1>
+                                <securedWebServicePort>8181</securedWebServicePort>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

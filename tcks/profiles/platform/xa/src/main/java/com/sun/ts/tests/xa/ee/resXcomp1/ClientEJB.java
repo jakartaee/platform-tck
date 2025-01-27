@@ -24,6 +24,7 @@
 
 package com.sun.ts.tests.xa.ee.resXcomp1;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
@@ -34,6 +35,7 @@ import org.jboss.arquillian.container.test.api.TargetsContainer;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.exporter.ZipExporter;
 import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.Tag;
@@ -112,9 +114,14 @@ public class ClientEJB extends Client implements Serializable {
 		}
 
 		EnterpriseArchive ear = ShrinkWrap.create(EnterpriseArchive.class, "xa_resXcomp1_ejb_vehicle.ear");
+		//System.out.println("#######################" + ejbClient.toString(true));
 		ear.addAsModule(ejbClient);
 		ear.addAsModule(ejbVehicle);
+		//System.out.println("#######################" + ejbVehicle.toString(true));
 		ear.addAsModule(ejb);
+		//System.out.println("#######################" + ear.toString(true));
+		//File target = new File("/tmp/", "temp.ear");
+		//ear.as(ZipExporter.class).exportTo(target, true);
 		return ear;
 	};
 

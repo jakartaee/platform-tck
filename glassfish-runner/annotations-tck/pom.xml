@@ -27,40 +27,21 @@
         <version>1.0.9</version>
         <relativePath />
     </parent>
-    
-    <groupId>jakarta.tck</groupId>
+    <groupId>org.glassfish</groupId>
     <artifactId>glassfish.annotations-tck</artifactId>
     <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
-        <glassfish.version>8.0.0-M9</glassfish.version>
-        <glassfish.toplevel.dir>glassfish8</glassfish.toplevel.dir>
         <tck.artifactId>jakarta-annotations-tck</tck.artifactId>
         <tck.version>3.0.0</tck.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.junit</groupId>
-                <artifactId>junit-bom</artifactId>
-                <version>5.11.4</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>jakartatck</groupId>
-            <artifactId>jakarta-annotations-tck</artifactId>
-            <version>3.0.0</version>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>${tck.artifactId}</artifactId>
+            <version>${tck.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
@@ -84,7 +65,7 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>jakartatck</groupId>
+                                    <groupId>jakarta.tck</groupId>
                                     <artifactId>${tck.artifactId}</artifactId>
                                     <version>${tck.version}</version>
                                     <type>zip</type>
@@ -135,7 +116,7 @@
                             <goal>verify</goal>
                         </goals>
                         <configuration>
-                            <dependenciesToScan>jakartatck:${tck.artifactId}</dependenciesToScan>
+                            <dependenciesToScan>jakarta.annotation:${tck.artifactId}</dependenciesToScan>
                             <systemPropertyVariables>
                                 <jimage.dir>${project.build.directory}/jdk11-bundle</jimage.dir>
                                 <sigTestClasspath>${project.build.directory}/${glassfish.toplevel.dir}/glassfish/modules/jakarta.annotation-api.jar:${project.build.directory}/jdk11-bundle/java.base:${project.build.directory}/jdk11-bundle/java.rmi:${project.build.directory}/jdk11-bundle/java.sql:${project.build.directory}/jdk11-bundle/java.naming</sigTestClasspath>
@@ -160,22 +141,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-    </profiles>
 </project>

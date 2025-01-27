@@ -24,43 +24,33 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.eclipse.ee4j</groupId>
-        <artifactId>project</artifactId>
-        <version>1.0.9</version>
-        <relativePath />
+        <groupId>org.glassfish</groupId>
+        <artifactId>standalone-tck</artifactId>
+        <version>11.0.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
-
-    <groupId>jakarta</groupId>
+    <groupId>org.glassfish</groupId>
     <artifactId>glassfish.mail-platform-tck</artifactId>
     <version>11.0.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
-        <arquillian.core.version>1.9.1.Final</arquillian.core.version>
-        <arquillian.junit>1.9.1.Final</arquillian.junit>
-        <destinationURL>imap://${escaped.javamail.username}:${javamail.password}@${javamail.server}:${imap.port}</destinationURL>
-        <escaped.javamail.username>user01%40james.local</escaped.javamail.username>
-        <exec.asadmin>${glassfish.home}/glassfish/bin/asadmin</exec.asadmin>
-        <glassfish.home>${project.build.directory}/glassfish8</glassfish.home>
-        <glassfish.lib.dir>${glassfish.home}/glassfish/lib</glassfish.lib.dir>
-        <glassfish.module.dir>${glassfish.home}/glassfish/modules</glassfish.module.dir>
-        <glassfish.version>8.0.0-M9</glassfish.version>
-        
+        <destinationURL>imap://${escaped.mail.username}:${mail.password}@${mail.server}:${imap.port}</destinationURL>
+        <escaped.mail.username>user01%40james.local</escaped.mail.username>
         <imap.port>1143</imap.port>
-        <javamail.mailbox>test1</javamail.mailbox>
-        <!-- mail connection properties -->
-        <javamail.password>1234</javamail.password>
-        <javamail.protocol>imap</javamail.protocol>
-        <javamail.root.path></javamail.root.path>
-        <javamail.server>localhost</javamail.server>
-        <javamail.username>user01@james.local</javamail.username>
         <jndiName>mail/Session</jndiName>
         <junit.jupiter.version>5.9.1</junit.jupiter.version>
         <mail.from>user01@james.local</mail.from>
         <mail.host>localhost</mail.host>
+        <mail.mailbox>test1</mail.mailbox>
+        <!-- mail connection properties -->
         <mail.password>1234</mail.password>
+        <mail.password>1234</mail.password>
+        <mail.protocol>imap</mail.protocol>
+        <mail.root.path></mail.root.path>
+        <mail.server>localhost</mail.server>
         <mail.user>user01</mail.user>
-        <mailboxFolder1>${project.build.directory}/../mailboxes</mailboxFolder1>
+        <mail.username>user01@james.local</mail.username>
+        <mailboxFolder1>${project.basedir}/mailboxes</mailboxFolder1>
         <smtp.port>1025</smtp.port>
         <tck.version>11.0.0-SNAPSHOT</tck.version>
     </properties>
@@ -78,22 +68,6 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>jakarta.mail</groupId>
-            <artifactId>jakarta.mail-api</artifactId>
-            <version>2.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-        </dependency>
-        
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>common</artifactId>
-            <version>11.0.0-RC4</version>
-        </dependency>
-
-        <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>javamail</artifactId>
             <version>11.0.0-SNAPSHOT</version>
@@ -105,100 +79,20 @@
         </dependency>
        
         <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-test-spi</artifactId>
-            <version>${arquillian.core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.junit5</groupId>
-            <artifactId>arquillian-junit5-container</artifactId>
-            <version>${arquillian.core.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-appclient</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-javatest</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>arquillian-protocol-lib</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck.arquillian</groupId>
-            <artifactId>tck-porting-lib</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.omnifaces.arquillian</groupId>
             <artifactId>arquillian-glassfish-server-managed</artifactId>
             <version>1.7</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.container</groupId>
-            <artifactId>arquillian-container-spi</artifactId>
-            <version>${arquillian.junit}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.core</groupId>
-            <artifactId>arquillian-core-spi</artifactId>
-            <version>${arquillian.junit}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.arquillian.test</groupId>
-            <artifactId>arquillian-test-impl-base</artifactId>
-            <version>${arquillian.junit}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.shrinkwrap</groupId>
-            <artifactId>shrinkwrap-api</artifactId>
-            <version>1.2.6</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>3.2.0</version>
                 <executions>
-                    <execution>
-                        <id>1-unpack</id>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.glassfish.main.distributions</groupId>
-                                    <artifactId>${glassfish-artifact-id}</artifactId>
-                                    <version>${glassfish.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>true</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-
                     <execution>
                         <id>2-copy-lib</id>
                         <goals>
@@ -362,9 +256,9 @@
                             <systemPropertyVariables>
                                 <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
                                 <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <ts.home>${ts.home}</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
-                                <arquillian.xml>appclient-arquillian.xml</arquillian.xml>
+                                <arquillian.xml>${appclient-arquillian.xml}</arquillian.xml>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -389,11 +283,11 @@
                                 <additionalClasspathElement>${glassfish.module.dir}/glassfish-naming.jar</additionalClasspathElement>
                             </additionalClasspathElements>
                             <systemPropertyVariables>
-                                <glassfish.home>${project.build.directory}/${glassfish.toplevel.dir}</glassfish.home>
-                                <java.naming.factory.initial>com.sun.enterprise.naming.impl.SerialInitContextFactory</java.naming.factory.initial>
-                                <ts.home>${env.TS_HOME}</ts.home>
+                                <glassfish.home>${glassfish.home}</glassfish.home>
+                                <java.naming.factory.initial>${java.naming.factory.initial}</java.naming.factory.initial>
+                                <ts.home>${ts.home}</ts.home>
                                 <project.basedir>${project.basedir}</project.basedir>
-                                <arquillian.xml>arquillian.xml</arquillian.xml>
+                                <arquillian.xml>${arquillian.xml}</arquillian.xml>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>
@@ -401,22 +295,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>full</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <glassfish-artifact-id>glassfish</glassfish-artifact-id>
-            </properties>
-        </profile>
-        <profile>
-            <id>web</id>
-            <properties>
-                <glassfish-artifact-id>web</glassfish-artifact-id>
-            </properties>
-        </profile>
-    </profiles>
 </project>
