@@ -83,11 +83,6 @@
         <!-- Jakarta TCK tools dependencies -->
         <dependency>
             <groupId>jakarta.tck</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
             <version>${jakarta.tck.tools.version}</version>
         </dependency>

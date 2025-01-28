@@ -110,12 +110,6 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>runtime</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>assembly</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -271,12 +265,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>jws-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>libutil</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

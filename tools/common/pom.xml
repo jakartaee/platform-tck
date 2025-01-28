@@ -45,16 +45,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>runtime</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
-        <dependency>
             <groupId>commons-httpclient</groupId>
             <artifactId>commons-httpclient</artifactId>
             <version>3.1</version>
@@ -63,6 +53,21 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.10.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.rmi</groupId>
+            <artifactId>jboss-rmi-api_1.0_spec</artifactId>
+            <version>1.0.6.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbynet</artifactId>
+            <version>10.16.1.1</version>
         </dependency>
         <dependency>
             <groupId>jakarta.resource</groupId>

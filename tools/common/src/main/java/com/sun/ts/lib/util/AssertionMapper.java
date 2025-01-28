@@ -16,15 +16,29 @@
 
 package com.sun.ts.lib.util;
 
-import java.io.*;
-import java.util.*;
-import javax.xml.parsers.*;
-import org.xml.sax.helpers.*;
-import org.xml.sax.*;
-import org.apache.tools.ant.taskdefs.*;
-import org.apache.tools.ant.types.*;
-import org.apache.tools.ant.*;
-import com.sun.ts.lib.util.*;
+import org.apache.tools.ant.DirectoryScanner;
+import org.xml.sax.AttributeList;
+import org.xml.sax.HandlerBase;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 public final class AssertionMapper {
     private static final String NO_DESC = "See assertion html documents.";

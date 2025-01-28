@@ -20,11 +20,6 @@
             <artifactId>common</artifactId>
             <version>${ee.tck.version}</version>
         </dependency>
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${ee.tck.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -63,21 +58,12 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>jakarta.tck</groupId>
-                                    <artifactId>libutil</artifactId>
-                                    <version>${ee.tck.version}</version>
-                                    <type>jar</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}/classes</outputDirectory>
-                                    <includes>**/*.class,**/*.xml</includes>
-                                </artifactItem>
-                                <artifactItem>
-                                    <groupId>jakarta.tck</groupId>
                                     <artifactId>common</artifactId>
                                     <version>${ee.tck.version}</version>
                                     <type>jar</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}/classes</outputDirectory>
-                                    <includes>**/*.class</includes>
+                                    <includes>**/*.class,**/*.xml</includes>
                                     <excludes>**/connector/**,**/jms/**,**/vehicle/**,**/whitebox/**</excludes>
                                 </artifactItem>
                             </artifactItems>

@@ -58,21 +58,6 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>install-common</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>common</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>common-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>install-connector</id>
                         <phase>package</phase>
                         <goals>
@@ -282,36 +267,7 @@
                             <generatePom>true</generatePom>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>install-libutil</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>libutil</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>libutil-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>install-runtime</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <groupId>jakarta.tck</groupId>
-                            <artifactId>runtime</artifactId>
-                            <version>${project.version}</version>
-                            <packaging>jar</packaging>
-                            <file>runtime-${project.version}.jar</file>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                    </execution>
+
                     <execution>
                         <id>install-signaturetest</id>
                         <phase>package</phase>

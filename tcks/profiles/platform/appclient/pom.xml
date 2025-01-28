@@ -43,14 +43,6 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>libutil</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>runtime</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
         </dependency>
         <dependency>
@@ -76,11 +68,6 @@
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>libutil</artifactId>
-            <version>${jakarta.ee.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

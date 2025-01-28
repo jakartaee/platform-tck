@@ -153,12 +153,6 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>runtime</artifactId>
-            <version>${version.jakarta.tck}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>jakarta.tck.arquillian</groupId>
             <artifactId>arquillian-protocol-appclient</artifactId>
             <version>${version.jakarta.tck.arquillian}</version>

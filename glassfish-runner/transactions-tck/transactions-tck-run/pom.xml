@@ -131,12 +131,6 @@
             <version>2.0.0</version>
         </dependency>
         
-        
-        <dependency>
-            <groupId>jakarta.tck</groupId>
-            <artifactId>runtime</artifactId>
-            <version>${jakarta.tck.tools.version}</version>
-        </dependency>
         <dependency>
             <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
