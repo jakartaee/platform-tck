@@ -9,6 +9,7 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -26,7 +27,7 @@ import java.net.URL;
 @Tag("web")
 @Tag("tck-javatest")
 
-@TestMethodOrder(MethodOrderer.MethodName.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.entitytest.cascadeall.manyXmany.Client {
     static final String VEHICLE_ARCHIVE = "jpa_core_et_cascadeall_manyXmany_puservlet_vehicle";
 
@@ -147,6 +148,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.entityt
         @Test
         @Override
         @TargetVehicle("puservlet")
+        @Order(3)
         public void cascadeAllMXMTest1() throws java.lang.Exception {
             super.cascadeAllMXMTest1();
         }
@@ -154,6 +156,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.entityt
         @Test
         @Override
         @TargetVehicle("puservlet")
+        @Order(2)
         public void cascadeAllMXMTest2() throws java.lang.Exception {
             super.cascadeAllMXMTest2();
         }
@@ -161,6 +164,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.entityt
         @Test
         @Override
         @TargetVehicle("puservlet")
+        @Order(4)
         public void cascadeAllMXMTest3() throws java.lang.Exception {
             super.cascadeAllMXMTest3();
         }
@@ -168,6 +172,7 @@ public class ClientPuservletTest extends ee.jakarta.tck.persistence.core.entityt
         @Test
         @Override
         @TargetVehicle("puservlet")
+        @Order(1)
         public void cascadeAllMXMTest4() throws java.lang.Exception {
             super.cascadeAllMXMTest4();
         }
