@@ -72,7 +72,6 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.ee.version}</version>
         </dependency>
         <dependency>
             <groupId>jakarta.ejb</groupId>

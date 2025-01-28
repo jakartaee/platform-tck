@@ -35,7 +35,7 @@
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <ee.tck.version>11.0.0-SNAPSHOT</ee.tck.version>
+        <jakarta.tck.tools.version>11.0.0-RC1</jakarta.tck.tools.version>
     </properties>
 
     <dependencyManagement>
@@ -85,4 +85,16 @@
             <version>5.11.3</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

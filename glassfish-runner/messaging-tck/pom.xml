@@ -66,9 +66,8 @@
             <version>${junit.jupiter.version}</version>
         </dependency>
         <dependency>
-            <groupId>jakartatck</groupId>
+            <groupId>jakarta.tck</groupId>
             <artifactId>common</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.container</groupId>

@@ -30,7 +30,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>common</artifactId>
-            <version>${jakarta.ee.version}</version>
+            <version>${jakarta.tck.tools.version}</version>
         </dependency>
     </dependencies>
     <build>

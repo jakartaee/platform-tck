@@ -31,7 +31,7 @@
     <version>11.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>project</name>
-    <description>project</description>
+    <description>platform-tcks-parent</description>
 
     <modules>
         <module>arquillian</module>
@@ -71,14 +71,18 @@
     </modules>
 
     <properties>
+        <!-- Arquillian -->
         <ant.version>1.10.15</ant.version>
         <arquillian.container.se.api.version>1.0.2.Final</arquillian.container.se.api.version>
         <arquillian.jakarta.tck.version>${project.version}</arquillian.jakarta.tck.version>
         <arquillian.version>1.9.1.Final</arquillian.version>
+
         <!-- CDI -->
         <cdi-api.version>4.1.0</cdi-api.version>
+
         <!-- Jakarta Concurrency -->
         <concurrent-api.version>3.1.1</concurrent-api.version>
+
         <!-- Jakarta Persistence -->
         <jakarta-persistence-api.version>3.2.0</jakarta-persistence-api.version>
         <jakarta.activation-api.version>2.1.3</jakarta.activation-api.version>
@@ -101,6 +105,10 @@
         <!-- Jakarta EE Security + Authentication/Authorization -->
         <jakarta.security.enterprise-api.version>4.0.0</jakarta.security.enterprise-api.version>
         <jakarta.servlet-api.version>6.1.0</jakarta.servlet-api.version>
+
+        <!-- Jakarta TCK Tools version from the independently released tools submodule -->
+        <jakarta.tck.tools.version>11.0.0-RC1</jakarta.tck.tools.version>
+
         <!-- Jakarta Transactions -->
         <jakarta.transaction-api.version>2.0.1</jakarta.transaction-api.version>
         <jakarta.validation-api.version>3.1.0</jakarta.validation-api.version>
@@ -146,7 +154,7 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>common</artifactId>
-                <version>${project.version}</version>
+                <version>${jakarta.tck.tools.version}</version>
             </dependency>
 
             <dependency>
