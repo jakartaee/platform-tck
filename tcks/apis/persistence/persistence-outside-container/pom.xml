@@ -41,7 +41,7 @@
         <arquillian.junit>1.7.0.Alpha14</arquillian.junit>
         <junit.jupiter.version>5.11.3</junit.jupiter.version>
         <tck.version>${project.version}</tck.version>
-        <jakarta.tck.tools.version>11.0.0-RC1</jakarta.tck.tools.version>
+        <jakarta.tck.tools.version>11.0.0-RC2</jakarta.tck.tools.version>
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
     <dependencies>
