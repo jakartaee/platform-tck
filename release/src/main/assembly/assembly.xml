@@ -55,7 +55,9 @@
             <source>../tcks/apis/persistence/persistence-outside-container/docs/userguide/target/generated-docs/Jakarta-Persistence-TCK-Users-Guide.pdf</source>
         </file>
     </files>
+
     <fileSets>
+        <!-- Root README -->
         <fileSet>
             <directory>${project.basedir}</directory>
             <outputDirectory>/</outputDirectory>
@@ -63,6 +65,7 @@
                 <include>README.adoc</include>
             </includes>
         </fileSet>
+        <!-- legacy config stuff, some probably obsolete -->
         <fileSet>
             <directory>${project.basedir}/../install/jakartaee/bin</directory>
             <outputDirectory>bin</outputDirectory>
@@ -74,7 +77,11 @@
                 <include>ts.jte</include>
             </includes>
         </fileSet>
-        <!-- User guides -->
+        <!-- SQL scripts -->
+        <fileSet>
+            <directory>${project.basedir}/../sql</directory>
+            <outputDirectory>sql</outputDirectory>
+        </fileSet>
     </fileSets>
 
     <dependencySets>
