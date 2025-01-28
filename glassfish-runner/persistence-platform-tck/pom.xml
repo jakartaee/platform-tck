@@ -49,7 +49,7 @@
         <ts.home>./jakartaeetck</ts.home>
         <version.jakarta.inject>2.0.1.MR</version.jakarta.inject>
         <version.jakarta.persistence>3.2.0</version.jakarta.persistence>
-        <jakarta.tck.tools.version>11.0.0-RC1</jakarta.tck.tools.version>
+        <jakarta.tck.tools.version>11.0.0-RC2</jakarta.tck.tools.version>
         <version.persistence.tck>11.0.0-SNAPSHOT</version.persistence.tck>
     </properties>
 
